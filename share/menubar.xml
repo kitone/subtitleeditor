@@ -1,0 +1,185 @@
+<ui>
+	<menubar name="menubar">
+
+		<menu action="menu-file">
+			<menuitem action="new-document"/>
+			<menuitem action="open-document"/>
+			<menuitem action="open-translation"/>
+			<separator/>
+			<menuitem action="menu-recent-open-document"/>
+			<separator/>
+			<menuitem action="save-document"/>
+			<menuitem action="save-as-document"/>
+			<menuitem action="save-translation"/>
+			<separator/>
+			<menuitem action="properties"/>
+			<separator/>
+			<menuitem action="import-transcript"/>
+			<menuitem action="export-transcript"/>
+			<separator/>
+			<menuitem action="close-document"/>
+			<menuitem action="exit"/>
+		</menu>
+
+		<menu action="menu-edit" name="menu-edit">
+			<menuitem action="undo-command"/>
+			<menuitem action="redo-command"/>
+			<separator/>
+			<!-- menuitem action="cut"/ -->
+			<!-- menuitem action="copy"/-->
+			<!-- menuitem action="paste"/-->
+			<separator/>
+			<menuitem action="insert-subtitle-before"/>
+			<menuitem action="insert-subtitle-after"/>
+			<menuitem action="delete-selected-subtitles"/>
+			<separator/>
+			<menuitem action="split-selected-subtitles"/>
+			<menuitem action="combine-selected-subtitles"/>
+			<menuitem action="duplicate-selected-subtitles"/>
+			<separator/>
+			<menuitem action="italicize-selected-subtitles"/>
+			<menuitem action="dialoguize-selected-subtitles"/>
+		</menu>
+
+		<menu action="menu-selection" name="menu-selection">
+			<menuitem action="select-first-subtitle"/>
+			<menuitem action="select-last-subtitle"/>
+			<menuitem action="select-previous-subtitle"/>
+			<menuitem action="select-next-subtitle"/>
+			<separator/>
+			<menuitem action="select-all-subtitles"/>
+			<menuitem action="invert-subtitles-selection"/>
+		</menu>
+
+		<menu action="menu-timings" name="menu-timings">
+			<menuitem action="move-subtitles"/>
+			<separator/>
+			<menu action="menu-adjust-time-add">
+				<menuitem action="add-to-start"/>
+				<menuitem action="add-to-duration"/>
+				<menuitem action="add-to-start-and-duration"/>
+			</menu>
+			<menu action="menu-adjust-time-remove">
+				<menuitem action="remove-to-start"/>
+				<menuitem action="remove-to-duration"/>
+				<menuitem action="remove-to-start-and-duration"/>
+			</menu>
+			<separator/>
+			<menuitem action="scale-subtitles"/>
+			<menuitem action="change-framerate"/>
+			<separator/>
+			<!-- menuitem action="try-to-extend-to-perfect"/-->
+			<menuitem action="extend-length"/>
+			<separator/>
+			<menuitem action="move-after-preceding-subtitle"/>
+		</menu>
+
+		<menu action="menu-tools">
+			<menuitem action="find-and-replace"/>
+			<menuitem action="find-next"/>
+			<menuitem action="find-previous"/>
+			<separator/>
+			<menuitem action="spell-checking"/>
+			<menuitem action="check-errors"/>
+			<separator/>
+			<menuitem action="split-document"/>
+			<menuitem action="join-document"/>
+			<separator/>
+			<menuitem action="style-editor"/>
+			<separator/>
+			<menuitem action="apply-translation"/>
+			<menuitem action="reverse-text-and-translation"/>
+		</menu>
+
+		<menu action="menu-video">
+			<menuitem action="video-player/open"/>
+			<separator/>
+			<menuitem action="video-player/play"/>
+			<menuitem action="video-player/pause"/>
+			<menuitem action="video-player/play-pause"/>
+			<separator/>
+			<menuitem action="video-player/seek-to-selection"/>
+			<menu action="video-player/menu-backwards-jump">
+				<menuitem action="video-player/very-short-backwards-jump"/>
+				<menuitem action="video-player/short-backwards-jump"/>
+				<menuitem action="video-player/medium-backwards-jump"/>
+				<menuitem action="video-player/long-backwards-jump"/>
+			</menu>
+			<menu action="video-player/menu-forward-jump">
+				<menuitem action="video-player/very-short-forward-jump"/>
+				<menuitem action="video-player/short-forward-jump"/>
+				<menuitem action="video-player/medium-forward-jump"/>
+				<menuitem action="video-player/long-forward-jump"/>
+			</menu>
+			<separator/>
+			<menuitem action="video-player/play-current-subtitle"/>
+			<menuitem action="video-player/play-previous-subtitle"/>
+			<menuitem action="video-player/play-next-subtitle"/>
+			<separator/>
+			<menuitem action="video-player/play-previous-second"/>
+			<menuitem action="video-player/play-first-second"/>
+			<menuitem action="video-player/play-last-second"/>
+			<menuitem action="video-player/play-next-second"/>
+			<separator/>
+			<menuitem action="video-player/set-subtitle-start"/>
+			<menuitem action="video-player/set-subtitle-end"/>
+		</menu>
+
+		<menu action="menu-waveform">
+			<menuitem action="waveform/open"/>
+			<menuitem action="waveform/save"/>
+			<separator/>
+			<menuitem action="waveform/zoom-in"/>
+			<menuitem action="waveform/zoom-out"/>
+			<menuitem action="waveform/zoom-selection"/>
+			<menuitem action="waveform/zoom-all"/>
+			<separator/>
+			<menuitem action="waveform/center-with-selected-subtitle"/>
+			<separator/>
+			<menuitem action="waveform/scrolling-with-cursor"/>
+			<menuitem action="waveform/scrolling-with-selection"/>
+		</menu>
+
+		<menu name="menu-view" action="menu-view">
+			<menuitem action="view/simple"/>
+			<menuitem action="view/advanced"/>
+			<menuitem action="view/translation"/>
+			<menuitem action="view/timing"/>
+			<separator/>
+			<menu name="menu-columns" action="menu-columns">
+				<menuitem action="number"/>
+				<menuitem action="layer"/>
+				<menuitem action="start"/>
+				<menuitem action="end"/>
+				<menuitem action="duration"/>
+				<menuitem action="style"/>
+				<menuitem action="name"/>
+				<menuitem action="margin-r"/>
+				<menuitem action="margin-l"/>
+				<menuitem action="margin-v"/>
+				<menuitem action="effect"/>
+				<menuitem action="text"/>
+				<menuitem action="cps"/>
+				<menuitem action="translation"/>
+				<menuitem action="note"/>
+			</menu>
+			<separator/>
+			<menuitem action="display-video-player"/>
+			<menuitem action="display-waveform"/>
+		</menu>
+
+		<menu action="menu-external-video-player">
+			<menuitem action="external-video-player/open-video"/>
+			<menuitem action="external-video-player/play-video"/>
+		</menu>
+
+		<menu name="menu-options" action="menu-options">
+			<menuitem action="preferences"/>
+			<menuitem action="configure-keyboard-shortcuts"/>
+		</menu>
+
+		<menu action="menu-help">
+			<menuitem action="about"/>
+		</menu>
+	</menubar>
+</ui>

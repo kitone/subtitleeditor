@@ -1,0 +1,2230 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-02-05 13:11+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: share/glade/dialog-change-framerate.glade:7
+#: src/actions/ChangeFramerate.cc:302
+msgid "Change Framerate"
+msgstr ""
+
+#: share/glade/dialog-change-framerate.glade:30
+msgid "<b>Framerate</b>"
+msgstr ""
+
+#: share/glade/dialog-change-framerate.glade:84
+msgid "New:"
+msgstr ""
+
+#: share/glade/dialog-change-framerate.glade:97
+msgid "Current:"
+msgstr ""
+
+#: share/glade/dialog-change-framerate.glade:124
+msgid "<b>Apply to</b>"
+msgstr ""
+
+#: share/glade/dialog-change-framerate.glade:142
+msgid "Current document"
+msgstr ""
+
+#: share/glade/dialog-change-framerate.glade:152
+msgid "All documents"
+msgstr ""
+
+#: share/glade/dialog-check-errors.glade:7
+msgid "Check Errors"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:8
+msgid "Check Errors Preferences"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:29
+msgid "<b>Checking</b>"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:138
+#: src/gui/CheckErrorsUI.cc:286
+msgid "Max line per subtitle"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:154
+msgid "Gap between subtitle"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:170
+msgid "Too long line"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:186
+#: src/gui/CheckErrorsUI.cc:154
+msgid "Too long display time"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:202
+#: src/gui/CheckErrorsUI.cc:99
+msgid "Too short display time"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:218
+#: src/gui/CheckErrorsUI.cc:43
+msgid "Overlapping"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:245
+msgid "<b>Timings</b>"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:354
+#: share/glade/dialog-preferences.glade:804
+msgid "Maximum number of line per subtitle:"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:367
+#: share/glade/dialog-preferences.glade:817
+msgid "Minimum display of the subtitle in mseconds:"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:380
+msgid "Minimum gap between subtitle in mseconds:"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:393
+#: share/glade/dialog-preferences.glade:843
+msgid "Maximum characters per line:"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:406
+msgid "Maximum character per second:"
+msgstr ""
+
+#: share/glade/dialog-check-errors-preferences.glade:419
+#: share/glade/dialog-preferences.glade:869
+msgid "Minimum characters per second:"
+msgstr ""
+
+#: share/glade/dialog-configure-keyboard-shortcuts.glade:8
+#: src/gui/MenuBar.cc:266
+msgid "Configure Keyboard Shortcuts"
+msgstr ""
+
+#: share/glade/dialog-configure-keyboard-shortcuts.glade:122
+msgid ""
+"To edit a shortcut key, clic on the corresponding row and type a new "
+"accelerator, or press backspace to clear."
+msgstr ""
+
+#: share/glade/dialog-encodings-chooser.glade:10
+msgid "Encodings Chooser"
+msgstr ""
+
+#: share/glade/dialog-encodings-chooser.glade:30
+msgid "<b>Please choose encodings</b>"
+msgstr ""
+
+#: share/glade/dialog-find-and-replace.glade:6
+msgid "Find And Replace"
+msgstr ""
+
+#: share/glade/dialog-find-and-replace.glade:68
+#: share/glade/dialog-spell-checking.glade:198
+msgid "Replace with:"
+msgstr ""
+
+#: share/glade/dialog-find-and-replace.glade:81
+msgid "Pattern:"
+msgstr ""
+
+#: share/glade/dialog-find-and-replace.glade:101
+msgid "_Ignore case"
+msgstr ""
+
+#: share/glade/dialog-find-and-replace.glade:115
+msgid "_Used regular expression"
+msgstr ""
+
+#: share/glade/dialog-find-and-replace.glade:179
+msgid "Replace _All"
+msgstr ""
+
+#: share/glade/dialog-find-and-replace.glade:225
+msgid "Replace"
+msgstr ""
+
+#: share/glade/dialog-move-subtitles.glade:6 src/actions/MoveSubtitles.cc:165
+msgid "Move Subtitles"
+msgstr ""
+
+#: share/glade/dialog-move-subtitles.glade:29
+msgid "<b>Position</b>"
+msgstr ""
+
+#: share/glade/dialog-move-subtitles.glade:50
+#: share/glade/dialog-scale-subtitles.glade:133
+#: share/glade/dialog-scale-subtitles.glade:276
+msgid "Current time:"
+msgstr ""
+
+#: share/glade/dialog-move-subtitles.glade:61
+#: share/glade/dialog-scale-subtitles.glade:120
+#: share/glade/dialog-scale-subtitles.glade:263
+msgid "New time:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:7
+msgid "Preferences"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:35
+msgid "<b>General</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:53
+msgid ""
+"When enabled, you can change keyboard shortcuts for menu items by hitting a "
+"key combination while  the menu item is highlighted."
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:54
+msgid "Use _dynamic keyboard shortcuts"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:64
+msgid "_Maximize window"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:77
+msgid "Ask to save on _exit"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:107
+msgid "<b>Subtitle View</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:125
+msgid "_Center the text of the subtitle in the column"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:135
+msgid "_Show the number of character per line"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:148
+msgid "Enable _rubberband selection"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:179
+msgid "<b>File Saving</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:197
+msgid "Create a _backup copy of files before saving"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:211
+msgid "_Autosave files every"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:236
+msgid "minutes"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:267
+msgid "Interface"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:288
+msgid "<b>Encodings Character</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:396
+msgid "Used \"Auto Detected\""
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:423
+msgid "Encodings"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:445
+msgid "<b>Text Subtitle</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:468
+msgid "_Font:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:493
+msgid "Use shaded _background"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:506
+msgid "Display the translated subtitle instead of the original one."
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:507
+msgid "Display _translated subtitle"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:537
+#: share/glade/dialog-script-properties.glade:799
+msgid "<b>Video</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:555
+msgid "Force aspect _ratio"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:583
+msgid "<b>Output</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:626
+msgid "_Video:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:640
+msgid "_Audio:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:669
+msgid "Video Player"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:691
+msgid "<b>Timing Preferences</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:830
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:856
+msgid "Maximum characters per second:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:896
+msgid "Timing"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:918
+msgid "<b>Waveform Color</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:953
+msgid "Background:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:982
+msgid "Wave:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1010
+msgid "Wave fill:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1038
+msgid "Marker:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1066
+msgid "Marker Higtlight:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1094
+msgid "Marker Invalid:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1122
+msgid "Play line:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1149
+#: share/glade/dialog-scale-subtitles.glade:107
+#: share/glade/dialog-scale-subtitles.glade:250
+msgid "Text:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1179
+msgid "Display background"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1192
+msgid "Display waveform fill"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1205
+msgid "Display subtitle text"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1225
+msgid "Reset To _Defaults"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1262
+msgid "<b>Waveform Generator</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1286
+msgid "Interval in seconds:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1324
+msgid "Waveform"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1346
+msgid "<b>Video Player For Preview</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1369
+msgid "Command:"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1379
+msgid ""
+"Example with mplayer:\n"
+"mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1419
+msgid "<span size=\"small\">the uri to the subtitle file</span>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1447
+msgid "<span size=\"small\">the path to the subtitle file</span>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1477
+msgid "<span size=\"small\">the uri to the video file</span>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1507
+msgid "<span size=\"small\">the path to the video file</span>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1537
+msgid ""
+"<span size=\"small\">the time in seconds to the current selected line</span>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1577
+msgid ""
+"The following command parameters will be substituted when launching the "
+"action :"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1612
+msgid "Preview"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1636
+msgid "<b>Activate plugins</b>"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1691
+msgid "gtk-about"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1705
+msgid "gtk-preferences"
+msgstr ""
+
+#: share/glade/dialog-preferences.glade:1738
+msgid "Plugins"
+msgstr ""
+
+#: share/glade/dialog-scale-subtitles.glade:6
+msgid "Scale"
+msgstr ""
+
+#: share/glade/dialog-scale-subtitles.glade:28
+msgid "<b>First Point</b>"
+msgstr ""
+
+#: share/glade/dialog-scale-subtitles.glade:146
+#: share/glade/dialog-scale-subtitles.glade:289
+msgid "Number:"
+msgstr ""
+
+#: share/glade/dialog-scale-subtitles.glade:171
+msgid "<b>Last Point</b>"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:9
+msgid "Script Properties"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:92
+msgid "Script Type:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:122
+#: share/glade/dialog-script-properties.glade:167
+#: share/glade/dialog-script-properties.glade:439
+#: share/glade/dialog-script-properties.glade:460
+#: share/glade/dialog-script-properties.glade:481
+#: share/glade/dialog-script-properties.glade:502
+#: share/glade/dialog-script-properties.glade:523
+#: share/glade/dialog-script-properties.glade:544
+#: share/glade/dialog-script-properties.glade:565
+#: share/glade/dialog-script-properties.glade:586
+#: share/glade/dialog-script-properties.glade:738
+#: share/glade/dialog-script-properties.glade:759
+#: share/glade/dialog-script-properties.glade:780
+#: share/glade/dialog-script-properties.glade:923
+msgid "*"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:137
+msgid "Point Time: "
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:186
+msgid "<b>Read-only info</b>"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:241
+msgid "Title:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:265
+msgid "Original Script:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:289
+msgid "Original Translation:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:313
+msgid "Original Editing:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:337
+msgid "Original Timing:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:361
+msgid "Sync Point:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:385
+msgid "Script Updated By:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:409
+msgid "Update Details:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:605
+msgid "<b>Basic</b>"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:660
+msgid "PlayResX:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:684
+msgid "PlayResY:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:708
+msgid "PlayDepth:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:854
+msgid "Collisions:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:878
+msgid "Wrap Style:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:902
+msgid ""
+"Normal\n"
+"Reverse"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:942
+msgid "<b>Behaviour</b>"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:997
+msgid "Timer:"
+msgstr ""
+
+#: share/glade/dialog-script-properties.glade:1046
+msgid "<b>Miscellaneous</b>"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:8 src/actions/SpellChecking.cc:295
+msgid "Spell Checking"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:113
+msgid "<b>Language:</b>"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:161
+msgid "<b>Completed spell checking.</b>"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:289
+msgid "Check _Word"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:409
+msgid "_Ignore"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:487
+msgid "Ignore _All"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:565
+msgid "_Replace"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:601
+msgid "User dictionary:"
+msgstr ""
+
+#: share/glade/dialog-spell-checking.glade:668
+msgid "A_dd Word"
+msgstr ""
+
+#: share/glade/dialog-split-document.glade:7
+msgid "Split Document"
+msgstr ""
+
+#: share/glade/dialog-split-document.glade:77
+msgid "The beginning for the new document:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:8
+msgid "Subtitle Editor - Style Editor"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:77
+msgid "Create New Style"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:104
+msgid "Delete Style"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:183
+msgid "Copy Style"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:210
+msgid "Manage Styles"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:337
+msgid "TODO"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:373
+msgid "<b>Preview</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:540
+msgid "<b>Fonts</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:648
+msgid "Primary:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:676
+msgid "Outline:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:721
+msgid "Secondary:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:766
+msgid "Shadow:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:815
+msgid "<b>Colors</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:916
+msgid "Size:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:945
+msgid "Distance:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:974
+msgid "Outline"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:996
+msgid "Opaque Box"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1022
+msgid "<b>Border</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1056
+msgid "<b>Appearence</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1152
+msgid "Angle:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1265
+msgid "Scale Y:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1293
+msgid "Scale X:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1321
+msgid "Spacing:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1353
+msgid "<b>Font</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1412
+msgid "Left:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1484
+msgid "Right:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1512
+msgid "Vertical:"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1565
+msgid "<b>Margins</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1884
+msgid "<b>Alignment</b>"
+msgstr ""
+
+#: share/glade/dialog-style-editor.glade:1918
+msgid "<b>Transformation</b>"
+msgstr ""
+
+#: share/glade/subtitleeditor.glade:6
+msgid "Subtitle Editor"
+msgstr ""
+
+#: share/glade/subtitleeditor.glade:56
+msgid "Play"
+msgstr ""
+
+#: share/glade/subtitleeditor.glade:93
+msgid "Pause"
+msgstr ""
+
+#: share/glade/subtitleeditor.glade:145 share/glade/subtitleeditor.glade:150
+msgid "Volume"
+msgstr ""
+
+#: share/glade/subtitleeditor.glade:166
+msgid "0:00:00.00"
+msgstr ""
+
+#. comments
+#: src/actions/About.cc:86
+msgid "a tool for subtitles edition"
+msgstr ""
+
+#. translator-credits
+#: src/actions/About.cc:95
+msgid "translator-credits"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:47
+msgid "Add 100 Milliseconds"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:50 src/actions/AdjustTime.cc:66
+msgid "To Start"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:50
+msgid "Add 100 Milliseconds to start for all subtitles selected"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:54 src/actions/AdjustTime.cc:70
+msgid "To Duration"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:54
+msgid "Add 100 Milliseconds to duration for all subtitles selected"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:58 src/actions/AdjustTime.cc:74
+msgid "To Start And Duration"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:58
+msgid "Add 100 Milliseconds to all subtitles selected"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:63
+msgid "Remove 100 Milliseconds"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:66
+msgid "Remove 100 Milliseconds to start for all subtitles selected"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:70
+msgid "Remove 100 Milliseconds to duration for all subtitles selected"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:74
+msgid "Remove 100 Milliseconds to all subtitles selected"
+msgstr ""
+
+#: src/actions/AdjustTime.cc:219 src/actions/DeleteSubtitleSelect.cc:112
+#: src/actions/Dialoguize.cc:112 src/actions/DuplicateSelectedSubtitles.cc:111
+#: src/actions/ExtendLength.cc:111 src/actions/Italicize.cc:112
+#: src/actions/MoveAfterPrecedingSubtitle.cc:111
+#: src/actions/MoveSubtitles.cc:176 src/actions/TryToExtendToPerfect.cc:110
+msgid "Please select at least a subtitle."
+msgstr ""
+
+#: src/actions/AdjustTime.cc:223
+msgid "Adjust time"
+msgstr ""
+
+#: src/actions/ApplyTranslation.cc:46
+msgid "Apply _Translation"
+msgstr ""
+
+#: src/actions/ApplyTranslation.cc:46
+msgid "Replace the text of the subtitle by the translation"
+msgstr ""
+
+#: src/actions/ApplyTranslation.cc:108
+msgid "Apply translation"
+msgstr ""
+
+#: src/actions/ApplyTranslation.cc:121
+msgid "The translation was applied."
+msgstr ""
+
+#: src/actions/ChangeFramerate.cc:216
+msgid "Change _Framerate"
+msgstr ""
+
+#: src/actions/ChangeFramerate.cc:216
+msgid "Convert framerate"
+msgstr ""
+
+#: src/actions/ChangeFramerate.cc:321
+#, c-format
+msgid "The new framerate was applied. (%s to %s)"
+msgstr ""
+
+#: src/actions/CombineSubtitles.cc:45
+msgid "_Combine"
+msgstr ""
+
+#: src/actions/CombineSubtitles.cc:45
+msgid "Merge the selected subtitles"
+msgstr ""
+
+#: src/actions/CombineSubtitles.cc:160 src/actions/SplitSubtitle.cc:112
+msgid "Please select at least two subtitles."
+msgstr ""
+
+#: src/actions/CombineSubtitles.cc:164
+msgid "Combine subtitles"
+msgstr ""
+
+#: src/actions/DeleteSubtitleSelect.cc:45
+msgid "Delete the selected subtitles"
+msgstr ""
+
+#: src/actions/DeleteSubtitleSelect.cc:118
+msgid "Delete Subtitles"
+msgstr ""
+
+#: src/actions/DeleteSubtitleSelect.cc:130
+msgid "1 subtitle has been deleted."
+msgstr ""
+
+#: src/actions/DeleteSubtitleSelect.cc:132
+#, c-format
+msgid "%d subtitles have been deleted."
+msgstr ""
+
+#: src/actions/Dialoguize.cc:48
+msgid "_Dialogue"
+msgstr ""
+
+#: src/actions/Dialoguize.cc:48
+msgid "Add or remove dialogue line"
+msgstr ""
+
+#: src/actions/Dialoguize.cc:116 src/actions/Italicize.cc:116
+msgid "Italic"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:36
+msgid "Close _without Saving"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:44
+#, c-format
+msgid "Save the changes to document \"%s\" before closing?"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:45
+msgid "If you don't save, the last changes will be permanently lost."
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:73
+msgid "Create a new document"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:78
+msgid "Open a file"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:82
+msgid "Save the current file"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:86
+msgid "Save the current file with a different name"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:91
+msgid "Open _Translation"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:91
+msgid "Open translation from file"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:95
+msgid "Save Trans_lation"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:95
+msgid "Save translation to file"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:100
+msgid "Open _Recent"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:104
+msgid "Close the current file"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:109
+msgid "E_xit"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:109
+msgid "Quit the program"
+msgstr ""
+
+#. DocumentSystem::getInstance().setCurrentDocument(already);
+#: src/actions/DocumentManagement.cc:271
+msgid "I am already open"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:319 src/actions/DocumentManagement.cc:361
+#, c-format
+msgid "Saving file %s (%s, %s, %s)."
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:324 src/actions/DocumentManagement.cc:367
+#, c-format
+msgid "The file %s (%s, %s, %s) has not been saved."
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:407
+msgid "Open translation"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:434
+#, c-format
+msgid "%d subtitles were added with the translation"
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:492
+#, c-format
+msgid "Saving translation file %s (%s, %s, %s)."
+msgstr ""
+
+#: src/actions/DocumentManagement.cc:495
+#, c-format
+msgid "The translation file %s (%s, %s, %s) has not been saved."
+msgstr ""
+
+#: src/actions/DuplicateSelectedSubtitles.cc:47
+msgid "_Duplicate"
+msgstr ""
+
+#: src/actions/DuplicateSelectedSubtitles.cc:47
+msgid "Duplicate the selected subtitles"
+msgstr ""
+
+#: src/actions/DuplicateSelectedSubtitles.cc:115
+msgid "Duplicate selected subtitles"
+msgstr ""
+
+#: src/actions/ExtendLength.cc:44
+msgid "_Extend Length"
+msgstr ""
+
+#: src/actions/ExtendLength.cc:44
+msgid "Extend the length of selected subtitles to the start time of the next"
+msgstr ""
+
+#: src/actions/ExtendLength.cc:117
+msgid "Extend lenght"
+msgstr ""
+
+#: src/actions/ExternalVideoPlayer.cc:46
+msgid "_Preview"
+msgstr ""
+
+#: src/actions/ExternalVideoPlayer.cc:49 src/gui/MenuBar.cc:165
+msgid "_Open Movie"
+msgstr ""
+
+#: src/actions/ExternalVideoPlayer.cc:49
+msgid "Open movie with external video player"
+msgstr ""
+
+#: src/actions/ExternalVideoPlayer.cc:53
+msgid "_Play Movie"
+msgstr ""
+
+#: src/actions/ExternalVideoPlayer.cc:53
+msgid "Play movie with external video player"
+msgstr ""
+
+#: src/actions/ExternalVideoPlayer.cc:107
+msgid "Please select a movie."
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:250 src/gui/_FindAndReplaceUI.cc:473
+msgid "Replace text"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:286 src/actions/FindAndReplace.cc:508
+#: src/actions/FindAndReplace.cc:575
+msgid "The document is empty"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:404
+msgid "_Find And Replace"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:404
+msgid "Search and replace text"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:408
+msgid "Find Ne_xt"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:408
+msgid "Search forwards for the same text"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:411
+msgid "Find Pre_vious"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:411
+msgid "Search backwards for the same text"
+msgstr ""
+
+#: src/actions/FindAndReplace.cc:558 src/actions/FindAndReplace.cc:625
+msgid "Not found"
+msgstr ""
+
+#: src/actions/InsertSubtitle.cc:45
+msgid "Insert _Before"
+msgstr ""
+
+#: src/actions/InsertSubtitle.cc:45
+msgid "Insert blank subtitle before the selected subtitle"
+msgstr ""
+
+#: src/actions/InsertSubtitle.cc:49
+msgid "Insert _After"
+msgstr ""
+
+#: src/actions/InsertSubtitle.cc:49
+msgid "Insert blank subtitle after the selected subtitle"
+msgstr ""
+
+#: src/actions/InsertSubtitle.cc:142 src/Subtitles.cc:123
+msgid "Insert Subtitle"
+msgstr ""
+
+#: src/actions/Italicize.cc:48
+msgid "_Italic"
+msgstr ""
+
+#: src/actions/Italicize.cc:48
+msgid "Italicize the selected subtitles text"
+msgstr ""
+
+#: src/actions/JoinDocument.cc:47
+msgid "_Join Document"
+msgstr ""
+
+#: src/actions/JoinDocument.cc:47
+msgid "Add subtitles from file"
+msgstr ""
+
+#: src/actions/JoinDocument.cc:123
+msgid "Join document"
+msgstr ""
+
+#: src/actions/JoinDocument.cc:138
+#, c-format
+msgid "%d subtitles has been added at this document."
+msgstr ""
+
+#: src/actions/MoveAfterPrecedingSubtitle.cc:47
+msgid "_Move After Preceding"
+msgstr ""
+
+#: src/actions/MoveAfterPrecedingSubtitle.cc:47
+msgid ""
+"Move subtitle after the preceding with the respect of the minimum gap "
+"between subtitles"
+msgstr ""
+
+#: src/actions/MoveAfterPrecedingSubtitle.cc:118
+msgid "Move After Preceding"
+msgstr ""
+
+#: src/actions/MoveSubtitles.cc:87
+msgid "_Move Subtitles"
+msgstr ""
+
+#: src/actions/MoveSubtitles.cc:87
+msgid "All subtitles will be also moved after the first selected subtitle"
+msgstr ""
+
+#: src/actions/ReverseTextAndTranslation.cc:46
+msgid "_Reverse Text And Translation"
+msgstr ""
+
+#: src/actions/ReverseTextAndTranslation.cc:46
+msgid "Reverse the text and the translation"
+msgstr ""
+
+#: src/actions/ReverseTextAndTranslation.cc:109
+msgid "Reverse Text And Translation"
+msgstr ""
+
+#: src/actions/ReverseTextAndTranslation.cc:124
+msgid "Reverse the text and the translation was applied."
+msgstr ""
+
+#: src/actions/ScaleSubtitles.cc:105
+msgid "You can't use <i>scale</i> with this document."
+msgstr ""
+
+#: src/actions/ScaleSubtitles.cc:217
+msgid "_Scale"
+msgstr ""
+
+#: src/actions/ScaleSubtitles.cc:217
+msgid "Scale by two points"
+msgstr ""
+
+#: src/actions/ScaleSubtitles.cc:304
+msgid "Scale subtitles"
+msgstr ""
+
+#: src/actions/ScaleSubtitles.cc:327
+msgid "The scale was applied"
+msgstr ""
+
+#: src/actions/Selection.cc:45
+msgid "_Selection"
+msgstr ""
+
+#: src/actions/Selection.cc:48
+msgid "Select _First Subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:48
+msgid "Select the first subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:52
+msgid "Select _Last Subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:52
+msgid "Select the last subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:56
+msgid "Select _Previous Subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:56
+msgid "Select the previous subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:60
+msgid "Select _Next Subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:60
+msgid "Select the next subtitle"
+msgstr ""
+
+#: src/actions/Selection.cc:64
+msgid "Select _All Subtitles"
+msgstr ""
+
+#: src/actions/Selection.cc:64
+msgid "Select all subtitles"
+msgstr ""
+
+#: src/actions/Selection.cc:68
+msgid "In_vert Selection"
+msgstr ""
+
+#: src/actions/Selection.cc:68
+msgid "Invert subtitles selection"
+msgstr ""
+
+#: src/actions/SpellChecking.cc:664
+msgid "_Spell Check"
+msgstr ""
+
+#: src/actions/SpellChecking.cc:664
+msgid "Launch the spell checking"
+msgstr ""
+
+#: src/actions/SplitDocument.cc:56
+msgid "You can't use <i>split</i> with this document."
+msgstr ""
+
+#. on supprime ensuite les sous-titres utiliser par le nouveau document
+#: src/actions/SplitDocument.cc:97
+msgid "Split document"
+msgstr ""
+
+#: src/actions/SplitDocument.cc:126
+msgid "Spl_it Document"
+msgstr ""
+
+#: src/actions/SplitDocument.cc:126
+msgid "Split the current document in two"
+msgstr ""
+
+#: src/actions/SplitSubtitle.cc:45
+msgid "_Split"
+msgstr ""
+
+#: src/actions/SplitSubtitle.cc:45
+msgid "Split the selected subtitles"
+msgstr ""
+
+#.
+#: src/actions/SplitSubtitle.cc:125
+msgid "Split subtitles"
+msgstr ""
+
+#: src/actions/StyleEditor.cc:113
+msgid "Styles"
+msgstr ""
+
+#: src/actions/StyleEditor.cc:433
+msgid "_Style Editor"
+msgstr ""
+
+#: src/actions/StyleEditor.cc:433
+msgid "Launch the style editor"
+msgstr ""
+
+#: src/actions/Transcript.cc:50
+msgid "_Import Transcript"
+msgstr ""
+
+#: src/actions/Transcript.cc:50
+msgid "Create a new document with any text file"
+msgstr ""
+
+#: src/actions/Transcript.cc:54
+msgid "_Export Transcript"
+msgstr ""
+
+#: src/actions/Transcript.cc:54
+msgid "Export just a text in a file"
+msgstr ""
+
+#: src/actions/Transcript.cc:101
+msgid "Import Text"
+msgstr ""
+
+#: src/actions/Transcript.cc:138
+msgid "Export Text"
+msgstr ""
+
+#: src/actions/TryToExtendToPerfect.cc:44
+msgid "_Try To Extend To Perfect"
+msgstr ""
+
+#: src/actions/TryToExtendToPerfect.cc:44
+msgid "Try to extend to perfect with the respect of timing preferences"
+msgstr ""
+
+#: src/actions/TryToExtendToPerfect.cc:116
+msgid "Try to extend to perfect"
+msgstr ""
+
+#: src/actions/UndoRedo.cc:48
+msgid "Undo the last action"
+msgstr ""
+
+#: src/actions/UndoRedo.cc:51
+msgid "Redo the last undone action"
+msgstr ""
+
+#: src/actions/UndoRedo.cc:135
+#, c-format
+msgid "Undo: %s"
+msgstr ""
+
+#: src/actions/UndoRedo.cc:158
+#, c-format
+msgid "redo: %s"
+msgstr ""
+
+#: src/CommandSystem.cc:37
+msgid "Subtitle Selection"
+msgstr ""
+
+#: src/Document.cc:248
+#, c-format
+msgid "Could not open the file <i>%s</i>."
+msgstr ""
+
+#: src/Document.cc:254
+#, c-format
+msgid "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
+msgstr ""
+
+#: src/Document.cc:344 src/Document.cc:348
+msgid "Save Document Failed."
+msgstr ""
+
+#: src/Encodings.h:37 src/Encodings.h:50 src/Encodings.h:74 src/Encodings.h:97
+msgid "Western"
+msgstr ""
+
+#: src/Encodings.h:38 src/Encodings.h:75 src/Encodings.h:95
+msgid "Central European"
+msgstr ""
+
+#: src/Encodings.h:39
+msgid "South European"
+msgstr ""
+
+#: src/Encodings.h:40 src/Encodings.h:48 src/Encodings.h:102
+msgid "Baltic"
+msgstr ""
+
+#: src/Encodings.h:41 src/Encodings.h:76 src/Encodings.h:83 src/Encodings.h:85
+#: src/Encodings.h:96
+msgid "Cyrillic"
+msgstr ""
+
+#: src/Encodings.h:42 src/Encodings.h:79 src/Encodings.h:101
+msgid "Arabic"
+msgstr ""
+
+#: src/Encodings.h:43 src/Encodings.h:98
+msgid "Greek"
+msgstr ""
+
+#: src/Encodings.h:44
+msgid "Hebrew Visual"
+msgstr ""
+
+#: src/Encodings.h:45 src/Encodings.h:78 src/Encodings.h:100
+msgid "Hebrew"
+msgstr ""
+
+#: src/Encodings.h:46 src/Encodings.h:77 src/Encodings.h:99
+msgid "Turkish"
+msgstr ""
+
+#: src/Encodings.h:47
+msgid "Nordic"
+msgstr ""
+
+#: src/Encodings.h:49
+msgid "Celtic"
+msgstr ""
+
+#: src/Encodings.h:51
+msgid "Romanian"
+msgstr ""
+
+#: src/Encodings.h:53 src/Encodings.h:54 src/Encodings.h:55 src/Encodings.h:56
+#: src/Encodings.h:57
+msgid "Unicode"
+msgstr ""
+
+#: src/Encodings.h:59
+msgid "Armenian"
+msgstr ""
+
+#: src/Encodings.h:60 src/Encodings.h:61 src/Encodings.h:66
+msgid "Chinese Traditional"
+msgstr ""
+
+#: src/Encodings.h:62
+msgid "Cyrillic/Russian"
+msgstr ""
+
+#: src/Encodings.h:64 src/Encodings.h:81 src/Encodings.h:89
+msgid "Japanese"
+msgstr ""
+
+#: src/Encodings.h:65 src/Encodings.h:82 src/Encodings.h:84 src/Encodings.h:92
+msgid "Korean"
+msgstr ""
+
+#: src/Encodings.h:68 src/Encodings.h:69 src/Encodings.h:70 src/Encodings.h:72
+msgid "Chinese Simplified"
+msgstr ""
+
+#: src/Encodings.h:71
+msgid "Georgian"
+msgstr ""
+
+#: src/Encodings.h:86
+msgid "Cyrillic/Ukrainian"
+msgstr ""
+
+#: src/Encodings.h:90 src/Encodings.h:93 src/Encodings.h:103
+msgid "Vietnamese"
+msgstr ""
+
+#: src/Encodings.h:91
+msgid "Thai"
+msgstr ""
+
+#: src/formats/SubtitleASS.cc:179 src/formats/SubtitleASS.cc:233
+#: src/formats/SubtitleEncoreNTSC.cc:99 src/formats/SubtitleEncoreNTSC.cc:154
+#: src/formats/SubtitleEncorePAL.cc:98 src/formats/SubtitleEncorePAL.cc:151
+#: src/formats/SubtitleMicroDVD.cc:87 src/formats/SubtitleMicroDVD.cc:138
+#: src/formats/SubtitleMPL2.cc:86 src/formats/SubtitleMPL2.cc:136
+#: src/formats/SubtitleMPsub.cc:90 src/formats/SubtitleMPsub.cc:184
+#: src/formats/SubtitleSSA.cc:159 src/formats/SubtitleSSA.cc:209
+#: src/formats/SubtitleSubRip.cc:87 src/formats/SubtitleSubRip.cc:155
+#: src/formats/SubtitleSubViewer2.cc:86 src/formats/SubtitleSubViewer2.cc:135
+#: src/formats/SubtitleTTXT.cc:130
+msgid "I can't open this file."
+msgstr ""
+
+#: src/gui/Application.cc:333
+msgid "Name:"
+msgstr ""
+
+#: src/gui/Application.cc:334
+msgid "Encoding:"
+msgstr ""
+
+#: src/gui/Application.cc:335 src/gui/DialogUtility.cc:74
+msgid "Format:"
+msgstr ""
+
+#: src/gui/Application.cc:336 src/gui/DialogUtility.cc:75
+msgid "NewLine:"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:44
+msgid "An error is detected when the subtitle overlap on next subtitle."
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:62
+#, c-format
+msgid ""
+"<b>Subtitle overlap on next subtitle:</b> %ims overlap\n"
+"%s -> %s\n"
+"%s"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:100
+msgid "An error is detected when the number of character per second is ..."
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:119
+#, c-format
+msgid ""
+"<b>Subtitle display time is too short:</b> %i char/s\n"
+"%s -> %s\n"
+"%s"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:155
+msgid "An error is detected when the number ..."
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:174
+#, c-format
+msgid ""
+"<b>Subtitle display time is too long:</b> %i char/s\n"
+"%s -> %s\n"
+"%s"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:216
+msgid "Too Long line"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:217 src/gui/CheckErrorsUI.cc:287
+msgid "An error is detected when ..."
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:243
+#, c-format
+msgid ""
+"<b>Subtitle has a too long line (%s):</b> %i characters\n"
+"%s -> %s\n"
+"%s"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:244 src/gui/CheckErrorsUI.cc:317
+#: src/SubtitleView.cc:784
+msgid "text"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:244 src/gui/CheckErrorsUI.cc:317
+#: src/SubtitleView.cc:863
+msgid "translation"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:316
+#, c-format
+msgid ""
+"<b>Subtitle has too many lines (%s):</b> %i\n"
+"%s -> %s\n"
+"%s"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:354
+msgid "Minimum gap between subtitles"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:355
+msgid ""
+"An error is detected when the minimum gap between subtitles is too short."
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:376
+#, c-format
+msgid "<b>Too short gap between subtitle:</b> %ims"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:514
+msgid "Line"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:528
+msgid "Errors"
+msgstr ""
+
+#: src/gui/CheckErrorsUI.cc:728
+msgid "Document not found."
+msgstr ""
+
+#: src/gui/DialogFileChooser.cc:32
+msgid "Open Document"
+msgstr ""
+
+#: src/gui/DialogFileChooser.cc:48
+msgid "Save Document"
+msgstr ""
+
+#: src/gui/DialogFileChooser.cc:60
+msgid "Open Video"
+msgstr ""
+
+#: src/gui/DialogFileChooser.cc:63
+msgid "Video"
+msgstr ""
+
+#: src/gui/DialogUtility.cc:73
+msgid "Character Coding:"
+msgstr ""
+
+#: src/gui/DialogUtility.cc:137
+msgid "Auto Detected"
+msgstr ""
+
+#: src/gui/_FindAndReplaceUI.cc:295
+#, c-format
+msgid "The regular expression \"%s\" was not found."
+msgstr ""
+
+#: src/gui/_FindAndReplaceUI.cc:297
+#, c-format
+msgid "The text \"%s\" was not found."
+msgstr ""
+
+#: src/gui/GStreamerPlayer.cc:172
+msgid "Failed to create a GStreamer 'decodebin'"
+msgstr ""
+
+#: src/gui/GStreamerPlayer.cc:173
+msgid "Please check your GStreamer installation"
+msgstr ""
+
+#: src/gui/GStreamerPlayer.cc:229 src/gui/GStreamerPlayer.cc:330
+#, c-format
+msgid ""
+"Failed to create a GStreamer converts video (%s). Please check your "
+"GStreamer installation."
+msgstr ""
+
+#: src/gui/GStreamerPlayer.cc:233
+#, c-format
+msgid ""
+"Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
+"installation."
+msgstr ""
+
+#: src/gui/GStreamerPlayer.cc:334
+#, c-format
+msgid ""
+"Failed to create a GStreamer audio output (%s). Please select another audio "
+"output or check your GStreamer installation."
+msgstr ""
+
+#: src/gui/GStreamerPlayer.cc:893
+msgid ""
+"Only a text stream was detected. Either you are loading a subtitle file or "
+"some other type of text file, or the media file was not recognized. This is "
+"not a media file."
+msgstr ""
+
+#: src/gui/GStreamerPlayer.cc:995
+#, c-format
+msgid ""
+"Media file could not be played.\n"
+"%s"
+msgstr ""
+
+#: src/gui/MenuBar.cc:124
+msgid "_File"
+msgstr ""
+
+#: src/gui/MenuBar.cc:126
+msgid "_Properties"
+msgstr ""
+
+#: src/gui/MenuBar.cc:133
+msgid "_Edit"
+msgstr ""
+
+#: src/gui/MenuBar.cc:144
+msgid "_Timings"
+msgstr ""
+
+#: src/gui/MenuBar.cc:151
+msgid "T_ools"
+msgstr ""
+
+#. ag.item("find-and-replace", Gtk::Stock::FIND_AND_REPLACE, _("_Find And Replace"),
+#. _("Search for and replace text"), "<Control>F");
+#: src/gui/MenuBar.cc:155
+msgid "_Check Errors"
+msgstr ""
+
+#: src/gui/MenuBar.cc:156
+msgid "Launch the errors checking"
+msgstr ""
+
+#: src/gui/MenuBar.cc:163
+msgid "_Video"
+msgstr ""
+
+#: src/gui/MenuBar.cc:166
+msgid "Open the video"
+msgstr ""
+
+#: src/gui/MenuBar.cc:168
+msgid "_Play the video"
+msgstr ""
+
+#: src/gui/MenuBar.cc:170
+msgid "_Make a pause"
+msgstr ""
+
+#: src/gui/MenuBar.cc:172
+msgid "_Play / Pause"
+msgstr ""
+
+#: src/gui/MenuBar.cc:172
+msgid "Play or make a pause"
+msgstr ""
+
+#: src/gui/MenuBar.cc:174
+msgid "_Seek To Selection"
+msgstr ""
+
+#: src/gui/MenuBar.cc:175
+msgid "Seek to the first selected subtitle"
+msgstr ""
+
+#: src/gui/MenuBar.cc:177
+msgid "Play _Previous Subtitle"
+msgstr ""
+
+#: src/gui/MenuBar.cc:178
+msgid "Play previous subtitle from the first selected subtitle"
+msgstr ""
+
+#: src/gui/MenuBar.cc:179
+msgid "Play _Selection"
+msgstr ""
+
+#: src/gui/MenuBar.cc:180
+msgid "Play the selected subtitle"
+msgstr ""
+
+#: src/gui/MenuBar.cc:181
+msgid "Play _Next Subtitle"
+msgstr ""
+
+#: src/gui/MenuBar.cc:182
+msgid "Play next subtitle from the first selected subtitle"
+msgstr ""
+
+#: src/gui/MenuBar.cc:184
+msgid "Play Previous Second"
+msgstr ""
+
+#: src/gui/MenuBar.cc:185
+msgid "Play First Second"
+msgstr ""
+
+#: src/gui/MenuBar.cc:186
+msgid "Play Last Second"
+msgstr ""
+
+#: src/gui/MenuBar.cc:187
+msgid "Play Next Second"
+msgstr ""
+
+#: src/gui/MenuBar.cc:189
+msgid "Set Subtitle _Start"
+msgstr ""
+
+#: src/gui/MenuBar.cc:190
+msgid "Set Subtitle _End"
+msgstr ""
+
+#: src/gui/MenuBar.cc:192
+msgid "_Backards Jump"
+msgstr ""
+
+#: src/gui/MenuBar.cc:193 src/gui/MenuBar.cc:199
+msgid "Very Short"
+msgstr ""
+
+#: src/gui/MenuBar.cc:194 src/gui/MenuBar.cc:200
+msgid "Short"
+msgstr ""
+
+#: src/gui/MenuBar.cc:195 src/gui/MenuBar.cc:201
+msgid "Medium"
+msgstr ""
+
+#: src/gui/MenuBar.cc:196 src/gui/MenuBar.cc:202
+msgid "Long"
+msgstr ""
+
+#: src/gui/MenuBar.cc:198
+msgid "_Forward Jump"
+msgstr ""
+
+#: src/gui/MenuBar.cc:209 src/gui/MenuBar.cc:237
+msgid "_Waveform"
+msgstr ""
+
+#: src/gui/MenuBar.cc:211
+msgid "_Open Waveform"
+msgstr ""
+
+#: src/gui/MenuBar.cc:211
+msgid "Open wavefrom from a file or create from a video"
+msgstr ""
+
+#: src/gui/MenuBar.cc:212
+msgid "_Save Waveform"
+msgstr ""
+
+#: src/gui/MenuBar.cc:212
+msgid "Save waveform to file"
+msgstr ""
+
+#: src/gui/MenuBar.cc:214
+msgid "Zoom _In"
+msgstr ""
+
+#: src/gui/MenuBar.cc:215
+msgid "Zoom _Out"
+msgstr ""
+
+#: src/gui/MenuBar.cc:216
+msgid "Zoom _Selection"
+msgstr ""
+
+#: src/gui/MenuBar.cc:217
+msgid "Zoom _All"
+msgstr ""
+
+#: src/gui/MenuBar.cc:219
+msgid "_Center With Selected Subtitle"
+msgstr ""
+
+#: src/gui/MenuBar.cc:221
+msgid "Scrolling With _Cursor"
+msgstr ""
+
+#: src/gui/MenuBar.cc:222
+msgid "Scrolling With _Selection"
+msgstr ""
+
+#: src/gui/MenuBar.cc:229
+msgid "V_iew"
+msgstr ""
+
+#: src/gui/MenuBar.cc:231
+msgid "_Simple"
+msgstr ""
+
+#: src/gui/MenuBar.cc:232
+msgid "_Advanced"
+msgstr ""
+
+#: src/gui/MenuBar.cc:233
+msgid "_Translation"
+msgstr ""
+
+#: src/gui/MenuBar.cc:234
+msgid "T_iming"
+msgstr ""
+
+#: src/gui/MenuBar.cc:236
+msgid "_Video Player"
+msgstr ""
+
+#: src/gui/MenuBar.cc:239
+msgid "Columns"
+msgstr ""
+
+#: src/gui/MenuBar.cc:241
+msgid "Number"
+msgstr ""
+
+#: src/gui/MenuBar.cc:242
+msgid "Layer"
+msgstr ""
+
+#: src/gui/MenuBar.cc:243
+msgid "Start"
+msgstr ""
+
+#: src/gui/MenuBar.cc:244
+msgid "End"
+msgstr ""
+
+#: src/gui/MenuBar.cc:245
+msgid "Duration"
+msgstr ""
+
+#: src/gui/MenuBar.cc:246
+msgid "Style"
+msgstr ""
+
+#. column name
+#: src/gui/MenuBar.cc:247 src/gui/PreferencesUI.cc:137
+msgid "Name"
+msgstr ""
+
+#: src/gui/MenuBar.cc:248
+msgid "Margin Left"
+msgstr ""
+
+#: src/gui/MenuBar.cc:249
+msgid "Margin Right"
+msgstr ""
+
+#: src/gui/MenuBar.cc:250
+msgid "Margin Vertical"
+msgstr ""
+
+#: src/gui/MenuBar.cc:251
+msgid "Effect"
+msgstr ""
+
+#: src/gui/MenuBar.cc:252
+msgid "Text"
+msgstr ""
+
+#: src/gui/MenuBar.cc:253
+msgid "Translation"
+msgstr ""
+
+#: src/gui/MenuBar.cc:254
+msgid "Note"
+msgstr ""
+
+#: src/gui/MenuBar.cc:255
+msgid "Characters Per Second"
+msgstr ""
+
+#: src/gui/MenuBar.cc:262
+msgid "_Options"
+msgstr ""
+
+#: src/gui/MenuBar.cc:264
+msgid "Configure Subtitle Editor"
+msgstr ""
+
+#: src/gui/MenuBar.cc:265
+msgid "Configure _Keyboard Shortcuts"
+msgstr ""
+
+#: src/gui/MenuBar.cc:273
+msgid "_Help"
+msgstr ""
+
+#: src/gui/MenuBar.cc:595
+msgid "Actions"
+msgstr ""
+
+#: src/gui/MenuBar.cc:617
+msgid "Shortcut"
+msgstr ""
+
+#: src/gui/MenuBar.cc:747
+msgid "Invalid shortcut."
+msgstr ""
+
+#: src/gui/MenuBar.cc:765
+#, c-format
+msgid "Shortcut \"%s\" is already taken by \"%s\"."
+msgstr ""
+
+#: src/gui/MenuBar.cc:768
+#, c-format
+msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
+msgstr ""
+
+#: src/gui/MenuBar.cc:771
+msgid "Conflicting Shortcuts"
+msgstr ""
+
+#: src/gui/MenuBar.cc:777
+msgid "Changing shortcut failed."
+msgstr ""
+
+#: src/gui/MenuBar.cc:808
+msgid "Removing shortcut failed."
+msgstr ""
+
+#: src/gui/OpenWaveformUI.cc:32
+msgid "Open Waveform"
+msgstr ""
+
+#. column charset
+#: src/gui/PreferencesUI.cc:147
+msgid "Charset"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:322 src/gui/PreferencesUI.cc:332
+msgid "Autodetect"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:323
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:324
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:325
+msgid "OSS - Open Sound System"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:326 src/gui/PreferencesUI.cc:335
+msgid "SDL - Simple DirectMedia Layer"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:327 src/gui/PreferencesUI.cc:336
+msgid "GConf"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:333
+msgid "X Window System (X11/XShm/Xv)"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:334
+msgid "X Window System (No Xv)"
+msgstr ""
+
+#: src/gui/PreferencesUI.cc:337
+msgid "OpenGL "
+msgstr ""
+
+#: src/gui/VideoPlayer.cc:284
+msgid "Set subtitle start"
+msgstr ""
+
+#: src/gui/VideoPlayer.cc:300
+msgid "Set subtitle end"
+msgstr ""
+
+#: src/gui/WaveformGeneratorUI.cc:49
+msgid "Generate Waveform"
+msgstr ""
+
+#: src/gui/WaveformGeneratorUI.cc:233
+msgid "Media file could not be played."
+msgstr ""
+
+#: src/gui/WaveformSystem.cc:658 src/gui/WaveformSystem.cc:671
+#: src/gui/WaveformSystem.cc:682 src/gui/WaveformSystem.cc:694
+msgid "Editing position"
+msgstr ""
+
+#: src/gui/WaveformSystem.cc:1475
+msgid "Save Waveform"
+msgstr ""
+
+#: src/main.cc:228
+msgid " - edit subtitles files"
+msgstr ""
+
+#: src/Options.cc:58
+msgid "NAME"
+msgstr ""
+
+#: src/Options.cc:66
+msgid "ENCODING"
+msgstr ""
+
+#: src/Options.cc:74 src/Options.cc:82
+msgid "FILE"
+msgstr ""
+
+#: src/Options.cc:99
+msgid "[FILE...]"
+msgstr ""
+
+#: src/SubtitleFormat.cc:151
+msgid ""
+"It's not valid UTF-8.\n"
+"Please use another character encoding."
+msgstr ""
+
+#: src/SubtitleFormat.cc:161
+msgid "Please use another character encoding."
+msgstr ""
+
+#: src/SubtitleModel.cc:37
+msgid "Add Subtitle"
+msgstr ""
+
+#: src/SubtitleModel.cc:75
+msgid "Remove Subtitle"
+msgstr ""
+
+#: src/SubtitleModel.cc:509
+msgid "Reordered Subtitle"
+msgstr ""
+
+#: src/Subtitles.cc:35
+msgid "Append subtitle"
+msgstr ""
+
+#: src/Subtitles.cc:64
+msgid "Remove Subtitles"
+msgstr ""
+
+#: src/SubtitleSystem.cc:194
+msgid "I can't find what is this format or it's not supported."
+msgstr ""
+
+#: src/SubtitleView.cc:566
+msgid "num"
+msgstr ""
+
+#: src/SubtitleView.cc:582
+msgid "This number column"
+msgstr ""
+
+#: src/SubtitleView.cc:595
+msgid "layer"
+msgstr ""
+
+#: src/SubtitleView.cc:612
+msgid "Layer number."
+msgstr ""
+
+#: src/SubtitleView.cc:622
+msgid "start"
+msgstr ""
+
+#: src/SubtitleView.cc:639
+msgid "This time is the time when a subtitle appears on the screen."
+msgstr ""
+
+#: src/SubtitleView.cc:649
+msgid "end"
+msgstr ""
+
+#: src/SubtitleView.cc:666
+msgid "This time is the time when a subtitle disappears from the screen."
+msgstr ""
+
+#: src/SubtitleView.cc:676
+msgid "duration"
+msgstr ""
+
+#: src/SubtitleView.cc:693
+msgid "The duration of the subtitle."
+msgstr ""
+
+#: src/SubtitleView.cc:706
+msgid "style"
+msgstr ""
+
+#: src/SubtitleView.cc:734
+msgid "name"
+msgstr ""
+
+#: src/SubtitleView.cc:760
+msgid "cps"
+msgstr ""
+
+#: src/SubtitleView.cc:796 src/SubtitleView.cc:875 src/SubtitleView.cc:931
+msgid "Use Ctrl+Return for exit and Return for line-break"
+msgstr ""
+
+#: src/SubtitleView.cc:921
+msgid "note"
+msgstr ""
+
+#: src/SubtitleView.cc:953
+msgid "effect"
+msgstr ""
+
+#: src/SubtitleView.cc:984
+msgid "R"
+msgstr ""
+
+#: src/SubtitleView.cc:1012
+msgid "L"
+msgstr ""
+
+#: src/SubtitleView.cc:1040
+msgid "V"
+msgstr ""
+
+#: src/SubtitleView.cc:1101
+msgid "Editing layer"
+msgstr ""
+
+#: src/SubtitleView.cc:1127
+msgid "Editing start"
+msgstr ""
+
+#: src/SubtitleView.cc:1151
+msgid "Editing end"
+msgstr ""
+
+#: src/SubtitleView.cc:1175
+msgid "Editing duration"
+msgstr ""
+
+#: src/SubtitleView.cc:1194
+msgid "Editing text"
+msgstr ""
+
+#: src/SubtitleView.cc:1216
+msgid "Editing translation"
+msgstr ""
+
+#: src/SubtitleView.cc:1236
+msgid "Editing note"
+msgstr ""
+
+#: src/SubtitleView.cc:1255
+msgid "Editing effect"
+msgstr ""
+
+#: src/SubtitleView.cc:1276
+msgid "Editing style"
+msgstr ""
+
+#: src/SubtitleView.cc:1296
+msgid "Editing name"
+msgstr ""
+
+#: src/SubtitleView.cc:1316
+msgid "Editing margin-l"
+msgstr ""
+
+#: src/SubtitleView.cc:1336
+msgid "Editing margin-r"
+msgstr ""
+
+#: src/SubtitleView.cc:1356
+msgid "Editing margin-v"
+msgstr ""
+
+#: src/SubtitleView.cc:1502
+msgid "Set style to selection"
+msgstr ""

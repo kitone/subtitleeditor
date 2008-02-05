@@ -1,0 +1,411 @@
+2008-02-05 - 0.20.0
+	*	Add "Find Next" and "Find Previous"
+	* Move glade files in share/glade
+	* HIG improved
+
+2008-01-27 - 0.20.0alpha9
+	* It's possible to have multiple profile configuration with the option --profile
+	*	Support of the document changed
+	*	Ask to save the document on exit just if has changed
+	* Add column "Characters Per Second" (cps)
+	* Add "Reverse Text And Translation"
+	* Add menu "Recent Files"
+	* Add menu "Timings"
+	* Code Cleanup (internal new PluginSystem)
+	* Fix: debug options
+	* Many fixes and improvements
+	* The license was changed to GPLv3 or later.
+
+2007-12-14 - 0.20.0alpha8
+	+ can open subtitle files with drag-and-drop
+	+ display subtitle text in waveform
+	+ using document names as window title
+	+ add "Italic"
+	+ add "Dialogue"
+	+ reorderer columns 
+	+ TimeCell: the scroll button can be used for changed the value.
+	* fix: (Split Subtitle) when the subtitle have two line, split the text between two subtitles
+	* fix: column duration set start time
+	* fix: popup menu in cell
+	* fix: #10342 can't open video file (ogm, mkv...)
+	* fix: #10384 new line
+
+2007-11-10 - 0.20.0alpha7
+	+ Change the order of subtitles (drag-and-drop)
+	+ dialog: "Configure Keyboard Shortcuts" (menu Options)
+	+ add menu "Selection"
+	+ add "Select All"
+	+ add "Invert Selection"
+	+ add rubberband selection
+	+ Scale: setting the default values for the first and the last depending on the selection
+	* menu improved
+
+2007-10-29 - 0.20.0alpha6 "Nobody is perfect"
+	+ add Undo/Redo support
+	+ open video and wf with subtitle (arg) (patch from Fredrik Tolf)
+	+ add "Select First Subtitle"
+	+ add "Select Last Subtitle"
+	+ add "Duplicate entire line"
+	+ add "Set Position After Preceding"
+	+ add popup menu (subtitle view)
+	+ add Styles to Subtitle Editor Project
+	* fix: Deactivate the shortcuts when you are editing a text
+	* code cleanup
+		* Add class Subtitle, Subtitles, Style, Styles
+		* Remove class SubtileModifier, StyleModifier
+
+2007-10-04 - 0.20.0alpha5
+	+ add "Combine Subtitles"
+	+ add "Split Subtitle"
+	+ add "Extend Length"
+	+ Check Errors: color per error
+	+ Change config method
+	+ new color saving
+	* improved config system
+	* use now  XDG Base Directory Specification (~/.config/subtitleeditor/)
+	* fix: Scale the subset of the subtitles (thanks Silent Star)
+	* fix: encodings updated in file chooser
+	* fix: subtitles loaders ignores lines that contains polish diacritic chars (thanks  Robert Ramiega)
+	* fix: #10059 File dialog doesn't show files without extension
+	* fix: #10061 Title editor field clears too easily
+	* it.po: add Italian translation by Mancausoft
+	* dialog preferences simplified
+	* menu improved
+	* code cleanup
+
+2007-07-05 - 0.20.0alpha4
+	+ waveform: display current time and duration of the selected subtitle when button is pushed
+	+ waveform: scrolling with the selected subtitle now works correctly
+	+ waveform: add zoom functions: In, Out, Selection, All
+	+ waveform: add 'Center With Selected Subtitle'
+	+ waveform: ctrl+left/right move time with previous/next subtitle time
+	+ waveform: ctrl+middle button select subtitle
+	+ waveform: Mouse left button set subtitle start
+	+ waveform: Mouse left button with shift set subtitle start and after the end with motion
+	+ waveform: improved
+	+ waveform: keep settings of scale and zoom
+	+ video player: add very short, medium... backwards/forward jump
+	+ dialog check errors: add button preferences
+	* fix: Insert Before/After respect min-gap-between-subtitle
+	* fix: dialog 'find and replace' doesn't close with the cross (thanks Silent Star)
+	* fix: add spin button in preferences for 'max characters per line' (thanks Silent Star)
+	* fix: video player slider max
+	* hu.po: update Hungarian translation by Ványi Norbert
+	* enable debug by default (--debug-all, --debug-video-player ...)
+
+2007-06-13 - 0.20.0alpha3
+	+ spin button time: ctrl+scroll set minute
+	+ added options: -v --video, -w --waveform, -e --encoding
+	* fix: crash when config file doesn't exist with video player (thanks chantra)
+
+2007-06-12 - 0.20.0alpha2 
+	+ video player: design was simplified and improved (use now decodebin)
+	+ video player: after "Set End Subtitle" can create next subtitle
+	+ video player: "Play Previous/Next Subtitle" select subtitle
+	+ video player: can choose output in the preferences
+	+ video player: can display the translated subtitle instead of the original one
+	+ video player: many fixes
+	* fix: select keep the focus of the column (subtitle view)
+	* fix: after delete subtitle, select previous subtitle
+	* fix: show filter (dialog save) 
+	* fix: Notebook scrollable (enable)
+	* fix: subtitleeditor icons (scalable, 16x16, 24x24...)
+	* fix: middle button in waveform system
+	* fix: spell patch by Luboš Staněk
+	* fix: Waveform reference/unreference
+	* fix: remove SaveDocument.h/cc po/POTFILES.in
+	* fix: create ~/.subtitleeditor (thanks Silent Star)
+	* fix: Check Errors max characters per line (load config)
+	* cs.po: update Czech translation by Luboš Staněk
+	* hu.po: update Hungarian translation by Ványi Norbert
+	* many fixes and improvements
+
+2007-06-03 - 0.20.0alpha1 (big release)
+	+ multiple document
+	+ rewriting internal video player
+	+ show now subtitle with video (gstreamer)
+	+ add format Subtitle Editor Project (*.sep) (not finished)
+	+ action to all documents
+	+ subtitle view: can now center subtitle text
+	+ subtitle view: characters per line to text and translate
+	+ use now pcrecpp (RegEx)
+	+ support newline (Unix/Windows)
+	+ CheckErrors (overlapping, too short display time...)
+	+ add "Set Subtitle Start/End" (video player)
+	+ add menu item tooltip (statusbar)
+	+ rewriting timing system
+	+ add column note
+	+ use now cairomm
+	+	ui improved (scale ...)
+	+ rewriting unit test
+	+ video player : force-aspect-ratio
+	+ add "Open/Save Translation"
+	+ add "autosave" files every X minutes
+	+ enable column search (num)
+	* best gstreamer message error
+	* fix: Regular Expression with SubtitleFormat
+	* fix: Config \n
+
+2007-04-25 - 0.13.5
+	* fix: ASS/SSA loading (bug #8963)
+	
+2007-03-13 - 0.13.4
+	* fix: subtitleeditor.png (about dialog) thanks Andrew P.
+
+2007-03-06 - 0.13.3
+	* es.po: update Spanish translation by Amaya Rodrigo
+
+2007-02-13 - 0.13.2
+	* hu.po: update Hungarian translation by Ványi Norbert
+
+2007-01-27 - 0.13.1
+	* fix MPsub loader (thank for bug report: Nicolas Maufrais)
+	* hu.po: update Hungarian translation by Ványi Norbert
+	* add dependance to pcrecpp
+
+2007-01-21 - 0.13
+	+ Add toggle button for scrolling option (timing system)
+	+ Add support for loading/saving to a format Adobe Encore DVD by Laurens Keek
+	+ nl.po: add Dutch translation by Laurens Keek
+
+2006-12-14 - 0.12.4
+	* fix: Subtitle ASS/SSA time saving (0:00:00.000 -> 0:00:00.00)
+
+2006-12-11 - 0.12.3
+	* fix: SubViewer 2.0 loader (thank for bug report: Zoran Dzelajlija)
+
+2006-11-27 - 0.12.2
+	* es.po: update Spanish translation by Amaya Rodrigo
+	* hu.po: add Hungarian translation by Ványi Norbert
+
+2006-11-22 - 0.12.1
+	* pl.po: add Polish translation by Wojciech Myrda
+	* pt_PT.po: add Portuguese translation by Joel calado
+	* fix: configure.in check sed and egrep (remove macro. autotools >= 2.59)
+
+2006-11-20 - 0.12
+	* optimization (launch, open subtitle, ...)
+	+ add timing button : play previous/first/last/next second 
+	+ add simple gstreamer check (--check-gstreamer)
+	* add man page by Amaya Rodrigo
+	* fix: Options arg, clean, remove : --maximize, -s, -m
+	* fix: Can open subtitle directly ex: "subtitleeditor mysubtitle.srt"
+	* fix: bug #7456 (MicroDVD framerate)
+	* fix: StyleEditor angle (0 <-> 360)
+	* fix: update duration with waveform (timing system)
+	* fix: configure.in AM_PATH_CPPUNIT error
+	* fix: configure.in check gstreamer plugin (level)
+	* fix: utility.cc iso_codes patch by Luboš Staněk
+	* cs.po: update Czech translation by Luboš Staněk
+
+2006-10-28 - 0.11.1
+	* fix: configure.in iso-codes not found
+
+2006-10-28 - 0.11
+	+ fix: add DialogMoveSubtitles (h,cc,glade) and optimize
+	* fix: optimize delete subtitle
+	* fix: RegEx (patch by  Luboš Staněk)
+	* fix: configure.in check libpcre (patch by  Luboš Staněk)
+	* fix: configure.in check iso-codes
+	* pt_BR.po : add Portugues Brazilian translation by Eduardo Elias
+	* cs.po: update Czech translation by Luboš Staněk
+	* es.po: update Spanish translation by Amaya Rodrigo
+
+2006-10-18 - 0.11-alpha2
+	+ add support multiline (treeview)
+	+ add column characters per line (cpl)
+	+ add unit tests (CppUnit).
+	+ rewriting Spell Checking with enchant
+	+ remove aspell
+	+ rewriting "Find And Replace" with PCRE (RegEx.h, RegEx.cc)
+	* remove "Find" and "Find Next" use "Find And Replace"
+	* remove "Check Error Encoding"
+	* HIG: add tooltips (treeview column)
+	* fix: #7020
+	* fix: "warp" to "wrap" patch by Luboš Staněk
+	* cs.po: add czech translation by Luboš Staněk
+	* es.po: update spanish translation by Amaya Rodrigo
+	* move code ChangeFPS SubtitleModel->DialogChangeFPS
+	* move code Scale SubtitleModel->DialogScale
+
+2006-09-10 - 0.11-alpha1
+	+ SSA/ASS Work now with mplayer svn (thank for bug report : Spyros Stathopoulos)
+	+ add selection multiple (treeview)
+	+ add column "duration" (treeview)
+	+ add function "Add/Remove 100 ms"
+	+ add function "Add/Remove 100 ms To Start"
+	+ add function "Add/Remove 100 ms To Duration"
+	+ add class SubtitleModifier (internal)
+	* remove: dialog-video-properties.glade
+	* Change Color structure (unsigned int rgba > unsigned int rgba[4])
+	* fix: search/replace crash (ex: ?. by ?) (thank for bug report : Henrique	Malheiro)
+	* fix: translation
+	* fix: SSA/ASS color (save)
+	* fix: SubRip time saving (0:00:00,000 -> 00:00:00,000)
+	* debug message
+	* big clean code
+	* es.po: update spanish translation by Amaya Rodrigo
+
+2006-08-29 - 0.10.1
+	+ es.po: spanish translation by Amaya Rodrigo
+	+ update README
+	* fix: StyleEditor: button font work now
+	* fix: DialogScale: validate entry
+	* fix: SubtitleTime limit (0:59:59.999)
+
+2006-08-15 - 0.10
+	+ add timing fonction: Play Previous/First/Last/Next Second
+	+ can add a new framerate for "Change FPS" (not save)
+	+ Use now cairo for waveform (./configure --enable-cairo) (not finished)
+	+ Use now this format "hours:mins:secs.msecs" ( ',' -> '.' )
+	* fix: SubtitleTime decimal floating error (thank for bug report : KiKouN )
+	* fix: SSA/ASS marginL/R/V 0 -> 0000
+	* fix: Gtk::TreeView set_enable_search(false)
+	* fix: configure.in --enable-aspell/--disable-aspell
+	* fix: use by default "autoaudiosink" (gstreamer)
+	* fix: dialog  open subtitle don't close (bug #6647)
+	* HIG "Change FPS"
+
+2006-07-23 - 0.9.1
+	* fix: compiling error with gcc 4.1 (SubtitleMPsub.cc 59) thanks Rafal Glazar
+		\\d don't work, change to [0-9]
+
+2006-07-22 - 0.9
+	+ add formats : MPL2 (open/save), MPsub(open/save), SubViewer2 (open)
+	+ use the contents of the file to determine the subtitle format (regex)
+	+ show subtitle format in statusbar : filename (format,charset)
+	+ add subtitle system and exception system
+	+ rewriting "find" and "find and replace" (can be use Regular Expression)
+	+ rewriting "Video Player" (dialog preferences)
+	+ add "move up/down" (encodings preferences)
+	* video-player change #msecs to #seconds
+	* fix: SSA/ASS ScriptType: "V4.00"/"V4.00+"
+	* clean code
+
+
+2006-06-17 - 0.8.1
+	+ add "general" and "encodings" in the preferences	
+	+ rewriting encodings system
+	+ connect open media to open movie
+	+ add key ["encodings"] used-auto-detected
+	+ add --enable-debug and fix configure.in
+	* fix: add ".wf" (save waveform)
+	* fix: change msg "Time Check" : "Overlapping with previous subtitle"
+	* fix: videoMovie use now URI
+	* clean code
+
+2006-06-01 - 0.8.0
+	+ can open/save waveform
+	+ video-player (preview) use now : #video_file, #video_uri, #subtitle_file,	#subtitle_uri, #msecs
+	+ HIG: move "Change FPS" and "Scale" in "Tools"
+	+ rewriting of the timing system
+	+ safeguard the last repertory used (dialog open/save subtitle, open media, ...)
+	+ config: add "audio-sink" and "video-sink"
+	* fix: use now URI for open media (video/waveform)
+	* fix: can now zoom [1,100] (timing system)
+	* fix: play previous/next subtitle (timing system)
+
+2006-05-06 - 0.8-alpha2
+	+ add subitlteModel->remove(start,end)
+	+ add Joint/Split Document
+	+ can change video player (for preview) config [video-player] or dialog preferences, ...
+	+ add dialog-preference
+	+ add dialog error (open document, ...)
+	+ fix: open subtitle error
+	+ other fix,clean, ...
+
+2006-04-25 - 0.8-alpha1
+	+ clean source
+	+ add gstreamer support
+	+ add waveform
+	+ add setup view "timing"
+	+ change in file config [view] > [setup-view]
+	* fix: dialog open movie > filter.add_mime_type("video/*")
+	+ add Select Next/Previous subtitle (menu Edit)
+	+ add move subtitle start/end +/- 
+	+ document: default encoding use config [encodings] default=xxx
+	+ ... arf!
+
+2006-03-13 - 0.7.2
+	+ add DialogSpellCheck : add button "Next Line"
+	+ add Support Encodings (open,save) (utf-8, iso-xxxx, ...)
+	+ add column effect and translation
+	+ HIG: Dialog "Change FPS" change Gtk::SpinButton for Gtk::ComboBoxText
+	+ HIG: Dialog "Find", Match Case, ...
+	+ HIG: button OK | CANCEL -> CANCEL | OK
+	+ HIG: MenuBar, Columns support, Mode
+	+ HIG: dialog use glade file
+	* fix: "Scale" works now (thanks for bug report : Jean-Baka Domelevo-Entfellner <domelevo at gmail dot com>)
+
+2006-02-20 - 0.7.1
+	+ add bindtextdomain, textdomain and g_set_application_name
+	+ ca.po : catalan translation by Gil Forcada <gilforcada at guifi dor net>
+	+ fr.po : french translation by Guillaume de Rugy <guillaume.derugy at free	dot fr>
+	+ add dialog preferences
+	+ add Alpha for color (now use RGBA)
+	+ add support save cfg
+	+ add support ASS (load/save)
+	+ fix: save boolean -1=true, 0=false (ass,ssa)
+	* fix: remove '*' in style name
+	* fix: configure.in, autogen.sh makefile.am ...
+	* fix: change "~/.subtitle_editor" to "~/.subtitleeditor"
+	* HIG: Dialog "Style Editor" (thanks Eugenia Loli-Queru <eloli at hotmail	dot com>)
+
+2006-02-05 - 0.7.0
+	+ add support SSA
+	* internal format ASS
+	+ add Style Editor
+	+ optimize and memory reduction
+	* fix: save now aspell dico
+	+ HIG Dialog "Scale"
+	+ check ".srt" or ".ssa" DialogOpenSubtitle
+	+ add menu Options: "Set View SRT" and "Set View SSA"
+	+ now using glade for ui
+
+2005-12-14 - 0.6.2
+	* fix: select next line after delete
+	+	add "Check Error Encodings"
+
+2005-09-24 - 0.6.1
+	+ add start and end column editable (time)
+
+2005-09-23 - 0.6
+	* fix: insert before/after select subtitle and set cursor
+	+ now using one line and |
+	* fix: load subtitle ('\015' & '\n')
+	+ add "remove line nul"
+	+ add "set all end time"
+	+ add "import text" and "export text"
+	+ HIG
+
+2005-07-27 - 0.5
+	+ add video filter *.mpeg and *.*
+	+ add filter *.* for Open Subtitle, Save, Save AS
+	* now using gtk(mm) 2.6
+	* now using gtk stock gtk+ 2.6 (MEDIA_PLAY, EDIT, SPELL_CHECK)
+	* dialog no delete : Edit Subtitle, Change FPS, Scale
+	* fix: create subtitle item -> Insert before/after and Edit Subtitle
+	+ add "Spell Check" using Aspell
+	+ now using GOption for parse
+	+ HIG
+
+2005-07-07 - 0.4
+	+ add "Find And Replace"
+	+ add "Scale"
+	+ add status bar
+	* fix: save, save as, find, ...
+
+2005-06-30 - 0.3.1
+	+ fix: auto detect encoding (utf8,...)
+
+2005-06-29 - 0.3
+	+ fix: Edit Subtitle (line2==line1) thx > JJL
+
+2005-06-27 - 0.2
+	+ add "Change FPS"
+	+ add option mplayer "-osdlevel 2"
+
+2005-06-26 - 0.1
+	* first release
+
+
