@@ -96,8 +96,6 @@ src/gui/DialogFileChooser.cc
 src/gui/DialogFileChooser.h
 src/gui/DialogUtility.cc
 src/gui/DialogUtility.h
-src/gui/_FindAndReplaceUI.cc
-src/gui/_FindAndReplaceUI.h
 src/gui/GStreamerPlayer.cc
 src/gui/GStreamerPlayer.h
 src/gui/MenuBar.cc
@@ -118,7 +116,6 @@ src/gui/WaveformGeneratorUI.cc
 src/gui/WaveformGeneratorUI.h
 src/gui/WaveformSystem.cc
 src/gui/WaveformSystem.h
-src/IDocument.h
 src/main.cc
 src/Options.cc
 src/Options.h

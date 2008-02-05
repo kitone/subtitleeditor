@@ -1,3 +1,17 @@
+2008-02-05  kitone  <kitone@free.fr>
+	* POTFILES.in:
+	* ca.po:
+	* cs.po:
+	* es.po:
+	* fr.po:
+	* hu.po:
+	* it.po:
+	* nl.po:
+	* pl.po:
+	* pt_BR.po:
+	* pt_PT.po:
+	* subtitleeditor.pot:
+
 2006-08-14
 	* es.po: spanish translation by Amaya Rodrigo <amaya@debian.org>
 
