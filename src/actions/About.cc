@@ -95,8 +95,7 @@ protected:
 		dialog.set_translator_credits(_("translator-credits"));
 
 		// website
-		//set_website_label("http://kitone.free.fr/subtitleeditor/");
-		dialog.set_website("http://kitone.free.fr/subtitleeditor/");
+		dialog.set_website("http://home.gna.org/subtitleeditor/");
 
 		// license
 		Glib::ustring license=
