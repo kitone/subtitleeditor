@@ -2,6 +2,12 @@
 
 	* configure:
 	* configure.in:
+	Switching back to development version.
+
+2008-02-05  kitone  <kitone@gna.org>
+
+	* configure:
+	* configure.in:
 	Preparing 0.20.0 release.
 
 2008-02-05  kitone  <kitone@gna.org>

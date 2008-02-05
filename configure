@@ -1833,7 +1833,7 @@ ac_config_headers="$ac_config_headers config.h"
 
 
 PACKAGE=subtitleeditor
-VERSION=0.20.0
+VERSION=trunk
 
 cat >>confdefs.h <<_ACEOF
 #define PACKAGE "$PACKAGE"
