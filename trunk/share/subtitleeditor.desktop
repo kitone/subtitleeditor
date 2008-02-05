@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Subtitle Editor
+GenericName=Subtitle Editor
+Comment=A subtitle editor based to GStreamer and Gtk+
+Exec=subtitleeditor
+Terminal=false
+Type=Application
+Icon=subtitleeditor
+Categories=GNOME;GTK;Application;AudioVideo;
+StartupNotify=true

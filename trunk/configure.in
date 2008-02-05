@@ -1,0 +1,373 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+#AC_PREREQ(2.59)
+AC_INIT
+AC_CONFIG_SRCDIR([Makefile.am])
+AM_CONFIG_HEADER([config.h])
+
+PACKAGE=subtitleeditor
+VERSION=trunk
+
+AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE")
+AC_DEFINE_UNQUOTED(VERSION, "$VERSION")
+AC_SUBST(PACKAGE)
+AC_SUBST(VERSION)
+
+AM_INIT_AUTOMAKE([$PACKAGE], [$VERSION])
+
+#AM_MAINTAINER_MODE
+#AC_CANONICAL_HOST
+
+## Set PACKAGE PREFIX
+if test "x${prefix}" = "xNONE"; then
+  packageprefix=${ac_default_prefix}
+else
+  packageprefix=${prefix}
+fi
+
+
+###############################################################################
+########## GETTEXT ############################################################
+AC_CONFIG_MACRO_DIR([m4])
+AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
+
+SUBTITLEEDITOR_LANG="ca cs es fr hu it nl pl pt_BR pt_PT"
+
+AC_ARG_ENABLE(nls, , [
+if test "A$enableval" = "Ayes"; then
+ 	ALL_LINGUAS="$SUBTITLEEDITOR_LANG"
+	AM_GLIB_GNU_GETTEXT
+else
+	ALL_LINGUAS=""
+	USE_NLS="no"
+fi
+], [
+ 	ALL_LINGUAS="$SUBTITLEEDITOR_LANG"
+	AM_GLIB_GNU_GETTEXT
+])
+
+GETTEXT_PACKAGE=[$PACKAGE]
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
+
+###############################################################################
+########## CHECK ##############################################################
+
+
+## Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([stdlib.h])
+
+#make it autoconf-2.59a<=compatible
+#AC_PROG_EGREP
+AC_CHECK_PROG(EGREP, egrep, egrep)
+#AC_PROG_SED
+AC_CHECK_PROG(SED, sed, sed)
+
+## Checks for typedefs, structures, and compiler characteristics.
+AC_HEADER_STDBOOL
+AC_C_CONST
+AC_C_INLINE
+
+## plugins...now yet
+#AC_PROG_LIBTOOL
+
+## Checks for library functions.
+AC_FUNC_SELECT_ARGTYPES
+AC_CHECK_FUNCS([select])
+
+
+## GTKMM
+PKG_CHECK_MODULES(GTKMM, gtkmm-2.4 >= 2.10)
+
+AC_SUBST(GTKMM_CFLAGS)
+AC_SUBST(GTKMM_LIBS)
+
+
+## LIBGLADEMM
+PKG_CHECK_MODULES(LIBGLADEMM, libglademm-2.4 >= 2.4)
+
+AC_SUBST(LIBGLADEMM_CFLAGS)
+AC_SUBST(LIBGLADEMM_LIBS)
+
+
+## GSTREAMER
+PKG_CHECK_MODULES(GSTREAMER, gstreamer-0.10 gstreamer-base-0.10 gstreamer-plugins-base-0.10,,
+					[echo "***"
+					 echo "*** Error! you need to have : "
+					 echo "*** gstreamer-0.10"
+					 echo "*** gstreamer-base-0.10"
+					 echo "*** gstreamer-plugins-base-0.10"
+					 echo "***"
+					 exit -1])
+
+AC_SUBST(GSTREAMER_CFLAGS)
+AC_SUBST(GSTREAMER_LIBS)
+
+LIBS="$LIBS $GSTREAMER_LIBS -lgstinterfaces-0.10 -lgstvideo-0.10 -lgstaudio-0.10"
+
+
+AC_DEFUN([SE_GST_ELEMENT_CHECK_REQUIRED],
+[
+  if test "x$SED" = x; then
+    AC_MSG_ERROR([sed not found. Please install it first!])
+  fi
+
+	if test "x$EGREP" = x; then
+    AC_MSG_ERROR([egrep not found. Please install it first!])
+  fi
+
+	toolsdir=`$PKG_CONFIG --variable=toolsdir gstreamer-$1`
+
+	gst_inspect="$toolsdir/gst-inspect-$1"
+
+	if test "x$gst_inspect" != "x"; then
+		AC_MSG_CHECKING(for GStreamer-$1 element $2 ($3))
+		
+		element_version=`$gst_inspect $2 | $EGREP Version | $SED 's/^.*\s$1/$1/'`
+
+		if [ $gst_inspect $2 > /dev/null 2> /dev/null ]; then
+			AC_MSG_RESULT([yes])
+		else
+			AC_MSG_RESULT([no])
+			AC_MSG_ERROR([
+	GStreamer-$1 plugin '$2' not found. This plugins is 
+	absolutely required. Please install it.
+
+	The name of the package you need to install varies among
+	distros/systems. Debian and Ubuntu users will need to
+	install the $3 package.])
+		fi
+
+	else										# test gst_inspect
+		AC_MSG_RESULT([no])
+		AC_MSG_ERROR([gst-inspect-$1 not found. Please install it.])
+	fi
+])
+
+
+SE_GST_ELEMENT_CHECK_REQUIRED([0.10], [level], [gstreamer0.10-plugins-good])
+
+
+## enchant (spell checking)
+AC_ARG_ENABLE(enchant-support,
+  AC_HELP_STRING([--disable-enchant-support], [disable Enchant support]),
+  [have_enchant_support="$enableval"], [have_enchant_support="yes"])
+
+if test x"$have_enchant_support" != x"no"; then
+  PKG_CHECK_MODULES(ENCHANT, enchant >= 1.1.0, [have_enchant_support=yes], [have_enchant_support=no])
+fi
+
+if test x"$have_enchant_support" != x"no"; then
+  AC_DEFINE(HAVE_ENCHANT_SUPPORT, 1, [Define to 1 if enchant is supported.])
+fi
+
+AM_CONDITIONAL(HAVE_ENCHANT_SUPPORT, [test x"$have_enchant_support" != x"no"])
+
+AC_SUBST(ENCHANT_CFLAGS)
+AC_SUBST(ENCHANT_LIBS)
+
+
+## PCRE
+PKG_CHECK_MODULES(LIBPCRE, libpcre >= 0.20)
+
+AC_SUBST(LIBPCRE_CFLAGS)
+AC_SUBST(LIBPCRE_LIBS)
+
+pcre_saved_CFLAGS=$CFLAGS
+pcre_saved_LIBS=$LIBS
+CFLAGS="$CFLAGS $LIBPCRE_CFLAGS"
+LIBS="$LIBS $LIBPCRE_LIBS -lpcrecpp"
+
+AC_CACHE_CHECK([whether libpcre was compiled with UTF-8 support],
+    [ac_cv_have_preg_utf8_support],
+    [AC_RUN_IFELSE(
+		[AC_LANG_SOURCE(
+	    [[#include <pcre.h>	#include <pcrecpp.h>
+
+	      int main() {
+					int t;
+					return (pcre_config (PCRE_CONFIG_UTF8, &t) || !t);
+	      }]])],
+	    [ac_cv_have_preg_utf8_support="yes"],
+	    [ac_cv_have_preg_utf8_support="no"],
+	    [ac_cv_have_preg_utf8_support="maybe"])])
+
+CFLAGS=$pcre_saved_CFLAGS
+LIBS=$pcre_saved_LIBS
+
+if test "$ac_cv_have_preg_utf8_support" != "yes"; then
+    AC_ERROR([pcre does not support utf-8])
+fi
+
+
+## ISO-CODES 639 + 3166
+have_iso_code_639=no
+have_iso_code_3166=no
+
+AC_MSG_CHECKING([whether iso-codes are available on this system])
+
+if $PKG_CONFIG iso-codes; then
+	AC_MSG_RESULT([yes])
+
+	## iso-639
+	AC_MSG_CHECKING([whether iso-codes has iso-639 domain])
+	if $PKG_CONFIG --variable=domains iso-codes | grep -q 639; then
+		AC_MSG_RESULT([yes])
+		have_iso_code_639=yes
+	else
+		AC_MSG_RESULT([no])
+	fi
+
+	## iso-3166
+	AC_MSG_CHECKING([whether iso-codes has iso-3166 domain])
+	if $PKG_CONFIG --variable=domains iso-codes | grep -q 3166; then
+		AC_MSG_RESULT([yes])
+		have_iso_code_3166=yes
+	else
+		AC_MSG_RESULT([no])
+	fi
+
+else
+	AC_MSG_RESULT([no])
+fi
+
+if test "$have_iso_code_639" == "yes"; then
+	if test "$have_iso_code_3166" == "yes"; then
+	  
+		AC_DEFINE(HAVE_ISO_CODES, 1, [Define to 1 if enchant is supported.])
+
+		ISO_CODES_PREFIX=`$PKG_CONFIG --variable=prefix iso-codes`
+		ISO_CODES_PATH="$ISO_CODES_PREFIX/share/iso-codes"
+
+		AC_SUBST([ISO_CODES_PATH])
+		AC_DEFINE_UNQUOTED([ISO_CODES_PATH], ["$ISO_CODES_PATH"], [iso-codes path for files])
+	fi
+fi
+
+
+## TTXT format, LIBXML++
+AC_ARG_ENABLE(ttxt,
+							[AC_HELP_STRING([--enable-ttxt], [TTXT format, don't enable it's not finished [default=no]])],,
+							[enable_ttxt=no])
+
+if test "$enable_ttxt" = "yes"; then
+  CXXFLAGS="-DENABLE_TTXT $CXXFLAGS"
+fi
+
+## libxml++
+PKG_CHECK_MODULES(LIBXML, libxml++-2.6 >= 2.10)
+AC_SUBST(LIBXML_CFLAGS)
+AC_SUBST(LIBXML_LIBS)
+
+
+
+## CppUnit (unit tests)
+AC_ARG_ENABLE(unittest,
+						 [AC_HELP_STRING([--enable-unittest], [unittest support [default=no]])],,
+							[enable_unittest=no])
+
+if test "$enable_unittest" = "yes"; then
+	PKG_CHECK_MODULES(CPPUNIT, cppunit >= 1.10.0)
+	AC_SUBST(CPPUNIT_CFLAGS)
+	AC_SUBST(CPPUNIT_LIBS)
+	AC_DEFINE([ENABLE_CPPUNIT],[1],[Define to compile with cppunit support (unit tests)])
+	CXXFLAGS="-DENABLE_UNITTEST $CXXFLAGS"
+fi
+
+AM_CONDITIONAL([ENABLE_UNITTEST], [test "x$enable_unittest" = "xyes"])
+
+
+
+## SUBTITLEEDITOR LIBS FLAGS
+SUBTITLEEDITOR_LIBS="$GTKMM_LIBS" ## ${LIBGLADEMM_LIBS} ${GSTREAMER_LIBS} ${INTLLIBS} ${LIBXML_LIBS} ${ENCHANT_LIBS} ${LIBPCRE_LIBS} -lpcrecpp ${CPPUNIT_LIBS}"
+SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS ${LIBGLADEMM_CFLAGS} ${GSTREAMER_CFLAGS} ${INTLCFLAGS} ${LIBXML_CFLAGS} ${ENCHANT_CFLAGS} ${LIBPCRE_CFLAGS} -lpcrecpp ${CPPUNIT_CFLAGS}"
+
+AC_SUBST(SUBTITLEEDITOR_LIBS)
+AC_SUBST(SUBTITLEEDITOR_CFLAGS)
+
+###############################################################################
+########## COMPILATEUR FLAG ###################################################
+
+AC_ARG_ENABLE(debug,
+							[AC_HELP_STRING([--enable-debug], [turn on debugging [default=yes]])],,
+							[enable_debug=yes])
+
+if test "$enable_debug" = "yes"; then
+  CXXFLAGS="$CXXFLAGS -DDEBUG -g"
+  LDFLAGS="$LDFLAGS -g -ansi -Wall"
+fi
+
+CXXFLAGS="$CXXFLAGS -ansi -Wall" # -Wextra -Wconversion"
+
+AC_ARG_ENABLE(profile,
+							[AC_HELP_STRING([--enable-profile], [turn on profiling [default=no]])],,
+							[enable_profile=no])
+
+if test "$enable_profile" = "yes"; then
+  CXXFLAGS="$CXXFLAGS -pg"
+  LDFLAGS="$LDFLAGS -pg -ansi -Wall"
+fi
+
+
+###############################################################################
+########## DEFINE #############################################################
+
+# Set PACKAGE SHARE DIR
+packagesharedir=share/$PACKAGE
+
+NO_PREFIX_PACKAGE_SHARE_DIR="${packagesharedir}"
+AC_SUBST(NO_PREFIX_PACKAGE_SHARE_DIR)
+
+PACKAGE_SHARE_DIR="${packageprefix}/${packagesharedir}"
+AC_SUBST(PACKAGE_SHARE_DIR)
+AC_DEFINE_UNQUOTED([PACKAGE_SHARE_DIR], "${packageprefix}/${packagesharedir}", "share dir")
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_CC
+
+PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
+AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
+
+
+AC_CONFIG_FILES([
+								 Makefile 
+								 src/Makefile 
+								 m4/Makefile 
+								 share/Makefile 
+								 share/icons/Makefile 
+								 share/icons/16x16/Makefile
+								 share/icons/22x22/Makefile
+								 share/icons/24x24/Makefile
+								 share/icons/32x32/Makefile
+								 share/icons/scalable/Makefile
+								 share/glade/Makefile
+								 po/Makefile.in 
+								 ])
+
+
+AC_OUTPUT
+
+AC_MSG_NOTICE([
+
+$PACKAGE $VERSION
+
+prefix ............................... : ${prefix}
+gcc version .......................... : $(gcc -dumpversion)
+gtk+ version ......................... : $(pkg-config --modversion gtk+-2.0)
+gtkmm version ........................ : $(pkg-config --modversion gtkmm-2.4)
+libglademm version ................... : $(pkg-config --modversion libglademm-2.4)
+gstreamer version .................... : $(pkg-config --modversion gstreamer-0.10)
+
+enchant support (spell checking) ..... : $have_enchant_support
+have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
+TTXT support (not finished) .......... : $enable_ttxt
+Unit test ............................ : $enable_unittest
+debug support ........................ : $enable_debug
+ALL_LINGUAS .......................... : $ALL_LINGUAS
+
+
+Configuration complete. now run make
+])
