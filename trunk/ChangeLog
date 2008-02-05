@@ -1,0 +1,5 @@
+2008-02-05  kitone  <kitone@gna.org>
+
+	* src/actions/About.cc:
+	Fix new website url.
+

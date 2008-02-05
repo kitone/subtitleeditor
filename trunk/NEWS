@@ -1,5 +1,5 @@
 2008-02-05 - 0.20.0
-	*	Add "Find Next" and "Find Previous"
+	* Add "Find Next" and "Find Previous"
 	* Move glade files in share/glade
 	* HIG improved
 
