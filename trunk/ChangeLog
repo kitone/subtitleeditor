@@ -1,5 +1,13 @@
 2008-02-06  kitone  <kitone@gna.org>
 
+	* depcomp:
+	* install-sh:
+	* missing:
+	* mkinstalldirs:
+	Remove files from SVN
+
+2008-02-06  kitone  <kitone@gna.org>
+
 	* aclocal.m4:
 	Remove file from SVN
 
