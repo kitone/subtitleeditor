@@ -1,5 +1,22 @@
 2008-02-06  kitone  <kitone@gna.org>
 
+	* Makefile.in:
+	* config.guess:
+	* config.h.in:
+	* config.sub:
+	* share/Makefile.in:
+	* share/glade/Makefile.in:
+	* share/icons/16x16/Makefile.in:
+	* share/icons/22x22/Makefile.in:
+	* share/icons/24x24/Makefile.in:
+	* share/icons/32x32/Makefile.in:
+	* share/icons/Makefile.in:
+	* share/icons/scalable/Makefile.in:
+	* src/Makefile.in:
+	Remove files from SVN
+
+2008-02-06  kitone  <kitone@gna.org>
+
 	* configure:
 	Remove file in SVN
 
