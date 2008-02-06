@@ -1,5 +1,10 @@
 2008-02-06  kitone  <kitone@gna.org>
 
+	* aclocal.m4:
+	Remove file from SVN
+
+2008-02-06  kitone  <kitone@gna.org>
+
 	* Makefile.in:
 	* config.guess:
 	* config.h.in:
