@@ -76,11 +76,6 @@ protected:
 	// TOOLS
 	void check_errors();
 
-	// 
-	void about();
-
-
-	bool ask_to_save_on_exit();
 protected:
 
 	/*

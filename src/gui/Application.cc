@@ -586,22 +586,6 @@ void Application::on_config_interface_changed(const Glib::ustring &key, const Gl
 /*
  *
  */
-bool Application::ask_to_save_on_exit()
-{
-	if(Config::getInstance().get_value_bool("interface", "ask-to-save-on-exit"))
-	{
-		/*
-		DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
-		DocumentList::iterator it;
-		*/
-	}
-
-	return false;
-}
-
-/*
- *
- */
 void Application::set_display_video_player(bool state)
 {
 	Gtk::Paned *paned = dynamic_cast<Gtk::Paned*>(m_videoPlayer->get_parent());
