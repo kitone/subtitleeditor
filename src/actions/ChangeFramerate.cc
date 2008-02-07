@@ -24,7 +24,6 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-#include "DocumentSystem.h"
 #include "gui/DialogUtility.h"
 
 
@@ -126,10 +125,10 @@ public:
 			DocumentList docs;
 
 			if(apply_to_all_documents())
-				docs = DocumentSystem::getInstance().getAllDocuments();
+				docs = SubtitleEditorWindow::get_instance()->get_documents();
 			else
 			{
-				Document *doc = DocumentSystem::getInstance().getCurrentDocument();
+				Document *doc = SubtitleEditorWindow::get_instance()->get_current_document();
 				docs.push_back(doc);
 			}
 

@@ -213,9 +213,9 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		DocumentList list = DocumentSystem::getInstance().getAllDocuments();
-		DocumentList::const_iterator it;
-		for(it = list.begin(); it != list.end(); ++it)
+		DocumentList list = get_subtitleeditor_window()->get_documents();
+		
+		for(DocumentList::const_iterator it = list.begin(); it != list.end(); ++it)
 		{
 			if( name == (*it)->getName())
 				return true;
