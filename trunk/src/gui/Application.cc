@@ -832,3 +832,10 @@ Document* Application::get_current_document()
 	return DocumentSystem::getInstance().getCurrentDocument();
 }
 
+/*
+ *
+ */
+DocumentList Application::get_documents()
+{
+	return DocumentSystem::getInstance().getAllDocuments();
+}

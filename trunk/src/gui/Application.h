@@ -56,6 +56,11 @@ public:
 	 */
 	Document* get_current_document();
 
+	/*
+	 *
+	 */
+	DocumentList get_documents();
+
 protected:
 
 	/*

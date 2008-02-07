@@ -35,6 +35,7 @@
 
 typedef Glib::RefPtr<SubtitleModel> SubtitleModelPtr;
 typedef SubtitleView* SubtitleViewPtr;
+typedef std::list<Document*> DocumentList;
 
 /*
  *	gestion des signaux

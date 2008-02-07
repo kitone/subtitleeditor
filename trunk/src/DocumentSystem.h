@@ -26,8 +26,6 @@
 
 #include "Document.h"
 
-typedef std::list<Document*> DocumentList;
-
 
 class DocumentSystem
 {

@@ -53,6 +53,11 @@ public:
 	/*
 	 *
 	 */
+	virtual std::list<Document*> get_documents() = 0;
+
+	/*
+	 *
+	 */
 	static SubtitleEditorWindow* get_instance();
 
 protected:
