@@ -6,8 +6,8 @@ SubtitleEditor 0.20
 	* Document changed (title with *, ask to save on exit ...) - DONE
 	* check after undo/redo - DONE
 	* Config use set_comment (after set value)
-	* Add the sources in the svn
-	* Move the website on Gna!
+	* Add the sources in the svn - DONE
+	* Move the website on Gna! - DONE
 	* HowTo: http://kitone.free.fr/subtitleeditor/docs/how-to-editing-subtitles-with-waveform.html
 	* Code cleanup
 	* GPL v3 - DONE
