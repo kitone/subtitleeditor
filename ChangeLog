@@ -1,5 +1,14 @@
 2008-02-07  kitone  <kitone@gna.org>
 
+	* src/Document.h:
+	* src/DocumentSystem.h:
+	* src/SubtitleEditorWindow.h:
+	* src/gui/Application.cc:
+	* src/gui/Application.h:
+	Add function 'get_documents'.
+
+2008-02-07  kitone  <kitone@gna.org>
+
 	* src/gui/Application.cc:
 	* src/gui/Application.h:
 	Delete unsued function.
