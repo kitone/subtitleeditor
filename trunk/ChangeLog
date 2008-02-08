@@ -2,7 +2,8 @@
 
 	* src/actions/ChangeFramerate.cc:
 	* src/actions/DocumentManagement.cc:
-	Replace the direct call to DocumentSystem::getAllDocument	by SubtitleEditorWindow::get_documents
+	Replace the direct call to DocumentSystem::getAllDocument
+	by SubtitleEditorWindow::get_documents.
 
 2008-02-07  kitone  <kitone@gna.org>
 
