@@ -120,7 +120,7 @@ void CommandGroup::restore()
 {
 	se_debug(SE_DEBUG_COMMAND);
 
-	std::list<Command*>::const_reverse_iterator it;
+	std::list<Command*>::reverse_iterator it;
 	for(it = m_stack.rbegin(); it!= m_stack.rend(); ++it)
 	{
 		(*it)->restore();
