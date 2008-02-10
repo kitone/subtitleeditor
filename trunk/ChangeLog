@@ -1,3 +1,8 @@
+2008-02-09  kitone  <kitone@gna.org>
+
+	* src/CommandSystem.cc:
+	Fix #11019 (https://gna.org/bugs/?11019)
+
 2008-02-07  kitone  <kitone@gna.org>
 
 	* src/actions/ChangeFramerate.cc:
