@@ -1,5 +1,13 @@
 2008-02-11  kitone  <kitone@gna.org>
 
+	* share/menubar.xml:
+	* src/Makefile.am:
+	* src/actions/ViewModes.cc:
+	Adding a new view modes in the form of a plugin (ViewModes.cc).
+	This plugin support user settings.
+
+2008-02-11  kitone  <kitone@gna.org>
+
 	* src/SubtitleView.cc:
 	* src/SubtitleView.h:
 	Removes the managing of the view modes (simple, advanced...) and 
