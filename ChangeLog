@@ -1,5 +1,10 @@
 2008-02-11  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-preferences.glade:
+	Make scrollable.
+
+2008-02-11  kitone  <kitone@gna.org>
+
 	* share/menubar.xml:
 	* src/Makefile.am:
 	* src/actions/ViewModes.cc:
@@ -11,7 +16,7 @@
 	* src/SubtitleView.cc:
 	* src/SubtitleView.h:
 	Removes the managing of the view modes (simple, advanced...) and 
-	the columns (show-columns-*) of the code.	The columns displayed are 
+	the columns (show-columns-*) of the code. The columns displayed are 
 	updated simply by listing the configuration.
 	The drag-and-drop of the columns has been disable.
 
