@@ -1,3 +1,8 @@
+2008-02-11  kitone  <kitone@gna.org>
+
+	* share/glade/dialog-preferences.glade:
+	Small improvements.
+
 2008-02-09  kitone  <kitone@gna.org>
 
 	* src/CommandSystem.cc:
