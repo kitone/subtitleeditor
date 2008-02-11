@@ -47,10 +47,6 @@ public:
 	void create_ui_from_file();
 protected:
 	void connect_proxy(const Glib::RefPtr<Gtk::Action> &action, Gtk::Widget *widget);
-
-	void addToggleActionColumn(
-											const Glib::ustring &name, 
-											const Glib::ustring &label );
 	
 	/*
 	 *
@@ -69,22 +65,7 @@ protected:
 	/*
 	 *
 	 */
-	void set_toggle_column(const Glib::ustring &column, bool state);
-
-	/*
-	 *
-	 */
-	void on_setup_view_toggled(const Glib::ustring &column);
-
-	/*
-	 *
-	 */
 	void on_preferences();
-
-	/*
-	 *
-	 */
-	void on_config_subtitle_view_changed(const Glib::ustring &key, const Glib::ustring &value);
 
 	/*
 	 *

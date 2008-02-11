@@ -141,28 +141,6 @@
 		</menu>
 
 		<menu name="menu-view" action="menu-view">
-			<menuitem action="view/simple"/>
-			<menuitem action="view/advanced"/>
-			<menuitem action="view/translation"/>
-			<menuitem action="view/timing"/>
-			<separator/>
-			<menu name="menu-columns" action="menu-columns">
-				<menuitem action="number"/>
-				<menuitem action="layer"/>
-				<menuitem action="start"/>
-				<menuitem action="end"/>
-				<menuitem action="duration"/>
-				<menuitem action="style"/>
-				<menuitem action="name"/>
-				<menuitem action="margin-r"/>
-				<menuitem action="margin-l"/>
-				<menuitem action="margin-v"/>
-				<menuitem action="effect"/>
-				<menuitem action="text"/>
-				<menuitem action="cps"/>
-				<menuitem action="translation"/>
-				<menuitem action="note"/>
-			</menu>
 			<separator/>
 			<menuitem action="display-video-player"/>
 			<menuitem action="display-waveform"/>
