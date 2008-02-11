@@ -117,7 +117,8 @@ ACTIONS = \
 				actions/FindAndReplace.cc \
 				actions/Transcript.cc \
 				actions/ExternalVideoPlayer.cc \
-				actions/About.cc
+				actions/About.cc \
+				actions/ViewModes.cc
 
 
 ACTIONS_FILES = $(ACTIONS) \
