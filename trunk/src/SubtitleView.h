@@ -78,9 +78,9 @@ protected:
 	void createColumnNote();
  
 	/*
-	 *	
+	 * Get the columns displayed from the configuration and updates.
 	 */
-	void update_columns_order();
+	void update_columns_displayed_from_config();
 
 
 	/*

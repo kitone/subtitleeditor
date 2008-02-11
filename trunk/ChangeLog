@@ -1,5 +1,14 @@
 2008-02-11  kitone  <kitone@gna.org>
 
+	* src/SubtitleView.cc:
+	* src/SubtitleView.h:
+	Removes the managing of the view modes (simple, advanced...) and 
+	the columns (show-columns-*) of the code.	The columns displayed are 
+	updated simply by listing the configuration.
+	The drag-and-drop of the columns has been disable.
+
+2008-02-11  kitone  <kitone@gna.org>
+
 	* share/menubar.xml:
 	* src/gui/MenuBar.cc:
 	* src/gui/MenuBar.h:
