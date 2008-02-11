@@ -421,27 +421,6 @@ void SubtitleView::loadCfg()
 	
 	Config &cfg = Config::getInstance();
 
-#define LOAD_CONFIG(name) \
-	cfg.get_value_bool("subtitle-view", "show-column-"name, state);	set_column_visible(name, state);
-
-	LOAD_CONFIG("number");
-	LOAD_CONFIG("layer");
-	LOAD_CONFIG("start");
-	LOAD_CONFIG("end");
-	LOAD_CONFIG("duration");
-	LOAD_CONFIG("style");
-	LOAD_CONFIG("name");
-	LOAD_CONFIG("margin-l");
-	LOAD_CONFIG("margin-r");
-	LOAD_CONFIG("margin-v");
-	LOAD_CONFIG("effect");
-	LOAD_CONFIG("text");
-	LOAD_CONFIG("cps");
-	LOAD_CONFIG("translation");
-	LOAD_CONFIG("note");
-	
-#undef LOAD_CONFIG
-
 	cfg.get_value_bool("subtitle-view", "enable-rubberband-selection", state);
 
 	set_rubber_banding(state);
@@ -473,84 +452,23 @@ void SubtitleView::set_tooltips(Gtk::TreeViewColumn *column, const Glib::ustring
  */
 void SubtitleView::createColumns()
 {
-	std::map<Glib::ustring, sigc::slot<void> > columns_creator;
+	createColumnNum();
+	createColumnLayer();
+	createColumnStart();
+	createColumnEnd();
+	createColumnDuration();
+	createColumnStyle();
+	createColumnName();
+	createColumnMarginR();
+	createColumnMarginL();
+	createColumnMarginV();
+	createColumnEffect();
+	createColumnText();
+	createColumnCPS();
+	createColumnTranslation();
+	createColumnNote();
 
-	//
-	{
-#define set_column_callback(name, function) columns_creator[name] = sigc::mem_fun(*this, &SubtitleView::function);
-		
-		set_column_callback("number", createColumnNum);
-		set_column_callback("layer", createColumnLayer);
-		set_column_callback("start", createColumnStart);
-		set_column_callback("end", createColumnEnd);
-		set_column_callback("duration", createColumnDuration);
-		set_column_callback("style", createColumnStyle);
-		set_column_callback("name", createColumnName);
-		set_column_callback("margin-r", createColumnMarginR);
-		set_column_callback("margin-l", createColumnMarginL);
-		set_column_callback("margin-v", createColumnMarginV);
-		set_column_callback("effect", createColumnEffect);
-		set_column_callback("text", createColumnText);
-		set_column_callback("cps", createColumnCPS);
-		set_column_callback("translation", createColumnTranslation);
-		set_column_callback("note", createColumnNote);
-
-#undef set_column_callback
-	}
-
-
-	// load columns order in config file
-	std::list<Glib::ustring> columns_order;
-	Config::getInstance().get_value_string_list("subtitle-view", "columns", columns_order);
-
-	// il manque des colonnes dans la config
-	// on les ajoutes
-	if(columns_order.size() != columns_creator.size())
-	{
-		std::map<Glib::ustring, sigc::slot<void> >::iterator it;
-		for(it = columns_creator.begin(); it != columns_creator.end(); ++it)		
-		{
-			if(std::find(columns_order.begin(), columns_order.end(), it->first) == columns_order.end())
-			{
-				columns_order.push_back(it->first);
-			}
-		}
-	}
-
-	// creation des colonnes dans l'ordre
-	for(std::list<Glib::ustring>::iterator it = columns_order.begin(); it != columns_order.end(); ++it)
-	{
-		columns_creator[(*it)]();
-	}
-	
-	signal_columns_changed().connect(
-			sigc::mem_fun(*this, &SubtitleView::update_columns_order));
-}
-
-
-/*
- *
- */
-void SubtitleView::update_columns_order()
-{
-	se_debug(SE_DEBUG_VIEW);
-
-	std::vector<Gtk::TreeViewColumn*> cols = get_columns();
-
-	// s'il en manque c'est qu'elles sont detruites
-	// d'ou l'emission du signal "columns_order"
-	// on ne prend donc pas en compte
-	if(cols.size() != m_columns.size())
-		return;
-	
-	Glib::ustring new_order;
-
-	for(unsigned int i=0; i<cols.size(); ++i)
-	{
-		new_order += get_name_of_column(cols[i]) + ";";
-	}
-
-	Config::getInstance().set_value_string("subtitle-view", "columns", new_order);
+	update_columns_displayed_from_config();
 }
 
 /*
@@ -568,7 +486,7 @@ void SubtitleView::createColumnNum()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.num);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 
 	append_column(*column);
 	//append_column_numeric_editable("num", m_column.num, "%d");
@@ -597,7 +515,7 @@ void SubtitleView::createColumnLayer()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.layer);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -624,7 +542,7 @@ void SubtitleView::createColumnStart()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.start);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -651,7 +569,7 @@ void SubtitleView::createColumnEnd()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.end);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -678,7 +596,7 @@ void SubtitleView::createColumnDuration()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.duration);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -708,7 +626,7 @@ void SubtitleView::createColumnStyle()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.style);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	renderer->property_model() =	m_styleModel;
 	renderer->property_text_column() = 0;
@@ -737,7 +655,7 @@ void SubtitleView::createColumnName()
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.name);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -763,7 +681,7 @@ void SubtitleView::createColumnCPS()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.characters_per_second_text);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 
 	renderer->property_yalign() = 0;
 	renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
@@ -782,7 +700,7 @@ void SubtitleView::createColumnText()
 
 	Gtk::TreeViewColumn* column = NULL;
 	column = manage(new Gtk::TreeViewColumn(_("text")));
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 
 	append_column(*column);
 
@@ -861,7 +779,7 @@ void SubtitleView::createColumnTranslation()
 
 	Gtk::TreeViewColumn* column = NULL;
 	column = manage(new Gtk::TreeViewColumn(_("translation")));
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 
 	//translation
 	{
@@ -924,7 +842,7 @@ void SubtitleView::createColumnNote()
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.note);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	append_column(*column);
 	
@@ -955,7 +873,7 @@ void SubtitleView::createColumnEffect()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.effect);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	append_column(*column);
 	
@@ -986,7 +904,7 @@ void SubtitleView::createColumnMarginR()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginR);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -1014,7 +932,7 @@ void SubtitleView::createColumnMarginL()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginL);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -1042,7 +960,7 @@ void SubtitleView::createColumnMarginV()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginV);
-	column->set_reorderable(true);
+	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -1438,17 +1356,9 @@ bool SubtitleView::on_button_press_event(GdkEventButton *ev)
  */
 void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key, const Glib::ustring &value)
 {
-	if(key.find("show-column-") != Glib::ustring::npos)
+	if(key == "columns")
 	{
-		bool state;
-	
-		Glib::ustring column = key;
-		column.erase(0, Glib::ustring("show-column-").size());
-
-		if(from_string(value, state))
-		{
-			set_column_visible(column, state);
-		}
+		update_columns_displayed_from_config();
 	}
 	else if(key == "property-alignment-center")
 	{
@@ -1518,88 +1428,6 @@ void SubtitleView::on_execute_action(const Glib::ustring &action)
 		clipboard_copy();
 	else if(action == "paste")
 		clipboard_paste();
-	else if(action.find("view/") != Glib::ustring::npos)
-	{
-		Config &cfg = Config::getInstance();
-
-#define SET_COLUMN(name, value) if(get_column_visible(name) != value) cfg.set_value_bool("subtitle-view", "show-column-"name, value);
-
-		if(action == "view/simple")
-		{
-			SET_COLUMN("number", true);
-			SET_COLUMN("layer", false);
-			SET_COLUMN("start", true);
-			SET_COLUMN("end", true);
-			SET_COLUMN("duration", true);
-			SET_COLUMN("style", false);
-			SET_COLUMN("name", false);
-			SET_COLUMN("margin-r", false);
-			SET_COLUMN("margin-l", false);
-			SET_COLUMN("margin-v", false);
-			SET_COLUMN("effect", false);
-			SET_COLUMN("text", true);
-			SET_COLUMN("translation", false);
-			SET_COLUMN("note", false);
-			SET_COLUMN("cps", false);
-		}
-		else if(action == "view/advanced")
-		{
-			SET_COLUMN("number", true);
-			SET_COLUMN("layer", true);
-			SET_COLUMN("start", true);
-			SET_COLUMN("end", true);
-			SET_COLUMN("duration", true);
-			SET_COLUMN("style", true);
-			SET_COLUMN("name", true);
-			SET_COLUMN("margin-r", false);
-			SET_COLUMN("margin-l", false);
-			SET_COLUMN("margin-v", false);
-			SET_COLUMN("effect", false);
-			SET_COLUMN("text", true);
-			SET_COLUMN("translation", false);
-			SET_COLUMN("note", false);
-			SET_COLUMN("cps", false);
-		}
-		else if(action == "view/translation")
-		{
-			SET_COLUMN("number", true);
-			SET_COLUMN("layer", false);
-			SET_COLUMN("start", false);
-			SET_COLUMN("end", false);
-			SET_COLUMN("duration", false);
-			SET_COLUMN("style", false);
-			SET_COLUMN("name", false);
-			SET_COLUMN("margin-r", false);
-			SET_COLUMN("margin-l", false);
-			SET_COLUMN("margin-v", false);
-			SET_COLUMN("effect", false);
-			SET_COLUMN("text", true);
-			SET_COLUMN("translation", true);
-			SET_COLUMN("note", false);
-			SET_COLUMN("cps", false);
-		}
-		else if(action == "view/timing")
-		{
-			SET_COLUMN("number", true);
-			SET_COLUMN("layer", false);
-			SET_COLUMN("start", true);
-			SET_COLUMN("end", true);
-			SET_COLUMN("duration", true);
-			SET_COLUMN("style", false);
-			SET_COLUMN("name", false);
-			SET_COLUMN("margin-r", false);
-			SET_COLUMN("margin-l", false);
-			SET_COLUMN("margin-v", false);
-			SET_COLUMN("effect", false);
-			SET_COLUMN("text", true);
-			SET_COLUMN("translation", false);
-			SET_COLUMN("note", false);
-			SET_COLUMN("cps", true);
-		}
-
-#undef SET_COLUMN
-
-	}
 }
 
 
@@ -1616,6 +1444,8 @@ Gtk::TreeViewColumn* SubtitleView::get_column_by_name(const Glib::ustring &name)
 
 	if(it != m_columns.end())
 		return it->second;
+
+	se_debug_message(SE_DEBUG_VIEW, "column: %s return NULL", name.c_str());
 
 	return NULL;
 }
@@ -1663,6 +1493,60 @@ bool SubtitleView::get_column_visible(const Glib::ustring &name)
 	return column->get_visible();
 }
 
+/*
+ *	Get the columns displayed from the configuration and updates.
+ */
+void SubtitleView::update_columns_displayed_from_config()
+{
+	se_debug(SE_DEBUG_VIEW);
+
+	Glib::ustring columns;
+
+	if(!Config::getInstance().get_value_string("subtitle-view", "columns", columns))
+	{
+		g_warning("update_columns_displayed_from_config FAILED");
+		return;
+	}
+
+	// get columns order
+	std::vector<std::string> cols;
+		
+	utility::split(columns, ';', cols);
+
+	// hide all columns
+	std::map<Glib::ustring, Gtk::TreeViewColumn*>::iterator it;
+	for( it = m_columns.begin(); it != m_columns.end(); ++it)
+	{
+		it->second->set_visible(false);
+	}
+
+	// reorder columns
+	Gtk::TreeViewColumn *current_column = NULL;
+
+	for(unsigned int i=0; i< cols.size(); ++i)
+	{
+		Glib::ustring name = cols[i];
+
+		if(current_column)
+		{
+			Gtk::TreeViewColumn *tmp = get_column_by_name(name);
+			if(tmp)
+				move_column_after(*tmp, *current_column);
+			current_column = tmp;
+		}
+		else	// it's the first, put at start
+		{
+			current_column = get_column_by_name(name);
+			if(current_column)
+				move_column_to_start(*current_column);
+		}
+
+		// display column
+		if(current_column)
+			current_column->set_visible(true);
+	}
+	
+}
 
 /*
  *
