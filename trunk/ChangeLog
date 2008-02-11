@@ -1,5 +1,12 @@
 2008-02-11  kitone  <kitone@gna.org>
 
+	* share/menubar.xml:
+	* src/gui/MenuBar.cc:
+	* src/gui/MenuBar.h:
+	Removes the managing of the view modes and columns.
+
+2008-02-11  kitone  <kitone@gna.org>
+
 	* share/glade/dialog-preferences.glade:
 	Small improvements.
 

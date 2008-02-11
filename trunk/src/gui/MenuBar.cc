@@ -228,31 +228,8 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 
 		ag.item("menu-view", _("V_iew"));
 
-		ag.item("view/simple", _("_Simple"));
-		ag.item("view/advanced", _("_Advanced"));
-		ag.item("view/translation", _("_Translation"));
-		ag.item("view/timing", _("T_iming"));
-
 		addToggleAction("display-video-player", _("_Video Player"), "interface", "display-video-player");
 		addToggleAction("display-waveform", _("_Waveform"), "interface", "display-waveform");
-
-		ag.item("menu-columns", _("Columns"));
-
-		addToggleActionColumn("number", _("Number"));
-		addToggleActionColumn("layer", _("Layer"));
-		addToggleActionColumn("start", _("Start"));
-		addToggleActionColumn("end", _("End"));
-		addToggleActionColumn("duration", _("Duration"));
-		addToggleActionColumn("style", _("Style"));
-		addToggleActionColumn("name", _("Name"));
-		addToggleActionColumn("margin-r", _("Margin Left"));
-		addToggleActionColumn("margin-l", _("Margin Right"));
-		addToggleActionColumn("margin-v", _("Margin Vertical"));
-		addToggleActionColumn("effect", _("Effect"));
-		addToggleActionColumn("text", _("Text"));
-		addToggleActionColumn("translation", _("Translation"));
-		addToggleActionColumn("note", _("Note"));
-		addToggleActionColumn("cps", _("Characters Per Second"));
 	}
 	
 	// menu-option
@@ -295,9 +272,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 
 	create_ui_from_file();
 
-	Config::getInstance().signal_changed("subtitle-view").connect(
-			sigc::mem_fun(*this, &MenuBar::on_config_subtitle_view_changed));
-
 	ActionSystem::getInstance().signal_sensitive_changed().connect(
 			sigc::mem_fun(*this, &MenuBar::set_sensitive));
 
@@ -322,28 +296,6 @@ void MenuBar::create_ui_from_file()
  */
 MenuBar::~MenuBar()
 {
-}
-
-
-/*
- *
- */
-void MenuBar::addToggleActionColumn(const Glib::ustring &name, const Glib::ustring &label	)
-{
-	bool default_value = false;
-
-	Glib::RefPtr<Gtk::Action> action = Gtk::ToggleAction::create(name, label);
-	Glib::RefPtr<Gtk::ToggleAction> toggle_action = Glib::RefPtr<Gtk::ToggleAction>::cast_static(action);
-
-	if(Config::getInstance().get_value_bool("subtitle-view", Glib::ustring("show-column-") + name, default_value))
-		toggle_action->set_active(default_value);
-
-	sigc::slot<void> slot = sigc::bind<Glib::ustring>(
-			sigc::mem_fun(*this, &MenuBar::on_setup_view_toggled), name);
-
-	m_connections[name] = action->signal_activate().connect(slot);
-
-	m_refActionGroup->add(action);
 }
 
 /*
@@ -423,52 +375,6 @@ void MenuBar::execute(const Glib::ustring &name)
 	}
 }
 
-
-// FILE
-
-/*
- *
- */
-void MenuBar::on_setup_view_toggled(const Glib::ustring &column)
-{
-	Glib::RefPtr<Gtk::ToggleAction> action = 
-		Glib::RefPtr<Gtk::ToggleAction>::cast_static(m_refActionGroup->get_action(column));
-
-	if(action)
-	{
-		sigc::connection connection = m_connections[column];
-
-		bool state = action->get_active();
-	
-		connection.block();
-	
-		Config::getInstance().set_value_bool("subtitle-view", Glib::ustring("show-column-")+column, state);
-		
-		connection.unblock();
-	}
-}
-
-/*
- *
- */
-void MenuBar::set_toggle_column(const Glib::ustring &column, bool state)
-{
-	try
-	{
-		Glib::RefPtr<Gtk::ToggleAction> action = 
-			Glib::RefPtr<Gtk::ToggleAction>::cast_static(m_refActionGroup->get_action(column));
-
-		if(action)
-		{
-			Config::getInstance().set_value_bool("subtitle-view", Glib::ustring("show-column-")+column, state);
-		}
-	}
-	catch(Glib::Error &ex)
-	{
-		std::cerr << ex.what() << std::endl;
-	}
-}
-
 /*
  *
  */
@@ -479,31 +385,6 @@ void MenuBar::on_preferences()
 	dialog->run();
 
 	delete dialog;
-}
-
-/*
- *
- */
-void MenuBar::on_config_subtitle_view_changed(const Glib::ustring &key, const Glib::ustring &value)
-{
-	//std::cout << build_message("%s %s %s %s", __FILE__, __FUNCTION__, key.c_str(), value.c_str()) << std::endl;
-	
-	if(key.find("show-column-") != Glib::ustring::npos)
-	{
-		Glib::ustring column = key;
-		column.erase(0, Glib::ustring("show-column-").size());
-
-		Glib::RefPtr<Gtk::ToggleAction> action = 
-			Glib::RefPtr<Gtk::ToggleAction>::cast_static(m_refActionGroup->get_action(column));
-
-		bool state;
-		if(from_string(value, state))
-		{
-			m_connections[column].block();
-			action->set_active(state);
-			m_connections[column].unblock();
-		}
-	}
 }
 
 /*
