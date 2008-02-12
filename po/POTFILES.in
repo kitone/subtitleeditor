@@ -11,6 +11,7 @@ share/glade/dialog-script-properties.glade
 share/glade/dialog-spell-checking.glade
 share/glade/dialog-split-document.glade
 share/glade/dialog-style-editor.glade
+share/glade/dialog-view-manager.glade
 share/glade/subtitleeditor.glade
 src/Action.cc
 src/Action.h
@@ -45,6 +46,7 @@ src/actions/StyleEditor.h
 src/actions/Transcript.cc
 src/actions/TryToExtendToPerfect.cc
 src/actions/UndoRedo.cc
+src/actions/ViewManager.cc
 src/ActionSystem.cc
 src/ActionSystem.h
 src/Color.cc

@@ -1,4 +1,9 @@
-2008-02-05  kitone  <kitone@free.fr>
+2008-02-12  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	Add: share/glade/dialog-view-manager.glade, src/actions/ViewManager.cc
+
+2008-02-05  kitone  <kitone@gna.org>
 	* POTFILES.in:
 	* ca.po:
 	* cs.po:
