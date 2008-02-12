@@ -118,7 +118,7 @@ ACTIONS = \
 				actions/Transcript.cc \
 				actions/ExternalVideoPlayer.cc \
 				actions/About.cc \
-				actions/ViewModes.cc
+				actions/ViewManager.cc
 
 
 ACTIONS_FILES = $(ACTIONS) \
