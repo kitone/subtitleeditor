@@ -1,3 +1,25 @@
+2008-02-12  kitone  <kitone@gna.org>
+
+	* share/glade/Makefile.am:
+	* share/glade/dialog-view-manager.glade:
+	Add glade file.
+
+	* share/menubar.xml:
+	Rename "setting-view-placeholder" by "view-manager-placeholder".
+
+	* src/SubtitleView.cc:
+	Rename "columns" by "columns-displayed".
+
+	* src/actions/ViewModes.cc:
+	Add "View Manager" interface for settings.
+	Rename ViewModesPlugin by ViewManagerPlugin.
+	Rename "setting-view" by "view-manager".
+	Rename "columns" by "columns-displayed"
+
+	* src/main.cc:
+	Remove: "columns", "show-column-*".
+	Add: "columns-list", "columns-displayed".
+
 2008-02-11  kitone  <kitone@gna.org>
 
 	* share/glade/dialog-preferences.glade:

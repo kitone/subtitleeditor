@@ -1356,7 +1356,7 @@ bool SubtitleView::on_button_press_event(GdkEventButton *ev)
  */
 void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key, const Glib::ustring &value)
 {
-	if(key == "columns")
+	if(key == "columns-displayed")
 	{
 		update_columns_displayed_from_config();
 	}
@@ -1502,7 +1502,7 @@ void SubtitleView::update_columns_displayed_from_config()
 
 	Glib::ustring columns;
 
-	if(!Config::getInstance().get_value_string("subtitle-view", "columns", columns))
+	if(!Config::getInstance().get_value_string("subtitle-view", "columns-displayed", columns))
 	{
 		g_warning("update_columns_displayed_from_config FAILED");
 		return;

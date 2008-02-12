@@ -25,7 +25,324 @@
 #include "Plugin.h"
 #include "utility.h"
 
-class ViewModesPlugin : public Plugin
+/*
+ *
+ */
+class DialogViewEdit : public Gtk::Dialog
+{
+	class ColumnRecord : public Gtk::TreeModel::ColumnRecord
+	{
+	public:
+		ColumnRecord()
+		{
+			add(display);
+			add(name);
+		}
+
+		Gtk::TreeModelColumn<bool> display;
+		Gtk::TreeModelColumn<Glib::ustring> name;
+	};
+
+public:
+
+	DialogViewEdit(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	:Gtk::Dialog(cobject)
+	{
+		refGlade->get_widget("treeview-columns", m_treeview);
+
+		create_treeview();
+	}
+
+	/*
+	 * Update the treeview with the columns displayed.
+	 * Add remaining columns that are not displayed.
+	 * Run the dialog and update columns_displayed.
+	 */
+	void execute(Glib::ustring &columns_displayed)
+	{
+		std::vector<std::string> array;
+		utility::split(columns_displayed, ';', array);
+
+		for(unsigned int i=0; i< array.size(); ++i)
+		{
+			Gtk::TreeIter iter = m_liststore->append();
+			(*iter)[m_column_record.name] = array[i];
+			(*iter)[m_column_record.display] = true;
+		}
+
+		// add other columns
+		{
+			std::list<Glib::ustring> all_columns;
+			
+			Config::getInstance().get_value_string_list("subtitle-view", "columns-list", all_columns);
+			
+			for(std::list<Glib::ustring>::const_iterator it = all_columns.begin(); it != all_columns.end(); ++it)
+			{
+				if(std::find(array.begin(), array.end(), *it) == array.end())
+				{
+					Gtk::TreeIter iter = m_liststore->append();
+					(*iter)[m_column_record.name] = *it;
+					(*iter)[m_column_record.display] = false;
+				}
+			}
+		}
+
+		run();
+
+		// get the new columns order
+		{
+			Glib::ustring columns_updated;
+
+			Gtk::TreeNodeChildren rows = m_liststore->children();
+		
+			if(!rows.empty())
+			{
+				for(Gtk::TreeIter it=rows.begin(); it; ++it)
+				{
+					if((*it)[m_column_record.display] == true)
+						columns_updated += (*it)[m_column_record.name] + ";";
+				}
+			}
+			columns_displayed = columns_updated;
+		}
+	}
+
+protected:
+	
+	/*
+	 * Create the treeview with two columns : Display and Name
+	 * Support DND (glade).
+	 */
+	void create_treeview()
+	{
+		m_liststore = Gtk::ListStore::create(m_column_record);
+		m_treeview->set_model(m_liststore);
+		
+		// column display
+		{
+			Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("Display")));
+			m_treeview->append_column(*column);
+
+			Gtk::CellRendererToggle* toggle = manage(new Gtk::CellRendererToggle);
+			column->pack_start(*toggle);
+			column->add_attribute(toggle->property_active(), m_column_record.display);
+
+			toggle->signal_toggled().connect(
+					sigc::mem_fun(*this, &DialogViewEdit::on_display_toggled));
+		}
+		// column name
+		{
+			Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("Name")));
+			m_treeview->append_column(*column);
+
+			Gtk::CellRendererText* name = manage(new Gtk::CellRendererText);
+			column->pack_start(*name);
+			column->add_attribute(name->property_text(), m_column_record.name);
+		}
+	}
+
+	/*
+	 * Toggle the state of the displayed column
+	 */
+	void on_display_toggled(const Glib::ustring &path)
+	{
+		Gtk::TreeIter iter = m_liststore->get_iter(path);
+		if(iter)
+		{
+			bool state = (*iter)[m_column_record.display];
+
+			(*iter)[m_column_record.display] = !state;
+		}
+	}
+
+protected:
+	ColumnRecord m_column_record;
+	Gtk::TreeView* m_treeview;
+	Glib::RefPtr<Gtk::ListStore> m_liststore;
+};
+
+/*
+ *
+ */
+class DialogViewManager : public Gtk::Dialog
+{
+	class ColumnRecord : public Gtk::TreeModel::ColumnRecord
+	{
+	public:
+		ColumnRecord()
+		{
+			add(name);
+			add(columns);
+		}
+
+		Gtk::TreeModelColumn<Glib::ustring> name;
+		Gtk::TreeModelColumn<Glib::ustring> columns;
+	};
+
+public:
+
+	DialogViewManager(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	:Gtk::Dialog(cobject)
+	{
+		refGlade->get_widget("treeview", m_treeview);
+		refGlade->get_widget("button-add", m_buttonAdd);
+		refGlade->get_widget("button-remove", m_buttonRemove);
+		refGlade->get_widget("button-edit", m_buttonEdit);
+
+		m_buttonAdd->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogViewManager::on_add));
+		m_buttonRemove->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogViewManager::on_remove));
+		m_buttonEdit->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogViewManager::on_edit));
+
+		create_treeview();
+		init_treeview();
+	}
+
+	/*
+	 *
+	 */
+	void execute()
+	{
+		run();
+
+		// save to the configuration
+		save_to_config();
+	}
+
+protected:
+
+	/*
+	 *
+	 */
+	void create_treeview()
+	{
+		m_liststore = Gtk::ListStore::create(m_column_record);
+		m_treeview->set_model(m_liststore);
+
+		Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("Name")));
+		m_treeview->append_column(*column);
+
+		Gtk::CellRendererText* name = manage(new Gtk::CellRendererText);
+		column->pack_start(*name);
+		column->add_attribute(name->property_text(), m_column_record.name);
+
+		name->property_editable() = true;
+		name->signal_edited().connect(
+				sigc::mem_fun(*this, &DialogViewManager::on_name_edited));
+	}
+
+	/*
+	 *
+	 */
+	void init_treeview()
+	{
+		std::list<Glib::ustring> keys;
+
+		Config::getInstance().get_keys("view-manager", keys);
+
+		std::list<Glib::ustring>::const_iterator it;
+		for(it = keys.begin(); it != keys.end(); ++it)
+		{
+			Glib::ustring columns = Config::getInstance().get_value_string("view-manager", *it);
+			
+			Gtk::TreeIter iter = m_liststore->append();
+
+			(*iter)[m_column_record.name] = *it;
+			(*iter)[m_column_record.columns] = columns;
+		}
+	}
+
+	/*
+	 *
+	 */
+	void on_name_edited(const Glib::ustring &path, const Glib::ustring &text)
+	{
+		Gtk::TreeIter iter = m_liststore->get_iter(path);
+
+		(*iter)[m_column_record.name] = text;
+	}
+
+	/*
+	 *
+	 */
+	void on_add()
+	{
+		Gtk::TreeIter iter = m_liststore->append();
+
+		(*iter)[m_column_record.name] = _("Untitled");
+	}
+
+	/*
+	 *
+	 */
+	void on_remove()
+	{
+		Gtk::TreeIter selected = m_treeview->get_selection()->get_selected();
+		if(selected)
+		{
+			Glib::ustring name = (*selected)[m_column_record.name];
+			selected = m_liststore->erase(selected);
+			if(selected)
+				m_treeview->get_selection()->select(selected);
+		}
+	}
+
+	/*
+	 * Edit the selected item, launch the dialog edit
+	 */
+	void on_edit()
+	{
+		Gtk::TreeIter selected = m_treeview->get_selection()->get_selected();
+		if(selected)
+		{
+			DialogViewEdit *dialog = utility::get_widget_derived<DialogViewEdit>("dialog-view-manager.glade", "dialog-view-edit");
+			
+			Glib::ustring columns = (*selected)[m_column_record.columns];
+
+			dialog->execute(columns);
+			// updated with the new columns displayed
+			(*selected)[m_column_record.columns] = columns;
+
+			delete dialog;
+		}
+	}
+
+	/*
+	 * Delete the group "view-manager" and create with the new values
+	 */
+	void save_to_config()
+	{
+		Config::getInstance().remove_group("view-manager");
+
+		Gtk::TreeNodeChildren rows = m_liststore->children();
+		
+		if(!rows.empty())
+		{
+			for(Gtk::TreeIter it = rows.begin(); it; ++it)
+			{
+				Glib::ustring name = (*it)[m_column_record.name];
+				Glib::ustring columns = (*it)[m_column_record.columns];
+
+				Config::getInstance().set_value_string("view-manager", name, columns);
+			}
+		}
+	}
+
+protected:
+	ColumnRecord m_column_record;
+	Gtk::TreeView* m_treeview;
+	Glib::RefPtr<Gtk::ListStore> m_liststore;
+	Gtk::Button* m_buttonAdd;
+	Gtk::Button* m_buttonRemove;
+	Gtk::Button* m_buttonEdit;
+};
+
+/*
+ *
+ */
+class ViewManagerPlugin : public Plugin
 {
 public:
 	
@@ -36,15 +353,15 @@ public:
 	{
 		std::list<Glib::ustring> keys;
 
-		if(get_config().get_keys("setting-view", keys) && !keys.empty())
+		if(get_config().get_keys("view-manager", keys) && !keys.empty())
 				return;
 
 		Config &cfg = get_config();
 
-		cfg.set_value_string("setting-view", _("Simple"), "number;start;end;duration;text");
-		cfg.set_value_string("setting-view", _("Advanced"), "number;start;end;duration;style;name;text");
-		cfg.set_value_string("setting-view", _("Translation"), "number;text;translation");
-		cfg.set_value_string("setting-view", _("Timing"), "number;start;end;duration;cps;text");
+		cfg.set_value_string("view-manager", _("Simple"), "number;start;end;duration;text");
+		cfg.set_value_string("view-manager", _("Advanced"), "number;start;end;duration;style;name;text");
+		cfg.set_value_string("view-manager", _("Translation"), "number;text;translation");
+		cfg.set_value_string("view-manager", _("Timing"), "number;start;end;duration;cps;text");
 	}
 
 	/*
@@ -54,11 +371,12 @@ public:
 	{
 		check_config();
 
-		action_group = Gtk::ActionGroup::create("ViewModesPlugin");
+		action_group = Gtk::ActionGroup::create("ViewManagerPlugin");
 
 		std::list<Glib::ustring> keys;
 
-		get_config().get_keys("setting-view", keys);
+		// user settings
+		get_config().get_keys("view-manager", keys);
 
 		std::list<Glib::ustring>::const_iterator it;
 
@@ -68,9 +386,14 @@ public:
 
 			action_group->add(
 				Gtk::Action::create(name, name),
-					sigc::bind( sigc::mem_fun(*this, &ViewModesPlugin::on_set_view), name));
+					sigc::bind( sigc::mem_fun(*this, &ViewManagerPlugin::on_set_view), name));
 				
 		}
+
+		// Set View...
+		action_group->add(
+			Gtk::Action::create("view-manager", Gtk::Stock::PREFERENCES, _("View _Manager")),
+					sigc::mem_fun(*this, &ViewManagerPlugin::on_view_manager));
 
 		get_ui_manager()->insert_action_group(action_group);
 	}
@@ -88,17 +411,21 @@ public:
 
 		std::list<Glib::ustring> keys;
 
-		if(get_config().get_keys("setting-view", keys))
+		if(get_config().get_keys("view-manager", keys))
 		{
-			std::list<Glib::ustring>::reverse_iterator it;
+			std::list<Glib::ustring>::const_iterator it;
 
-			for(it = keys.rbegin(); it != keys.rend(); ++it)
+			for(it = keys.begin(); it != keys.end(); ++it)
 			{
 				Glib::ustring name = *it;
 				
-				ui->add_ui(ui_id, "/menubar/menu-view/setting-view-placeholder", name, name);
+				ui->add_ui(ui_id, "/menubar/menu-view/view-manager-placeholder", name, name, Gtk::UI_MANAGER_AUTO, false);
 			}
 		}
+
+		ui->add_ui(ui_id, "/menubar/menu-view/view-manager-placeholder", "view-manager", "view-manager", Gtk::UI_MANAGER_AUTO, false);
+
+		get_ui_manager()->ensure_update();
 	}
 
 	/*
@@ -112,6 +439,7 @@ public:
 
 		ui->remove_ui(ui_id);
 		ui->remove_action_group(action_group);
+		ui->ensure_update();
 	}
 
 	/*
@@ -119,9 +447,25 @@ public:
 	 */
 	void on_set_view(const Glib::ustring &name)
 	{
-		Glib::ustring columns = get_config().get_value_string("setting-view", name);
+		Glib::ustring columns = get_config().get_value_string("view-manager", name);
 
-		get_config().set_value_string("subtitle-view", "columns", columns);
+		get_config().set_value_string("subtitle-view", "columns-displayed", columns);
+	}
+
+	/*
+	 *
+	 */
+	void on_view_manager()
+	{
+		DialogViewManager *dialog = utility::get_widget_derived<DialogViewManager>("dialog-view-manager.glade", "dialog-view-manager");
+
+		dialog->execute();
+
+		deactivate();
+		activate();
+		post_activate();
+
+		delete dialog;
 	}
 
 protected:
@@ -129,4 +473,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(ViewModesPlugin)
+REGISTER_PLUGIN(ViewManagerPlugin)
