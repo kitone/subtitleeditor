@@ -107,22 +107,9 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	//[subtitle-view]
 	config["subtitle-view"]["property-alignment-center"] = "false";
 	config["subtitle-view"]["show-character-per-line"] = "true";
-	config["subtitle-view"]["show-column-number"] = "true";
-	config["subtitle-view"]["show-column-layer"] = "false";
-	config["subtitle-view"]["show-column-start"] = "true";
-	config["subtitle-view"]["show-column-end"] = "true";
-	config["subtitle-view"]["show-column-duration"] = "true";
-	config["subtitle-view"]["show-column-style"] = "false";
-	config["subtitle-view"]["show-column-name"] = "false";
-	config["subtitle-view"]["show-column-margin-l"] = "false";
-	config["subtitle-view"]["show-column-margin-r"] = "false";
-	config["subtitle-view"]["show-column-margin-v"] = "false";
-	config["subtitle-view"]["show-column-effect"] = "false";
-	config["subtitle-view"]["show-column-text"] = "true";
-	config["subtitle-view"]["show-column-translation"] = "false";
-	config["subtitle-view"]["show-column-note"] = "false";
 	config["subtitle-view"]["enable-rubberband-selection"] = "false";
-	config["subtitle-view"]["columns"] = "number;layer;start;end;duration;style;name;margin-r;margin-l;margin-v;effect;text;cps;translation;note";
+	config["subtitle-view"]["columns-display"] = "number;start;end;duration;text";
+	config["subtitle-view"]["columns-list"] = "cps;duration;effect;end;layer;margin-l;margin-r;margin-v;name;note;number;start;style;text;translation";
 
 	//[timing]
 	config["timing"]["min-characters-per-second"] = "5";

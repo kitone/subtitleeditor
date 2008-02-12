@@ -141,7 +141,7 @@
 		</menu>
 
 		<menu name="menu-view" action="menu-view">
-			<placeholder name="setting-view-placeholder"/>
+			<placeholder name="view-manager-placeholder"/>
 			<separator/>
 			<menuitem action="display-video-player"/>
 			<menuitem action="display-waveform"/>
