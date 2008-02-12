@@ -231,6 +231,9 @@ protected:
 		name->property_editable() = true;
 		name->signal_edited().connect(
 				sigc::mem_fun(*this, &DialogViewManager::on_name_edited));
+
+		m_treeview->get_selection()->signal_changed().connect(
+				sigc::mem_fun(*this, &DialogViewManager::on_selection_changed));
 	}
 
 	/*
@@ -252,6 +255,12 @@ protected:
 			(*iter)[m_column_record.name] = *it;
 			(*iter)[m_column_record.columns] = columns;
 		}
+
+		Gtk::TreeIter iter = m_liststore->get_iter("0");
+		if(iter)
+			m_treeview->get_selection()->select(iter);
+		else
+			on_selection_changed();
 	}
 
 	/*
@@ -267,11 +276,24 @@ protected:
 	/*
 	 *
 	 */
+	void on_selection_changed()
+	{
+		bool state = m_treeview->get_selection()->get_selected();
+
+		m_buttonRemove->set_sensitive(state);
+		m_buttonEdit->set_sensitive(state);
+	}
+
+	/*
+	 *
+	 */
 	void on_add()
 	{
 		Gtk::TreeIter iter = m_liststore->append();
 
 		(*iter)[m_column_record.name] = _("Untitled");
+
+		m_treeview->set_cursor(m_liststore->get_path(*iter), *m_treeview->get_column(0), true);
 	}
 
 	/*
