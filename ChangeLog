@@ -1,5 +1,11 @@
 2008-02-12  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/actions/ViewModes.cc:
+	Rename ViewModes.cc by ViewManager.cc
+
+2008-02-12  kitone  <kitone@gna.org>
+
 	* share/glade/Makefile.am:
 	* share/glade/dialog-view-manager.glade:
 	Add glade file.
