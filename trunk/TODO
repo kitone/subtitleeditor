@@ -1,20 +1,9 @@
-SubtitleEditor 0.20
--------------------
-
-	* check Undo/Redo subtitles selection
-	* config profile ~/.config/subtitleeditor/(profile|default)/ - DONE
-	* Document changed (title with *, ask to save on exit ...) - DONE
-	* check after undo/redo - DONE
-	* Config use set_comment (after set value)
-	* Add the sources in the svn - DONE
-	* Move the website on Gna! - DONE
-	* HowTo: http://kitone.free.fr/subtitleeditor/docs/how-to-editing-subtitles-with-waveform.html
-	* Code cleanup
-	* GPL v3 - DONE
-
 SubtitleEditor 0.21
 -------------------
 
+	* check Undo/Redo subtitles selection
+	* Config use set_comment (after set value)
+	* HowTo: http://kitone.free.fr/subtitleeditor/docs/how-to-editing-subtitles-with-waveform.html
 	* Open Translation : add new subtitle if current.size < translation.size
 	* Document use URI (movie, file ...)
 		* Data system (ustring)
@@ -31,7 +20,6 @@ SubtitleEditor 0.21
 	* Cut
 	* Copy
 	* Paste
-	* option for config file (profile)
 	* SubtitleEditorProject (selection, position, ...)
 	* Video Player : speed play
 	* Plugin for Column. register, management (all, timing, translation ...)
