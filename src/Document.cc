@@ -544,9 +544,12 @@ void Document::add_command(Command *cmd)
  */
 void Document::finish_command()
 {
-	CommandSystem::finish();
+	if(CommandSystem::is_recording())
+	{
+		CommandSystem::finish();
 
-	make_document_changed();
+		make_document_changed();
+	}
 }
 
 /*
