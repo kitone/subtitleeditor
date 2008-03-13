@@ -23,6 +23,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include <gtkmm.h>
+#include "gui/Player.h"
 
 class Document;
 
@@ -54,6 +55,21 @@ public:
 	 *
 	 */
 	virtual std::list<Document*> get_documents() = 0;
+
+	/*
+	 *
+	 */
+	virtual void set_mutlimedia_video(Player *player) = 0;
+
+	/*
+	 *
+	 */
+	virtual Player* get_player() = 0;
+
+	/*
+	 *
+	 */
+	virtual void set_mutlimedia_waveform(Gtk::Widget &widget) = 0;
 
 	/*
 	 *

@@ -1,5 +1,13 @@
 2008-03-13  kitone  <kitone@gna.org>
 
+	* src/SubtitleEditorWindow.h:
+	* src/gui/Application.cc:
+	* src/gui/Application.h:
+	Preparing the new multimedia system for the 
+	futur player and the waveform editor.
+
+2008-03-13  kitone  <kitone@gna.org>
+
 	* share/glade/subtitleeditor.glade:
 	* src/Makefile.am:
 	* src/gui/Application.cc:

@@ -61,6 +61,21 @@ public:
 	 */
 	DocumentList get_documents();
 
+	/*
+	 *
+	 */
+	Player* get_player();
+
+	/*
+	 *
+	 */
+	void set_mutlimedia_waveform(Gtk::Widget &widget);
+
+	/*
+	 *
+	 */
+	void set_mutlimedia_video(Player *player);
+
 protected:
 
 	/*
@@ -138,6 +153,15 @@ protected:
 	 *
 	 */
 	void set_display_video_player(bool state);
+
+	/*
+	 * Check the state visibility of the children. 
+	 * When one child is show the panel is also show.
+	 * When both chidren are hide, the panel is hide.
+	 * This callback are connected to signals 
+	 * 'signal_show' and 'signal_hide' of the children.
+	 */
+	void on_paned_multimedia_visibility_child_changed();
 
 	void connect_document(Document *doc);
 	void disconnect_document(Document *doc);

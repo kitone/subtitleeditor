@@ -576,24 +576,15 @@ void Application::on_config_interface_changed(const Glib::ustring &key, const Gl
  */
 void Application::set_display_video_player(bool state)
 {
-	Gtk::Paned *paned = dynamic_cast<Gtk::Paned*>(m_videoPlayer->get_parent());
-
-	g_return_if_fail(paned);
-
+#warning "TODO: FIXME with the new player"
+	// It's a hack...remove soon with the new player
 	if(state)
-	{
 		m_videoPlayer->show();
-
-		if(!paned->is_visible())
-			paned->show();
-	}
 	else
-	{
 		m_videoPlayer->hide();
 
-		if(paned->get_child1()->is_visible() == false && paned->get_child2()->is_visible() == false)
-			paned->hide();
-	}
+	on_paned_multimedia_visibility_child_changed();
+	
 }
 
 /*
@@ -805,3 +796,73 @@ DocumentList Application::get_documents()
 {
 	return DocumentSystem::getInstance().getAllDocuments();
 }
+
+/*
+ *
+ */
+Player* Application::get_player()
+{
+	return m_videoPlayer->get_video_player();
+}
+
+/*
+ *
+ */
+void Application::set_mutlimedia_waveform(Gtk::Widget &widget)
+{
+	se_debug(SE_DEBUG_APP);
+
+	m_paned_multimedia->add2(widget);
+
+	widget.signal_show().connect(
+			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+	widget.signal_hide().connect(
+			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+}
+
+/*
+ *
+ */
+void Application::set_mutlimedia_video(Player *player)
+{
+	se_debug(SE_DEBUG_APP);
+
+#warning "TODO: FIXME with the new player"
+	//m_player = player;
+
+	Gtk::Widget *widget =player->get_widget();
+	
+	m_paned_multimedia->add1(*widget);
+
+	widget->signal_show().connect(
+			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+	widget->signal_hide().connect(
+			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+}
+
+/*
+ * Check the state visibility of the children. 
+ * When one child is show the panel is also show.
+ * When both chidren are hide, the panel is hide.
+ * This callback are connected to signals 
+ * 'signal_show' and 'signal_hide' of the children.
+ */
+void Application::on_paned_multimedia_visibility_child_changed()
+{
+	Gtk::Widget *child1 = m_paned_multimedia->get_child1();
+	Gtk::Widget *child2 = m_paned_multimedia->get_child2();
+
+	bool state1 = false;
+	bool state2 = false;
+
+	if(child1 != NULL)
+		state1 = child1->is_visible();
+	if(child2 != NULL)
+		state2 = child2->is_visible();
+
+	if(state1 || state2)
+		m_paned_multimedia->show();
+	else
+		m_paned_multimedia->hide();
+}
+
