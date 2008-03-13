@@ -34,7 +34,8 @@ host_triplet = @host@
 subdir = m4
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in ChangeLog
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.in
+am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/m4/ax_check_gl.m4 $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -74,11 +75,15 @@ ENCHANT_CFLAGS = @ENCHANT_CFLAGS@
 ENCHANT_LIBS = @ENCHANT_LIBS@
 EXEEXT = @EXEEXT@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
+GL_CFLAGS = @GL_CFLAGS@
+GL_LIBS = @GL_LIBS@
 GMOFILES = @GMOFILES@
 GMSGFMT = @GMSGFMT@
 GREP = @GREP@
 GSTREAMER_CFLAGS = @GSTREAMER_CFLAGS@
 GSTREAMER_LIBS = @GSTREAMER_LIBS@
+GTKGLEXT_CFLAGS = @GTKGLEXT_CFLAGS@
+GTKGLEXT_LIBS = @GTKGLEXT_LIBS@
 GTKMM_CFLAGS = @GTKMM_CFLAGS@
 GTKMM_LIBS = @GTKMM_LIBS@
 INSTALL = @INSTALL@
@@ -129,6 +134,7 @@ SUBTITLEEDITOR_LIBS = @SUBTITLEEDITOR_LIBS@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
+XMKMF = @XMKMF@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -179,7 +185,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = codeset.m4 gettext.m4 glibc21.m4 iconv.m4 intdiv0.m4 intmax.m4 inttypes.m4 inttypes_h.m4 inttypes-pri.m4 isc-posix.m4 lcmessage.m4 lib-ld.m4 lib-link.m4 lib-prefix.m4 longdouble.m4 longlong.m4 nls.m4 printf-posix.m4 progtest.m4 signed.m4 size_max.m4 stdint_h.m4 uintmax_t.m4 ulonglong.m4 wchar_t.m4 wint_t.m4 xsize.m4
+EXTRA_DIST = ax_check_gl.m4 codeset.m4 gettext.m4 glibc21.m4 iconv.m4 intdiv0.m4 intmax.m4 inttypes.m4 inttypes_h.m4 inttypes-pri.m4 isc-posix.m4 lcmessage.m4 lib-ld.m4 lib-link.m4 lib-prefix.m4 longdouble.m4 longlong.m4 nls.m4 printf-posix.m4 progtest.m4 signed.m4 size_max.m4 stdint_h.m4 uintmax_t.m4 ulonglong.m4 wchar_t.m4 wint_t.m4 xsize.m4
 all: all-am
 
 .SUFFIXES:

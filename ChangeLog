@@ -1,5 +1,12 @@
 2008-03-13  kitone  <kitone@gna.org>
 
+	* acinclude.m4:
+	* configure.in:
+	* src/Makefile.am:
+	Add dependences: OpenGL, gtkglextmm-1.2
+
+2008-03-13  kitone  <kitone@gna.org>
+
 	* share/menubar.xml:
 	* src/Makefile.am:
 	* src/actions/WaveformEditor.cc:
