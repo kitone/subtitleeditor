@@ -35,6 +35,11 @@ public:
 	~Waveform();
 
 	/*
+	 * Open Wavefrom from file
+	 */
+	static Glib::RefPtr<Waveform> create_from_file(const Glib::ustring &uri);
+
+	/*
 	 *
 	 */
 	guint get_size();

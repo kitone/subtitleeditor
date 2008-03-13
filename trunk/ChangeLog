@@ -1,5 +1,11 @@
 2008-03-13  kitone  <kitone@gna.org>
 
+	* src/Waveform.cc:
+	* src/Waveform.h:
+	Add static function 'create_from_file'.
+
+2008-03-13  kitone  <kitone@gna.org>
+
 	* src/SubtitleEditorWindow.h:
 	* src/gui/Application.cc:
 	* src/gui/Application.h:
