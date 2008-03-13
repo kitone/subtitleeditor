@@ -118,7 +118,12 @@ ACTIONS = \
 				actions/Transcript.cc \
 				actions/ExternalVideoPlayer.cc \
 				actions/About.cc \
-				actions/ViewManager.cc
+				actions/ViewManager.cc \
+				actions/WaveformRenderer.h \
+				actions/WaveformRenderer.cc \
+				actions/WaveformEditor.h \
+				actions/WaveformEditor.cc \
+				actions/WaveformManagement.cc
 
 
 ACTIONS_FILES = $(ACTIONS) \
