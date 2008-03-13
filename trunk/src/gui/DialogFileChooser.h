@@ -53,5 +53,15 @@ public:
 	~DialogOpenVideo();
 };
 
+/*
+ * Waveform or Video/Audio
+ */
+class DialogOpenWaveform : public Gtk::FileChooserDialog
+{
+public:
+	DialogOpenWaveform();
+	~DialogOpenWaveform();
+};
+
 #endif//_DialogFileChooser_h
 

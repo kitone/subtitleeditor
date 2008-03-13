@@ -142,8 +142,6 @@ GUI_FILES = \
 				gui/VideoPlayer.cc \
 				gui/PreferencesUI.h \
 				gui/PreferencesUI.cc \
-				gui/OpenWaveformUI.h \
-				gui/OpenWaveformUI.cc \
 				gui/WaveformGeneratorUI.h \
 				gui/WaveformGeneratorUI.cc \
 				gui/Player.h \

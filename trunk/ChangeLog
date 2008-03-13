@@ -1,5 +1,17 @@
 2008-03-13  kitone  <kitone@gna.org>
 
+	* src/gui/DialogFileChooser.cc:
+	* src/gui/DialogFileChooser.h:
+	Rename OpenWaveformUI by DialogOpenWaveform
+	and move in DialogFileChosser.
+
+	* src/Makefile.am:
+	* src/gui/OpenWaveformUI.cc:
+	* src/gui/OpenWaveformUI.h:
+	Remove files.
+
+2008-03-13  kitone  <kitone@gna.org>
+
 	* src/Waveform.cc:
 	* src/Waveform.h:
 	Add static function 'create_from_file'.
