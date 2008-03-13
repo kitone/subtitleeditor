@@ -26,6 +26,23 @@
 #include <fstream>
 
 /*
+ * Open Wavefrom from file
+ */
+Glib::RefPtr<Waveform> Waveform::create_from_file(const Glib::ustring &uri)
+{
+	Glib::RefPtr<Waveform> wf = Glib::RefPtr<Waveform>(new Waveform);
+	if(!wf->open(uri))
+	{
+		g_warning(("Failed to create waveform from file " + uri).c_str());
+		wf.clear();
+
+		return Glib::RefPtr<Waveform>(NULL);
+	}
+
+	return wf;
+}
+
+/*
  *
  */
 Waveform::Waveform()
