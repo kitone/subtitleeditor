@@ -31,11 +31,11 @@
 #include "Document.h"
 #include "MenuBar.h"
 #include "Statusbar.h"
-#include "WaveformSystem.h"
 #include "Options.h"
 
 #include "SubtitleEditorWindow.h"
 #include "PluginSystem.h"
+#include "gui/VideoPlayer.h"
 
 
 class Application : public Gtk::Window, public SubtitleEditorWindow
@@ -138,7 +138,6 @@ protected:
 	 *
 	 */
 	void set_display_video_player(bool state);
-	void set_display_waveform(bool state);
 
 	void connect_document(Document *doc);
 	void disconnect_document(Document *doc);
@@ -153,8 +152,8 @@ protected:
 protected:
 	Gtk::VBox*			m_vboxMain;
 	MenuBar					m_menubar;
+	Gtk::HPaned*		m_paned_multimedia;
 	VideoPlayer*		m_videoPlayer;
-	WaveformSystem*	m_waveform_system;
 	Gtk::Notebook*	m_notebook_documents;
 	Statusbar*			m_statusbar;
 

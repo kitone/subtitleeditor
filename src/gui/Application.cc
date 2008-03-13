@@ -47,8 +47,8 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 	refGlade->get_widget_derived("statusbar", m_statusbar);
 
 	refGlade->get_widget("vbox-main", m_vboxMain);
+	refGlade->get_widget("paned-multimedia", m_paned_multimedia);
 	refGlade->get_widget_derived("video-player", m_videoPlayer);
-	refGlade->get_widget_derived("waveform-system", m_waveform_system);
 	refGlade->get_widget("notebook-documents", m_notebook_documents);
 
 	//m_notebook_documents->set_scrollable(true);
@@ -78,8 +78,6 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 	// on va chercher la configuration clavier
 	Glib::ustring path_se_accelmap = get_config_dir("accelmap");
 	Gtk::AccelMap::load(path_se_accelmap);
-
-	m_waveform_system->set_video_player(m_videoPlayer->get_video_player());
 
 	ActionSystem::getInstance().signal_emit().connect(
 			sigc::mem_fun(*this, &Application::on_execute_action));
@@ -149,9 +147,6 @@ void Application::load_config()
 
 	cfg.get_value_bool("interface", "display-video-player", value);
 	set_display_video_player(value);
-
-	cfg.get_value_bool("interface", "display-waveform", value);
-	set_display_waveform(value);
 
 	// first launch
 	if(!cfg.has_group("encodings"))
@@ -552,13 +547,6 @@ void Application::on_config_interface_changed(const Glib::ustring &key, const Gl
 
 		set_display_video_player(state);
 	}
-	else if(key == "display-waveform")
-	{
-		bool state;
-		from_string(value, state);
-
-		set_display_waveform(state);
-	}
 	else if(key == "used-autosave")
 	{
 		if(m_autosave_timeout)
@@ -602,31 +590,6 @@ void Application::set_display_video_player(bool state)
 	else
 	{
 		m_videoPlayer->hide();
-
-		if(paned->get_child1()->is_visible() == false && paned->get_child2()->is_visible() == false)
-			paned->hide();
-	}
-}
-
-/*
- *
- */
-void Application::set_display_waveform(bool state)
-{
-	Gtk::Paned *paned = dynamic_cast<Gtk::Paned*>(m_waveform_system->get_parent());
-
-	g_return_if_fail(paned);
-
-	if(state)
-	{
-		m_waveform_system->show();
-
-		if(!paned->is_visible())
-			paned->show();
-	}
-	else
-	{
-		m_waveform_system->hide();
 
 		if(paned->get_child1()->is_visible() == false && paned->get_child2()->is_visible() == false)
 			paned->hide();
@@ -741,6 +704,8 @@ void Application::init(OptionGroup &options)
 		}
 	}
 
+#warning "FIXME: auto open waveform"
+	/*
 	// -----------------------------------------------------
 	// waveform
 	Glib::ustring waveform = options.waveform;
@@ -763,13 +728,14 @@ void Application::init(OptionGroup &options)
 		{
 			Glib::ustring uri = Glib::filename_to_uri(utility::create_full_path(waveform));
 
-			m_waveform_system->open(uri);
+			//m_waveform_system->open(uri);
 		}
 		catch(const Glib::Error &ex)
 		{
 			std::cerr << ex.what() << std::endl;
 		}
 	}
+	*/
 }
 
 /*

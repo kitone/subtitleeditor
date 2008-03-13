@@ -138,8 +138,6 @@ GUI_FILES = \
 				gui/Statusbar.cc \
 				gui/CheckErrorsUI.h \
 				gui/CheckErrorsUI.cc \
-				gui/WaveformSystem.h \
-				gui/WaveformSystem.cc \
 				gui/VideoPlayer.h \
 				gui/VideoPlayer.cc \
 				gui/PreferencesUI.h \

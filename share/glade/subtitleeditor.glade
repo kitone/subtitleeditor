@@ -18,7 +18,7 @@
             <property name="can_focus">True</property>
             <property name="border_width">3</property>
             <child>
-              <widget class="GtkHPaned" id="hpaned1">
+              <widget class="GtkHPaned" id="paned-multimedia">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="border_width">3</property>
@@ -26,7 +26,6 @@
                   <widget class="GtkFrame" id="video-player">
                     <property name="width_request">360</property>
                     <property name="height_request">240</property>
-                    <property name="visible">True</property>
                     <property name="label_xalign">0</property>
                     <property name="shadow_type">GTK_SHADOW_NONE</property>
                     <child>
@@ -189,75 +188,7 @@
                   </packing>
                 </child>
                 <child>
-                  <widget class="GtkFrame" id="waveform-system">
-                    <property name="label_xalign">0</property>
-                    <property name="shadow_type">GTK_SHADOW_NONE</property>
-                    <child>
-                      <widget class="GtkHBox" id="hbox10">
-                        <property name="visible">True</property>
-                        <child>
-                          <widget class="GtkVBox" id="vbox5">
-                            <property name="visible">True</property>
-                            <child>
-                              <widget class="GtkFrame" id="frame1">
-                                <property name="visible">True</property>
-                                <property name="label_xalign">0</property>
-                                <property name="label_yalign">0</property>
-                                <property name="shadow_type">GTK_SHADOW_IN</property>
-                                <child>
-                                  <widget class="GtkDrawingArea" id="drawing-waveform">
-                                    <property name="height_request">240</property>
-                                    <property name="visible">True</property>
-                                  </widget>
-                                </child>
-                              </widget>
-                            </child>
-                            <child>
-                              <widget class="GtkHScrollbar" id="hscrollbar-waveform">
-                                <property name="visible">True</property>
-                                <property name="adjustment">0 0 0 0 0 0</property>
-                              </widget>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </widget>
-                        </child>
-                        <child>
-                          <widget class="GtkVScale" id="vscale-zoom">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="adjustment">1 1 1000 0 0 0</property>
-                            <property name="inverted">True</property>
-                            <property name="draw_value">False</property>
-                            <property name="value_pos">GTK_POS_BOTTOM</property>
-                          </widget>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkVScale" id="vscale-scale">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="adjustment">1 1 10 0 0 0</property>
-                            <property name="inverted">True</property>
-                            <property name="draw_value">False</property>
-                          </widget>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
-                      </widget>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="resize">True</property>
-                    <property name="shrink">True</property>
-                  </packing>
+                  <placeholder/>
                 </child>
               </widget>
               <packing>
@@ -270,18 +201,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="scrollable">True</property>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <widget class="GtkLabel" id="label1">
-                    <property name="visible">True</property>
-                  </widget>
-                  <packing>
-                    <property name="type">tab</property>
-                    <property name="tab_fill">False</property>
-                  </packing>
-                </child>
               </widget>
               <packing>
                 <property name="resize">True</property>
