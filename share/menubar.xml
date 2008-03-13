@@ -136,15 +136,16 @@
 			<separator/>
 			<menuitem action="waveform/center-with-selected-subtitle"/>
 			<separator/>
-			<menuitem action="waveform/scrolling-with-cursor"/>
+			<menuitem action="waveform/scrolling-with-player"/>
 			<menuitem action="waveform/scrolling-with-selection"/>
+			<menuitem action="waveform/respect-timing"/>
 		</menu>
 
 		<menu name="menu-view" action="menu-view">
 			<placeholder name="view-manager-placeholder"/>
 			<separator/>
 			<menuitem action="display-video-player"/>
-			<menuitem action="display-waveform"/>
+			<menuitem action="waveform/display"/>
 		</menu>
 
 		<menu action="menu-external-video-player">

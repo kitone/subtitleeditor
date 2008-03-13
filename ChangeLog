@@ -1,5 +1,16 @@
 2008-03-13  kitone  <kitone@gna.org>
 
+	* share/menubar.xml:
+	* src/Makefile.am:
+	* src/actions/WaveformEditor.cc:
+	* src/actions/WaveformEditor.h:
+	* src/actions/WaveformManagement.cc:
+	* src/actions/WaveformRenderer.cc:
+	* src/actions/WaveformRenderer.h:
+	Add the new Waveform Editor.
+
+2008-03-13  kitone  <kitone@gna.org>
+
 	* src/gui/MenuBar.cc:
 	Remove Waveform actions.
 
