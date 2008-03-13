@@ -1,5 +1,10 @@
 2008-03-13  kitone  <kitone@gna.org>
 
+	* src/gui/MenuBar.cc:
+	Remove Waveform actions.
+
+2008-03-13  kitone  <kitone@gna.org>
+
 	* src/gui/DialogFileChooser.cc:
 	* src/gui/DialogFileChooser.h:
 	Rename OpenWaveformUI by DialogOpenWaveform

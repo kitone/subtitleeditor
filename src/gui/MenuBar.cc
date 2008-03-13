@@ -202,26 +202,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 		ag.item("video-player/long-forward-jump", _("Long"));
 	}
 
-	// menu-waveform
-	{
-		ActionGroup ag("waveform", m_refUIManager);
-
-		ag.item("menu-waveform", _("_Waveform"));
-	
-		ag.item("waveform/open", Gtk::Stock::OPEN, _("_Open Waveform"), _("Open wavefrom from a file or create from a video"), "<Control><Alt>O");
-		ag.item("waveform/save", Gtk::Stock::SAVE, _("_Save Waveform"), _("Save waveform to file"), "<Control><Alt>S");
-
-		ag.item("waveform/zoom-in", Gtk::Stock::ZOOM_IN, _("Zoom _In"));
-		ag.item("waveform/zoom-out", Gtk::Stock::ZOOM_OUT, _("Zoom _Out"));
-		ag.item("waveform/zoom-selection", Gtk::Stock::ZOOM_FIT, _("Zoom _Selection"));
-		ag.item("waveform/zoom-all", Gtk::Stock::ZOOM_100, _("Zoom _All"));
-
-		ag.item("waveform/center-with-selected-subtitle", _("_Center With Selected Subtitle"));
-
-		addToggleAction("waveform/scrolling-with-cursor", _("Scrolling With _Cursor"), "waveform", "scrolling-with-cursor");
-		addToggleAction("waveform/scrolling-with-selection", _("Scrolling With _Selection"), "waveform", "scrolling-with-selection");
-	}
-
 	// menu-view
 	{
 		ActionGroup ag("view", m_refUIManager);
@@ -229,7 +209,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 		ag.item("menu-view", _("V_iew"));
 
 		addToggleAction("display-video-player", _("_Video Player"), "interface", "display-video-player");
-		addToggleAction("display-waveform", _("_Waveform"), "interface", "display-waveform");
 	}
 	
 	// menu-option
@@ -345,33 +324,6 @@ void MenuBar::execute(const Glib::ustring &name)
 
 		bool value = action->get_active();
 		Config::getInstance().set_value_bool("interface", "display-video-player", value);
-	}
-	else if(name == "display-waveform")
-	{
-		Glib::RefPtr<Gtk::ToggleAction> action = 
-			Glib::RefPtr<Gtk::ToggleAction>::cast_static(m_refActionGroup->get_action(name));
-
-		bool value = action->get_active();
-		
-		Config::getInstance().set_value_bool("interface", "display-waveform", value);
-	}
-	else if(name == "waveform/scrolling-with-cursor")
-	{
-		Glib::RefPtr<Gtk::ToggleAction> action = 
-			Glib::RefPtr<Gtk::ToggleAction>::cast_static(m_refActionGroup->get_action(name));
-
-		bool value = action->get_active();
-
-		Config::getInstance().set_value_bool("waveform", "scrolling-with-cursor", value);
-	}
-	else if(name == "waveform/scrolling-with-selection")
-	{
-		Glib::RefPtr<Gtk::ToggleAction> action = 
-			Glib::RefPtr<Gtk::ToggleAction>::cast_static(m_refActionGroup->get_action(name));
-
-		bool value = action->get_active();
-
-		Config::getInstance().set_value_bool("waveform", "scrolling-with-selection", value);
 	}
 }
 
