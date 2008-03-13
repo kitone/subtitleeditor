@@ -1,3 +1,13 @@
+2008-03-13  kitone  <kitone@gna.org>
+
+	* share/glade/subtitleeditor.glade:
+	* src/Makefile.am:
+	* src/gui/Application.cc:
+	* src/gui/Application.h:
+	* src/gui/WaveformSystem.cc:
+	* src/gui/WaveformSystem.h:
+	Remove WaveformSystem.
+
 2008-03-01  kitone  <kitone@gna.org>
 
 	* src/Document.cc:
