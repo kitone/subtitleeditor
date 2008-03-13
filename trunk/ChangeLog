@@ -1,5 +1,13 @@
 2008-03-13  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/actions/WaveformEditor.cc:
+	* src/actions/WaveformRendererGL.cc:
+	* src/main.cc:
+	Add waveform renderer using OpenGL.
+
+2008-03-13  kitone  <kitone@gna.org>
+
 	* acinclude.m4:
 	* configure.in:
 	* src/Makefile.am:
