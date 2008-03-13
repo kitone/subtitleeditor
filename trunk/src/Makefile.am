@@ -5,7 +5,7 @@ AM_CFLAGS = -DDATA_DIR=\""$(datadir)"\" \
 
 INCLUDES = \
 					 $(GTKMM_CFLAGS) $(LIBGLADEMM_CFLAGS) \
-					 $(GSTREAMER_CFLAGS) $(LIBXML_CFLAGS) $(ENCHANT_CFLAGS) $(LIBPCRE_CFLAGS) \
+					 $(GSTREAMER_CFLAGS) $(LIBXML_CFLAGS) $(ENCHANT_CFLAGS) $(LIBPCRE_CFLAGS) $(GTKGLEXT_CFLAGS) $(GL_CFLAGS) \
 					 -I$(top_srcdir)/include \
 					 -DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 					 -DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
@@ -207,7 +207,7 @@ subtitleeditor_SOURCES = main.cc $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FI
 
 subtitleeditor_LDADD = $(GTKMM_LIBS) $(LIBGLADEMM_LIBS) $(GSTREAMER_LIBS) \
 											 $(INTLLIBS) $(LIBXML_LIBS) $(ENCHANT_LIBS) $(LIBPCRE_LIBS) -lpcrecpp \
-											 $(CPPUNIT_LIBS) ##libsubtitleeditor.la
+											 $(CPPUNIT_LIBS) $(GTKGLEXT_LIBS) $(GL_LIBS) ##libsubtitleeditor.la
 
 
 
