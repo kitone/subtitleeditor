@@ -86,8 +86,6 @@ WaveformEditor::WaveformEditor()
 			sigc::mem_fun(*this, &WaveformEditor::on_config_waveform_changed));
 	
 	set_sensitive(false);
-
-	//open_waveform("file:///home/kitone/subtitleeditor-svn/sub-files/trailer_qt_h264_hi.wf");
 }
 
 /*
