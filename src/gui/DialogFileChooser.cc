@@ -99,3 +99,65 @@ DialogOpenVideo::~DialogOpenVideo()
 
 	Config::getInstance().set_value_string("dialog-last-folder", "dialog-open-video", floder);
 }
+
+/*
+ * Waveform or Audio/Video
+ */
+DialogOpenWaveform::DialogOpenWaveform()
+:Gtk::FileChooserDialog(_("Open Waveform"), Gtk::FILE_CHOOSER_ACTION_OPEN)
+{
+	// waveform filter
+	Gtk::FileFilter m_filterWaveform;
+	m_filterWaveform.set_name("Waveform (*.wf)");
+	m_filterWaveform.add_pattern("*.wf");
+	add_filter(m_filterWaveform);
+
+	// movies filter
+	Gtk::FileFilter m_filterMovie;
+	m_filterMovie.set_name(_("Video"));
+	m_filterMovie.add_pattern("*.avi");
+	m_filterMovie.add_pattern("*.wma");
+	m_filterMovie.add_pattern("*.mkv");
+	m_filterMovie.add_pattern("*.mpg");
+	m_filterMovie.add_pattern("*.mpeg");
+	m_filterMovie.add_mime_type("video/*");
+	add_filter(m_filterMovie);
+
+	// audio filter
+	Gtk::FileFilter m_filterAudio;
+	m_filterAudio.set_name(_("Audio"));
+	m_filterAudio.add_pattern("*.mp3");
+	m_filterAudio.add_pattern("*.ogg");
+	m_filterAudio.add_pattern("*.wav");
+	m_filterAudio.add_mime_type("audio/*");
+	add_filter(m_filterAudio);
+
+	// all filter
+	Gtk::FileFilter m_filterAll;
+	m_filterAll.set_name("ALL");
+	m_filterAll.add_pattern("*.*");
+	add_filter(m_filterAll);
+	
+	
+	add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+	add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+	set_default_response(Gtk::RESPONSE_OK);
+
+
+	Config &cfg = Config::getInstance();
+
+	Glib::ustring floder;
+	if(cfg.get_value_string("dialog-last-folder", "dialog-open-waveform", floder))
+		set_current_folder_uri(floder);
+}
+
+/*
+ *
+ */
+DialogOpenWaveform::~DialogOpenWaveform()
+{
+	Glib::ustring floder = get_current_folder_uri();
+
+	Config::getInstance().set_value_string("dialog-last-folder", "dialog-open-waveform", floder);
+}
+
