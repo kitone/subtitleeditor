@@ -32,7 +32,7 @@
 /*
  *	HACK!
  */
-//WaveformRenderer* create_waveform_renderer_gl();
+WaveformRenderer* create_waveform_renderer_gl();
 
 
 /*
@@ -195,12 +195,11 @@ void WaveformEditor::on_create_renderer()
 {
 #warning "FIXME: load config for renderer"
 	Glib::ustring renderer_name = Config::getInstance().get_value_string("waveform", "renderer");
-/*
+
 	if(renderer_name == "gl")
 		init_renderer(create_waveform_renderer_gl());
 	else
 		init_renderer(create_waveform_renderer_gl());
-*/
 }
 
 /*

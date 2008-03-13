@@ -34,6 +34,7 @@
 #include <gdk/gdkx.h>
 #include <glib.h>
 #include <gtkmm/socket.h>
+#include <gtkglmm.h>
 
 #include "gui/MPlayer.h"
 #include "gui/GStreamerPlayer.h"
@@ -205,6 +206,8 @@ int main(int argc, char *argv[])
 
 	// init Gtk+
 	Gtk::Main kit(argc, argv);
+	// init OpenGL
+	Gtk::GL::init(argc, argv);
 
 	Glib::set_application_name("subtitleeditor");
 
