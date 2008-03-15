@@ -207,7 +207,7 @@ int main(int argc, char *argv[])
 	// init Gtk+
 	Gtk::Main kit(argc, argv);
 	// init OpenGL
-	Gtk::GL::init(argc, argv);
+	Gtk::GL::init_check(argc, argv);
 
 	Glib::set_application_name("subtitleeditor");
 
