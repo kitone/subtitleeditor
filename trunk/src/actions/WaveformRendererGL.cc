@@ -215,7 +215,7 @@ protected:
  * Constructor
  */
 WaveformRendererGL::WaveformRendererGL()
-:Gtk::GL::DrawingArea(create_glconfig()), WaveformRenderer(this), 
+:WaveformRenderer(this), 
 	m_fontListBase(0), m_fontHeight(0), m_displayList(0), m_displayListSize(0), 
 	m_scale(0), m_zoom(0)
 {
@@ -223,6 +223,10 @@ WaveformRendererGL::WaveformRendererGL()
 	m_frames = 0;
 #endif// DEBUG_DISPLAY
 	init_default_value();
+
+	Glib::RefPtr<Gdk::GL::Config> glconfig = create_glconfig();
+	if(glconfig)
+		set_gl_capability(glconfig);
 }
 
 /*
@@ -251,7 +255,8 @@ Glib::RefPtr<Gdk::GL::Config> WaveformRendererGL::create_glconfig()
 		{
 			std::cerr << "Gtk::GL::Config Failed To create single-buffered visual." << std::endl;
 			std::cerr << "Used another Waveform Renderer" << std::endl;
-			exit(0);
+
+			return Glib::RefPtr<Gdk::GL::Config>(NULL);
 		}
 	}
 
@@ -332,6 +337,9 @@ void WaveformRendererGL::on_realize()
 {
 	Gtk::DrawingArea::on_realize();
 
+	if(!is_gl_capable())
+		return;
+
 	Glib::RefPtr<Gdk::GL::Window> gl = get_gl_window();
 
 	if(!gl->gl_begin(get_gl_context()))
@@ -358,15 +366,11 @@ void WaveformRendererGL::on_realize()
  */
 bool WaveformRendererGL::on_configure_event(GdkEventConfigure *ev)
 {
-	Glib::RefPtr<Gdk::GL::Window> gl = get_gl_window();
-
-	if(!gl->gl_begin(get_gl_context()))
-		return false;
+	bool state = Gtk::DrawingArea::on_configure_event(ev);
 
 	redraw_all();
 
-	gl->gl_end();
-	return false;
+	return state;
 }
 
 /*
@@ -379,6 +383,36 @@ bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev)
 {
 	//m_timer.reset();
 	//m_frames = 0;
+
+	// If window system doesn't support OpenGL
+	// display in the area a message
+	if(!is_gl_capable())
+	{
+		Glib::ustring error_msg(
+				_(
+					"Window system doesn't support OpenGL.\n"
+					"Please try with another renderer."
+				));
+		
+		Glib::RefPtr<Pango::Layout> layout = create_pango_layout(error_msg);
+		
+		layout->set_alignment(Pango::ALIGN_CENTER);
+		
+		Pango::FontDescription desc = get_pango_context()->get_font_description();
+		desc.set_weight(Pango::WEIGHT_BOLD);
+		layout->set_font_description(desc);
+
+		// display the message at the center
+		int x, y, w, h;
+		layout->get_pixel_size(w, h);
+
+		x = (get_width() - w) / 2;
+		y = (get_height() - h) / 2;
+
+		get_window()->draw_layout(get_style()->get_black_gc(), x, y, layout);
+		
+		return true;
+	}
 
 	Glib::RefPtr<Gdk::GL::Window> gl = get_gl_window();
 
