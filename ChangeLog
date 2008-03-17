@@ -1,5 +1,10 @@
 2008-03-17  kitone  <kitone@gna.org>
 
+	* src/actions/WaveformRendererGL.cc:
+	Cleanup.
+
+2008-03-17  kitone  <kitone@gna.org>
+
 	* share/menubar.xml:
 	* src/actions/DocumentManagement.cc:
 	Add new action "Save All".

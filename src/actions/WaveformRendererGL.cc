@@ -28,6 +28,7 @@
 #include <GL/gl.h>
 
 //#define DEBUG_DISPLAY
+
 #define FONT_SIZE 256
 
 /*
@@ -196,11 +197,6 @@ protected:
 	float m_color_text[4]; // use for time, subtitle text ...
 	float m_color_player_position[4];
 
-#ifdef DEBUG_DISPLAY
-	Glib::Timer m_timer;
-	int m_frames;
-#endif//DEBUG_DISPLAY
-
 	// waveform
 	Gdk::Rectangle m_displayListRect;
 	GLuint m_displayList;
@@ -219,9 +215,6 @@ WaveformRendererGL::WaveformRendererGL()
 	m_fontListBase(0), m_fontHeight(0), m_displayList(0), m_displayListSize(0), 
 	m_scale(0), m_zoom(0)
 {
-#ifdef DEBUG_DISPLAY
-	m_frames = 0;
-#endif// DEBUG_DISPLAY
 	init_default_value();
 
 	Glib::RefPtr<Gdk::GL::Config> glconfig = create_glconfig();
@@ -355,10 +348,6 @@ void WaveformRendererGL::on_realize()
 	glEnable (GL_MULTISAMPLE);
 
 	gl->gl_end();
-
-#ifdef DEBUG_DISPLAY
-	m_timer.start();
-#endif//DEBUG_DISPLAY
 }
 
 /*
@@ -381,8 +370,10 @@ bool WaveformRendererGL::on_configure_event(GdkEventConfigure *ev)
  */
 bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev)
 {
-	//m_timer.reset();
-	//m_frames = 0;
+#ifdef DEBUG_DISPLAY
+	Glib::Timer m_timer;
+	m_timer.start();
+#endif//DEBUG_DISPLAY
 
 	// If window system doesn't support OpenGL
 	// display in the area a message
@@ -445,19 +436,12 @@ bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev)
 		draw(ev);
 
 #ifdef DEBUG_DISPLAY
-		++m_frames;
 		double seconds = m_timer.elapsed();
 
-		//if(seconds >= 1.0)
-		{
-			Glib::ustring fps = build_message("%d frames in %f seconds = %.3f FPS", m_frames, seconds, (float)(m_frames / seconds));
+		Glib::ustring fps = build_message("%d frames in %f seconds = %.3f FPS", 1, seconds, (float)(1 / seconds));
 	  
-			glColor4fv(m_color_text);
-			draw_text(10,10, fps);
-
-	     m_timer.reset();
-			m_frames = 0;
-		}
+		glColor4fv(m_color_text);
+		draw_text(10,10, fps);
 #endif//DEBUG_DISPLAY
 	}
 	
