@@ -10,6 +10,7 @@
 			<separator/>
 			<menuitem action="save-document"/>
 			<menuitem action="save-as-document"/>
+			<menuitem action="save-all-documents"/>
 			<menuitem action="save-translation"/>
 			<separator/>
 			<menuitem action="properties"/>
