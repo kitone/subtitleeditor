@@ -27,6 +27,9 @@
 #include "gui/DialogFileChooser.h"
 #include <vector>
 
+/*
+ *
+ */
 class DialogAskToSaveOnExit : public Gtk::MessageDialog
 {
 public:
@@ -86,6 +89,10 @@ public:
 				Gtk::Action::create("save-as-document", Gtk::Stock::SAVE_AS, "", _("Save the current file with a different name")), Gtk::AccelKey("<Shift><Control>S"),
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_save_as));
 
+		action_group->add(
+				Gtk::Action::create("save-all-documents", Gtk::Stock::SAVE_AS, _("Save _All"), _("Save all open files")),
+					sigc::mem_fun(*this, &DocumentManagementPlugin::on_save_all_documents));
+
 		// open & save translation
 		action_group->add(
 				Gtk::Action::create("open-translation", Gtk::Stock::OPEN, _("Open _Translation"), _("Open translation from file")), Gtk::AccelKey("<Control>T"),
@@ -109,9 +116,6 @@ public:
 				Gtk::Action::create("exit", Gtk::Stock::QUIT, _("E_xit"), _("Quit the program")), 
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_exit));
 
-
-
-	
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -167,6 +171,7 @@ public:
 		action_group->get_action("open-translation")->set_sensitive(visible);
 		action_group->get_action("save-document")->set_sensitive(visible);
 		action_group->get_action("save-as-document")->set_sensitive(visible);
+		action_group->get_action("save-all-documents")->set_sensitive(visible);
 		action_group->get_action("save-translation")->set_sensitive(visible);
 		action_group->get_action("close-document")->set_sensitive(visible);
 	}
@@ -297,15 +302,13 @@ protected:
 	}
 
 	/*
-	 *	Save a document. If file doesn't exist use on_save_as
+	 *	Save a document. If file doesn't exist use save_as
 	 */
-	void on_save()
+	bool save_document(Document *doc)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		Document *doc = get_current_document();
-
-		g_return_if_fail(doc);
+		g_return_val_if_fail(doc, false);
 
 		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS))
 		{
@@ -318,6 +321,8 @@ protected:
 			{
 				doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
 							filename.c_str(), format.c_str(), charset.c_str(), newline.c_str());
+
+				return true;
 			}
 			else
 			{
@@ -326,25 +331,29 @@ protected:
 			}
 		}
 		else
-			on_save_as();
+			return save_as_document(doc);
+
+		return false;
 	}
 
 	/*
-	 *	Save document with new name
+	 *
 	 */
-	void on_save_as()
+	bool save_as_document(Document *doc)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		Document *doc = get_current_document();
-
-		g_return_if_fail(doc);
+		g_return_val_if_fail(doc, false);
 
 		static DialogSaveDocument ui;
 
 		ui.show();
 
-		if(ui.run() == Gtk::RESPONSE_OK)
+		int response = ui.run();
+		
+		ui.hide();
+
+		if(response == Gtk::RESPONSE_OK)
 		{
 			Glib::ustring filename = ui.get_filename();
 			Glib::ustring format = ui.getFormat();
@@ -362,15 +371,60 @@ protected:
 						filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
 				// update in recent manager
 				add_document_in_recent_manager(doc);
+
+				return true;
 			}
 			else
 				doc->message(_("The file %s (%s, %s, %s) has not been saved."), 
 						filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
 		}
-	
-		ui.hide();
+
+		return false;
 	}
 
+	/*
+	 *	Save a document. If file doesn't exist use on_save_as
+	 */
+	void on_save()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Document *doc = get_current_document();
+
+		g_return_if_fail(doc);
+
+		save_document(doc);
+	}
+
+	/*
+	 *	Save document with new name
+	 */
+	void on_save_as()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Document *doc = get_current_document();
+
+		g_return_if_fail(doc);
+
+		save_as_document(doc);
+	}
+
+	/*
+	 * Save all open files
+	 */
+	void on_save_all_documents()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		DocumentList list = get_subtitleeditor_window()->get_documents();
+		
+		for(DocumentList::const_iterator it = list.begin(); it != list.end(); ++it)
+		{
+			save_document(*it);
+		}
+	}
+	
 	/*
 	 *	Open translation from file.
 	 *	Create a new document with a translation
