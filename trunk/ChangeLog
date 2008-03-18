@@ -1,5 +1,12 @@
 2008-03-18  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/actions/WaveformEditor.cc:
+	Improved to the choice of the renderer.
+	It can be modified dynamically.
+
+2008-03-18  kitone  <kitone@gna.org>
+
 	* src/actions/WaveformEditor.cc:
 	* src/actions/WaveformEditor.h:
 	Redisplay when the document has changed.
