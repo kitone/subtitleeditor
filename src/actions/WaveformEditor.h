@@ -263,6 +263,12 @@ protected:
 
 	/*
 	 * This callback is connected at the current document. 
+	 * The document has changed, it's need to redraw the view.
+	 */
+	void on_document_changed();
+
+	/*
+	 * This callback is connected at the current document. 
 	 * It's call when the selection of the subtitles has changed.
 	 * The view is centered with the new selection if the option is enable.
 	 * It's need to redraw the view.

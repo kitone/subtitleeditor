@@ -2,6 +2,12 @@
 
 	* src/actions/WaveformEditor.cc:
 	* src/actions/WaveformEditor.h:
+	Redisplay when the document has changed.
+
+2008-03-18  kitone  <kitone@gna.org>
+
+	* src/actions/WaveformEditor.cc:
+	* src/actions/WaveformEditor.h:
 	The signal "configure" is now connected on the waveform frame.
 	Now, it doesn't interfere with the renderer.
 
