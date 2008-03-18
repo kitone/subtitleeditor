@@ -634,6 +634,34 @@ namespace utility
 		}
 	}
 
+	void usplit(const Glib::ustring &str, const Glib::ustring::value_type &delimiter, std::vector<Glib::ustring> &container)
+	{
+		Glib::ustring::const_iterator it = str.begin(), end = str.end(), first;
+
+		for(first = it; it != end; ++it)
+		{
+			if(delimiter == *it)
+			{
+				if(first != it) // || keep_blank)
+				{
+					// extract the current field from the string
+					container.push_back(Glib::ustring(first, it));
+					// skip the next delimiter
+					first = it; ++first;
+				}
+				else
+					++first;
+			}
+		}
+
+		if(first != it) // || keep_blank
+		{
+			// extract the last field from the string
+			container.push_back(Glib::ustring(first, it));
+		}
+	}
+
+
 	/*
 	 *	transforme test/file.srt en /home/toto/test/file.srt 
 	 */
