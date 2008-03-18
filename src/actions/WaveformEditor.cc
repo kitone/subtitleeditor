@@ -61,6 +61,11 @@ WaveformEditor::WaveformEditor()
 	pack_start(*create_control_widget(), false, false);
 
 	// connect signal
+	
+	// init the scrollbar with the size of widget
+	m_frameDrawingArea->signal_configure_event().connect(
+			sigc::mem_fun(*this, &WaveformEditor::on_configure_event_frame_waveform));
+
 	m_hscrollbarWaveform->signal_value_changed().connect(
 			sigc::mem_fun(*this, &WaveformEditor::on_scrollbar_value_changed));
 
@@ -273,10 +278,6 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 			Gdk::BUTTON_MOTION_MASK | 
 			Gdk::SCROLL_MASK);
 
-		// init the scrollbar with the size of widget
-		widget->signal_configure_event().connect(
-				sigc::mem_fun(*this, &WaveformEditor::on_configure_event_waveform));
-
 		widget->signal_button_press_event().connect(
 				sigc::mem_fun(*this, &WaveformEditor::on_button_press_event_renderer));
 
@@ -413,9 +414,10 @@ int WaveformEditor::get_zoom()
 
 /*
  * The scroll bar depend on the size of the waveform widget.
- * This callback is connected to the signal "configure"
+ * This callback is connected to the signal "configure" of the waveform frame (Gtk::Frame).
+ * Every time this size changed, the scrollbar need to be recalculate.
  */
-bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure *ev)
+bool WaveformEditor::on_configure_event_frame_waveform(GdkEventConfigure *ev)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
