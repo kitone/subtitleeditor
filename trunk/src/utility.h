@@ -231,6 +231,11 @@ namespace utility
 	void split(const std::string &str, const char &c, std::vector<std::string> &array, int max=-1);
 
 	/*
+	 * Split with best utf8 support...
+	 */
+	void usplit(const Glib::ustring &str, const Glib::ustring::value_type &delimiter, std::vector<Glib::ustring> &container);
+
+	/*
 	 *	transforme test/file.srt en /home/toto/test/file.srt 
 	 */
 	Glib::ustring create_full_path(const Glib::ustring &path);
