@@ -51,6 +51,12 @@ public:
 	virtual bool on_expose_event(GdkEventExpose *ev);
 
 	/*
+	 * This function is call when the waveform is changed.
+	 * Like a new Waveform.
+	 */
+	virtual void waveform_changed();
+
+	/*
 	 *
 	 */
 	virtual void redraw_all();

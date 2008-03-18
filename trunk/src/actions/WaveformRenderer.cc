@@ -46,6 +46,16 @@ WaveformRenderer::~WaveformRenderer()
 void WaveformRenderer::set_waveform(const Glib::RefPtr<Waveform> &wf)
 {
 	m_waveform = wf;
+
+	waveform_changed();
+}
+
+/*
+ * This function is call when the waveform is changed.
+ * Like a new Waveform.
+ */
+void WaveformRenderer::waveform_changed()
+{
 }
 
 /*
