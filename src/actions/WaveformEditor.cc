@@ -196,10 +196,9 @@ void WaveformEditor::load_config()
  */
 void WaveformEditor::on_create_renderer()
 {
-#warning "FIXME: load config for renderer"
 	Glib::ustring renderer_name = Config::getInstance().get_value_string("waveform", "renderer");
 
-	if(renderer_name == "gl")
+	if(renderer_name == "opengl")
 		init_renderer(create_waveform_renderer_gl());
 	else
 		init_renderer(create_waveform_renderer_gl());
@@ -244,10 +243,15 @@ void WaveformEditor::init_document(Document *doc)
  */
 void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 {
+	// Remove the old renderer and destroy.
 	if(m_waveformRenderer != NULL)
 	{
-		//remove old
-#warning "FIXME: remove old renderer"
+		Gtk::Widget *child = m_frameDrawingArea->get_child();
+		
+		m_frameDrawingArea->remove();
+
+		delete child;
+	
 		m_waveformRenderer = NULL;
 	}
 
@@ -425,8 +429,8 @@ bool WaveformEditor::on_configure_event_frame_waveform(GdkEventConfigure *ev)
 	// init scrollbar
 	init_scrollbar();
 	
-	if(m_waveformRenderer)
-		m_waveformRenderer->redraw_all();
+	if(has_renderer())
+		renderer()->redraw_all();
 	return true;
 }
 
@@ -1137,5 +1141,9 @@ void WaveformEditor::on_config_waveform_changed(const Glib::ustring &key, const 
 			show();
 		else
 			hide();
+	}
+	else if(key == "renderer")
+	{
+		on_create_renderer();
 	}
 }
