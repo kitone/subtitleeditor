@@ -1,5 +1,11 @@
 2008-03-18  kitone  <kitone@gna.org>
 
+	* src/actions/WaveformRenderer.cc:
+	* src/actions/WaveformRenderer.h:
+	Add virtual function waveform_changed.
+
+2008-03-18  kitone  <kitone@gna.org>
+
 	* src/utility.cc:
 	* src/utility.h:
 	Add new split function (usplit) with a best support of Glib::ustring.
