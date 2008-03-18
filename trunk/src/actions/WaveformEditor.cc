@@ -225,6 +225,7 @@ void WaveformEditor::init_document(Document *doc)
 		m_document_connection.push_back( doc->get_signal(signal).connect( \
 			sigc::mem_fun(*this, &WaveformEditor::callback)));
 
+		CONNECT("document-changed", on_document_changed);
 		CONNECT("subtitle-selection-changed", on_subtitle_selection_changed);
 		CONNECT("subtitle-time-changed", on_subtitle_time_changed);
 
@@ -605,6 +606,18 @@ bool WaveformEditor::has_document()
 Document* WaveformEditor::document()
 {
 	return m_document;
+}
+
+/*
+ * This callback is connected at the current document. 
+ * The document has changed, it's need to redraw the view.
+ */
+void WaveformEditor::on_document_changed()
+{
+	if((has_renderer() && has_waveform()) == false)
+		return;
+	
+	renderer()->redraw_all();
 }
 
 /*
