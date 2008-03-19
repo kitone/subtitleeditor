@@ -31,6 +31,7 @@ WaveformRenderer::WaveformRenderer()
 	m_start_area = 0;
 
 	init_default_config();
+	load_config();
 
 	Config::getInstance().signal_changed("waveform-renderer").connect(
 			sigc::mem_fun(*this, &WaveformRenderer::on_config_waveform_renderer_changed));
@@ -63,6 +64,50 @@ void WaveformRenderer::init_default_config()
 
 	m_display_time_info = false;
 	m_display_subtitle_text = true;
+
+#warning "TODO: FIXME with ConfigChecker"
+	Config &cfg = Config::getInstance();
+
+#define check_color(key, rgba) if(!cfg.has_key("waveform-renderer", key)) { Color col; col.set_value(rgba, 1); cfg.set_value_string("waveform-renderer", key, col.to_string()); }
+#define check_bool(key, value) if(!cfg.has_key("waveform-renderer", key)) cfg.set_value_bool("waveform-renderer", key, value);
+	
+	check_bool("display-subtitle-text", m_display_subtitle_text);
+
+	check_color("color-background", m_color_background);
+	check_color("color-wave", m_color_wave);
+	check_color("color-wave-fill", m_color_wave_fill);
+	check_color("color-subtitle", m_color_subtitle);
+	check_color("color-subtitle-selected", m_color_subtitle_selected);
+	check_color("color-subtitle-invalid", m_color_subtitle_invalid);
+	check_color("color-text", m_color_text);
+	check_color("color-player-position", m_color_player_position);
+
+
+#undef check_color
+#undef check_bool
+}
+
+/*
+ *
+ */
+void WaveformRenderer::load_config()
+{
+	Config &cfg = Config::getInstance();
+
+	m_display_subtitle_text = cfg.get_value_bool("waveform-renderer", "display-subtitle-text");
+
+#define get_color(key, col) cfg.get_value_color("waveform-renderer", key).get_value(col, 1)
+
+	get_color("color-background", m_color_background);
+	get_color("color-wave", m_color_wave);
+	get_color("color-wave-fill", m_color_wave_fill);
+	get_color("color-subtitle", m_color_subtitle);
+	get_color("color-subtitle-selected", m_color_subtitle_selected);
+	get_color("color-subtitle-invalid", m_color_subtitle_invalid);
+	get_color("color-text", m_color_text);
+	get_color("color-player-position", m_color_player_position);
+
+#undef get_color
 }
 
 /*

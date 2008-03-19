@@ -2,6 +2,12 @@
 
 	* src/actions/WaveformRenderer.cc:
 	* src/actions/WaveformRenderer.h:
+	Add check config and load config.
+
+2008-03-19  kitone  <kitone@gna.org>
+
+	* src/actions/WaveformRenderer.cc:
+	* src/actions/WaveformRenderer.h:
 	Connected to the configuration.
 
 2008-03-19  kitone  <kitone@gna.org>
