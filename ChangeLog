@@ -1,3 +1,12 @@
+2008-03-19  kitone  <kitone@gna.org>
+
+	* src/actions/WaveformEditor.cc:
+	* src/actions/WaveformRenderer.cc:
+	* src/actions/WaveformRenderer.h:
+	* src/actions/WaveformRendererGL.cc:
+	The renderer has now a function for return the widget.
+	Remove the virtual function on_expose_event in WaveformRenderer.
+
 2008-03-18  kitone  <kitone@gna.org>
 
 	* src/Makefile.am:
