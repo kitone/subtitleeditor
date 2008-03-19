@@ -38,7 +38,7 @@ public:
 	/*
 	 *
 	 */
-	WaveformRenderer(Gtk::DrawingArea *area);
+	WaveformRenderer();
 
 	/*
 	 *
@@ -46,9 +46,9 @@ public:
 	virtual ~WaveformRenderer();
 
 	/*
-	 *
+	 * Return the widget attached to the renderer.
 	 */
-	virtual bool on_expose_event(GdkEventExpose *ev);
+	virtual Gtk::Widget* widget() = 0;
 
 	/*
 	 * This function is call when the waveform is changed.
@@ -117,8 +117,8 @@ public:
 	 */
 	void set_waveform(const Glib::RefPtr<Waveform> &wf);
 
-	//protected:
-	Gtk::DrawingArea* m_drawingArea;
+//protected:
+	
 	int m_start_area;
 	// when is true display the time of the mouse
 	bool m_display_time_info;

@@ -26,8 +26,7 @@
 /*
  *
  */
-WaveformRenderer::WaveformRenderer(Gtk::DrawingArea *area)
-:m_drawingArea(area)
+WaveformRenderer::WaveformRenderer()
 {
 	m_start_area = 0;
 	m_display_time_info = false;
@@ -61,14 +60,6 @@ void WaveformRenderer::waveform_changed()
 /*
  *
  */
-bool WaveformRenderer::on_expose_event(GdkEventExpose *ev)
-{
-	return false;
-}
-
-/*
- *
- */
 void WaveformRenderer::redraw_all()
 {
 }
@@ -94,7 +85,7 @@ int WaveformRenderer::get_start_area()
  */
 int WaveformRenderer::get_end_area()
 {
-	return get_start_area() + m_drawingArea->get_width();
+	return get_start_area() + widget()->get_width();
 }
 
 /*
@@ -103,7 +94,7 @@ int WaveformRenderer::get_end_area()
  */
 long WaveformRenderer::get_time_by_pos(int pos)
 {
-	float width = (float)m_drawingArea->get_width() * zoom();
+	float width = (float)widget()->get_width() * zoom();
 	float percent = ((float)pos / width);
 	float gsttime = ((float)m_waveform->get_duration() * percent);
 	return SubtitleTime(long(gsttime / GST_MSECOND)).totalmsecs;
@@ -116,7 +107,7 @@ int WaveformRenderer::get_pos_by_time(long msec)
 {
 	gint64 gsttime = msec * GST_MSECOND;
 	float percent = ((float)gsttime / (float)m_waveform->get_duration());
-	float width = (float)m_drawingArea->get_width() * zoom();
+	float width = (float)widget()->get_width() * zoom();
 	float pos = width * percent;
 	pos = CLAMP(pos, 0, width);
 	return (int)pos;
