@@ -32,6 +32,7 @@
 /*
  *	HACK!
  */
+WaveformRenderer* create_waveform_renderer_cairo();
 WaveformRenderer* create_waveform_renderer_gl();
 
 
@@ -200,8 +201,12 @@ void WaveformEditor::on_create_renderer()
 
 	if(renderer_name == "opengl")
 		init_renderer(create_waveform_renderer_gl());
-	else
-		init_renderer(create_waveform_renderer_gl());
+	else if(renderer_name == "cairo")
+		init_renderer(create_waveform_renderer_cairo());
+	else // cairo by default
+	{
+		init_renderer(create_waveform_renderer_cairo());
+	}
 }
 
 /*
