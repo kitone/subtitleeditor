@@ -29,7 +29,6 @@
 WaveformRenderer::WaveformRenderer()
 {
 	m_start_area = 0;
-	m_display_time_info = false;
 
 	init_default_config();
 }

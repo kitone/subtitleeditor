@@ -233,60 +233,63 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 	cr->rectangle(0, 0, get_width(), get_height());
 	cr->fill();
 
-	Gdk::Rectangle warea(0, 0, get_width(), get_height() - 30);
-	
-
-	// check
+	if(m_waveform)
 	{
-		static int old_start_area = get_start_area();
-		static double old_zoom = zoom();
-		static double old_scale = scale();
+		Gdk::Rectangle warea(0, 0, get_width(), get_height() - 30);
 
-		if(old_zoom != zoom() || old_scale != scale() || old_start_area != get_start_area())
+		// check
 		{
-			m_wf_surface.clear();
-			old_start_area = get_start_area();
-			old_zoom = zoom();
-			old_scale = scale();
+			static int old_start_area = get_start_area();
+			static double old_zoom = zoom();
+			static double old_scale = scale();
+	
+			if(old_zoom != zoom() || old_scale != scale() || old_start_area != get_start_area())
+			{
+				m_wf_surface.clear();
+				old_start_area = get_start_area();
+				old_zoom = zoom();
+				old_scale = scale();
+			}
 		}
-	}
 
 
-	if(!m_wf_surface)
-	{
-		m_wf_surface = Cairo::Surface::create(cr->get_target(), Cairo::CONTENT_COLOR_ALPHA, get_width(), get_height());
+		if(!m_wf_surface)
+		{
+			m_wf_surface = Cairo::Surface::create(cr->get_target(), Cairo::CONTENT_COLOR_ALPHA, get_width(), get_height());
 
-		Cairo::RefPtr<Cairo::Context> wf_cr = Cairo::Context::create(m_wf_surface);
+			Cairo::RefPtr<Cairo::Context> wf_cr = Cairo::Context::create(m_wf_surface);
 
-		draw_waveform(wf_cr, warea);
-	}
+			draw_waveform(wf_cr, warea);
+		}
 
-	if(m_wf_surface)
-	{
+		if(m_wf_surface)
+		{
+			cr->save();
+			cr->translate(0, 30);
+			cr->set_source(m_wf_surface, 0, 0);
+			cr->paint();
+			cr->restore();
+		}
+
 		cr->save();
-		cr->translate(0, 30);
-		cr->set_source(m_wf_surface, 0, 0);
-		cr->paint();
+		cr->translate(-get_start_area(), 30);
+
+		if(document())
+		{
+			draw_subtitles(cr, warea);
+			draw_marker(cr, warea);
+		}
+
+		draw_player_position(cr, warea);
+
 		cr->restore();
-	}
 
-	cr->save();
-	cr->translate(-get_start_area(), 30);
+		draw_timeline(cr, Gdk::Rectangle(0,0, get_width(), 30));
 
-	if(document())
-	{
-		draw_subtitles(cr, warea);
-		draw_marker(cr, warea);
-	}
-
-	draw_player_position(cr, warea);
-
-	cr->restore();
-
-	draw_timeline(cr, Gdk::Rectangle(0,0, get_width(), 30));
-
-	if(m_display_time_info)
-		display_time_info(cr, warea);
+		if(m_display_time_info)
+			display_time_info(cr, warea);
+	
+	}//has_waveform
 
 #ifdef DEBUG_DISPLAY
 	{
