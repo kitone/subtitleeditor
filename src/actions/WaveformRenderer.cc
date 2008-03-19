@@ -31,6 +31,9 @@ WaveformRenderer::WaveformRenderer()
 	m_start_area = 0;
 
 	init_default_config();
+
+	Config::getInstance().signal_changed("waveform-renderer").connect(
+			sigc::mem_fun(*this, &WaveformRenderer::on_config_waveform_renderer_changed));
 }
 
 /*
@@ -174,5 +177,52 @@ sigc::signal<int>& WaveformRenderer::signal_zoom()
 sigc::signal<float>& WaveformRenderer::signal_scale()
 {
 	return scale;
+}
+
+/*
+ *
+ */
+void WaveformRenderer::on_config_waveform_renderer_changed(const Glib::ustring &key, const Glib::ustring &value)
+{
+#define string_to_rgba(string, col) Color(string).get_value(col, 1)
+	
+	if("display-subtitle-text" == key)
+	{
+		m_display_subtitle_text = utility::string_to_bool(value);
+	}
+	else if("color-background" == key)
+	{
+		string_to_rgba(value, m_color_background);
+	}
+	else if("color-wave" == key)
+	{
+		string_to_rgba(value, m_color_wave);
+	}
+	else if("color-wave-fill" == key)
+	{
+		string_to_rgba(value, m_color_wave_fill);
+	}
+	else if("color-subtitle" == key)
+	{
+		string_to_rgba(value, m_color_subtitle);
+	}
+	else if("color-subtitle-selected" == key)
+	{
+		string_to_rgba(value, m_color_subtitle_selected);
+	}
+	else if("color-subtitle-invalid" == key)
+	{
+		string_to_rgba(value, m_color_subtitle_invalid);
+	}
+	else if("color-text" == key)
+	{
+		string_to_rgba(value, m_color_text);
+	}
+	else if("color-player-position" == key)
+	{
+		string_to_rgba(value, m_color_player_position);
+	}
+
+#undef string_to_rgba
 }
 

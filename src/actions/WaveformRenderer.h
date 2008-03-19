@@ -122,6 +122,11 @@ public:
 	 */
 	void set_waveform(const Glib::RefPtr<Waveform> &wf);
 
+	/*
+	 *
+	 */
+	void on_config_waveform_renderer_changed(const Glib::ustring &key, const Glib::ustring &value);
+
 //protected:
 	
 	int m_start_area;
