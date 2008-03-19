@@ -59,25 +59,6 @@ public:
 	Glib::RefPtr<Gdk::GL::Config> create_glconfig();
 
 	/*
-	 *
-	 */
-	void init_default_value()
-	{
-#define SET_COLOR(x, r,g,b,a) x[0]=r; x[1]=g; x[2]=b; x[3]=a;
-
-	SET_COLOR(m_color_player_position, 1, 1, 1, 1);
-	SET_COLOR(m_color_background, 0.3, 0.3, 0.3, 1);
-	SET_COLOR(m_color_wave, 0.6, 0.8, 0.3, 1);
-	SET_COLOR(m_color_wave_fill, 1, 1, 1, 1);
-	SET_COLOR(m_color_subtitle, .6, 0.3, 0.1, 0.6);
-	SET_COLOR(m_color_subtitle_selected, 0.9, 0.5, 0.3, 0.6);
-	SET_COLOR(m_color_subtitle_invalid, 1, 1, 0.0, 0.8); // invalid time start > end
-	SET_COLOR(m_color_text, 1, 1, 1, 1);
-
-#undef SET_COLOR
-	}
-
-	/*
 	 * Try to create OpenGL font (with support of display list)
 	 */
 	bool create_gl_font(const Glib::ustring &font_desc);
@@ -193,22 +174,10 @@ protected:
 	GLuint m_fontListBase;
 	int m_fontHeight;
 
-	float m_color_background[4];
-	float m_color_wave[4];
-	float m_color_wave_fill[4];
-	float m_color_subtitle[4];
-	float m_color_subtitle_selected[4];
-	float m_color_subtitle_invalid[4]; // invalid time start > end
-	float m_color_text[4]; // use for time, subtitle text ...
-	float m_color_player_position[4];
-
 	// waveform
 	Gdk::Rectangle m_displayListRect;
 	GLuint m_displayList;
 	GLsizei m_displayListSize;
-	float m_scale;
-	int m_zoom;
-
 };
 
 
@@ -217,11 +186,8 @@ protected:
  */
 WaveformRendererGL::WaveformRendererGL()
 :WaveformRenderer(), 
-	m_fontListBase(0), m_fontHeight(0), m_displayList(0), m_displayListSize(0), 
-	m_scale(0), m_zoom(0)
+	m_fontListBase(0), m_fontHeight(0), m_displayList(0), m_displayListSize(0)
 {
-	init_default_value();
-
 	Glib::RefPtr<Gdk::GL::Config> glconfig = create_glconfig();
 	if(glconfig)
 		set_gl_capability(glconfig);

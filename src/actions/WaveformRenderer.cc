@@ -30,6 +30,8 @@ WaveformRenderer::WaveformRenderer()
 {
 	m_start_area = 0;
 	m_display_time_info = false;
+
+	init_default_config();
 }
 
 /*
@@ -37,6 +39,28 @@ WaveformRenderer::WaveformRenderer()
  */
 WaveformRenderer::~WaveformRenderer()
 {
+}
+
+/*
+ * Initialize the default value like colors.
+ */
+void WaveformRenderer::init_default_config()
+{
+#define SET_COLOR(x, r,g,b,a) x[0]=r; x[1]=g; x[2]=b; x[3]=a;
+
+	SET_COLOR(m_color_player_position, 1, 1, 1, 1);
+	SET_COLOR(m_color_background, 0.3, 0.3, 0.3, 1);
+	SET_COLOR(m_color_wave, 0.6, 0.8, 0.3, 1);
+	SET_COLOR(m_color_wave_fill, 1, 1, 1, 1);
+	SET_COLOR(m_color_subtitle, .6, 0.3, 0.1, 0.6);
+	SET_COLOR(m_color_subtitle_selected, 0.9, 0.5, 0.3, 0.6);
+	SET_COLOR(m_color_subtitle_invalid, 1, 1, 0.0, 0.8); // invalid time start > end
+	SET_COLOR(m_color_text, 1, 1, 1, 1);
+
+#undef SET_COLOR
+
+	m_display_time_info = false;
+	m_display_subtitle_text = true;
 }
 
 /*

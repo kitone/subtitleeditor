@@ -121,6 +121,7 @@ ACTIONS = \
 				actions/ViewManager.cc \
 				actions/WaveformRenderer.h \
 				actions/WaveformRenderer.cc \
+				actions/WaveformRendererCairo.cc \
 				actions/WaveformRendererGL.cc \
 				actions/WaveformEditor.h \
 				actions/WaveformEditor.cc \
