@@ -46,6 +46,11 @@ public:
 	virtual ~WaveformRenderer();
 
 	/*
+	 *
+	 */
+	void init_default_config();
+
+	/*
 	 * Return the widget attached to the renderer.
 	 */
 	virtual Gtk::Widget* widget() = 0;
@@ -120,15 +125,28 @@ public:
 //protected:
 	
 	int m_start_area;
-	// when is true display the time of the mouse
-	bool m_display_time_info;
 	
+
 	Glib::RefPtr<Waveform> m_waveform;
 
 	sigc::signal<Document*> document;
 	sigc::signal<int> zoom;
 	sigc::signal<float> scale;
 	sigc::signal<long> player_time; // the current time of the player
+
+	// config
+	// color = rgba [0:1]
+	float m_color_background[4];
+	float m_color_wave[4];
+	float m_color_wave_fill[4];
+	float m_color_subtitle[4];
+	float m_color_subtitle_selected[4];
+	float m_color_subtitle_invalid[4]; // invalid time start > end
+	float m_color_text[4]; // used for time, subtitle text ...
+	float m_color_player_position[4];
+
+	bool m_display_subtitle_text;
+	bool m_display_time_info; // when is true display the time of the mouse
 };
 
 
