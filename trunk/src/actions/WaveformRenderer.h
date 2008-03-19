@@ -51,6 +51,11 @@ public:
 	void init_default_config();
 
 	/*
+	 *
+	 */
+	void load_config();
+
+	/*
 	 * Return the widget attached to the renderer.
 	 */
 	virtual Gtk::Widget* widget() = 0;
