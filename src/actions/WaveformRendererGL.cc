@@ -49,6 +49,11 @@ public:
 	~WaveformRendererGL();
 
 	/*
+	 * Return the widget attached to the renderer.
+	 */
+	Gtk::Widget* widget();
+
+	/*
 	 * Create GdkGLConfig (RGB | DEPTH | DOUBLE | STENCIL)
 	 */
 	Glib::RefPtr<Gdk::GL::Config> create_glconfig();
@@ -211,7 +216,7 @@ protected:
  * Constructor
  */
 WaveformRendererGL::WaveformRendererGL()
-:WaveformRenderer(this), 
+:WaveformRenderer(), 
 	m_fontListBase(0), m_fontHeight(0), m_displayList(0), m_displayListSize(0), 
 	m_scale(0), m_zoom(0)
 {
@@ -230,6 +235,13 @@ WaveformRendererGL::~WaveformRendererGL()
 	// Display lists are deleted with the opengl context 
 }
 
+/*
+ * Return the widget attached to the renderer.
+ */
+Gtk::Widget* WaveformRendererGL::widget()
+{
+	return this;
+}
 
 /*
  * Create GdkGLConfig (RGB | DEPTH | DOUBLE | STENCIL)

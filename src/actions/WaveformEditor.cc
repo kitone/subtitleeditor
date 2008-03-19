@@ -273,7 +273,7 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 
 		renderer->set_waveform(get_waveform());
 
-		Gtk::Widget *widget = dynamic_cast<Gtk::Widget*>(renderer);
+		Gtk::Widget *widget = renderer->widget();
 		
 		m_frameDrawingArea->add(*widget);
 
@@ -446,7 +446,7 @@ void WaveformEditor::init_scrollbar()
 	if(!has_renderer())
 		return;
 
-	guint width = dynamic_cast<Gtk::Widget*>(renderer())->get_width();
+	guint width = renderer()->widget()->get_width();
 
 	int zoom = (int)m_sliderZoom->get_value();
 
