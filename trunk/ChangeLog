@@ -1,5 +1,13 @@
 2008-03-19  kitone  <kitone@gna.org>
 
+	* src/actions/WaveformRenderer.cc:
+	Cleanup.
+
+	* src/actions/WaveformRendererCairo.cc:
+	Fix segfault when the renderer doesn't have a waveform.
+
+2008-03-19  kitone  <kitone@gna.org>
+
 	* src/actions/WaveformEditor.cc:
 	Add cairo renderer.
 
