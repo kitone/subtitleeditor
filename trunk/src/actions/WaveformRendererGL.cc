@@ -163,6 +163,13 @@ public:
 	void draw_waveform(const Gdk::Rectangle &rect);
 
 	/*
+	 * The waveform is changed. 
+	 * Need to force to redisplay the waveform. 
+	 * Delete the display list
+	 */
+	void waveform_changed();
+
+	/*
 	 * Call queue_draw
 	 */
 	void redraw_all();
@@ -962,6 +969,18 @@ void WaveformRendererGL::draw_subtitles_text(const Gdk::Rectangle &rect)
 	}
 
 	glPopMatrix();
+}
+
+/*
+ * The waveform is changed. 
+ * Need to force to redisplay the waveform. 
+ * Delete the display list
+ */
+void WaveformRendererGL::waveform_changed()
+{
+	delete_display_lists();
+
+	queue_draw();
 }
 
 /*
