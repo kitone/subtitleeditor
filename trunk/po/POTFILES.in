@@ -47,6 +47,13 @@ src/actions/Transcript.cc
 src/actions/TryToExtendToPerfect.cc
 src/actions/UndoRedo.cc
 src/actions/ViewManager.cc
+src/actions/WaveformEditor.cc
+src/actions/WaveformEditor.h
+src/actions/WaveformManagement.cc
+src/actions/WaveformRendererCairo.cc
+src/actions/WaveformRenderer.cc
+src/actions/WaveformRendererGL.cc
+src/actions/WaveformRenderer.h
 src/ActionSystem.cc
 src/ActionSystem.h
 src/Color.cc
@@ -104,8 +111,6 @@ src/gui/MenuBar.cc
 src/gui/MenuBar.h
 src/gui/MPlayer.cc
 src/gui/MPlayer.h
-src/gui/OpenWaveformUI.cc
-src/gui/OpenWaveformUI.h
 src/gui/Player.cc
 src/gui/Player.h
 src/gui/PreferencesUI.cc
@@ -116,8 +121,6 @@ src/gui/VideoPlayer.cc
 src/gui/VideoPlayer.h
 src/gui/WaveformGeneratorUI.cc
 src/gui/WaveformGeneratorUI.h
-src/gui/WaveformSystem.cc
-src/gui/WaveformSystem.h
 src/main.cc
 src/Options.cc
 src/Options.h
