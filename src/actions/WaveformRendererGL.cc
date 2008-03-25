@@ -396,10 +396,10 @@ bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev)
 		return false;
 
 	glClearColor(m_color_background[0], m_color_background[1], m_color_background[2], m_color_background[3]);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	
 	glClearStencil(0);
-  glStencilMask(1);
+	glStencilMask(1);
 
 	// Reshape
 	int width = get_width();
@@ -520,8 +520,8 @@ void WaveformRendererGL::draw(GdkEventExpose *ev)
 
 	
 	// rectangle for subtitle
-  glStencilFunc(GL_EQUAL, 1, 1);
-  glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+	glStencilFunc(GL_EQUAL, 1, 1);
+	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
 
 	glColor3f(0.8,0.8,0.8);
 	draw_subtitles(waveform_area);
