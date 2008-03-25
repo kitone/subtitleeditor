@@ -1,3 +1,8 @@
+2008-03-25  kitone  <kitone@gna.org>
+
+	* src/actions/WaveformEditor.cc:
+	Small fix, init and redisplay after open_wf.
+
 2008-03-22  kitone  <kitone@gna.org>
 
 	* src/actions/WaveformRendererGL.cc:

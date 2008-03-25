@@ -558,6 +558,11 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf)
 	Config::getInstance().set_value_bool("waveform", "display", (bool)wf);
 
 	m_signal_waveform_changed.emit();
+
+	init_scrollbar();
+
+	// force to redisplay
+	renderer()->redraw_all();
 }
 
 /*
