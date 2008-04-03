@@ -59,18 +59,25 @@ DialogSaveDocument::DialogSaveDocument()
 DialogOpenVideo::DialogOpenVideo()
 :Gtk::FileChooserDialog(_("Open Video"), Gtk::FILE_CHOOSER_ACTION_OPEN)
 {
-	Gtk::FileFilter m_filter;
-	m_filter.set_name(_("Video"));
+	// video filter
+	Gtk::FileFilter m_filterVideo;
+	m_filterVideo.set_name(_("Video"));
+	m_filterVideo.add_pattern("*.avi");
+	m_filterVideo.add_pattern("*.wma");
+	m_filterVideo.add_pattern("*.mkv");
+	m_filterVideo.add_pattern("*.mpg");
+	m_filterVideo.add_pattern("*.mpeg");
+	m_filterVideo.add_mime_type("video/*");
+	add_filter(m_filterVideo);
 
-	m_filter.add_pattern("*.avi");
-	m_filter.add_pattern("*.wma");
-	m_filter.add_pattern("*.mkv");
-	m_filter.add_pattern("*.mpg");
-	m_filter.add_pattern("*.mpeg");
-
-	m_filter.add_mime_type("video/*");
-	//...
-	add_filter(m_filter);
+	// audio filter
+	Gtk::FileFilter m_filterAudio;
+	m_filterAudio.set_name(_("Audio"));
+	m_filterAudio.add_pattern("*.mp3");
+	m_filterAudio.add_pattern("*.ogg");
+	m_filterAudio.add_pattern("*.wav");
+	m_filterAudio.add_mime_type("audio/*");
+	add_filter(m_filterAudio);
 
 	Gtk::FileFilter m_filterAll;
 	m_filterAll.set_name("ALL");
