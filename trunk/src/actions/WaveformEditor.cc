@@ -26,10 +26,6 @@
 #include "SubtitleEditorWindow.h"
 
 /*
- * TODO: Middle button play at cursor
- */
-
-/*
  *	HACK!
  */
 WaveformRenderer* create_waveform_renderer_cairo();
@@ -62,10 +58,6 @@ WaveformEditor::WaveformEditor()
 	pack_start(*create_control_widget(), false, false);
 
 	// connect signal
-	
-	// init the scrollbar with the size of widget
-	m_frameDrawingArea->signal_configure_event().connect(
-			sigc::mem_fun(*this, &WaveformEditor::on_configure_event_frame_waveform));
 
 	m_hscrollbarWaveform->signal_value_changed().connect(
 			sigc::mem_fun(*this, &WaveformEditor::on_scrollbar_value_changed));
@@ -107,8 +99,8 @@ WaveformEditor::~WaveformEditor()
  */
 Gtk::Widget* WaveformEditor::create_control_widget()
 {
-	Gtk::Adjustment *adj_zoom = new Gtk::Adjustment(1, 1, 1000, 1, 10, 10);
-	Gtk::Adjustment *adj_scale = new Gtk::Adjustment(1, 0.10, 10, 0.10, 0.10, 0.10);
+	Gtk::Adjustment *adj_zoom = manage(new Gtk::Adjustment(1, 1, 1000, 1, 10, 10));
+	Gtk::Adjustment *adj_scale = manage(new Gtk::Adjustment(1, 0.10, 10, 0.10, 0.10, 0.10));
 
 	Gtk::HBox* box = manage(new Gtk::HBox(false, 3));
 
@@ -273,6 +265,9 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 		renderer->signal_zoom().connect(
 				sigc::mem_fun(*this, &WaveformEditor::get_zoom));
 
+		renderer->signal_scrolling().connect(
+				sigc::mem_fun(*this, &WaveformEditor::get_scrolling));
+
 		renderer->player_time.connect(
 				sigc::mem_fun(*this, &WaveformEditor::get_player_time));
 
@@ -287,6 +282,9 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 			Gdk::BUTTON_RELEASE_MASK | 
 			Gdk::BUTTON_MOTION_MASK | 
 			Gdk::SCROLL_MASK);
+
+		widget->signal_configure_event().connect(
+			sigc::mem_fun(*this, &WaveformEditor::on_configure_event_waveform), true);
 
 		widget->signal_button_press_event().connect(
 				sigc::mem_fun(*this, &WaveformEditor::on_button_press_event_renderer));
@@ -369,7 +367,7 @@ void WaveformEditor::on_unmap()
  */
 void WaveformEditor::on_player_timeout()
 {
-	if(has_renderer() && player())
+	if(has_renderer() && player() && has_waveform())
 	{
 		scroll_with_player();
 
@@ -424,10 +422,10 @@ int WaveformEditor::get_zoom()
 
 /*
  * The scroll bar depend on the size of the waveform widget.
- * This callback is connected to the signal "configure" of the waveform frame (Gtk::Frame).
+ * This callback is connected to the signal "configure" of the waveform.
  * Every time this size changed, the scrollbar need to be recalculate.
  */
-bool WaveformEditor::on_configure_event_frame_waveform(GdkEventConfigure *ev)
+bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure *ev)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -437,6 +435,14 @@ bool WaveformEditor::on_configure_event_frame_waveform(GdkEventConfigure *ev)
 	if(has_renderer())
 		renderer()->redraw_all();
 	return true;
+}
+
+/*
+ * Return the value of the scrolling (scrollbar)
+ */
+int WaveformEditor::get_scrolling()
+{
+	return (int)m_hscrollbarWaveform->get_value();
 }
 
 /*
@@ -482,7 +488,6 @@ void WaveformEditor::on_scrollbar_value_changed()
 
 	if(has_renderer())
 	{
-		m_waveformRenderer->set_start_area((int)m_hscrollbarWaveform->get_value());
 		m_waveformRenderer->redraw_all();
 	}
 }

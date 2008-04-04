@@ -28,8 +28,6 @@
  */
 WaveformRenderer::WaveformRenderer()
 {
-	m_start_area = 0;
-
 	init_default_config();
 	load_config();
 
@@ -138,17 +136,9 @@ void WaveformRenderer::redraw_all()
 /*
  *
  */
-void WaveformRenderer::set_start_area(int value)
-{
-	m_start_area = value;
-}
-
-/*
- *
- */
 int WaveformRenderer::get_start_area()
 {
-	return m_start_area;
+	return scrolling();
 }
 
 /*
@@ -222,6 +212,14 @@ sigc::signal<int>& WaveformRenderer::signal_zoom()
 sigc::signal<float>& WaveformRenderer::signal_scale()
 {
 	return scale;
+}
+
+/*
+ *
+ */
+sigc::signal<int>& WaveformRenderer::signal_scrolling()
+{
+	return scrolling;
 }
 
 /*

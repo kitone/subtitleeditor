@@ -74,11 +74,6 @@ public:
 	/*
 	 *
 	 */
-	void set_start_area(int value);
-
-	/*
-	 *
-	 */
 	int get_start_area();
 
 	/*
@@ -125,6 +120,11 @@ public:
 	/*
 	 *
 	 */
+	sigc::signal<int>& signal_scrolling();
+
+	/*
+	 *
+	 */
 	void set_waveform(const Glib::RefPtr<Waveform> &wf);
 
 	/*
@@ -134,14 +134,12 @@ public:
 
 //protected:
 	
-	int m_start_area;
-	
-
 	Glib::RefPtr<Waveform> m_waveform;
 
 	sigc::signal<Document*> document;
 	sigc::signal<int> zoom;
 	sigc::signal<float> scale;
+	sigc::signal<int> scrolling;
 	sigc::signal<long> player_time; // the current time of the player
 
 	// config

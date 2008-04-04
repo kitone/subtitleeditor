@@ -27,8 +27,6 @@
 #include <gtkglmm.h>
 #include <GL/gl.h>
 
-//#define DEBUG_DISPLAY
-
 #define FONT_SIZE 256
 
 /*
@@ -340,11 +338,12 @@ void WaveformRendererGL::on_realize()
  */
 bool WaveformRendererGL::on_configure_event(GdkEventConfigure *ev)
 {
-	bool state = Gtk::DrawingArea::on_configure_event(ev);
+	Gtk::DrawingArea::on_configure_event(ev);
 
 	redraw_all();
 
-	return state;
+	// return false IMPORTANT!!!
+	return false;
 }
 
 /*
@@ -355,10 +354,11 @@ bool WaveformRendererGL::on_configure_event(GdkEventConfigure *ev)
  */
 bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev)
 {
-#ifdef DEBUG_DISPLAY
-	Glib::Timer m_timer;
-	m_timer.start();
-#endif//DEBUG_DISPLAY
+	static Glib::Timer m_timer;
+
+	if(se_debug_check_flags(SE_DEBUG_WAVEFORM))
+		m_timer.start();
+
 
 	// If window system doesn't support OpenGL
 	// display in the area a message
@@ -420,14 +420,16 @@ bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev)
 	{
 		draw(ev);
 
-#ifdef DEBUG_DISPLAY
-		double seconds = m_timer.elapsed();
+		if(se_debug_check_flags(SE_DEBUG_WAVEFORM))
+		{
+			double seconds = m_timer.elapsed();
+			m_timer.reset();
 
-		Glib::ustring fps = build_message("%d frames in %f seconds = %.3f FPS", 1, seconds, (float)(1 / seconds));
+			Glib::ustring fps = build_message("%d frames in %f seconds = %.3f FPS", 1, seconds, (float)(1 / seconds));
 	  
-		glColor4fv(m_color_text);
-		draw_text(10,10, fps);
-#endif//DEBUG_DISPLAY
+			glColor4fv(m_color_text);
+			draw_text(10,10, fps);
+		}
 	}
 	
 	// Swap Buffer
@@ -847,10 +849,6 @@ void WaveformRendererGL::draw_subtitles(const Gdk::Rectangle &rect)
 	if(!document())
 		return;
 
-#ifdef DEBUG_DISPLAY
-	int display = 0;
-#endif//DEBUG_DISPLAY
-
 	SubtitleTime start_clip (get_time_by_pos(get_start_area()));
 	SubtitleTime end_clip (get_time_by_pos(get_end_area()));
 
@@ -886,9 +884,6 @@ void WaveformRendererGL::draw_subtitles(const Gdk::Rectangle &rect)
 
 			glRectf(s, 0, e, height);	
 		
-#ifdef DEBUG_DISPLAY
-			++display;
-#endif//DEBUG_DISPLAY
 		}
 	}
 	else
@@ -913,17 +908,9 @@ void WaveformRendererGL::draw_subtitles(const Gdk::Rectangle &rect)
 
 			glRectf(s, 0, e, height);	
 		
-#ifdef DEBUG_DISPLAY
-			++display;
-#endif//DEBUG_DISPLAY
 		}
 	}
 	glPopMatrix();
-
-#ifdef DEBUG_DISPLAY
-	glColor4fv(m_color_text);
-	draw_text(10, 40, build_message("display %d", display));
-#endif//DEBUG_DISPLAY
 }
 
 /*
