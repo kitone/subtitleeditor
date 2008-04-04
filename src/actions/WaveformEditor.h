@@ -144,7 +144,7 @@ protected:
 	 * This callback is connected to the signal "configure" of the waveform frame (Gtk::Frame).
 	 * Every time this size changed, the scrollbar need to be recalculate.
 	 */
-	bool on_configure_event_frame_waveform(GdkEventConfigure *ev);
+	bool on_configure_event_waveform(GdkEventConfigure *ev);
 
 	/*
 	 * Edit the position of the current subtitle.
@@ -215,6 +215,11 @@ protected:
 	 * Return the value of the zoom (widget).
 	 */
 	int get_zoom();
+
+	/*
+	 * Return the value of the scrolling (scrollbar)
+	 */
+	int get_scrolling();
 
 	/*
 	 * Initialize the scrollbar depending 

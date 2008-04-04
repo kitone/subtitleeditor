@@ -24,9 +24,8 @@
 #include "Document.h"
 #include "WaveformRenderer.h"
 
-#define DEBUG_DISPLAY
-
 #define TRIANGLE_SIZE 10
+
 /*
  * Cairo Waveform renderer
  */
@@ -194,11 +193,14 @@ void WaveformRendererCairo::redraw_all()
  */
 bool WaveformRendererCairo::on_configure_event(GdkEventConfigure *ev)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(m_wf_surface)
 		m_wf_surface.clear();
 	queue_draw();
 
-	return true;
+	// return false IMPORTANT!!!
+	return false;
 }
 
 /*
@@ -210,11 +212,10 @@ bool WaveformRendererCairo::on_configure_event(GdkEventConfigure *ev)
  */
 bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 {
-#ifdef DEBUG_DISPLAY
-	Glib::Timer m_timer;
+	static Glib::Timer m_timer;
 
-	m_timer.start();
-#endif//DEBUG_DISPLAY
+	if(se_debug_check_flags(SE_DEBUG_WAVEFORM))
+		m_timer.start();
 
 	Glib::RefPtr<Gdk::Window> window = get_window();
 	if(!window)
@@ -291,7 +292,7 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 	
 	}//has_waveform
 
-#ifdef DEBUG_DISPLAY
+	if(se_debug_check_flags(SE_DEBUG_WAVEFORM))
 	{
 		double seconds = m_timer.elapsed();
 
@@ -303,7 +304,6 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 
 	  m_timer.reset();
 	}
-#endif//DEBUG_DISPLAY
 
 	return true;
 }
