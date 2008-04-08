@@ -1,3 +1,9 @@
+2008-04-08  kitone  <kitone@gna.org>
+
+	* src/actions/WaveformRendererCairo.cc:
+	* src/actions/WaveformRendererGL.cc:
+	Fix: display only if the area width is superior to 20 and the height to 10.
+
 2008-04-04  kitone  <kitone@gna.org>
 
 	* src/actions/WaveformEditor.cc:

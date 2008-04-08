@@ -356,9 +356,12 @@ bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev)
 {
 	static Glib::Timer m_timer;
 
+	// check minimum size
+	if(get_width() < 20 || get_height() < 10)
+		return false;
+
 	if(se_debug_check_flags(SE_DEBUG_WAVEFORM))
 		m_timer.start();
-
 
 	// If window system doesn't support OpenGL
 	// display in the area a message
