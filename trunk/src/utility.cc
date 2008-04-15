@@ -568,6 +568,32 @@ namespace Gst
 		g_free(str);
 		return res;
 	}
+
+	/*
+	 * Display a message for missing plugins.
+	 */
+	void dialog_missing_plugins(const std::list<Glib::ustring> &list)
+	{
+		Glib::ustring plugins;
+		
+		std::list<Glib::ustring>::const_iterator it = list.begin();
+		std::list<Glib::ustring>::const_iterator end = list.end();
+
+		while(it != end)
+		{
+			plugins += *it;
+			plugins += "\n";
+			++it;
+		}
+
+		Glib::ustring msg = _(
+					"The playback of this movie requires the following decoders "
+					"which are not installed:");
+
+		dialog_error(msg, plugins);
+
+		se_debug_message(SE_DEBUG_UTILITY, "%s %s", msg.c_str(), plugins.c_str());
+	}
 	
 }
 

@@ -23,7 +23,8 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include <gtkmm.h>
-#include "gui/Player.h"
+#include "Player.h"
+#include "actions/WaveformEditor.h"
 
 class Document;
 
@@ -59,17 +60,12 @@ public:
 	/*
 	 *
 	 */
-	virtual void set_mutlimedia_video(Player *player) = 0;
-
-	/*
-	 *
-	 */
 	virtual Player* get_player() = 0;
 
 	/*
 	 *
 	 */
-	virtual void set_mutlimedia_waveform(Gtk::Widget &widget) = 0;
+	virtual WaveformEditor* get_waveform_editor() = 0;
 
 	/*
 	 *

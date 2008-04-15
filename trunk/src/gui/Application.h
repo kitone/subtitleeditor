@@ -35,7 +35,10 @@
 
 #include "SubtitleEditorWindow.h"
 #include "PluginSystem.h"
-#include "gui/VideoPlayer.h"
+#include "Player.h"
+
+#include "actions/WaveformEditor.h"
+#include "vp/VideoPlayer.h"
 
 
 class Application : public Gtk::Window, public SubtitleEditorWindow
@@ -69,12 +72,7 @@ public:
 	/*
 	 *
 	 */
-	void set_mutlimedia_waveform(Gtk::Widget &widget);
-
-	/*
-	 *
-	 */
-	void set_mutlimedia_video(Player *player);
+	WaveformEditor* get_waveform_editor();
 
 protected:
 
@@ -150,9 +148,11 @@ protected:
 	Gtk::Widget* get_widget(Document *doc);
 
 	/*
-	 *
+	 * Need to connect the visibility signal of the widgets children 
+	 * (video player and waveform editor) for updating the visibility of 
+	 * the paned multimedia widget.
 	 */
-	void set_display_video_player(bool state);
+	void init_panel_multimedia();
 
 	/*
 	 * Check the state visibility of the children. 
@@ -177,7 +177,8 @@ protected:
 	Gtk::VBox*			m_vboxMain;
 	MenuBar					m_menubar;
 	Gtk::HPaned*		m_paned_multimedia;
-	VideoPlayer*		m_videoPlayer;
+	VideoPlayer*		m_video_player;
+	WaveformEditor*	m_waveform_editor;
 	Gtk::Notebook*	m_notebook_documents;
 	Statusbar*			m_statusbar;
 

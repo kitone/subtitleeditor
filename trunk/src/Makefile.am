@@ -59,7 +59,12 @@ FILES = \
 				CommandSystem.h \
 				CommandSystem.cc \
 				PluginSystem.h \
-				PluginSystem.cc
+				PluginSystem.cc \
+				Player.h \
+				vp/GStreamerPlayer.h \
+				vp/GStreamerPlayer.cc \
+				vp/VideoPlayer.h \
+				vp/VideoPlayer.cc
 
 
 FORMATS_FILES = \
@@ -125,7 +130,8 @@ ACTIONS = \
 				actions/WaveformRendererGL.cc \
 				actions/WaveformEditor.h \
 				actions/WaveformEditor.cc \
-				actions/WaveformManagement.cc
+				actions/WaveformManagement.cc \
+				actions/VideoPlayerManagement.cc
 
 
 ACTIONS_FILES = $(ACTIONS) \
@@ -145,18 +151,10 @@ GUI_FILES = \
 				gui/Statusbar.cc \
 				gui/CheckErrorsUI.h \
 				gui/CheckErrorsUI.cc \
-				gui/VideoPlayer.h \
-				gui/VideoPlayer.cc \
 				gui/PreferencesUI.h \
 				gui/PreferencesUI.cc \
 				gui/WaveformGeneratorUI.h \
-				gui/WaveformGeneratorUI.cc \
-				gui/Player.h \
-				gui/Player.cc \
-				gui/MPlayer.h \
-				gui/MPlayer.cc \
-				gui/GStreamerPlayer.h \
-				gui/GStreamerPlayer.cc
+				gui/WaveformGeneratorUI.cc
 
 
 if	 ENABLE_UNITTEST

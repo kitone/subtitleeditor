@@ -156,59 +156,12 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 				_("Launch the errors checking"));
 	}
 
-	// menu-video
-	{
-		ActionGroup ag("video-player", m_refUIManager);
-
-		ag.item("menu-video", _("_Video"));
-	
-		ag.item("video-player/open", Gtk::Stock::OPEN, _("_Open Movie"), 
-				_("Open the video"), "<Shift><Control>M");
-		ag.item("video-player/play", Gtk::Stock::MEDIA_PLAY,
-				_("_Play the video"));
-		ag.item("video-player/pause", Gtk::Stock::MEDIA_PAUSE, 
-				_("_Make a pause"));
-		ag.item("video-player/play-pause", Gtk::Stock::MEDIA_PLAY, 
-				_("_Play / Pause"), _("Play or make a pause"));
-
-		ag.item("video-player/seek-to-selection", _("_Seek To Selection"),
-				_("Seek to the first selected subtitle"));
-
-		ag.item("video-player/play-previous-subtitle", Gtk::Stock::MEDIA_PREVIOUS, _("Play _Previous Subtitle"), 
-				_("Play previous subtitle from the first selected subtitle"));
-		ag.item("video-player/play-current-subtitle", Gtk::Stock::MEDIA_PLAY, _("Play _Selection"), 
-				_("Play the selected subtitle"));
-		ag.item("video-player/play-next-subtitle", Gtk::Stock::MEDIA_NEXT, _("Play _Next Subtitle"), 
-				_("Play next subtitle from the first selected subtitle"));
-	
-		ag.item("video-player/play-previous-second", _("Play Previous Second"));
-		ag.item("video-player/play-first-second", _("Play First Second"));
-		ag.item("video-player/play-last-second", _("Play Last Second"));
-		ag.item("video-player/play-next-second", _("Play Next Second"));
-
-		ag.item("video-player/set-subtitle-start", _("Set Subtitle _Start"));
-		ag.item("video-player/set-subtitle-end", _("Set Subtitle _End"));
-
-		ag.item("video-player/menu-backwards-jump", Gtk::Stock::MEDIA_REWIND, _("_Backards Jump"));
-		ag.item("video-player/very-short-backwards-jump", _("Very Short"));
-		ag.item("video-player/short-backwards-jump", _("Short"));
-		ag.item("video-player/medium-backwards-jump", _("Medium"));
-		ag.item("video-player/long-backwards-jump", _("Long"));
-
-		ag.item("video-player/menu-forward-jump", Gtk::Stock::MEDIA_FORWARD, _("_Forward Jump"));
-		ag.item("video-player/very-short-forward-jump", _("Very Short"));
-		ag.item("video-player/short-forward-jump", _("Short"));
-		ag.item("video-player/medium-forward-jump", _("Medium"));
-		ag.item("video-player/long-forward-jump", _("Long"));
-	}
 
 	// menu-view
 	{
 		ActionGroup ag("view", m_refUIManager);
 
 		ag.item("menu-view", _("V_iew"));
-
-		addToggleAction("display-video-player", _("_Video Player"), "interface", "display-video-player");
 	}
 	
 	// menu-option

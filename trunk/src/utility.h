@@ -276,6 +276,11 @@ namespace Gst
 	 *	retourne le temps en string par rapport au temps nsecs (gstreamer)
 	 */
 	Glib::ustring time_to_string (gint64 time);
+
+	/*
+	 * Display a message for missing plugins.
+	 */
+	void dialog_missing_plugins(const std::list<Glib::ustring> &missings);
 }
 
 /*

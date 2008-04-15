@@ -99,23 +99,30 @@
 			<menuitem action="video-player/pause"/>
 			<menuitem action="video-player/play-pause"/>
 			<separator/>
-			<menuitem action="video-player/seek-to-selection"/>
-			<menu action="video-player/menu-backwards-jump">
-				<menuitem action="video-player/very-short-backwards-jump"/>
-				<menuitem action="video-player/short-backwards-jump"/>
-				<menuitem action="video-player/medium-backwards-jump"/>
-				<menuitem action="video-player/long-backwards-jump"/>
+			<menu action="video-player/menu-skip-forward">
+				<menuitem action="video-player/skip-forward-very-short"/>
+				<menuitem action="video-player/skip-forward-short"/>
+				<menuitem action="video-player/skip-forward-medium"/>
+				<menuitem action="video-player/skip-forward-long"/>
 			</menu>
-			<menu action="video-player/menu-forward-jump">
-				<menuitem action="video-player/very-short-forward-jump"/>
-				<menuitem action="video-player/short-forward-jump"/>
-				<menuitem action="video-player/medium-forward-jump"/>
-				<menuitem action="video-player/long-forward-jump"/>
+			<menu action="video-player/menu-skip-backwards">
+				<menuitem action="video-player/skip-backwards-very-short"/>
+				<menuitem action="video-player/skip-backwards-short"/>
+				<menuitem action="video-player/skip-backwards-medium"/>
+				<menuitem action="video-player/skip-backwards-long"/>
+			</menu>
+			<menu action="video-player/menu-rate">
+				<menuitem action="video-player/rate-slower"/>
+				<menuitem action="video-player/rate-faster"/>
+				<menuitem action="video-player/rate-normal"/>
 			</menu>
 			<separator/>
+			<menuitem action="video-player/seek-to-selection"/>
+			<separator/>
 			<menuitem action="video-player/play-current-subtitle"/>
-			<menuitem action="video-player/play-previous-subtitle"/>
 			<menuitem action="video-player/play-next-subtitle"/>
+			<menuitem action="video-player/play-previous-subtitle"/>
+			<menuitem action="video-player/repeat"/>
 			<separator/>
 			<menuitem action="video-player/play-previous-second"/>
 			<menuitem action="video-player/play-first-second"/>
@@ -145,7 +152,7 @@
 		<menu name="menu-view" action="menu-view">
 			<placeholder name="view-manager-placeholder"/>
 			<separator/>
-			<menuitem action="display-video-player"/>
+			<menuitem action="video-player/display"/>
 			<menuitem action="waveform/display"/>
 		</menu>
 

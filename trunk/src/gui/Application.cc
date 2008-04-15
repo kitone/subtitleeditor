@@ -42,16 +42,15 @@ void on_current_document_changed(Document *doc)
 Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)//int argc, char *argv[])
 :Gtk::Window(cobject)
 {
-	//simple_test();
-
 	refGlade->get_widget_derived("statusbar", m_statusbar);
 
 	refGlade->get_widget("vbox-main", m_vboxMain);
 	refGlade->get_widget("paned-multimedia", m_paned_multimedia);
-	refGlade->get_widget_derived("video-player", m_videoPlayer);
+	refGlade->get_widget_derived("video-player", m_video_player);
+	refGlade->get_widget_derived("waveform-editor", m_waveform_editor);
 	refGlade->get_widget("notebook-documents", m_notebook_documents);
 
-	//m_notebook_documents->set_scrollable(true);
+	init_panel_multimedia();
 
 	set_default_size(800,600);
 	set_icon_from_file(get_share_dir("subtitleeditor.svg"));
@@ -109,7 +108,6 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 				sigc::mem_fun(*this, &Application::notebook_drag_data_received));
 		m_notebook_documents->drag_dest_set(targets, Gtk::DEST_DEFAULT_ALL, Gdk::DragAction(GDK_ACTION_COPY | GDK_ACTION_MOVE));
 	}
-
 }
 
 /*
@@ -145,9 +143,6 @@ void Application::load_config()
 	if(value)
 		maximize();
 
-	cfg.get_value_bool("interface", "display-video-player", value);
-	set_display_video_player(value);
-
 	// first launch
 	if(!cfg.has_group("encodings"))
 	{
@@ -173,13 +168,13 @@ void Application::load_config()
  */
 bool Application::on_delete_event(GdkEventAny *ev)
 {
+	se_debug(SE_DEBUG_APP);
+
 	bool res = Gtk::Window::on_delete_event(ev);
 
 	Glib::ustring path_se_accelmap = get_config_dir("accelmap");
 	Gtk::AccelMap::save(path_se_accelmap);
 
-	//return ask_to_save_on_exit();
-	
 	return res;
 }
 
@@ -540,13 +535,6 @@ void Application::on_config_interface_changed(const Glib::ustring &key, const Gl
 		else 
 			unmaximize();
 	}
-	else if(key == "display-video-player")
-	{
-		bool state;
-		from_string(value, state);
-
-		set_display_video_player(state);
-	}
 	else if(key == "used-autosave")
 	{
 		if(m_autosave_timeout)
@@ -569,22 +557,6 @@ void Application::on_config_interface_changed(const Glib::ustring &key, const Gl
 					sigc::mem_fun(*this, &Application::on_autosave_files), time.totalmsecs);
 		}
 	}
-}
-
-/*
- *
- */
-void Application::set_display_video_player(bool state)
-{
-#warning "TODO: FIXME with the new player"
-	// It's a hack...remove soon with the new player
-	if(state)
-		m_videoPlayer->show();
-	else
-		m_videoPlayer->hide();
-
-	on_paned_multimedia_visibility_child_changed();
-	
 }
 
 /*
@@ -687,7 +659,7 @@ void Application::init(OptionGroup &options)
 		{
 			Glib::ustring uri = Glib::filename_to_uri(utility::create_full_path(video));
 
-			m_videoPlayer->open(uri);
+			get_player()->open(uri);
 		}
 		catch(const Glib::Error &ex)
 		{
@@ -695,8 +667,6 @@ void Application::init(OptionGroup &options)
 		}
 	}
 
-#warning "FIXME: auto open waveform"
-	/*
 	// -----------------------------------------------------
 	// waveform
 	Glib::ustring waveform = options.waveform;
@@ -719,14 +689,13 @@ void Application::init(OptionGroup &options)
 		{
 			Glib::ustring uri = Glib::filename_to_uri(utility::create_full_path(waveform));
 
-			//m_waveform_system->open(uri);
+			get_waveform_editor()->open_waveform(uri);
 		}
 		catch(const Glib::Error &ex)
 		{
 			std::cerr << ex.what() << std::endl;
 		}
 	}
-	*/
 }
 
 /*
@@ -802,42 +771,45 @@ DocumentList Application::get_documents()
  */
 Player* Application::get_player()
 {
-	return m_videoPlayer->get_video_player();
+	return m_video_player->player();
 }
 
 /*
  *
  */
-void Application::set_mutlimedia_waveform(Gtk::Widget &widget)
+WaveformEditor* Application::get_waveform_editor()
 {
-	se_debug(SE_DEBUG_APP);
-
-	m_paned_multimedia->add2(widget);
-
-	widget.signal_show().connect(
-			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
-	widget.signal_hide().connect(
-			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+	return m_waveform_editor;
 }
 
 /*
- *
+ * Need to connect the visibility signal of the widgets children 
+ * (video player and waveform editor) for updating the visibility of 
+ * the paned multimedia widget.
  */
-void Application::set_mutlimedia_video(Player *player)
+void Application::init_panel_multimedia()
 {
-	se_debug(SE_DEBUG_APP);
+	Gtk::Widget *child1 = m_paned_multimedia->get_child1();
+	Gtk::Widget *child2 = m_paned_multimedia->get_child2();
 
-#warning "TODO: FIXME with the new player"
-	//m_player = player;
-
-	Gtk::Widget *widget =player->get_widget();
-	
-	m_paned_multimedia->add1(*widget);
-
-	widget->signal_show().connect(
+	if(child1)
+	{
+		child1->signal_show().connect(
 			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
-	widget->signal_hide().connect(
+		child1->signal_hide().connect(
 			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+	}
+
+	if(child2)
+	{
+		child2->signal_show().connect(
+			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+		child2->signal_hide().connect(
+			sigc::mem_fun(*this, &Application::on_paned_multimedia_visibility_child_changed));
+	}
+
+	// first check
+	on_paned_multimedia_visibility_child_changed();
 }
 
 /*

@@ -105,7 +105,7 @@ PKG_CHECK_MODULES(GSTREAMER, gstreamer-0.10 gstreamer-base-0.10 gstreamer-plugin
 AC_SUBST(GSTREAMER_CFLAGS)
 AC_SUBST(GSTREAMER_LIBS)
 
-LIBS="$LIBS $GSTREAMER_LIBS -lgstinterfaces-0.10 -lgstvideo-0.10 -lgstaudio-0.10"
+LIBS="$LIBS $GSTREAMER_LIBS -lgstinterfaces-0.10 -lgstvideo-0.10 -lgstaudio-0.10 -lgstpbutils-0.10"
 
 
 AC_DEFUN([SE_GST_ELEMENT_CHECK_REQUIRED],
