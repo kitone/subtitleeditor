@@ -1,5 +1,14 @@
 2008-04-15  kitone  <kitone@gna.org>
 
+	* src/Document.cc:
+	* src/actions/StyleEditor.h:
+	* src/gui/GStreamerPlayer.cc:
+	* src/gui/WaveformGeneratorUI.cc:
+	Fix #1975 (https://gna.org/support/?1975) Build fails with gcc 4.3
+	Patch by Jacek Roszkowski.
+
+2008-04-15  kitone  <kitone@gna.org>
+
 	* src/Style.cc:
 	Fix segfault at the opening of a ASS/SSA file create by subtitleeditor.
 	Because the style doesn't save the value "encoding".

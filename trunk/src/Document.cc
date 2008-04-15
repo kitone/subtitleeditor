@@ -29,6 +29,7 @@
 #include "SubtitleSystem.h"
 
 #include <ctime>
+#include <memory>
 
 /*
  *	constructeur
