@@ -33,12 +33,7 @@
 #include <gst/gst.h>
 #include <gdk/gdkx.h>
 #include <glib.h>
-#include <gtkmm/socket.h>
 #include <gtkglmm.h>
-
-#include "gui/MPlayer.h"
-#include "gui/GStreamerPlayer.h"
-#include "SubtitleSystem.h"
 #include "Options.h"
 
 #ifdef ENABLE_UNITTEST
@@ -64,13 +59,14 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["video-player"]["contrast"] = "0";
 	config["video-player"]["saturation"] = "0";
 	config["video-player"]["hue"] = "0";
-	config["video-player"]["jump-very-short"] = "3";
-	config["video-player"]["jump-short"] = "10";
-	config["video-player"]["jump-medium"] = "60";
-	config["video-player"]["jump-long"] = "300";
+	config["video-player"]["skip-very-short"] = "3";
+	config["video-player"]["skip-short"] = "10";
+	config["video-player"]["skip-medium"] = "60";
+	config["video-player"]["skip-long"] = "300";
 	config["video-player"]["audio-sink"] = "autoaudiosink";
 	config["video-player"]["video-sink"] = "xvimagesink";
 	config["video-player"]["timeout"] = "100";
+	config["video-player"]["repeat"] = "false";
 
 	//[waveform]
 	config["waveform"]["zoom"] = "1";

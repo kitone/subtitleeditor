@@ -27,7 +27,7 @@
 #include <gtkmm/scalebutton.h>
 #include <libglademm.h>
 #include "WaveformRenderer.h"
-#include "gui/VideoPlayer.h"
+#include "Player.h"
 
 
 /*
@@ -40,7 +40,7 @@ public:
 	/*
 	 *
 	 */
-	WaveformEditor();
+	WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
 
 	/*
 	 *
@@ -333,8 +333,8 @@ protected:
 	bool move_subtitle_end(const SubtitleTime &time, bool disable_respect, bool around);
 
 protected:
-	Gtk::Frame*				m_frameDrawingArea;
-	Gtk::HScrollbar*	m_hscrollbarWaveform;
+	Gtk::Frame*				m_frameWaveformRenderer;
+	Gtk::HScrollbar*	m_hscrollbarWaveformRenderer;
 	Gtk::VScale*			m_sliderZoom;
 	Gtk::VScale*			m_sliderScale;
 

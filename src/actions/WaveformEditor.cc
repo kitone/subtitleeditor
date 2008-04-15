@@ -35,31 +35,26 @@ WaveformRenderer* create_waveform_renderer_gl();
 /*
  *
  */
-WaveformEditor::WaveformEditor()
-:Gtk::HBox(false, 0), m_waveformRenderer(NULL), m_document(NULL), m_player(NULL)
+WaveformEditor::WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+:Gtk::HBox(cobject), m_waveformRenderer(NULL), m_document(NULL), m_player(NULL)
 {
 	set_size_request(240, 240);
 
-	// VBox for Renderer + scrollbar
-	Gtk::VBox *vbox = manage(new Gtk::VBox(false, 0));
-	pack_start(*vbox, true, true);
+	refGlade->get_widget("frame-waveform-renderer", m_frameWaveformRenderer);
+	refGlade->get_widget("hscrollbar-waveform-renderer", m_hscrollbarWaveformRenderer);
 
-	m_frameDrawingArea = manage(new Gtk::Frame);
-	m_frameDrawingArea->set_shadow_type(Gtk::SHADOW_IN);
-	vbox->pack_start(*m_frameDrawingArea, true, true);
-
-	m_hscrollbarWaveform = manage(new Gtk::HScrollbar);
-	vbox->pack_start(*m_hscrollbarWaveform, false, false);
-	
-	vbox->show_all();
-
-
-	// Zoom and Scale widget
-	pack_start(*create_control_widget(), false, false);
+	refGlade->get_widget("vscale-zoom", m_sliderZoom);
+	refGlade->get_widget("vscale-scale", m_sliderScale);
 
 	// connect signal
+	
+	m_sliderZoom->signal_value_changed().connect(
+			sigc::mem_fun(*this, &WaveformEditor::on_zoom_changed));
 
-	m_hscrollbarWaveform->signal_value_changed().connect(
+	m_sliderScale->signal_value_changed().connect(
+			sigc::mem_fun(*this, &WaveformEditor::on_scale_changed));
+
+	m_hscrollbarWaveformRenderer->signal_value_changed().connect(
 			sigc::mem_fun(*this, &WaveformEditor::on_scrollbar_value_changed));
 
 	// create the renderer after the widget is realized.
@@ -92,70 +87,6 @@ WaveformEditor::WaveformEditor()
 WaveformEditor::~WaveformEditor()
 {
 	se_debug(SE_DEBUG_WAVEFORM);
-}
-
-/*
- *
- */
-Gtk::Widget* WaveformEditor::create_control_widget()
-{
-	Gtk::Adjustment *adj_zoom = manage(new Gtk::Adjustment(1, 1, 1000, 1, 10, 10));
-	Gtk::Adjustment *adj_scale = manage(new Gtk::Adjustment(1, 0.10, 10, 0.10, 0.10, 0.10));
-
-	Gtk::HBox* box = manage(new Gtk::HBox(false, 3));
-
-	// slider zoom
-	m_sliderZoom = manage(new Gtk::VScale(*adj_zoom));
-	m_sliderZoom->set_inverted(true);
-	m_sliderZoom->set_draw_value(false);
-
-	// slider scale
-	m_sliderScale = manage(new Gtk::VScale(*adj_scale));
-	m_sliderScale->set_inverted(true);
-	m_sliderScale->set_draw_value(false);
-
-	// signals
-	m_sliderZoom->signal_value_changed().connect(
-			sigc::mem_fun(*this, &WaveformEditor::on_zoom_changed));
-
-	m_sliderScale->signal_value_changed().connect(
-			sigc::mem_fun(*this, &WaveformEditor::on_scale_changed));
-
-	// add widgets
-	box->pack_start(*m_sliderZoom, false, false);
-	box->pack_start(*m_sliderScale, false, false);
-
-	box->show_all();
-	return box;
-	/*
-	Gtk::VBox* box = manage(new Gtk::VBox(false, 3));
-
-	// zoom
-	std::list<Glib::ustring> zoom_icons;
-
-	m_sliderZoom = manage(new Gtk::ScaleButton(Gtk::ICON_SIZE_BUTTON, 1, 1000, 1, zoom_icons));
-	m_sliderZoom->set_adjustment(*adj_zoom);
-
-	box->pack_start(*m_sliderZoom, false, false);
-
-	m_sliderZoom->get_adjustment()->signal_value_changed().connect(
-			sigc::mem_fun(*this, &WaveformEditor::on_zoom_changed));
-
-	// scale
-	std::list<Glib::ustring> scale_icons;
-	scale_icons.push_back("gtk-zoom-fit");
-
-	m_sliderScale = manage(new Gtk::ScaleButton(Gtk::ICON_SIZE_BUTTON, 1, 10, 1, scale_icons));
-	m_sliderScale->set_adjustment(*adj_scale);
-
-	box->pack_start(*m_sliderScale, false, false);
-
-	m_sliderScale->get_adjustment()->signal_value_changed().connect(
-			sigc::mem_fun(*this, &WaveformEditor::on_scale_changed));
-
-	box->show_all();
-	return box;
-	*/
 }
 
 /*
@@ -243,9 +174,9 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 	// Remove the old renderer and destroy.
 	if(m_waveformRenderer != NULL)
 	{
-		Gtk::Widget *child = m_frameDrawingArea->get_child();
+		Gtk::Widget *child = m_frameWaveformRenderer->get_child();
 		
-		m_frameDrawingArea->remove();
+		m_frameWaveformRenderer->remove();
 
 		delete child;
 	
@@ -275,7 +206,7 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 
 		Gtk::Widget *widget = renderer->widget();
 		
-		m_frameDrawingArea->add(*widget);
+		m_frameWaveformRenderer->add(*widget);
 
 		widget->add_events(
 			Gdk::BUTTON_PRESS_MASK | 
@@ -312,7 +243,7 @@ void WaveformEditor::set_player(Player *player)
 	m_player = player;
 
 	// init
-	m_connection_timeout = m_player->get_signal_timeout().connect(
+	m_connection_timeout = m_player->signal_timeout().connect(
 			sigc::mem_fun(*this, &WaveformEditor::on_player_timeout));
 }
 
@@ -382,8 +313,7 @@ long WaveformEditor::get_player_time()
 {
 	if(player())
 	{
-		if(player()->is_valid())
-			return player()->get_position();
+		return player()->get_position();
 	}
 	return 0;
 }
@@ -442,7 +372,7 @@ bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure *ev)
  */
 int WaveformEditor::get_scrolling()
 {
-	return (int)m_hscrollbarWaveform->get_value();
+	return (int)m_hscrollbarWaveformRenderer->get_value();
 }
 
 /*
@@ -461,19 +391,19 @@ void WaveformEditor::init_scrollbar()
 
 	int zoom = (int)m_sliderZoom->get_value();
 
-	double upper = m_hscrollbarWaveform->get_adjustment()->get_upper();
-	double old_value = m_hscrollbarWaveform->get_value();
+	double upper = m_hscrollbarWaveformRenderer->get_adjustment()->get_upper();
+	double old_value = m_hscrollbarWaveformRenderer->get_value();
 
-	Gtk::Adjustment *adj = m_hscrollbarWaveform->get_adjustment();
+	Gtk::Adjustment *adj = m_hscrollbarWaveformRenderer->get_adjustment();
 
 	adj->set_page_size((double)width);
 	adj->set_page_increment(width);
 	adj->set_step_increment(width);
 
-	m_hscrollbarWaveform->set_range(0, width * zoom);
+	m_hscrollbarWaveformRenderer->set_range(0, width * zoom);
 
 	if(upper > 0)
-		m_hscrollbarWaveform->set_value(width * zoom * (old_value / upper));
+		m_hscrollbarWaveformRenderer->set_value(width * zoom * (old_value / upper));
 
 	se_debug_message(SE_DEBUG_WAVEFORM, "width=%d zoom=%d", width, zoom);
 }
@@ -488,7 +418,7 @@ void WaveformEditor::on_scrollbar_value_changed()
 
 	if(has_renderer())
 	{
-		m_waveformRenderer->redraw_all();
+		renderer()->redraw_all();
 	}
 }
 
@@ -553,14 +483,14 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf)
 {
 	m_waveform = wf;
 
+	Config::getInstance().set_value_bool("waveform", "display", (bool)wf);
+
 	if(has_renderer())
 		renderer()->set_waveform(wf);
 	else
 		std::cerr << "You need a WaveformRenderer!!" << std::endl;
 
 	set_sensitive((bool)wf && has_renderer());
-
-	Config::getInstance().set_value_bool("waveform", "display", (bool)wf);
 
 	m_signal_waveform_changed.emit();
 
@@ -684,9 +614,9 @@ void WaveformEditor::scroll_to_position(int position)
 	int margin = 20;
 
 	if((position - margin) < start_area)
-		m_hscrollbarWaveform->set_value(position - margin);
+		m_hscrollbarWaveformRenderer->set_value(position - margin);
 	else if((position + margin) > end_area)
-		m_hscrollbarWaveform->set_value(position + margin);
+		m_hscrollbarWaveformRenderer->set_value(position + margin);
 }
 
 /*
@@ -705,7 +635,7 @@ void WaveformEditor::scroll_to_position_and_center(int position)
 
 	double diff = position - center_area;
 
-	m_hscrollbarWaveform->set_value(start_area + diff);
+	m_hscrollbarWaveformRenderer->set_value(start_area + diff);
 }
 
 /*
@@ -792,19 +722,17 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev)
 		return true;
 
 	// the time of the mouse in the area
-	SubtitleTime time(m_waveformRenderer->get_mouse_time((gint)ev->x));
-/*
+	SubtitleTime time(renderer()->get_mouse_time((gint)ev->x));
+
 	if(ev->button == 2 && !(ev->state & Gdk::CONTROL_MASK) && player())
 	{
-		if(player()->is_valid())
-		{
-			player()->seek(time);
-			if(player()->is_playing() == false)
-				player()->play();
-		}
-		return;
+		player()->seek(time.totalmsecs);
+
+		if(player()->is_playing() == false)
+			player()->play();
+		return true;
 	}
-*/
+
 	if(!has_document())
 		return true;
 
@@ -815,7 +743,7 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev)
 		if(sub)
 			document()->subtitles().select(sub);
 
-		m_waveformRenderer->redraw_all();
+		renderer()->redraw_all();
 		return true;
 	}
 
@@ -876,7 +804,7 @@ bool WaveformEditor::on_motion_notify_event_renderer(GdkEventMotion *ev)
 	if(!subtitle)
 		return true;
 
-	SubtitleTime time = m_waveformRenderer->get_mouse_time((int)ev->x);
+	SubtitleTime time = renderer()->get_mouse_time((int)ev->x);
 
 
 	if((ev->state & Gdk::BUTTON1_MASK))
@@ -928,9 +856,9 @@ bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev)
 	}
 	else // Scrolling like scrollbar
 	{
-		double page_size = m_hscrollbarWaveform->get_adjustment()->get_page_size();
+		double page_size = m_hscrollbarWaveformRenderer->get_adjustment()->get_page_size();
 		double delta = pow(page_size, 2.0 / 3.0);
-		m_hscrollbarWaveform->set_value(m_hscrollbarWaveform->get_value() - delta * value);
+		m_hscrollbarWaveformRenderer->set_value(m_hscrollbarWaveformRenderer->get_value() - delta * value);
 	}
 
 	return true;

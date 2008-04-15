@@ -123,12 +123,13 @@ public:
 		ui->insert_action_group(action_group);
 
 		// HACK
-		m_waveformEditor = manage(new WaveformEditor);
+		m_waveformEditor = get_subtitleeditor_window()->get_waveform_editor();
 		
 		m_waveformEditor->signal_waveform_changed().connect(
 				sigc::mem_fun(*this, &WaveformManagement::update_ui));
 
-		get_subtitleeditor_window()->set_mutlimedia_waveform(*m_waveformEditor);
+		m_waveformEditor->signal_waveform_changed().connect(
+				sigc::mem_fun(*this, &WaveformManagement::on_waveform_changed));
 
 		get_config().signal_changed("waveform").connect(
 				sigc::mem_fun(*this, &WaveformManagement::on_config_waveform_changed));
@@ -193,7 +194,10 @@ protected:
 		
 			if(m_waveformEditor->open_waveform(uri))
 			{
-				// Connect the video player....??
+				// Connect the video player....
+				//Player *player = get_subtitleeditor_window()->get_player();
+				//if(player != NULL)
+				//	player->open(m_waveformEditor->get_waveform()->m_video_uri);
 			}
 			else
 			{
@@ -204,6 +208,11 @@ protected:
 				if(wf)
 				{
 					m_waveformEditor->set_waveform(wf);
+
+					// Connect the video player....
+					//Player *player = get_subtitleeditor_window()->get_player();
+					//if(player != NULL)
+					//	player->open(m_waveformEditor->get_waveform()->m_video_uri);
 				}
 			}
 		}
@@ -216,6 +225,19 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
+#warning "FIXME save_waveform"
+	}
+
+	/*
+	 * Update the video player with the new Waveform.
+	 */
+	void on_waveform_changed()
+	{
+		Glib::RefPtr<Waveform> wf = get_subtitleeditor_window()->get_waveform_editor()->get_waveform();
+		if(wf)
+		{
+			get_subtitleeditor_window()->get_player()->open(wf->m_video_uri);
+		}
 	}
 
 	/*

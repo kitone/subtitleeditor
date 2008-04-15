@@ -1,5 +1,45 @@
 2008-04-15  kitone  <kitone@gna.org>
 
+	* src/gui/GStreamerPlayer.cc:
+	* src/gui/GStreamerPlayer.h:
+	* src/gui/MPlayer.cc:
+	* src/gui/MPlayer.h:
+	* src/gui/MenuBar.cc:
+	* src/gui/Player.cc:
+	* src/gui/Player.h:
+	* src/gui/VideoPlayer.cc:
+	* src/gui/VideoPlayer.h:
+	Remove files.
+
+	* configure.in:
+	Add link to lgstpbutils-0.10.
+
+	* share/glade/subtitleeditor.glade:
+	Updated with the new VideoPlayer and WaveformEditor.
+
+	* share/menubar.xml:
+	Updated with the new video player.
+
+	* src/Makefile.am:
+	* src/Player.h:
+	* src/SubtitleEditorWindow.h:
+	* src/actions/VideoPlayerManagement.cc:
+	* src/actions/WaveformEditor.cc:
+	* src/actions/WaveformEditor.h:
+	* src/actions/WaveformManagement.cc:
+	* src/gui/Application.cc:
+	* src/gui/Application.h:
+	* src/main.cc:
+	* src/utility.cc:
+	* src/utility.h:
+	* src/vp/GStreamerPlayer.cc:
+	* src/vp/GStreamerPlayer.h:
+	* src/vp/VideoPlayer.cc:
+	* src/vp/VideoPlayer.h:
+	New files, new video player.
+
+2008-04-15  kitone  <kitone@gna.org>
+
 	* src/Document.cc:
 	* src/actions/StyleEditor.h:
 	* src/gui/GStreamerPlayer.cc:
