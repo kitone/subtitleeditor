@@ -28,6 +28,7 @@
 #include "SubtitleTime.h"
 #include <map>
 #include <gdk/gdkx.h>
+#include <cstring>
 
 /*
  *	Video player Architecture

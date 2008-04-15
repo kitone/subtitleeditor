@@ -25,6 +25,8 @@
 #include "debug.h"
 #include "utility.h"
 #include "Config.h"
+#include <ctime>
+#include <cstring>
 
 // old method 8.05
 // new method ?
