@@ -169,9 +169,12 @@ UNITTEST_FILES = \
 				 unittest/testColor.cc
 
 EXTRA_DIST = \
+					unittest/adobe.encore.dvd.ntsc.format \
+					unittest/adobe.encore.dvd.pal.format \
 					unittest/ass.format \
 					unittest/microdvd.format \
 					unittest/mpl2.format \
+					unittest/mpsub.format \
 					unittest/ssa.format \
 					unittest/subrip.format \
 					unittest/subviewer2.0.format
