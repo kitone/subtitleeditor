@@ -1,3 +1,15 @@
+2008-04-15  kitone  <kitone@gna.org>
+
+	* src/Style.cc:
+	Fix segfault at the opening of a ASS/SSA file create by subtitleeditor.
+	Because the style doesn't save the value "encoding".
+
+	* src/Makefile.am:
+	* src/unittest/adobe.encore.dvd.ntsc.format:
+	* src/unittest/adobe.encore.dvd.pal.format:
+	* src/unittest/mpsub.format:
+	Adding files for unit test.
+
 2008-04-08  kitone  <kitone@gna.org>
 
 	* src/actions/WaveformRendererCairo.cc:

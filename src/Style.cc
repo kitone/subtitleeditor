@@ -148,6 +148,8 @@ void Style::set(const Glib::ustring &name, const Glib::ustring &value)
 		(*m_iter)[column.outline] = utility::string_to_int(value);
 	else if(name == "shadow")
 		(*m_iter)[column.shadow] = utility::string_to_int(value);
+	else if(name == "encoding")
+		(*m_iter)[column.encoding] = utility::string_to_int(value);
 	else
 		std::cerr << "Style::set " << name << " UNKNOW" << std::endl;
 }
@@ -203,6 +205,8 @@ Glib::ustring Style::get(const Glib::ustring &name) const
 		return to_string((*m_iter)[column.outline]);
 	else if(name == "shadow")
 		return to_string((*m_iter)[column.shadow]);
+	else if(name == "encoding")
+		return to_string((*m_iter)[column.encoding]);
 	else
 		std::cerr << "Style::get: " << name << " UNKNOW!" << std::endl;
 
