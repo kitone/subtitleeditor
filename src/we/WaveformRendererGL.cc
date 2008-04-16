@@ -172,6 +172,10 @@ public:
 	 */
 	void redraw_all();
 
+	/*
+	 * Delete display list and redraw
+	 */
+	void force_redraw_all();
 
 protected:
 
@@ -981,6 +985,15 @@ void WaveformRendererGL::redraw_all()
 	queue_draw();
 }
 
+/*
+ * Delete display list and redraw
+ */
+void WaveformRendererGL::force_redraw_all()
+{
+	delete_display_lists();
+
+	queue_draw();
+}
 
 
 /*

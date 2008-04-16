@@ -74,6 +74,11 @@ public:
 	/*
 	 *
 	 */
+	virtual void force_redraw_all();
+
+	/*
+	 *
+	 */
 	int get_start_area();
 
 	/*
