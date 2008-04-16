@@ -24,7 +24,7 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-#include "WaveformEditor.h"
+#include "we/WaveformEditor.h"
 #include "gui/DialogFileChooser.h"
 #include "gui/WaveformGeneratorUI.h"
 
