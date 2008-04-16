@@ -24,7 +24,7 @@
  */
 #include <gtkmm.h>
 #include "Player.h"
-#include "actions/WaveformEditor.h"
+#include "we/WaveformEditor.h"
 
 class Document;
 

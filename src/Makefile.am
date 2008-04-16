@@ -64,7 +64,13 @@ FILES = \
 				vp/GStreamerPlayer.h \
 				vp/GStreamerPlayer.cc \
 				vp/VideoPlayer.h \
-				vp/VideoPlayer.cc
+				vp/VideoPlayer.cc \
+				we/WaveformRenderer.h \
+				we/WaveformRenderer.cc \
+				we/WaveformRendererCairo.cc \
+				we/WaveformRendererGL.cc \
+				we/WaveformEditor.h \
+				we/WaveformEditor.cc
 
 
 FORMATS_FILES = \
@@ -124,12 +130,6 @@ ACTIONS = \
 				actions/ExternalVideoPlayer.cc \
 				actions/About.cc \
 				actions/ViewManager.cc \
-				actions/WaveformRenderer.h \
-				actions/WaveformRenderer.cc \
-				actions/WaveformRendererCairo.cc \
-				actions/WaveformRendererGL.cc \
-				actions/WaveformEditor.h \
-				actions/WaveformEditor.cc \
 				actions/WaveformManagement.cc \
 				actions/VideoPlayerManagement.cc
 

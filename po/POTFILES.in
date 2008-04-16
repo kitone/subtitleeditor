@@ -48,13 +48,7 @@ src/actions/TryToExtendToPerfect.cc
 src/actions/UndoRedo.cc
 src/actions/VideoPlayerManagement.cc
 src/actions/ViewManager.cc
-src/actions/WaveformEditor.cc
-src/actions/WaveformEditor.h
 src/actions/WaveformManagement.cc
-src/actions/WaveformRendererCairo.cc
-src/actions/WaveformRenderer.cc
-src/actions/WaveformRendererGL.cc
-src/actions/WaveformRenderer.h
 src/ActionSystem.cc
 src/ActionSystem.h
 src/Color.cc
@@ -163,3 +157,9 @@ src/vp/VideoPlayer.cc
 src/vp/VideoPlayer.h
 src/Waveform.cc
 src/Waveform.h
+src/we/WaveformEditor.cc
+src/we/WaveformEditor.h
+src/we/WaveformRendererCairo.cc
+src/we/WaveformRenderer.cc
+src/we/WaveformRendererGL.cc
+src/we/WaveformRenderer.h

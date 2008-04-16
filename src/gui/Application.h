@@ -35,9 +35,6 @@
 
 #include "SubtitleEditorWindow.h"
 #include "PluginSystem.h"
-#include "Player.h"
-
-#include "actions/WaveformEditor.h"
 #include "vp/VideoPlayer.h"
 
 
