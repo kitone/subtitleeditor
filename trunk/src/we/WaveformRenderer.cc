@@ -136,6 +136,13 @@ void WaveformRenderer::redraw_all()
 /*
  *
  */
+void WaveformRenderer::force_redraw_all()
+{
+}
+
+/*
+ *
+ */
 int WaveformRenderer::get_start_area()
 {
 	return scrolling();
@@ -267,5 +274,7 @@ void WaveformRenderer::on_config_waveform_renderer_changed(const Glib::ustring &
 	}
 
 #undef string_to_rgba
+
+	force_redraw_all();
 }
 

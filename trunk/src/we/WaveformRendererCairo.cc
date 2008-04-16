@@ -65,6 +65,11 @@ public:
 	void redraw_all();
 
 	/*
+	 * Delete the surface and redraw
+	 */
+	void force_redraw_all();
+
+	/*
 	 *
 	 */
 	bool on_configure_event(GdkEventConfigure *ev);
@@ -185,6 +190,16 @@ void WaveformRendererCairo::waveform_changed()
  */
 void WaveformRendererCairo::redraw_all()
 {
+	queue_draw();
+}
+
+/*
+ * Delete the surface and redraw
+ */
+void WaveformRendererCairo::force_redraw_all()
+{
+	if(m_wf_surface)
+		m_wf_surface.clear();
 	queue_draw();
 }
 

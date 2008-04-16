@@ -1,5 +1,17 @@
 2008-04-16  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-preferences.glade:
+	* src/gui/PreferencesUI.cc:
+	Update with the new WaveformRenderer.
+
+	* src/we/WaveformRenderer.cc:
+	* src/we/WaveformRenderer.h:
+	* src/we/WaveformRendererCairo.cc:
+	* src/we/WaveformRendererGL.cc:
+	Add force_redraw_all.
+
+2008-04-16  kitone  <kitone@gna.org>
+
 	* src/actions/WaveformEditor.cc:
 	* src/actions/WaveformEditor.h:
 	* src/actions/WaveformRenderer.cc:

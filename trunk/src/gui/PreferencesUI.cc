@@ -444,27 +444,37 @@ public:
 		se_debug(SE_DEBUG_APP);
 
 		refGlade->get_widget("colorbutton-background", m_colorbuttonBackground);
-		refGlade->get_widget("colorbutton-play-line", m_colorbuttonPlayLine);
 		refGlade->get_widget("colorbutton-text", m_colorbuttonText);
 		refGlade->get_widget("colorbutton-wave", m_colorbuttonWave);
 		refGlade->get_widget("colorbutton-wave-fill", m_colorbuttonWaveFill);
-		refGlade->get_widget("colorbutton-marker", m_colorbuttonMarker);
-		refGlade->get_widget("colorbutton-marker-hightlight", m_colorbuttonMarkerHightlight);
-		refGlade->get_widget("colorbutton-marker-invalid", m_colorbuttonMarkerInvalid);
+		refGlade->get_widget("colorbutton-subtitle", m_colorbuttonSubtitle);
+		refGlade->get_widget("colorbutton-subtitle-selected", m_colorbuttonSubtitleSelected);
+		refGlade->get_widget("colorbutton-subtitle-invalid", m_colorbuttonSubtitleInvalid);
+		refGlade->get_widget("colorbutton-player-position", m_colorbuttonPlayerPosition);
 
 		refGlade->get_widget("check-display-background", m_checkDisplayBackground);
 		refGlade->get_widget("check-display-waveform-fill", m_checkDisplayWaveformFill);
 		refGlade->get_widget("check-display-subtitle-text", m_checkDisplaySubtitleText);
 		refGlade->get_widget("button-reset-to-defaults-waveform-color", m_buttonReset);
 
-		WidgetToConfig::read_config_and_connect(m_colorbuttonBackground, "waveform", "color-background");
-		WidgetToConfig::read_config_and_connect(m_colorbuttonPlayLine, "waveform", "color-play-line");
-		WidgetToConfig::read_config_and_connect(m_colorbuttonText, "waveform", "color-text");
-		WidgetToConfig::read_config_and_connect(m_colorbuttonWave, "waveform", "color-wave");
-		WidgetToConfig::read_config_and_connect(m_colorbuttonWaveFill, "waveform", "color-wave-fill");
-		WidgetToConfig::read_config_and_connect(m_colorbuttonMarker, "waveform", "color-marker");
-		WidgetToConfig::read_config_and_connect(m_colorbuttonMarkerHightlight, "waveform", "color-marker-hightlight");
-		WidgetToConfig::read_config_and_connect(m_colorbuttonMarkerInvalid, "waveform", "color-marker-invalid");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonBackground, 
+				"waveform-renderer", "color-background");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonWave, 
+				"waveform-renderer", "color-wave");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonWaveFill, 
+				"waveform-renderer", "color-wave-fill");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonSubtitle, 
+				"waveform-renderer", "color-subtitle");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonSubtitleSelected, 
+				"waveform-renderer", "color-subtitle-selected");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonSubtitleInvalid, 
+				"waveform-renderer", "color-subtitle-invalid");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonText, 
+				"waveform-renderer", "color-text");
+		WidgetToConfig::read_config_and_connect(m_colorbuttonPlayerPosition, 
+				"waveform-renderer", "color-player-position");
+
+
 		WidgetToConfig::read_config_and_connect(m_checkDisplayBackground, "waveform", "display-background");
 		WidgetToConfig::read_config_and_connect(m_checkDisplayWaveformFill, "waveform", "display-waveform-fill");
 		WidgetToConfig::read_config_and_connect(m_checkDisplaySubtitleText, "waveform", "display-subtitle-text");
@@ -483,34 +493,34 @@ protected:
 		Config &cfg = Config::getInstance();
 
 #define RESET_COLOR(w, key) \
-		if(cfg.set_default_value("waveform", key)) \
+		if(cfg.set_default_value("waveform-renderer", key)) \
 		{ \
-			cfg.get_default_value("waveform", key, value); \
+			cfg.get_default_value("waveform-renderer", key, value); \
 			Color color(value); \
 			color.initColorButton(*w); \
 		}
 
 		RESET_COLOR(m_colorbuttonBackground, "color-background");
-		RESET_COLOR(m_colorbuttonPlayLine, "color-play-line");
+		RESET_COLOR(m_colorbuttonPlayerPosition, "color-player-position");
 		RESET_COLOR(m_colorbuttonWave, "color-text");
 		RESET_COLOR(m_colorbuttonWave, "color-wave");
 		RESET_COLOR(m_colorbuttonWaveFill, "color-wave-fill");
-		RESET_COLOR(m_colorbuttonMarker, "color-marker");
-		RESET_COLOR(m_colorbuttonMarkerHightlight, "color-marker-hightlight");
-		RESET_COLOR(m_colorbuttonMarkerInvalid, "color-marker-invalid");
+		RESET_COLOR(m_colorbuttonSubtitle, "color-marker");
+		RESET_COLOR(m_colorbuttonSubtitleSelected, "color-subtitle-selected");
+		RESET_COLOR(m_colorbuttonSubtitleInvalid, "color-subtitle-invalid");
 
 #undef RESET_COLOR
 	}
 
 protected:
 	Gtk::ColorButton*	m_colorbuttonBackground;
-	Gtk::ColorButton*	m_colorbuttonPlayLine;
+	Gtk::ColorButton*	m_colorbuttonPlayerPosition;
 	Gtk::ColorButton*	m_colorbuttonText;
 	Gtk::ColorButton*	m_colorbuttonWave;
 	Gtk::ColorButton*	m_colorbuttonWaveFill;
-	Gtk::ColorButton*	m_colorbuttonMarker;
-	Gtk::ColorButton*	m_colorbuttonMarkerHightlight;
-	Gtk::ColorButton*	m_colorbuttonMarkerInvalid;
+	Gtk::ColorButton*	m_colorbuttonSubtitle;
+	Gtk::ColorButton*	m_colorbuttonSubtitleSelected;
+	Gtk::ColorButton*	m_colorbuttonSubtitleInvalid;
 
 	Gtk::CheckButton* m_checkDisplayBackground;
 	Gtk::CheckButton* m_checkDisplayWaveformFill;
