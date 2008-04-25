@@ -161,8 +161,7 @@ void WaveformEditor::init_document(Document *doc)
 		init_scrollbar();
 	}
 
-	if(has_renderer())
-		renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -275,8 +274,7 @@ void WaveformEditor::on_map()
 			m_connection_timeout.unblock();
 	}
 
-	if(has_renderer())
-		renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -302,7 +300,7 @@ void WaveformEditor::on_player_timeout()
 	{
 		scroll_with_player();
 
-		renderer()->redraw_all();
+		redraw_renderer();
 	}
 }
 
@@ -362,8 +360,7 @@ bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure *ev)
 	// init scrollbar
 	init_scrollbar();
 	
-	if(has_renderer())
-		renderer()->redraw_all();
+	redraw_renderer();
 	return true;
 }
 
@@ -416,10 +413,7 @@ void WaveformEditor::on_scrollbar_value_changed()
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
-	if(has_renderer())
-	{
-		renderer()->redraw_all();
-	}
+	redraw_renderer();
 }
 
 /*
@@ -440,8 +434,7 @@ void WaveformEditor::on_zoom_changed()
 	if(Config::getInstance().get_value_int("waveform", "zoom") != value)
 		Config::getInstance().set_value_int("waveform", "zoom", value);
 
-	if(has_renderer())
-		renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -454,8 +447,7 @@ void WaveformEditor::on_scale_changed()
 
 	se_debug_message(SE_DEBUG_WAVEFORM, "scale=%f", value);
 
-	if(has_renderer())
-		renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -463,6 +455,8 @@ void WaveformEditor::on_scale_changed()
  */
 bool WaveformEditor::open_waveform(const Glib::ustring &uri)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(m_waveform)
 	{
 		// FIXME
@@ -481,6 +475,8 @@ bool WaveformEditor::open_waveform(const Glib::ustring &uri)
  */
 void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	m_waveform = wf;
 
 	Config::getInstance().set_value_bool("waveform", "display", (bool)wf);
@@ -497,7 +493,7 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf)
 	init_scrollbar();
 
 	// force to redisplay
-	renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -540,6 +536,14 @@ WaveformRenderer* WaveformEditor::renderer()
 	return m_waveformRenderer;
 }
 
+/*
+ * Redisplay the renderer (call renderer->redraw_all)
+ */
+void WaveformEditor::redraw_renderer()
+{
+	if(has_renderer())
+		renderer()->redraw_all();
+}
 
 /*
  * Return the state of current document.
@@ -566,7 +570,7 @@ void WaveformEditor::on_document_changed()
 	if((has_renderer() && has_waveform()) == false)
 		return;
 	
-	renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -585,7 +589,7 @@ void WaveformEditor::on_subtitle_selection_changed()
 	if(m_cfg_scrolling_with_selection  && player_playing == false)
 		center_with_selected_subtitle();
 
-	renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -597,7 +601,7 @@ void WaveformEditor::on_subtitle_time_changed()
 	if((has_renderer() && has_waveform()) == false)
 		return;
 	
-	renderer()->redraw_all();
+	redraw_renderer();
 }
 
 /*
@@ -743,7 +747,7 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev)
 		if(sub)
 			document()->subtitles().select(sub);
 
-		renderer()->redraw_all();
+		redraw_renderer();
 		return true;
 	}
 
@@ -785,7 +789,7 @@ bool WaveformEditor::on_button_release_event_renderer(GdkEventButton *ev)
 	document()->finish_command();
 
 	renderer()->m_display_time_info = false;
-	renderer()->redraw_all();
+	redraw_renderer();
 
 	return true;
 }
@@ -816,7 +820,7 @@ bool WaveformEditor::on_motion_notify_event_renderer(GdkEventMotion *ev)
 		move_subtitle_end(time, (ev->state & Gdk::SHIFT_MASK),  (ev->state & Gdk::CONTROL_MASK));
 	}	
 
-	renderer()->redraw_all();
+	redraw_renderer();
 	return true;
 }
 

@@ -187,6 +187,11 @@ protected:
 	WaveformRenderer* renderer();
 
 	/*
+	 * Redisplay the renderer (call renderer->redraw_all)
+	 */
+	void redraw_renderer();
+	
+	/*
 	 * Return the state of current document.
 	 */
 	bool has_document();
