@@ -106,8 +106,6 @@ src/gui/PreferencesUI.cc
 src/gui/PreferencesUI.h
 src/gui/Statusbar.cc
 src/gui/Statusbar.h
-src/gui/WaveformGeneratorUI.cc
-src/gui/WaveformGeneratorUI.h
 src/main.cc
 src/Options.cc
 src/Options.h
