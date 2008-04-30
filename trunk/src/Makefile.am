@@ -70,7 +70,9 @@ FILES = \
 				we/WaveformRendererCairo.cc \
 				we/WaveformRendererGL.cc \
 				we/WaveformEditor.h \
-				we/WaveformEditor.cc
+				we/WaveformEditor.cc \
+				we/WaveformGenerator.h \
+				we/WaveformGenerator.cc
 
 
 FORMATS_FILES = \
@@ -152,9 +154,7 @@ GUI_FILES = \
 				gui/CheckErrorsUI.h \
 				gui/CheckErrorsUI.cc \
 				gui/PreferencesUI.h \
-				gui/PreferencesUI.cc \
-				gui/WaveformGeneratorUI.h \
-				gui/WaveformGeneratorUI.cc
+				gui/PreferencesUI.cc
 
 
 if	 ENABLE_UNITTEST
