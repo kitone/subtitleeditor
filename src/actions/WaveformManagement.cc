@@ -25,8 +25,8 @@
 #include "Plugin.h"
 #include "utility.h"
 #include "we/WaveformEditor.h"
+#include "we/WaveformGenerator.h"
 #include "gui/DialogFileChooser.h"
-#include "gui/WaveformGeneratorUI.h"
 
 /*
  *
@@ -192,27 +192,14 @@ protected:
 
 			Glib::ustring uri = dialog.get_uri();
 		
-			if(m_waveformEditor->open_waveform(uri))
+			if(m_waveformEditor->open_waveform(uri) == false)
 			{
-				// Connect the video player....
-				//Player *player = get_subtitleeditor_window()->get_player();
-				//if(player != NULL)
-				//	player->open(m_waveformEditor->get_waveform()->m_video_uri);
-			}
-			else
-			{
-				// FIXME
 				// try to create the Waveform from media
-				Glib::RefPtr<Waveform> wf;
-				WaveformGeneratorUI ui(wf, uri);
+				Glib::RefPtr<Waveform> wf = WaveformGenerator::create(uri);
+				
 				if(wf)
 				{
 					m_waveformEditor->set_waveform(wf);
-
-					// Connect the video player....
-					//Player *player = get_subtitleeditor_window()->get_player();
-					//if(player != NULL)
-					//	player->open(m_waveformEditor->get_waveform()->m_video_uri);
 				}
 			}
 		}
@@ -225,7 +212,21 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-#warning "FIXME save_waveform"
+		Glib::RefPtr<Waveform> wf = get_subtitleeditor_window()->get_waveform_editor()->get_waveform();
+		if(wf)
+		{
+			Gtk::FileChooserDialog ui(_("Save Waveform"), Gtk::FILE_CHOOSER_ACTION_SAVE);
+			ui.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+			ui.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+			ui.set_default_response(Gtk::RESPONSE_OK);
+
+			if(ui.run() == Gtk::RESPONSE_OK)
+			{
+				Glib::ustring uri = ui.get_uri();
+
+				wf->save(uri);
+			}
+		}
 	}
 
 	/*

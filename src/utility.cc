@@ -595,6 +595,18 @@ namespace Gst
 		se_debug_message(SE_DEBUG_UTILITY, "%s %s", msg.c_str(), plugins.c_str());
 	}
 	
+	/*
+	 * Checks if the element exists and whether its version is at least the version required.
+	 * Display a dialog error if failed.
+	 */
+	bool check_registry(const Glib::ustring &name, int min_major, int min_minor, int min_micro)
+	{
+		if(gst_default_registry_check_feature_version(name.c_str(), min_major, min_minor, min_micro))
+			return true;
+
+#warning "FIXME add dialog message error"
+		return false;
+	}
 }
 
 namespace utility

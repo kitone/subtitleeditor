@@ -1,3 +1,18 @@
+2008-04-30  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
+	* src/we/WaveformGenerator.cc:
+	* src/we/WaveformGenerator.h:
+	Add new files for WaveformGenerator. 
+	Removes old files (src/gui/WaveformGeneratorUI.h/cc).
+
+	* src/actions/WaveformManagement.cc:
+	Update with the new WaveformGenerator, add save waveform code.
+
+	* src/utility.cc:
+	* src/utility.h:
+	Add function check_registry (gstreamer).
+
 2008-04-25  kitone  <kitone@gna.org>
 
 	* src/we/WaveformEditor.cc:

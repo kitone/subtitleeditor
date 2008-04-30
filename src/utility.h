@@ -281,6 +281,12 @@ namespace Gst
 	 * Display a message for missing plugins.
 	 */
 	void dialog_missing_plugins(const std::list<Glib::ustring> &missings);
+
+	/*
+	 * Checks if the element exists and whether its version is at least the version required.
+	 * Display a dialog error if failed.
+	 */
+	bool check_registry(const Glib::ustring &name, int min_major, int min_minor, int min_micro);
 }
 
 /*

@@ -1,3 +1,8 @@
+2008-04-30  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	Add: src/we/WaveformGenerator.h src/we/WaveformGenerator.cc
+
 2008-04-16  kitone  <kitone@gna.org>
 
 	* POTFILES.in:

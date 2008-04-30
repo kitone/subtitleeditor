@@ -159,6 +159,8 @@ src/Waveform.cc
 src/Waveform.h
 src/we/WaveformEditor.cc
 src/we/WaveformEditor.h
+src/we/WaveformGenerator.cc
+src/we/WaveformGenerator.h
 src/we/WaveformRendererCairo.cc
 src/we/WaveformRenderer.cc
 src/we/WaveformRendererGL.cc
