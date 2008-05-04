@@ -1,3 +1,5 @@
+#ifdef ENABLE_GL
+
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -1003,3 +1005,5 @@ WaveformRenderer* create_waveform_renderer_gl()
 {
 	return manage(new WaveformRendererGL());
 }
+
+#endif//ENABLE_GL
