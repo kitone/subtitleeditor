@@ -280,12 +280,19 @@ AM_CONDITIONAL([ENABLE_UNITTEST], [test "x$enable_unittest" = "xyes"])
 
 
 ## OpenGL & GtkGLextmm
-AX_CHECK_GL
+AC_ARG_ENABLE(gl,
+							[AC_HELP_STRING([--enable-gl], [OpenGL waveform renderer [default=no]])],,
+							[enable_gl=no])
 
-PKG_CHECK_MODULES(GTKGLEXT, gtkglextmm-1.2)
+if test "$enable_gl" = "yes"; then
+	AX_CHECK_GL
+	CXXFLAGS="-DENABLE_GL $CXXFLAGS"
 
-AC_SUBST(GTKGLEXT_CFLAGS)
-AC_SUBST(GTKGLEXT_LIBS)
+	PKG_CHECK_MODULES(GTKGLEXT, gtkglextmm-1.2)
+
+	AC_SUBST(GTKGLEXT_CFLAGS)
+	AC_SUBST(GTKGLEXT_LIBS)
+fi
 
 
 ## SUBTITLEEDITOR LIBS FLAGS
@@ -372,6 +379,7 @@ gstreamer version .................... : $(pkg-config --modversion gstreamer-0.1
 enchant support (spell checking) ..... : $have_enchant_support
 have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
 TTXT support (not finished) .......... : $enable_ttxt
+OpenGL waveform renderer ............. : $enable_gl
 Unit test ............................ : $enable_unittest
 debug support ........................ : $enable_debug
 ALL_LINGUAS .......................... : $ALL_LINGUAS

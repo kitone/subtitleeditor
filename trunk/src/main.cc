@@ -33,8 +33,11 @@
 #include <gst/gst.h>
 #include <gdk/gdkx.h>
 #include <glib.h>
-#include <gtkglmm.h>
 #include "Options.h"
+
+#ifdef ENABLE_GL
+	#include <gtkglmm.h>
+#endif//ENABLE_GL
 
 #ifdef ENABLE_UNITTEST
 	bool launch_unittest();
@@ -202,8 +205,11 @@ int main(int argc, char *argv[])
 
 	// init Gtk+
 	Gtk::Main kit(argc, argv);
+
+#ifdef ENABLE_GL
 	// init OpenGL
 	Gtk::GL::init_check(argc, argv);
+#endif//ENABLE_GL
 
 	Glib::set_application_name("subtitleeditor");
 

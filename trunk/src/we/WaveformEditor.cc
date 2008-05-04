@@ -29,8 +29,10 @@
  *	HACK!
  */
 WaveformRenderer* create_waveform_renderer_cairo();
-WaveformRenderer* create_waveform_renderer_gl();
 
+#ifdef ENABLE_GL
+WaveformRenderer* create_waveform_renderer_gl();
+#endif//ENABLE_GL
 
 /*
  *
@@ -122,7 +124,8 @@ void WaveformEditor::on_create_renderer()
 {
 	Glib::ustring renderer_name = Config::getInstance().get_value_string("waveform", "renderer");
 
-	if(renderer_name == "opengl")
+#ifdef ENABLE_GL
+	if(renderer_name == "gl")
 		init_renderer(create_waveform_renderer_gl());
 	else if(renderer_name == "cairo")
 		init_renderer(create_waveform_renderer_cairo());
@@ -130,6 +133,14 @@ void WaveformEditor::on_create_renderer()
 	{
 		init_renderer(create_waveform_renderer_cairo());
 	}
+#else//ENABLE_GL
+	if(renderer_name == "cairo")
+		init_renderer(create_waveform_renderer_cairo());
+	else // cairo by default
+	{
+		init_renderer(create_waveform_renderer_cairo());
+	}
+#endif//ENABLE_GL
 }
 
 /*
