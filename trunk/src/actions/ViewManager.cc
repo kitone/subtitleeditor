@@ -37,10 +37,12 @@ class DialogViewEdit : public Gtk::Dialog
 		{
 			add(display);
 			add(name);
+			add(label);
 		}
 
 		Gtk::TreeModelColumn<bool> display;
 		Gtk::TreeModelColumn<Glib::ustring> name;
+		Gtk::TreeModelColumn<Glib::ustring> label;
 	};
 
 public:
@@ -67,6 +69,7 @@ public:
 		{
 			Gtk::TreeIter iter = m_liststore->append();
 			(*iter)[m_column_record.name] = array[i];
+			(*iter)[m_column_record.label] = SubtitleView::get_column_label_by_name(array[i]);
 			(*iter)[m_column_record.display] = true;
 		}
 
@@ -82,6 +85,7 @@ public:
 				{
 					Gtk::TreeIter iter = m_liststore->append();
 					(*iter)[m_column_record.name] = *it;
+					(*iter)[m_column_record.label] = SubtitleView::get_column_label_by_name(*it);
 					(*iter)[m_column_record.display] = false;
 				}
 			}
@@ -130,14 +134,14 @@ protected:
 			toggle->signal_toggled().connect(
 					sigc::mem_fun(*this, &DialogViewEdit::on_display_toggled));
 		}
-		// column name
+		// column label
 		{
 			Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("Name")));
 			m_treeview->append_column(*column);
 
-			Gtk::CellRendererText* name = manage(new Gtk::CellRendererText);
-			column->pack_start(*name);
-			column->add_attribute(name->property_text(), m_column_record.name);
+			Gtk::CellRendererText* label = manage(new Gtk::CellRendererText);
+			column->pack_start(*label);
+			column->add_attribute(label->property_text(), m_column_record.label);
 		}
 	}
 

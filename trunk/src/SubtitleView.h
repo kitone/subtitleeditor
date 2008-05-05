@@ -52,6 +52,12 @@ public:
 	 */
   void select_and_set_cursor(const Gtk::TreeIter &iter);
 
+	/*
+	 * This is a static function. 
+	 * Return the humain label by the internal name of the column.
+	 */
+	static Glib::ustring get_column_label_by_name(const Glib::ustring &name);
+
 protected:	
 	void loadCfg();
 
