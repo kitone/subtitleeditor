@@ -1595,3 +1595,34 @@ void SubtitleView::clipboard_paste()
 {
 }
 
+/*
+ * This is a static function. 
+ * Return the humain label by the internal name of the column.
+ */
+Glib::ustring SubtitleView::get_column_label_by_name(const Glib::ustring &name)
+{
+	std::map<Glib::ustring, Glib::ustring> columns_labels;
+
+	columns_labels["cps"] = _("cps");
+	columns_labels["duration"] = _("duration");
+	columns_labels["effect"] = _("effect");
+	columns_labels["end"] = _("end");
+	columns_labels["layer"] = _("layer");
+	columns_labels["margin-l"] = _("L");
+	columns_labels["margin-r"] = _("R");
+	columns_labels["margin-v"] = _("V");
+	columns_labels["name"] = _("name");
+	columns_labels["note"] = _("note");
+	columns_labels["number"] = _("num");
+	columns_labels["start"] = _("start");
+	columns_labels["style"] = _("style");
+	columns_labels["text"] = _("text");
+	columns_labels["translation"] = _("translation");
+
+	std::map<Glib::ustring, Glib::ustring>::iterator it = columns_labels.find(name);
+	if(it != columns_labels.end())
+		return it->second;
+
+	return Glib::ustring("Invalid : ") + name;
+}
+
