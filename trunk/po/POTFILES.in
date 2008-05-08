@@ -90,8 +90,6 @@ src/formats/SubtitleSubViewer2.cc
 src/formats/SubtitleSubViewer2.h
 src/formats/SubtitleText.cc
 src/formats/SubtitleText.h
-src/formats/SubtitleTimedText.cc
-src/formats/SubtitleTimedText.h
 src/formats/SubtitleTTXT.cc
 src/formats/SubtitleTTXT.h
 src/gui/Application.cc
