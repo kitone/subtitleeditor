@@ -1,3 +1,8 @@
+2008-05-08  kitone  <kitone@gna.org>
+
+	* Makefile.in:
+	Add mkinstalldirs.
+
 2008-03-13  kitone  <kitone@gna.org>
 
 	* Makefile.am:
