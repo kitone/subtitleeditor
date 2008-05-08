@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-16 09:59+0200\n"
-"PO-Revision-Date: 2007-07-20 00:41+0200\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2008-05-08 19:05+0200\n"
+"PO-Revision-Date: 2008-03-25 12:38+0000\n"
+"Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Launchpad-Export-Date: 2008-05-07 21:08+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
 msgid "<b>Apply to</b>"
@@ -75,22 +76,22 @@ msgid "Maximum character per second:"
 msgstr "Numero massimo di caratteri al secondo:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:37
+#: ../share/glade/dialog-preferences.glade.h:34
 msgid "Maximum characters per line:"
 msgstr "Numero massimo di caratteri per linea:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:39
+#: ../share/glade/dialog-preferences.glade.h:36
 msgid "Maximum number of line per subtitle:"
 msgstr "Numero massimo di linee:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:40
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Minimum characters per second:"
 msgstr "Numero minimo di caratteri al secondo:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:41
+#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Minimum display of the subtitle in mseconds:"
 msgstr "Tempo minimo di permanza sullo schermo in millisecondi:"
 
@@ -121,7 +122,7 @@ msgstr "Tempo di permanenza sullo schermo troppo piccolo"
 #: ../src/gui/MenuBar.cc:175
 #, fuzzy
 msgid "Configure Keyboard Shortcuts"
-msgstr "Usa "
+msgstr "Usa"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
 msgid ""
@@ -322,47 +323,50 @@ msgstr "Interfaccia"
 msgid "Interval in seconds:"
 msgstr "Intervallo in secondi:"
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Marker Higtlight:"
-msgstr "Marcatore selezionato:"
-
 #: ../share/glade/dialog-preferences.glade.h:35
-#, fuzzy
-msgid "Marker Invalid:"
-msgstr "Marcatori:"
-
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Marker:"
-msgstr "Marcatori:"
-
-#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Maximum characters per second:"
 msgstr "Numero massimo caratteri al secondo:"
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Minimo distacco tra sottotitoli in millisecondi:"
 
-#: ../share/glade/dialog-preferences.glade.h:43
-msgid "Play line:"
+#: ../share/glade/dialog-preferences.glade.h:40
+#, fuzzy
+msgid "Player Position:"
 msgstr "Linea d'esecuzione:"
 
-#: ../share/glade/dialog-preferences.glade.h:44
+#: ../share/glade/dialog-preferences.glade.h:41
 msgid "Plugins"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:45
+#: ../share/glade/dialog-preferences.glade.h:42
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: ../share/glade/dialog-preferences.glade.h:46
+#: ../share/glade/dialog-preferences.glade.h:43
 msgid "Preview"
 msgstr "Anteprima"
 
-#: ../share/glade/dialog-preferences.glade.h:47
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Reset To _Defaults"
 msgstr "Predefinito"
+
+#: ../share/glade/dialog-preferences.glade.h:45
+#, fuzzy
+msgid "Subtitle Invalid:"
+msgstr "Imposta fine sottotitolo"
+
+#: ../share/glade/dialog-preferences.glade.h:46
+#, fuzzy
+msgid "Subtitle Selected:"
+msgstr "Vai alla selezione"
+
+#: ../share/glade/dialog-preferences.glade.h:47
+#, fuzzy
+msgid "Subtitle:"
+msgstr "Muovi sottotitoli"
 
 #: ../share/glade/dialog-preferences.glade.h:48
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
@@ -379,13 +383,13 @@ msgstr ""
 "lanciato il comando:"
 
 #: ../share/glade/dialog-preferences.glade.h:50
-#: ../src/actions/ViewManager.cc:386
+#: ../src/actions/ViewManager.cc:390
 msgid "Timing"
 msgstr "Limiti"
 
 #: ../share/glade/dialog-preferences.glade.h:51
 msgid "Use _dynamic keyboard shortcuts"
-msgstr "Usa "
+msgstr "Usa"
 
 #: ../share/glade/dialog-preferences.glade.h:52
 msgid "Use shaded _background"
@@ -740,19 +744,16 @@ msgid "Vertical:"
 msgstr "Verticale:"
 
 #: ../share/glade/dialog-view-manager.glade.h:1
-#, fuzzy
 msgid "<b>Columns</b>"
-msgstr "<b>Colori</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:2
-#, fuzzy
 msgid "<b>View</b>"
-msgstr "<b>Video</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:3
-#, fuzzy
 msgid "View Editing"
-msgstr "Modifica originale:"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
@@ -782,7 +783,11 @@ msgstr "un programma per editare i sottotitoli"
 #. translator-credits
 #: ../src/actions/About.cc:95
 msgid "translator-credits"
-msgstr "Andrea Milazzo (a.k.a. Mancausoft) <andreamilazzo@mancausoft.org>"
+msgstr ""
+"Andrea Milazzo (a.k.a. Mancausoft) <andreamilazzo@mancausoft.org>\n"
+"\n"
+"Launchpad Contributions:\n"
+"  kaiman https://launchpad.net/~kaigfm"
 
 #: ../src/actions/AdjustTime.cc:47
 msgid "Add 100 Milliseconds"
@@ -957,14 +962,12 @@ msgid "Save the current file with a different name"
 msgstr "Salva il file corrente con un nome differente"
 
 #: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
 msgid "Save _All"
-msgstr "Sostituisci _tutti"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
 msgid "Save all open files"
-msgstr "Salva.la traduzione traduzione con un nome differente."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:98
 #, fuzzy
@@ -1441,9 +1444,8 @@ msgstr "_Video:"
 
 #. _("_Open Media"),
 #: ../src/actions/VideoPlayerManagement.cc:54
-#, fuzzy
 msgid "Open a multimedia file"
-msgstr "Apre un file"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:73
 #, fuzzy
@@ -1455,9 +1457,8 @@ msgid "Play or make a pause"
 msgstr "Avvia/mette in pausa"
 
 #: ../src/actions/VideoPlayerManagement.cc:82
-#, fuzzy
 msgid "Skip _Backards"
-msgstr "Salto grande in indietro"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:87
 #: ../src/actions/VideoPlayerManagement.cc:122
@@ -1483,9 +1484,8 @@ msgstr "Molto piccolo:"
 #: ../src/actions/WaveformManagement.cc:87
 #: ../src/actions/WaveformManagement.cc:94
 #: ../src/actions/WaveformManagement.cc:101
-#, fuzzy
 msgid "FIXME"
-msgstr "FILE"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:94
 #: ../src/actions/VideoPlayerManagement.cc:129
@@ -1506,9 +1506,8 @@ msgid "Long"
 msgstr "Grande:"
 
 #: ../src/actions/VideoPlayerManagement.cc:117
-#, fuzzy
 msgid "Skip _Forward"
-msgstr "Salta avanti"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:151
 msgid "Rate"
@@ -1522,9 +1521,8 @@ msgid "Define the playback rate"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:157
-#, fuzzy
 msgid "_Slower"
-msgstr "Scala"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:164
 msgid "_Faster"
@@ -1544,9 +1542,8 @@ msgid "Seek to the first selected subtitle"
 msgstr "Vai al primo sottotitolo selezionato"
 
 #: ../src/actions/VideoPlayerManagement.cc:189
-#, fuzzy
 msgid "_Repeat"
-msgstr "_Sostituisci"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:199
 #, fuzzy
@@ -1580,9 +1577,8 @@ msgid "Play Previous Second"
 msgstr "Riproduci lo scorso secondo"
 
 #: ../src/actions/VideoPlayerManagement.cc:224
-#, fuzzy
 msgid "Play the second preceding the first selected subtitle"
-msgstr "Riproduce il prossimo sottotitolo partendo dal selezionato"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:230
 msgid "Play First Second"
@@ -1637,35 +1633,33 @@ msgstr "Imposta inizio sottotitolo"
 msgid "Set subtitle end"
 msgstr "Imposta fine sottotitolo"
 
-#: ../src/actions/ViewManager.cc:123
+#: ../src/actions/ViewManager.cc:127
 msgid "Display"
 msgstr ""
 
 #. column name
-#: ../src/actions/ViewManager.cc:135 ../src/actions/ViewManager.cc:224
+#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
 #: ../src/gui/PreferencesUI.cc:137
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/actions/ViewManager.cc:294
+#: ../src/actions/ViewManager.cc:298
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:383
-#, fuzzy
+#: ../src/actions/ViewManager.cc:387
 msgid "Simple"
-msgstr "Semplice"
+msgstr ""
 
-#: ../src/actions/ViewManager.cc:384
-#, fuzzy
+#: ../src/actions/ViewManager.cc:388
 msgid "Advanced"
-msgstr "Avanzata"
+msgstr ""
 
-#: ../src/actions/ViewManager.cc:385
+#: ../src/actions/ViewManager.cc:389
 msgid "Translation"
 msgstr "Traduzione"
 
-#: ../src/actions/ViewManager.cc:417
+#: ../src/actions/ViewManager.cc:421
 msgid "View _Manager"
 msgstr ""
 
@@ -1688,9 +1682,8 @@ msgid "_Save Waveform"
 msgstr "Salva Waveform"
 
 #: ../src/actions/WaveformManagement.cc:65
-#, fuzzy
 msgid "Save wavefrom to file"
-msgstr "Salva Waveform"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:70
 #, fuzzy
@@ -1718,9 +1711,8 @@ msgid "_Center With Selected Subtitle"
 msgstr "Centra il sottotitolo selezionato"
 
 #: ../src/actions/WaveformManagement.cc:94
-#, fuzzy
 msgid "Scrolling With _Player"
-msgstr "Scroll tramite cursore"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:101
 #, fuzzy
@@ -1736,13 +1728,16 @@ msgid "Try to respect the timing preferences"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
-#, fuzzy
 msgid "_Wavform"
-msgstr "_Waveform"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
 msgid "Show or hide the waveform in the current window"
 msgstr ""
+
+#: ../src/actions/WaveformManagement.cc:218
+msgid "Save Waveform"
+msgstr "Salva Waveform"
 
 #: ../src/CommandSystem.cc:37
 #, fuzzy
@@ -1876,7 +1871,8 @@ msgstr "Tailandese"
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleSubViewer2.cc:135
+#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr "Impossibile aprire il file."
 
@@ -1954,36 +1950,30 @@ msgid "An error is detected when ..."
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:243
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<b>Subtitle has a too long line (%s):</b> %i characters\n"
 "%s -> %s\n"
 "%s"
 msgstr ""
-"<b>Una linea del testo dei sottotitoli è troppo lunga:</b> %i caratteri\n"
-"%s -> %s\n"
-"%s"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:702
+#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
 msgid "text"
 msgstr "testo"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:781
+#: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
 msgid "translation"
 msgstr "traduzione"
 
 #: ../src/gui/CheckErrorsUI.cc:316
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "<b>Subtitle has too many lines (%s):</b> %i\n"
 "%s -> %s\n"
 "%s"
 msgstr ""
-"<b>Il testo dei sottotitoli contiene troppe righe:</b> %i\n"
-"%s -> %s\n"
-"%s"
 
 #: ../src/gui/CheckErrorsUI.cc:354
 #, fuzzy
@@ -2031,9 +2021,8 @@ msgid "Video"
 msgstr "_Video:"
 
 #: ../src/gui/DialogFileChooser.cc:75 ../src/gui/DialogFileChooser.cc:135
-#, fuzzy
 msgid "Audio"
-msgstr "_Audio:"
+msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:114
 msgid "Open Waveform"
@@ -2096,7 +2085,7 @@ msgstr "Configurazione di Subtitle Editor"
 #: ../src/gui/MenuBar.cc:174
 #, fuzzy
 msgid "Configure _Keyboard Shortcuts"
-msgstr "Usa "
+msgstr "Usa"
 
 #: ../src/gui/MenuBar.cc:182
 msgid "_Help"
@@ -2129,7 +2118,7 @@ msgstr ""
 #: ../src/gui/MenuBar.cc:557
 #, fuzzy
 msgid "Conflicting Shortcuts"
-msgstr "Usa "
+msgstr "Usa"
 
 #: ../src/gui/MenuBar.cc:563
 msgid "Changing shortcut failed."
@@ -2178,17 +2167,9 @@ msgstr "X Window System (Senza Xv)"
 
 #: ../src/gui/PreferencesUI.cc:337
 msgid "OpenGL "
-msgstr "OpenGL"
+msgstr "OpenGL "
 
-#: ../src/gui/WaveformGeneratorUI.cc:51
-msgid "Generate Waveform"
-msgstr "Genera Waveform"
-
-#: ../src/gui/WaveformGeneratorUI.cc:235
-msgid "Media file could not be played."
-msgstr "Il file non può essere riprodotto."
-
-#: ../src/main.cc:214
+#: ../src/main.cc:220
 msgid " - edit subtitles files"
 msgstr " - edita i sottotitoli"
 
@@ -2243,11 +2224,11 @@ msgstr "Muovi sottotitoli"
 msgid "Remove Subtitles"
 msgstr "Muovi sottotitoli"
 
-#: ../src/SubtitleSystem.cc:194
+#: ../src/SubtitleSystem.cc:196
 msgid "I can't find what is this format or it's not supported."
 msgstr "Formato invalido o non riconducibile ad uno noto."
 
-#: ../src/SubtitleView.cc:484
+#: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
 msgid "num"
 msgstr "ID"
 
@@ -2255,7 +2236,7 @@ msgstr "ID"
 msgid "This number column"
 msgstr "Il numero di questa colonna"
 
-#: ../src/SubtitleView.cc:513
+#: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
 msgid "layer"
 msgstr "livello"
 
@@ -2263,7 +2244,7 @@ msgstr "livello"
 msgid "Layer number."
 msgstr "Numero del livello."
 
-#: ../src/SubtitleView.cc:540
+#: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
 msgid "start"
 msgstr "inizio"
 
@@ -2271,7 +2252,7 @@ msgstr "inizio"
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr "L'istante in cui il sottotitolo appare sullo schermo."
 
-#: ../src/SubtitleView.cc:567
+#: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
 msgid "end"
 msgstr "fine"
 
@@ -2279,7 +2260,7 @@ msgstr "fine"
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr "L'istante in cui il sottotitolo scompare dallo schermo."
 
-#: ../src/SubtitleView.cc:594
+#: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
 msgid "duration"
 msgstr "durata"
 
@@ -2287,15 +2268,15 @@ msgstr "durata"
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:624
+#: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
 msgid "style"
 msgstr "stile"
 
-#: ../src/SubtitleView.cc:652
+#: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
 msgid "name"
 msgstr "nome"
 
-#: ../src/SubtitleView.cc:678
+#: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
 msgid "cps"
 msgstr ""
 
@@ -2304,23 +2285,23 @@ msgstr ""
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Usare Ctrl+Invio per uscire e Invio per andare a capo"
 
-#: ../src/SubtitleView.cc:839
+#: ../src/SubtitleView.cc:839 ../src/SubtitleView.cc:1615
 msgid "note"
 msgstr "nota"
 
-#: ../src/SubtitleView.cc:871
+#: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
 msgid "effect"
 msgstr "effetti"
 
-#: ../src/SubtitleView.cc:902
+#: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
 msgid "R"
 msgstr "R"
 
-#: ../src/SubtitleView.cc:930
+#: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
 msgid "L"
 msgstr "L"
 
-#: ../src/SubtitleView.cc:958
+#: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
 msgid "V"
 msgstr "V"
 
@@ -2406,18 +2387,27 @@ msgid ""
 msgstr ""
 
 #: ../src/vp/GStreamerPlayer.cc:805
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Media file could not be played.\n"
 "%s"
-msgstr "Il file non può essere riprodotto."
+msgstr ""
 
-#: ../src/we/WaveformEditor.cc:760 ../src/we/WaveformEditor.cc:765
+#: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
 #, fuzzy
 msgid "Editing position"
 msgstr "durata"
 
-#: ../src/we/WaveformRendererGL.cc:372
+#: ../src/we/WaveformGenerator.cc:71
+msgid "Generate Waveform"
+msgstr "Genera Waveform"
+
+#: ../src/we/WaveformGenerator.cc:313
+#, fuzzy
+msgid "Media file could not be played.\n"
+msgstr "Il file non può essere riprodotto."
+
+#: ../src/we/WaveformRendererGL.cc:378
 msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
@@ -2447,8 +2437,28 @@ msgstr ""
 #~ msgstr "Mette in pausa"
 
 #, fuzzy
+#~ msgid "_Backards Jump"
+#~ msgstr "Salto grande in indietro"
+
+#, fuzzy
 #~ msgid "_Forward Jump"
 #~ msgstr "Salto grande in avanti"
+
+#, fuzzy
+#~ msgid "Save waveform to file"
+#~ msgstr "Salva Waveform"
+
+#, fuzzy
+#~ msgid "Scrolling With _Cursor"
+#~ msgstr "Scroll tramite cursore"
+
+#, fuzzy
+#~ msgid "_Simple"
+#~ msgstr "Semplice"
+
+#, fuzzy
+#~ msgid "_Advanced"
+#~ msgstr "Avanzata"
 
 #, fuzzy
 #~ msgid "_Translation"
@@ -2502,26 +2512,11 @@ msgstr ""
 #~ msgid "Characters Per Second"
 #~ msgstr "Numero minimo di caratteri al secondo:"
 
-#~ msgid "Save Waveform"
-#~ msgstr "Salva Waveform"
-
-#~ msgid "The regular expression \"%s\" was not found."
-#~ msgstr "Impossibile trovare l'espressione regolare \"%s\"."
-
-#~ msgid "The text \"%s\" was not found."
-#~ msgstr "Impossibile trovare la stringa \"%s\"."
-
 #~ msgid "<b>End Of Document.</b>"
 #~ msgstr "<b>Fine del Documento.</b>"
 
-#~ msgid "Timing System"
-#~ msgstr "Sistema di temporizzazione"
-
 #~ msgid "Open Movie"
 #~ msgstr "Apri file video"
-
-#~ msgid "Co_ntrast:"
-#~ msgstr "Co_ntrasto:"
 
 #~ msgid "Sat_uration:"
 #~ msgstr "Sat_urazione:"
@@ -2532,17 +2527,133 @@ msgstr ""
 #~ msgid "<b>Color Balance</b>"
 #~ msgstr "<b>Bilanciamento colore</b>"
 
-#~ msgid "_Brightness:"
-#~ msgstr "_Luminosità:"
-
 #~ msgid "<b>Jump Lenght</b>"
 #~ msgstr "<b>Lunghezza salto</b>"
 
-#~ msgid "Very short:"
-#~ msgstr "Molto piccolo:"
-
 #~ msgid "Short:"
 #~ msgstr "Piccolo:"
+
+#, fuzzy
+#~ msgid "_Import"
+#~ msgstr "Importa"
+
+#, fuzzy
+#~ msgid "_Text"
+#~ msgstr "Testo"
+
+#, fuzzy
+#~ msgid "_Export"
+#~ msgstr "Esporta"
+
+#~ msgid "_About"
+#~ msgstr "_Informazioni su..."
+
+#, fuzzy
+#~ msgid "Move subtitles"
+#~ msgstr "Muovi sottotitoli"
+
+#~ msgid "Split Subtitle"
+#~ msgstr "Dividi sottotitoli"
+
+#, fuzzy
+#~ msgid "Combine Subtitles"
+#~ msgstr "Muovi sottotitoli"
+
+#, fuzzy
+#~ msgid "Delete"
+#~ msgstr "Cancella"
+
+#~ msgid "Move Forward"
+#~ msgstr "Salta avanti"
+
+#~ msgid "Move Backwards"
+#~ msgstr "Salta indietro"
+
+#, fuzzy
+#~ msgid "Check _Errors"
+#~ msgstr "Controllo errori"
+
+#, fuzzy
+#~ msgid "Sc_ale"
+#~ msgstr "Scala"
+
+#~ msgid "<b>Style</b>"
+#~ msgstr "<b>Stile</b>"
+
+#~ msgid "Remove Line Empty"
+#~ msgstr "Elimina righe vuote"
+
+#~ msgid "Set All End Time"
+#~ msgstr "Configura tempo finale"
+
+#~ msgid "Vide_o"
+#~ msgstr "Vide_o"
+
+#~ msgid "The regular expression \"%s\" was not found."
+#~ msgstr "Impossibile trovare l'espressione regolare \"%s\"."
+
+#~ msgid "The text \"%s\" was not found."
+#~ msgstr "Impossibile trovare la stringa \"%s\"."
+
+#~ msgid "Timing System"
+#~ msgstr "Sistema di temporizzazione"
+
+#~ msgid "Co_ntrast:"
+#~ msgstr "Co_ntrasto:"
+
+#~ msgid "_Brightness:"
+#~ msgstr "_Luminosità:"
+
+#~ msgid "Do you want to save the subtitle before the exit?"
+#~ msgstr "Salvare il sottotitolo prima di uscire?"
+
+#~ msgid "Close the current document"
+#~ msgstr "Chiudi"
+
+#, fuzzy
+#~ msgid "Move subtitle after the preceding"
+#~ msgstr "Aggiungi nuovo sottotitolo dopo"
+
+#~ msgid "Add 100 Milliseconds To Start"
+#~ msgstr "Aggiungi 100 millesecondi all'inizio"
+
+#~ msgid "Remove 100 Milliseconds To Start"
+#~ msgstr "Sottrai 100 millisecondi all'inizio"
+
+#~ msgid "Add 100 Milliseconds To Duration"
+#~ msgstr "Aggiungi 100 millisecondi alla durata"
+
+#~ msgid "Remove 100 Milliseconds To Duration"
+#~ msgstr "Sottrai 100 millisecondi alla durata"
+
+#, fuzzy
+#~ msgid "Could not create element '%s'"
+#~ msgstr "Impossibile aprire il file <i>%s</i>."
+
+#~ msgid "This time is the duration..."
+#~ msgstr "Indica la durata..."
+
+#~ msgid ""
+#~ "<b>Subtitle has a too long line (translation):</b> %i characters\n"
+#~ "%s -> %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Una linea della traduzione dei sottotitoli è troppo lunga:</b> %i "
+#~ "caratteri\n"
+#~ "%s -> %s\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "<b>Subtitle has too many lines (translation):</b> %i\n"
+#~ "%s -> %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>La traduzione dei sottotitoli contiene troppe linee:</b> %i\n"
+#~ "%s -> %s\n"
+#~ "%s"
+
+#~ msgid "Very short:"
+#~ msgstr "Molto piccolo:"
 
 #~ msgid "Medium:"
 #~ msgstr "Medio:"
@@ -2561,54 +2672,6 @@ msgstr ""
 
 #~ msgid "Very short jump lenght, in second."
 #~ msgstr "Lunghezza del salto molto piccolo in secondi."
-
-#~ msgid "Do you want to save the subtitle before the exit?"
-#~ msgstr "Salvare il sottotitolo prima di uscire?"
-
-#, fuzzy
-#~ msgid "_Import"
-#~ msgstr "Importa"
-
-#, fuzzy
-#~ msgid "_Text"
-#~ msgstr "Testo"
-
-#, fuzzy
-#~ msgid "_Export"
-#~ msgstr "Esporta"
-
-#~ msgid "Close the current document"
-#~ msgstr "Chiudi "
-
-#~ msgid "_About"
-#~ msgstr "_Informazioni su..."
-
-#, fuzzy
-#~ msgid "Move subtitle after the preceding"
-#~ msgstr "Aggiungi nuovo sottotitolo dopo"
-
-#, fuzzy
-#~ msgid "Move subtitles"
-#~ msgstr "Muovi sottotitoli"
-
-#~ msgid "Split Subtitle"
-#~ msgstr "Dividi sottotitoli"
-
-#, fuzzy
-#~ msgid "Combine Subtitles"
-#~ msgstr "Muovi sottotitoli"
-
-#~ msgid "Add 100 Milliseconds To Start"
-#~ msgstr "Aggiungi 100 millesecondi all'inizio"
-
-#~ msgid "Remove 100 Milliseconds To Start"
-#~ msgstr "Sottrai 100 millisecondi all'inizio"
-
-#~ msgid "Add 100 Milliseconds To Duration"
-#~ msgstr "Aggiungi 100 millisecondi alla durata"
-
-#~ msgid "Remove 100 Milliseconds To Duration"
-#~ msgstr "Sottrai 100 millisecondi alla durata"
 
 #, fuzzy
 #~ msgid "_Jump"
@@ -2632,10 +2695,6 @@ msgstr ""
 #~ msgid "Medium Forward Jump"
 #~ msgstr "Salto medio in avanti"
 
-#, fuzzy
-#~ msgid "Delete"
-#~ msgstr "Cancella"
-
 #~ msgid "Very Short Forward Move"
 #~ msgstr "Avanzamento molto lento"
 
@@ -2647,9 +2706,6 @@ msgstr ""
 
 #~ msgid "Long Forward Move"
 #~ msgstr "Avanzamento veloce"
-
-#~ msgid "Move Backwards"
-#~ msgstr "Salta indietro"
 
 #~ msgid "Very Short Backwards Move"
 #~ msgstr "Salto all'indietro molto piccolo"
@@ -2663,48 +2719,12 @@ msgstr ""
 #~ msgid "Long Backwards Move"
 #~ msgstr "Salto all'indietro grande"
 
-#, fuzzy
-#~ msgid "Could not create element '%s'"
-#~ msgstr "Impossibile aprire il file <i>%s</i>."
+#~ msgid "Marker Higtlight:"
+#~ msgstr "Marcatore selezionato:"
 
 #, fuzzy
-#~ msgid "Check _Errors"
-#~ msgstr "Controllo errori"
+#~ msgid "Marker Invalid:"
+#~ msgstr "Marcatori:"
 
-#, fuzzy
-#~ msgid "Sc_ale"
-#~ msgstr "Scala"
-
-#~ msgid "<b>Style</b>"
-#~ msgstr "<b>Stile</b>"
-
-#~ msgid "Remove Line Empty"
-#~ msgstr "Elimina righe vuote"
-
-#~ msgid "Set All End Time"
-#~ msgstr "Configura tempo finale"
-
-#~ msgid "Vide_o"
-#~ msgstr "Vide_o"
-
-#~ msgid "This time is the duration..."
-#~ msgstr "Indica la durata..."
-
-#~ msgid ""
-#~ "<b>Subtitle has a too long line (translation):</b> %i characters\n"
-#~ "%s -> %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>Una linea della traduzione dei sottotitoli è troppo lunga:</b> %i "
-#~ "caratteri\n"
-#~ "%s -> %s\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "<b>Subtitle has too many lines (translation):</b> %i\n"
-#~ "%s -> %s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "<b>La traduzione dei sottotitoli contiene troppe linee:</b> %i\n"
-#~ "%s -> %s\n"
-#~ "%s"
+#~ msgid "Marker:"
+#~ msgstr "Marcatori:"

@@ -7,13 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.12.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-16 09:59+0200\n"
-"PO-Revision-Date: 2006-12-23 18:53+0100\n"
-"Last-Translator: Laurens Keek <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-05-08 19:05+0200\n"
+"PO-Revision-Date: 2008-03-25 12:38+0000\n"
+"Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Dutch <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-05-07 21:08+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
 #, fuzzy
@@ -86,23 +88,23 @@ msgid "Maximum character per second:"
 msgstr "Tekens per regel"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:37
+#: ../share/glade/dialog-preferences.glade.h:34
 #, fuzzy
 msgid "Maximum characters per line:"
 msgstr "Tekens per regel"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:39
+#: ../share/glade/dialog-preferences.glade.h:36
 msgid "Maximum number of line per subtitle:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:40
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Minimum characters per second:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:41
+#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
@@ -350,48 +352,51 @@ msgstr ""
 msgid "Interval in seconds:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Marker Higtlight:"
-msgstr ""
-
 #: ../share/glade/dialog-preferences.glade.h:35
-msgid "Marker Invalid:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Marker:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Maximum characters per second:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Speel volgende ondertitel"
 
-#: ../share/glade/dialog-preferences.glade.h:43
+#: ../share/glade/dialog-preferences.glade.h:40
 #, fuzzy
-msgid "Play line:"
+msgid "Player Position:"
 msgstr "Speel selectie"
 
-#: ../share/glade/dialog-preferences.glade.h:44
+#: ../share/glade/dialog-preferences.glade.h:41
 msgid "Plugins"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:45
+#: ../share/glade/dialog-preferences.glade.h:42
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: ../share/glade/dialog-preferences.glade.h:46
+#: ../share/glade/dialog-preferences.glade.h:43
 #, fuzzy
 msgid "Preview"
 msgstr "Voor"
 
-#: ../share/glade/dialog-preferences.glade.h:47
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Reset To _Defaults"
 msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:45
+#, fuzzy
+msgid "Subtitle Invalid:"
+msgstr "Opslaan ondertiteling"
+
+#: ../share/glade/dialog-preferences.glade.h:46
+#, fuzzy
+msgid "Subtitle Selected:"
+msgstr "Speel selectie"
+
+#: ../share/glade/dialog-preferences.glade.h:47
+#, fuzzy
+msgid "Subtitle:"
+msgstr "_Open"
 
 #: ../share/glade/dialog-preferences.glade.h:48
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
@@ -408,7 +413,7 @@ msgstr ""
 "mediaspeler:"
 
 #: ../share/glade/dialog-preferences.glade.h:50
-#: ../src/actions/ViewManager.cc:386
+#: ../src/actions/ViewManager.cc:390
 msgid "Timing"
 msgstr "Timing"
 
@@ -778,19 +783,16 @@ msgid "Vertical:"
 msgstr "Verticaal:"
 
 #: ../share/glade/dialog-view-manager.glade.h:1
-#, fuzzy
 msgid "<b>Columns</b>"
-msgstr "<b>Kleuren</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:2
-#, fuzzy
 msgid "<b>View</b>"
-msgstr "<b>Video</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:3
-#, fuzzy
 msgid "View Editing"
-msgstr "Originele montage:"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
@@ -821,7 +823,11 @@ msgstr "een programma om ondertiteling te bewerken"
 #. translator-credits
 #: ../src/actions/About.cc:95
 msgid "translator-credits"
-msgstr "Laurens Keek"
+msgstr ""
+"Laurens Keek\n"
+"\n"
+"Launchpad Contributions:\n"
+"  kaiman https://launchpad.net/~kaigfm"
 
 #: ../src/actions/AdjustTime.cc:47
 msgid "Add 100 Milliseconds"
@@ -919,9 +925,9 @@ msgid "Convert framerate"
 msgstr ""
 
 #: ../src/actions/ChangeFramerate.cc:320
-#, fuzzy, c-format
+#, c-format
 msgid "The new framerate was applied. (%s to %s)"
-msgstr "De vertaling is toegepast."
+msgstr ""
 
 #: ../src/actions/CombineSubtitles.cc:45
 msgid "_Combine"
@@ -1006,14 +1012,12 @@ msgid "Save the current file with a different name"
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
 msgid "Save _All"
-msgstr "Alles v_ervangen"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
 msgid "Save all open files"
-msgstr "De vertaling is toegepast."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:98
 #, fuzzy
@@ -1061,15 +1065,15 @@ msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:322
 #: ../src/actions/DocumentManagement.cc:370
-#, fuzzy, c-format
+#, c-format
 msgid "Saving file %s (%s, %s, %s)."
-msgstr "Bestand \"%s\" (%s, %s) aan het opslaan."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:329
 #: ../src/actions/DocumentManagement.cc:378
-#, fuzzy, c-format
+#, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
-msgstr "Het bestand \"%s\" (%s, %s) is niet opgeslagen."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:461
 #, fuzzy
@@ -1082,14 +1086,14 @@ msgid "%d subtitles were added with the translation"
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:546
-#, fuzzy, c-format
+#, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
-msgstr "Bestand \"%s\" (%s, %s) aan het opslaan."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:549
-#, fuzzy, c-format
+#, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
-msgstr "Het bestand \"%s\" (%s, %s) is niet opgeslagen."
+msgstr ""
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:47
 msgid "_Duplicate"
@@ -1494,9 +1498,8 @@ msgstr "_Video"
 
 #. _("_Open Media"),
 #: ../src/actions/VideoPlayerManagement.cc:54
-#, fuzzy
 msgid "Open a multimedia file"
-msgstr "Open ondertiteling"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:73
 msgid "_Play / Pause"
@@ -1569,9 +1572,8 @@ msgid "Define the playback rate"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:157
-#, fuzzy
 msgid "_Slower"
-msgstr "Schalen"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:164
 msgid "_Faster"
@@ -1591,9 +1593,8 @@ msgid "Seek to the first selected subtitle"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:189
-#, fuzzy
 msgid "_Repeat"
-msgstr "Ve_rvangen"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:199
 #, fuzzy
@@ -1628,9 +1629,8 @@ msgid "Play Previous Second"
 msgstr "Speel vorige seconde"
 
 #: ../src/actions/VideoPlayerManagement.cc:224
-#, fuzzy
 msgid "Play the second preceding the first selected subtitle"
-msgstr "Speel volgende ondertitel"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:230
 msgid "Play First Second"
@@ -1685,35 +1685,33 @@ msgstr "Opslaan ondertiteling"
 msgid "Set subtitle end"
 msgstr "Opslaan ondertiteling"
 
-#: ../src/actions/ViewManager.cc:123
+#: ../src/actions/ViewManager.cc:127
 msgid "Display"
 msgstr ""
 
 #. column name
-#: ../src/actions/ViewManager.cc:135 ../src/actions/ViewManager.cc:224
+#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
 #: ../src/gui/PreferencesUI.cc:137
 msgid "Name"
 msgstr "Naam"
 
-#: ../src/actions/ViewManager.cc:294
+#: ../src/actions/ViewManager.cc:298
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:383
-#, fuzzy
+#: ../src/actions/ViewManager.cc:387
 msgid "Simple"
-msgstr "Eenvoudig"
+msgstr ""
 
-#: ../src/actions/ViewManager.cc:384
-#, fuzzy
+#: ../src/actions/ViewManager.cc:388
 msgid "Advanced"
-msgstr "Geavanceerd"
+msgstr ""
 
-#: ../src/actions/ViewManager.cc:385
+#: ../src/actions/ViewManager.cc:389
 msgid "Translation"
 msgstr "Vertaling"
 
-#: ../src/actions/ViewManager.cc:417
+#: ../src/actions/ViewManager.cc:421
 msgid "View _Manager"
 msgstr ""
 
@@ -1737,9 +1735,8 @@ msgid "_Save Waveform"
 msgstr "Opslaan golfpatroon"
 
 #: ../src/actions/WaveformManagement.cc:65
-#, fuzzy
 msgid "Save wavefrom to file"
-msgstr "Golfpatroon opslaan in \"%s\""
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:70
 #, fuzzy
@@ -1767,9 +1764,8 @@ msgid "_Center With Selected Subtitle"
 msgstr "Selecteer volgende ondertitel"
 
 #: ../src/actions/WaveformManagement.cc:94
-#, fuzzy
 msgid "Scrolling With _Player"
-msgstr "Speel selectie"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:101
 #, fuzzy
@@ -1785,13 +1781,16 @@ msgid "Try to respect the timing preferences"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
-#, fuzzy
 msgid "_Wavform"
-msgstr "Opslaan golfpatroon"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
 msgid "Show or hide the waveform in the current window"
 msgstr ""
+
+#: ../src/actions/WaveformManagement.cc:218
+msgid "Save Waveform"
+msgstr "Opslaan golfpatroon"
 
 #: ../src/CommandSystem.cc:37
 #, fuzzy
@@ -1925,7 +1924,8 @@ msgstr "Thais"
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleSubViewer2.cc:135
+#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr "Ik kan dit bestand niet openen."
 
@@ -2001,12 +2001,12 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:702
+#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
 msgid "text"
 msgstr "tekst"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:781
+#: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
 msgid "translation"
 msgstr "vertaling"
 
@@ -2217,15 +2217,7 @@ msgstr ""
 msgid "OpenGL "
 msgstr ""
 
-#: ../src/gui/WaveformGeneratorUI.cc:51
-msgid "Generate Waveform"
-msgstr "Maak golfpatroon"
-
-#: ../src/gui/WaveformGeneratorUI.cc:235
-msgid "Media file could not be played."
-msgstr ""
-
-#: ../src/main.cc:214
+#: ../src/main.cc:220
 msgid " - edit subtitles files"
 msgstr ""
 
@@ -2282,11 +2274,11 @@ msgstr "_Open"
 msgid "Remove Subtitles"
 msgstr "Verplaats Ondertiteling"
 
-#: ../src/SubtitleSystem.cc:194
+#: ../src/SubtitleSystem.cc:196
 msgid "I can't find what is this format or it's not supported."
 msgstr "Ik herken het bestandsformaat niet of het is niet ondersteund."
 
-#: ../src/SubtitleView.cc:484
+#: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
 msgid "num"
 msgstr "nr"
 
@@ -2294,7 +2286,7 @@ msgstr "nr"
 msgid "This number column"
 msgstr "Kolom nummer"
 
-#: ../src/SubtitleView.cc:513
+#: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
 msgid "layer"
 msgstr "laag"
 
@@ -2302,7 +2294,7 @@ msgstr "laag"
 msgid "Layer number."
 msgstr "Laag number."
 
-#: ../src/SubtitleView.cc:540
+#: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
 msgid "start"
 msgstr "start"
 
@@ -2310,7 +2302,7 @@ msgstr "start"
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr "De tijd waarop de ondertitle op het scherm verschijnt."
 
-#: ../src/SubtitleView.cc:567
+#: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
 msgid "end"
 msgstr "einde"
 
@@ -2318,7 +2310,7 @@ msgstr "einde"
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr "De tijd waarop de ondertitel van het scherm verdwijnt."
 
-#: ../src/SubtitleView.cc:594
+#: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
 msgid "duration"
 msgstr "duur"
 
@@ -2326,15 +2318,15 @@ msgstr "duur"
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:624
+#: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
 msgid "style"
 msgstr "stijl"
 
-#: ../src/SubtitleView.cc:652
+#: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
 msgid "name"
 msgstr "naam"
 
-#: ../src/SubtitleView.cc:678
+#: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
 #, fuzzy
 msgid "cps"
 msgstr "t/r"
@@ -2345,23 +2337,23 @@ msgstr "t/r"
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Gebruik Ctrl+Enter voor een volgende regel"
 
-#: ../src/SubtitleView.cc:839
+#: ../src/SubtitleView.cc:839 ../src/SubtitleView.cc:1615
 msgid "note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:871
+#: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
 msgid "effect"
 msgstr "effect"
 
-#: ../src/SubtitleView.cc:902
+#: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
 msgid "R"
 msgstr "R"
 
-#: ../src/SubtitleView.cc:930
+#: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
 msgid "L"
 msgstr "L"
 
-#: ../src/SubtitleView.cc:958
+#: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
 msgid "V"
 msgstr "V"
 
@@ -2453,12 +2445,20 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/we/WaveformEditor.cc:760 ../src/we/WaveformEditor.cc:765
+#: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
 #, fuzzy
 msgid "Editing position"
 msgstr "duur"
 
-#: ../src/we/WaveformRendererGL.cc:372
+#: ../src/we/WaveformGenerator.cc:71
+msgid "Generate Waveform"
+msgstr "Maak golfpatroon"
+
+#: ../src/we/WaveformGenerator.cc:313
+msgid "Media file could not be played.\n"
+msgstr ""
+
+#: ../src/we/WaveformRendererGL.cc:378
 msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
@@ -2479,6 +2479,22 @@ msgstr ""
 #, fuzzy
 #~ msgid "_Play the video"
 #~ msgstr "_Speel video"
+
+#, fuzzy
+#~ msgid "Save waveform to file"
+#~ msgstr "Golfpatroon opslaan in \"%s\""
+
+#, fuzzy
+#~ msgid "Scrolling With _Cursor"
+#~ msgstr "Speel selectie"
+
+#, fuzzy
+#~ msgid "_Simple"
+#~ msgstr "Eenvoudig"
+
+#, fuzzy
+#~ msgid "_Advanced"
+#~ msgstr "Geavanceerd"
 
 #, fuzzy
 #~ msgid "_Translation"
@@ -2529,21 +2545,8 @@ msgstr ""
 #~ msgid "Characters Per Second"
 #~ msgstr "Tekens per regel"
 
-#~ msgid "Save Waveform"
-#~ msgstr "Opslaan golfpatroon"
-
-#~ msgid "The regular expression \"%s\" was not found."
-#~ msgstr "De reguliere expressie \"%s\" is niet gevonden"
-
-#~ msgid "The text \"%s\" was not found."
-#~ msgstr "De tekst \"%s\" is niet gevonden"
-
 #~ msgid "<b>End Of Document.</b>"
 #~ msgstr "<b>Einde document</b>"
-
-#, fuzzy
-#~ msgid "Timing System"
-#~ msgstr "Timing"
 
 #~ msgid "Open Movie"
 #~ msgstr "Open video"
@@ -2567,10 +2570,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Short:"
 #~ msgstr "Start:"
-
-#, fuzzy
-#~ msgid "Do you want to save the subtitle before the exit?"
-#~ msgstr "Wilt u de ondertiteling opslaan voor u afsluit?"
 
 #, fuzzy
 #~ msgid "_Import"
@@ -2599,18 +2598,6 @@ msgstr ""
 #~ msgid "Combine Subtitles"
 #~ msgstr "Verplaats Ondertiteling"
 
-#~ msgid "Add 100 Milliseconds To Start"
-#~ msgstr "100 msec optellen bij start"
-
-#~ msgid "Remove 100 Milliseconds To Start"
-#~ msgstr "100 msec aftrekken van start"
-
-#~ msgid "Add 100 Milliseconds To Duration"
-#~ msgstr "100 msec optellen bij einde"
-
-#~ msgid "Remove 100 Milliseconds To Duration"
-#~ msgstr "100 msec aftrekken van einde"
-
 #, fuzzy
 #~ msgid "Delete"
 #~ msgstr "Stijl verwijderen"
@@ -2637,9 +2624,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Vide_o"
 #~ msgstr "_Video"
-
-#~ msgid "This time is the duration..."
-#~ msgstr "Gedurende welke tijd de ondertitel zichtbaar is."
 
 #, fuzzy
 #~ msgid "Check"
@@ -2689,32 +2673,11 @@ msgstr ""
 #~ msgid "Change FPS: %f -> %f"
 #~ msgstr "Verander FPS: %f -> %f"
 
-#~ msgid "#"
-#~ msgstr "#"
-
 #~ msgid "_Save Subtitle"
 #~ msgstr "Op_slaan"
 
 #~ msgid "_Move"
 #~ msgstr "Ver_plaatsen"
-
-#~ msgid "Joint"
-#~ msgstr "Samenvoegen"
-
-#~ msgid "Stop"
-#~ msgstr "Stop"
-
-#~ msgid "Loaded file \"%s\" (%s, %s)"
-#~ msgstr "Bestand \"%s\" (%s, %s) geladen"
-
-#~ msgid "Error loading file \"%s\""
-#~ msgstr "Fout bij het laden van \"%s\""
-
-#~ msgid "Loaded file \"%s\" (%s, %s)."
-#~ msgstr "Bestand \"%s\" (%s, %s) geladen."
-
-#~ msgid "Error loading file \"%s\"."
-#~ msgstr "Fout bij het laden van \"%s\"."
 
 #~ msgid "Import text \"%s\"."
 #~ msgstr "Importeer de tekst \"%s\"."
@@ -2734,6 +2697,92 @@ msgstr ""
 #~ msgid "Check Time OK!"
 #~ msgstr "Tijdscontrole is OK!"
 
+#~ msgid "<b>Window</b>"
+#~ msgstr "<b>Venster</b>"
+
+#~ msgid "Last"
+#~ msgstr "Eind"
+
+#~ msgid "Next"
+#~ msgstr "Erna"
+
+#~ msgid "Play current subtitle"
+#~ msgstr "Speel huidige ondertitel"
+
+#~ msgid "Play first second"
+#~ msgstr "Speel eerste seconde"
+
+#~ msgid "Play last second"
+#~ msgstr "Speel laastste seconde"
+
+#~ msgid "Play next second"
+#~ msgstr "Speel volgende seconde"
+
+#~ msgid "Play previous second"
+#~ msgstr "Speel vorige seconde"
+
+#~ msgid "Play previous subtitle"
+#~ msgstr "Speel vorige ondertitel"
+
+#~ msgid "Scale:"
+#~ msgstr "Schaal:"
+
+#~ msgid "Destination:"
+#~ msgstr "Bestemming:"
+
+#~ msgid "Enter time that you want:"
+#~ msgstr "Kies de gewenste tijd:"
+
+#~ msgid "The regular expression \"%s\" was not found."
+#~ msgstr "De reguliere expressie \"%s\" is niet gevonden"
+
+#~ msgid "The text \"%s\" was not found."
+#~ msgstr "De tekst \"%s\" is niet gevonden"
+
+#, fuzzy
+#~ msgid "Timing System"
+#~ msgstr "Timing"
+
+#, fuzzy
+#~ msgid "Do you want to save the subtitle before the exit?"
+#~ msgstr "Wilt u de ondertiteling opslaan voor u afsluit?"
+
+#~ msgid "Add 100 Milliseconds To Start"
+#~ msgstr "100 msec optellen bij start"
+
+#~ msgid "Remove 100 Milliseconds To Start"
+#~ msgstr "100 msec aftrekken van start"
+
+#~ msgid "Add 100 Milliseconds To Duration"
+#~ msgstr "100 msec optellen bij einde"
+
+#~ msgid "Remove 100 Milliseconds To Duration"
+#~ msgstr "100 msec aftrekken van einde"
+
+#~ msgid "This time is the duration..."
+#~ msgstr "Gedurende welke tijd de ondertitel zichtbaar is."
+
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgid "Joint"
+#~ msgstr "Samenvoegen"
+
+#~ msgid "Stop"
+#~ msgstr "Stop"
+
+#~ msgid "Loaded file \"%s\" (%s, %s)"
+#~ msgstr "Bestand \"%s\" (%s, %s) geladen"
+
+#~ msgid "Error loading file \"%s\""
+#~ msgstr "Fout bij het laden van \"%s\""
+
+#~ msgid "Loaded file \"%s\" (%s, %s)."
+#~ msgstr "Bestand \"%s\" (%s, %s) geladen."
+
+#~ msgid "Error loading file \"%s\"."
+#~ msgstr "Fout bij het laden van \"%s\"."
+
 #~ msgid "Joint: Error loading file \"%s\" (%s)."
 #~ msgstr "Samenvoegen: fout bij het laden van \"%s\" (%s)."
 
@@ -2744,24 +2793,11 @@ msgstr ""
 #~ "<b>Choose the current framerate and which final framerate you want.</b>"
 #~ msgstr "<b>Kies de huidige en de nieuwe framerate.</b>"
 
-#~ msgid "Please choose the beginning and the end which you want to save"
-#~ msgstr "Kies de start en het einde van wat u op wilt slaan"
-
 #~ msgid "End:"
 #~ msgstr "Einde:"
 
-#~ msgid "<b>Window</b>"
-#~ msgstr "<b>Venster</b>"
-
-#~ msgid "General"
-#~ msgstr "Algemeen"
-
-#~ msgid ""
-#~ "<span size=\"small\">the uri to the subtitle file <i>(file:///home/toto/"
-#~ "subtitle.ssa)</i></span>"
-#~ msgstr ""
-#~ "<span size=\"small\">de uri van het ondertitelingsbestand <i>(file:///pad/"
-#~ "naar/ondertiteling.ssa)</i></span>"
+#~ msgid "Please choose the beginning and the end which you want to save"
+#~ msgstr "Kies de start en het einde van wat u op wilt slaan"
 
 #~ msgid ""
 #~ "<span size=\"small\">the path to the subtitle file <i>(/home/toto/"
@@ -2770,38 +2806,15 @@ msgstr ""
 #~ "<span size=\"small\">het pad naar het ondertitelingsbestand<i>(/pad/naar/"
 #~ "ondertiteling.ssa)</i></span>"
 
-#~ msgid "Play previous subtitle"
-#~ msgstr "Speel vorige ondertitel"
+#~ msgid ""
+#~ "<span size=\"small\">the uri to the subtitle file <i>(file:///home/toto/"
+#~ "subtitle.ssa)</i></span>"
+#~ msgstr ""
+#~ "<span size=\"small\">de uri van het ondertitelingsbestand <i>(file:///pad/"
+#~ "naar/ondertiteling.ssa)</i></span>"
 
-#~ msgid "Play current subtitle"
-#~ msgstr "Speel huidige ondertitel"
-
-#~ msgid "Play previous second"
-#~ msgstr "Speel vorige seconde"
-
-#~ msgid "Play first second"
-#~ msgstr "Speel eerste seconde"
+#~ msgid "General"
+#~ msgstr "Algemeen"
 
 #~ msgid "First"
 #~ msgstr "Start"
-
-#~ msgid "Play last second"
-#~ msgstr "Speel laastste seconde"
-
-#~ msgid "Last"
-#~ msgstr "Eind"
-
-#~ msgid "Play next second"
-#~ msgstr "Speel volgende seconde"
-
-#~ msgid "Next"
-#~ msgstr "Erna"
-
-#~ msgid "Scale:"
-#~ msgstr "Schaal:"
-
-#~ msgid "Destination:"
-#~ msgstr "Bestemming:"
-
-#~ msgid "Enter time that you want:"
-#~ msgstr "Kies de gewenste tijd:"

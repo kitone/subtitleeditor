@@ -7,28 +7,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-16 09:59+0200\n"
-"PO-Revision-Date: 2006-11-21 00:42+0100\n"
-"Last-Translator: Wojciech Myrda <vojcek@tlen.pl>\n"
+"POT-Creation-Date: 2008-05-08 19:05+0200\n"
+"PO-Revision-Date: 2008-04-19 15:05+0000\n"
+"Last-Translator: Piotr Wicijowski <Unknown>\n"
 "Language-Team: Polish <none@none.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-05-07 21:08+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
-#, fuzzy
 msgid "<b>Apply to</b>"
-msgstr "<b>Opcja:</b>"
+msgstr "<b>Zastosuj do</b>"
 
 #: ../share/glade/dialog-change-framerate.glade.h:2
 #, fuzzy
 msgid "<b>Framerate</b>"
-msgstr "<b>Ograniczenie</b>"
+msgstr "<b>Liczba klatek/s</b>"
 
 #: ../share/glade/dialog-change-framerate.glade.h:3
-#, fuzzy
 msgid "All documents"
-msgstr "Nowy Dokument"
+msgstr "Wszystkich dokumentów"
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
 #: ../src/actions/ChangeFramerate.cc:301
@@ -37,9 +37,8 @@ msgid "Change Framerate"
 msgstr "Zmień FPS"
 
 #: ../share/glade/dialog-change-framerate.glade.h:5
-#, fuzzy
 msgid "Current document"
-msgstr "Nowy Dokument"
+msgstr "Bieżącego dokumentu"
 
 #: ../share/glade/dialog-change-framerate.glade.h:6
 msgid "Current:"
@@ -52,12 +51,11 @@ msgstr "Nowa:"
 #: ../share/glade/dialog-check-errors.glade.h:1
 #, fuzzy
 msgid "Check Errors"
-msgstr "Sprawdź _Słowo"
+msgstr "Sprawdź błędy"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:1
-#, fuzzy
 msgid "<b>Checking</b>"
-msgstr "<b>Font</b>"
+msgstr "<b>Sprawdzanie</b>"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:2
 #, fuzzy
@@ -65,14 +63,12 @@ msgid "<b>Timings</b>"
 msgstr "<b>Wygląd</b>"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:3
-#, fuzzy
 msgid "Check Errors Preferences"
-msgstr "Sprawdź _Słowo"
+msgstr "Preferencje sprawdzania błędów"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:4
-#, fuzzy
 msgid "Gap between subtitle"
-msgstr "Graj kolejny napis"
+msgstr "Przerwa między napisami"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
@@ -83,62 +79,63 @@ msgstr "Graj kolejny napis"
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
 #, fuzzy
 msgid "Maximum character per second:"
-msgstr "Znaki w Linii"
+msgstr "Maksymalna liczba znaków na sekundę:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:37
-#, fuzzy
+#: ../share/glade/dialog-preferences.glade.h:34
 msgid "Maximum characters per line:"
-msgstr "Znaki w Linii"
+msgstr "Maksymalna liczba znaków w wierszu:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:39
+#: ../share/glade/dialog-preferences.glade.h:36
 msgid "Maximum number of line per subtitle:"
-msgstr ""
+msgstr "Maksymalna liczba wierszy w napisie"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:40
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Minimum characters per second:"
-msgstr ""
+msgstr "Minimalna liczba znaków na sekundę:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:41
+#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Minimum display of the subtitle in mseconds:"
-msgstr ""
+msgstr "Minimalny czas wyświetlania napisu w milisekundach:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
 msgid "Minimum gap between subtitle in mseconds:"
-msgstr ""
+msgstr "Minimalny odstęp między napisami w milisekundach:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
 msgid "Overlapping"
-msgstr ""
+msgstr "Nakładanie się na siebie"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:13
 #: ../src/gui/CheckErrorsUI.cc:154
 msgid "Too long display time"
-msgstr ""
+msgstr "Zbyt długi czas wyświetlania"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:14
 msgid "Too long line"
-msgstr ""
+msgstr "Zbyt długi wiersz"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:15
 #: ../src/gui/CheckErrorsUI.cc:99
 msgid "Too short display time"
-msgstr ""
+msgstr "Zbyt krótki czas wyświetlania"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:1
 #: ../src/gui/MenuBar.cc:175
 msgid "Configure Keyboard Shortcuts"
-msgstr ""
+msgstr "Konfiguracja skrótów klawiszowych"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
 msgid ""
 "To edit a shortcut key, clic on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
+"Aby zmienić klawisz skrótu, kliknij w odpowiednim rzędzie i naciśnij nowy "
+"klawisz; Backspace usuwa istniejący klawisz skrótu."
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:1
 msgid "<b>Please choose encodings</b>"
@@ -167,26 +164,25 @@ msgstr "Zastąp _Wszystkie"
 #: ../share/glade/dialog-find-and-replace.glade.h:5
 #: ../share/glade/dialog-spell-checking.glade.h:6
 msgid "Replace with:"
-msgstr "Zastąp z:"
+msgstr "Zastąp przez:"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:6
 msgid "_Ignore case"
-msgstr "_Ignoruj wielkość"
+msgstr "_Ignoruj wielkość liter"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
 msgid "_Used regular expression"
 msgstr "_Użyte wyrażenia regularne"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:1
-#, fuzzy
 msgid "<b>Position</b>"
-msgstr "<b>Opcja:</b>"
+msgstr "<b>Położenie</b>"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:2
 #: ../share/glade/dialog-scale-subtitles.glade.h:3
 #, fuzzy
 msgid "Current time:"
-msgstr "Obecna:"
+msgstr "Bieżący czas:"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:3
 #: ../src/actions/MoveSubtitles.cc:165
@@ -195,9 +191,8 @@ msgstr "Przenieś Napisy"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:4
 #: ../share/glade/dialog-scale-subtitles.glade.h:4
-#, fuzzy
 msgid "New time:"
-msgstr "Nowa:"
+msgstr "Nowy czas:"
 
 #: ../share/glade/dialog-preferences.glade.h:1
 #, fuzzy
@@ -210,14 +205,12 @@ msgid "<b>Encodings Character</b>"
 msgstr "<b>Charakter kodowania</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:3
-#, fuzzy
 msgid "<b>File Saving</b>"
-msgstr "<b>Font</b>"
+msgstr "<b>Zapis pliku</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:4
-#, fuzzy
 msgid "<b>General</b>"
-msgstr "<b>Ograniczenie</b>"
+msgstr "<b>Ogólne</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:5
 #, fuzzy
@@ -225,9 +218,8 @@ msgid "<b>Output</b>"
 msgstr "<b>Font</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:6
-#, fuzzy
 msgid "<b>Subtitle View</b>"
-msgstr "<b>Styl</b>"
+msgstr "<b>Widok napisów</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:7
 #, fuzzy
@@ -283,13 +275,12 @@ msgid "<span size=\"small\">the uri to the video file</span>"
 msgstr "<span size=\"small\">the uri do pliku video</span>"
 
 #: ../share/glade/dialog-preferences.glade.h:18
-#, fuzzy
 msgid "Ask to save on _exit"
-msgstr "Zapytaj by zapisać i wyjść "
+msgstr "Pytaj czy zapisać plik przy kończeniu pracy programu."
 
 #: ../share/glade/dialog-preferences.glade.h:19
 msgid "Background:"
-msgstr ""
+msgstr "Tło:"
 
 #: ../share/glade/dialog-preferences.glade.h:20
 #, fuzzy
@@ -298,7 +289,7 @@ msgstr "Komenda"
 
 #: ../share/glade/dialog-preferences.glade.h:21
 msgid "Create a _backup copy of files before saving"
-msgstr ""
+msgstr "Utwórz kopię _zapasową plików przed zapisaniem ich"
 
 #: ../share/glade/dialog-preferences.glade.h:22
 #, fuzzy
@@ -307,7 +298,7 @@ msgstr "Graj kolejny napis"
 
 #: ../share/glade/dialog-preferences.glade.h:23
 msgid "Display background"
-msgstr ""
+msgstr "Wyświetlaj tło"
 
 #: ../share/glade/dialog-preferences.glade.h:24
 #, fuzzy
@@ -316,7 +307,7 @@ msgstr "Graj kolejny napis"
 
 #: ../share/glade/dialog-preferences.glade.h:25
 msgid "Display the translated subtitle instead of the original one."
-msgstr ""
+msgstr "Wyświetl przetłumaczone napisy zamiast oryginalnych."
 
 #: ../share/glade/dialog-preferences.glade.h:26
 #, fuzzy
@@ -325,7 +316,7 @@ msgstr "Zapisanie Wavefrm niepowiodło się"
 
 #: ../share/glade/dialog-preferences.glade.h:27
 msgid "Enable _rubberband selection"
-msgstr ""
+msgstr "Włącz _elastyczne zaznaczanie"
 
 #: ../share/glade/dialog-preferences.glade.h:28
 msgid "Encodings"
@@ -336,61 +327,66 @@ msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 msgstr ""
+"Przykład z użyciem programu mplayer:\n"
+"mplayer \"#plik_video\" -sub \"#plik_z_napisami\" -ss #sekund"
 
 #: ../share/glade/dialog-preferences.glade.h:31
 msgid "Force aspect _ratio"
-msgstr ""
+msgstr "Wymuszaj &proporcje obrazu"
 
 #: ../share/glade/dialog-preferences.glade.h:32
 msgid "Interface"
-msgstr ""
+msgstr "Interfejs"
 
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Interval in seconds:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Marker Higtlight:"
-msgstr ""
+msgstr "Odstęp w sekundach:"
 
 #: ../share/glade/dialog-preferences.glade.h:35
-msgid "Marker Invalid:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Marker:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Maximum characters per second:"
-msgstr ""
+msgstr "Maksymalna liczba znaków na sekundę:"
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Graj kolejny napis"
 
-#: ../share/glade/dialog-preferences.glade.h:43
+#: ../share/glade/dialog-preferences.glade.h:40
 #, fuzzy
-msgid "Play line:"
+msgid "Player Position:"
 msgstr "Graj Selekcję"
 
-#: ../share/glade/dialog-preferences.glade.h:44
+#: ../share/glade/dialog-preferences.glade.h:41
 msgid "Plugins"
-msgstr ""
+msgstr "Wtyczki"
 
-#: ../share/glade/dialog-preferences.glade.h:45
+#: ../share/glade/dialog-preferences.glade.h:42
 msgid "Preferences"
-msgstr "Właściwości"
+msgstr "Preferencje"
 
-#: ../share/glade/dialog-preferences.glade.h:46
+#: ../share/glade/dialog-preferences.glade.h:43
 #, fuzzy
 msgid "Preview"
 msgstr "Poprzedni"
 
-#: ../share/glade/dialog-preferences.glade.h:47
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Reset To _Defaults"
-msgstr ""
+msgstr "P_rzywróć domyślne"
+
+#: ../share/glade/dialog-preferences.glade.h:45
+#, fuzzy
+msgid "Subtitle Invalid:"
+msgstr "Zapisz Napisy"
+
+#: ../share/glade/dialog-preferences.glade.h:46
+#, fuzzy
+msgid "Subtitle Selected:"
+msgstr "Graj Selekcję"
+
+#: ../share/glade/dialog-preferences.glade.h:47
+#, fuzzy
+msgid "Subtitle:"
+msgstr "_Otwórz Napisy"
 
 #: ../share/glade/dialog-preferences.glade.h:48
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
@@ -405,17 +401,17 @@ msgid ""
 msgstr "Następujące komendy zostaną zastąpione w momenciepodjęcia akcji:"
 
 #: ../share/glade/dialog-preferences.glade.h:50
-#: ../src/actions/ViewManager.cc:386
+#: ../src/actions/ViewManager.cc:390
 msgid "Timing"
-msgstr ""
+msgstr "Synchronizacja"
 
 #: ../share/glade/dialog-preferences.glade.h:51
 msgid "Use _dynamic keyboard shortcuts"
-msgstr ""
+msgstr "Używaj _dynamicznych skrótów klawiszowowych"
 
 #: ../share/glade/dialog-preferences.glade.h:52
 msgid "Use shaded _background"
-msgstr ""
+msgstr "Używaj &cieniowanego tła"
 
 #: ../share/glade/dialog-preferences.glade.h:53
 msgid "Used \"Auto Detected\""
@@ -427,7 +423,7 @@ msgstr "Odtwarzacz Video"
 
 #: ../share/glade/dialog-preferences.glade.h:55
 msgid "Wave fill:"
-msgstr ""
+msgstr "Wypełnienie fali:"
 
 #: ../share/glade/dialog-preferences.glade.h:56
 #, fuzzy
@@ -444,18 +440,21 @@ msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
 "key combination while  the menu item is highlighted."
 msgstr ""
+"Gdy opcja ta jest włączona, można zmieniać skróty klawiszowe poleceń menu "
+"poprzez naciśnięcie pożądanej kombinacji klawiszy w czasie gdy dana pozycja "
+"jest podświetlona."
 
 #: ../share/glade/dialog-preferences.glade.h:59
 msgid "_Audio:"
-msgstr ""
+msgstr "_Audio:"
 
 #: ../share/glade/dialog-preferences.glade.h:60
 msgid "_Autosave files every"
-msgstr ""
+msgstr "_Automatyczny zapis pliku co"
 
 #: ../share/glade/dialog-preferences.glade.h:61
 msgid "_Center the text of the subtitle in the column"
-msgstr ""
+msgstr "Wyśrodkuj tekst napisów w kolumnie"
 
 #: ../share/glade/dialog-preferences.glade.h:62
 #, fuzzy
@@ -463,14 +462,12 @@ msgid "_Font:"
 msgstr "FOrmat:"
 
 #: ../share/glade/dialog-preferences.glade.h:63
-#, fuzzy
 msgid "_Maximize window"
-msgstr "Maksymalizuj Okno"
+msgstr "_Maksymalizuj okno"
 
 #: ../share/glade/dialog-preferences.glade.h:64
-#, fuzzy
 msgid "_Show the number of character per line"
-msgstr "Ta kolumna reprezentuje liczbę charakterów w linii."
+msgstr "Pokaż liczbę _znaków w wierszu."
 
 #: ../share/glade/dialog-preferences.glade.h:65
 #, fuzzy
@@ -479,7 +476,7 @@ msgstr "_VIdeo"
 
 #: ../share/glade/dialog-preferences.glade.h:66
 msgid "gtk-about"
-msgstr ""
+msgstr "gtk-o programie"
 
 #: ../share/glade/dialog-preferences.glade.h:67
 #: ../share/glade/dialog-view-manager.glade.h:7
@@ -489,7 +486,7 @@ msgstr "Właściwości"
 
 #: ../share/glade/dialog-preferences.glade.h:68
 msgid "minutes"
-msgstr ""
+msgstr "min."
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:1
 #, fuzzy
@@ -572,7 +569,7 @@ msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:17
 msgid "Point Time: "
-msgstr "Miejsce w Czasie:"
+msgstr "Miejsce w Czasie: "
 
 #: ../share/glade/dialog-script-properties.glade.h:18
 msgid "Script Properties"
@@ -650,7 +647,7 @@ msgstr "Nowy Dokument"
 
 #: ../share/glade/dialog-split-document.glade.h:2
 msgid "The beginning for the new document:"
-msgstr ""
+msgstr "Początek nowego dokumentu:"
 
 #: ../share/glade/dialog-style-editor.glade.h:1
 msgid "<b>Alignment</b>"
@@ -719,7 +716,7 @@ msgstr "Zarządzaj Stylami"
 
 #: ../share/glade/dialog-style-editor.glade.h:17
 msgid "Opaque Box"
-msgstr ""
+msgstr "Prostokątne nieprzezroczyste tło"
 
 #: ../share/glade/dialog-style-editor.glade.h:18
 msgid "Outline"
@@ -767,26 +764,23 @@ msgstr "Edytor Napisów - Edytor Stylów"
 
 #: ../share/glade/dialog-style-editor.glade.h:29
 msgid "TODO"
-msgstr ""
+msgstr "Do zrobienia"
 
 #: ../share/glade/dialog-style-editor.glade.h:30
 msgid "Vertical:"
 msgstr "Pionowo:"
 
 #: ../share/glade/dialog-view-manager.glade.h:1
-#, fuzzy
 msgid "<b>Columns</b>"
-msgstr "<b>Kolory</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:2
-#, fuzzy
 msgid "<b>View</b>"
-msgstr "<b>Video</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:3
-#, fuzzy
 msgid "View Editing"
-msgstr "Orginalna Edycja:"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
@@ -817,7 +811,13 @@ msgstr "narzędzie do edycji napisów"
 #. translator-credits
 #: ../src/actions/About.cc:95
 msgid "translator-credits"
-msgstr "Wojciech Myrda"
+msgstr ""
+"Wojciech Myrda\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Piotr Wicijowski https://launchpad.net/~piwsko\n"
+"  Wojciech Myrda https://launchpad.net/~vojcek\n"
+"  pp/bs https://launchpad.net/~pawprok"
 
 #: ../src/actions/AdjustTime.cc:47
 msgid "Add 100 Milliseconds"
@@ -880,7 +880,7 @@ msgstr "Usuń 100 Milisekund z Początku"
 #: ../src/actions/MoveSubtitles.cc:176
 #: ../src/actions/TryToExtendToPerfect.cc:110
 msgid "Please select at least a subtitle."
-msgstr ""
+msgstr "Proszę wybrać przynajmniej jeden napis."
 
 #: ../src/actions/AdjustTime.cc:223
 #, fuzzy
@@ -894,7 +894,7 @@ msgstr "Zatwiedź Tłumaczenie"
 
 #: ../src/actions/ApplyTranslation.cc:46
 msgid "Replace the text of the subtitle by the translation"
-msgstr ""
+msgstr "Zastąp napis jego przetłumaczoną wersją"
 
 #: ../src/actions/ApplyTranslation.cc:108
 #, fuzzy
@@ -912,20 +912,20 @@ msgstr "Zmień FPS"
 
 #: ../src/actions/ChangeFramerate.cc:215
 msgid "Convert framerate"
-msgstr ""
+msgstr "Zamień ilość klatek na sekundę"
 
 #: ../src/actions/ChangeFramerate.cc:320
 #, fuzzy, c-format
 msgid "The new framerate was applied. (%s to %s)"
-msgstr "Tłumaczenie zostało zatwierdzone."
+msgstr "Zastosowano nową liczbę klatek /s. (z %s na %s)"
 
 #: ../src/actions/CombineSubtitles.cc:45
 msgid "_Combine"
-msgstr ""
+msgstr "P_ołącz"
 
 #: ../src/actions/CombineSubtitles.cc:45
 msgid "Merge the selected subtitles"
-msgstr ""
+msgstr "Scal wybrane napisy"
 
 #: ../src/actions/CombineSubtitles.cc:160 ../src/actions/SplitSubtitle.cc:112
 #, fuzzy
@@ -949,20 +949,20 @@ msgstr "Skasuj Styl"
 
 #: ../src/actions/DeleteSubtitleSelect.cc:130
 msgid "1 subtitle has been deleted."
-msgstr ""
+msgstr "Skasowano 1 napis."
 
 #: ../src/actions/DeleteSubtitleSelect.cc:132
 #, c-format
 msgid "%d subtitles have been deleted."
-msgstr ""
+msgstr "Skasowano %d napisów."
 
 #: ../src/actions/Dialoguize.cc:48
 msgid "_Dialogue"
-msgstr ""
+msgstr "_Dialogi"
 
 #: ../src/actions/Dialoguize.cc:48
 msgid "Add or remove dialogue line"
-msgstr ""
+msgstr "Dodaj lub usuń linię dialogową"
 
 #: ../src/actions/Dialoguize.cc:116 ../src/actions/Italicize.cc:116
 #, fuzzy
@@ -971,16 +971,16 @@ msgstr "Bałtycki"
 
 #: ../src/actions/DocumentManagement.cc:39
 msgid "Close _without Saving"
-msgstr ""
+msgstr "Zamknij _bez zapisywania"
 
 #: ../src/actions/DocumentManagement.cc:47
 #, c-format
 msgid "Save the changes to document \"%s\" before closing?"
-msgstr ""
+msgstr "Zapisać zmiany w dokumencie \"%s\" przed zamknięciem?"
 
 #: ../src/actions/DocumentManagement.cc:48
 msgid "If you don't save, the last changes will be permanently lost."
-msgstr ""
+msgstr "Jeśli nie zapiszesz zmian, zostaną one trwale utracone."
 
 #: ../src/actions/DocumentManagement.cc:76
 #, fuzzy
@@ -999,17 +999,15 @@ msgstr "Zapisanie dokumentu nie powiodło się."
 
 #: ../src/actions/DocumentManagement.cc:89
 msgid "Save the current file with a different name"
+msgstr "Zapisuje bieżący plik pod inną nazwą"
+
+#: ../src/actions/DocumentManagement.cc:93
+msgid "Save _All"
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
-msgid "Save _All"
-msgstr "Zastąp _Wszystkie"
-
-#: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
 msgid "Save all open files"
-msgstr "Tłumaczenie zostało zatwierdzone."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:98
 #, fuzzy
@@ -1048,24 +1046,24 @@ msgstr "_Edytuj"
 
 #: ../src/actions/DocumentManagement.cc:116
 msgid "Quit the program"
-msgstr ""
+msgstr "Zakończ program"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
 #: ../src/actions/DocumentManagement.cc:276
 msgid "I am already open"
-msgstr ""
+msgstr "Dokument jest już otwarty"
 
 #: ../src/actions/DocumentManagement.cc:322
 #: ../src/actions/DocumentManagement.cc:370
-#, fuzzy, c-format
+#, c-format
 msgid "Saving file %s (%s, %s, %s)."
-msgstr "Zapisz plik \"%s\" (%s, %s)"
+msgstr "Zapisywanie pliku %s (%s, %s, %s)."
 
 #: ../src/actions/DocumentManagement.cc:329
 #: ../src/actions/DocumentManagement.cc:378
-#, fuzzy, c-format
+#, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
-msgstr "Plik \"%s\" (%s, %s) nie został zapisany."
+msgstr "Plik %s (%s, %s, %s) nie został zapisany."
 
 #: ../src/actions/DocumentManagement.cc:461
 #, fuzzy
@@ -1078,18 +1076,18 @@ msgid "%d subtitles were added with the translation"
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:546
-#, fuzzy, c-format
+#, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
-msgstr "Zapisz plik \"%s\" (%s, %s)"
+msgstr "Zapisywanie pliku z tłumaczeniem %s (%s, %s, %s)."
 
 #: ../src/actions/DocumentManagement.cc:549
-#, fuzzy, c-format
+#, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
-msgstr "Plik \"%s\" (%s, %s) nie został zapisany."
+msgstr "Plik z tłumaczeniem %s (%s, %s, %s) nie został zapisany."
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:47
 msgid "_Duplicate"
-msgstr ""
+msgstr "_Powiel"
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:47
 #, fuzzy
@@ -1103,15 +1101,17 @@ msgstr "Wybierz Następne Napisy"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
-msgstr ""
+msgstr "_Zwiększ długość"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "Extend the length of selected subtitles to the start time of the next"
 msgstr ""
+"Zwiększ długość wybranych napisów do chwili rozpoczęcia wyświetlania "
+"kolejnych"
 
 #: ../src/actions/ExtendLength.cc:117
 msgid "Extend lenght"
-msgstr ""
+msgstr "Zwiększ długość"
 
 #: ../src/actions/ExternalVideoPlayer.cc:46
 #, fuzzy
@@ -1125,7 +1125,7 @@ msgstr "Otwórz Film"
 
 #: ../src/actions/ExternalVideoPlayer.cc:49
 msgid "Open movie with external video player"
-msgstr ""
+msgstr "Otwórz plik za pomocą zewnętrznego odtwarzacza video."
 
 #: ../src/actions/ExternalVideoPlayer.cc:53
 #, fuzzy
@@ -1134,7 +1134,7 @@ msgstr "Graj Selekcję"
 
 #: ../src/actions/ExternalVideoPlayer.cc:53
 msgid "Play movie with external video player"
-msgstr ""
+msgstr "Odtwarzaj plik za pomocą zewnętrznego odtwarzacza video."
 
 #: ../src/actions/ExternalVideoPlayer.cc:107
 #, fuzzy
@@ -1149,7 +1149,7 @@ msgstr "Zastąp"
 #: ../src/actions/FindAndReplace.cc:286 ../src/actions/FindAndReplace.cc:508
 #: ../src/actions/FindAndReplace.cc:575
 msgid "The document is empty"
-msgstr ""
+msgstr "Dokument jest pusty"
 
 #: ../src/actions/FindAndReplace.cc:404
 #, fuzzy
@@ -1163,23 +1163,23 @@ msgstr "Zastąp"
 
 #: ../src/actions/FindAndReplace.cc:408
 msgid "Find Ne_xt"
-msgstr ""
+msgstr "Znajdź _następne"
 
 #: ../src/actions/FindAndReplace.cc:408
 msgid "Search forwards for the same text"
-msgstr ""
+msgstr "Wyszukuje kolejne wystąpienie tego samego tekstu"
 
 #: ../src/actions/FindAndReplace.cc:411
 msgid "Find Pre_vious"
-msgstr ""
+msgstr "Znajdź p_oprzednie"
 
 #: ../src/actions/FindAndReplace.cc:411
 msgid "Search backwards for the same text"
-msgstr ""
+msgstr "Wyszukuje poprzednie wystąpienie tego samego tekstu"
 
 #: ../src/actions/FindAndReplace.cc:558 ../src/actions/FindAndReplace.cc:625
 msgid "Not found"
-msgstr ""
+msgstr "Nie znaleziono"
 
 #: ../src/actions/InsertSubtitle.cc:45
 #, fuzzy
@@ -1188,7 +1188,7 @@ msgstr "Wstaw Przed"
 
 #: ../src/actions/InsertSubtitle.cc:45
 msgid "Insert blank subtitle before the selected subtitle"
-msgstr ""
+msgstr "Wstaw pusty napis przed wybranym napisem"
 
 #: ../src/actions/InsertSubtitle.cc:49
 #, fuzzy
@@ -1197,7 +1197,7 @@ msgstr "Wstaw Poza"
 
 #: ../src/actions/InsertSubtitle.cc:49
 msgid "Insert blank subtitle after the selected subtitle"
-msgstr ""
+msgstr "Wstaw pusty napis po wybranym napisie"
 
 #: ../src/actions/InsertSubtitle.cc:142 ../src/Subtitles.cc:123
 #, fuzzy
@@ -1221,7 +1221,7 @@ msgstr "Nowy Dokument"
 
 #: ../src/actions/JoinDocument.cc:47
 msgid "Add subtitles from file"
-msgstr ""
+msgstr "Dodaj napisy z pliku"
 
 #: ../src/actions/JoinDocument.cc:123
 #, fuzzy
@@ -1231,21 +1231,23 @@ msgstr "Nowy Dokument"
 #: ../src/actions/JoinDocument.cc:138
 #, c-format
 msgid "%d subtitles has been added at this document."
-msgstr ""
+msgstr "Dodano %d napisów do tego dokumentu."
 
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:47
 msgid "_Move After Preceding"
-msgstr ""
+msgstr "Przesuń _przed poprzedni"
 
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:47
 msgid ""
 "Move subtitle after the preceding with the respect of the minimum gap "
 "between subtitles"
 msgstr ""
+"Przesuń fragment za poprzedzające napisy uwzględniając minimalną przerwę "
+"między napisami"
 
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:118
 msgid "Move After Preceding"
-msgstr ""
+msgstr "Przesuń _za poprzedni"
 
 #: ../src/actions/MoveSubtitles.cc:87
 msgid "_Move Subtitles"
@@ -1253,7 +1255,7 @@ msgstr "_Przesun Napisy"
 
 #: ../src/actions/MoveSubtitles.cc:87
 msgid "All subtitles will be also moved after the first selected subtitle"
-msgstr ""
+msgstr "Wszystkie napisy będą przesunięte za pierwszy zaznaczony fragment"
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
 #, fuzzy
@@ -1262,7 +1264,7 @@ msgstr "Tłumaczenie"
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
 msgid "Reverse the text and the translation"
-msgstr ""
+msgstr "Przywróć tekst sprzed tłumaczenia"
 
 #: ../src/actions/ReverseTextAndTranslation.cc:109
 #, fuzzy
@@ -1392,7 +1394,7 @@ msgstr "Nowy Dokument"
 
 #: ../src/actions/SplitDocument.cc:126
 msgid "Split the current document in two"
-msgstr ""
+msgstr "Podziel bieżący dokument na dwa"
 
 #: ../src/actions/SplitSubtitle.cc:45
 #, fuzzy
@@ -1455,33 +1457,35 @@ msgstr "Importuj Text"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "_Try To Extend To Perfect"
-msgstr ""
+msgstr "_Spróbuj wydłużyć do idealnego"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "Try to extend to perfect with the respect of timing preferences"
 msgstr ""
+"_Spróbuj wydłużyć do idealnego, uwzględniając przy tym preferencje czasu "
+"trwania"
 
 #: ../src/actions/TryToExtendToPerfect.cc:116
 msgid "Try to extend to perfect"
-msgstr ""
+msgstr "Spróbuj wydłużyć do idealnego"
 
 #: ../src/actions/UndoRedo.cc:48
 msgid "Undo the last action"
-msgstr ""
+msgstr "Cofnięcie ostatniej operacji"
 
 #: ../src/actions/UndoRedo.cc:51
 msgid "Redo the last undone action"
-msgstr ""
+msgstr "Ponowienie ostatniej cofniętej operacji"
 
 #: ../src/actions/UndoRedo.cc:135
 #, c-format
 msgid "Undo: %s"
-msgstr ""
+msgstr "Cofnij: %s"
 
 #: ../src/actions/UndoRedo.cc:158
 #, c-format
 msgid "redo: %s"
-msgstr ""
+msgstr "przywróć: %s"
 
 #: ../src/actions/VideoPlayerManagement.cc:47
 #, fuzzy
@@ -1490,17 +1494,16 @@ msgstr "_VIdeo"
 
 #. _("_Open Media"),
 #: ../src/actions/VideoPlayerManagement.cc:54
-#, fuzzy
 msgid "Open a multimedia file"
-msgstr "Wczytaj Napisy"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:73
 msgid "_Play / Pause"
-msgstr ""
+msgstr "_Odtwarzanie/Pauza"
 
 #: ../src/actions/VideoPlayerManagement.cc:74
 msgid "Play or make a pause"
-msgstr ""
+msgstr "Odtwarzaj lub pauzuj"
 
 #: ../src/actions/VideoPlayerManagement.cc:82
 msgid "Skip _Backards"
@@ -1542,12 +1545,12 @@ msgstr "Początek:"
 #: ../src/actions/VideoPlayerManagement.cc:101
 #: ../src/actions/VideoPlayerManagement.cc:136
 msgid "Medium"
-msgstr ""
+msgstr "Średni"
 
 #: ../src/actions/VideoPlayerManagement.cc:108
 #: ../src/actions/VideoPlayerManagement.cc:143
 msgid "Long"
-msgstr ""
+msgstr "Długi"
 
 #: ../src/actions/VideoPlayerManagement.cc:117
 msgid "Skip _Forward"
@@ -1565,9 +1568,8 @@ msgid "Define the playback rate"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:157
-#, fuzzy
 msgid "_Slower"
-msgstr "Skala"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:164
 msgid "_Faster"
@@ -1584,12 +1586,11 @@ msgstr "Graj Selekcję"
 
 #: ../src/actions/VideoPlayerManagement.cc:180
 msgid "Seek to the first selected subtitle"
-msgstr ""
+msgstr "Przewiń do pierwszych z zaznaczonych napisów"
 
 #: ../src/actions/VideoPlayerManagement.cc:189
-#, fuzzy
 msgid "_Repeat"
-msgstr "_Zastąp"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:199
 #, fuzzy
@@ -1598,7 +1599,7 @@ msgstr "Graj Poprzednie Napisy"
 
 #: ../src/actions/VideoPlayerManagement.cc:200
 msgid "Play previous subtitle from the first selected subtitle"
-msgstr ""
+msgstr "Odtwarzaj fragment poprzedzający pierwszy z zaznaczonych napisów"
 
 #: ../src/actions/VideoPlayerManagement.cc:207
 #, fuzzy
@@ -1617,16 +1618,15 @@ msgstr "Graj Następne Napisy"
 
 #: ../src/actions/VideoPlayerManagement.cc:216
 msgid "Play next subtitle from the first selected subtitle"
-msgstr ""
+msgstr "Odtwarzaj fragment następujący po pierwszym z zaznaczonych napisów"
 
 #: ../src/actions/VideoPlayerManagement.cc:223
 msgid "Play Previous Second"
 msgstr "Graj Poprzednią Sekundę"
 
 #: ../src/actions/VideoPlayerManagement.cc:224
-#, fuzzy
 msgid "Play the second preceding the first selected subtitle"
-msgstr "Graj kolejny napis"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:230
 msgid "Play First Second"
@@ -1681,35 +1681,33 @@ msgstr "Zapisz Napisy"
 msgid "Set subtitle end"
 msgstr "Zapisz Napisy"
 
-#: ../src/actions/ViewManager.cc:123
+#: ../src/actions/ViewManager.cc:127
 msgid "Display"
 msgstr ""
 
 #. column name
-#: ../src/actions/ViewManager.cc:135 ../src/actions/ViewManager.cc:224
+#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
 #: ../src/gui/PreferencesUI.cc:137
 msgid "Name"
 msgstr "Nazwa"
 
-#: ../src/actions/ViewManager.cc:294
+#: ../src/actions/ViewManager.cc:298
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:383
-#, fuzzy
+#: ../src/actions/ViewManager.cc:387
 msgid "Simple"
-msgstr "Prosty"
+msgstr ""
 
-#: ../src/actions/ViewManager.cc:384
-#, fuzzy
+#: ../src/actions/ViewManager.cc:388
 msgid "Advanced"
-msgstr "Zaawansowany"
+msgstr ""
 
-#: ../src/actions/ViewManager.cc:385
+#: ../src/actions/ViewManager.cc:389
 msgid "Translation"
 msgstr "Tłumaczenie"
 
-#: ../src/actions/ViewManager.cc:417
+#: ../src/actions/ViewManager.cc:421
 msgid "View _Manager"
 msgstr ""
 
@@ -1725,7 +1723,7 @@ msgstr "Zapisz Waveform"
 
 #: ../src/actions/WaveformManagement.cc:61
 msgid "Open wavefrom from a file or create from a video"
-msgstr ""
+msgstr "Otwórz lub stwórz z pliku wideo kształt ścieżki audio"
 
 #: ../src/actions/WaveformManagement.cc:65
 #, fuzzy
@@ -1733,9 +1731,8 @@ msgid "_Save Waveform"
 msgstr "Zapisz Waveform"
 
 #: ../src/actions/WaveformManagement.cc:65
-#, fuzzy
 msgid "Save wavefrom to file"
-msgstr "Zapisz waveform w \"%s\""
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:70
 #, fuzzy
@@ -1763,9 +1760,8 @@ msgid "_Center With Selected Subtitle"
 msgstr "Wybierz Następne Napisy"
 
 #: ../src/actions/WaveformManagement.cc:94
-#, fuzzy
 msgid "Scrolling With _Player"
-msgstr "Graj Selekcję"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:101
 #, fuzzy
@@ -1781,13 +1777,16 @@ msgid "Try to respect the timing preferences"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
-#, fuzzy
 msgid "_Wavform"
-msgstr "Zapisz Waveform"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
 msgid "Show or hide the waveform in the current window"
 msgstr ""
+
+#: ../src/actions/WaveformManagement.cc:218
+msgid "Save Waveform"
+msgstr "Zapisz Waveform"
 
 #: ../src/CommandSystem.cc:37
 #, fuzzy
@@ -1797,12 +1796,13 @@ msgstr "Graj Selekcję"
 #: ../src/Document.cc:249
 #, c-format
 msgid "Could not open the file <i>%s</i>."
-msgstr ""
+msgstr "Nie można otworzyć pliku <i>%s</i>."
 
 #: ../src/Document.cc:255
 #, c-format
 msgid "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
 msgstr ""
+"Nie można otworzyć pliku <i>%s</i> używając kodowania znaków <i>%s</i>."
 
 #: ../src/Document.cc:345 ../src/Document.cc:349
 msgid "Save Document Failed."
@@ -1921,7 +1921,8 @@ msgstr "Tajski"
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleSubViewer2.cc:135
+#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr "Nie mogę otworzyć tego pliku"
 
@@ -1945,7 +1946,7 @@ msgstr "Nowa:"
 
 #: ../src/gui/CheckErrorsUI.cc:44
 msgid "An error is detected when the subtitle overlap on next subtitle."
-msgstr ""
+msgstr "Błąd jest wykrywany gdy kolejne napisy nakładają się na siebie."
 
 #: ../src/gui/CheckErrorsUI.cc:62
 #, c-format
@@ -1954,6 +1955,9 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
+"<b>Fragmenty zachodzą na następne napisy:</b> %ims zachodzenia\n"
+"%s -> %s\n"
+"%s"
 
 #: ../src/gui/CheckErrorsUI.cc:100
 #, fuzzy
@@ -1967,10 +1971,14 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
+"<b>Zbyt krótki czas wyświetlania napisu:</b> %i znaków/s\n"
+"%s -> %s\n"
+"%s"
 
 #: ../src/gui/CheckErrorsUI.cc:155
+#, fuzzy
 msgid "An error is detected when the number ..."
-msgstr ""
+msgstr "Wykryto błąd gdy liczba ..."
 
 #: ../src/gui/CheckErrorsUI.cc:174
 #, c-format
@@ -1979,14 +1987,17 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
+"<b>Zbyt długi czas wyświetlania napisu:</b> %i znaków/s\n"
+"%s -> %s\n"
+"%s"
 
 #: ../src/gui/CheckErrorsUI.cc:216
 msgid "Too Long line"
-msgstr ""
+msgstr "Zbyt długi wiersz"
 
 #: ../src/gui/CheckErrorsUI.cc:217 ../src/gui/CheckErrorsUI.cc:287
 msgid "An error is detected when ..."
-msgstr ""
+msgstr "Wykryto błąd gdy ..."
 
 #: ../src/gui/CheckErrorsUI.cc:243
 #, c-format
@@ -1995,14 +2006,17 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
+"<b>Zbyt długi wiersz w napisie (%s):</b> %i znaków\n"
+"%s -> %s\n"
+"%s"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:702
+#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
 msgid "text"
 msgstr "tekst"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:781
+#: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
 msgid "translation"
 msgstr "tłumaczenie"
 
@@ -2013,6 +2027,9 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
+"<b>Napis ma zbyt wiele wierszy (%s):</b> %i\n"
+"%s -> %s\n"
+"%s"
 
 #: ../src/gui/CheckErrorsUI.cc:354
 #, fuzzy
@@ -2023,23 +2040,24 @@ msgstr "Graj kolejny napis"
 msgid ""
 "An error is detected when the minimum gap between subtitles is too short."
 msgstr ""
+"Błąd jest wykrywany gdy minimalna przerwa między napisami jest zbyt krótka."
 
 #: ../src/gui/CheckErrorsUI.cc:376
 #, c-format
 msgid "<b>Too short gap between subtitle:</b> %ims"
-msgstr ""
+msgstr "<b>Zbyt krótka przerwa między napisami:</b> %ims"
 
 #: ../src/gui/CheckErrorsUI.cc:514
 msgid "Line"
-msgstr ""
+msgstr "Wiersz"
 
 #: ../src/gui/CheckErrorsUI.cc:528
 msgid "Errors"
-msgstr ""
+msgstr "Błędy"
 
 #: ../src/gui/CheckErrorsUI.cc:728
 msgid "Document not found."
-msgstr ""
+msgstr "Nie znaleziono dokumentu."
 
 #: ../src/gui/DialogFileChooser.cc:32
 #, fuzzy
@@ -2110,7 +2128,7 @@ msgstr "Sprawdź _Słowo"
 
 #: ../src/gui/MenuBar.cc:156
 msgid "Launch the errors checking"
-msgstr ""
+msgstr "Włącz sprawdzanie błędów"
 
 #: ../src/gui/MenuBar.cc:164
 #, fuzzy
@@ -2128,7 +2146,7 @@ msgstr "edytor napisów"
 
 #: ../src/gui/MenuBar.cc:174
 msgid "Configure _Keyboard Shortcuts"
-msgstr ""
+msgstr "Konfiguracja skrótów _klawiszowych."
 
 #: ../src/gui/MenuBar.cc:182
 msgid "_Help"
@@ -2146,25 +2164,26 @@ msgstr "Początek:"
 
 #: ../src/gui/MenuBar.cc:533
 msgid "Invalid shortcut."
-msgstr ""
+msgstr "Niepoprawny skrót."
 
 #: ../src/gui/MenuBar.cc:551
 #, c-format
 msgid "Shortcut \"%s\" is already taken by \"%s\"."
-msgstr ""
+msgstr "Skrót \"%s\" jest już przypisany do \"%s\"."
 
 #: ../src/gui/MenuBar.cc:554
 #, c-format
 msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
 msgstr ""
+"Ponowne przypisanie skrótu spowoduje usunięcie jego skojarzenia z \"%s\"."
 
 #: ../src/gui/MenuBar.cc:557
 msgid "Conflicting Shortcuts"
-msgstr ""
+msgstr "Skróty będące w konflikcie"
 
 #: ../src/gui/MenuBar.cc:563
 msgid "Changing shortcut failed."
-msgstr ""
+msgstr "Zmiana skrótu nie powiodła się."
 
 #: ../src/gui/MenuBar.cc:594
 #, fuzzy
@@ -2174,7 +2193,7 @@ msgstr "Otwarcie dokumentu nie powiodło się."
 #. column charset
 #: ../src/gui/PreferencesUI.cc:147
 msgid "Charset"
-msgstr ""
+msgstr "Zestaw znaków"
 
 #: ../src/gui/PreferencesUI.cc:322 ../src/gui/PreferencesUI.cc:332
 #, fuzzy
@@ -2183,63 +2202,55 @@ msgstr "Wykryty Automatycznie"
 
 #: ../src/gui/PreferencesUI.cc:323
 msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr ""
+msgstr "ALSA - Advanced Linux Sound Architecture"
 
 #: ../src/gui/PreferencesUI.cc:324
 msgid "ESD - Enlightenment Sound Daemon"
-msgstr ""
+msgstr "ESD - Enlightenment Sound Daemon"
 
 #: ../src/gui/PreferencesUI.cc:325
 msgid "OSS - Open Sound System"
-msgstr ""
+msgstr "OSS - Open Sound System"
 
 #: ../src/gui/PreferencesUI.cc:326 ../src/gui/PreferencesUI.cc:335
 msgid "SDL - Simple DirectMedia Layer"
-msgstr ""
+msgstr "SDL - Simple DirectMedia Layer"
 
 #: ../src/gui/PreferencesUI.cc:327 ../src/gui/PreferencesUI.cc:336
 msgid "GConf"
-msgstr ""
+msgstr "GConf"
 
 #: ../src/gui/PreferencesUI.cc:333
 msgid "X Window System (X11/XShm/Xv)"
-msgstr ""
+msgstr "X Window System (X11/XShm/Xv)"
 
 #: ../src/gui/PreferencesUI.cc:334
 msgid "X Window System (No Xv)"
-msgstr ""
+msgstr "X Window System (nie Xv)"
 
 #: ../src/gui/PreferencesUI.cc:337
 msgid "OpenGL "
-msgstr ""
+msgstr "OpenGL "
 
-#: ../src/gui/WaveformGeneratorUI.cc:51
-msgid "Generate Waveform"
-msgstr "Generuj Waveform"
-
-#: ../src/gui/WaveformGeneratorUI.cc:235
-msgid "Media file could not be played."
-msgstr ""
-
-#: ../src/main.cc:214
+#: ../src/main.cc:220
 msgid " - edit subtitles files"
-msgstr ""
+msgstr " - edytuje pliki z napisami"
 
 #: ../src/Options.cc:58
 msgid "NAME"
-msgstr ""
+msgstr "Nazwa"
 
 #: ../src/Options.cc:66
 msgid "ENCODING"
-msgstr ""
+msgstr "Kodowanie"
 
 #: ../src/Options.cc:74 ../src/Options.cc:82
 msgid "FILE"
-msgstr ""
+msgstr "Plik"
 
 #: ../src/Options.cc:99
 msgid "[FILE...]"
-msgstr ""
+msgstr "[Plik...]"
 
 #: ../src/SubtitleFormat.cc:151
 msgid ""
@@ -2278,11 +2289,11 @@ msgstr "_Otwórz Napisy"
 msgid "Remove Subtitles"
 msgstr "Przenieś Napisy"
 
-#: ../src/SubtitleSystem.cc:194
+#: ../src/SubtitleSystem.cc:196
 msgid "I can't find what is this format or it's not supported."
 msgstr "Niepotrafię rozpoznać formatu lub jest on niewspierany."
 
-#: ../src/SubtitleView.cc:484
+#: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
 msgid "num"
 msgstr "nr"
 
@@ -2290,7 +2301,7 @@ msgstr "nr"
 msgid "This number column"
 msgstr "Ten numer kolumny"
 
-#: ../src/SubtitleView.cc:513
+#: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
 msgid "layer"
 msgstr "poziom"
 
@@ -2298,7 +2309,7 @@ msgstr "poziom"
 msgid "Layer number."
 msgstr "Numer poziomu"
 
-#: ../src/SubtitleView.cc:540
+#: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
 msgid "start"
 msgstr "początek"
 
@@ -2306,7 +2317,7 @@ msgstr "początek"
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr "To jest czas w którym napisy ukażą się na ekranie."
 
-#: ../src/SubtitleView.cc:567
+#: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
 msgid "end"
 msgstr "koniec"
 
@@ -2314,25 +2325,26 @@ msgstr "koniec"
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr "To jest czas w którym napisy znikną z ekranu."
 
-#: ../src/SubtitleView.cc:594
+#: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
 msgid "duration"
 msgstr "czas trwania"
 
 #: ../src/SubtitleView.cc:611
 msgid "The duration of the subtitle."
-msgstr ""
+msgstr "Czas trwania napisu."
 
-#: ../src/SubtitleView.cc:624
+#: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
 msgid "style"
 msgstr "styl"
 
-#: ../src/SubtitleView.cc:652
+#: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
 msgid "name"
 msgstr "nazwa"
 
-#: ../src/SubtitleView.cc:678
+#: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
+#, fuzzy
 msgid "cps"
-msgstr ""
+msgstr "znaków na sekundę"
 
 #: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:793
 #: ../src/SubtitleView.cc:849
@@ -2340,25 +2352,25 @@ msgstr ""
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Użyj Ctrl+Return dla zakończenia strony"
 
-#: ../src/SubtitleView.cc:839
+#: ../src/SubtitleView.cc:839 ../src/SubtitleView.cc:1615
 msgid "note"
-msgstr ""
+msgstr "notatka"
 
-#: ../src/SubtitleView.cc:871
+#: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
 msgid "effect"
 msgstr "efekt"
 
-#: ../src/SubtitleView.cc:902
+#: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
 msgid "R"
 msgstr "P"
 
-#: ../src/SubtitleView.cc:930
+#: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
 msgid "L"
 msgstr "L"
 
-#: ../src/SubtitleView.cc:958
+#: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
 msgid "V"
-msgstr ""
+msgstr "V"
 
 #: ../src/SubtitleView.cc:1019
 msgid "Editing layer"
@@ -2432,6 +2444,8 @@ msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
+"Stworzenie konwersji wideo (%s) nie powiodło się. Proszę sprawdzić swoją "
+"instalację GStreamer'a."
 
 #: ../src/vp/GStreamerPlayer.cc:611
 #, c-format
@@ -2439,6 +2453,8 @@ msgid ""
 "Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
+"Stworzenie nakładania napisów (%s) nie powiodło się. Proszę sprawdzić swoją "
+"instalację GStreamer'a."
 
 #: ../src/vp/GStreamerPlayer.cc:805
 #, c-format
@@ -2446,13 +2462,24 @@ msgid ""
 "Media file could not be played.\n"
 "%s"
 msgstr ""
+"Plik multimedialny nie mógł zostać odtworzony.\n"
+"%s"
 
-#: ../src/we/WaveformEditor.cc:760 ../src/we/WaveformEditor.cc:765
+#: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
 #, fuzzy
 msgid "Editing position"
 msgstr "czas trwania"
 
-#: ../src/we/WaveformRendererGL.cc:372
+#: ../src/we/WaveformGenerator.cc:71
+msgid "Generate Waveform"
+msgstr "Generuj Waveform"
+
+#: ../src/we/WaveformGenerator.cc:313
+#, fuzzy
+msgid "Media file could not be played.\n"
+msgstr "Nie można odtworzyć pliku multimedialnego."
+
+#: ../src/we/WaveformRendererGL.cc:378
 msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
@@ -2473,6 +2500,22 @@ msgstr ""
 #, fuzzy
 #~ msgid "_Play the video"
 #~ msgstr "_Graj Film"
+
+#, fuzzy
+#~ msgid "Save waveform to file"
+#~ msgstr "Zapisz waveform w \"%s\""
+
+#, fuzzy
+#~ msgid "Scrolling With _Cursor"
+#~ msgstr "Graj Selekcję"
+
+#, fuzzy
+#~ msgid "_Simple"
+#~ msgstr "Prosty"
+
+#, fuzzy
+#~ msgid "_Advanced"
+#~ msgstr "Zaawansowany"
 
 #, fuzzy
 #~ msgid "_Translation"
@@ -2519,15 +2562,6 @@ msgstr ""
 #~ msgid "Characters Per Second"
 #~ msgstr "Znaki w Linii"
 
-#~ msgid "Save Waveform"
-#~ msgstr "Zapisz Waveform"
-
-#~ msgid "The regular expression \"%s\" was not found."
-#~ msgstr "Wyrażenie regularne \"%s\" nie zostało znalezione."
-
-#~ msgid "The text \"%s\" was not found."
-#~ msgstr "Tekst \"%s\" nie został znaleziony."
-
 #~ msgid "<b>End Of Document.</b>"
 #~ msgstr "<b>Koniec Dokumentu.</b>"
 
@@ -2553,10 +2587,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Short:"
 #~ msgstr "Początek:"
-
-#, fuzzy
-#~ msgid "Do you want to save the subtitle before the exit?"
-#~ msgstr "Czy chcesz zapisać napisy przed wyjściem ?"
 
 #, fuzzy
 #~ msgid "_Import"
@@ -2585,18 +2615,6 @@ msgstr ""
 #~ msgid "Combine Subtitles"
 #~ msgstr "Przenieś Napisy"
 
-#~ msgid "Add 100 Milliseconds To Start"
-#~ msgstr "Dodaj 100 Milisekund do Początku"
-
-#~ msgid "Remove 100 Milliseconds To Start"
-#~ msgstr "Usuń 100 Milisekund z Początku"
-
-#~ msgid "Add 100 Milliseconds To Duration"
-#~ msgstr "Dodaj 100 Milisekund do Trwania"
-
-#~ msgid "Remove 100 Milliseconds To Duration"
-#~ msgstr "Usuń 100 Milisekund z Trwania"
-
 #, fuzzy
 #~ msgid "Delete"
 #~ msgstr "Skasuj Styl"
@@ -2623,9 +2641,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Vide_o"
 #~ msgstr "_VIdeo"
-
-#~ msgid "This time is the duration..."
-#~ msgstr "Ten czas jest czasem trwania..."
 
 #, fuzzy
 #~ msgid "Check"
@@ -2672,32 +2687,11 @@ msgstr ""
 #~ msgid "Change FPS: %f -> %f"
 #~ msgstr "Zmień FPS: %f -> %f"
 
-#~ msgid "#"
-#~ msgstr "#"
-
 #~ msgid "_Save Subtitle"
 #~ msgstr "_Zapiszz Napisy"
 
 #~ msgid "_Move"
 #~ msgstr "_Przesuń"
-
-#~ msgid "Joint"
-#~ msgstr "Zespól"
-
-#~ msgid "Stop"
-#~ msgstr "Stop"
-
-#~ msgid "Loaded file \"%s\" (%s, %s)"
-#~ msgstr "Wczytany plik \"%s\" (%s, %s)"
-
-#~ msgid "Error loading file \"%s\""
-#~ msgstr "Błąd w wczytywaniu pliku \"%s\""
-
-#~ msgid "Loaded file \"%s\" (%s, %s)."
-#~ msgstr "Wczytano napisy \"%s\" (%s, %s)"
-
-#~ msgid "Error loading file \"%s\"."
-#~ msgstr "Bląd w wczytywaniu pliku \"%s\""
 
 #~ msgid "Import text \"%s\"."
 #~ msgstr "Importuj Tekst \"%s\"."
@@ -2717,6 +2711,88 @@ msgstr ""
 #~ msgid "Check Time OK!"
 #~ msgstr "Sprawdzenie Czasu OK!"
 
+#~ msgid "<b>Window</b>"
+#~ msgstr "<b>Okno</b>"
+
+#~ msgid "Last"
+#~ msgstr "Ostatnia"
+
+#~ msgid "Next"
+#~ msgstr "Następny"
+
+#~ msgid "Play current subtitle"
+#~ msgstr "Graj obecny napis"
+
+#~ msgid "Play first second"
+#~ msgstr "Graj pierwszą sekundę"
+
+#~ msgid "Play last second"
+#~ msgstr "Graj ostatnią sekundę"
+
+#~ msgid "Play next second"
+#~ msgstr "Zagraj następną sekundę"
+
+#~ msgid "Play previous second"
+#~ msgstr "Graj poprzednią sekundę"
+
+#~ msgid "Play previous subtitle"
+#~ msgstr "Graj poprzedni napis"
+
+#~ msgid "Scale:"
+#~ msgstr "Skala:"
+
+#~ msgid "Destination:"
+#~ msgstr "Położenie:"
+
+#~ msgid "Enter time that you want:"
+#~ msgstr "Wprowadź czas który chcesz:"
+
+#~ msgid "The regular expression \"%s\" was not found."
+#~ msgstr "Wyrażenie regularne \"%s\" nie zostało znalezione."
+
+#~ msgid "The text \"%s\" was not found."
+#~ msgstr "Tekst \"%s\" nie został znaleziony."
+
+#, fuzzy
+#~ msgid "Do you want to save the subtitle before the exit?"
+#~ msgstr "Czy chcesz zapisać napisy przed wyjściem ?"
+
+#~ msgid "Add 100 Milliseconds To Start"
+#~ msgstr "Dodaj 100 Milisekund do Początku"
+
+#~ msgid "Remove 100 Milliseconds To Start"
+#~ msgstr "Usuń 100 Milisekund z Początku"
+
+#~ msgid "Add 100 Milliseconds To Duration"
+#~ msgstr "Dodaj 100 Milisekund do Trwania"
+
+#~ msgid "Remove 100 Milliseconds To Duration"
+#~ msgstr "Usuń 100 Milisekund z Trwania"
+
+#~ msgid "This time is the duration..."
+#~ msgstr "Ten czas jest czasem trwania..."
+
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgid "Joint"
+#~ msgstr "Zespól"
+
+#~ msgid "Stop"
+#~ msgstr "Stop"
+
+#~ msgid "Loaded file \"%s\" (%s, %s)"
+#~ msgstr "Wczytany plik \"%s\" (%s, %s)"
+
+#~ msgid "Error loading file \"%s\""
+#~ msgstr "Błąd w wczytywaniu pliku \"%s\""
+
+#~ msgid "Loaded file \"%s\" (%s, %s)."
+#~ msgstr "Wczytano napisy \"%s\" (%s, %s)"
+
+#~ msgid "Error loading file \"%s\"."
+#~ msgstr "Bląd w wczytywaniu pliku \"%s\""
+
 #~ msgid "Joint: Error loading file \"%s\" (%s)."
 #~ msgstr "Połączenie: Błąd w wczytywaniu \"%s\" (%s)."
 
@@ -2732,9 +2808,6 @@ msgstr ""
 
 #~ msgid "Please choose the beginning and the end which you want to save"
 #~ msgstr "Proszę wybierz początek i koniec który chcesz zapisać"
-
-#~ msgid "<b>Window</b>"
-#~ msgstr "<b>Okno</b>"
 
 #~ msgid "<span size=\"small\"><b>#seconds</b></span>"
 #~ msgstr "<span size=\"small\"><b>#seconds</b></span>"
@@ -2771,35 +2844,11 @@ msgstr ""
 #~ msgid "First"
 #~ msgstr "Pierwsza"
 
-#~ msgid "Last"
-#~ msgstr "Ostatnia"
+#~ msgid "Marker Higtlight:"
+#~ msgstr "Podświetlenie markera:"
 
-#~ msgid "Next"
-#~ msgstr "Następny"
+#~ msgid "Marker Invalid:"
+#~ msgstr "Niewłaściwy marker:"
 
-#~ msgid "Play current subtitle"
-#~ msgstr "Graj obecny napis"
-
-#~ msgid "Play first second"
-#~ msgstr "Graj pierwszą sekundę"
-
-#~ msgid "Play last second"
-#~ msgstr "Graj ostatnią sekundę"
-
-#~ msgid "Play next second"
-#~ msgstr "Zagraj następną sekundę"
-
-#~ msgid "Play previous second"
-#~ msgstr "Graj poprzednią sekundę"
-
-#~ msgid "Play previous subtitle"
-#~ msgstr "Graj poprzedni napis"
-
-#~ msgid "Scale:"
-#~ msgstr "Skala:"
-
-#~ msgid "Destination:"
-#~ msgstr "Położenie:"
-
-#~ msgid "Enter time that you want:"
-#~ msgstr "Wprowadź czas który chcesz:"
+#~ msgid "Marker:"
+#~ msgstr "Znacznik:"

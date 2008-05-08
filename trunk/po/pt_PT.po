@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.11-alpha2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-16 09:59+0200\n"
+"POT-Creation-Date: 2008-05-08 19:05+0200\n"
 "PO-Revision-Date: 2006-11-20 09:00+0100\n"
 "Last-Translator: Joel Calado <joelcalado@gmail.com>\n"
 "Language-Team: \n"
@@ -86,23 +86,23 @@ msgid "Maximum character per second:"
 msgstr "Caracteres por linha"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:37
+#: ../share/glade/dialog-preferences.glade.h:34
 #, fuzzy
 msgid "Maximum characters per line:"
 msgstr "Caracteres por linha"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:39
+#: ../share/glade/dialog-preferences.glade.h:36
 msgid "Maximum number of line per subtitle:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:40
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Minimum characters per second:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:41
+#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
@@ -349,49 +349,52 @@ msgstr ""
 msgid "Interval in seconds:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Marker Higtlight:"
-msgstr ""
-
 #: ../share/glade/dialog-preferences.glade.h:35
-msgid "Marker Invalid:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Marker:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Maximum characters per second:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Reproduziar próxima legenda"
 
-#: ../share/glade/dialog-preferences.glade.h:43
+#: ../share/glade/dialog-preferences.glade.h:40
 #, fuzzy
-msgid "Play line:"
+msgid "Player Position:"
 msgstr "Reproduzir a seleção"
 
-#: ../share/glade/dialog-preferences.glade.h:44
+#: ../share/glade/dialog-preferences.glade.h:41
 #, fuzzy
 msgid "Plugins"
 msgstr "Polonês"
 
-#: ../share/glade/dialog-preferences.glade.h:45
+#: ../share/glade/dialog-preferences.glade.h:42
 msgid "Preferences"
 msgstr "Preferências"
 
-#: ../share/glade/dialog-preferences.glade.h:46
+#: ../share/glade/dialog-preferences.glade.h:43
 #, fuzzy
 msgid "Preview"
 msgstr "Ant"
 
-#: ../share/glade/dialog-preferences.glade.h:47
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Reset To _Defaults"
 msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:45
+#, fuzzy
+msgid "Subtitle Invalid:"
+msgstr "Guardar Legenda"
+
+#: ../share/glade/dialog-preferences.glade.h:46
+#, fuzzy
+msgid "Subtitle Selected:"
+msgstr "Reproduzir a seleção"
+
+#: ../share/glade/dialog-preferences.glade.h:47
+#, fuzzy
+msgid "Subtitle:"
+msgstr "A_brir Legenda"
 
 #: ../share/glade/dialog-preferences.glade.h:48
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
@@ -406,7 +409,7 @@ msgid ""
 msgstr "Os parâmetros seguintes serão substituídos quando executada a acção "
 
 #: ../share/glade/dialog-preferences.glade.h:50
-#: ../src/actions/ViewManager.cc:386
+#: ../src/actions/ViewManager.cc:390
 msgid "Timing"
 msgstr "Sincronização"
 
@@ -1685,35 +1688,35 @@ msgstr "Guardar Legenda"
 msgid "Set subtitle end"
 msgstr "Guardar Legenda"
 
-#: ../src/actions/ViewManager.cc:123
+#: ../src/actions/ViewManager.cc:127
 msgid "Display"
 msgstr ""
 
 #. column name
-#: ../src/actions/ViewManager.cc:135 ../src/actions/ViewManager.cc:224
+#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
 #: ../src/gui/PreferencesUI.cc:137
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/actions/ViewManager.cc:294
+#: ../src/actions/ViewManager.cc:298
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:383
+#: ../src/actions/ViewManager.cc:387
 #, fuzzy
 msgid "Simple"
 msgstr "Simples"
 
-#: ../src/actions/ViewManager.cc:384
+#: ../src/actions/ViewManager.cc:388
 #, fuzzy
 msgid "Advanced"
 msgstr "Avançado"
 
-#: ../src/actions/ViewManager.cc:385
+#: ../src/actions/ViewManager.cc:389
 msgid "Translation"
 msgstr "Tradução"
 
-#: ../src/actions/ViewManager.cc:417
+#: ../src/actions/ViewManager.cc:421
 msgid "View _Manager"
 msgstr ""
 
@@ -1792,6 +1795,10 @@ msgstr "Salvar Wav"
 #: ../src/actions/WaveformManagement.cc:115
 msgid "Show or hide the waveform in the current window"
 msgstr ""
+
+#: ../src/actions/WaveformManagement.cc:218
+msgid "Save Waveform"
+msgstr "Salvar Wav"
 
 #: ../src/CommandSystem.cc:37
 #, fuzzy
@@ -1925,7 +1932,8 @@ msgstr "Tailandês"
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleSubViewer2.cc:135
+#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr "Eu não consigo abrir esse arquivo."
 
@@ -2001,12 +2009,12 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:702
+#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
 msgid "text"
 msgstr "texto"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:781
+#: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
 msgid "translation"
 msgstr "tradução"
 
@@ -2217,15 +2225,7 @@ msgstr ""
 msgid "OpenGL "
 msgstr ""
 
-#: ../src/gui/WaveformGeneratorUI.cc:51
-msgid "Generate Waveform"
-msgstr "Gerar wav"
-
-#: ../src/gui/WaveformGeneratorUI.cc:235
-msgid "Media file could not be played."
-msgstr ""
-
-#: ../src/main.cc:214
+#: ../src/main.cc:220
 msgid " - edit subtitles files"
 msgstr ""
 
@@ -2282,11 +2282,11 @@ msgstr "A_brir Legenda"
 msgid "Remove Subtitles"
 msgstr "_Mover Legendas"
 
-#: ../src/SubtitleSystem.cc:194
+#: ../src/SubtitleSystem.cc:196
 msgid "I can't find what is this format or it's not supported."
 msgstr "Não é possível encontrar o formato ou não é suportado."
 
-#: ../src/SubtitleView.cc:484
+#: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
 msgid "num"
 msgstr "número"
 
@@ -2294,7 +2294,7 @@ msgstr "número"
 msgid "This number column"
 msgstr "Numera desta coluna"
 
-#: ../src/SubtitleView.cc:513
+#: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
 msgid "layer"
 msgstr "camada"
 
@@ -2302,7 +2302,7 @@ msgstr "camada"
 msgid "Layer number."
 msgstr "Número da camada."
 
-#: ../src/SubtitleView.cc:540
+#: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
 msgid "start"
 msgstr "início"
 
@@ -2310,7 +2310,7 @@ msgstr "início"
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr "Este é o tempo que a legenda aparece na tela."
 
-#: ../src/SubtitleView.cc:567
+#: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
 msgid "end"
 msgstr "fim"
 
@@ -2318,7 +2318,7 @@ msgstr "fim"
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr "Este é o tempo que a legenda desaparece da tela. "
 
-#: ../src/SubtitleView.cc:594
+#: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
 msgid "duration"
 msgstr "duração"
 
@@ -2326,15 +2326,15 @@ msgstr "duração"
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:624
+#: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
 msgid "style"
 msgstr "estilo"
 
-#: ../src/SubtitleView.cc:652
+#: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
 msgid "name"
 msgstr "nome"
 
-#: ../src/SubtitleView.cc:678
+#: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
 #, fuzzy
 msgid "cps"
 msgstr "cpl"
@@ -2345,23 +2345,23 @@ msgstr "cpl"
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Use Ctrl+Enter para a quebra de linha"
 
-#: ../src/SubtitleView.cc:839
+#: ../src/SubtitleView.cc:839 ../src/SubtitleView.cc:1615
 msgid "note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:871
+#: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
 msgid "effect"
 msgstr "efeito"
 
-#: ../src/SubtitleView.cc:902
+#: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
 msgid "R"
 msgstr "D"
 
-#: ../src/SubtitleView.cc:930
+#: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
 msgid "L"
 msgstr "I"
 
-#: ../src/SubtitleView.cc:958
+#: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
 msgid "V"
 msgstr "V"
 
@@ -2453,12 +2453,20 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/we/WaveformEditor.cc:760 ../src/we/WaveformEditor.cc:765
+#: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
 #, fuzzy
 msgid "Editing position"
 msgstr "duração"
 
-#: ../src/we/WaveformRendererGL.cc:372
+#: ../src/we/WaveformGenerator.cc:71
+msgid "Generate Waveform"
+msgstr "Gerar wav"
+
+#: ../src/we/WaveformGenerator.cc:313
+msgid "Media file could not be played.\n"
+msgstr ""
+
+#: ../src/we/WaveformRendererGL.cc:378
 msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
@@ -2528,9 +2536,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Characters Per Second"
 #~ msgstr "Caracteres por linha"
-
-#~ msgid "Save Waveform"
-#~ msgstr "Salvar Wav"
 
 #~ msgid "The regular expression \"%s\" was not found."
 #~ msgstr "A expressão regular \"%s\" não foi encontrada."
