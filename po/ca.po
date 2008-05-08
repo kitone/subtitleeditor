@@ -2,20 +2,22 @@
 # Copyright (C) 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the subtitleeditor package.
 # Gil Forcada <gilforcada@guifi.net>, 2006.
-# 
-# 
-# 
+#
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-16 09:59+0200\n"
-"PO-Revision-Date: 2006-02-18 00:25+0100\n"
+"POT-Creation-Date: 2008-05-08 19:05+0200\n"
+"PO-Revision-Date: 2008-03-25 12:18+0000\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2008-05-07 21:08+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
 #, fuzzy
@@ -89,22 +91,22 @@ msgid "Maximum character per second:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:37
+#: ../share/glade/dialog-preferences.glade.h:34
 msgid "Maximum characters per line:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:39
+#: ../share/glade/dialog-preferences.glade.h:36
 msgid "Maximum number of line per subtitle:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:40
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Minimum characters per second:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:41
+#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
@@ -348,49 +350,50 @@ msgstr ""
 msgid "Interval in seconds:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Marker Higtlight:"
-msgstr ""
-
 #: ../share/glade/dialog-preferences.glade.h:35
-#, fuzzy
-msgid "Marker Invalid:"
-msgstr "_Reprodueix el vídeo"
-
-#: ../share/glade/dialog-preferences.glade.h:36
-#, fuzzy
-msgid "Marker:"
-msgstr "_Reprodueix el vídeo"
-
-#: ../share/glade/dialog-preferences.glade.h:38
 msgid "Maximum characters per second:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Desa com a subtítols"
 
-#: ../share/glade/dialog-preferences.glade.h:43
+#: ../share/glade/dialog-preferences.glade.h:40
 #, fuzzy
-msgid "Play line:"
+msgid "Player Position:"
 msgstr "Establiu el temps"
 
-#: ../share/glade/dialog-preferences.glade.h:44
+#: ../share/glade/dialog-preferences.glade.h:41
 msgid "Plugins"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:45
+#: ../share/glade/dialog-preferences.glade.h:42
 msgid "Preferences"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:46
+#: ../share/glade/dialog-preferences.glade.h:43
 msgid "Preview"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:47
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Reset To _Defaults"
 msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:45
+#, fuzzy
+msgid "Subtitle Invalid:"
+msgstr "Desa els subtítols"
+
+#: ../share/glade/dialog-preferences.glade.h:46
+#, fuzzy
+msgid "Subtitle Selected:"
+msgstr "Establiu el temps"
+
+#: ../share/glade/dialog-preferences.glade.h:47
+#, fuzzy
+msgid "Subtitle:"
+msgstr "_Subtítols"
 
 #: ../share/glade/dialog-preferences.glade.h:48
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
@@ -404,7 +407,7 @@ msgid ""
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:50
-#: ../src/actions/ViewManager.cc:386
+#: ../src/actions/ViewManager.cc:390
 msgid "Timing"
 msgstr ""
 
@@ -570,7 +573,7 @@ msgstr "PlayResY:"
 #: ../share/glade/dialog-script-properties.glade.h:17
 #, fuzzy
 msgid "Point Time: "
-msgstr "Temps del punt:"
+msgstr "Temps del punt: "
 
 #: ../share/glade/dialog-script-properties.glade.h:18
 #, fuzzy
@@ -779,19 +782,16 @@ msgid "Vertical:"
 msgstr "Vertical:"
 
 #: ../share/glade/dialog-view-manager.glade.h:1
-#, fuzzy
 msgid "<b>Columns</b>"
-msgstr "<b>Colors</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:2
-#, fuzzy
 msgid "<b>View</b>"
-msgstr "<b>Vídeo</b>"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:3
-#, fuzzy
 msgid "View Editing"
-msgstr "Edició original:"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
@@ -823,7 +823,11 @@ msgstr "Editor d'estils"
 #. translator-credits
 #: ../src/actions/About.cc:95
 msgid "translator-credits"
-msgstr "Gil Forcada <gilforcada@guifi.net>"
+msgstr ""
+"Gil Forcada <gilforcada@guifi.net>\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Gil Forcada https://launchpad.net/~gilforcada"
 
 #: ../src/actions/AdjustTime.cc:47
 msgid "Add 100 Milliseconds"
@@ -1001,14 +1005,12 @@ msgid "Save the current file with a different name"
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
 msgid "Save _All"
-msgstr "Reemplaça-tot"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
-#, fuzzy
 msgid "Save all open files"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:98
 #, fuzzy
@@ -1486,9 +1488,8 @@ msgstr "_Video"
 
 #. _("_Open Media"),
 #: ../src/actions/VideoPlayerManagement.cc:54
-#, fuzzy
 msgid "Open a multimedia file"
-msgstr "Obre uns subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:73
 msgid "_Play / Pause"
@@ -1499,9 +1500,8 @@ msgid "Play or make a pause"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:82
-#, fuzzy
 msgid "Skip _Backards"
-msgstr "Mou els subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:87
 #: ../src/actions/VideoPlayerManagement.cc:122
@@ -1547,9 +1547,8 @@ msgid "Long"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:117
-#, fuzzy
 msgid "Skip _Forward"
-msgstr "Mou els subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:151
 msgid "Rate"
@@ -1563,9 +1562,8 @@ msgid "Define the playback rate"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:157
-#, fuzzy
 msgid "_Slower"
-msgstr "Escala"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:164
 msgid "_Faster"
@@ -1585,9 +1583,8 @@ msgid "Seek to the first selected subtitle"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:189
-#, fuzzy
 msgid "_Repeat"
-msgstr "_Reemplaça"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:199
 #, fuzzy
@@ -1623,9 +1620,8 @@ msgid "Play Previous Second"
 msgstr "Desa com a subtítols"
 
 #: ../src/actions/VideoPlayerManagement.cc:224
-#, fuzzy
 msgid "Play the second preceding the first selected subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:230
 msgid "Play First Second"
@@ -1681,36 +1677,35 @@ msgstr "Desa els subtítols"
 msgid "Set subtitle end"
 msgstr "Desa els subtítols"
 
-#: ../src/actions/ViewManager.cc:123
+#: ../src/actions/ViewManager.cc:127
 msgid "Display"
 msgstr ""
 
 #. column name
-#: ../src/actions/ViewManager.cc:135 ../src/actions/ViewManager.cc:224
+#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
 #: ../src/gui/PreferencesUI.cc:137
 #, fuzzy
 msgid "Name"
 msgstr "Nom:"
 
-#: ../src/actions/ViewManager.cc:294
+#: ../src/actions/ViewManager.cc:298
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:383
-#, fuzzy
+#: ../src/actions/ViewManager.cc:387
 msgid "Simple"
-msgstr "_Fitxer"
+msgstr ""
 
-#: ../src/actions/ViewManager.cc:384
+#: ../src/actions/ViewManager.cc:388
 msgid "Advanced"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:385
+#: ../src/actions/ViewManager.cc:389
 #, fuzzy
 msgid "Translation"
 msgstr "Traducció original:"
 
-#: ../src/actions/ViewManager.cc:417
+#: ../src/actions/ViewManager.cc:421
 msgid "View _Manager"
 msgstr ""
 
@@ -1734,9 +1729,8 @@ msgid "_Save Waveform"
 msgstr "Insereix abans"
 
 #: ../src/actions/WaveformManagement.cc:65
-#, fuzzy
 msgid "Save wavefrom to file"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:70
 #, fuzzy
@@ -1764,9 +1758,8 @@ msgid "_Center With Selected Subtitle"
 msgstr "Desa com a subtítols"
 
 #: ../src/actions/WaveformManagement.cc:94
-#, fuzzy
 msgid "Scrolling With _Player"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:101
 #, fuzzy
@@ -1782,13 +1775,17 @@ msgid "Try to respect the timing preferences"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
-#, fuzzy
 msgid "_Wavform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:115
 msgid "Show or hide the waveform in the current window"
 msgstr ""
+
+#: ../src/actions/WaveformManagement.cc:218
+#, fuzzy
+msgid "Save Waveform"
+msgstr "Insereix abans"
 
 #: ../src/CommandSystem.cc:37
 #, fuzzy
@@ -1923,7 +1920,8 @@ msgstr ""
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleSubViewer2.cc:135
+#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr ""
 
@@ -1998,12 +1996,12 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:702
+#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
 msgid "text"
 msgstr "text"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:781
+#: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
 #, fuzzy
 msgid "translation"
 msgstr "Traducció original:"
@@ -2064,9 +2062,8 @@ msgid "Video"
 msgstr "_Video"
 
 #: ../src/gui/DialogFileChooser.cc:75 ../src/gui/DialogFileChooser.cc:135
-#, fuzzy
 msgid "Audio"
-msgstr "Obre uns subtítols"
+msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:114
 #, fuzzy
@@ -2215,19 +2212,10 @@ msgstr ""
 msgid "OpenGL "
 msgstr ""
 
-#: ../src/gui/WaveformGeneratorUI.cc:51
-#, fuzzy
-msgid "Generate Waveform"
-msgstr "Insereix abans"
-
-#: ../src/gui/WaveformGeneratorUI.cc:235
-msgid "Media file could not be played."
-msgstr ""
-
-#: ../src/main.cc:214
+#: ../src/main.cc:220
 #, fuzzy
 msgid " - edit subtitles files"
-msgstr "Edita els subtítols"
+msgstr " Edita els subtítols"
 
 #: ../src/Options.cc:58
 msgid "NAME"
@@ -2280,11 +2268,11 @@ msgstr "_Obre uns subtítols"
 msgid "Remove Subtitles"
 msgstr "_Mou el subtítol"
 
-#: ../src/SubtitleSystem.cc:194
+#: ../src/SubtitleSystem.cc:196
 msgid "I can't find what is this format or it's not supported."
 msgstr ""
 
-#: ../src/SubtitleView.cc:484
+#: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
 msgid "num"
 msgstr "número"
 
@@ -2292,7 +2280,7 @@ msgstr "número"
 msgid "This number column"
 msgstr ""
 
-#: ../src/SubtitleView.cc:513
+#: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
 msgid "layer"
 msgstr "capa"
 
@@ -2300,7 +2288,7 @@ msgstr "capa"
 msgid "Layer number."
 msgstr ""
 
-#: ../src/SubtitleView.cc:540
+#: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
 msgid "start"
 msgstr "inici"
 
@@ -2308,7 +2296,7 @@ msgstr "inici"
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:567
+#: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
 msgid "end"
 msgstr "final"
 
@@ -2316,7 +2304,7 @@ msgstr "final"
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:594
+#: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
 #, fuzzy
 msgid "duration"
 msgstr "Destí:"
@@ -2325,15 +2313,15 @@ msgstr "Destí:"
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:624
+#: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
 msgid "style"
 msgstr "estil"
 
-#: ../src/SubtitleView.cc:652
+#: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
 msgid "name"
 msgstr "nom"
 
-#: ../src/SubtitleView.cc:678
+#: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
 msgid "cps"
 msgstr ""
 
@@ -2342,23 +2330,23 @@ msgstr ""
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr ""
 
-#: ../src/SubtitleView.cc:839
+#: ../src/SubtitleView.cc:839 ../src/SubtitleView.cc:1615
 msgid "note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:871
+#: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
 msgid "effect"
 msgstr "efecte"
 
-#: ../src/SubtitleView.cc:902
+#: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
 msgid "R"
 msgstr "R"
 
-#: ../src/SubtitleView.cc:930
+#: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
 msgid "L"
 msgstr "L"
 
-#: ../src/SubtitleView.cc:958
+#: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
 msgid "V"
 msgstr "V"
 
@@ -2449,12 +2437,21 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/we/WaveformEditor.cc:760 ../src/we/WaveformEditor.cc:765
+#: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
 #, fuzzy
 msgid "Editing position"
 msgstr "Destí:"
 
-#: ../src/we/WaveformRendererGL.cc:372
+#: ../src/we/WaveformGenerator.cc:71
+#, fuzzy
+msgid "Generate Waveform"
+msgstr "Insereix abans"
+
+#: ../src/we/WaveformGenerator.cc:313
+msgid "Media file could not be played.\n"
+msgstr ""
+
+#: ../src/we/WaveformRendererGL.cc:378
 msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
@@ -2475,6 +2472,18 @@ msgstr ""
 #, fuzzy
 #~ msgid "_Play the video"
 #~ msgstr "_Reprodueix el vídeo"
+
+#, fuzzy
+#~ msgid "Save waveform to file"
+#~ msgstr "Insereix abans"
+
+#, fuzzy
+#~ msgid "Scrolling With _Cursor"
+#~ msgstr "Establiu el temps"
+
+#, fuzzy
+#~ msgid "_Simple"
+#~ msgstr "_Fitxer"
 
 #, fuzzy
 #~ msgid "_Translation"
@@ -2523,10 +2532,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Text"
 #~ msgstr "Text:"
-
-#, fuzzy
-#~ msgid "Save Waveform"
-#~ msgstr "Insereix abans"
 
 #, fuzzy
 #~ msgid "<b>End Of Document.</b>"
@@ -2585,6 +2590,14 @@ msgstr ""
 #, fuzzy
 #~ msgid "Delete"
 #~ msgstr "Elimina l'estil"
+
+#, fuzzy
+#~ msgid "Move Forward"
+#~ msgstr "Mou els subtítols"
+
+#, fuzzy
+#~ msgid "Move Backwards"
+#~ msgstr "Mou els subtítols"
 
 #, fuzzy
 #~ msgid "Check _Errors"
@@ -2893,3 +2906,11 @@ msgstr ""
 
 #~ msgid "Show Text"
 #~ msgstr "Mostra el text"
+
+#, fuzzy
+#~ msgid "Marker Invalid:"
+#~ msgstr "_Reprodueix el vídeo"
+
+#, fuzzy
+#~ msgid "Marker:"
+#~ msgstr "_Reprodueix el vídeo"
