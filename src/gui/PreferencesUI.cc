@@ -334,7 +334,7 @@ t_output m_video_output[]={
 	{_("X Window System (No Xv)"), "ximagesink"},
 	{_("SDL - Simple DirectMedia Layer"), "sdlvideosink"},
 	{_("GConf"), "gconfvideosink"},
-	{_("OpenGL "), "glimagesink"},
+	{_("OpenGL"), "glimagesink"},
 	{NULL, NULL}
 };
 
