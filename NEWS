@@ -1,3 +1,25 @@
+2008-05-11 - 0.21.0
+
+	* Application
+		* New View Manager (columns).
+		* Add "Save All".
+	* Video Player
+		* Use now playbin (gstreamer element)
+		* Support of playback rate (fast motion, slow motion...).
+		* Add Repeat (beta).
+	* Waveform Editor
+		* New architecture, support of multiple renderer.
+			* WaveformRendererCairo : Speed Improvements.
+			* WaveformRendererGL : New renderer using OpenGL disable by default.
+		* Can choose to respect the timings preferences.
+	* GStreamer support
+		* Better error message when the plugin is missing.
+	* Others
+		* Fix: Segfault when open ASS/SSA files created by subtitleeditor.
+		* Fix: Save ASS/SSA files. The encoding value is now write.
+		* Add da, pt and zh_CN translations.
+		* Update other translations.
+
 2008-02-05 - 0.20.0
 	* Add "Find Next" and "Find Previous"
 	* Move glade files in share/glade
