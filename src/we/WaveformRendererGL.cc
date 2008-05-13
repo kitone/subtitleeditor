@@ -556,6 +556,9 @@ void WaveformRendererGL::draw(GdkEventExpose *ev)
  */
 void WaveformRendererGL::draw_channel_with_line_strip(const Gdk::Rectangle &area, int channel)
 {
+	if(!m_waveform)
+		return;
+
 	std::vector<double> &peaks = m_waveform->m_channels[channel];
 
 	float skip = (float)(area.get_width()) / peaks.size();
@@ -577,6 +580,9 @@ void WaveformRendererGL::draw_channel_with_line_strip(const Gdk::Rectangle &area
  */
 void WaveformRendererGL::draw_channel_with_quad_strip(const Gdk::Rectangle &area, int channel)
 {
+	if(!m_waveform)
+		return;
+
 	std::vector<double> &peaks = m_waveform->m_channels[channel];
 
 	float skip = (float)(area.get_width()) / peaks.size();
@@ -617,6 +623,9 @@ void WaveformRendererGL::delete_display_lists()
  */
 void WaveformRendererGL::draw_waveform(const Gdk::Rectangle &rect)
 {
+	if(!m_waveform)
+		return;
+
 	unsigned int n_channels = m_waveform->get_n_channels();
 
 	int h = rect.get_height() / n_channels;
