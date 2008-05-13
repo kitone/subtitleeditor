@@ -1,3 +1,9 @@
+2008-05-13  kitone  <kitone@gna.org>
+
+	* src/we/WaveformRendererCairo.cc:
+	* src/we/WaveformRendererGL.cc:
+	Small fix.
+
 2008-05-12  kitone  <kitone@gna.org>
 
 	* configure.in:

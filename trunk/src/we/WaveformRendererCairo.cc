@@ -431,6 +431,9 @@ void WaveformRendererCairo::draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr
  */
 void WaveformRendererCairo::draw_waveform(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	if(!m_waveform)
+		return;
+
 	unsigned int n_channels = m_waveform->get_n_channels();
 
 	int ch_height = area.get_height() / n_channels;
@@ -449,6 +452,9 @@ void WaveformRendererCairo::draw_waveform(Cairo::RefPtr<Cairo::Context> &cr, con
  */
 void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, unsigned int channel)
 {
+	if(!m_waveform)
+		return;
+
 	std::vector<double> &peaks = m_waveform->m_channels[channel];
 
 	set_color(cr, m_color_wave);
