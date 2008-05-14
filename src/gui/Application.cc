@@ -53,7 +53,16 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 	init_panel_multimedia();
 
 	set_default_size(800,600);
-	set_icon_from_file(get_share_dir("subtitleeditor.svg"));
+
+	// https://gna.org/bugs/?11449
+	try
+	{
+		set_icon_from_file(get_share_dir("subtitleeditor.svg"));
+	}
+	catch(const Glib::Error &ex)
+	{
+		std::cerr << "set_icon_from_file failed: " << ex.what() << std::endl;
+	}
 
 	m_vboxMain->pack_start(m_menubar, false, false);
 	m_vboxMain->reorder_child(m_menubar, 0);
