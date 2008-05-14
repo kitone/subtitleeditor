@@ -1,3 +1,9 @@
+2008-05-14  kitone  <kitone@gna.org>
+
+	* src/gui/Application.cc:
+	Check exception with set_icon_from_file.
+	(https://gna.org/bugs/?11449)
+
 2008-05-13  kitone  <kitone@gna.org>
 
 	* src/we/WaveformRendererCairo.cc:
