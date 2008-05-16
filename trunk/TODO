@@ -1,17 +1,14 @@
-SubtitleEditor 0.21
+SubtitleEditor stable + 1
 -------------------
 
 	* check Undo/Redo subtitles selection
 	* Config use set_comment (after set value)
-	* HowTo: http://kitone.free.fr/subtitleeditor/docs/how-to-editing-subtitles-with-waveform.html
-	* Open Translation : add new subtitle if current.size < translation.size
+	* HowTo: http://home.gna.org/subtitleeditor/docs/how-to-editing-subtitles-with-waveform.html
 	* Document use URI (movie, file ...)
 		* Data system (ustring)
 	* Check Errors
 		* Add support of the correction
 	* Multiple append subtitles
-	* Menu sensitive
-	* View > Timing : show Video/Waveform
 	* Text
 		* Case
 		* Tag system
@@ -21,18 +18,14 @@ SubtitleEditor 0.21
 	* Copy
 	* Paste
 	* SubtitleEditorProject (selection, position, ...)
-	* Video Player : speed play
-	* Plugin for Column. register, management (all, timing, translation ...)
 	* SubtitleEditorWindow : send_message, signal ... like ActionSystem for Column View...
 
-SubtitleEditor 0.22
+SubtitleEditor stable + 2
 -------------------
 
 	* Migrate to GTK+2.12
 		* New Tooltip
 		* GtkScaleButton
-	* Waveform
-		* Multiple renderer engine (gdk, cairo, opengl) ?
 	* freedesktop (osmo email)
 		* application/x-subrip
 		* application/x-microdvd
