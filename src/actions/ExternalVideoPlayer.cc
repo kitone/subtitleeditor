@@ -166,7 +166,18 @@ protected:
 
 		std::cout << "COMMAND: " << cmd << std::endl;
 
-		Glib::spawn_command_line_async(cmd);
+		try
+		{
+			Glib::spawn_command_line_async(cmd);
+		}
+		catch(const Glib::Error &ex)
+		{
+			dialog_error(
+					_("Failed to launch the external player."), 
+					build_message(
+						_("%s\n\nCommand: <i>%s</i>"),ex.what().c_str(), cmd.c_str())
+					);
+		}
 	}
 
 	
