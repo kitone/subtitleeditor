@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.11-alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-08 19:05+0200\n"
-"PO-Revision-Date: 2008-03-25 12:36+0000\n"
-"Last-Translator: Amaya Rodrigo <amaya@debian.org>\n"
+"POT-Creation-Date: 2008-05-18 19:16+0200\n"
+"PO-Revision-Date: 2008-05-12 02:22+0000\n"
+"Last-Translator: Sebastián Porta <sebastianporta@gmail.com>\n"
 "Language-Team: Es <ES@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-07 21:08+0000\n"
+"X-Launchpad-Export-Date: 2008-05-17 18:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
@@ -102,12 +102,12 @@ msgstr "Espacio minimo entre subtitulos en ms"
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
 msgid "Overlapping"
-msgstr ""
+msgstr "Superposición"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:13
 #: ../src/gui/CheckErrorsUI.cc:154
 msgid "Too long display time"
-msgstr ""
+msgstr "Duración muy larga"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:14
 msgid "Too long line"
@@ -116,7 +116,7 @@ msgstr "Linea demasiado larga"
 #: ../share/glade/dialog-check-errors-preferences.glade.h:15
 #: ../src/gui/CheckErrorsUI.cc:99
 msgid "Too short display time"
-msgstr ""
+msgstr "Duración muy corta"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:1
 #: ../src/gui/MenuBar.cc:175
@@ -295,7 +295,7 @@ msgstr "Reproducir subtítulo siguiente"
 
 #: ../share/glade/dialog-preferences.glade.h:23
 msgid "Display background"
-msgstr ""
+msgstr "Mostrar fondo"
 
 #: ../share/glade/dialog-preferences.glade.h:24
 #, fuzzy
@@ -304,7 +304,7 @@ msgstr "Reproducir subtítulo siguiente"
 
 #: ../share/glade/dialog-preferences.glade.h:25
 msgid "Display the translated subtitle instead of the original one."
-msgstr ""
+msgstr "Mostrar el subtítulo traducido en lugar del original"
 
 #: ../share/glade/dialog-preferences.glade.h:26
 #, fuzzy
@@ -337,11 +337,11 @@ msgstr "Interfaz"
 
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Interval in seconds:"
-msgstr ""
+msgstr "Intervalo en segundos"
 
 #: ../share/glade/dialog-preferences.glade.h:35
 msgid "Maximum characters per second:"
-msgstr ""
+msgstr "Caracteres máximos por segundo"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
@@ -406,7 +406,7 @@ msgstr "Usar combinaciones de teclas _dinámicas"
 
 #: ../share/glade/dialog-preferences.glade.h:52
 msgid "Use shaded _background"
-msgstr ""
+msgstr "Usar _fondo sombreado"
 
 #: ../share/glade/dialog-preferences.glade.h:53
 msgid "Used \"Auto Detected\""
@@ -435,6 +435,9 @@ msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
 "key combination while  the menu item is highlighted."
 msgstr ""
+"Cuando está habilitado, puedes cambiar los atajos de teclado para los items "
+"de los menues usando una combinación de teclas mientras el item del menú "
+"esté resaltado."
 
 #: ../share/glade/dialog-preferences.glade.h:59
 msgid "_Audio:"
@@ -446,7 +449,7 @@ msgstr "_Autoguardar archivos cada"
 
 #: ../share/glade/dialog-preferences.glade.h:61
 msgid "_Center the text of the subtitle in the column"
-msgstr ""
+msgstr "_Centra el texto del subtítulo en la columna"
 
 #: ../share/glade/dialog-preferences.glade.h:62
 msgid "_Font:"
@@ -471,7 +474,6 @@ msgid "gtk-about"
 msgstr "Acerca de gtk"
 
 #: ../share/glade/dialog-preferences.glade.h:67
-#: ../share/glade/dialog-view-manager.glade.h:7
 msgid "gtk-preferences"
 msgstr "preferencias de gtk"
 
@@ -637,7 +639,7 @@ msgstr "Nuevo Documento"
 
 #: ../share/glade/dialog-split-document.glade.h:2
 msgid "The beginning for the new document:"
-msgstr ""
+msgstr "El comienzo para un nuevo documento:"
 
 #: ../share/glade/dialog-style-editor.glade.h:1
 msgid "<b>Alignment</b>"
@@ -769,23 +771,11 @@ msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:3
 msgid "View Editing"
-msgstr ""
+msgstr "Ver Editado"
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:5
-msgid "gtk-add"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:6
-msgid "gtk-close"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:8
-msgid "gtk-remove"
-msgstr ""
+msgstr "Ver Administrador"
 
 #: ../share/glade/subtitleeditor.glade.h:1
 #, fuzzy
@@ -805,6 +795,7 @@ msgstr ""
 "\n"
 "Launchpad Contributions:\n"
 "  Amaya Rodrigo https://launchpad.net/~amaya\n"
+"  Sebastián Porta https://launchpad.net/~sebastianporta\n"
 "  calose https://launchpad.net/~calose-2005"
 
 #: ../src/actions/AdjustTime.cc:47
@@ -868,7 +859,7 @@ msgstr "Quitar 100 Millisegundos al Comienzo"
 #: ../src/actions/MoveSubtitles.cc:176
 #: ../src/actions/TryToExtendToPerfect.cc:110
 msgid "Please select at least a subtitle."
-msgstr ""
+msgstr "Por favor selecciona como mínimo un subtítulo."
 
 #: ../src/actions/AdjustTime.cc:223
 #, fuzzy
@@ -882,7 +873,7 @@ msgstr "Aplicar Traducción"
 
 #: ../src/actions/ApplyTranslation.cc:46
 msgid "Replace the text of the subtitle by the translation"
-msgstr ""
+msgstr "Reemplazar el texto del subtítulo por la traducción"
 
 #: ../src/actions/ApplyTranslation.cc:108
 #, fuzzy
@@ -913,7 +904,7 @@ msgstr ""
 
 #: ../src/actions/CombineSubtitles.cc:45
 msgid "Merge the selected subtitles"
-msgstr ""
+msgstr "Unir los subtítulos seleccionados"
 
 #: ../src/actions/CombineSubtitles.cc:160 ../src/actions/SplitSubtitle.cc:112
 #, fuzzy
@@ -937,20 +928,20 @@ msgstr "Borrar Estilo"
 
 #: ../src/actions/DeleteSubtitleSelect.cc:130
 msgid "1 subtitle has been deleted."
-msgstr ""
+msgstr "1 subtítulo ha sido borrado."
 
 #: ../src/actions/DeleteSubtitleSelect.cc:132
 #, c-format
 msgid "%d subtitles have been deleted."
-msgstr ""
+msgstr "%d subtítulos han sido borrados."
 
 #: ../src/actions/Dialoguize.cc:48
 msgid "_Dialogue"
-msgstr ""
+msgstr "_Diálogo"
 
 #: ../src/actions/Dialoguize.cc:48
 msgid "Add or remove dialogue line"
-msgstr ""
+msgstr "Agregar o eliminar una línea de diálogo"
 
 #: ../src/actions/Dialoguize.cc:116 ../src/actions/Italicize.cc:116
 #, fuzzy
@@ -968,7 +959,7 @@ msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:48
 msgid "If you don't save, the last changes will be permanently lost."
-msgstr ""
+msgstr "Si no guardas, los últimos cambios se perderán permanentemente."
 
 #: ../src/actions/DocumentManagement.cc:76
 #, fuzzy
@@ -991,7 +982,7 @@ msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
 msgid "Save _All"
-msgstr ""
+msgstr "Guardar _Todo"
 
 #: ../src/actions/DocumentManagement.cc:93
 msgid "Save all open files"
@@ -1039,7 +1030,7 @@ msgstr ""
 #. DocumentSystem::getInstance().setCurrentDocument(already);
 #: ../src/actions/DocumentManagement.cc:276
 msgid "I am already open"
-msgstr ""
+msgstr "Ya estoy abierto"
 
 #: ../src/actions/DocumentManagement.cc:322
 #: ../src/actions/DocumentManagement.cc:370
@@ -1061,7 +1052,7 @@ msgstr "Traducción"
 #: ../src/actions/DocumentManagement.cc:488
 #, c-format
 msgid "%d subtitles were added with the translation"
-msgstr ""
+msgstr "%d subtítulos han sido agregados con la traducción"
 
 #: ../src/actions/DocumentManagement.cc:546
 #, c-format
@@ -1071,7 +1062,7 @@ msgstr ""
 #: ../src/actions/DocumentManagement.cc:549
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
-msgstr ""
+msgstr "El archivo traducido %s (%s, %s, %s)  no ha sido guardado."
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:47
 msgid "_Duplicate"
@@ -1089,7 +1080,7 @@ msgstr "Seleccionar Siguiente Subtítulo"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
-msgstr ""
+msgstr "_Extender Longitud"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "Extend the length of selected subtitles to the start time of the next"
@@ -1905,24 +1896,24 @@ msgstr "Tailandés"
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
 #: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr "No se pudo abrir el archivo."
 
-#: ../src/gui/Application.cc:323
+#: ../src/gui/Application.cc:332
 msgid "Name:"
 msgstr "Nombre:"
 
-#: ../src/gui/Application.cc:324
+#: ../src/gui/Application.cc:333
 #, fuzzy
 msgid "Encoding:"
 msgstr "Codificadores"
 
-#: ../src/gui/Application.cc:325 ../src/gui/DialogUtility.cc:74
+#: ../src/gui/Application.cc:334 ../src/gui/DialogUtility.cc:74
 msgid "Format:"
 msgstr "Formato:"
 
-#: ../src/gui/Application.cc:326 ../src/gui/DialogUtility.cc:75
+#: ../src/gui/Application.cc:335 ../src/gui/DialogUtility.cc:75
 #, fuzzy
 msgid "NewLine:"
 msgstr "Línea Siguiente"
@@ -2195,10 +2186,10 @@ msgid "X Window System (No Xv)"
 msgstr ""
 
 #: ../src/gui/PreferencesUI.cc:337
-msgid "OpenGL "
+msgid "OpenGL"
 msgstr ""
 
-#: ../src/main.cc:220
+#: ../src/main.cc:223
 msgid " - edit subtitles files"
 msgstr ""
 

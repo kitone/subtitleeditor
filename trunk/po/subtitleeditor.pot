@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-08 19:05+0200\n"
+"POT-Creation-Date: 2008-05-18 19:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -439,7 +439,6 @@ msgid "gtk-about"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:67
-#: ../share/glade/dialog-view-manager.glade.h:7
 msgid "gtk-preferences"
 msgstr ""
 
@@ -736,18 +735,6 @@ msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:5
-msgid "gtk-add"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:6
-msgid "gtk-close"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:8
-msgid "gtk-remove"
 msgstr ""
 
 #: ../share/glade/subtitleeditor.glade.h:1
@@ -1756,23 +1743,23 @@ msgstr ""
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
 #: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr ""
 
-#: ../src/gui/Application.cc:323
+#: ../src/gui/Application.cc:332
 msgid "Name:"
 msgstr ""
 
-#: ../src/gui/Application.cc:324
+#: ../src/gui/Application.cc:333
 msgid "Encoding:"
 msgstr ""
 
-#: ../src/gui/Application.cc:325 ../src/gui/DialogUtility.cc:74
+#: ../src/gui/Application.cc:334 ../src/gui/DialogUtility.cc:74
 msgid "Format:"
 msgstr ""
 
-#: ../src/gui/Application.cc:326 ../src/gui/DialogUtility.cc:75
+#: ../src/gui/Application.cc:335 ../src/gui/DialogUtility.cc:75
 msgid "NewLine:"
 msgstr ""
 
@@ -2026,10 +2013,10 @@ msgid "X Window System (No Xv)"
 msgstr ""
 
 #: ../src/gui/PreferencesUI.cc:337
-msgid "OpenGL "
+msgid "OpenGL"
 msgstr ""
 
-#: ../src/main.cc:220
+#: ../src/main.cc:223
 msgid " - edit subtitles files"
 msgstr ""
 

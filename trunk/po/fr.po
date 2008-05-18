@@ -8,25 +8,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-08 19:05+0200\n"
-"PO-Revision-Date: 2008-04-28 21:48+0000\n"
-"Last-Translator: Vincent Batoufflet <Unknown>\n"
+"POT-Creation-Date: 2008-05-18 19:16+0200\n"
+"PO-Revision-Date: 2008-05-17 10:08+0000\n"
+"Last-Translator: Rémy Loubet <les.loubet@wanadoo.fr>\n"
 "Language-Team: French <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-07 21:08+0000\n"
+"X-Launchpad-Export-Date: 2008-05-17 18:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
 #, fuzzy
 msgid "<b>Apply to</b>"
-msgstr "<b>Option :</b>"
+msgstr "<b>Appliquer à</b>"
 
 #: ../share/glade/dialog-change-framerate.glade.h:2
 #, fuzzy
 msgid "<b>Framerate</b>"
-msgstr "<b>Bordure</b>"
+msgstr "<b>Taux d'image</b>"
 
 #: ../share/glade/dialog-change-framerate.glade.h:3
 msgid "All documents"
@@ -53,49 +53,49 @@ msgstr "Nouveau :"
 #: ../share/glade/dialog-check-errors.glade.h:1
 #, fuzzy
 msgid "Check Errors"
-msgstr "Vérifier les erreurs d'encodage"
+msgstr "Contrôle des erreurs"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:1
 #, fuzzy
 msgid "<b>Checking</b>"
-msgstr "<b>Police</b>"
+msgstr "<b>Contrôle</b>"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:2
 #, fuzzy
 msgid "<b>Timings</b>"
-msgstr "<b>Apparence</b>"
+msgstr "<b>Synchronisations</b>"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:3
 #, fuzzy
 msgid "Check Errors Preferences"
-msgstr "Vérifier les erreurs d'encodage"
+msgstr "Contrôle des erreurs dans les préférences"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:4
 #, fuzzy
 msgid "Gap between subtitle"
-msgstr "Jouer le sous-titre suivant"
+msgstr "Interval entre sous-tire"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
 #, fuzzy
 msgid "Max line per subtitle"
-msgstr "Jouer le sous-titre suivant"
+msgstr "Ligne maximum par sous-titre"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
 #, fuzzy
 msgid "Maximum character per second:"
-msgstr "Caractères par ligne"
+msgstr "Caractère maximum par seconde :"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:34
 #, fuzzy
 msgid "Maximum characters per line:"
-msgstr "Caractères par ligne"
+msgstr "Caractères maximum par ligne :"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
 #: ../share/glade/dialog-preferences.glade.h:36
 msgid "Maximum number of line per subtitle:"
-msgstr "Nombre maximum de lignes par sous titre:"
+msgstr "Nombre maximum de lignes par sous-titre :"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
 #: ../share/glade/dialog-preferences.glade.h:37
@@ -150,7 +150,7 @@ msgstr "<b>Prière de choisir un encodage</b>"
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:2
 msgid "Encodings Chooser"
-msgstr "Selecteur d'Encodages"
+msgstr "Sélecteur d'encodages"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:1
 msgid "Find And Replace"
@@ -179,7 +179,7 @@ msgstr "_Ignorer la casse"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
 msgid "_Used regular expression"
-msgstr "_Utiliser les expression régulière"
+msgstr "_Utiliser une expression régulière"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:1
 msgid "<b>Position</b>"
@@ -205,11 +205,11 @@ msgstr "Nouveau:"
 #: ../share/glade/dialog-preferences.glade.h:1
 #, fuzzy
 msgid "<b>Activate plugins</b>"
-msgstr "<b>Marges</b>"
+msgstr "<b>Activer les greffons</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:2
 msgid "<b>Encodings Character</b>"
-msgstr "<b>Carctères d'Encodage</b>"
+msgstr "<b>Caractère d'encodages</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:3
 msgid "<b>File Saving</b>"
@@ -236,7 +236,7 @@ msgstr "<b>Style</b>"
 #: ../share/glade/dialog-preferences.glade.h:8
 #, fuzzy
 msgid "<b>Timing Preferences</b>"
-msgstr "<b>Apparence</b>"
+msgstr "<b>Préférences de la synchronisation</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:9
 msgid "<b>Video Player For Preview</b>"
@@ -260,7 +260,7 @@ msgstr "<b>Transformation</b>"
 #: ../share/glade/dialog-preferences.glade.h:13
 #, fuzzy
 msgid "<span size=\"small\">the path to the subtitle file</span>"
-msgstr "<span size=\"small\">le chemin du fichier vidéo</span>"
+msgstr "<span size=\"small\">le chemin du fichier sous-titre</span>"
 
 #: ../share/glade/dialog-preferences.glade.h:14
 msgid "<span size=\"small\">the path to the video file</span>"
@@ -275,7 +275,7 @@ msgstr ""
 #: ../share/glade/dialog-preferences.glade.h:16
 #, fuzzy
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
-msgstr "<span size=\"small\">uri du fichier vidéo</span>"
+msgstr "<span size=\"small\">uri du fichier sous-titre</span>"
 
 #: ../share/glade/dialog-preferences.glade.h:17
 msgid "<span size=\"small\">the uri to the video file</span>"
@@ -300,7 +300,7 @@ msgstr "Créer une copie de _sauvegarde des fichiers avant l'enregistrement"
 #: ../share/glade/dialog-preferences.glade.h:22
 #, fuzzy
 msgid "Display _translated subtitle"
-msgstr "Jouer le sous-titre suivant"
+msgstr "Afficher le sous-titre _traduit"
 
 #: ../share/glade/dialog-preferences.glade.h:23
 msgid "Display background"
@@ -309,7 +309,7 @@ msgstr "Arrière-plan d'affichage"
 #: ../share/glade/dialog-preferences.glade.h:24
 #, fuzzy
 msgid "Display subtitle text"
-msgstr "Jouer le sous-titre suivant"
+msgstr "Afficher le texte du sous-titre"
 
 #: ../share/glade/dialog-preferences.glade.h:25
 msgid "Display the translated subtitle instead of the original one."
@@ -329,11 +329,12 @@ msgid "Encodings"
 msgstr "Encodages"
 
 #: ../share/glade/dialog-preferences.glade.h:29
+#, fuzzy
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 msgstr ""
-"Example avec mplayer:\n"
+"Exemple avec mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 
 #: ../share/glade/dialog-preferences.glade.h:31
@@ -355,12 +356,12 @@ msgstr "Nombre maximum de caractères par seconde :"
 #: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Jouer le sous-titre suivant"
+msgstr "Interval minimum entre les sous-titres en millisecondes :"
 
 #: ../share/glade/dialog-preferences.glade.h:40
 #, fuzzy
 msgid "Player Position:"
-msgstr "Jouer la sélection"
+msgstr "Jouer la ligne :"
 
 #: ../share/glade/dialog-preferences.glade.h:41
 msgid "Plugins"
@@ -434,7 +435,7 @@ msgstr "Fichier wave :"
 #: ../share/glade/dialog-preferences.glade.h:56
 #, fuzzy
 msgid "Wave:"
-msgstr "Nom:"
+msgstr "Wave :"
 
 #: ../share/glade/dialog-preferences.glade.h:57
 #, fuzzy
@@ -456,7 +457,7 @@ msgstr "_Audio :"
 
 #: ../share/glade/dialog-preferences.glade.h:60
 msgid "_Autosave files every"
-msgstr "Enregistrer _automatiquement toutes les"
+msgstr "Enregistrer _automatiquement chaque fichier"
 
 #: ../share/glade/dialog-preferences.glade.h:61
 msgid "_Center the text of the subtitle in the column"
@@ -469,24 +470,23 @@ msgstr "_Police :"
 #: ../share/glade/dialog-preferences.glade.h:63
 #, fuzzy
 msgid "_Maximize window"
-msgstr "Maximiser la fenêtre"
+msgstr "_Maximiser la fenêtre"
 
 #: ../share/glade/dialog-preferences.glade.h:64
 #, fuzzy
 msgid "_Show the number of character per line"
-msgstr "Cette colonne représente le nombre de caractère par ligne."
+msgstr "_Montrer le nombre de caractère par ligne"
 
 #: ../share/glade/dialog-preferences.glade.h:65
 #, fuzzy
 msgid "_Video:"
-msgstr "_Vidéo"
+msgstr "_Vidéo :"
 
 #: ../share/glade/dialog-preferences.glade.h:66
 msgid "gtk-about"
 msgstr "gtk-about"
 
 #: ../share/glade/dialog-preferences.glade.h:67
-#: ../share/glade/dialog-view-manager.glade.h:7
 #, fuzzy
 msgid "gtk-preferences"
 msgstr "Préférences"
@@ -498,17 +498,17 @@ msgstr "minutes"
 #: ../share/glade/dialog-scale-subtitles.glade.h:1
 #, fuzzy
 msgid "<b>First Point</b>"
-msgstr "<b>Police</b>"
+msgstr "<b>Premier point</b>"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:2
 #, fuzzy
 msgid "<b>Last Point</b>"
-msgstr "<b>Police</b>"
+msgstr "<b>Dernier point</b>"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:5
 #, fuzzy
 msgid "Number:"
-msgstr "Nombre"
+msgstr "Nombre :"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:6
 msgid "Scale"
@@ -548,19 +548,19 @@ msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:10
 msgid "Original Editing:"
-msgstr "Edition originelle:"
+msgstr "Édition originelle :"
 
 #: ../share/glade/dialog-script-properties.glade.h:11
 msgid "Original Script:"
-msgstr "Script originel:"
+msgstr "Script originel :"
 
 #: ../share/glade/dialog-script-properties.glade.h:12
 msgid "Original Timing:"
-msgstr "Timing originel:"
+msgstr "Synchronisation originelle :"
 
 #: ../share/glade/dialog-script-properties.glade.h:13
 msgid "Original Translation:"
-msgstr "Traduction originelle:"
+msgstr "Traduction originelle :"
 
 #: ../share/glade/dialog-script-properties.glade.h:14
 msgid "PlayDepth:"
@@ -779,31 +779,20 @@ msgstr "Verticale :"
 
 #: ../share/glade/dialog-view-manager.glade.h:1
 msgid "<b>Columns</b>"
-msgstr ""
+msgstr "<b>Colonnes</b>"
 
 #: ../share/glade/dialog-view-manager.glade.h:2
 msgid "<b>View</b>"
-msgstr ""
+msgstr "<b>Affichage</b>"
 
 #: ../share/glade/dialog-view-manager.glade.h:3
+#, fuzzy
 msgid "View Editing"
-msgstr ""
+msgstr "Affichage de l'édition"
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:5
-msgid "gtk-add"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:6
-msgid "gtk-close"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:8
-msgid "gtk-remove"
-msgstr ""
+msgstr "Éditeur d'affichage"
 
 #: ../share/glade/subtitleeditor.glade.h:1
 #, fuzzy
@@ -825,7 +814,9 @@ msgstr ""
 "Launchpad Contributions:\n"
 "  Clément Lorteau https://launchpad.net/~northern-lights\n"
 "  Cédric.h https://launchpad.net/~cedric-hufnagel\n"
+"  DomS https://launchpad.net/~d0ms\n"
 "  Nicolas Vervelle https://launchpad.net/~nvervelle\n"
+"  Rémy Loubet https://launchpad.net/~brxl\n"
 "  Vincent Batoufflet https://launchpad.net/~santx\n"
 "  kaiman https://launchpad.net/~kaigfm"
 
@@ -1013,11 +1004,11 @@ msgstr "Enregistrer le fichier courant sous un nom différent"
 
 #: ../src/actions/DocumentManagement.cc:93
 msgid "Save _All"
-msgstr ""
+msgstr "Tout sauvegarder"
 
 #: ../src/actions/DocumentManagement.cc:93
 msgid "Save all open files"
-msgstr ""
+msgstr "Enregistrer tous les fichiers ouverts"
 
 #: ../src/actions/DocumentManagement.cc:98
 #, fuzzy
@@ -1494,7 +1485,7 @@ msgstr "_Vidéo"
 #. _("_Open Media"),
 #: ../src/actions/VideoPlayerManagement.cc:54
 msgid "Open a multimedia file"
-msgstr ""
+msgstr "Ouvrir un fichier multimédia"
 
 #: ../src/actions/VideoPlayerManagement.cc:73
 msgid "_Play / Pause"
@@ -1556,26 +1547,26 @@ msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:151
 msgid "Rate"
-msgstr ""
+msgstr "Vitesse"
 
 #: ../src/actions/VideoPlayerManagement.cc:152
 #: ../src/actions/VideoPlayerManagement.cc:158
 #: ../src/actions/VideoPlayerManagement.cc:165
 #: ../src/actions/VideoPlayerManagement.cc:172
 msgid "Define the playback rate"
-msgstr ""
+msgstr "Définir la vitesse du playback"
 
 #: ../src/actions/VideoPlayerManagement.cc:157
 msgid "_Slower"
-msgstr ""
+msgstr "_Ralentir"
 
 #: ../src/actions/VideoPlayerManagement.cc:164
 msgid "_Faster"
-msgstr ""
+msgstr "_Accélérer"
 
 #: ../src/actions/VideoPlayerManagement.cc:171
 msgid "_Normal"
-msgstr ""
+msgstr "_Normale"
 
 #: ../src/actions/VideoPlayerManagement.cc:179
 #, fuzzy
@@ -1588,7 +1579,7 @@ msgstr "Recherche jusqu'au premier sous-titre sélectionné"
 
 #: ../src/actions/VideoPlayerManagement.cc:189
 msgid "_Repeat"
-msgstr ""
+msgstr "_Répéter"
 
 #: ../src/actions/VideoPlayerManagement.cc:199
 #, fuzzy
@@ -1623,8 +1614,9 @@ msgid "Play Previous Second"
 msgstr "Jouer la seconde précédent"
 
 #: ../src/actions/VideoPlayerManagement.cc:224
+#, fuzzy
 msgid "Play the second preceding the first selected subtitle"
-msgstr ""
+msgstr "Jouer la seconde précédente"
 
 #: ../src/actions/VideoPlayerManagement.cc:230
 msgid "Play First Second"
@@ -1632,7 +1624,7 @@ msgstr "Jouer la première seconde"
 
 #: ../src/actions/VideoPlayerManagement.cc:231
 msgid "Play the first second of the subtitle currently selected"
-msgstr ""
+msgstr "Jouer la 1ère seconde du sous-titre"
 
 #: ../src/actions/VideoPlayerManagement.cc:237
 msgid "Play Last Second"
@@ -1640,7 +1632,7 @@ msgstr "Jouer la dernière seconde"
 
 #: ../src/actions/VideoPlayerManagement.cc:238
 msgid "Play the last second of the subtitle currently selected"
-msgstr ""
+msgstr "Jouer la dernière seconde du sous-titre"
 
 #: ../src/actions/VideoPlayerManagement.cc:244
 msgid "Play Next Second"
@@ -1648,7 +1640,7 @@ msgstr "Jouer la prochaine seconde"
 
 #: ../src/actions/VideoPlayerManagement.cc:245
 msgid "Play the second following the subtitle currently selected"
-msgstr ""
+msgstr "Jouer la seconde qui suit le sous-titre"
 
 #: ../src/actions/VideoPlayerManagement.cc:253
 #, fuzzy
@@ -1667,7 +1659,7 @@ msgstr "Lecteur vidéo"
 
 #: ../src/actions/VideoPlayerManagement.cc:271
 msgid "Show or hide the video player in the current window"
-msgstr ""
+msgstr "Montrer ou cacher le lecteur vidéo dans la fenêtre courante"
 
 #: ../src/actions/VideoPlayerManagement.cc:736
 #, fuzzy
@@ -1681,7 +1673,7 @@ msgstr "Enregistrer"
 
 #: ../src/actions/ViewManager.cc:127
 msgid "Display"
-msgstr ""
+msgstr "Afficher"
 
 #. column name
 #: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
@@ -1691,15 +1683,15 @@ msgstr "Nom"
 
 #: ../src/actions/ViewManager.cc:298
 msgid "Untitled"
-msgstr ""
+msgstr "Sans titre"
 
 #: ../src/actions/ViewManager.cc:387
 msgid "Simple"
-msgstr ""
+msgstr "Simple"
 
 #: ../src/actions/ViewManager.cc:388
 msgid "Advanced"
-msgstr ""
+msgstr "Avancé"
 
 #: ../src/actions/ViewManager.cc:389
 msgid "Translation"
@@ -1707,7 +1699,7 @@ msgstr "Traduction"
 
 #: ../src/actions/ViewManager.cc:421
 msgid "View _Manager"
-msgstr ""
+msgstr "_Éditeur d'affichage"
 
 #: ../src/actions/WaveformManagement.cc:57
 #, fuzzy
@@ -1918,23 +1910,23 @@ msgstr "Thaï"
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
 #: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr "Je ne peux pas ouvrir ce dossier."
 
-#: ../src/gui/Application.cc:323
+#: ../src/gui/Application.cc:332
 msgid "Name:"
 msgstr "Nom :"
 
-#: ../src/gui/Application.cc:324
+#: ../src/gui/Application.cc:333
 msgid "Encoding:"
 msgstr "Encodage :"
 
-#: ../src/gui/Application.cc:325 ../src/gui/DialogUtility.cc:74
+#: ../src/gui/Application.cc:334 ../src/gui/DialogUtility.cc:74
 msgid "Format:"
 msgstr "Format :"
 
-#: ../src/gui/Application.cc:326 ../src/gui/DialogUtility.cc:75
+#: ../src/gui/Application.cc:335 ../src/gui/DialogUtility.cc:75
 msgid "NewLine:"
 msgstr "NouvelleLigne :"
 
@@ -2213,10 +2205,11 @@ msgid "X Window System (No Xv)"
 msgstr "X Window System (sans Xv)"
 
 #: ../src/gui/PreferencesUI.cc:337
-msgid "OpenGL "
+#, fuzzy
+msgid "OpenGL"
 msgstr "OpenGL "
 
-#: ../src/main.cc:220
+#: ../src/main.cc:223
 msgid " - edit subtitles files"
 msgstr " - editer fichiers sous-titres"
 
@@ -2468,6 +2461,15 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr ""
+
+#~ msgid "gtk-add"
+#~ msgstr "gtk-ajouter"
+
+#~ msgid "gtk-close"
+#~ msgstr "gtk-fermer"
+
+#~ msgid "gtk-remove"
+#~ msgstr "gtk-supprimer"
 
 #, fuzzy
 #~ msgid "Open the video"

@@ -1,3 +1,22 @@
+2008-05-18  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	* ca.po:
+	* cs.po:
+	* da.po:
+	* es.po:
+	* fr.po:
+	* hu.po:
+	* it.po:
+	* nl.po:
+	* pl.po:
+	* pt.po:
+	* pt_BR.po:
+	* pt_PT.po:
+	* subtitleeditor.pot:
+	* zh_CN.po:
+	Update.
+
 2008-05-08  kitone  <kitone@gna.org>
 
 	* da.po:
