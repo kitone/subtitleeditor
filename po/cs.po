@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-08 19:05+0200\n"
-"PO-Revision-Date: 2008-05-05 12:13+0000\n"
-"Last-Translator: drag0nl0rd <Unknown>\n"
+"POT-Creation-Date: 2008-05-18 19:16+0200\n"
+"PO-Revision-Date: 2008-05-12 07:46+0000\n"
+"Last-Translator: Jaroslav Lichtblau <Unknown>\n"
 "Language-Team: čeština <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-07 21:08+0000\n"
+"X-Launchpad-Export-Date: 2008-05-17 18:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
@@ -344,7 +344,7 @@ msgstr "Čára přehrávání:"
 
 #: ../share/glade/dialog-preferences.glade.h:41
 msgid "Plugins"
-msgstr ""
+msgstr "Zásuvné moduly"
 
 #: ../share/glade/dialog-preferences.glade.h:42
 msgid "Preferences"
@@ -456,10 +456,9 @@ msgstr "_Video"
 
 #: ../share/glade/dialog-preferences.glade.h:66
 msgid "gtk-about"
-msgstr ""
+msgstr "O GTK"
 
 #: ../share/glade/dialog-preferences.glade.h:67
-#: ../share/glade/dialog-view-manager.glade.h:7
 #, fuzzy
 msgid "gtk-preferences"
 msgstr "Nastavení"
@@ -740,7 +739,7 @@ msgstr "Titulkový editor - Editor stylů"
 
 #: ../share/glade/dialog-style-editor.glade.h:29
 msgid "TODO"
-msgstr ""
+msgstr "V plánu"
 
 #: ../share/glade/dialog-style-editor.glade.h:30
 msgid "Vertical:"
@@ -748,7 +747,7 @@ msgstr "Svislý:"
 
 #: ../share/glade/dialog-view-manager.glade.h:1
 msgid "<b>Columns</b>"
-msgstr ""
+msgstr "<b>Sloupce</b>"
 
 #: ../share/glade/dialog-view-manager.glade.h:2
 msgid "<b>View</b>"
@@ -760,18 +759,6 @@ msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:5
-msgid "gtk-add"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:6
-msgid "gtk-close"
-msgstr ""
-
-#: ../share/glade/dialog-view-manager.glade.h:8
-msgid "gtk-remove"
 msgstr ""
 
 #: ../share/glade/subtitleeditor.glade.h:1
@@ -790,8 +777,8 @@ msgstr ""
 "Luboš Staněk <lubek@users.sourceforge.net>\n"
 "\n"
 "Launchpad Contributions:\n"
-"  Luboš Staněk https://launchpad.net/~lubek\n"
-"  drag0nl0rd https://launchpad.net/~dragonlord"
+"  Jaroslav Lichtblau https://launchpad.net/~dragonlord\n"
+"  Luboš Staněk https://launchpad.net/~lubek"
 
 #: ../src/actions/AdjustTime.cc:47
 msgid "Add 100 Milliseconds"
@@ -887,8 +874,9 @@ msgid "The new framerate was applied. (%s to %s)"
 msgstr "Nová snímková rychlost byla aplikována. (%s na %s)"
 
 #: ../src/actions/CombineSubtitles.cc:45
+#, fuzzy
 msgid "_Combine"
-msgstr ""
+msgstr "Kombinovat"
 
 #: ../src/actions/CombineSubtitles.cc:45
 msgid "Merge the selected subtitles"
@@ -938,12 +926,12 @@ msgstr "Baltské"
 
 #: ../src/actions/DocumentManagement.cc:39
 msgid "Close _without Saving"
-msgstr ""
+msgstr "Zavřít _bez uložení"
 
 #: ../src/actions/DocumentManagement.cc:47
 #, c-format
 msgid "Save the changes to document \"%s\" before closing?"
-msgstr ""
+msgstr "Uložit před zavřením změny v dokumentu \"%s\"?"
 
 #: ../src/actions/DocumentManagement.cc:48
 msgid "If you don't save, the last changes will be permanently lost."
@@ -971,7 +959,7 @@ msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:93
 msgid "Save all open files"
-msgstr ""
+msgstr "Uložit všechny otevřené soubory"
 
 #: ../src/actions/DocumentManagement.cc:98
 #, fuzzy
@@ -1874,23 +1862,23 @@ msgstr "Thajské"
 #: ../src/formats/SubtitleSubRip.cc:155
 #: ../src/formats/SubtitleSubViewer2.cc:86
 #: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:127 ../src/formats/SubtitleTTXT.cc:130
+#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
 msgid "I can't open this file."
 msgstr "Nemohu otevřít tento soubor."
 
-#: ../src/gui/Application.cc:323
+#: ../src/gui/Application.cc:332
 msgid "Name:"
 msgstr "Název:"
 
-#: ../src/gui/Application.cc:324
+#: ../src/gui/Application.cc:333
 msgid "Encoding:"
 msgstr "Kódování:"
 
-#: ../src/gui/Application.cc:325 ../src/gui/DialogUtility.cc:74
+#: ../src/gui/Application.cc:334 ../src/gui/DialogUtility.cc:74
 msgid "Format:"
 msgstr "Formát:"
 
-#: ../src/gui/Application.cc:326 ../src/gui/DialogUtility.cc:75
+#: ../src/gui/Application.cc:335 ../src/gui/DialogUtility.cc:75
 msgid "NewLine:"
 msgstr "Konec řádku:"
 
@@ -2172,10 +2160,11 @@ msgid "X Window System (No Xv)"
 msgstr "X Window System (No Xv)"
 
 #: ../src/gui/PreferencesUI.cc:337
-msgid "OpenGL "
+#, fuzzy
+msgid "OpenGL"
 msgstr "OpenGL "
 
-#: ../src/main.cc:220
+#: ../src/main.cc:223
 msgid " - edit subtitles files"
 msgstr " - editovat titulkové soubory"
 
