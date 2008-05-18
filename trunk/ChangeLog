@@ -1,5 +1,19 @@
 2008-05-18  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/SubtitleSystem.cc:
+	* src/formats/SubtitleTimedText.cc:
+	* src/formats/SubtitleTimedText.h:
+	Add new format "Timed Text (TT) Authoring Format 1.0".
+
+	* src/main.cc:
+	Fix default config.
+
+	* src/utility.cc:
+	Improve gstreamer plugins missing message.
+
+2008-05-18  kitone  <kitone@gna.org>
+
 	* share/glade/dialog-preferences.glade:
 	* share/glade/dialog-view-manager.glade:
 	Fix: Don't translate gtk-*.

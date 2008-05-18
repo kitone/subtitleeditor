@@ -99,7 +99,9 @@ FORMATS_FILES = \
 				formats/SubtitleEncoreNTSC.h \
 				formats/SubtitleEncoreNTSC.cc \
 				formats/SubtitleEncorePAL.h \
-				formats/SubtitleEncorePAL.cc
+				formats/SubtitleEncorePAL.cc \
+				formats/SubtitleTimedText.h \
+				formats/SubtitleTimedText.cc
 
 ACTIONS = \
 				actions/DocumentManagement.cc \

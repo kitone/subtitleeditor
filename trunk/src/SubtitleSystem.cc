@@ -37,6 +37,7 @@
 #include "formats/SubtitleEncorePAL.h"
 #include "formats/SubtitleEncoreNTSC.h"
 #include "formats/SubtitleEditorProject.h"
+#include "formats/SubtitleTimedText.h"
 
 /*
  *
@@ -117,6 +118,7 @@ SubtitleSystem& SubtitleSystem::getInstance()
 		REGISTER_SUBTITLE(SubtitleEncorePAL);
 		REGISTER_SUBTITLE(SubtitleEncoreNTSC);
 		REGISTER_SUBTITLE(SubtitleEditorProject);
+		REGISTER_SUBTITLE(SubtitleTimedText);
 #ifdef ENABLE_TTXT
 		REGISTER_SUBTITLE(SubtitleTTXT);
 #endif
