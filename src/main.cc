@@ -70,6 +70,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["video-player"]["video-sink"] = "xvimagesink";
 	config["video-player"]["timeout"] = "100";
 	config["video-player"]["repeat"] = "false";
+	config["video-player"]["display"] = "false";
 
 	//[waveform]
 	config["waveform"]["zoom"] = "1";
@@ -85,8 +86,10 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["waveform"]["display-background"] = "false";
 	config["waveform"]["display-waveform-fill"] = "true";
 	config["waveform"]["display-subtitle-text"] = "true";
-	config["waveform"]["scrolling-with-cursor"] = "true";
+	config["waveform"]["scrolling-with-player"] = "true";
 	config["waveform"]["scrolling-with-selection"] = "true";
+	config["waveform"]["respect-timing"] = "true";
+	config["waveform"]["display"] = "false";
 
 	//[interface]
 	config["interface"]["use-dynamic-keyboard-shortcuts"] = "true";

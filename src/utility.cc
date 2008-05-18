@@ -587,6 +587,7 @@ namespace Gst
 		}
 
 		Glib::ustring msg = _(
+					"GStreamer plugins missing.\n"
 					"The playback of this movie requires the following decoders "
 					"which are not installed:");
 
