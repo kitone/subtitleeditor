@@ -605,7 +605,9 @@ namespace Gst
 		if(gst_default_registry_check_feature_version(name.c_str(), min_major, min_minor, min_micro))
 			return true;
 
-#warning "FIXME add dialog message error"
+		dialog_error(
+				build_message(_("Failed to create a GStreamer element '%s'."), name.c_str()),
+				_("Please check your GStreamer installation."));
 		return false;
 	}
 }

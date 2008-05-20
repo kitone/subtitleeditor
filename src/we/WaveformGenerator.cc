@@ -87,11 +87,11 @@ WaveformGenerator::WaveformGenerator(const Glib::ustring &uri, Glib::RefPtr<Wave
 	if(GST_IS_ELEMENT(m_pipeline))
 	{
 		gst_element_set_state(m_pipeline, GST_STATE_PLAYING);
-	}
 
-	if(run() == Gtk::RESPONSE_OK)
-	{
-		wf = m_waveform;
+		if(run() == Gtk::RESPONSE_OK)
+		{
+			wf = m_waveform;
+		}
 	}
 }
 	
@@ -120,10 +120,14 @@ void WaveformGenerator::create_pipeline(const Glib::ustring &uri)
 
 	// check gstreamer version
 	{
-		Gst::check_registry("filesrc", 0, 10, 0);		
-		Gst::check_registry("decodebin", 0, 10, 0);		
-		Gst::check_registry("audioconvert", 0, 10, 0);		
-		Gst::check_registry("level", 0, 10, 0);		
+		if(Gst::check_registry("filesrc", 0, 10, 0)	== false)
+			return;
+		if(Gst::check_registry("decodebin", 0, 10, 0)	== false)
+			return;
+		if(Gst::check_registry("audioconvert", 0, 10, 0)	== false)
+			return;
+		if(Gst::check_registry("level", 0, 10, 0)	== false)
+			return;
 	}
 
 	GstElement *src = NULL, *dec = NULL;

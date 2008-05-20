@@ -554,7 +554,15 @@ GstElement* GStreamerPlayer::create_pipeline()
 	// clean or destroy the pipeline
 	set_pipeline_null();
 
-	m_pipeline = gst_element_factory_make("playbin", "pipeline");
+	if(Gst::check_registry("playbin", 0, 10, 0) == false)
+		return NULL;
+
+	m_pipeline = create_element("playbin", "pipeline",
+			build_message(_("Failed to create a GStreamer pipeline (%s). "
+					"Please check your GStreamer installation."), "playbin"));
+
+	if(m_pipeline == NULL)
+		return NULL;
 
 	// create the video bin
 	GstElement* video = gen_video_element();
