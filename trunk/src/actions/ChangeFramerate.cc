@@ -26,6 +26,11 @@
 #include "utility.h"
 #include "gui/DialogUtility.h"
 
+/*
+ * TODO Add FPS finder
+ *
+ * (new_sub_time x fps_video) / old_sub_time = fps_src
+ */
 
 class DialogChangeFramerate : public DialogActionMultiDoc
 {

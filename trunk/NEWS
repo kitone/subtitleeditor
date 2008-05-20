@@ -1,3 +1,13 @@
+2008-05-20 - 0.21.1
+
+	* Add format "Timed Text (TT) Authoring Format 1.0".
+	* Improve gstreamer plugins missing message.
+	* Display a message if the launch of the external player failed.
+	* Update translation.
+	* Fix: translation (gtk-*).
+	* Fix: default config values.
+	* Fix: segfault at start (Gdk::Pixbuf) #11449
+
 2008-05-11 - 0.21.0
 
 	* Application
