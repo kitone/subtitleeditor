@@ -7,5 +7,5 @@ Exec=subtitleeditor
 Terminal=false
 Type=Application
 Icon=subtitleeditor
-Categories=GNOME;GTK;Application;AudioVideo;
+Categories=Audio;AudioVideo;AudioVideoEditing;
 StartupNotify=true
