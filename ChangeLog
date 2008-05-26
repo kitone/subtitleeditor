@@ -1,3 +1,11 @@
+2008-05-26  kitone  <kitone@gna.org>
+
+	* Makefile.am:
+	* configure.in:
+	* docs/Makefile.am:
+	* docs/subtitleeditor.1:
+	Add manpage.
+
 2008-05-21  kitone  <kitone@gna.org>
 
 	* share/subtitleeditor.desktop:

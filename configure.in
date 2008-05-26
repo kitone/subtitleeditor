@@ -359,6 +359,7 @@ AC_CONFIG_FILES([
 								 share/icons/32x32/Makefile
 								 share/icons/scalable/Makefile
 								 share/glade/Makefile
+								 docs/Makefile
 								 po/Makefile.in 
 								 ])
 

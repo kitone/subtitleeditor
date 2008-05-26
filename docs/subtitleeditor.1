@@ -1,0 +1,139 @@
+.TH "SUBTITLEEDITOR" "1" "October 29, 2006" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+subtitleeditor \- Graphical subtitle editor with sound waves representation
+.SH "SYNOPSIS"
+.HP 15
+\fBsubtitleeditor\fR
+.SH "DESCRIPTION"
+.PP
+This manual page documents briefly the
+\fBsubtitleeditor\fR
+command. As
+\fBsubtitleeditor\fR
+is a GUI program, most of its options are available through the GUI interface, rather than the command\-line.
+.PP
+\fBsubtitleeditor\fR
+is a GTK+2 tool to edit subtitles. It can be used to create new subtitles or as a tool to transform, edit, correct and refine existing subtitles.
+.SH "OPTIONS"
+.PP
+This program follows the usual
+GNU
+command line syntax, with long options starting with two dashes (`\-'). A summary of options is included below.
+.PP
+\fB\-?\fR \fB\-\-help\fR
+.RS 3n
+Show summary of options.
+.RE
+.PP
+\fB\-\-help\-all\fR
+.RS 3n
+Show all help options
+.RE
+.PP
+\fB\-\-help\-gst\fR
+.RS 3n
+Show GStreamer options
+.RE
+.PP
+\fB\-\-help\-gtk\fR
+.RS 3n
+Show Gtk+ options
+.RE
+.SH "Application Options:"
+.PP
+\fB\-p \-\-profile\=NAME\fR
+.RS 3n
+the name of the profile used by the config
+.RE
+.PP
+\fB\-e \-\-encoding\=ENCODING\fR
+.RS 3n
+encoding used to open files
+.RE
+.PP
+\fB\-v \-\-video\=FILE\fR
+.RS 3n
+open video file
+.RE
+.PP
+\fB\-w \-\-waveform\=FILE\fR
+.RS 3n
+open waveform file
+.RE
+.SH "FEATURES"
+.PP
+* Really easy to use
+.PP
+* Can create new subtitle
+.PP
+* Can be used for timing (gstreamer)
+.PP
+* Can be used for translation
+.PP
+* Internal format is Advanced Sub Station Alpha
+.PP
+* Can edit the script header (authors, translators, timers, video informations, etc.)
+.PP
+* Style Editor
+.PP
+* Framerate convertion
+.PP
+* Scale
+.PP
+* Split subtitle
+.PP
+* Joint subtitle
+.PP
+* Spell check using aspell
+.PP
+* Encoding support
+.PP
+* Edit text and adjust time (start, end)
+.PP
+* Move subtitle
+.PP
+* Find and replace (can use Regular Expression)
+.PP
+* Remove empty lines
+.PP
+* Set All end times
+.PP
+* Can play video preview (using MPlayer or other)
+.PP
+Supported Formats:
+.PP
+* Sub Station Alpha
+.PP
+* Advanced Sub Station Alpha
+.PP
+* SubRip
+.PP
+* MicroDVD
+.PP
+* MPL2
+.PP
+* MPsub (MPlayer subtitle)
+.PP
+* SubViewer 2.0
+.PP
+* Plain\-Text
+.SH "AUTHOR"
+.PP
+This manual page was written by Amaya Rodrigo Sastre
+<amaya@debian.org> for the Debian(TM) system. It was modified by Anibal Avelar <aavelar@cofradia.org>.
+.SH "AUTHOR"
+.PP
+\fBAmaya Rodrigo\fR
+.sp -1n
+.IP "" 3n
+Author.
+.SH "COPYRIGHT"
+Copyright \(co 2006 Amaya Rodrigo Sastre
+.br
+Copyright \(co 2008 Anibal Avelar
+.br
+
