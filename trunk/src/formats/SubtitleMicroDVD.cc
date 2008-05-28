@@ -70,8 +70,8 @@ public:
 		m_decode_tags.push_back( Tag("\\{Y:(b|i|u)\\}(.*?)$", "<\\1>\\2</\\1>") );
 		
 		// SE to MicroDVD
-		m_encode_tags.push_back( Tag("<(b|i)>(.*?)</\\1>", "{y:\\1}\\2") );
-		m_encode_tags.push_back( Tag("<(b|i)>(.*?)(\n+)(.*)</\1>", "{y:\\1}\\2") );
+		m_encode_tags.push_back( Tag("<(b|i|u)>(.*?)</\\1>", "{y:\\1}\\2") );
+		m_encode_tags.push_back( Tag("<(b|i|u)>(.*?)(\n+)(.*)</\1>", "{y:\\1}\\2") );
 	}
 
 	/*
