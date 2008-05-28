@@ -41,6 +41,8 @@ FILES = \
 				SubtitleSystem.cc \
 				SubtitleView.h \
 				SubtitleView.cc \
+				SubtitleTags.h \
+				SubtitleTags.cc \
 				Action.h \
 				Action.cc \
 				ActionSystem.h \
