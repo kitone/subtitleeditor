@@ -27,6 +27,86 @@
 #include <glibmm/ustring.h>
 #include "utility.h"
 #include "RegEx.h"
+#include "SubtitleTags.h"
+
+/*
+ *
+ */
+class MicroDVDTags : public SubtitleTags
+{
+	class Tag
+	{
+	public:
+		Tag(const std::string &re, const std::string &by)
+		:m_re(re), m_by(by)
+		{
+		}
+
+		Tag(const RegEx &re, const std::string &by)
+		:m_re(re), m_by(by)
+		{
+		}
+
+		void replace(Glib::ustring &text)
+		{
+			std::string t = text;
+
+			m_re.GlobalReplace(m_by, &t);
+
+			text = t;
+		}
+
+	public:
+		RegEx m_re;
+		std::string m_by;
+	};
+
+public:
+	MicroDVDTags()
+	:SubtitleTags("MicroDVD")
+	{
+		// MicroDVD to SE
+		m_decode_tags.push_back( Tag("\\{y:(b|i|u)\\}(.*?)$", "<\\1>\\2</\\1>") );
+		m_decode_tags.push_back( Tag("\\{Y:(b|i|u)\\}(.*?)$", "<\\1>\\2</\\1>") );
+		
+		// SE to MicroDVD
+		m_encode_tags.push_back( Tag("<(b|i)>(.*?)</\\1>", "{y:\\1}\\2") );
+		m_encode_tags.push_back( Tag("<(b|i)>(.*?)(\n+)(.*)</\1>", "{y:\\1}\\2") );
+	}
+
+	/*
+	 *
+	 */
+	bool decode(Glib::ustring &text)
+	{
+		std::vector<Tag>::iterator it;
+
+		for(it = m_decode_tags.begin(); it != m_decode_tags.end(); ++it)
+		{
+			(*it).replace(text);
+		}
+
+		return true;
+	}
+
+	/*
+	 *
+	 */
+	bool encode(Glib::ustring &text)
+	{
+		std::vector<Tag>::iterator it;
+
+		for(it = m_encode_tags.begin(); it != m_encode_tags.end(); ++it)
+		{
+			(*it).replace(text);
+		}
+		return true;
+	}
+
+protected:
+	std::vector<Tag> m_decode_tags;
+	std::vector<Tag> m_encode_tags;
+};
 
 /*
  *
@@ -95,8 +175,10 @@ bool SubtitleMicroDVD::on_open(const Glib::ustring &filename)
 	std::string line;
 	std::string text;
 	int frame1, frame2;
-
+  
 	Subtitles subtitles = document()->subtitles();
+
+	MicroDVDTags tags;
 
 	while(!file.eof() && std::getline(file, line))
 	{
@@ -109,8 +191,10 @@ bool SubtitleMicroDVD::on_open(const Glib::ustring &filename)
 			Subtitle subtitle = subtitles.append();
 
 			Glib::ustring utf8_text = check_end_char(text);
-			
+
 			characters_to_newline(utf8_text, "|");
+
+			tags.decode(utf8_text);
 
 			subtitle.set_text(utf8_text);
 
@@ -144,12 +228,16 @@ bool SubtitleMicroDVD::on_save(const Glib::ustring &filename)
 
 	Glib::ustring text;
 	
+	MicroDVDTags tags;
+
 	for(Subtitle subtitle = document()->subtitles().get_first(); subtitle; ++subtitle)
 	{
 		SubtitleTime start = subtitle.get_start();
 		SubtitleTime end = subtitle.get_end();
 
 		Glib::ustring text = subtitle.get_text();
+
+		tags.encode(text);
 
 		newline_to_characters(text, "|");
 
