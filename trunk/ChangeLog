@@ -1,3 +1,8 @@
+2008-06-12  kitone  <kitone@gna.org>
+
+	* share/subtitleeditor.desktop:
+	Fix: Add %F to Exec.
+
 2008-05-28  kitone  <kitone@gna.org>
 
 	* src/Makefile.am:
