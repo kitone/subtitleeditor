@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-18 19:16+0200\n"
-"PO-Revision-Date: 2008-05-17 10:08+0000\n"
-"Last-Translator: Rémy Loubet <les.loubet@wanadoo.fr>\n"
+"POT-Creation-Date: 2008-06-11 22:31+0200\n"
+"PO-Revision-Date: 2008-05-29 04:02+0000\n"
+"Last-Translator: Shaffe <Unknown>\n"
 "Language-Team: French <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-17 18:48+0000\n"
+"X-Launchpad-Export-Date: 2008-06-11 18:32+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
@@ -33,7 +33,7 @@ msgid "All documents"
 msgstr "Tous les documents"
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
-#: ../src/actions/ChangeFramerate.cc:301
+#: ../src/actions/ChangeFramerate.cc:306
 #, fuzzy
 msgid "Change Framerate"
 msgstr "Changer FPS"
@@ -71,9 +71,8 @@ msgid "Check Errors Preferences"
 msgstr "Contrôle des erreurs dans les préférences"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:4
-#, fuzzy
 msgid "Gap between subtitle"
-msgstr "Interval entre sous-tire"
+msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
@@ -166,7 +165,7 @@ msgstr "Remplacer"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:4
 msgid "Replace _All"
-msgstr "Tout rempl_acer"
+msgstr "Tout_Remplacer"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:5
 #: ../share/glade/dialog-spell-checking.glade.h:6
@@ -200,12 +199,11 @@ msgstr "Décaler les sous-titres"
 #: ../share/glade/dialog-scale-subtitles.glade.h:4
 #, fuzzy
 msgid "New time:"
-msgstr "Nouveau:"
+msgstr "Nouveau temps"
 
 #: ../share/glade/dialog-preferences.glade.h:1
-#, fuzzy
 msgid "<b>Activate plugins</b>"
-msgstr "<b>Activer les greffons</b>"
+msgstr "Plugins activés"
 
 #: ../share/glade/dialog-preferences.glade.h:2
 msgid "<b>Encodings Character</b>"
@@ -250,7 +248,7 @@ msgstr "<b>Vidéo</b>"
 #: ../share/glade/dialog-preferences.glade.h:11
 #, fuzzy
 msgid "<b>Waveform Color</b>"
-msgstr "<b>Couleurs</b>"
+msgstr "<b>Couleur d'onde</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:12
 #, fuzzy
@@ -307,7 +305,6 @@ msgid "Display background"
 msgstr "Arrière-plan d'affichage"
 
 #: ../share/glade/dialog-preferences.glade.h:24
-#, fuzzy
 msgid "Display subtitle text"
 msgstr "Afficher le texte du sous-titre"
 
@@ -329,7 +326,6 @@ msgid "Encodings"
 msgstr "Encodages"
 
 #: ../share/glade/dialog-preferences.glade.h:29
-#, fuzzy
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
@@ -354,7 +350,6 @@ msgid "Maximum characters per second:"
 msgstr "Nombre maximum de caractères par seconde :"
 
 #: ../share/glade/dialog-preferences.glade.h:39
-#, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Interval minimum entre les sous-titres en millisecondes :"
 
@@ -433,7 +428,6 @@ msgid "Wave fill:"
 msgstr "Fichier wave :"
 
 #: ../share/glade/dialog-preferences.glade.h:56
-#, fuzzy
 msgid "Wave:"
 msgstr "Wave :"
 
@@ -468,7 +462,6 @@ msgid "_Font:"
 msgstr "_Police :"
 
 #: ../share/glade/dialog-preferences.glade.h:63
-#, fuzzy
 msgid "_Maximize window"
 msgstr "_Maximiser la fenêtre"
 
@@ -483,15 +476,6 @@ msgid "_Video:"
 msgstr "_Vidéo :"
 
 #: ../share/glade/dialog-preferences.glade.h:66
-msgid "gtk-about"
-msgstr "gtk-about"
-
-#: ../share/glade/dialog-preferences.glade.h:67
-#, fuzzy
-msgid "gtk-preferences"
-msgstr "Préférences"
-
-#: ../share/glade/dialog-preferences.glade.h:68
 msgid "minutes"
 msgstr "minutes"
 
@@ -506,7 +490,6 @@ msgid "<b>Last Point</b>"
 msgstr "<b>Dernier point</b>"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:5
-#, fuzzy
 msgid "Number:"
 msgstr "Nombre :"
 
@@ -651,7 +634,7 @@ msgstr "_Remplacer"
 #: ../share/glade/dialog-split-document.glade.h:1
 #, fuzzy
 msgid "Split Document"
-msgstr "Nouveau document"
+msgstr "Spérarer le document"
 
 #: ../share/glade/dialog-split-document.glade.h:2
 msgid "The beginning for the new document:"
@@ -817,6 +800,7 @@ msgstr ""
 "  DomS https://launchpad.net/~d0ms\n"
 "  Nicolas Vervelle https://launchpad.net/~nvervelle\n"
 "  Rémy Loubet https://launchpad.net/~brxl\n"
+"  Shaffe https://launchpad.net/~shaffe-fr\n"
 "  Vincent Batoufflet https://launchpad.net/~santx\n"
 "  kaiman https://launchpad.net/~kaigfm"
 
@@ -886,7 +870,7 @@ msgstr "Prière de sélectionner au moins un sous-titre :"
 #: ../src/actions/AdjustTime.cc:223
 #, fuzzy
 msgid "Adjust time"
-msgstr "décaler"
+msgstr "Décaler"
 
 #: ../src/actions/ApplyTranslation.cc:46
 #, fuzzy
@@ -906,16 +890,16 @@ msgstr "Appliquer la traduction"
 msgid "The translation was applied."
 msgstr "La traduction a été appliquée."
 
-#: ../src/actions/ChangeFramerate.cc:215
+#: ../src/actions/ChangeFramerate.cc:220
 #, fuzzy
 msgid "Change _Framerate"
 msgstr "Changer FPS"
 
-#: ../src/actions/ChangeFramerate.cc:215
+#: ../src/actions/ChangeFramerate.cc:220
 msgid "Convert framerate"
 msgstr "Convertir taux de rafraîchissement"
 
-#: ../src/actions/ChangeFramerate.cc:320
+#: ../src/actions/ChangeFramerate.cc:325
 #, c-format
 msgid "The new framerate was applied. (%s to %s)"
 msgstr "La traduction a été appliquée. (%s à %s)"
@@ -946,7 +930,7 @@ msgstr "Sélectionne le sous-titre suivant"
 #: ../src/actions/DeleteSubtitleSelect.cc:118
 #, fuzzy
 msgid "Delete Subtitles"
-msgstr "Effacer style"
+msgstr "Effacer sous-titres"
 
 #: ../src/actions/DeleteSubtitleSelect.cc:130
 msgid "1 subtitle has been deleted."
@@ -977,8 +961,8 @@ msgstr "_Fermer sans sauvegarder"
 #, c-format
 msgid "Save the changes to document \"%s\" before closing?"
 msgstr ""
-"Voulez-vous enregistrer les modifications dans le document « %s » avant de "
-"le fermer ?"
+"Voulez-vous enregistrer les modifications dans le document « %s » avant de le "
+"fermer ?"
 
 #: ../src/actions/DocumentManagement.cc:48
 msgid "If you don't save, the last changes will be permanently lost."
@@ -1018,12 +1002,12 @@ msgstr "Traduction"
 #: ../src/actions/DocumentManagement.cc:98
 #, fuzzy
 msgid "Open translation from file"
-msgstr "La traduction a été appliquée."
+msgstr "Ouvrir traduction"
 
 #: ../src/actions/DocumentManagement.cc:102
 #, fuzzy
 msgid "Save Trans_lation"
-msgstr "Traduction"
+msgstr "Enregistrer traduction"
 
 #: ../src/actions/DocumentManagement.cc:102
 #, fuzzy
@@ -1137,6 +1121,18 @@ msgstr "Jouer le film avec le lecteur video externe"
 #, fuzzy
 msgid "Please select a movie."
 msgstr "Je ne peux pas jouer la vidéo"
+
+#: ../src/actions/ExternalVideoPlayer.cc:176
+msgid "Failed to launch the external player."
+msgstr ""
+
+#: ../src/actions/ExternalVideoPlayer.cc:178
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Command: <i>%s</i>"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:250
 msgid "Replace text"
@@ -1497,7 +1493,7 @@ msgstr "Jouer ou faire une pause"
 
 #: ../src/actions/VideoPlayerManagement.cc:82
 msgid "Skip _Backards"
-msgstr ""
+msgstr "Retour_Rapide"
 
 #: ../src/actions/VideoPlayerManagement.cc:87
 #: ../src/actions/VideoPlayerManagement.cc:122
@@ -1543,7 +1539,7 @@ msgstr "Long"
 
 #: ../src/actions/VideoPlayerManagement.cc:117
 msgid "Skip _Forward"
-msgstr ""
+msgstr "Avance _Rapide"
 
 #: ../src/actions/VideoPlayerManagement.cc:151
 msgid "Rate"
@@ -1721,8 +1717,9 @@ msgid "_Save Waveform"
 msgstr "Enregistrer l'onde"
 
 #: ../src/actions/WaveformManagement.cc:65
+#, fuzzy
 msgid "Save wavefrom to file"
-msgstr ""
+msgstr "Enregistrer l'onde sous"
 
 #: ../src/actions/WaveformManagement.cc:70
 msgid "Zoom _In"
@@ -1747,8 +1744,9 @@ msgid "_Center With Selected Subtitle"
 msgstr "Sélectionne le sous-titre suivant"
 
 #: ../src/actions/WaveformManagement.cc:94
+#, fuzzy
 msgid "Scrolling With _Player"
-msgstr ""
+msgstr "Défiler avec le Lecteur"
 
 #: ../src/actions/WaveformManagement.cc:101
 #, fuzzy
@@ -1757,19 +1755,21 @@ msgstr "Jouer la sélection"
 
 #: ../src/actions/WaveformManagement.cc:108
 msgid "_Respect The Timing"
-msgstr ""
+msgstr "Respecter le minutage"
 
 #: ../src/actions/WaveformManagement.cc:108
 msgid "Try to respect the timing preferences"
-msgstr ""
+msgstr "Essayer de respecter les préférences de minutage"
 
 #: ../src/actions/WaveformManagement.cc:115
+#, fuzzy
 msgid "_Wavform"
-msgstr ""
+msgstr "_Wave"
 
 #: ../src/actions/WaveformManagement.cc:115
+#, fuzzy
 msgid "Show or hide the waveform in the current window"
-msgstr ""
+msgstr "Afficher ou masquer le  wave dans la fenêtre courante"
 
 #: ../src/actions/WaveformManagement.cc:218
 msgid "Save Waveform"
@@ -1902,8 +1902,8 @@ msgstr "Thaï"
 #: ../src/formats/SubtitleEncoreNTSC.cc:154
 #: ../src/formats/SubtitleEncorePAL.cc:98
 #: ../src/formats/SubtitleEncorePAL.cc:151
-#: ../src/formats/SubtitleMicroDVD.cc:87
-#: ../src/formats/SubtitleMicroDVD.cc:138 ../src/formats/SubtitleMPL2.cc:86
+#: ../src/formats/SubtitleMicroDVD.cc:167
+#: ../src/formats/SubtitleMicroDVD.cc:222 ../src/formats/SubtitleMPL2.cc:86
 #: ../src/formats/SubtitleMPL2.cc:136 ../src/formats/SubtitleMPsub.cc:90
 #: ../src/formats/SubtitleMPsub.cc:184 ../src/formats/SubtitleSSA.cc:159
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
@@ -2064,7 +2064,7 @@ msgstr "Vidéo"
 
 #: ../src/gui/DialogFileChooser.cc:75 ../src/gui/DialogFileChooser.cc:135
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: ../src/gui/DialogFileChooser.cc:114
 #, fuzzy
@@ -2319,8 +2319,9 @@ msgid "name"
 msgstr "nom"
 
 #: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
+#, fuzzy
 msgid "cps"
-msgstr ""
+msgstr "cps"
 
 #: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:793
 #: ../src/SubtitleView.cc:849
@@ -2410,12 +2411,37 @@ msgid "Set style to selection"
 msgstr "Jouer la sélection"
 
 #: ../src/utility.cc:590
+#, fuzzy
 msgid ""
+"GStreamer plugins missing.\n"
 "The playback of this movie requires the following decoders which are not "
 "installed:"
 msgstr ""
+"La relecture de ce film requiert les décodeurs suivant qui ne sont pas "
+"installés"
 
-#: ../src/vp/GStreamerPlayer.cc:607
+#: ../src/utility.cc:609
+#, c-format
+msgid "Failed to create a GStreamer element '%s'."
+msgstr ""
+
+#: ../src/utility.cc:610
+#, fuzzy
+msgid "Please check your GStreamer installation."
+msgstr ""
+"Impossible de créer un GStreamer de sur-couche texte (%s). Veuillez vérifier "
+"votre installation de GStreamer."
+
+#: ../src/vp/GStreamerPlayer.cc:561
+#, fuzzy, c-format
+msgid ""
+"Failed to create a GStreamer pipeline (%s). Please check your GStreamer "
+"installation."
+msgstr ""
+"Impossible de créer un GStreamer de conversion de vidéo (%s). Veuillez "
+"vérifier votre installation de GStreamer."
+
+#: ../src/vp/GStreamerPlayer.cc:615
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
@@ -2424,7 +2450,7 @@ msgstr ""
 "Impossible de créer un GStreamer de conversion de vidéo (%s). Veuillez "
 "vérifier votre installation de GStreamer."
 
-#: ../src/vp/GStreamerPlayer.cc:611
+#: ../src/vp/GStreamerPlayer.cc:619
 #, c-format
 msgid ""
 "Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
@@ -2433,7 +2459,7 @@ msgstr ""
 "Impossible de créer un GStreamer de sur-couche texte (%s). Veuillez vérifier "
 "votre installation de GStreamer."
 
-#: ../src/vp/GStreamerPlayer.cc:805
+#: ../src/vp/GStreamerPlayer.cc:813
 #, c-format
 msgid ""
 "Media file could not be played.\n"
@@ -2451,7 +2477,7 @@ msgstr "durée"
 msgid "Generate Waveform"
 msgstr "Création de l'onde"
 
-#: ../src/we/WaveformGenerator.cc:313
+#: ../src/we/WaveformGenerator.cc:317
 #, fuzzy
 msgid "Media file could not be played.\n"
 msgstr "Le fichier vidéo ne peut être lu."
@@ -2461,15 +2487,8 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr ""
-
-#~ msgid "gtk-add"
-#~ msgstr "gtk-ajouter"
-
-#~ msgid "gtk-close"
-#~ msgstr "gtk-fermer"
-
-#~ msgid "gtk-remove"
-#~ msgstr "gtk-supprimer"
+"Le gestionnaire de fenêtre ne supporte pas l'OpenGL.\n"
+"Veuillez essayer un autre rendu"
 
 #, fuzzy
 #~ msgid "Open the video"
@@ -2843,3 +2862,18 @@ msgstr ""
 
 #~ msgid "Marker:"
 #~ msgstr "Balise :"
+
+#~ msgid "gtk-about"
+#~ msgstr "gtk-about"
+
+#~ msgid "gtk-preferences"
+#~ msgstr "Préférences"
+
+#~ msgid "gtk-add"
+#~ msgstr "gtk-ajouter"
+
+#~ msgid "gtk-close"
+#~ msgstr "gtk-fermer"
+
+#~ msgid "gtk-remove"
+#~ msgstr "gtk-supprimer"
