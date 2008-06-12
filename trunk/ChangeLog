@@ -1,5 +1,10 @@
 2008-06-12  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Add Russian translation.
+
+2008-06-12  kitone  <kitone@gna.org>
+
 	* share/subtitleeditor.desktop:
 	Fix: Add %F to Exec.
 

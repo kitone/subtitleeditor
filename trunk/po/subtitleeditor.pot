@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-18 19:16+0200\n"
+"POT-Creation-Date: 2008-06-11 22:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgid "All documents"
 msgstr ""
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
-#: ../src/actions/ChangeFramerate.cc:301
+#: ../src/actions/ChangeFramerate.cc:306
 msgid "Change Framerate"
 msgstr ""
 
@@ -435,14 +435,6 @@ msgid "_Video:"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:66
-msgid "gtk-about"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:67
-msgid "gtk-preferences"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:68
 msgid "minutes"
 msgstr ""
 
@@ -825,15 +817,15 @@ msgstr ""
 msgid "The translation was applied."
 msgstr ""
 
-#: ../src/actions/ChangeFramerate.cc:215
+#: ../src/actions/ChangeFramerate.cc:220
 msgid "Change _Framerate"
 msgstr ""
 
-#: ../src/actions/ChangeFramerate.cc:215
+#: ../src/actions/ChangeFramerate.cc:220
 msgid "Convert framerate"
 msgstr ""
 
-#: ../src/actions/ChangeFramerate.cc:320
+#: ../src/actions/ChangeFramerate.cc:325
 #, c-format
 msgid "The new framerate was applied. (%s to %s)"
 msgstr ""
@@ -1034,6 +1026,18 @@ msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:107
 msgid "Please select a movie."
+msgstr ""
+
+#: ../src/actions/ExternalVideoPlayer.cc:176
+msgid "Failed to launch the external player."
+msgstr ""
+
+#: ../src/actions/ExternalVideoPlayer.cc:178
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Command: <i>%s</i>"
 msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:250
@@ -1735,8 +1739,8 @@ msgstr ""
 #: ../src/formats/SubtitleEncoreNTSC.cc:154
 #: ../src/formats/SubtitleEncorePAL.cc:98
 #: ../src/formats/SubtitleEncorePAL.cc:151
-#: ../src/formats/SubtitleMicroDVD.cc:87
-#: ../src/formats/SubtitleMicroDVD.cc:138 ../src/formats/SubtitleMPL2.cc:86
+#: ../src/formats/SubtitleMicroDVD.cc:167
+#: ../src/formats/SubtitleMicroDVD.cc:222 ../src/formats/SubtitleMPL2.cc:86
 #: ../src/formats/SubtitleMPL2.cc:136 ../src/formats/SubtitleMPsub.cc:90
 #: ../src/formats/SubtitleMPsub.cc:184 ../src/formats/SubtitleSSA.cc:159
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
@@ -2205,25 +2209,42 @@ msgstr ""
 
 #: ../src/utility.cc:590
 msgid ""
+"GStreamer plugins missing.\n"
 "The playback of this movie requires the following decoders which are not "
 "installed:"
 msgstr ""
 
-#: ../src/vp/GStreamerPlayer.cc:607
+#: ../src/utility.cc:609
+#, c-format
+msgid "Failed to create a GStreamer element '%s'."
+msgstr ""
+
+#: ../src/utility.cc:610
+msgid "Please check your GStreamer installation."
+msgstr ""
+
+#: ../src/vp/GStreamerPlayer.cc:561
+#, c-format
+msgid ""
+"Failed to create a GStreamer pipeline (%s). Please check your GStreamer "
+"installation."
+msgstr ""
+
+#: ../src/vp/GStreamerPlayer.cc:615
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
 
-#: ../src/vp/GStreamerPlayer.cc:611
+#: ../src/vp/GStreamerPlayer.cc:619
 #, c-format
 msgid ""
 "Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/GStreamerPlayer.cc:805
+#: ../src/vp/GStreamerPlayer.cc:813
 #, c-format
 msgid ""
 "Media file could not be played.\n"
@@ -2238,7 +2259,7 @@ msgstr ""
 msgid "Generate Waveform"
 msgstr ""
 
-#: ../src/we/WaveformGenerator.cc:313
+#: ../src/we/WaveformGenerator.cc:317
 msgid "Media file could not be played.\n"
 msgstr ""
 

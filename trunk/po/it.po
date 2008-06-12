@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-18 19:16+0200\n"
+"POT-Creation-Date: 2008-06-11 22:31+0200\n"
 "PO-Revision-Date: 2008-03-25 12:38+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-05-17 18:48+0000\n"
+"X-Launchpad-Export-Date: 2008-06-11 18:32+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
@@ -30,7 +30,7 @@ msgid "All documents"
 msgstr "Tutti i documenti"
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
-#: ../src/actions/ChangeFramerate.cc:301
+#: ../src/actions/ChangeFramerate.cc:306
 msgid "Change Framerate"
 msgstr "Cambia framerate"
 
@@ -452,15 +452,6 @@ msgid "_Video:"
 msgstr "_Video:"
 
 #: ../share/glade/dialog-preferences.glade.h:66
-msgid "gtk-about"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:67
-#, fuzzy
-msgid "gtk-preferences"
-msgstr "Preferenze"
-
-#: ../share/glade/dialog-preferences.glade.h:68
 msgid "minutes"
 msgstr "minuti"
 
@@ -855,16 +846,16 @@ msgstr "Applica traduzione"
 msgid "The translation was applied."
 msgstr "La traduzione è stata applicata."
 
-#: ../src/actions/ChangeFramerate.cc:215
+#: ../src/actions/ChangeFramerate.cc:220
 #, fuzzy
 msgid "Change _Framerate"
 msgstr "Cambia framerate"
 
-#: ../src/actions/ChangeFramerate.cc:215
+#: ../src/actions/ChangeFramerate.cc:220
 msgid "Convert framerate"
 msgstr "Cambia il framrate dei sottotitoli"
 
-#: ../src/actions/ChangeFramerate.cc:320
+#: ../src/actions/ChangeFramerate.cc:325
 #, c-format
 msgid "The new framerate was applied. (%s to %s)"
 msgstr "Il framerate è stato modificato da %s a %s."
@@ -1087,6 +1078,18 @@ msgstr "Riproduce il video con un player esterno."
 #, fuzzy
 msgid "Please select a movie."
 msgstr "Scegliere almeno un sottotitolo."
+
+#: ../src/actions/ExternalVideoPlayer.cc:176
+msgid "Failed to launch the external player."
+msgstr ""
+
+#: ../src/actions/ExternalVideoPlayer.cc:178
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Command: <i>%s</i>"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:250
 #, fuzzy
@@ -1851,8 +1854,8 @@ msgstr "Tailandese"
 #: ../src/formats/SubtitleEncoreNTSC.cc:154
 #: ../src/formats/SubtitleEncorePAL.cc:98
 #: ../src/formats/SubtitleEncorePAL.cc:151
-#: ../src/formats/SubtitleMicroDVD.cc:87
-#: ../src/formats/SubtitleMicroDVD.cc:138 ../src/formats/SubtitleMPL2.cc:86
+#: ../src/formats/SubtitleMicroDVD.cc:167
+#: ../src/formats/SubtitleMicroDVD.cc:222 ../src/formats/SubtitleMPL2.cc:86
 #: ../src/formats/SubtitleMPL2.cc:136 ../src/formats/SubtitleMPsub.cc:90
 #: ../src/formats/SubtitleMPsub.cc:184 ../src/formats/SubtitleSSA.cc:159
 #: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
@@ -2356,25 +2359,42 @@ msgstr "Vai alla selezione"
 
 #: ../src/utility.cc:590
 msgid ""
+"GStreamer plugins missing.\n"
 "The playback of this movie requires the following decoders which are not "
 "installed:"
 msgstr ""
 
-#: ../src/vp/GStreamerPlayer.cc:607
+#: ../src/utility.cc:609
+#, fuzzy, c-format
+msgid "Failed to create a GStreamer element '%s'."
+msgstr "Impossibile aprire il file <i>%s</i>."
+
+#: ../src/utility.cc:610
+msgid "Please check your GStreamer installation."
+msgstr ""
+
+#: ../src/vp/GStreamerPlayer.cc:561
+#, c-format
+msgid ""
+"Failed to create a GStreamer pipeline (%s). Please check your GStreamer "
+"installation."
+msgstr ""
+
+#: ../src/vp/GStreamerPlayer.cc:615
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
 
-#: ../src/vp/GStreamerPlayer.cc:611
+#: ../src/vp/GStreamerPlayer.cc:619
 #, c-format
 msgid ""
 "Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/GStreamerPlayer.cc:805
+#: ../src/vp/GStreamerPlayer.cc:813
 #, c-format
 msgid ""
 "Media file could not be played.\n"
@@ -2390,7 +2410,7 @@ msgstr "durata"
 msgid "Generate Waveform"
 msgstr "Genera Waveform"
 
-#: ../src/we/WaveformGenerator.cc:313
+#: ../src/we/WaveformGenerator.cc:317
 #, fuzzy
 msgid "Media file could not be played.\n"
 msgstr "Il file non può essere riprodotto."
@@ -2614,10 +2634,6 @@ msgstr ""
 #~ msgid "Remove 100 Milliseconds To Duration"
 #~ msgstr "Sottrai 100 millisecondi alla durata"
 
-#, fuzzy
-#~ msgid "Could not create element '%s'"
-#~ msgstr "Impossibile aprire il file <i>%s</i>."
-
 #~ msgid "This time is the duration..."
 #~ msgstr "Indica la durata..."
 
@@ -2716,3 +2732,7 @@ msgstr ""
 
 #~ msgid "Marker:"
 #~ msgstr "Marcatori:"
+
+#, fuzzy
+#~ msgid "gtk-preferences"
+#~ msgstr "Preferenze"

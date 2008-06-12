@@ -1,18 +1,16 @@
-# Catalan translation of subtitleeditor.
-# Copyright (C) 2006 Free Software Foundation, Inc.
+# Russian translation for subtitleeditor
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the subtitleeditor package.
-# Gil Forcada <gilforcada@guifi.net>, 2006.
-#
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: subtitleeditor 0.7\n"
+"Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-11 22:31+0200\n"
-"PO-Revision-Date: 2008-03-25 12:18+0000\n"
-"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
-"Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"PO-Revision-Date: 2008-06-07 15:47+0000\n"
+"Last-Translator: mrakobes86 <mrakobes86@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,90 +18,80 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
-#, fuzzy
 msgid "<b>Apply to</b>"
-msgstr "<b>Opció:</b>"
+msgstr ""
 
 #: ../share/glade/dialog-change-framerate.glade.h:2
 #, fuzzy
 msgid "<b>Framerate</b>"
-msgstr "<b>Vora</b>"
+msgstr "_Частота кадров"
 
 #: ../share/glade/dialog-change-framerate.glade.h:3
-#, fuzzy
 msgid "All documents"
-msgstr "Obre el document:"
+msgstr "Все _документы"
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
 #: ../src/actions/ChangeFramerate.cc:306
 #, fuzzy
 msgid "Change Framerate"
-msgstr "Canvia els FPS"
+msgstr "Изменить частоту кадров"
 
 #: ../share/glade/dialog-change-framerate.glade.h:5
-#, fuzzy
 msgid "Current document"
-msgstr "Obre el document:"
+msgstr "Текущий документ"
 
 #: ../share/glade/dialog-change-framerate.glade.h:6
-#, fuzzy
 msgid "Current:"
-msgstr "Línia actual"
+msgstr "Текущий:"
 
 #: ../share/glade/dialog-change-framerate.glade.h:7
-#, fuzzy
 msgid "New:"
-msgstr "Nom:"
+msgstr "Новый:"
 
 #: ../share/glade/dialog-check-errors.glade.h:1
-#, fuzzy
 msgid "Check Errors"
-msgstr "Comprova errors de codificació"
+msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:1
-#, fuzzy
 msgid "<b>Checking</b>"
-msgstr "<b>Tipus de lletra</b>"
+msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:2
-#, fuzzy
 msgid "<b>Timings</b>"
-msgstr "<b>Aparença</b>"
+msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:3
-#, fuzzy
 msgid "Check Errors Preferences"
-msgstr "Comprova errors de codificació"
+msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:4
 #, fuzzy
 msgid "Gap between subtitle"
-msgstr "Desa com a subtítols"
+msgstr "Промежуток между субтитрами"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
-#, fuzzy
 msgid "Max line per subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
 msgid "Maximum character per second:"
-msgstr ""
+msgstr "Максимум символов в секунду"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:34
 msgid "Maximum characters per line:"
-msgstr ""
+msgstr "Максимум символов в строке"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
 #: ../share/glade/dialog-preferences.glade.h:36
 msgid "Maximum number of line per subtitle:"
-msgstr ""
+msgstr "Максимум строк в субтитре"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
 #: ../share/glade/dialog-preferences.glade.h:37
 msgid "Minimum characters per second:"
-msgstr ""
+msgstr "Минимум символов в секунду"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:10
 #: ../share/glade/dialog-preferences.glade.h:38
@@ -111,13 +99,15 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
+#, fuzzy
 msgid "Minimum gap between subtitle in mseconds:"
-msgstr ""
+msgstr "Минимальный промежуток мужду субтитрами в мс"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
+#, fuzzy
 msgid "Overlapping"
-msgstr ""
+msgstr "Наложение"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:13
 #: ../src/gui/CheckErrorsUI.cc:154
@@ -126,7 +116,7 @@ msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:14
 msgid "Too long line"
-msgstr ""
+msgstr "Слишком длинная строка"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:15
 #: ../src/gui/CheckErrorsUI.cc:99
@@ -136,17 +126,21 @@ msgstr ""
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:1
 #: ../src/gui/MenuBar.cc:175
 msgid "Configure Keyboard Shortcuts"
-msgstr ""
+msgstr "Настроить клавиши быстрого доступа"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
+#, fuzzy
 msgid ""
 "To edit a shortcut key, clic on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
+"Чтобы переназначить клавиши быстрого доступа, выберите соответствующую "
+"строку и введите новый ускоритель, или нажмите backspace  для отмены."
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:1
+#, fuzzy
 msgid "<b>Please choose encodings</b>"
-msgstr ""
+msgstr "Выбрать кодировку"
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:2
 msgid "Encodings Chooser"
@@ -154,115 +148,103 @@ msgstr ""
 
 #: ../share/glade/dialog-find-and-replace.glade.h:1
 msgid "Find And Replace"
-msgstr "Reemplaça"
+msgstr "Найти и заменить"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:2
 msgid "Pattern:"
-msgstr ""
+msgstr "Шаблон:"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:3
 msgid "Replace"
-msgstr "Reemplaça"
+msgstr "Заменить"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:4
-#, fuzzy
 msgid "Replace _All"
-msgstr "Reemplaça-tot"
+msgstr "Заменить вс_ё"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:5
 #: ../share/glade/dialog-spell-checking.glade.h:6
 msgid "Replace with:"
-msgstr "Reemplaça amb:"
+msgstr "Заменить на:"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:6
-#, fuzzy
 msgid "_Ignore case"
-msgstr "_Ignora"
+msgstr "Игнорировать регистр"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
+#, fuzzy
 msgid "_Used regular expression"
-msgstr ""
+msgstr "Использовать регулярные выражения"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:1
-#, fuzzy
 msgid "<b>Position</b>"
-msgstr "<b>Opció:</b>"
+msgstr ""
 
 #: ../share/glade/dialog-move-subtitles.glade.h:2
 #: ../share/glade/dialog-scale-subtitles.glade.h:3
-#, fuzzy
 msgid "Current time:"
-msgstr "Línia actual"
+msgstr ""
 
 #: ../share/glade/dialog-move-subtitles.glade.h:3
 #: ../src/actions/MoveSubtitles.cc:165
-#, fuzzy
 msgid "Move Subtitles"
-msgstr "_Mou el subtítol"
+msgstr ""
 
 #: ../share/glade/dialog-move-subtitles.glade.h:4
 #: ../share/glade/dialog-scale-subtitles.glade.h:4
-#, fuzzy
 msgid "New time:"
-msgstr "Nom:"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:1
-#, fuzzy
 msgid "<b>Activate plugins</b>"
-msgstr "<b>Marges</b>"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:2
 msgid "<b>Encodings Character</b>"
-msgstr ""
+msgstr "Кодировка символов"
 
 #: ../share/glade/dialog-preferences.glade.h:3
-#, fuzzy
 msgid "<b>File Saving</b>"
-msgstr "<b>Tipus de lletra</b>"
+msgstr "<b>Сохранение файлов</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:4
-#, fuzzy
 msgid "<b>General</b>"
-msgstr "<b>Vora</b>"
+msgstr "<b>Общие</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:5
-#, fuzzy
 msgid "<b>Output</b>"
-msgstr "<b>Tipus de lletra</b>"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:6
 #, fuzzy
 msgid "<b>Subtitle View</b>"
-msgstr "<b>Estil</b>"
+msgstr "Просмотр субтитров"
 
 #: ../share/glade/dialog-preferences.glade.h:7
 #, fuzzy
 msgid "<b>Text Subtitle</b>"
-msgstr "<b>Estil</b>"
+msgstr "Текст субтитров"
 
 #: ../share/glade/dialog-preferences.glade.h:8
-#, fuzzy
 msgid "<b>Timing Preferences</b>"
-msgstr "<b>Aparença</b>"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:9
 msgid "<b>Video Player For Preview</b>"
-msgstr ""
+msgstr "Видео плеер для предпросмотра"
 
 #: ../share/glade/dialog-preferences.glade.h:10
 #: ../share/glade/dialog-script-properties.glade.h:6
 msgid "<b>Video</b>"
-msgstr "<b>Vídeo</b>"
+msgstr "<b>Видео</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:11
-#, fuzzy
 msgid "<b>Waveform Color</b>"
-msgstr "<b>Colors</b>"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:12
-#, fuzzy
 msgid "<b>Waveform Generator</b>"
-msgstr "<b>Vora</b>"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:13
 msgid "<span size=\"small\">the path to the subtitle file</span>"
@@ -294,35 +276,33 @@ msgid "Background:"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:20
+#, fuzzy
 msgid "Command:"
-msgstr ""
+msgstr "Команда:"
 
 #: ../share/glade/dialog-preferences.glade.h:21
 msgid "Create a _backup copy of files before saving"
-msgstr ""
+msgstr "Создать _резервную копию файла перед сохранением"
 
 #: ../share/glade/dialog-preferences.glade.h:22
-#, fuzzy
 msgid "Display _translated subtitle"
-msgstr "Desa com a subtítols"
+msgstr "Показать переведённые субтитры"
 
 #: ../share/glade/dialog-preferences.glade.h:23
 msgid "Display background"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:24
-#, fuzzy
 msgid "Display subtitle text"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:25
 msgid "Display the translated subtitle instead of the original one."
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:26
-#, fuzzy
 msgid "Display waveform fill"
-msgstr "S'ha produït un error en desar el document com:"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:27
 msgid "Enable _rubberband selection"
@@ -330,75 +310,73 @@ msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:28
 msgid "Encodings"
-msgstr ""
+msgstr "Кодировки"
 
 #: ../share/glade/dialog-preferences.glade.h:29
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
-msgstr ""
+msgstr "Пример для mplayer'а:"
 
 #: ../share/glade/dialog-preferences.glade.h:31
 msgid "Force aspect _ratio"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:32
+#, fuzzy
 msgid "Interface"
-msgstr ""
+msgstr "Внешний вид"
 
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Interval in seconds:"
-msgstr ""
+msgstr "Интервал в секундах:"
 
 #: ../share/glade/dialog-preferences.glade.h:35
 msgid "Maximum characters per second:"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:39
-#, fuzzy
 msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:40
-#, fuzzy
 msgid "Player Position:"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:41
 msgid "Plugins"
-msgstr ""
+msgstr "Дополнения"
 
 #: ../share/glade/dialog-preferences.glade.h:42
 msgid "Preferences"
-msgstr ""
+msgstr "Параметры"
 
 #: ../share/glade/dialog-preferences.glade.h:43
+#, fuzzy
 msgid "Preview"
-msgstr ""
+msgstr "Предв. просмотр"
 
 #: ../share/glade/dialog-preferences.glade.h:44
 msgid "Reset To _Defaults"
-msgstr ""
+msgstr "_Восстановить параметры по умолчанию"
 
 #: ../share/glade/dialog-preferences.glade.h:45
-#, fuzzy
 msgid "Subtitle Invalid:"
-msgstr "Desa els subtítols"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:46
-#, fuzzy
 msgid "Subtitle Selected:"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:47
 #, fuzzy
 msgid "Subtitle:"
-msgstr "_Subtítols"
+msgstr "Заголовок:"
 
 #: ../share/glade/dialog-preferences.glade.h:48
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
 msgid "Text:"
-msgstr "Text:"
+msgstr "Текст:"
 
 #: ../share/glade/dialog-preferences.glade.h:49
 msgid ""
@@ -416,31 +394,29 @@ msgid "Use _dynamic keyboard shortcuts"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:52
+#, fuzzy
 msgid "Use shaded _background"
-msgstr ""
+msgstr "Использовать затенённый фон"
 
 #: ../share/glade/dialog-preferences.glade.h:53
 msgid "Used \"Auto Detected\""
-msgstr ""
+msgstr "Автоопределение"
 
 #: ../share/glade/dialog-preferences.glade.h:54
-#, fuzzy
 msgid "Video Player"
-msgstr "capa"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:55
 msgid "Wave fill:"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:56
-#, fuzzy
 msgid "Wave:"
-msgstr "Nom:"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:57
-#, fuzzy
 msgid "Waveform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:58
 msgid ""
@@ -449,13 +425,12 @@ msgid ""
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:59
-#, fuzzy
 msgid "_Audio:"
-msgstr "Obre uns subtítols"
+msgstr "Звук:"
 
 #: ../share/glade/dialog-preferences.glade.h:60
 msgid "_Autosave files every"
-msgstr ""
+msgstr "_Автоматически сохранять файлы каждые"
 
 #: ../share/glade/dialog-preferences.glade.h:61
 msgid "_Center the text of the subtitle in the column"
@@ -463,7 +438,7 @@ msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:62
 msgid "_Font:"
-msgstr ""
+msgstr "_Шрифт:"
 
 #: ../share/glade/dialog-preferences.glade.h:63
 msgid "_Maximize window"
@@ -471,298 +446,288 @@ msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:64
 msgid "_Show the number of character per line"
-msgstr ""
+msgstr "Показать число символов в строке"
 
 #: ../share/glade/dialog-preferences.glade.h:65
-#, fuzzy
 msgid "_Video:"
-msgstr "_Video"
+msgstr "Видео"
 
 #: ../share/glade/dialog-preferences.glade.h:66
+#, fuzzy
 msgid "minutes"
-msgstr ""
+msgstr "минут(а,ы)"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:1
 #, fuzzy
 msgid "<b>First Point</b>"
-msgstr "<b>Tipus de lletra</b>"
+msgstr "Начальная точка"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:2
 #, fuzzy
 msgid "<b>Last Point</b>"
-msgstr "<b>Tipus de lletra</b>"
+msgstr "Конечная точка"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:5
-#, fuzzy
 msgid "Number:"
-msgstr "Nom:"
+msgstr ""
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:6
+#, fuzzy
 msgid "Scale"
-msgstr "Escala"
+msgstr "Масштабирование"
 
 #: ../share/glade/dialog-script-properties.glade.h:1
 msgid "*"
-msgstr ""
+msgstr "*"
 
 #: ../share/glade/dialog-script-properties.glade.h:2
 msgid "<b>Basic</b>"
-msgstr "<b>Bàsic</b>"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:3
 msgid "<b>Behaviour</b>"
-msgstr "<b>Comportament</b>"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:4
+#, fuzzy
 msgid "<b>Miscellaneous</b>"
-msgstr "<b>Miscel·lani</b>"
+msgstr "<b>Дополнительно</b>"
 
 #: ../share/glade/dialog-script-properties.glade.h:5
 msgid "<b>Read-only info</b>"
-msgstr "<b>Informació de només lectura</b>"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:7
 msgid "Collisions:"
-msgstr "Col·lisions:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:8
 msgid ""
 "Normal\n"
 "Reverse"
 msgstr ""
-"Normal\n"
-"Invertit"
 
 #: ../share/glade/dialog-script-properties.glade.h:10
 msgid "Original Editing:"
-msgstr "Edició original:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:11
 msgid "Original Script:"
-msgstr "Script original:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:12
 msgid "Original Timing:"
-msgstr "Temps originals:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:13
 msgid "Original Translation:"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:14
 msgid "PlayDepth:"
-msgstr "PlayDepth:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:15
 msgid "PlayResX:"
-msgstr "PlayResX:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:16
 msgid "PlayResY:"
-msgstr "PlayResY:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:17
-#, fuzzy
 msgid "Point Time: "
-msgstr "Temps del punt: "
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:18
-#, fuzzy
 msgid "Script Properties"
-msgstr "Propietats"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:19
 msgid "Script Type:"
-msgstr "Tipus de script:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:20
 msgid "Script Updated By:"
-msgstr "Script actualitzat per:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:21
 msgid "Sync Point:"
-msgstr "Punt de sincronització:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:22
 msgid "Timer:"
-msgstr "Sincronitzador:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:23
 msgid "Title:"
-msgstr "Títol:"
+msgstr "Заголовок:"
 
 #: ../share/glade/dialog-script-properties.glade.h:24
 msgid "Update Details:"
-msgstr "Actualitza els detalls:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:25
-#, fuzzy
 msgid "Wrap Style:"
-msgstr "Estil ordit:"
+msgstr ""
 
 #: ../share/glade/dialog-spell-checking.glade.h:1
 msgid "<b>Completed spell checking.</b>"
-msgstr ""
+msgstr "<b>Проверка орфографии выполнена.</b>"
 
 #: ../share/glade/dialog-spell-checking.glade.h:2
-#, fuzzy
 msgid "<b>Language:</b>"
-msgstr "<b>Aparença</b>"
+msgstr "<b>Язык</b>"
 
 #: ../share/glade/dialog-spell-checking.glade.h:3
-#, fuzzy
 msgid "A_dd Word"
-msgstr "_Afegeix una paraula"
+msgstr "Добавить слово"
 
 #: ../share/glade/dialog-spell-checking.glade.h:4
 msgid "Check _Word"
-msgstr ""
+msgstr "Проверить слово"
 
 #: ../share/glade/dialog-spell-checking.glade.h:5
-#, fuzzy
 msgid "Ignore _All"
-msgstr "Ig_nora-ho tot"
+msgstr "Игнорировать в_се"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
 #: ../src/actions/SpellChecking.cc:295
-#, fuzzy
 msgid "Spell Checking"
-msgstr "Comprova l'ortografia"
+msgstr "Проверка орфографии"
 
 #: ../share/glade/dialog-spell-checking.glade.h:8
-#, fuzzy
 msgid "User dictionary:"
-msgstr "Secundari:"
+msgstr "Пользовательский словарь:"
 
 #: ../share/glade/dialog-spell-checking.glade.h:9
 msgid "_Ignore"
-msgstr "_Ignora"
+msgstr "Игнорировать"
 
 #: ../share/glade/dialog-spell-checking.glade.h:10
 msgid "_Replace"
-msgstr "_Reemplaça"
+msgstr "Заменить"
 
 #: ../share/glade/dialog-split-document.glade.h:1
 #, fuzzy
 msgid "Split Document"
-msgstr "Document nou"
+msgstr "Разделить документ"
 
 #: ../share/glade/dialog-split-document.glade.h:2
 msgid "The beginning for the new document:"
-msgstr ""
+msgstr "Начало нового документа"
 
 #: ../share/glade/dialog-style-editor.glade.h:1
 msgid "<b>Alignment</b>"
-msgstr "<b>Alineació</b>"
+msgstr "<b>Выравнивание</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
 msgid "<b>Appearence</b>"
-msgstr "<b>Aparença</b>"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:3
 msgid "<b>Border</b>"
-msgstr "<b>Vora</b>"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:4
 msgid "<b>Colors</b>"
-msgstr "<b>Colors</b>"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:5
 msgid "<b>Font</b>"
-msgstr "<b>Tipus de lletra</b>"
+msgstr "<b>Шрифт</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:6
 msgid "<b>Fonts</b>"
-msgstr "<b>Tipus de lletres</b>"
+msgstr "<b>Шрифты</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:7
 msgid "<b>Margins</b>"
-msgstr "<b>Marges</b>"
+msgstr "<b>Границы</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:8
-#, fuzzy
 msgid "<b>Preview</b>"
-msgstr "<b>Vídeo</b>"
+msgstr "<b>Предпросмотр</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:9
 msgid "<b>Transformation</b>"
-msgstr "<b>Transformació</b>"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:10
 msgid "Angle:"
-msgstr "Angle:"
+msgstr "Угол:"
 
 #: ../share/glade/dialog-style-editor.glade.h:11
 msgid "Copy Style"
-msgstr "Copia l'estil"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:12
 msgid "Create New Style"
-msgstr "Crea un nou estil"
+msgstr "Создать стиль"
 
 #: ../share/glade/dialog-style-editor.glade.h:13
 msgid "Delete Style"
-msgstr "Elimina l'estil"
+msgstr "Удалить стиль"
 
 #: ../share/glade/dialog-style-editor.glade.h:14
 msgid "Distance:"
-msgstr "Distància:"
+msgstr "Расстояние:"
 
 #: ../share/glade/dialog-style-editor.glade.h:15
 msgid "Left:"
-msgstr "Falta:"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:16
 msgid "Manage Styles"
-msgstr "Gestiona els estils"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:17
 msgid "Opaque Box"
-msgstr "Capsa opaqua"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:18
 msgid "Outline"
-msgstr "Contorn"
+msgstr "Контур"
 
 #: ../share/glade/dialog-style-editor.glade.h:19
 msgid "Outline:"
-msgstr "Contorn:"
+msgstr "Контур:"
 
 #: ../share/glade/dialog-style-editor.glade.h:20
 msgid "Primary:"
-msgstr "Primari:"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:21
 msgid "Right:"
-msgstr "Dreta:"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:22
 msgid "Scale X:"
-msgstr "Escala X:"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:23
 msgid "Scale Y:"
-msgstr "Escala Y:"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:24
 msgid "Secondary:"
-msgstr "Secundari:"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:25
 msgid "Shadow:"
-msgstr "Ombra:"
+msgstr "Тень:"
 
 #: ../share/glade/dialog-style-editor.glade.h:26
 msgid "Size:"
-msgstr "Mida:"
+msgstr "Размер:"
 
 #: ../share/glade/dialog-style-editor.glade.h:27
 msgid "Spacing:"
-msgstr "Espaiat:"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:28
 msgid "Subtitle Editor - Style Editor"
-msgstr "Editor de subtítols - Editor d'estils"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:29
 msgid "TODO"
@@ -770,15 +735,15 @@ msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:30
 msgid "Vertical:"
-msgstr "Vertical:"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:1
 msgid "<b>Columns</b>"
-msgstr ""
+msgstr "<b>Столбцы</b>"
 
 #: ../share/glade/dialog-view-manager.glade.h:2
 msgid "<b>View</b>"
-msgstr ""
+msgstr "<b>Вид</b>"
 
 #: ../share/glade/dialog-view-manager.glade.h:3
 msgid "View Editing"
@@ -789,51 +754,44 @@ msgid "View Manager"
 msgstr ""
 
 #: ../share/glade/subtitleeditor.glade.h:1
-#, fuzzy
 msgid "Subtitle Editor"
-msgstr "Editor d'estils"
+msgstr ""
 
 #. comments
 #: ../src/actions/About.cc:86
-#, fuzzy
 msgid "a tool for subtitles edition"
-msgstr "Editor d'estils"
+msgstr ""
 
 #. translator-credits
 #: ../src/actions/About.cc:95
 msgid "translator-credits"
 msgstr ""
-"Gil Forcada <gilforcada@guifi.net>\n"
-"\n"
 "Launchpad Contributions:\n"
-"  Gil Forcada https://launchpad.net/~gilforcada"
+"  mrakobes86 https://launchpad.net/~mrakobes86"
 
 #: ../src/actions/AdjustTime.cc:47
 msgid "Add 100 Milliseconds"
 msgstr ""
 
 #: ../src/actions/AdjustTime.cc:50 ../src/actions/AdjustTime.cc:66
-#, fuzzy
 msgid "To Start"
-msgstr "Mostra l'inici"
+msgstr ""
 
 #: ../src/actions/AdjustTime.cc:50
 msgid "Add 100 Milliseconds to start for all subtitles selected"
 msgstr ""
 
 #: ../src/actions/AdjustTime.cc:54 ../src/actions/AdjustTime.cc:70
-#, fuzzy
 msgid "To Duration"
-msgstr "Destí:"
+msgstr ""
 
 #: ../src/actions/AdjustTime.cc:54
 msgid "Add 100 Milliseconds to duration for all subtitles selected"
 msgstr ""
 
 #: ../src/actions/AdjustTime.cc:58 ../src/actions/AdjustTime.cc:74
-#, fuzzy
 msgid "To Start And Duration"
-msgstr "Destí:"
+msgstr ""
 
 #: ../src/actions/AdjustTime.cc:58
 msgid "Add 100 Milliseconds to all subtitles selected"
@@ -866,32 +824,28 @@ msgid "Please select at least a subtitle."
 msgstr ""
 
 #: ../src/actions/AdjustTime.cc:223
-#, fuzzy
 msgid "Adjust time"
-msgstr "Afegiu temps"
+msgstr ""
 
 #: ../src/actions/ApplyTranslation.cc:46
-#, fuzzy
 msgid "Apply _Translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/ApplyTranslation.cc:46
 msgid "Replace the text of the subtitle by the translation"
 msgstr ""
 
 #: ../src/actions/ApplyTranslation.cc:108
-#, fuzzy
 msgid "Apply translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/ApplyTranslation.cc:121
 msgid "The translation was applied."
 msgstr ""
 
 #: ../src/actions/ChangeFramerate.cc:220
-#, fuzzy
 msgid "Change _Framerate"
-msgstr "Canvia els FPS"
+msgstr ""
 
 #: ../src/actions/ChangeFramerate.cc:220
 msgid "Convert framerate"
@@ -911,24 +865,20 @@ msgid "Merge the selected subtitles"
 msgstr ""
 
 #: ../src/actions/CombineSubtitles.cc:160 ../src/actions/SplitSubtitle.cc:112
-#, fuzzy
 msgid "Please select at least two subtitles."
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/CombineSubtitles.cc:164
-#, fuzzy
 msgid "Combine subtitles"
-msgstr "_Mou el subtítol"
+msgstr ""
 
 #: ../src/actions/DeleteSubtitleSelect.cc:45
-#, fuzzy
 msgid "Delete the selected subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/DeleteSubtitleSelect.cc:118
-#, fuzzy
 msgid "Delete Subtitles"
-msgstr "Elimina l'estil"
+msgstr ""
 
 #: ../src/actions/DeleteSubtitleSelect.cc:130
 msgid "1 subtitle has been deleted."
@@ -965,19 +915,16 @@ msgid "If you don't save, the last changes will be permanently lost."
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:76
-#, fuzzy
 msgid "Create a new document"
-msgstr "Desa el document com:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:81
-#, fuzzy
 msgid "Open a file"
-msgstr "Obre uns subtítols"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:85
-#, fuzzy
 msgid "Save the current file"
-msgstr "S'ha produït un error en desar el document:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:89
 msgid "Save the current file with a different name"
@@ -992,34 +939,28 @@ msgid "Save all open files"
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:98
-#, fuzzy
 msgid "Open _Translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:98
-#, fuzzy
 msgid "Open translation from file"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:102
-#, fuzzy
 msgid "Save Trans_lation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:102
-#, fuzzy
 msgid "Save translation to file"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:107
-#, fuzzy
 msgid "Open _Recent"
-msgstr "Obre el document:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:111
-#, fuzzy
 msgid "Close the current file"
-msgstr "S'ha produït un error en desar el document:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:116
 msgid "E_xit"
@@ -1047,9 +988,8 @@ msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:461
-#, fuzzy
 msgid "Open translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:488
 #, c-format
@@ -1071,14 +1011,12 @@ msgid "_Duplicate"
 msgstr ""
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:47
-#, fuzzy
 msgid "Duplicate the selected subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:115
-#, fuzzy
 msgid "Duplicate selected subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
@@ -1093,32 +1031,28 @@ msgid "Extend lenght"
 msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:46
-#, fuzzy
 msgid "_Preview"
-msgstr "Propietats"
+msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:49
-#, fuzzy
 msgid "_Open Movie"
-msgstr "Obre un vídeo"
+msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:49
 msgid "Open movie with external video player"
 msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:53
-#, fuzzy
 msgid "_Play Movie"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:53
 msgid "Play movie with external video player"
 msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:107
-#, fuzzy
 msgid "Please select a movie."
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/ExternalVideoPlayer.cc:176
 msgid "Failed to launch the external player."
@@ -1133,9 +1067,8 @@ msgid ""
 msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:250
-#, fuzzy
 msgid "Replace text"
-msgstr "Reemplaça"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:286 ../src/actions/FindAndReplace.cc:508
 #: ../src/actions/FindAndReplace.cc:575
@@ -1143,19 +1076,16 @@ msgid "The document is empty"
 msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:404
-#, fuzzy
 msgid "_Find And Replace"
-msgstr "Reemplaça"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:404
-#, fuzzy
 msgid "Search and replace text"
-msgstr "Reemplaça"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:408
-#, fuzzy
 msgid "Find Ne_xt"
-msgstr "Cerca el següent"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:408
 msgid "Search forwards for the same text"
@@ -1174,51 +1104,44 @@ msgid "Not found"
 msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:45
-#, fuzzy
 msgid "Insert _Before"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:45
 msgid "Insert blank subtitle before the selected subtitle"
 msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:49
-#, fuzzy
 msgid "Insert _After"
-msgstr "Insereix després"
+msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:49
 msgid "Insert blank subtitle after the selected subtitle"
 msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:142 ../src/Subtitles.cc:123
-#, fuzzy
 msgid "Insert Subtitle"
-msgstr "_Mou el subtítol"
+msgstr ""
 
 #: ../src/actions/Italicize.cc:48
 msgid "_Italic"
 msgstr ""
 
 #: ../src/actions/Italicize.cc:48
-#, fuzzy
 msgid "Italicize the selected subtitles text"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/JoinDocument.cc:47
-#, fuzzy
 msgid "_Join Document"
-msgstr "Document nou"
+msgstr ""
 
 #: ../src/actions/JoinDocument.cc:47
-#, fuzzy
 msgid "Add subtitles from file"
-msgstr "Tots els subtítols"
+msgstr ""
 
 #: ../src/actions/JoinDocument.cc:123
-#, fuzzy
 msgid "Join document"
-msgstr "Document nou"
+msgstr ""
 
 #: ../src/actions/JoinDocument.cc:138
 #, c-format
@@ -1240,27 +1163,24 @@ msgid "Move After Preceding"
 msgstr ""
 
 #: ../src/actions/MoveSubtitles.cc:87
-#, fuzzy
 msgid "_Move Subtitles"
-msgstr "_Mou el subtítol"
+msgstr ""
 
 #: ../src/actions/MoveSubtitles.cc:87
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
-#, fuzzy
 msgid "_Reverse Text And Translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
 msgid "Reverse the text and the translation"
 msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:109
-#, fuzzy
 msgid "Reverse Text And Translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:124
 msgid "Reverse the text and the translation was applied."
@@ -1271,98 +1191,80 @@ msgid "You can't use <i>scale</i> with this document."
 msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:217
-#, fuzzy
 msgid "_Scale"
-msgstr "Escala"
+msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:217
-#, fuzzy
 msgid "Scale by two points"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:304
-#, fuzzy
 msgid "Scale subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:327
 msgid "The scale was applied"
 msgstr ""
 
 #: ../src/actions/Selection.cc:45
-#, fuzzy
 msgid "_Selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/Selection.cc:48
-#, fuzzy
 msgid "Select _First Subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:48
-#, fuzzy
 msgid "Select the first subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:52
-#, fuzzy
 msgid "Select _Last Subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:52
-#, fuzzy
 msgid "Select the last subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:56
-#, fuzzy
 msgid "Select _Previous Subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:56
-#, fuzzy
 msgid "Select the previous subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:60
-#, fuzzy
 msgid "Select _Next Subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:60
-#, fuzzy
 msgid "Select the next subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:64
-#, fuzzy
 msgid "Select _All Subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:64
-#, fuzzy
 msgid "Select all subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/Selection.cc:68
-#, fuzzy
 msgid "In_vert Selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/Selection.cc:68
-#, fuzzy
 msgid "Invert subtitles selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/SpellChecking.cc:664
-#, fuzzy
 msgid "_Spell Check"
-msgstr "Comprova l'ortografia"
+msgstr ""
 
 #: ../src/actions/SpellChecking.cc:664
-#, fuzzy
 msgid "Launch the spell checking"
-msgstr "Comprova l'ortografia"
+msgstr ""
 
 #: ../src/actions/SplitDocument.cc:56
 msgid "You can't use <i>split</i> with this document."
@@ -1370,77 +1272,65 @@ msgstr ""
 
 #. on supprime ensuite les sous-titres utiliser par le nouveau document
 #: ../src/actions/SplitDocument.cc:97
-#, fuzzy
 msgid "Split document"
-msgstr "Document nou"
+msgstr ""
 
 #: ../src/actions/SplitDocument.cc:126
-#, fuzzy
 msgid "Spl_it Document"
-msgstr "Document nou"
+msgstr ""
 
 #: ../src/actions/SplitDocument.cc:126
 msgid "Split the current document in two"
 msgstr ""
 
 #: ../src/actions/SplitSubtitle.cc:45
-#, fuzzy
 msgid "_Split"
-msgstr "_Fitxer"
+msgstr ""
 
 #: ../src/actions/SplitSubtitle.cc:45
-#, fuzzy
 msgid "Split the selected subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #.
 #: ../src/actions/SplitSubtitle.cc:125
-#, fuzzy
 msgid "Split subtitles"
-msgstr "Edita els subtítols"
+msgstr ""
 
 #: ../src/actions/StyleEditor.cc:113
 msgid "Styles"
-msgstr "Estils"
+msgstr ""
 
 #: ../src/actions/StyleEditor.cc:433
-#, fuzzy
 msgid "_Style Editor"
-msgstr "Editor d'estils"
+msgstr ""
 
 #: ../src/actions/StyleEditor.cc:433
-#, fuzzy
 msgid "Launch the style editor"
-msgstr "Editor d'estils"
+msgstr ""
 
 #: ../src/actions/Transcript.cc:50
-#, fuzzy
 msgid "_Import Transcript"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/Transcript.cc:50
-#, fuzzy
 msgid "Create a new document with any text file"
-msgstr "Desa el document com:"
+msgstr ""
 
 #: ../src/actions/Transcript.cc:54
-#, fuzzy
 msgid "_Export Transcript"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/Transcript.cc:54
-#, fuzzy
 msgid "Export just a text in a file"
-msgstr "Importa text"
+msgstr ""
 
 #: ../src/actions/Transcript.cc:101
 msgid "Import Text"
-msgstr "Importa text"
+msgstr ""
 
 #: ../src/actions/Transcript.cc:138
-#, fuzzy
 msgid "Export Text"
-msgstr "Importa text"
+msgstr ""
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "_Try To Extend To Perfect"
@@ -1473,9 +1363,8 @@ msgid "redo: %s"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:47
-#, fuzzy
 msgid "_Video"
-msgstr "_Video"
+msgstr ""
 
 #. _("_Open Media"),
 #: ../src/actions/VideoPlayerManagement.cc:54
@@ -1496,9 +1385,8 @@ msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:87
 #: ../src/actions/VideoPlayerManagement.cc:122
-#, fuzzy
 msgid "Very Short"
-msgstr "Inici:"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:88
 #: ../src/actions/VideoPlayerManagement.cc:95
@@ -1523,9 +1411,8 @@ msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:94
 #: ../src/actions/VideoPlayerManagement.cc:129
-#, fuzzy
 msgid "Short"
-msgstr "Inici:"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:101
 #: ../src/actions/VideoPlayerManagement.cc:136
@@ -1565,9 +1452,8 @@ msgid "_Normal"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:179
-#, fuzzy
 msgid "_Seek To Selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:180
 msgid "Seek to the first selected subtitle"
@@ -1578,37 +1464,32 @@ msgid "_Repeat"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:199
-#, fuzzy
 msgid "Play _Previous Subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:200
 msgid "Play previous subtitle from the first selected subtitle"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:207
-#, fuzzy
 msgid "Play _Selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:208
-#, fuzzy
 msgid "Play the selected subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:215
-#, fuzzy
 msgid "Play _Next Subtitle"
-msgstr "Desa els subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:216
 msgid "Play next subtitle from the first selected subtitle"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:223
-#, fuzzy
 msgid "Play Previous Second"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:224
 msgid "Play the second preceding the first selected subtitle"
@@ -1631,42 +1512,36 @@ msgid "Play the last second of the subtitle currently selected"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:244
-#, fuzzy
 msgid "Play Next Second"
-msgstr "Desa els subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:245
 msgid "Play the second following the subtitle currently selected"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:253
-#, fuzzy
 msgid "Set Subtitle _Start"
-msgstr "Desa els subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:260
-#, fuzzy
 msgid "Set Subtitle _End"
-msgstr "Desa els subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:270
-#, fuzzy
 msgid "_Video Player"
-msgstr "capa"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:271
 msgid "Show or hide the video player in the current window"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:736
-#, fuzzy
 msgid "Set subtitle start"
-msgstr "Desa els subtítols"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:758
-#, fuzzy
 msgid "Set subtitle end"
-msgstr "Desa els subtítols"
+msgstr ""
 
 #: ../src/actions/ViewManager.cc:127
 msgid "Display"
@@ -1675,9 +1550,8 @@ msgstr ""
 #. column name
 #: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
 #: ../src/gui/PreferencesUI.cc:137
-#, fuzzy
 msgid "Name"
-msgstr "Nom:"
+msgstr ""
 
 #: ../src/actions/ViewManager.cc:298
 msgid "Untitled"
@@ -1692,70 +1566,60 @@ msgid "Advanced"
 msgstr ""
 
 #: ../src/actions/ViewManager.cc:389
-#, fuzzy
 msgid "Translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/actions/ViewManager.cc:421
 msgid "View _Manager"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:57
-#, fuzzy
 msgid "_Waveform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:61
-#, fuzzy
 msgid "_Open Waveform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:61
 msgid "Open wavefrom from a file or create from a video"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:65
-#, fuzzy
 msgid "_Save Waveform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:65
 msgid "Save wavefrom to file"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:70
-#, fuzzy
 msgid "Zoom _In"
-msgstr "Ig_nora-ho tot"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:74
-#, fuzzy
 msgid "Zoom _Out"
-msgstr "Ig_nora-ho tot"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:78
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:82
-#, fuzzy
 msgid "Zoom _All"
-msgstr "Ig_nora-ho tot"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:87
-#, fuzzy
 msgid "_Center With Selected Subtitle"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:94
 msgid "Scrolling With _Player"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:101
-#, fuzzy
 msgid "Scrolling With _Selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:108
 msgid "_Respect The Timing"
@@ -1774,14 +1638,12 @@ msgid "Show or hide the waveform in the current window"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:218
-#, fuzzy
 msgid "Save Waveform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/CommandSystem.cc:37
-#, fuzzy
 msgid "Subtitle Selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/Document.cc:249
 #, c-format
@@ -1794,9 +1656,8 @@ msgid "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
 msgstr ""
 
 #: ../src/Document.cc:345 ../src/Document.cc:349
-#, fuzzy
 msgid "Save Document Failed."
-msgstr "S'ha produït un error en desar el document:"
+msgstr ""
 
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
@@ -1918,21 +1779,19 @@ msgstr ""
 
 #: ../src/gui/Application.cc:332
 msgid "Name:"
-msgstr "Nom:"
+msgstr ""
 
 #: ../src/gui/Application.cc:333
-#, fuzzy
 msgid "Encoding:"
-msgstr "Final:"
+msgstr ""
 
 #: ../src/gui/Application.cc:334 ../src/gui/DialogUtility.cc:74
 msgid "Format:"
 msgstr ""
 
 #: ../src/gui/Application.cc:335 ../src/gui/DialogUtility.cc:75
-#, fuzzy
 msgid "NewLine:"
-msgstr "Nom:"
+msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:44
 msgid "An error is detected when the subtitle overlap on next subtitle."
@@ -1989,13 +1848,12 @@ msgstr ""
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
 #: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
 msgid "text"
-msgstr "text"
+msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
 #: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
-#, fuzzy
 msgid "translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:316
 #, c-format
@@ -2006,9 +1864,8 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:354
-#, fuzzy
 msgid "Minimum gap between subtitles"
-msgstr "Desa com a subtítols"
+msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:355
 msgid ""
@@ -2033,33 +1890,28 @@ msgid "Document not found."
 msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:32
-#, fuzzy
 msgid "Open Document"
-msgstr "Obre el document:"
+msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:48
-#, fuzzy
 msgid "Save Document"
-msgstr "Desa el document:"
+msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:60
-#, fuzzy
 msgid "Open Video"
-msgstr "Obre un vídeo"
+msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:64 ../src/gui/DialogFileChooser.cc:124
-#, fuzzy
 msgid "Video"
-msgstr "_Video"
+msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:75 ../src/gui/DialogFileChooser.cc:135
 msgid "Audio"
 msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:114
-#, fuzzy
 msgid "Open Waveform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/gui/DialogUtility.cc:73
 msgid "Character Coding:"
@@ -2071,51 +1923,45 @@ msgstr ""
 
 #: ../src/gui/MenuBar.cc:124
 msgid "_File"
-msgstr "_Fitxer"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:126
-#, fuzzy
 msgid "_Properties"
-msgstr "Propietats"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:133
 msgid "_Edit"
 msgstr ""
 
 #: ../src/gui/MenuBar.cc:144
-#, fuzzy
 msgid "_Timings"
-msgstr "<b>Aparença</b>"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:151
-#, fuzzy
 msgid "T_ools"
-msgstr "_Eines"
+msgstr ""
 
 #. ag.item("find-and-replace", Gtk::Stock::FIND_AND_REPLACE, _("_Find And Replace"),
 #. _("Search for and replace text"), "<Control>F");
 #: ../src/gui/MenuBar.cc:155
-#, fuzzy
 msgid "_Check Errors"
-msgstr "Comprova errors de codificació"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:156
 msgid "Launch the errors checking"
 msgstr ""
 
 #: ../src/gui/MenuBar.cc:164
-#, fuzzy
 msgid "V_iew"
-msgstr "_Video"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:171
 msgid "_Options"
-msgstr "_Opcions"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:173
-#, fuzzy
 msgid "Configure Subtitle Editor"
-msgstr "Editor d'estils"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:174
 msgid "Configure _Keyboard Shortcuts"
@@ -2123,17 +1969,15 @@ msgstr ""
 
 #: ../src/gui/MenuBar.cc:182
 msgid "_Help"
-msgstr "A_juda"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:381
-#, fuzzy
 msgid "Actions"
-msgstr "_Opcions"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:403
-#, fuzzy
 msgid "Shortcut"
-msgstr "Inici:"
+msgstr ""
 
 #: ../src/gui/MenuBar.cc:533
 msgid "Invalid shortcut."
@@ -2158,9 +2002,8 @@ msgid "Changing shortcut failed."
 msgstr ""
 
 #: ../src/gui/MenuBar.cc:594
-#, fuzzy
 msgid "Removing shortcut failed."
-msgstr "S'ha produït un error en obrir el document:"
+msgstr ""
 
 #. column charset
 #: ../src/gui/PreferencesUI.cc:147
@@ -2204,9 +2047,8 @@ msgid "OpenGL"
 msgstr ""
 
 #: ../src/main.cc:223
-#, fuzzy
 msgid " - edit subtitles files"
-msgstr " Edita els subtítols"
+msgstr ""
 
 #: ../src/Options.cc:58
 msgid "NAME"
@@ -2235,29 +2077,24 @@ msgid "Please use another character encoding."
 msgstr ""
 
 #: ../src/SubtitleModel.cc:37
-#, fuzzy
 msgid "Add Subtitle"
-msgstr "_Subtítols"
+msgstr ""
 
 #: ../src/SubtitleModel.cc:75
-#, fuzzy
 msgid "Remove Subtitle"
-msgstr "_Mou el subtítol"
+msgstr ""
 
 #: ../src/SubtitleModel.cc:509
-#, fuzzy
 msgid "Reordered Subtitle"
-msgstr "_Mou el subtítol"
+msgstr ""
 
 #: ../src/Subtitles.cc:35
-#, fuzzy
 msgid "Append subtitle"
-msgstr "_Obre uns subtítols"
+msgstr ""
 
 #: ../src/Subtitles.cc:64
-#, fuzzy
 msgid "Remove Subtitles"
-msgstr "_Mou el subtítol"
+msgstr ""
 
 #: ../src/SubtitleSystem.cc:196
 msgid "I can't find what is this format or it's not supported."
@@ -2265,7 +2102,7 @@ msgstr ""
 
 #: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
 msgid "num"
-msgstr "número"
+msgstr ""
 
 #: ../src/SubtitleView.cc:500
 msgid "This number column"
@@ -2273,7 +2110,7 @@ msgstr ""
 
 #: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
 msgid "layer"
-msgstr "capa"
+msgstr ""
 
 #: ../src/SubtitleView.cc:530
 msgid "Layer number."
@@ -2281,7 +2118,7 @@ msgstr ""
 
 #: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
 msgid "start"
-msgstr "inici"
+msgstr ""
 
 #: ../src/SubtitleView.cc:557
 msgid "This time is the time when a subtitle appears on the screen."
@@ -2289,16 +2126,15 @@ msgstr ""
 
 #: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
 msgid "end"
-msgstr "final"
+msgstr ""
 
 #: ../src/SubtitleView.cc:584
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr ""
 
 #: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
-#, fuzzy
 msgid "duration"
-msgstr "Destí:"
+msgstr ""
 
 #: ../src/SubtitleView.cc:611
 msgid "The duration of the subtitle."
@@ -2306,11 +2142,11 @@ msgstr ""
 
 #: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
 msgid "style"
-msgstr "estil"
+msgstr ""
 
 #: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
 msgid "name"
-msgstr "nom"
+msgstr ""
 
 #: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
 msgid "cps"
@@ -2327,19 +2163,19 @@ msgstr ""
 
 #: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
 msgid "effect"
-msgstr "efecte"
+msgstr ""
 
 #: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
 msgid "R"
-msgstr "R"
+msgstr ""
 
 #: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
 msgid "L"
-msgstr "L"
+msgstr ""
 
 #: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
 msgid "V"
-msgstr "V"
+msgstr ""
 
 #: ../src/SubtitleView.cc:1019
 msgid "Editing layer"
@@ -2354,27 +2190,24 @@ msgid "Editing end"
 msgstr ""
 
 #: ../src/SubtitleView.cc:1093
-#, fuzzy
 msgid "Editing duration"
-msgstr "Destí:"
+msgstr ""
 
 #: ../src/SubtitleView.cc:1112
 msgid "Editing text"
 msgstr ""
 
 #: ../src/SubtitleView.cc:1134
-#, fuzzy
 msgid "Editing translation"
-msgstr "Traducció original:"
+msgstr ""
 
 #: ../src/SubtitleView.cc:1154
 msgid "Editing note"
 msgstr ""
 
 #: ../src/SubtitleView.cc:1173
-#, fuzzy
 msgid "Editing effect"
-msgstr "efecte"
+msgstr ""
 
 #: ../src/SubtitleView.cc:1194
 msgid "Editing style"
@@ -2397,16 +2230,18 @@ msgid "Editing margin-v"
 msgstr ""
 
 #: ../src/SubtitleView.cc:1412
-#, fuzzy
 msgid "Set style to selection"
-msgstr "Establiu el temps"
+msgstr ""
 
 #: ../src/utility.cc:590
+#, fuzzy
 msgid ""
 "GStreamer plugins missing.\n"
 "The playback of this movie requires the following decoders which are not "
 "installed:"
 msgstr ""
+"Для проигрывания этого видео требуются следующие декодеры, которые не "
+"установлены:"
 
 #: ../src/utility.cc:609
 #, c-format
@@ -2446,14 +2281,12 @@ msgid ""
 msgstr ""
 
 #: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
-#, fuzzy
 msgid "Editing position"
-msgstr "Destí:"
+msgstr ""
 
 #: ../src/we/WaveformGenerator.cc:71
-#, fuzzy
 msgid "Generate Waveform"
-msgstr "Insereix abans"
+msgstr ""
 
 #: ../src/we/WaveformGenerator.cc:317
 msgid "Media file could not be played.\n"
@@ -2464,461 +2297,3 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Play"
-#~ msgstr "capa"
-
-#, fuzzy
-#~ msgid "Volume"
-#~ msgstr "columna"
-
-#, fuzzy
-#~ msgid "Open the video"
-#~ msgstr "Obre un vídeo"
-
-#, fuzzy
-#~ msgid "_Play the video"
-#~ msgstr "_Reprodueix el vídeo"
-
-#, fuzzy
-#~ msgid "Save waveform to file"
-#~ msgstr "Insereix abans"
-
-#, fuzzy
-#~ msgid "Scrolling With _Cursor"
-#~ msgstr "Establiu el temps"
-
-#, fuzzy
-#~ msgid "_Simple"
-#~ msgstr "_Fitxer"
-
-#, fuzzy
-#~ msgid "_Translation"
-#~ msgstr "Traducció original:"
-
-#, fuzzy
-#~ msgid "Columns"
-#~ msgstr "columna"
-
-#, fuzzy
-#~ msgid "Layer"
-#~ msgstr "capa"
-
-#, fuzzy
-#~ msgid "Start"
-#~ msgstr "Inici:"
-
-#, fuzzy
-#~ msgid "End"
-#~ msgstr "Final:"
-
-#, fuzzy
-#~ msgid "Duration"
-#~ msgstr "Destí:"
-
-#, fuzzy
-#~ msgid "Style"
-#~ msgstr "Estils"
-
-#, fuzzy
-#~ msgid "Margin Left"
-#~ msgstr "marge esquerre"
-
-#, fuzzy
-#~ msgid "Margin Right"
-#~ msgstr "marge dret"
-
-#, fuzzy
-#~ msgid "Margin Vertical"
-#~ msgstr "marge vertical"
-
-#, fuzzy
-#~ msgid "Effect"
-#~ msgstr "efecte"
-
-#, fuzzy
-#~ msgid "Text"
-#~ msgstr "Text:"
-
-#, fuzzy
-#~ msgid "<b>End Of Document.</b>"
-#~ msgstr "<b>Alineació</b>"
-
-#~ msgid "Open Movie"
-#~ msgstr "Obre un vídeo"
-
-#, fuzzy
-#~ msgid "Sat_uration:"
-#~ msgstr "Destí:"
-
-#, fuzzy
-#~ msgid "_Hue:"
-#~ msgstr "A_juda"
-
-#, fuzzy
-#~ msgid "<b>Color Balance</b>"
-#~ msgstr "<b>Colors</b>"
-
-#, fuzzy
-#~ msgid "<b>Jump Lenght</b>"
-#~ msgstr "<b>Alineació</b>"
-
-#, fuzzy
-#~ msgid "Short:"
-#~ msgstr "Inici:"
-
-#, fuzzy
-#~ msgid "_Import"
-#~ msgstr "Importa text"
-
-#, fuzzy
-#~ msgid "_Text"
-#~ msgstr "Text:"
-
-#, fuzzy
-#~ msgid "_Export"
-#~ msgstr "Importa text"
-
-#~ msgid "_About"
-#~ msgstr "Qu_ant a"
-
-#, fuzzy
-#~ msgid "Move subtitles"
-#~ msgstr "_Mou el subtítol"
-
-#, fuzzy
-#~ msgid "Split Subtitle"
-#~ msgstr "Edita els subtítols"
-
-#, fuzzy
-#~ msgid "Combine Subtitles"
-#~ msgstr "_Mou el subtítol"
-
-#, fuzzy
-#~ msgid "Delete"
-#~ msgstr "Elimina l'estil"
-
-#, fuzzy
-#~ msgid "Move Forward"
-#~ msgstr "Mou els subtítols"
-
-#, fuzzy
-#~ msgid "Move Backwards"
-#~ msgstr "Mou els subtítols"
-
-#, fuzzy
-#~ msgid "Check _Errors"
-#~ msgstr "Comprova errors de codificació"
-
-#, fuzzy
-#~ msgid "Sc_ale"
-#~ msgstr "Escala"
-
-#~ msgid "<b>Style</b>"
-#~ msgstr "<b>Estil</b>"
-
-#, fuzzy
-#~ msgid "Remove Line Empty"
-#~ msgstr "Suprimeix la línia nul·la"
-
-#, fuzzy
-#~ msgid "Set All End Time"
-#~ msgstr "Establiu tots els temps finals"
-
-#, fuzzy
-#~ msgid "Vide_o"
-#~ msgstr "_Video"
-
-#, fuzzy
-#~ msgid "Check"
-#~ msgstr "Comprova els temps"
-
-#, fuzzy
-#~ msgid "Center With Subtitle Selected"
-#~ msgstr "Mou els subtítols"
-
-#, fuzzy
-#~ msgid "_Properties (disable)"
-#~ msgstr "Propietats"
-
-#, fuzzy
-#~ msgid "Import Text (disable)"
-#~ msgstr "S'ha produït un error al importar text:"
-
-#, fuzzy
-#~ msgid "Export Text (disable)"
-#~ msgstr "Exporta el text"
-
-#, fuzzy
-#~ msgid "Merge Subtitles (disable)"
-#~ msgstr "_Mou el subtítol"
-
-#~ msgid "Hours"
-#~ msgstr "Hores"
-
-#~ msgid "Mins"
-#~ msgstr "Minuts"
-
-#~ msgid "Secs"
-#~ msgstr "Segons"
-
-#~ msgid "MSecs"
-#~ msgstr "Mil·li segons"
-
-#, fuzzy
-#~ msgid "Open Media"
-#~ msgstr "Obre uns subtítols"
-
-#~ msgid "Set Time"
-#~ msgstr "Establiu el temps"
-
-#~ msgid "<b>Please enter time for added or initialized:</b>"
-#~ msgstr "<b>Entreu el temps a afegir o inicialitzar:</b>"
-
-#, fuzzy
-#~ msgid "Change FPS: %f -> %f"
-#~ msgstr "Canvia els FPS"
-
-#~ msgid "_Save Subtitle"
-#~ msgstr "_Desa els subtítols"
-
-#, fuzzy
-#~ msgid "_Move"
-#~ msgstr "_Reprodueix el vídeo"
-
-#, fuzzy
-#~ msgid "Import text \"%s\"."
-#~ msgstr "Importa text:"
-
-#, fuzzy
-#~ msgid "Export text \"%s\" (%s)."
-#~ msgstr "Exporta text:"
-
-#, fuzzy
-#~ msgid "Export Text \"%s\" (%s) failed."
-#~ msgstr "S'ha produït un error al exportar text:"
-
-#~ msgid "Check Time Error : start > end"
-#~ msgstr "Comprova errors en els temps: inici > final"
-
-#, fuzzy
-#~ msgid "Check Time : Overlapping with previous subtitle"
-#~ msgstr "Comprova els temps: inici < inici prèvi"
-
-#~ msgid "Check Time OK!"
-#~ msgstr "Comprovació dels temps correcte"
-
-#, fuzzy
-#~ msgid "<b>Window</b>"
-#~ msgstr "<b>Vídeo</b>"
-
-#, fuzzy
-#~ msgid "Last"
-#~ msgstr "Destí:"
-
-#, fuzzy
-#~ msgid "Next"
-#~ msgstr "Text:"
-
-#, fuzzy
-#~ msgid "Play current subtitle"
-#~ msgstr "Desa com a subtítols"
-
-#, fuzzy
-#~ msgid "Play first second"
-#~ msgstr "Desa els subtítols"
-
-#, fuzzy
-#~ msgid "Play last second"
-#~ msgstr "Desa els subtítols"
-
-#, fuzzy
-#~ msgid "Play next second"
-#~ msgstr "Desa els subtítols"
-
-#, fuzzy
-#~ msgid "Play previous second"
-#~ msgstr "Desa com a subtítols"
-
-#, fuzzy
-#~ msgid "Play previous subtitle"
-#~ msgstr "Desa com a subtítols"
-
-#, fuzzy
-#~ msgid "Scale:"
-#~ msgstr "Escala"
-
-#~ msgid "Destination:"
-#~ msgstr "Destí:"
-
-#~ msgid "Enter time that you want:"
-#~ msgstr "Entreu el temps que desitjeu:"
-
-#, fuzzy
-#~ msgid "<b>MicroDVD</b>"
-#~ msgstr "<b>Bàsic</b>"
-
-#, fuzzy
-#~ msgid "Hindi"
-#~ msgstr "Cerca"
-
-#, fuzzy
-#~ msgid "Croatian"
-#~ msgstr "Destí:"
-
-#, fuzzy
-#~ msgid "Malay"
-#~ msgstr "capa"
-
-#, fuzzy
-#~ msgid "Tetum"
-#~ msgstr "Text:"
-
-#~ msgid "Which subtitle ?"
-#~ msgstr "Quin subtítol?"
-
-#~ msgid "Find"
-#~ msgstr "Cerca"
-
-#, fuzzy
-#~ msgid "Find / Replace"
-#~ msgstr "Reemplaça"
-
-#, fuzzy
-#~ msgid "Find:"
-#~ msgstr "Cerca"
-
-#, fuzzy
-#~ msgid "Replace:"
-#~ msgstr "Reemplaça"
-
-#, fuzzy
-#~ msgid "Find What:"
-#~ msgstr "Què cercar:"
-
-#~ msgid "no suggestion"
-#~ msgstr "no hi ha suggeriments"
-
-#, fuzzy
-#~ msgid "Suggestions"
-#~ msgstr "no hi ha suggeriments"
-
-#, fuzzy
-#~ msgid "Move Subtitle End +0.1"
-#~ msgstr "Mou els subtítols"
-
-#, fuzzy
-#~ msgid "Move Subtitle End -0.1"
-#~ msgstr "Mou els subtítols"
-
-#, fuzzy
-#~ msgid "<b>Audio</b>"
-#~ msgstr "<b>Vídeo</b>"
-
-#, fuzzy
-#~ msgid "Dimensions:"
-#~ msgstr "Col·lisions:"
-
-#, fuzzy
-#~ msgid "Move Subtitle_"
-#~ msgstr "Mou els subtítols"
-
-#~ msgid "Src FPS:"
-#~ msgstr "FPS font:"
-
-#~ msgid "Dest FPS:"
-#~ msgstr "FPS destí:"
-
-#, fuzzy
-#~ msgid "player:"
-#~ msgstr "capa"
-
-#~ msgid "Subtitle Editor - Script Properties"
-#~ msgstr "Editor de subtítols - Propietats de l'script"
-
-#~ msgid "Subtitle Editor - Preferences"
-#~ msgstr "Editor de subtítols - Preferències"
-
-#~ msgid "margin left"
-#~ msgstr "marge esquerre"
-
-#~ msgid "margin right"
-#~ msgstr "marge dret"
-
-#~ msgid "margin vertical"
-#~ msgstr "marge vertical"
-
-#~ msgid "Subtitle Editor - Preference"
-#~ msgstr "Editor de subtítols - Preferència"
-
-#~ msgid "Source1 :"
-#~ msgstr "Font 1 :"
-
-#~ msgid "Source2 :"
-#~ msgstr "Font 2 :"
-
-#~ msgid "text:"
-#~ msgstr "text:"
-
-#~ msgid "start:"
-#~ msgstr "inici:"
-
-#~ msgid "end:"
-#~ msgstr "final:"
-
-#~ msgid "_Edit Subtitle [DISABLE]"
-#~ msgstr "_Edita el subtítol [Inhabilitat]"
-
-#~ msgid "Set View SRT"
-#~ msgstr "Establiu la visualització SRT"
-
-#~ msgid "Set View SSA"
-#~ msgstr "Establiu la visualització SSA"
-
-#~ msgid "building menubar failed: "
-#~ msgstr "s'ha produït un error al construir la barra de menú: "
-
-#~ msgid "Find > not found: "
-#~ msgstr "No s'ha trobat > : "
-
-#~ msgid "Check Time Error : start < previous end"
-#~ msgstr "Comprova els temps: inici < final prèvi"
-
-#~ msgid "Spell check start"
-#~ msgstr "Inicia el corrector ortogràfic"
-
-#~ msgid "Spell check finish"
-#~ msgstr "Finalitza el corrector ortogràfic"
-
-#~ msgid "_View [TODO]"
-#~ msgstr "_Visualitza [PER FER]"
-
-#~ msgid "Show Num"
-#~ msgstr "Mostra el número"
-
-#~ msgid "Show Layer"
-#~ msgstr "Mostra la capa"
-
-#~ msgid "Show End"
-#~ msgstr "Mostra el final"
-
-#~ msgid "Show Name"
-#~ msgstr "Mostra el nom"
-
-#~ msgid "Show Margin"
-#~ msgstr "Mostra el marge"
-
-#~ msgid "Show Effect"
-#~ msgstr "Mostra l'efecte"
-
-#~ msgid "Show Text"
-#~ msgstr "Mostra el text"
-
-#, fuzzy
-#~ msgid "Marker Invalid:"
-#~ msgstr "_Reprodueix el vídeo"
-
-#, fuzzy
-#~ msgid "Marker:"
-#~ msgstr "_Reprodueix el vídeo"
