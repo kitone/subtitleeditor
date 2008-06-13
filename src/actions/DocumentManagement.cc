@@ -485,7 +485,10 @@ protected:
 							++s2;
 						}
 
-						current->flash_message(_("%d subtitles were added with the translation"), size);
+						current->flash_message(ngettext(
+								"1 subtitle was added with the translation",
+								"%d subtitles were added with the translation",
+								size), size);
 					}
 
 					current->finish_command();
