@@ -135,7 +135,10 @@ protected:
 
 			unsigned int subtitles_added = doc->subtitles().size() - subtitle_size;
 
-			doc->flash_message(_("%d subtitles has been added at this document."), subtitles_added);
+			doc->flash_message(ngettext(
+					"1 subtitle has been added at this document.",
+					"%d subtitles have been added at this document.",
+					subtitles_added), subtitles_added);
 		}
 
 		return true;

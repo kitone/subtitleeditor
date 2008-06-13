@@ -126,10 +126,10 @@ protected:
 
 		doc->finish_command();
 
-		if(selection.size() == 1)
-			doc->flash_message(_("1 subtitle has been deleted."));
-		else
-			doc->flash_message(_("%d subtitles have been deleted."), selection.size());
+		doc->flash_message(ngettext(
+					"1 subtitle has been deleted.",
+					"%d subtitles have been deleted.", 
+					selection.size()), selection.size());
 
 		return true;
 	}
