@@ -186,7 +186,7 @@ bool SubtitleMPsub::on_save(const Glib::ustring &filename)
 
 	file << "FORMAT=TIME" << std::endl;
 	file << utf8_to_charset("# This script was created by subtitleeditor ") << utf8_to_charset(VERSION) << std::endl;
-	file << utf8_to_charset("# http://kitone.free.fr/subtitleeditor/") << std::endl << std::endl;
+	file << utf8_to_charset("# http://home.gna.org/subtitleeditor/") << std::endl << std::endl;
 
 	
 	Glib::ustring text;

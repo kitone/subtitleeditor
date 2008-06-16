@@ -217,7 +217,7 @@ bool SubtitleSSA::on_save(const Glib::ustring &filename)
 
 		file << utf8_to_charset("[Script Info]") << get_newline();
 		file << utf8_to_charset("; This script was created by subtitleeditor ") << utf8_to_charset(VERSION) << get_newline();
-		file << utf8_to_charset("; http://kitone.free.fr/subtitleeditor/") << get_newline();
+		file << utf8_to_charset("; http://home.gna.org/subtitleeditor/") << get_newline();
 	
 #define CHECK(label, key) if(m_scriptInfo->key.size() > 0) \
 		{ file << utf8_to_charset(label) << utf8_to_charset(m_scriptInfo->key) << get_newline(); }

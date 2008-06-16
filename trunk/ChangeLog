@@ -1,3 +1,10 @@
+2008-06-16  kitone  <kitone@gna.org>
+
+	* src/formats/SubtitleASS.cc:
+	* src/formats/SubtitleMPsub.cc:
+	* src/formats/SubtitleSSA.cc:
+	Fix: Website url.
+
 2008-06-13  kitone  <kitone@gna.org>
 
 	* src/actions/DeleteSubtitleSelect.cc:
