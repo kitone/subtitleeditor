@@ -1,3 +1,12 @@
+2008-06-16 - 0.21.2
+
+	* Add Russian translation.
+	* Add manpage.
+	* Add first tags support (MicroDVD).
+	* Update translations.
+	* Fix: subtitleeditor.desktop categories and add %F to Exec.
+	* Fix: gettext plural support patch by petr pisar.
+
 2008-05-20 - 0.21.1
 
 	* Add format "Timed Text (TT) Authoring Format 1.0".
