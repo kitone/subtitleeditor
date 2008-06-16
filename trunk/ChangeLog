@@ -1,5 +1,11 @@
 2008-06-16  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.21.2 release.
+
+2008-06-16  kitone  <kitone@gna.org>
+
 	* src/formats/SubtitleASS.cc:
 	* src/formats/SubtitleMPsub.cc:
 	* src/formats/SubtitleSSA.cc:
@@ -11,7 +17,7 @@
 	* src/actions/DocumentManagement.cc:
 	* src/actions/JoinDocument.cc:
 	* src/utility.h:
-	Fix: gettext plurar support patch by petr pisar.
+	Fix: gettext plural support patch by petr pisar.
 
 2008-06-12  kitone  <kitone@gna.org>
 
