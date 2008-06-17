@@ -42,6 +42,8 @@
 #include "utility.h"
 #include "ActionSystem.h"
 #include <gdkmm/window.h>
+#include "SubtitleEditorWindow.h"
+
 
 /*
  *	une CellEditable deriver de TextView qui permet d'avoir plusieur ligne
@@ -175,16 +177,6 @@ protected:
 		m_in_popup = false;
 	}
 
-	/*
-	 *
-	 */
-	/*
-	bool on_event(GdkEvent *ev)
-	{
-		print_event("TextViewCell", ev->type);
-		return false;
-	}
-	*/
 protected:
 	bool m_in_popup;
 };
@@ -204,18 +196,6 @@ public:
 	}
 
 protected:
-	/*
-	 *
-	 */
-	/*
-	bool on_event(GdkEvent *ev)
-	{
-		print_event("TimeCell", ev->type);
-		if(ev->type == GDK_FOCUS_CHANGE)
-			return true;
-		return false;
-	}
-	*/
 
 	/*
 	 *
@@ -299,17 +279,19 @@ public:
 		}
 		m_editable->set_text(property_text());
 
-		// grab
-		m_editable->signal_map().connect(
-				sigc::mem_fun(*m_editable, &Gtk::Widget::add_modal_grab));
+
+		// Begin/Finish editing (Fix #10494)
+		// Disable actions during editing. Enable at the exit. 
+		begin_editing();
 
 		m_editable->signal_remove_widget().connect(
-				sigc::mem_fun(*m_editable, &Gtk::Widget::remove_modal_grab));
+				sigc::mem_fun(*this, &CellRendererCustom::finish_editing));
 
 		//
 		if(m_document && !m_flash_message.empty())
 			m_document->flash_message(m_flash_message.c_str());
 		
+
 		return m_editable;
 	}
 
@@ -323,6 +305,38 @@ public:
 		m_flash_message = text;
 	}
 protected:
+
+	/*
+	 * Enable or disable all actions so as not to interfere with editing. 
+	 * As a simple shorcuts.
+	 */
+	void set_action_groups_sensitives(bool state)
+	{
+		std::list< Glib::RefPtr<Gtk::ActionGroup> > actions = 
+			SubtitleEditorWindow::get_instance()->get_ui_manager()->get_action_groups();
+
+		std::list< Glib::RefPtr<Gtk::ActionGroup> >::iterator it;
+		for(it = actions.begin(); it != actions.end(); ++it)
+		{
+			(*it)->set_sensitive(state);
+		} 
+	}
+
+	/*
+	 * Disable all actions.
+	 */
+	void begin_editing()
+	{
+		set_action_groups_sensitives(false);
+	}
+
+	/*
+	 * Enable all actions.
+	 */
+	void finish_editing()
+	{
+		set_action_groups_sensitives(true);
+	}
 
 	/*
 	 *

@@ -1,5 +1,11 @@
 2008-06-17  kitone  <kitone@gna.org>
 
+	* src/SubtitleView.cc:
+	Fix #10494 (https://gna.org/bugs/?10494). 
+	Disable actions during editing. Enable at the exit.
+
+2008-06-17  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Switching back to development version.
 
