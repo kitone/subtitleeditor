@@ -140,6 +140,8 @@ src/Subtitles.cc
 src/Subtitles.h
 src/SubtitleSystem.cc
 src/SubtitleSystem.h
+src/SubtitleTags.cc
+src/SubtitleTags.h
 src/SubtitleTime.cc
 src/SubtitleTime.h
 src/SubtitleView.cc

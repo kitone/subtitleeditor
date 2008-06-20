@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.0alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-11 22:31+0200\n"
+"POT-Creation-Date: 2008-06-18 19:45+0200\n"
 "PO-Revision-Date: 2008-05-29 18:37+0000\n"
 "Last-Translator: Rébeli-Szabó Tamás <Unknown>\n"
 "Language-Team: \n"
@@ -894,14 +894,11 @@ msgid "Delete Subtitles"
 msgstr "Stílus törlése"
 
 #: ../src/actions/DeleteSubtitleSelect.cc:130
-#, fuzzy
+#, fuzzy, c-format
 msgid "1 subtitle has been deleted."
-msgstr "%d felirat törölve."
-
-#: ../src/actions/DeleteSubtitleSelect.cc:132
-#, c-format
-msgid "%d subtitles have been deleted."
-msgstr "%d feliratok törölve."
+msgid_plural "%d subtitles have been deleted."
+msgstr[0] "%d felirat törölve."
+msgstr[1] "%d felirat törölve."
 
 #: ../src/actions/Dialoguize.cc:48
 msgid "_Dialogue"
@@ -1019,17 +1016,19 @@ msgstr "\"%s\" (%s, %s, %s) nincs elmentve."
 msgid "Open translation"
 msgstr "Fordítás megnyitása"
 
-#: ../src/actions/DocumentManagement.cc:488
+#: ../src/actions/DocumentManagement.cc:489
 #, fuzzy, c-format
-msgid "%d subtitles were added with the translation"
-msgstr "%d felirat került be a fordítással"
+msgid "1 subtitle was added with the translation"
+msgid_plural "%d subtitles were added with the translation"
+msgstr[0] "%d felirat került be a fordítással"
+msgstr[1] "%d felirat került be a fordítással"
 
-#: ../src/actions/DocumentManagement.cc:546
+#: ../src/actions/DocumentManagement.cc:549
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "\"%s\" (%s, %s, %s) fordítás mentése."
 
-#: ../src/actions/DocumentManagement.cc:549
+#: ../src/actions/DocumentManagement.cc:552
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "A fordítás\"%s\" (%s, %s, %s) nincs elmentve."
@@ -1194,10 +1193,12 @@ msgstr "Felirat hozzáadása fájlból"
 msgid "Join document"
 msgstr "Felirat hozzáillesztése"
 
-#: ../src/actions/JoinDocument.cc:138
+#: ../src/actions/JoinDocument.cc:139
 #, fuzzy, c-format
-msgid "%d subtitles has been added at this document."
-msgstr "%d feliratok törölve."
+msgid "1 subtitle has been added at this document."
+msgid_plural "%d subtitles have been added at this document."
+msgstr[0] "%d feliratok törölve."
+msgstr[1] "%d feliratok törölve."
 
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:47
 msgid "_Move After Preceding"
@@ -1971,12 +1972,12 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
+#: ../src/SubtitleView.cc:716 ../src/SubtitleView.cc:1633
 msgid "text"
 msgstr "szöveg"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
+#: ../src/SubtitleView.cc:795 ../src/SubtitleView.cc:1634
 msgid "translation"
 msgstr "fordítás"
 
@@ -2188,21 +2189,21 @@ msgstr "OpenGL "
 msgid " - edit subtitles files"
 msgstr " - feliratfájlok szerkesztése"
 
-#: ../src/Options.cc:58
+#: ../src/Options.cc:43
+msgid "[FILE...]"
+msgstr "[Fájl...]"
+
+#: ../src/Options.cc:56
 msgid "NAME"
 msgstr ""
 
-#: ../src/Options.cc:66
+#: ../src/Options.cc:64
 msgid "ENCODING"
 msgstr "KÓDOLÁS"
 
-#: ../src/Options.cc:74 ../src/Options.cc:82
+#: ../src/Options.cc:72 ../src/Options.cc:80
 msgid "FILE"
 msgstr "FÁJL"
-
-#: ../src/Options.cc:99
-msgid "[FILE...]"
-msgstr "[Fájl...]"
 
 #: ../src/SubtitleFormat.cc:151
 msgid ""
@@ -2245,141 +2246,141 @@ msgstr "Felirat Mozgatása"
 msgid "I can't find what is this format or it's not supported."
 msgstr "Nem ismerem fel, vagy ez egy nem támogatott formátum."
 
-#: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
+#: ../src/SubtitleView.cc:498 ../src/SubtitleView.cc:1630
 msgid "num"
 msgstr "sorszám"
 
-#: ../src/SubtitleView.cc:500
+#: ../src/SubtitleView.cc:514
 msgid "This number column"
 msgstr "Sorszám oszlop"
 
-#: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
+#: ../src/SubtitleView.cc:527 ../src/SubtitleView.cc:1624
 msgid "layer"
 msgstr "réteg"
 
-#: ../src/SubtitleView.cc:530
+#: ../src/SubtitleView.cc:544
 msgid "Layer number."
 msgstr "Réteg száma."
 
-#: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
+#: ../src/SubtitleView.cc:554 ../src/SubtitleView.cc:1631
 msgid "start"
 msgstr "kezdet"
 
-#: ../src/SubtitleView.cc:557
+#: ../src/SubtitleView.cc:571
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr "Ekkor fog megjelenni a felirat a képernyőn."
 
-#: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
+#: ../src/SubtitleView.cc:581 ../src/SubtitleView.cc:1623
 msgid "end"
 msgstr "vége"
 
-#: ../src/SubtitleView.cc:584
+#: ../src/SubtitleView.cc:598
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr "Ekkor fog eltűnni a felirat a képernyőről."
 
-#: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
+#: ../src/SubtitleView.cc:608 ../src/SubtitleView.cc:1621
 msgid "duration"
 msgstr "hossz"
 
-#: ../src/SubtitleView.cc:611
+#: ../src/SubtitleView.cc:625
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
+#: ../src/SubtitleView.cc:638 ../src/SubtitleView.cc:1632
 msgid "style"
 msgstr "stílus"
 
-#: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
+#: ../src/SubtitleView.cc:666 ../src/SubtitleView.cc:1628
 msgid "name"
 msgstr "név"
 
-#: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
+#: ../src/SubtitleView.cc:692 ../src/SubtitleView.cc:1620
 #, fuzzy
 msgid "cps"
 msgstr "kps"
 
-#: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:793
-#: ../src/SubtitleView.cc:849
+#: ../src/SubtitleView.cc:728 ../src/SubtitleView.cc:807
+#: ../src/SubtitleView.cc:863
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Használja a Ctrl+Enter-t kilépéshez és Enter-t a sortöréshez"
 
-#: ../src/SubtitleView.cc:839 ../src/SubtitleView.cc:1615
+#: ../src/SubtitleView.cc:853 ../src/SubtitleView.cc:1629
 msgid "note"
 msgstr "megjegyzés"
 
-#: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
+#: ../src/SubtitleView.cc:885 ../src/SubtitleView.cc:1622
 msgid "effect"
 msgstr "hatás"
 
-#: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
+#: ../src/SubtitleView.cc:916 ../src/SubtitleView.cc:1626
 msgid "R"
 msgstr "Jobb"
 
-#: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
+#: ../src/SubtitleView.cc:944 ../src/SubtitleView.cc:1625
 msgid "L"
 msgstr "Bal"
 
-#: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
+#: ../src/SubtitleView.cc:972 ../src/SubtitleView.cc:1627
 msgid "V"
 msgstr "Függőleges"
 
-#: ../src/SubtitleView.cc:1019
+#: ../src/SubtitleView.cc:1033
 msgid "Editing layer"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1045
+#: ../src/SubtitleView.cc:1059
 msgid "Editing start"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1069
+#: ../src/SubtitleView.cc:1083
 msgid "Editing end"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1093
+#: ../src/SubtitleView.cc:1107
 #, fuzzy
 msgid "Editing duration"
 msgstr "hossz"
 
-#: ../src/SubtitleView.cc:1112
+#: ../src/SubtitleView.cc:1126
 msgid "Editing text"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1134
+#: ../src/SubtitleView.cc:1148
 #, fuzzy
 msgid "Editing translation"
 msgstr "fordítás"
 
-#: ../src/SubtitleView.cc:1154
+#: ../src/SubtitleView.cc:1168
 msgid "Editing note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1173
+#: ../src/SubtitleView.cc:1187
 #, fuzzy
 msgid "Editing effect"
 msgstr "hatás"
 
-#: ../src/SubtitleView.cc:1194
+#: ../src/SubtitleView.cc:1208
 #, fuzzy
 msgid "Editing style"
 msgstr "Időzítő rendszer"
 
-#: ../src/SubtitleView.cc:1214
+#: ../src/SubtitleView.cc:1228
 msgid "Editing name"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1234
+#: ../src/SubtitleView.cc:1248
 msgid "Editing margin-l"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1254
+#: ../src/SubtitleView.cc:1268
 msgid "Editing margin-r"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1274
+#: ../src/SubtitleView.cc:1288
 msgid "Editing margin-v"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1412
+#: ../src/SubtitleView.cc:1426
 #, fuzzy
 msgid "Set style to selection"
 msgstr "Ugrás a kijelölt részhez"
@@ -2452,6 +2453,9 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr ""
+
+#~ msgid "%d subtitles have been deleted."
+#~ msgstr "%d feliratok törölve."
 
 #~ msgid "Play"
 #~ msgstr "Lejátszás"
