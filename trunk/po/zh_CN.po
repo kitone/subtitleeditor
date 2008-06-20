@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-11 22:31+0200\n"
+"POT-Creation-Date: 2008-06-18 19:45+0200\n"
 "PO-Revision-Date: 2008-05-15 07:27+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
@@ -899,13 +899,11 @@ msgid "Delete Subtitles"
 msgstr "删除字幕"
 
 #: ../src/actions/DeleteSubtitleSelect.cc:130
+#, fuzzy, c-format
 msgid "1 subtitle has been deleted."
-msgstr "1 个字幕被删除了。"
-
-#: ../src/actions/DeleteSubtitleSelect.cc:132
-#, c-format
-msgid "%d subtitles have been deleted."
-msgstr "%d 字幕被删除了。"
+msgid_plural "%d subtitles have been deleted."
+msgstr[0] "1 个字幕被删除了。"
+msgstr[1] "1 个字幕被删除了。"
 
 #: ../src/actions/Dialoguize.cc:48
 #, fuzzy
@@ -1012,17 +1010,19 @@ msgstr "文件%s (%s 、%s, %s) 未被保存。"
 msgid "Open translation"
 msgstr "打开翻译"
 
-#: ../src/actions/DocumentManagement.cc:488
-#, c-format
-msgid "%d subtitles were added with the translation"
-msgstr "%d 字幕增加了与翻译"
+#: ../src/actions/DocumentManagement.cc:489
+#, fuzzy, c-format
+msgid "1 subtitle was added with the translation"
+msgid_plural "%d subtitles were added with the translation"
+msgstr[0] "%d 字幕增加了与翻译"
+msgstr[1] "%d 字幕增加了与翻译"
 
-#: ../src/actions/DocumentManagement.cc:546
+#: ../src/actions/DocumentManagement.cc:549
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "正在保存翻译文件%s (%s 、%s, %s) 。"
 
-#: ../src/actions/DocumentManagement.cc:549
+#: ../src/actions/DocumentManagement.cc:552
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "翻译文件%s (%s 、%s, %s) 未被保存。"
@@ -1164,10 +1164,12 @@ msgstr "增加字幕从文件"
 msgid "Join document"
 msgstr "加入文件"
 
-#: ../src/actions/JoinDocument.cc:138
-#, c-format
-msgid "%d subtitles has been added at this document."
-msgstr "%d 字幕增加了在这个文件。"
+#: ../src/actions/JoinDocument.cc:139
+#, fuzzy, c-format
+msgid "1 subtitle has been added at this document."
+msgid_plural "%d subtitles have been added at this document."
+msgstr[0] "%d 字幕增加了在这个文件。"
+msgstr[1] "%d 字幕增加了在这个文件。"
 
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:47
 msgid "_Move After Preceding"
@@ -1880,12 +1882,12 @@ msgstr ""
 "  %s"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1619
+#: ../src/SubtitleView.cc:716 ../src/SubtitleView.cc:1633
 msgid "text"
 msgstr "文字"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:781 ../src/SubtitleView.cc:1620
+#: ../src/SubtitleView.cc:795 ../src/SubtitleView.cc:1634
 msgid "translation"
 msgstr "翻译"
 
@@ -2088,21 +2090,21 @@ msgstr "OpenGL "
 msgid " - edit subtitles files"
 msgstr " - 编辑字幕文件"
 
-#: ../src/Options.cc:58
+#: ../src/Options.cc:43
+msgid "[FILE...]"
+msgstr "[文件...]"
+
+#: ../src/Options.cc:56
 msgid "NAME"
 msgstr "名称"
 
-#: ../src/Options.cc:66
+#: ../src/Options.cc:64
 msgid "ENCODING"
 msgstr "编码"
 
-#: ../src/Options.cc:74 ../src/Options.cc:82
+#: ../src/Options.cc:72 ../src/Options.cc:80
 msgid "FILE"
 msgstr "文件"
-
-#: ../src/Options.cc:99
-msgid "[FILE...]"
-msgstr "[文件...]"
 
 #: ../src/SubtitleFormat.cc:151
 msgid ""
@@ -2140,136 +2142,136 @@ msgstr "取消字幕"
 msgid "I can't find what is this format or it's not supported."
 msgstr "我无法发现什么是这个格式或它不支持。"
 
-#: ../src/SubtitleView.cc:484 ../src/SubtitleView.cc:1616
+#: ../src/SubtitleView.cc:498 ../src/SubtitleView.cc:1630
 msgid "num"
 msgstr "数字"
 
-#: ../src/SubtitleView.cc:500
+#: ../src/SubtitleView.cc:514
 msgid "This number column"
 msgstr "这个数字专栏"
 
-#: ../src/SubtitleView.cc:513 ../src/SubtitleView.cc:1610
+#: ../src/SubtitleView.cc:527 ../src/SubtitleView.cc:1624
 msgid "layer"
 msgstr "层数"
 
-#: ../src/SubtitleView.cc:530
+#: ../src/SubtitleView.cc:544
 msgid "Layer number."
 msgstr "层数数字。"
 
-#: ../src/SubtitleView.cc:540 ../src/SubtitleView.cc:1617
+#: ../src/SubtitleView.cc:554 ../src/SubtitleView.cc:1631
 msgid "start"
 msgstr "开始"
 
-#: ../src/SubtitleView.cc:557
+#: ../src/SubtitleView.cc:571
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr "这时候是时候当字幕出现在屏幕。"
 
-#: ../src/SubtitleView.cc:567 ../src/SubtitleView.cc:1609
+#: ../src/SubtitleView.cc:581 ../src/SubtitleView.cc:1623
 msgid "end"
 msgstr "结束"
 
-#: ../src/SubtitleView.cc:584
+#: ../src/SubtitleView.cc:598
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr "这时候是时候当字幕消失从屏幕。"
 
-#: ../src/SubtitleView.cc:594 ../src/SubtitleView.cc:1607
+#: ../src/SubtitleView.cc:608 ../src/SubtitleView.cc:1621
 msgid "duration"
 msgstr "期间"
 
-#: ../src/SubtitleView.cc:611
+#: ../src/SubtitleView.cc:625
 msgid "The duration of the subtitle."
 msgstr "字幕的期间。"
 
-#: ../src/SubtitleView.cc:624 ../src/SubtitleView.cc:1618
+#: ../src/SubtitleView.cc:638 ../src/SubtitleView.cc:1632
 msgid "style"
 msgstr "样式"
 
-#: ../src/SubtitleView.cc:652 ../src/SubtitleView.cc:1614
+#: ../src/SubtitleView.cc:666 ../src/SubtitleView.cc:1628
 msgid "name"
 msgstr "名称"
 
-#: ../src/SubtitleView.cc:678 ../src/SubtitleView.cc:1606
+#: ../src/SubtitleView.cc:692 ../src/SubtitleView.cc:1620
 msgid "cps"
 msgstr "cps"
 
-#: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:793
-#: ../src/SubtitleView.cc:849
+#: ../src/SubtitleView.cc:728 ../src/SubtitleView.cc:807
+#: ../src/SubtitleView.cc:863
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "使用Ctrl+Return 为出口并且回归为线打破"
 
-#: ../src/SubtitleView.cc:839 ../src/SubtitleView.cc:1615
+#: ../src/SubtitleView.cc:853 ../src/SubtitleView.cc:1629
 msgid "note"
 msgstr "笔记"
 
-#: ../src/SubtitleView.cc:871 ../src/SubtitleView.cc:1608
+#: ../src/SubtitleView.cc:885 ../src/SubtitleView.cc:1622
 msgid "effect"
 msgstr "效果"
 
-#: ../src/SubtitleView.cc:902 ../src/SubtitleView.cc:1612
+#: ../src/SubtitleView.cc:916 ../src/SubtitleView.cc:1626
 msgid "R"
 msgstr "右"
 
-#: ../src/SubtitleView.cc:930 ../src/SubtitleView.cc:1611
+#: ../src/SubtitleView.cc:944 ../src/SubtitleView.cc:1625
 msgid "L"
 msgstr "左"
 
-#: ../src/SubtitleView.cc:958 ../src/SubtitleView.cc:1613
+#: ../src/SubtitleView.cc:972 ../src/SubtitleView.cc:1627
 msgid "V"
 msgstr "V"
 
-#: ../src/SubtitleView.cc:1019
+#: ../src/SubtitleView.cc:1033
 msgid "Editing layer"
 msgstr "编辑层数"
 
-#: ../src/SubtitleView.cc:1045
+#: ../src/SubtitleView.cc:1059
 msgid "Editing start"
 msgstr "编辑开始"
 
-#: ../src/SubtitleView.cc:1069
+#: ../src/SubtitleView.cc:1083
 msgid "Editing end"
 msgstr "编辑结尾"
 
-#: ../src/SubtitleView.cc:1093
+#: ../src/SubtitleView.cc:1107
 msgid "Editing duration"
 msgstr "编辑期间"
 
-#: ../src/SubtitleView.cc:1112
+#: ../src/SubtitleView.cc:1126
 msgid "Editing text"
 msgstr "编辑文本"
 
-#: ../src/SubtitleView.cc:1134
+#: ../src/SubtitleView.cc:1148
 msgid "Editing translation"
 msgstr "编辑翻译"
 
-#: ../src/SubtitleView.cc:1154
+#: ../src/SubtitleView.cc:1168
 msgid "Editing note"
 msgstr "编辑笔记"
 
-#: ../src/SubtitleView.cc:1173
+#: ../src/SubtitleView.cc:1187
 msgid "Editing effect"
 msgstr "编辑效果"
 
-#: ../src/SubtitleView.cc:1194
+#: ../src/SubtitleView.cc:1208
 msgid "Editing style"
 msgstr "编辑样式"
 
-#: ../src/SubtitleView.cc:1214
+#: ../src/SubtitleView.cc:1228
 msgid "Editing name"
 msgstr "编辑命名"
 
-#: ../src/SubtitleView.cc:1234
+#: ../src/SubtitleView.cc:1248
 msgid "Editing margin-l"
 msgstr "编辑边际l"
 
-#: ../src/SubtitleView.cc:1254
+#: ../src/SubtitleView.cc:1268
 msgid "Editing margin-r"
 msgstr "编辑边际r"
 
-#: ../src/SubtitleView.cc:1274
+#: ../src/SubtitleView.cc:1288
 msgid "Editing margin-v"
 msgstr "编辑边际v"
 
-#: ../src/SubtitleView.cc:1412
+#: ../src/SubtitleView.cc:1426
 msgid "Set style to selection"
 msgstr "设置样式对选择"
 
@@ -2343,6 +2345,9 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr "窗口系统不支持OpenGL。"
+
+#~ msgid "%d subtitles have been deleted."
+#~ msgstr "%d 字幕被删除了。"
 
 #~ msgid "Play"
 #~ msgstr "播放"
