@@ -77,7 +77,11 @@ public:
 	 */
 	void on_play()
 	{
-		m_player->play();
+		if(m_player->is_playing() == false)
+		{
+			m_player->seek(m_player->get_position());
+			m_player->play();
+		}
 	}
 
 	/*

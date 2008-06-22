@@ -1,3 +1,9 @@
+2008-06-22  kitone  <kitone@gna.org>
+
+	* src/vp/VideoPlayer.cc:
+	Fix Play/Pause button.
+	Playing without taking into account subtitles.
+
 2008-06-17  kitone  <kitone@gna.org>
 
 	* src/SubtitleView.cc:
