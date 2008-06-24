@@ -9,3 +9,4 @@ Type=Application
 Icon=subtitleeditor
 Categories=Audio;AudioVideo;AudioVideoEditing;
 StartupNotify=true
+MimeType=application/x-subrip;application/x-subviewer;application/x-microdvd;application/x-ass;application/x-ssa;text/x-mpsub;text/x-ssa;text/x-microdvd;

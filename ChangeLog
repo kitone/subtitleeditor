@@ -1,3 +1,14 @@
+2008-06-24  kitone  <kitone@gna.org>
+
+	* share/subtitleeditor.desktop:
+	Add MimeType.
+
+	* src/Options.cc:
+	* src/Options.h:
+	* src/gui/Application.cc:
+	Added option to open a file (-f --file).
+	There is a glibmm bug (#526831) between the version 2.15.3 and 2.16.2.
+
 2008-06-22  kitone  <kitone@gna.org>
 
 	* src/vp/VideoPlayer.cc:

@@ -50,6 +50,22 @@ OptionGroup::OptionGroup()
 
 	set_translation_domain(GETTEXT_PACKAGE);
 
+	// FILES...
+	Glib::OptionEntry entryFiles;
+	entryFiles.set_long_name(G_OPTION_REMAINING);
+	entryFiles.set_description(G_OPTION_REMAINING);
+	entryFiles.set_arg_description(_("[FILE...]"));
+	add_entry(entryFiles, files);
+
+	// files_list
+	Glib::OptionEntry entryFile;
+	entryFile.set_long_name("file");
+	entryFile.set_short_name('f');
+	entryFile.set_description("open a file (-f file1 -f file2 --file=file3)");
+	entryFile.set_arg_description(_("FILE"));
+	add_entry(entryFile, files_list);
+
+
 	// profile
 	Glib::OptionEntry entryProfile;
 	entryProfile.set_long_name("profile");
@@ -90,15 +106,6 @@ OptionGroup::OptionGroup()
 	entryUnitTest.set_description("Launch a unit test suite");
 	add_entry(entryUnitTest, launch_unittest);
 #endif
-
-	// FILES...
-	Glib::OptionEntry entryFiles;
-	entryFiles.set_long_name("");
-	entryFiles.set_short_name('\0');
-	entryFiles.set_description("");
-	entryFiles.set_arg_description(_("[FILE...]"));
-	//entryFiles.set_flags(Glib::OptionEntry::FLAG_FILENAME);
-	add_entry(entryFiles, files);
 
 #ifdef DEBUG
 

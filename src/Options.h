@@ -37,7 +37,8 @@ public:
 
 public:
 	std::vector<Glib::ustring> files;
-	
+	std::vector<Glib::ustring> files_list; // simple file (glibmm Bug #526831)
+
 	Glib::ustring profile;	// profile name
 	Glib::ustring	encoding;	//
 	Glib::ustring video;		// video location
