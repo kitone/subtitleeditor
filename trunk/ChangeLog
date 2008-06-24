@@ -1,5 +1,11 @@
 2008-06-24  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.21.3 release.
+
+2008-06-24  kitone  <kitone@gna.org>
+
 	* share/subtitleeditor.desktop:
 	Add MimeType.
 
