@@ -27,7 +27,7 @@
 #include "Application.h"
 #include "DocumentSystem.h"
 #include "ActionSystem.h"
-
+#include <algorithm>
 #include "gui/CheckErrorsUI.h"
 
 
@@ -604,10 +604,17 @@ void Application::init(OptionGroup &options)
 {
 	se_debug(SE_DEBUG_APP);
 
+	std::vector<Glib::ustring> files(options.files.size() + options.files_list.size());
+
+	std::merge(
+			options.files.begin(), options.files.end(),
+			options.files_list.begin(), options.files_list.end(),
+			files.begin());
+
 	// files
-	for(unsigned int i = 0; i< options.files.size(); ++i)
+	for(unsigned int i = 0; i< files.size(); ++i)
 	{
-		Glib::ustring filename = options.files[i];
+		Glib::ustring filename = files[i];
 
 		if(	Glib::file_test(filename, Glib::FILE_TEST_EXISTS | Glib::FILE_TEST_IS_REGULAR) && 
 				Glib::file_test(filename, Glib::FILE_TEST_IS_DIR) == false)
