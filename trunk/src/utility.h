@@ -225,6 +225,11 @@ namespace utility
 	/*
 	 *
 	 */
+	int string_to_long(const std::string &str);
+
+	/*
+	 *
+	 */
 	double string_to_double(const std::string &str);
 
 	/*

@@ -636,6 +636,17 @@ namespace utility
 	/*
 	 *
 	 */
+	int string_to_long(const std::string &str)
+	{
+		std::istringstream s(str);
+		long val = 0;
+		s >> val;
+		return val;
+	}
+
+	/*
+	 *
+	 */
 	double string_to_double(const std::string &str)
 	{
 		std::istringstream s(str);
