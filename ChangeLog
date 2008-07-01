@@ -1,5 +1,11 @@
 2008-07-01  kitone  <kitone@gna.org>
 
+	* src/SubtitleView.cc:
+	* src/SubtitleView.h:
+	Add support of the frame.
+
+2008-07-01  kitone  <kitone@gna.org>
+
 	* src/Document.cc:
 	* src/Document.h:
 	* src/Subtitle.cc:
