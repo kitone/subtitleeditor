@@ -74,7 +74,9 @@ FILES = \
 				we/WaveformEditor.h \
 				we/WaveformEditor.cc \
 				we/WaveformGenerator.h \
-				we/WaveformGenerator.cc
+				we/WaveformGenerator.cc \
+				TimeUtility.h \
+				TimeUtility.cc
 
 
 FORMATS_FILES = \
