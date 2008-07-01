@@ -192,7 +192,6 @@ public:
 	:Glib::ObjectBase(typeid(TimeCell)), Gtk::Entry()
 	{
 		se_debug(SE_DEBUG_VIEW);
-
 	}
 
 protected:
@@ -204,20 +203,39 @@ protected:
 	{
 		se_debug(SE_DEBUG_VIEW);
 
-		SubtitleTime time(get_text());
+		Glib::ustring text = get_text();
+		long frame;
 
-		SubtitleTime val = (ev->state & GDK_CONTROL_MASK) ? SubtitleTime(1000) : SubtitleTime(100);
-
-		if(ev->direction == GDK_SCROLL_UP)
+		if(SubtitleTime::validate(text)) // TIME
 		{
-			time = time + val;
-			set_text(time.str());
-			return true;
+			SubtitleTime time(get_text());
+
+			SubtitleTime val = (ev->state & GDK_CONTROL_MASK) ? SubtitleTime(1000) : SubtitleTime(100);
+
+			if(ev->direction == GDK_SCROLL_UP)
+			{
+				time = time + val;
+				set_text(time.str());
+				return true;
+			}
+			else if(ev->direction == GDK_SCROLL_DOWN)
+			{
+				time = time - val;
+				set_text(time.str());
+				return true;
+			}
 		}
-		else if(ev->direction == GDK_SCROLL_DOWN)
+		else if(from_string(text, frame)) // FRAME
 		{
-			time = time - val;
-			set_text(time.str());
+			long val = (ev->state & GDK_CONTROL_MASK) ? 10 : 1;
+
+			if(ev->direction == GDK_SCROLL_UP)
+				frame += val;
+			else if(ev->direction == GDK_SCROLL_DOWN)
+				frame -= val;
+
+			set_text(to_string(frame));
+			
 			return true;
 		}
 		return false;
@@ -233,7 +251,6 @@ template<class T>
 class CellRendererCustom : public Gtk::CellRendererText
 {
 public:
-
 
 	/*
 	 *
@@ -269,8 +286,6 @@ public:
 		m_editable->signal_editing_done().connect(
 				sigc::bind(sigc::mem_fun(*this, &CellRendererCustom::cell_editing_done), path));
 		
-		m_editable->show();
-
 		// prepare widget
 		if(Gtk::Entry *entry = dynamic_cast<Gtk::Entry*>(m_editable))
 		{
@@ -291,6 +306,7 @@ public:
 		if(m_document && !m_flash_message.empty())
 			m_document->flash_message(m_flash_message.c_str());
 		
+		m_editable->show();
 
 		return m_editable;
 	}
@@ -362,6 +378,21 @@ protected:
 	Glib::ustring m_flash_message;
 };
 
+/*
+ * Represents a cell time.
+ */
+class CellRendererTime : public CellRendererCustom<TimeCell>
+{
+public:
+	CellRendererTime(Document *doc)
+	:CellRendererCustom<TimeCell>(doc)
+	{
+		property_editable() = true;
+		property_yalign() = 0.0;
+		property_xalign() = 1.0;
+		property_alignment() = Pango::ALIGN_RIGHT;
+	}
+};
 
 /*
  *
@@ -376,14 +407,6 @@ SubtitleView::SubtitleView(Document &doc)
 	set_model(m_subtitleModel);
 
 	createColumns();
-
-	/*
-	// the last column
-	{
-		Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn());
-		append_column(*column);
-	}
-	*/
 
 	set_rules_hint(true);
 	set_enable_search(false);
@@ -415,6 +438,10 @@ SubtitleView::SubtitleView(Document &doc)
 
 	// DnD
 	set_reorderable(true);
+
+	// Update the columns size
+	m_refDocument->get_signal("edit-timing-mode-changed").connect(
+			sigc::mem_fun(*this, &Gtk::TreeView::columns_autosize));
 }
 
 /*
@@ -500,7 +527,6 @@ void SubtitleView::createColumnNum()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.num);
-	//column->set_reorderable(true);
 
 	append_column(*column);
 	//append_column_numeric_editable("num", m_column.num, "%d");
@@ -529,7 +555,6 @@ void SubtitleView::createColumnLayer()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.layer);
-	//column->set_reorderable(true);
 
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -547,28 +572,44 @@ void SubtitleView::createColumnLayer()
 /*
  *
  */
-void SubtitleView::createColumnStart()
+void SubtitleView::create_column_time(
+		const Glib::ustring &name, 
+		const Glib::ustring &label, 
+		const Gtk::TreeModelColumnBase& column_attribute,
+		const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot, 
+		const Glib::ustring &tooltips)
 {
-	se_debug(SE_DEBUG_VIEW);
+	se_debug_message(SE_DEBUG_VIEW, "name=%s label=%l tooltips=%s", 
+			name.c_str(), label.c_str(), tooltips.c_str());
 
-	Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("start")));
-	CellRendererCustom<TimeCell>* renderer = manage(new CellRendererCustom<TimeCell>(m_refDocument));
+
+	CellRendererTime* renderer = manage(new CellRendererTime(m_refDocument));
 	
-	column->pack_start(*renderer, false);
-	column->add_attribute(renderer->property_text(), m_column.start);
-	//column->set_reorderable(true);
+	Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(label));
 
-	renderer->property_editable() = true;
-	renderer->property_yalign() = 0;
-
-	renderer->signal_edited().connect(
-		sigc::mem_fun(*this, &SubtitleView::on_edited_start));
+	column->pack_start(*renderer);
+	column->add_attribute(renderer->property_text(), column_attribute);
+	
+	renderer->signal_edited().connect(slot);
 
 	append_column(*column);
 
-	m_columns["start"] = column;
+	m_columns[name] = column;
 
-	set_tooltips(column, _("This time is the time when a subtitle appears on the screen."));
+	set_tooltips(column, tooltips);
+}
+
+/*
+ *
+ */
+void SubtitleView::createColumnStart()
+{
+	create_column_time(
+			"start", 
+			_("start"), 
+			m_column.start, 
+			sigc::mem_fun(*this, &SubtitleView::on_edited_start),
+			_("This time is the time when a subtitle appears on the screen."));
 }
 
 /*
@@ -576,26 +617,13 @@ void SubtitleView::createColumnStart()
  */
 void SubtitleView::createColumnEnd()
 {
-	se_debug(SE_DEBUG_VIEW);
+	create_column_time(
+			"end", 
+			_("end"), 
+			m_column.end, 
+			sigc::mem_fun(*this, &SubtitleView::on_edited_end),
+			_("This time is the time when a subtitle disappears from the screen."));
 
-	Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("end")));
-	CellRendererCustom<TimeCell>* renderer = manage(new CellRendererCustom<TimeCell>(m_refDocument));
-	
-	column->pack_start(*renderer, false);
-	column->add_attribute(renderer->property_text(), m_column.end);
-	//column->set_reorderable(true);
-	
-	renderer->property_editable() = true;
-	renderer->property_yalign() = 0;
-
-	renderer->signal_edited().connect(
-		sigc::mem_fun(*this, &SubtitleView::on_edited_end));
-
-	append_column(*column);
-
-	m_columns["end"] = column;
-
-	set_tooltips(column, _("This time is the time when a subtitle disappears from the screen."));
 }
 
 /*
@@ -603,26 +631,12 @@ void SubtitleView::createColumnEnd()
  */
 void SubtitleView::createColumnDuration()
 {
-	se_debug(SE_DEBUG_VIEW);
-
-	Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("duration")));
-	CellRendererCustom<TimeCell>* renderer = manage(new CellRendererCustom<TimeCell>(m_refDocument));
-	
-	column->pack_start(*renderer, false);
-	column->add_attribute(renderer->property_text(), m_column.duration);
-	//column->set_reorderable(true);
-	
-	renderer->property_editable() = true;
-	renderer->property_yalign() = 0;
-
-	renderer->signal_edited().connect(
-		sigc::mem_fun(*this, &SubtitleView::on_edited_duration));
-
-	append_column(*column);
-
-	m_columns["duration"] = column;
-	
-	set_tooltips(column, _("The duration of the subtitle."));
+	create_column_time(
+			"duration", 
+			_("duration"), 
+			m_column.duration, 
+			sigc::mem_fun(*this, &SubtitleView::on_edited_duration),
+			 _("The duration of the subtitle."));
 }
 
 /*
@@ -640,7 +654,6 @@ void SubtitleView::createColumnStyle()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.style);
-	//column->set_reorderable(true);
 	
 	renderer->property_model() =	m_styleModel;
 	renderer->property_text_column() = 0;
@@ -669,7 +682,6 @@ void SubtitleView::createColumnName()
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.name);
-	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -695,7 +707,6 @@ void SubtitleView::createColumnCPS()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.characters_per_second_text);
-	//column->set_reorderable(true);
 
 	renderer->property_yalign() = 0;
 	renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
@@ -714,7 +725,6 @@ void SubtitleView::createColumnText()
 
 	Gtk::TreeViewColumn* column = NULL;
 	column = manage(new Gtk::TreeViewColumn(_("text")));
-	//column->set_reorderable(true);
 
 	append_column(*column);
 
@@ -793,7 +803,6 @@ void SubtitleView::createColumnTranslation()
 
 	Gtk::TreeViewColumn* column = NULL;
 	column = manage(new Gtk::TreeViewColumn(_("translation")));
-	//column->set_reorderable(true);
 
 	//translation
 	{
@@ -856,7 +865,6 @@ void SubtitleView::createColumnNote()
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.note);
-	//column->set_reorderable(true);
 	
 	append_column(*column);
 	
@@ -887,7 +895,6 @@ void SubtitleView::createColumnEffect()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.effect);
-	//column->set_reorderable(true);
 	
 	append_column(*column);
 	
@@ -898,7 +905,6 @@ void SubtitleView::createColumnEffect()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_effect));
 
 	column->set_resizable(true);
-//	column->set_expand(true);
 
 	m_columns["effect"] = column;
 }
@@ -918,7 +924,6 @@ void SubtitleView::createColumnMarginR()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginR);
-	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -946,7 +951,6 @@ void SubtitleView::createColumnMarginL()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginL);
-	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -974,7 +978,6 @@ void SubtitleView::createColumnMarginV()
 	
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginV);
-	//column->set_reorderable(true);
 	
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
@@ -1050,16 +1053,30 @@ void SubtitleView::on_edited_start( const Glib::ustring &path,
 	if(!subtitle)
 		return;
 
-	if(!SubtitleTime::validate(newtext))
-		return;
-
 	if(subtitle.get("start") == newtext)
 		return;
 
-	m_refDocument->start_command(_("Editing start"));
-	subtitle.set_start(newtext);
-	m_refDocument->emit_signal("subtitle-time-changed");
-	m_refDocument->finish_command();
+	if(m_refDocument->get_edit_timing_mode() == TIME)
+	{
+		if(!SubtitleTime::validate(newtext))
+			return;
+
+		m_refDocument->start_command(_("Editing start"));
+		subtitle.set_start(newtext);
+		m_refDocument->emit_signal("subtitle-time-changed");
+		m_refDocument->finish_command();
+	}
+	else // edit_mode == FRAME
+	{
+		long frame = 0;
+		if(!from_string(newtext, frame))
+			return;
+
+		m_refDocument->start_command(_("Editing start"));
+		subtitle.set_start_frame(frame);
+		m_refDocument->emit_signal("subtitle-time-changed");
+		m_refDocument->finish_command();
+	}
 }
 
 /*
@@ -1074,16 +1091,30 @@ void SubtitleView::on_edited_end( const Glib::ustring &path,
 	if(!subtitle)
 		return;
 
-	if(!SubtitleTime::validate(newtext))
-		return;
-
 	if(subtitle.get("end") == newtext)
 		return;
 
-	m_refDocument->start_command(_("Editing end"));
-	subtitle.set_end(newtext);
-	m_refDocument->emit_signal("subtitle-time-changed");
-	m_refDocument->finish_command();
+	if(m_refDocument->get_edit_timing_mode() == TIME)
+	{
+		if(!SubtitleTime::validate(newtext))
+			return;
+
+		m_refDocument->start_command(_("Editing end"));
+		subtitle.set_end(newtext);
+		m_refDocument->emit_signal("subtitle-time-changed");
+		m_refDocument->finish_command();
+	}
+	else // edit_mode == FRAME
+	{
+		long frame = 0;
+		if(!from_string(newtext, frame))
+			return;
+
+		m_refDocument->start_command(_("Editing end"));
+		subtitle.set_end_frame(frame);
+		m_refDocument->emit_signal("subtitle-time-changed");
+		m_refDocument->finish_command();
+	}
 }
 
 /*
@@ -1098,16 +1129,30 @@ void SubtitleView::on_edited_duration( const Glib::ustring &path,
 	if(!subtitle)
 		return;
 
-	if(!SubtitleTime::validate(newtext))
-		return;
-
 	if(subtitle.get("duration") == newtext)
 		return;
 
-	m_refDocument->start_command(_("Editing duration"));
-	subtitle.set_duration(newtext);
-	m_refDocument->emit_signal("subtitle-time-changed");
-	m_refDocument->finish_command();
+	if(m_refDocument->get_edit_timing_mode() == TIME)
+	{
+		if(!SubtitleTime::validate(newtext))
+			return;
+
+		m_refDocument->start_command(_("Editing duration"));
+		subtitle.set_duration(newtext);
+		m_refDocument->emit_signal("subtitle-time-changed");
+		m_refDocument->finish_command();
+	}
+	else // edit_mode == FRAME
+	{
+		long frame = 0;
+		if(!from_string(newtext, frame))
+			return;
+
+		m_refDocument->start_command(_("Editing duration"));
+		subtitle.set_duration_frame(frame);
+		m_refDocument->emit_signal("subtitle-time-changed");
+		m_refDocument->finish_command();
+	}
 }
 
 /*
