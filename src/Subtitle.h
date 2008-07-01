@@ -25,7 +25,7 @@
  
 
 #include "SubtitleModel.h"
-//#include "Document.h"
+#include "TimeUtility.h"
 
 /*
  *	Cette class fonctionne avec un iterator (SubtitleModel).
@@ -76,99 +76,142 @@ public:
 	bool operator!=(const Subtitle &sub) const;
 
 	/*
-	 *
+	 * Set the number of subtitle.
 	 */
 	void set_num(unsigned int num);
 
 	/*
-	 *
+	 * Return the number of subtitle.
 	 */
 	unsigned int get_num() const;
 
+	/*
+	 * Return the time mode of the subtitle. 
+	 * TIME or FRAME.
+	 */
+	TIMING_MODE get_timing_mode() const;
 
 	/*
-	 *
+	 * Return the framerate value. (from document)
+	 */
+	float get_framerate() const;
+
+	/*
+	 * Set the layer name (ASS/SSA).
 	 */
 	void set_layer(const Glib::ustring &layer);
 
 	/*
-	 *
+	 * Return the layer name (ASS/SSA).
 	 */
 	Glib::ustring get_layer() const;
 
 	/*
-	 *	petite optimisation qui permet de calculer 
-	 *	qu'une seule fois duration
+	 * Update the visual values. 
+	 * Like when the framerate document has changed.
+	 */
+	void update_view_mode_timing();
+
+	/*
+	 * Optimize the calculation by calculating the duration only once.
 	 */
 	void set_start_and_end(const SubtitleTime &start, const SubtitleTime &end);
 
+
 	/*
-	 *
+	 * Set the start from time.
 	 */
-	void set_start(const Glib::ustring &time);
 	void set_start(const SubtitleTime &time);
 
 	/*
-	 *
+	 * Set the start from frame.
+	 */
+	void set_start_frame(const long &frame);
+	
+	/*
+	 * Get the start as time.
 	 */
 	SubtitleTime get_start() const;
 
-
 	/*
-	 *
+	 * Get the start as frame.
 	 */
-	void set_end(const Glib::ustring &time);
-	void set_end(const SubtitleTime &time);
+	long get_start_frame() const;
+
 
 	/*
-	 *
+	 * Set the end from time.
+	 */
+	void set_end(const SubtitleTime &time);
+	
+	/*
+	 * Set the end from frame;
+	 */
+	void set_end_frame(const long &frame);
+
+	/*
+	 * Get the end as time.
 	 */
 	SubtitleTime get_end() const;
 
+	/*
+	 * Get the end as frame.
+	 */
+	long get_end_frame() const;
+
 
 	/*
-	 *
+	 * Set the duration from time.
 	 */
-	void set_duration(const Glib::ustring &time);
 	void set_duration(const SubtitleTime &time);
 
 	/*
-	 *
+	 * Set the duration from frame.
+	 */
+	void set_duration_frame(const long &frame);
+	
+	/*
+	 * Get the duration as time.
 	 */
 	SubtitleTime get_duration() const;
 
+	/*
+	 * Get the duration as frame.
+	 */
+	long get_duration_frame() const;
+
 
 	/*
-	 *
+	 * Set the style name.
 	 */
 	void set_style(const Glib::ustring &style);
 
 	/*
-	 *
+	 * Get the style name.
 	 */
 	Glib::ustring get_style() const;
 
 
 	/*
-	 *
+	 * Set the actor name. (ASS/SSA)
 	 */
 	void set_name(const Glib::ustring &name);
 
 	/*
-	 *
+	 * Get the actor name. (ASS/SSA)
 	 */
 	Glib::ustring get_name() const;
-	
-	
+
+
 	/*
-	 *
+	 * Set margin values. (ASS/SSA)
 	 */
 	void set_margin_l(const Glib::ustring &value);
 	void set_margin_r(const Glib::ustring &value);
 	void set_margin_v(const Glib::ustring &value);
 
 	/*
-	 *
+	 * Return margin values. (ASS/SSA)
 	 */
 	Glib::ustring get_margin_l() const;
 	Glib::ustring get_margin_r() const;
@@ -187,12 +230,12 @@ public:
 
 
 	/*
-	 *
+	 * Set subtitle main text.
 	 */
 	void set_text(const Glib::ustring &text);
 
 	/*
-	 *
+	 * Return subtitle main text.
 	 */
 	Glib::ustring get_text() const;
 
@@ -270,6 +313,57 @@ protected:
 	 *
 	 */
 	void update_characters_per_sec();
+
+	/*
+	 * Convert the value (subtitle timing mode) to the edit timing mode.
+	 */
+	Glib::ustring convert_value_to_view_mode(const long &value);
+
+	/*
+	 * Convert the value (FRAME or TIME) and return as the subtitle time mode.
+	 */
+	long convert_value_to_mode(const long &value, TIMING_MODE viewmode) const;
+
+	/*
+	 * Convert the time value and return as the subtitle time mode.
+	 */
+	long convert_to_value_mode(const SubtitleTime &time) const;
+
+	/*
+	 * Convert the frame value and return as the subtitle time mode.
+	 */
+	long convert_to_value_mode(const long &frame) const;
+
+	/*
+	 * Set the start value in the subtitle time mode. (FRAME or TIME)
+	 */
+	void set_start_value(const long &value);
+
+	/*
+	 * Get the start value in the subtitle time mode. (FRAME or TIME)
+	 */
+	long get_start_value() const;
+
+	/*
+	 * Set the end value in the subtitle time mode. (FRAME or TIME)
+	 */
+	void set_end_value(const long &value);
+
+	/*
+	 * Get the end value in the subtitle time mode. (FRAME or TIME)
+	 */
+	long get_end_value() const;
+
+	/*
+	 * Set the duration value in the subtitle time mode. (FRAME or TIME)
+	 */
+	void set_duration_value(const long &value);
+
+	/*
+	 * Get the duration value in the subtitle time mode. (FRAME or TIME)
+	 */
+	long get_duration_value() const;
+
 protected:
 	static SubtitleColumnRecorder column;
 	Document *m_document;

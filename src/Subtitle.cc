@@ -34,6 +34,7 @@ public:
 	SubtitleCommand(const Subtitle &sub, const Glib::ustring &name_value, const Glib::ustring &new_value)
 	:Command(sub.m_document, "Subtitle edited " + name_value), m_path(sub.m_path), m_name_value(name_value), m_old(sub.get(name_value)), m_new(new_value)
 	{
+		se_debug_message(SE_DEBUG_APP, "name=<%s> old=<%s> new=<%s>", m_name_value.c_str(), m_old.c_str(), m_new.c_str());
 	}
 
 	void execute()
@@ -158,7 +159,7 @@ Subtitle&	Subtitle::operator--()
 }
 
 /*
- *
+ * Set the number of subtitle.
  */
 void Subtitle::set_num(unsigned int num)
 {
@@ -166,7 +167,7 @@ void Subtitle::set_num(unsigned int num)
 }
 
 /*
- *
+ * Return the number of subtitle.
  */
 unsigned int Subtitle::get_num() const
 {
@@ -192,6 +193,22 @@ Glib::ustring Subtitle::get_layer() const
 	return (*m_iter)[column.layer];
 }
 
+/*
+ * Return the time mode of the subtitle. 
+ * TIME or FRAME.
+ */
+TIMING_MODE Subtitle::get_timing_mode() const
+{
+	return m_document->get_timing_mode();//(*m_iter)[column.mode];
+}
+
+/*
+ * Return the framerate value. (from document)
+ */
+float Subtitle::get_framerate() const
+{
+	return get_framerate_value(m_document->get_framerate());//(*m_iter)[column.framerate];
+}
 
 /*
  *	petite optimisation qui permet de calculer 
@@ -199,126 +216,270 @@ Glib::ustring Subtitle::get_layer() const
  */
 void Subtitle::set_start_and_end(const SubtitleTime &start, const SubtitleTime &end)
 {
-	push_command("start", start.str());
-	push_command("end", end.str());
-	
-	(*m_iter)[column.start] = start.str();
-	(*m_iter)[column.end] = end.str();
-	(*m_iter)[column.duration] = (end - start).str();
+	set_start_value(convert_to_value_mode(start));
+	set_end_value(convert_to_value_mode(end));
+	// update the duration
+	set_duration_value(get_end_value() - get_start_value());
 
 	update_characters_per_sec();
 }
 
 /*
- *
+ * Set the start from time.
  */
-void Subtitle::set_start(const Glib::ustring &start)
+void Subtitle::set_start(const SubtitleTime &time)
 {
-	push_command("start", start);
+	set_start_value(convert_to_value_mode(time));
 
-	SubtitleTime s(start);
-
-	(*m_iter)[column.start] = s.str();
-
-	(*m_iter)[column.duration] = (get_end() - s).str();
+	// update the duration
+	set_duration_value(get_end_value() - get_start_value());
 
 	update_characters_per_sec();
 }
 
 /*
- *
+ * Set the start from frame.
  */
-void Subtitle::set_start(const SubtitleTime &start)
+void Subtitle::set_start_frame(const long &frame)
 {
-	push_command("start", start.str());
+	set_start_value(convert_to_value_mode(frame));
 
-	(*m_iter)[column.start] = start.str();
-
-	(*m_iter)[column.duration] = (get_end() - start).str();
+	// update the duration
+	set_duration_value(get_end_value() - get_start_value());
 
 	update_characters_per_sec();
 }
 
 /*
- *
+ * Get the start as time.
  */
 SubtitleTime Subtitle::get_start() const
 {
-	return SubtitleTime((*m_iter)[column.start]);
+	return SubtitleTime(convert_value_to_mode(get_start_value(), TIME));
 }
 
-
 /*
- *
+ * Get the start as frame.
  */
-void Subtitle::set_end(const Glib::ustring &end)
+long Subtitle::get_start_frame() const
 {
-	push_command("end", end);
-
-	SubtitleTime e(end);
-
-	(*m_iter)[column.end] = e.str();
-
-	(*m_iter)[column.duration] = (e - get_start()).str();
-
-	update_characters_per_sec();
+	return convert_value_to_mode(get_start_value(), FRAME);
 }
 
-void Subtitle::set_end(const SubtitleTime &end)
+/*
+ * Set the end from time.
+ */
+void Subtitle::set_end(const SubtitleTime &time)
 {
-	push_command("end", end.str());
+	set_end_value(convert_to_value_mode(time));
 
-	(*m_iter)[column.end] = end.str();
-
-	(*m_iter)[column.duration] = (end - get_start()).str();
+	// update the duration
+	set_duration_value(get_end_value() - get_start_value());
 
 	update_characters_per_sec();
 }
 
 /*
- *
+ * Set the end from frame.
+ */
+void Subtitle::set_end_frame(const long &frame)
+{
+	set_end_value(convert_to_value_mode(frame));
+
+	// update the duration
+	set_duration_value(get_end_value() - get_start_value());
+
+	update_characters_per_sec();
+}
+
+/*
+ * Get the end as time.
  */
 SubtitleTime Subtitle::get_end() const
 {
-	return SubtitleTime((*m_iter)[column.end]);
+	return SubtitleTime(convert_value_to_mode(get_end_value(), TIME));
+}
+
+/*
+ * Get the end as frame.
+ */
+long Subtitle::get_end_frame() const
+{
+	return convert_value_to_mode(get_end_value(), FRAME);
 }
 
 
 /*
- *
+ * Set the duration from time.
  */
-void Subtitle::set_duration(const Glib::ustring &time)
-{
-	push_command("duration", time);
-
-	SubtitleTime d(time);
-
-	(*m_iter)[column.duration] = d.str();
-
-	(*m_iter)[column.end] = (get_start() + d).str();
-
-	update_characters_per_sec();
-}
-
 void Subtitle::set_duration(const SubtitleTime &time)
 {
-	push_command("duration", time.str());
+	set_duration_value(convert_to_value_mode(time));
 
-	(*m_iter)[column.duration] = time.str();
-
-	(*m_iter)[column.end] = (get_start() + time).str();
+	// update the end
+	set_end_value(get_start_value() + get_duration_value());
 
 	update_characters_per_sec();
 }
 
 /*
- *
+ * Set the duration from frame.
+ */
+void Subtitle::set_duration_frame(const long &frame)
+{
+	set_duration_value(convert_to_value_mode(frame));
+
+	// update the end
+	set_end_value(get_start_value() + get_duration_value());
+
+	update_characters_per_sec();
+}
+
+/*
+ * Get the duration as time.
  */
 SubtitleTime Subtitle::get_duration() const
 {
-	return SubtitleTime((*m_iter)[column.duration]);
+	return SubtitleTime(convert_value_to_mode(get_duration_value(), TIME));
 }
 
+/*
+ * Get the duration as frame.
+ */
+long Subtitle::get_duration_frame() const
+{
+	return convert_value_to_mode(get_duration_value(), FRAME);
+}
+
+
+/*
+ * Set the start value in the subtitle time mode. (FRAME or TIME)
+ */
+void Subtitle::set_start_value(const long &value)
+{
+	push_command("start", to_string(value));
+
+	(*m_iter)[column.start_value] = value;
+	(*m_iter)[column.start] = convert_value_to_view_mode(value);
+}
+
+/*
+ * Get the start value in the subtitle time mode. (FRAME or TIME)
+ */
+long Subtitle::get_start_value() const
+{
+	return (*m_iter)[column.start_value];
+}
+
+/*
+ * Set the end value in the subtitle time mode. (FRAME or TIME)
+ */
+void Subtitle::set_end_value(const long &value)
+{
+	push_command("end", to_string(value));
+
+	(*m_iter)[column.end_value] = value;
+	(*m_iter)[column.end] = convert_value_to_view_mode(value);
+}
+
+/*
+ * Get the end value in the subtitle time mode. (FRAME or TIME)
+ */
+long Subtitle::get_end_value() const
+{
+	return (*m_iter)[column.end_value];
+}
+
+/*
+ * Set the duration value in the subtitle time mode. (FRAME or TIME)
+ */
+void Subtitle::set_duration_value(const long &value)
+{
+	push_command("duration", to_string(value));
+
+	(*m_iter)[column.duration_value] = value;
+	(*m_iter)[column.duration] = convert_value_to_view_mode(value);
+}
+
+/*
+ * Get the duration value in the subtitle time mode. (FRAME or TIME)
+ */
+long Subtitle::get_duration_value() const
+{
+	return (*m_iter)[column.duration_value];
+}
+
+/*
+ * Convert the value (FRAME or TIME) and return as the subtitle time mode.
+ */
+long Subtitle::convert_value_to_mode(const long &value, TIMING_MODE mode) const
+{
+	if(get_timing_mode() == TIME)
+	{
+		if(mode == TIME)
+			return value;
+		else // FRAME
+			return SubtitleTime::time_to_frame(value, get_framerate());
+	}
+	else // viewmode == FRAME
+	{
+		if(mode == FRAME)
+			return value;
+		else // TIME
+			return SubtitleTime::frame_to_time(value, get_framerate()).totalmsecs;
+	}
+
+	return 0;
+}
+
+/*
+ * Convert the time value and return as the subtitle time mode.
+ */
+long Subtitle::convert_to_value_mode(const SubtitleTime &time) const
+{
+	if(get_timing_mode() == TIME)
+		return time.totalmsecs;
+	//else  FRAME
+	return SubtitleTime::time_to_frame(time.totalmsecs, get_framerate());
+}
+
+/*
+ * Convert the frame value and return as the subtitle time mode.
+ */
+long Subtitle::convert_to_value_mode(const long &frame) const
+{
+	if(get_timing_mode() == FRAME)
+		return frame;
+	// else TIME 
+	return SubtitleTime::frame_to_time(frame, get_framerate()).totalmsecs;
+}
+
+/*
+ * Convert the value (subtitle timing mode) to the edit timing mode.
+ */
+Glib::ustring Subtitle::convert_value_to_view_mode(const long &value)
+{
+	TIMING_MODE view_mode = m_document->get_edit_timing_mode();
+
+	Glib::ustring text;
+
+	if(get_timing_mode() == TIME)
+	{
+		if(view_mode == TIME)
+			return SubtitleTime(value).str();
+		else // FRAME
+			return to_string(SubtitleTime::time_to_frame(SubtitleTime(value), get_framerate()));
+	}
+	else// if(get_timing_mode() == FRAME)
+	{
+		if(view_mode == FRAME)
+			return to_string(value);
+		else // TIME
+			return SubtitleTime::frame_to_time(value, get_framerate()).str();
+	}
+
+	return "INVALID";
+}
 
 /*
  *
@@ -589,14 +750,16 @@ void Subtitle::copy_to(Subtitle &sub)
  */
 void Subtitle::set(const Glib::ustring &name, const Glib::ustring &value)
 {
+	se_debug_message(SE_DEBUG_APP, "name=<%s> value=<%s>", name.c_str(), value.c_str());
+
 	if(name == "path")
 		m_path = value;
 	else if(name == "start")
-		set_start(SubtitleTime(value));
+		set_start_value(utility::string_to_long(value));
 	else if(name == "end")
-		set_end(SubtitleTime(value));
+		set_end_value(utility::string_to_long(value));
 	else if(name == "duration")
-		set_duration(SubtitleTime(value));
+		set_duration_value(utility::string_to_long(value));
 	else if(name == "text")
 		set_text(value);
 	else if(name == "translation")
@@ -633,11 +796,11 @@ Glib::ustring Subtitle::get(const Glib::ustring &name) const
 	if(name == "path")
 		return m_path;
 	else if(name == "start")
-		return get_start().str();
+		return to_string(get_start_value());
 	else if(name == "end")
-		return get_end().str();
+		return to_string(get_end_value());
 	else if(name == "duration")
-		return get_duration().str();
+		return to_string(get_duration_value());
 	else if(name == "text")
 		return get_text();
 	else if(name == "translation")
@@ -716,3 +879,16 @@ void Subtitle::update_characters_per_sec()
 	set_characters_per_second_text(to_string(cps));
 }
 
+/*
+ * Update the visual values. 
+ * Like when the framerate document has changed.
+ */
+void Subtitle::update_view_mode_timing()
+{
+	(*m_iter)[column.start] = convert_value_to_view_mode(get_start_value());
+	(*m_iter)[column.end] = convert_value_to_view_mode(get_end_value());
+	(*m_iter)[column.duration] = convert_value_to_view_mode(get_duration_value());
+
+	// FIXME Only if frame mode
+	// update_characters_per_sec();
+}
