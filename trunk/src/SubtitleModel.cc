@@ -223,12 +223,22 @@ void SubtitleModel::remove(unsigned int start, unsigned int end)
  */
 void SubtitleModel::init(Gtk::TreeIter &iter)
 {
-	SubtitleTime time = SubtitleTime::null();
+	//SubtitleTime time = SubtitleTime::null();
 
 	(*iter)[m_column.num]				= 0;
+
+	// The visual value. Depend of *_value
+#warning "FIXME: init default value (frame or time)"
+	/*
 	(*iter)[m_column.start]			= time.str();
 	(*iter)[m_column.end]				= time.str();
 	(*iter)[m_column.duration]	= time.str();
+	*/
+	// The real value of time
+	(*iter)[m_column.start_value]= 0;
+	(*iter)[m_column.end_value]= 0;
+	(*iter)[m_column.duration_value]= 0;
+	
 	(*iter)[m_column.text]			= "";
 	//
 	(*iter)[m_column.layer]			= "0";
@@ -437,10 +447,13 @@ void SubtitleModel::copy(Glib::RefPtr<SubtitleModel> src)
 	{
 		Gtk::TreeIter new_it = Gtk::ListStore::append();
 
-
 		SET(num, unsigned int);
 
 		SET(layer, Glib::ustring);
+
+		SET(start_value, long);
+		SET(end_value, long);
+		SET(duration_value, long);
 
 		SET(start, Glib::ustring);
 		SET(end, Glib::ustring);
