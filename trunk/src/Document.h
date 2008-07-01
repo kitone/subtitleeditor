@@ -32,6 +32,8 @@
 #include "SubtitleView.h"
 #include "Signal.h"
 #include "CommandSystem.h"
+#include "TimeUtility.h"
+
 
 typedef Glib::RefPtr<SubtitleModel> SubtitleModelPtr;
 typedef SubtitleView* SubtitleViewPtr;
@@ -252,6 +254,37 @@ public:
 	 *
 	 */
 	Gtk::Widget* widget();
+
+	/*
+	 *
+	 */
+	void set_timing_mode(TIMING_MODE mode);
+	
+	/*
+	 *
+	 */
+	TIMING_MODE get_timing_mode();
+
+	/*
+	 *
+	 */
+	void set_edit_timing_mode(TIMING_MODE mode);
+
+	/*
+	 *
+	 */
+	TIMING_MODE get_edit_timing_mode();
+
+	/*
+	 *
+	 */
+	void set_framerate(FRAMERATE framerate);
+
+	/*
+	 *
+	 */
+	FRAMERATE get_framerate();
+
 protected:
 	friend class Command;
 	friend class Subtitle;
@@ -286,6 +319,9 @@ public:
 	//Glib::ustring filenameDocument;
 	Glib::ustring m_uriMovie;
 
+	TIMING_MODE m_timing_mode;
+	TIMING_MODE m_edit_timing_mode;
+	FRAMERATE		m_framerate;
 protected:
 	Glib::ustring m_name;		// ex: toto.ass
 	Glib::ustring m_filename;	// /home/titi/toto.ass

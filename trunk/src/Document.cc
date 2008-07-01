@@ -39,6 +39,10 @@
 Document::Document()
 :CommandSystem(*this), m_subtitles(*this), m_styles(*this), m_subtitleView(NULL)
 {
+	m_timing_mode = TIME;
+	m_edit_timing_mode = TIME;
+	m_framerate = FRAMERATE_25;
+
 	m_document_changed = false;
 
 	Config &cfg = Config::getInstance();
@@ -68,6 +72,10 @@ Document::Document()
 Document::Document(Document &src)
 :CommandSystem(*this), m_subtitles(*this), m_styles(*this), m_subtitleView(NULL)
 {
+	m_timing_mode = src.m_timing_mode;
+	m_edit_timing_mode = src.m_edit_timing_mode;
+	m_framerate = src.m_framerate;
+
 	m_document_changed = false;
 
 	m_subtitleModel = Glib::RefPtr<SubtitleModel>(new SubtitleModel(this));
@@ -589,5 +597,67 @@ void Document::make_document_unchanged()
 	m_document_changed = false;
 
 	emit_signal("document-changed");
+}
+
+/*
+ *
+ */
+void Document::set_timing_mode(TIMING_MODE mode)
+{
+	m_timing_mode = mode;
+
+	emit_signal("timing-mode-changed");
+}
+	
+/*
+ *
+ */
+TIMING_MODE Document::get_timing_mode()
+{
+	return m_timing_mode;
+}
+
+/*
+ *
+ */
+void Document::set_edit_timing_mode(TIMING_MODE mode)
+{
+	m_edit_timing_mode = mode;
+
+	for(Subtitle sub = subtitles().get_first(); sub; ++sub)
+	{
+		sub.update_view_mode_timing();
+	}
+	emit_signal("edit-timing-mode-changed");
+}
+	
+/*
+ *
+ */
+TIMING_MODE Document::get_edit_timing_mode()
+{
+	return m_edit_timing_mode;
+}
+
+/*
+ *
+ */
+void Document::set_framerate(FRAMERATE framerate)
+{
+	m_framerate = framerate;
+
+	for(Subtitle sub = subtitles().get_first(); sub; ++sub)
+	{
+		sub.update_view_mode_timing();
+	}
+	emit_signal("framerate-changed");
+}
+
+/*
+ *
+ */
+FRAMERATE Document::get_framerate()
+{
+	return m_framerate;
 }
 
