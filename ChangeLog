@@ -1,5 +1,13 @@
 2008-07-01  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/TimeUtility.cc:
+	* src/TimeUtility.h:
+	Add TimeUtility files.
+	Required for added support of the frames in subtitleeditor.
+
+2008-07-01  kitone  <kitone@gna.org>
+
 	* src/utility.cc:
 	* src/utility.h:
 	Add function string_to_long.
