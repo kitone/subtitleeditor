@@ -53,8 +53,18 @@
 		</menu>
 
 		<menu action="menu-timings" name="menu-timings">
-			<menuitem action="move-subtitles"/>
+			<menuitem action="times"/>
+			<menuitem action="frames"/>
+			<menu action="menu-framerate" name="menu-framerate">
+				<menuitem action="set-framerate-23.976"/>
+				<menuitem action="set-framerate-24"/>
+				<menuitem action="set-framerate-25"/>
+				<menuitem action="set-framerate-29.97"/>
+				<menuitem action="set-framerate-30"/>
+			</menu>
 			<separator/>
+			<menuitem action="move-subtitles"/>
+			<!--separator/-->
 			<menu action="menu-adjust-time-add">
 				<menuitem action="add-to-start"/>
 				<menuitem action="add-to-duration"/>
@@ -71,7 +81,7 @@
 			<separator/>
 			<!-- menuitem action="try-to-extend-to-perfect"/-->
 			<menuitem action="extend-length"/>
-			<separator/>
+			<!--separator/-->
 			<menuitem action="move-after-preceding-subtitle"/>
 		</menu>
 

@@ -1,5 +1,21 @@
 2008-07-01  kitone  <kitone@gna.org>
 
+	* share/menubar.xml:
+	* src/Makefile.am:
+	* src/actions/TimeModeManagement.cc:
+	Add new file TimeModeManagement.cc.
+	Time mode management and framerate values.
+
+2008-07-01  kitone  <kitone@gna.org>
+
+	reviewed by: <delete if not using a buddy>
+
+	* share/menubar.xml:
+	* src/Makefile.am:
+	* src/actions/TimeModeManagement.cc:
+
+2008-07-01  kitone  <kitone@gna.org>
+
 	* src/SubtitleView.cc:
 	* src/SubtitleView.h:
 	Add support of the frame.
