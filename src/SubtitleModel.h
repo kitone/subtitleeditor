@@ -59,7 +59,6 @@ public:
 	Column	m_column;
 };
 
-
 /*
  *
  */
@@ -70,8 +69,11 @@ public:
 	{
 		add(num);
 		add(layer);
+		add(start_value);
 		add(start);
+		add(end_value);
 		add(end);
+		add(duration_value);
 		add(duration);
 		add(style);
 		add(name);
@@ -88,10 +90,14 @@ public:
 		add(note);
 	}
 
-	Gtk::TreeModelColumn<unsigned int>	 num;
+	Gtk::TreeModelColumn<unsigned int>		num;
 	
 	Gtk::TreeModelColumn<Glib::ustring>		layer;
 	
+	Gtk::TreeModelColumn<long>						start_value;
+	Gtk::TreeModelColumn<long>						end_value;
+	Gtk::TreeModelColumn<long>						duration_value;
+
 	Gtk::TreeModelColumn<Glib::ustring>		start;
 	Gtk::TreeModelColumn<Glib::ustring>		end;
 	Gtk::TreeModelColumn<Glib::ustring>		duration;
