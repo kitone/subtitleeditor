@@ -139,7 +139,8 @@ ACTIONS = \
 				actions/About.cc \
 				actions/ViewManager.cc \
 				actions/WaveformManagement.cc \
-				actions/VideoPlayerManagement.cc
+				actions/VideoPlayerManagement.cc \
+				actions/TimeModeManagement.cc
 
 
 ACTIONS_FILES = $(ACTIONS) \
