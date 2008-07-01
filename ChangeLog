@@ -1,3 +1,9 @@
+2008-07-01  kitone  <kitone@gna.org>
+
+	* src/utility.cc:
+	* src/utility.h:
+	Add function string_to_long.
+
 2008-06-24  kitone  <kitone@gna.org>
 
 	* configure.in:
