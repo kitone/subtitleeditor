@@ -62,12 +62,12 @@ public:
 	{
 		se_debug(SE_DEBUG_VIEW);
 
+		m_canceled = false;
 		m_in_popup = false;
 
-		bool center;
-		Config::getInstance().get_value_bool("subtitle-view", "property-alignment-center", center);
-	
-		if(center)
+		m_used_ctrl_enter_to_confirm_change = Config::getInstance().get_value_bool("subtitle-view", "used-ctrl-enter-to-confirm-change");
+
+		if(Config::getInstance().get_value_bool("subtitle-view", "property-alignment-center"))
 			set_justification(Gtk::JUSTIFY_CENTER);
 
 		set_wrap_mode(Gtk::WRAP_NONE);
@@ -109,15 +109,20 @@ protected:
 
 		if(event->keyval == GDK_Escape)
 		{
+			m_canceled = true;
 			remove_widget();
 			return true;
 		}
-		else if( (
+		
+		bool st_enter = (
 				 event->keyval == GDK_Return ||  
 				 event->keyval == GDK_KP_Enter ||  
 				 event->keyval == GDK_ISO_Enter ||  
-				 event->keyval == GDK_3270_Enter 
-				)	&& (event->state & GDK_CONTROL_MASK))
+				 event->keyval == GDK_3270_Enter );
+
+		bool st_ctrl = (event->state & GDK_CONTROL_MASK);
+
+		if((m_used_ctrl_enter_to_confirm_change ? (st_enter && st_ctrl) : (st_enter && !st_ctrl)))
 		{
 			editing_done();
 			remove_widget();
@@ -136,7 +141,8 @@ protected:
 		se_debug(SE_DEBUG_VIEW);
 
 		// fix #10061 : Title editor field clears too easily
-		editing_done();
+		if(!m_canceled)
+			editing_done();
 
 		return Gtk::TextView::on_focus_out_event(ev);
 	}
@@ -179,6 +185,8 @@ protected:
 
 protected:
 	bool m_in_popup;
+	bool m_canceled;
+	bool m_used_ctrl_enter_to_confirm_change;
 };
 
 /*
@@ -302,23 +310,20 @@ public:
 		m_editable->signal_remove_widget().connect(
 				sigc::mem_fun(*this, &CellRendererCustom::finish_editing));
 
-		//
-		if(m_document && !m_flash_message.empty())
-			m_document->flash_message(m_flash_message.c_str());
-		
+		// display flash message
+		if(m_document)
+			on_flash_message();
+
 		m_editable->show();
 
 		return m_editable;
 	}
 
 	/*
-	 *	le texte a afficher a l'edition d'une cellule
+	 * If need to display flash message.
 	 */
-	void set_flash_message(const Glib::ustring &text)
+	virtual void on_flash_message()
 	{
-		se_debug(SE_DEBUG_VIEW);
-
-		m_flash_message = text;
 	}
 protected:
 
@@ -375,7 +380,6 @@ protected:
 protected:
 	T* m_editable;
 	Document* m_document;
-	Glib::ustring m_flash_message;
 };
 
 /*
@@ -391,6 +395,37 @@ public:
 		property_yalign() = 0.0;
 		property_xalign() = 1.0;
 		property_alignment() = Pango::ALIGN_RIGHT;
+	}
+};
+
+/*
+ *
+ */
+class CellRendererTextMultiline : public CellRendererCustom<TextViewCell>
+{
+public:
+	CellRendererTextMultiline(Document *doc)
+	:CellRendererCustom<TextViewCell>(doc)
+	{
+		property_editable() = true;
+		property_yalign() = 0.0;
+
+		if(Config::getInstance().get_value_bool("subtitle-view", "property-alignment-center"))
+		{
+			property_xalign() = 0.5;
+			property_alignment() = Pango::ALIGN_CENTER;
+		}
+	}
+
+	/*
+	 * Need to display a flash message for the behavior of line-break and exit.
+	 */
+	void on_flash_message()
+	{
+		if(Config::getInstance().get_value_bool("subtitle-view", "used-ctrl-enter-to-confirm-change"))
+			m_document->flash_message(_("Use Ctrl+Return for exit and Return for line-break"));
+		else
+			m_document->flash_message(_("Use Return for exit and Ctrl+Return for line-break"));
 	}
 };
 
@@ -730,27 +765,13 @@ void SubtitleView::createColumnText()
 
 	// text
 	{
-		CellRendererCustom<TextViewCell>* renderer = manage(new CellRendererCustom<TextViewCell>(m_refDocument));
+		CellRendererTextMultiline* renderer = manage(new CellRendererTextMultiline(m_refDocument));
 
-		column->pack_start(*renderer, true);//false
+		column->pack_start(*renderer, true);
 		column->add_attribute(renderer->property_text(), m_column.text);
-	
-		renderer->set_flash_message(_("Use Ctrl+Return for exit and Return for line-break"));
-		renderer->property_editable() = true;
-		renderer->property_yalign() = 0;
 	
 		renderer->signal_edited().connect(
 				sigc::mem_fun(*this, &SubtitleView::on_edited_text));
-
-		bool center;
-		Config::getInstance().get_value_bool("subtitle-view", "property-alignment-center", center);
-	
-		if(center)
-		{
-			renderer->property_xalign() = 0.5;
-			renderer->property_alignment() = Pango::ALIGN_CENTER;
-		}
-
 	}
 	// cpl
 	{
@@ -806,25 +827,12 @@ void SubtitleView::createColumnTranslation()
 
 	//translation
 	{
-		CellRendererCustom<TextViewCell>* renderer = manage(new CellRendererCustom<TextViewCell>(m_refDocument));
+		CellRendererTextMultiline* renderer = manage(new CellRendererTextMultiline(m_refDocument));
 
 		column->pack_start(*renderer, true);
 		column->add_attribute(renderer->property_text(), m_column.translation);
 	
 		append_column(*column);
-	
-		renderer->set_flash_message(_("Use Ctrl+Return for exit and Return for line-break"));
-		renderer->property_editable() = true;
-		renderer->property_yalign() = 0;
-
-		bool center;
-		Config::getInstance().get_value_bool("subtitle-view", "property-alignment-center", center);
-
-		if(center)
-		{
-			renderer->property_xalign() = 0.5;
-			renderer->property_alignment() = Pango::ALIGN_CENTER;
-		}
 
 		renderer->signal_edited().connect(
 			sigc::mem_fun(*this, &SubtitleView::on_edited_translation));
@@ -861,17 +869,13 @@ void SubtitleView::createColumnNote()
 
 	Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("note")));;
 
-	CellRendererCustom<TextViewCell>* renderer = manage(new CellRendererCustom<TextViewCell>(m_refDocument));
+	CellRendererTextMultiline* renderer = manage(new CellRendererTextMultiline(m_refDocument));
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.note);
 	
 	append_column(*column);
 	
-	renderer->set_flash_message(_("Use Ctrl+Return for exit and Return for line-break"));
-	renderer->property_editable() = true;
-	renderer->property_yalign() = 0;
-
 	renderer->signal_edited().connect(
 		sigc::mem_fun(*this, &SubtitleView::on_edited_note));
 
