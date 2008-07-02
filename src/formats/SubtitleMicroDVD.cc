@@ -167,15 +167,14 @@ bool SubtitleMicroDVD::on_open(const Glib::ustring &filename)
 		throw SubtitleException("SubtitleMicroDVD", _("I can't open this file."));
 	}
 
-#warning "FIXME > FPS convert"
-	double framerate = 23.976;
-
 	RegEx ex("^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
 
 	std::string line;
 	std::string text;
-	int frame1, frame2;
+	int frame_start, frame_end;
   
+	document()->set_timing_mode(FRAME);
+
 	Subtitles subtitles = document()->subtitles();
 
 	MicroDVDTags tags;
@@ -186,7 +185,7 @@ bool SubtitleMicroDVD::on_open(const Glib::ustring &filename)
 		// car regex utilise de l'utf8
 		Glib::ustring utf8_line = charset_to_utf8(line);
 
-		if(ex.FullMatch(utf8_line.c_str(), &frame1, &frame2, &text))
+		if(ex.FullMatch(utf8_line.c_str(), &frame_start, &frame_end, &text))
 		{
 			Subtitle subtitle = subtitles.append();
 
@@ -198,9 +197,8 @@ bool SubtitleMicroDVD::on_open(const Glib::ustring &filename)
 
 			subtitle.set_text(utf8_text);
 
-			subtitle.set_start_and_end(
-					SubtitleTime::frame_to_time(frame1, framerate),
-					SubtitleTime::frame_to_time(frame2, framerate));
+			subtitle.set_start_frame(frame_start);
+			subtitle.set_end_frame(frame_end);
 		}
 	}
 
@@ -222,19 +220,12 @@ bool SubtitleMicroDVD::on_save(const Glib::ustring &filename)
 		throw SubtitleException("SubtitleMicroDVD", _("I can't open this file."));
 	}
 
-// TODO : change!
-#warning "fixme > framerate use Config"
-	double framerate = 23.976;
-
 	Glib::ustring text;
 	
 	MicroDVDTags tags;
 
 	for(Subtitle subtitle = document()->subtitles().get_first(); subtitle; ++subtitle)
 	{
-		SubtitleTime start = subtitle.get_start();
-		SubtitleTime end = subtitle.get_end();
-
 		Glib::ustring text = subtitle.get_text();
 
 		tags.encode(text);
@@ -242,9 +233,9 @@ bool SubtitleMicroDVD::on_save(const Glib::ustring &filename)
 		newline_to_characters(text, "|");
 
 		file << "{"
-			<< SubtitleTime::time_to_frame(start, framerate)
+			<< subtitle.get_start_frame()
 			<< "}{"
-			<< SubtitleTime::time_to_frame(end, framerate)
+			<< subtitle.get_end_frame()
 			<< "}"
 			<< utf8_to_charset(text)
 			<< get_newline();
