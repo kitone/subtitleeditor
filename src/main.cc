@@ -90,6 +90,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["waveform"]["scrolling-with-selection"] = "true";
 	config["waveform"]["respect-timing"] = "true";
 	config["waveform"]["display"] = "false";
+	config["waveform"]["renderer"] = "cairo";
 
 	//[interface]
 	config["interface"]["use-dynamic-keyboard-shortcuts"] = "true";
@@ -113,6 +114,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["subtitle-view"]["enable-rubberband-selection"] = "false";
 	config["subtitle-view"]["columns-display"] = "number;start;end;duration;text";
 	config["subtitle-view"]["columns-list"] = "cps;duration;effect;end;layer;margin-l;margin-r;margin-v;name;note;number;start;style;text;translation";
+	config["subtitle-view"]["used-ctrl-enter-to-confirm-change"] = "false";
 
 	//[timing]
 	config["timing"]["min-characters-per-second"] = "5";

@@ -41,6 +41,7 @@ public:
 		refGlade->get_widget("check-center-subtitle", m_checkCenterSubtitle);
 		refGlade->get_widget("check-show-character-per-line", m_checkShowCharacterPerLine);
 		refGlade->get_widget("check-enable-rubberband-selection", m_checkEnableRubberbandSelection);
+		refGlade->get_widget("check-used-ctrl-enter-to-confirm-change", m_checkUsedCtrlEnterToConfirmChange);
 
 		refGlade->get_widget("check-create-backup-copy", m_checkCreateBackupCopy);
 		refGlade->get_widget("check-autosave", m_checkAutosave);
@@ -53,6 +54,7 @@ public:
 		WidgetToConfig::read_config_and_connect(m_checkCenterSubtitle, "subtitle-view", "property-alignment-center");
 		WidgetToConfig::read_config_and_connect(m_checkShowCharacterPerLine, "subtitle-view", "show-character-per-line");
 		WidgetToConfig::read_config_and_connect(m_checkEnableRubberbandSelection, "subtitle-view", "enable-rubberband-selection");
+		WidgetToConfig::read_config_and_connect(m_checkUsedCtrlEnterToConfirmChange, "subtitle-view", "used-ctrl-enter-to-confirm-change");
 		
 		WidgetToConfig::read_config_and_connect(m_checkCreateBackupCopy, "interface", "create-backup-copy");
 		WidgetToConfig::read_config_and_connect(m_checkAutosave, "interface", "used-autosave");
@@ -70,6 +72,7 @@ protected:
 	Gtk::CheckButton* m_checkShowCharacterPerLine;
 	Gtk::CheckButton* m_checkCenterSubtitle;
 	Gtk::CheckButton* m_checkEnableRubberbandSelection;
+	Gtk::CheckButton* m_checkUsedCtrlEnterToConfirmChange;
 
 	Gtk::CheckButton* m_checkCreateBackupCopy;
 	Gtk::CheckButton* m_checkAutosave;

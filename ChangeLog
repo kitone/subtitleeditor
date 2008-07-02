@@ -1,5 +1,20 @@
 2008-07-02  kitone  <kitone@gna.org>
 
+	* src/SubtitleView.cc:
+	Fix: #11893 (https://gna.org/bugs/?11893)
+	Escape key canceled the change.
+	Can choose between "Enter" or "Ctrl+Enter" to confirm the change.
+
+	* share/glade/dialog-preferences.glade:
+	* src/gui/PreferencesUI.cc:
+	Add option "Used Ctrl+Enter to confirm the change"
+	
+	* src/main.cc:
+	Fix: add default renderer "cairo".
+	Add default value to "used-ctrl-enter-to-confirm-changed".
+
+2008-07-02  kitone  <kitone@gna.org>
+
 	* src/formats/SubtitleMicroDVD.cc:
 	The frame is now really supported thanks to the support of the frames.
 
