@@ -93,6 +93,15 @@ bool GStreamerPlayer::open(const Glib::ustring &uri)
 }
 
 /*
+ * Close the pipeline.
+ * The state is sets to null.
+ */
+void GStreamerPlayer::close()
+{
+	set_pipeline_null();
+}
+
+/*
  * Set the state of the pipeline.
  * The state change can be asynchronously.
  */

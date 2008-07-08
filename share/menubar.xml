@@ -104,6 +104,7 @@
 
 		<menu action="menu-video">
 			<menuitem action="video-player/open"/>
+			<menuitem action="video-player/close"/>
 			<separator/>
 			<menuitem action="video-player/play"/>
 			<menuitem action="video-player/pause"/>

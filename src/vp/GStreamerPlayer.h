@@ -66,6 +66,12 @@ public:
 	bool open(const Glib::ustring &uri);
 
 	/*
+	 * Close the pipeline.
+	 * The state is sets to null.
+	 */
+	void close();
+
+	/*
 	 * Sets the pipeline state to playing.
 	 */
 	void play();

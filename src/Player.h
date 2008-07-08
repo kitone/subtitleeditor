@@ -63,6 +63,11 @@ public:
 	/*
 	 *
 	 */
+	virtual void close() = 0;
+
+	/*
+	 *
+	 */
 	virtual void play() = 0;
 
 	/*
