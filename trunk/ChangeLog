@@ -1,3 +1,13 @@
+2008-07-08  kitone  <kitone@gna.org>
+
+	* share/menubar.xml:
+	* src/Player.h:
+	* src/actions/VideoPlayerManagement.cc:
+	* src/vp/GStreamerPlayer.cc:
+	* src/vp/GStreamerPlayer.h:
+	Fix: #11938
+	Add "Close" player.
+
 2008-07-02  kitone  <kitone@gna.org>
 
 	* src/SubtitleView.cc:

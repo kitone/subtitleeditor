@@ -57,6 +57,15 @@ public:
 
 		action_group->add(
 				Gtk::Action::create(
+					"video-player/close", 
+					Gtk::Stock::CLOSE,
+					"", //_("_Close Media"),
+					_("Close a multimedia file")), 
+					Gtk::AccelKey("<Shift><Control>C"),
+					sigc::mem_fun(*this, &VideoPlayerManagement::on_close));
+
+		action_group->add(
+				Gtk::Action::create(
 					"video-player/play", 
 					Gtk::Stock::MEDIA_PLAY),
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_play));
@@ -310,6 +319,7 @@ public:
 #define SET_SENSITIVE(action, state) { Glib::RefPtr<Gtk::Action> act = action_group->get_action(action); if(act) act->set_sensitive(state); else g_warning(action); }
 
 		SET_SENSITIVE("video-player/play", has_media);
+		SET_SENSITIVE("video-player/close", has_media);
 		SET_SENSITIVE("video-player/pause", has_media);
 		SET_SENSITIVE("video-player/play-pause", has_media);
 
@@ -446,6 +456,14 @@ protected:
 
 			player()->open(uri);
 		}
+	}
+
+	/*
+	 * Close the player
+	 */
+	void on_close()
+	{
+		player()->close();
 	}
 
 	/*
