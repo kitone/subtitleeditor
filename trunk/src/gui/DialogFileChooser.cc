@@ -649,8 +649,6 @@ DialogExportText::DialogExportText(BaseObjectType* cobject, const Glib::RefPtr<G
 	refGlade->get_widget_derived("combobox-encodings", m_comboEncodings);
 	refGlade->get_widget_derived("combobox-newline", m_comboNewLine);
 
-	init_dialog_subtitle_filters(this);
-
 	m_comboEncodings->show_auto_detected(false);
 
 	add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
