@@ -105,18 +105,19 @@ protected:
 
 		g_return_val_if_fail(doc, false);
 
-		DialogOpenDocument ui;
-		ui.set_select_multiple(false);
+		DialogOpenDocument::auto_ptr ui = DialogOpenDocument::create();
+
+		ui->show_video(false);
+		ui->set_select_multiple(false);
 	
-		if(ui.run() == Gtk::RESPONSE_OK)
+		if(ui->run() == Gtk::RESPONSE_OK)
 		{
 			Glib::ustring ofile = doc->getFilename();
 			Glib::ustring oformat = doc->getFormat();
 			Glib::ustring ocharset = doc->getCharset();
 
-			Glib::ustring filename = ui.get_filename();
-			Glib::ustring format = ui.getFormat();
-			Glib::ustring encoding = ui.getEncoding();
+			Glib::ustring filename = ui->get_filename();
+			Glib::ustring encoding = ui->get_encoding();
 
 			unsigned int subtitle_size = doc->subtitles().size();
 

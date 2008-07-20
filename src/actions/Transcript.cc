@@ -27,7 +27,7 @@
 
 #include "formats/SubtitleText.h"
 #include "SubtitleSystem.h"
-#include "gui/DialogUtility.h"
+#include "gui/DialogFileChooser.h"
 
 /*
  *
@@ -98,13 +98,12 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		DialogFileChooser ui(_("Import Text"), "dialog-import-text", 
-			Gtk::FILE_CHOOSER_ACTION_OPEN, EXTRA_ENCODING_WITH_AUTO_DETECTED);
+		DialogImportText::auto_ptr ui = DialogImportText::create();
 
-		if(ui.run() == Gtk::RESPONSE_OK)
+		if(ui->run() == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring filename = ui.get_filename();
-			Glib::ustring charset = ui.getEncoding();
+			Glib::ustring filename = ui->get_filename();
+			Glib::ustring charset = ui->get_encoding();
 
 			try
 			{
@@ -133,16 +132,15 @@ protected:
 	 */
 	void on_export_transcript()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+	 se_debug(SE_DEBUG_PLUGINS);
 
-		DialogFileChooser ui(_("Export Text"), "dialog-export-text", 
-			Gtk::FILE_CHOOSER_ACTION_OPEN, EXTRA_ENCODING | EXTRA_NEWLINE);
+		DialogExportText::auto_ptr ui = DialogExportText::create();
 
-		if(ui.run() == Gtk::RESPONSE_OK)
+		if(ui->run() == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring filename = ui.get_filename();
-			Glib::ustring charset = ui.getEncoding();
-			Glib::ustring newline = ui.getNewLine();
+			Glib::ustring filename = ui->get_filename();
+			Glib::ustring charset = ui->get_encoding();
+			Glib::ustring newline = ui->get_newline();
 
 			try
 			{

@@ -238,24 +238,32 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		static DialogOpenDocument ui;
+		static DialogOpenDocument::auto_ptr ui = DialogOpenDocument::create();
 
-		ui.show();
+		ui->show();
 		
-		if(ui.run() == Gtk::RESPONSE_OK)
+		if(ui->run() == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring charset = ui.getEncoding();
+			Glib::ustring charset = ui->get_encoding();
 
-			std::list<Glib::ustring> uris = ui.get_uris();
+			std::list<Glib::ustring> uris = ui->get_uris();
 
 			for(std::list<Glib::ustring>::const_iterator it=uris.begin();
 					it != uris.end(); ++it)
 			{
 				open_document(*it, charset);
 			}
+
+			Glib::ustring video_uri = ui->get_video_uri();
+			if(video_uri.empty() == false)
+			{
+				// TODO
+				// check and ask if already exist ?
+				SubtitleEditorWindow::get_instance()->get_player()->open(video_uri);
+			}
 		}
 		
-		ui.hide();
+		ui->hide();
 	}
 
 	/*
@@ -345,20 +353,20 @@ protected:
 
 		g_return_val_if_fail(doc, false);
 
-		static DialogSaveDocument ui;
+		static DialogSaveDocument::auto_ptr ui = DialogSaveDocument::create();
 
-		ui.show();
+		ui->show();
 
-		int response = ui.run();
+		int response = ui->run();
 		
-		ui.hide();
+		ui->hide();
 
 		if(response == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring filename = ui.get_filename();
-			Glib::ustring format = ui.getFormat();
-			Glib::ustring encoding = ui.getEncoding();
-			Glib::ustring newline = ui.getNewLine();
+			Glib::ustring filename = ui->get_filename();
+			Glib::ustring format = ui->get_format();
+			Glib::ustring encoding = ui->get_encoding();
+			Glib::ustring newline = ui->get_newline();
 
 
 			doc->setFormat(format);
@@ -439,17 +447,18 @@ protected:
 
 		g_return_if_fail(current);
 
-		DialogOpenDocument ui;
-	
-		ui.set_select_multiple(false);
-		ui.show();
+		DialogOpenDocument::auto_ptr ui = DialogOpenDocument::create();
+
+		ui->show_video(false);
+		ui->set_select_multiple(false);
+		ui->show();
 		
-		if(ui.run() == Gtk::RESPONSE_OK)
+		if(ui->run() == Gtk::RESPONSE_OK)
 		{
-			ui.hide();
+			ui->hide();
 	
-			Glib::ustring encoding = ui.getEncoding();
-			Glib::ustring filename = ui.get_filename();
+			Glib::ustring encoding = ui->get_encoding();
+			Glib::ustring filename = ui->get_filename();
 
 			try
 			{
@@ -503,7 +512,7 @@ protected:
 			}
 		}
 		
-		ui.hide();
+		ui->hide();
 	}
 
 	/*
@@ -517,15 +526,15 @@ protected:
 
 		g_return_if_fail(current);
 
-		static DialogSaveDocument ui;
+		static DialogSaveDocument::auto_ptr ui = DialogSaveDocument::create();
 
-		ui.show();
-		if(ui.run() == Gtk::RESPONSE_OK)
+		ui->show();
+		if(ui->run() == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring filename = ui.get_filename();
-			Glib::ustring format = ui.getFormat();
-			Glib::ustring encoding = ui.getEncoding();
-			Glib::ustring newline = ui.getNewLine();
+			Glib::ustring filename = ui->get_filename();
+			Glib::ustring format = ui->get_format();
+			Glib::ustring encoding = ui->get_encoding();
+			Glib::ustring newline = ui->get_newline();
 
 			try
 			{
@@ -557,7 +566,7 @@ protected:
 			}
 		}
 
-		ui.hide();
+		ui->hide();
 	}
 
 	/*
