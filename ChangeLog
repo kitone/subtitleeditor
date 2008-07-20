@@ -1,5 +1,13 @@
 2008-07-20  kitone  <kitone@gna.org>
 
+	* src/SubtitleModel.cc:
+	Fix: default time view value.
+
+	* src/gui/DialogFileChooser.cc:
+	Fix: remove subtitle filter from DialogExportText.
+
+2008-07-20  kitone  <kitone@gna.org>
+
 	* src/Encodings.h:
 	Fix: gcc warning.
 	
