@@ -113,6 +113,10 @@ protected:
 				SubtitleText reader(doc);
 				if(reader.open(filename))
 				{
+					Glib::ustring untitled = DocumentSystem::getInstance().create_untitled_name();
+					
+					doc->setName(untitled);
+
 					DocumentSystem::getInstance().append(doc);
 				}
 				else

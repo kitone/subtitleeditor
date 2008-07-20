@@ -182,3 +182,35 @@ Document* DocumentSystem::getDocument(const Glib::ustring &filename)
 	return NULL;
 }
 
+/*
+ *	find a unique name (like "Untitled-5") for a new document
+ */
+Glib::ustring DocumentSystem::create_untitled_name()
+{
+	se_debug(SE_DEBUG_PLUGINS);
+
+	unsigned int i=1;
+		
+	while(check_if_document_name_exist("Untitled-" + to_string(i)))
+	{
+		++i;
+	}
+	return "Untitled-" + to_string(i);
+}
+
+/*
+ *	check with other document if this name exist
+ *	return true if it is
+ */
+bool DocumentSystem::check_if_document_name_exist(const Glib::ustring &name)
+{
+	se_debug(SE_DEBUG_PLUGINS);
+
+	for(DocumentList::const_iterator it = m_listDocuments.begin(); it != m_listDocuments.end(); ++it)
+	{
+		if( name == (*it)->getName())
+			return true;
+	}
+
+	return false;
+}
