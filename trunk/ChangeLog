@@ -1,3 +1,30 @@
+2008-07-20  kitone  <kitone@gna.org>
+
+	* src/Encodings.h:
+	Fix: gcc warning.
+	
+	* share/glade/Makefile.am:
+	* share/glade/dialog-export-text.glade:
+	* share/glade/dialog-import-text.glade:
+	* share/glade/dialog-open-document.glade:
+	* share/glade/dialog-save-document.glade:
+	Add new files.
+
+	* src/gui/DialogFileChooser.cc:
+	* src/gui/DialogFileChooser.h:
+	* src/gui/DialogUtility.cc:
+	* src/gui/DialogUtility.h:
+	Improved of the dialogs file chooser (glade files), clean code.
+	Added option to open video directly with a subtitle.
+
+	* src/actions/DocumentManagement.cc:
+	Fix: #11938 (https://gna.org/bugs/?11938)
+	Used the new dialog and added the support of the automatic video search.
+
+	* src/actions/JoinDocument.cc:
+	* src/actions/Transcript.cc:
+	Used the new dialog.
+
 2008-07-08  kitone  <kitone@gna.org>
 
 	* share/menubar.xml:

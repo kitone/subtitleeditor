@@ -15,6 +15,8 @@ glade_DATA = \
 					dialog-style-editor.glade \
 					dialog-configure-keyboard-shortcuts.glade \
 					dialog-view-manager.glade \
+					dialog-open-document.glade \
+					dialog-save-document.glade \
 					subtitleeditor.glade 
 
 EXTRA_DIST = $(glade_DATA)

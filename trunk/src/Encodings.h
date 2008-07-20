@@ -28,8 +28,8 @@
 
 struct EncodingInfo
 {
-	gchar *charset;
-	gchar *name;
+	const gchar *charset;
+	const gchar *name;
 };
 
 static EncodingInfo encodings_info [] = {
