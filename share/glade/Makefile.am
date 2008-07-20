@@ -17,6 +17,8 @@ glade_DATA = \
 					dialog-view-manager.glade \
 					dialog-open-document.glade \
 					dialog-save-document.glade \
+					dialog-import-text.glade \
+					dialog-export-text.glade \
 					subtitleeditor.glade 
 
 EXTRA_DIST = $(glade_DATA)
