@@ -1,5 +1,17 @@
 2008-07-20  kitone  <kitone@gna.org>
 
+	* src/DocumentSystem.cc:
+	* src/DocumentSystem.h:
+	Add function create_untitled_name. (from DocumentManagement.cc)
+	
+	* src/actions/DocumentManagement.cc:
+	Remove function create_untitled_name.
+
+	* src/actions/Transcript.cc:
+	Fix: Add untitled name after the opening of the transcript.
+
+2008-07-20  kitone  <kitone@gna.org>
+
 	* src/SubtitleModel.cc:
 	Fix: default time view value.
 

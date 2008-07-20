@@ -189,46 +189,10 @@ protected:
 
 		g_return_if_fail(doc);
 
-		doc->setFilename(create_untitled_name());
+		doc->setFilename(DocumentSystem::getInstance().create_untitled_name());
 
 		DocumentSystem::getInstance().append(doc);
 	}
-
-	/*
-	 *	find a unique name (like "Untitled-5") for a new document
-	 */
-	Glib::ustring create_untitled_name()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		unsigned int i=1;
-		
-		while(check_if_document_name_exist("Untitled-" + to_string(i)))
-		{
-			++i;
-		}
-		return "Untitled-" + to_string(i);
-	}
-
-	/*
-	 *	check with other document if this name exist
-	 *	return true if it is
-	 */
-	bool check_if_document_name_exist(const Glib::ustring &name)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		DocumentList list = get_subtitleeditor_window()->get_documents();
-		
-		for(DocumentList::const_iterator it = list.begin(); it != list.end(); ++it)
-		{
-			if( name == (*it)->getName())
-				return true;
-		}
-
-		return false;
-	}
-
 
 	/*
 	 *	launch a filechooser dialog

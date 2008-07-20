@@ -80,6 +80,17 @@ public:
 	 */
 	Document* getDocument(const Glib::ustring &filename);
 
+	/*
+	 * Find a unique name (like "Untitled-5") for a new document
+	 */
+	Glib::ustring create_untitled_name();
+
+	/*
+	 * Check with other document if this name exist
+	 * Return true if it is
+	 */
+	bool check_if_document_name_exist(const Glib::ustring &name);
+
 protected:
 	DocumentList	m_listDocuments;
 	
