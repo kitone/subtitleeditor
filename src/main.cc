@@ -125,7 +125,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["timing"]["max-line-per-subtitle"] = "2";
 
 	//[external-video-player]
-	config["external-video-player"]["command"] = "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds -osdlevel 2";
+	config["external-video-player"]["command"] = "mplayer \"#video_file\" -noautosub -sub \"#subtitle_file\" -ss #seconds -osdlevel 2";
 
 	//[dialog-check-errors]
 	config["dialog-check-errors"]["check-overlapping"] = "true";

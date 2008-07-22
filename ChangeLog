@@ -1,6 +1,11 @@
 2008-07-22  kitone  <kitone@gna.org>
 
 	* src/main.cc:
+	Fix: add 'noautosub' option to mplayer command.
+
+2008-07-22  kitone  <kitone@gna.org>
+
+	* src/main.cc:
 	Fix: default value of columns-displayed.
 	Rename "columns-display" to "columns-displayed".
 
