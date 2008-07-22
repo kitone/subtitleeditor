@@ -112,7 +112,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["subtitle-view"]["property-alignment-center"] = "false";
 	config["subtitle-view"]["show-character-per-line"] = "true";
 	config["subtitle-view"]["enable-rubberband-selection"] = "false";
-	config["subtitle-view"]["columns-display"] = "number;start;end;duration;text";
+	config["subtitle-view"]["columns-displayed"] = "number;start;end;duration;text";
 	config["subtitle-view"]["columns-list"] = "cps;duration;effect;end;layer;margin-l;margin-r;margin-v;name;note;number;start;style;text;translation";
 	config["subtitle-view"]["used-ctrl-enter-to-confirm-change"] = "false";
 
