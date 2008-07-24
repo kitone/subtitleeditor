@@ -1,8 +1,7 @@
 2008-07-24  kitone  <kitone@gna.org>
 
-	reviewed by: <delete if not using a buddy>
-
 	* src/actions/DocumentManagement.cc:
+	Removes the static variables of the dialogs.
 
 2008-07-24  kitone  <kitone@gna.org>
 
