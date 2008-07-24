@@ -23,7 +23,6 @@
 #include "PreferencesUI.h"
 #include "Config.h"
 #include "utility.h"
-#include "Encodings.h"
 
 /*
  *	Interface
@@ -79,241 +78,6 @@ protected:
 	Gtk::SpinButton*	m_spinAutosave;
 };
 
-/*
- *	Encodings
- */
-class PreferencesEncodingsUI : public Gtk::VBox
-{
-	class ColumnEncoding : public Gtk::TreeModel::ColumnRecord
-	{
-	public:
-		ColumnEncoding()
-		{
-			add(use);
-			add(name);
-			add(charset);
-		}
-		Gtk::TreeModelColumn<Glib::ustring> use;
-		Gtk::TreeModelColumn<Glib::ustring> name;
-		Gtk::TreeModelColumn<Glib::ustring> charset;
-	};
-
-public:
-	PreferencesEncodingsUI(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:Gtk::VBox(cobject)
-	{
-		refGlade->get_widget("treeview-encodings", m_treeviewEncodings);
-		refGlade->get_widget("button-add-charset", m_buttonAddCharset);
-		refGlade->get_widget("button-remove-charset", m_buttonRemoveCharset);
-		refGlade->get_widget("button-up-charset", m_buttonUpCharset);
-		refGlade->get_widget("button-down-charset", m_buttonDownCharset);
-		refGlade->get_widget("check-used-auto-detected", m_checkUsedAutoDetected);
-
-		m_buttonAddCharset->signal_clicked().connect(
-				sigc::mem_fun(*this, &PreferencesEncodingsUI::on_add_charset));
-		m_buttonRemoveCharset->signal_clicked().connect(
-				sigc::mem_fun(*this, &PreferencesEncodingsUI::on_remove_charset));
-		m_buttonUpCharset->signal_clicked().connect(
-				sigc::mem_fun(*this, &PreferencesEncodingsUI::on_up_charset));
-		m_buttonDownCharset->signal_clicked().connect(
-				sigc::mem_fun(*this, &PreferencesEncodingsUI::on_down_charset));
-
-		WidgetToConfig::read_config_and_connect(m_checkUsedAutoDetected, "encodings", "used-auto-detected");
-
-		createTreeView(m_treeviewEncodings);
-
-		load_config();
-	}
-
-	Glib::RefPtr<Gtk::ListStore> createTreeView(Gtk::TreeView *view)
-	{
-		ColumnEncoding m_column;
-		Glib::RefPtr<Gtk::ListStore> model = Gtk::ListStore::create(m_column);
-
-		view->set_model(model);
-
-		Gtk::TreeViewColumn* column = NULL;
-		Gtk::CellRendererText* name = NULL;
-		Gtk::CellRendererText* charset = NULL;
-
-		// column name
-		column = manage(new Gtk::TreeViewColumn(_("Name")));
-		//column->set_sort_indicator(true);
-		//column->set_clickable(true);
-		view->append_column(*column);
-	
-		name = manage(new Gtk::CellRendererText);
-		column->pack_start(*name, false);
-		column->add_attribute(name->property_text(), m_column.name);
-
-		// column charset
-		column = manage(new Gtk::TreeViewColumn(_("Charset")));
-		//column->set_sort_indicator(true);
-		//column->set_clickable(true);
-		view->append_column(*column);
-
-		charset = manage(new Gtk::CellRendererText);
-		column->pack_start(*charset, false);
-		column->add_attribute(charset->property_text(), m_column.charset);
-
-		return model;
-	}
-
-	void load_config()
-	{
-		Glib::RefPtr<Gtk::ListStore> model = Glib::RefPtr<Gtk::ListStore>::cast_dynamic(m_treeviewEncodings->get_model());
-		
-		ColumnEncoding m_column;
-		
-		// add encodings pref 
-		std::list<Glib::ustring> list_encodings;
-		if(Config::getInstance().get_value_string_list("encodings", "encodings", list_encodings))
-		{
-			std::list<Glib::ustring>::const_iterator it;
-			for(it = list_encodings.begin(); it!=list_encodings.end(); ++it)
-			{
-				EncodingInfo *info= Encodings::get_from_charset(*it);
-				if(info)
-				{
-					Gtk::TreeIter it = model->append();
-
-					(*it)[m_column.name] = info->name;
-					(*it)[m_column.charset] = info->charset;
-				}
-			}
-		}
-	}
-
-	void save_config()
-	{
-		Glib::RefPtr<Gtk::ListStore> m_model = 
-			Glib::RefPtr<Gtk::ListStore>::cast_dynamic(m_treeviewEncodings->get_model());
-
-		Config &cfg = Config::getInstance();
-
-		std::list<Glib::ustring> list;
-		
-		ColumnEncoding m_column;
-	
-		Gtk::TreeNodeChildren rows = m_model->children();
-
-		for(Gtk::TreeIter iter = rows.begin(); iter; ++iter)
-			list.push_back((*iter)[m_column.charset]);
-
-		cfg.set_value_string_list("encodings", "encodings", list);
-	}
-
-	void on_add_charset()
-	{
-		Gtk::Dialog *dialog = NULL;
-		Gtk::TreeView* treeview = NULL;
-
-		Glib::RefPtr<Gnome::Glade::Xml> refXml = Gnome::Glade::Xml::create(get_share_dir("glade/dialog-encodings-chooser.glade"));
-	
-		refXml->get_widget("dialog-encodings-chooser", dialog);
-		refXml->get_widget("treeviewEncodings", treeview);
-
-		Glib::RefPtr<Gtk::ListStore> model = createTreeView(treeview);
-		ColumnEncoding m_column;
-		
-		// add encodings
-		for(unsigned int i=0; encodings_info[i].charset != NULL; ++i)
-		{
-			Gtk::TreeIter it = model->append();
-		
-			EncodingInfo *info= Encodings::get_from_charset(encodings_info[i].charset);
-			if(info)
-			{
-				(*it)[m_column.name] = info->name;
-				(*it)[m_column.charset] = info->charset;
-			}
-		}
-
-		if( dialog->run() == Gtk::RESPONSE_OK)
-		{
-			Gtk::TreeIter iter = treeview->get_selection()->get_selected();
-		
-			if(iter)
-			{
-				Glib::ustring name = (*iter)[m_column.name];
-				Glib::ustring charset = (*iter)[m_column.charset];
-				// add in the list
-				Glib::RefPtr<Gtk::ListStore> modelEncodings = 
-					Glib::RefPtr<Gtk::ListStore>::cast_dynamic(m_treeviewEncodings->get_model());
-				
-				Gtk::TreeIter it = modelEncodings->append();
-				(*it)[m_column.name] = name;
-				(*it)[m_column.charset] = charset;
-			}
-		}
-
-		delete dialog;
-
-		save_config();
-	}
-
-	void on_remove_charset()
-	{
-		Glib::RefPtr<Gtk::ListStore> modelEncodings = 
-			Glib::RefPtr<Gtk::ListStore>::cast_dynamic(m_treeviewEncodings->get_model());
-
-		Gtk::TreeIter iter = m_treeviewEncodings->get_selection()->get_selected();
-
-		if(iter)
-		{
-			modelEncodings->erase(iter);
-			save_config();
-		}
-	}
-
-	void on_up_charset()
-	{
-		Glib::RefPtr<Gtk::ListStore> m_model = 
-			Glib::RefPtr<Gtk::ListStore>::cast_dynamic(m_treeviewEncodings->get_model());
-
-		Gtk::TreeIter it = m_treeviewEncodings->get_selection()->get_selected();
-		if(it)
-		{
-			Gtk::TreePath path = m_model->get_path(it);
-
-			if(path.prev())
-			{
-				Gtk::TreeIter prev = m_model->get_iter(path);
-				if(prev)
-				{
-					m_model->move(it, prev);
-					save_config();
-				}
-			}
-		}
-	}
-
-	void on_down_charset()
-	{
-		Glib::RefPtr<Gtk::ListStore> m_model = 
-			Glib::RefPtr<Gtk::ListStore>::cast_dynamic(m_treeviewEncodings->get_model());
-
-		Gtk::TreeIter it = m_treeviewEncodings->get_selection()->get_selected();
-		if(it)
-		{
-			Gtk::TreeIter next = it;
-			++next;
-			if(next)
-			{
-				m_model->move(next, it);
-				save_config();
-			}
-		}
-	}
-
-protected:
-	Gtk::TreeView* m_treeviewEncodings;
-	Gtk::Button* m_buttonAddCharset;
-	Gtk::Button* m_buttonRemoveCharset;
-	Gtk::Button* m_buttonUpCharset;
-	Gtk::Button* m_buttonDownCharset;
-	Gtk::CheckButton* m_checkUsedAutoDetected;
-};
 
 struct t_output
 {
@@ -591,14 +355,12 @@ PreferencesUI::PreferencesUI(BaseObjectType *cobject, const Glib::RefPtr<Gnome::
 :Gtk::Dialog(cobject)
 {
 	PreferenceInterfaceUI *interfaceUI = NULL;
-	PreferencesEncodingsUI *encodingsUI = NULL;
 	PreferenceWaveformUI *waveformUI = NULL;
 	PreferenceVideoPlayerUI *videoplayerUI = NULL;
 	PreferenceTimingUI *timingUI = NULL;
 	PreferencePreviewUI *previewUI = NULL;
 
 	refGlade->get_widget_derived("vbox-interface", interfaceUI);
-	refGlade->get_widget_derived("vbox-encodings", encodingsUI);
 	refGlade->get_widget_derived("vbox-waveform", waveformUI);
 	refGlade->get_widget_derived("vbox-video-player", videoplayerUI);
 	refGlade->get_widget_derived("vbox-timing", timingUI);
