@@ -23,6 +23,8 @@
 #include "DialogFileChooser.h"
 #include "utility.h"
 #include "RegEx.h"
+#include "DialogCharacterCodings.h"
+
 
 /*
  * Used to define the separator.
@@ -232,11 +234,12 @@ protected:
 
 		if(activated == size-1)
 		{
-#warning "FIXME show the encoding preferneces"
-
-			std::cout << "Add or Remove... (FIXME)" << std::endl;
-			
-			if(m_with_auto_detected)
+			std::auto_ptr<DialogCharacterCodings> dialog = DialogCharacterCodings::create();
+			if(dialog->run() == Gtk::RESPONSE_OK)
+			{
+				init_encodings();
+			}
+			else if(m_with_auto_detected)
 			{
 				if(Config::getInstance().get_value_bool("encodings", "used-auto-detected"))
 					set_active(0);
