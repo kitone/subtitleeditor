@@ -202,15 +202,16 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		static DialogOpenDocument::auto_ptr ui = DialogOpenDocument::create();
+		if(dialog_open_document.get() == NULL)
+			dialog_open_document = DialogOpenDocument::create();
 
-		ui->show();
+		dialog_open_document->show();
 		
-		if(ui->run() == Gtk::RESPONSE_OK)
+		if(dialog_open_document->run() == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring charset = ui->get_encoding();
+			Glib::ustring charset = dialog_open_document->get_encoding();
 
-			std::list<Glib::ustring> uris = ui->get_uris();
+			std::list<Glib::ustring> uris = dialog_open_document->get_uris();
 
 			for(std::list<Glib::ustring>::const_iterator it=uris.begin();
 					it != uris.end(); ++it)
@@ -218,7 +219,7 @@ protected:
 				open_document(*it, charset);
 			}
 
-			Glib::ustring video_uri = ui->get_video_uri();
+			Glib::ustring video_uri = dialog_open_document->get_video_uri();
 			if(video_uri.empty() == false)
 			{
 				// TODO
@@ -227,7 +228,7 @@ protected:
 			}
 		}
 		
-		ui->hide();
+		dialog_open_document->hide();
 	}
 
 	/*
@@ -317,20 +318,21 @@ protected:
 
 		g_return_val_if_fail(doc, false);
 
-		static DialogSaveDocument::auto_ptr ui = DialogSaveDocument::create();
+		if(dialog_save_document.get() == NULL)
+			dialog_save_document = DialogSaveDocument::create();
 
-		ui->show();
+		dialog_save_document->show();
 
-		int response = ui->run();
+		int response = dialog_save_document->run();
 		
-		ui->hide();
+		dialog_save_document->hide();
 
 		if(response == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring filename = ui->get_filename();
-			Glib::ustring format = ui->get_format();
-			Glib::ustring encoding = ui->get_encoding();
-			Glib::ustring newline = ui->get_newline();
+			Glib::ustring filename = dialog_save_document->get_filename();
+			Glib::ustring format = dialog_save_document->get_format();
+			Glib::ustring encoding = dialog_save_document->get_encoding();
+			Glib::ustring newline = dialog_save_document->get_newline();
 
 
 			doc->setFormat(format);
@@ -490,15 +492,16 @@ protected:
 
 		g_return_if_fail(current);
 
-		static DialogSaveDocument::auto_ptr ui = DialogSaveDocument::create();
+		if(dialog_save_document.get() == NULL)
+			dialog_save_document = DialogSaveDocument::create();
 
-		ui->show();
-		if(ui->run() == Gtk::RESPONSE_OK)
+		dialog_save_document->show();
+		if(dialog_save_document->run() == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring filename = ui->get_filename();
-			Glib::ustring format = ui->get_format();
-			Glib::ustring encoding = ui->get_encoding();
-			Glib::ustring newline = ui->get_newline();
+			Glib::ustring filename = dialog_save_document->get_filename();
+			Glib::ustring format = dialog_save_document->get_format();
+			Glib::ustring encoding = dialog_save_document->get_encoding();
+			Glib::ustring newline = dialog_save_document->get_newline();
 
 			try
 			{
@@ -530,7 +533,7 @@ protected:
 			}
 		}
 
-		ui->hide();
+		dialog_save_document->hide();
 	}
 
 	/*
@@ -710,6 +713,9 @@ protected:
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
+
+	DialogOpenDocument::auto_ptr dialog_open_document;
+	DialogSaveDocument::auto_ptr dialog_save_document;
 };
 
 REGISTER_PLUGIN(DocumentManagementPlugin)
