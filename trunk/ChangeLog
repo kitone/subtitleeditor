@@ -1,5 +1,11 @@
 2008-07-24  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-preferences.glade:
+	* src/gui/PreferencesUI.cc:
+	Remove old Encodings interface.
+
+2008-07-24  kitone  <kitone@gna.org>
+
 	* share/glade/dialog-character-codings.glade:
 	* src/Makefile.am:
 	Add new files. (DialogCharacterCodings & glade)
