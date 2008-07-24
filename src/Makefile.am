@@ -161,7 +161,9 @@ GUI_FILES = \
 				gui/CheckErrorsUI.h \
 				gui/CheckErrorsUI.cc \
 				gui/PreferencesUI.h \
-				gui/PreferencesUI.cc
+				gui/PreferencesUI.cc \
+				gui/DialogCharacterCodings.h \
+				gui/DialogCharacterCodings.cc
 
 
 if	 ENABLE_UNITTEST
