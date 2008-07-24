@@ -1,5 +1,10 @@
 2008-07-24  kitone  <kitone@gna.org>
 
+	* src/gui/DialogFileChooser.cc:
+	Fix: Automatic video search only if "automatically-open-video" is enabled.
+
+2008-07-24  kitone  <kitone@gna.org>
+
 	* share/glade/dialog-preferences.glade:
 	* src/gui/PreferencesUI.cc:
 	Remove old Encodings interface.

@@ -317,11 +317,18 @@ public:
 
 	/*
 	 * Try to select the good video from the subtitle.
+	 * Only if the option "automatically-open-video" is enabled.
 	 */
 	bool auto_select_video(const Glib::ustring &subtitle)
 	{
 		if(get_model()->children().empty())
 			return false;
+
+		if(Config::getInstance().get_value_bool("general", "automatically-open-video") == false)
+		{
+			set_active(0);
+			return false;
+		}
 
 		RegEx exp("^(.*)\\.((avi)|(wma)|(mkv)|(mpg)|(mpeg)|(ogg)|(mov)|(mp4)|(xvid))$");
 
