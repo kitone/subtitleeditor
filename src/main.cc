@@ -51,7 +51,6 @@
 void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::ustring> > &config)
 {
 	//[general]
-	config["general"]["automatically-open-video"] = "true";
 
 	//[video-player]
 	config["video-player"]["display-translated-subtitle"] = "false";
@@ -71,6 +70,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["video-player"]["timeout"] = "100";
 	config["video-player"]["repeat"] = "false";
 	config["video-player"]["display"] = "false";
+	config["video-player"]["automatically-open-video"] = "true";
 
 	//[waveform]
 	config["waveform"]["zoom"] = "1";
