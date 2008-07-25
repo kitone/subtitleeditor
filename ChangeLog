@@ -1,5 +1,11 @@
 2008-07-25  kitone  <kitone@gna.org>
 
+	* src/actions/DocumentManagement.cc:
+	Make the dialog files chooser on local variable.
+	Fix segfault and gtk warning.
+
+2008-07-25  kitone  <kitone@gna.org>
+
 	* share/glade/dialog-preferences.glade:
 	* src/gui/Application.cc:
 	* src/gui/DialogFileChooser.cc:
