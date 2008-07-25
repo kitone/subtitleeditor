@@ -642,7 +642,7 @@ void Application::init(OptionGroup &options)
 	// s'il n'y a pas de video et s'il n'y a qu'un seule fichier sous-titre
 	// recherche une video par rapport au nom du sous-titre
 	bool automatically_open_video;
-	Config::getInstance().get_value_bool("general", "automatically-open-video", automatically_open_video);
+	Config::getInstance().get_value_bool("video-player", "automatically-open-video", automatically_open_video);
 
 	if(video.empty() && (options.files.size() == 1) && automatically_open_video)
 	{

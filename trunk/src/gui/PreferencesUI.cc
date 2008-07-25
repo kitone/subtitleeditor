@@ -120,6 +120,7 @@ public:
 		refGlade->get_widget("check-display-translated-subtitle", m_checkDisplayTranslatedSubtitle);
 
 		refGlade->get_widget("check-force-aspect-ratio", m_checkForceAspectRatio);
+		refGlade->get_widget("check-automatically-open-video", m_checkAutomaticallyOpenVideo);
 		
 		refGlade->get_widget_derived("combo-audio-output", m_comboAudioOutput);
 		refGlade->get_widget_derived("combo-video-output", m_comboVideoOutput);
@@ -139,6 +140,7 @@ public:
 		WidgetToConfig::read_config_and_connect(m_checkDisplayTranslatedSubtitle, "video-player", "display-translated-subtitle");
 
 		WidgetToConfig::read_config_and_connect(m_checkForceAspectRatio, "video-player", "force-aspect-ratio");
+		WidgetToConfig::read_config_and_connect(m_checkAutomaticallyOpenVideo, "video-player", "automatically-open-video");
 
 		Glib::ustring audiosink, videosink;
 		Config::getInstance().get_value_string("video-player", "audio-sink", audiosink);
@@ -192,6 +194,7 @@ protected:
 	Gtk::CheckButton* m_checkDisplayTranslatedSubtitle;
 
 	Gtk::CheckButton* m_checkForceAspectRatio;
+	Gtk::CheckButton* m_checkAutomaticallyOpenVideo;
 
 	ComboBoxText*	m_comboAudioOutput;
 	ComboBoxText*	m_comboVideoOutput;

@@ -324,7 +324,7 @@ public:
 		if(get_model()->children().empty())
 			return false;
 
-		if(Config::getInstance().get_value_bool("general", "automatically-open-video") == false)
+		if(Config::getInstance().get_value_bool("video-player", "automatically-open-video") == false)
 		{
 			set_active(0);
 			return false;
