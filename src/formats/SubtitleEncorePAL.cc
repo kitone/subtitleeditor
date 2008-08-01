@@ -185,10 +185,10 @@ bool SubtitleEncorePAL::on_save(const Glib::ustring &filename)
 Glib::ustring SubtitleEncorePAL::subtitletime_to_encore_time(const SubtitleTime &time)
 {
 	int framerate = 25;
-	int frame = (int)(time.msecs*framerate*0.001);
+	int frame = (int)(time.mseconds()*framerate*0.001);
 
 	gchar *tmp = g_strdup_printf("%02i:%02i:%02i:%02i",
-			time.hours, time.mins, time.secs, frame);
+			time.hours(), time.minutes(), time.seconds(), frame);
 
 	Glib::ustring res(tmp);
 

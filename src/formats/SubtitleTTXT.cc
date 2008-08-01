@@ -186,7 +186,7 @@ bool SubtitleTTXT::on_save(const Glib::ustring &filename)
 Glib::ustring SubtitleTTXT::get_time(const SubtitleTime &time)
 {
 	gchar* tmp = g_strdup_printf("%.2i:%.2i:%.2i.%.3i",
-			time.hours, time.mins, time.secs, time.msecs);
+			time.hours(), time.minutes(), time.seconds(), time.mseconds());
 	Glib::ustring str(tmp);
 	g_free(str);
 
