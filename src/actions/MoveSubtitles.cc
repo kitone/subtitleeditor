@@ -24,6 +24,7 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
+#include "GtkUtility.h"
 
 
 /*
@@ -35,35 +36,44 @@ public:
 	DialogMoveSubtitles(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Dialog(cobject)
 	{
-		refGlade->get_widget_derived("spin-current-time", m_spinCurrentTime);
-		refGlade->get_widget_derived("spin-new-time", m_spinNewTime);
+		refGlade->get_widget("label-start-value", m_labelStartValue);
+		refGlade->get_widget_derived("spin-start-value", m_spinStartValue);
+		refGlade->get_widget_derived("spin-new-start", m_spinNewStart);
 	}
 
 	/*
 	 *
 	 */
-	void init(const Subtitle &first_selected_subtitle)
+	void init(Document *doc, const Subtitle &subtitle)
 	{
-		SubtitleTime time = first_selected_subtitle.get_start();
+		TIMING_MODE edit_mode = doc->get_edit_timing_mode();
 
-		m_spinCurrentTime->set_value(time.totalmsecs);
-		m_spinCurrentTime->set_range(time.totalmsecs, time.totalmsecs);
+		m_labelStartValue->set_label((edit_mode == TIME) ? _("_Start Time:") : _("_Start Frame:"));
 
-		m_spinNewTime->set_value(time.totalmsecs);
-		m_spinNewTime->grab_focus();
+		m_spinStartValue->set_timing_mode(edit_mode);
+		m_spinNewStart->set_timing_mode(edit_mode);
+
+		long value = (edit_mode == TIME) ? subtitle.get_start().totalmsecs : subtitle.get_start_frame();
+
+		m_spinStartValue->set_value(value);
+		m_spinStartValue->set_range(value, value);
+
+		m_spinNewStart->set_value(value);
+		m_spinNewStart->grab_focus();
 	}
 
 	/*
 	 *
 	 */
-	SubtitleTime get_diff_time()
+	long get_diff_value()
 	{
-		return SubtitleTime((long int)(m_spinNewTime->get_value() - m_spinCurrentTime->get_value()));
+		return (long)(m_spinNewStart->get_value() - m_spinStartValue->get_value());
 	}
 
 protected:
-	SpinButtonTiming*	m_spinCurrentTime;
-	SpinButtonTiming*	m_spinNewTime;
+	Gtk::Label*			m_labelStartValue;
+	SpinButtonTime*	m_spinStartValue;
+	SpinButtonTime*	m_spinNewStart;
 };
 
 /*
@@ -154,13 +164,13 @@ protected:
 
 		if(first_selected_subtitle)
 		{
-			dialog->init(first_selected_subtitle);
+			dialog->init(doc, first_selected_subtitle);
 
 			if(dialog->run() == Gtk::RESPONSE_OK)
 			{
-				SubtitleTime diff = dialog->get_diff_time();
+				long diff = dialog->get_diff_value();
 
-				if(diff.totalmsecs != 0)
+				if(diff != 0)
 				{
 					doc->start_command(_("Move Subtitles"));
 				
@@ -186,7 +196,7 @@ protected:
 	 * ensuite on utilise on applique les modifications au suivant
 	 * sans prendre en compte la selection
 	 */
-	bool move_first_selected_subtitle_and_next(Document *doc, const SubtitleTime &time)
+	bool move_first_selected_subtitle_and_next(Document *doc, const long &diff)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -195,11 +205,24 @@ protected:
 		if(selection.empty())
 			return false;
 
-		for(Subtitle sub = selection[0]; sub; ++sub)
+		if(doc->get_edit_timing_mode() == TIME)
 		{
-			sub.set_start_and_end(
-					sub.get_start() + time,
-					sub.get_end() + time);
+			SubtitleTime time(diff);
+
+			for(Subtitle sub = selection[0]; sub; ++sub)
+			{
+				sub.set_start_and_end(
+						sub.get_start() + time,
+						sub.get_end() + time);
+			}
+		}
+		else
+		{
+			for(Subtitle sub = selection[0]; sub; ++sub)
+			{
+				sub.set_start_frame( sub.get_start_frame() + diff);
+				sub.set_end_frame( sub.get_end_frame() + diff);
+			}
 		}
 
 		return true;

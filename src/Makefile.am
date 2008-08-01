@@ -76,7 +76,9 @@ FILES = \
 				we/WaveformGenerator.h \
 				we/WaveformGenerator.cc \
 				TimeUtility.h \
-				TimeUtility.cc
+				TimeUtility.cc \
+				GtkUtility.h \
+				GtkUtility.cc
 
 
 FORMATS_FILES = \
