@@ -44,23 +44,15 @@
                         <property name="column_spacing">6</property>
                         <property name="row_spacing">6</property>
                         <child>
-                          <widget class="GtkLabel" id="label7">
+                          <widget class="GtkSpinButton" id="spin-new-start">
                             <property name="visible">True</property>
-                            <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Current time:</property>
+                            <property name="can_focus">True</property>
+                            <property name="adjustment">1 0 100 1 10 10</property>
+                            <property name="climb_rate">1</property>
                           </widget>
                           <packing>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkLabel" id="label8">
-                            <property name="visible">True</property>
-                            <property name="xalign">0</property>
-                            <property name="label" translatable="yes">New time:</property>
-                          </widget>
-                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
                             <property name="x_options">GTK_FILL</property>
@@ -68,7 +60,7 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="GtkSpinButton" id="spin-current-time">
+                          <widget class="GtkSpinButton" id="spin-start-value">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="adjustment">1 0 100 1 10 10</property>
@@ -82,17 +74,27 @@
                           </packing>
                         </child>
                         <child>
-                          <widget class="GtkSpinButton" id="spin-new-time">
+                          <widget class="GtkLabel" id="label-new-start">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="adjustment">1 0 100 1 10 10</property>
-                            <property name="climb_rate">1</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">_New Start:</property>
+                            <property name="use_underline">True</property>
                           </widget>
                           <packing>
-                            <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
                             <property name="bottom_attach">2</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options"></property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkLabel" id="label-start-value">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="label" translatable="yes">_Start Time:</property>
+                            <property name="use_underline">True</property>
+                          </widget>
+                          <packing>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options"></property>
                           </packing>

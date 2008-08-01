@@ -175,27 +175,6 @@ public:
 	}
 };
 
-/*
- *
- */
-class SpinButtonTiming : public Gtk::SpinButton
-{
-public:
-	SpinButtonTiming();
-	SpinButtonTiming(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
-
-	void set_use_negative(bool use_negative);
-
-	//SubtitleTime get_time();
-protected:
-	virtual int on_input(double *new_value);
-	virtual bool on_output();
-
-	virtual bool on_scroll_event(GdkEventScroll *ev);
-
-	virtual void on_insert_text(const Glib::ustring &str, int *pos);
-};
-
 namespace utility
 {
 	/*

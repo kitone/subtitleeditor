@@ -1,5 +1,23 @@
 2008-08-01  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/GtkUtility.cc:
+	* src/GtkUtility.h:
+	New files.
+	New class "SpinButtonTime" with a support of the times and frames.
+
+	* src/utility.cc:
+	* src/utility.h:
+	Remove SpinButtonTiming code.
+
+	* share/glade/dialog-move-subtitles.glade:
+	* share/glade/dialog-scale-subtitles.glade:
+	* src/actions/MoveSubtitles.cc:
+	* src/actions/ScaleSubtitles.cc:
+	Add support of the frames.
+
+2008-08-01  kitone  <kitone@gna.org>
+
 	* src/SubtitleTime.cc:
 	* src/SubtitleTime.h:
 	Clean Code. 

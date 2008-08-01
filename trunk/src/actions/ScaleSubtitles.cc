@@ -24,7 +24,7 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-
+#include "GtkUtility.h"
 
 /*
  *
@@ -38,13 +38,15 @@ public:
 		m_document = NULL;
 
 		refGlade->get_widget("spin-first-number", m_spinFirstNumber);
-		refGlade->get_widget_derived("spin-first-current-time", m_spinFirstCurrentTime);
-		refGlade->get_widget_derived("spin-first-new-time", m_spinFirstNewTime);
+		refGlade->get_widget("label-first-start-value", m_labelFirstStartValue);
+		refGlade->get_widget_derived("spin-first-start-value", m_spinFirstStartValue);
+		refGlade->get_widget_derived("spin-first-new-start", m_spinFirstNewStart);
 		refGlade->get_widget("label-first-text", m_labelFirstText);
 
 		refGlade->get_widget("spin-last-number", m_spinLastNumber);
-		refGlade->get_widget_derived("spin-last-current-time", m_spinLastCurrentTime);
-		refGlade->get_widget_derived("spin-last-new-time", m_spinLastNewTime);
+		refGlade->get_widget("label-last-start-value", m_labelLastStartValue);
+		refGlade->get_widget_derived("spin-last-start-value", m_spinLastStartValue);
+		refGlade->get_widget_derived("spin-last-new-start", m_spinLastNewStart);
 		refGlade->get_widget("label-last-text", m_labelLastText);
 
 		// signaux
@@ -72,8 +74,8 @@ public:
 			Subtitle firstSubtitle = subtitles.get(firstNumber);
 			Subtitle lastSubtitle = subtitles.get(lastNumber);
 			
-			SubtitleTime dest1( (long int)m_spinFirstNewTime->get_value() );
-			SubtitleTime dest2( (long int)m_spinLastNewTime->get_value() );
+			SubtitleTime dest1( (long int)m_spinFirstNewStart->get_value() );
+			SubtitleTime dest2( (long int)m_spinLastNewStart->get_value() );
 
 			// apply change
 			signal_scale(firstSubtitle, dest1, lastSubtitle, dest2);
@@ -107,9 +109,22 @@ protected:
 			return false;
 		}
 
+		// init subtitles size
 		m_spinFirstNumber->set_range(1, subtitle_size);
 		m_spinLastNumber->set_range(1, subtitle_size);
 
+		m_edit_timing_mode = doc->get_edit_timing_mode();
+
+		// init label
+		m_labelFirstStartValue->set_label((m_edit_timing_mode == TIME) ? _("_Start Time:") : _("_Start Frame:"));
+		m_labelLastStartValue->set_label((m_edit_timing_mode == TIME) ? _("_Start Time:") : _("_Start Frame:"));
+
+		// init spin timing mode
+		m_spinFirstStartValue->set_timing_mode(m_edit_timing_mode);
+		m_spinFirstNewStart->set_timing_mode(m_edit_timing_mode);
+
+		m_spinLastStartValue->set_timing_mode(m_edit_timing_mode);
+		m_spinLastNewStart->set_timing_mode(m_edit_timing_mode);
 
 		// set defaut value to selected subtitles
 		std::vector<Subtitle> selection = subtitles.get_selection();
@@ -126,6 +141,11 @@ protected:
 			m_spinFirstNumber->set_value(1);
 			m_spinLastNumber->set_value(subtitle_size);
 		}
+
+		// first spin init
+		on_spin_first_number_changed();
+		on_spin_last_number_changed();
+
 		return true;
 	}
 
@@ -139,7 +159,7 @@ protected:
 		Subtitle sub = m_document->subtitles().get(i);
 	
 		if(sub)
-			init_spin(sub, m_spinFirstCurrentTime, m_spinFirstNewTime, m_labelFirstText);
+			init_spin(sub, m_spinFirstStartValue, m_spinFirstNewStart, m_labelFirstText);
 	}
 
 	/*
@@ -152,16 +172,16 @@ protected:
 		Subtitle sub = m_document->subtitles().get(i);
 			
 		if(sub)
-			init_spin(sub, m_spinLastCurrentTime, m_spinLastNewTime, m_labelLastText);
+			init_spin(sub, m_spinLastStartValue, m_spinLastNewStart, m_labelLastText);
 	}
 	
 	/*
 	 *
 	 */
-	void init_spin(const Subtitle &subtitle, SpinButtonTiming *current, SpinButtonTiming *newtime, Gtk::Label *label)
+	void init_spin(const Subtitle &subtitle, SpinButtonTime *current, SpinButtonTime *newtime, Gtk::Label *label)
 	{
 		// time
-		long int time = subtitle.get_start().totalmsecs;
+		long int time = (m_edit_timing_mode == TIME) ? subtitle.get_start().totalmsecs : subtitle.get_start_frame();
 
 		current->set_value(time);
 		current->set_range(time, time);
@@ -185,14 +205,17 @@ protected:
 
 protected:
 	Document*					m_document;
+	TIMING_MODE				m_edit_timing_mode;
 	Gtk::SpinButton*	m_spinFirstNumber;
-	SpinButtonTiming*	m_spinFirstCurrentTime;
-	SpinButtonTiming*	m_spinFirstNewTime;
+	SpinButtonTime*		m_spinFirstStartValue;
+	Gtk::Label*				m_labelFirstStartValue;
+	SpinButtonTime*		m_spinFirstNewStart;
 	Gtk::Label*				m_labelFirstText;
 
 	Gtk::SpinButton*	m_spinLastNumber;
-	SpinButtonTiming*	m_spinLastCurrentTime;
-	SpinButtonTiming*	m_spinLastNewTime;
+	SpinButtonTime*		m_spinLastStartValue;
+	Gtk::Label*				m_labelLastStartValue;
+	SpinButtonTime*		m_spinLastNewStart;
 	Gtk::Label*				m_labelLastText;
 };
 
