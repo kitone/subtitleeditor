@@ -187,7 +187,7 @@ Glib::ustring SubtitleSubRip::subtitletime_to_subrip_time(const Glib::ustring &t
 	SubtitleTime t(time);
 
 	char *tmp = g_strdup_printf("%02i:%02i:%02i,%03i",
-			t.hours, t.mins, t.secs, t.msecs);
+			t.hours(), t.minutes(), t.seconds(), t.mseconds());
 
 	Glib::ustring str(tmp);
 

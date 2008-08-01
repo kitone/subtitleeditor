@@ -43,7 +43,6 @@ public:
 	/*
 	 *	ex : "0:10:50.600"
 	 */
-	//SubtitleTime(const std::string &srt);
 	SubtitleTime(const Glib::ustring &srt);
 	
 	/*
@@ -51,11 +50,55 @@ public:
 	 */
 	SubtitleTime(const int &h, const int &m, const int &s, const int &ms);
 
+	/*
+	 *
+	 */
 	void set(const int &h, const int &m, const int &s, const int &ms);
-	void initTotalMSecs();
+	
+	/*
+	 *
+	 */
+	int hours() const;
 
-	void move(long msecs);
+	/*
+	 *
+	 */
+	void set_hours(int value);
 
+	/*
+	 *
+	 */
+	int minutes() const;
+
+	/*
+	 *
+	 */
+	void set_minutes(int value);
+
+	/*
+	 *
+	 */
+	int seconds() const;
+
+	/*
+	 *
+	 */
+	void set_seconds(int value);
+
+	/*
+	 *
+	 */
+	int mseconds() const;
+
+	/*
+	 *
+	 */
+	void set_mseconds(int value);
+
+
+	/*
+	 *
+	 */
 	SubtitleTime operator-(const SubtitleTime &b) const;
 	SubtitleTime operator+(const SubtitleTime &b) const;
 	SubtitleTime operator*(const double &mult) const;
@@ -73,7 +116,7 @@ public:
 
 	/*
 	 *	valide le format du temps
-	 *	h:mm:ss.ms
+	 *	h:mm:ss.ms or -h:mm:ss.ms
 	 */
 	static bool validate(const Glib::ustring &str);
 
@@ -94,10 +137,6 @@ public:
 	static long int time_to_frame(const SubtitleTime& time, const float& framerate);
 
 public:
-	int		hours;
-	int		mins;
-	int		secs;
-	int		msecs;
 	long	totalmsecs;
 };
 

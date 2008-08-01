@@ -261,7 +261,7 @@ bool SubtitleTimedText::on_save(const Glib::ustring &filename)
 Glib::ustring SubtitleTimedText::get_time(const SubtitleTime &time)
 {
 	return build_message("%.2i:%.2i:%.2i.%.3i",
-			time.hours, time.mins, time.secs, time.msecs);
+			time.hours(), time.minutes(), time.seconds(), time.mseconds());
 }
 
 /*
