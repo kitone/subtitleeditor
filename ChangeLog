@@ -1,3 +1,23 @@
+2008-08-01  kitone  <kitone@gna.org>
+
+	* src/SubtitleTime.cc:
+	* src/SubtitleTime.h:
+	Clean Code. 
+	Remove internal value for hours, minutes, seconds and msecond.  
+	Add function hours(), minutes(), seconds() and mseconds().
+
+	* src/actions/ExternalVideoPlayer.cc:
+	* src/formats/SubtitleASS.cc:
+	* src/formats/SubtitleEncoreNTSC.cc:
+	* src/formats/SubtitleEncorePAL.cc:
+	* src/formats/SubtitleSSA.cc:
+	* src/formats/SubtitleSubRip.cc:
+	* src/formats/SubtitleSubViewer2.cc:
+	* src/formats/SubtitleTimedText.cc:
+	* src/formats/SubtitleTimedTTXT.cc:
+	* src/unittest/testSubtitleTime.cc:
+	Used new SubtitleTime fonctions (hours(), ...)
+
 2008-07-25  kitone  <kitone@gna.org>
 
 	* src/actions/DocumentManagement.cc:

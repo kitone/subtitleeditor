@@ -29,12 +29,11 @@
 #include <iomanip>
 #include "utility.h"
 
-
-/**
+/*
  *
-**/
+ */
 SubtitleTime::SubtitleTime()
-:hours(0), mins(0), secs(0), msecs(0), totalmsecs(0)
+:totalmsecs(0)
 {
 
 }
@@ -43,35 +42,19 @@ SubtitleTime::SubtitleTime()
  *
  */
 SubtitleTime::SubtitleTime(const long &total)
-:hours(0), mins(0), secs(0), msecs(0), totalmsecs(0)
+:totalmsecs(total)
 {
-	ldiv_t divres;
-	
-	divres = ldiv(total, 1000);
-	long hms = divres.quot;
-	msecs = divres.rem;
-	
-	divres = ldiv(hms, 60);
-	long hm = divres.quot;
-	secs = divres.rem;
-
-	divres = ldiv(hm, 60);
-	long h = divres.quot;
-	mins = divres.rem;
-	
-	hours = (int)h;
-
-	totalmsecs = getMSecs(*this);
 }
 
 /*
  *
  */
 SubtitleTime::SubtitleTime(const Glib::ustring &str)
+:totalmsecs(0)
 {
 	try
 	{
-		hours = mins = secs = msecs = totalmsecs = 0;
+		int hours, mins, secs, msecs;
 
 		Glib::ustring::size_type pos=0, end=0;
 
@@ -79,6 +62,9 @@ SubtitleTime::SubtitleTime(const Glib::ustring &str)
 		end = str.find(":", pos);
 		from_string(str.substr(pos, end), hours);
 		pos = end+1;
+
+		if(hours <0)
+			hours = -hours;
 
 		// minutes
 		end = str.find(":", pos);
@@ -97,18 +83,22 @@ SubtitleTime::SubtitleTime(const Glib::ustring &str)
 
 		msecs = (int)((ms - secs)*1000+0.5);
 
-		totalmsecs = getMSecs(*this);
+		set(hours, mins, secs, msecs);
+
+		if(str.find("-") != Glib::ustring::npos)
+			totalmsecs = -1 * totalmsecs;
 	}
 	catch(...)
 	{
-		hours = mins = secs = msecs = totalmsecs = 0;
 	}
+
 }
 
 /*
  *
  */
 SubtitleTime::SubtitleTime(const int &h, const int &m, const int &s, const int &ms)
+:totalmsecs(0)
 {
 	set(h,m,s,ms);
 }
@@ -118,29 +108,71 @@ SubtitleTime::SubtitleTime(const int &h, const int &m, const int &s, const int &
  */
 void SubtitleTime::set(const int &h, const int &m, const int &s, const int &ms)
 {
-	hours = h;
-	mins	= m;
-	secs	= s;
-	msecs = ms;
-
-	totalmsecs = getMSecs(*this);
+	totalmsecs = h * 3600000 + m * 60000 + s * 1000 + ms;
 }
 
 /*
  *
  */
-void SubtitleTime::initTotalMSecs()
+int SubtitleTime::hours() const
 {
-	totalmsecs = getMSecs(*this);
+	return totalmsecs / 3600000;
 }
 
 /*
  *
  */
-void SubtitleTime::move(long msecs)
+void SubtitleTime::set_hours(int value)
 {
-	totalmsecs+=msecs;
-	*this = getTime2MSecs(totalmsecs);
+	totalmsecs += (value - hours()) * 3600000;
+}
+
+/*
+ *
+ */
+int SubtitleTime::minutes() const
+{
+	return (totalmsecs % 3600000) / 60000;
+}
+
+/*
+ *
+ */
+void SubtitleTime::set_minutes(int value)
+{
+	totalmsecs += (value - minutes()) * 60000; 
+}
+
+/*
+ *
+ */
+int SubtitleTime::seconds() const
+{
+	return (totalmsecs % 60000) / 1000;
+}
+
+/*
+ *
+ */
+void SubtitleTime::set_seconds(int value)
+{
+	totalmsecs += (value - seconds()) * 1000;
+}
+
+/*
+ *
+ */
+int SubtitleTime::mseconds() const
+{
+	return totalmsecs % 1000;
+}
+
+/*
+ *
+ */
+void SubtitleTime::set_mseconds(int value)
+{
+	totalmsecs += value - mseconds();
 }
 
 /*
@@ -149,7 +181,7 @@ void SubtitleTime::move(long msecs)
 SubtitleTime SubtitleTime::operator-(const SubtitleTime &b) const
 {
 	long total = totalmsecs - b.totalmsecs;
-	return getTime2MSecs(total);
+	return SubtitleTime(total);
 }
 
 /*
@@ -158,7 +190,7 @@ SubtitleTime SubtitleTime::operator-(const SubtitleTime &b) const
 SubtitleTime SubtitleTime::operator+(const SubtitleTime &b) const
 {
 	long total = totalmsecs + b.totalmsecs;
-	return getTime2MSecs(total);
+	return SubtitleTime(total);
 }
 
 /*
@@ -176,7 +208,7 @@ double SubtitleTime::operator/(const SubtitleTime &b) const
 SubtitleTime SubtitleTime::operator*(const double &mult) const
 {
 	double total = (double)(totalmsecs * mult);
-	return getTime2MSecs((long int)total);
+	return SubtitleTime((long int)total);
 }
 
 /*
@@ -232,18 +264,24 @@ bool SubtitleTime::operator<=(const SubtitleTime &time) const
  */
 Glib::ustring SubtitleTime::str() const
 {
-	return getTime2String(*this);
-}
+	std::string sign;
+	long t = totalmsecs;
 
+	if(t < 0)
+	{
+		sign = "-";
+		t = -t;
+	}
 
-/*
- *	return hours:mins:secs,msecs
- */
-std::string getTime2String(const SubtitleTime &time)
-{
-	gchar *tmp = g_strdup_printf("%01i:%02i:%02i.%03i", 
-								time.hours, time.mins, time.secs, time.msecs);
+	int hours = t / 3600000;
+	int minutes = (t % 3600000) / 60000;
+	int seconds = (t % 60000) / 1000;
+	int mseconds = t % 1000;
+	
+	gchar *tmp = g_strdup_printf("%s%01d:%02d:%02d.%03d", sign.c_str(), hours, minutes, seconds, mseconds);
+
 	std::string str(tmp);
+
 	g_free(tmp);
 
 	return str;
@@ -254,37 +292,7 @@ std::string getTime2String(const SubtitleTime &time)
  */
 long getMSecs(const SubtitleTime &time)
 {
-/*	
-	return (( time.hours * 3600 +
-						time.mins  * 60 +
-						time.secs) * 1000) +
-						time.msecs;
-*/
-	return 3600000 * time.hours + 60000 * time.mins + 1000 * time.secs + time.msecs;
-}
-
-/*
- *
- */
-SubtitleTime getTime2MSecs(const long &total)
-{
-	ldiv_t divres;
-	
-	divres = ldiv(total, 1000);
-	long hms = divres.quot;
-	int msecs = divres.rem;
-	
-	divres = ldiv(hms, 60);
-	long hm = divres.quot;
-	int secs = divres.rem;
-
-	divres = ldiv(hm, 60);
-	long h = divres.quot;
-	int mins = divres.rem;
-	
-	int hours = (int)h;
-	
-	return SubtitleTime(hours, mins, secs, msecs);
+	return 3600000 * time.hours() + 60000 * time.minutes() + 1000 * time.seconds() + time.mseconds();
 }
 
 /*

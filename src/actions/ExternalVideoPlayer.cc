@@ -131,7 +131,7 @@ protected:
 			{
 				SubtitleTime time = sub.get_start() - SubtitleTime(0,0,4,0);
 
-				start_position = time.hours*3600 + time.mins*60 + time.secs;
+				start_position = time.hours()*3600 + time.minutes()*60 + time.seconds();
 
 				if(start_position < 0)
 					start_position = 0;

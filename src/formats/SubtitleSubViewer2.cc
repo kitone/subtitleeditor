@@ -150,8 +150,8 @@ bool SubtitleSubViewer2::on_save(const Glib::ustring &filename)
 		SubtitleTime end = subtitle.get_end();
 
 		gchar *tmp = g_strdup_printf("%.2i:%.2i:%.2i.%.2i,%.2i:%.2i:%.2i.%.2i",
-				start.hours, start.mins, start.secs, start.msecs,
-				end.hours, end.mins, end.secs, end.msecs);
+				start.hours(), start.minutes(), start.seconds(), start.mseconds(),
+				end.hours(), end.minutes(), end.seconds(), end.mseconds());
 
 		file << tmp << get_newline();
 

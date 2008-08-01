@@ -53,10 +53,10 @@ public:
 		long int totalmsecs = 3600000 * hours + 60000 * mins + 1000 * secs + msecs;
 
 #define check(time) \
-		CPPUNIT_ASSERT_EQUAL(hours, time.hours); \
-		CPPUNIT_ASSERT_EQUAL(mins, time.mins); \
-		CPPUNIT_ASSERT_EQUAL(secs, time.secs); \
-		CPPUNIT_ASSERT_EQUAL(msecs, time.msecs); \
+		CPPUNIT_ASSERT_EQUAL(hours, time.hours()); \
+		CPPUNIT_ASSERT_EQUAL(mins, time.minutes()); \
+		CPPUNIT_ASSERT_EQUAL(secs, time.seconds()); \
+		CPPUNIT_ASSERT_EQUAL(msecs, time.mseconds()); \
 		CPPUNIT_ASSERT_EQUAL(totalmsecs, time.totalmsecs);
 
 		SubtitleTime a(hours, mins, secs, msecs);

@@ -649,10 +649,10 @@ std::vector< std::string > SubtitleASS::build(const std::string &line, unsigned 
  */
 Glib::ustring SubtitleASS::subtitletime_to_ass_time(const SubtitleTime &time)
 {
-	int msecs = (int)(time.msecs * 0.1/* + 0.5*/);
+	int msecs = (int)(time.mseconds() * 0.1/* + 0.5*/);
 
 	gchar *tmp = g_strdup_printf("%01i:%02i:%02i.%02i",
-			time.hours, time.mins, time.secs, msecs);
+			time.hours(), time.minutes(), time.seconds(), msecs);
 
 	Glib::ustring res(tmp);
 
