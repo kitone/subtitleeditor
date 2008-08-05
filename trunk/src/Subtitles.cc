@@ -281,6 +281,9 @@ void Subtitles::remove(unsigned int start, unsigned int end)
 	Subtitle s = get(start);
 	Subtitle e = get(end);
 
+	g_return_if_fail(s);
+	g_return_if_fail(e);
+
 	for(; s != e; ++s)
 		subs.push_back(s);
 	subs.push_back(e);
