@@ -1,3 +1,16 @@
+2008-08-05 - 0.22.0
+
+	* Add support of the frame editing.
+	* Scale and Move Subtitles support the frame editing.
+	* Add "Close Player" to Video Player #11938.
+	* Add option "Used Ctrl+Enter to confirm the changed" #11893.
+	* The preferences of character codings can be modified directly from the file chooser.
+	* New dialog for managing the character codings.
+	* Can open the video directly from the file chooser with the subtitle selected #11938.
+	* The time widget has been improve and support the frame editing.
+	* Fix: default option to mplayer (-noautosub).
+	* Fix: Add untitled name after "Open Transcript".
+
 2008-06-24 - 0.21.3
 
 	* Add option -f --file for open a file (glibmm bugs).
