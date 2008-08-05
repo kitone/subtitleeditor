@@ -173,6 +173,7 @@ bool SubtitleMicroDVD::on_open(const Glib::ustring &filename)
 	std::string text;
 	int frame_start, frame_end;
   
+	document()->set_edit_timing_mode(FRAME);
 	document()->set_timing_mode(FRAME);
 
 	Subtitles subtitles = document()->subtitles();

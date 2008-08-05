@@ -1,5 +1,10 @@
 2008-08-05  kitone  <kitone@gna.org>
 
+	* src/formats/SubtitleMicroDVD.cc:
+	Set automatically FRAME edit mode.
+
+2008-08-05  kitone  <kitone@gna.org>
+
 	* src/Subtitles.cc:
 	Fix: crash with Subtitles::remove if the subtitle selected is the first.
 
