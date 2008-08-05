@@ -44,37 +44,37 @@ public:
 		Gtk::RadioAction::Group group_timing_mode;
 
 		action_group->add(
-				Gtk::RadioAction::create(group_timing_mode, "times", _("_Times"), _("")), 
+				Gtk::RadioAction::create(group_timing_mode, "times", _("_Times"), _("FIXME")), 
 					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_edit_timing_mode), TIME));
 
 		action_group->add(
-				Gtk::RadioAction::create(group_timing_mode, "frames", _("_Frames"), _("")), 
+				Gtk::RadioAction::create(group_timing_mode, "frames", _("_Frames"), _("FIXME")), 
 					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_edit_timing_mode), FRAME));
 
 		// Framerate
 		Gtk::RadioAction::Group group_framerate;
 
 		action_group->add(
-				Gtk::Action::create("menu-framerate", _("_Framerate"), _("")));
+				Gtk::Action::create("menu-framerate", _("_Framerate"), _("FIXME")));
 
 		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-23.976", get_framerate_label(FRAMERATE_23_976), _("")), 
+				Gtk::RadioAction::create(group_framerate, "set-framerate-23.976", get_framerate_label(FRAMERATE_23_976), _("FIXME")), 
 					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_23_976));
 
 		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-24", get_framerate_label(FRAMERATE_24), _("")), 
+				Gtk::RadioAction::create(group_framerate, "set-framerate-24", get_framerate_label(FRAMERATE_24), _("FIXME")), 
 					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_24));
 
 		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-25", get_framerate_label(FRAMERATE_25), _("")), 
+				Gtk::RadioAction::create(group_framerate, "set-framerate-25", get_framerate_label(FRAMERATE_25), _("FIXME")), 
 					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_25));
 
 		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-29.97", get_framerate_label(FRAMERATE_29_97), _("")), 
+				Gtk::RadioAction::create(group_framerate, "set-framerate-29.97", get_framerate_label(FRAMERATE_29_97), _("FIXME")), 
 					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_29_97));
 
 		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-30", get_framerate_label(FRAMERATE_30), _("")), 
+				Gtk::RadioAction::create(group_framerate, "set-framerate-30", get_framerate_label(FRAMERATE_30), _("FIXME")), 
 					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_30));
 
 
