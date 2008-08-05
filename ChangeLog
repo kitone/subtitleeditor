@@ -1,7 +1,7 @@
 2008-08-05  kitone  <kitone@gna.org>
 
 	* src/Subtitles.cc:
-	Fix: crash with Subtitle::remove.
+	Fix: crash with Subtitles::remove if the subtitle selected is the first.
 
 2008-08-01  kitone  <kitone@gna.org>
 
