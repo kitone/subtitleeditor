@@ -1,3 +1,8 @@
+2008-08-06  kitone  <kitone@gna.org>
+
+	* configure.in:
+	Add en_GB, gl, sr, tr and de translations.
+
 2008-08-05  kitone  <kitone@gna.org>
 
 	* NEWS:
