@@ -1,3 +1,10 @@
+2008-08-07  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* src/actions/SpellChecking.cc:
+	* src/actions/SpellChecking.h:
+	Remove option to enable/disable enchant.
+
 2008-08-06  kitone  <kitone@gna.org>
 
 	* configure.in:

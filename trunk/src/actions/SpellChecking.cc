@@ -22,9 +22,6 @@
  
 
 #include "SpellChecking.h"
-
-#ifdef HAVE_ENCHANT_SUPPORT
-
 #include <enchant++.h>
 #include <iostream>
 #include "Document.h"
@@ -740,7 +737,3 @@ protected:
 };
 
 REGISTER_PLUGIN(SpellCheckingPlugin)
-
-
-#endif//HAVE_ENCHANT_SUPPORT
-

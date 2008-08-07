@@ -26,8 +26,6 @@
 
 #include "config.h"
 
-#ifdef HAVE_ENCHANT_SUPPORT
-
 #include <libglademm/xml.h>
 #include <gtkmm/dialog.h>
 #include <gtkmm/button.h>
@@ -230,8 +228,5 @@ protected:
 	unsigned int		m_current_next_word;
 	Glib::ustring		m_current_word;
 };
-
-#endif//HAVE_ENCHANT_SUPPORT
-
 
 #endif//_SpellChecking_h
