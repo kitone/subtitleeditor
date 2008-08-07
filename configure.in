@@ -151,19 +151,7 @@ SE_GST_ELEMENT_CHECK_REQUIRED([0.10], [level], [gstreamer0.10-plugins-good])
 
 
 ## enchant (spell checking)
-AC_ARG_ENABLE(enchant-support,
-  AC_HELP_STRING([--disable-enchant-support], [disable Enchant support]),
-  [have_enchant_support="$enableval"], [have_enchant_support="yes"])
-
-if test x"$have_enchant_support" != x"no"; then
-  PKG_CHECK_MODULES(ENCHANT, enchant >= 1.1.0, [have_enchant_support=yes], [have_enchant_support=no])
-fi
-
-if test x"$have_enchant_support" != x"no"; then
-  AC_DEFINE(HAVE_ENCHANT_SUPPORT, 1, [Define to 1 if enchant is supported.])
-fi
-
-AM_CONDITIONAL(HAVE_ENCHANT_SUPPORT, [test x"$have_enchant_support" != x"no"])
+PKG_CHECK_MODULES(ENCHANT, enchant >= 1.1.0)
 
 AC_SUBST(ENCHANT_CFLAGS)
 AC_SUBST(ENCHANT_LIBS)
@@ -236,7 +224,7 @@ fi
 if test "$have_iso_code_639" == "yes"; then
 	if test "$have_iso_code_3166" == "yes"; then
 	  
-		AC_DEFINE(HAVE_ISO_CODES, 1, [Define to 1 if enchant is supported.])
+		AC_DEFINE(HAVE_ISO_CODES, 1, [Define to 1 if iso-codes is supported.])
 
 		ISO_CODES_PREFIX=`$PKG_CONFIG --variable=prefix iso-codes`
 		ISO_CODES_PATH="$ISO_CODES_PREFIX/share/iso-codes"
@@ -377,7 +365,6 @@ gtkmm version ........................ : $(pkg-config --modversion gtkmm-2.4)
 libglademm version ................... : $(pkg-config --modversion libglademm-2.4)
 gstreamer version .................... : $(pkg-config --modversion gstreamer-0.10)
 
-enchant support (spell checking) ..... : $have_enchant_support
 have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
 TTXT support (not finished) .......... : $enable_ttxt
 OpenGL waveform renderer ............. : $enable_gl
