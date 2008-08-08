@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: 2008-03-30 13:06+0000\n"
 "Last-Translator: nanker <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -620,7 +620,7 @@ msgid "Ignore _All"
 msgstr "Ignorér _alle"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 msgid "Spell Checking"
 msgstr "Stavekontrol"
 
@@ -1292,11 +1292,11 @@ msgstr ""
 msgid "Invert subtitles selection"
 msgstr ""
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "_Spell Check"
 msgstr "_Stavekontrol"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "Launch the spell checking"
 msgstr ""
 

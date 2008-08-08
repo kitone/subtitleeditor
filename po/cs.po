@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.21.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: 2008-06-17 16:07+0200\n"
 "Last-Translator: Petr Pisar <petr.pisar@atlas.cz>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
@@ -632,7 +632,7 @@ msgid "Ignore _All"
 msgstr "Ignorovat _vše"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 msgid "Spell Checking"
 msgstr "Kontrola pravopisu"
 
@@ -1317,11 +1317,11 @@ msgstr "Obrátit _výběr"
 msgid "Invert subtitles selection"
 msgstr "Prohodit výběr titulků"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "_Spell Check"
 msgstr "Kontrola pravopi_su"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "Launch the spell checking"
 msgstr "Spustí kontrolu pravopisu"
 

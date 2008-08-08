@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -617,7 +617,7 @@ msgid "Ignore _All"
 msgstr ""
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 msgid "Spell Checking"
 msgstr ""
 
@@ -1287,11 +1287,11 @@ msgstr ""
 msgid "Invert subtitles selection"
 msgstr ""
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "_Spell Check"
 msgstr ""
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "Launch the spell checking"
 msgstr ""
 

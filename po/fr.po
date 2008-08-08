@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: 2008-08-04 12:13+0000\n"
 "Last-Translator: virtual_spirit <xx.virtual.spirit.xx@gmail.com>\n"
 "Language-Team: French <LL@li.org>\n"
@@ -667,7 +667,7 @@ msgid "Ignore _All"
 msgstr "Ignorer _tout"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 msgid "Spell Checking"
 msgstr "Vérification orthographique"
 
@@ -1417,11 +1417,11 @@ msgstr "In_verser la sélection"
 msgid "Invert subtitles selection"
 msgstr "Jouer la sélection"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "_Spell Check"
 msgstr "Vérification _orthographique"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "Launch the spell checking"
 msgstr "Vérifier l'orthographe"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: 2008-03-25 12:18+0000\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -676,7 +676,7 @@ msgid "Ignore _All"
 msgstr "Ig_nora-ho tot"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 #, fuzzy
 msgid "Spell Checking"
 msgstr "Comprova l'ortografia"
@@ -1413,12 +1413,12 @@ msgstr "Establiu el temps"
 msgid "Invert subtitles selection"
 msgstr "Establiu el temps"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "_Spell Check"
 msgstr "Comprova l'ortografia"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "Launch the spell checking"
 msgstr "Comprova l'ortografia"
