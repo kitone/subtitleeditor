@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.11-alpha2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: 2008-03-25 12:39+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: \n"
@@ -671,7 +671,7 @@ msgid "Ignore _All"
 msgstr "Ignorar _Todas"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 msgid "Spell Checking"
 msgstr "Corretor ortográfico"
 
@@ -1415,12 +1415,12 @@ msgstr "Reproduzir a seleção"
 msgid "Invert subtitles selection"
 msgstr "Reproduzir a seleção"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "_Spell Check"
 msgstr "Corretor Ortográfico"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "Launch the spell checking"
 msgstr "Corretor ortográfico"

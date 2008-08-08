@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.0alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: 2008-05-29 18:37+0000\n"
 "Last-Translator: Rébeli-Szabó Tamás <Unknown>\n"
 "Language-Team: \n"
@@ -642,7 +642,7 @@ msgid "Ignore _All"
 msgstr "Minden mellőzése"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 msgid "Spell Checking"
 msgstr "Helyesírás-ellenőrzés"
 
@@ -1386,12 +1386,12 @@ msgstr "Ugrás a kijelölt részhez"
 msgid "Invert subtitles selection"
 msgstr "Ugrás a kijelölt részhez"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "_Spell Check"
 msgstr "Helyesírás-ellenőrző"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 msgid "Launch the spell checking"
 msgstr "Helyesírás-ellenőrző indítása"
 

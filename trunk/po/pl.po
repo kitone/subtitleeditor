@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 18:26+0200\n"
+"POT-Creation-Date: 2008-08-08 19:59+0200\n"
 "PO-Revision-Date: 2008-07-24 23:27+0000\n"
 "Last-Translator: pp/bs <Unknown>\n"
 "Language-Team: Polish <none@none.org>\n"
@@ -655,7 +655,7 @@ msgid "Ignore _All"
 msgstr "Ignoruj _Wszystkie"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:295
+#: ../src/actions/SpellChecking.cc:292
 msgid "Spell Checking"
 msgstr "Sprawdzanie Pisowni"
 
@@ -1407,12 +1407,12 @@ msgstr "Odwróć zaznaczenie"
 msgid "Invert subtitles selection"
 msgstr "Odwróć zaznaczenie napisów"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "_Spell Check"
 msgstr "_Sprawdź Pisownię"
 
-#: ../src/actions/SpellChecking.cc:664
+#: ../src/actions/SpellChecking.cc:661
 #, fuzzy
 msgid "Launch the spell checking"
 msgstr "Uruchoma sprawdzanie pisownii"
