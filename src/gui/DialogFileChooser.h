@@ -30,6 +30,7 @@
 #include "SubtitleSystem.h"
 #include "Encodings.h"
 #include "utility.h"
+#include <memory>
 
 /*
  * Internal class
