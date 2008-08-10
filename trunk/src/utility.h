@@ -254,6 +254,12 @@ namespace utility
 
 		return dialog;
 	}
+
+	/*
+	 *
+	 */
+	void set_transient_parent(Gtk::Window &window);
+	
 }
 
 namespace Gst

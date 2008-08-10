@@ -35,6 +35,8 @@ public:
 	DialogScaleSubtitles(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Dialog(cobject)
 	{
+		utility::set_transient_parent(*this);
+		
 		m_document = NULL;
 
 		refGlade->get_widget("spin-first-number", m_spinFirstNumber);

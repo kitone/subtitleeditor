@@ -94,6 +94,8 @@ public:
 	DialogChangeFramerate(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:DialogActionMultiDoc(cobject, refGlade)
 	{
+		utility::set_transient_parent(*this);
+
 		refGlade->get_widget_derived("combo-src", m_comboSrc);
 		refGlade->get_widget_derived("combo-dest", m_comboDest);
 

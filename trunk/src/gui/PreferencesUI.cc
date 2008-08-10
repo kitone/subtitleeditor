@@ -357,6 +357,8 @@ protected:
 PreferencesUI::PreferencesUI(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 :Gtk::Dialog(cobject)
 {
+	utility::set_transient_parent(*this);
+
 	PreferenceInterfaceUI *interfaceUI = NULL;
 	PreferenceWaveformUI *waveformUI = NULL;
 	PreferenceVideoPlayerUI *videoplayerUI = NULL;

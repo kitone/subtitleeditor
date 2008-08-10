@@ -50,6 +50,8 @@ public:
 	DialogViewEdit(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Dialog(cobject)
 	{
+		utility::set_transient_parent(*this);
+		
 		refGlade->get_widget("treeview-columns", m_treeview);
 
 		create_treeview();

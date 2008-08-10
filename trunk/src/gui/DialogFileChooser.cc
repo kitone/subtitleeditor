@@ -414,7 +414,7 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 }
 
 
-
+#include "SubtitleEditorWindow.h"
 
 /*
  * DialogFileChooser
@@ -429,6 +429,8 @@ DialogFileChooser::DialogFileChooser(BaseObjectType* cobject, const Glib::ustrin
 	Glib::ustring last;
 	if(Config::getInstance().get_value_string("dialog-last-folder", m_name, last))
 		set_current_folder_uri(last);
+
+	utility::set_transient_parent(*this);
 }
 
 /*
@@ -703,6 +705,8 @@ DialogExportText::auto_ptr DialogExportText::create()
 DialogOpenVideo::DialogOpenVideo()
 :Gtk::FileChooserDialog(_("Open Video"), Gtk::FILE_CHOOSER_ACTION_OPEN)
 {
+	utility::set_transient_parent(*this);
+
 	// video filter
 	Gtk::FileFilter m_filterVideo;
 	m_filterVideo.set_name(_("Video"));
@@ -757,6 +761,8 @@ DialogOpenVideo::~DialogOpenVideo()
 DialogOpenWaveform::DialogOpenWaveform()
 :Gtk::FileChooserDialog(_("Open Waveform"), Gtk::FILE_CHOOSER_ACTION_OPEN)
 {
+	utility::set_transient_parent(*this);
+
 	// waveform filter
 	Gtk::FileFilter m_filterWaveform;
 	m_filterWaveform.set_name("Waveform (*.wf)");

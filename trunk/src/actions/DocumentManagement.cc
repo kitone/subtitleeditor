@@ -36,6 +36,8 @@ public:
 	DialogAskToSaveOnExit()
 	:Gtk::MessageDialog("", false, Gtk::MESSAGE_WARNING, Gtk::BUTTONS_NONE)
 	{
+		utility::set_transient_parent(*this);
+		
 		add_button(_("Close _without Saving"), Gtk::RESPONSE_NO);
 		add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
 		add_button(Gtk::Stock::SAVE, Gtk::RESPONSE_YES);
