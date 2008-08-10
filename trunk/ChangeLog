@@ -1,3 +1,9 @@
+2008-08-10  kitone  <kitone@gna.org>
+
+	* src/gui/DialogCharacterCodings.h:
+	* src/gui/DialogFileChooser.h:
+	Fix: Issue with gcc-4.3 and auto_ptr. Patch by Luboš Staněk.
+
 2008-08-07  kitone  <kitone@gna.org>
 
 	* configure.in:
