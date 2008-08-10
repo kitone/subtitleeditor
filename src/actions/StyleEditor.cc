@@ -47,6 +47,8 @@ public:
 DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 :Gtk::Dialog(cobject)
 {
+	utility::set_transient_parent(*this);
+
 #define init_widget(WidgetClass, widget_name, signal, callback, key) { \
 					refGlade->get_widget(widget_name, m_widgets[widget_name]); \
 					WidgetClass *w = dynamic_cast<WidgetClass*>(m_widgets[widget_name]); \

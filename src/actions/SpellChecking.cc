@@ -106,6 +106,8 @@ DialogSpellChecking::DialogSpellChecking(BaseObjectType* cobject, const Glib::Re
 {
 	se_debug(SE_DEBUG_SPELL_CHECKING);
 
+	utility::set_transient_parent(*this);
+
 	// get widgets
 	refGlade->get_widget("textview", m_textview);
 

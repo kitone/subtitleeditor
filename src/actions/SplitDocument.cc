@@ -36,6 +36,8 @@ public:
 	DialogSplitDocument(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Dialog(cobject)
 	{
+		utility::set_transient_parent(*this);
+		
 		refGlade->get_widget("spin-number", m_spinNumber);
 
 		set_default_response(Gtk::RESPONSE_OK);

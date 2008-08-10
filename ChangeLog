@@ -1,5 +1,25 @@
 2008-08-10  kitone  <kitone@gna.org>
 
+	* src/utility.cc:
+	* src/utility.h:
+	Add function set_transient_parent.
+
+	* src/actions/ChangeFramerate.cc:
+	* src/actions/DocumentManagement.cc:
+	* src/actions/FindAndReplace.cc:
+	* src/actions/MoveSubtitles.cc:
+	* src/actions/ScaleSubtitles.cc:
+	* src/actions/SpellChecking.cc:
+	* src/actions/SplitDocument.cc:
+	* src/actions/StyleEditor.cc:
+	* src/actions/ViewManager.cc:
+	* src/gui/DialogCharacterCodings.cc:
+	* src/gui/DialogFileChooser.cc:
+	* src/gui/PreferencesUI.cc:
+	Fix: Dialog parent.
+
+2008-08-10  kitone  <kitone@gna.org>
+
 	* share/glade/Makefile.am:
 	Fix: dialog-character-codings.glade missing. Patch again by Luboš Staněk.
 

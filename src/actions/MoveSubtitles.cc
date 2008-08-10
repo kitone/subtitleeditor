@@ -36,6 +36,8 @@ public:
 	DialogMoveSubtitles(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Dialog(cobject)
 	{
+		utility::set_transient_parent(*this);
+		
 		refGlade->get_widget("label-start-value", m_labelStartValue);
 		refGlade->get_widget_derived("spin-start-value", m_spinStartValue);
 		refGlade->get_widget_derived("spin-new-start", m_spinNewStart);

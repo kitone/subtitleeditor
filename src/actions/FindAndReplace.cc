@@ -130,6 +130,8 @@ public:
 	DialogFindAndReplace(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Dialog(cobject), m_document(NULL)
 	{
+		utility::set_transient_parent(*this);
+		
 		refGlade->get_widget("textview", m_textview);
 	
 		refGlade->get_widget("entry-pattern", m_entryPattern);

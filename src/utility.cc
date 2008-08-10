@@ -29,7 +29,7 @@
 #include <gtkmm.h>
 #include "Config.h"
 #include "SubtitleTime.h"
-
+#include "SubtitleEditorWindow.h"
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -644,6 +644,16 @@ namespace utility
 		int ds = (int)(round(dsX*10) / 10);
 
 		return ds;
+	}
+
+	/*
+	 *
+	 */
+	void set_transient_parent(Gtk::Window &window)
+	{
+		Gtk::Window *root = dynamic_cast<Gtk::Window*>(SubtitleEditorWindow::get_instance());
+		if(root)
+			window.set_transient_for(*root);
 	}
 
 }//namespace utility
