@@ -1,5 +1,11 @@
 2008-08-10  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.22.1 release.
+
+2008-08-10  kitone  <kitone@gna.org>
+
 	* src/utility.cc:
 	* src/utility.h:
 	Add function set_transient_parent.
