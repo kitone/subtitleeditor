@@ -1,3 +1,9 @@
+2008-08-10 - 0.22.1
+
+	* Fix: Issue with gcc-4.3 and auto_ptr. Patch by Luboš Staněk.
+	* Fix: dialog-character-codings.glade missing. Patch by Luboš Staněk.
+	* Fix: Dialog parent.
+
 2008-08-05 - 0.22.0
 
 	* Add support of the frame editing.
