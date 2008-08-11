@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-08 19:59+0200\n"
+"POT-Creation-Date: 2008-08-11 18:09+0200\n"
 "PO-Revision-Date: 2008-03-30 13:06+0000\n"
 "Last-Translator: nanker <Unknown>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -31,7 +31,7 @@ msgid "All documents"
 msgstr "Alle dokumenter"
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
-#: ../src/actions/ChangeFramerate.cc:306
+#: ../src/actions/ChangeFramerate.cc:308
 msgid "Change Framerate"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgid "_Ignore case"
 msgstr ""
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
-msgid "_Used regular expression"
+msgid "_Use regular expression"
 msgstr ""
 
 #: ../share/glade/dialog-import-text.glade.h:2
@@ -204,7 +204,7 @@ msgid "<b>Position</b>"
 msgstr "<b>Position</b>"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:2
-#: ../src/actions/MoveSubtitles.cc:175
+#: ../src/actions/MoveSubtitles.cc:177
 msgid "Move Subtitles"
 msgstr ""
 
@@ -217,8 +217,8 @@ msgstr "Nyt tidspunkt:"
 #. init label
 #: ../share/glade/dialog-move-subtitles.glade.h:4
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
-#: ../src/actions/MoveSubtitles.cc:51 ../src/actions/ScaleSubtitles.cc:119
-#: ../src/actions/ScaleSubtitles.cc:120
+#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
+#: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Time:"
 msgstr ""
 
@@ -411,7 +411,7 @@ msgid ""
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:390
+#: ../src/actions/ViewManager.cc:392
 msgid "Timing"
 msgstr "Timing"
 
@@ -470,7 +470,7 @@ msgid "_Show the number of character per line"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:63
-msgid "_Used Ctrl+Enter keys to confirm the change"
+msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:64
@@ -620,7 +620,7 @@ msgid "Ignore _All"
 msgstr "Ignorér _alle"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:292
+#: ../src/actions/SpellChecking.cc:294
 msgid "Spell Checking"
 msgstr "Stavekontrol"
 
@@ -845,7 +845,7 @@ msgstr ""
 #: ../src/actions/DuplicateSelectedSubtitles.cc:111
 #: ../src/actions/ExtendLength.cc:111 ../src/actions/Italicize.cc:112
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:111
-#: ../src/actions/MoveSubtitles.cc:186
+#: ../src/actions/MoveSubtitles.cc:188
 #: ../src/actions/TryToExtendToPerfect.cc:110
 msgid "Please select at least a subtitle."
 msgstr ""
@@ -870,15 +870,15 @@ msgstr ""
 msgid "The translation was applied."
 msgstr ""
 
-#: ../src/actions/ChangeFramerate.cc:220
+#: ../src/actions/ChangeFramerate.cc:222
 msgid "Change _Framerate"
 msgstr ""
 
-#: ../src/actions/ChangeFramerate.cc:220
+#: ../src/actions/ChangeFramerate.cc:222
 msgid "Convert framerate"
 msgstr ""
 
-#: ../src/actions/ChangeFramerate.cc:325
+#: ../src/actions/ChangeFramerate.cc:327
 #, c-format
 msgid "The new framerate was applied. (%s to %s)"
 msgstr ""
@@ -926,109 +926,109 @@ msgstr ""
 msgid "Italic"
 msgstr "Kursiv"
 
-#: ../src/actions/DocumentManagement.cc:39
+#: ../src/actions/DocumentManagement.cc:41
 msgid "Close _without Saving"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:47
+#: ../src/actions/DocumentManagement.cc:49
 #, c-format
 msgid "Save the changes to document \"%s\" before closing?"
 msgstr "Gem ændringerne i dokumentet \"%s\" før programmet lukkes?"
 
-#: ../src/actions/DocumentManagement.cc:48
+#: ../src/actions/DocumentManagement.cc:50
 msgid "If you don't save, the last changes will be permanently lost."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:76
+#: ../src/actions/DocumentManagement.cc:78
 msgid "Create a new document"
 msgstr "Opret et nyt dokument"
 
-#: ../src/actions/DocumentManagement.cc:81
+#: ../src/actions/DocumentManagement.cc:83
 msgid "Open a file"
 msgstr "Åbn en fil"
 
-#: ../src/actions/DocumentManagement.cc:85
+#: ../src/actions/DocumentManagement.cc:87
 msgid "Save the current file"
 msgstr "Gem den aktuelle fil"
 
-#: ../src/actions/DocumentManagement.cc:89
+#: ../src/actions/DocumentManagement.cc:91
 msgid "Save the current file with a different name"
 msgstr "Gem den aktuelle fil med et nyt navn"
 
-#: ../src/actions/DocumentManagement.cc:93
+#: ../src/actions/DocumentManagement.cc:95
 msgid "Save _All"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:93
+#: ../src/actions/DocumentManagement.cc:95
 msgid "Save all open files"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:98
+#: ../src/actions/DocumentManagement.cc:100
 msgid "Open _Translation"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:98
+#: ../src/actions/DocumentManagement.cc:100
 msgid "Open translation from file"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:102
+#: ../src/actions/DocumentManagement.cc:104
 msgid "Save Trans_lation"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:102
+#: ../src/actions/DocumentManagement.cc:104
 msgid "Save translation to file"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:107
+#: ../src/actions/DocumentManagement.cc:109
 msgid "Open _Recent"
 msgstr "Åbn _seneste"
 
-#: ../src/actions/DocumentManagement.cc:111
+#: ../src/actions/DocumentManagement.cc:113
 msgid "Close the current file"
 msgstr "Luk den aktuelle fil"
 
-#: ../src/actions/DocumentManagement.cc:116
+#: ../src/actions/DocumentManagement.cc:118
 msgid "E_xit"
 msgstr "A_fslut"
 
-#: ../src/actions/DocumentManagement.cc:116
+#: ../src/actions/DocumentManagement.cc:118
 msgid "Quit the program"
 msgstr "Afslut programmet"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../src/actions/DocumentManagement.cc:248
+#: ../src/actions/DocumentManagement.cc:250
 msgid "I am already open"
 msgstr "Jeg er allerede åben"
 
-#: ../src/actions/DocumentManagement.cc:294
-#: ../src/actions/DocumentManagement.cc:345
+#: ../src/actions/DocumentManagement.cc:296
+#: ../src/actions/DocumentManagement.cc:347
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "Gemmer fil %s (%s, %s, %s)."
 
-#: ../src/actions/DocumentManagement.cc:301
-#: ../src/actions/DocumentManagement.cc:353
+#: ../src/actions/DocumentManagement.cc:303
+#: ../src/actions/DocumentManagement.cc:355
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "Filen %s (%s, %s, %s) er ikke blevet gemt."
 
-#: ../src/actions/DocumentManagement.cc:437
+#: ../src/actions/DocumentManagement.cc:439
 msgid "Open translation"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:465
+#: ../src/actions/DocumentManagement.cc:467
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/actions/DocumentManagement.cc:528
+#: ../src/actions/DocumentManagement.cc:530
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:531
+#: ../src/actions/DocumentManagement.cc:533
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr ""
@@ -1093,40 +1093,40 @@ msgid ""
 "Command: <i>%s</i>"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:250
+#: ../src/actions/FindAndReplace.cc:252
 msgid "Replace text"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:286 ../src/actions/FindAndReplace.cc:508
-#: ../src/actions/FindAndReplace.cc:575
+#: ../src/actions/FindAndReplace.cc:288 ../src/actions/FindAndReplace.cc:510
+#: ../src/actions/FindAndReplace.cc:577
 msgid "The document is empty"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:404
+#: ../src/actions/FindAndReplace.cc:406
 msgid "_Find And Replace"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:404
+#: ../src/actions/FindAndReplace.cc:406
 msgid "Search and replace text"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:408
+#: ../src/actions/FindAndReplace.cc:410
 msgid "Find Ne_xt"
 msgstr "Find _næste"
 
-#: ../src/actions/FindAndReplace.cc:408
+#: ../src/actions/FindAndReplace.cc:410
 msgid "Search forwards for the same text"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:411
+#: ../src/actions/FindAndReplace.cc:413
 msgid "Find Pre_vious"
 msgstr "Find f_orrige"
 
-#: ../src/actions/FindAndReplace.cc:411
+#: ../src/actions/FindAndReplace.cc:413
 msgid "Search backwards for the same text"
 msgstr "Søg bagud efter den samme tekst"
 
-#: ../src/actions/FindAndReplace.cc:558 ../src/actions/FindAndReplace.cc:625
+#: ../src/actions/FindAndReplace.cc:560 ../src/actions/FindAndReplace.cc:627
 msgid "Not found"
 msgstr "Ikke fundet"
 
@@ -1191,16 +1191,16 @@ msgstr ""
 msgid "Move After Preceding"
 msgstr ""
 
-#: ../src/actions/MoveSubtitles.cc:51 ../src/actions/ScaleSubtitles.cc:119
-#: ../src/actions/ScaleSubtitles.cc:120
+#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
+#: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Frame:"
 msgstr ""
 
-#: ../src/actions/MoveSubtitles.cc:97
+#: ../src/actions/MoveSubtitles.cc:99
 msgid "_Move Subtitles"
 msgstr ""
 
-#: ../src/actions/MoveSubtitles.cc:97
+#: ../src/actions/MoveSubtitles.cc:99
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr ""
 
@@ -1220,23 +1220,23 @@ msgstr ""
 msgid "Reverse the text and the translation was applied."
 msgstr ""
 
-#: ../src/actions/ScaleSubtitles.cc:107
+#: ../src/actions/ScaleSubtitles.cc:109
 msgid "You can't use <i>scale</i> with this document."
 msgstr ""
 
-#: ../src/actions/ScaleSubtitles.cc:240
+#: ../src/actions/ScaleSubtitles.cc:242
 msgid "_Scale"
 msgstr ""
 
-#: ../src/actions/ScaleSubtitles.cc:240
+#: ../src/actions/ScaleSubtitles.cc:242
 msgid "Scale by two points"
 msgstr ""
 
-#: ../src/actions/ScaleSubtitles.cc:327
+#: ../src/actions/ScaleSubtitles.cc:329
 msgid "Scale subtitles"
 msgstr ""
 
-#: ../src/actions/ScaleSubtitles.cc:350
+#: ../src/actions/ScaleSubtitles.cc:352
 msgid "The scale was applied"
 msgstr ""
 
@@ -1292,28 +1292,28 @@ msgstr ""
 msgid "Invert subtitles selection"
 msgstr ""
 
-#: ../src/actions/SpellChecking.cc:661
+#: ../src/actions/SpellChecking.cc:663
 msgid "_Spell Check"
 msgstr "_Stavekontrol"
 
-#: ../src/actions/SpellChecking.cc:661
+#: ../src/actions/SpellChecking.cc:663
 msgid "Launch the spell checking"
 msgstr ""
 
-#: ../src/actions/SplitDocument.cc:56
+#: ../src/actions/SplitDocument.cc:58
 msgid "You can't use <i>split</i> with this document."
 msgstr ""
 
 #. on supprime ensuite les sous-titres utiliser par le nouveau document
-#: ../src/actions/SplitDocument.cc:97
+#: ../src/actions/SplitDocument.cc:99
 msgid "Split document"
 msgstr ""
 
-#: ../src/actions/SplitDocument.cc:126
+#: ../src/actions/SplitDocument.cc:128
 msgid "Spl_it Document"
 msgstr ""
 
-#: ../src/actions/SplitDocument.cc:126
+#: ../src/actions/SplitDocument.cc:128
 msgid "Split the current document in two"
 msgstr ""
 
@@ -1330,15 +1330,15 @@ msgstr ""
 msgid "Split subtitles"
 msgstr ""
 
-#: ../src/actions/StyleEditor.cc:113
+#: ../src/actions/StyleEditor.cc:115
 msgid "Styles"
 msgstr ""
 
-#: ../src/actions/StyleEditor.cc:433
+#: ../src/actions/StyleEditor.cc:435
 msgid "_Style Editor"
 msgstr ""
 
-#: ../src/actions/StyleEditor.cc:433
+#: ../src/actions/StyleEditor.cc:435
 msgid "Launch the style editor"
 msgstr ""
 
@@ -1595,31 +1595,31 @@ msgstr ""
 msgid "Set subtitle end"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:127
+#: ../src/actions/ViewManager.cc:129
 msgid "Display"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
+#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:230
 msgid "Name"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:298
+#: ../src/actions/ViewManager.cc:300
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:387
+#: ../src/actions/ViewManager.cc:389
 msgid "Simple"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:388
+#: ../src/actions/ViewManager.cc:390
 msgid "Advanced"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:389
+#: ../src/actions/ViewManager.cc:391
 msgid "Translation"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:421
+#: ../src/actions/ViewManager.cc:423
 msgid "View _Manager"
 msgstr ""
 
@@ -1932,13 +1932,13 @@ msgid "Document not found."
 msgstr ""
 
 #. column description
-#: ../src/gui/DialogCharacterCodings.cc:63
+#: ../src/gui/DialogCharacterCodings.cc:65
 #, fuzzy
 msgid "_Description"
 msgstr "_Markering"
 
 #. column encoding
-#: ../src/gui/DialogCharacterCodings.cc:77
+#: ../src/gui/DialogCharacterCodings.cc:79
 #, fuzzy
 msgid "_Encoding"
 msgstr "Kodninger"
@@ -1963,19 +1963,23 @@ msgstr ""
 msgid "All files (*.*)"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:704
+#: ../src/gui/DialogFileChooser.cc:706
 msgid "Open Video"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:708 ../src/gui/DialogFileChooser.cc:768
+#: ../src/gui/DialogFileChooser.cc:712 ../src/gui/DialogFileChooser.cc:774
 msgid "Video"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:719 ../src/gui/DialogFileChooser.cc:779
+#: ../src/gui/DialogFileChooser.cc:723 ../src/gui/DialogFileChooser.cc:785
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:758
+#: ../src/gui/DialogFileChooser.cc:731
+msgid "ALL"
+msgstr ""
+
+#: ../src/gui/DialogFileChooser.cc:762
 msgid "Open Waveform"
 msgstr ""
 

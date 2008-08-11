@@ -86,22 +86,22 @@ struct t_output
 };
 
 t_output m_audio_output[]={
-	{_("Autodetect"), "autoaudiosink"},
-	{_("ALSA - Advanced Linux Sound Architecture"), "alsasink"},
-	{_("ESD - Enlightenment Sound Daemon"), "esdsink"},
-	{_("OSS - Open Sound System"), "ossink"},
-	{_("SDL - Simple DirectMedia Layer"), "sdlaudiosink"},
-	{_("GConf"), "gconfaudiosink"},
+	{N_("Autodetect"), "autoaudiosink"},
+	{N_("ALSA - Advanced Linux Sound Architecture"), "alsasink"},
+	{N_("ESD - Enlightenment Sound Daemon"), "esdsink"},
+	{N_("OSS - Open Sound System"), "ossink"},
+	{N_("SDL - Simple DirectMedia Layer"), "sdlaudiosink"},
+	{N_("GConf"), "gconfaudiosink"},
 	{NULL, NULL}
 };
 
 t_output m_video_output[]={
-	{_("Autodetect"), "autovideosink"},
-	{_("X Window System (X11/XShm/Xv)"), "xvimagesink"},
-	{_("X Window System (No Xv)"), "ximagesink"},
-	{_("SDL - Simple DirectMedia Layer"), "sdlvideosink"},
-	{_("GConf"), "gconfvideosink"},
-	{_("OpenGL"), "glimagesink"},
+	{N_("Autodetect"), "autovideosink"},
+	{N_("X Window System (X11/XShm/Xv)"), "xvimagesink"},
+	{N_("X Window System (No Xv)"), "ximagesink"},
+	{N_("SDL - Simple DirectMedia Layer"), "sdlvideosink"},
+	{N_("GConf"), "gconfvideosink"},
+	{N_("OpenGL"), "glimagesink"},
 	{NULL, NULL}
 };
 
@@ -127,12 +127,12 @@ public:
 		
 		for(unsigned int i=0; m_audio_output[i].label != NULL; ++i)
 		{
-			m_comboAudioOutput->append_text(m_audio_output[i].label);
+			m_comboAudioOutput->append_text(_(m_audio_output[i].label));
 		}
 
 		for(unsigned int i=0; m_video_output[i].label != NULL; ++i)
 		{
-			m_comboVideoOutput->append_text(m_video_output[i].label);
+			m_comboVideoOutput->append_text(_(m_video_output[i].label));
 		}
 
 		WidgetToConfig::read_config_and_connect(m_checkUseShadedBackground, "video-player", "shaded-background");
@@ -162,7 +162,7 @@ protected:
 		for(unsigned int i=0; output[i].name != NULL; ++i)
 		{
 			if(name == output[i].name)
-				return output[i].label;
+				return _(output[i].label);
 		}
 		return Glib::ustring();
 	}
@@ -171,7 +171,7 @@ protected:
 	{
 		for(unsigned int i=0; output[i].name != NULL; ++i)
 		{
-			if(label == output[i].label)
+			if(label == _(output[i].label))
 				return output[i].name;
 		}
 		return Glib::ustring();
