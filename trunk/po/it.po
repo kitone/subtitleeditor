@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-08 19:59+0200\n"
+"POT-Creation-Date: 2008-08-11 18:09+0200\n"
 "PO-Revision-Date: 2008-03-25 12:38+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -30,7 +30,7 @@ msgid "All documents"
 msgstr "Tutti i documenti"
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
-#: ../src/actions/ChangeFramerate.cc:306
+#: ../src/actions/ChangeFramerate.cc:308
 msgid "Change Framerate"
 msgstr "Cambia framerate"
 
@@ -194,7 +194,7 @@ msgid "_Ignore case"
 msgstr "Distingui m_aiuscole"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
-msgid "_Used regular expression"
+msgid "_Use regular expression"
 msgstr "Usa espressione regolare"
 
 #: ../share/glade/dialog-import-text.glade.h:2
@@ -206,7 +206,7 @@ msgid "<b>Position</b>"
 msgstr "<b>Posizione</b>"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:2
-#: ../src/actions/MoveSubtitles.cc:175
+#: ../src/actions/MoveSubtitles.cc:177
 msgid "Move Subtitles"
 msgstr "Muovi sottotitoli"
 
@@ -219,8 +219,8 @@ msgstr "Inizio"
 #. init label
 #: ../share/glade/dialog-move-subtitles.glade.h:4
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
-#: ../src/actions/MoveSubtitles.cc:51 ../src/actions/ScaleSubtitles.cc:119
-#: ../src/actions/ScaleSubtitles.cc:120
+#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
+#: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Time:"
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 "lanciato il comando:"
 
 #: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:390
+#: ../src/actions/ViewManager.cc:392
 msgid "Timing"
 msgstr "Limiti"
 
@@ -487,7 +487,7 @@ msgid "_Show the number of character per line"
 msgstr "Vi_sualizza numero massimo di caratteri per riga"
 
 #: ../share/glade/dialog-preferences.glade.h:63
-msgid "_Used Ctrl+Enter keys to confirm the change"
+msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:64
@@ -639,7 +639,7 @@ msgid "Ignore _All"
 msgstr "Ignora tutto"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:292
+#: ../src/actions/SpellChecking.cc:294
 msgid "Spell Checking"
 msgstr "Controllo ortografico"
 
@@ -870,7 +870,7 @@ msgstr "Sottrai 100 millisecondi alla selezione"
 #: ../src/actions/DuplicateSelectedSubtitles.cc:111
 #: ../src/actions/ExtendLength.cc:111 ../src/actions/Italicize.cc:112
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:111
-#: ../src/actions/MoveSubtitles.cc:186
+#: ../src/actions/MoveSubtitles.cc:188
 #: ../src/actions/TryToExtendToPerfect.cc:110
 msgid "Please select at least a subtitle."
 msgstr "Scegliere almeno un sottotitolo."
@@ -897,16 +897,16 @@ msgstr "Applica traduzione"
 msgid "The translation was applied."
 msgstr "La traduzione è stata applicata."
 
-#: ../src/actions/ChangeFramerate.cc:220
+#: ../src/actions/ChangeFramerate.cc:222
 #, fuzzy
 msgid "Change _Framerate"
 msgstr "Cambia framerate"
 
-#: ../src/actions/ChangeFramerate.cc:220
+#: ../src/actions/ChangeFramerate.cc:222
 msgid "Convert framerate"
 msgstr "Cambia il framrate dei sottotitoli"
 
-#: ../src/actions/ChangeFramerate.cc:325
+#: ../src/actions/ChangeFramerate.cc:327
 #, c-format
 msgid "The new framerate was applied. (%s to %s)"
 msgstr "Il framerate è stato modificato da %s a %s."
@@ -958,117 +958,117 @@ msgstr ""
 msgid "Italic"
 msgstr "Baltico"
 
-#: ../src/actions/DocumentManagement.cc:39
+#: ../src/actions/DocumentManagement.cc:41
 msgid "Close _without Saving"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:47
+#: ../src/actions/DocumentManagement.cc:49
 #, c-format
 msgid "Save the changes to document \"%s\" before closing?"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:48
+#: ../src/actions/DocumentManagement.cc:50
 msgid "If you don't save, the last changes will be permanently lost."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:76
+#: ../src/actions/DocumentManagement.cc:78
 msgid "Create a new document"
 msgstr "Crea un nuovo documento"
 
-#: ../src/actions/DocumentManagement.cc:81
+#: ../src/actions/DocumentManagement.cc:83
 msgid "Open a file"
 msgstr "Apre un file"
 
-#: ../src/actions/DocumentManagement.cc:85
+#: ../src/actions/DocumentManagement.cc:87
 msgid "Save the current file"
 msgstr "Salva il file corrente"
 
-#: ../src/actions/DocumentManagement.cc:89
+#: ../src/actions/DocumentManagement.cc:91
 msgid "Save the current file with a different name"
 msgstr "Salva il file corrente con un nome differente"
 
-#: ../src/actions/DocumentManagement.cc:93
+#: ../src/actions/DocumentManagement.cc:95
 msgid "Save _All"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:93
+#: ../src/actions/DocumentManagement.cc:95
 msgid "Save all open files"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:98
+#: ../src/actions/DocumentManagement.cc:100
 #, fuzzy
 msgid "Open _Translation"
 msgstr "Apri traduzione"
 
-#: ../src/actions/DocumentManagement.cc:98
+#: ../src/actions/DocumentManagement.cc:100
 #, fuzzy
 msgid "Open translation from file"
 msgstr "Apre la traduzione da file."
 
-#: ../src/actions/DocumentManagement.cc:102
+#: ../src/actions/DocumentManagement.cc:104
 #, fuzzy
 msgid "Save Trans_lation"
 msgstr "Salva traduzione"
 
-#: ../src/actions/DocumentManagement.cc:102
+#: ../src/actions/DocumentManagement.cc:104
 #, fuzzy
 msgid "Save translation to file"
 msgstr "Salva.la traduzione traduzione con un nome differente."
 
-#: ../src/actions/DocumentManagement.cc:107
+#: ../src/actions/DocumentManagement.cc:109
 #, fuzzy
 msgid "Open _Recent"
 msgstr "Apri documento"
 
-#: ../src/actions/DocumentManagement.cc:111
+#: ../src/actions/DocumentManagement.cc:113
 #, fuzzy
 msgid "Close the current file"
 msgstr "Salva il file corrente"
 
-#: ../src/actions/DocumentManagement.cc:116
+#: ../src/actions/DocumentManagement.cc:118
 #, fuzzy
 msgid "E_xit"
 msgstr "Esci"
 
-#: ../src/actions/DocumentManagement.cc:116
+#: ../src/actions/DocumentManagement.cc:118
 msgid "Quit the program"
 msgstr "Esci"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../src/actions/DocumentManagement.cc:248
+#: ../src/actions/DocumentManagement.cc:250
 msgid "I am already open"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:294
-#: ../src/actions/DocumentManagement.cc:345
+#: ../src/actions/DocumentManagement.cc:296
+#: ../src/actions/DocumentManagement.cc:347
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "Salvataggio di %s (%s, %s, %s)."
 
-#: ../src/actions/DocumentManagement.cc:301
-#: ../src/actions/DocumentManagement.cc:353
+#: ../src/actions/DocumentManagement.cc:303
+#: ../src/actions/DocumentManagement.cc:355
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "Impossibile salvare il file %s (%s, %s, %s)."
 
-#: ../src/actions/DocumentManagement.cc:437
+#: ../src/actions/DocumentManagement.cc:439
 #, fuzzy
 msgid "Open translation"
 msgstr "Apri traduzione"
 
-#: ../src/actions/DocumentManagement.cc:465
+#: ../src/actions/DocumentManagement.cc:467
 #, fuzzy, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] "Il sottotitolo %d è stato cancellato con successo."
 msgstr[1] "Il sottotitolo %d è stato cancellato con successo."
 
-#: ../src/actions/DocumentManagement.cc:528
+#: ../src/actions/DocumentManagement.cc:530
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "Salvataggio della traduzione %s (%s,%s,%s)."
 
-#: ../src/actions/DocumentManagement.cc:531
+#: ../src/actions/DocumentManagement.cc:533
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "Impossibile salvare la traduzione %s (%s,%s,%s)."
@@ -1141,44 +1141,44 @@ msgid ""
 "Command: <i>%s</i>"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:250
+#: ../src/actions/FindAndReplace.cc:252
 #, fuzzy
 msgid "Replace text"
 msgstr "Sostituisci"
 
-#: ../src/actions/FindAndReplace.cc:286 ../src/actions/FindAndReplace.cc:508
-#: ../src/actions/FindAndReplace.cc:575
+#: ../src/actions/FindAndReplace.cc:288 ../src/actions/FindAndReplace.cc:510
+#: ../src/actions/FindAndReplace.cc:577
 msgid "The document is empty"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:404
+#: ../src/actions/FindAndReplace.cc:406
 msgid "_Find And Replace"
 msgstr "_Trova e sostituisci"
 
-#: ../src/actions/FindAndReplace.cc:404
+#: ../src/actions/FindAndReplace.cc:406
 #, fuzzy
 msgid "Search and replace text"
 msgstr "_Trova e sostituisce una stringa"
 
-#: ../src/actions/FindAndReplace.cc:408
+#: ../src/actions/FindAndReplace.cc:410
 msgid "Find Ne_xt"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:408
+#: ../src/actions/FindAndReplace.cc:410
 #, fuzzy
 msgid "Search forwards for the same text"
 msgstr "_Trova e sostituisce una stringa"
 
-#: ../src/actions/FindAndReplace.cc:411
+#: ../src/actions/FindAndReplace.cc:413
 msgid "Find Pre_vious"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:411
+#: ../src/actions/FindAndReplace.cc:413
 #, fuzzy
 msgid "Search backwards for the same text"
 msgstr "_Trova e sostituisce una stringa"
 
-#: ../src/actions/FindAndReplace.cc:558 ../src/actions/FindAndReplace.cc:625
+#: ../src/actions/FindAndReplace.cc:560 ../src/actions/FindAndReplace.cc:627
 msgid "Not found"
 msgstr ""
 
@@ -1250,16 +1250,16 @@ msgstr ""
 msgid "Move After Preceding"
 msgstr ""
 
-#: ../src/actions/MoveSubtitles.cc:51 ../src/actions/ScaleSubtitles.cc:119
-#: ../src/actions/ScaleSubtitles.cc:120
+#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
+#: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Frame:"
 msgstr ""
 
-#: ../src/actions/MoveSubtitles.cc:97
+#: ../src/actions/MoveSubtitles.cc:99
 msgid "_Move Subtitles"
 msgstr "_Muovi sottotitoli"
 
-#: ../src/actions/MoveSubtitles.cc:97
+#: ../src/actions/MoveSubtitles.cc:99
 #, fuzzy
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr "Sposta i temporalmente un sottotitolo e tutti i suoi successivi."
@@ -1284,26 +1284,26 @@ msgstr "Apri traduzione"
 msgid "Reverse the text and the translation was applied."
 msgstr "La traduzione è stata applicata."
 
-#: ../src/actions/ScaleSubtitles.cc:107
+#: ../src/actions/ScaleSubtitles.cc:109
 msgid "You can't use <i>scale</i> with this document."
 msgstr "Impossibile usare <i>scala</i> con questo documento."
 
-#: ../src/actions/ScaleSubtitles.cc:240
+#: ../src/actions/ScaleSubtitles.cc:242
 #, fuzzy
 msgid "_Scale"
 msgstr "Scala"
 
-#: ../src/actions/ScaleSubtitles.cc:240
+#: ../src/actions/ScaleSubtitles.cc:242
 #, fuzzy
 msgid "Scale by two points"
 msgstr "Scala tramite due punti"
 
-#: ../src/actions/ScaleSubtitles.cc:327
+#: ../src/actions/ScaleSubtitles.cc:329
 #, fuzzy
 msgid "Scale subtitles"
 msgstr "Dividi sottotitoli"
 
-#: ../src/actions/ScaleSubtitles.cc:350
+#: ../src/actions/ScaleSubtitles.cc:352
 msgid "The scale was applied"
 msgstr "Scala documento effettuato con successo"
 
@@ -1370,31 +1370,31 @@ msgstr "Vai alla selezione"
 msgid "Invert subtitles selection"
 msgstr "Vai alla selezione"
 
-#: ../src/actions/SpellChecking.cc:661
+#: ../src/actions/SpellChecking.cc:663
 #, fuzzy
 msgid "_Spell Check"
 msgstr "Controllo ortografico"
 
-#: ../src/actions/SpellChecking.cc:661
+#: ../src/actions/SpellChecking.cc:663
 msgid "Launch the spell checking"
 msgstr "Lancia il controllo ortografico"
 
-#: ../src/actions/SplitDocument.cc:56
+#: ../src/actions/SplitDocument.cc:58
 msgid "You can't use <i>split</i> with this document."
 msgstr "Impossibile usare <i>dividi</i> con questo documento."
 
 #. on supprime ensuite les sous-titres utiliser par le nouveau document
-#: ../src/actions/SplitDocument.cc:97
+#: ../src/actions/SplitDocument.cc:99
 #, fuzzy
 msgid "Split document"
 msgstr "Dividi documento"
 
-#: ../src/actions/SplitDocument.cc:126
+#: ../src/actions/SplitDocument.cc:128
 #, fuzzy
 msgid "Spl_it Document"
 msgstr "Dividi documento"
 
-#: ../src/actions/SplitDocument.cc:126
+#: ../src/actions/SplitDocument.cc:128
 msgid "Split the current document in two"
 msgstr "Divide il documento in due parti"
 
@@ -1413,16 +1413,16 @@ msgstr "Dividi sottotitoli selezionati"
 msgid "Split subtitles"
 msgstr "Dividi sottotitoli"
 
-#: ../src/actions/StyleEditor.cc:113
+#: ../src/actions/StyleEditor.cc:115
 msgid "Styles"
 msgstr "Stile"
 
-#: ../src/actions/StyleEditor.cc:433
+#: ../src/actions/StyleEditor.cc:435
 #, fuzzy
 msgid "_Style Editor"
 msgstr "Modifica stile"
 
-#: ../src/actions/StyleEditor.cc:433
+#: ../src/actions/StyleEditor.cc:435
 msgid "Launch the style editor"
 msgstr "Lancia la finestra per modificare lo stile"
 
@@ -1700,31 +1700,31 @@ msgstr "Imposta inizio sottotitolo"
 msgid "Set subtitle end"
 msgstr "Imposta fine sottotitolo"
 
-#: ../src/actions/ViewManager.cc:127
+#: ../src/actions/ViewManager.cc:129
 msgid "Display"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
+#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:230
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/actions/ViewManager.cc:298
+#: ../src/actions/ViewManager.cc:300
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:387
+#: ../src/actions/ViewManager.cc:389
 msgid "Simple"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:388
+#: ../src/actions/ViewManager.cc:390
 msgid "Advanced"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:389
+#: ../src/actions/ViewManager.cc:391
 msgid "Translation"
 msgstr "Traduzione"
 
-#: ../src/actions/ViewManager.cc:421
+#: ../src/actions/ViewManager.cc:423
 msgid "View _Manager"
 msgstr ""
 
@@ -2060,13 +2060,13 @@ msgid "Document not found."
 msgstr ""
 
 #. column description
-#: ../src/gui/DialogCharacterCodings.cc:63
+#: ../src/gui/DialogCharacterCodings.cc:65
 #, fuzzy
 msgid "_Description"
 msgstr "Riproduci selezione"
 
 #. column encoding
-#: ../src/gui/DialogCharacterCodings.cc:77
+#: ../src/gui/DialogCharacterCodings.cc:79
 #, fuzzy
 msgid "_Encoding"
 msgstr "Codifica"
@@ -2092,21 +2092,25 @@ msgstr ""
 msgid "All files (*.*)"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:704
+#: ../src/gui/DialogFileChooser.cc:706
 #, fuzzy
 msgid "Open Video"
 msgstr "Apre il video"
 
-#: ../src/gui/DialogFileChooser.cc:708 ../src/gui/DialogFileChooser.cc:768
+#: ../src/gui/DialogFileChooser.cc:712 ../src/gui/DialogFileChooser.cc:774
 #, fuzzy
 msgid "Video"
 msgstr "_Video:"
 
-#: ../src/gui/DialogFileChooser.cc:719 ../src/gui/DialogFileChooser.cc:779
+#: ../src/gui/DialogFileChooser.cc:723 ../src/gui/DialogFileChooser.cc:785
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:758
+#: ../src/gui/DialogFileChooser.cc:731
+msgid "ALL"
+msgstr ""
+
+#: ../src/gui/DialogFileChooser.cc:762
 msgid "Open Waveform"
 msgstr "Apri Waveform"
 

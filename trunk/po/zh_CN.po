@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-08 19:59+0200\n"
+"POT-Creation-Date: 2008-08-11 18:09+0200\n"
 "PO-Revision-Date: 2008-05-15 07:27+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
@@ -33,7 +33,7 @@ msgid "All documents"
 msgstr "全部文档"
 
 #: ../share/glade/dialog-change-framerate.glade.h:4
-#: ../src/actions/ChangeFramerate.cc:306
+#: ../src/actions/ChangeFramerate.cc:308
 msgid "Change Framerate"
 msgstr "改变Framerate"
 
@@ -196,7 +196,7 @@ msgid "_Ignore case"
 msgstr "忽略大小写(_I)"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
-msgid "_Used regular expression"
+msgid "_Use regular expression"
 msgstr "使用正则表达式(_U)"
 
 #: ../share/glade/dialog-import-text.glade.h:2
@@ -208,7 +208,7 @@ msgid "<b>Position</b>"
 msgstr "<b>位置</b>"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:2
-#: ../src/actions/MoveSubtitles.cc:175
+#: ../src/actions/MoveSubtitles.cc:177
 msgid "Move Subtitles"
 msgstr "移动字幕"
 
@@ -221,8 +221,8 @@ msgstr "开始"
 #. init label
 #: ../share/glade/dialog-move-subtitles.glade.h:4
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
-#: ../src/actions/MoveSubtitles.cc:51 ../src/actions/ScaleSubtitles.cc:119
-#: ../src/actions/ScaleSubtitles.cc:120
+#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
+#: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Time:"
 msgstr ""
 
@@ -419,7 +419,7 @@ msgid ""
 msgstr "以下指令参量将被替代当启动行动:"
 
 #: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:390
+#: ../src/actions/ViewManager.cc:392
 msgid "Timing"
 msgstr "计时"
 
@@ -479,7 +479,7 @@ msgid "_Show the number of character per line"
 msgstr "显示每行字符的数字(_S)"
 
 #: ../share/glade/dialog-preferences.glade.h:63
-msgid "_Used Ctrl+Enter keys to confirm the change"
+msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:64
@@ -638,7 +638,7 @@ msgid "Ignore _All"
 msgstr "全部忽略(_A)"
 
 #: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:292
+#: ../src/actions/SpellChecking.cc:294
 msgid "Spell Checking"
 msgstr "拼写检查"
 
@@ -882,7 +882,7 @@ msgstr "去除100 毫秒对所有字幕选择的"
 #: ../src/actions/DuplicateSelectedSubtitles.cc:111
 #: ../src/actions/ExtendLength.cc:111 ../src/actions/Italicize.cc:112
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:111
-#: ../src/actions/MoveSubtitles.cc:186
+#: ../src/actions/MoveSubtitles.cc:188
 #: ../src/actions/TryToExtendToPerfect.cc:110
 msgid "Please select at least a subtitle."
 msgstr "请选择至少一个字幕。"
@@ -907,16 +907,16 @@ msgstr "应用翻译"
 msgid "The translation was applied."
 msgstr "翻译被应用。"
 
-#: ../src/actions/ChangeFramerate.cc:220
+#: ../src/actions/ChangeFramerate.cc:222
 #, fuzzy
 msgid "Change _Framerate"
 msgstr "改变framerate(_F)"
 
-#: ../src/actions/ChangeFramerate.cc:220
+#: ../src/actions/ChangeFramerate.cc:222
 msgid "Convert framerate"
 msgstr "转换framerate"
 
-#: ../src/actions/ChangeFramerate.cc:325
+#: ../src/actions/ChangeFramerate.cc:327
 #, fuzzy, c-format
 msgid "The new framerate was applied. (%s to %s)"
 msgstr "新framerate 是应用的。(%s 对%s)"
@@ -967,110 +967,110 @@ msgstr "增加或去除对话线"
 msgid "Italic"
 msgstr "斜体"
 
-#: ../src/actions/DocumentManagement.cc:39
+#: ../src/actions/DocumentManagement.cc:41
 msgid "Close _without Saving"
 msgstr "不保存而关闭(_W)"
 
-#: ../src/actions/DocumentManagement.cc:47
+#: ../src/actions/DocumentManagement.cc:49
 #, c-format
 msgid "Save the changes to document \"%s\" before closing?"
 msgstr "在关闭前先将更改保存到文档“%s”吗？"
 
-#: ../src/actions/DocumentManagement.cc:48
+#: ../src/actions/DocumentManagement.cc:50
 #, fuzzy
 msgid "If you don't save, the last changes will be permanently lost."
 msgstr "如果您不保存, 最后变动永久地将丢失。"
 
-#: ../src/actions/DocumentManagement.cc:76
+#: ../src/actions/DocumentManagement.cc:78
 msgid "Create a new document"
 msgstr "创建一个新文档"
 
-#: ../src/actions/DocumentManagement.cc:81
+#: ../src/actions/DocumentManagement.cc:83
 msgid "Open a file"
 msgstr "打开一个文件"
 
-#: ../src/actions/DocumentManagement.cc:85
+#: ../src/actions/DocumentManagement.cc:87
 msgid "Save the current file"
 msgstr "保存当前文件"
 
-#: ../src/actions/DocumentManagement.cc:89
+#: ../src/actions/DocumentManagement.cc:91
 msgid "Save the current file with a different name"
 msgstr "用新文件名保存当前文件"
 
-#: ../src/actions/DocumentManagement.cc:93
+#: ../src/actions/DocumentManagement.cc:95
 msgid "Save _All"
 msgstr "保存全部(_A)"
 
-#: ../src/actions/DocumentManagement.cc:93
+#: ../src/actions/DocumentManagement.cc:95
 msgid "Save all open files"
 msgstr "保存所有已打开的文件"
 
-#: ../src/actions/DocumentManagement.cc:98
+#: ../src/actions/DocumentManagement.cc:100
 msgid "Open _Translation"
 msgstr "打开翻译(_T)"
 
-#: ../src/actions/DocumentManagement.cc:98
+#: ../src/actions/DocumentManagement.cc:100
 msgid "Open translation from file"
 msgstr "打开翻译从文件"
 
-#: ../src/actions/DocumentManagement.cc:102
+#: ../src/actions/DocumentManagement.cc:104
 msgid "Save Trans_lation"
 msgstr "保存翻译(_L)"
 
-#: ../src/actions/DocumentManagement.cc:102
+#: ../src/actions/DocumentManagement.cc:104
 msgid "Save translation to file"
 msgstr "保存翻译文件"
 
-#: ../src/actions/DocumentManagement.cc:107
+#: ../src/actions/DocumentManagement.cc:109
 msgid "Open _Recent"
 msgstr "最近打开(_R)"
 
-#: ../src/actions/DocumentManagement.cc:111
+#: ../src/actions/DocumentManagement.cc:113
 msgid "Close the current file"
 msgstr "关闭当前文件"
 
-#: ../src/actions/DocumentManagement.cc:116
+#: ../src/actions/DocumentManagement.cc:118
 msgid "E_xit"
 msgstr "退出(_X)"
 
-#: ../src/actions/DocumentManagement.cc:116
+#: ../src/actions/DocumentManagement.cc:118
 msgid "Quit the program"
 msgstr "退出程序"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../src/actions/DocumentManagement.cc:248
+#: ../src/actions/DocumentManagement.cc:250
 msgid "I am already open"
 msgstr "我已经是打开"
 
-#: ../src/actions/DocumentManagement.cc:294
-#: ../src/actions/DocumentManagement.cc:345
+#: ../src/actions/DocumentManagement.cc:296
+#: ../src/actions/DocumentManagement.cc:347
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "正在保存文件%s (%s 、%s, %s) 。"
 
-#: ../src/actions/DocumentManagement.cc:301
-#: ../src/actions/DocumentManagement.cc:353
+#: ../src/actions/DocumentManagement.cc:303
+#: ../src/actions/DocumentManagement.cc:355
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "文件%s (%s 、%s, %s) 未被保存。"
 
-#: ../src/actions/DocumentManagement.cc:437
+#: ../src/actions/DocumentManagement.cc:439
 msgid "Open translation"
 msgstr "打开翻译"
 
-#: ../src/actions/DocumentManagement.cc:465
+#: ../src/actions/DocumentManagement.cc:467
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/actions/DocumentManagement.cc:528
+#: ../src/actions/DocumentManagement.cc:530
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "正在保存翻译文件%s (%s 、%s, %s) 。"
 
-#: ../src/actions/DocumentManagement.cc:531
+#: ../src/actions/DocumentManagement.cc:533
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "翻译文件%s (%s 、%s, %s) 未被保存。"
@@ -1135,40 +1135,40 @@ msgid ""
 "Command: <i>%s</i>"
 msgstr ""
 
-#: ../src/actions/FindAndReplace.cc:250
+#: ../src/actions/FindAndReplace.cc:252
 msgid "Replace text"
 msgstr "替换文本"
 
-#: ../src/actions/FindAndReplace.cc:286 ../src/actions/FindAndReplace.cc:508
-#: ../src/actions/FindAndReplace.cc:575
+#: ../src/actions/FindAndReplace.cc:288 ../src/actions/FindAndReplace.cc:510
+#: ../src/actions/FindAndReplace.cc:577
 msgid "The document is empty"
 msgstr "文件是空的"
 
-#: ../src/actions/FindAndReplace.cc:404
+#: ../src/actions/FindAndReplace.cc:406
 msgid "_Find And Replace"
 msgstr "查找替换(_F)"
 
-#: ../src/actions/FindAndReplace.cc:404
+#: ../src/actions/FindAndReplace.cc:406
 msgid "Search and replace text"
 msgstr "搜寻和替换文本"
 
-#: ../src/actions/FindAndReplace.cc:408
+#: ../src/actions/FindAndReplace.cc:410
 msgid "Find Ne_xt"
 msgstr "查找下一个(_X)"
 
-#: ../src/actions/FindAndReplace.cc:408
+#: ../src/actions/FindAndReplace.cc:410
 msgid "Search forwards for the same text"
 msgstr "正向搜索相同的文字"
 
-#: ../src/actions/FindAndReplace.cc:411
+#: ../src/actions/FindAndReplace.cc:413
 msgid "Find Pre_vious"
 msgstr "查找上一个(_V)"
 
-#: ../src/actions/FindAndReplace.cc:411
+#: ../src/actions/FindAndReplace.cc:413
 msgid "Search backwards for the same text"
 msgstr "反向搜索相同的文字"
 
-#: ../src/actions/FindAndReplace.cc:558 ../src/actions/FindAndReplace.cc:625
+#: ../src/actions/FindAndReplace.cc:560 ../src/actions/FindAndReplace.cc:627
 msgid "Not found"
 msgstr "没找到的"
 
@@ -1233,16 +1233,16 @@ msgstr "以最小间隔的原则将字幕移至前一字幕之后"
 msgid "Move After Preceding"
 msgstr "向前移动字幕"
 
-#: ../src/actions/MoveSubtitles.cc:51 ../src/actions/ScaleSubtitles.cc:119
-#: ../src/actions/ScaleSubtitles.cc:120
+#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
+#: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Frame:"
 msgstr ""
 
-#: ../src/actions/MoveSubtitles.cc:97
+#: ../src/actions/MoveSubtitles.cc:99
 msgid "_Move Subtitles"
 msgstr "移动字幕(_M)"
 
-#: ../src/actions/MoveSubtitles.cc:97
+#: ../src/actions/MoveSubtitles.cc:99
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr "所有字幕并且将被移动在第一选择的字幕以后"
 
@@ -1262,23 +1262,23 @@ msgstr "反向文本和翻译"
 msgid "Reverse the text and the translation was applied."
 msgstr "撤销文本并且翻译已被应用。"
 
-#: ../src/actions/ScaleSubtitles.cc:107
+#: ../src/actions/ScaleSubtitles.cc:109
 msgid "You can't use <i>scale</i> with this document."
 msgstr "您无法对该文件使用<i>均摊</i>。"
 
-#: ../src/actions/ScaleSubtitles.cc:240
+#: ../src/actions/ScaleSubtitles.cc:242
 msgid "_Scale"
 msgstr "平铺(_S)"
 
-#: ../src/actions/ScaleSubtitles.cc:240
+#: ../src/actions/ScaleSubtitles.cc:242
 msgid "Scale by two points"
 msgstr "按两点均摊"
 
-#: ../src/actions/ScaleSubtitles.cc:327
+#: ../src/actions/ScaleSubtitles.cc:329
 msgid "Scale subtitles"
 msgstr "均摊字幕"
 
-#: ../src/actions/ScaleSubtitles.cc:350
+#: ../src/actions/ScaleSubtitles.cc:352
 msgid "The scale was applied"
 msgstr "均摊已被应用"
 
@@ -1334,28 +1334,28 @@ msgstr "反转选择(_V)"
 msgid "Invert subtitles selection"
 msgstr "反转字幕选择"
 
-#: ../src/actions/SpellChecking.cc:661
+#: ../src/actions/SpellChecking.cc:663
 msgid "_Spell Check"
 msgstr "拼写检查(_S)"
 
-#: ../src/actions/SpellChecking.cc:661
+#: ../src/actions/SpellChecking.cc:663
 msgid "Launch the spell checking"
 msgstr "启动拼写检查"
 
-#: ../src/actions/SplitDocument.cc:56
+#: ../src/actions/SplitDocument.cc:58
 msgid "You can't use <i>split</i> with this document."
 msgstr "您无法使用<i>分割</i>以这个文件。"
 
 #. on supprime ensuite les sous-titres utiliser par le nouveau document
-#: ../src/actions/SplitDocument.cc:97
+#: ../src/actions/SplitDocument.cc:99
 msgid "Split document"
 msgstr "分割文件"
 
-#: ../src/actions/SplitDocument.cc:126
+#: ../src/actions/SplitDocument.cc:128
 msgid "Spl_it Document"
 msgstr "分割文件(_I)"
 
-#: ../src/actions/SplitDocument.cc:126
+#: ../src/actions/SplitDocument.cc:128
 msgid "Split the current document in two"
 msgstr "将当前文件一分为二"
 
@@ -1372,15 +1372,15 @@ msgstr "分割了选择的字幕"
 msgid "Split subtitles"
 msgstr "分割字幕"
 
-#: ../src/actions/StyleEditor.cc:113
+#: ../src/actions/StyleEditor.cc:115
 msgid "Styles"
 msgstr "样式"
 
-#: ../src/actions/StyleEditor.cc:433
+#: ../src/actions/StyleEditor.cc:435
 msgid "_Style Editor"
 msgstr "样式编辑器(S)"
 
-#: ../src/actions/StyleEditor.cc:433
+#: ../src/actions/StyleEditor.cc:435
 msgid "Launch the style editor"
 msgstr "启动样式编辑"
 
@@ -1639,31 +1639,31 @@ msgstr "设置字幕开始"
 msgid "Set subtitle end"
 msgstr "设置字幕结尾"
 
-#: ../src/actions/ViewManager.cc:127
+#: ../src/actions/ViewManager.cc:129
 msgid "Display"
 msgstr "显示"
 
-#: ../src/actions/ViewManager.cc:139 ../src/actions/ViewManager.cc:228
+#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:230
 msgid "Name"
 msgstr "名称"
 
-#: ../src/actions/ViewManager.cc:298
+#: ../src/actions/ViewManager.cc:300
 msgid "Untitled"
 msgstr "未命名"
 
-#: ../src/actions/ViewManager.cc:387
+#: ../src/actions/ViewManager.cc:389
 msgid "Simple"
 msgstr "简单"
 
-#: ../src/actions/ViewManager.cc:388
+#: ../src/actions/ViewManager.cc:390
 msgid "Advanced"
 msgstr "高级"
 
-#: ../src/actions/ViewManager.cc:389
+#: ../src/actions/ViewManager.cc:391
 msgid "Translation"
 msgstr "翻译"
 
-#: ../src/actions/ViewManager.cc:421
+#: ../src/actions/ViewManager.cc:423
 msgid "View _Manager"
 msgstr "视图管理(_V)"
 
@@ -1991,13 +1991,13 @@ msgid "Document not found."
 msgstr "文件没被发现。"
 
 #. column description
-#: ../src/gui/DialogCharacterCodings.cc:63
+#: ../src/gui/DialogCharacterCodings.cc:65
 #, fuzzy
 msgid "_Description"
 msgstr "选择(_S)"
 
 #. column encoding
-#: ../src/gui/DialogCharacterCodings.cc:77
+#: ../src/gui/DialogCharacterCodings.cc:79
 #, fuzzy
 msgid "_Encoding"
 msgstr "编码"
@@ -2023,19 +2023,23 @@ msgstr ""
 msgid "All files (*.*)"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:704
+#: ../src/gui/DialogFileChooser.cc:706
 msgid "Open Video"
 msgstr "打开视频"
 
-#: ../src/gui/DialogFileChooser.cc:708 ../src/gui/DialogFileChooser.cc:768
+#: ../src/gui/DialogFileChooser.cc:712 ../src/gui/DialogFileChooser.cc:774
 msgid "Video"
 msgstr "视频"
 
-#: ../src/gui/DialogFileChooser.cc:719 ../src/gui/DialogFileChooser.cc:779
+#: ../src/gui/DialogFileChooser.cc:723 ../src/gui/DialogFileChooser.cc:785
 msgid "Audio"
 msgstr "音频"
 
-#: ../src/gui/DialogFileChooser.cc:758
+#: ../src/gui/DialogFileChooser.cc:731
+msgid "ALL"
+msgstr ""
+
+#: ../src/gui/DialogFileChooser.cc:762
 msgid "Open Waveform"
 msgstr "打开信号波形"
 

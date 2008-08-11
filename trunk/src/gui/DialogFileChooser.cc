@@ -728,7 +728,7 @@ DialogOpenVideo::DialogOpenVideo()
 	add_filter(m_filterAudio);
 
 	Gtk::FileFilter m_filterAll;
-	m_filterAll.set_name("ALL");
+	m_filterAll.set_name(_("ALL"));
 	m_filterAll.add_pattern("*.*");
 	add_filter(m_filterAll);
 	
