@@ -1,3 +1,9 @@
+2008-08-12  kitone  <kitone@gna.org>
+
+	* NEWS:
+	* configure.in:
+	Preparing 0.22.2 release.
+
 2008-08-11  kitone  <kitone@gna.org>
 
 	* share/glade/dialog-find-and-replace.glade:
