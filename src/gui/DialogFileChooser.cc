@@ -765,7 +765,7 @@ DialogOpenWaveform::DialogOpenWaveform()
 
 	// waveform filter
 	Gtk::FileFilter m_filterWaveform;
-	m_filterWaveform.set_name("Waveform (*.wf)");
+	m_filterWaveform.set_name(_("Waveform (*.wf)"));
 	m_filterWaveform.add_pattern("*.wf");
 	add_filter(m_filterWaveform);
 
@@ -791,7 +791,7 @@ DialogOpenWaveform::DialogOpenWaveform()
 
 	// all filter
 	Gtk::FileFilter m_filterAll;
-	m_filterAll.set_name("ALL");
+	m_filterAll.set_name(_("ALL"));
 	m_filterAll.add_pattern("*.*");
 	add_filter(m_filterAll);
 	
