@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.11-alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-11 18:09+0200\n"
+"POT-Creation-Date: 2008-08-13 16:39+0200\n"
 "PO-Revision-Date: 2008-06-30 14:43+0000\n"
 "Last-Translator: Sebastián Porta <sebastianporta@gmail.com>\n"
 "Language-Team: Es <ES@li.org>\n"
@@ -804,8 +804,13 @@ msgid "View Manager"
 msgstr "Ver Administrador"
 
 #: ../share/glade/subtitleeditor.glade.h:1
+#: ../share/subtitleeditor.desktop.in.h:2
 msgid "Subtitle Editor"
 msgstr "editor de subtítulos"
+
+#: ../share/subtitleeditor.desktop.in.h:1
+msgid "A subtitle editor based on GStreamer and Gtk+"
+msgstr ""
 
 #. comments
 #: ../src/actions/About.cc:86
@@ -1804,6 +1809,11 @@ msgstr ""
 msgid "Save Document Failed."
 msgstr "Fallo al Guardar el Documento."
 
+#: ../src/DocumentSystem.cc:192
+#, fuzzy, c-format
+msgid "Untitled %d"
+msgstr "Sin título"
+
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
 msgid "Western"
@@ -2094,7 +2104,7 @@ msgstr "_Video"
 msgid "Audio"
 msgstr "Audio"
 
-#: ../src/gui/DialogFileChooser.cc:731
+#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
 msgid "ALL"
 msgstr ""
 
@@ -2102,6 +2112,11 @@ msgstr ""
 #, fuzzy
 msgid "Open Waveform"
 msgstr "Guardar Wav"
+
+#: ../src/gui/DialogFileChooser.cc:768
+#, fuzzy
+msgid "Waveform (*.wf)"
+msgstr "Forma de onda"
 
 #: ../src/gui/MenuBar.cc:124
 msgid "_File"

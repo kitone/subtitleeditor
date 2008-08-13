@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.0alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-11 18:09+0200\n"
+"POT-Creation-Date: 2008-08-13 16:39+0200\n"
 "PO-Revision-Date: 2008-05-29 18:37+0000\n"
 "Last-Translator: Rébeli-Szabó Tamás <Unknown>\n"
 "Language-Team: \n"
@@ -806,8 +806,13 @@ msgid "View Manager"
 msgstr "Kezelő megjelenítése"
 
 #: ../share/glade/subtitleeditor.glade.h:1
+#: ../share/subtitleeditor.desktop.in.h:2
 msgid "Subtitle Editor"
 msgstr "Subtitle Editor"
+
+#: ../share/subtitleeditor.desktop.in.h:1
+msgid "A subtitle editor based on GStreamer and Gtk+"
+msgstr ""
 
 #. comments
 #: ../src/actions/About.cc:86
@@ -1849,6 +1854,11 @@ msgstr "Ezzel a kódolással (<i>%s</i>) nem nyitható meg a fájl (<i>%s</i>)."
 msgid "Save Document Failed."
 msgstr "A dokumentum mentése nem sikerült."
 
+#: ../src/DocumentSystem.cc:192
+#, c-format
+msgid "Untitled %d"
+msgstr ""
+
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
 msgid "Western"
@@ -2130,13 +2140,18 @@ msgstr "_Videó"
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:731
+#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
 msgid "ALL"
 msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:762
 msgid "Open Waveform"
 msgstr "Hanghullám megnyitása"
+
+#: ../src/gui/DialogFileChooser.cc:768
+#, fuzzy
+msgid "Waveform (*.wf)"
+msgstr "Hanghullám"
 
 #: ../src/gui/MenuBar.cc:124
 msgid "_File"
