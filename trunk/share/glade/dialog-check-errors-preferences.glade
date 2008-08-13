@@ -135,7 +135,7 @@
                           <widget class="GtkCheckButton" id="check-max-line-per-subtitle">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="label" translatable="yes">Max line per subtitle</property>
+                            <property name="label" translatable="yes">Max lines per subtitle</property>
                             <property name="use_underline">True</property>
                             <property name="response_id">0</property>
                             <property name="draw_indicator">True</property>
@@ -351,7 +351,7 @@
                           <widget class="GtkLabel" id="label10">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Maximum number of line per subtitle:</property>
+                            <property name="label" translatable="yes">Maximum number of lines per subtitle:</property>
                           </widget>
                           <packing>
                             <property name="top_attach">5</property>
@@ -377,7 +377,7 @@
                           <widget class="GtkLabel" id="label8">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Minimum gap between subtitle in mseconds:</property>
+                            <property name="label" translatable="yes">Minimum gap between subtitles in mseconds:</property>
                           </widget>
                           <packing>
                             <property name="top_attach">3</property>
@@ -403,7 +403,7 @@
                           <widget class="GtkLabel" id="label6">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="label" translatable="yes">Maximum character per second:</property>
+                            <property name="label" translatable="yes">Maximum characters per second:</property>
                           </widget>
                           <packing>
                             <property name="top_attach">1</property>
