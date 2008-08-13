@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: subtitleeditor 0.21.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-13 16:39+0200\n"
-"PO-Revision-Date: 2008-08-12 13:59+0200\n"
+"PO-Revision-Date: 2008-08-12 16:39+0200\n"
 "Last-Translator: Petr Pisar <petr.pisar@atlas.cz>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1736,9 +1736,8 @@ msgid "Save Document Failed."
 msgstr "Uložení dokumentu se nezdařilo."
 
 #: ../src/DocumentSystem.cc:192
-#, fuzzy, c-format
 msgid "Untitled %d"
-msgstr "Nepojmenováno"
+msgstr "Nepojmenován %d"
 
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
@@ -2030,9 +2029,8 @@ msgid "Open Waveform"
 msgstr "Otevřít vlnovku"
 
 #: ../src/gui/DialogFileChooser.cc:768
-#, fuzzy
 msgid "Waveform (*.wf)"
-msgstr "Vlnovka"
+msgstr "Vlnovka (*.wf)"
 
 #: ../src/gui/MenuBar.cc:124
 msgid "_File"
