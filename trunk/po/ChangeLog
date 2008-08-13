@@ -1,3 +1,10 @@
+2008-08-13  kitone  <kitone@gna.org>
+
+	* Makefile.in.in:
+	* POTFILES.in:
+	Add intltool. *.desktop file can be translated.
+	Patch by Luboš Staněk.
+
 2008-08-11  kitone  <kitone@gna.org>
 
 	* cs.po:

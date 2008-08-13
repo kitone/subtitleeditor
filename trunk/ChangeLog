@@ -1,5 +1,21 @@
 2008-08-13  kitone  <kitone@gna.org>
 
+	* Makefile.am:
+	* autogen.sh:
+	* configure.in:
+	* prepare-po.sh:
+	* share/Makefile.am:
+	Add intltool. *.desktop file can be translated.
+	Patch by Luboš Staněk.
+
+	* share/subtitleeditor.desktop:
+	Remove file.
+
+	* share/subtitleeditor.desktop.in:
+	New file.
+
+2008-08-13  kitone  <kitone@gna.org>
+
 	* acinclude.m4:
 	Adds missing files from autoconf-archive for the AX_CHECK_GL macro.
 	Patches by Luboš Staněk.
