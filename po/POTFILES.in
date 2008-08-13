@@ -18,6 +18,7 @@ share/glade/dialog-split-document.glade
 share/glade/dialog-style-editor.glade
 share/glade/dialog-view-manager.glade
 share/glade/subtitleeditor.glade
+share/subtitleeditor.desktop.in
 src/Action.cc
 src/Action.h
 src/actions/About.cc

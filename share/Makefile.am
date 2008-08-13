@@ -3,7 +3,10 @@ SUBDIRS = icons glade
 subtitleeditor_pixmapsdir = $(prefix)/${NO_PREFIX_PACKAGE_SHARE_DIR}
 
 desktopdir = $(datadir)/applications
-desktop_DATA = subtitleeditor.desktop
+desktop_in_files = subtitleeditor.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+@INTLTOOL_DESKTOP_RULE@
 
 subtitleeditor_pixmaps_DATA = \
 							menubar.xml \
@@ -21,8 +24,8 @@ install-data-hook:
 	fi
 
 
-EXTRA_DIST = $(subtitleeditor_pixmaps_DATA) $(desktop_DATA)
+EXTRA_DIST = $(subtitleeditor_pixmaps_DATA) $(desktop_in_files)
 
-CLEANFILES = Makefile.am~ *.c~ *.h~ *.glade~ *.gladep *.gladep.bak
+CLEANFILES = Makefile.am~ *.c~ *.h~ *.glade~ *.gladep *.gladep.bak $(desktop_DATA)
 
 
