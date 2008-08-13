@@ -149,11 +149,9 @@ void PluginSystem::activate_plugins()
 
 	Plugin::init(window);
 
-	for(std::list<Plugin*>::iterator it = m_plugins.begin(); it!=m_plugins.end(); ++it)
+	for(std::list<Plugin*>::const_iterator it = m_plugins.begin(); it!=m_plugins.end(); ++it)
 	{
 		(*it)->activate();
-		
-		(*it)->update_ui();
 	}
 }
 
@@ -170,11 +168,9 @@ void PluginSystem::post_activate_plugins()
 
 	Plugin::init(window);
 
-	for(std::list<Plugin*>::iterator it = m_plugins.begin(); it!=m_plugins.end(); ++it)
+	for(std::list<Plugin*>::const_iterator it = m_plugins.begin(); it!=m_plugins.end(); ++it)
 	{
 		(*it)->post_activate();
-		
-		(*it)->update_ui();
 	}
 }
 
@@ -189,7 +185,7 @@ void PluginSystem::update_ui()
 
 	g_return_if_fail(window);
 
-	for(std::list<Plugin*>::iterator it = m_plugins.begin(); it!=m_plugins.end(); ++it)
+	for(std::list<Plugin*>::const_iterator it = m_plugins.begin(); it!=m_plugins.end(); ++it)
 	{
 		(*it)->update_ui();
 	}

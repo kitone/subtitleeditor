@@ -104,6 +104,7 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 
 	// FIXME: hack
 	PluginSystem::get_instance().post_activate_plugins();
+	PluginSystem::get_instance().update_ui();
 
 	load_config();
 
