@@ -97,7 +97,7 @@ public:
 	:CheckErrorPlugin(
 			"too-short-display-time",
 			_("Too short display time"), 
-			_("An error is detected when the number of character per second is ..."), 
+			_("An error is detected when the number of characters per second is ..."), 
 			"#d1ab70")
 	{
 		Config::getInstance().get_value_int("timing", "max-characters-per-second", m_maxCPS);
@@ -283,7 +283,7 @@ public:
 	CheckMaxLinePerSubtitle(TYPE type)
 	:CheckErrorPlugin(
 			"max-line-per-subtitle",
-			_("Max line per subtitle"), 
+			_("Max lines per subtitle"), 
 			_("An error is detected when ..."), 
 			"#94b6f0"), m_type(type)
 	{

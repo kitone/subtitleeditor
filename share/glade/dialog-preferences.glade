@@ -49,7 +49,7 @@
                               <widget class="GtkCheckButton" id="check-use-dynamic-keyboard-shortcuts">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="tooltip" translatable="yes">When enabled, you can change keyboard shortcuts for menu items by hitting a key combination while  the menu item is highlighted.</property>
+                                <property name="tooltip" translatable="yes">When enabled, you can change keyboard shortcuts for menu items by hitting a key combination while the menu item is highlighted.</property>
                                 <property name="label" translatable="yes">Use _dynamic keyboard shortcuts</property>
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
@@ -131,7 +131,7 @@
                               <widget class="GtkCheckButton" id="check-show-character-per-line">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="label" translatable="yes">_Show the number of character per line</property>
+                                <property name="label" translatable="yes">_Show the number of characters per line</property>
                                 <property name="use_underline">True</property>
                                 <property name="response_id">0</property>
                                 <property name="draw_indicator">True</property>

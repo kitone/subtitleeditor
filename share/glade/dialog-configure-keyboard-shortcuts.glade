@@ -119,7 +119,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label1">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">To edit a shortcut key, clic on the corresponding row and type a new accelerator, or press backspace to clear.</property>
+		  <property name="label" translatable="yes">To edit a shortcut key, click on the corresponding row and type a new accelerator, or press backspace to clear.</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>

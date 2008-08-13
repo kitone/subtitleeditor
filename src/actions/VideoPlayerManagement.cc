@@ -88,7 +88,7 @@ public:
 				Gtk::Action::create(
 					"video-player/menu-skip-backwards", 
 					Gtk::Stock::MEDIA_REWIND,
-					_("Skip _Backards")));
+					_("Skip _Backwards")));
 
 		action_group->add(
 				Gtk::Action::create(
