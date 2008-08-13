@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
 "PO-Revision-Date: 2008-05-15 07:27+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
@@ -85,21 +85,23 @@ msgstr "字幕间距"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
-msgid "Max line per subtitle"
+#, fuzzy
+msgid "Max lines per subtitle"
 msgstr "每条字幕最大行数"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-msgid "Maximum character per second:"
-msgstr "每秒最大字符数:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Maximum characters per line:"
 msgstr "每行最大字符数:"
 
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
+msgstr "每秒最大字符数:"
+
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+#, fuzzy
+msgid "Maximum number of lines per subtitle:"
 msgstr "每条字幕最大行数:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
@@ -113,8 +115,9 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr "字幕最小显示毫秒数:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
-msgstr "字幕间最小间隔毫秒数:"
+#: ../share/glade/dialog-preferences.glade.h:38
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "最小字幕间隔的毫秒数:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
@@ -141,8 +144,9 @@ msgid "Configure Keyboard Shortcuts"
 msgstr "配置快捷键"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
+#, fuzzy
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr "编辑快捷键, 点击对应的列并键入一个新的组合键, 或按退格键清除。"
 
@@ -366,13 +370,9 @@ msgstr "界面"
 msgid "Interval in seconds:"
 msgstr "间隔时间在几秒钟内:"
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "每秒最大字符数:"
-
-#: ../share/glade/dialog-preferences.glade.h:38
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "最小字幕间隔的毫秒数:"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
+msgstr "每条字幕最大行数:"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 msgid "Player Position:"
@@ -449,9 +449,10 @@ msgid "Waveform"
 msgstr "波形"
 
 #: ../share/glade/dialog-preferences.glade.h:56
+#, fuzzy
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr "启用之, 当菜单项目被突出时您就能通过按组合键改变菜单项的快捷键。"
 
 #: ../share/glade/dialog-preferences.glade.h:57
@@ -475,7 +476,8 @@ msgid "_Maximize window"
 msgstr "最大化窗口(_M)"
 
 #: ../share/glade/dialog-preferences.glade.h:62
-msgid "_Show the number of character per line"
+#, fuzzy
+msgid "_Show the number of characters per line"
 msgstr "显示每行字符的数字(_S)"
 
 #: ../share/glade/dialog-preferences.glade.h:63
@@ -668,7 +670,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>对齐</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
+#, fuzzy
+msgid "<b>Appearance</b>"
 msgstr "<b>外观</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
@@ -1502,7 +1505,8 @@ msgid "Play or make a pause"
 msgstr "播放或做停留"
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backards"
+#, fuzzy
+msgid "Skip _Backwards"
 msgstr "后退(_B)"
 
 #: ../src/actions/VideoPlayerManagement.cc:96
@@ -1905,7 +1909,8 @@ msgstr ""
 "  %s"
 
 #: ../src/gui/CheckErrorsUI.cc:100
-msgid "An error is detected when the number of character per second is ..."
+#, fuzzy
+msgid "An error is detected when the number of characters per second is ..."
 msgstr "错误被查出当每秒字符数的数字是..."
 
 #: ../src/gui/CheckErrorsUI.cc:119
@@ -2461,6 +2466,12 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr "窗口系统不支持OpenGL。"
+
+#~ msgid "Maximum character per second:"
+#~ msgstr "每秒最大字符数:"
+
+#~ msgid "Minimum gap between subtitle in mseconds:"
+#~ msgstr "字幕间最小间隔毫秒数:"
 
 #~ msgid "Play"
 #~ msgstr "播放"

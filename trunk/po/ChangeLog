@@ -1,5 +1,31 @@
 2008-08-13  kitone  <kitone@gna.org>
 
+	* cs.po:
+	* fr.po:
+	Update translations.
+
+	* ca.po:
+	* da.po:
+	* de.po:
+	* en_GB.po:
+	* es.po:
+	* gl.po:
+	* hu.po:
+	* it.po:
+	* nl.po:
+	* pl.po:
+	* pt.po:
+	* pt_BR.po:
+	* pt_PT.po:
+	* ru.po:
+	* sr.po:
+	* subtitleeditor.pot:
+	* tr.po:
+	* zh_CN.po:
+	Update.
+
+2008-08-13  kitone  <kitone@gna.org>
+
 	* fr.po:
 	Update by kitone.
 

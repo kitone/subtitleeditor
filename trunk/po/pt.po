@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.11-alpha2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
 "PO-Revision-Date: 2008-06-10 13:20+0000\n"
 "Last-Translator: Rui Araújo <ruka.araujo@gmail.com>\n"
 "Language-Team: \n"
@@ -94,23 +94,23 @@ msgstr "Reproduziar próxima legenda"
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
 #, fuzzy
-msgid "Max line per subtitle"
+msgid "Max lines per subtitle"
 msgstr "Reproduziar próxima legenda"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-#, fuzzy
-msgid "Maximum character per second:"
-msgstr "Caracteres por linha"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 #, fuzzy
 msgid "Maximum characters per line:"
 msgstr "Caracteres por linha"
 
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
+msgstr "Número máximo de caracteres por segundo:"
+
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+#, fuzzy
+msgid "Maximum number of lines per subtitle:"
 msgstr "Número máximo de linhas por legenda:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
@@ -124,8 +124,10 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr "Exibição mínima da legenda, em msegundos:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
-msgstr ""
+#: ../share/glade/dialog-preferences.glade.h:38
+#, fuzzy
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "Reproduziar próxima legenda"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
@@ -154,8 +156,9 @@ msgid "Configure Keyboard Shortcuts"
 msgstr "Configurar os Atalhos de Teclado"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
+#, fuzzy
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
 "Para editar uma tecla de atalho, clique na fila correspondente e escreva a "
@@ -402,14 +405,9 @@ msgstr "Interface"
 msgid "Interval in seconds:"
 msgstr "Intervalo em segundos"
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "Número máximo de caracteres por segundo:"
-
-#: ../share/glade/dialog-preferences.glade.h:38
-#, fuzzy
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Reproduziar próxima legenda"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
+msgstr "Número máximo de linhas por legenda:"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 msgid "Player Position:"
@@ -491,7 +489,7 @@ msgstr "Salvar Wav"
 #: ../share/glade/dialog-preferences.glade.h:56
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:57
@@ -518,7 +516,7 @@ msgstr "Maximizar janela"
 
 #: ../share/glade/dialog-preferences.glade.h:62
 #, fuzzy
-msgid "_Show the number of character per line"
+msgid "_Show the number of characters per line"
 msgstr "Esta coluna representa o número de caracteres por linha."
 
 #: ../share/glade/dialog-preferences.glade.h:63
@@ -709,7 +707,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Alinhamento</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
+#, fuzzy
+msgid "<b>Appearance</b>"
 msgstr "<b>Aparência</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
@@ -1608,8 +1607,9 @@ msgid "Play or make a pause"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backards"
-msgstr ""
+#, fuzzy
+msgid "Skip _Backwards"
+msgstr "Mover Legenda"
 
 #: ../src/actions/VideoPlayerManagement.cc:96
 #: ../src/actions/VideoPlayerManagement.cc:131
@@ -2032,7 +2032,7 @@ msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:100
 #, fuzzy
-msgid "An error is detected when the number of character per second is ..."
+msgid "An error is detected when the number of characters per second is ..."
 msgstr "Esta coluna representa o número de caracteres por linha."
 
 #: ../src/gui/CheckErrorsUI.cc:119
@@ -2599,6 +2599,10 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~ msgid "Maximum character per second:"
+#~ msgstr "Caracteres por linha"
+
+#, fuzzy
 #~ msgid "Play line:"
 #~ msgstr "Reproduzir a seleção"
 
@@ -2746,10 +2750,6 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "Move Forward"
-#~ msgstr "Mover Legenda"
-
-#, fuzzy
-#~ msgid "Move Backwards"
 #~ msgstr "Mover Legenda"
 
 #, fuzzy

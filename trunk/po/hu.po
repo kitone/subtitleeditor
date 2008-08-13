@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.0alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
 "PO-Revision-Date: 2008-05-29 18:37+0000\n"
 "Last-Translator: Rébeli-Szabó Tamás <Unknown>\n"
 "Language-Team: \n"
@@ -82,21 +82,23 @@ msgstr "Kevés idő a két felirat között"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
-msgid "Max line per subtitle"
+#, fuzzy
+msgid "Max lines per subtitle"
 msgstr "Sorok maximális száma a feliratban"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-msgid "Maximum character per second:"
-msgstr "Maximális karakterszám másodpercenként:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Maximum characters per line:"
 msgstr "Maximális karakterszám soronként:"
 
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
+msgstr "Maximális karakterszám másodpercenként:"
+
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+#, fuzzy
+msgid "Maximum number of lines per subtitle:"
 msgstr "Sorok maximális száma a feliratban"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
@@ -110,7 +112,9 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr "Felirat láthatóságának minimális ideje millisec-ben:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
+#: ../share/glade/dialog-preferences.glade.h:38
+#, fuzzy
+msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Minimális szünet két felirat között millisec-ben:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
@@ -141,7 +145,7 @@ msgstr "Dinamikus gyorsbillentyűk használata"
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
 #, fuzzy
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
 "Egy gyorsbillentyű szerkesztéséhez kattints a hozzátartozó sorra és add meg "
@@ -370,14 +374,9 @@ msgstr "Felület"
 msgid "Interval in seconds:"
 msgstr "Intervallum másodpercekben:"
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "Maximális karakterszám másodpercenként:"
-
-#: ../share/glade/dialog-preferences.glade.h:38
-#, fuzzy
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Minimális szünet két felirat között millisec-ben:"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
+msgstr "Sorok maximális száma a feliratban"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
@@ -458,9 +457,10 @@ msgid "Waveform"
 msgstr "Hanghullám"
 
 #: ../share/glade/dialog-preferences.glade.h:56
+#, fuzzy
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr ""
 "Amikor engedélyezett, megváltoztathatod a gyorsbillentyűket azzal, hogy "
 "leütöd az újat, amíg világít a menü."
@@ -486,7 +486,8 @@ msgid "_Maximize window"
 msgstr "Ablak maximalizálása"
 
 #: ../share/glade/dialog-preferences.glade.h:62
-msgid "_Show the number of character per line"
+#, fuzzy
+msgid "_Show the number of characters per line"
 msgstr "Karakterek soronkénti számának mutatása."
 
 #: ../share/glade/dialog-preferences.glade.h:63
@@ -671,7 +672,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Igazítás</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
+#, fuzzy
+msgid "<b>Appearance</b>"
 msgstr "<b>Megjelenés</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
@@ -1567,8 +1569,9 @@ msgid "Play or make a pause"
 msgstr "Lejátszás vagy szünet"
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backards"
-msgstr ""
+#, fuzzy
+msgid "Skip _Backwards"
+msgstr "Hátra"
 
 #: ../src/actions/VideoPlayerManagement.cc:96
 #: ../src/actions/VideoPlayerManagement.cc:131
@@ -2002,7 +2005,7 @@ msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:100
 #, fuzzy
-msgid "An error is detected when the number of character per second is ..."
+msgid "An error is detected when the number of characters per second is ..."
 msgstr "Karakterek soronkénti számának mutatása."
 
 #: ../src/gui/CheckErrorsUI.cc:119
@@ -2580,6 +2583,12 @@ msgid ""
 "Please try with another renderer."
 msgstr ""
 
+#~ msgid "Maximum character per second:"
+#~ msgstr "Maximális karakterszám másodpercenként:"
+
+#~ msgid "Minimum gap between subtitle in mseconds:"
+#~ msgstr "Minimális szünet két felirat között millisec-ben:"
+
 #~ msgid "Current time:"
 #~ msgstr "Aktuális idő:"
 
@@ -2747,9 +2756,6 @@ msgstr ""
 
 #~ msgid "Move Forward"
 #~ msgstr "Előre"
-
-#~ msgid "Move Backwards"
-#~ msgstr "Hátra"
 
 #, fuzzy
 #~ msgid "Check _Errors"

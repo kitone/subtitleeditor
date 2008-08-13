@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.21.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
-"PO-Revision-Date: 2008-08-12 16:39+0200\n"
-"Last-Translator: Petr Pisar <petr.pisar@atlas.cz>\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
+"PO-Revision-Date: 2008-08-13 19:04+0100\n"
+"Last-Translator: kitone <kitone@gna.org>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,21 +83,21 @@ msgstr "Prodleva mezi titulky"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
-msgid "Max line per subtitle"
+msgid "Max lines per subtitle"
 msgstr "Max. řádek na titulek"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-msgid "Maximum character per second:"
-msgstr "Maximum znaků za sekundu:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Maximum characters per line:"
 msgstr "Maximum znaků na řádku:"
 
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
+msgstr "Maximum znaků za sekundu:"
+
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+msgid "Maximum number of lines per subtitle:"
 msgstr "Maximální počet řádek na titulek:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
@@ -111,8 +111,9 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr "Maximální doba zobrazení titulku v ms:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
-msgstr "Minimální prodleva mezi titulky v ms:"
+#: ../share/glade/dialog-preferences.glade.h:38
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "Minimální prodleva mezi titulky v milisekundách:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
@@ -140,7 +141,7 @@ msgstr "Nastavit klávesové zkratky"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
 "Klávesovou zkratku upravíte tak, že kliknete do odpovídajícího řádku a "
@@ -363,13 +364,9 @@ msgstr "Rozhraní"
 msgid "Interval in seconds:"
 msgstr "Interval v sekundách:"
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "Maximum znaků za sekundu:"
-
-#: ../share/glade/dialog-preferences.glade.h:38
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Minimální prodleva mezi titulky v milisekundách:"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
+msgstr "Maximální počet řádek na titulek:"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 msgid "Player Position:"
@@ -446,7 +443,7 @@ msgstr "Vlnovka"
 #: ../share/glade/dialog-preferences.glade.h:56
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr ""
 "Pokud je volba povolena, můžete měnit klávesové zkratky pro položky menu "
 "stiskem klávesové kombinace, když je položka menu zvýrazněna."
@@ -472,7 +469,7 @@ msgid "_Maximize window"
 msgstr "_Maximalizovat okno"
 
 #: ../share/glade/dialog-preferences.glade.h:62
-msgid "_Show the number of character per line"
+msgid "_Show the number of characters per line"
 msgstr "_Zobrazit počet znaků na řádce"
 
 #: ../share/glade/dialog-preferences.glade.h:63
@@ -657,7 +654,7 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Zarovnání</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
+msgid "<b>Appearance</b>"
 msgstr "<b>Vzhled</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
@@ -1479,7 +1476,7 @@ msgid "Play or make a pause"
 msgstr "Přehrávání nebo pauza"
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backards"
+msgid "Skip _Backwards"
 msgstr "Skok zpě_t"
 
 #: ../src/actions/VideoPlayerManagement.cc:96
@@ -1736,6 +1733,7 @@ msgid "Save Document Failed."
 msgstr "Uložení dokumentu se nezdařilo."
 
 #: ../src/DocumentSystem.cc:192
+#, c-format
 msgid "Untitled %d"
 msgstr "Nepojmenován %d"
 
@@ -1881,7 +1879,7 @@ msgstr ""
 "%s"
 
 #: ../src/gui/CheckErrorsUI.cc:100
-msgid "An error is detected when the number of character per second is ..."
+msgid "An error is detected when the number of characters per second is ..."
 msgstr "Chyba bude nahlášena, když počet znaků za sekundu je…"
 
 #: ../src/gui/CheckErrorsUI.cc:119
@@ -2442,3 +2440,9 @@ msgid ""
 msgstr ""
 "Okenní systém nepodporuje OpenGL.\n"
 "Prosím, zkuste jiný způsob vykreslování."
+
+#~ msgid "Maximum character per second:"
+#~ msgstr "Maximum znaků za sekundu:"
+
+#~ msgid "Minimum gap between subtitle in mseconds:"
+#~ msgstr "Minimální prodleva mezi titulky v ms:"
