@@ -1,5 +1,13 @@
 2008-08-13  kitone  <kitone@gna.org>
 
+	* src/DocumentSystem.cc:
+	Fix: Untitled document translatable.
+
+	* src/gui/DialogFileChooser.cc:
+	Fix: Add translation string.
+
+2008-08-13  kitone  <kitone@gna.org>
+
 	* Makefile.am:
 	* autogen.sh:
 	* configure.in:

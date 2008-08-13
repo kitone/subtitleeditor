@@ -189,13 +189,15 @@ Glib::ustring DocumentSystem::create_untitled_name()
 {
 	se_debug(SE_DEBUG_PLUGINS);
 
+	const gchar *untitled = _("Untitled %d");
+
 	unsigned int i=1;
 		
-	while(check_if_document_name_exist("Untitled-" + to_string(i)))
+	while(check_if_document_name_exist(build_message(untitled, i)))
 	{
 		++i;
 	}
-	return "Untitled-" + to_string(i);
+	return build_message(untitled, i);
 }
 
 /*
