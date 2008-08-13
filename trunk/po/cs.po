@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.21.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-12 13:59+0200\n"
+"POT-Creation-Date: 2008-08-13 16:39+0200\n"
 "PO-Revision-Date: 2008-08-12 13:59+0200\n"
 "Last-Translator: Petr Pisar <petr.pisar@atlas.cz>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
@@ -792,6 +792,10 @@ msgstr "Správce zobrazení"
 #: ../share/subtitleeditor.desktop.in.h:2
 msgid "Subtitle Editor"
 msgstr "Titulkový editor"
+
+#: ../share/subtitleeditor.desktop.in.h:1
+msgid "A subtitle editor based on GStreamer and Gtk+"
+msgstr "Titulkový editor založený na GStreameru and Gtk+"
 
 #. comments
 #: ../src/actions/About.cc:86
@@ -1731,6 +1735,11 @@ msgstr "Nelze otevřít soubor <i>%s</i> za použití kódování <i>%s</i>."
 msgid "Save Document Failed."
 msgstr "Uložení dokumentu se nezdařilo."
 
+#: ../src/DocumentSystem.cc:192
+#, fuzzy, c-format
+msgid "Untitled %d"
+msgstr "Nepojmenováno"
+
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
 msgid "Western"
@@ -2012,13 +2021,18 @@ msgstr "Video"
 msgid "Audio"
 msgstr "Zvuk"
 
-#: ../src/gui/DialogFileChooser.cc:731
+#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
 msgid "ALL"
 msgstr "Všechny"
 
 #: ../src/gui/DialogFileChooser.cc:762
 msgid "Open Waveform"
 msgstr "Otevřít vlnovku"
+
+#: ../src/gui/DialogFileChooser.cc:768
+#, fuzzy
+msgid "Waveform (*.wf)"
+msgstr "Vlnovka"
 
 #: ../src/gui/MenuBar.cc:124
 msgid "_File"
@@ -2430,7 +2444,3 @@ msgid ""
 msgstr ""
 "Okenní systém nepodporuje OpenGL.\n"
 "Prosím, zkuste jiný způsob vykreslování."
-
-#: ../share/subtitleeditor.desktop.in.h:1
-msgid "A subtitle editor based on GStreamer and Gtk+"
-msgstr "Titulkový editor založený na GStreameru and Gtk+"

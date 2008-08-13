@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.11-alpha2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-11 18:09+0200\n"
+"POT-Creation-Date: 2008-08-13 16:39+0200\n"
 "PO-Revision-Date: 2008-03-25 12:39+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: \n"
@@ -834,9 +834,14 @@ msgid "View Manager"
 msgstr ""
 
 #: ../share/glade/subtitleeditor.glade.h:1
+#: ../share/subtitleeditor.desktop.in.h:2
 #, fuzzy
 msgid "Subtitle Editor"
 msgstr "editor de legenda"
+
+#: ../share/subtitleeditor.desktop.in.h:1
+msgid "A subtitle editor based on GStreamer and Gtk+"
+msgstr ""
 
 #. comments
 #: ../src/actions/About.cc:86
@@ -1871,6 +1876,11 @@ msgstr ""
 msgid "Save Document Failed."
 msgstr "Falha ao salvar o documento."
 
+#: ../src/DocumentSystem.cc:192
+#, c-format
+msgid "Untitled %d"
+msgstr ""
+
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
 msgid "Western"
@@ -2142,13 +2152,18 @@ msgstr "_Video"
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:731
+#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
 msgid "ALL"
 msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:762
 #, fuzzy
 msgid "Open Waveform"
+msgstr "Salvar Wav"
+
+#: ../src/gui/DialogFileChooser.cc:768
+#, fuzzy
+msgid "Waveform (*.wf)"
 msgstr "Salvar Wav"
 
 #: ../src/gui/MenuBar.cc:124

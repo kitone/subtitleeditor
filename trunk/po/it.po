@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-11 18:09+0200\n"
+"POT-Creation-Date: 2008-08-13 16:39+0200\n"
 "PO-Revision-Date: 2008-03-25 12:38+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -801,8 +801,13 @@ msgid "View Manager"
 msgstr ""
 
 #: ../share/glade/subtitleeditor.glade.h:1
+#: ../share/subtitleeditor.desktop.in.h:2
 msgid "Subtitle Editor"
 msgstr "Subtitle Editor"
+
+#: ../share/subtitleeditor.desktop.in.h:1
+msgid "A subtitle editor based on GStreamer and Gtk+"
+msgstr ""
 
 #. comments
 #: ../src/actions/About.cc:86
@@ -1823,6 +1828,11 @@ msgstr "Impossibile aprire il file <i>%s</i> usando la codifica <i>%s</i>."
 msgid "Save Document Failed."
 msgstr "Salvataggio documento fallito."
 
+#: ../src/DocumentSystem.cc:192
+#, c-format
+msgid "Untitled %d"
+msgstr ""
+
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
 msgid "Western"
@@ -2106,13 +2116,18 @@ msgstr "_Video:"
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:731
+#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
 msgid "ALL"
 msgstr ""
 
 #: ../src/gui/DialogFileChooser.cc:762
 msgid "Open Waveform"
 msgstr "Apri Waveform"
+
+#: ../src/gui/DialogFileChooser.cc:768
+#, fuzzy
+msgid "Waveform (*.wf)"
+msgstr "Waveform"
 
 #: ../src/gui/MenuBar.cc:124
 msgid "_File"
