@@ -1,12 +1,13 @@
-# Frensh translation of subtitleeditor.
-# Copyright (C) YEAR Subtitle Editor Team
+# French translation of subtitleeditor.
+# Copyright (C) 2008 Subtitle Editor Team
 # This file is distributed under the same license as the subtitleeditor package.
 #
+# kitone <kitone@gna.org>
 # Guillaume de Rugy <guillaume.derugy@free.fr>.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: subtitleeditor 0.10\n"
+"Project-Id-Version: subtitleeditor 0.22\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-13 16:39+0200\n"
 "PO-Revision-Date: 2008-08-13 16:38+0100\n"
