@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.12.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
 "PO-Revision-Date: 2008-06-26 13:54+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <LL@li.org>\n"
@@ -93,23 +93,23 @@ msgstr "Speel volgende ondertitel"
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
 #, fuzzy
-msgid "Max line per subtitle"
+msgid "Max lines per subtitle"
 msgstr "Speel volgende ondertitel"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-#, fuzzy
-msgid "Maximum character per second:"
-msgstr "Tekens per regel"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 #, fuzzy
 msgid "Maximum characters per line:"
 msgstr "Tekens per regel"
 
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
+msgstr ""
+
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+#, fuzzy
+msgid "Maximum number of lines per subtitle:"
 msgstr "Maximum aantal regels per ondertitiel:"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
@@ -123,8 +123,10 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
-msgstr ""
+#: ../share/glade/dialog-preferences.glade.h:38
+#, fuzzy
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "Speel volgende ondertitel"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
@@ -151,8 +153,9 @@ msgid "Configure Keyboard Shortcuts"
 msgstr "Sneltoetsen configureren"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
+#, fuzzy
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
 "Om een sneltoets te bewerken, klik op de corresponderende rij en voer een "
@@ -398,14 +401,9 @@ msgstr ""
 msgid "Interval in seconds:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:38
-#, fuzzy
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Speel volgende ondertitel"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
+msgstr "Maximum aantal regels per ondertitiel:"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 msgid "Player Position:"
@@ -488,7 +486,7 @@ msgstr "Opslaan golfpatroon"
 #: ../share/glade/dialog-preferences.glade.h:56
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:57
@@ -515,7 +513,7 @@ msgstr "Venster maximaliseren"
 
 #: ../share/glade/dialog-preferences.glade.h:62
 #, fuzzy
-msgid "_Show the number of character per line"
+msgid "_Show the number of characters per line"
 msgstr "Het aantal tekens per regel."
 
 #: ../share/glade/dialog-preferences.glade.h:63
@@ -706,7 +704,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Uitlijning</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
+#, fuzzy
+msgid "<b>Appearance</b>"
 msgstr "<b>Uiterlijk</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
@@ -1604,7 +1603,7 @@ msgid "Play or make a pause"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backards"
+msgid "Skip _Backwards"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:96
@@ -2028,7 +2027,7 @@ msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:100
 #, fuzzy
-msgid "An error is detected when the number of character per second is ..."
+msgid "An error is detected when the number of characters per second is ..."
 msgstr "Het aantal tekens per regel."
 
 #: ../src/gui/CheckErrorsUI.cc:119
@@ -2593,6 +2592,10 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Maximum character per second:"
+#~ msgstr "Tekens per regel"
 
 #, fuzzy
 #~ msgid "Play line:"

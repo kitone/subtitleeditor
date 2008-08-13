@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.11-alpha2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
 "PO-Revision-Date: 2006-11-20 09:00+0100\n"
 "Last-Translator: Joel Calado <joelcalado@gmail.com>\n"
 "Language-Team: \n"
@@ -91,24 +91,24 @@ msgstr "Reproduziar próxima legenda"
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
 #, fuzzy
-msgid "Max line per subtitle"
+msgid "Max lines per subtitle"
 msgstr "Reproduziar próxima legenda"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-#, fuzzy
-msgid "Maximum character per second:"
-msgstr "Caracteres por linha"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 #, fuzzy
 msgid "Maximum characters per line:"
 msgstr "Caracteres por linha"
 
-#: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
 msgstr ""
+
+#: ../share/glade/dialog-check-errors-preferences.glade.h:8
+#, fuzzy
+msgid "Maximum number of lines per subtitle:"
+msgstr "Reproduziar próxima legenda"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
 #: ../share/glade/dialog-preferences.glade.h:36
@@ -121,8 +121,10 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
-msgstr ""
+#: ../share/glade/dialog-preferences.glade.h:38
+#, fuzzy
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "Reproduziar próxima legenda"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
@@ -150,7 +152,7 @@ msgstr ""
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
 
@@ -393,14 +395,9 @@ msgstr ""
 msgid "Interval in seconds:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
 msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:38
-#, fuzzy
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Reproduziar próxima legenda"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 #, fuzzy
@@ -486,7 +483,7 @@ msgstr "Salvar Wav"
 #: ../share/glade/dialog-preferences.glade.h:56
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:57
@@ -513,7 +510,7 @@ msgstr "Maximizar janela"
 
 #: ../share/glade/dialog-preferences.glade.h:62
 #, fuzzy
-msgid "_Show the number of character per line"
+msgid "_Show the number of characters per line"
 msgstr "Esta coluna representa o número de caracteres por linha."
 
 #: ../share/glade/dialog-preferences.glade.h:63
@@ -704,7 +701,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Alinhamento</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
+#, fuzzy
+msgid "<b>Appearance</b>"
 msgstr "<b>Aparência</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
@@ -1604,7 +1602,7 @@ msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:91
 #, fuzzy
-msgid "Skip _Backards"
+msgid "Skip _Backwards"
 msgstr "Mover Legenda"
 
 #: ../src/actions/VideoPlayerManagement.cc:96
@@ -2037,7 +2035,7 @@ msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:100
 #, fuzzy
-msgid "An error is detected when the number of character per second is ..."
+msgid "An error is detected when the number of characters per second is ..."
 msgstr "Esta coluna representa o número de caracteres por linha."
 
 #: ../src/gui/CheckErrorsUI.cc:119
@@ -2602,6 +2600,10 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Maximum character per second:"
+#~ msgstr "Caracteres por linha"
 
 #, fuzzy
 #~ msgid "Current time:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
 "PO-Revision-Date: 2008-06-18 19:32+0000\n"
 "Last-Translator: Susana Sotelo Docío <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -82,21 +82,21 @@ msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
-msgid "Max line per subtitle"
+msgid "Max lines per subtitle"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-msgid "Maximum character per second:"
-msgstr ""
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Maximum characters per line:"
 msgstr ""
 
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
+msgstr ""
+
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+msgid "Maximum number of lines per subtitle:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
@@ -110,7 +110,8 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
+#: ../share/glade/dialog-preferences.glade.h:38
+msgid "Minimum gap between subtitles in mseconds:"
 msgstr ""
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
@@ -138,8 +139,9 @@ msgid "Configure Keyboard Shortcuts"
 msgstr "Configurar atallos de teclado"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
+#, fuzzy
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
 "Para modificar un atallo de teclado faga clic na fila correspondente e "
@@ -362,12 +364,8 @@ msgstr ""
 msgid "Interval in seconds:"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr ""
-
-#: ../share/glade/dialog-preferences.glade.h:38
-msgid "Minimum gap between subtitles in mseconds:"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:39
@@ -445,7 +443,7 @@ msgstr ""
 #: ../share/glade/dialog-preferences.glade.h:56
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:57
@@ -469,7 +467,7 @@ msgid "_Maximize window"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:62
-msgid "_Show the number of character per line"
+msgid "_Show the number of characters per line"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:63
@@ -652,8 +650,9 @@ msgid "<b>Alignment</b>"
 msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
-msgstr ""
+#, fuzzy
+msgid "<b>Appearance</b>"
+msgstr "<b>Xeral</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
 msgid "<b>Border</b>"
@@ -1460,7 +1459,7 @@ msgid "Play or make a pause"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backards"
+msgid "Skip _Backwards"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:96
@@ -1860,7 +1859,7 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:100
-msgid "An error is detected when the number of character per second is ..."
+msgid "An error is detected when the number of characters per second is ..."
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:119

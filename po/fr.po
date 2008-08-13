@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 16:39+0200\n"
-"PO-Revision-Date: 2008-08-13 16:38+0100\n"
+"POT-Creation-Date: 2008-08-13 19:05+0200\n"
+"PO-Revision-Date: 2008-08-13 19:04+0100\n"
 "Last-Translator: kitone <kitone@gna.org>\n"
 "Language-Team: French <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -83,21 +83,21 @@ msgstr "Espace entre les sous-titres"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:5
 #: ../src/gui/CheckErrorsUI.cc:286
-msgid "Max line per subtitle"
+msgid "Max lines per subtitle"
 msgstr "Nombre maximum de lignes par sous-titre :"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
-msgid "Maximum character per second:"
-msgstr "Nombre maximum de caractères par seconde :"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Maximum characters per line:"
 msgstr "Nombre maximum de caractères par ligne :"
 
+#: ../share/glade/dialog-check-errors-preferences.glade.h:7
+#: ../share/glade/dialog-preferences.glade.h:34
+msgid "Maximum characters per second:"
+msgstr "Nombre maximum de caractères par seconde :"
+
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum number of line per subtitle:"
+msgid "Maximum number of lines per subtitle:"
 msgstr "Nombre maximum de lignes par sous-titre :"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
@@ -111,7 +111,8 @@ msgid "Minimum display of the subtitle in mseconds:"
 msgstr "Temps d'affichage minimum du sous-titre en millisecondes :"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
-msgid "Minimum gap between subtitle in mseconds:"
+#: ../share/glade/dialog-preferences.glade.h:38
+msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Intervalle minimum entre les sous-titres en millisecondes :"
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
@@ -140,7 +141,7 @@ msgstr "Configurer les raccourcis clavier"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
 msgid ""
-"To edit a shortcut key, clic on the corresponding row and type a new "
+"To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
 "Pour éditer une touche de raccourci, cliquer sur la ligne correspondante et "
@@ -365,13 +366,9 @@ msgstr "Interface"
 msgid "Interval in seconds:"
 msgstr "Intervalle en secondes :"
 
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "Nombre maximum de caractères par seconde :"
-
-#: ../share/glade/dialog-preferences.glade.h:38
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Intervalle minimum entre les sous-titres en millisecondes :"
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum number of line per subtitle:"
+msgstr "Nombre maximum de lignes par sous-titre :"
 
 #: ../share/glade/dialog-preferences.glade.h:39
 msgid "Player Position:"
@@ -450,7 +447,7 @@ msgstr "Onde"
 #: ../share/glade/dialog-preferences.glade.h:56
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while  the menu item is highlighted."
+"key combination while the menu item is highlighted."
 msgstr ""
 "Quand activé, vous pouvez changer les raccourcis clavier pour les éléments "
 "de menu en tapant une combinaison de touches quand l'élément de menu est en "
@@ -477,8 +474,8 @@ msgid "_Maximize window"
 msgstr "_Maximiser la fenêtre"
 
 #: ../share/glade/dialog-preferences.glade.h:62
-msgid "_Show the number of character per line"
-msgstr "_Afficher le nombre de caractère par ligne"
+msgid "_Show the number of characters per line"
+msgstr "_Afficher le nombre de caractères par ligne"
 
 #: ../share/glade/dialog-preferences.glade.h:63
 msgid "_Use Ctrl+Enter keys to confirm the change"
@@ -662,7 +659,7 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Alignement</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearence</b>"
+msgid "<b>Appearance</b>"
 msgstr "<b>Apparence</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:3
@@ -1498,7 +1495,7 @@ msgid "Play or make a pause"
 msgstr "Jouer ou faire une pause"
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backards"
+msgid "Skip _Backwards"
 msgstr "Retour_Rapide"
 
 #: ../src/actions/VideoPlayerManagement.cc:96
@@ -1903,8 +1900,8 @@ msgstr ""
 "%s"
 
 #: ../src/gui/CheckErrorsUI.cc:100
-msgid "An error is detected when the number of character per second is ..."
-msgstr "Une erreur est détecté si le nombre de caractère par seconde est ..."
+msgid "An error is detected when the number of characters per second is ..."
+msgstr "Une erreur est détecté si le nombre de caractères par seconde est ..."
 
 #: ../src/gui/CheckErrorsUI.cc:119
 #, c-format
@@ -2463,6 +2460,12 @@ msgid ""
 msgstr ""
 "Le gestionnaire de fenêtre ne supporte pas l'OpenGL.\n"
 "Veuillez essayer un autre rendu"
+
+#~ msgid "Maximum character per second:"
+#~ msgstr "Nombre maximum de caractères par seconde :"
+
+#~ msgid "Minimum gap between subtitle in mseconds:"
+#~ msgstr "Intervalle minimum entre les sous-titres en millisecondes :"
 
 #~ msgid "Untitled-"
 #~ msgstr "Sans titre "
