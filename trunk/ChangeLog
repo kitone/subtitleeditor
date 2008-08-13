@@ -1,3 +1,9 @@
+2008-08-13  kitone  <kitone@gna.org>
+
+	* acinclude.m4:
+	Adds missing files from autoconf-archive for the AX_CHECK_GL macro.
+	Patches by Luboš Staněk.
+
 2008-08-12  kitone  <kitone@gna.org>
 
 	* NEWS:

@@ -1,3 +1,11 @@
+2008-08-13  kitone  <kitone@gna.org>
+
+	* Makefile.in:
+	* acx_pthread.m4:
+	* ax_lang_compiler_ms.m4:
+	Adds missing files from autoconf-archive for the AX_CHECK_GL macro.
+	Patches by Luboš Staněk.
+
 2008-06-12  kitone  <kitone@gna.org>
 
 	* Makefile.in:
