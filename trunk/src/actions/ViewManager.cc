@@ -190,6 +190,8 @@ public:
 	DialogViewManager(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Dialog(cobject)
 	{
+		utility::set_transient_parent(*this);
+
 		refGlade->get_widget("treeview", m_treeview);
 		refGlade->get_widget("button-add", m_buttonAdd);
 		refGlade->get_widget("button-remove", m_buttonRemove);
