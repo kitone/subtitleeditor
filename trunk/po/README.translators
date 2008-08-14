@@ -1,0 +1,26 @@
+Translating subtitleeditor
+--------------------------
+
+The original language of subtitleeditor is US English. 
+The character set of the .po file must be UTF-8.
+
+
+First, please check the latest list of existing translations at the 
+subversion trunk.
+http://svn.gna.org/viewcvs/subtitleeditor/trunk/po/
+
+
+To start a new translation:
+cd subtitleeditor/po
+intltool-update --pot
+msginit -l XX # where XX is your locale code
+then start translating the strings in XX.po (or whatever your locale is).
+
+
+To update an existing translation:
+cd subtitleeditor/po
+intltool-update XX
+Edit the XX.po file.
+
+
+Send your translation by email to <kitone at gna dot org>
