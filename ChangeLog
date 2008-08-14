@@ -1,5 +1,13 @@
 2008-08-14  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-preferences.glade:
+	* share/glade/dialog-spell-checking.glade:
+	* share/glade/dialog-style-editor.glade:
+	* src/actions/ViewManager.cc:
+	Fix: Dialog parent.
+
+2008-08-14  kitone  <kitone@gna.org>
+
 	* src/PluginSystem.cc:
 	* src/gui/Application.cc:
 	Improve the speed accessibility of the menu at launch.
