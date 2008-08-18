@@ -46,7 +46,7 @@ public:
 				Gtk::Action::create("menu-external-video-player", _("_Preview")));
 
 		action_group->add(
-				Gtk::Action::create("external-video-player/open-video", Gtk::Stock::OPEN, _("_Open Movie"), _("Open movie with external video player")), Gtk::AccelKey(""),
+				Gtk::Action::create("external-video-player/open-video", Gtk::Stock::OPEN, _("_Open Movie"), _("Open movie with external video player")), Gtk::AccelKey("<Shift><Control>P"),
 					sigc::mem_fun(*this, &ExternalVideoPlayer::on_open_movie));
 
 		action_group->add(
