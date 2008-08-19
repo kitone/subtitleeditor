@@ -75,14 +75,6 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	//[waveform]
 	config["waveform"]["zoom"] = "1";
 	config["waveform"]["scale"] = "1";
-	config["waveform"]["color-background"] = "#E6E6E6FF";
-	config["waveform"]["color-play-line"] = "#000000FF";
-	config["waveform"]["color-text"] = "#000000FF";
-	config["waveform"]["color-wave"] = "#00B300FF";
-	config["waveform"]["color-wave-fill"] = "#007F00FF";
-	config["waveform"]["color-marker"] = "#6666667F";
-	config["waveform"]["color-marker-hightlight"] = "#4C7FCF7F";
-	config["waveform"]["color-marker-invalid"] = "#FF00007F";
 	config["waveform"]["display-background"] = "false";
 	config["waveform"]["display-waveform-fill"] = "true";
 	config["waveform"]["display-subtitle-text"] = "true";
@@ -91,6 +83,17 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["waveform"]["respect-timing"] = "true";
 	config["waveform"]["display"] = "false";
 	config["waveform"]["renderer"] = "cairo";
+
+	//[waveform-renderer]
+	config["waveform-renderer"]["display-subtitle-text"]="true";
+	config["waveform-renderer"]["color-background"]="#4C4C4CFF";
+	config["waveform-renderer"]["color-wave"]="#99CC4CFF";
+	config["waveform-renderer"]["color-wave-fill"]="#FFFFFFFF";
+	config["waveform-renderer"]["color-subtitle"]="#994C1999";
+	config["waveform-renderer"]["color-subtitle-selected"]="#E57F4C99";
+	config["waveform-renderer"]["color-subtitle-invalid"]="#FFFF00CC";
+	config["waveform-renderer"]["color-text"]="#FFFFFFFF";
+	config["waveform-renderer"]["color-player-position"]="#FFFFFFFF";
 
 	//[interface]
 	config["interface"]["use-dynamic-keyboard-shortcuts"] = "true";
