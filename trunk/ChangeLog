@@ -1,3 +1,14 @@
+2008-08-19  kitone  <kitone@gna.org>
+
+	* src/SubtitleView.cc:
+	* src/SubtitleView.h:
+	Add the option "start_editing" to function "select".
+	Making the column heading as bold if it has the focus.
+
+	* src/Subtitles.cc:
+	* src/Subtitles.h:
+	Add the option "start_editing" to function "select". 
+
 2008-08-18  kitone  <kitone@gna.org>
 
 	* src/actions/ExternalVideoPlayer.cc:

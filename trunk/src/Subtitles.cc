@@ -350,9 +350,9 @@ Subtitle Subtitles::get_first_selected()
 /*
  *
  */
-void Subtitles::select(const Subtitle &sub)
+void Subtitles::select(const Subtitle &sub, bool start_editing)
 {
-	m_document.get_subtitle_view()->select_and_set_cursor(sub.m_iter);
+	m_document.get_subtitle_view()->select_and_set_cursor(sub.m_iter, start_editing);
 }
 
 /*
