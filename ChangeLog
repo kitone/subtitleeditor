@@ -1,5 +1,10 @@
 2008-08-19  kitone  <kitone@gna.org>
 
+	* src/actions/DocumentManagement.cc:
+	RecentChooserMenu show tips.
+
+2008-08-19  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Change dependence of gtkmm >= 2.12.
 

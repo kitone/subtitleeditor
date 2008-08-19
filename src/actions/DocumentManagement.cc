@@ -701,6 +701,7 @@ protected:
 		g_return_if_fail(item);
 
 		Gtk::RecentChooserMenu *rc = manage(new Gtk::RecentChooserMenu(Gtk::RecentManager::get_default()));
+		rc->set_show_tips(true);
 		rc->set_show_not_found(false);
 		rc->set_sort_type(Gtk::RECENT_SORT_MRU);
 		
