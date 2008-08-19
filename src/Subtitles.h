@@ -117,7 +117,7 @@ public:
 	/*
 	 *
 	 */
-	void select(const Subtitle &sub);
+	void select(const Subtitle &sub, bool start_editing=false);
 
 	/*
 	 *

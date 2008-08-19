@@ -26,7 +26,6 @@
 
 #include <gtkmm/treeview.h>
 #include <libglademm.h>
-//#include "SubtitleModel.h"
 #include "StyleModel.h"
 #include "Config.h"
 
@@ -45,12 +44,12 @@ public:
   /*
    *	return first iter select
    */
-  Gtk::TreeIter   getSelected();
+	Gtk::TreeIter   getSelected();
 
 	/*
 	 *	select and set the cursor on iter
 	 */
-  void select_and_set_cursor(const Gtk::TreeIter &iter);
+	void select_and_set_cursor(const Gtk::TreeIter &iter, bool start_editing=false);
 
 	/*
 	 * This is a static function. 
@@ -67,19 +66,19 @@ protected:
    */
 	void createColumns();
 
-  void createColumnNum();
+	void createColumnNum();
 	void createColumnLayer();
-  void createColumnStart();
-  void createColumnEnd();
-  void createColumnDuration();
+	void createColumnStart();
+	void createColumnEnd();
+	void createColumnDuration();
 	void createColumnStyle();
-  void createColumnName();
-  void createColumnMarginR();
-  void createColumnMarginL();
-  void createColumnMarginV();
+	void createColumnName();
+	void createColumnMarginR();
+	void createColumnMarginL();
+	void createColumnMarginV();
 	void createColumnEffect();
-  void createColumnText();
-  void createColumnCPS();
+	void createColumnText();
+	void createColumnCPS();
 	void createColumnTranslation();
 	void createColumnNote();
  
@@ -97,50 +96,49 @@ protected:
 	/*
 	 *
 	 */
-  void on_edited_layer(const Glib::ustring &path, const Glib::ustring &newtext);
+	void on_edited_layer(const Glib::ustring &path, const Glib::ustring &newtext);
 
 	/*
-   * callback utiliser pour modifier le temps directement depuis la list (treeview)
-   */
-  void on_edited_start(const Glib::ustring &path, const Glib::ustring &newtext);
-
-  /*
-   *  callback utiliser pour modifier le temps directement depuis la list (treeview)
-   */
-  void on_edited_end(const Glib::ustring &path, const Glib::ustring &newtext);
-  
-
-  /*
-   *  callback utiliser pour modifier le temps directement depuis la list (treeview)
-   */
-  void on_edited_duration(const Glib::ustring &path, const Glib::ustring &newtext);
+	 * callback utiliser pour modifier le temps directement depuis la list (treeview)
+	 */
+	void on_edited_start(const Glib::ustring &path, const Glib::ustring &newtext);
 
 	/*
-   *  callback utiliser pour modifier le texte directement depuis la list (treeview)
-   */
-  void on_edited_text(const Glib::ustring &path, const Glib::ustring &newtext);
+	 * callback utiliser pour modifier le temps directement depuis la list (treeview)
+	 */
+	void on_edited_end(const Glib::ustring &path, const Glib::ustring &newtext);
 
-  void on_edited_translation(const Glib::ustring &path, const Glib::ustring &newtext);
-  void on_edited_note(const Glib::ustring &path, const Glib::ustring &newtext);
+	/*
+	 *  callback utiliser pour modifier le temps directement depuis la list (treeview)
+	 */
+	void on_edited_duration(const Glib::ustring &path, const Glib::ustring &newtext);
+
+	/*
+	 * callback utiliser pour modifier le texte directement depuis la list (treeview)
+	 */
+	void on_edited_text(const Glib::ustring &path, const Glib::ustring &newtext);
+
+	void on_edited_translation(const Glib::ustring &path, const Glib::ustring &newtext);
+	void on_edited_note(const Glib::ustring &path, const Glib::ustring &newtext);
 
 	void on_edited_effect(const Glib::ustring &path, const Glib::ustring &newtext);
 
 	/*
-	 *	callback utiliser pour modifier le style (a partir d'un menu, cell renderer combo)
+	 * callback utiliser pour modifier le style (a partir d'un menu, cell renderer combo)
 	 */
-  void on_edited_style(const Glib::ustring &path, const Glib::ustring &newstyle);
+	void on_edited_style(const Glib::ustring &path, const Glib::ustring &newstyle);
 
 	/*
-	 *	callback utiliser pour modifier le nom (a partir d'un menu, cell renderer combo)
+	 * callback utiliser pour modifier le nom (a partir d'un menu, cell renderer combo)
 	 */
-  void on_edited_name(const Glib::ustring &path, const Glib::ustring &newstyle);
+	void on_edited_name(const Glib::ustring &path, const Glib::ustring &newstyle);
 
 	/*
 	 * 
 	 */
-  void on_edited_margin_l(const Glib::ustring &path, const Glib::ustring &value);
-  void on_edited_margin_r(const Glib::ustring &path, const Glib::ustring &value);
-  void on_edited_margin_v(const Glib::ustring &path, const Glib::ustring &value);
+	void on_edited_margin_l(const Glib::ustring &path, const Glib::ustring &value);
+	void on_edited_margin_r(const Glib::ustring &path, const Glib::ustring &value);
+	void on_edited_margin_v(const Glib::ustring &path, const Glib::ustring &value);
 
 	/*
 	 *
@@ -156,8 +154,13 @@ protected:
 
 
 	/*
-	 *	COLUMN
+	 * COLUMN
 	 */
+
+	/*
+	 * Return a new column (already manage) with Gtk::Label in title.
+	 */
+	Gtk::TreeViewColumn* create_treeview_column(const Glib::ustring &title);
 
 	/*
 	 *
@@ -170,12 +173,12 @@ protected:
 					const Glib::ustring &tooltips=Glib::ustring());
 
 	/*
-	 *	retourne le nom utiliser en interne de la column
+	 * Retourne le nom utiliser en interne de la column
 	 */
 	Glib::ustring get_name_of_column(Gtk::TreeViewColumn *column);
 	
 	/*
-	 *	retourne la colonne par rapport a son nom (interne)
+	 * Retourne la colonne par rapport a son nom (interne)
 	 */
 	Gtk::TreeViewColumn* get_column_by_name(const Glib::ustring &name);
 	
@@ -189,6 +192,11 @@ protected:
 	 */
 	bool get_column_visible(const Glib::ustring &name);
 
+	/*
+	 * The position of the cursor (focused cell) has changed.
+	 * Update the column title (bold).
+	 */
+	void on_cursor_changed();
 	
 	
 	/*
@@ -232,14 +240,15 @@ protected:
 	void clipboard_paste();
 
 protected:
-	Document*			m_refDocument;
+	Document* m_refDocument;
 	
-  SubtitleColumnRecorder      m_column;
+	SubtitleColumnRecorder m_column;
   
 	Glib::RefPtr<SubtitleModel> m_subtitleModel;
 	Glib::RefPtr<StyleModel> m_styleModel;
 
 	// pointe sur les columns par rapport a leur nom
+	Gtk::TreeViewColumn* m_currentColumn;
 	std::map<Glib::ustring, Gtk::TreeViewColumn*>	m_columns;
 
 	Gtk::Menu m_menu_popup;
