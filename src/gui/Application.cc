@@ -29,7 +29,7 @@
 #include "ActionSystem.h"
 #include <algorithm>
 #include "gui/CheckErrorsUI.h"
-
+#include "Encodings.h"
 
 void on_current_document_changed(Document *doc)
 {
@@ -248,7 +248,6 @@ void Application::on_document_create(Document *doc)
 	//
 	int id = 0;
 	Gtk::ScrolledWindow *scroll = NULL;
-	Gtk::Tooltips *tooltips = NULL;
 	Gtk::Widget *page = NULL;
 
 
@@ -259,9 +258,6 @@ void Application::on_document_create(Document *doc)
 	
 
 	id = m_notebook_documents->append_page(*scroll, *hbox);
-
-
-	tooltips = manage(new Gtk::Tooltips);
 	m_notebook_documents->set_current_page(id);
 
 
@@ -270,7 +266,6 @@ void Application::on_document_create(Document *doc)
 	page->set_data("event", eventbox);
 	page->set_data("document", doc);
 	page->set_data("label", label);
-	page->set_data("tooltips", tooltips);
 
 	doc->get_signal("document-changed").connect(
 			sigc::bind<Document*>(
@@ -314,32 +309,37 @@ void Application::update_document_property(Document *doc)
 	Gtk::Widget *widget = get_widget(doc);
 	g_return_if_fail(widget);
 
-	Gtk::Widget *event = (Gtk::Widget*)widget->get_data("event");
-	g_return_if_fail(event);
-
 	Gtk::Label *label = (Gtk::Label*)widget->get_data("label");
 	g_return_if_fail(label);
 
-	Gtk::Tooltips *tooltips = (Gtk::Tooltips*)widget->get_data("tooltips");
-	g_return_if_fail(tooltips);
-
-	// mise à jour du nom du document
+	// Update the document name
 	Glib::ustring display_name = (doc->get_document_changed() ? "*" : "") + doc->getName();
-	
+
+	// Update the document property (tooltip)
+	Glib::ustring filename = doc->getFilename();
+	Glib::ustring format = doc->getFormat();
+	Glib::ustring newline = doc->getNewLine();
+	Glib::ustring encoding_name, encoding_charset;
+
+	EncodingInfo *info = Encodings::get_from_charset(doc->getCharset());
+	if(info)
+	{
+		encoding_name = info->name;
+		encoding_charset = info->charset;
+	}
+
+	Glib::ustring tip = build_message(
+			"<b>%s</b> %s\n\n"
+			"<b>%s</b> %s (%s)\n"
+			"<b>%s</b> %s\n"
+			"<b>%s</b> %s",
+			_("Name:"), filename.c_str(),
+			_("Encoding:"), encoding_name.c_str(), encoding_charset.c_str(),
+			_("Format:"), format.c_str(),
+			_("Newline:"), newline.c_str());
+
 	label->set_text(display_name);
-
-	// mise à jour du tooltip
-	Glib::ustring tip = build_message("%s %s\n\n%s %s\n%s %s\n%s %s",
-			_("Name:"), doc->getFilename().c_str(),
-			_("Encoding:"), doc->getCharset().c_str(),
-			_("Format:"), doc->getFormat().c_str(),
-			_("NewLine:"), doc->getNewLine().c_str());
-
-	tooltips->force_window();
-	label->set_use_markup(true);
-	tooltips->set_tip(*event, tip);
-	label->set_use_markup(true);
-
+	label->set_tooltip_markup(tip);
 }
 
 /*
