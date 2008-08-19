@@ -26,6 +26,9 @@
 			<menuitem action="undo-command"/>
 			<menuitem action="redo-command"/>
 			<separator/>
+			<menuitem action="edit-cell"/>
+			<menuitem action="edit-next-cell"/>
+			<separator/>
 			<!-- menuitem action="cut"/ -->
 			<!-- menuitem action="copy"/-->
 			<!-- menuitem action="paste"/-->
