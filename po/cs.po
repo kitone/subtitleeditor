@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.21.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 19:05+0200\n"
-"PO-Revision-Date: 2008-08-13 19:04+0100\n"
+"POT-Creation-Date: 2008-08-20 13:22+0200\n"
+"PO-Revision-Date: 2008-08-20 13:24+0200\n"
 "Last-Translator: Luboš Staněk <lubek@users.sourceforge.net>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgid "Export Text"
 msgstr "Exportovat text"
 
 #: ../share/glade/dialog-export-text.glade.h:3
-#: ../share/glade/dialog-save-document.glade.h:3 ../src/gui/Application.cc:335
+#: ../share/glade/dialog-save-document.glade.h:3
 msgid "NewLine:"
 msgstr "Konec řádku:"
 
@@ -412,7 +412,7 @@ msgid ""
 msgstr "Následující příkazové parametry budou nahrazeny při spuštění akce :"
 
 #: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:392
+#: ../src/actions/ViewManager.cc:394
 msgid "Timing"
 msgstr "Časování"
 
@@ -484,7 +484,7 @@ msgstr "_Video:"
 msgid "minutes"
 msgstr "minut"
 
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:334
+#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:338
 msgid "Format:"
 msgstr "Formát:"
 
@@ -1622,27 +1622,27 @@ msgstr "Nastavit konec titulků"
 msgid "Display"
 msgstr "Ukazovat"
 
-#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:230
+#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:232
 msgid "Name"
 msgstr "Název"
 
-#: ../src/actions/ViewManager.cc:300
+#: ../src/actions/ViewManager.cc:302
 msgid "Untitled"
 msgstr "Nepojmenováno"
 
-#: ../src/actions/ViewManager.cc:389
+#: ../src/actions/ViewManager.cc:391
 msgid "Simple"
 msgstr "Jednoduché"
 
-#: ../src/actions/ViewManager.cc:390
+#: ../src/actions/ViewManager.cc:392
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: ../src/actions/ViewManager.cc:391
+#: ../src/actions/ViewManager.cc:393
 msgid "Translation"
 msgstr "Překlad"
 
-#: ../src/actions/ViewManager.cc:423
+#: ../src/actions/ViewManager.cc:425
 msgid "View _Manager"
 msgstr "_Správce zobrazení"
 
@@ -1855,13 +1855,17 @@ msgstr "Thajské"
 msgid "I can't open this file."
 msgstr "Nemohu otevřít tento soubor."
 
-#: ../src/gui/Application.cc:332
+#: ../src/gui/Application.cc:336
 msgid "Name:"
 msgstr "Název:"
 
-#: ../src/gui/Application.cc:333
+#: ../src/gui/Application.cc:337
 msgid "Encoding:"
 msgstr "Kódování:"
+
+#: ../src/gui/Application.cc:339
+msgid "Newline:"
+msgstr "Konec řádku:"
 
 #: ../src/gui/CheckErrorsUI.cc:44
 msgid "An error is detected when the subtitle overlap on next subtitle."
@@ -1928,12 +1932,12 @@ msgstr ""
 "%s"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:762 ../src/SubtitleView.cc:1682
+#: ../src/SubtitleView.cc:777 ../src/SubtitleView.cc:1697
 msgid "text"
 msgstr "text"
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:826 ../src/SubtitleView.cc:1683
+#: ../src/SubtitleView.cc:841 ../src/SubtitleView.cc:1698
 msgid "translation"
 msgstr "překlad"
 
@@ -2150,7 +2154,7 @@ msgstr "X Window System (No Xv)"
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../src/main.cc:225
+#: ../src/main.cc:228
 msgid " - edit subtitles files"
 msgstr " – edituje titulkové soubory"
 
@@ -2214,131 +2218,131 @@ msgstr "Použijte Ctrl+Enter pro ukončení a Enter pro konec řádku"
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr "Použijte Enter pro ukončení a Ctrl+Enter pro konec řádku"
 
-#: ../src/SubtitleView.cc:560 ../src/SubtitleView.cc:1679
+#: ../src/SubtitleView.cc:575 ../src/SubtitleView.cc:1694
 msgid "num"
 msgstr "poř."
 
-#: ../src/SubtitleView.cc:575
+#: ../src/SubtitleView.cc:590
 msgid "This number column"
 msgstr "Pořadové číslo"
 
-#: ../src/SubtitleView.cc:588 ../src/SubtitleView.cc:1673
+#: ../src/SubtitleView.cc:603 ../src/SubtitleView.cc:1688
 msgid "layer"
 msgstr "vrstva"
 
-#: ../src/SubtitleView.cc:604
+#: ../src/SubtitleView.cc:619
 msgid "Layer number."
 msgstr "Číslo vrstvy."
 
-#: ../src/SubtitleView.cc:644 ../src/SubtitleView.cc:1680
+#: ../src/SubtitleView.cc:659 ../src/SubtitleView.cc:1695
 msgid "start"
 msgstr "začátek"
 
-#: ../src/SubtitleView.cc:647
+#: ../src/SubtitleView.cc:662
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr "Čas, kdy se titulek objeví na obrazovce."
 
-#: ../src/SubtitleView.cc:657 ../src/SubtitleView.cc:1672
+#: ../src/SubtitleView.cc:672 ../src/SubtitleView.cc:1687
 msgid "end"
 msgstr "konec"
 
-#: ../src/SubtitleView.cc:660
+#: ../src/SubtitleView.cc:675
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr "Čas, kdy titulek zmizí z obrazovky."
 
-#: ../src/SubtitleView.cc:671 ../src/SubtitleView.cc:1670
+#: ../src/SubtitleView.cc:686 ../src/SubtitleView.cc:1685
 msgid "duration"
 msgstr "trvání"
 
-#: ../src/SubtitleView.cc:674
+#: ../src/SubtitleView.cc:689
 msgid "The duration of the subtitle."
 msgstr "Délka trvání titulu."
 
-#: ../src/SubtitleView.cc:687 ../src/SubtitleView.cc:1681
+#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1696
 msgid "style"
 msgstr "styl"
 
-#: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:1677
+#: ../src/SubtitleView.cc:729 ../src/SubtitleView.cc:1692
 msgid "name"
 msgstr "název"
 
-#: ../src/SubtitleView.cc:739 ../src/SubtitleView.cc:1669
+#: ../src/SubtitleView.cc:754 ../src/SubtitleView.cc:1684
 msgid "cps"
 msgstr "z/s"
 
-#: ../src/SubtitleView.cc:870 ../src/SubtitleView.cc:1678
+#: ../src/SubtitleView.cc:885 ../src/SubtitleView.cc:1693
 msgid "note"
 msgstr "poznámka"
 
-#: ../src/SubtitleView.cc:897 ../src/SubtitleView.cc:1671
+#: ../src/SubtitleView.cc:912 ../src/SubtitleView.cc:1686
 msgid "effect"
 msgstr "efekt"
 
-#: ../src/SubtitleView.cc:926 ../src/SubtitleView.cc:1675
+#: ../src/SubtitleView.cc:941 ../src/SubtitleView.cc:1690
 msgid "R"
 msgstr "P"
 
-#: ../src/SubtitleView.cc:953 ../src/SubtitleView.cc:1674
+#: ../src/SubtitleView.cc:968 ../src/SubtitleView.cc:1689
 msgid "L"
 msgstr "L"
 
-#: ../src/SubtitleView.cc:980 ../src/SubtitleView.cc:1676
+#: ../src/SubtitleView.cc:995 ../src/SubtitleView.cc:1691
 msgid "V"
 msgstr "S"
 
-#: ../src/SubtitleView.cc:1040
+#: ../src/SubtitleView.cc:1055
 msgid "Editing layer"
 msgstr "Upravuji rozvržení"
 
-#: ../src/SubtitleView.cc:1068 ../src/SubtitleView.cc:1079
+#: ../src/SubtitleView.cc:1083 ../src/SubtitleView.cc:1094
 msgid "Editing start"
 msgstr "Upravuji začátek"
 
-#: ../src/SubtitleView.cc:1106 ../src/SubtitleView.cc:1117
+#: ../src/SubtitleView.cc:1121 ../src/SubtitleView.cc:1132
 msgid "Editing end"
 msgstr "Upravuji konec"
 
-#: ../src/SubtitleView.cc:1144 ../src/SubtitleView.cc:1155
+#: ../src/SubtitleView.cc:1159 ../src/SubtitleView.cc:1170
 msgid "Editing duration"
 msgstr "Upravuji trvání"
 
-#: ../src/SubtitleView.cc:1175
+#: ../src/SubtitleView.cc:1190
 msgid "Editing text"
 msgstr "Upravuji text"
 
-#: ../src/SubtitleView.cc:1197
+#: ../src/SubtitleView.cc:1212
 msgid "Editing translation"
 msgstr "Upravuji překlad"
 
-#: ../src/SubtitleView.cc:1217
+#: ../src/SubtitleView.cc:1232
 msgid "Editing note"
 msgstr "Upravuji poznámku"
 
-#: ../src/SubtitleView.cc:1236
+#: ../src/SubtitleView.cc:1251
 msgid "Editing effect"
 msgstr "Upravuji efekt"
 
-#: ../src/SubtitleView.cc:1257
+#: ../src/SubtitleView.cc:1272
 msgid "Editing style"
 msgstr "Upravuji styl"
 
-#: ../src/SubtitleView.cc:1277
+#: ../src/SubtitleView.cc:1292
 msgid "Editing name"
 msgstr "Upravuji název"
 
-#: ../src/SubtitleView.cc:1297
+#: ../src/SubtitleView.cc:1312
 msgid "Editing margin-l"
 msgstr "Upravuji levý okraj"
 
-#: ../src/SubtitleView.cc:1317
+#: ../src/SubtitleView.cc:1332
 msgid "Editing margin-r"
 msgstr "Upravuji pravý okraj"
 
-#: ../src/SubtitleView.cc:1337
+#: ../src/SubtitleView.cc:1352
 msgid "Editing margin-v"
 msgstr "Upravuji svislé okraje"
 
-#: ../src/SubtitleView.cc:1475
+#: ../src/SubtitleView.cc:1490
 msgid "Set style to selection"
 msgstr "Nastavit styl do výběru"
 
@@ -2441,8 +2445,3 @@ msgstr ""
 "Okenní systém nepodporuje OpenGL.\n"
 "Prosím, zkuste jiný způsob vykreslování."
 
-#~ msgid "Maximum character per second:"
-#~ msgstr "Maximum znaků za sekundu:"
-
-#~ msgid "Minimum gap between subtitle in mseconds:"
-#~ msgstr "Minimální prodleva mezi titulky v ms:"
