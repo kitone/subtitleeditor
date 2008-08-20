@@ -190,22 +190,37 @@ protected:
 		std::list<Glib::ustring> encodings = 
 			Config::getInstance().get_value_string_list("encodings", "encodings");
 
-		std::list<Glib::ustring>::const_iterator it;
-		for(it = encodings.begin(); it != encodings.end(); ++it)
+		if(encodings.empty())
 		{
-			EncodingInfo *info = Encodings::get_from_charset(*it);
-			if(info)
-			{
-				Glib::ustring item;
-				item+= info->name;
-				item+= " (";
-				item+= info->charset;
-				item+= ")";
+			std::string charset;
+			Glib::get_charset(charset);
 
-				append_text(item);
+			Glib::ustring item;
+			item += _("Current Locale");
+			item += " (";
+			item += charset;
+			item += ")";
+
+			append_text(item);
+		}
+		else
+		{
+			std::list<Glib::ustring>::const_iterator it;
+			for(it = encodings.begin(); it != encodings.end(); ++it)
+			{
+				EncodingInfo *info = Encodings::get_from_charset(*it);
+				if(info)
+				{
+					Glib::ustring item;
+					item+= info->name;
+					item+= " (";
+					item+= info->charset;
+					item+= ")";
+
+					append_text(item);
+				}
 			}
 		}
-
 		// configure
 		append_text("<separator>");
 		append_text(_("Add or Remove..."));
