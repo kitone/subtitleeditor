@@ -1,3 +1,8 @@
+2008-08-20  kitone  <kitone@gna.org>
+
+	* configure.in:
+	Add dependence of glibmm >= 2.6.13. (patch by Luboš Staněk)
+
 2008-08-19  kitone  <kitone@gna.org>
 
 	* src/actions/DocumentManagement.cc:
