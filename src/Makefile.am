@@ -166,7 +166,9 @@ GUI_FILES = \
 				gui/PreferencesUI.h \
 				gui/PreferencesUI.cc \
 				gui/DialogCharacterCodings.h \
-				gui/DialogCharacterCodings.cc
+				gui/DialogCharacterCodings.cc \
+				gui/ComboBoxEncoding.h \
+				gui/ComboBoxEncoding.cc
 
 
 if	 ENABLE_UNITTEST
