@@ -112,34 +112,44 @@ protected:
 	
 		if(ui->run() == Gtk::RESPONSE_OK)
 		{
+			// tmp document to try to open the file
+			Document *tmp = Document::create_from_file(ui->get_uri());
+			if(tmp == NULL)
+				return false;
+
 			Glib::ustring ofile = doc->getFilename();
 			Glib::ustring oformat = doc->getFormat();
 			Glib::ustring ocharset = doc->getCharset();
 
 			Glib::ustring filename = ui->get_filename();
-			Glib::ustring encoding = ui->get_encoding();
+			Glib::ustring encoding = tmp->getCharset();
+
+			delete tmp;
 
 			unsigned int subtitle_size = doc->subtitles().size();
 
-			doc->start_command(_("Join document"));
-
-			if(!doc->open(filename));
+			try // needs with Document::open
 			{
+				doc->start_command(_("Join document"));
+				doc->setCharset(encoding);
+				doc->open(filename);
+
+				doc->setFilename(ofile);
+				doc->setFormat(oformat);
+				doc->setCharset(ocharset);
 				doc->finish_command();
-				return false;
-			}
 
-			doc->setFilename(ofile);
-			doc->setFormat(oformat);
-			doc->setCharset(ocharset);
-			doc->finish_command();
+				unsigned int subtitles_added = doc->subtitles().size() - subtitle_size;
 
-			unsigned int subtitles_added = doc->subtitles().size() - subtitle_size;
-
-			doc->flash_message(ngettext(
+				doc->flash_message(ngettext(
 					"1 subtitle has been added at this document.",
 					"%d subtitles have been added at this document.",
 					subtitles_added), subtitles_added);
+			}
+			catch(...)
+			{
+				std::cerr << "Failed to join document: " << filename << std::endl;
+			}
 		}
 
 		return true;

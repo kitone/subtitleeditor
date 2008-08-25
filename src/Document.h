@@ -50,6 +50,11 @@ typedef std::list<Document*> DocumentList;
 class Document : protected CommandSystem, public Signal
 {
 public:
+
+	/*
+	 *
+	 */
+	static Document* create_from_file(const Glib::ustring &uri, const Glib::ustring &charset = Glib::ustring());
 	
 	/*
 	 *	constructeur
@@ -140,7 +145,9 @@ public:
 
 	/*
 	 *	encodings ""=auto, "UTF-8", ...
-	 *	clear permet d'effacer l'ancien model, sinon on ajoute a la suite du document	
+	 *	clear permet d'effacer l'ancien model, sinon on ajoute a la suite du document
+	 *
+	 *	Used Document::create_from_file.
 	 */
 	bool open(const Glib::ustring &filename);
 

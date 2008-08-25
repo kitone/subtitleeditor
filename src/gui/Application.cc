@@ -620,18 +620,12 @@ void Application::init(OptionGroup &options)
 		if(	Glib::file_test(filename, Glib::FILE_TEST_EXISTS | Glib::FILE_TEST_IS_REGULAR) && 
 				Glib::file_test(filename, Glib::FILE_TEST_IS_DIR) == false)
 		{
-			Document *doc = new Document;
-			doc->setFormat("");
-			doc->setCharset(options.encoding);
-
-			if(doc->open(filename))
+			Glib::ustring uri = Glib::filename_to_uri(utility::create_full_path(filename));
+			
+			Document *doc = Document::create_from_file(uri, options.encoding);
+			if(doc)
 			{
 				DocumentSystem::getInstance().append(doc);
-				DocumentSystem::getInstance().setCurrentDocument(doc);
-			}
-			else
-			{
-				delete doc;
 			}
 		}
 	}
@@ -738,23 +732,9 @@ void Application::notebook_drag_data_received(const Glib::RefPtr<Gdk::DragContex
 		if(DocumentSystem::getInstance().getDocument(filename) != NULL)
 			continue;
 
-		try
-		{
-			Document *doc = new Document;
-			doc->setCharset("");
-
-			if(doc->open(filename))
-			{
-				DocumentSystem::getInstance().append(doc);
-			}
-			else
-			{
-				delete doc;
-			}
-		}
-		catch(...)
-		{
-		}	
+		Document *doc = Document::create_from_file(uris[i]);
+		if(doc)
+			DocumentSystem::getInstance().append(doc);
 	}
 }
 

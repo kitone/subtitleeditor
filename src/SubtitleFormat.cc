@@ -151,17 +151,22 @@ std::string convert_to_utf8_from_charset(const std::string &content, const std::
 					_("It's not valid UTF-8.\nPlease use another character encoding."));
 		}
 	}
-
-	// on convertion en utf-8 a partir de charset
-	std::string utf8_content = Glib::convert(content, "UTF-8", charset);
-
-	// ok ?
-	if(Glib::ustring(utf8_content).validate() == false)
+	else
 	{
-		throw Glib::ConvertError(Glib::ConvertError::ILLEGAL_SEQUENCE, _("Please use another character encoding."));
+		try
+		{
+			// Convert to utf-8 from charset
+			std::string utf8_content = Glib::convert(content, "UTF-8", charset);
+			
+			return utf8_content;
+		}
+		catch(const Glib::ConvertError &ex)
+		{
+			//FIXME
+			throw Glib::ConvertError(Glib::ConvertError::ILLEGAL_SEQUENCE,
+					build_message(_("Could not convert from %s to UTF-8"), charset.c_str()));
+		}
 	}
-
-	return utf8_content;
 }
 
 /*
@@ -228,12 +233,11 @@ std::string convert_to_utf8(const std::list<Glib::ustring> &m_list_encodings, co
 		}
 	}
 
-
 	throw Glib::ConvertError(
 			Glib::ConvertError::FAILED, 
-			"SubtitleEditor has not been able to automatically determine the encoding of the file you want to open.");
+			_("subtitleeditor was not able to automatically determine the encoding of the file you want to open."));
 	
-	return "Invalid Encoding";
+	return Glib::ustring();
 }
 
 /*
