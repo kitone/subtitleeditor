@@ -141,16 +141,10 @@ void ComboBoxEncoding::init_encodings()
 		std::list<Glib::ustring>::const_iterator it;
 		for(it = encodings.begin(); it != encodings.end(); ++it)
 		{
-			EncodingInfo *info = Encodings::get_from_charset(*it);
-			if(info)
+			Glib::ustring label = Encodings::get_label_from_charset(*it);
+			if(!label.empty())
 			{
-				Glib::ustring item;
-				item+= info->name;
-				item+= " (";
-				item+= info->charset;
-				item+= ")";
-
-				append_text(item);
+				append_text(label);
 			}
 		}
 	}
