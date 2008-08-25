@@ -23,8 +23,14 @@
 
 #include "Encodings.h"
 
+/*
+ *
+ */
 bool Encodings::is_initialized = false;
 
+/*
+ *
+ */
 bool Encodings::initialize()
 {
 	if(is_initialized)
@@ -39,6 +45,9 @@ bool Encodings::initialize()
 	return true;
 }
 
+/*
+ *
+ */
 EncodingInfo* Encodings::get_from_charset(const Glib::ustring &charset)
 {
 	initialize();
@@ -51,10 +60,24 @@ EncodingInfo* Encodings::get_from_charset(const Glib::ustring &charset)
 	return NULL;
 }
 
-EncodingInfo* Encodings::get_from_index(unsigned int id)
+/*
+ * Return a human readable string or empty string, ex:
+ * "name (charset)"
+ * "Unicode (UTF-8)"
+ */
+Glib::ustring Encodings::get_label_from_charset(const Glib::ustring &charset)
 {
-	initialize();
+	EncodingInfo *info = get_from_charset(charset);
+	if(info == NULL)
+		return Glib::ustring();
 
-	return NULL;
+	Glib::ustring label;
+
+	label += info->name;
+	label += " (";
+	label += info->charset;
+	label += ")";
+
+	return label;
 }
 

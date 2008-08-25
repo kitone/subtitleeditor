@@ -1,3 +1,13 @@
+2008-08-25  kitone  <kitone@gna.org>
+
+	* src/Encodings.cc:
+	* src/Encodings.h:
+	Add function get_label_from_charset.
+	Remove function get_from_index.
+
+	* src/gui/ComboBoxEncoding.cc:
+	Use fonction get_label_from_charset.
+
 2008-08-21  kitone  <kitone@gna.org>
 
 	* src/gui/ComboBoxEncoding.cc:

@@ -109,8 +109,19 @@ static EncodingInfo encodings_info [] = {
 class Encodings
 {
 public:
+
+	/*
+	 *
+	 */
 	static EncodingInfo* get_from_charset(const Glib::ustring &charset);
-	static EncodingInfo* get_from_index(unsigned int id);
+
+	/*
+	 * Return a human readable string or empty string, ex:
+	 * "name (charset)"
+	 * "Unicode (UTF-8)"
+	 */
+	static Glib::ustring get_label_from_charset(const Glib::ustring &charset);
+
 protected:
 	static bool is_initialized;
 
