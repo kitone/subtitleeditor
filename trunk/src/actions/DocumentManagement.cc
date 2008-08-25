@@ -208,28 +208,28 @@ protected:
 
 		dialog->show();
 		
-		if(dialog->run() == Gtk::RESPONSE_OK)
-		{
-			Glib::ustring charset = dialog->get_encoding();
+		if(dialog->run() != Gtk::RESPONSE_OK)
+			return;
 
-			std::list<Glib::ustring> uris = dialog->get_uris();
-
-			for(std::list<Glib::ustring>::const_iterator it=uris.begin();
-					it != uris.end(); ++it)
-			{
-				open_document(*it, charset);
-			}
-
-			Glib::ustring video_uri = dialog->get_video_uri();
-			if(video_uri.empty() == false)
-			{
-				// TODO
-				// check and ask if already exist ?
-				SubtitleEditorWindow::get_instance()->get_player()->open(video_uri);
-			}
-		}
-		
 		dialog->hide();
+
+		Glib::ustring charset = dialog->get_encoding();
+
+		std::list<Glib::ustring> uris = dialog->get_uris();
+
+		for(std::list<Glib::ustring>::const_iterator it=uris.begin();
+				it != uris.end(); ++it)
+		{
+			open_document(*it, charset);
+		}
+
+		Glib::ustring video_uri = dialog->get_video_uri();
+		if(video_uri.empty() == false)
+		{
+			// TODO
+			// check and ask if already exist ?
+			SubtitleEditorWindow::get_instance()->get_player()->open(video_uri);
+		}
 	}
 
 	/*
@@ -251,24 +251,11 @@ protected:
 		}
 		else
 		{
-			try
+			Document *doc = Document::create_from_file(uri, charset);
+			if(doc)
 			{
-				Document *doc = new Document;
-					
-				doc->setCharset(charset);
-				if(doc->open(filename))
-				{
-					DocumentSystem::getInstance().append(doc);
-
-					return true;
-				}
-				else
-				{
-					delete doc;
-				}
-			}
-			catch(...)
-			{
+				DocumentSystem::getInstance().append(doc);
+				return true;
 			}
 		}
 
@@ -427,14 +414,13 @@ protected:
 			ui->hide();
 	
 			Glib::ustring encoding = ui->get_encoding();
-			Glib::ustring filename = ui->get_filename();
+			Glib::ustring uri = ui->get_uri();
 
 			try
 			{
-				Document *doc = new Document;
+				Document *doc = Document::create_from_file(uri, encoding);
 		
-				doc->setCharset(encoding);
-				if(doc->open(filename))
+				if(doc)
 				{
 					current->start_command(_("Open translation"));
 
@@ -471,10 +457,8 @@ protected:
 
 					current->finish_command();
 
-#warning "FIXME: show translation column"
-					//ActionSystem::getInstance().execute("view/translation");
+					delete doc;
 				}
-				delete doc;
 			}
 			catch(...)
 			{

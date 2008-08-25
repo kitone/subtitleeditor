@@ -1,5 +1,22 @@
 2008-08-25  kitone  <kitone@gna.org>
 
+	Add possibility to select the encoding when opening 
+	the subtitle if it failed.
+
+	* src/Document.cc:
+	* src/Document.h:
+	New function Document::create_from_file.
+	
+	* src/SubtitleFormat.cc:
+	Improve error.
+
+	* src/actions/DocumentManagement.cc:
+	* src/actions/JoinDocument.cc:
+	* src/gui/Application.cc:
+	Use Document::create_from_file.
+
+2008-08-25  kitone  <kitone@gna.org>
+
 	* src/Encodings.cc:
 	* src/Encodings.h:
 	Add function get_label_from_charset.

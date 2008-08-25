@@ -27,6 +27,9 @@
 #include "utility.h"
 
 #include "SubtitleSystem.h"
+#include "gui/ComboBoxEncoding.h"
+#include "SubtitleFormat.h"
+#include <gtkmm.h>
 
 #include <ctime>
 #include <memory>
@@ -250,67 +253,37 @@ void Document::clear()
  */
 bool Document::open(const Glib::ustring &_filename)
 {
-#define DIALOG_ERROR(ex, filename, charset) \
-	if(charset.empty())	{ \
-			dialog_error( \
-					build_message( \
-						_("Could not open the file <i>%s</i>."), \
-						filename.c_str()), \
-					ex.what()); } \
-	else { \
-			dialog_error( \
-					build_message( \
-						_("Could not open the file <i>%s</i> using the <i>%s</i> character coding."), \
-						filename.c_str(), charset.c_str()), \
-					ex.what());	}
-
 	Glib::ustring filename = _filename;
 	Glib::ustring charset = getCharset();
 
-	try
+	Glib::ustring format = SubtitleSystem::getInstance().find_subtitle_format(filename);
+
+	if(!format.empty())
 	{
-		Glib::ustring format = SubtitleSystem::getInstance().find_subtitle_format(filename);
+		std::auto_ptr<SubtitleFormat> sf(SubtitleSystem::getInstance().create_subtitle_format(format, this));
 
-		if(!format.empty())
+		if(sf.get() != NULL) // need ?
 		{
-			std::auto_ptr<SubtitleFormat> sf(SubtitleSystem::getInstance().create_subtitle_format(format, this));
-
-			if(sf.get() != NULL) // need ?
-			{
-				get_subtitle_view()->unset_model();
+			get_subtitle_view()->unset_model();
 			
-				bool res = sf->open(filename);
+			bool res = sf->open(filename);
 
-				get_subtitle_view()->set_model(get_subtitle_model());
+			get_subtitle_view()->set_model(get_subtitle_model());
 
-				if(res)
-				{
-					setFilename(filename);
-					setCharset(sf->get_charset());
-					setFormat(format);
+			if(res)
+			{
+				setFilename(filename);
+				setCharset(sf->get_charset());
+				setFormat(format);
 
-					emit_signal("document-changed");
-					emit_signal("document-property-changed");
-				}
-
-				return res;
+				emit_signal("document-changed");
+				emit_signal("document-property-changed");
 			}
+
+			return res;
 		}
 	}
-	catch(const SubtitleException &ex)
-	{
-		DIALOG_ERROR(ex, filename, charset);
-	}
-	catch(const Glib::Error &ex)
-	{
-		DIALOG_ERROR(ex, filename, charset);
-	}
-	catch(const std::exception &ex)
-	{
-		DIALOG_ERROR(ex, filename, charset);
-	}
-
-#undef DIALOG_ERROR
+	
 	return false;
 }
 
@@ -659,5 +632,102 @@ void Document::set_framerate(FRAMERATE framerate)
 FRAMERATE Document::get_framerate()
 {
 	return m_framerate;
+}
+
+
+/*
+ *
+ */
+Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustring &charset)
+{
+	se_debug_message(SE_DEBUG_APP, "uri=%s charset=%s", uri.c_str(), charset.c_str());
+
+	Glib::ustring filename = Glib::filename_from_uri(uri);
+
+	try
+	{
+		Document *doc = new Document;
+		doc->setCharset(charset);
+
+		if(doc->open(filename))
+			return doc;
+
+		delete doc;
+		return NULL;// throw ?
+	}
+	catch(const SubtitleException &ex)
+	{
+		Glib::ustring msg;
+		if(charset.empty())
+		{
+			msg = build_message(
+					_("Could not open the file <i>%s</i>."), 
+					filename.c_str());
+		}
+		else
+		{
+			msg = build_message(
+					_("Could not open the file <i>%s</i> using the <i>%s</i> character coding."), 
+					filename.c_str(), charset.c_str());
+		}
+
+		dialog_error(msg, ex.what());
+	}
+	catch(const Glib::ConvertError &ex)
+	{
+		Glib::ustring msg;
+		msg += "<span weight=\"bold\" size=\"larger\">";
+		if(charset.empty())
+			msg += build_message(_("Could not open the file <i>%s</i>."), filename.c_str());
+		else
+			msg += build_message(_("Could not open the file <i>%s</i> using the <i>%s</i> character coding."), filename.c_str(), charset.c_str());
+		msg += "</span>\n\n";
+		msg += ex.what();
+		msg += "\n\n";
+		msg += _("Select a different character coding from the menu and try again.");
+
+
+		Gtk::MessageDialog dialog(msg, true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_CANCEL, true);
+		dialog.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
+		
+		Gtk::Label labelEncoding(_("Character Coding:"), 1.0, 0.5);
+		ComboBoxEncoding comboEncoding(false);
+
+		Gtk::HBox hbox(false, 6);
+		dialog.get_vbox()->pack_start(hbox, false, false);
+		hbox.pack_start(labelEncoding);
+		hbox.pack_start(comboEncoding);
+
+		dialog.show_all();
+		if(dialog.run() == Gtk::RESPONSE_OK)
+		{
+			dialog.hide();
+
+			return Document::create_from_file(uri, comboEncoding.get_value());
+		}
+	}
+	catch(const Glib::Error &ex)
+	{
+		Glib::ustring msg;
+		if(charset.empty())
+		{
+			msg = build_message(
+					_("Could not open the file <i>%s</i>."), 
+					filename.c_str());
+		}
+		else
+		{
+			msg = build_message(
+					_("Could not open the file <i>%s</i> using the <i>%s</i> character coding."), 
+					filename.c_str(), charset.c_str());
+		}
+
+		dialog_error(msg, ex.what());
+	}
+	catch(...)
+	{
+		dialog_error(_("Excpetion inconnu"), "");
+	}
+	return NULL;
 }
 
