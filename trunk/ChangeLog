@@ -1,5 +1,10 @@
 2008-08-25  kitone  <kitone@gna.org>
 
+	* share/subtitleeditor.desktop.in:
+	Fix mime-types patch by Luboš Staněk.
+
+2008-08-25  kitone  <kitone@gna.org>
+
 	Add possibility to select the encoding when opening 
 	the subtitle if it failed.
 
