@@ -26,38 +26,7 @@
 
 #include <glibmm.h>
 #include "Document.h"
-#include <exception>
-
-/*
- *
- */
-class SubtitleException : public std::exception
-{
-public:
-	SubtitleException(const char *classname, const char *msg)
-	:m_classname(classname), m_msg(msg)
-	{
-	}
-
-	virtual ~SubtitleException() throw()
-	{
-	}
-
-	const char* classname() const throw()
-	{
-		return m_classname.c_str();
-	}
-
-	virtual const char* what() const throw()
-	{
-		return m_msg.c_str();
-	}
-
-private:
-	std::string m_classname;
-	std::string m_msg;
-};
-
+#include "Error.h"
 
 /*
  *

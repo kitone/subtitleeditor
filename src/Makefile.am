@@ -35,6 +35,7 @@ FILES = \
 				StyleModel.cc \
 				SubtitleFormat.h \
 				SubtitleFormat.cc \
+				Error.h \
 				SubtitleModel.h \
 				SubtitleModel.cc \
 				SubtitleSystem.h \
@@ -181,15 +182,27 @@ UNITTEST_FILES = \
 				 unittest/testColor.cc
 
 EXTRA_DIST = \
-					unittest/adobe.encore.dvd.ntsc.format \
-					unittest/adobe.encore.dvd.pal.format \
-					unittest/ass.format \
-					unittest/microdvd.format \
-					unittest/mpl2.format \
-					unittest/mpsub.format \
-					unittest/ssa.format \
-					unittest/subrip.format \
-					unittest/subviewer2.0.format
+				unittest/adobe.encore.dvd.ntsc.format \
+				unittest/adobe.encore.dvd.ntsc.format.euc-jp \
+				unittest/adobe.encore.dvd.pal.format \
+				unittest/adobe.encore.dvd.pal.format.euc-jp \
+				unittest/ass.format \
+				unittest/ass.format.euc-jp \
+				unittest/microdvd.format \
+				unittest/microdvd.format.euc-jp \
+				unittest/mpl2.format \
+				unittest/mpl2.format.euc-jp \
+				unittest/mpsub.format \
+				unittest/mpsub.format.euc-jp \
+				unittest/ssa.format \
+				unittest/ssa.format.euc-jp \
+				unittest/subrip.format \
+				unittest/subrip.format.euc-jp \
+				unittest/subtitle.editor.project.format \
+				unittest/subtitle.editor.project.format.euc-jp \
+				unittest/subviewer2.0.format \
+				unittest/subviewer2.0.format.euc-jp \
+				unittest/transcript
 
 endif
 

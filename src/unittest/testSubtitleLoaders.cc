@@ -22,6 +22,7 @@
 
 
 #include <iostream>
+#include <memory>
 #include "Document.h"
 #include "SubtitleSystem.h"
 #include "SubtitleFormat.h"
@@ -47,6 +48,7 @@ class testSubtitleLoaders : public CppUnit::TestFixture
 	CPPUNIT_TEST( testSubViewer2 );
 	CPPUNIT_TEST( testAdobeEncoreNTSC );
 	CPPUNIT_TEST( testAdobeEncorePAL );
+	CPPUNIT_TEST( testUnrecognizeFormatError );
 	CPPUNIT_TEST_SUITE_END();
 public:
 
@@ -101,9 +103,29 @@ public:
 	void testAdobeEncoreNTSC()
 	{
 		testFormat("Adobe Encore DVD NTSC", "src/unittest/adobe.encore.dvd.ntsc.format");
-
 	}
 
+	bool testUnrecognize(const Glib::ustring &file)
+	{
+		try
+		{
+			Glib::ustring format = SubtitleSystem::getInstance().find_subtitle_format(file);
+
+			if(format.empty())
+				return true;
+		}
+		catch(const UnrecognizeFormatError &ex)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	void testUnrecognizeFormatError()
+	{
+		CPPUNIT_ASSERT(testUnrecognize("src/unittest/transcript"));
+	}
 	/*
 	 *	verifie s'il c'est trouver le format et s'il c'est lire le document
 	 */
@@ -111,6 +133,7 @@ public:
 	{
 		CPPUNIT_ASSERT(testFindFormat(format, file));
 		CPPUNIT_ASSERT(testOpenSubtitleFormat(format, file));
+		testError(format, file);
 	}
 
 	/*
@@ -118,15 +141,24 @@ public:
 	 */
 	bool testFindFormat(const Glib::ustring &format, const Glib::ustring &file)
 	{
-		Glib::ustring format_find = SubtitleSystem::getInstance().find_subtitle_format(file);
+		try
+		{
+			Glib::ustring format_find = SubtitleSystem::getInstance().find_subtitle_format(file);
 
-		if(format_find.empty())
-			return false;
+			if(format_find.empty())
+				return false;
 
-		if(format_find != format)
-			return false;
+			if(format_find != format)
+				return false;
 
-		return true;
+			return true;
+		}
+		catch(const UnrecognizeFormatError &ex)
+		{
+			std::cerr << "testFindFormat::Exception: " << ex.what() << std::endl;
+		}
+
+		return false;
 	}
 
 	/*
@@ -164,9 +196,52 @@ public:
 			return true;
 			
 		}
-		catch(const SubtitleException &ex)
+		catch(const std::exception &ex)
 		{
 			std::cerr << "testOpenSubtitleFormat::Exception: " << ex.what() << std::endl;
+		}
+
+		return false;
+	}
+
+	/*
+	 *
+	 */
+	void testError(const Glib::ustring &format, const Glib::ustring &file)
+	{
+		// file don't exist
+		CPPUNIT_ASSERT(testCatchError<IOFileError>(format, file + ".do.not.exist", "UTF-8"));
+
+		// try to test with another encoding EUC-JP
+		CPPUNIT_ASSERT(testCatchError<EncodingConvertError>(format, file + ".euc-jp", "UTF-8"));
+		CPPUNIT_ASSERT(!testCatchError<EncodingConvertError>(format, file + ".euc-jp", "EUC-JP"));
+		//CPPUNIT_ASSERT(!testCatchError<UnrecognizeFormatError>(format, "src/unittest/transcript", "UTF-8"));
+	}
+
+	/*
+	 *
+	 */
+	template<class Error>
+	bool testCatchError(const Glib::ustring &format, const Glib::ustring &file, const Glib::ustring &charset)
+	{
+		try
+		{
+			Document doc;
+			std::auto_ptr<SubtitleFormat> subtitle(SubtitleSystem::getInstance().create_subtitle_format(format, &doc));
+
+			subtitle->set_charset(charset);
+
+			if(subtitle->open(file))
+				return false;
+		}
+		catch(const Error &ex)
+		{
+			// catch the good error
+			return true;
+		}
+		catch(const std::exception &ex)
+		{
+			std::cerr <<ex.what() << std::endl;
 		}
 
 		return false;

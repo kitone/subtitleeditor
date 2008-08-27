@@ -59,3 +59,17 @@ DocumentList DialogActionMultiDoc::get_documents_to_apply()
 	
 	return docs;
 }
+
+
+/*
+ *
+ */
+ErrorDialog::ErrorDialog(const Glib::ustring &primary, const Glib::ustring &secondary)
+:Gtk::MessageDialog(primary, false, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_NONE, true)
+{
+	utility::set_transient_parent(*this);
+
+	if(secondary.empty() == false)
+		set_secondary_text(secondary, false);
+}
+

@@ -146,72 +146,33 @@ bool SubtitleTimedText::on_open(const Glib::ustring &filename)
 		parser.set_substitute_entities();
 		parser.parse_file(filename);
 
-		if(parser)
+		if(!parser)
+			throw IOFileError(_("Failed to open the file for reading."));
+
+		// <tt> (root)
+		const xmlpp::Node* root = parser.get_document()->get_root_node();
+
+		// <body>
+		const xmlpp::Element *body = dynamic_cast<const xmlpp::Element*>(root->get_children("body").front());
+		if(body)
 		{
-			// <tt> (root)
-			const xmlpp::Node* root = parser.get_document()->get_root_node();
+			// <div>
+			const xmlpp::Element *div = dynamic_cast<const xmlpp::Element*>(body->get_children("div").front());
 
-			// <body>
-			const xmlpp::Element *body = dynamic_cast<const xmlpp::Element*>(root->get_children("body").front());
-			if(body)
+			if(div)
 			{
-				// <div>
-				const xmlpp::Element *div = dynamic_cast<const xmlpp::Element*>(body->get_children("div").front());
-
-				if(div)
+				xmlpp::Node::NodeList list = div->get_children();
+				for(xmlpp::Node::NodeList::const_iterator it = list.begin(); it!=list.end(); ++it)
 				{
-					xmlpp::Node::NodeList list = div->get_children();
-					for(xmlpp::Node::NodeList::const_iterator it = list.begin(); it!=list.end(); ++it)
-					{
-						read_subtitle(dynamic_cast<const xmlpp::Element*>(*it));
-					}
+					read_subtitle(dynamic_cast<const xmlpp::Element*>(*it));
 				}
 			}
-			/*
-			xmlpp::Node::NodeList list = root->get_children();
-
-			Subtitles subtitles = document()->subtitles();
-
-			for(xmlpp::Node::NodeList::const_iterator it = list.begin(); it!=list.end(); ++it)
-			{
-
-				if((*it)->get_name() == "TextSample")
-				{
-					const xmlpp::Element *element = dynamic_cast<const xmlpp::Element*>(*it);
-
-					Subtitle subtitle = subtitles.append();
-					
-					// text
-					const xmlpp::Attribute *att_text = element->get_attribute("text");
-					if(att_text)
-					{
-						Glib::ustring text = att_text->get_value();
-
-						subtitle.set_text(text);
-					}
-					// time
-					const xmlpp::Attribute *att_time =  element->get_attribute("sampleTime");
-					if(att_time)
-					{
-						Glib::ustring time = att_time->get_value();
-
-						subtitle.set_start(time);
-					}
-				}
-			}
-			*/
-
-			return true;
-			
 		}
-		else
-		{
-			throw SubtitleException("SubtitleTimedText", _("I can't open this file."));
-		}
+		return true;
 	}
 	catch(const std::exception &ex)
 	{
-		throw SubtitleException("SubtitleTimedText", ex.what());
+		throw IOFileError(_("Failed to open the file for reading."));
 	}
 
 	return false;
@@ -249,7 +210,7 @@ bool SubtitleTimedText::on_save(const Glib::ustring &filename)
 	}
 	catch(const std::exception &ex)
 	{
-		throw SubtitleException("SubtitleTimedText", ex.what());
+		throw IOFileError(_("Failed to open the file for writing."));
 	}
 
 	return true;

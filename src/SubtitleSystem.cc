@@ -162,7 +162,7 @@ Glib::ustring SubtitleSystem::find_subtitle_format(const Glib::ustring &filename
 		se_debug_message( (SE_DEBUG_APP|SE_DEBUG_LOADER|SE_DEBUG_SAVER),
 			"Open file failed <%s>.", filename.c_str());
 
-		return "";
+		throw IOFileError(_("Failed to open the file for reading."));
 	}
 
 	std::string line;
@@ -193,7 +193,7 @@ Glib::ustring SubtitleSystem::find_subtitle_format(const Glib::ustring &filename
 	se_debug_message((SE_DEBUG_APP|SE_DEBUG_LOADER|SE_DEBUG_SAVER),
 			"Can't determinate this format!");
 	
-	throw SubtitleException("SubtitleSystem", _("I can't find what is this format or it's not supported."));
+	throw UnrecognizeFormatError(_("Couldn't recognize format of the file."));
 }
 
 /*

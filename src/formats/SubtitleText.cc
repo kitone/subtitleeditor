@@ -78,9 +78,7 @@ bool SubtitleText::on_open(const Glib::ustring &filename)
 
 	std::ifstream file(filename.c_str());
 	if(!file)
-	{
-		return false;
-	}
+		throw IOFileError(_("Failed to open the file for reading."));
 
 	std::string line;
 
@@ -108,9 +106,7 @@ bool SubtitleText::on_save(const Glib::ustring &filename)
 
 	std::ofstream file(filename.c_str());
 	if(!file)
-	{
-		return false;
-	}
+		throw IOFileError(_("Failed to open the file for writing."));
 
 	Glib::ustring line;
 

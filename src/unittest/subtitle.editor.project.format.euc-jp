@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SubtitleEditorProject version="1.0">
+  <styles/>
+  <subtitles>
+    <subtitle duration="3000" effect="" end="18042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="0" start="15042" style="Default" text="左に見えるのは…" translation=""/>
+    <subtitle duration="1583" effect="" end="20333" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="1" start="18750" style="Default" text="右に見えるのは…" translation=""/>
+    <subtitle duration="1500" effect="" end="21917" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="2" start="20417" style="Default" text="…首刈り機" translation=""/>
+    <subtitle duration="2625" effect="" end="24625" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="3" start="22000" style="Default" text="すべて安全|完璧に安全だ" translation=""/>
+    <subtitle duration="1000" effect="" end="27333" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="4" start="26333" style="Default" text="イーモ？" translation=""/>
+    <subtitle duration="1375" effect="" end="30250" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="5" start="28875" style="Default" text="危ない！" translation=""/>
+    <subtitle duration="1125" effect="" end="48250" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="6" start="47125" style="Default" text="ケガはないか？" translation=""/>
+    <subtitle duration="2000" effect="" end="53917" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="7" start="51917" style="Default" text="ええ、多分…|あなたは？" translation=""/>
+    <subtitle duration="1500" effect="" end="57125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="8" start="55625" style="Default" text="わしは平気だ" translation=""/>
+    <subtitle duration="4084" effect="" end="61667" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="9" start="57583" style="Default" text="起きてくれイーモ|ここは危ない" translation=""/>
+    <subtitle duration="1459" effect="" end="63667" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="10" start="62208" style="Default" text="行こう" translation=""/>
+    <subtitle duration="1167" effect="" end="64917" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="11" start="63750" style="Default" text="どこに？" translation=""/>
+    <subtitle duration="2000" effect="" end="67875" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="12" start="65875" style="Default" text="すぐにわかるさ！" translation=""/>
+    <subtitle duration="2208" effect="" end="78375" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="13" start="76167" style="Default" text="イーモ、こっちだ" translation=""/>
+    <subtitle duration="2000" effect="" end="96958" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="14" start="94958" style="Default" text="ついて来るんだ！" translation=""/>
+    <subtitle duration="1209" effect="" end="132792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="15" start="131583" style="Default" text="イーモ、早く！" translation=""/>
+    <subtitle duration="1708" effect="" end="170083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="16" start="168375" style="Default" text="むやみにさわるな！" translation=""/>
+    <subtitle duration="3750" effect="" end="174500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="17" start="170750" style="Default" text="僕はただ、電話に|…出ようと" translation=""/>
+    <subtitle duration="3208" effect="" end="178208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="18" start="175000" style="Default" text="イーモ、見るんだ…|いや、聞いてくれ" translation=""/>
+    <subtitle duration="2542" effect="" end="182292" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="19" start="179750" style="Default" text="君は「聞き方」を知る必要がある" translation=""/>
+    <subtitle duration="1500" effect="" end="185125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="20" start="183625" style="Default" text="これは遊びじゃない" translation=""/>
+    <subtitle duration="4250" effect="" end="190417" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="21" start="186167" style="Default" text="我々はここでは|たやすく死ぬ" translation=""/>
+    <subtitle duration="2917" effect="" end="194125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="22" start="191208" style="Default" text="機械の声を聞くんだ" translation=""/>
+    <subtitle duration="4084" effect="" end="202417" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="23" start="198333" style="Default" text="君の息づかいを聞くんだ" translation=""/>
+    <subtitle duration="2042" effect="" end="269250" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="24" start="267208" style="Default" text="そんなことして疲れない？" translation=""/>
+    <subtitle duration="1500" effect="" end="271083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="25" start="269583" style="Default" text="疲れる?!" translation=""/>
+    <subtitle duration="2917" effect="" end="274667" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="26" start="271750" style="Default" text="この機械は非常に正確で" translation=""/>
+    <subtitle duration="2208" effect="" end="277708" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="27" start="275500" style="Default" text="一つ間違えば…" translation=""/>
+    <subtitle duration="2959" effect="" end="280792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="28" start="277833" style="Default" text="…地面に落ちてバラバラだ" translation=""/>
+    <subtitle duration="1333" effect="" end="282375" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="29" start="281042" style="Default" text="え、でも―" translation=""/>
+    <subtitle duration="4125" effect="" end="286542" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="30" start="282417" style="Default" text="バラバラだぞ、イーモ！|それでいいのか？" translation=""/>
+    <subtitle duration="1917" effect="" end="290000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="31" start="288083" style="Default" text="バラバラで死ぬんだぞ？" translation=""/>
+    <subtitle duration="1667" effect="" end="292250" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="32" start="290583" style="Default" text="バラバラだ！" translation=""/>
+    <subtitle duration="1625" effect="" end="343458" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="33" start="341833" style="Default" text="イーモ、目を閉じるんだ" translation=""/>
+    <subtitle duration="1666" effect="" end="346583" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="34" start="344917" style="Default" text="なぜ？|―早く！" translation=""/>
+    <subtitle duration="2292" effect="" end="356042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="35" start="353750" style="Default" text="それでいい" translation=""/>
+    <subtitle duration="4250" effect="" end="363792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="36" start="359542" style="Default" text="左に見えるものは何だ、イーモ？" translation=""/>
+    <subtitle duration="1583" effect="" end="366000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="37" start="364417" style="Default" text="え…何も|―本当か？" translation=""/>
+    <subtitle duration="1584" effect="" end="367917" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="38" start="366333" style="Default" text="全く何も" translation=""/>
+    <subtitle duration="4791" effect="" end="372833" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="39" start="368042" style="Default" text="では右は|何か見えるか、イーモ？" translation=""/>
+    <subtitle duration="3042" effect="" end="376917" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="40" start="373875" style="Default" text="同じだよプルーグ、全く同じ…" translation=""/>
+    <subtitle duration="1500" effect="" end="378583" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="41" start="377083" style="Default" text="何もない！" translation=""/>
+    <subtitle duration="2583" effect="" end="403208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="42" start="400625" style="Default" text="プルーグ！何か聞こえない？" translation=""/>
+    <subtitle duration="1417" effect="" end="405042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="43" start="403625" style="Default" text="あそこに行かないか？" translation=""/>
+    <subtitle duration="2834" effect="" end="408042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="44" start="405208" style="Default" text="あそこ？|…安全じゃない" translation=""/>
+    <subtitle duration="2583" effect="" end="412500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="45" start="409917" style="Default" text="でも…|―本当に危ないぞ" translation=""/>
+    <subtitle duration="1500" effect="" end="414792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="46" start="413292" style="Default" text="大丈夫だよ…" translation=""/>
+    <subtitle duration="1500" effect="" end="416333" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="47" start="414833" style="Default" text="だめだ" translation=""/>
+    <subtitle duration="2500" effect="" end="420167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="48" start="417667" style="Default" text="だめだ！" translation=""/>
+    <subtitle duration="2875" effect="" end="423750" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="49" start="420875" style="Default" text="まだ続ける気か、イーモ？" translation=""/>
+    <subtitle duration="1667" effect="" end="425917" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="50" start="424250" style="Default" text="いいえ…" translation=""/>
+    <subtitle duration="1375" effect="" end="430833" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="51" start="429458" style="Default" text="イーモ？" translation=""/>
+    <subtitle duration="1667" effect="" end="433542" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="52" start="431875" style="Default" text="イーモ、なぜ…" translation=""/>
+    <subtitle duration="875" effect="" end="434458" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="53" start="433583" style="Default" text="イーモ…" translation=""/>
+    <subtitle duration="4000" effect="" end="438500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="54" start="434500" style="Default" text="…なぜここの美しさが|見えない？" translation=""/>
+    <subtitle duration="1917" effect="" end="440750" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="55" start="438833" style="Default" text="仕組みがこんなに…" translation=""/>
+    <subtitle duration="3125" effect="" end="444000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="56" start="440875" style="Default" text="こんなに完全なのに" translation=""/>
+    <subtitle duration="3334" effect="" end="447417" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="57" start="444083" style="Default" text="もういいよ！プルーグ！" translation=""/>
+    <subtitle duration="2791" effect="" end="450333" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="58" start="447542" style="Default" text="そこには何もないんだから" translation=""/>
+    <subtitle duration="3833" effect="" end="455333" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="59" start="451500" style="Default" text="なぜ命を「ない」物に|ゆだねなきゃ？" translation=""/>
+    <subtitle duration="1542" effect="" end="457125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="60" start="455583" style="Default" text="教えてくれないか？" translation=""/>
+    <subtitle duration="1667" effect="" end="459167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="61" start="457500" style="Default" text="さあ！" translation=""/>
+    <subtitle duration="1375" effect="" end="464583" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="62" start="463208" style="Default" text="プルーグ…" translation=""/>
+    <subtitle duration="1833" effect="" end="467333" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="63" start="465500" style="Default" text="あなたは病気なんだ" translation=""/>
+    <subtitle duration="1833" effect="" end="469208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="64" start="467375" style="Default" text="僕から離れてくれ" translation=""/>
+    <subtitle duration="2500" effect="" end="475083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="65" start="472583" style="Default" text="いかん！イーモ！ワナだ！" translation=""/>
+    <subtitle duration="1334" effect="" end="477167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="66" start="475833" style="Default" text="ワナだ？ ふーん" translation=""/>
+    <subtitle duration="4542" effect="" end="481750" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="67" start="477208" style="Default" text="左に何が見える？|バビロンの空中庭園！" translation=""/>
+    <subtitle duration="2042" effect="" end="484292" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="68" start="482250" style="Default" text="これがワナとでも？" translation=""/>
+    <subtitle duration="1667" effect="" end="487125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="69" start="485458" style="Default" text="だめだ、イーモ" translation=""/>
+    <subtitle duration="3375" effect="" end="492792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="70" start="489417" style="Default" text="右にあるのは…|…すごい！…" translation=""/>
+    <subtitle duration="1750" effect="" end="494750" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="71" start="493000" style="Default" text="…ロードス島の巨像だ！" translation=""/>
+    <subtitle duration="875" effect="" end="496708" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="72" start="495833" style="Default" text="やめろ！" translation=""/>
+    <subtitle duration="5417" effect="" end="502167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="73" start="496750" style="Default" text="この巨像はあなたの物|プルーグ、あなたのだよ" translation=""/>
+    <subtitle duration="1834" effect="" end="533167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="74" start="531333" style="Default" text="いってるじゃないか…" translation=""/>
+    <subtitle duration="2292" effect="" end="535500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="75" start="533208" style="Default" text="そこにあるって、イーモ…" translation=""/>
+    <subtitle duration="2667" effect="" end="540000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="76" start="537333" style="Default" text="…あるって" translation=""/>
+  </subtitles>
+</SubtitleEditorProject>

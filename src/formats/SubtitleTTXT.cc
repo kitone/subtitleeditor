@@ -86,53 +86,46 @@ bool SubtitleTTXT::on_open(const Glib::ustring &filename)
 		parser.set_substitute_entities();
 		parser.parse_file(filename);
 
-		if(parser)
+		if(!parser)
+			throw IOFileError(_("Failed to open the file for reading."));
+
+		const xmlpp::Node* root = parser.get_document()->get_root_node();
+		xmlpp::Node::NodeList list = root->get_children();
+
+		Subtitles subtitles = document()->subtitles();
+
+		for(xmlpp::Node::NodeList::const_iterator it = list.begin(); it!=list.end(); ++it)
 		{
-			const xmlpp::Node* root = parser.get_document()->get_root_node();
 
-			xmlpp::Node::NodeList list = root->get_children();
-
-			Subtitles subtitles = document()->subtitles();
-
-			for(xmlpp::Node::NodeList::const_iterator it = list.begin(); it!=list.end(); ++it)
+			if((*it)->get_name() == "TextSample")
 			{
+				const xmlpp::Element *element = dynamic_cast<const xmlpp::Element*>(*it);
 
-				if((*it)->get_name() == "TextSample")
-				{
-					const xmlpp::Element *element = dynamic_cast<const xmlpp::Element*>(*it);
-
-					Subtitle subtitle = subtitles.append();
+				Subtitle subtitle = subtitles.append();
 					
-					// text
-					const xmlpp::Attribute *att_text = element->get_attribute("text");
-					if(att_text)
-					{
-						Glib::ustring text = att_text->get_value();
+				// text
+				const xmlpp::Attribute *att_text = element->get_attribute("text");
+				if(att_text)
+				{
+					Glib::ustring text = att_text->get_value();
 
-						subtitle.set_text(text);
-					}
-					// time
-					const xmlpp::Attribute *att_time =  element->get_attribute("sampleTime");
-					if(att_time)
-					{
-						Glib::ustring time = att_time->get_value();
+					subtitle.set_text(text);
+				}
+				// time
+				const xmlpp::Attribute *att_time =  element->get_attribute("sampleTime");
+				if(att_time)
+				{
+					Glib::ustring time = att_time->get_value();
 
-						subtitle.set_start(time);
-					}
+					subtitle.set_start(time);
 				}
 			}
-
-			return true;
-			
 		}
-		else
-		{
-			throw SubtitleException("SubtitleTTXT", _("I can't open this file."));
-		}
+		return true;
 	}
 	catch(const std::exception &ex)
 	{
-		throw SubtitleException("SubtitleTTXT", ex.what());
+		throw IOFileError(_("Failed to open the file for reading."));
 	}
 
 	return false;
@@ -170,11 +163,11 @@ bool SubtitleTTXT::on_save(const Glib::ustring &filename)
 			sub->set_attribute("text", text);
 		}
 
-		doc.write_to_file(filename, encoding);
+		doc.write_to_file(filename, "UTF-8");
 	}
 	catch(const std::exception &ex)
 	{
-		throw SubtitleException("SubtitleTTXT", ex.what());
+		throw IOFileError(_("Failed to open the file for writing."));
 	}
 
 	return true;
@@ -188,7 +181,7 @@ Glib::ustring SubtitleTTXT::get_time(const SubtitleTime &time)
 	gchar* tmp = g_strdup_printf("%.2i:%.2i:%.2i.%.3i",
 			time.hours(), time.minutes(), time.seconds(), time.mseconds());
 	Glib::ustring str(tmp);
-	g_free(str);
+	g_free(tmp);
 
 	return str;
 }

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SubtitleEditorProject version="1.0">
+  <styles/>
+  <subtitles>
+    <subtitle duration="3000" effect="" end="18000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="0" start="15000" style="Default" text="At the left we can see..." translation=""/>
+    <subtitle duration="1916" effect="" end="20083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="1" start="18167" style="Default" text="At the right we can see the..." translation=""/>
+    <subtitle duration="1917" effect="" end="22000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="2" start="20083" style="Default" text="...the head-snarlers" translation=""/>
+    <subtitle duration="2417" effect="" end="24417" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="3" start="22000" style="Default" text="Everything is safe.&#10;Perfectly safe." translation=""/>
+    <subtitle duration="2500" effect="" end="27083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="4" start="24583" style="Default" text="Emo?" translation=""/>
+    <subtitle duration="1834" effect="" end="30042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="5" start="28208" style="Default" text="Watch out!" translation=""/>
+    <subtitle duration="1500" effect="" end="48542" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="6" start="47042" style="Default" text="Are you hurt?" translation=""/>
+    <subtitle duration="2000" effect="" end="54000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="7" start="52000" style="Default" text="I don't think so.&#10;You?" translation=""/>
+    <subtitle duration="1875" effect="" end="57042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="8" start="55167" style="Default" text="I'm Ok." translation=""/>
+    <subtitle duration="4042" effect="" end="61167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="9" start="57125" style="Default" text="Get up.&#10;Emo, it's not safe here." translation=""/>
+    <subtitle duration="1125" effect="" end="63167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="10" start="62042" style="Default" text="Let's go." translation=""/>
+    <subtitle duration="2000" effect="" end="65167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="11" start="63167" style="Default" text="What's next?" translation=""/>
+    <subtitle duration="4000" effect="" end="69208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="12" start="65208" style="Default" text="You'll see!" translation=""/>
+    <subtitle duration="2000" effect="" end="74000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="13" start="72000" style="Default" text="(howling wind)" translation=""/>
+    <subtitle duration="2041" effect="" end="78083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="14" start="76042" style="Default" text="Emo.&#10;This way." translation=""/>
+    <subtitle duration="1292" effect="" end="95542" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="15" start="94250" style="Default" text="Follow me!" translation=""/>
+    <subtitle duration="3000" effect="" end="102000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="16" start="99000" style="Default" text="(buzzing wires and chattery conversations)" translation=""/>
+    <subtitle duration="1417" effect="" end="132542" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="17" start="131125" style="Default" text="Hurry Emo!" translation=""/>
+    <subtitle duration="2500" effect="" end="142792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="18" start="140292" style="Default" text="(louder telephone voices)" translation=""/>
+    <subtitle duration="2500" effect="" end="154500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="19" start="152000" style="Default" text="(phone ringing)" translation=""/>
+    <subtitle duration="1917" effect="" end="170000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="20" start="168083" style="Default" text="You're not paying attention!" translation=""/>
+    <subtitle duration="3958" effect="" end="174125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="21" start="170167" style="Default" text="I just want to answer the...&#10;...phone." translation=""/>
+    <subtitle duration="3042" effect="" end="178042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="22" start="175000" style="Default" text="Emo, look,&#10;I mean listen." translation=""/>
+    <subtitle duration="2916" effect="" end="182083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="23" start="179167" style="Default" text="You have to learn to listen." translation=""/>
+    <subtitle duration="1875" effect="" end="185042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="24" start="183167" style="Default" text="This is not some game." translation=""/>
+    <subtitle duration="4334" effect="" end="189417" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="25" start="185083" style="Default" text="You, i mean we,&#10;we could easily die out here." translation=""/>
+    <subtitle duration="4000" effect="" end="194042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="26" start="190042" style="Default" text="Listen,&#10;listen to the sounds of the machine." translation=""/>
+    <subtitle duration="2000" effect="" end="200083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="27" start="198083" style="Default" text="Listen to your breathing." translation=""/>
+    <subtitle duration="2000" effect="" end="209000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="28" start="207000" style="Default" text="(Buzzing wires)" translation=""/>
+    <subtitle duration="2000" effect="" end="216500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="29" start="214500" style="Default" text="(laughing)" translation=""/>
+    <subtitle duration="2000" effect="" end="255417" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="30" start="253417" style="Default" text="(oriental dance music)" translation=""/>
+    <subtitle duration="2000" effect="" end="269042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="31" start="267042" style="Default" text="Well, don't you ever get tired of this?" translation=""/>
+    <subtitle duration="1875" effect="" end="271000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="32" start="269125" style="Default" text="Tired?!?" translation=""/>
+    <subtitle duration="3416" effect="" end="274583" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="33" start="271167" style="Default" text="Emo, the machine is like clockwork." translation=""/>
+    <subtitle duration="2042" effect="" end="277167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="34" start="275125" style="Default" text="One move out of place..." translation=""/>
+    <subtitle duration="2000" effect="" end="279208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="35" start="277208" style="Default" text="...and you're ground to a pulp." translation=""/>
+    <subtitle duration="1083" effect="" end="282083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="36" start="281000" style="Default" text="But isn't it -" translation=""/>
+    <subtitle duration="4042" effect="" end="286125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="37" start="282083" style="Default" text="Pulp, Emo!&#10;Is that what you want, pulp?" translation=""/>
+    <subtitle duration="2000" effect="" end="289083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="38" start="287083" style="Default" text="Emo, your goal in life..." translation=""/>
+    <subtitle duration="1917" effect="" end="292042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="39" start="290125" style="Default" text="...pulp?" translation=""/>
+    <subtitle duration="2500" effect="" end="310500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="40" start="308000" style="Default" text="(loud metal sounds)" translation=""/>
+    <subtitle duration="1917" effect="" end="343125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="41" start="341208" style="Default" text="Emo, close your eyes." translation=""/>
+    <subtitle duration="1917" effect="" end="346125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="42" start="344208" style="Default" text="Why?&#10;- Now!" translation=""/>
+    <subtitle duration="1000" effect="" end="352208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="43" start="351208" style="Default" text="Ok." translation=""/>
+    <subtitle duration="1625" effect="" end="354792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="44" start="353167" style="Default" text="Good." translation=""/>
+    <subtitle duration="3083" effect="" end="362208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="45" start="359125" style="Default" text="What do you see at your left side, Emo?" translation=""/>
+    <subtitle duration="1917" effect="" end="366000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="46" start="364083" style="Default" text="Nothing.&#10;- Really?" translation=""/>
+    <subtitle duration="1125" effect="" end="367208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="47" start="366083" style="Default" text="No, nothing at all." translation=""/>
+    <subtitle duration="4083" effect="" end="372083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="48" start="368000" style="Default" text="And at your right,&#10;what do you see at your right side, Emo?" translation=""/>
+    <subtitle duration="3000" effect="" end="376208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="49" start="373208" style="Default" text="The same Proog, exactly the same..." translation=""/>
+    <subtitle duration="2208" effect="" end="379208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="50" start="377000" style="Default" text="...nothing!&#10;- Great." translation=""/>
+    <subtitle duration="2000" effect="" end="387208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="51" start="385208" style="Default" text="(sound of camera flash)" translation=""/>
+    <subtitle duration="2000" effect="" end="391792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="52" start="389792" style="Default" text="(engine drone)" translation=""/>
+    <subtitle duration="2666" effect="" end="402833" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="53" start="400167" style="Default" text="Listen Proog! Do you hear that!&#10;(amusement park music)" translation=""/>
+    <subtitle duration="1833" effect="" end="405000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="54" start="403167" style="Default" text="Can we go here?" translation=""/>
+    <subtitle duration="2958" effect="" end="408000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="55" start="405042" style="Default" text="There?&#10;It isn't safe, Emo." translation=""/>
+    <subtitle duration="2917" effect="" end="412125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="56" start="409208" style="Default" text="But...&#10;- Trust me, it's not." translation=""/>
+    <subtitle duration="1125" effect="" end="414208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="57" start="413083" style="Default" text="Maybe I could..." translation=""/>
+    <subtitle duration="1875" effect="" end="416083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="58" start="414208" style="Default" text="No." translation=""/>
+    <subtitle duration="2875" effect="" end="420042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="59" start="417167" style="Default" text="NO!" translation=""/>
+    <subtitle duration="2959" effect="" end="423167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="60" start="420208" style="Default" text="Any further questions, Emo?" translation=""/>
+    <subtitle duration="1166" effect="" end="425208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="61" start="424042" style="Default" text="No." translation=""/>
+    <subtitle duration="1083" effect="" end="430208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="62" start="429125" style="Default" text="Emo?" translation=""/>
+    <subtitle duration="1917" effect="" end="433125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="63" start="431208" style="Default" text="Emo, why..." translation=""/>
+    <subtitle duration="1000" effect="" end="434125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="64" start="433125" style="Default" text="Emo..." translation=""/>
+    <subtitle duration="4000" effect="" end="438125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="65" start="434125" style="Default" text="...why can't you see&#10;the beauty of this place?" translation=""/>
+    <subtitle duration="1959" effect="" end="440167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="66" start="438208" style="Default" text="The way it works." translation=""/>
+    <subtitle duration="3792" effect="" end="444000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="67" start="440208" style="Default" text="How perfect it is." translation=""/>
+    <subtitle duration="3083" effect="" end="447083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="68" start="444000" style="Default" text="No, Proog, I don't see." translation=""/>
+    <subtitle duration="2958" effect="" end="450083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="69" start="447125" style="Default" text="I don't see because there's nothing there." translation=""/>
+    <subtitle duration="3958" effect="" end="455083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="70" start="451125" style="Default" text="And why should I trust my&#10;life to something that isn't there?" translation=""/>
+    <subtitle duration="1917" effect="" end="457042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="71" start="455125" style="Default" text="Well can you tell me that?" translation=""/>
+    <subtitle duration="1917" effect="" end="459042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="72" start="457125" style="Default" text="Answer me!" translation=""/>
+    <subtitle duration="1083" effect="" end="464125" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="73" start="463042" style="Default" text="Proog..." translation=""/>
+    <subtitle duration="1958" effect="" end="467083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="74" start="465125" style="Default" text="...you're a sick man!" translation=""/>
+    <subtitle duration="1959" effect="" end="469042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="75" start="467083" style="Default" text="Stay away from me!" translation=""/>
+    <subtitle duration="2875" effect="" end="475000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="76" start="472125" style="Default" text="No! Emo! It's a trap!" translation=""/>
+    <subtitle duration="1834" effect="" end="477042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="77" start="475208" style="Default" text="Hah, it's a trap." translation=""/>
+    <subtitle duration="4125" effect="" end="481167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="78" start="477042" style="Default" text="At the left side you can see&#10;the hanging gardens of Babylon!" translation=""/>
+    <subtitle duration="2041" effect="" end="484083" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="79" start="482042" style="Default" text="How's that for a trap?" translation=""/>
+    <subtitle duration="1917" effect="" end="487042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="80" start="485125" style="Default" text="No, Emo." translation=""/>
+    <subtitle duration="3125" effect="" end="492208" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="81" start="489083" style="Default" text="At the right side you can see...&#10;...well guess what..." translation=""/>
+    <subtitle duration="1792" effect="" end="494792" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="82" start="493000" style="Default" text="...the colossus of Rhodes!" translation=""/>
+    <subtitle duration="959" effect="" end="496167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="83" start="495208" style="Default" text="No!" translation=""/>
+    <subtitle duration="5875" effect="" end="502042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="84" start="496167" style="Default" text="The colossus of Rhodes&#10;and it is here just for you Proog." translation=""/>
+    <subtitle duration="1959" effect="" end="533042" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="85" start="531083" style="Default" text="It is there..." translation=""/>
+    <subtitle duration="3125" effect="" end="536167" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="86" start="533042" style="Default" text="I'm telling you,&#10;Emo..." translation=""/>
+    <subtitle duration="2917" effect="" end="540000" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="87" start="537083" style="Default" text="...it is." translation=""/>
+    <subtitle duration="2500" effect="" end="547500" layer="0" margin-l="0" margin-r="0" margin-v="0" name="" note="" path="88" start="545000" style="Default" text="(howling wind)" translation=""/>
+  </subtitles>
+</SubtitleEditorProject>

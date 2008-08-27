@@ -124,9 +124,9 @@ protected:
 					delete doc;
 				}
 			}
-			catch(const Glib::Error &ex)
+			catch(...)
 			{
-				std::cerr << ex.what() << std::endl;
+				//std::cerr << ex.what() << std::endl;
 			}
 		}
 	}

@@ -96,7 +96,7 @@ bool SubtitleEncoreNTSC::on_open(const Glib::ustring &filename)
 	
 	if(!file)
 	{
-		throw SubtitleException("SubtitleEncoreNTSC", _("I can't open this file."));
+		throw IOFileError(_("Failed to open the file for reading."));
 	}
 
 	std::string line;
@@ -150,9 +150,7 @@ bool SubtitleEncoreNTSC::on_save(const Glib::ustring &filename)
 	std::ofstream file(filename.c_str());
 
 	if(!file)
-	{
-		throw SubtitleException("SubtitleEncoreNTSC", _("I can't open this file."));
-	}
+		throw IOFileError(_("Failed to open the file for writing."));
 	
 	se_debug_message(SE_DEBUG_SAVER, "save Event");
 

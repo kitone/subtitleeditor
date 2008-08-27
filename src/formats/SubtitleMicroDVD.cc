@@ -163,9 +163,7 @@ bool SubtitleMicroDVD::on_open(const Glib::ustring &filename)
 	std::ifstream file(filename.c_str());
 
 	if(!file)
-	{
-		throw SubtitleException("SubtitleMicroDVD", _("I can't open this file."));
-	}
+		throw IOFileError(_("Failed to open the file for reading."));
 
 	RegEx ex("^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
 
@@ -217,9 +215,7 @@ bool SubtitleMicroDVD::on_save(const Glib::ustring &filename)
 
 	std::ofstream file(filename.c_str());
 	if(!file)
-	{
-		throw SubtitleException("SubtitleMicroDVD", _("I can't open this file."));
-	}
+		throw IOFileError(_("Failed to open the file for writing."));
 
 	Glib::ustring text;
 	

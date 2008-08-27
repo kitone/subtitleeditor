@@ -49,7 +49,7 @@ Glib::ustring SubtitleMPL2::get_extension()
  */
 bool SubtitleMPL2::check(const std::string &line)
 {
-	static RegEx ex("^\\[\\d+\\]\\[\\d+\\].*?$");
+	static RegEx ex("^\\[(\\d+)\\]\\[(\\d+)\\](.*?)$");
 
 	return ex.exec(line);
 }
@@ -82,9 +82,7 @@ bool SubtitleMPL2::on_open(const Glib::ustring &filename)
 
 	std::ifstream file(filename.c_str());
 	if(!file)
-	{
-		throw SubtitleException("SubtitleMPL2", _("I can't open this file."));
-	}
+		throw IOFileError(_("Failed to open the file for reading."));
 
 	//double ds = SubtitleTime(0,0,0,100).totalmsecs;
 	double ds = 100;
@@ -132,9 +130,7 @@ bool SubtitleMPL2::on_save(const Glib::ustring &filename)
 
 	std::ofstream file(filename.c_str());
 	if(!file)
-	{
-		throw SubtitleException("SubtitleMPL2", _("I can't open this file."));
-	}
+		throw IOFileError(_("Failed to open the file for writing."));
 
 	// TODO : change!
 	double ds = 100;

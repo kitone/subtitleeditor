@@ -28,7 +28,9 @@
 
 #include "SubtitleSystem.h"
 #include "gui/ComboBoxEncoding.h"
+#include "gui/DialogUtility.h"
 #include "SubtitleFormat.h"
+#include "Encodings.h"
 #include <gtkmm.h>
 
 #include <ctime>
@@ -320,10 +322,6 @@ bool Document::save(const Glib::ustring &_filename)
 
 			return res;
 		}
-	}
-	catch(const SubtitleException &ex)
-	{
-		dialog_error(_("Save Document Failed."), ex.what());
 	}
 	catch(const std::exception &ex)
 	{
@@ -643,6 +641,8 @@ Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustri
 	se_debug_message(SE_DEBUG_APP, "uri=%s charset=%s", uri.c_str(), charset.c_str());
 
 	Glib::ustring filename = Glib::filename_from_uri(uri);
+	Glib::ustring basename = Glib::path_get_basename(filename);
+	Glib::ustring label_charset = Encodings::get_label_from_charset(charset);
 
 	try
 	{
@@ -655,39 +655,37 @@ Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustri
 		delete doc;
 		return NULL;// throw ?
 	}
-	catch(const SubtitleException &ex)
+	catch(const UnrecognizeFormatError &ex)
 	{
-		Glib::ustring msg;
-		if(charset.empty())
-		{
-			msg = build_message(
-					_("Could not open the file <i>%s</i>."), 
-					filename.c_str());
-		}
-		else
-		{
-			msg = build_message(
-					_("Could not open the file <i>%s</i> using the <i>%s</i> character coding."), 
-					filename.c_str(), charset.c_str());
-		}
+		Glib::ustring title = build_message(
+				_("Could not recognize the subtitle format for the file \"%s\"."), 
+				basename.c_str());
+		Glib::ustring msg = _("Please check that the file contains subtitles in a supported format.");
 
-		dialog_error(msg, ex.what());
+		ErrorDialog dialog(title, msg);
+		dialog.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+		dialog.run();
 	}
-	catch(const Glib::ConvertError &ex)
+	catch(const EncodingConvertError &ex)
 	{
-		Glib::ustring msg;
-		msg += "<span weight=\"bold\" size=\"larger\">";
+		Glib::ustring title, msg;
+
 		if(charset.empty())
-			msg += build_message(_("Could not open the file <i>%s</i>."), filename.c_str());
+		{
+			title = build_message(_("Could not open automatically the file \"%s\"."), basename.c_str());
+			msg = _("Subtitle Editor was not able to automatically determine the file encoding. "
+					"Select a different character coding from the menu and try again.");
+		}
 		else
-			msg += build_message(_("Could not open the file <i>%s</i> using the <i>%s</i> character coding."), filename.c_str(), charset.c_str());
-		msg += "</span>\n\n";
-		msg += ex.what();
-		msg += "\n\n";
-		msg += _("Select a different character coding from the menu and try again.");
-
-
-		Gtk::MessageDialog dialog(msg, true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_CANCEL, true);
+		{
+			title = build_message(
+					_("Could not open the file \"%s\" using the character coding %s."), 
+					basename.c_str(), Encodings::get_label_from_charset(charset).c_str());
+			msg = _("Select a different character coding from the menu and try again.");
+		}
+		
+		ErrorDialog dialog(title, msg);
+		dialog.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
 		dialog.add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
 		
 		Gtk::Label labelEncoding(_("Character Coding:"), 1.0, 0.5);
@@ -706,27 +704,23 @@ Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustri
 			return Document::create_from_file(uri, comboEncoding.get_value());
 		}
 	}
-	catch(const Glib::Error &ex)
+	catch(const std::exception &ex)
 	{
-		Glib::ustring msg;
-		if(charset.empty())
-		{
-			msg = build_message(
-					_("Could not open the file <i>%s</i>."), 
-					filename.c_str());
-		}
-		else
-		{
-			msg = build_message(
-					_("Could not open the file <i>%s</i> using the <i>%s</i> character coding."), 
-					filename.c_str(), charset.c_str());
-		}
+		Glib::ustring title = build_message(_("Could not open the file \"%s\""), basename.c_str());
+		Glib::ustring msg = ex.what();
 
-		dialog_error(msg, ex.what());
+		ErrorDialog dialog(title, msg);
+		dialog.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+		dialog.run();
 	}
 	catch(...)
 	{
-		dialog_error(_("Excpetion inconnu"), "");
+		Glib::ustring title = build_message(_("Could not open the file \"%s\""), basename.c_str());
+		Glib::ustring msg = _("An unknown error occurred while opening the file.");
+
+		ErrorDialog dialog(title, msg);
+		dialog.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+		dialog.run();
 	}
 	return NULL;
 }
