@@ -1,5 +1,5 @@
-#ifndef _DialogUtility_h
-#define _DialogUtility_h
+#ifndef _Error_h
+#define _Error_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -22,50 +22,68 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
-
-#include <gtkmm.h>
-#include <libglademm/xml.h>
-#include "DocumentSystem.h"
+#include <exception>
+#include <string>
 
 /*
- *
- *
+ * Base class
  */
-class DialogActionMultiDoc : public Gtk::Dialog
+class SubtitleError : public std::exception
 {
 public:
-	DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	SubtitleError(const std::string &msg)
+	:m_msg(msg)
+	{
+	}
 
-	/*
-	 *	applique l'action à tous les documents
-	 */
-	bool apply_to_all_documents();
+	virtual ~SubtitleError() throw()
+	{
+	}
 
-	/*
-	 *	retourne la list des documents à modifier
-	 *	selon qu'on utilise "current document" ou "All documents"
-	 */
-	DocumentList get_documents_to_apply();
+	virtual const char* what() const throw()
+	{
+		return m_msg.c_str();
+	}
 
-protected:
-	Gtk::RadioButton*	m_radioCurrentDocument;
-	Gtk::RadioButton* m_radioAllDocuments;
+private:
+	std::string m_msg;
 };
-
 
 /*
  *
  */
-class ErrorDialog : public Gtk::MessageDialog
+class UnrecognizeFormatError : public SubtitleError
 {
 public:
-
-	/*
-	 *
-	 */
-	ErrorDialog(const Glib::ustring &primary, const Glib::ustring &secondary=Glib::ustring());
+	UnrecognizeFormatError(const std::string &msg)
+	:SubtitleError(msg)
+	{
+	}
 };
 
-#endif//_DialogUtility_h
+/*
+ *
+ */
+class IOFileError : public SubtitleError
+{
+public:
+	IOFileError(const std::string &msg)
+	:SubtitleError(msg)
+	{
+	}
+};
+
+/*
+ *
+ */
+class EncodingConvertError : public SubtitleError
+{
+public:
+	EncodingConvertError(const std::string &msg)
+	:SubtitleError(msg)
+	{
+	}
+};
+
+#endif//_Error_h
 

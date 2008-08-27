@@ -90,7 +90,7 @@ bool SubtitleEditorProject::on_open(const Glib::ustring &filename)
 		parser.parse_file(filename);
 
 		if(!parser)
-			return false;
+			throw IOFileError(_("Failed to open the file for reading."));
 
 		const xmlpp::Node* root = parser.get_document()->get_root_node();
 		// 
@@ -148,7 +148,7 @@ bool SubtitleEditorProject::on_open(const Glib::ustring &filename)
 	}
 	catch(const std::exception &ex)
 	{
-		throw SubtitleException("SubtitleEditorProject", ex.what());
+		throw IOFileError(_("Failed to open the file for reading."));
 	}
 	return false;
 }
@@ -218,7 +218,7 @@ bool SubtitleEditorProject::on_save(const Glib::ustring &filename)
 	}
 	catch(const std::exception &ex)
 	{
-		throw SubtitleException("SubtitleEditorProject", ex.what());
+		throw IOFileError(_("Failed to open the file for writing."));
 	}
 
 	return false;

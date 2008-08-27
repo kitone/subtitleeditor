@@ -87,7 +87,7 @@ bool SubtitleMPsub::on_open(const Glib::ustring &filename)
 
 	if(!file)
 	{
-		throw SubtitleException("SubtitleMPsub", _("I can't open this file."));
+		throw IOFileError(_("Failed to open the file for reading."));
 	}
 
 	bool use_time;
@@ -180,9 +180,7 @@ bool SubtitleMPsub::on_save(const Glib::ustring &filename)
 
 	std::ofstream file(filename.c_str());
 	if(!file)
-	{
-		throw SubtitleException("SubtitleMPsub", _("I can't open this file."));
-	}
+		throw IOFileError(_("Failed to open the file for writing."));
 
 	file << "FORMAT=TIME" << std::endl;
 	file << utf8_to_charset("# This script was created by subtitleeditor ") << utf8_to_charset(VERSION) << std::endl;

@@ -1,3 +1,66 @@
+2008-08-27  kitone  <kitone@gna.org>
+
+	* src/Error.h:
+	New files for subtitle errors.
+
+	* src/Document.cc:
+	Better support of errors and messages.
+
+	* src/SubtitleFormat.cc:
+	* src/SubtitleFormat.h:
+	Remove the class SubtitleException. 
+	Used the news errors (Error.h).
+
+	* src/actions/Transcript.cc:
+	Catch any errors. (needs to be fixed)
+
+	* src/SubtitleSystem.cc:
+	* src/formats/SubtitleASS.cc:
+	* src/formats/SubtitleEditorProject.cc:
+	* src/formats/SubtitleEncoreNTSC.cc:
+	* src/formats/SubtitleEncorePAL.cc:
+	* src/formats/SubtitleMPL2.cc:
+	* src/formats/SubtitleMPsub.cc:
+	* src/formats/SubtitleMicroDVD.cc:
+	* src/formats/SubtitleSSA.cc:
+	* src/formats/SubtitleSubRip.cc:
+	* src/formats/SubtitleSubViewer2.cc:
+	* src/formats/SubtitleTTXT.cc:
+	* src/formats/SubtitleText.cc:
+	* src/formats/SubtitleTimedText.cc:
+	Throw better errors. (UnrecognizeFormatError, EncodingConvertError ...)
+
+	* src/gui/DialogUtility.cc:
+	* src/gui/DialogUtility.h:
+	Add new class ErrorDialog.
+	
+	* src/Makefile.am:
+	* src/unittest/adobe.encore.dvd.ntsc.format:
+	* src/unittest/adobe.encore.dvd.ntsc.format.euc-jp:
+	* src/unittest/adobe.encore.dvd.pal.format:
+	* src/unittest/adobe.encore.dvd.pal.format.euc-jp:
+	* src/unittest/ass.format:
+	* src/unittest/ass.format.euc-jp:
+	* src/unittest/microdvd.format:
+	* src/unittest/microdvd.format.euc-jp:
+	* src/unittest/mpl2.format:
+	* src/unittest/mpl2.format.euc-jp:
+	* src/unittest/mpsub.format:
+	* src/unittest/mpsub.format.euc-jp:
+	* src/unittest/ssa.format:
+	* src/unittest/ssa.format.euc-jp:
+	* src/unittest/subrip.format:
+	* src/unittest/subrip.format.euc-jp:
+	* src/unittest/subtitle.editor.project.format:
+	* src/unittest/subtitle.editor.project.format.euc-jp:
+	* src/unittest/subviewer2.0.format:
+	* src/unittest/subviewer2.0.format.euc-jp:
+	* src/unittest/transcript:
+	New files and update the files with elephantsdream subtitles.
+
+	* src/unittest/testSubtitleLoaders.cc:
+	Test some subtitle errors.
+
 2008-08-25  kitone  <kitone@gna.org>
 
 	* share/subtitleeditor.desktop.in:
