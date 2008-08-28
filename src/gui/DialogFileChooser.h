@@ -139,14 +139,29 @@ public:
 	DialogSaveDocument(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
 
 	/*
+	 * Sets the current format value.
+	 */
+	void set_format(const Glib::ustring &format);
+
+	/*
 	 * Returns the subtitle format value.
 	 */
 	Glib::ustring get_format() const;
 
 	/*
+	 * Sets the current encoding value.
+	 */
+	void set_encoding(const Glib::ustring &encoding);
+
+	/*
 	 * Returns the encoding value. or empty string (Auto Detected).
 	 */
 	Glib::ustring get_encoding() const;
+
+	/*
+	 * Sets the current newline.
+	 */
+	void set_newline(const Glib::ustring &newline);
 
 	/*
 	 * Returns the newline value.

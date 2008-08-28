@@ -46,6 +46,11 @@ public:
 	ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
 
 	/*
+	 * Sets the current value.
+	 */
+	void set_value(const Glib::ustring &charset);
+
+	/*
 	 * Returns only the charset value.
 	 * ex: "UTF-8", "ISO-8859-15" ...
 	 * Return empty charset if it's "Auto Detected".

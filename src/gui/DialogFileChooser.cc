@@ -62,6 +62,14 @@ public:
 	}
 
 	/*
+	 *
+	 */
+	void set_value(const Glib::ustring &value)
+	{
+		set_active_text(value);
+	}
+
+	/*
 	 * Returns the subtitle format selected.
 	 */
 	Glib::ustring get_value() const
@@ -88,6 +96,14 @@ public:
 		append_text("Windows");
 
 		set_active_text("Unix");
+	}
+
+	/*
+	 *
+	 */
+	void set_value(const Glib::ustring &value)
+	{
+		set_active_text(value);
 	}
 
 	/*
@@ -221,18 +237,24 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 	std::list<Glib::ustring>::const_iterator it;
 	std::list<Glib::ustring> formats = SubtitleSystem::getInstance().get_formats();
 
+	Gtk::FileFilter all, supported;
+	// all files
+	{
+		all.set_name(_("All files (*.*)"));
+		all.add_pattern("*");
+		dialog->add_filter(all);
+	}
+
 	// all supported formats
 	{
-		Gtk::FileFilter all;
-
-		all.set_name(_("All supported formats (*.ass, *.ssa, *.srt, ...)"));
+		supported.set_name(_("All supported formats (*.ass, *.ssa, *.srt, ...)"));
 		for(it = formats.begin(); it != formats.end(); ++it)
 		{
 			Glib::ustring ext = SubtitleSystem::getInstance().get_extension(*it);
-			all.add_pattern("*."+ext);
+			supported.add_pattern("*."+ext);
 		}
 
-		dialog->add_filter(all);
+		dialog->add_filter(supported);
 	}
 
 	// by format
@@ -248,17 +270,9 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 		}
 	}
 
-	// all files
-	{
-		Gtk::FileFilter all;
-		all.set_name(_("All files (*.*)"));
-		all.add_pattern("*");
-		dialog->add_filter(all);
-	}
+	// select by default
+	dialog->set_filter(supported);
 }
-
-
-#include "SubtitleEditorWindow.h"
 
 /*
  * DialogFileChooser
@@ -415,6 +429,14 @@ DialogSaveDocument::DialogSaveDocument(BaseObjectType* cobject, const Glib::RefP
 }
 
 /*
+ *
+ */
+void DialogSaveDocument::set_format(const Glib::ustring &format)
+{
+	m_comboFormat->set_value(format);
+}
+
+/*
  * Returns the subtitle format value.
  */
 Glib::ustring DialogSaveDocument::get_format() const
@@ -423,11 +445,27 @@ Glib::ustring DialogSaveDocument::get_format() const
 }
 
 /*
+ *
+ */
+void DialogSaveDocument::set_encoding(const Glib::ustring &encoding)
+{
+	m_comboEncodings->set_value(encoding);
+}
+
+/*
  * Returns the encoding value or empty string (Auto Detected).
  */
 Glib::ustring DialogSaveDocument::get_encoding() const
 {
 	return m_comboEncodings->get_value();
+}
+
+/*
+ *
+ */
+void DialogSaveDocument::set_newline(const Glib::ustring &newline)
+{
+	m_comboNewLine->set_value(newline);
 }
 
 /*
