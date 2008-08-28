@@ -62,6 +62,29 @@ ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<G
 }
 
 /*
+ * Sets current value.
+ */
+void ComboBoxEncoding::set_value(const Glib::ustring &value)
+{
+	Glib::ustring label = Encodings::get_label_from_charset(value);
+	if(label.empty())
+		return;
+	// check only with encoding available
+	Gtk::TreeIter it = get_model()->children().begin();
+	while(it)
+	{
+		Glib::ustring name = (*it)[m_text_columns.m_column];
+		if(name == value)
+		{
+			set_active(it);
+			return;
+		}
+		++it;
+	}
+	//set_active_text(label);
+}
+
+/*
  * Returns only the charset value.
  * ex: "UTF-8", "ISO-8859-15" ...
  * Return empty charset if it's "Auto Detected".

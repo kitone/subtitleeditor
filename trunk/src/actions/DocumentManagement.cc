@@ -308,9 +308,11 @@ protected:
 
 		DialogSaveDocument::auto_ptr dialog = DialogSaveDocument::create();
 
-		if(dialog.get() == NULL)
-			dialog = DialogSaveDocument::create();
-
+		dialog->set_filename(doc->getFilename());
+		dialog->set_format(doc->getFormat());
+		dialog->set_encoding(doc->getCharset());
+		dialog->set_newline(doc->getNewLine());
+		dialog->set_do_overwrite_confirmation(true);
 		dialog->show();
 
 		int response = dialog->run();
