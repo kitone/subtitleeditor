@@ -270,12 +270,15 @@ std::string SubtitleFormat::utf8_to_charset(const Glib::ustring &content)
 	}
 	catch(Glib::ConvertError& ex)
 	{
-		std::cerr << content << std::endl;
-		std::cerr << "utf8_to_charset[" << m_charset << "] " << ex.what() << std::endl;
-		std::cerr << std::endl;
+		Glib::ustring msg = build_message(_("Could not convert the text to the character coding %s:\n%s"), 
+				m_charset.c_str(), content.c_str());
+		
+		se_debug_message(SE_DEBUG_LOADER | SE_DEBUG_SAVER, "%s", msg.c_str());
+	
+		throw EncodingConvertError(msg);
 	}
 
-	return "";
+	return std::string();
 }
 
 /*
