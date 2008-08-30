@@ -1,7 +1,7 @@
 2008-08-30  kitone  <kitone@gna.org>
 
 	* src/gui/Application.cc:
-	Add "Timing Mode" on tooltip.
+	Add "Timing Mode" to the tooltip.
 
 2008-08-30  kitone  <kitone@gna.org>
 
