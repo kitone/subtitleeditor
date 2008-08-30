@@ -317,26 +317,22 @@ void Application::update_document_property(Document *doc)
 
 	// Update the document property (tooltip)
 	Glib::ustring filename = doc->getFilename();
+	Glib::ustring character_coding = Encodings::get_label_from_charset(doc->getCharset());
 	Glib::ustring format = doc->getFormat();
 	Glib::ustring newline = doc->getNewLine();
-	Glib::ustring encoding_name, encoding_charset;
-
-	EncodingInfo *info = Encodings::get_from_charset(doc->getCharset());
-	if(info)
-	{
-		encoding_name = info->name;
-		encoding_charset = info->charset;
-	}
+	Glib::ustring timing_mode = (doc->get_timing_mode() == TIME) ? _("Times") : _("Frames");
 
 	Glib::ustring tip = build_message(
 			"<b>%s</b> %s\n\n"
-			"<b>%s</b> %s (%s)\n"
+			"<b>%s</b> %s\n"
+			"<b>%s</b> %s\n"
 			"<b>%s</b> %s\n"
 			"<b>%s</b> %s",
 			_("Name:"), filename.c_str(),
-			_("Encoding:"), encoding_name.c_str(), encoding_charset.c_str(),
+			_("Character Coding:"), character_coding.c_str(),
 			_("Format:"), format.c_str(),
-			_("Newline:"), newline.c_str());
+			_("Newline:"), newline.c_str(),
+			_("Timing Mode:"), timing_mode.c_str());
 
 	label->set_text(display_name);
 	label->set_tooltip_markup(tip);
