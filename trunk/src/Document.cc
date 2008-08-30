@@ -298,12 +298,13 @@ bool Document::open(const Glib::ustring &_filename)
  */
 bool Document::save(const Glib::ustring &_filename)
 {
+	Glib::ustring filename = _filename;
+	Glib::ustring basename = Glib::path_get_basename(filename);
+	Glib::ustring format = getFormat();
+	Glib::ustring charset = getCharset();
+
 	try
 	{
-		Glib::ustring filename = _filename;
-		Glib::ustring format = getFormat();
-		Glib::ustring charset = getCharset();
-
 		std::auto_ptr<SubtitleFormat> sf(SubtitleSystem::getInstance().create_subtitle_format(format, this));
 		
 		if(sf.get() != NULL) // need ?
@@ -322,6 +323,18 @@ bool Document::save(const Glib::ustring &_filename)
 
 			return res;
 		}
+	}
+	catch(const EncodingConvertError &ex)
+	{
+		Glib::ustring title = build_message(
+					_("Could not save the file \"%s\" using the character coding %s."), 
+					basename.c_str(), Encodings::get_label_from_charset(charset).c_str());
+		Glib::ustring msg = _("The document contains one or more characters "
+				"that cannot be encoded using the specified character coding.");
+
+		ErrorDialog dialog(title, msg);
+		dialog.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+		dialog.run();
 	}
 	catch(const std::exception &ex)
 	{

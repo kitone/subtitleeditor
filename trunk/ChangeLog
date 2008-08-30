@@ -1,3 +1,9 @@
+2008-08-30  kitone  <kitone@gna.org>
+
+	* src/Document.cc:
+	* src/SubtitleFormat.cc:
+	Throw EncodingConvertError when utf8_to_charset failed.
+
 2008-08-28  kitone  <kitone@gna.org>
 
 	* src/actions/DocumentManagement.cc:
