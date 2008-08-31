@@ -77,7 +77,6 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["waveform"]["scale"] = "1";
 	config["waveform"]["display-background"] = "false";
 	config["waveform"]["display-waveform-fill"] = "true";
-	config["waveform"]["display-subtitle-text"] = "true";
 	config["waveform"]["scrolling-with-player"] = "true";
 	config["waveform"]["scrolling-with-selection"] = "true";
 	config["waveform"]["respect-timing"] = "true";
