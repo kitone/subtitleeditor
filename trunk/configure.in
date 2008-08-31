@@ -86,7 +86,39 @@ AC_SUBST(GTKMM_CFLAGS)
 AC_SUBST(GTKMM_LIBS)
 
 ## GLIBMM
-PKG_CHECK_MODULES(GLIBMM, glibmm-2.4 >= 2.16.3)
+glibmm_pkg_name=glibmm-2.4
+## minimal ABI 2.14.1 for gtkmm-2.12.x
+glibmm_min_abi_version=2.14.1
+glibmm_blacklist_versions="2.16.0 2.16.1 2.16.2"
+no_glibmm=""
+AC_MSG_CHECKING([for GLIBMM])
+# PKG_CONFIG is already populated
+if $PKG_CONFIG --exists $glibmm_pkg_name ; then
+	if $PKG_CONFIG --atleast-version=$glibmm_min_abi_version $glibmm_pkg_name ; then
+		for version in $glibmm_blacklist_versions; do
+			if $PKG_CONFIG --exact-version=$version $glibmm_pkg_name ; then
+				no_glibmm=yes
+				break
+			fi
+		done
+	else
+		no_glibmm=yes
+	fi
+	glibmm_version=`$PKG_CONFIG --modversion $glibmm_pkg_name`
+else
+	no_glibmm=yes
+fi
+if test x"$no_glibmm" = x ; then
+	AC_MSG_RESULT(yes ($glibmm_version))
+else
+	if test x"$glibmm_version" = x ; then
+		glibmm_version="not installed or unknown"
+	else
+		glibmm_version="unsupported $glibmm_version"
+	fi
+	AC_MSG_RESULT(no ($glibmm_version))
+	AC_MSG_ERROR(A required glibmm library release was not found.)
+fi
 
 ## LIBGLADEMM
 PKG_CHECK_MODULES(LIBGLADEMM, libglademm-2.4 >= 2.4)

@@ -1,5 +1,11 @@
 2008-08-31  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Patch by Luboš Staněk to blacklist glibmm version.
+	Versions 2.16.0, 2.16.1 and 2.16.2.
+
+2008-08-31  kitone  <kitone@gna.org>
+
 	* src/gui/PreferencesUI.cc:
 	* src/main.cc:
 	Fix: "subtitle-display-text" group.
