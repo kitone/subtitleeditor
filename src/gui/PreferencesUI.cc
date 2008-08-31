@@ -247,7 +247,7 @@ public:
 
 		WidgetToConfig::read_config_and_connect(m_checkDisplayBackground, "waveform", "display-background");
 		WidgetToConfig::read_config_and_connect(m_checkDisplayWaveformFill, "waveform", "display-waveform-fill");
-		WidgetToConfig::read_config_and_connect(m_checkDisplaySubtitleText, "waveform", "display-subtitle-text");
+		WidgetToConfig::read_config_and_connect(m_checkDisplaySubtitleText, "waveform-renderer", "display-subtitle-text");
 
 		m_buttonReset->signal_clicked().connect(
 				sigc::mem_fun(*this, &PreferenceWaveformUI::on_reset));
