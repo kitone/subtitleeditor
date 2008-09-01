@@ -141,6 +141,7 @@ public:
 protected:
 
 	Cairo::RefPtr<Cairo::Surface> m_wf_surface;
+	Glib::RefPtr<Pango::Layout> m_layout_text;
 };
 
 /*
@@ -518,27 +519,18 @@ void WaveformRendererCairo::draw_subtitle_text(Cairo::RefPtr<Cairo::Context> &cr
 	cr->rectangle(start, 0, end - start, get_height());
 	cr->clip();
 
-	static double subtitle_font_height = 0;
-
-	if(subtitle_font_height == 0)
-	{
-		Cairo::TextExtents extents;
-		cr->get_text_extents("ABCDEF", extents);
-
-		subtitle_font_height = extents.height * 2;
-	}
-	
 	set_color(cr, m_color_text);
 
-	std::vector<Glib::ustring> text;
-	utility::usplit(sub.get_text(), '\n', text);
+	cr->move_to(start, TRIANGLE_SIZE * 2);
 
-	for(unsigned int i=0; i<text.size(); ++i)
-	{
-		cr->move_to(start, TRIANGLE_SIZE + subtitle_font_height * (1 + i));
-		cr->show_text(text[i]);
-	}
+	if(!m_layout_text)
+		m_layout_text = Pango::Layout::create(cr);
 
+	m_layout_text->set_text(sub.get_text());
+	m_layout_text->update_from_cairo_context(cr);
+	m_layout_text->add_to_cairo_context(cr);
+	
+	cr->fill();
 
 	cr->restore();
 }
