@@ -1,3 +1,8 @@
+2008-09-01  kitone  <kitone@gna.org>
+
+	* src/we/WaveformRendererCairo.cc:
+	Used Pango to display text.
+
 2008-08-31  kitone  <kitone@gna.org>
 
 	* configure.in:
