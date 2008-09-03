@@ -32,6 +32,7 @@ src/actions/DeleteSubtitleSelect.cc
 src/actions/Dialoguize.cc
 src/actions/DocumentManagement.cc
 src/actions/DuplicateSelectedSubtitles.cc
+src/actions/EditCell.cc
 src/actions/ExtendLength.cc
 src/actions/ExternalVideoPlayer.cc
 src/actions/FindAndReplace.cc
@@ -75,6 +76,7 @@ src/DocumentSystem.cc
 src/DocumentSystem.h
 src/Encodings.cc
 src/Encodings.h
+src/Error.h
 src/formats/SubtitleASS.cc
 src/formats/SubtitleASS.h
 src/formats/SubtitleEditorProject.cc
@@ -107,6 +109,8 @@ src/gui/Application.cc
 src/gui/Application.h
 src/gui/CheckErrorsUI.cc
 src/gui/CheckErrorsUI.h
+src/gui/ComboBoxEncoding.cc
+src/gui/ComboBoxEncoding.h
 src/gui/DialogCharacterCodings.cc
 src/gui/DialogCharacterCodings.h
 src/gui/DialogFileChooser.cc

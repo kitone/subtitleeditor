@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 19:05+0200\n"
+"POT-Creation-Date: 2008-09-03 12:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,7 +153,8 @@ msgstr ""
 #: ../share/glade/dialog-export-text.glade.h:1
 #: ../share/glade/dialog-import-text.glade.h:1
 #: ../share/glade/dialog-open-document.glade.h:1
-#: ../share/glade/dialog-save-document.glade.h:1
+#: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:704
+#: ../src/gui/Application.cc:332
 msgid "Character Coding:"
 msgstr ""
 
@@ -162,7 +163,7 @@ msgid "Export Text"
 msgstr ""
 
 #: ../share/glade/dialog-export-text.glade.h:3
-#: ../share/glade/dialog-save-document.glade.h:3 ../src/gui/Application.cc:335
+#: ../share/glade/dialog-save-document.glade.h:3
 msgid "NewLine:"
 msgstr ""
 
@@ -405,7 +406,7 @@ msgid ""
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:392
+#: ../src/actions/ViewManager.cc:394
 msgid "Timing"
 msgstr ""
 
@@ -475,7 +476,7 @@ msgstr ""
 msgid "minutes"
 msgstr ""
 
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:334
+#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:333
 msgid "Format:"
 msgstr ""
 
@@ -997,35 +998,37 @@ msgstr ""
 msgid "I am already open"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:296
-#: ../src/actions/DocumentManagement.cc:347
+#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+#: ../src/actions/DocumentManagement.cc:284
+#: ../src/actions/DocumentManagement.cc:338
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:303
-#: ../src/actions/DocumentManagement.cc:355
+#. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
+#: ../src/actions/DocumentManagement.cc:292
+#: ../src/actions/DocumentManagement.cc:346
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:439
+#: ../src/actions/DocumentManagement.cc:429
 msgid "Open translation"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:467
+#: ../src/actions/DocumentManagement.cc:457
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/actions/DocumentManagement.cc:530
+#: ../src/actions/DocumentManagement.cc:518
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:533
+#: ../src/actions/DocumentManagement.cc:521
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr ""
@@ -1040,6 +1043,22 @@ msgstr ""
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:115
 msgid "Duplicate selected subtitles"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:47
+msgid "_Edit Cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:47
+msgid "Start the editing of the focused cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:51
+msgid "Edit _Next Cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:51
+msgid "Start the editing of the next cell"
 msgstr ""
 
 #: ../src/actions/ExtendLength.cc:44
@@ -1163,11 +1182,11 @@ msgstr ""
 msgid "Add subtitles from file"
 msgstr ""
 
-#: ../src/actions/JoinDocument.cc:124
+#: ../src/actions/JoinDocument.cc:133
 msgid "Join document"
 msgstr ""
 
-#: ../src/actions/JoinDocument.cc:140
+#: ../src/actions/JoinDocument.cc:145
 #, c-format
 msgid "1 subtitle has been added at this document."
 msgid_plural "%d subtitles have been added at this document."
@@ -1595,27 +1614,27 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:230
+#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:232
 msgid "Name"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:300
+#: ../src/actions/ViewManager.cc:302
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:389
+#: ../src/actions/ViewManager.cc:391
 msgid "Simple"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:390
+#: ../src/actions/ViewManager.cc:392
 msgid "Advanced"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:391
+#: ../src/actions/ViewManager.cc:393
 msgid "Translation"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:423
+#: ../src/actions/ViewManager.cc:425
 msgid "View _Manager"
 msgstr ""
 
@@ -1691,18 +1710,57 @@ msgstr ""
 msgid "Subtitle Selection"
 msgstr ""
 
-#: ../src/Document.cc:257
+#: ../src/Document.cc:330
 #, c-format
-msgid "Could not open the file <i>%s</i>."
+msgid "Could not save the file \"%s\" using the character coding %s."
 msgstr ""
 
-#: ../src/Document.cc:263
-#, c-format
-msgid "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
+#: ../src/Document.cc:332
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character coding."
 msgstr ""
 
-#: ../src/Document.cc:353 ../src/Document.cc:357
+#: ../src/Document.cc:341
 msgid "Save Document Failed."
+msgstr ""
+
+#: ../src/Document.cc:674
+#, c-format
+msgid "Could not recognize the subtitle format for the file \"%s\"."
+msgstr ""
+
+#: ../src/Document.cc:676
+msgid "Please check that the file contains subtitles in a supported format."
+msgstr ""
+
+#: ../src/Document.cc:688
+#, c-format
+msgid "Could not open automatically the file \"%s\"."
+msgstr ""
+
+#: ../src/Document.cc:689
+msgid ""
+"Subtitle Editor was not able to automatically determine the file encoding. "
+"Select a different character coding from the menu and try again."
+msgstr ""
+
+#: ../src/Document.cc:695
+#, c-format
+msgid "Could not open the file \"%s\" using the character coding %s."
+msgstr ""
+
+#: ../src/Document.cc:697
+msgid "Select a different character coding from the menu and try again."
+msgstr ""
+
+#: ../src/Document.cc:722 ../src/Document.cc:731
+#, c-format
+msgid "Could not open the file \"%s\""
+msgstr ""
+
+#: ../src/Document.cc:732
+msgid "An unknown error occurred while opening the file."
 msgstr ""
 
 #: ../src/DocumentSystem.cc:192
@@ -1811,29 +1869,50 @@ msgstr ""
 msgid "Thai"
 msgstr ""
 
-#: ../src/formats/SubtitleASS.cc:179 ../src/formats/SubtitleASS.cc:233
+#: ../src/formats/SubtitleASS.cc:179
+#: ../src/formats/SubtitleEditorProject.cc:93
+#: ../src/formats/SubtitleEditorProject.cc:151
 #: ../src/formats/SubtitleEncoreNTSC.cc:99
-#: ../src/formats/SubtitleEncoreNTSC.cc:154
 #: ../src/formats/SubtitleEncorePAL.cc:98
-#: ../src/formats/SubtitleEncorePAL.cc:151
-#: ../src/formats/SubtitleMicroDVD.cc:167
-#: ../src/formats/SubtitleMicroDVD.cc:221 ../src/formats/SubtitleMPL2.cc:86
-#: ../src/formats/SubtitleMPL2.cc:136 ../src/formats/SubtitleMPsub.cc:90
-#: ../src/formats/SubtitleMPsub.cc:184 ../src/formats/SubtitleSSA.cc:159
-#: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
-#: ../src/formats/SubtitleSubRip.cc:155
-#: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
-msgid "I can't open this file."
+#: ../src/formats/SubtitleMicroDVD.cc:166 ../src/formats/SubtitleMPL2.cc:85
+#: ../src/formats/SubtitleMPsub.cc:90 ../src/formats/SubtitleSSA.cc:158
+#: ../src/formats/SubtitleSubRip.cc:86 ../src/formats/SubtitleSubViewer2.cc:85
+#: ../src/formats/SubtitleText.cc:81 ../src/formats/SubtitleTimedText.cc:150
+#: ../src/formats/SubtitleTimedText.cc:175 ../src/formats/SubtitleTTXT.cc:90
+#: ../src/formats/SubtitleTTXT.cc:128 ../src/SubtitleSystem.cc:165
+msgid "Failed to open the file for reading."
 msgstr ""
 
-#: ../src/gui/Application.cc:332
+#: ../src/formats/SubtitleASS.cc:232
+#: ../src/formats/SubtitleEditorProject.cc:221
+#: ../src/formats/SubtitleEncoreNTSC.cc:153
+#: ../src/formats/SubtitleEncorePAL.cc:150
+#: ../src/formats/SubtitleMicroDVD.cc:218 ../src/formats/SubtitleMPL2.cc:133
+#: ../src/formats/SubtitleMPsub.cc:183 ../src/formats/SubtitleSSA.cc:207
+#: ../src/formats/SubtitleSubRip.cc:152
+#: ../src/formats/SubtitleSubViewer2.cc:133 ../src/formats/SubtitleText.cc:109
+#: ../src/formats/SubtitleTimedText.cc:213 ../src/formats/SubtitleTTXT.cc:170
+msgid "Failed to open the file for writing."
+msgstr ""
+
+#: ../src/gui/Application.cc:323
+msgid "Times"
+msgstr ""
+
+#: ../src/gui/Application.cc:323
+msgid "Frames"
+msgstr ""
+
+#: ../src/gui/Application.cc:331
 msgid "Name:"
 msgstr ""
 
-#: ../src/gui/Application.cc:333
-msgid "Encoding:"
+#: ../src/gui/Application.cc:334
+msgid "Newline:"
+msgstr ""
+
+#: ../src/gui/Application.cc:335
+msgid "Timing Mode:"
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:44
@@ -1889,12 +1968,12 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:762 ../src/SubtitleView.cc:1682
+#: ../src/SubtitleView.cc:777 ../src/SubtitleView.cc:1697
 msgid "text"
 msgstr ""
 
 #: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:826 ../src/SubtitleView.cc:1683
+#: ../src/SubtitleView.cc:841 ../src/SubtitleView.cc:1698
 msgid "translation"
 msgstr ""
 
@@ -1932,6 +2011,18 @@ msgstr ""
 msgid "Document not found."
 msgstr ""
 
+#: ../src/gui/ComboBoxEncoding.cc:142
+msgid "Auto Detected"
+msgstr ""
+
+#: ../src/gui/ComboBoxEncoding.cc:155
+msgid "Current Locale"
+msgstr ""
+
+#: ../src/gui/ComboBoxEncoding.cc:176
+msgid "Add or Remove..."
+msgstr ""
+
 #. column description
 #: ../src/gui/DialogCharacterCodings.cc:65
 msgid "_Description"
@@ -1942,47 +2033,39 @@ msgstr ""
 msgid "_Encoding"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:186
-msgid "Auto Detected"
-msgstr ""
-
-#: ../src/gui/DialogFileChooser.cc:211
-msgid "Add or Remove..."
-msgstr ""
-
-#: ../src/gui/DialogFileChooser.cc:313
+#: ../src/gui/DialogFileChooser.cc:173
 msgid "None"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:384
-msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
-msgstr ""
-
-#: ../src/gui/DialogFileChooser.cc:410
+#: ../src/gui/DialogFileChooser.cc:243
 msgid "All files (*.*)"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:706
+#: ../src/gui/DialogFileChooser.cc:250
+msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
+msgstr ""
+
+#: ../src/gui/DialogFileChooser.cc:588
 msgid "Open Video"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:712 ../src/gui/DialogFileChooser.cc:774
+#: ../src/gui/DialogFileChooser.cc:594 ../src/gui/DialogFileChooser.cc:656
 msgid "Video"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:723 ../src/gui/DialogFileChooser.cc:785
+#: ../src/gui/DialogFileChooser.cc:605 ../src/gui/DialogFileChooser.cc:667
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
+#: ../src/gui/DialogFileChooser.cc:613 ../src/gui/DialogFileChooser.cc:676
 msgid "ALL"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:762
+#: ../src/gui/DialogFileChooser.cc:644
 msgid "Open Waveform"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:768
+#: ../src/gui/DialogFileChooser.cc:650
 msgid "Waveform (*.wf)"
 msgstr ""
 
@@ -2106,7 +2189,7 @@ msgstr ""
 msgid "OpenGL"
 msgstr ""
 
-#: ../src/main.cc:225
+#: ../src/main.cc:227
 msgid " - edit subtitles files"
 msgstr ""
 
@@ -2126,14 +2209,26 @@ msgstr ""
 msgid "ENCODING"
 msgstr ""
 
-#: ../src/SubtitleFormat.cc:151
-msgid ""
-"It's not valid UTF-8.\n"
-"Please use another character encoding."
+#: ../src/SubtitleFormat.cc:150
+msgid "It's not valid UTF-8."
 msgstr ""
 
-#: ../src/SubtitleFormat.cc:161
-msgid "Please use another character encoding."
+#: ../src/SubtitleFormat.cc:164
+#, c-format
+msgid "Couldn't convert from %s to UTF-8"
+msgstr ""
+
+#: ../src/SubtitleFormat.cc:234
+msgid ""
+"subtitleeditor was not able to automatically determine the encoding of the "
+"file you want to open."
+msgstr ""
+
+#: ../src/SubtitleFormat.cc:273
+#, c-format
+msgid ""
+"Could not convert the text to the character coding %s:\n"
+"%s"
 msgstr ""
 
 #: ../src/SubtitleModel.cc:37
@@ -2157,7 +2252,7 @@ msgid "Remove Subtitles"
 msgstr ""
 
 #: ../src/SubtitleSystem.cc:196
-msgid "I can't find what is this format or it's not supported."
+msgid "Couldn't recognize format of the file."
 msgstr ""
 
 #: ../src/SubtitleView.cc:426
@@ -2168,131 +2263,131 @@ msgstr ""
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr ""
 
-#: ../src/SubtitleView.cc:560 ../src/SubtitleView.cc:1679
+#: ../src/SubtitleView.cc:575 ../src/SubtitleView.cc:1694
 msgid "num"
 msgstr ""
 
-#: ../src/SubtitleView.cc:575
+#: ../src/SubtitleView.cc:590
 msgid "This number column"
 msgstr ""
 
-#: ../src/SubtitleView.cc:588 ../src/SubtitleView.cc:1673
+#: ../src/SubtitleView.cc:603 ../src/SubtitleView.cc:1688
 msgid "layer"
 msgstr ""
 
-#: ../src/SubtitleView.cc:604
+#: ../src/SubtitleView.cc:619
 msgid "Layer number."
 msgstr ""
 
-#: ../src/SubtitleView.cc:644 ../src/SubtitleView.cc:1680
+#: ../src/SubtitleView.cc:659 ../src/SubtitleView.cc:1695
 msgid "start"
 msgstr ""
 
-#: ../src/SubtitleView.cc:647
+#: ../src/SubtitleView.cc:662
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:657 ../src/SubtitleView.cc:1672
+#: ../src/SubtitleView.cc:672 ../src/SubtitleView.cc:1687
 msgid "end"
 msgstr ""
 
-#: ../src/SubtitleView.cc:660
+#: ../src/SubtitleView.cc:675
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:671 ../src/SubtitleView.cc:1670
+#: ../src/SubtitleView.cc:686 ../src/SubtitleView.cc:1685
 msgid "duration"
 msgstr ""
 
-#: ../src/SubtitleView.cc:674
+#: ../src/SubtitleView.cc:689
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:687 ../src/SubtitleView.cc:1681
+#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1696
 msgid "style"
 msgstr ""
 
-#: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:1677
+#: ../src/SubtitleView.cc:729 ../src/SubtitleView.cc:1692
 msgid "name"
 msgstr ""
 
-#: ../src/SubtitleView.cc:739 ../src/SubtitleView.cc:1669
+#: ../src/SubtitleView.cc:754 ../src/SubtitleView.cc:1684
 msgid "cps"
 msgstr ""
 
-#: ../src/SubtitleView.cc:870 ../src/SubtitleView.cc:1678
+#: ../src/SubtitleView.cc:885 ../src/SubtitleView.cc:1693
 msgid "note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:897 ../src/SubtitleView.cc:1671
+#: ../src/SubtitleView.cc:912 ../src/SubtitleView.cc:1686
 msgid "effect"
 msgstr ""
 
-#: ../src/SubtitleView.cc:926 ../src/SubtitleView.cc:1675
+#: ../src/SubtitleView.cc:941 ../src/SubtitleView.cc:1690
 msgid "R"
 msgstr ""
 
-#: ../src/SubtitleView.cc:953 ../src/SubtitleView.cc:1674
+#: ../src/SubtitleView.cc:968 ../src/SubtitleView.cc:1689
 msgid "L"
 msgstr ""
 
-#: ../src/SubtitleView.cc:980 ../src/SubtitleView.cc:1676
+#: ../src/SubtitleView.cc:995 ../src/SubtitleView.cc:1691
 msgid "V"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1040
+#: ../src/SubtitleView.cc:1055
 msgid "Editing layer"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1068 ../src/SubtitleView.cc:1079
+#: ../src/SubtitleView.cc:1083 ../src/SubtitleView.cc:1094
 msgid "Editing start"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1106 ../src/SubtitleView.cc:1117
+#: ../src/SubtitleView.cc:1121 ../src/SubtitleView.cc:1132
 msgid "Editing end"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1144 ../src/SubtitleView.cc:1155
+#: ../src/SubtitleView.cc:1159 ../src/SubtitleView.cc:1170
 msgid "Editing duration"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1175
+#: ../src/SubtitleView.cc:1190
 msgid "Editing text"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1197
+#: ../src/SubtitleView.cc:1212
 msgid "Editing translation"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1217
+#: ../src/SubtitleView.cc:1232
 msgid "Editing note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1236
+#: ../src/SubtitleView.cc:1251
 msgid "Editing effect"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1257
+#: ../src/SubtitleView.cc:1272
 msgid "Editing style"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1277
+#: ../src/SubtitleView.cc:1292
 msgid "Editing name"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1297
+#: ../src/SubtitleView.cc:1312
 msgid "Editing margin-l"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1317
+#: ../src/SubtitleView.cc:1332
 msgid "Editing margin-r"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1337
+#: ../src/SubtitleView.cc:1352
 msgid "Editing margin-v"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1475
+#: ../src/SubtitleView.cc:1490
 msgid "Set style to selection"
 msgstr ""
 
