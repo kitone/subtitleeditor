@@ -13,7 +13,7 @@
 
 	* src/gui/PreferencesUI.cc:
 	* src/main.cc:
-	Fix: "subtitle-display-text" group.
+	Fix: "display-subtitle-text" group.
 
 2008-08-30  kitone  <kitone@gna.org>
 
