@@ -280,6 +280,7 @@ protected:
 
 			if(doc->save(filename))
 			{
+				// "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
 				doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
 							filename.c_str(), format.c_str(), charset.c_str(), newline.c_str());
 
@@ -287,6 +288,7 @@ protected:
 			}
 			else
 			{
+				// "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
 				doc->message(_("The file %s (%s, %s, %s) has not been saved."), 
 							filename.c_str(), format.c_str(), charset.c_str(), newline.c_str());
 			}
