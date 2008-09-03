@@ -1,7 +1,6 @@
-# SubtitleEditor.
-# Copyright (C) 2006
-# This file is distributed under the same license as the subtitles package.
-# translation of cs.po to čeština
+# Czech translation of subtitleeditor.
+# Copyright (C) 2008 Subtitle Editor Team
+# This file is distributed under the same license as the subtitleeditor package.
 #
 # Luboš Staněk <lubek@users.sourceforge.net>, 2006-2008.
 # Jaroslav Lichtblau <https://translations.launchpad.net/~dragonlord>, 2008
@@ -11,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.21.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-20 13:22+0200\n"
-"PO-Revision-Date: 2008-08-20 13:24+0200\n"
+"POT-Creation-Date: 2008-09-03 12:34+0200\n"
+"PO-Revision-Date: 2008-09-03 13:39+0100\n"
 "Last-Translator: Luboš Staněk <lubek@users.sourceforge.net>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -158,7 +157,8 @@ msgstr "Volič kódování"
 #: ../share/glade/dialog-export-text.glade.h:1
 #: ../share/glade/dialog-import-text.glade.h:1
 #: ../share/glade/dialog-open-document.glade.h:1
-#: ../share/glade/dialog-save-document.glade.h:1
+#: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:704
+#: ../src/gui/Application.cc:332
 msgid "Character Coding:"
 msgstr "Kódování znaků:"
 
@@ -484,7 +484,7 @@ msgstr "_Video:"
 msgid "minutes"
 msgstr "minut"
 
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:338
+#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:333
 msgid "Format:"
 msgstr "Formát:"
 
@@ -1017,23 +1017,25 @@ msgstr "Ukončit program"
 msgid "I am already open"
 msgstr "Již otevřeno"
 
-#: ../src/actions/DocumentManagement.cc:296
-#: ../src/actions/DocumentManagement.cc:347
+#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+#: ../src/actions/DocumentManagement.cc:284
+#: ../src/actions/DocumentManagement.cc:338
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "Ukládání souboru %s (%s, %s, %s)."
 
-#: ../src/actions/DocumentManagement.cc:303
-#: ../src/actions/DocumentManagement.cc:355
+#. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
+#: ../src/actions/DocumentManagement.cc:292
+#: ../src/actions/DocumentManagement.cc:346
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "Soubor %s (%s, %s, %s) ještě nebyl uložen."
 
-#: ../src/actions/DocumentManagement.cc:439
+#: ../src/actions/DocumentManagement.cc:429
 msgid "Open translation"
 msgstr "Otevřít překlad"
 
-#: ../src/actions/DocumentManagement.cc:467
+#: ../src/actions/DocumentManagement.cc:457
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
@@ -1041,12 +1043,12 @@ msgstr[0] "Spolu s překladem byl přidán 1 titulek"
 msgstr[1] "Spolu s překladem byly přidány %d titulky"
 msgstr[2] "Spolu s překladem bylo přidáno %d titulků"
 
-#: ../src/actions/DocumentManagement.cc:530
+#: ../src/actions/DocumentManagement.cc:518
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "Ukládání souboru překladu %s (%s, %s, %s)."
 
-#: ../src/actions/DocumentManagement.cc:533
+#: ../src/actions/DocumentManagement.cc:521
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "Soubor překladu %s (%s, %s, %s) ještě nebyl uložen."
@@ -1062,6 +1064,22 @@ msgstr "Zdvojit vybrané titulky"
 #: ../src/actions/DuplicateSelectedSubtitles.cc:115
 msgid "Duplicate selected subtitles"
 msgstr "Zdvojit vybrané titulky"
+
+#: ../src/actions/EditCell.cc:47
+msgid "_Edit Cell"
+msgstr "_Upravit buňku"
+
+#: ../src/actions/EditCell.cc:47
+msgid "Start the editing of the focused cell"
+msgstr "Začít upravovat aktivní buňku"
+
+#: ../src/actions/EditCell.cc:51
+msgid "Edit _Next Cell"
+msgstr "Upravit _následující buňku"
+
+#: ../src/actions/EditCell.cc:51
+msgid "Start the editing of the next cell"
+msgstr "Začít upravovat následující buňku"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
@@ -1187,11 +1205,11 @@ msgstr "Spo_jit dokument"
 msgid "Add subtitles from file"
 msgstr "Přidat titulky ze souboru"
 
-#: ../src/actions/JoinDocument.cc:124
+#: ../src/actions/JoinDocument.cc:133
 msgid "Join document"
 msgstr "Spojit dokument"
 
-#: ../src/actions/JoinDocument.cc:140
+#: ../src/actions/JoinDocument.cc:145
 #, c-format
 msgid "1 subtitle has been added at this document."
 msgid_plural "%d subtitles have been added at this document."
@@ -1718,19 +1736,62 @@ msgstr "Uložit vlnovku"
 msgid "Subtitle Selection"
 msgstr "Výběr titulků"
 
-#: ../src/Document.cc:257
+#: ../src/Document.cc:330
 #, c-format
-msgid "Could not open the file <i>%s</i>."
-msgstr "Nelze otevřít soubor <i>%s</i>."
+msgid "Could not save the file \"%s\" using the character coding %s."
+msgstr "Nešlo uložit soubor \"%s\" za použití kódování %s."
 
-#: ../src/Document.cc:263
-#, c-format
-msgid "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
-msgstr "Nelze otevřít soubor <i>%s</i> za použití kódování <i>%s</i>."
+#: ../src/Document.cc:332
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character coding."
+msgstr ""
+"Dokument obsahuje jeden nebo více znaků, které nemohou být kódovány pomocí "
+"zadaného kódování znaků."
 
-#: ../src/Document.cc:353 ../src/Document.cc:357
+#: ../src/Document.cc:341
 msgid "Save Document Failed."
 msgstr "Uložení dokumentu se nezdařilo."
+
+#: ../src/Document.cc:674
+#, c-format
+msgid "Could not recognize the subtitle format for the file \"%s\"."
+msgstr "Nepodařilo se rozpoznat formát titulků pro soubor \"%s\"."
+
+#: ../src/Document.cc:676
+msgid "Please check that the file contains subtitles in a supported format."
+msgstr "Ověřte, že soubor obsahuje titulky v nějakém podporovaném formátu."
+
+#: ../src/Document.cc:688
+#, c-format
+msgid "Could not open automatically the file \"%s\"."
+msgstr "Nešlo automaticky otevřít soubor \"%s\"."
+
+#: ../src/Document.cc:689
+msgid ""
+"Subtitle Editor was not able to automatically determine the file encoding. "
+"Select a different character coding from the menu and try again."
+msgstr ""
+"Titlukový editor nebyl schopen automaticky určit kódování souboru. Zvolte z "
+"menu jiné kódování znaků a zkuste to znovu."
+
+#: ../src/Document.cc:695
+#, c-format
+msgid "Could not open the file \"%s\" using the character coding %s."
+msgstr "Nešlo otevřít soubor \"%s\" za použití kódování %s."
+
+#: ../src/Document.cc:697
+msgid "Select a different character coding from the menu and try again."
+msgstr "Zvolte z menu jiné kódování znaků a zkuste to znovu."
+
+#: ../src/Document.cc:722 ../src/Document.cc:731
+#, c-format
+msgid "Could not open the file \"%s\""
+msgstr "Nešlo otevřít soubor \"%s\""
+
+#: ../src/Document.cc:732
+msgid "An unknown error occurred while opening the file."
+msgstr "Při otevírání souboru došlo k neznámé chybě."
 
 #: ../src/DocumentSystem.cc:192
 #, c-format
@@ -1838,34 +1899,51 @@ msgstr "Vietnamské"
 msgid "Thai"
 msgstr "Thajské"
 
-#: ../src/formats/SubtitleASS.cc:179 ../src/formats/SubtitleASS.cc:233
+#: ../src/formats/SubtitleASS.cc:179
+#: ../src/formats/SubtitleEditorProject.cc:93
+#: ../src/formats/SubtitleEditorProject.cc:151
 #: ../src/formats/SubtitleEncoreNTSC.cc:99
-#: ../src/formats/SubtitleEncoreNTSC.cc:154
 #: ../src/formats/SubtitleEncorePAL.cc:98
-#: ../src/formats/SubtitleEncorePAL.cc:151
-#: ../src/formats/SubtitleMicroDVD.cc:167
-#: ../src/formats/SubtitleMicroDVD.cc:221 ../src/formats/SubtitleMPL2.cc:86
-#: ../src/formats/SubtitleMPL2.cc:136 ../src/formats/SubtitleMPsub.cc:90
-#: ../src/formats/SubtitleMPsub.cc:184 ../src/formats/SubtitleSSA.cc:159
-#: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
-#: ../src/formats/SubtitleSubRip.cc:155
-#: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
-msgid "I can't open this file."
-msgstr "Nemohu otevřít tento soubor."
+#: ../src/formats/SubtitleMicroDVD.cc:166 ../src/formats/SubtitleMPL2.cc:85
+#: ../src/formats/SubtitleMPsub.cc:90 ../src/formats/SubtitleSSA.cc:158
+#: ../src/formats/SubtitleSubRip.cc:86 ../src/formats/SubtitleSubViewer2.cc:85
+#: ../src/formats/SubtitleText.cc:81 ../src/formats/SubtitleTimedText.cc:150
+#: ../src/formats/SubtitleTimedText.cc:175 ../src/formats/SubtitleTTXT.cc:90
+#: ../src/formats/SubtitleTTXT.cc:128 ../src/SubtitleSystem.cc:165
+msgid "Failed to open the file for reading."
+msgstr "Otevření souboru pro čtení selhalo."
 
-#: ../src/gui/Application.cc:336
+#: ../src/formats/SubtitleASS.cc:232
+#: ../src/formats/SubtitleEditorProject.cc:221
+#: ../src/formats/SubtitleEncoreNTSC.cc:153
+#: ../src/formats/SubtitleEncorePAL.cc:150
+#: ../src/formats/SubtitleMicroDVD.cc:218 ../src/formats/SubtitleMPL2.cc:133
+#: ../src/formats/SubtitleMPsub.cc:183 ../src/formats/SubtitleSSA.cc:207
+#: ../src/formats/SubtitleSubRip.cc:152
+#: ../src/formats/SubtitleSubViewer2.cc:133 ../src/formats/SubtitleText.cc:109
+#: ../src/formats/SubtitleTimedText.cc:213 ../src/formats/SubtitleTTXT.cc:170
+msgid "Failed to open the file for writing."
+msgstr "Otevření souboru pro zápis selhalo."
+
+#: ../src/gui/Application.cc:323
+msgid "Times"
+msgstr "Časy"
+
+#: ../src/gui/Application.cc:323
+msgid "Frames"
+msgstr "Snímky"
+
+#: ../src/gui/Application.cc:331
 msgid "Name:"
 msgstr "Název:"
 
-#: ../src/gui/Application.cc:337
-msgid "Encoding:"
-msgstr "Kódování:"
-
-#: ../src/gui/Application.cc:339
+#: ../src/gui/Application.cc:334
 msgid "Newline:"
 msgstr "Konec řádku:"
+
+#: ../src/gui/Application.cc:335
+msgid "Timing Mode:"
+msgstr "Režim časování:"
 
 #: ../src/gui/CheckErrorsUI.cc:44
 msgid "An error is detected when the subtitle overlap on next subtitle."
@@ -1980,6 +2058,18 @@ msgstr "Chyby"
 msgid "Document not found."
 msgstr "Dokument nenalez."
 
+#: ../src/gui/ComboBoxEncoding.cc:142
+msgid "Auto Detected"
+msgstr "Automaticky detekované"
+
+#: ../src/gui/ComboBoxEncoding.cc:155
+msgid "Current Locale"
+msgstr "Aktuální kódování"
+
+#: ../src/gui/ComboBoxEncoding.cc:176
+msgid "Add or Remove..."
+msgstr "Přidat nebo odebrat"
+
 #. column description
 #: ../src/gui/DialogCharacterCodings.cc:65
 msgid "_Description"
@@ -1990,47 +2080,39 @@ msgstr "_Popis"
 msgid "_Encoding"
 msgstr "_Kódování"
 
-#: ../src/gui/DialogFileChooser.cc:186
-msgid "Auto Detected"
-msgstr "Automaticky detekované"
-
-#: ../src/gui/DialogFileChooser.cc:211
-msgid "Add or Remove..."
-msgstr "Přidat nebo odebrat"
-
-#: ../src/gui/DialogFileChooser.cc:313
+#: ../src/gui/DialogFileChooser.cc:173
 msgid "None"
 msgstr "Žádný"
 
-#: ../src/gui/DialogFileChooser.cc:384
-msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
-msgstr "Všechny podporované formáty (*.ass, *.ssa, *.srt, ...)"
-
-#: ../src/gui/DialogFileChooser.cc:410
+#: ../src/gui/DialogFileChooser.cc:243
 msgid "All files (*.*)"
 msgstr "Všechny soubory (*.*)"
 
-#: ../src/gui/DialogFileChooser.cc:706
+#: ../src/gui/DialogFileChooser.cc:250
+msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
+msgstr "Všechny podporované formáty (*.ass, *.ssa, *.srt, ...)"
+
+#: ../src/gui/DialogFileChooser.cc:588
 msgid "Open Video"
 msgstr "Otevřít video"
 
-#: ../src/gui/DialogFileChooser.cc:712 ../src/gui/DialogFileChooser.cc:774
+#: ../src/gui/DialogFileChooser.cc:594 ../src/gui/DialogFileChooser.cc:656
 msgid "Video"
 msgstr "Video"
 
-#: ../src/gui/DialogFileChooser.cc:723 ../src/gui/DialogFileChooser.cc:785
+#: ../src/gui/DialogFileChooser.cc:605 ../src/gui/DialogFileChooser.cc:667
 msgid "Audio"
 msgstr "Zvuk"
 
-#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
+#: ../src/gui/DialogFileChooser.cc:613 ../src/gui/DialogFileChooser.cc:676
 msgid "ALL"
 msgstr "Všechny"
 
-#: ../src/gui/DialogFileChooser.cc:762
+#: ../src/gui/DialogFileChooser.cc:644
 msgid "Open Waveform"
 msgstr "Otevřít vlnovku"
 
-#: ../src/gui/DialogFileChooser.cc:768
+#: ../src/gui/DialogFileChooser.cc:650
 msgid "Waveform (*.wf)"
 msgstr "Vlnovka (*.wf)"
 
@@ -2154,7 +2236,7 @@ msgstr "X Window System (No Xv)"
 msgid "OpenGL"
 msgstr "OpenGL"
 
-#: ../src/main.cc:228
+#: ../src/main.cc:227
 msgid " - edit subtitles files"
 msgstr " – edituje titulkové soubory"
 
@@ -2174,17 +2256,31 @@ msgstr "NÁZEV"
 msgid "ENCODING"
 msgstr "KÓDOVÁNÍ"
 
-#: ../src/SubtitleFormat.cc:151
-msgid ""
-"It's not valid UTF-8.\n"
-"Please use another character encoding."
-msgstr ""
-"To není platné kódování UTF-8.\n"
-"Zvolte prosím jiné kódování znaků."
+#: ../src/SubtitleFormat.cc:150
+msgid "It's not valid UTF-8."
+msgstr "To není platné kódování UTF-8."
 
-#: ../src/SubtitleFormat.cc:161
-msgid "Please use another character encoding."
-msgstr "Zvolte prosím jiné kódování znaků."
+#: ../src/SubtitleFormat.cc:164
+#, c-format
+msgid "Couldn't convert from %s to UTF-8"
+msgstr "Nešlo převést z %s na UTF-8"
+
+#: ../src/SubtitleFormat.cc:234
+msgid ""
+"subtitleeditor was not able to automatically determine the encoding of the "
+"file you want to open."
+msgstr ""
+"subtitleeditor nebyl schopen automaticky určit kódování souboru, který "
+"chcete otevřít."
+
+#: ../src/SubtitleFormat.cc:273
+#, c-format
+msgid ""
+"Could not convert the text to the character coding %s:\n"
+"%s"
+msgstr ""
+"Nešlo převést text do kódování znaků %s:\n"
+"%s"
 
 #: ../src/SubtitleModel.cc:37
 msgid "Add Subtitle"
@@ -2207,8 +2303,8 @@ msgid "Remove Subtitles"
 msgstr "Odebrat titulky"
 
 #: ../src/SubtitleSystem.cc:196
-msgid "I can't find what is this format or it's not supported."
-msgstr "Nemohu určit tento formát a zda je podporován."
+msgid "Couldn't recognize format of the file."
+msgstr "Nešlo určit formát souboru."
 
 #: ../src/SubtitleView.cc:426
 msgid "Use Ctrl+Return for exit and Return for line-break"
@@ -2444,4 +2540,3 @@ msgid ""
 msgstr ""
 "Okenní systém nepodporuje OpenGL.\n"
 "Prosím, zkuste jiný způsob vykreslování."
-
