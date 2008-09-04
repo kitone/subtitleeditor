@@ -9,16 +9,70 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 18:07+0200\n"
-"PO-Revision-Date: 2008-09-03 12:49+0000\n"
+"POT-Creation-Date: 2008-09-03 12:34+0200\n"
+"PO-Revision-Date: 2008-09-04 02:41+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2008-09-03 15:01+0000\n"
+"X-Launchpad-Export-Date: 2008-09-04 03:16+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#~ msgid "Encodings"
+#~ msgstr "编码"
+
+#~ msgid "Play"
+#~ msgstr "播放"
+
+#~ msgid "Pause"
+#~ msgstr "暂停"
+
+#~ msgid "Volume"
+#~ msgstr "音量"
+
+#~ msgid "Encoding:"
+#~ msgstr "编码："
+
+#~ msgid "_Advanced"
+#~ msgstr "高级(_A)"
+
+#~ msgid "T_iming"
+#~ msgstr "单条时长(_T)"
+
+#~ msgid "Columns"
+#~ msgstr "列"
+
+#~ msgid "Layer"
+#~ msgstr "层"
+
+#~ msgid "Start"
+#~ msgstr "开始"
+
+#~ msgid "End"
+#~ msgstr "末"
+
+#~ msgid "Duration"
+#~ msgstr "长度"
+
+#~ msgid "Style"
+#~ msgstr "风格"
+
+#~ msgid "Effect"
+#~ msgstr "效果"
+
+#~ msgid "Text"
+#~ msgstr "文字"
+
+#~ msgid "Note"
+#~ msgstr "备忘"
+
+#~ msgid "Charset"
+#~ msgstr "字符集"
+
+#~ msgid "Media file could not be played."
+#~ msgstr "无法播放媒体文件。"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
 msgid "<b>Apply to</b>"
@@ -47,7 +101,7 @@ msgstr "当前:"
 
 #: ../share/glade/dialog-change-framerate.glade.h:7
 msgid "New:"
-msgstr "新增："
+msgstr "新增:"
 
 #: ../share/glade/dialog-character-codings.glade.h:1
 msgid "A_vailable encodings:"
@@ -647,9 +701,8 @@ msgid "Split Document"
 msgstr "分割字幕文件"
 
 #: ../share/glade/dialog-split-document.glade.h:2
-#, fuzzy
 msgid "The beginning for the new document:"
-msgstr "起点为新文件:"
+msgstr "作为新文件的起点:"
 
 #: ../share/glade/dialog-style-editor.glade.h:1
 msgid "<b>Alignment</b>"
@@ -738,12 +791,10 @@ msgid "Right:"
 msgstr "右："
 
 #: ../share/glade/dialog-style-editor.glade.h:22
-#, fuzzy
 msgid "Scale X:"
 msgstr "缩放 X："
 
 #: ../share/glade/dialog-style-editor.glade.h:23
-#, fuzzy
 msgid "Scale Y:"
 msgstr "缩放 Y："
 
@@ -1072,21 +1123,20 @@ msgid "Duplicate selected subtitles"
 msgstr "复制品被选择加字幕"
 
 #: ../src/actions/EditCell.cc:47
-#, fuzzy
 msgid "_Edit Cell"
-msgstr "编辑(_E)"
+msgstr "编辑单元(_E)"
 
 #: ../src/actions/EditCell.cc:47
 msgid "Start the editing of the focused cell"
-msgstr ""
+msgstr "开始编辑当前单元"
 
 #: ../src/actions/EditCell.cc:51
 msgid "Edit _Next Cell"
-msgstr ""
+msgstr "编辑下一单元(_N)"
 
 #: ../src/actions/EditCell.cc:51
 msgid "Start the editing of the next cell"
-msgstr ""
+msgstr "开始编辑下一单元"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
@@ -1370,7 +1420,7 @@ msgstr "分割(_S)"
 msgid "Split the selected subtitles"
 msgstr "分割选择的字幕"
 
-#.
+#. 
 #: ../src/actions/SplitSubtitle.cc:125
 msgid "Split subtitles"
 msgstr "分割字幕"
@@ -1740,15 +1790,15 @@ msgid "Subtitle Selection"
 msgstr "字幕选择"
 
 #: ../src/Document.cc:330
-#, fuzzy, c-format
+#, c-format
 msgid "Could not save the file \"%s\" using the character coding %s."
-msgstr "不能打开文件<i>%s</i> 使用<i>%s</i> 字符编码。"
+msgstr "不能保存文件 \"%s\" 以字符编码 %s。"
 
 #: ../src/Document.cc:332
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character coding."
-msgstr ""
+msgstr "文档包含无法使用指定字符编码表示的一个或多个字符。"
 
 #: ../src/Document.cc:341
 msgid "Save Document Failed."
@@ -1757,40 +1807,40 @@ msgstr "保存文件失败。"
 #: ../src/Document.cc:674
 #, c-format
 msgid "Could not recognize the subtitle format for the file \"%s\"."
-msgstr ""
+msgstr "不能识别字幕格式的文件 \"%s\"。"
 
 #: ../src/Document.cc:676
 msgid "Please check that the file contains subtitles in a supported format."
-msgstr ""
+msgstr "请检查字幕文件是否符合被支持的格式。"
 
 #: ../src/Document.cc:688
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open automatically the file \"%s\"."
-msgstr "不能打开文件<i>%s</i> 。"
+msgstr "不能自动打开文件 \"%s\"。"
 
 #: ../src/Document.cc:689
 msgid ""
 "Subtitle Editor was not able to automatically determine the file encoding. "
 "Select a different character coding from the menu and try again."
-msgstr ""
+msgstr "字幕编辑起不能自动检测该文件编码。请从菜单中选择不同的字符编码然后重试。"
 
 #: ../src/Document.cc:695
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
-msgstr "不能打开文件<i>%s</i> 使用<i>%s</i> 字符编码。"
+msgstr "不能打开文件 \"%s\" 用字符编码 %s."
 
 #: ../src/Document.cc:697
 msgid "Select a different character coding from the menu and try again."
-msgstr ""
+msgstr "从菜单中选择一种不同的字符编码，然后再试一次。"
 
 #: ../src/Document.cc:722 ../src/Document.cc:731
-#, fuzzy, c-format
+#, c-format
 msgid "Could not open the file \"%s\""
-msgstr "不能打开文件<i>%s</i> 。"
+msgstr "无法打开文件“%s”"
 
 #: ../src/Document.cc:732
 msgid "An unknown error occurred while opening the file."
-msgstr ""
+msgstr "在打开该文件时发现一个未知错误。"
 
 #: ../src/DocumentSystem.cc:192
 #, c-format
@@ -1909,9 +1959,8 @@ msgstr "泰国语"
 #: ../src/formats/SubtitleText.cc:81 ../src/formats/SubtitleTimedText.cc:150
 #: ../src/formats/SubtitleTimedText.cc:175 ../src/formats/SubtitleTTXT.cc:90
 #: ../src/formats/SubtitleTTXT.cc:128 ../src/SubtitleSystem.cc:165
-#, fuzzy
 msgid "Failed to open the file for reading."
-msgstr "不能打开文件<i>%s</i> 。"
+msgstr "为读操作打开文件失败。"
 
 #: ../src/formats/SubtitleASS.cc:232
 #: ../src/formats/SubtitleEditorProject.cc:221
@@ -1922,33 +1971,28 @@ msgstr "不能打开文件<i>%s</i> 。"
 #: ../src/formats/SubtitleSubRip.cc:152
 #: ../src/formats/SubtitleSubViewer2.cc:133 ../src/formats/SubtitleText.cc:109
 #: ../src/formats/SubtitleTimedText.cc:213 ../src/formats/SubtitleTTXT.cc:170
-#, fuzzy
 msgid "Failed to open the file for writing."
-msgstr "不能打开文件<i>%s</i> 。"
+msgstr "为写操作打开文件失败。"
 
 #: ../src/gui/Application.cc:323
-#, fuzzy
 msgid "Times"
-msgstr "时间(_T)"
+msgstr "次数"
 
 #: ../src/gui/Application.cc:323
-#, fuzzy
 msgid "Frames"
-msgstr "祯(_F)"
+msgstr "帧数"
 
 #: ../src/gui/Application.cc:331
 msgid "Name:"
 msgstr "名字:"
 
 #: ../src/gui/Application.cc:334
-#, fuzzy
 msgid "Newline:"
-msgstr "换行符:"
+msgstr "新行:"
 
 #: ../src/gui/Application.cc:335
-#, fuzzy
 msgid "Timing Mode:"
-msgstr "计时"
+msgstr "时间模式:"
 
 #: ../src/gui/CheckErrorsUI.cc:44
 msgid "An error is detected when the subtitle overlap on next subtitle."
@@ -2066,9 +2110,8 @@ msgid "Auto Detected"
 msgstr "自动检测"
 
 #: ../src/gui/ComboBoxEncoding.cc:155
-#, fuzzy
 msgid "Current Locale"
-msgstr "当前文档"
+msgstr "当前语系"
 
 #: ../src/gui/ComboBoxEncoding.cc:176
 msgid "Add or Remove..."
@@ -2262,25 +2305,27 @@ msgstr "编码"
 
 #: ../src/SubtitleFormat.cc:150
 msgid "It's not valid UTF-8."
-msgstr ""
+msgstr "不是合法的 UTF-8 编码。"
 
 #: ../src/SubtitleFormat.cc:164
 #, c-format
 msgid "Couldn't convert from %s to UTF-8"
-msgstr ""
+msgstr "不能转换编码从 %s 从 UTF-8"
 
 #: ../src/SubtitleFormat.cc:234
 msgid ""
 "subtitleeditor was not able to automatically determine the encoding of the "
 "file you want to open."
-msgstr ""
+msgstr "subtitleeditor 不能自动检测你要打开的文件的编码。"
 
 #: ../src/SubtitleFormat.cc:273
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not convert the text to the character coding %s:\n"
 "%s"
-msgstr "不能打开文件<i>%s</i> 使用<i>%s</i> 字符编码。"
+msgstr ""
+"不能转换该文本为字符编码 %s:\n"
+"%s"
 
 #: ../src/SubtitleModel.cc:37
 msgid "Add Subtitle"
@@ -2304,7 +2349,7 @@ msgstr "取消字幕"
 
 #: ../src/SubtitleSystem.cc:196
 msgid "Couldn't recognize format of the file."
-msgstr ""
+msgstr "不能识别该文件的格式。"
 
 #: ../src/SubtitleView.cc:426
 msgid "Use Ctrl+Return for exit and Return for line-break"
@@ -2531,73 +2576,3 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr "窗口系统不支持OpenGL。"
-
-#~ msgid "Encodings"
-#~ msgstr "编码"
-
-#~ msgid "Play"
-#~ msgstr "播放"
-
-#~ msgid "Pause"
-#~ msgstr "暂停"
-
-#~ msgid "Volume"
-#~ msgstr "音量"
-
-#~ msgid "_Advanced"
-#~ msgstr "高级(_A)"
-
-#~ msgid "T_iming"
-#~ msgstr "单条时长(_T)"
-
-#~ msgid "Columns"
-#~ msgstr "列"
-
-#~ msgid "Layer"
-#~ msgstr "层"
-
-#~ msgid "Start"
-#~ msgstr "开始"
-
-#~ msgid "End"
-#~ msgstr "末"
-
-#~ msgid "Duration"
-#~ msgstr "长度"
-
-#~ msgid "Style"
-#~ msgstr "风格"
-
-#~ msgid "Effect"
-#~ msgstr "效果"
-
-#~ msgid "Text"
-#~ msgstr "文字"
-
-#~ msgid "Note"
-#~ msgstr "备忘"
-
-#~ msgid "Charset"
-#~ msgstr "字符集"
-
-#~ msgid "Media file could not be played."
-#~ msgstr "无法播放媒体文件。"
-
-#~ msgid "I can't open this file."
-#~ msgstr "我无法打开这个文件。"
-
-#~ msgid "Encoding:"
-#~ msgstr "编码："
-
-#~ msgid ""
-#~ "It's not valid UTF-8.\n"
-#~ "Please use another character encoding."
-#~ msgstr ""
-#~ "\" \"这是无效UTF-8.\n"
-#~ "\" \"请使用其它字符内码。"
-
-#~ msgid "Please use another character encoding."
-#~ msgstr "请使用其它字符内码。"
-
-#~ msgid "I can't find what is this format or it's not supported."
-#~ msgstr "我无法发现什么是这个格式或它不支持。"
