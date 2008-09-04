@@ -165,11 +165,6 @@ protected:
 
 	void update_title(Document *doc);
 
-	/*
-	 *	sauvegarde les documents toute les "autosave-minutes" (Config)
-	 */
-	bool on_autosave_files();
-
 protected:
 	Gtk::VBox*			m_vboxMain;
 	MenuBar					m_menubar;
@@ -183,8 +178,6 @@ protected:
 
 	// uri for external video player
 	Glib::ustring		m_uri_movie_external_video_player;
-	//
-	sigc::connection	m_autosave_timeout;
 };
 
 #endif//_Application_h
