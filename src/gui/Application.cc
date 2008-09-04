@@ -127,8 +127,6 @@ Application::~Application()
 {
 	se_debug(SE_DEBUG_APP);
 
-	m_autosave_timeout.disconnect();
-
 	Glib::ustring path_se_accelmap = get_config_dir("accelmap");
 	Gtk::AccelMap::save(path_se_accelmap);
 }
@@ -158,18 +156,6 @@ void Application::load_config()
 	{
 		cfg.set_value_string("encodings", "encodings", "ISO-8859-15;UTF-8");
 		cfg.set_value_bool("encodings", "used-auto-detected", true);
-	}
-
-	cfg.get_value_bool("interface", "used-autosave", value);
-	if( value )
-	{
-		int autosave_minutes = 0;
-		cfg.get_value_int("interface", "autosave-minutes", autosave_minutes);
-		
-		SubtitleTime time(0, autosave_minutes, 0, 0);
-
-		m_autosave_timeout = Glib::signal_timeout().connect(
-				sigc::mem_fun(*this, &Application::on_autosave_files), time.totalmsecs);
 	}
 }
 
@@ -541,57 +527,6 @@ void Application::on_config_interface_changed(const Glib::ustring &key, const Gl
 		else 
 			unmaximize();
 	}
-	else if(key == "used-autosave")
-	{
-		if(m_autosave_timeout)
-			m_autosave_timeout.disconnect();
-
-		bool state;
-		from_string(value, state);
-
-		if(state)
-		{
-			if(m_autosave_timeout)
-				m_autosave_timeout.disconnect();
-
-			int autosave_minutes = 0;
-			Config::getInstance().get_value_int("interface", "autosave-minutes", autosave_minutes);
-			
-			SubtitleTime time(0, autosave_minutes, 0, 0);
-
-			m_autosave_timeout = Glib::signal_timeout().connect(
-					sigc::mem_fun(*this, &Application::on_autosave_files), time.totalmsecs);
-		}
-	}
-}
-
-/*
- *
- */
-bool Application::on_autosave_files()
-{
-	DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
-
-	if(docs.size() == 0)
-		return true;
-	
-	m_statusbar->flash_message("Autosave files...");
-
-	DocumentList::iterator it;
-	
-	for(it = docs.begin(); it != docs.end(); ++it)
-	{
-		Glib::ustring filename = (*it)->getFilename();
-		/*
-		Glib::ustring format = (*it)->getFormat();
-		Glib::ustring charset = (*it)->getCharset();
-		*/
-#warning "FIXME: if filename doesn't exist"
-		(*it)->save(filename);
-	}
-
-	m_statusbar->flash_message("Autosave files...ok");
-	return true;
 }
 
 /*

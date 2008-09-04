@@ -62,7 +62,11 @@ public:
 class DocumentManagementPlugin : public Plugin
 {
 public:
-
+/*
+	DocumentManagementPlugin()
+	{
+	}
+*/
 	/*
 	 *
 	 */
@@ -136,6 +140,12 @@ public:
 			window->signal_delete_event().connect(
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_subtitleeditor_window_delete_event));
 		}
+
+		// config connection
+		m_config_interface_connection = get_config().signal_changed("interface").connect(
+			sigc::mem_fun(*this, &DocumentManagementPlugin::on_config_interface_changed));
+
+		init_autosave();
 	}
 
 	/*
@@ -159,6 +169,9 @@ public:
 
 		ui->remove_ui(ui_id);
 		ui->remove_action_group(action_group);
+
+		m_config_interface_connection.disconnect();
+		m_autosave_timeout.disconnect();
 	}
 
 	/*
@@ -310,7 +323,11 @@ protected:
 
 		DialogSaveDocument::auto_ptr dialog = DialogSaveDocument::create();
 
-		dialog->set_filename(doc->getFilename());
+		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS))
+			dialog->set_filename(doc->getFilename());
+		else
+			dialog->set_current_name(doc->getName());
+
 		dialog->set_format(doc->getFormat());
 		dialog->set_encoding(doc->getCharset());
 		dialog->set_newline(doc->getNewLine());
@@ -704,9 +721,55 @@ protected:
 				sigc::bind(sigc::mem_fun(*this, &DocumentManagementPlugin::on_recent_item_activated), rc));
 	}
 
+	/*
+	 * Only for "used-autosave" and "autosave-minutes".
+	 */
+	void on_config_interface_changed(const Glib::ustring &key, const Glib::ustring &value)
+	{
+		if(key == "used-autosave" || key == "autosave-minutes")
+			init_autosave();
+	}
+
+	/*
+	 *
+	 */
+	void init_autosave()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		m_autosave_timeout.disconnect();
+
+		bool used_autosave = Config::getInstance().get_value_bool("interface", "used-autosave");
+		if(used_autosave)
+		{
+			int autosave_minutes = Config::getInstance().get_value_int("interface", "autosave-minutes");
+
+			long mseconds = SubtitleTime(0, autosave_minutes, 0, 0).totalmsecs;
+
+			m_autosave_timeout = Glib::signal_timeout().connect(
+					sigc::mem_fun(*this, &DocumentManagementPlugin::on_autosave_files), mseconds);
+
+			se_debug_message(SE_DEBUG_PLUGINS, "save files every %d minutes", autosave_minutes);
+		}
+	}
+
+	/*
+	 * Save files every "auto-save-minutes" value.
+	 */
+	bool on_autosave_files()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		on_save_all_documents();
+		
+		return true;
+	}
+
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
+	sigc::connection m_config_interface_connection;
+	sigc::connection m_autosave_timeout;
 };
 
 REGISTER_PLUGIN(DocumentManagementPlugin)

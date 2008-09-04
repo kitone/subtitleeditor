@@ -20,6 +20,7 @@ SubtitleEditor stable + 1
 	* SubtitleEditorProject (selection, position, ...)
 	* SubtitleEditorWindow : send_message, signal ... like ActionSystem for Column View...
 	* Subdownloader plugin
+	* Document Template
 
 SubtitleEditor stable + 2
 -------------------
