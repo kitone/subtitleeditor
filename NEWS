@@ -1,3 +1,22 @@
+2008-09-04 - 0.23.0
+
+	* Add "Edit Cell" and "Edit Next Cell".
+	* Another characters coding can be selected if it fails.
+	* Waveform Renderer use now Pango to draw subtitle text. 
+	* Improve open/save errors.
+	* Improve auto save files.
+	* Improve document tooltip.
+	* Fix: Blacklist some glibmm version in configure.in.
+	* Fix: mime-types in desktop file.
+	* Fix: Dependence to glibmm >= 2.16.3 and gtkmm >= 2.12.
+	* Fix: Default values of Waveform Renderer.
+	* Fix: Preference option to "display-subtitle-text".
+	* Fix: Add "Current Locale" if encodings ifs empty.
+	* Fix: The dialog "Save Document" select directly the default values from the document.
+	* The Czech, French and Simplified Chinese translations have been updated.
+
+	Special thanks to Luboš Staněk.
+
 2008-08-14 - 0.22.3
 
 	* Improve the speed accessibility of the menu at launch.
