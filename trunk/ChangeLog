@@ -3,7 +3,7 @@
 	* src/actions/DocumentManagement.cc:
 	* src/gui/Application.cc:
 	* src/gui/Application.h:
-	Remove auto-save code from Application.cc and add it in DocumentManagement.cc.
+	Remove auto-save code from Application.cc to DocumentManagement.cc.
 
 2008-09-01  kitone  <kitone@gna.org>
 
