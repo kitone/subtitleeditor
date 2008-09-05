@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: subtitleeditor 0.20.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-03 12:34+0200\n"
-"PO-Revision-Date: 2008-09-04 02:41+0000\n"
+"PO-Revision-Date: 2008-09-04 10:45+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2008-09-04 03:16+0000\n"
+"X-Launchpad-Export-Date: 2008-09-04 10:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #~ msgid "Encodings"
@@ -97,11 +97,11 @@ msgstr "当前文档"
 
 #: ../share/glade/dialog-change-framerate.glade.h:6
 msgid "Current:"
-msgstr "当前:"
+msgstr "当前："
 
 #: ../share/glade/dialog-change-framerate.glade.h:7
 msgid "New:"
-msgstr "新增:"
+msgstr "新增："
 
 #: ../share/glade/dialog-character-codings.glade.h:1
 msgid "A_vailable encodings:"
@@ -143,31 +143,31 @@ msgstr "每条字幕最大行数"
 #: ../share/glade/dialog-check-errors-preferences.glade.h:6
 #: ../share/glade/dialog-preferences.glade.h:33
 msgid "Maximum characters per line:"
-msgstr "每行最大字符数:"
+msgstr "每行最大字符数："
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:7
 #: ../share/glade/dialog-preferences.glade.h:34
 msgid "Maximum characters per second:"
-msgstr "每秒最大字符数:"
+msgstr "每秒最大字符数："
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:8
 msgid "Maximum number of lines per subtitle:"
-msgstr "每条字幕占用的最大的行数"
+msgstr "每条字幕占用的最大的行数："
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:9
 #: ../share/glade/dialog-preferences.glade.h:36
 msgid "Minimum characters per second:"
-msgstr "每秒最小的字符数:"
+msgstr "每秒最小的字符数："
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:10
 #: ../share/glade/dialog-preferences.glade.h:37
 msgid "Minimum display of the subtitle in mseconds:"
-msgstr "字幕最小显示毫秒数:"
+msgstr "字幕最小显示毫秒数："
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:11
 #: ../share/glade/dialog-preferences.glade.h:38
 msgid "Minimum gap between subtitles in mseconds:"
-msgstr "最小字幕间隔的毫秒数:"
+msgstr "最小字幕间隔的毫秒数："
 
 #: ../share/glade/dialog-check-errors-preferences.glade.h:12
 #: ../src/gui/CheckErrorsUI.cc:43
@@ -201,7 +201,7 @@ msgstr "要编辑快捷键，请单击相应的行，然后输入新快捷键，
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:1
 msgid "<b>Please choose encodings</b>"
-msgstr "<b>请选择内码</b>"
+msgstr "<b>请选择编码</b>"
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:2
 msgid "Encodings Chooser"
@@ -213,16 +213,16 @@ msgstr "编码选择"
 #: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:704
 #: ../src/gui/Application.cc:332
 msgid "Character Coding:"
-msgstr "字符编码:"
+msgstr "字符编码："
 
 #: ../share/glade/dialog-export-text.glade.h:2
 msgid "Export Text"
-msgstr "导出文本"
+msgstr "导出文字为文本（蓝本）"
 
 #: ../share/glade/dialog-export-text.glade.h:3
 #: ../share/glade/dialog-save-document.glade.h:3
 msgid "NewLine:"
-msgstr "换行符:"
+msgstr "换行符："
 
 #: ../share/glade/dialog-find-and-replace.glade.h:1
 msgid "Find And Replace"
@@ -230,7 +230,7 @@ msgstr "查找和替换"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:2
 msgid "Pattern:"
-msgstr "查找:"
+msgstr "查找："
 
 #: ../share/glade/dialog-find-and-replace.glade.h:3
 msgid "Replace"
@@ -243,7 +243,7 @@ msgstr "全部替换(_A)"
 #: ../share/glade/dialog-find-and-replace.glade.h:5
 #: ../share/glade/dialog-spell-checking.glade.h:6
 msgid "Replace with:"
-msgstr "替换用:"
+msgstr "替换为："
 
 #: ../share/glade/dialog-find-and-replace.glade.h:6
 msgid "_Ignore case"
@@ -255,7 +255,7 @@ msgstr "用正则表达式(_U)"
 
 #: ../share/glade/dialog-import-text.glade.h:2
 msgid "Import Text"
-msgstr "进口文本"
+msgstr "选择文本文件作为蓝本导入"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:1
 msgid "<b>Position</b>"
@@ -269,7 +269,7 @@ msgstr "移动字幕"
 #: ../share/glade/dialog-move-subtitles.glade.h:3
 #: ../share/glade/dialog-scale-subtitles.glade.h:6
 msgid "_New Start:"
-msgstr "新开始处(_N):"
+msgstr "新开始处(_N)："
 
 #. init label
 #: ../share/glade/dialog-move-subtitles.glade.h:4
@@ -277,7 +277,7 @@ msgstr "新开始处(_N):"
 #: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
 #: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Time:"
-msgstr "开始时间(_S):"
+msgstr "开始时间(_S)："
 
 #: ../share/glade/dialog-open-document.glade.h:2
 msgid "Open Document"
@@ -285,7 +285,7 @@ msgstr "打开文档"
 
 #: ../share/glade/dialog-open-document.glade.h:3
 msgid "Video File:"
-msgstr "视频文件:"
+msgstr "视频文件："
 
 #: ../share/glade/dialog-preferences.glade.h:1
 msgid "<b>Activate plugins</b>"
@@ -363,7 +363,7 @@ msgstr "自动选择要打开的视频(_C)"
 
 #: ../share/glade/dialog-preferences.glade.h:19
 msgid "Background:"
-msgstr "背景色:"
+msgstr "背景色："
 
 #: ../share/glade/dialog-preferences.glade.h:20
 msgid "Command:"
@@ -415,15 +415,15 @@ msgstr "界面"
 
 #: ../share/glade/dialog-preferences.glade.h:32
 msgid "Interval in seconds:"
-msgstr "间隔时间在几秒钟内:"
+msgstr "间隔时间在几秒钟内："
 
 #: ../share/glade/dialog-preferences.glade.h:35
 msgid "Maximum number of line per subtitle:"
-msgstr "每条字幕最大行数:"
+msgstr "每条字幕最大行数："
 
 #: ../share/glade/dialog-preferences.glade.h:39
 msgid "Player Position:"
-msgstr "播放器位置:"
+msgstr "播放器位置："
 
 #: ../share/glade/dialog-preferences.glade.h:40
 msgid "Plugins"
@@ -443,26 +443,26 @@ msgstr "重设为默认值(_D)"
 
 #: ../share/glade/dialog-preferences.glade.h:44
 msgid "Subtitle Invalid:"
-msgstr "无效字幕:"
+msgstr "无效字幕："
 
 #: ../share/glade/dialog-preferences.glade.h:45
 msgid "Subtitle Selected:"
-msgstr "已选择的字幕:"
+msgstr "已选择的字幕："
 
 #: ../share/glade/dialog-preferences.glade.h:46
 msgid "Subtitle:"
-msgstr "字幕:"
+msgstr "字幕："
 
 #: ../share/glade/dialog-preferences.glade.h:47
 #: ../share/glade/dialog-scale-subtitles.glade.h:5
 msgid "Text:"
-msgstr "文本:"
+msgstr "文字："
 
 #: ../share/glade/dialog-preferences.glade.h:48
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
-msgstr "以下指令参数在启动动作发生时将被替代:"
+msgstr "以下指令参数在启动动作发生时将被替代："
 
 #: ../share/glade/dialog-preferences.glade.h:49
 #: ../src/actions/ViewManager.cc:394
@@ -483,11 +483,11 @@ msgstr "视频播放器"
 
 #: ../share/glade/dialog-preferences.glade.h:53
 msgid "Wave fill:"
-msgstr "波形填充:"
+msgstr "波形填充："
 
 #: ../share/glade/dialog-preferences.glade.h:54
 msgid "Wave:"
-msgstr "波浪:"
+msgstr "波浪："
 
 #: ../share/glade/dialog-preferences.glade.h:55
 msgid "Waveform"
@@ -501,7 +501,7 @@ msgstr "如果启用，您只要按一个键盘组合就可以即时改变突出
 
 #: ../share/glade/dialog-preferences.glade.h:57
 msgid "_Audio:"
-msgstr "音频(_A):"
+msgstr "音频(_A)："
 
 #: ../share/glade/dialog-preferences.glade.h:58
 msgid "_Autosave files every"
@@ -529,7 +529,7 @@ msgstr "用 Ctrl+Enter 组合键确认修改(_U)"
 
 #: ../share/glade/dialog-preferences.glade.h:64
 msgid "_Video:"
-msgstr "视频(_V):"
+msgstr "视频(_V)："
 
 #: ../share/glade/dialog-preferences.glade.h:65
 msgid "minutes"
@@ -553,7 +553,7 @@ msgstr "<b>最后一点</b>"
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:3
 msgid "Number:"
-msgstr "数:"
+msgstr "数："
 
 #: ../share/glade/dialog-scale-subtitles.glade.h:4
 msgid "Scale"
@@ -581,7 +581,7 @@ msgstr "<b>只读信息</b>"
 
 #: ../share/glade/dialog-script-properties.glade.h:7
 msgid "Collisions:"
-msgstr "冲突:"
+msgstr "冲突："
 
 #: ../share/glade/dialog-script-properties.glade.h:8
 msgid ""
@@ -593,19 +593,19 @@ msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:10
 msgid "Original Editing:"
-msgstr "原先的编辑:"
+msgstr "原先的编辑："
 
 #: ../share/glade/dialog-script-properties.glade.h:11
 msgid "Original Script:"
-msgstr "原始的剧本:"
+msgstr "原始的剧本："
 
 #: ../share/glade/dialog-script-properties.glade.h:12
 msgid "Original Timing:"
-msgstr "原始的时间:"
+msgstr "原始的时间："
 
 #: ../share/glade/dialog-script-properties.glade.h:13
 msgid "Original Translation:"
-msgstr "原始的翻译:"
+msgstr "原始的翻译："
 
 #: ../share/glade/dialog-script-properties.glade.h:14
 #, fuzzy
@@ -625,7 +625,7 @@ msgstr "PlayResY:"
 #: ../share/glade/dialog-script-properties.glade.h:17
 #, fuzzy
 msgid "Point Time: "
-msgstr "时间点: "
+msgstr "时间点： "
 
 #: ../share/glade/dialog-script-properties.glade.h:18
 msgid "Script Properties"
@@ -633,19 +633,19 @@ msgstr "剧本物产"
 
 #: ../share/glade/dialog-script-properties.glade.h:19
 msgid "Script Type:"
-msgstr "脚本类型:"
+msgstr "脚本类型："
 
 #: ../share/glade/dialog-script-properties.glade.h:20
 msgid "Script Updated By:"
-msgstr "脚本被更新:"
+msgstr "脚本被更新："
 
 #: ../share/glade/dialog-script-properties.glade.h:21
 msgid "Sync Point:"
-msgstr "同步点:"
+msgstr "同步点："
 
 #: ../share/glade/dialog-script-properties.glade.h:22
 msgid "Timer:"
-msgstr "定时器:"
+msgstr "定时器："
 
 #: ../share/glade/dialog-script-properties.glade.h:23
 msgid "Title:"
@@ -653,11 +653,11 @@ msgstr "标题："
 
 #: ../share/glade/dialog-script-properties.glade.h:24
 msgid "Update Details:"
-msgstr "更新细节:"
+msgstr "更新细节："
 
 #: ../share/glade/dialog-script-properties.glade.h:25
 msgid "Wrap Style:"
-msgstr "套样式:"
+msgstr "套样式："
 
 #: ../share/glade/dialog-spell-checking.glade.h:1
 msgid "<b>Completed spell checking.</b>"
@@ -665,7 +665,7 @@ msgstr "<b>完成拼写检查</b>"
 
 #: ../share/glade/dialog-spell-checking.glade.h:2
 msgid "<b>Language:</b>"
-msgstr "<b>语言:</b>"
+msgstr "<b>语言：</b>"
 
 #: ../share/glade/dialog-spell-checking.glade.h:3
 msgid "A_dd Word"
@@ -702,7 +702,7 @@ msgstr "分割字幕文件"
 
 #: ../share/glade/dialog-split-document.glade.h:2
 msgid "The beginning for the new document:"
-msgstr "作为新文件的起点:"
+msgstr "作为新文件的起点："
 
 #: ../share/glade/dialog-style-editor.glade.h:1
 msgid "<b>Alignment</b>"
@@ -737,9 +737,8 @@ msgid "<b>Preview</b>"
 msgstr "<b>预览</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:9
-#, fuzzy
 msgid "<b>Transformation</b>"
-msgstr "<b>变革</b>"
+msgstr "<b>变换</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:10
 msgid "Angle:"
@@ -770,9 +769,8 @@ msgid "Manage Styles"
 msgstr "处理样式"
 
 #: ../share/glade/dialog-style-editor.glade.h:17
-#, fuzzy
 msgid "Opaque Box"
-msgstr "不透明的箱子"
+msgstr "不透明边框"
 
 #: ../share/glade/dialog-style-editor.glade.h:18
 msgid "Outline"
@@ -780,11 +778,11 @@ msgstr "大纲"
 
 #: ../share/glade/dialog-style-editor.glade.h:19
 msgid "Outline:"
-msgstr "概述:"
+msgstr "概述："
 
 #: ../share/glade/dialog-style-editor.glade.h:20
 msgid "Primary:"
-msgstr "主要:"
+msgstr "主要："
 
 #: ../share/glade/dialog-style-editor.glade.h:21
 msgid "Right:"
@@ -799,25 +797,24 @@ msgid "Scale Y:"
 msgstr "缩放 Y："
 
 #: ../share/glade/dialog-style-editor.glade.h:24
-#, fuzzy
 msgid "Secondary:"
-msgstr "次要:"
+msgstr "次要："
 
 #: ../share/glade/dialog-style-editor.glade.h:25
 msgid "Shadow:"
-msgstr "阴影:"
+msgstr "阴影："
 
 #: ../share/glade/dialog-style-editor.glade.h:26
 msgid "Size:"
-msgstr "尺寸:"
+msgstr "尺寸："
 
 #: ../share/glade/dialog-style-editor.glade.h:27
 msgid "Spacing:"
-msgstr "间距:"
+msgstr "间距："
 
 #: ../share/glade/dialog-style-editor.glade.h:28
 msgid "Subtitle Editor - Style Editor"
-msgstr "字幕编辑器- 样式编辑器"
+msgstr "字幕编辑器-样式编辑器"
 
 #: ../share/glade/dialog-style-editor.glade.h:29
 msgid "TODO"
@@ -825,7 +822,7 @@ msgstr "TODO"
 
 #: ../share/glade/dialog-style-editor.glade.h:30
 msgid "Vertical:"
-msgstr "垂直:"
+msgstr "垂直："
 
 #: ../share/glade/dialog-view-manager.glade.h:1
 msgid "<b>Columns</b>"
@@ -1187,7 +1184,7 @@ msgid ""
 msgstr ""
 "%s\n"
 "\n"
-"命令: <i>%s</i>"
+"命令：<i>%s</i>"
 
 #: ../src/actions/FindAndReplace.cc:252
 msgid "Replace text"
@@ -1289,7 +1286,7 @@ msgstr "向前移动字幕"
 #: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
 #: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Frame:"
-msgstr "起始祯(_S):"
+msgstr "起始祯(_S)："
 
 #: ../src/actions/MoveSubtitles.cc:99
 msgid "_Move Subtitles"
@@ -1480,7 +1477,7 @@ msgstr "帧频(_F)"
 
 #: ../src/actions/Transcript.cc:50
 msgid "_Import Transcript"
-msgstr "导入脚本(_I)"
+msgstr "导入蓝本(_I)"
 
 #: ../src/actions/Transcript.cc:50
 msgid "Create a new document with any text file"
@@ -1488,11 +1485,11 @@ msgstr "用文本文件新建一个新字幕文件"
 
 #: ../src/actions/Transcript.cc:54
 msgid "_Export Transcript"
-msgstr "导出脚本(_E)"
+msgstr "导出蓝本(_E)"
 
 #: ../src/actions/Transcript.cc:54
 msgid "Export just a text in a file"
-msgstr "导出字幕为纯文本文件"
+msgstr "仅导出字幕文字为文件（蓝本）"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "_Try To Extend To Perfect"
@@ -1522,7 +1519,7 @@ msgstr "撤消(_U)：%s"
 #: ../src/actions/UndoRedo.cc:158
 #, c-format
 msgid "redo: %s"
-msgstr "重做: %s"
+msgstr "重做： %s"
 
 #: ../src/actions/VideoPlayerManagement.cc:47
 msgid "_Video"
@@ -1984,15 +1981,15 @@ msgstr "帧数"
 
 #: ../src/gui/Application.cc:331
 msgid "Name:"
-msgstr "名字:"
+msgstr "名字："
 
 #: ../src/gui/Application.cc:334
 msgid "Newline:"
-msgstr "新行:"
+msgstr "新行："
 
 #: ../src/gui/Application.cc:335
 msgid "Timing Mode:"
-msgstr "时间模式:"
+msgstr "时间模式："
 
 #: ../src/gui/CheckErrorsUI.cc:44
 msgid "An error is detected when the subtitle overlap on next subtitle."
@@ -2005,7 +2002,7 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
-"<b>字幕交叠在下个字幕:</b> %ims overlap\n"
+"<b>字幕交叠在下个字幕：</b> %ims overlap\n"
 "  %s -> %s\n"
 "  %s"
 
@@ -2020,7 +2017,7 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
-"<b>字幕显示时间是太短的:</b> %i char/s\n"
+"<b>字幕显示时间是太短的：</b> %i char/s\n"
 "  %s - %s\n"
 "  %s"
 
@@ -2035,7 +2032,7 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
-"<b>字幕显示时间是太长的:</b> %i char/s\n"
+"<b>字幕显示时间是太长的：</b> %i char/s\n"
 "\" %s - %s\n"
 "  %s"
 
@@ -2054,7 +2051,7 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
-"<b>字幕有一条太长的线(%s):<b> %i characters\n"
+"<b>字幕有一条太长的线(%s)：<b> %i characters\n"
 "  %s - %s\n"
 "  %s"
 
@@ -2075,23 +2072,23 @@ msgid ""
 "%s -> %s\n"
 "%s"
 msgstr ""
-"<b>字幕有许多条线(%s):<b> %i\n"
+"<b>字幕有许多条线(%s)：<b> %i\n"
 "  %s - %s\n"
 "  %s"
 
 #: ../src/gui/CheckErrorsUI.cc:354
 msgid "Minimum gap between subtitles"
-msgstr "最小差距在字幕之间"
+msgstr "在字幕之间最小间隔"
 
 #: ../src/gui/CheckErrorsUI.cc:355
 msgid ""
 "An error is detected when the minimum gap between subtitles is too short."
-msgstr "\" \"错误被查出当最小差距在字幕之间是太短的。"
+msgstr "检测到一个错误当在字幕之间最小间隔是太短的。"
 
 #: ../src/gui/CheckErrorsUI.cc:376
 #, c-format
 msgid "<b>Too short gap between subtitle:</b> %ims"
-msgstr "<b>太短的空白在字幕之间:</b> %ims"
+msgstr "<b>在字幕之间太短的空白：</b> %ims"
 
 #: ../src/gui/CheckErrorsUI.cc:514
 msgid "Line"
@@ -2265,7 +2262,7 @@ msgstr "OSS - 开放声音系统"
 
 #: ../src/gui/PreferencesUI.cc:93 ../src/gui/PreferencesUI.cc:102
 msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - 简单的 DirectMedia 层"
+msgstr "SDL - 简单 DirectMedia 层"
 
 #: ../src/gui/PreferencesUI.cc:94 ../src/gui/PreferencesUI.cc:103
 msgid "GConf"
@@ -2273,11 +2270,11 @@ msgstr "GConf"
 
 #: ../src/gui/PreferencesUI.cc:100
 msgid "X Window System (X11/XShm/Xv)"
-msgstr "X 窗口系统(X11/XShm/Xv)"
+msgstr "X Window 系统 (X11/XShm/Xv)"
 
 #: ../src/gui/PreferencesUI.cc:101
 msgid "X Window System (No Xv)"
-msgstr "X 窗口系统(没有Xv)"
+msgstr "X Window 系统(无 Xv)"
 
 #: ../src/gui/PreferencesUI.cc:104
 msgid "OpenGL"
@@ -2324,7 +2321,7 @@ msgid ""
 "Could not convert the text to the character coding %s:\n"
 "%s"
 msgstr ""
-"不能转换该文本为字符编码 %s:\n"
+"不能转换该文本为字符编码 %s：\n"
 "%s"
 
 #: ../src/SubtitleModel.cc:37
@@ -2413,7 +2410,7 @@ msgstr "cps"
 
 #: ../src/SubtitleView.cc:885 ../src/SubtitleView.cc:1693
 msgid "note"
-msgstr "笔记"
+msgstr "批注"
 
 #: ../src/SubtitleView.cc:912 ../src/SubtitleView.cc:1686
 msgid "effect"
@@ -2433,7 +2430,7 @@ msgstr "V"
 
 #: ../src/SubtitleView.cc:1055
 msgid "Editing layer"
-msgstr "编辑层数"
+msgstr "编辑层"
 
 #: ../src/SubtitleView.cc:1083 ../src/SubtitleView.cc:1094
 msgid "Editing start"
@@ -2449,7 +2446,7 @@ msgstr "编辑时长"
 
 #: ../src/SubtitleView.cc:1190
 msgid "Editing text"
-msgstr "编辑文本"
+msgstr "编辑文字"
 
 #: ../src/SubtitleView.cc:1212
 msgid "Editing translation"
@@ -2457,7 +2454,7 @@ msgstr "编辑翻译"
 
 #: ../src/SubtitleView.cc:1232
 msgid "Editing note"
-msgstr "编辑笔记"
+msgstr "编辑批注"
 
 #: ../src/SubtitleView.cc:1251
 msgid "Editing effect"
@@ -2473,15 +2470,15 @@ msgstr "编辑命名"
 
 #: ../src/SubtitleView.cc:1312
 msgid "Editing margin-l"
-msgstr "编辑边际l"
+msgstr "编辑边际-l"
 
 #: ../src/SubtitleView.cc:1332
 msgid "Editing margin-r"
-msgstr "编辑边际r"
+msgstr "编辑边际-r"
 
 #: ../src/SubtitleView.cc:1352
 msgid "Editing margin-v"
-msgstr "编辑边际v"
+msgstr "编辑边际-v"
 
 #: ../src/SubtitleView.cc:1490
 msgid "Set style to selection"
@@ -2518,7 +2515,7 @@ msgid ""
 "installed:"
 msgstr ""
 "GStreamer 插件没找到。\n"
-"播放该影片所需的如下GStreamer解码器没有安装:"
+"播放该影片所需的如下GStreamer解码器没有安装："
 
 #: ../src/utility.cc:477
 #, c-format
@@ -2556,7 +2553,7 @@ msgid ""
 "Media file could not be played.\n"
 "%s"
 msgstr ""
-"媒介文件不能是played.\n"
+"媒体文件不能被播放。\n"
 "%s"
 
 #: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
