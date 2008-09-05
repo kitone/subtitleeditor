@@ -134,6 +134,8 @@ SubtitleSystem& SubtitleSystem::getInstance()
  */
 std::list<Glib::ustring> SubtitleSystem::get_formats()
 {
+	se_debug(SE_DEBUG_APP);
+
 	static std::list<Glib::ustring> list;
 	if(list.empty())
 	{
@@ -146,6 +148,27 @@ std::list<Glib::ustring> SubtitleSystem::get_formats()
 	return list;
 }
 
+/*
+ * Check if the format is supported.
+ */
+bool SubtitleSystem::is_supported(const Glib::ustring &format)
+{
+	se_debug_message(SE_DEBUG_APP, "check if format=%s is supported", format.c_str());
+
+	std::list<Glib::ustring> formats = get_formats();
+	std::list<Glib::ustring>::const_iterator it;
+	for(it=formats.begin(); it != formats.end(); ++it)
+	{
+		if(*it == format)
+		{
+			se_debug_message(SE_DEBUG_APP, "format=%s supported", format.c_str());
+			return true;
+		}
+	}
+
+	se_debug_message(SE_DEBUG_APP, "format=%s not supported", format.c_str());
+	return false;
+}
 
 /*
  *	determine quel est le format du sous-titre
@@ -251,6 +274,8 @@ Glib::ustring	SubtitleSystem::find_format(const char *str)
  */
 Glib::ustring SubtitleSystem::get_extension(const Glib::ustring &format)
 {
+	se_debug_message(SE_DEBUG_APP, "format=%s", format.c_str());
+
 	for(std::list<IFactory*>::const_iterator it=m_static_subtitle_formats.begin();
 				it!=m_static_subtitle_formats.end(); ++it)
 	{

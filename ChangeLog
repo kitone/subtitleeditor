@@ -1,3 +1,9 @@
+2008-09-06  kitone  <kitone@gna.org>
+
+	* src/SubtitleSystem.cc:
+	* src/SubtitleSystem.h:
+	Add function 'is_supported' and debug msg.
+
 2008-09-05  kitone  <kitone@gna.org>
 
 	* configure.in:
