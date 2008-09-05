@@ -40,6 +40,10 @@ public:
 	 */
 	std::list<Glib::ustring> get_formats();
 
+	/*
+	 * Check if the format is supported.
+	 */
+	bool is_supported(const Glib::ustring &format);
 
 	/*
 	 *	determine quel est le format du sous-titre
