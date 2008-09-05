@@ -52,6 +52,10 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 {
 	//[general]
 
+	//[document]
+	config["document"]["format"] = "SubRip";
+	config["document"]["newline"] = "Unix";
+
 	//[video-player]
 	config["video-player"]["display-translated-subtitle"] = "false";
 	config["video-player"]["shaded-background"] = "true";
