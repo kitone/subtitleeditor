@@ -50,18 +50,25 @@ Document::Document()
 
 	m_document_changed = false;
 
+	// sets default values
 	Config &cfg = Config::getInstance();
-	Glib::ustring encoding;
+
+	// sets default encoding value
+	Glib::ustring default_encoding = cfg.get_value_string("encodings", "default");
 	
-	if(cfg.get_value_string("encodings", "default", encoding))
-		m_charset = encoding;
-	else
-		m_charset = "UTF-8";
-#warning "Fixme > Use Config Option"
-	m_format = "SubRip";
+	m_charset = (default_encoding.empty()) ? "UTF-8" : default_encoding;
 
-	m_newline = "Unix";
+	// sets default document format
+	Glib::ustring default_format = cfg.get_value_string("document", "format");
+	
+	m_format = (SubtitleSystem::getInstance().is_supported(default_format)) ? default_format : "SubRip";
 
+	// sets default newline
+	Glib::ustring default_newline = cfg.get_value_string("document", "newline");
+
+	m_newline = (default_newline.empty()) ? "Unix" : default_newline;
+
+	// create models
 	m_subtitleModel = Glib::RefPtr<SubtitleModel>(new SubtitleModel(this));
 
 	m_styleModel = Glib::RefPtr<StyleModel>(new StyleModel);

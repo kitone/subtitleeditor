@@ -1,5 +1,14 @@
 2008-09-06  kitone  <kitone@gna.org>
 
+	* src/Document.cc:
+	Check the config for the values of 'newline' and 'format'.
+
+	* src/main.cc:
+	Add default config values for the group 'document'.
+	Values 'format' and 'newline'.
+
+2008-09-06  kitone  <kitone@gna.org>
+
 	* src/SubtitleSystem.cc:
 	* src/SubtitleSystem.h:
 	Add function 'is_supported' and debug msg.
