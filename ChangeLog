@@ -1,3 +1,11 @@
+2008-09-05  kitone  <kitone@gna.org>
+
+	* configure.in:
+	Switching back to development version.
+
+	* src/actions/DocumentManagement.cc:
+	Remove comment code.
+
 2008-09-04  kitone  <kitone@gna.org>
 
 	* NEWS:

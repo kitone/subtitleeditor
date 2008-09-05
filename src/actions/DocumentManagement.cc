@@ -62,11 +62,7 @@ public:
 class DocumentManagementPlugin : public Plugin
 {
 public:
-/*
-	DocumentManagementPlugin()
-	{
-	}
-*/
+
 	/*
 	 *
 	 */
