@@ -169,7 +169,13 @@ GUI_FILES = \
 				gui/DialogCharacterCodings.h \
 				gui/DialogCharacterCodings.cc \
 				gui/ComboBoxEncoding.h \
-				gui/ComboBoxEncoding.cc
+				gui/ComboBoxEncoding.cc \
+				gui/ComboBoxSubtitleFormat.h \
+				gui/ComboBoxSubtitleFormat.cc \
+				gui/ComboBoxNewLine.h \
+				gui/ComboBoxNewLine.cc \
+				gui/ComboBoxVideo.h \
+				gui/ComboBoxVideo.cc
 
 
 if	 ENABLE_UNITTEST
