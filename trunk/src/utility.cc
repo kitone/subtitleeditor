@@ -698,6 +698,11 @@ void on_spin_button(Gtk::SpinButton *spin, const Glib::ustring &group, const Gli
 	Config::getInstance().set_value_double(group, key, spin->get_value());
 }
 
+void on_combobox_text(Gtk::ComboBoxText *combo, const Glib::ustring &group, const Glib::ustring &key)
+{
+	Config::getInstance().set_value_string(group, key, combo->get_active_text());
+}
+
 
 /*
  *
@@ -740,6 +745,12 @@ void connect(Gtk::Widget *widget, const Glib::ustring &group, const Glib::ustrin
 		color->signal_color_set().connect(
 			sigc::bind<Gtk::ColorButton*, Glib::ustring, Glib::ustring>(
 				sigc::ptr_fun(&on_color_button), color, group, key));
+	}
+	else if(Gtk::ComboBoxText *combobox = dynamic_cast<Gtk::ComboBoxText*>(widget))
+	{
+		combobox->signal_changed().connect(
+				sigc::bind<Gtk::ComboBoxText*, Glib::ustring, Glib::ustring>(
+					sigc::ptr_fun(&on_combobox_text), combobox, group, key));
 	}
 }
 
@@ -796,6 +807,14 @@ void read_config(Gtk::Widget *widget, const Glib::ustring &group, const Glib::us
 		cfg.get_value_color(group, key, color);
 
 		color.initColorButton(*colorbutton);
+	}
+	else if(Gtk::ComboBoxText *combobox = dynamic_cast<Gtk::ComboBoxText*>(widget))
+	{
+		Glib::ustring value;
+		if(cfg.get_value_string(group, key, value))
+		{
+			combobox->set_active_text(value);
+		}
 	}
 }
 

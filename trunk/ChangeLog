@@ -1,5 +1,10 @@
 2008-09-06  kitone  <kitone@gna.org>
 
+	* src/utility.cc:
+	Add support of ComboBoxText to WidgetToConfig.
+
+2008-09-06  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/gui/ComboBoxNewLine.cc:
 	* src/gui/ComboBoxNewLine.h:
