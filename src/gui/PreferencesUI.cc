@@ -23,6 +23,8 @@
 #include "PreferencesUI.h"
 #include "Config.h"
 #include "utility.h"
+#include "ComboBoxSubtitleFormat.h"
+#include "ComboBoxNewLine.h"
 
 /*
  *	Interface
@@ -78,6 +80,26 @@ protected:
 	Gtk::SpinButton*	m_spinAutosave;
 };
 
+/*
+ *	Interface
+ */
+class PreferenceDocumentUI : public Gtk::VBox
+{
+public:
+	PreferenceDocumentUI(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	:Gtk::VBox(cobject)
+	{
+		refGlade->get_widget_derived("combo-format", m_comboFormat);
+		refGlade->get_widget_derived("combo-newline", m_comboNewline);
+		
+		WidgetToConfig::read_config_and_connect(m_comboFormat, "document", "format");
+		WidgetToConfig::read_config_and_connect(m_comboNewline, "document", "newline");
+	}
+
+protected:
+	ComboBoxSubtitleFormat* m_comboFormat;
+	ComboBoxNewLine* m_comboNewline;
+};
 
 struct t_output
 {
@@ -360,12 +382,14 @@ PreferencesUI::PreferencesUI(BaseObjectType *cobject, const Glib::RefPtr<Gnome::
 	utility::set_transient_parent(*this);
 
 	PreferenceInterfaceUI *interfaceUI = NULL;
+	PreferenceDocumentUI *documentUI = NULL;
 	PreferenceWaveformUI *waveformUI = NULL;
 	PreferenceVideoPlayerUI *videoplayerUI = NULL;
 	PreferenceTimingUI *timingUI = NULL;
 	PreferencePreviewUI *previewUI = NULL;
 
 	refGlade->get_widget_derived("vbox-interface", interfaceUI);
+	refGlade->get_widget_derived("vbox-document", documentUI);
 	refGlade->get_widget_derived("vbox-waveform", waveformUI);
 	refGlade->get_widget_derived("vbox-video-player", videoplayerUI);
 	refGlade->get_widget_derived("vbox-timing", timingUI);

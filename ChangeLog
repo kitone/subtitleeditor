@@ -1,5 +1,11 @@
 2008-09-06  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-preferences.glade:
+	* src/gui/PreferencesUI.cc:
+	Add options to set default values to document. (Fix #12285)
+
+2008-09-06  kitone  <kitone@gna.org>
+
 	* src/utility.cc:
 	Add support of ComboBoxText to WidgetToConfig.
 
