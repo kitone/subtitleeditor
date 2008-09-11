@@ -151,7 +151,12 @@ public:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		create_menu_recent_files();
+		// Do not call directly create_menu_recent_files. 
+		// Because it freeze a moment the interface.
+		Gtk::Widget *item = get_ui_manager()->get_widget("/menubar/menu-file/menu-recent-open-document");
+
+		item->signal_realize().connect(
+				sigc::mem_fun(*this, &DocumentManagementPlugin::create_menu_recent_files));
 	}
 
 	/*

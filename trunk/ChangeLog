@@ -1,3 +1,9 @@
+2008-09-11  kitone  <kitone@gna.org>
+
+	* src/actions/DocumentManagement.cc:
+	Do not call directly create_menu_recent_files. 
+	Because it freeze a moment the interface.
+
 2008-09-06  kitone  <kitone@gna.org>
 
 	* share/glade/dialog-preferences.glade:
