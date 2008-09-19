@@ -149,11 +149,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 		ActionGroup ag("tools", m_refUIManager);
 
 		ag.item("menu-tools", _("T_ools"));
-	
-		//ag.item("find-and-replace", Gtk::Stock::FIND_AND_REPLACE, _("_Find And Replace"), 
-		//		_("Search for and replace text"), "<Control>F");
-		ag.item("check-errors", Gtk::Stock::YES, _("_Check Errors"),
-				_("Launch the errors checking"));
 	}
 
 
