@@ -105,9 +105,23 @@ public:
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_save_translation));
 
 		// recent files
-		action_group->add(
-				Gtk::Action::create("menu-recent-open-document", _("Open _Recent")));
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Gtk::RecentAction::create("menu-recent-open-document", _("Open _Recent"));
 
+		Gtk::RecentFilter filter;
+		filter.set_name("subtitleeditor");
+		filter.add_group("subtitleeditor");
+		recentAction->add_filter(filter);
+
+		recentAction->set_show_icons(false);
+		recentAction->set_show_numbers(true);
+		recentAction->set_show_tips(true);
+		recentAction->set_show_not_found(false);
+		recentAction->set_sort_type(Gtk::RECENT_SORT_MRU);
+
+		recentAction->signal_item_activated().connect(
+				sigc::mem_fun(*this, &DocumentManagementPlugin::on_recent_item_activated));
+		action_group->add(recentAction);
+		
 		// close
 		action_group->add(
 				Gtk::Action::create("close-document", Gtk::Stock::CLOSE, "", _("Close the current file")),
@@ -142,21 +156,6 @@ public:
 			sigc::mem_fun(*this, &DocumentManagementPlugin::on_config_interface_changed));
 
 		init_autosave();
-	}
-
-	/*
-	 *	on utilise post_activate parcequ'on n'a besion de get_uimanager soit crée ainsi que le menu "Recent Files"
-	 */
-	void post_activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		// Do not call directly create_menu_recent_files. 
-		// Because it freeze a moment the interface.
-		Gtk::Widget *item = get_ui_manager()->get_widget("/menubar/menu-file/menu-recent-open-document");
-
-		item->signal_realize().connect(
-				sigc::mem_fun(*this, &DocumentManagementPlugin::create_menu_recent_files));
 	}
 
 	/*
@@ -677,49 +676,20 @@ protected:
 	/*
 	 *	open a recent document
 	 */
-	void on_recent_item_activated(Gtk::RecentChooserMenu *rc)
+	void on_recent_item_activated()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		Glib::RefPtr<Gtk::Action> action = action_group->get_action("menu-recent-open-document");
 
-		Glib::RefPtr<Gtk::RecentInfo> cur = rc->get_current_item();
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Glib::RefPtr<Gtk::RecentAction>::cast_static(action);
 
+		Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
+		
 		if(cur)
 		{
 			se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
 
 			open_document(cur->get_uri(), "");
 		}
-	}
-
-	/*
-	 *	create RecentChooserMenu and add to recent-open-document like a menu
-	 */
-	void create_menu_recent_files()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		Gtk::Widget *w = get_ui_manager()->get_widget("/menubar/menu-file/menu-recent-open-document");
-
-		g_return_if_fail(w);
-
-		Gtk::MenuItem *item = dynamic_cast<Gtk::MenuItem*>(w);
-		
-		g_return_if_fail(item);
-
-		Gtk::RecentChooserMenu *rc = manage(new Gtk::RecentChooserMenu(Gtk::RecentManager::get_default()));
-		rc->set_show_tips(true);
-		rc->set_show_not_found(false);
-		rc->set_sort_type(Gtk::RECENT_SORT_MRU);
-		
-		Gtk::RecentFilter filter;
-		filter.set_name("subtitleeditor");
-		filter.add_group("subtitleeditor");
-		rc->add_filter(filter);
-
-		item->set_submenu(*rc);
-
-		rc->signal_item_activated().connect(
-				sigc::bind(sigc::mem_fun(*this, &DocumentManagementPlugin::on_recent_item_activated), rc));
 	}
 
 	/*
