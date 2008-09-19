@@ -44,10 +44,6 @@ FILES = \
 				SubtitleView.cc \
 				SubtitleTags.h \
 				SubtitleTags.cc \
-				Action.h \
-				Action.cc \
-				ActionSystem.h \
-				ActionSystem.cc \
 				Waveform.h \
 				Waveform.cc \
 				Options.h \

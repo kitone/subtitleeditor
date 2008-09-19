@@ -1,5 +1,21 @@
 2008-09-19  kitone  <kitone@gna.org>
 
+	* src/Action.cc:
+	* src/Action.h:
+	* src/ActionSystem.cc:
+	* src/ActionSystem.h:
+	Delete files.
+
+	* src/Makefile.am:
+	* src/SubtitleView.cc:
+	* src/SubtitleView.h:
+	* src/actions/StyleEditor.h:
+	* src/gui/MenuBar.cc:
+	* src/gui/MenuBar.h:
+	Remove deprecated code. (Action, ActionSystem)
+
+2008-09-19  kitone  <kitone@gna.org>
+
 	* src/gui/MenuBar.cc:
 	* src/gui/MenuBar.h:
 	* src/actions/ConfigureKeyboardShortcuts.cc:

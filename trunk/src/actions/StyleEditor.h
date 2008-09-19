@@ -27,7 +27,6 @@
 #include <libglademm/xml.h>
 #include <gtkmm.h>
 #include "Styles.h"
-#include "Action.h"
 
 
 class DialogStyleEditor : public Gtk::Dialog

@@ -25,8 +25,6 @@
 #include "utility.h"
 #include "DocumentSystem.h"
 #include "Config.h"
-
-#include "ActionSystem.h"
 #include "gui/PreferencesUI.h"
 
 /*
@@ -196,9 +194,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 
 	create_ui_from_file();
 
-	ActionSystem::getInstance().signal_sensitive_changed().connect(
-			sigc::mem_fun(*this, &MenuBar::set_sensitive));
-
 #warning "FIXME: properties"
 	set_sensitive("properties", false);
 }
@@ -225,25 +220,6 @@ MenuBar::~MenuBar()
 /*
  *
  */
-void MenuBar::addToggleAction(const Glib::ustring &name, const Glib::ustring &label, const Glib::ustring &group, const Glib::ustring &key )
-{
-	Glib::RefPtr<Gtk::Action> action = Gtk::ToggleAction::create(name, label);
-	Glib::RefPtr<Gtk::ToggleAction> toggle_action = Glib::RefPtr<Gtk::ToggleAction>::cast_static(action);
-
-	bool value = false;
-	if(Config::getInstance().get_value_bool(group, key, value))
-		toggle_action->set_active(value);
-
-	/*m_connections[name] = */action->signal_activate().connect(
-				sigc::bind<Glib::ustring>(sigc::mem_fun(this, &MenuBar::execute), name));
-
-	m_refActionGroup->add(action);
-
-}
-
-/*
- *
- */
 void MenuBar::action_activate(const Glib::RefPtr<Gtk::Action> action)
 {
 	execute(action->get_name());
@@ -254,10 +230,6 @@ void MenuBar::action_activate(const Glib::RefPtr<Gtk::Action> action)
  */
 void MenuBar::execute(const Glib::ustring &name)
 {
-	//std::cout << name << std::endl;
-
-	ActionSystem::getInstance().execute(name);
-
 	if(name == "preferences")
 		on_preferences();
 	else if(name == "display-video-player")

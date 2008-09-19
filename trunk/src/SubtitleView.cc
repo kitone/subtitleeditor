@@ -40,7 +40,6 @@
 #include "Document.h"
 #include "SubtitleView.h"
 #include "utility.h"
-#include "ActionSystem.h"
 #include <gdkmm/window.h>
 #include "SubtitleEditorWindow.h"
 
@@ -457,9 +456,6 @@ SubtitleView::SubtitleView(Document &doc)
 			sigc::mem_fun(*this, &SubtitleView::on_selection_changed));
 
 	get_selection()->set_mode(Gtk::SELECTION_MULTIPLE);
-
-	ActionSystem::getInstance().signal_emit().connect(
-			sigc::mem_fun(*this, &SubtitleView::on_execute_action));
 
 	Config::getInstance().signal_changed("subtitle-view").connect(
 			sigc::mem_fun(*this, &SubtitleView::on_config_subtitle_view_changed));
@@ -1496,20 +1492,6 @@ void SubtitleView::on_set_style_to_selection(const Glib::ustring &name)
 }
 
 /*
- *
- */
-void SubtitleView::on_execute_action(const Glib::ustring &action)
-{
-	if(action == "cut")
-		clipboard_cut();
-	else if(action == "copy")
-		clipboard_copy();
-	else if(action == "paste")
-		clipboard_paste();
-}
-
-
-/*
  *	COLUMN
  */
 
@@ -1624,53 +1606,6 @@ void SubtitleView::update_columns_displayed_from_config()
 			current_column->set_visible(true);
 	}
 	
-}
-
-/*
- *
- */
-void SubtitleView::clipboard_cut()
-{
-}
-
-/*
- *
- */
-void SubtitleView::clipboard_copy()
-{
-	/*
-	Gtk::TreeViewColumn *column = NULL;
-	Gtk::TreeModel::Path path;
-	get_cursor(path, column);
-
-	if(column == NULL)
-		column = m_columns["text"];
-
-	Subtitle sub(m_refDocument, m_subtitleModel->get_iter(path));
-
-	g_return_if_fail(sub);
-
-	//set_cursor(m_subtitleModel->get_path(iter), *column, false);
-	*/
-	Glib::ustring key = "text";
-
-	Glib::ustring text;
-
-	std::vector<Subtitle> selection = m_refDocument->subtitles().get_selection();
-	for(unsigned int i=0; i< selection.size(); ++i) 
-	{
-		text += selection[i].get(key);
-	}
-
-	Glib::RefPtr<Gtk::Clipboard> clipboard = Gtk::Clipboard::get();
-	clipboard->set_text(text);
-}
-
-/*
- * 
- */
-void SubtitleView::clipboard_paste()
-{
 }
 
 /*
