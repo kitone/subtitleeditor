@@ -18,6 +18,8 @@ glade_DATA = \
 					dialog-import-text.glade \
 					dialog-export-text.glade \
 					dialog-character-codings.glade \
+					dialog-error-checking.glade \
+					dialog-error-checking-preferences.glade \
 					subtitleeditor.glade 
 
 EXTRA_DIST = $(glade_DATA)
