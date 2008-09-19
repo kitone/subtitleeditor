@@ -94,7 +94,6 @@
 			<menuitem action="find-previous"/>
 			<separator/>
 			<menuitem action="spell-checking"/>
-			<menuitem action="check-errors"/>
 			<separator/>
 			<menuitem action="split-document"/>
 			<menuitem action="join-document"/>

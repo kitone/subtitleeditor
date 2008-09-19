@@ -1,5 +1,20 @@
 2008-09-19  kitone  <kitone@gna.org>
 
+	* share/glade/Makefile.am:
+	* share/glade/dialog-check-errors-preferences.glade:
+	* share/glade/dialog-check-errors.glade:
+	* share/menubar.xml:
+	* src/Makefile.am:
+	* src/actions/CheckErrors.cc:
+	* src/actions/CheckErrors.h:
+	* src/gui/Application.cc:
+	* src/gui/Application.h:
+	* src/gui/CheckErrorsUI.cc:
+	* src/gui/CheckErrorsUI.h:
+	Remove Check Errors tool.
+
+2008-09-19  kitone  <kitone@gna.org>
+
 	* src/actions/DocumentManagement.cc:
 	Remove previous commit by using Gtk::RecentAction.
 
