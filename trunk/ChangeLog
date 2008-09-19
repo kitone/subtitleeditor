@@ -1,3 +1,11 @@
+2008-09-20  kitone  <kitone@gna.org>
+
+	* share/glade/dialog-preferences.glade:
+	Fix typo.
+
+	* src/actions/errorchecking/Overlapping.h:
+	Fix typo. (bold)
+
 2008-09-19  kitone  <kitone@gna.org>
 
 	* share/glade/Makefile.am:
