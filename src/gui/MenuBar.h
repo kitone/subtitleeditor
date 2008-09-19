@@ -72,10 +72,6 @@ protected:
 	 */
 	void set_sensitive(const Glib::ustring &name, bool state);
 
-	/*
-	 *
-	 */
-	void dialog_configure_keyboard_shortcuts();
 protected:
 public:
 	Statusbar* m_statusbar;
