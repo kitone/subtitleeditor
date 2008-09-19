@@ -141,7 +141,17 @@ ACTIONS = \
 				actions/VideoPlayerManagement.cc \
 				actions/TimeModeManagement.cc \
 				actions/EditCell.cc \
-				actions/ConfigureKeyboardShortcuts.cc
+				actions/ConfigureKeyboardShortcuts.cc \
+				actions/errorchecking/ErrorChecking.h \
+				actions/errorchecking/ErrorCheckingPreferences.h \
+				actions/errorchecking/ErrorCheckingPlugin.cc \
+				actions/errorchecking/MaxCharactersPerLine.h \
+				actions/errorchecking/MaxLinePerSubtitle.h \
+				actions/errorchecking/MinGapBetweenSubtitles.h \
+				actions/errorchecking/Overlapping.h \
+				actions/errorchecking/MinDisplayTime.h \
+				actions/errorchecking/TooLongDisplayTime.h \
+				actions/errorchecking/TooShortDisplayTime.h
 
 GUI_FILES = \
 				gui/DialogUtility.h \

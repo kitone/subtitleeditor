@@ -1,5 +1,23 @@
 2008-09-19  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-error-checking-preferences.glade:
+	* share/glade/dialog-error-checking.glade:
+	* share/menubar.xml:
+	* src/Makefile.am:
+	* src/actions/errorchecking/ErrorChecking.h:
+	* src/actions/errorchecking/ErrorCheckingPlugin.cc:
+	* src/actions/errorchecking/ErrorCheckingPreferences.h:
+	* src/actions/errorchecking/MaxCharactersPerLine.h:
+	* src/actions/errorchecking/MaxLinePerSubtitle.h:
+	* src/actions/errorchecking/MinDisplayTime.h:
+	* src/actions/errorchecking/MinGapBetweenSubtitles.h:
+	* src/actions/errorchecking/Overlapping.h:
+	* src/actions/errorchecking/TooLongDisplayTime.h:
+	* src/actions/errorchecking/TooShortDisplayTime.h:
+	Introduce new Error Checking tool.
+
+2008-09-19  kitone  <kitone@gna.org>
+
 	* src/Action.cc:
 	* src/Action.h:
 	* src/ActionSystem.cc:
