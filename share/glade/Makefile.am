@@ -2,8 +2,6 @@ gladedir = $(PACKAGE_SHARE_DIR)/glade/
 
 glade_DATA = \
 					dialog-change-framerate.glade \
-					dialog-check-errors.glade \
-					dialog-check-errors-preferences.glade \
 					dialog-encodings-chooser.glade \
 					dialog-find-and-replace.glade \
 					dialog-move-subtitles.glade \

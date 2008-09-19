@@ -26,9 +26,7 @@
 #include "utility.h"
 #include "Application.h"
 #include "DocumentSystem.h"
-#include "ActionSystem.h"
 #include <algorithm>
-#include "gui/CheckErrorsUI.h"
 #include "Encodings.h"
 
 void on_current_document_changed(Document *doc)
@@ -86,10 +84,6 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 	// on va chercher la configuration clavier
 	Glib::ustring path_se_accelmap = get_config_dir("accelmap");
 	Gtk::AccelMap::load(path_se_accelmap);
-
-	ActionSystem::getInstance().signal_emit().connect(
-			sigc::mem_fun(*this, &Application::on_execute_action));
-
 
 	//
 	Config::getInstance().signal_changed("interface").connect(
@@ -479,31 +473,6 @@ void Application::update_title(Document *doc)
 		set_title(PACKAGE);
 	}
 }
-
-/*
- *
- */
-void Application::on_execute_action(const Glib::ustring &name)
-{
-#define REGISTER(action, callback) if(action == name) { callback(); return; }
-
-	// TOOLS
-	REGISTER("check-errors", check_errors);
-
-#undef REGISTER
-}
-
-
-// TOOLS
-
-/*
- *
- */
-void Application::check_errors()
-{
-	createDialogCheckErrors();
-}
-
 
 /*
  *

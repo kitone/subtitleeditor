@@ -146,11 +146,6 @@ ACTIONS = \
 				actions/TimeModeManagement.cc \
 				actions/EditCell.cc
 
-
-ACTIONS_FILES = $(ACTIONS) \
-				actions/CheckErrors.h \
-				actions/CheckErrors.cc
-
 GUI_FILES = \
 				gui/DialogUtility.h \
 				gui/DialogUtility.cc \
@@ -162,8 +157,6 @@ GUI_FILES = \
 				gui/MenuBar.cc \
 				gui/Statusbar.h \
 				gui/Statusbar.cc \
-				gui/CheckErrorsUI.h \
-				gui/CheckErrorsUI.cc \
 				gui/PreferencesUI.h \
 				gui/PreferencesUI.cc \
 				gui/DialogCharacterCodings.h \
@@ -238,7 +231,7 @@ LIB_FILES = \
 ## subtitleeditor
 bin_PROGRAMS = subtitleeditor
 
-subtitleeditor_SOURCES = main.cc $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FILES) $(ACTIONS_FILES) $(UNITTEST_FILES)
+subtitleeditor_SOURCES = main.cc $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FILES) $(ACTIONS) $(UNITTEST_FILES)
 
 
 subtitleeditor_LDADD = $(GTKMM_LIBS) $(LIBGLADEMM_LIBS) $(GSTREAMER_LIBS) \

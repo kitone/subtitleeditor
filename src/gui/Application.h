@@ -83,14 +83,6 @@ protected:
 	 */
 	void load_config();
 
-	/*
-	 *
-	 */
-	void on_execute_action(const Glib::ustring &name);
-
-	// TOOLS
-	void check_errors();
-
 protected:
 
 	/*
