@@ -48,16 +48,6 @@ public:
 protected:
 	void connect_proxy(const Glib::RefPtr<Gtk::Action> &action, Gtk::Widget *widget);
 	
-	/*
-	 *
-	 */
-	void addToggleAction(	const Glib::ustring &name,
-												const Glib::ustring &label, 
-												const Glib::ustring &group, 
-												const Glib::ustring &key );
-
-protected:
-	
 	void action_activate(const Glib::RefPtr<Gtk::Action> action);
 
 	void execute(const Glib::ustring &name);

@@ -147,13 +147,6 @@ protected:
 
 
 	/*
-	 *
-	 */
-	void on_execute_action(const Glib::ustring &action);
-	
-
-
-	/*
 	 * COLUMN
 	 */
 
@@ -219,25 +212,6 @@ protected:
 	 *
 	 */
 	void set_tooltips(Gtk::TreeViewColumn *column, const Glib::ustring &text);
-
-	/*
-	 *	CLIPBOARD
-	 */
-
-	/*
-	 *
-	 */
-	void clipboard_cut();
-
-	/*
-	 *
-	 */
-	void clipboard_copy();
-	
-	/*
-	 *
-	 */
-	void clipboard_paste();
 
 protected:
 	Document* m_refDocument;
