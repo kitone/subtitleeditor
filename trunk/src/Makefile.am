@@ -144,7 +144,8 @@ ACTIONS = \
 				actions/WaveformManagement.cc \
 				actions/VideoPlayerManagement.cc \
 				actions/TimeModeManagement.cc \
-				actions/EditCell.cc
+				actions/EditCell.cc \
+				actions/ConfigureKeyboardShortcuts.cc
 
 GUI_FILES = \
 				gui/DialogUtility.h \

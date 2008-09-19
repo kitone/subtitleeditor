@@ -1,6 +1,19 @@
 2008-09-19  kitone  <kitone@gna.org>
 
 	* src/gui/MenuBar.cc:
+	* src/gui/MenuBar.h:
+	* src/actions/ConfigureKeyboardShortcuts.cc:
+	Move Configure Keyboard Shortcuts code to ConfigureKeyboardShortcuts.cc file.
+
+	* src/Makefile.am:
+	Add new file ConfigureKeyboardShortcuts.cc
+
+	* share/glade/dialog-configure-keyboard-shortcuts.glade:
+	Small fix.
+
+2008-09-19  kitone  <kitone@gna.org>
+
+	* src/gui/MenuBar.cc:
 	Remove Check Errors tool. (missing)
 
 2008-09-19  kitone  <kitone@gna.org>
