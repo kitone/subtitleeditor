@@ -71,7 +71,7 @@ public:
 				_("<b>Subtitle overlap on next subtitle:</b> %ims overlap"),
 				overlap);
 				
-		info.solution = _("Automatic correction: unavailable, correct the error manually.");
+		info.solution = _("<b>Automatic correction:</b> unavailable, correct the error manually.");
 
 		return true;
 	}
