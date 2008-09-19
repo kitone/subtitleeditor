@@ -1,5 +1,11 @@
 2008-09-19  kitone  <kitone@gna.org>
 
+	* share/glade/Makefile.am:
+	Fix: missing files dialog-error-checking.glade and
+	dialog-error-checking-preferences.glade.
+
+2008-09-19  kitone  <kitone@gna.org>
+
 	* share/glade/dialog-error-checking-preferences.glade:
 	* share/glade/dialog-error-checking.glade:
 	* share/menubar.xml:
