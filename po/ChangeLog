@@ -1,3 +1,12 @@
+2008-09-20  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	Update with last files and messages.
+	Add [encoding: UTF-8].
+	
+	* subtitleeditor.pot:
+	Update with last files and messages.
+
 2008-09-05  kitone  <kitone@gna.org>
 
 	* zh_CN.po:
