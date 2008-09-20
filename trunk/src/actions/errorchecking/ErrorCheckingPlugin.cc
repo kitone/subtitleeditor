@@ -711,12 +711,16 @@ public:
 			if(checker)
 				label = checker->get_label();
 			
-			row[m_column.text] = build_message(_("<b>%s</b> (%d errors)"), label.c_str(), size);
+			row[m_column.text] = build_message(ngettext(
+						"<b>%s</b> (1 error)",
+						"<b>%s</b> (%d errors)", size), label.c_str(), size);
 		}
 		else if(get_sort_type() == BY_SUBTITLES)
 		{
 			unsigned int num = utility::string_to_int(Glib::ustring(row[m_column.num]));
-			row[m_column.text] = build_message(_("<b>Subtitle n°%d</b> (%d errors)"), num, size);
+			row[m_column.text] = build_message(ngettext(
+						"<b>Subtitle n°%d</b> (1 error)",
+						"<b>Subtitle n°%d</b> (%d errors)", size), num, size);
 		}
 	}
 
