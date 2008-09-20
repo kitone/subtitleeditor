@@ -73,8 +73,8 @@ public:
 		}
 
 		info.error = build_message(ngettext(
-				"<b>Subtitle display time is too short:</b> %i char/s",
-				"<b>Subtitle display time is too short:</b> %i chars/s", cps), cps);
+				"Subtitle display time is too short: <b>%i char/s</b>",
+				"Subtitle display time is too short: <b>%i chars/s</b>", cps), cps);
 
 		info.solution = build_message(
 				_("<b>Automatic correction:</b> to change current subtitle end to %s."),

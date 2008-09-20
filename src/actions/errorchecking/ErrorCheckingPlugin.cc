@@ -404,10 +404,10 @@ public:
 
 		if(get_sort_type() == BY_CATEGORIES)
 		{
-			Glib::ustring subtitle = build_message(_("Subtitle n°%d"), info.currentSub.get_num());
+			Glib::ustring subtitle = build_message(_("Subtitle n°<b>%d</b>"), info.currentSub.get_num());
 			Glib::ustring error = info.error;
 
-			text = build_message("<b>%s</b>\n%s", 
+			text = build_message("%s\n%s", 
 					subtitle.c_str(), 
 					error.c_str());
 		}
@@ -416,7 +416,7 @@ public:
 			Glib::ustring checker_label = checker->get_label();
 			Glib::ustring error = info.error;
 
-			text = build_message("<b>%s</b>\n%s", 
+			text = build_message("%s\n%s", 
 					checker_label.c_str(), 
 					error.c_str());
 		}
@@ -712,15 +712,15 @@ public:
 				label = checker->get_label();
 			
 			row[m_column.text] = build_message(ngettext(
-						"<b>%s</b> (1 error)",
-						"<b>%s</b> (%d errors)", size), label.c_str(), size);
+						"%s (<b>1 error</b>)",
+						"%s (<b>%d errors</b>)", size), label.c_str(), size);
 		}
 		else if(get_sort_type() == BY_SUBTITLES)
 		{
 			unsigned int num = utility::string_to_int(Glib::ustring(row[m_column.num]));
 			row[m_column.text] = build_message(ngettext(
-						"<b>Subtitle n°%d</b> (1 error)",
-						"<b>Subtitle n°%d</b> (%d errors)", size), num, size);
+						"Subtitle n°<b>%d</b> (<b>1 error</b>)",
+						"Subtitle n°<b>%d</b> (<b>%d errors</b>)", size), num, size);
 		}
 	}
 
