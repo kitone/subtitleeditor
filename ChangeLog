@@ -1,5 +1,11 @@
 2008-09-20  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-configure-keyboard-shortcuts.glade:
+	* share/glade/dialog-error-checking-preferences.glade:
+	Fix gtk-* string.
+
+2008-09-20  kitone  <kitone@gna.org>
+
 	* src/SubtitleView.cc:
 	Fix the scroll of widget time (cell) as SpinButtonTime.
 

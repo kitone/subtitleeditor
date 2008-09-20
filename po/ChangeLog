@@ -1,5 +1,10 @@
 2008-09-20  kitone  <kitone@gna.org>
 
+	* subtitleeditor.pot:
+	Update and fixes gtk-* strings.
+
+2008-09-20  kitone  <kitone@gna.org>
+
 	* POTFILES.in:
 	Update with last files and messages.
 	Add [encoding: UTF-8].

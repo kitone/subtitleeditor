@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-20 13:53+0200\n"
+"POT-Creation-Date: 2008-09-20 14:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,11 +67,6 @@ msgstr ""
 msgid ""
 "To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
-msgstr ""
-
-#: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:3
-#: ../share/glade/dialog-error-checking-preferences.glade.h:13
-msgid "gtk-close"
 msgstr ""
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:1
@@ -136,14 +131,6 @@ msgstr ""
 #: ../share/glade/dialog-preferences.glade.h:51
 #: ../src/actions/ViewManager.cc:394
 msgid "Timing"
-msgstr ""
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:12
-msgid "gtk-about"
-msgstr ""
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:14
-msgid "gtk-preferences"
 msgstr ""
 
 #: ../share/glade/dialog-export-text.glade.h:1
