@@ -1,5 +1,11 @@
 2008-09-20  kitone  <kitone@gna.org>
 
+	* cs.po:
+	* subtitleeditor.pot:
+	Update.
+
+2008-09-20  kitone  <kitone@gna.org>
+
 	* subtitleeditor.pot:
 	Update and fixes gtk-* strings.
 
