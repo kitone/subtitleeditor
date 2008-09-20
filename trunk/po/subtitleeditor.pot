@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-20 14:06+0200\n"
+"POT-Creation-Date: 2008-09-20 22:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1138,24 +1138,28 @@ msgstr[1] ""
 
 #: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:407
 #, c-format
-msgid "Subtitle n°%d"
+msgid "Subtitle n°<b>%d</b>"
 msgstr ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:714
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:715
 #, c-format
-msgid "<b>%s</b> (%d errors)"
-msgstr ""
+msgid "%s (<b>1 error</b>)"
+msgid_plural "%s (<b>%d errors</b>)"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:719
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:722
 #, c-format
-msgid "<b>Subtitle n°%d</b> (%d errors)"
-msgstr ""
+msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
+msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:794
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
 msgid "_Error Checking"
 msgstr ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:794
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
 msgid "Launch the error checking."
 msgstr ""
 
@@ -1167,13 +1171,15 @@ msgstr ""
 msgid "An error is detected if a line is too long."
 msgstr ""
 
-#: ../src/actions/errorchecking/MaxCharactersPerLine.h:72
-#, c-format
-msgid "<b>Subtitle has a too long line:</b> %i characters"
-msgstr ""
-
 #: ../src/actions/errorchecking/MaxCharactersPerLine.h:73
-#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:77
+#, c-format
+msgid "Subtitle has a too long line: <b>1 character</b>"
+msgid_plural "Subtitle has a too long line: <b>%i characters</b>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:75
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:79
 #: ../src/actions/errorchecking/Overlapping.h:74
 msgid "<b>Automatic correction:</b> unavailable, correct the error manually."
 msgstr ""
@@ -1186,10 +1192,12 @@ msgstr ""
 msgid "An error is detected if a subtitle has too many lines."
 msgstr ""
 
-#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:76
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:77
 #, c-format
-msgid "<b>Subtitle has too many lines:</b> %i lines"
-msgstr ""
+msgid "Subtitle has too many lines: <b>1 line</b>"
+msgid_plural "Subtitle has too many lines: <b>%i lines</b>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/actions/errorchecking/MinDisplayTime.h:38
 msgid "Min Display Time"
@@ -1203,7 +1211,7 @@ msgstr ""
 
 #: ../src/actions/errorchecking/MinDisplayTime.h:71
 #, c-format
-msgid "<b>Subtitle display time is too short:</b> %s"
+msgid "Subtitle display time is too short: <b>%s</b>"
 msgstr ""
 
 #: ../src/actions/errorchecking/MinDisplayTime.h:75
@@ -1225,14 +1233,14 @@ msgstr ""
 
 #: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:81
 #, c-format
-msgid "<b>Too short gap between subtitle:</b> %ims"
+msgid "Too short gap between subtitle: <b>%ims</b>"
 msgstr ""
 
 #: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:85
 #, c-format
 msgid ""
 "<b>Automatic correction:</b> to clip current subtitle end to %s and to move "
-"next subtitle start to %s"
+"next subtitle start to %s."
 msgstr ""
 
 #: ../src/actions/errorchecking/Overlapping.h:38
@@ -1245,7 +1253,7 @@ msgstr ""
 
 #: ../src/actions/errorchecking/Overlapping.h:71
 #, c-format
-msgid "<b>Subtitle overlap on next subtitle:</b> %ims overlap"
+msgid "Subtitle overlap on next subtitle: <b>%ims overlap</b>"
 msgstr ""
 
 #: ../src/actions/errorchecking/TooLongDisplayTime.h:38
@@ -1260,8 +1268,10 @@ msgstr ""
 
 #: ../src/actions/errorchecking/TooLongDisplayTime.h:76
 #, c-format
-msgid "<b>Subtitle display time is too long:</b> %i char/s"
-msgstr ""
+msgid "Subtitle display time is too long: <b>%i char/s</b>"
+msgid_plural "Subtitle display time is too long: <b>%i chars/s</b>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/actions/errorchecking/TooShortDisplayTime.h:38
 msgid "Too Short Display Time"
@@ -1275,8 +1285,10 @@ msgstr ""
 
 #: ../src/actions/errorchecking/TooShortDisplayTime.h:76
 #, c-format
-msgid "<b>Subtitle display time is too short:</b> %i char/s"
-msgstr ""
+msgid "Subtitle display time is too short: <b>%i char/s</b>"
+msgid_plural "Subtitle display time is too short: <b>%i chars/s</b>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
@@ -2324,147 +2336,147 @@ msgstr ""
 msgid "Couldn't recognize format of the file."
 msgstr ""
 
-#: ../src/SubtitleView.cc:437
+#: ../src/SubtitleView.cc:492
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr ""
 
-#: ../src/SubtitleView.cc:439
+#: ../src/SubtitleView.cc:494
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr ""
 
-#: ../src/SubtitleView.cc:583 ../src/SubtitleView.cc:1641
+#: ../src/SubtitleView.cc:638 ../src/SubtitleView.cc:1696
 msgid "num"
 msgstr ""
 
-#: ../src/SubtitleView.cc:598
+#: ../src/SubtitleView.cc:653
 msgid "This number column"
 msgstr ""
 
-#: ../src/SubtitleView.cc:611 ../src/SubtitleView.cc:1635
+#: ../src/SubtitleView.cc:666 ../src/SubtitleView.cc:1690
 msgid "layer"
 msgstr ""
 
-#: ../src/SubtitleView.cc:627
+#: ../src/SubtitleView.cc:682
 msgid "Layer number."
 msgstr ""
 
-#: ../src/SubtitleView.cc:667 ../src/SubtitleView.cc:1642
+#: ../src/SubtitleView.cc:722 ../src/SubtitleView.cc:1697
 msgid "start"
 msgstr ""
 
-#: ../src/SubtitleView.cc:670
+#: ../src/SubtitleView.cc:725
 msgid "This time is the time when a subtitle appears on the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:680 ../src/SubtitleView.cc:1634
+#: ../src/SubtitleView.cc:735 ../src/SubtitleView.cc:1689
 msgid "end"
 msgstr ""
 
-#: ../src/SubtitleView.cc:683
+#: ../src/SubtitleView.cc:738
 msgid "This time is the time when a subtitle disappears from the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:694 ../src/SubtitleView.cc:1632
+#: ../src/SubtitleView.cc:749 ../src/SubtitleView.cc:1687
 msgid "duration"
 msgstr ""
 
-#: ../src/SubtitleView.cc:697
+#: ../src/SubtitleView.cc:752
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:710 ../src/SubtitleView.cc:1643
+#: ../src/SubtitleView.cc:765 ../src/SubtitleView.cc:1698
 msgid "style"
 msgstr ""
 
-#: ../src/SubtitleView.cc:737 ../src/SubtitleView.cc:1639
+#: ../src/SubtitleView.cc:792 ../src/SubtitleView.cc:1694
 msgid "name"
 msgstr ""
 
-#: ../src/SubtitleView.cc:762 ../src/SubtitleView.cc:1631
+#: ../src/SubtitleView.cc:817 ../src/SubtitleView.cc:1686
 msgid "cps"
 msgstr ""
 
-#: ../src/SubtitleView.cc:785 ../src/SubtitleView.cc:1644
+#: ../src/SubtitleView.cc:840 ../src/SubtitleView.cc:1699
 msgid "text"
 msgstr ""
 
-#: ../src/SubtitleView.cc:849 ../src/SubtitleView.cc:1645
+#: ../src/SubtitleView.cc:904 ../src/SubtitleView.cc:1700
 msgid "translation"
 msgstr ""
 
-#: ../src/SubtitleView.cc:893 ../src/SubtitleView.cc:1640
+#: ../src/SubtitleView.cc:948 ../src/SubtitleView.cc:1695
 msgid "note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:920 ../src/SubtitleView.cc:1633
+#: ../src/SubtitleView.cc:975 ../src/SubtitleView.cc:1688
 msgid "effect"
 msgstr ""
 
-#: ../src/SubtitleView.cc:949 ../src/SubtitleView.cc:1637
+#: ../src/SubtitleView.cc:1004 ../src/SubtitleView.cc:1692
 msgid "R"
 msgstr ""
 
-#: ../src/SubtitleView.cc:976 ../src/SubtitleView.cc:1636
+#: ../src/SubtitleView.cc:1031 ../src/SubtitleView.cc:1691
 msgid "L"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1003 ../src/SubtitleView.cc:1638
+#: ../src/SubtitleView.cc:1058 ../src/SubtitleView.cc:1693
 msgid "V"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1063
+#: ../src/SubtitleView.cc:1118
 msgid "Editing layer"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1091 ../src/SubtitleView.cc:1102
+#: ../src/SubtitleView.cc:1146 ../src/SubtitleView.cc:1157
 msgid "Editing start"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1129 ../src/SubtitleView.cc:1140
+#: ../src/SubtitleView.cc:1184 ../src/SubtitleView.cc:1195
 msgid "Editing end"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1167 ../src/SubtitleView.cc:1178
+#: ../src/SubtitleView.cc:1222 ../src/SubtitleView.cc:1233
 msgid "Editing duration"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1198
+#: ../src/SubtitleView.cc:1253
 msgid "Editing text"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1220
+#: ../src/SubtitleView.cc:1275
 msgid "Editing translation"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1240
+#: ../src/SubtitleView.cc:1295
 msgid "Editing note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1259
+#: ../src/SubtitleView.cc:1314
 msgid "Editing effect"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1280
+#: ../src/SubtitleView.cc:1335
 msgid "Editing style"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1300
+#: ../src/SubtitleView.cc:1355
 msgid "Editing name"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1320
+#: ../src/SubtitleView.cc:1375
 msgid "Editing margin-l"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1340
+#: ../src/SubtitleView.cc:1395
 msgid "Editing margin-r"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1360
+#: ../src/SubtitleView.cc:1415
 msgid "Editing margin-v"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1498
+#: ../src/SubtitleView.cc:1553
 msgid "Set style to selection"
 msgstr ""
 
