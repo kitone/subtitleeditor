@@ -68,7 +68,7 @@ public:
 		}
 
 		info.error = build_message(
-				_("<b>Subtitle display time is too short:</b> %s"), 
+				_("Subtitle display time is too short: <b>%s</b>"), 
 				duration.str().c_str());
 
 		info.solution = build_message(

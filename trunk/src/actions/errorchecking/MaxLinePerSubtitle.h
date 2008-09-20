@@ -74,8 +74,8 @@ public:
 		}
 		
 		info.error = build_message(ngettext(
-				"<b>Subtitle has too many lines:</b> 1 line",
-				"<b>Subtitle has too many lines:</b> %i lines", count), count);
+				"Subtitle has too many lines: <b>1 line</b>",
+				"Subtitle has too many lines: <b>%i lines</b>", count), count);
 		info.solution = _("<b>Automatic correction:</b> unavailable, correct the error manually.");
 		return true;
 	}

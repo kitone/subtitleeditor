@@ -68,7 +68,7 @@ public:
 		}
 		
 		info.error = build_message(
-				_("<b>Subtitle overlap on next subtitle:</b> %ims overlap"),
+				_("Subtitle overlap on next subtitle: <b>%ims overlap</b>"),
 				overlap);
 				
 		info.solution = _("<b>Automatic correction:</b> unavailable, correct the error manually.");

@@ -78,7 +78,7 @@ public:
 		
 		// only error & solution
 		info.error=	build_message(_(
-				"<b>Too short gap between subtitle:</b> %ims"), 
+				"Too short gap between subtitle: <b>%ims</b>"), 
 				gap);
 
 		info.solution = build_message(
