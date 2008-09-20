@@ -217,7 +217,14 @@ protected:
 		{
 			SubtitleTime time(get_text());
 
-			SubtitleTime val = (ev->state & GDK_CONTROL_MASK) ? SubtitleTime(1000) : SubtitleTime(100);
+			long step = 100;
+
+			if(ev->state & GDK_SHIFT_MASK && ev->state & GDK_CONTROL_MASK)
+				step *= 100;
+			else if(ev->state & GDK_CONTROL_MASK)
+				step *= 10;
+			
+			SubtitleTime val(step);
 
 			if(ev->direction == GDK_SCROLL_UP)
 			{
@@ -234,12 +241,17 @@ protected:
 		}
 		else if(from_string(text, frame)) // FRAME
 		{
-			long val = (ev->state & GDK_CONTROL_MASK) ? 10 : 1;
+			long step = 1;
+
+			if(ev->state & GDK_SHIFT_MASK && ev->state & GDK_CONTROL_MASK)
+				step *= 100;
+			else if(ev->state & GDK_CONTROL_MASK)
+				step *= 10;
 
 			if(ev->direction == GDK_SCROLL_UP)
-				frame += val;
+				frame += step;
 			else if(ev->direction == GDK_SCROLL_DOWN)
-				frame -= val;
+				frame -= step;
 
 			set_text(to_string(frame));
 			
