@@ -751,7 +751,7 @@ public:
 	void on_preferences()
 	{
 		ErrorCheckingGroup group;
-		DialogErrorCheckingPreferences::create(group);
+		DialogErrorCheckingPreferences::create(*this, group);
 
 		// Maybe some values have been changed, reset the config.
 		m_checker_list.init_settings();
