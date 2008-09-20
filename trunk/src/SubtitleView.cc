@@ -191,17 +191,72 @@ protected:
 /*
  *
  */
-class TimeCell : public Gtk::Entry
+class TimeCell : public Gtk::TextView, public Gtk::CellEditable
 {
 public:
 
 	TimeCell()
-	:Glib::ObjectBase(typeid(TimeCell)), Gtk::Entry()
+	:Glib::ObjectBase(typeid(TimeCell)), Gtk::CellEditable()
 	{
 		se_debug(SE_DEBUG_VIEW);
 	}
 
+	/*
+	 *
+	 */
+	Glib::ustring get_text() 
+	{
+		se_debug(SE_DEBUG_VIEW);
+
+		Glib::RefPtr<Gtk::TextBuffer> buffer = get_buffer();
+
+		Gtk::TextBuffer::iterator start, end;
+
+		buffer->get_bounds(start,end);
+		return buffer->get_text(start,end);
+	}
+
+	/*
+	 *
+	 */
+	void set_text(const Glib::ustring &text)
+	{
+		se_debug_message(SE_DEBUG_VIEW, "text=<%s>", text.c_str());
+
+		get_buffer()->set_text(text);
+	}
+
 protected:
+	/*
+	 *
+	 */
+	bool on_key_press_event(GdkEventKey* event)
+	{
+		se_debug(SE_DEBUG_VIEW);
+
+		if(event->keyval == GDK_Escape)
+		{
+			//m_canceled = true;
+			remove_widget();
+			return true;
+		}
+		
+		bool st_enter = (
+				 event->keyval == GDK_Return ||  
+				 event->keyval == GDK_KP_Enter ||  
+				 event->keyval == GDK_ISO_Enter ||  
+				 event->keyval == GDK_3270_Enter );
+
+		if(st_enter)
+		{
+			editing_done();
+			remove_widget();
+			return true;
+		}
+		
+		Gtk::TextView::on_key_press_event(event);
+		return true;
+	}
 
 	/*
 	 *
