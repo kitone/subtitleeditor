@@ -77,12 +77,13 @@ public:
 	/*
 	 *
 	 */
-	static void create(std::vector<ErrorChecking*> &list)
+	static void create(Gtk::Window &parent, std::vector<ErrorChecking*> &list)
 	{
 		std::auto_ptr<DialogErrorCheckingPreferences> dialog(
 				utility::get_widget_derived<DialogErrorCheckingPreferences>(
 					"dialog-error-checking-preferences.glade", "dialog-error-checking-preferences"));
 
+		dialog->set_transient_for(parent);
 		dialog->init_treeview(list);
 		dialog->run();
 	}
