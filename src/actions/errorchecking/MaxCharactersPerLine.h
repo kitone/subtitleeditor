@@ -69,7 +69,9 @@ public:
 					return false;
 				}
 				
-				info.error = build_message(_("<b>Subtitle has a too long line:</b> %i characters"), number);
+				info.error = build_message(ngettext(
+						"<b>Subtitle has a too long line:</b> 1 character",
+						"<b>Subtitle has a too long line:</b> %i characters", number), number);
 				info.solution = _("<b>Automatic correction:</b> unavailable, correct the error manually.");
 				
 				return true;

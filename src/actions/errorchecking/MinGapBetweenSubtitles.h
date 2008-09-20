@@ -82,7 +82,7 @@ public:
 				gap);
 
 		info.solution = build_message(
-				_("<b>Automatic correction:</b> to clip current subtitle end to %s and to move next subtitle start to %s"),
+				_("<b>Automatic correction:</b> to clip current subtitle end to %s and to move next subtitle start to %s."),
 				new_current.str().c_str(), new_next.str().c_str());
 
 		return true;
