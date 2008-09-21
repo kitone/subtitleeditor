@@ -1,3 +1,11 @@
+2008-09-21 - 0.24.0
+
+	* New Error Checking tool.
+	* New options to set default document values.
+	* Fix: Recent files freeze.
+	* Cleanup code.
+	* The Czech and French translations have been updated.
+	
 2008-09-04 - 0.23.0
 
 	* Add "Edit Cell" and "Edit Next Cell".
