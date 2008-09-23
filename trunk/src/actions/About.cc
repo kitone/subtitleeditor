@@ -76,6 +76,8 @@ protected:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Gtk::AboutDialog dialog;
+		utility::set_transient_parent(dialog);
+
 		// name
 		dialog.set_name("Subtitle Editor");
 		// version
