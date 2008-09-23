@@ -23,60 +23,6 @@
 
 #include "MenuBar.h"
 #include "utility.h"
-#include "DocumentSystem.h"
-#include "Config.h"
-
-/*
- *
- */
-class ActionGroup
-{
-public:
-	ActionGroup(const Glib::ustring &name, Glib::RefPtr<Gtk::UIManager> ui)
-	{
-		ag = Gtk::ActionGroup::create(name);
-		ui->insert_action_group(ag);
-	}
-
-
-	void menu_item(const Glib::ustring &name, const Glib::ustring &label = Glib::ustring())
-	{
-		ag->add(Gtk::Action::create(name, label));
-	}
-
-
-	void menu_item(const Glib::ustring &name, const Gtk::StockID &stock_id, const Glib::ustring &label = Glib::ustring())
-	{
-		ag->add(Gtk::Action::create(name, stock_id, label));
-	}
-
-	void item(	const Glib::ustring &name, 
-							const Gtk::StockID &stock_id, 
-							const Glib::ustring &label = Glib::ustring(), 
-							const Glib::ustring &tooltip = Glib::ustring(), 
-							const Glib::ustring &accel = Glib::ustring())
-	{
-		if(accel.empty())
-			ag->add(Gtk::Action::create(name, stock_id, label, tooltip));
-		else
-			ag->add(Gtk::Action::create(name, stock_id, label, tooltip), Gtk::AccelKey(accel));
-	}
-
-	void item(	const Glib::ustring &name, 
-							const Glib::ustring &label = Glib::ustring(), 
-							const Glib::ustring &tooltip = Glib::ustring(), 
-							const Glib::ustring &accel = Glib::ustring())
-	{
-		if(accel.empty())
-			ag->add(Gtk::Action::create(name, label, tooltip));
-		else
-			ag->add(Gtk::Action::create(name, label, tooltip), Gtk::AccelKey(accel));
-	}
-
-protected:
-	Glib::RefPtr<Gtk::ActionGroup> ag;
-};
-
 
 /*
  *
@@ -88,7 +34,7 @@ MenuBar::MenuBar()
 }
 
 /*
- *
+ * Use to show the tooltip in the statusbar.
  */
 void MenuBar::connect_proxy(const Glib::RefPtr<Gtk::Action> &action, Gtk::Widget *widget)
 {
@@ -111,68 +57,23 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 {
 	m_statusbar = &statusbar;
 
-	m_refActionGroup = Gtk::ActionGroup::create("default");
+	Glib::RefPtr<Gtk::ActionGroup> actiongroup = Gtk::ActionGroup::create("default");
 
-	// menu-file
-	{
-		ActionGroup ag("file", m_refUIManager);
-
-		ag.item("menu-file", _("_File"));
-
-		ag.item("properties", _("_Properties"),	"");
-	}
-	
-	// menu-edit
-	{
-		ActionGroup ag("edit", m_refUIManager);
-
-		ag.item("menu-edit", _("_Edit"));
-	}
-
-	// timings
-	{
-			ActionGroup ag("timings", m_refUIManager);
-
-			ag.item("menu-timings", _("_Timings"));
-	}
-
-	// menu-tools
-	{
-		ActionGroup ag("tools", m_refUIManager);
-
-		ag.item("menu-tools", _("T_ools"));
-	}
-
-
-	// menu-view
-	{
-		ActionGroup ag("view", m_refUIManager);
-
-		ag.item("menu-view", _("V_iew"));
-	}
-	
-	// menu-option
-	{
-		ActionGroup ag("options", m_refUIManager);
-
-		ag.item("menu-options", _("_Options"));
-	}
-
-	// menu-help
-	{
-		ActionGroup ag("help", m_refUIManager);
-
-		ag.item("menu-help", _("_Help"));
-	}
-
-	show_all();
+	// create all menu
+	actiongroup->add(Gtk::Action::create("menu-file", _("_File")));
+	actiongroup->add(Gtk::Action::create("menu-edit", _("_Edit")));
+	actiongroup->add(Gtk::Action::create("menu-timings", _("_Timings")));
+	actiongroup->add(Gtk::Action::create("menu-tools", _("T_ools")));
+	actiongroup->add(Gtk::Action::create("menu-view", _("V_iew")));
+	actiongroup->add(Gtk::Action::create("menu-options", _("_Options")));
+	actiongroup->add(Gtk::Action::create("menu-help", _("_Help")));
 
 	// UIManager
 
 	m_refUIManager->signal_connect_proxy().connect(
 			sigc::mem_fun(*this, &MenuBar::connect_proxy));
 
-	m_refUIManager->insert_action_group(m_refActionGroup);
+	m_refUIManager->insert_action_group(actiongroup);
 
 	window.add_accel_group(m_refUIManager->get_accel_group());
 
@@ -194,7 +95,8 @@ void MenuBar::create_ui_from_file()
 /*
  *
  */
-MenuBar::~MenuBar()
+Glib::RefPtr<Gtk::UIManager> MenuBar::get_ui_manager()
 {
+	return m_refUIManager;
 }
 

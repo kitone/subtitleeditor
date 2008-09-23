@@ -34,7 +34,6 @@ class MenuBar : public Gtk::VBox
 {
 public:
 	MenuBar();
-	~MenuBar();
 
 	/*
 	 *
@@ -44,16 +43,24 @@ public:
 	/*
 	 *
 	 */
-	void create_ui_from_file();
+	Glib::RefPtr<Gtk::UIManager> get_ui_manager();
+
 protected:
+
+	/*
+	 *
+	 */
+	void create_ui_from_file();
+	
+	/*
+	 * Use to show the tooltip in the statusbar.
+	 */
 	void connect_proxy(const Glib::RefPtr<Gtk::Action> &action, Gtk::Widget *widget);
 	
 protected:
-public:
+
 	Statusbar* m_statusbar;
 	Glib::RefPtr<Gtk::UIManager> m_refUIManager;
-	Glib::RefPtr<Gtk::ActionGroup> m_refActionGroup;
-	std::map<Glib::ustring, sigc::connection> m_connections;
 };
 
 #endif//_MenuBar_h
