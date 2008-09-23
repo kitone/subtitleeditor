@@ -237,6 +237,20 @@ namespace utility
 	 */
 	int get_characters_per_second(const Glib::ustring &text, const long msecs);
 
+	/*
+	 *	get number of characters for each line in the text
+	 */
+	std::vector<int> get_num_characters(const Glib::ustring &text);
+
+	/*
+	 * trim characters from the right
+	 */
+	void trim_right(std::string &str, const char *chars2remove = "\r\n\t ");  
+
+	/*
+	 * get a text stripped from tags
+	 */
+	Glib::ustring get_stripped_text(const Glib::ustring &text);
 
 	/*
 	 *	crée et retourne un widget à partir d'un fichier glade

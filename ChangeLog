@@ -1,5 +1,13 @@
 2008-09-23  kitone  <kitone@gna.org>
 
+	* src/Subtitle.cc:
+	* src/utility.cc:
+	* src/utility.h:
+	Fix #12347 : Wrong line length and characters per second. 
+	patch by John D. (spirit)
+
+2008-09-23  kitone  <kitone@gna.org>
+
 	* src/GtkUtility.cc:
 	* src/GtkUtility.h:
 	* src/gui/SpinButtonTime.cc:
