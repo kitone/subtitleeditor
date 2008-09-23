@@ -151,7 +151,14 @@ ACTIONS = \
 				actions/errorchecking/Overlapping.h \
 				actions/errorchecking/MinDisplayTime.h \
 				actions/errorchecking/TooLongDisplayTime.h \
-				actions/errorchecking/TooShortDisplayTime.h
+				actions/errorchecking/TooShortDisplayTime.h \
+				actions/preferences/InterfacePage.h \
+				actions/preferences/DocumentPage.h \
+				actions/preferences/VideoPlayerPage.h \
+				actions/preferences/TimingPage.h \
+				actions/preferences/WaveformPage.h \
+				actions/preferences/PreviewPage.h \
+				actions/preferences/PreferencesPlugin.cc
 
 GUI_FILES = \
 				gui/DialogUtility.h \
@@ -164,8 +171,6 @@ GUI_FILES = \
 				gui/MenuBar.cc \
 				gui/Statusbar.h \
 				gui/Statusbar.cc \
-				gui/PreferencesUI.h \
-				gui/PreferencesUI.cc \
 				gui/DialogCharacterCodings.h \
 				gui/DialogCharacterCodings.cc \
 				gui/ComboBoxEncoding.h \

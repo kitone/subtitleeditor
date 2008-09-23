@@ -1,5 +1,5 @@
-#ifndef _MenuBar_h
-#define _MenuBar_h
+#ifndef _PreviewPage_h
+#define _PreviewPage_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -23,38 +23,20 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "PreferencePage.h"
 
-#include <gtkmm.h>
-#include <map>
-#include "Config.h"
-#include "Statusbar.h"
-
-
-class MenuBar : public Gtk::VBox
+class PreviewPage : public PreferencePage
 {
 public:
-	MenuBar();
-	~MenuBar();
 
 	/*
 	 *
 	 */
-	void create(Gtk::Window &window, Statusbar &statusbar);
-
-	/*
-	 *
-	 */
-	void create_ui_from_file();
-protected:
-	void connect_proxy(const Glib::RefPtr<Gtk::Action> &action, Gtk::Widget *widget);
-	
-protected:
-public:
-	Statusbar* m_statusbar;
-	Glib::RefPtr<Gtk::UIManager> m_refUIManager;
-	Glib::RefPtr<Gtk::ActionGroup> m_refActionGroup;
-	std::map<Glib::ustring, sigc::connection> m_connections;
+	PreviewPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	:PreferencePage(cobject)
+	{
+		init_widget(xml, "entry-video-player-command", "external-video-player", "command");
+	}
 };
 
-#endif//_MenuBar_h
-
+#endif//_PreviewPage_h

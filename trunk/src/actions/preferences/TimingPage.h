@@ -1,5 +1,5 @@
-#ifndef _PreferencesUI_h
-#define _PreferencesUI_h
+#ifndef _TimingPage_h
+#define _TimingPage_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -22,20 +22,26 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
-#include <gtkmm.h>
-#include <libglademm/xml.h>
+#include "PreferencePage.h"
 
-
-/*
- *
- */
-class PreferencesUI : public Gtk::Dialog
+class TimingPage : public PreferencePage
 {
 public:
-	PreferencesUI(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+
+	/*
+	 *
+	 */
+	TimingPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	:PreferencePage(cobject)
+	{
+		init_widget(xml, "spin-min-characters-per-second", "timing", "min-characters-per-second");
+		init_widget(xml, "spin-max-characters-per-second", "timing", "max-characters-per-second");
+		init_widget(xml, "spin-min-gap-between-subtitles", "timing", "min-gap-between-subtitles");
+		init_widget(xml, "spin-min-display", "timing", "min-display");
+		init_widget(xml, "spin-max-characters-per-line", "timing", "max-characters-per-line");
+		init_widget(xml, "spin-max-line-per-subtitle", "timing", "max-line-per-subtitle");
+	}
 };
 
-
-#endif//_PreferencesUI_h
+#endif//_TimingPage_h
