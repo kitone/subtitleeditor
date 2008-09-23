@@ -1,5 +1,13 @@
 2008-09-23  kitone  <kitone@gna.org>
 
+	* share/menubar.xml:
+	* src/gui/Application.cc:
+	* src/gui/MenuBar.cc:
+	* src/gui/MenuBar.h:
+	Remove deprecated code. Cleanup code.
+
+2008-09-23  kitone  <kitone@gna.org>
+
 	* src/actions/preferences/DocumentPage.h:
 	* src/actions/preferences/InterfacePage.h:
 	* src/actions/preferences/PreferencePage.h:

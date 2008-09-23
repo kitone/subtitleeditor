@@ -644,7 +644,7 @@ void Application::notebook_drag_data_received(const Glib::RefPtr<Gdk::DragContex
  */
 Glib::RefPtr<Gtk::UIManager> Application::get_ui_manager()
 {
-	return m_menubar.m_refUIManager;
+	return m_menubar.get_ui_manager();
 }
 
 /*
