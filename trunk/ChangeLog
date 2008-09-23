@@ -1,5 +1,11 @@
 2008-09-23  kitone  <kitone@gna.org>
 
+	* src/gui/MenuBar.cc:
+	* src/main.cc:
+	Remove deprecated code.
+
+2008-09-23  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Switching back to development version.
 

@@ -101,8 +101,6 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	//[interface]
 	config["interface"]["use-dynamic-keyboard-shortcuts"] = "true";
 	config["interface"]["maximize-window"] = "false";
-	config["interface"]["display-video-player"] = "false";
-	config["interface"]["display-waveform"] = "false";
 	config["interface"]["used-autosave"] = "false";
 	config["interface"]["ask-to-save-on-exit"] = "false";
 	config["interface"]["create-backup-copy"] = "false";

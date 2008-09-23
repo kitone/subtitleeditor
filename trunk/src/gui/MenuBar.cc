@@ -232,14 +232,6 @@ void MenuBar::execute(const Glib::ustring &name)
 {
 	if(name == "preferences")
 		on_preferences();
-	else if(name == "display-video-player")
-	{
-		Glib::RefPtr<Gtk::ToggleAction> action = 
-			Glib::RefPtr<Gtk::ToggleAction>::cast_static(m_refActionGroup->get_action(name));
-
-		bool value = action->get_active();
-		Config::getInstance().set_value_bool("interface", "display-video-player", value);
-	}
 }
 
 /*
