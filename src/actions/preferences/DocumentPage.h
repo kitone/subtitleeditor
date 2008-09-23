@@ -1,5 +1,5 @@
-#ifndef _MenuBar_h
-#define _MenuBar_h
+#ifndef _DocumentPage_h
+#define _DocumentPage_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -23,38 +23,24 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include <gtkmm.h>
-#include <map>
-#include "Config.h"
-#include "Statusbar.h"
+#include "PreferencePage.h"
+#include "gui/ComboBoxSubtitleFormat.h"
+#include "gui/ComboBoxNewLine.h"
 
 
-class MenuBar : public Gtk::VBox
+class DocumentPage : public PreferencePage
 {
 public:
-	MenuBar();
-	~MenuBar();
 
 	/*
 	 *
 	 */
-	void create(Gtk::Window &window, Statusbar &statusbar);
-
-	/*
-	 *
-	 */
-	void create_ui_from_file();
-protected:
-	void connect_proxy(const Glib::RefPtr<Gtk::Action> &action, Gtk::Widget *widget);
-	
-protected:
-public:
-	Statusbar* m_statusbar;
-	Glib::RefPtr<Gtk::UIManager> m_refUIManager;
-	Glib::RefPtr<Gtk::ActionGroup> m_refActionGroup;
-	std::map<Glib::ustring, sigc::connection> m_connections;
+	DocumentPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	:PreferencePage(cobject)
+	{
+		init_widget_derived<ComboBoxSubtitleFormat>(xml, "combo-format", "document", "format");
+		init_widget_derived<ComboBoxNewLine>(xml, "combo-newline", "document", "newline");
+	}
 };
 
-#endif//_MenuBar_h
-
+#endif//_DocumentPage_h

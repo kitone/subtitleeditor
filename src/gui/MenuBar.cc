@@ -25,7 +25,6 @@
 #include "utility.h"
 #include "DocumentSystem.h"
 #include "Config.h"
-#include "gui/PreferencesUI.h"
 
 /*
  *
@@ -128,10 +127,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 		ActionGroup ag("edit", m_refUIManager);
 
 		ag.item("menu-edit", _("_Edit"));
-	
-		//ag.item("cut", Gtk::Stock::CUT, "", _(""));
-		//ag.item("copy", Gtk::Stock::COPY, "", _(""));
-		//ag.item("paste", Gtk::Stock::PASTE, "", _(""));
 	}
 
 	// timings
@@ -161,8 +156,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 		ActionGroup ag("options", m_refUIManager);
 
 		ag.item("menu-options", _("_Options"));
-		ag.item("preferences", Gtk::Stock::PREFERENCES, "",
-				_("Configure Subtitle Editor"));
 	}
 
 	// menu-help
@@ -176,15 +169,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 
 	// UIManager
 
-	// on connect tous les groups au callback
-	std::vector<Glib::RefPtr<Gtk::ActionGroup> > ags = m_refUIManager->get_action_groups();
-	for(unsigned int i=0; i < ags.size(); ++i)
-	{
-		ags[i]->signal_pre_activate().connect(
-				sigc::mem_fun(*this, &MenuBar::action_activate));
-	}
-
-
 	m_refUIManager->signal_connect_proxy().connect(
 			sigc::mem_fun(*this, &MenuBar::connect_proxy));
 
@@ -193,9 +177,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 	window.add_accel_group(m_refUIManager->get_accel_group());
 
 	create_ui_from_file();
-
-#warning "FIXME: properties"
-	set_sensitive("properties", false);
 }
 
 /*
@@ -215,51 +196,5 @@ void MenuBar::create_ui_from_file()
  */
 MenuBar::~MenuBar()
 {
-}
-
-/*
- *
- */
-void MenuBar::action_activate(const Glib::RefPtr<Gtk::Action> action)
-{
-	execute(action->get_name());
-}
-
-/*
- *
- */
-void MenuBar::execute(const Glib::ustring &name)
-{
-	if(name == "preferences")
-		on_preferences();
-}
-
-/*
- *
- */
-void MenuBar::on_preferences()
-{
-	PreferencesUI*	dialog = utility::get_widget_derived<PreferencesUI>("dialog-preferences.glade", "dialog-preferences");
-
-	dialog->run();
-
-	delete dialog;
-}
-
-/*
- *
- */
-void MenuBar::set_sensitive(const Glib::ustring &name, bool state)
-{
-	std::vector<Glib::RefPtr<Gtk::ActionGroup> > ags = m_refUIManager->get_action_groups();
-	for(unsigned int i=0; i < ags.size(); ++i)
-	{
-		Glib::RefPtr<Gtk::Action> action = ags[i]->get_action(name);
-		if(action)
-		{
-			action->set_sensitive(state);
-			return;
-		}
-	}
 }
 

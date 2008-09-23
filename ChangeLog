@@ -1,5 +1,28 @@
 2008-09-23  kitone  <kitone@gna.org>
 
+	* src/actions/preferences/DocumentPage.h:
+	* src/actions/preferences/InterfacePage.h:
+	* src/actions/preferences/PreferencePage.h:
+	* src/actions/preferences/PreferencesPlugin.cc:
+	* src/actions/preferences/PreviewPage.h:
+	* src/actions/preferences/TimingPage.h:
+	* src/actions/preferences/VideoPlayerPage.h:
+	* src/actions/preferences/WaveformPage.h:
+	New files.
+
+	* share/glade/dialog-preferences.glade:
+	* src/Makefile.am:
+	* src/gui/MenuBar.cc:
+	* src/gui/MenuBar.h:
+	Move dialog Preferences code to src/actions/preferences/* as plugin.
+	Remove deprecated code. 
+
+	* src/gui/PreferencesUI.cc:
+	* src/gui/PreferencesUI.h:
+	Delete files.
+
+2008-09-23  kitone  <kitone@gna.org>
+
 	* src/gui/MenuBar.cc:
 	* src/main.cc:
 	Remove deprecated code.

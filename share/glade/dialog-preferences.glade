@@ -204,6 +204,7 @@
                             <child>
                               <widget class="GtkCheckButton" id="check-create-backup-copy">
                                 <property name="visible">True</property>
+                                <property name="sensitive">False</property>
                                 <property name="can_focus">True</property>
                                 <property name="label" translatable="yes">Create a _backup copy of files before saving</property>
                                 <property name="use_underline">True</property>
