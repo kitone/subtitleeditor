@@ -24,7 +24,7 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-#include "GtkUtility.h"
+#include "gui/SpinButtonTime.h"
 
 
 /*

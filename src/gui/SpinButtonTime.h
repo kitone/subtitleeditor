@@ -1,5 +1,5 @@
-#ifndef _GtkUtility_h
-#define _GtkUtility_h
+#ifndef _SpinButtonTime_h
+#define _SpinButtonTime_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -112,5 +112,5 @@ protected:
 	bool m_negative;
 };
 
-#endif//_GtkUtility_h
+#endif//_SpinButtonTime_h
 
