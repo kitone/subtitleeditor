@@ -73,10 +73,7 @@ FILES = \
 				we/WaveformGenerator.h \
 				we/WaveformGenerator.cc \
 				TimeUtility.h \
-				TimeUtility.cc \
-				GtkUtility.h \
-				GtkUtility.cc
-
+				TimeUtility.cc
 
 FORMATS_FILES = \
 				formats/SubtitleEditorProject.h \
@@ -180,7 +177,9 @@ GUI_FILES = \
 				gui/ComboBoxNewLine.h \
 				gui/ComboBoxNewLine.cc \
 				gui/ComboBoxVideo.h \
-				gui/ComboBoxVideo.cc
+				gui/ComboBoxVideo.cc \
+				gui/SpinButtonTime.h \
+				gui/SpinButtonTime.cc
 
 
 if	 ENABLE_UNITTEST
