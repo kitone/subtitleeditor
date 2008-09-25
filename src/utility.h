@@ -243,11 +243,6 @@ namespace utility
 	std::vector<int> get_num_characters(const Glib::ustring &text);
 
 	/*
-	 * trim characters from the right
-	 */
-	void trim_right(std::string &str, const char *chars2remove = "\r\n\t ");  
-
-	/*
 	 * get a text stripped from tags
 	 */
 	Glib::ustring get_stripped_text(const Glib::ustring &text);
