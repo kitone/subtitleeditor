@@ -49,6 +49,14 @@ src/actions/Italicize.cc
 src/actions/JoinDocument.cc
 src/actions/MoveAfterPrecedingSubtitle.cc
 src/actions/MoveSubtitles.cc
+src/actions/preferences/DocumentPage.h
+src/actions/preferences/InterfacePage.h
+src/actions/preferences/PreferencePage.h
+src/actions/preferences/PreferencesPlugin.cc
+src/actions/preferences/PreviewPage.h
+src/actions/preferences/TimingPage.h
+src/actions/preferences/VideoPlayerPage.h
+src/actions/preferences/WaveformPage.h
 src/actions/ReverseTextAndTranslation.cc
 src/actions/ScaleSubtitles.cc
 src/actions/Selection.cc
@@ -109,8 +117,6 @@ src/formats/SubtitleTimedText.cc
 src/formats/SubtitleTimedText.h
 src/formats/SubtitleTTXT.cc
 src/formats/SubtitleTTXT.h
-src/GtkUtility.cc
-src/GtkUtility.h
 src/gui/Application.cc
 src/gui/Application.h
 src/gui/ComboBoxEncoding.cc
@@ -129,8 +135,8 @@ src/gui/DialogUtility.cc
 src/gui/DialogUtility.h
 src/gui/MenuBar.cc
 src/gui/MenuBar.h
-src/gui/PreferencesUI.cc
-src/gui/PreferencesUI.h
+src/gui/SpinButtonTime.cc
+src/gui/SpinButtonTime.h
 src/gui/Statusbar.cc
 src/gui/Statusbar.h
 src/main.cc
