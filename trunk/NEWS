@@ -1,3 +1,10 @@
+2008-09-25 - 0.24.1
+
+	* Fix: Wrong line length and characters per second. (patch by spirit)
+	* Fix: Newline at opening in SubRip format. (patch by spirit)
+	* Fix: ComboBox outputs in the video player preferences.
+	* Cleanup code.
+
 2008-09-21 - 0.24.0
 
 	* New Error Checking tool.
