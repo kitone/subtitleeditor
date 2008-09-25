@@ -128,5 +128,28 @@ protected:
 	static bool initialize();
 };
 
+namespace Encoding
+{
+
+	/*
+	 * Trying to convert from charset to UTF-8.
+	 * Return utf8 string or throw EncodingConvertError exception.
+	 */
+	Glib::ustring convert_to_utf8_from_charset(const std::string &content, const Glib::ustring &charset);
+	
+	/*
+	 * Trying to autodetect the charset and convert to UTF-8.
+	 * 3 steps:
+	 *	- Try UTF-8
+	 *	- Try with user encoding preferences
+	 *	- Try with all encodings
+	 *
+	 * Return utf8 string and sets charset found 
+	 * or throw EncodingConvertError exception.
+	 */
+	Glib::ustring convert_to_utf8(const std::string &content, Glib::ustring &charset);
+
+}//namespace Encoding
+
 #endif//_Encodings_h
 
