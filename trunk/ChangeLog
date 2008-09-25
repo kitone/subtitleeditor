@@ -1,3 +1,8 @@
+2008-09-25  kitone  <kitone@gna.org>
+
+	* prepare-po.sh:
+	Add option [encoding: UTF-8].
+
 2008-09-23  kitone  <kitone@gna.org>
 
 	* src/Subtitle.cc:
