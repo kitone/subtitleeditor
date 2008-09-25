@@ -1,3 +1,8 @@
+2008-09-26  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
+	Fix: missing file PreferencePage.h.
+
 2008-09-25  kitone  <kitone@gna.org>
 
 	* src/utility.h:

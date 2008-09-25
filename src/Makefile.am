@@ -155,6 +155,7 @@ ACTIONS = \
 				actions/preferences/TimingPage.h \
 				actions/preferences/WaveformPage.h \
 				actions/preferences/PreviewPage.h \
+				actions/preferences/PreferencePage.h \
 				actions/preferences/PreferencesPlugin.cc
 
 GUI_FILES = \
