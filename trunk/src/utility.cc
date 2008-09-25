@@ -660,13 +660,11 @@ namespace utility
 	std::vector<int> get_num_characters(const Glib::ustring &text)
 	{
 		std::vector<int> num_characters;
-		std::istringstream iss(text);
+		std::istringstream iss(utility::get_stripped_text(text));
 		std::string line;
 
 		while( std::getline(iss, line) )
 		{
-			utility::trim_right(line, "\r");
-			line = utility::get_stripped_text(line);
 			Glib::ustring::size_type len = reinterpret_cast<Glib::ustring&>(line).size();
 			num_characters.push_back(len);
 		}
@@ -675,28 +673,12 @@ namespace utility
 	}
 	
 	/*
-	 * trim characters from the right
-	 */
-	void trim_right(std::string &str, const char *chars2remove)
-	{
-		if (!str.empty())
-		{
-			std::string::size_type pos = str.find_last_not_of(chars2remove);
-
-			if (pos != std::string::npos)
-				str.erase(pos + 1);
-			else
-				str.erase(str.begin() , str.end()); // make empty
-		}
-	}
-
-	/*
 	 * get a text stripped from tags
 	 */
 	Glib::ustring get_stripped_text(const Glib::ustring &text)
 	{
 		// pattern for tags like <i>, </i>, {\comment}, etc.
-		static Glib::RefPtr<Glib::Regex> tag_pattern = Glib::Regex::create("</?\\w+>|{.*?}");
+		static Glib::RefPtr<Glib::Regex> tag_pattern = Glib::Regex::create("<.*?>|{.*?}");
 
 		return tag_pattern->replace(text, 0, "", static_cast<Glib::RegexMatchFlags>(0));
 	}

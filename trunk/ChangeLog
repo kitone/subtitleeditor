@@ -1,5 +1,14 @@
 2008-09-25  kitone  <kitone@gna.org>
 
+	* src/formats/SubtitleSubRip.cc:
+	Fix: newline at opening (Unix) patch by spirit.
+	
+	* src/utility.cc:
+	* src/utility.h:
+	Remove trim_right function patch by spirit.
+
+2008-09-25  kitone  <kitone@gna.org>
+
 	* src/actions/preferences/VideoPlayerPage.h:
 	Fix: ComboBox output bug (translation).
 

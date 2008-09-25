@@ -116,7 +116,7 @@ bool SubtitleSubRip::on_open(const Glib::ustring &filename)
 						else
 						{
 							if(count > 0) 
-								text += get_newline();
+								text += '\n';
 
 							text += line;
 							++count;
