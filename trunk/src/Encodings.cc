@@ -22,6 +22,8 @@
 
 
 #include "Encodings.h"
+#include "Error.h"
+#include "Config.h"
 
 /*
  *
@@ -80,4 +82,139 @@ Glib::ustring Encodings::get_label_from_charset(const Glib::ustring &charset)
 
 	return label;
 }
+
+
+namespace Encoding
+{
+
+	/*
+	 * Trying to convert from charset to UTF-8.
+	 * Return utf8 string or throw EncodingConvertError exception.
+	 */
+	Glib::ustring convert_to_utf8_from_charset(const std::string &content, const Glib::ustring &charset)
+	{
+		se_debug_message(SE_DEBUG_UTILITY, "Trying to convert from %s to UTF-8", charset.c_str());
+		
+		// Only if it's UTF-8 to UTF-8
+		if(charset == "UTF-8")
+		{
+			if(Glib::ustring(content).validate() == false)
+				throw EncodingConvertError(_("It's not valid UTF-8."));
+
+			return content;
+		}
+		else
+		{
+			try
+			{
+				Glib::ustring utf8_content = Glib::convert(content, "UTF-8", charset);
+
+				if(!utf8_content.validate() || utf8_content.empty())
+					throw EncodingConvertError(build_message(_("Couldn't convert from %s to UTF-8"), charset.c_str()));
+					
+				return utf8_content;
+			}
+			catch(const Glib::ConvertError &ex)
+			{
+				se_debug_message(SE_DEBUG_UTILITY, "Glib::ConvertError: %s", ex.what().c_str());
+				throw EncodingConvertError(build_message(_("Couldn't convert from %s to UTF-8"), charset.c_str()));
+			}
+			catch(...)
+			{
+				se_debug_message(SE_DEBUG_UTILITY, "Unknow error");
+				throw EncodingConvertError(build_message(_("Couldn't convert from %s to UTF-8"), charset.c_str()));
+			}
+		}
+	}
+
+	/*
+	 * Trying to autodetect the charset and convert to UTF-8.
+	 * 3 steps:
+	 *	- Try UTF-8
+	 *	- Try with user encoding preferences
+	 *	- Try with all encodings
+	 *
+	 * Return utf8 string and sets charset found 
+	 * or throw EncodingConvertError exception.
+	 */
+	Glib::ustring convert_to_utf8(const std::string &content, Glib::ustring &charset)
+	{
+		if(content.empty())
+			return Glib::ustring();
+
+		// First check if it's not UTF-8.
+		se_debug_message(SE_DEBUG_UTILITY, "Trying to UTF-8...");
+
+		try
+		{
+			Glib::ustring utf8_content = Encoding::convert_to_utf8_from_charset(content, "UTF-8");
+
+			if(utf8_content.validate() && utf8_content.empty() == false)
+			{
+				charset = "UTF-8";
+				return content;
+			}
+		}
+		catch(const EncodingConvertError &ex)
+		{
+			se_debug_message(SE_DEBUG_UTILITY, "EncodingConvertError: %s", ex.what());
+		}
+		
+		// Try to automatically dectect the encoding
+		
+		// With the user charset preferences...
+		se_debug_message(SE_DEBUG_UTILITY, "Trying with user encodings preferences...");
+
+		std::list<Glib::ustring> user_encodings = Config::getInstance().get_value_string_list("encodings", "encodings");
+		
+		for(std::list<Glib::ustring>::const_iterator it = user_encodings.begin(); it != user_encodings.end(); ++it)
+		{
+			try
+			{
+				Glib::ustring utf8_content = Encoding::convert_to_utf8_from_charset(content, *it);
+
+				if(utf8_content.validate() && utf8_content.empty() == false)
+				{
+					charset = *it;
+					return utf8_content;
+				}
+			}
+			catch(const EncodingConvertError &ex)
+			{
+				// invalid, try with the next...
+				se_debug_message(SE_DEBUG_UTILITY, "EncodingConvertError: %s", ex.what());
+			}
+		}
+		
+		// With all charset...
+		se_debug_message(SE_DEBUG_UTILITY, "Trying with all encodings...");
+
+		for(unsigned int i=0; encodings_info[i].name != NULL; ++i)
+		{
+			Glib::ustring it = encodings_info[i].charset;
+
+			try
+			{
+				Glib::ustring utf8_content = Encoding::convert_to_utf8_from_charset(content, it);
+
+				if(utf8_content.validate() && utf8_content.empty() == false)
+				{
+					charset = it;
+					return utf8_content;
+				}
+			}
+			catch(const EncodingConvertError &ex)
+			{
+				// invalid, try with the next...
+				se_debug_message(SE_DEBUG_UTILITY, "EncodingConvertError: %s", ex.what());
+			}
+		}
+
+		// Failed to determine the encoding...
+		throw EncodingConvertError(
+			_("subtitleeditor was not able to automatically determine the encoding of the file you want to open."));
+
+	}
+
+}//namespace Encoding
 
