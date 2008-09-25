@@ -22,6 +22,8 @@ SubtitleEditor stable + 1
 	* Subdownloader plugin
 	* Document Template
 	* Special characters input (Lubos email)
+	* Fix: AdobeEncoreDVD (regex)
+	* Fix: Newline (open file)
 
 SubtitleEditor stable + 2
 -------------------
