@@ -67,6 +67,7 @@ ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<G
 void ComboBoxEncoding::set_value(const Glib::ustring &value)
 {
 	Glib::ustring label = Encodings::get_label_from_charset(value);
+
 	if(label.empty())
 		return;
 	// check only with encoding available
@@ -74,7 +75,7 @@ void ComboBoxEncoding::set_value(const Glib::ustring &value)
 	while(it)
 	{
 		Glib::ustring name = (*it)[m_text_columns.m_column];
-		if(name == value)
+		if(name == label)
 		{
 			set_active(it);
 			return;
