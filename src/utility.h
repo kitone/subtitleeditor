@@ -225,6 +225,16 @@ namespace utility
 	void usplit(const Glib::ustring &str, const Glib::ustring::value_type &delimiter, std::vector<Glib::ustring> &container);
 
 	/*
+	 * Search and replace function. 
+	 */
+	void replace(Glib::ustring &text, const Glib::ustring &pattern, const Glib::ustring &replace_by);
+	
+	/*
+	 * Search and replace function. 
+	 */
+	void replace(std::string &text, const std::string &pattern, const std::string &replace_by);
+
+	/*
 	 *	transforme test/file.srt en /home/toto/test/file.srt 
 	 */
 	Glib::ustring create_full_path(const Glib::ustring &path);

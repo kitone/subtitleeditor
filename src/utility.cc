@@ -581,6 +581,33 @@ namespace utility
 		}
 	}
 
+	/*
+	 * Search and replace function. 
+	 */
+	void replace(Glib::ustring &text, const Glib::ustring &pattern, const Glib::ustring &replace_by)
+	{
+		Glib::ustring::size_type pos = 0;
+	
+		while((pos = text.find(pattern, pos)) != Glib::ustring::npos)
+		{
+			text.replace(pos, pattern.size(), replace_by);
+			pos = pos + replace_by.size();
+		}
+	}
+	
+	/*
+	 * Search and replace function. 
+	 */
+	void replace(std::string &text, const std::string &pattern, const std::string &replace_by)
+	{
+		std::string::size_type pos = 0;
+	
+		while((pos = text.find(pattern, pos)) != std::string::npos)
+		{
+			text.replace(pos, pattern.size(), replace_by);
+			pos = pos + replace_by.size();
+		}
+	}
 
 	/*
 	 *	transforme test/file.srt en /home/toto/test/file.srt 
