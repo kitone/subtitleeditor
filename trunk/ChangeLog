@@ -1,3 +1,9 @@
+2008-09-29  kitone  <kitone@gna.org>
+
+	* src/Encodings.cc:
+	* src/Encodings.h:
+	Add function convert_from_utf8_to_charset.
+
 2008-09-28  kitone  <kitone@gna.org>
 
 	* src/gui/ComboBoxEncoding.cc:
