@@ -157,11 +157,11 @@ protected:
 			
 			Glib::ustring subtitle_uri = Glib::filename_to_uri(subtitle_file);
 			
-			find_and_replace(cmd, "#video_file", video_file);
-			find_and_replace(cmd, "#video_uri", video_uri);
-			find_and_replace(cmd, "#subtitle_file", subtitle_file);
-			find_and_replace(cmd, "#subtitle_uri", subtitle_uri);
-			find_and_replace(cmd, "#seconds", seconds);
+			utility::replace(cmd, "#video_file", video_file);
+			utility::replace(cmd, "#video_uri", video_uri);
+			utility::replace(cmd, "#subtitle_file", subtitle_file);
+			utility::replace(cmd, "#subtitle_uri", subtitle_uri);
+			utility::replace(cmd, "#seconds", seconds);
 		}
 
 		std::cout << "COMMAND: " << cmd << std::endl;

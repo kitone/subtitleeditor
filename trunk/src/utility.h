@@ -67,11 +67,6 @@
 Glib::ustring get_iso_name_for_lang_code(const Glib::ustring &code);
 
 /*
- *
- */
-void find_and_replace(Glib::ustring &text, const Glib::ustring &find, const Glib::ustring &replace);
-
-/*
  *	
  */
 Glib::ustring get_share_dir(const Glib::ustring &file);

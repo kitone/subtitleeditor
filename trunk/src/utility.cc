@@ -169,48 +169,6 @@ Glib::ustring get_config_dir(const Glib::ustring &file)
 /*
  *
  */
-void find_and_replace(Glib::ustring &text, const Glib::ustring &find, const Glib::ustring &replace)
-{
-	se_debug_message(SE_DEBUG_SEARCH, "text=<%s> find=<%s> replace=<%s>", 
-			text.c_str(), find.c_str(), replace.c_str());
-
-	Glib::ustring::size_type pos = 0;
-	
-	while((pos = text.find(find, pos)) != Glib::ustring::npos)
-	{
-		text.replace(pos, find.size(), replace);
-		pos = pos + replace.size();
-	}
-}
-
-/*
-class MessageDialog : public Gtk::MessageDialog
-{
-public:
-	MessageDialog(const Glib::ustring &msg, Gtk::MessageType type)
-	:Gtk::MessageDialog(msg, true, type, Gtk::BUTTONS_OK, false)
-	{
-		std::cout << "MessageDialog" << std::endl;
-		show();
-		//run();
-	}
-
-	~MessageDialog()
-	{
-		std::cout << "~MessageDialog" << std::endl;
-	}
-
-	virtual void on_response(int id)
-	{
-		std::cout << "on_response:" << id << std::endl;
-		delete this;
-	}
-};
-*/
-
-/*
- *
- */
 void dialog_warning(const Glib::ustring &primary_text, const Glib::ustring &secondary_text)
 {
 	Glib::ustring msg;

@@ -88,6 +88,8 @@ void SubtitleFormat::set_newline(const Glib::ustring &os)
 		m_newline = "\n";
 	else if(os == "Windows")
 		m_newline = "\r\n";
+	else if(os == "Mac")
+		m_newline = "\r";
 	else
 	{
 		std::cerr << "SubtitleFormat can't found newline for [" << os << "]" << std::endl;
@@ -286,7 +288,7 @@ std::string SubtitleFormat::utf8_to_charset(const Glib::ustring &content)
  */
 void SubtitleFormat::newline_to_characters(Glib::ustring &text, const Glib::ustring &str)
 {
-	find_and_replace(text, "\n", str);
+	utility::replace(text, "\n", str);
 }
 
 /*
@@ -294,7 +296,7 @@ void SubtitleFormat::newline_to_characters(Glib::ustring &text, const Glib::ustr
  */
 void SubtitleFormat::characters_to_newline(Glib::ustring &text, const Glib::ustring &characters)
 {
-	find_and_replace(text, characters, "\n");
+	utility::replace(text, characters, "\n");
 }
 
 
