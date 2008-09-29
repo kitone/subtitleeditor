@@ -149,6 +149,12 @@ namespace Encoding
 	 */
 	Glib::ustring convert_to_utf8(const std::string &content, Glib::ustring &charset);
 
+	/*
+	 * Convert the UTF-8 text to the charset.
+	 * Throw EncodingConvertError exception.
+	 */
+	std::string convert_from_utf8_to_charset(const Glib::ustring &utf8_content, const Glib::ustring &charset);
+
 }//namespace Encoding
 
 #endif//_Encodings_h

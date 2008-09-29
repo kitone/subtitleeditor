@@ -213,7 +213,27 @@ namespace Encoding
 		// Failed to determine the encoding...
 		throw EncodingConvertError(
 			_("subtitleeditor was not able to automatically determine the encoding of the file you want to open."));
+	}
 
+	/*
+	 * Convert the UTF-8 text to the charset.
+	 * Throw EncodingConvertError exception.
+	 */
+	std::string convert_from_utf8_to_charset(const Glib::ustring &utf8_content, const Glib::ustring &charset)
+	{
+		se_debug_message(SE_DEBUG_UTILITY, "Trying to convert from UTF-8 to %s", charset.c_str());
+
+		try
+		{
+			std::string content = Glib::convert(utf8_content, charset, "UTF-8");
+
+			return content;
+		}
+		catch(const Glib::ConvertError& ex)
+		{
+			throw EncodingConvertError(build_message(
+						_("Could not convert the text to the character coding '%s'"), charset.c_str()));
+		}
 	}
 
 }//namespace Encoding
