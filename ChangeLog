@@ -2,6 +2,18 @@
 
 	* src/utility.cc:
 	* src/utility.h:
+	Remove find_and_replace function.
+
+	* src/SubtitleFormat.cc:
+	* src/actions/ConfigureKeyboardShortcuts.cc:
+	* src/actions/ExternalVideoPlayer.cc:
+	Use utility::replace function.
+
+
+2008-09-29  kitone  <kitone@gna.org>
+
+	* src/utility.cc:
+	* src/utility.h:
 	Add function replace (utility namespace).
 
 2008-09-29  kitone  <kitone@gna.org>

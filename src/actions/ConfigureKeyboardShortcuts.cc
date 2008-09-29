@@ -336,7 +336,7 @@ public:
 		row[m_columns.stock_id] = Gtk::StockID(action->property_stock_id()).get_string();
 		// label
 		Glib::ustring label = Glib::ustring(action->property_label());
-		find_and_replace(label, "_", "");
+		utility::replace(label, "_", "");
 		row[m_columns.label] = label;
 		
 		// shortcut
