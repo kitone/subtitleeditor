@@ -27,8 +27,6 @@
 
 #include <gtkmm.h>
 #include <libglademm.h>
-#include "SubtitleSystem.h"
-#include "Encodings.h"
 #include "utility.h"
 #include <memory>
 
