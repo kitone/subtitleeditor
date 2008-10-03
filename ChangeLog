@@ -1,5 +1,10 @@
 2008-10-03  kitone  <kitone@gna.org>
 
+	* src/actions/ExternalVideoPlayer.cc:
+	Remove file extension of the preview.
+
+2008-10-03  kitone  <kitone@gna.org>
+
 	* src/TimeUtility.cc:
 	* src/TimeUtility.h:
 	Add function get_framerate_from_value.
