@@ -25,7 +25,6 @@
 #include "Plugin.h"
 #include "utility.h"
 #include "gui/DialogFileChooser.h"
-#include "SubtitleSystem.h"
 
 /*
  *
@@ -108,8 +107,7 @@ protected:
 			return;
 		}
 
-		// subtitle.[format]
-		Glib::ustring tmp_subtitle_name = "subtitle." + SubtitleSystem::getInstance().get_extension(doc->getFormat());
+		Glib::ustring tmp_subtitle_name = "subtitle_preview";
 
 		// tmp dir + subtitle name
 		Glib::ustring subtitle_file = Glib::build_filename(Glib::get_tmp_dir(), tmp_subtitle_name);
