@@ -22,9 +22,6 @@
  
 #include "DialogUtility.h"
 #include "utility.h"
-#include "SubtitleSystem.h"
-#include "Config.h"
-#include "Encodings.h"
 
 /*
  *

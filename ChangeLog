@@ -1,3 +1,9 @@
+2008-10-03  kitone  <kitone@gna.org>
+
+	* src/gui/DialogFileChooser.h:
+	* src/gui/DialogUtility.cc:
+	Remove header unused.
+
 2008-09-29  kitone  <kitone@gna.org>
 
 	* src/utility.cc:
