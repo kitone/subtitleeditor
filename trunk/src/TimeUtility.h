@@ -56,6 +56,10 @@ Glib::ustring get_framerate_label(FRAMERATE framerate);
  */
 float get_framerate_value(FRAMERATE framerate);
 
+/*
+ * Return the framerate from the value.
+ */
+FRAMERATE get_framerate_from_value(float value);
 
 
 #endif//_TimeUility_h

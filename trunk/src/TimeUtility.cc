@@ -87,3 +87,25 @@ float get_framerate_value(FRAMERATE framerate)
 	return ret;
 }
 
+/*
+ * Return the framerate from the value.
+ */
+FRAMERATE get_framerate_from_value(float fps)
+{
+	FRAMERATE framerate;
+
+	int value = (int)((fps * 1000) + 0.5);
+
+	if(value == 23976)
+		framerate = FRAMERATE_23_976;
+	else if(value == 24000)
+		framerate = FRAMERATE_24;
+	else if(value == 25000)
+		framerate = FRAMERATE_25;
+	else if(value == 29970)
+		framerate = FRAMERATE_29_97;
+	else if(value == 30000)
+		framerate = FRAMERATE_30;
+
+	return framerate;
+}
