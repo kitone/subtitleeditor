@@ -1,5 +1,10 @@
 2008-10-04  kitone  <kitone@gna.org>
 
+	* src/actions/Transcript.cc:
+	Restore Import/Export with the support of FileReader/Writer.
+
+2008-10-04  kitone  <kitone@gna.org>
+
 	* src/Options.cc:
 	* src/Options.h:
 	* src/debug.h:
