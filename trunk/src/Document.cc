@@ -32,6 +32,7 @@
 #include "Error.h"
 #include <ctime>
 #include <memory>
+#include "SubtitleFormatSystem.h"
 
 /*
  *	constructeur
@@ -57,9 +58,8 @@ Document::Document()
 
 	// sets default document format
 	Glib::ustring default_format = cfg.get_value_string("document", "format");
-	
-	// FIXME: SubtitleSystem
-	//m_format = (SubtitleSystem::getInstance().is_supported(default_format)) ? default_format : "SubRip";
+
+	m_format = (SubtitleFormatSystem::instance().is_supported(default_format)) ? default_format : "SubRip";
 
 	// sets default newline
 	Glib::ustring default_newline = cfg.get_value_string("document", "newline");
@@ -260,8 +260,12 @@ void Document::clear()
  */
 bool Document::open(const Glib::ustring &_filename)
 {
-	//FIXME: SubtitleSystem
-	return false;
+	Glib::ustring uri = Glib::filename_to_uri(_filename);
+	Glib::ustring charset = getCharset();
+
+	SubtitleFormatSystem::instance().open(this, uri, charset);
+
+	return true;
 }
 
 
@@ -277,10 +281,13 @@ bool Document::save(const Glib::ustring &_filename)
 	Glib::ustring basename = Glib::path_get_basename(filename);
 	Glib::ustring format = getFormat();
 	Glib::ustring charset = getCharset();
+	Glib::ustring newline = getNewLine();
 
 	try
 	{
-		//FIXME: SubtitleSystem
+		SubtitleFormatSystem::instance().save(this, Glib::filename_to_uri(_filename), format, charset, newline);
+
+		return true;
 	}
 	catch(const EncodingConvertError &ex)
 	{
