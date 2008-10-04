@@ -1,3 +1,47 @@
+2008-10-04  kitone  <kitone@gna.org>
+
+	* src/Document.cc:
+	* src/actions/Transcript.cc:
+	* src/gui/ComboBoxSubtitleFormat.cc:
+	* src/gui/DialogFileChooser.cc:
+	Remove SubtitleSystem code. (SE is broken)
+
+	* src/Makefile.am:
+	Update with files removed.
+
+	* src/SubtitleFormat.cc:
+	* src/SubtitleFormat.h:
+	* src/SubtitleSystem.cc:
+	* src/SubtitleSystem.h:
+	* src/formats/SubtitleASS.cc:
+	* src/formats/SubtitleASS.h:
+	* src/formats/SubtitleEditorProject.cc:
+	* src/formats/SubtitleEditorProject.h:
+	* src/formats/SubtitleEncoreNTSC.cc:
+	* src/formats/SubtitleEncoreNTSC.h:
+	* src/formats/SubtitleEncorePAL.cc:
+	* src/formats/SubtitleEncorePAL.h:
+	* src/formats/SubtitleMPL2.cc:
+	* src/formats/SubtitleMPL2.h:
+	* src/formats/SubtitleMPsub.cc:
+	* src/formats/SubtitleMPsub.h:
+	* src/formats/SubtitleMicroDVD.cc:
+	* src/formats/SubtitleMicroDVD.h:
+	* src/formats/SubtitleSSA.cc:
+	* src/formats/SubtitleSSA.h:
+	* src/formats/SubtitleSubRip.cc:
+	* src/formats/SubtitleSubRip.h:
+	* src/formats/SubtitleSubViewer2.cc:
+	* src/formats/SubtitleSubViewer2.h:
+	* src/formats/SubtitleTTXT.cc:
+	* src/formats/SubtitleTTXT.h:
+	* src/formats/SubtitleText.cc:
+	* src/formats/SubtitleText.h:
+	* src/formats/SubtitleTimedText.cc:
+	* src/formats/SubtitleTimedText.h:
+	* src/unittest/testSubtitleLoaders.cc:
+	Remove files.
+
 2008-10-03  kitone  <kitone@gna.org>
 
 	* src/actions/ExternalVideoPlayer.cc:

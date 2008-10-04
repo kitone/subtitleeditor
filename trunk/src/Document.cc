@@ -25,14 +25,11 @@
 #include "Config.h"
 #include <iostream>
 #include "utility.h"
-
-#include "SubtitleSystem.h"
 #include "gui/ComboBoxEncoding.h"
 #include "gui/DialogUtility.h"
-#include "SubtitleFormat.h"
 #include "Encodings.h"
 #include <gtkmm.h>
-
+#include "Error.h"
 #include <ctime>
 #include <memory>
 
@@ -61,7 +58,8 @@ Document::Document()
 	// sets default document format
 	Glib::ustring default_format = cfg.get_value_string("document", "format");
 	
-	m_format = (SubtitleSystem::getInstance().is_supported(default_format)) ? default_format : "SubRip";
+	// FIXME: SubtitleSystem
+	//m_format = (SubtitleSystem::getInstance().is_supported(default_format)) ? default_format : "SubRip";
 
 	// sets default newline
 	Glib::ustring default_newline = cfg.get_value_string("document", "newline");
@@ -262,37 +260,7 @@ void Document::clear()
  */
 bool Document::open(const Glib::ustring &_filename)
 {
-	Glib::ustring filename = _filename;
-	Glib::ustring charset = getCharset();
-
-	Glib::ustring format = SubtitleSystem::getInstance().find_subtitle_format(filename);
-
-	if(!format.empty())
-	{
-		std::auto_ptr<SubtitleFormat> sf(SubtitleSystem::getInstance().create_subtitle_format(format, this));
-
-		if(sf.get() != NULL) // need ?
-		{
-			get_subtitle_view()->unset_model();
-			
-			bool res = sf->open(filename);
-
-			get_subtitle_view()->set_model(get_subtitle_model());
-
-			if(res)
-			{
-				setFilename(filename);
-				setCharset(sf->get_charset());
-				setFormat(format);
-
-				emit_signal("document-changed");
-				emit_signal("document-property-changed");
-			}
-
-			return res;
-		}
-	}
-	
+	//FIXME: SubtitleSystem
 	return false;
 }
 
@@ -312,24 +280,7 @@ bool Document::save(const Glib::ustring &_filename)
 
 	try
 	{
-		std::auto_ptr<SubtitleFormat> sf(SubtitleSystem::getInstance().create_subtitle_format(format, this));
-		
-		if(sf.get() != NULL) // need ?
-		{
-			bool res = sf->save(filename);
-
-			if(res)
-			{
-				setCharset(charset);
-				setFilename(filename);
-				setFormat(format);
-
-				make_document_unchanged();
-				emit_signal("document-property-changed");
-			}
-
-			return res;
-		}
+		//FIXME: SubtitleSystem
 	}
 	catch(const EncodingConvertError &ex)
 	{

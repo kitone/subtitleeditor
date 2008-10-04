@@ -36,6 +36,8 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 {
 	g_return_if_fail(dialog);
 
+	//FIXME: SubtitleSystem
+	/*
 	std::list<Glib::ustring>::const_iterator it;
 	std::list<Glib::ustring> formats = SubtitleSystem::getInstance().get_formats();
 
@@ -74,6 +76,7 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 
 	// select by default
 	dialog->set_filter(supported);
+	*/
 }
 
 /*

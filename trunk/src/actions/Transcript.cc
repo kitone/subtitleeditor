@@ -24,9 +24,6 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-
-#include "formats/SubtitleText.h"
-#include "SubtitleSystem.h"
 #include "gui/DialogFileChooser.h"
 
 /*
@@ -96,6 +93,8 @@ protected:
 	 */
 	void on_import_transcript()
 	{
+		// FIXME: SubtitleSystem
+		/*
 		se_debug(SE_DEBUG_PLUGINS);
 
 		DialogImportText::auto_ptr ui = DialogImportText::create();
@@ -129,6 +128,7 @@ protected:
 				//std::cerr << ex.what() << std::endl;
 			}
 		}
+		*/
 	}
 
 	/*
@@ -136,7 +136,9 @@ protected:
 	 */
 	void on_export_transcript()
 	{
-	 se_debug(SE_DEBUG_PLUGINS);
+		// FIXME: SubtitleSystem
+		/*
+		se_debug(SE_DEBUG_PLUGINS);
 
 		DialogExportText::auto_ptr ui = DialogExportText::create();
 
@@ -169,6 +171,7 @@ protected:
 			{
 			}
 		}
+		*/
 	}
 
 	
