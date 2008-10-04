@@ -28,6 +28,7 @@
 ComboBoxNewLine::ComboBoxNewLine(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 :Gtk::ComboBoxText(cobject)
 {
+	append_text("Macintosh");
 	append_text("Unix");
 	append_text("Windows");
 
