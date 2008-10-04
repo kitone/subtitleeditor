@@ -25,6 +25,8 @@
 #include "Plugin.h"
 #include "utility.h"
 #include "gui/DialogFileChooser.h"
+#include "FileReader.h"
+#include "FileWriter.h"
 
 /*
  *
@@ -93,42 +95,45 @@ protected:
 	 */
 	void on_import_transcript()
 	{
-		// FIXME: SubtitleSystem
-		/*
 		se_debug(SE_DEBUG_PLUGINS);
 
 		DialogImportText::auto_ptr ui = DialogImportText::create();
 
 		if(ui->run() == Gtk::RESPONSE_OK)
 		{
+			Glib::ustring uri = ui->get_uri();
 			Glib::ustring filename = ui->get_filename();
 			Glib::ustring charset = ui->get_encoding();
 
 			try
 			{
+				Glib::ustring untitled = DocumentSystem::getInstance().create_untitled_name();
+
 				Document *doc = new Document();
-				doc->setCharset(charset);
+				
+				FileReader file(uri, charset);
 
-				SubtitleText reader(doc);
-				if(reader.open(filename))
-				{
-					Glib::ustring untitled = DocumentSystem::getInstance().create_untitled_name();
-					
-					doc->setName(untitled);
+				Subtitles subtitles = doc->subtitles();
 
-					DocumentSystem::getInstance().append(doc);
-				}
-				else
+				Glib::ustring line;
+				while(file.getline(line))
 				{
-					delete doc;
+					Subtitle sub = subtitles.append();
+					sub.set_text(line);
 				}
+
+				doc->setCharset(file.get_charset());
+				doc->setName(untitled);
+				DocumentSystem::getInstance().append(doc);
 			}
-			catch(...)
+			catch(const std::exception &ex)
 			{
-				//std::cerr << ex.what() << std::endl;
+				dialog_error(
+						build_message(_("Could not import from the file \"%s\"."), uri.c_str()), 
+						ex.what());
+
 			}
 		}
-		*/
 	}
 
 	/*
@@ -136,42 +141,36 @@ protected:
 	 */
 	void on_export_transcript()
 	{
-		// FIXME: SubtitleSystem
-		/*
-		se_debug(SE_DEBUG_PLUGINS);
+	 se_debug(SE_DEBUG_PLUGINS);
 
 		DialogExportText::auto_ptr ui = DialogExportText::create();
 
 		if(ui->run() == Gtk::RESPONSE_OK)
 		{
-			Glib::ustring filename = ui->get_filename();
+			Glib::ustring uri = ui->get_uri();
 			Glib::ustring charset = ui->get_encoding();
 			Glib::ustring newline = ui->get_newline();
 
 			try
 			{
+				FileWriter file(uri, charset, newline);
+
 				Document *doc = get_current_document();
 
-				if(doc != NULL)
+				for(Subtitle sub = doc->subtitles().get_first(); sub; ++sub)
 				{
-					Document copy(*doc);
-					copy.setCharset(charset);
-					copy.setNewLine(newline);
-					copy.setFilename(filename);
-
-					SubtitleText w(&copy);
-					if(w.save(filename))
-					{
-					}
-					else
-						;//error
+					file << sub.get_text() << std::endl;
 				}
+
+				file.to_file();
 			}
-			catch(...)
+			catch(const std::exception &ex)
 			{
+				dialog_error(
+						build_message(_("Could not export to the file \"%s\"."), uri.c_str()), 
+						ex.what());
 			}
 		}
-		*/
 	}
 
 	
