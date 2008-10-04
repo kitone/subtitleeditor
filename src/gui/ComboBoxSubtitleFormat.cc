@@ -21,7 +21,6 @@
  */
 
 #include "ComboBoxSubtitleFormat.h"
-#include "SubtitleSystem.h"
 
 /*
  * Constructor
@@ -29,6 +28,8 @@
 ComboBoxSubtitleFormat::ComboBoxSubtitleFormat(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 :Gtk::ComboBoxText(cobject)
 {
+	//FIXME: SubtitleSystem
+	/*
 	std::list<Glib::ustring> formats = SubtitleSystem::getInstance().get_formats();
 
 	std::list<Glib::ustring>::const_iterator it;
@@ -37,6 +38,7 @@ ComboBoxSubtitleFormat::ComboBoxSubtitleFormat(BaseObjectType* cobject, const Gl
 		append_text(*it);
 
 	set_active(0);
+	*/
 }
 
 /*

@@ -33,13 +33,9 @@ FILES = \
 				ScriptInfo.cc \
 				StyleModel.h \
 				StyleModel.cc \
-				SubtitleFormat.h \
-				SubtitleFormat.cc \
 				Error.h \
 				SubtitleModel.h \
 				SubtitleModel.cc \
-				SubtitleSystem.h \
-				SubtitleSystem.cc \
 				SubtitleView.h \
 				SubtitleView.cc \
 				SubtitleTags.h \
@@ -75,33 +71,7 @@ FILES = \
 				TimeUtility.h \
 				TimeUtility.cc
 
-FORMATS_FILES = \
-				formats/SubtitleEditorProject.h \
-				formats/SubtitleEditorProject.cc \
-				formats/SubtitleASS.cc \
-				formats/SubtitleASS.h \
-				formats/SubtitleMicroDVD.cc \
-				formats/SubtitleMicroDVD.h \
-				formats/SubtitleMPL2.cc \
-				formats/SubtitleMPL2.h \
-				formats/SubtitleMPsub.cc \
-				formats/SubtitleMPsub.h \
-				formats/SubtitleSSA.cc \
-				formats/SubtitleSSA.h \
-				formats/SubtitleSubRip.cc \
-				formats/SubtitleSubRip.h \
-				formats/SubtitleSubViewer2.cc \
-				formats/SubtitleSubViewer2.h \
-				formats/SubtitleText.cc \
-				formats/SubtitleText.h \
-				formats/SubtitleTTXT.cc \
-				formats/SubtitleTTXT.h \
-				formats/SubtitleEncoreNTSC.h \
-				formats/SubtitleEncoreNTSC.cc \
-				formats/SubtitleEncorePAL.h \
-				formats/SubtitleEncorePAL.cc \
-				formats/SubtitleTimedText.h \
-				formats/SubtitleTimedText.cc
+FORMATS_FILES = 
 
 ACTIONS = \
 				actions/DocumentManagement.cc \
@@ -189,7 +159,6 @@ UNITTEST_FILES = \
 				 unittest/unittest.cc \
 				 unittest/testSubtitleTime.cc \
 				 unittest/testRegEx.cc \
-				 unittest/testSubtitleLoaders.cc \
 				 unittest/testColor.cc
 
 EXTRA_DIST = \
