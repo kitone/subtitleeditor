@@ -25,10 +25,4 @@
 
 ScriptInfo::ScriptInfo()
 {
-	Title = "Untitled";
-
-	ScriptType = "V4.00";
-	Collisions = "Normal";
-	Timer = "100";
-	WrapStyle = "0";
 }

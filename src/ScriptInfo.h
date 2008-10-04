@@ -25,9 +25,11 @@
  
 
 #include <glibmm/ustring.h>
+#include <map>
 
 /*
  *	principalement utiliser par SSA/ASS
+ *	FIXME: deprecated me
  */
 class ScriptInfo
 {
@@ -35,27 +37,8 @@ public:
 	ScriptInfo();
 
 public:
-	Glib::ustring	Title;	// courte description du script
-	Glib::ustring OriginalScript;	// le(s) auteur(s) du script
-	Glib::ustring OriginalTranslation;
-	Glib::ustring OriginalEditing;
-	Glib::ustring OriginalTiming;
-	Glib::ustring SynchPoint;
-	Glib::ustring ScriptUpdatedBy;
-	Glib::ustring UpdateDetails;
-	Glib::ustring ScriptType; // version du format SSA : ex: "V4.00" (ASS="V4.00+")
-	Glib::ustring Collisions;
-	Glib::ustring PlayResY;
-	Glib::ustring PlayResX;
-	Glib::ustring PlayDepth;
-	Glib::ustring Timer;	// vitesse de lecture du script en %
-	Glib::ustring Dialogue;
-	Glib::ustring Comment;
-	Glib::ustring Picture;
-	Glib::ustring Sound;
-	Glib::ustring Movie;
-	Glib::ustring	Command;
-	Glib::ustring	WrapStyle;
+
+	std::map<Glib::ustring, Glib::ustring> data;
 };
 
 #endif//_ScriptInfo_h
