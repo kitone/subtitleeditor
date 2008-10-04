@@ -69,7 +69,11 @@ FILES = \
 				we/WaveformGenerator.h \
 				we/WaveformGenerator.cc \
 				TimeUtility.h \
-				TimeUtility.cc
+				TimeUtility.cc \
+				FileReader.h \
+				FileReader.cc \
+				FileWriter.h \
+				FileWriter.cc
 
 FORMATS_FILES = 
 
