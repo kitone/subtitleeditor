@@ -73,7 +73,13 @@ FILES = \
 				FileReader.h \
 				FileReader.cc \
 				FileWriter.h \
-				FileWriter.cc
+				FileWriter.cc \
+				SubtitleFormat.h \
+				SubtitleFormat.cc \
+				SubtitleFormatFactory.h \
+				SubtitleFormatSystem.h \
+				SubtitleFormatSystem.cc
+
 
 FORMATS_FILES = 
 
