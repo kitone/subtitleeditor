@@ -1,5 +1,21 @@
 2008-10-04  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/SubtitleFormatSystem.cc:
+	* src/formats/AdobeEncoreDVD.h:
+	* src/formats/AdvancedSubStationAlpha.h:
+	* src/formats/MPL2.h:
+	* src/formats/MPsub.h:
+	* src/formats/MicroDVD.h:
+	* src/formats/SubRip.h:
+	* src/formats/SubStationAlpha.h:
+	* src/formats/SubViewer2.h:
+	* src/formats/SubtitleEditorProject.h:
+	* src/formats/TimedText.h:
+	New files. Append formats.
+
+2008-10-04  kitone  <kitone@gna.org>
+
 	* src/gui/ComboBoxNewLine.cc:
 	Add "Macintosh" newline.
 

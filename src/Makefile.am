@@ -81,7 +81,18 @@ FILES = \
 				SubtitleFormatSystem.cc
 
 
-FORMATS_FILES = 
+FORMATS_FILES = \
+				formats/AdobeEncoreDVD.h \
+				formats/AdvancedSubStationAlpha.h \
+				formats/MicroDVD.h \
+				formats/MPL2.h \
+				formats/MPsub.h \
+				formats/SubRip.h \
+				formats/SubStationAlpha.h \
+				formats/SubtitleEditorProject.h \
+				formats/SubViewer2.h \
+				formats/TimedText.h
+
 
 ACTIONS = \
 				actions/DocumentManagement.cc \

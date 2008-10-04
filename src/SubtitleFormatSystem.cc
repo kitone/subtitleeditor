@@ -3,6 +3,18 @@
 #include "SubtitleFormatSystem.h"
 #include "SubtitleFormatFactory.h"
 
+#include "formats/AdobeEncoreDVD.h"
+#include "formats/AdvancedSubStationAlpha.h"
+#include "formats/MicroDVD.h"
+#include "formats/MPL2.h"
+#include "formats/MPsub.h"
+#include "formats/SubRip.h"
+#include "formats/SubStationAlpha.h"
+#include "formats/SubtitleEditorProject.h"
+#include "formats/SubViewer2.h"
+#include "formats/TimedText.h"
+
+
 /*
  * FIXME
  */
@@ -24,6 +36,18 @@ SubtitleFormatSystem& SubtitleFormatSystem::instance()
 SubtitleFormatSystem::SubtitleFormatSystem()
 {
 #define REGISTER_FORMAT(x)	add_subtitle_format_factory(new SubtitleFormatFactoryRegister<x>());
+
+	REGISTER_FORMAT(AdobeEncoreDVDNTSC);
+	REGISTER_FORMAT(AdobeEncoreDVDPAL);
+	REGISTER_FORMAT(AdvancedSubStationAlpha);
+	REGISTER_FORMAT(MicroDVD);
+	REGISTER_FORMAT(MPL2);
+	REGISTER_FORMAT(MPsub);
+	REGISTER_FORMAT(SubRip);
+	REGISTER_FORMAT(SubStationAlpha);
+	REGISTER_FORMAT(SubtitleEditorProject);
+	REGISTER_FORMAT(SubViewer2);
+	REGISTER_FORMAT(TimedText);
 
 #undef REGISTER_FORMAT
 }
