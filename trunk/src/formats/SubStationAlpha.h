@@ -1,0 +1,441 @@
+#ifndef _SubStationAlpha_h
+#define _SubStationAlpha_h
+
+/*
+ *	subtitleeditor -- a tool to create or edit subtitle
+ *
+ *	http://home.gna.org/subtitleeditor/
+ *	https://gna.org/projects/subtitleeditor/
+ *
+ *	Copyright @ 2005-2008, kitone
+ *
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "SubtitleFormat.h"
+#include "RegEx.h"
+#include <glibmm.h>
+#include <iomanip>
+
+
+class SubStationAlpha : public SubtitleFormat
+{
+public:
+
+	/*
+	 *
+	 */
+	static SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+		info.name = "Sub Station Alpha";
+		info.extension = "ssa";
+		info.pattern = "^ScriptType:\\s*[vV]4.00$";
+		
+		return info;
+	}
+
+	/*
+	 * Read the block [Script Info]
+	 */
+	void read_script_info(FileReader &file)
+	{
+		se_debug_message(SE_DEBUG_IO, "read script info...");
+
+		ScriptInfo &script_info = document()->get_script_info();
+		
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+				"^(.*?):\\s(.*?)$");
+
+		Glib::ustring line;
+		while(file.getline(line) && !line.empty())
+		{
+			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
+
+			std::vector<Glib::ustring> group = re->split(line);
+
+			if(group.size() == 1)
+				continue;
+
+			Glib::ustring key = group[1];
+			Glib::ustring value = group[2];
+
+			script_info.data[key]=value;
+		}	
+	}
+
+	/*
+	 * Read the bloc [V4 Style]
+	 */
+	void read_styles(FileReader &file)
+	{
+		se_debug_message(SE_DEBUG_IO, "read style...");
+
+		Styles styles = document()->styles();
+
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+				"^Style:\\s*([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*)$");
+
+		Glib::ustring line;
+		while(file.getline(line) && !line.empty())
+		{
+			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
+	
+			std::vector<Glib::ustring> group = re->split(line);
+
+			if(group.size() == 1)
+				continue;
+
+			Style style = styles.append();
+			
+			style.set("name", group[1]);
+
+			style.set("font-name", group[2]);
+			style.set("font-size", group[3]);
+		
+			style.set("primary-color", from_ssa_color(group[4]));
+			style.set("secondary-color", from_ssa_color(group[5]));
+			style.set("outline-color", from_ssa_color(group[6]));
+			style.set("shadow-color", from_ssa_color(group[7]));
+
+			style.set("bold", from_ssa_bool(group[8]));
+			style.set("italic", from_ssa_bool(group[9]));
+
+			style.set("border-style", group[10]);
+			
+			style.set("outline", group[11]);
+			style.set("shadow", group[12]);
+
+			style.set("alignment", alignment_from_ssa(group[13]));
+
+			style.set("margin-l", group[14]);
+			style.set("margin-r", group[15]);
+			style.set("margin-v", group[16]);
+
+			//style.set("alpha", group[17]);
+			//style.set("encoding", group[18]);	
+		}
+	}
+
+	/*
+	 * Read the bloc [Events]
+	 */
+	void read_events(FileReader &file)
+	{
+		se_debug_message(SE_DEBUG_IO, "read events...");
+
+		Subtitles subtitles = document()->subtitles();
+
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+				"^Dialogue:\\s*([^,]*),([^,]*),([^,]*),\\**([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(.*)$");
+
+		Glib::ustring line;
+		while(file.getline(line) && !line.empty())
+		{
+			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
+
+			std::vector<Glib::ustring> group = re->split(line);
+
+			if(group.size() == 1)
+				continue;
+
+			Subtitle sub = subtitles.append();
+
+			// start, end times
+			sub.set_start_and_end(
+					from_ssa_time(group[2]),
+					from_ssa_time(group[3]));
+
+			// style
+			sub.set_style(group[4]);
+
+			// name
+			sub.set_name(group[5]);
+			
+			// margin lrv
+			sub.set_margin_l(group[6]);
+			sub.set_margin_r(group[7]);
+			sub.set_margin_v(group[8]);
+		
+			// effect
+			sub.set_effect( (group[9]));
+
+			// text
+			utility::replace(group[10], "\\n", "\n");
+			utility::replace(group[10], "\\N", "\n");
+
+			sub.set_text(group[10]);
+		}
+	}
+
+	/*
+	 *
+	 */
+	void open(FileReader &file)
+	{
+		Glib::ustring line;
+
+		while(file.getline(line))
+		{
+			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
+
+			if(line.find("[Script Info]") != Glib::ustring::npos)
+				read_script_info(file);
+			else if(line.find("[V4 Styles]") != Glib::ustring::npos)
+				read_styles(file);
+			else if(line.find("[Events]") != Glib::ustring::npos)
+				read_events(file);
+		}
+	}
+
+
+	/*
+	 *
+	 */
+	void save(FileWriter &file)
+	{
+		write_script_info(file);
+
+		write_styles(file);
+
+		write_events(file);
+	}
+
+	/*
+	 *
+	 */
+	void write_script_info(FileWriter &file)
+	{
+		// --------------------------------------------------------------
+		// [Script Info]
+		file << "[Script Info]" << std::endl;
+		file << "; This script was created by subtitleeditor (" << VERSION << ")" << std::endl;
+		file << "; http://home.gna.org/subtitleeditor/" << std::endl;
+
+		ScriptInfo& scriptInfo = document()->get_script_info();
+
+		scriptInfo.data["ScriptType"] = "V4.00"; // Set SSA format
+
+		for(std::map<Glib::ustring, Glib::ustring>::const_iterator it = scriptInfo.data.begin();
+				it != scriptInfo.data.end(); 
+				++it)
+		{
+			file << it->first << ": " << it->second << std::endl;
+		}
+
+		// End of block, empty line
+		file << std::endl;
+	}
+
+	/*
+	 *
+	 */
+	void write_styles(FileWriter &file)
+	{
+		// --------------------------------------------------------------
+		// [V4+ Styles]
+		file << "[V4 Styles]" << std::endl;
+
+		file << "Format: "
+						"Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, "
+						"BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, "
+						"MarginR, MarginV, AlphaLevel, Encoding" << std::endl;
+
+		for(Style style = document()->styles().first(); style; ++style)
+		{
+			file 
+				<< "Style: " 
+				<< style.get("name") << ","
+				<< style.get("font-name") << ","
+				<< style.get("font-size") << ","
+				
+				<< to_ssa_color(style.get("primary-color")) << ","
+				<< to_ssa_color(style.get("secondary-color")) << ","
+				<< to_ssa_color(style.get("outline-color")) << ","
+				<< to_ssa_color(style.get("shadow-color")) << ","
+				
+				<< to_ssa_bool(style.get("bold")) << ","
+				<< to_ssa_bool(style.get("italic")) << ","
+				
+				<< style.get("border-style") << ","
+				<< style.get("outline") << ","
+				<< style.get("shadow") << ","
+				<< alignment_to_ssa(style.get("alignment")) << ","
+				
+				<< style.get("margin-l") << ","
+				<< style.get("margin-r") << ","
+				<< style.get("margin-v") << ","
+				
+				<< 0 << "," // alpha
+				<< style.get("encoding") 
+				<< std::endl;
+		}
+
+		// End of block, empty line
+		file << std::endl;
+	}
+
+	/*
+	 *
+	 */
+	void write_events(FileWriter &file)
+	{
+		// --------------------------------------------------------------
+		// [Events]
+		file << "[Events]" << std::endl;
+		
+		// format:
+		file << "Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text" << std::endl;
+
+		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
+		{
+			Glib::ustring text = sub.get_text();
+
+			utility::replace(text, "\n", "\\n");
+
+			file 
+				<< "Dialogue: "
+				<< "Marked=0" << "," 
+
+				<< to_ssa_time(sub.get_start()) << ","
+				<< to_ssa_time(sub.get_end()) << ","
+				
+				<< sub.get_style() << ","
+				<< sub.get_name() << ","
+				
+				<< std::setw(4) << std::setfill('0') << sub.get_margin_l() << ","
+				<< std::setw(4) << std::setfill('0') << sub.get_margin_r() << ","
+				<< std::setw(4) << std::setfill('0') << sub.get_margin_v() << ","
+				
+				<< sub.get_effect() << ","
+				<< text << std::endl;
+		}
+
+		// End of block, empty line
+		//file << std::endl;
+	}
+
+	/*
+	 * Convert time from SE to SSA
+	 */
+	Glib::ustring to_ssa_time(const SubtitleTime &time)
+	{
+		return build_message("%01i:%02i:%02i.%02i",
+			time.hours(), time.minutes(), time.seconds(), (int)((time.mseconds() + 0.5) / 10));
+	}
+
+	/*
+	 * Convert time from ssa to SE
+	 */
+	SubtitleTime from_ssa_time(const Glib::ustring &t)
+	{
+		int h, m, s, ms;
+		if(std::sscanf(t.c_str(), "%d:%d:%d.%d", &h, &m, &s, &ms) == 4)
+			return SubtitleTime(h, m, s, ms * 10);
+
+		return SubtitleTime::null();
+	}
+
+	/*
+	 * Convert bool from SE to SSA
+	 * SSA: false == 0, true == -1
+	 */
+	Glib::ustring to_ssa_bool(const Glib::ustring &value)
+	{
+		return (value == "0") ? "0" : "-1";
+	}
+
+	/*
+	 * Convert bool from SSA to SE
+	 * 0 == false -1 == true
+	 */
+	Glib::ustring from_ssa_bool(const Glib::ustring &value)
+	{
+		return (value == "0") ? "0" : "1";
+	}
+
+	/*
+	 * Convert color from SE to SSA
+	 */
+	Glib::ustring to_ssa_color(const Color &color)
+	{
+		Color c(color);
+
+		unsigned int r = c.getR();
+		unsigned int g = c.getG();
+		unsigned int b = c.getB();
+
+		unsigned int bgr = b << 16 | g << 8 | r << 0;
+
+		return to_string(bgr);
+	}
+
+	/*
+	 *
+	 */
+	Glib::ustring from_ssa_color(const Glib::ustring &str)
+	{
+		int ssa = utility::string_to_int(str);
+
+		unsigned int r = (ssa & 0x0000FF) >> 0;
+		unsigned int g = (ssa & 0x00FF00) >> 8;
+		unsigned int b = (ssa & 0xFF0000) >> 16;
+
+		Color color;
+		color.set(r, g, b, 255);
+		return color.to_string();
+	}
+
+	/*
+	 *
+	 */
+	Glib::ustring alignment_to_ssa(const Glib::ustring &value)
+	{
+		std::map<int, int> map;
+		map[1] = 1;
+		map[2] = 2;
+		map[3] = 3;
+		map[4] = 9;
+		map[5] = 10;
+		map[6] = 11;
+		map[7] = 5;
+		map[8] = 6;
+		map[9] = 7;
+
+		return to_string(map[utility::string_to_int(value)]);
+	}
+
+	/*
+	 *
+	 */
+	Glib::ustring alignment_from_ssa(const Glib::ustring &value)
+	{
+		std::map<int, int> map;
+		map[1] = 1;
+		map[2] = 2;
+		map[3] = 3;
+		map[9] = 4;
+		map[10]= 5;
+		map[11]= 6;
+		map[5] = 7;
+		map[6] = 8;
+		map[7] = 9;
+
+		return to_string(map[utility::string_to_int(value)]);
+	}
+
+};
+
+#endif//_SubStationAlpha_h
+
