@@ -28,18 +28,17 @@
 #include "ComboBoxSubtitleFormat.h"
 #include "ComboBoxNewLine.h"
 #include "ComboBoxVideo.h"
+#include "SubtitleFormatSystem.h"
 
 /*
- * Init dialog filter with from SubtitleSystem.
+ * Init dialog filter with from SubtitleFormatSystem.
  */
 void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 {
 	g_return_if_fail(dialog);
 
-	//FIXME: SubtitleSystem
-	/*
-	std::list<Glib::ustring>::const_iterator it;
-	std::list<Glib::ustring> formats = SubtitleSystem::getInstance().get_formats();
+	std::list<SubtitleFormatInfo>::const_iterator it;
+	std::list<SubtitleFormatInfo> infos = SubtitleFormatSystem::instance().get_infos();
 
 	Gtk::FileFilter all, supported;
 	// all files
@@ -52,10 +51,9 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 	// all supported formats
 	{
 		supported.set_name(_("All supported formats (*.ass, *.ssa, *.srt, ...)"));
-		for(it = formats.begin(); it != formats.end(); ++it)
+		for(it = infos.begin(); it != infos.end(); ++it)
 		{
-			Glib::ustring ext = SubtitleSystem::getInstance().get_extension(*it);
-			supported.add_pattern("*."+ext);
+			supported.add_pattern("*." + (*it).extension);
 		}
 
 		dialog->add_filter(supported);
@@ -63,12 +61,13 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 
 	// by format
 	{
-		for(it = formats.begin(); it != formats.end(); ++it)
+		for(it = infos.begin(); it != infos.end(); ++it)
 		{
-			Glib::ustring ext = "*." + SubtitleSystem::getInstance().get_extension(*it);
-
+			Glib::ustring name = (*it).name;
+			Glib::ustring ext = (*it).extension;
+	
 			Gtk::FileFilter filter;
-			filter.set_name((*it) + " (" + ext + ")");
+			filter.set_name(name + " (" + ext + ")");
 			filter.add_pattern(ext);
 			dialog->add_filter(filter);
 		}
@@ -76,7 +75,6 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 
 	// select by default
 	dialog->set_filter(supported);
-	*/
 }
 
 /*
