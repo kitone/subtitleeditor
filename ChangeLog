@@ -1,5 +1,14 @@
 2008-10-04  kitone  <kitone@gna.org>
 
+	* src/Options.cc:
+	* src/Options.h:
+	* src/debug.h:
+	* src/main.cc:
+	Remove SE_DEBUG_LOADER and SE_DEBUG_SAVER.
+	Add SE_DEBUG_IO. (Input Output)
+
+2008-10-04  kitone  <kitone@gna.org>
+
 	* src/FileReader.cc:
 	* src/FileReader.h:
 	* src/FileWriter.cc:

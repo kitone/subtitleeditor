@@ -168,10 +168,8 @@ void parse_debug_options(OptionGroup &op)
 			flags |= SE_DEBUG_APP;
 		if(op.debug_view)
 			flags |= SE_DEBUG_VIEW;
-		if(op.debug_loader)
-			flags |= SE_DEBUG_LOADER;
-		if(op.debug_saver)
-			flags |= SE_DEBUG_SAVER;
+		if(op.debug_io)
+			flags |= SE_DEBUG_IO;
 		if(op.debug_search)
 			flags |= SE_DEBUG_SEARCH;
 		if(op.debug_regex)

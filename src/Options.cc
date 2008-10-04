@@ -30,23 +30,6 @@ OptionGroup::OptionGroup()
 :Glib::OptionGroup("subtitleeditor...", "description...", "help...")
 {
 	se_debug(SE_DEBUG_APP);
-/*
-#ifdef DEBUG
-	debug_all = false;
-	debug_app = false;
-	debug_view = false;
-	debug_loader = false;
-	debug_saver = false;
-	debug_search = false;
-	debug_regex = false;
-	debug_video_player = false;
-	debug_spell_checking = false;
-	debug_waveform = false;
-	debug_utility = false;
-	debug_command = false;
-	debug_plugins = false;
-#endif//DEBUG
-*/
 
 	set_translation_domain(GETTEXT_PACKAGE);
 
@@ -119,8 +102,7 @@ OptionGroup::OptionGroup()
 	add_debug_option(all, debug_all);
 	add_debug_option(app, debug_app);
 	add_debug_option(view, debug_view);
-	add_debug_option(loader, debug_loader);
-	add_debug_option(saver, debug_saver);
+	add_debug_option(io, debug_io);
 	add_debug_option(search, debug_search);
 	add_debug_option(regex, debug_regex);
 	add_debug_option(video-player, debug_video_player);
