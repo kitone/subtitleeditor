@@ -1,5 +1,10 @@
 2008-10-04  kitone  <kitone@gna.org>
 
+	* src/FileReader.cc:
+	Fix: default newline value.
+
+2008-10-04  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/SubtitleFormatSystem.cc:
 	* src/formats/AdobeEncoreDVD.h:

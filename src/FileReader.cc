@@ -98,7 +98,8 @@ Glib::ustring FileReader::get_newline()
 	else if(Glib::Regex::match_simple("\\n", m_data))
 		return "Unix";
 
-	return Glib::ustring();
+	// default
+	return "Unix";
 }
 
 /*
