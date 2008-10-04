@@ -1,5 +1,10 @@
 2008-10-04  kitone  <kitone@gna.org>
 
+	* src/FileWriter.cc:
+	Add newline conversion.
+
+2008-10-04  kitone  <kitone@gna.org>
+
 	* src/FileReader.cc:
 	Fix: default newline value.
 
