@@ -1,5 +1,16 @@
 2008-10-04  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/SubtitleFormat.cc:
+	* src/SubtitleFormat.h:
+	* src/SubtitleFormatFactory.h:
+	* src/SubtitleFormatSystem.cc:
+	* src/SubtitleFormatSystem.h:
+	New files.
+	New Subtitle Format System.
+
+2008-10-04  kitone  <kitone@gna.org>
+
 	* src/ScriptInfo.cc:
 	* src/ScriptInfo.h:
 	Remove values for std::map<Glib::ustring, Glib::ustring>.
