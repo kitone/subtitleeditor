@@ -52,8 +52,7 @@ public:
 	bool debug_all;
 	bool debug_app;
 	bool debug_view;
-	bool debug_loader;
-	bool debug_saver;
+	bool debug_io;
 	bool debug_search;
 	bool debug_regex;
 	bool debug_video_player;

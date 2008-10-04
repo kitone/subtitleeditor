@@ -38,18 +38,17 @@ enum SE_DEBUG_MESSAGE_FLAG
 	
 	SE_DEBUG_APP						= 1 << 1,
 	SE_DEBUG_VIEW						= 1 << 2,
-	SE_DEBUG_LOADER					= 1 << 3,
-	SE_DEBUG_SAVER					= 1 << 4,
-	SE_DEBUG_SEARCH					= 1 << 5,
-	SE_DEBUG_REGEX					=	1	<< 6,
-	SE_DEBUG_VIDEO_PLAYER		= 1 << 7,
-	SE_DEBUG_SPELL_CHECKING	= 1 << 8,
-	SE_DEBUG_WAVEFORM				= 1 << 9,
-	SE_DEBUG_UTILITY				= 1 << 10,
-	SE_DEBUG_COMMAND				= 1 << 11,
-	SE_DEBUG_PLUGINS				= 1 << 12,
+	SE_DEBUG_IO							= 1 << 3,
+	SE_DEBUG_SEARCH					= 1 << 4,
+	SE_DEBUG_REGEX					= 1 << 5,
+	SE_DEBUG_VIDEO_PLAYER		= 1 << 6,
+	SE_DEBUG_SPELL_CHECKING	= 1 << 7,
+	SE_DEBUG_WAVEFORM				= 1 << 8,
+	SE_DEBUG_UTILITY				= 1 << 9,
+	SE_DEBUG_COMMAND				= 1 << 10,
+	SE_DEBUG_PLUGINS				= 1 << 11,
 
-	SE_DEBUG_ALL						=	1 << 20
+	SE_DEBUG_ALL						= 1 << 20
 };
 
 
