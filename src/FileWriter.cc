@@ -45,7 +45,7 @@ void FileWriter::to_file()
 
 	// Convert newline if needs
 	if(m_newline != "Unix")
-		utility::replace(udata, "\n", (m_newline == "Windows") ? "\r\n": "\r");
+		udata = Glib::Regex::create("\n")->replace(udata, 0, (m_newline == "Windows") ? "\r\n": "\r", (Glib::RegexMatchFlags)0);
 
 	std::string data = Encoding::convert_from_utf8_to_charset(udata, m_charset); 
 
