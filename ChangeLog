@@ -1,3 +1,9 @@
+2008-10-05  kitone  <kitone@gna.org>
+
+	* src/gui/Application.cc:
+	Split filename (tooltip) with Name and Path.
+	Update UI when files are open.
+
 2008-10-04  kitone  <kitone@gna.org>
 
 	* src/FileWriter.cc:
