@@ -59,13 +59,12 @@ bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &chars
  */
 FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size)
 {
+	m_lines_init = false;
+
 	if(get_contents_from_file(uri, charset, m_data, m_charset, max_data_size) == false)
 		return;
 
 	m_uri = uri;
-	// FIXME: build lines in getline
-	m_lines = Glib::Regex::split_simple("\\R", m_data); 
-	m_iter = m_lines.begin();
 }
 
 /*
@@ -113,6 +112,14 @@ Glib::ustring FileReader::get_newline()
  */
 bool FileReader::getline(Glib::ustring &line)
 {
+	// init only if needs
+	if(m_lines_init == false)
+	{
+		m_lines = Glib::Regex::split_simple("\\R", m_data); 
+		m_iter = m_lines.begin();
+		m_lines_init = true;
+	}
+
 	if(m_iter == m_lines.end())
 		return false;
 

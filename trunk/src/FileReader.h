@@ -76,7 +76,7 @@ protected:
 	Glib::ustring m_uri;
 	Glib::ustring m_data;
 	Glib::ustring m_charset;
-	
+	bool m_lines_init;
 	std::vector<Glib::ustring>::const_iterator m_iter;
 	std::vector<Glib::ustring> m_lines;
 };

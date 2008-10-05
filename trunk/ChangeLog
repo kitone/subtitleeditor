@@ -2,6 +2,12 @@
 
 	* src/FileReader.cc:
 	* src/FileReader.h:
+	Create lines only if needs.
+
+2008-10-05  kitone  <kitone@gna.org>
+
+	* src/FileReader.cc:
+	* src/FileReader.h:
 	Add option max_data_size.
 
 	* src/SubtitleFormatSystem.cc:
