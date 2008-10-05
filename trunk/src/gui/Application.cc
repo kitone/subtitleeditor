@@ -262,6 +262,9 @@ void Application::on_document_create(Document *doc)
 
 	connect_document(doc);
 
+	// Update UI
+	while(Gtk::Main::events_pending())
+		Gtk::Main::iteration();
 }
 
 /*
@@ -296,19 +299,23 @@ void Application::update_document_property(Document *doc)
 	Glib::ustring display_name = (doc->get_document_changed() ? "*" : "") + doc->getName();
 
 	// Update the document property (tooltip)
-	Glib::ustring filename = doc->getFilename();
+	Glib::ustring name = doc->getName();
+	Glib::ustring dir = Glib::path_get_dirname(doc->getFilename());
+
 	Glib::ustring character_coding = Encodings::get_label_from_charset(doc->getCharset());
 	Glib::ustring format = doc->getFormat();
 	Glib::ustring newline = doc->getNewLine();
 	Glib::ustring timing_mode = (doc->get_timing_mode() == TIME) ? _("Times") : _("Frames");
 
 	Glib::ustring tip = build_message(
+			"<b>%s</b> %s\n"
 			"<b>%s</b> %s\n\n"
 			"<b>%s</b> %s\n"
 			"<b>%s</b> %s\n"
 			"<b>%s</b> %s\n"
 			"<b>%s</b> %s",
-			_("Name:"), filename.c_str(),
+			_("Name:"), name.c_str(),
+			_("Path:"), dir.c_str(),
 			_("Character Coding:"), character_coding.c_str(),
 			_("Format:"), format.c_str(),
 			_("Newline:"), newline.c_str(),
