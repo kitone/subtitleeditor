@@ -74,11 +74,20 @@ void SubtitleFormatSystem::add_subtitle_format_factory(SubtitleFormatFactory *cr
 }
 
 /*
- * Try to determine the format of the contents, and return the format name.
- * Throw UnrecognizeFormatError if failed.
+ * Try to determine the format of the file, and return the format name.
+ * Exceptions:
+ *	UnrecognizeFormatError.
+ *	EncodingConvertError.
  */
-Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_contents(const Glib::ustring &contents)
+Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(const Glib::ustring &uri, const Glib::ustring &charset)
 {
+	// Open the file and read only a small contents (max size: 1000)
+	FileReader file(uri, charset, 1000);
+
+	const Glib::ustring& contents = file.get_data();
+
+	se_debug_message(SE_DEBUG_APP, "small content:\n%s", contents.c_str());
+
 	Glib::RegexCompileFlags compile_flags = Glib::REGEX_MULTILINE;
 
 	se_debug_message(SE_DEBUG_APP, "Trying to determinate the file format...");
@@ -135,11 +144,9 @@ void SubtitleFormatSystem::open(Document *document, const Glib::ustring &uri, co
 	se_debug_message(SE_DEBUG_APP, "Trying to open the file %s with charset '%s'", uri.c_str(), charset.c_str());
 
 	// First try to find the subtitle file type from the contents
+	Glib::ustring format = get_subtitle_format_from_small_contents(uri, charset);
 	
-	// FIXME: check if it is a text file...
 	FileReader file(uri, charset);
-
-	Glib::ustring format = get_subtitle_format_from_contents(file.get_data());
 
 	std::auto_ptr<SubtitleFormat> sf( create_subtitle_format(format) );
 

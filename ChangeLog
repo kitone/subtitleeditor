@@ -1,5 +1,15 @@
 2008-10-05  kitone  <kitone@gna.org>
 
+	* src/FileReader.cc:
+	* src/FileReader.h:
+	Add option max_data_size.
+
+	* src/SubtitleFormatSystem.cc:
+	* src/SubtitleFormatSystem.h:
+	Determine the format with only a small content.
+
+2008-10-05  kitone  <kitone@gna.org>
+
 	* src/gui/Application.cc:
 	Split filename (tooltip) with Name and Path.
 	Update UI when files are open.

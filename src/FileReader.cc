@@ -7,13 +7,19 @@
  * Reads an entire file into a string, with good error checking.
  * If charset is empty, auto detection is try.
  */
-bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &charset, Glib::ustring &utf8_contents, Glib::ustring &charset_contents)
+bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &charset, Glib::ustring &utf8_contents, Glib::ustring &charset_contents, int max_data_size)
 {
 	se_debug_message(SE_DEBUG_UTILITY, "Try to get contents from file uri=%s with charset=%s", uri.c_str(), charset.c_str());
 
 	try
 	{
 		std::string content = Glib::file_get_contents(Glib::filename_from_uri(uri));
+
+		if(max_data_size > 0)
+		{
+			if(content.size() > max_data_size)
+				content = content.substr(0, max_data_size);
+		}
 
 		if(charset.empty())
 		{
@@ -51,9 +57,9 @@ bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &chars
  * Open the file from an uri and convert the contents from charset to UTF-8.
  * If charset is empty, try to autodetect the character coding.
  */
-FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset)
+FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size)
 {
-	if(get_contents_from_file(uri, charset, m_data, m_charset) == false)
+	if(get_contents_from_file(uri, charset, m_data, m_charset, max_data_size) == false)
 		return;
 
 	m_uri = uri;

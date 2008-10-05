@@ -45,7 +45,7 @@ public:
 	 * Open the file from an uri and convert the contents from charset to UTF-8.
 	 * If charset is empty, try to autodetect the character coding.
 	 */
-	FileReader(const Glib::ustring &uri, const Glib::ustring &charset);
+	FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size = -1);
 
 	/*
 	 * Return the uri of the file.
