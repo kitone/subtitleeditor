@@ -41,11 +41,13 @@ FileWriter::FileWriter(const Glib::ustring &uri, const Glib::ustring &charset, c
  */
 void FileWriter::to_file()
 {
-	std::string data = Encoding::convert_from_utf8_to_charset(str(), m_charset); 
+	Glib::ustring udata = str();
 
 	// Convert newline if needs
 	if(m_newline != "Unix")
-		utility::replace(data, "\n", (m_newline == "Windows") ? "\r\n": "\r");
+		utility::replace(udata, "\n", (m_newline == "Windows") ? "\r\n": "\r");
+
+	std::string data = Encoding::convert_from_utf8_to_charset(udata, m_charset); 
 
 	std::ofstream file(Glib::filename_from_uri(m_uri).c_str());
 	if(!file)
