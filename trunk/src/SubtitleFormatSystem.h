@@ -89,10 +89,12 @@ protected:
 	void add_subtitle_format_factory(SubtitleFormatFactory *creator);
 
 	/*
-	 * Try to determine the format of the contents, and return the format name.
-	 * Throw UnrecognizeFormatError if failed.
+	 * Try to determine the format of the file, and return the format name.
+	 * Exceptions:
+	 *	UnrecognizeFormatError.
+	 *	EncodingConvertError.
 	 */
-	Glib::ustring get_subtitle_format_from_contents(const Glib::ustring &contents);
+	Glib::ustring get_subtitle_format_from_small_contents(const Glib::ustring &uri, const Glib::ustring &charset);
 
 	/*
 	 * Create a SubtitleFormat from a name.
