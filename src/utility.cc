@@ -64,40 +64,6 @@ Glib::ustring build_message(const char *format, ...)
 /*
  *
  */
-bool check_end_char(const gchar c)
-{
-	switch(c)
-	{
-	case '\0':
-	case '\t':
-	case '\015':
-	//case '\r':
-	case '\n':
-		return true;
-	default:
-	 return false;
-	}
-	return false;
-}
-
-
-/*
- *
- */
-Glib::ustring check_end_char(const Glib::ustring &str)
-{
-	Glib::ustring::size_type pos = str.find('\015');
-	
-	if(pos != Glib::ustring::npos)
-		return str.substr(0, pos);
-	
-	return str;
-}
-
-
-/*
- *
- */
 Glib::ustring get_share_dir(const Glib::ustring &file)
 {
 	Glib::ustring filename;

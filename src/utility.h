@@ -84,11 +84,6 @@ void set_profile_name(const Glib::ustring &profile);
 Glib::ustring get_config_dir(const Glib::ustring &file);
 
 /*
- *
- */
-Glib::ustring check_end_char(const Glib::ustring &str);
-
-/*
  *	convertir str en n'importe quel type
  */
 template<class T>
