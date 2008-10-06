@@ -57,9 +57,9 @@ public:
 		Glib::ustring text = info.currentSub.get_text();
 		long duration = info.currentSub.get_duration().totalmsecs;
 
-		int cps = utility::get_characters_per_second(text, duration);
+		double cps = utility::get_characters_per_second(text, duration);
 
-		if(cps <= m_maxCPS)
+		if(cps <= m_maxCPS || m_maxCPS == 0)
 			return false;
 
 		SubtitleTime value((long)(text.size() * 1000 / m_maxCPS));
@@ -73,8 +73,8 @@ public:
 		}
 
 		info.error = build_message(ngettext(
-				"Subtitle display time is too short: <b>%i char/s</b>",
-				"Subtitle display time is too short: <b>%i chars/s</b>", cps), cps);
+				"Subtitle display time is too short: <b>%.1f char/s</b>",
+				"Subtitle display time is too short: <b>%.1f chars/s</b>", cps), cps);
 
 		info.solution = build_message(
 				_("<b>Automatic correction:</b> to change current subtitle end to %s."),

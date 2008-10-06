@@ -1268,8 +1268,8 @@ msgstr ""
 
 #: ../src/actions/errorchecking/TooLongDisplayTime.h:76
 #, c-format
-msgid "Subtitle display time is too long: <b>%i char/s</b>"
-msgid_plural "Subtitle display time is too long: <b>%i chars/s</b>"
+msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1285,8 +1285,8 @@ msgstr ""
 
 #: ../src/actions/errorchecking/TooShortDisplayTime.h:76
 #, c-format
-msgid "Subtitle display time is too short: <b>%i char/s</b>"
-msgid_plural "Subtitle display time is too short: <b>%i chars/s</b>"
+msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
 msgstr[0] ""
 msgstr[1] ""
 

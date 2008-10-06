@@ -240,10 +240,10 @@ namespace utility
 	bool is_num(const Glib::ustring &str);
 
 	/*
-	 *	retourne le nombre de caractères par seconde
-	 *	msec = SubtitleTime::totalmsecs
+	 * Get the number of characters per second.
+	 * msec = SubtitleTime::totalmsecs
 	 */
-	int get_characters_per_second(const Glib::ustring &text, const long msecs);
+	double get_characters_per_second(const Glib::ustring &text, const long msecs);
 
 	/*
 	 *	get number of characters for each line in the text
