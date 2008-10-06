@@ -186,6 +186,8 @@ void parse_debug_options(OptionGroup &op)
 			flags |= SE_DEBUG_COMMAND;
 		if(op.debug_plugins)
 			flags |= SE_DEBUG_PLUGINS;
+		if(op.debug_profiling)
+			flags |= SE_DEBUG_PROFILING;
 
 		se_debug_init(flags);
 	}

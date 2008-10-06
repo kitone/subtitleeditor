@@ -111,6 +111,7 @@ OptionGroup::OptionGroup()
 	add_debug_option(utility, debug_utility);
 	add_debug_option(command, debug_command);
 	add_debug_option(plugins, debug_plugins);
+	add_debug_option(profiling, debug_profiling);
 #endif//DEBUG
 }
 

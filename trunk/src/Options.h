@@ -61,6 +61,7 @@ public:
 	bool debug_utility;
 	bool debug_command;
 	bool debug_plugins;
+	bool debug_profiling;
 #endif//DEBUG
 };
 
