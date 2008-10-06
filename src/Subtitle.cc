@@ -609,7 +609,7 @@ void Subtitle::set_text(const Glib::ustring &text)
 		(*m_iter)[column.characters_per_line_text] = "0";
 	else
 	{
-		std::vector<int> num_characters = utility::get_num_characters(text);
+		std::vector<int> num_characters = utility::get_characters_per_line(text);
 		std::string cpl;
 
 		unsigned int count=0;
