@@ -24,6 +24,7 @@
 #include "Subtitle.h"
 #include "utility.h"
 #include "Document.h"
+#include <iomanip>
 
 /*
  *
@@ -868,14 +869,11 @@ void Subtitle::get(std::map<Glib::ustring, Glib::ustring> &values)
  */
 void Subtitle::update_characters_per_sec()
 {
-	int cps;
-
 	SubtitleTime duration = get_duration();
+	double cps = utility::get_characters_per_second(get_text(), duration.totalmsecs);
 
-	// text
-	cps = utility::get_characters_per_second(get_text(), duration.totalmsecs);
-
-	set_characters_per_second_text(to_string(cps));
+	set_characters_per_second_text(
+			Glib::ustring::format(std::fixed, std::setprecision(1), cps)); 
 }
 
 /*

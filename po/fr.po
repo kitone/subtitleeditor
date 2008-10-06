@@ -263,7 +263,7 @@ msgstr "<b>Création de l'onde</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:13
 msgid "<span size=\"small\">the path to the subtitle file</span>"
-msgstr "<span size=\"small\">le chemin du fichier sous-titre</span>"
+msgstr "<span size=\"small\">le chemin du fichier de sous-titres</span>"
 
 #: ../share/glade/dialog-preferences.glade.h:14
 msgid "<span size=\"small\">the path to the video file</span>"
@@ -275,7 +275,7 @@ msgstr "<span size=\"small\">le temps en seconde de la ligne sélectionnée </sp
 
 #: ../share/glade/dialog-preferences.glade.h:16
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
-msgstr "<span size=\"small\">uri du fichier sous-titre</span>"
+msgstr "<span size=\"small\">uri du fichier de sous-titres</span>"
 
 #: ../share/glade/dialog-preferences.glade.h:17
 msgid "<span size=\"small\">the uri to the video file</span>"
@@ -762,7 +762,7 @@ msgstr "<b>Affichage</b>"
 
 #: ../share/glade/dialog-view-manager.glade.h:3
 msgid "View Editing"
-msgstr "Editer l'Affichage"
+msgstr "Éditer l'Affichage"
 
 #: ../share/glade/dialog-view-manager.glade.h:4
 msgid "View Manager"
@@ -771,11 +771,11 @@ msgstr "Gestion de l'affichage"
 #: ../share/glade/subtitleeditor.glade.h:1
 #: ../share/subtitleeditor.desktop.in.h:2
 msgid "Subtitle Editor"
-msgstr "Editeur de sous-titre"
+msgstr "Éditeur de sous-titres"
 
 #: ../share/subtitleeditor.desktop.in.h:1
 msgid "A subtitle editor based on GStreamer and Gtk+"
-msgstr "Un éditeur de sous-titre basé sur GStreamer et Gtk+"
+msgstr "Un éditeur de sous-titres basé sur GStreamer et Gtk+"
 
 #. comments
 #: ../src/actions/About.cc:86
@@ -1283,10 +1283,10 @@ msgstr "Détecte et corrige les sous-titres lorsque le nombre de caractères par
 
 #: ../src/actions/errorchecking/TooLongDisplayTime.h:76
 #, c-format
-msgid "Subtitle display time is too long: <b>%i char/s</b>"
-msgid_plural "Subtitle display time is too long: <b>%i chars/s</b>"
-msgstr[0] "Temps d'affichage du sous-titre trop long : <b>%i car./s</b>"
-msgstr[1] "Temps d'affichage du sous-titre trop long : <b>%i car./s</b>"
+msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
+msgstr[0] "Temps d'affichage du sous-titre trop long : <b>%.1f car./s</b>"
+msgstr[1] "Temps d'affichage du sous-titre trop long : <b>%.1f car./s</b>"
 
 #: ../src/actions/errorchecking/TooShortDisplayTime.h:38
 msgid "Too Short Display Time"
@@ -1298,22 +1298,22 @@ msgstr "Détecte et corrige les sous-titres lorsque le nombre de caractères par
 
 #: ../src/actions/errorchecking/TooShortDisplayTime.h:76
 #, c-format
-msgid "Subtitle display time is too short: <b>%i char/s</b>"
-msgid_plural "Subtitle display time is too short: <b>%i chars/s</b>"
-msgstr[0] "Temps d'affichage du sous-titre trop court : <b>%i car./s</b>"
-msgstr[1] "Temps d'affichage du sous-titre trop court : <b>%i car./s</b>"
+msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
+msgstr[0] "Temps d'affichage du sous-titre trop court : <b>%.1f car./s</b>"
+msgstr[1] "Temps d'affichage du sous-titre trop court : <b>%.1f car./s</b>"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
-msgstr "_Etendre longueur"
+msgstr "_Étendre longueur"
 
 #: ../src/actions/ExtendLength.cc:44
 msgid "Extend the length of selected subtitles to the start time of the next"
-msgstr "Etendre la longueur des sous-titres sélectionnés jusqu'au temps de démarrage du prochain"
+msgstr "Étendre la longueur des sous-titres sélectionnés jusqu'au temps de démarrage du prochain"
 
 #: ../src/actions/ExtendLength.cc:117
 msgid "Extend lenght"
-msgstr "Etendre longueur"
+msgstr "Étendre longueur"
 
 #: ../src/actions/ExternalVideoPlayer.cc:46
 msgid "_Preview"
@@ -1497,7 +1497,7 @@ msgstr "Échelle à partir de deux points"
 
 #: ../src/actions/ScaleSubtitles.cc:329
 msgid "Scale subtitles"
-msgstr "Echelle"
+msgstr "Échelle"
 
 #: ../src/actions/ScaleSubtitles.cc:352
 msgid "The scale was applied"
@@ -1599,7 +1599,7 @@ msgstr "Styles"
 
 #: ../src/actions/StyleEditor.cc:435
 msgid "_Style Editor"
-msgstr "Editeur de style"
+msgstr "Éditeur de style"
 
 #: ../src/actions/StyleEditor.cc:435
 msgid "Launch the style editor"
@@ -1664,7 +1664,7 @@ msgstr "Exporte seulement le texte dans un fichier"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "_Try To Extend To Perfect"
-msgstr "Essayer d'E_tendre A La Perfection"
+msgstr "Essayer d'É_tendre À La Perfection"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "Try to extend to perfect with the respect of timing preferences"
