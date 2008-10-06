@@ -47,6 +47,7 @@ enum SE_DEBUG_MESSAGE_FLAG
 	SE_DEBUG_UTILITY				= 1 << 9,
 	SE_DEBUG_COMMAND				= 1 << 10,
 	SE_DEBUG_PLUGINS				= 1 << 11,
+	SE_DEBUG_PROFILING			= 1 << 12,
 
 	SE_DEBUG_ALL						= 1 << 20
 };

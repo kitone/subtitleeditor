@@ -34,12 +34,9 @@ static int debug_flags = SE_NO_DEBUG;
 /*
  * PROFILING
  */
-//#define ENABLE_PROFILING
-
-#ifdef ENABLE_PROFILING
-static Glib::Timer timer;
-static double timer_last = 0.0;
-#endif//ENABLE_PROFILING
+static bool profiling_enable = false;
+static Glib::Timer profiling_timer;
+static double profiling_timer_last = 0.0;
 
 /*
  *
@@ -48,10 +45,11 @@ void se_debug_init(int flags)
 {
 	debug_flags = flags;
 
-#ifdef ENABLE_PROFILING
-	if(debug_flags != SE_NO_DEBUG)
-		timer.start();
-#endif//ENABLE_PROFILING
+	if(G_UNLIKELY(debug_flags & SE_DEBUG_PROFILING) && debug_flags != SE_NO_DEBUG)
+	{
+		profiling_enable = true;
+		profiling_timer.start();
+	}
 }
 
 /*
@@ -76,16 +74,15 @@ void __se_debug(
 {
 	if(G_UNLIKELY(debug_flags & flag) || G_UNLIKELY(debug_flags & SE_DEBUG_ALL))
 	{
-#ifdef ENABLE_PROFILING
-		double seconds = 0.0;
+		if(profiling_enable)
+		{
+			double seconds = profiling_timer.elapsed();
 
-		seconds = timer.elapsed();
-
-		g_print("[%f (%f)] %s:%d (%s)\n", seconds, seconds - timer_last, file, line, fonction);
-		timer_last = seconds;
-#else
-		g_print("%s:%d (%s)\n", file, line, fonction);
-#endif//ENABLE_PROFILING
+			g_print("[%f (%f)] %s:%d (%s)\n", seconds, seconds - profiling_timer_last, file, line, fonction);
+			profiling_timer_last = seconds;
+		}
+		else
+			g_print("%s:%d (%s)\n", file, line, fonction);
 
 		fflush(stdout);
 	}
@@ -112,16 +109,15 @@ void __se_debug_message(
 		msg = g_strdup_vprintf(format, args);
 		va_end(args);
 
-#ifdef ENABLE_PROFILING
-		double seconds = 0.0;
+		if(profiling_enable)
+		{
+			double seconds = profiling_timer.elapsed();
 
-		seconds = timer.elapsed();
-
-		g_print("[%f (%f)] %s:%d (%s) %s\n", seconds, seconds - timer_last, file, line, fonction, msg);
-		timer_last = seconds;
-#else
-		g_print("%s:%d (%s) %s\n", file, line, fonction, msg);
-#endif//ENABLE_PROFILING
+			g_print("[%f (%f)] %s:%d (%s) %s\n", seconds, seconds - profiling_timer_last, file, line, fonction, msg);
+			profiling_timer_last = seconds;
+		}
+		else
+			g_print("%s:%d (%s) %s\n", file, line, fonction, msg);
 
 		fflush(stdout);
 
