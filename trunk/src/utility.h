@@ -248,7 +248,7 @@ namespace utility
 	/*
 	 *	get number of characters for each line in the text
 	 */
-	std::vector<int> get_num_characters(const Glib::ustring &text);
+	std::vector<int> get_characters_per_line(const Glib::ustring &text);
 
 	/*
 	 * get a text stripped from tags

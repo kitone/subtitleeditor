@@ -1,3 +1,10 @@
+2008-10-06  kitone  <kitone@gna.org>
+
+	* src/Subtitle.cc:
+	* src/utility.cc:
+	* src/utility.h:
+	Rename function get_num_characters to get_characters_per_line.
+
 2008-10-05  kitone  <kitone@gna.org>
 
 	* src/FileWriter.cc:

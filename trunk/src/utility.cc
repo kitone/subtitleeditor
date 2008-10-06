@@ -619,7 +619,7 @@ namespace utility
 		if(msecs == 0)
 			return 0;
 
-		std::vector<int> num_characters = utility::get_num_characters(text);
+		std::vector<int> num_characters = utility::get_characters_per_line(text);
 		
 		if (num_characters.size() == 0)
 			return 0;
@@ -642,7 +642,7 @@ namespace utility
 	/*
 	 *	get number of characters for each line in the text
 	 */
-	std::vector<int> get_num_characters(const Glib::ustring &text)
+	std::vector<int> get_characters_per_line(const Glib::ustring &text)
 	{
 		std::vector<int> num_characters;
 		std::istringstream iss(utility::get_stripped_text(text));
