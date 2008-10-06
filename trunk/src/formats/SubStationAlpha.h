@@ -61,8 +61,6 @@ public:
 		Glib::ustring line;
 		while(file.getline(line) && !line.empty())
 		{
-			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
-
 			std::vector<Glib::ustring> group = re->split(line);
 
 			if(group.size() == 1)
@@ -90,8 +88,6 @@ public:
 		Glib::ustring line;
 		while(file.getline(line) && !line.empty())
 		{
-			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
-	
 			std::vector<Glib::ustring> group = re->split(line);
 
 			if(group.size() == 1)
@@ -143,8 +139,6 @@ public:
 		Glib::ustring line;
 		while(file.getline(line) && !line.empty())
 		{
-			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
-
 			std::vector<Glib::ustring> group = re->split(line);
 
 			if(group.size() == 1)
@@ -188,8 +182,6 @@ public:
 
 		while(file.getline(line))
 		{
-			se_debug_message(SE_DEBUG_IO, "line '%s'", line.c_str());
-
 			if(line.find("[Script Info]") != Glib::ustring::npos)
 				read_script_info(file);
 			else if(line.find("[V4 Styles]") != Glib::ustring::npos)

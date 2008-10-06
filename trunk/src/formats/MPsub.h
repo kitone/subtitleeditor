@@ -67,8 +67,6 @@ public:
 
 		while(file.getline(line))
 		{
-			se_debug_message(SE_DEBUG_IO, "line = '%s'", line.c_str());
-
 			if(re.FullMatch(line.c_str(), &start, &duration))
 			{
 				double dstart = utility::string_to_double(start);
@@ -79,8 +77,6 @@ public:
 				double end_value = start_value + dduration;
 
 				previous_end = end_value;
-
-				se_debug_message(SE_DEBUG_IO, "%f %f", dstart, dduration);
 
 				// text
 				int count = 0;
