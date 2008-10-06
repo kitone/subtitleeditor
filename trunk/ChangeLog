@@ -1,5 +1,10 @@
 2008-10-06  kitone  <kitone@gna.org>
 
+	* src/SubtitleView.cc:
+	Align at right the columns num, cps and cpl. (patch by spirit).
+
+2008-10-06  kitone  <kitone@gna.org>
+
 	* src/FileReader.cc:
 	* src/formats/AdvancedSubStationAlpha.h:
 	* src/formats/MPsub.h:
