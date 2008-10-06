@@ -645,6 +645,8 @@ void SubtitleView::createColumnNum()
 	//append_column_numeric_editable("num", m_column.num, "%d");
 	renderer->property_editable() = false;
 	renderer->property_yalign() = 0;
+	renderer->property_xalign() = 1.0;
+	renderer->property_alignment() = Pango::ALIGN_RIGHT;
 	
 	//renderer->property_visible() = false;
 
@@ -823,6 +825,8 @@ void SubtitleView::createColumnCPS()
 
 	renderer->property_yalign() = 0;
 	renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
+	renderer->property_xalign() = 1.0;
+	renderer->property_alignment() = Pango::ALIGN_RIGHT;
 	
 	append_column(*column);
 
@@ -862,6 +866,8 @@ void SubtitleView::createColumnText()
 		//renderer->property_style() = Pango::STYLE_ITALIC;
 		renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
 		//renderer->property_attributes() = 
+		renderer->property_xalign() = 1.0;
+		renderer->property_alignment() = Pango::ALIGN_RIGHT;
 
 		bool show=true;
 		
