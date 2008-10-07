@@ -1,5 +1,5 @@
-#ifndef _TimedText_h
-#define _TimedText_h
+#ifndef _TimedTextAuthoringFormat1_h
+#define _TimedTextAuthoringFormat1_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -27,7 +27,7 @@
 #include <libxml++/libxml++.h>
 
 
-class TimedText : public SubtitleFormat
+class TimedTextAuthoringFormat1 : public SubtitleFormat
 {
 public:
 
@@ -37,7 +37,7 @@ public:
 	static SubtitleFormatInfo get_info()
 	{
 		SubtitleFormatInfo info;
-		info.name = "Timed Text (TT) Authoring Format 1.0";
+		info.name = "Timed Text Authoring Format 1.0";
 		info.extension = "xml";
 		info.pattern = "^<tt";
 		
@@ -178,16 +178,16 @@ public:
 
 		xmlpp::Element* p = root->add_child("p");
 
-		p->set_attribute("begin", time_to_tt(sub.get_start()));
-		p->set_attribute("end", time_to_tt(sub.get_end()));
-		p->set_attribute("dur", time_to_tt(sub.get_duration()));
+		p->set_attribute("begin", time_to_ttaf1(sub.get_start()));
+		p->set_attribute("end", time_to_ttaf1(sub.get_end()));
+		p->set_attribute("dur", time_to_ttaf1(sub.get_duration()));
 		p->set_child_text(text);
 	}
 
 	/*
 	 * Convert SE time to TT time.
 	 */
-	Glib::ustring time_to_tt(const SubtitleTime &time)
+	Glib::ustring time_to_ttaf1(const SubtitleTime &time)
 	{
 		return build_message("%.2i:%.2i:%.2i.%.3i",
 				time.hours(), time.minutes(), time.seconds(), time.mseconds());
@@ -206,5 +206,5 @@ public:
 
 };
 
-#endif//_TimedText_h
+#endif//_TimedTextAuthoringFormat1_h
 

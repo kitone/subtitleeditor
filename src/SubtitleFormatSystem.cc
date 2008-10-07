@@ -12,7 +12,7 @@
 #include "formats/SubStationAlpha.h"
 #include "formats/SubtitleEditorProject.h"
 #include "formats/SubViewer2.h"
-#include "formats/TimedText.h"
+#include "formats/TimedTextAuthoringFormat1.h"
 
 
 /*
@@ -47,7 +47,7 @@ SubtitleFormatSystem::SubtitleFormatSystem()
 	REGISTER_FORMAT(SubStationAlpha);
 	REGISTER_FORMAT(SubtitleEditorProject);
 	REGISTER_FORMAT(SubViewer2);
-	REGISTER_FORMAT(TimedText);
+	REGISTER_FORMAT(TimedTextAuthoringFormat1);
 
 #undef REGISTER_FORMAT
 }

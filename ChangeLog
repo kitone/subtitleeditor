@@ -1,5 +1,13 @@
 2008-10-07  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/SubtitleFormatSystem.cc:
+	* src/formats/TimedText.h:
+	* src/formats/TimedTextAuthoringFormat1.h:
+	Rename TimedText to TimedTextAuthoringFormat1.
+
+2008-10-07  kitone  <kitone@gna.org>
+
 	* src/Options.cc:
 	* src/Options.h:
 	* src/debug.cc:
