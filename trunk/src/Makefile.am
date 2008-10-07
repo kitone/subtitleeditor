@@ -91,7 +91,7 @@ FORMATS_FILES = \
 				formats/SubStationAlpha.h \
 				formats/SubtitleEditorProject.h \
 				formats/SubViewer2.h \
-				formats/TimedText.h
+				formats/TimedTextAuthoringFormat1.h
 
 
 ACTIONS = \
