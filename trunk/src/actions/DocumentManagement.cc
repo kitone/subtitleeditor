@@ -115,7 +115,7 @@ public:
 		recentAction->set_show_icons(false);
 		recentAction->set_show_numbers(true);
 		recentAction->set_show_tips(true);
-		recentAction->set_show_not_found(false);
+		//recentAction->set_show_not_found(false);
 		recentAction->set_sort_type(Gtk::RECENT_SORT_MRU);
 
 		recentAction->signal_item_activated().connect(
