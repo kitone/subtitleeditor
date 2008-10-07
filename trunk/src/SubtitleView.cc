@@ -573,31 +573,27 @@ void SubtitleView::loadCfg()
 void SubtitleView::set_tooltips(Gtk::TreeViewColumn *column, const Glib::ustring &text)
 {
 	se_debug_message(SE_DEBUG_VIEW, "[%s]=%s", column->get_title().c_str(), text.c_str());
-/*
-	Gtk::EventBox *event = manage(new Gtk::EventBox);
 
-	Gtk::Label* label = manage(new Gtk::Label(column->get_title()));
-	event->add(*label);
-
-	Gtk::Tooltips *tooltips = manage(new Gtk::Tooltips);
-	tooltips->set_tip(*event, text);
-	tooltips->enable();
-
-	column->set_widget(*event);
-	event->show_all();
-*/
+	Gtk::Widget* widget = column->get_widget();
+	if(widget)
+		widget->set_tooltip_text(text);
 }
 
 /*
  * Return a new column (already manage) with Gtk::Label in title.
  */
-Gtk::TreeViewColumn* SubtitleView::create_treeview_column(const Glib::ustring &title)
+Gtk::TreeViewColumn* SubtitleView::create_treeview_column(const Glib::ustring &name)
 {
+	Glib::ustring title = get_column_label_by_name(name);
+
 	Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn);
 
 	Gtk::Label* label = manage(new Gtk::Label(title, Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER, false));
 	label->show();
 	column->set_widget(*label);
+
+	m_columns[name] = column;
+
 	return column;
 }
 
@@ -635,24 +631,19 @@ void SubtitleView::createColumnNum()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
 	
-	column = create_treeview_column(_("num"));
+	column = create_treeview_column("number");
 	renderer = manage(new Gtk::CellRendererText);
-	
-	column->pack_start(*renderer, false);
-	column->add_attribute(renderer->property_text(), m_column.num);
-
-	append_column(*column);
-	//append_column_numeric_editable("num", m_column.num, "%d");
 	renderer->property_editable() = false;
 	renderer->property_yalign() = 0;
 	renderer->property_xalign() = 1.0;
 	renderer->property_alignment() = Pango::ALIGN_RIGHT;
 	
-	//renderer->property_visible() = false;
+	column->pack_start(*renderer);
+	column->add_attribute(renderer->property_text(), m_column.num);
 
-	m_columns["number"] = column;
+	append_column(*column);
 
-	set_tooltips(column, _("This number column"));
+	set_tooltips(column, _("The line number"));
 }
 
 /*
@@ -665,7 +656,7 @@ void SubtitleView::createColumnLayer()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
 	
-	column = create_treeview_column(_("layer"));
+	column = create_treeview_column("layer");
 	renderer = manage(new Gtk::CellRendererText);
 	
 	column->pack_start(*renderer, false);
@@ -679,9 +670,7 @@ void SubtitleView::createColumnLayer()
 
 	append_column(*column);
 
-	m_columns["layer"] = column;
-
-	set_tooltips(column, _("Layer number."));
+	//set_tooltips(column, _("Layer number."));
 }
 
 /*
@@ -689,18 +678,17 @@ void SubtitleView::createColumnLayer()
  */
 void SubtitleView::create_column_time(
 		const Glib::ustring &name, 
-		const Glib::ustring &label, 
 		const Gtk::TreeModelColumnBase& column_attribute,
 		const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot, 
 		const Glib::ustring &tooltips)
 {
-	se_debug_message(SE_DEBUG_VIEW, "name=%s label=%l tooltips=%s", 
-			name.c_str(), label.c_str(), tooltips.c_str());
+	se_debug_message(SE_DEBUG_VIEW, "name=%s tooltips=%s", 
+			name.c_str(), tooltips.c_str());
 
 
 	CellRendererTime* renderer = manage(new CellRendererTime(m_refDocument));
 	
-	Gtk::TreeViewColumn* column = create_treeview_column(label);
+	Gtk::TreeViewColumn* column = create_treeview_column(name);
 
 	column->pack_start(*renderer);
 	column->add_attribute(renderer->property_text(), column_attribute);
@@ -708,8 +696,6 @@ void SubtitleView::create_column_time(
 	renderer->signal_edited().connect(slot);
 
 	append_column(*column);
-
-	m_columns[name] = column;
 
 	set_tooltips(column, tooltips);
 }
@@ -721,10 +707,9 @@ void SubtitleView::createColumnStart()
 {
 	create_column_time(
 			"start", 
-			_("start"), 
 			m_column.start, 
 			sigc::mem_fun(*this, &SubtitleView::on_edited_start),
-			_("This time is the time when a subtitle appears on the screen."));
+			_("When a subtitle appears on the screen."));
 }
 
 /*
@@ -734,10 +719,9 @@ void SubtitleView::createColumnEnd()
 {
 	create_column_time(
 			"end", 
-			_("end"), 
 			m_column.end, 
 			sigc::mem_fun(*this, &SubtitleView::on_edited_end),
-			_("This time is the time when a subtitle disappears from the screen."));
+			_("When a subtitle disappears from the screen."));
 
 }
 
@@ -748,7 +732,6 @@ void SubtitleView::createColumnDuration()
 {
 	create_column_time(
 			"duration", 
-			_("duration"), 
 			m_column.duration, 
 			sigc::mem_fun(*this, &SubtitleView::on_edited_duration),
 			 _("The duration of the subtitle."));
@@ -764,7 +747,7 @@ void SubtitleView::createColumnStyle()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererCombo* renderer = NULL;
 	
-	column = create_treeview_column(_("style"));
+	column = create_treeview_column("style");
 	renderer = manage(new Gtk::CellRendererCombo);
 	
 	column->pack_start(*renderer, false);
@@ -780,8 +763,6 @@ void SubtitleView::createColumnStyle()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_style));
 
 	append_column(*column);
-
-	m_columns["style"] = column;
 }
 
 /*
@@ -791,7 +772,7 @@ void SubtitleView::createColumnName()
 {
 	se_debug(SE_DEBUG_VIEW);
 
-	Gtk::TreeViewColumn* column = create_treeview_column(_("name"));
+	Gtk::TreeViewColumn* column = create_treeview_column("name");
 
 	CellRendererCustom<TextViewCell>* renderer = manage(new CellRendererCustom<TextViewCell>(m_refDocument));
 
@@ -805,8 +786,6 @@ void SubtitleView::createColumnName()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_name));
 	
 	append_column(*column);
-
-	m_columns["name"] = column;
 }
 
 /*
@@ -816,11 +795,11 @@ void SubtitleView::createColumnCPS()
 {
 	se_debug(SE_DEBUG_VIEW);
 
-	Gtk::TreeViewColumn* column = create_treeview_column(_("cps"));
+	Gtk::TreeViewColumn* column = create_treeview_column("cps");
 
 	Gtk::CellRendererText* renderer = manage(new Gtk::CellRendererText);
 	
-	column->pack_start(*renderer, false);
+	column->pack_start(*renderer);
 	column->add_attribute(renderer->property_text(), m_column.characters_per_second_text);
 
 	renderer->property_yalign() = 0;
@@ -830,7 +809,7 @@ void SubtitleView::createColumnCPS()
 	
 	append_column(*column);
 
-	m_columns["cps"] = column;
+	set_tooltips(column, _("The number of characters per second"));
 }
 
 /*
@@ -840,8 +819,7 @@ void SubtitleView::createColumnText()
 {
 	se_debug(SE_DEBUG_VIEW);
 
-	Gtk::TreeViewColumn* column = NULL;
-	column = create_treeview_column(_("text"));
+	Gtk::TreeViewColumn* column = create_treeview_column("text");
 
 	append_column(*column);
 
@@ -863,9 +841,7 @@ void SubtitleView::createColumnText()
 		column->pack_start(*renderer, false);
 		column->add_attribute(renderer->property_text(), m_column.characters_per_line_text);
 		renderer->property_yalign() = 0;
-		//renderer->property_style() = Pango::STYLE_ITALIC;
 		renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
-		//renderer->property_attributes() = 
 		renderer->property_xalign() = 1.0;
 		renderer->property_alignment() = Pango::ALIGN_RIGHT;
 
@@ -875,28 +851,8 @@ void SubtitleView::createColumnText()
 
 		renderer->property_visible() = show;
 	}
-	/*
-	// cps
-	{
-		Gtk::CellRendererText* renderer = NULL;
-		renderer = manage(new Gtk::CellRendererText);
-	
-		column->pack_start(*renderer, false);
-		column->add_attribute(renderer->property_text(), m_column.characters_per_second_text);
-		renderer->property_yalign() = 0;
-		renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
-
-		//bool show=true;
-		//Config::getInstance().get_value_bool("subtitle-view", "show-character-per-line", show);
-		//renderer->property_visible() = show;
-	}
-	*/
-
 
 	column->set_resizable(true);
-	//column->set_expand(true);
-
-	m_columns["text"] = column;
 }
 
 /*
@@ -906,8 +862,7 @@ void SubtitleView::createColumnTranslation()
 {
 	se_debug(SE_DEBUG_VIEW);
 
-	Gtk::TreeViewColumn* column = NULL;
-	column = create_treeview_column(_("translation"));
+	Gtk::TreeViewColumn* column = create_treeview_column("translation");
 
 	//translation
 	{
@@ -929,9 +884,7 @@ void SubtitleView::createColumnTranslation()
 		column->pack_end(*renderer, false);
 		column->add_attribute(renderer->property_text(), m_column.characters_per_line_translation);
 		renderer->property_yalign() = 0;
-		//renderer->property_style() = Pango::STYLE_ITALIC;
 		renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
-		//renderer->property_attributes() = 
 		bool show=true;
 		Config::getInstance().get_value_bool("subtitle-view", "show-character-per-line", show);
 
@@ -939,9 +892,6 @@ void SubtitleView::createColumnTranslation()
 	}
 
 	column->set_resizable(true);
-//	column->set_expand(true);
-
-	m_columns["translation"] = column;
 }
 
 /*
@@ -951,7 +901,7 @@ void SubtitleView::createColumnNote()
 {
 	se_debug(SE_DEBUG_VIEW);
 
-	Gtk::TreeViewColumn* column = create_treeview_column(_("note"));;
+	Gtk::TreeViewColumn* column = create_treeview_column("note");;
 
 	CellRendererTextMultiline* renderer = manage(new CellRendererTextMultiline(m_refDocument));
 
@@ -964,8 +914,6 @@ void SubtitleView::createColumnNote()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_note));
 
 	column->set_resizable(true);
-
-	m_columns["note"] = column;
 }
 
 /*
@@ -978,7 +926,7 @@ void SubtitleView::createColumnEffect()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
 	
-	column = create_treeview_column(_("effect"));
+	column = create_treeview_column("effect");
 	renderer = manage(new Gtk::CellRendererText);
 	
 	column->pack_start(*renderer, false);
@@ -993,8 +941,6 @@ void SubtitleView::createColumnEffect()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_effect));
 
 	column->set_resizable(true);
-
-	m_columns["effect"] = column;
 }
 
 /*
@@ -1007,7 +953,7 @@ void SubtitleView::createColumnMarginR()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
 	
-	column = create_treeview_column(_("R"));
+	column = create_treeview_column("margin-r");
 	renderer = manage(new Gtk::CellRendererText);
 	
 	column->pack_start(*renderer, false);
@@ -1020,8 +966,6 @@ void SubtitleView::createColumnMarginR()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_margin_r));
 
 	append_column(*column);
-
-	m_columns["margin-r"] = column;
 }
 
 /*
@@ -1034,7 +978,7 @@ void SubtitleView::createColumnMarginL()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
 	
-	column = create_treeview_column(_("L"));
+	column = create_treeview_column("margin-l");
 	renderer = manage(new Gtk::CellRendererText);
 	
 	column->pack_start(*renderer, false);
@@ -1047,8 +991,6 @@ void SubtitleView::createColumnMarginL()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_margin_l));
 
 	append_column(*column);
-
-	m_columns["margin-l"] = column;
 }
 
 /*
@@ -1061,7 +1003,7 @@ void SubtitleView::createColumnMarginV()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
 	
-	column = create_treeview_column(_("V"));
+	column = create_treeview_column("margin-v");
 	renderer = manage(new Gtk::CellRendererText);
 	
 	column->pack_start(*renderer, false);
@@ -1074,8 +1016,6 @@ void SubtitleView::createColumnMarginV()
 		sigc::mem_fun(*this, &SubtitleView::on_edited_margin_v));
 
 	append_column(*column);
-
-	m_columns["margin-v"] = column;
 }
 
 /*
@@ -1689,21 +1629,21 @@ Glib::ustring SubtitleView::get_column_label_by_name(const Glib::ustring &name)
 {
 	std::map<Glib::ustring, Glib::ustring> columns_labels;
 
-	columns_labels["cps"] = _("cps");
-	columns_labels["duration"] = _("duration");
-	columns_labels["effect"] = _("effect");
-	columns_labels["end"] = _("end");
-	columns_labels["layer"] = _("layer");
+	columns_labels["cps"] = _("CPS");
+	columns_labels["duration"] = _("Duration");
+	columns_labels["effect"] = _("Effect");
+	columns_labels["end"] = _("End");
+	columns_labels["layer"] = _("Layer");
 	columns_labels["margin-l"] = _("L");
 	columns_labels["margin-r"] = _("R");
 	columns_labels["margin-v"] = _("V");
-	columns_labels["name"] = _("name");
-	columns_labels["note"] = _("note");
-	columns_labels["number"] = _("num");
-	columns_labels["start"] = _("start");
-	columns_labels["style"] = _("style");
-	columns_labels["text"] = _("text");
-	columns_labels["translation"] = _("translation");
+	columns_labels["name"] = _("Name");
+	columns_labels["note"] = _("Note");
+	columns_labels["number"] = _("Num");
+	columns_labels["start"] = _("Start");
+	columns_labels["style"] = _("Style");
+	columns_labels["text"] = _("Text");
+	columns_labels["translation"] = _("Translation");
 
 	std::map<Glib::ustring, Glib::ustring>::iterator it = columns_labels.find(name);
 	if(it != columns_labels.end())
