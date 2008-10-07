@@ -110,7 +110,7 @@ public:
 		Gtk::RecentFilter filter;
 		filter.set_name("subtitleeditor");
 		filter.add_group("subtitleeditor");
-		recentAction->add_filter(filter);
+		recentAction->set_filter(filter);
 
 		recentAction->set_show_icons(false);
 		recentAction->set_show_numbers(true);
