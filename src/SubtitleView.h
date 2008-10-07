@@ -153,14 +153,13 @@ protected:
 	/*
 	 * Return a new column (already manage) with Gtk::Label in title.
 	 */
-	Gtk::TreeViewColumn* create_treeview_column(const Glib::ustring &title);
+	Gtk::TreeViewColumn* create_treeview_column(const Glib::ustring &name);
 
 	/*
 	 *
 	 */
 	void create_column_time( 
 					const Glib::ustring &name, 
-					const Glib::ustring &label, 
 					const Gtk::TreeModelColumnBase& column_attribute,
 					const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot, 
 					const Glib::ustring &tooltips=Glib::ustring());

@@ -1,5 +1,12 @@
 2008-10-07  kitone  <kitone@gna.org>
 
+	* src/SubtitleView.cc:
+	* src/SubtitleView.h:
+	Fix column title and alignment.
+	Clean code.
+
+2008-10-07  kitone  <kitone@gna.org>
+
 	* src/actions/DocumentManagement.cc:
 	Change add_filter to set_filter. (Recent code)
 
