@@ -56,6 +56,8 @@ public:
 	{
 		RegEx re("^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
 		
+		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create("\\{[yY]:(b|i|u)\\}(.*?)$");
+		
 		// init to frame mode
 		document()->set_timing_mode(FRAME);
 		document()->set_edit_timing_mode(FRAME);
@@ -70,9 +72,10 @@ public:
 		{
 			if(re.FullMatch(line.c_str(), &frame_start, &frame_end, &text))
 			{
-				utility::replace(text, "|", "\n");
-				//FIXME tags.decode(text);
+				text = tags->replace(text, 0, "<\\1>\\2</\\1>", (Glib::RegexMatchFlags)0);
 
+				utility::replace(text, "|", "\n");
+	
 				// Append a subtitle
 				Subtitle sub = subtitles.append();
 
@@ -88,12 +91,15 @@ public:
 	 */
 	void save(FileWriter &file)
 	{
+		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create("<(b|i|u)>(.*?)</\\1>");
+
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{
 			Glib::ustring text =sub.get_text();
 
-			//FIXME tags.encode(text);
 			utility::replace(text, "\n", "|");
+
+			text = tags->replace(text, 0, "{y:\\1}\\2", (Glib::RegexMatchFlags)0);
 
 			// {start_frame}{end_frame}text
 			file << "{" 
