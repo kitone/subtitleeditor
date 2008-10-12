@@ -1,3 +1,9 @@
+2008-10-12  kitone  <kitone@gna.org>
+
+	* src/actions/errorchecking/ErrorCheckingPlugin.cc:
+	Fix: Error Checking fix with command recorder.
+	Fix: active list (By Subtitles).
+
 2008-10-08  kitone  <kitone@gna.org>
 
 	* src/formats/MicroDVD.h:

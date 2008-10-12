@@ -525,6 +525,9 @@ public:
 
 			for(checker_it = checkers.begin(); checker_it != checkers.end(); ++checker_it)
 			{
+				if((*checker_it)->get_active() == false)
+					continue;
+
 				// info
 				ErrorChecking::Info info;
 				info.document = doc;
@@ -602,6 +605,20 @@ public:
 	}
 
 	/*
+	 * Fix the error with the support of the Command Recorder.
+	 */
+	bool error_checking_fix(ErrorChecking *checker, ErrorChecking::Info &info)
+	{
+		info.document->start_command(checker->get_label());
+		
+		bool res = checker->execute(info);
+
+		info.document->finish_command();
+
+		return res;
+	}
+		
+	/*
 	 * FIXME
 	 */
 	bool fix_selected(Gtk::TreeIter &iter)
@@ -627,7 +644,7 @@ public:
 		info.previousSub = previous;
 		info.tryToFix = true;
 
-		return checker->execute(info);
+		return error_checking_fix(checker, info);
 	}
 
 	/*
@@ -652,7 +669,7 @@ public:
 			info.previousSub = previous;
 			info.tryToFix = true;
 			
-			if(checker->execute(info))
+			if(error_checking_fix(checker, info))
 				++count;
 
 			previous = current;
