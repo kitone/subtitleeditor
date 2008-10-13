@@ -1,5 +1,11 @@
 2008-10-13  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.25.0 release.
+
+2008-10-13  kitone  <kitone@gna.org>
+
 	* src/SubtitleFormat.cc:
 	* src/formats/SubtitleEditorProject.h:
 	* src/formats/TimedTextAuthoringFormat1.h:
