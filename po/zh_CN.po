@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.20.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 12:34+0200\n"
-"PO-Revision-Date: 2008-09-04 10:45+0000\n"
+"POT-Creation-Date: 2008-10-10 19:51+0200\n"
+"PO-Revision-Date: 2008-10-13 13:00+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2008-09-04 10:48+0000\n"
+"X-Launchpad-Export-Date: 2008-10-13 15:09+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #~ msgid "Encodings"
@@ -35,6 +35,18 @@ msgstr ""
 #~ msgid "Encoding:"
 #~ msgstr "编码："
 
+#~ msgid "text"
+#~ msgstr "文字"
+
+#~ msgid "Line"
+#~ msgstr "线"
+
+#~ msgid "Errors"
+#~ msgstr "错误"
+
+#~ msgid "_Properties"
+#~ msgstr "属性(_P)"
+
 #~ msgid "_Advanced"
 #~ msgstr "高级(_A)"
 
@@ -44,35 +56,17 @@ msgstr ""
 #~ msgid "Columns"
 #~ msgstr "列"
 
-#~ msgid "Layer"
-#~ msgstr "层"
-
-#~ msgid "Start"
-#~ msgstr "开始"
-
-#~ msgid "End"
-#~ msgstr "末"
-
-#~ msgid "Duration"
-#~ msgstr "长度"
-
-#~ msgid "Style"
-#~ msgstr "风格"
-
-#~ msgid "Effect"
-#~ msgstr "效果"
-
-#~ msgid "Text"
-#~ msgstr "文字"
-
-#~ msgid "Note"
-#~ msgstr "备忘"
-
 #~ msgid "Charset"
 #~ msgstr "字符集"
 
 #~ msgid "Media file could not be played."
 #~ msgstr "无法播放媒体文件。"
+
+#~ msgid "end"
+#~ msgstr "结束"
+
+#~ msgid "name"
+#~ msgstr "名称"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
 msgid "<b>Apply to</b>"
@@ -115,81 +109,8 @@ msgstr "字符编码"
 msgid "E_ncodings shown in menu:"
 msgstr "菜单中显示的编码(_N)："
 
-#: ../share/glade/dialog-check-errors.glade.h:1
-msgid "Check Errors"
-msgstr "检查错误"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:1
-msgid "<b>Checking</b>"
-msgstr "<b>正在检查</b>"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:2
-msgid "<b>Timings</b>"
-msgstr "<b>时间</b>"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:3
-msgid "Check Errors Preferences"
-msgstr "检查错误首选项"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:4
-msgid "Gap between subtitle"
-msgstr "字幕间距"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:5
-#: ../src/gui/CheckErrorsUI.cc:286
-msgid "Max lines per subtitle"
-msgstr "每条字幕最大行数"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:6
-#: ../share/glade/dialog-preferences.glade.h:33
-msgid "Maximum characters per line:"
-msgstr "每行最大字符数："
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "每秒最大字符数："
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:8
-msgid "Maximum number of lines per subtitle:"
-msgstr "每条字幕占用的最大的行数："
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Minimum characters per second:"
-msgstr "每秒最小的字符数："
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:37
-msgid "Minimum display of the subtitle in mseconds:"
-msgstr "字幕最小显示毫秒数："
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:11
-#: ../share/glade/dialog-preferences.glade.h:38
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "最小字幕间隔的毫秒数："
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:12
-#: ../src/gui/CheckErrorsUI.cc:43
-msgid "Overlapping"
-msgstr "重叠的"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:13
-#: ../src/gui/CheckErrorsUI.cc:154
-msgid "Too long display time"
-msgstr "太久显示时间"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:14
-msgid "Too long line"
-msgstr "太长的行"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:15
-#: ../src/gui/CheckErrorsUI.cc:99
-msgid "Too short display time"
-msgstr "太短的显示时间"
-
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:1
-#: ../src/gui/MenuBar.cc:175
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
 msgid "Configure Keyboard Shortcuts"
 msgstr "配置快捷键"
 
@@ -207,11 +128,67 @@ msgstr "<b>请选择编码</b>"
 msgid "Encodings Chooser"
 msgstr "编码选择"
 
+#: ../share/glade/dialog-error-checking.glade.h:1
+msgid "Error Checking"
+msgstr "正在错误检查"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:1
+msgid "<b>Error Checking</b>"
+msgstr "<b>正在错误检查</b>"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:2
+#: ../share/glade/dialog-preferences.glade.h:8
+msgid "<b>Timing Preferences</b>"
+msgstr "<b>计时的首选项</b>"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:3
+msgid "Checking"
+msgstr "正在检查"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:4
+msgid "Error Checking Preferences"
+msgstr "Error Checking Preferences"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:5
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum characters per line:"
+msgstr "每行最大字符数："
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:6
+#: ../share/glade/dialog-preferences.glade.h:36
+msgid "Maximum characters per second:"
+msgstr "每秒最大字符数："
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:7
+msgid "Maximum number of lines per subtitle:"
+msgstr "每条字幕占用的最大的行数："
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:8
+#: ../share/glade/dialog-preferences.glade.h:38
+msgid "Minimum characters per second:"
+msgstr "每秒最小的字符数："
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:9
+#: ../share/glade/dialog-preferences.glade.h:39
+msgid "Minimum display of the subtitle in mseconds:"
+msgstr "字幕最小显示毫秒数："
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:10
+#: ../share/glade/dialog-preferences.glade.h:40
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "最小字幕间隔的毫秒数："
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:11
+#: ../share/glade/dialog-preferences.glade.h:51
+#: ../src/actions/ViewManager.cc:394
+msgid "Timing"
+msgstr "计时"
+
 #: ../share/glade/dialog-export-text.glade.h:1
 #: ../share/glade/dialog-import-text.glade.h:1
 #: ../share/glade/dialog-open-document.glade.h:1
-#: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:704
-#: ../src/gui/Application.cc:332
+#: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:669
+#: ../src/gui/Application.cc:319
 msgid "Character Coding:"
 msgstr "字符编码："
 
@@ -300,104 +277,108 @@ msgid "<b>General</b>"
 msgstr "<b>常规</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:4
+msgid "<b>New Document</b>"
+msgstr "<b>新建文档</b>"
+
+#: ../share/glade/dialog-preferences.glade.h:5
 msgid "<b>Output</b>"
 msgstr "<b>输出</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:5
+#: ../share/glade/dialog-preferences.glade.h:6
 msgid "<b>Subtitle View</b>"
 msgstr "<b>字幕视图</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:6
+#: ../share/glade/dialog-preferences.glade.h:7
 msgid "<b>Text Subtitle</b>"
 msgstr "<b>文本字幕</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:7
-msgid "<b>Timing Preferences</b>"
-msgstr "<b>计时的首选项</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:8
+#: ../share/glade/dialog-preferences.glade.h:9
 msgid "<b>Video Player For Preview</b>"
 msgstr "<b>用于预览的视频播放器</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:9
+#: ../share/glade/dialog-preferences.glade.h:10
 #: ../share/glade/dialog-script-properties.glade.h:6
 msgid "<b>Video</b>"
 msgstr "<b>视频</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:10
+#: ../share/glade/dialog-preferences.glade.h:11
 msgid "<b>Waveform Color</b>"
 msgstr "<b>音频波形颜色</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:11
+#: ../share/glade/dialog-preferences.glade.h:12
 msgid "<b>Waveform Generator</b>"
 msgstr "<b>音频波形生成器</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:12
+#: ../share/glade/dialog-preferences.glade.h:13
 msgid "<span size=\"small\">the path to the subtitle file</span>"
 msgstr "<span size=\"small\">字幕文件的路径</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:13
+#: ../share/glade/dialog-preferences.glade.h:14
 msgid "<span size=\"small\">the path to the video file</span>"
 msgstr "<span size=\"small\">视频文件的路径</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:14
+#: ../share/glade/dialog-preferences.glade.h:15
 msgid ""
 "<span size=\"small\">the time in seconds to the current selected line</span>"
 msgstr "<span size=\"small\">到当前选择行的时间的秒数</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:15
+#: ../share/glade/dialog-preferences.glade.h:16
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
 msgstr "<span size=\"small\">字幕文件的uri</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:16
+#: ../share/glade/dialog-preferences.glade.h:17
 msgid "<span size=\"small\">the uri to the video file</span>"
 msgstr "<span size=\"small\">视频文件的uri</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:17
+#: ../share/glade/dialog-preferences.glade.h:18
 msgid "Ask to save on _exit"
 msgstr "在退出时要求保存(_E)"
 
-#: ../share/glade/dialog-preferences.glade.h:18
+#: ../share/glade/dialog-preferences.glade.h:19
 msgid "Automatically _choose video to open"
 msgstr "自动选择要打开的视频(_C)"
 
-#: ../share/glade/dialog-preferences.glade.h:19
+#: ../share/glade/dialog-preferences.glade.h:20
 msgid "Background:"
 msgstr "背景色："
 
-#: ../share/glade/dialog-preferences.glade.h:20
+#: ../share/glade/dialog-preferences.glade.h:21
 msgid "Command:"
 msgstr "命令："
 
-#: ../share/glade/dialog-preferences.glade.h:21
+#: ../share/glade/dialog-preferences.glade.h:22
 msgid "Create a _backup copy of files before saving"
 msgstr "在保存之前创建一个备份文件(_B)"
 
-#: ../share/glade/dialog-preferences.glade.h:22
+#: ../share/glade/dialog-preferences.glade.h:23
 msgid "Display _translated subtitle"
 msgstr "显示翻译了的字幕(_T)"
 
-#: ../share/glade/dialog-preferences.glade.h:23
+#: ../share/glade/dialog-preferences.glade.h:24
 msgid "Display background"
 msgstr "显示背景"
 
-#: ../share/glade/dialog-preferences.glade.h:24
+#: ../share/glade/dialog-preferences.glade.h:25
 msgid "Display subtitle text"
 msgstr "显示字幕文本"
 
-#: ../share/glade/dialog-preferences.glade.h:25
+#: ../share/glade/dialog-preferences.glade.h:26
 msgid "Display the translated subtitle instead of the original one."
 msgstr "显示翻译的字幕代替原始字幕。"
 
-#: ../share/glade/dialog-preferences.glade.h:26
+#: ../share/glade/dialog-preferences.glade.h:27
 msgid "Display waveform fill"
 msgstr "显示音频波形填充"
 
-#: ../share/glade/dialog-preferences.glade.h:27
+#: ../share/glade/dialog-preferences.glade.h:28
+msgid "Document"
+msgstr "文件"
+
+#: ../share/glade/dialog-preferences.glade.h:29
 msgid "Enable _rubberband selection"
 msgstr "启用橡皮筋选择(_R)"
 
-#: ../share/glade/dialog-preferences.glade.h:28
+#: ../share/glade/dialog-preferences.glade.h:30
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
@@ -405,137 +386,140 @@ msgstr ""
 "mplayer示例:\n"
 "mplayer \"#视频文件\" - sub\"#字幕文件 \"- ss #秒"
 
-#: ../share/glade/dialog-preferences.glade.h:30
+#: ../share/glade/dialog-preferences.glade.h:32
 msgid "Force aspect _ratio"
 msgstr "强制面向比率(_R)"
 
-#: ../share/glade/dialog-preferences.glade.h:31
+#: ../share/glade/dialog-preferences.glade.h:33
 msgid "Interface"
 msgstr "界面"
 
-#: ../share/glade/dialog-preferences.glade.h:32
+#: ../share/glade/dialog-preferences.glade.h:34
 msgid "Interval in seconds:"
 msgstr "间隔时间在几秒钟内："
 
-#: ../share/glade/dialog-preferences.glade.h:35
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Maximum number of line per subtitle:"
 msgstr "每条字幕最大行数："
 
-#: ../share/glade/dialog-preferences.glade.h:39
+#: ../share/glade/dialog-preferences.glade.h:41
 msgid "Player Position:"
 msgstr "播放器位置："
 
-#: ../share/glade/dialog-preferences.glade.h:40
+#: ../share/glade/dialog-preferences.glade.h:42
 msgid "Plugins"
 msgstr "插件"
 
-#: ../share/glade/dialog-preferences.glade.h:41
+#: ../share/glade/dialog-preferences.glade.h:43
 msgid "Preferences"
 msgstr "首选项"
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Preview"
 msgstr "预览"
 
-#: ../share/glade/dialog-preferences.glade.h:43
+#: ../share/glade/dialog-preferences.glade.h:45
 msgid "Reset To _Defaults"
 msgstr "重设为默认值(_D)"
 
-#: ../share/glade/dialog-preferences.glade.h:44
+#: ../share/glade/dialog-preferences.glade.h:46
 msgid "Subtitle Invalid:"
 msgstr "无效字幕："
 
-#: ../share/glade/dialog-preferences.glade.h:45
+#: ../share/glade/dialog-preferences.glade.h:47
 msgid "Subtitle Selected:"
 msgstr "已选择的字幕："
 
-#: ../share/glade/dialog-preferences.glade.h:46
+#: ../share/glade/dialog-preferences.glade.h:48
 msgid "Subtitle:"
 msgstr "字幕："
 
-#: ../share/glade/dialog-preferences.glade.h:47
+#: ../share/glade/dialog-preferences.glade.h:49
 #: ../share/glade/dialog-scale-subtitles.glade.h:5
 msgid "Text:"
 msgstr "文字："
 
-#: ../share/glade/dialog-preferences.glade.h:48
+#: ../share/glade/dialog-preferences.glade.h:50
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
 msgstr "以下指令参数在启动动作发生时将被替代："
 
-#: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:394
-msgid "Timing"
-msgstr "计时"
-
-#: ../share/glade/dialog-preferences.glade.h:50
+#: ../share/glade/dialog-preferences.glade.h:52
 msgid "Use _dynamic keyboard shortcuts"
 msgstr "使用动态快捷键(_D)"
 
-#: ../share/glade/dialog-preferences.glade.h:51
+#: ../share/glade/dialog-preferences.glade.h:53
 msgid "Use shaded _background"
 msgstr "用于遮蔽的背景(_B)"
 
-#: ../share/glade/dialog-preferences.glade.h:52
+#: ../share/glade/dialog-preferences.glade.h:54
 msgid "Video Player"
 msgstr "视频播放器"
 
-#: ../share/glade/dialog-preferences.glade.h:53
+#: ../share/glade/dialog-preferences.glade.h:55
 msgid "Wave fill:"
 msgstr "波形填充："
 
-#: ../share/glade/dialog-preferences.glade.h:54
+#: ../share/glade/dialog-preferences.glade.h:56
 msgid "Wave:"
 msgstr "波浪："
 
-#: ../share/glade/dialog-preferences.glade.h:55
+#: ../share/glade/dialog-preferences.glade.h:57
 msgid "Waveform"
 msgstr "音频波形"
 
-#: ../share/glade/dialog-preferences.glade.h:56
+#: ../share/glade/dialog-preferences.glade.h:58
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
 "key combination while the menu item is highlighted."
 msgstr "如果启用，您只要按一个键盘组合就可以即时改变突出显示的菜单项的快捷键。"
 
-#: ../share/glade/dialog-preferences.glade.h:57
+#: ../share/glade/dialog-preferences.glade.h:59
 msgid "_Audio:"
 msgstr "音频(_A)："
 
-#: ../share/glade/dialog-preferences.glade.h:58
+#: ../share/glade/dialog-preferences.glade.h:60
 msgid "_Autosave files every"
 msgstr "自动保存文件，每隔(_A)"
 
-#: ../share/glade/dialog-preferences.glade.h:59
+#: ../share/glade/dialog-preferences.glade.h:61
 msgid "_Center the text of the subtitle in the column"
 msgstr "按列居中字幕的文本(_C)"
 
-#: ../share/glade/dialog-preferences.glade.h:60
+#: ../share/glade/dialog-preferences.glade.h:62
 msgid "_Font:"
 msgstr "字体(_F)："
 
-#: ../share/glade/dialog-preferences.glade.h:61
+#: ../share/glade/dialog-preferences.glade.h:63
+msgid "_Format:"
+msgstr "格式(_F)："
+
+#: ../share/glade/dialog-preferences.glade.h:64
 msgid "_Maximize window"
 msgstr "最大化窗口(_M)"
 
-#: ../share/glade/dialog-preferences.glade.h:62
+#: ../share/glade/dialog-preferences.glade.h:65
+msgid "_Newline:"
+msgstr "换行符(_N)："
+
+#: ../share/glade/dialog-preferences.glade.h:66
 msgid "_Show the number of characters per line"
 msgstr "每行显示的字符数(_S)"
 
-#: ../share/glade/dialog-preferences.glade.h:63
+#: ../share/glade/dialog-preferences.glade.h:67
 msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr "用 Ctrl+Enter 组合键确认修改(_U)"
 
-#: ../share/glade/dialog-preferences.glade.h:64
+#: ../share/glade/dialog-preferences.glade.h:68
 msgid "_Video:"
 msgstr "视频(_V)："
 
-#: ../share/glade/dialog-preferences.glade.h:65
+#: ../share/glade/dialog-preferences.glade.h:69
 msgid "minutes"
 msgstr "分"
 
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:333
+#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:320
 msgid "Format:"
 msgstr "格式："
 
@@ -608,22 +592,18 @@ msgid "Original Translation:"
 msgstr "原始的翻译："
 
 #: ../share/glade/dialog-script-properties.glade.h:14
-#, fuzzy
 msgid "PlayDepth:"
-msgstr "PlayDepth:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:15
-#, fuzzy
 msgid "PlayResX:"
-msgstr "PlayResX:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:16
-#, fuzzy
 msgid "PlayResY:"
-msgstr "PlayResY:"
+msgstr ""
 
 #: ../share/glade/dialog-script-properties.glade.h:17
-#, fuzzy
 msgid "Point Time: "
 msgstr "时间点： "
 
@@ -850,12 +830,12 @@ msgid "A subtitle editor based on GStreamer and Gtk+"
 msgstr "一个基于 GStreamer 和 Gtk+ 的字幕编辑器"
 
 #. comments
-#: ../src/actions/About.cc:86
+#: ../src/actions/About.cc:88
 msgid "a tool for subtitles edition"
 msgstr "一个字幕编辑的工具"
 
 #. translator-credits
-#: ../src/actions/About.cc:95
+#: ../src/actions/About.cc:97
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
@@ -867,6 +847,7 @@ msgstr ""
 "  太和 https://launchpad.net/~tayhe\n"
 "\n"
 "Launchpad Contributions:\n"
+"  Aron Xu https://launchpad.net/~cnfavor\n"
 "  kaiman https://launchpad.net/~kaigfm\n"
 "  帅勇健 https://launchpad.net/~kaisfm"
 
@@ -973,6 +954,44 @@ msgstr "请选择至少二个字幕。"
 msgid "Combine subtitles"
 msgstr "组合字幕"
 
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:95
+msgid "Actions"
+msgstr "动作"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:117
+msgid "Shortcut"
+msgstr "快捷键"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:247
+msgid "Invalid shortcut."
+msgstr "无效的快捷键。"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:265
+#, c-format
+msgid "Shortcut \"%s\" is already taken by \"%s\"."
+msgstr "快捷键 \"%s\"已经被\"%s 使用\"。"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:268
+#, c-format
+msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
+msgstr "重新分配快捷键将导致它从“%s”中被去掉。"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:271
+msgid "Conflicting Shortcuts"
+msgstr "快捷键冲突"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:277
+msgid "Changing shortcut failed."
+msgstr "改变快捷键失败。"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:308
+msgid "Removing shortcut failed."
+msgstr "删除快捷键失败。"
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
+msgid "Configure _Keyboard Shortcuts"
+msgstr "配置键盘快捷键(_K)"
+
 #: ../src/actions/DeleteSubtitleSelect.cc:45
 msgid "Delete the selected subtitles"
 msgstr "删除选择的字幕"
@@ -1052,57 +1071,58 @@ msgstr "保存翻译(_L)"
 msgid "Save translation to file"
 msgstr "保存翻译文件"
 
-#: ../src/actions/DocumentManagement.cc:109
+#. recent files
+#: ../src/actions/DocumentManagement.cc:108
 msgid "Open _Recent"
 msgstr "最近打开(_R)"
 
-#: ../src/actions/DocumentManagement.cc:113
+#: ../src/actions/DocumentManagement.cc:127
 msgid "Close the current file"
 msgstr "关闭当前文件"
 
-#: ../src/actions/DocumentManagement.cc:118
+#: ../src/actions/DocumentManagement.cc:132
 msgid "E_xit"
 msgstr "退出(_X)"
 
-#: ../src/actions/DocumentManagement.cc:118
+#: ../src/actions/DocumentManagement.cc:132
 msgid "Quit the program"
 msgstr "退出程序"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../src/actions/DocumentManagement.cc:250
+#: ../src/actions/DocumentManagement.cc:263
 msgid "I am already open"
 msgstr "我已经是打开"
 
 #. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../src/actions/DocumentManagement.cc:284
-#: ../src/actions/DocumentManagement.cc:338
+#: ../src/actions/DocumentManagement.cc:297
+#: ../src/actions/DocumentManagement.cc:355
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "正在保存文件%s (%s 、%s, %s) 。"
 
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../src/actions/DocumentManagement.cc:292
-#: ../src/actions/DocumentManagement.cc:346
+#: ../src/actions/DocumentManagement.cc:305
+#: ../src/actions/DocumentManagement.cc:363
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "文件%s (%s 、%s, %s) 未被保存。"
 
-#: ../src/actions/DocumentManagement.cc:429
+#: ../src/actions/DocumentManagement.cc:446
 msgid "Open translation"
 msgstr "打开翻译"
 
-#: ../src/actions/DocumentManagement.cc:457
+#: ../src/actions/DocumentManagement.cc:474
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] "%d 条带翻译的字幕被添加"
 
-#: ../src/actions/DocumentManagement.cc:518
+#: ../src/actions/DocumentManagement.cc:535
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "正在保存翻译文件%s (%s 、%s, %s) 。"
 
-#: ../src/actions/DocumentManagement.cc:521
+#: ../src/actions/DocumentManagement.cc:538
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "翻译文件%s (%s 、%s, %s) 未被保存。"
@@ -1135,6 +1155,199 @@ msgstr "编辑下一单元(_N)"
 msgid "Start the editing of the next cell"
 msgstr "开始编辑下一单元"
 
+#. File
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:227
+msgid "_Error"
+msgstr "错误(_E)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:230
+msgid "Try To _Fix All"
+msgstr "试着全部修复(_F)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:237
+msgid "_View"
+msgstr "视图(_V)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:238
+msgid "By _Categories"
+msgstr "按分类(_C)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:240
+msgid "By _Subtitles"
+msgstr "按字幕(_S)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:243
+msgid "_Collapse All"
+msgstr "全部折叠(_C)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:245
+msgid "_Expand All"
+msgstr "全部展开(_E)"
+
+#. menu option
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:250
+#: ../src/gui/MenuBar.cc:68
+msgid "_Options"
+msgstr "选项(_O)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:390
+msgid "No error was found."
+msgstr "没有发现错误。"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:393
+#, c-format
+msgid "1 error was found."
+msgid_plural "%d errors were found."
+msgstr[0] "发现 %d 个错误。"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:407
+#, c-format
+msgid "Subtitle n°<b>%d</b>"
+msgstr "字幕 n°<b>%d</b>"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:715
+#, c-format
+msgid "%s (<b>1 error</b>)"
+msgid_plural "%s (<b>%d errors</b>)"
+msgstr[0] "%s (<b>%d 错误</b>)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:722
+#, c-format
+msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
+msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
+msgstr[0] "字幕 n°<b>%d</b> (<b>%d 错误</b>)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+msgid "_Error Checking"
+msgstr "错误检查(_E)"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+msgid "Launch the error checking."
+msgstr "启动错误检查。"
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:38
+msgid "Max Characters Per Line"
+msgstr "每行最多字数"
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:39
+msgid "An error is detected if a line is too long."
+msgstr "如果一行太长则会导致一个错误被检测到。"
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:73
+#, c-format
+msgid "Subtitle has a too long line: <b>1 character</b>"
+msgid_plural "Subtitle has a too long line: <b>%i characters</b>"
+msgstr[0] "一条超长行的字幕： <b>%i 个字</b>"
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:75
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:79
+#: ../src/actions/errorchecking/Overlapping.h:74
+msgid "<b>Automatic correction:</b> unavailable, correct the error manually."
+msgstr "<b>自动校正：</b> 不可用，请手工校正该错误。"
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:38
+msgid "Max Line Per Subtitle"
+msgstr "每条字幕最大行数"
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:39
+msgid "An error is detected if a subtitle has too many lines."
+msgstr "如果一条字幕有太多行则会导致一个错误被检测到"
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:77
+#, c-format
+msgid "Subtitle has too many lines: <b>1 line</b>"
+msgid_plural "Subtitle has too many lines: <b>%i lines</b>"
+msgstr[0] "字幕有太多行： <b>%i 行</b>"
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:38
+msgid "Min Display Time"
+msgstr "最短显示时间"
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the duration is inferior to the specified "
+"value."
+msgstr "当字幕时长少于指定值时检测并且校正字幕。"
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:71
+#, c-format
+msgid "Subtitle display time is too short: <b>%s</b>"
+msgstr "字幕显示时间太短： <b>%s</b>"
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:75
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:80
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:80
+#, c-format
+msgid "<b>Automatic correction:</b> to change current subtitle end to %s."
+msgstr "<b>自动校正：</b> 改变当前字幕结束为 %s。"
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:38
+msgid "Minimum Gap Between Subtitles"
+msgstr "字幕间最小间隙"
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:39
+msgid ""
+"Detects and fixes subtitles when the minimum gap between subtitles is too "
+"short."
+msgstr "当最字幕间小间隙太短时检测并校正字幕。"
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:81
+#, c-format
+msgid "Too short gap between subtitle: <b>%ims</b>"
+msgstr "字幕间隙太短： <b>%ims</b>"
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:85
+#, c-format
+msgid ""
+"<b>Automatic correction:</b> to clip current subtitle end to %s and to move "
+"next subtitle start to %s."
+msgstr "<b>自动校正：</b> 剪辑当前字幕结尾为 %s 其余部分作为下一字幕的开始为 %s。"
+
+#: ../src/actions/errorchecking/Overlapping.h:38
+msgid "Overlapping"
+msgstr "重叠的"
+
+#: ../src/actions/errorchecking/Overlapping.h:39
+msgid "An error is detected when the subtitle overlap on next subtitle."
+msgstr "错误被查出当字幕交叠在下个字幕。"
+
+#: ../src/actions/errorchecking/Overlapping.h:71
+#, c-format
+msgid "Subtitle overlap on next subtitle: <b>%ims overlap</b>"
+msgstr "字幕和下一字幕重叠：<b>%ims 重叠</b>"
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:38
+msgid "Too Long Display Time"
+msgstr "太长的显示时间"
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"inferior to the specified value."
+msgstr "当每秒字数低于指定值时检测并校正字幕。"
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
+msgstr[0] "字幕显示时间太长了： <b>%.1f 字/s</b>"
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:38
+msgid "Too Short Display Time"
+msgstr "太短的显示时间"
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"superior to the specified value."
+msgstr "当每秒字数高于指定值时检测并校正字幕。"
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
+msgstr[0] "字幕显示时间太短了： <b>%.1f 字/s</b>"
+
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
 msgstr "扩大长度(_E)"
@@ -1147,35 +1360,35 @@ msgstr "延长所选字幕到下一字幕的开始时间"
 msgid "Extend lenght"
 msgstr "延长字幕"
 
-#: ../src/actions/ExternalVideoPlayer.cc:46
+#: ../src/actions/ExternalVideoPlayer.cc:45
 msgid "_Preview"
 msgstr "预览(_P)"
 
-#: ../src/actions/ExternalVideoPlayer.cc:49
+#: ../src/actions/ExternalVideoPlayer.cc:48
 msgid "_Open Movie"
 msgstr "打开电影(_O)"
 
-#: ../src/actions/ExternalVideoPlayer.cc:49
+#: ../src/actions/ExternalVideoPlayer.cc:48
 msgid "Open movie with external video player"
 msgstr "用外部的视频播放器打开电影"
 
-#: ../src/actions/ExternalVideoPlayer.cc:53
+#: ../src/actions/ExternalVideoPlayer.cc:52
 msgid "_Play Movie"
 msgstr "播放视频(_P)"
 
-#: ../src/actions/ExternalVideoPlayer.cc:53
+#: ../src/actions/ExternalVideoPlayer.cc:52
 msgid "Play movie with external video player"
 msgstr "用外部的视频播放器播放电影"
 
-#: ../src/actions/ExternalVideoPlayer.cc:107
+#: ../src/actions/ExternalVideoPlayer.cc:106
 msgid "Please select a movie."
 msgstr "请选择一部电影。"
 
-#: ../src/actions/ExternalVideoPlayer.cc:176
+#: ../src/actions/ExternalVideoPlayer.cc:174
 msgid "Failed to launch the external player."
 msgstr "启动外部的播放器失败。"
 
-#: ../src/actions/ExternalVideoPlayer.cc:178
+#: ../src/actions/ExternalVideoPlayer.cc:176
 #, c-format
 msgid ""
 "%s\n"
@@ -1295,6 +1508,51 @@ msgstr "移动字幕(_M)"
 #: ../src/actions/MoveSubtitles.cc:99
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr "所有被选择的字幕将被移动到时间轴指定的的位置"
+
+#: ../src/actions/preferences/PreferencesPlugin.cc:92
+msgid "Configure Subtitle Editor"
+msgstr "配置字幕编辑"
+
+#. audio output
+#. video output
+#: ../src/actions/preferences/VideoPlayerPage.h:123
+#: ../src/actions/preferences/VideoPlayerPage.h:131
+msgid "Autodetect"
+msgstr "自动检测"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:124
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - 先进的Linux 声音架构"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:125
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr "ESD - Enlightenment 声音守护进程"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:126
+msgid "OSS - Open Sound System"
+msgstr "OSS - 开放声音系统"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:127
+#: ../src/actions/preferences/VideoPlayerPage.h:134
+msgid "SDL - Simple DirectMedia Layer"
+msgstr "SDL - 简单 DirectMedia 层"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:128
+#: ../src/actions/preferences/VideoPlayerPage.h:135
+msgid "GConf"
+msgstr "GConf"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:132
+msgid "X Window System (X11/XShm/Xv)"
+msgstr "X Window 系统 (X11/XShm/Xv)"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:133
+msgid "X Window System (No Xv)"
+msgstr "X Window 系统(无 Xv)"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:136
+msgid "OpenGL"
+msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
 msgid "_Reverse Text And Translation"
@@ -1475,21 +1733,31 @@ msgstr "祯(_F)"
 msgid "_Framerate"
 msgstr "帧频(_F)"
 
-#: ../src/actions/Transcript.cc:50
+#: ../src/actions/Transcript.cc:49
 msgid "_Import Transcript"
 msgstr "导入蓝本(_I)"
 
-#: ../src/actions/Transcript.cc:50
+#: ../src/actions/Transcript.cc:49
 msgid "Create a new document with any text file"
 msgstr "用文本文件新建一个新字幕文件"
 
-#: ../src/actions/Transcript.cc:54
+#: ../src/actions/Transcript.cc:53
 msgid "_Export Transcript"
 msgstr "导出蓝本(_E)"
 
-#: ../src/actions/Transcript.cc:54
+#: ../src/actions/Transcript.cc:53
 msgid "Export just a text in a file"
 msgstr "仅导出字幕文字为文件（蓝本）"
+
+#: ../src/actions/Transcript.cc:132
+#, c-format
+msgid "Could not import from the file \"%s\"."
+msgstr "不能从文件 \"%s\" 导入。"
+
+#: ../src/actions/Transcript.cc:170
+#, c-format
+msgid "Could not export to the file \"%s\"."
+msgstr "不能导出到文件 \"%s\"。"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "_Try To Extend To Perfect"
@@ -1537,7 +1805,7 @@ msgstr "关闭一个多媒体文件"
 
 #: ../src/actions/VideoPlayerManagement.cc:82
 msgid "_Play / Pause"
-msgstr "播放/暂停(_A)"
+msgstr "播放/暂停(_P)"
 
 #: ../src/actions/VideoPlayerManagement.cc:83
 msgid "Play or make a pause"
@@ -1691,6 +1959,7 @@ msgid "Display"
 msgstr "显示"
 
 #: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:232
+#: ../src/SubtitleView.cc:1640
 msgid "Name"
 msgstr "名称"
 
@@ -1706,7 +1975,7 @@ msgstr "简单"
 msgid "Advanced"
 msgstr "高级"
 
-#: ../src/actions/ViewManager.cc:393
+#: ../src/actions/ViewManager.cc:393 ../src/SubtitleView.cc:1646
 msgid "Translation"
 msgstr "翻译"
 
@@ -1786,56 +2055,56 @@ msgstr "保存音频波形"
 msgid "Subtitle Selection"
 msgstr "字幕选择"
 
-#: ../src/Document.cc:330
+#: ../src/Document.cc:295
 #, c-format
 msgid "Could not save the file \"%s\" using the character coding %s."
 msgstr "不能保存文件 \"%s\" 以字符编码 %s。"
 
-#: ../src/Document.cc:332
+#: ../src/Document.cc:297
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character coding."
 msgstr "文档包含无法使用指定字符编码表示的一个或多个字符。"
 
-#: ../src/Document.cc:341
+#: ../src/Document.cc:306
 msgid "Save Document Failed."
 msgstr "保存文件失败。"
 
-#: ../src/Document.cc:674
+#: ../src/Document.cc:639
 #, c-format
 msgid "Could not recognize the subtitle format for the file \"%s\"."
 msgstr "不能识别字幕格式的文件 \"%s\"。"
 
-#: ../src/Document.cc:676
+#: ../src/Document.cc:641
 msgid "Please check that the file contains subtitles in a supported format."
 msgstr "请检查字幕文件是否符合被支持的格式。"
 
-#: ../src/Document.cc:688
+#: ../src/Document.cc:653
 #, c-format
 msgid "Could not open automatically the file \"%s\"."
 msgstr "不能自动打开文件 \"%s\"。"
 
-#: ../src/Document.cc:689
+#: ../src/Document.cc:654
 msgid ""
 "Subtitle Editor was not able to automatically determine the file encoding. "
 "Select a different character coding from the menu and try again."
 msgstr "字幕编辑起不能自动检测该文件编码。请从菜单中选择不同的字符编码然后重试。"
 
-#: ../src/Document.cc:695
+#: ../src/Document.cc:660
 #, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
 msgstr "不能打开文件 \"%s\" 用字符编码 %s."
 
-#: ../src/Document.cc:697
+#: ../src/Document.cc:662
 msgid "Select a different character coding from the menu and try again."
 msgstr "从菜单中选择一种不同的字符编码，然后再试一次。"
 
-#: ../src/Document.cc:722 ../src/Document.cc:731
+#: ../src/Document.cc:687 ../src/Document.cc:696
 #, c-format
 msgid "Could not open the file \"%s\""
 msgstr "无法打开文件“%s”"
 
-#: ../src/Document.cc:732
+#: ../src/Document.cc:697
 msgid "An unknown error occurred while opening the file."
 msgstr "在打开该文件时发现一个未知错误。"
 
@@ -1844,10 +2113,30 @@ msgstr "在打开该文件时发现一个未知错误。"
 msgid "Untitled %d"
 msgstr "无标题 %d"
 
+#: ../src/Encodings.cc:102
+msgid "It's not valid UTF-8."
+msgstr "不是合法的 UTF-8 编码。"
+
+#: ../src/Encodings.cc:113 ../src/Encodings.cc:120 ../src/Encodings.cc:125
+#, c-format
+msgid "Couldn't convert from %s to UTF-8"
+msgstr "不能转换编码从 %s 从 UTF-8"
+
+#: ../src/Encodings.cc:215
+msgid ""
+"subtitleeditor was not able to automatically determine the encoding of the "
+"file you want to open."
+msgstr "subtitleeditor 不能自动检测你要打开的文件的编码。"
+
+#: ../src/Encodings.cc:235
+#, c-format
+msgid "Could not convert the text to the character coding '%s'"
+msgstr "不能转换文本的字符编码为 '%s'"
+
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
 #: ../src/Encodings.h:97
 msgid "Western"
-msgstr "西部区"
+msgstr "西方"
 
 #: ../src/Encodings.h:38 ../src/Encodings.h:75 ../src/Encodings.h:95
 msgid "Central European"
@@ -1945,174 +2234,61 @@ msgstr "越南语"
 msgid "Thai"
 msgstr "泰国语"
 
-#: ../src/formats/SubtitleASS.cc:179
-#: ../src/formats/SubtitleEditorProject.cc:93
-#: ../src/formats/SubtitleEditorProject.cc:151
-#: ../src/formats/SubtitleEncoreNTSC.cc:99
-#: ../src/formats/SubtitleEncorePAL.cc:98
-#: ../src/formats/SubtitleMicroDVD.cc:166 ../src/formats/SubtitleMPL2.cc:85
-#: ../src/formats/SubtitleMPsub.cc:90 ../src/formats/SubtitleSSA.cc:158
-#: ../src/formats/SubtitleSubRip.cc:86 ../src/formats/SubtitleSubViewer2.cc:85
-#: ../src/formats/SubtitleText.cc:81 ../src/formats/SubtitleTimedText.cc:150
-#: ../src/formats/SubtitleTimedText.cc:175 ../src/formats/SubtitleTTXT.cc:90
-#: ../src/formats/SubtitleTTXT.cc:128 ../src/SubtitleSystem.cc:165
+#: ../src/FileWriter.cc:54
+msgid "Couldn't open the file."
+msgstr "不能打开该文件。"
+
+#: ../src/formats/SubtitleEditorProject.h:68
+#: ../src/formats/SubtitleEditorProject.h:123
+#: ../src/formats/TimedTextAuthoringFormat1.h:60
+#: ../src/formats/TimedTextAuthoringFormat1.h:84
 msgid "Failed to open the file for reading."
 msgstr "为读操作打开文件失败。"
 
-#: ../src/formats/SubtitleASS.cc:232
-#: ../src/formats/SubtitleEditorProject.cc:221
-#: ../src/formats/SubtitleEncoreNTSC.cc:153
-#: ../src/formats/SubtitleEncorePAL.cc:150
-#: ../src/formats/SubtitleMicroDVD.cc:218 ../src/formats/SubtitleMPL2.cc:133
-#: ../src/formats/SubtitleMPsub.cc:183 ../src/formats/SubtitleSSA.cc:207
-#: ../src/formats/SubtitleSubRip.cc:152
-#: ../src/formats/SubtitleSubViewer2.cc:133 ../src/formats/SubtitleText.cc:109
-#: ../src/formats/SubtitleTimedText.cc:213 ../src/formats/SubtitleTTXT.cc:170
-msgid "Failed to open the file for writing."
-msgstr "为写操作打开文件失败。"
+#: ../src/formats/SubtitleEditorProject.h:177
+#: ../src/formats/TimedTextAuthoringFormat1.h:117
+msgid "Failed to save the file for writing."
+msgstr "保存文件时写操作失败。"
 
-#: ../src/gui/Application.cc:323
+#: ../src/gui/Application.cc:308
 msgid "Times"
-msgstr "次数"
+msgstr "时间"
 
-#: ../src/gui/Application.cc:323
+#: ../src/gui/Application.cc:308
 msgid "Frames"
 msgstr "帧数"
 
-#: ../src/gui/Application.cc:331
+#: ../src/gui/Application.cc:317
 msgid "Name:"
-msgstr "名字："
+msgstr "名称："
 
-#: ../src/gui/Application.cc:334
+#: ../src/gui/Application.cc:318
+msgid "Path:"
+msgstr "路径："
+
+#: ../src/gui/Application.cc:321
 msgid "Newline:"
-msgstr "新行："
+msgstr "换行符："
 
-#: ../src/gui/Application.cc:335
+#: ../src/gui/Application.cc:322
 msgid "Timing Mode:"
 msgstr "时间模式："
 
-#: ../src/gui/CheckErrorsUI.cc:44
-msgid "An error is detected when the subtitle overlap on next subtitle."
-msgstr "错误被查出当字幕交叠在下个字幕。"
-
-#: ../src/gui/CheckErrorsUI.cc:62
-#, c-format
-msgid ""
-"<b>Subtitle overlap on next subtitle:</b> %ims overlap\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>字幕交叠在下个字幕：</b> %ims overlap\n"
-"  %s -> %s\n"
-"  %s"
-
-#: ../src/gui/CheckErrorsUI.cc:100
-msgid "An error is detected when the number of characters per second is ..."
-msgstr "检测到一个错误当每秒字符数是..."
-
-#: ../src/gui/CheckErrorsUI.cc:119
-#, c-format
-msgid ""
-"<b>Subtitle display time is too short:</b> %i char/s\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>字幕显示时间是太短的：</b> %i char/s\n"
-"  %s - %s\n"
-"  %s"
-
-#: ../src/gui/CheckErrorsUI.cc:155
-msgid "An error is detected when the number ..."
-msgstr "错误被查出当数字..."
-
-#: ../src/gui/CheckErrorsUI.cc:174
-#, c-format
-msgid ""
-"<b>Subtitle display time is too long:</b> %i char/s\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>字幕显示时间是太长的：</b> %i char/s\n"
-"\" %s - %s\n"
-"  %s"
-
-#: ../src/gui/CheckErrorsUI.cc:216
-msgid "Too Long line"
-msgstr "太长的线"
-
-#: ../src/gui/CheckErrorsUI.cc:217 ../src/gui/CheckErrorsUI.cc:287
-msgid "An error is detected when ..."
-msgstr "错误被查出当..."
-
-#: ../src/gui/CheckErrorsUI.cc:243
-#, c-format
-msgid ""
-"<b>Subtitle has a too long line (%s):</b> %i characters\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>字幕有一条太长的线(%s)：<b> %i characters\n"
-"  %s - %s\n"
-"  %s"
-
-#: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:777 ../src/SubtitleView.cc:1697
-msgid "text"
-msgstr "文字"
-
-#: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:841 ../src/SubtitleView.cc:1698
-msgid "translation"
-msgstr "翻译"
-
-#: ../src/gui/CheckErrorsUI.cc:316
-#, c-format
-msgid ""
-"<b>Subtitle has too many lines (%s):</b> %i\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>字幕有许多条线(%s)：<b> %i\n"
-"  %s - %s\n"
-"  %s"
-
-#: ../src/gui/CheckErrorsUI.cc:354
-msgid "Minimum gap between subtitles"
-msgstr "在字幕之间最小间隔"
-
-#: ../src/gui/CheckErrorsUI.cc:355
-msgid ""
-"An error is detected when the minimum gap between subtitles is too short."
-msgstr "检测到一个错误当在字幕之间最小间隔是太短的。"
-
-#: ../src/gui/CheckErrorsUI.cc:376
-#, c-format
-msgid "<b>Too short gap between subtitle:</b> %ims"
-msgstr "<b>在字幕之间太短的空白：</b> %ims"
-
-#: ../src/gui/CheckErrorsUI.cc:514
-msgid "Line"
-msgstr "线"
-
-#: ../src/gui/CheckErrorsUI.cc:528
-msgid "Errors"
-msgstr "错误"
-
-#: ../src/gui/CheckErrorsUI.cc:728
-msgid "Document not found."
-msgstr "文件没被发现。"
-
-#: ../src/gui/ComboBoxEncoding.cc:142
+#: ../src/gui/ComboBoxEncoding.cc:143
 msgid "Auto Detected"
 msgstr "自动检测"
 
-#: ../src/gui/ComboBoxEncoding.cc:155
+#: ../src/gui/ComboBoxEncoding.cc:156
 msgid "Current Locale"
 msgstr "当前语系"
 
-#: ../src/gui/ComboBoxEncoding.cc:176
+#: ../src/gui/ComboBoxEncoding.cc:177
 msgid "Add or Remove..."
 msgstr "添加或删除"
+
+#: ../src/gui/ComboBoxVideo.cc:74
+msgid "None"
+msgstr "无"
 
 #. column description
 #: ../src/gui/DialogCharacterCodings.cc:65
@@ -2124,205 +2300,95 @@ msgstr "描述(_D)"
 msgid "_Encoding"
 msgstr "编码(_E)"
 
-#: ../src/gui/DialogFileChooser.cc:173
-msgid "None"
-msgstr "无"
-
-#: ../src/gui/DialogFileChooser.cc:243
+#: ../src/gui/DialogFileChooser.cc:46
 msgid "All files (*.*)"
 msgstr "所有文件 (*.*)"
 
-#: ../src/gui/DialogFileChooser.cc:250
+#: ../src/gui/DialogFileChooser.cc:53
 msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
 msgstr "所有支持的格式 (*.ass, *.ssa, *.srt, ...)"
 
-#: ../src/gui/DialogFileChooser.cc:588
+#: ../src/gui/DialogFileChooser.cc:391
 msgid "Open Video"
 msgstr "打开视频"
 
-#: ../src/gui/DialogFileChooser.cc:594 ../src/gui/DialogFileChooser.cc:656
+#: ../src/gui/DialogFileChooser.cc:397 ../src/gui/DialogFileChooser.cc:459
 msgid "Video"
 msgstr "视频"
 
-#: ../src/gui/DialogFileChooser.cc:605 ../src/gui/DialogFileChooser.cc:667
+#: ../src/gui/DialogFileChooser.cc:408 ../src/gui/DialogFileChooser.cc:470
 msgid "Audio"
 msgstr "音频"
 
-#: ../src/gui/DialogFileChooser.cc:613 ../src/gui/DialogFileChooser.cc:676
+#: ../src/gui/DialogFileChooser.cc:416 ../src/gui/DialogFileChooser.cc:479
 msgid "ALL"
 msgstr "所有文件 (*.*)"
 
-#: ../src/gui/DialogFileChooser.cc:644
+#: ../src/gui/DialogFileChooser.cc:447
 msgid "Open Waveform"
 msgstr "打开音频波形文件或选择媒体文件生成音频波形"
 
-#: ../src/gui/DialogFileChooser.cc:650
+#: ../src/gui/DialogFileChooser.cc:453
 msgid "Waveform (*.wf)"
 msgstr "音频波形文件 (*.wf)"
 
-#: ../src/gui/MenuBar.cc:124
+#. create all menu
+#: ../src/gui/MenuBar.cc:63
 msgid "_File"
 msgstr "文件(_F)"
 
-#: ../src/gui/MenuBar.cc:126
-msgid "_Properties"
-msgstr "属性(_P)"
-
-#: ../src/gui/MenuBar.cc:133
+#: ../src/gui/MenuBar.cc:64
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/gui/MenuBar.cc:144
+#: ../src/gui/MenuBar.cc:65
 msgid "_Timings"
 msgstr "时间轴(_T)"
 
-#: ../src/gui/MenuBar.cc:151
+#: ../src/gui/MenuBar.cc:66
 msgid "T_ools"
 msgstr "工具(_O)"
 
-#. ag.item("find-and-replace", Gtk::Stock::FIND_AND_REPLACE, _("_Find And Replace"),
-#. _("Search for and replace text"), "<Control>F");
-#: ../src/gui/MenuBar.cc:155
-msgid "_Check Errors"
-msgstr "检查错误(_C)"
-
-#: ../src/gui/MenuBar.cc:156
-msgid "Launch the errors checking"
-msgstr "启动错误检查"
-
-#: ../src/gui/MenuBar.cc:164
+#: ../src/gui/MenuBar.cc:67
 msgid "V_iew"
 msgstr "视图(_I)"
 
-#: ../src/gui/MenuBar.cc:171
-msgid "_Options"
-msgstr "选项(_O)"
-
-#: ../src/gui/MenuBar.cc:173
-msgid "Configure Subtitle Editor"
-msgstr "配置字幕编辑"
-
-#: ../src/gui/MenuBar.cc:174
-msgid "Configure _Keyboard Shortcuts"
-msgstr "配置键盘快捷键(_K)"
-
-#: ../src/gui/MenuBar.cc:182
+#: ../src/gui/MenuBar.cc:69
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/gui/MenuBar.cc:381
-msgid "Actions"
-msgstr "动作"
-
-#: ../src/gui/MenuBar.cc:403
-msgid "Shortcut"
-msgstr "快捷键"
-
-#: ../src/gui/MenuBar.cc:533
-msgid "Invalid shortcut."
-msgstr "无效的快捷键。"
-
-#: ../src/gui/MenuBar.cc:551
-#, c-format
-msgid "Shortcut \"%s\" is already taken by \"%s\"."
-msgstr "快捷键 \"%s\"已经被\"%s 使用\"。"
-
-#: ../src/gui/MenuBar.cc:554
-#, c-format
-msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
-msgstr "重新分配快捷键将导致它从“%s”中被去掉。"
-
-#: ../src/gui/MenuBar.cc:557
-msgid "Conflicting Shortcuts"
-msgstr "快捷键冲突"
-
-#: ../src/gui/MenuBar.cc:563
-msgid "Changing shortcut failed."
-msgstr "改变快捷键失败。"
-
-#: ../src/gui/MenuBar.cc:594
-msgid "Removing shortcut failed."
-msgstr "删除快捷键失败。"
-
-#: ../src/gui/PreferencesUI.cc:89 ../src/gui/PreferencesUI.cc:99
-msgid "Autodetect"
-msgstr "自动检测"
-
-#: ../src/gui/PreferencesUI.cc:90
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - 先进的Linux 声音架构"
-
-#: ../src/gui/PreferencesUI.cc:91
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment 声音守护进程"
-
-#: ../src/gui/PreferencesUI.cc:92
-msgid "OSS - Open Sound System"
-msgstr "OSS - 开放声音系统"
-
-#: ../src/gui/PreferencesUI.cc:93 ../src/gui/PreferencesUI.cc:102
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - 简单 DirectMedia 层"
-
-#: ../src/gui/PreferencesUI.cc:94 ../src/gui/PreferencesUI.cc:103
-msgid "GConf"
-msgstr "GConf"
-
-#: ../src/gui/PreferencesUI.cc:100
-msgid "X Window System (X11/XShm/Xv)"
-msgstr "X Window 系统 (X11/XShm/Xv)"
-
-#: ../src/gui/PreferencesUI.cc:101
-msgid "X Window System (No Xv)"
-msgstr "X Window 系统(无 Xv)"
-
-#: ../src/gui/PreferencesUI.cc:104
-msgid "OpenGL"
-msgstr ""
-
-#: ../src/main.cc:227
+#: ../src/main.cc:229
 msgid " - edit subtitles files"
 msgstr " - 编辑字幕文件"
 
-#: ../src/Options.cc:57
+#: ../src/Options.cc:40
 msgid "[FILE...]"
 msgstr "[文件...]"
 
-#: ../src/Options.cc:65 ../src/Options.cc:90 ../src/Options.cc:98
+#: ../src/Options.cc:48 ../src/Options.cc:73 ../src/Options.cc:81
 msgid "FILE"
 msgstr "文件"
 
-#: ../src/Options.cc:74
+#: ../src/Options.cc:57
 msgid "NAME"
 msgstr "名称"
 
-#: ../src/Options.cc:82
+#: ../src/Options.cc:65
 msgid "ENCODING"
 msgstr "编码"
 
-#: ../src/SubtitleFormat.cc:150
-msgid "It's not valid UTF-8."
-msgstr "不是合法的 UTF-8 编码。"
+#: ../src/SubtitleFormat.cc:63 ../src/SubtitleFormat.cc:71
+msgid "This function are not implemented to this format."
+msgstr "对于这种格式该功能还未实现。"
 
-#: ../src/SubtitleFormat.cc:164
+#: ../src/SubtitleFormatSystem.cc:113
+msgid "Couldn't recognize format of the file."
+msgstr "不能识别该文件的格式。"
+
+#: ../src/SubtitleFormatSystem.cc:133
 #, c-format
-msgid "Couldn't convert from %s to UTF-8"
-msgstr "不能转换编码从 %s 从 UTF-8"
-
-#: ../src/SubtitleFormat.cc:234
-msgid ""
-"subtitleeditor was not able to automatically determine the encoding of the "
-"file you want to open."
-msgstr "subtitleeditor 不能自动检测你要打开的文件的编码。"
-
-#: ../src/SubtitleFormat.cc:273
-#, c-format
-msgid ""
-"Could not convert the text to the character coding %s:\n"
-"%s"
-msgstr ""
-"不能转换该文本为字符编码 %s：\n"
-"%s"
+msgid "Couldn't create the subtitle format '%s'."
+msgstr "不能创建字幕格式 '%s'。"
 
 #: ../src/SubtitleModel.cc:37
 msgid "Add Subtitle"
@@ -2344,145 +2410,141 @@ msgstr "添附字幕"
 msgid "Remove Subtitles"
 msgstr "取消字幕"
 
-#: ../src/SubtitleSystem.cc:196
-msgid "Couldn't recognize format of the file."
-msgstr "不能识别该文件的格式。"
-
-#: ../src/SubtitleView.cc:426
+#: ../src/SubtitleView.cc:492
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "使用Ctrl+Return 为出口并且回归为线打破"
 
-#: ../src/SubtitleView.cc:428
+#: ../src/SubtitleView.cc:494
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr "用 Return 退出 用 Ctrl+Return 换行"
 
-#: ../src/SubtitleView.cc:575 ../src/SubtitleView.cc:1694
-msgid "num"
-msgstr "序号"
+#: ../src/SubtitleView.cc:646
+msgid "The line number"
+msgstr "行号"
 
-#: ../src/SubtitleView.cc:590
-msgid "This number column"
-msgstr "这个数字专栏"
+#: ../src/SubtitleView.cc:712
+msgid "When a subtitle appears on the screen."
+msgstr "当一个字母出现在屏幕。"
 
-#: ../src/SubtitleView.cc:603 ../src/SubtitleView.cc:1688
-msgid "layer"
-msgstr "层数"
+#: ../src/SubtitleView.cc:724
+msgid "When a subtitle disappears from the screen."
+msgstr "当一个字幕从屏幕上消失。"
 
-#: ../src/SubtitleView.cc:619
-msgid "Layer number."
-msgstr "层数数字。"
-
-#: ../src/SubtitleView.cc:659 ../src/SubtitleView.cc:1695
-msgid "start"
-msgstr "开始"
-
-#: ../src/SubtitleView.cc:662
-msgid "This time is the time when a subtitle appears on the screen."
-msgstr "这时候是时候当字幕出现在屏幕。"
-
-#: ../src/SubtitleView.cc:672 ../src/SubtitleView.cc:1687
-msgid "end"
-msgstr "结束"
-
-#: ../src/SubtitleView.cc:675
-msgid "This time is the time when a subtitle disappears from the screen."
-msgstr "这时候是时候当字幕消失从屏幕。"
-
-#: ../src/SubtitleView.cc:686 ../src/SubtitleView.cc:1685
-msgid "duration"
-msgstr "时长"
-
-#: ../src/SubtitleView.cc:689
+#: ../src/SubtitleView.cc:737
 msgid "The duration of the subtitle."
 msgstr "该条字幕的时长。"
 
-#: ../src/SubtitleView.cc:702 ../src/SubtitleView.cc:1696
-msgid "style"
-msgstr "样式"
+#: ../src/SubtitleView.cc:812
+msgid "The number of characters per second"
+msgstr "每秒的字数"
 
-#: ../src/SubtitleView.cc:729 ../src/SubtitleView.cc:1692
-msgid "name"
-msgstr "名称"
-
-#: ../src/SubtitleView.cc:754 ../src/SubtitleView.cc:1684
-msgid "cps"
-msgstr "cps"
-
-#: ../src/SubtitleView.cc:885 ../src/SubtitleView.cc:1693
-msgid "note"
-msgstr "批注"
-
-#: ../src/SubtitleView.cc:912 ../src/SubtitleView.cc:1686
-msgid "effect"
-msgstr "效果"
-
-#: ../src/SubtitleView.cc:941 ../src/SubtitleView.cc:1690
-msgid "R"
-msgstr "右"
-
-#: ../src/SubtitleView.cc:968 ../src/SubtitleView.cc:1689
-msgid "L"
-msgstr "左"
-
-#: ../src/SubtitleView.cc:995 ../src/SubtitleView.cc:1691
-msgid "V"
-msgstr "V"
-
-#: ../src/SubtitleView.cc:1055
+#: ../src/SubtitleView.cc:1064
 msgid "Editing layer"
 msgstr "编辑层"
 
-#: ../src/SubtitleView.cc:1083 ../src/SubtitleView.cc:1094
+#: ../src/SubtitleView.cc:1092 ../src/SubtitleView.cc:1103
 msgid "Editing start"
 msgstr "编辑开始"
 
-#: ../src/SubtitleView.cc:1121 ../src/SubtitleView.cc:1132
+#: ../src/SubtitleView.cc:1130 ../src/SubtitleView.cc:1141
 msgid "Editing end"
 msgstr "编辑结尾"
 
-#: ../src/SubtitleView.cc:1159 ../src/SubtitleView.cc:1170
+#: ../src/SubtitleView.cc:1168 ../src/SubtitleView.cc:1179
 msgid "Editing duration"
 msgstr "编辑时长"
 
-#: ../src/SubtitleView.cc:1190
+#: ../src/SubtitleView.cc:1199
 msgid "Editing text"
 msgstr "编辑文字"
 
-#: ../src/SubtitleView.cc:1212
+#: ../src/SubtitleView.cc:1221
 msgid "Editing translation"
 msgstr "编辑翻译"
 
-#: ../src/SubtitleView.cc:1232
+#: ../src/SubtitleView.cc:1241
 msgid "Editing note"
 msgstr "编辑批注"
 
-#: ../src/SubtitleView.cc:1251
+#: ../src/SubtitleView.cc:1260
 msgid "Editing effect"
 msgstr "编辑效果"
 
-#: ../src/SubtitleView.cc:1272
+#: ../src/SubtitleView.cc:1281
 msgid "Editing style"
 msgstr "编辑样式"
 
-#: ../src/SubtitleView.cc:1292
+#: ../src/SubtitleView.cc:1301
 msgid "Editing name"
 msgstr "编辑命名"
 
-#: ../src/SubtitleView.cc:1312
+#: ../src/SubtitleView.cc:1321
 msgid "Editing margin-l"
 msgstr "编辑边际-l"
 
-#: ../src/SubtitleView.cc:1332
+#: ../src/SubtitleView.cc:1341
 msgid "Editing margin-r"
 msgstr "编辑边际-r"
 
-#: ../src/SubtitleView.cc:1352
+#: ../src/SubtitleView.cc:1361
 msgid "Editing margin-v"
 msgstr "编辑边际-v"
 
-#: ../src/SubtitleView.cc:1490
+#: ../src/SubtitleView.cc:1499
 msgid "Set style to selection"
 msgstr "对选择部分设置样式"
+
+#: ../src/SubtitleView.cc:1632
+msgid "CPS"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1633
+msgid "Duration"
+msgstr "长度"
+
+#: ../src/SubtitleView.cc:1634
+msgid "Effect"
+msgstr "效果"
+
+#: ../src/SubtitleView.cc:1635
+msgid "End"
+msgstr "末"
+
+#: ../src/SubtitleView.cc:1636
+msgid "Layer"
+msgstr "层"
+
+#: ../src/SubtitleView.cc:1637
+msgid "L"
+msgstr "左"
+
+#: ../src/SubtitleView.cc:1638
+msgid "R"
+msgstr "右"
+
+#: ../src/SubtitleView.cc:1639
+msgid "V"
+msgstr "V"
+
+#: ../src/SubtitleView.cc:1641
+msgid "Note"
+msgstr "备忘"
+
+#: ../src/SubtitleView.cc:1642
+msgid "Num"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1643
+msgid "Start"
+msgstr "开始"
+
+#: ../src/SubtitleView.cc:1644
+msgid "Style"
+msgstr "风格"
+
+#: ../src/SubtitleView.cc:1645
+msgid "Text"
+msgstr "文字"
 
 #: ../src/TimeUtility.cc:36
 msgid "23.976 fps"
@@ -2508,7 +2570,7 @@ msgstr ""
 msgid "Invalid fps"
 msgstr "无效 fps"
 
-#: ../src/utility.cc:458
+#: ../src/utility.cc:382
 msgid ""
 "GStreamer plugins missing.\n"
 "The playback of this movie requires the following decoders which are not "
@@ -2517,12 +2579,12 @@ msgstr ""
 "GStreamer 插件没找到。\n"
 "播放该影片所需的如下GStreamer解码器没有安装："
 
-#: ../src/utility.cc:477
+#: ../src/utility.cc:401
 #, c-format
 msgid "Failed to create a GStreamer element '%s'."
 msgstr "创建一个 GStreamer 要素 '%s' 失败。"
 
-#: ../src/utility.cc:478
+#: ../src/utility.cc:402
 msgid "Please check your GStreamer installation."
 msgstr "请检查你安装的 GStreamer。"
 
