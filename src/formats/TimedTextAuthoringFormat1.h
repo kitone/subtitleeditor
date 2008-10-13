@@ -114,7 +114,7 @@ public:
 		}
 		catch(const std::exception &ex)
 		{
-			throw IOFileError(_("Failed to save the file for writing."));
+			throw IOFileError(_("Failed to write to the file."));
 		}
 	}
 

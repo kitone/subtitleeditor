@@ -1,3 +1,10 @@
+2008-10-13  kitone  <kitone@gna.org>
+
+	* src/SubtitleFormat.cc:
+	* src/formats/SubtitleEditorProject.h:
+	* src/formats/TimedTextAuthoringFormat1.h:
+	Spelling fixes by Luboš Staněk.
+
 2008-10-12  kitone  <kitone@gna.org>
 
 	* src/actions/errorchecking/ErrorCheckingPlugin.cc:
