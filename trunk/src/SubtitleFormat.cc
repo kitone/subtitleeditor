@@ -60,7 +60,7 @@ Document* SubtitleFormat::document()
  */
 void SubtitleFormat::open(FileReader &file)
 {
-	throw IOFileError(_("This function are not implemented to this format."));
+	throw IOFileError(_("This function is not implemented for this format."));
 }
 
 /*
@@ -68,5 +68,5 @@ void SubtitleFormat::open(FileReader &file)
  */
 void SubtitleFormat::save(FileWriter &file)
 {
-	throw IOFileError(_("This function are not implemented to this format."));
+	throw IOFileError(_("This function is not implemented for this format."));
 }
