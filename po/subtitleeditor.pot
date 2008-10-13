@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-10 19:51+0200\n"
+"POT-Creation-Date: 2008-10-13 14:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1141,25 +1141,25 @@ msgstr[1] ""
 msgid "Subtitle n°<b>%d</b>"
 msgstr ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:715
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:732
 #, c-format
 msgid "%s (<b>1 error</b>)"
 msgid_plural "%s (<b>%d errors</b>)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:722
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:739
 #, c-format
 msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
 msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:815
 msgid "_Error Checking"
 msgstr ""
 
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:815
 msgid "Launch the error checking."
 msgstr ""
 
@@ -2187,7 +2187,7 @@ msgstr ""
 
 #: ../src/formats/SubtitleEditorProject.h:177
 #: ../src/formats/TimedTextAuthoringFormat1.h:117
-msgid "Failed to save the file for writing."
+msgid "Failed to write to the file."
 msgstr ""
 
 #: ../src/gui/Application.cc:308
@@ -2318,7 +2318,7 @@ msgid "ENCODING"
 msgstr ""
 
 #: ../src/SubtitleFormat.cc:63 ../src/SubtitleFormat.cc:71
-msgid "This function are not implemented to this format."
+msgid "This function is not implemented for this format."
 msgstr ""
 
 #: ../src/SubtitleFormatSystem.cc:113
