@@ -1,3 +1,8 @@
+2008-10-16  kitone  <kitone@gna.org>
+
+	* src/utility.cc:
+	Fix: change async to sync spawn_command.
+
 2008-10-13  kitone  <kitone@gna.org>
 
 	* configure.in:
