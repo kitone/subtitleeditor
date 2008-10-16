@@ -116,7 +116,7 @@ Glib::ustring get_config_dir(const Glib::ustring &file)
 	if(Glib::file_test(path, Glib::FILE_TEST_IS_DIR) == false)
 	{
 		//g_mkdir(path.c_str(), 0700);
-		Glib::spawn_command_line_async("mkdir " + path);
+		Glib::spawn_command_line_sync("mkdir " + path);
 	}
 	
 	// create profile path if need
@@ -124,7 +124,7 @@ Glib::ustring get_config_dir(const Glib::ustring &file)
 
 	if(Glib::file_test(path, Glib::FILE_TEST_IS_DIR) == false)
 	{
-		Glib::spawn_command_line_async("mkdir " + path);
+		Glib::spawn_command_line_sync("mkdir " + path);
 	}
 
 
