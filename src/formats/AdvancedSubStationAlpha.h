@@ -24,7 +24,6 @@
  */
 
 #include "SubtitleFormat.h"
-#include "RegEx.h"
 #include <glibmm.h>
 #include <iomanip>
 

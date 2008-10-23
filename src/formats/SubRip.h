@@ -24,7 +24,6 @@
  */
 
 #include "SubtitleFormat.h"
-#include "RegEx.h"
 
 
 /*
@@ -60,8 +59,11 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		RegEx re_num("^\\d+$");
-		RegEx re_time("^(\\d+):(\\d+):(\\d+),(\\d+)\\s-->\\s(\\d+):(\\d+):(\\d+),(\\d+)");
+		Glib::RefPtr<Glib::Regex> re_num = Glib::Regex::create(
+				"^\\d+$");
+
+		Glib::RefPtr<Glib::Regex> re_time = Glib::Regex::create(
+				"^(\\d+):(\\d+):(\\d+),(\\d+)\\s-->\\s(\\d+):(\\d+):(\\d+),(\\d+)");
 
 		int start[4], end[4];
 		Subtitles subtitles = document()->subtitles();
@@ -71,15 +73,27 @@ public:
 		while(file.getline(line))
 		{
 			// Read the subtitle number (don't needs)
-			if(re_num.exec(line))
+			if(re_num->match(line))
 			{
 				file.getline(line); // Next line is a time line
 
 				// Read the subtitle time "start --> end"
-				if(re_time.FullMatch(line.c_str(), 
-								&start[0], &start[1], &start[2], &start[3], 
-								&end[0], &end[1], &end[2], &end[3]))
+				if(re_time->match(line))
 				{
+					std::vector<Glib::ustring> group = re_time->split(line);
+					//if(group.size() == 1)
+					//	continue;
+
+					start[0] = utility::string_to_int(group[1]);
+					start[1] = utility::string_to_int(group[2]);
+					start[2] = utility::string_to_int(group[3]);
+					start[3] = utility::string_to_int(group[4]);
+
+					end[0] = utility::string_to_int(group[5]);
+					end[1] = utility::string_to_int(group[6]);
+					end[2] = utility::string_to_int(group[7]);
+					end[3] = utility::string_to_int(group[8]);
+
 					Glib::ustring text;
 					int count = 0;
 

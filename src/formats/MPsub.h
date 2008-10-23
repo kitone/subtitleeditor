@@ -24,7 +24,6 @@
  */
 
 #include "SubtitleFormat.h"
-#include "RegEx.h"
 #include "utility.h"
 
 /*
@@ -53,13 +52,12 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		RegEx re("^(-?\\d+(?:\\.\\d+)?) (-?\\d+(?:\\.\\d+)?)\\s*$");
-		//RegEx re("^(-?[\\d.]+) (-?[\\d.]+)\\s*$");
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+				"^(-?\\d+(?:\\.\\d+)?) (-?\\d+(?:\\.\\d+)?)\\s*$");
 		
 		Subtitles subtitles = document()->subtitles();
 
 		Glib::ustring line;
-		std::string start, duration;
 		double previous_end = 0;
 
 		TIMING_MODE mode = TIME;
@@ -67,10 +65,14 @@ public:
 
 		while(file.getline(line))
 		{
-			if(re.FullMatch(line.c_str(), &start, &duration))
+			if(re->match(line))
 			{
-				double dstart = utility::string_to_double(start);
-				double dduration = utility::string_to_double(duration);
+				std::vector<Glib::ustring> group = re->split(line);
+				//if(group.size() == 1)
+				//	continue;
+
+				double dstart = utility::string_to_double(group[1]);
+				double dduration = utility::string_to_double(group[2]);
 
 				// Sets times
 				double start_value = previous_end + dstart;

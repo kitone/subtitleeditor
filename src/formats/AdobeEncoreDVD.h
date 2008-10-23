@@ -32,7 +32,6 @@
  */
 
 #include "SubtitleFormat.h"
-#include "RegEx.h"
 
 
 class AdobeEncoreDVD : public SubtitleFormat
@@ -53,34 +52,51 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		RegEx re("\\d+\\s(\\d+)[:;](\\d+)[:;](\\d+)[:;](\\d+)\\s(\\d+)[:;](\\d+)[:;](\\d+)[:;](\\d+)\\s(.*?)$");
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+				"\\d+\\s(\\d+)[:;](\\d+)[:;](\\d+)[:;](\\d+)\\s(\\d+)[:;](\\d+)[:;](\\d+)[:;](\\d+)\\s(.*?)$");
 		
 		Subtitles subtitles = document()->subtitles();
 
 		int start[4], end[4];
 		Glib::ustring line;
-		std::string text;
+		Glib::ustring text;
 
+		Subtitle sub;
 
 		while(file.getline(line))
 		{
-			if(re.FullMatch( 
-							line.c_str(), 
-							&start[0], &start[1], &start[2], &start[3], 
-							&end[0], &end[1], &end[2], &end[3],
-							&text))
+			if(re->match(line))
 			{
+				std::vector<Glib::ustring> group = re->split(line);
+
+				start[0] = utility::string_to_int(group[1]);
+				start[1] = utility::string_to_int(group[2]);
+				start[2] = utility::string_to_int(group[3]);
+				start[3] = utility::string_to_int(group[4]);
+
+				end[0] = utility::string_to_int(group[5]);
+				end[1] = utility::string_to_int(group[6]);
+				end[2] = utility::string_to_int(group[7]);
+				end[3] = utility::string_to_int(group[8]);
+
+				text = group[9];
+
 				// last 00 are frame, not time!
 				start[3] = start[3] * 1000 / m_framerate_value;
 				end[3] = end[3] * 1000 / m_framerate_value;
-	
+
 				// Append a subtitle
-				Subtitle sub = subtitles.append();
+				sub = subtitles.append();
 
 				sub.set_text(text);
 				sub.set_start_and_end(
 								SubtitleTime(start[0], start[1], start[2], start[3]),
 								SubtitleTime(end[0], end[1], end[2], end[3]));
+			}
+			else if(sub)
+			{
+				//this is another line of the previous subtitle
+				sub.set_text(sub.get_text() + "\n" + line);
 			}
 		}
 	}

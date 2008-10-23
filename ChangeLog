@@ -1,3 +1,15 @@
+2008-10-23  kitone  <kitone@gna.org>
+
+	* src/formats/AdobeEncoreDVD.h:
+	* src/formats/AdvancedSubStationAlpha.h:
+	* src/formats/MPL2.h:
+	* src/formats/MPsub.h:
+	* src/formats/MicroDVD.h:
+	* src/formats/SubRip.h:
+	* src/formats/SubStationAlpha.h:
+	* src/formats/SubViewer2.h:
+	Using Glib::Regex instead of RegEx.
+
 2008-10-16  kitone  <kitone@gna.org>
 
 	* src/utility.cc:

@@ -24,7 +24,6 @@
  */
 
 #include "SubtitleFormat.h"
-#include "RegEx.h"
 #include "utility.h"
 
 /*
@@ -53,28 +52,37 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		RegEx re("^\\[(\\d+)\\]\\[(\\d+)\\](.*?)$");
-		
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+				"^\\[(\\d+)\\]\\[(\\d+)\\](.*?)$");
+
 		Subtitles subtitles = document()->subtitles();
 
 		Glib::ustring line;
 		long start, end;
-		std::string text;
+		Glib::ustring text;
 		int ds = 100; // decaseconds (0,1 s) 
 
 		while(file.getline(line))
 		{
-			if(re.FullMatch(line.c_str(), &start, &end, &text))
-			{
-				// Append a subtitle
-				Subtitle sub = subtitles.append();
+			if(!re->match(line))
+				continue;
 
-				utility::replace(text, "|", "\n");
+			std::vector<Glib::ustring> group = re->split(line);
+			//if(group.size() == 1)
+			//	continue;
 
-				sub.set_text(text);
-				sub.set_start(SubtitleTime(start * ds));
-				sub.set_end(SubtitleTime(end * ds));
-			}
+			start = utility::string_to_int(group[1]);
+			end = utility::string_to_int(group[2]);
+			text = group[3];
+
+			// Append a subtitle
+			Subtitle sub = subtitles.append();
+
+			utility::replace(text, "|", "\n");
+
+			sub.set_text(text);
+			sub.set_start(SubtitleTime(start * ds));
+			sub.set_end(SubtitleTime(end * ds));
 		}
 	}
 
