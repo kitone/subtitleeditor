@@ -24,7 +24,6 @@
  */
 
 #include "SubtitleFormat.h"
-#include "RegEx.h"
 
 /*
  * format:
@@ -54,9 +53,11 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		RegEx re("^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+				"^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
 		
-		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create("\\{[yY]:(b|i|u)\\}(.*?)$");
+		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create(
+				"\\{[yY]:(b|i|u)\\}(.*?)$");
 		
 		// init to frame mode
 		document()->set_timing_mode(FRAME);
@@ -66,23 +67,32 @@ public:
 
 		int frame_start, frame_end;
 		Glib::ustring line;
-		std::string text;
+		Glib::ustring text;
 
 		while(file.getline(line))
 		{
-			if(re.FullMatch(line.c_str(), &frame_start, &frame_end, &text))
-			{
-				text = tags->replace(text, 0, "<\\1>\\2</\\1>", (Glib::RegexMatchFlags)0);
+			if(!re->match(line))
+				continue;
 
-				utility::replace(text, "|", "\n");
+			std::vector<Glib::ustring> group = re->split(line);
+			//if(group.size() == 1)
+			//	continue;
+
+			frame_start = utility::string_to_int(group[1]);
+			frame_end = utility::string_to_int(group[2]);
+			text = group[3];
+
+
+			text = tags->replace(text, 0, "<\\1>\\2</\\1>", (Glib::RegexMatchFlags)0);
+
+			utility::replace(text, "|", "\n");
 	
-				// Append a subtitle
-				Subtitle sub = subtitles.append();
+			// Append a subtitle
+			Subtitle sub = subtitles.append();
 
-				sub.set_text(text);
-				sub.set_start_frame(frame_start);
-				sub.set_end_frame(frame_end);
-			}
+			sub.set_text(text);
+			sub.set_start_frame(frame_start);
+			sub.set_end_frame(frame_end);
 		}
 	}
 
