@@ -24,7 +24,6 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-#include "RegEx.h"
 
 
 class CombineSelectedSubtitlesPlugin : public Plugin
