@@ -1,3 +1,11 @@
+2008-10-24  kitone  <kitone@gna.org>
+
+	* src/gui/ComboBoxVideo.cc:
+	Using Glib::Regex instead of RegEx.
+
+	* src/gui/DialogFileChooser.cc:
+	Remove unused header RegEx.h.
+
 2008-10-23  kitone  <kitone@gna.org>
 
 	* src/formats/AdobeEncoreDVD.h:
