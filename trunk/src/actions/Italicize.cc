@@ -25,7 +25,6 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-#include "RegEx.h"
 
 /*
  *
@@ -134,11 +133,11 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		RegEx re(pattern);
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(pattern);
 
 		for(unsigned int i=0; i<subs.size(); ++i)
 		{
-			if(re.PartialMatch(subs[i].get_text().c_str()))
+			if(re->match(subs[i].get_text()))
 				return true;
 		}
 		
@@ -152,15 +151,15 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		RegEx re(pattern);
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(pattern, Glib::REGEX_MULTILINE);
 
 		for(unsigned int i=0; i<subs.size(); ++i)
 		{
 			Subtitle sub = subs[i];
 
-			std::string text = sub.get_text();
+			Glib::ustring text = sub.get_text();
 
-			re.GlobalReplace(replace, &text);
+			text = re->replace(text, 0, replace, (Glib::RegexMatchFlags)0);
 
 			sub.set_text(text);
 		}
