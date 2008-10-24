@@ -24,7 +24,6 @@
 #include "Document.h"
 #include "Plugin.h"
 #include "utility.h"
-#include "RegEx.h"
 
 
 class SplitSelectedSubtitlesPlugin : public Plugin
@@ -119,7 +118,7 @@ protected:
 		SubtitleTime gap(min_gap_between_subtitles / 2);
 
 		// utilisé pour couper en deux
-		RegEx ex("^(.*?)\\n(.*?)$");
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*?)\\n(.*?)$");
 
 		//
 		doc->start_command(_("Split subtitles"));
@@ -149,11 +148,11 @@ protected:
 
 			// s'il y a deux lignes alors on coupe le texte en deux 
 			{
-				std::string a,b;
-				if(ex.FullMatch(sub.get_text().c_str(), &a, &b))
+				if(re->match(sub.get_text()))
 				{
-					sub.set_text(a);
-					next.set_text(b);
+					std::vector<Glib::ustring> group = re->split(sub.get_text());
+					sub.set_text(group[1]);
+					next.set_text(group[2]);
 				}
 			}
 		}

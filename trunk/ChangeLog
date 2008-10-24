@@ -1,5 +1,13 @@
 2008-10-24  kitone  <kitone@gna.org>
 
+	* src/actions/CombineSubtitles.cc:
+	Remove unused header RegEx.h.
+
+	* src/actions/SplitSubtitle.cc:
+	Using Glib::Regex instead of RegEx.
+
+2008-10-24  kitone  <kitone@gna.org>
+
 	* src/actions/Dialoguize.cc:
 	* src/actions/Italicize.cc:
 	Using Glib::Regex instead of RegEx.
