@@ -21,7 +21,6 @@
  */
 
 #include "ComboBoxVideo.h"
-#include "RegEx.h"
 #include "Config.h"
 #include "utility.h"
 
@@ -52,13 +51,12 @@ bool ComboBoxVideo::set_current_folder(const Glib::ustring &path)
 		return false;
 	}
 
-	std::string f, e;
-
-	RegEx exp("^(.*)\\.((avi)|(wma)|(mkv)|(mpg)|(mpeg)|(ogg)|(mov)|(mp4)|(xvid))$");
+	Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+			"^(.*)\\.((avi)|(wma)|(mkv)|(mpg)|(mpeg)|(ogg)|(mov)|(mp4)|(xvid))$");
 		
 	for(unsigned int i=0; i<files.size(); ++i)
 	{
-		if(exp.FullMatch(files[i], &f, &e))
+		if(re->match(files[i]))
 			append_text(files[i]);
 	}
 
@@ -91,22 +89,24 @@ bool ComboBoxVideo::auto_select_video(const Glib::ustring &subtitle)
 		return false;
 	}
 
-	RegEx exp("^(.*)\\.((avi)|(wma)|(mkv)|(mpg)|(mpeg)|(ogg)|(mov)|(mp4)|(xvid))$");
+	Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
+			"^(.*)\\.((avi)|(wma)|(mkv)|(mpg)|(mpeg)|(ogg)|(mov)|(mp4)|(xvid))$");
 
 	Gtk::TreeIter it = get_model()->children().begin();
 
 	for(; it; ++it)
 	{
-		std::string p, e;
 		Glib::ustring video = (*it)[m_text_columns.m_column];
 
-		if(exp.FullMatch(video.c_str(), &p, &e))
+		std::vector<Glib::ustring> group = re->split(video);
+
+		if(group.size() == 1)
+			continue;
+
+		if(subtitle.find(group[1]) != Glib::ustring::npos)
 		{
-			if(subtitle.find(p) != Glib::ustring::npos)
-			{
-				set_active_text(video);
-				return true;
-			}
+			set_active_text(video);
+			return true;
 		}
 	}
 

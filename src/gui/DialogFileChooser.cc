@@ -22,7 +22,6 @@
 
 #include "DialogFileChooser.h"
 #include "utility.h"
-#include "RegEx.h"
 #include "DialogCharacterCodings.h"
 #include "ComboBoxEncoding.h"
 #include "ComboBoxSubtitleFormat.h"
