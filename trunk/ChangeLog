@@ -1,5 +1,18 @@
 2008-10-27  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Remove pcrecpp dependance.
+
+	* src/Makefile.am:
+	Remove RegEx* and testRegEx.cc files.
+	
+	* src/RegEx.cc:
+	* src/RegEx.h:
+	* src/unittest/testRegEx.cc:
+	Remove files.
+
+2008-10-27  kitone  <kitone@gna.org>
+
 	* src/actions/FindAndReplace.cc:
 	Remove RegEx. (hack)
 
