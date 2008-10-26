@@ -25,7 +25,60 @@
 #include "Plugin.h"
 #include "Config.h"
 #include "utility.h"
-#include "RegEx.h"
+#include <pcre.h>
+
+/*
+ * FIXME: Remove me!
+ */
+bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string, int options, Glib::ustring::size_type &start, Glib::ustring::size_type &len)
+{
+	int flags = PCRE_UTF8 | PCRE_MULTILINE;
+
+	// pour pcre
+	pcre* m_pcre = NULL;
+	const char *error_ptr = NULL;
+	int error_offset = 0;
+	int error_code = 0;
+
+	if(options & PCRE_CASELESS)
+		flags |= PCRE_CASELESS;
+
+	// crée l'objet
+	m_pcre = pcre_compile2(pattern.c_str(), flags,
+			&error_code, &error_ptr, &error_offset, NULL);
+
+	if(m_pcre == NULL || error_code != 0)
+	{
+		return false;
+	}
+	else
+	{
+		int options = 0;
+		int ovector[2];
+
+		int rc = pcre_exec(
+				(const pcre *)m_pcre,
+				NULL,
+				string.c_str(), (int)string.bytes(),
+				0,
+				options, 
+				ovector, 2);
+
+		pcre_free(m_pcre);
+
+		if(rc >= 0)
+		{
+			std::string tmp = string;
+			
+			start = Glib::ustring( tmp.substr(0, ovector[0]) ).size();
+			len = Glib::ustring( tmp.substr(ovector[0], ovector[1] - ovector[0]) ).size();
+
+			return true;
+		}
+	}
+
+	return false;
+}
 
 class SearchResult
 {
@@ -68,9 +121,9 @@ public:
 			int regexflag = 0;
 			
 			if(flag & IGNORE_CASE)
-				regexflag |= RegEx::CASELESS;
+				regexflag |= PCRE_CASELESS;
 
-			info.found = RegEx(pattern, flag).exec(text, info.start, info.len);
+			info.found = regex_exec(pattern, text, flag, info.start, info.len);
 
 			return info.found;
 				
