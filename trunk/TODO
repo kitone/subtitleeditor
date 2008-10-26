@@ -1,13 +1,12 @@
 SubtitleEditor stable + 1
 -------------------
 
+	* Remove PCRE dependance,  the last is in FindAndReplace.
 	* check Undo/Redo subtitles selection
 	* Config use set_comment (after set value)
 	* HowTo: http://home.gna.org/subtitleeditor/docs/how-to-editing-subtitles-with-waveform.html
 	* Document use URI (movie, file ...)
 		* Data system (ustring)
-	* Check Errors
-		* Add support of the correction
 	* Multiple append subtitles
 	* Text
 		* Case
@@ -22,20 +21,13 @@ SubtitleEditor stable + 1
 	* Subdownloader plugin
 	* Document Template
 	* Special characters input (Lubos email)
-	* Fix: AdobeEncoreDVD (regex)
-	* Fix: Newline (open file)
 
 SubtitleEditor stable + 2
 -------------------
 
 	* Migrate to GTK+2.12
-		* New Tooltip
+		* GtkBuilder
 		* GtkScaleButton
-	* freedesktop (osmo email)
-		* application/x-subrip
-		* application/x-microdvd
-		* application/x-ass/ass
-		* application/x-subviewer
 	* Video Player
 		* Multiple tracks
 		* Dialog video information
