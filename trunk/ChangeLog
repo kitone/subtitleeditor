@@ -1,3 +1,8 @@
+2008-10-27  kitone  <kitone@gna.org>
+
+	* src/actions/FindAndReplace.cc:
+	Remove RegEx. (hack)
+
 2008-10-26  kitone  <kitone@gna.org>
 
 	* src/main.cc:
