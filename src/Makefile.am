@@ -27,8 +27,6 @@ FILES = \
 				DocumentSystem.cc \
 				Encodings.h \
 				Encodings.cc \
-				RegEx.h \
-				RegEx.cc \
 				ScriptInfo.h \
 				ScriptInfo.cc \
 				StyleModel.h \
@@ -179,7 +177,6 @@ if	 ENABLE_UNITTEST
 UNITTEST_FILES = \
 				 unittest/unittest.cc \
 				 unittest/testSubtitleTime.cc \
-				 unittest/testRegEx.cc \
 				 unittest/testColor.cc
 
 EXTRA_DIST = \
@@ -237,7 +234,7 @@ subtitleeditor_SOURCES = main.cc $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FI
 
 
 subtitleeditor_LDADD = $(GTKMM_LIBS) $(LIBGLADEMM_LIBS) $(GSTREAMER_LIBS) \
-											 $(INTLLIBS) $(LIBXML_LIBS) $(ENCHANT_LIBS) $(LIBPCRE_LIBS) -lpcrecpp \
+											 $(INTLLIBS) $(LIBXML_LIBS) $(ENCHANT_LIBS) $(LIBPCRE_LIBS) \
 											 $(CPPUNIT_LIBS) $(GTKGLEXT_LIBS) $(GL_LIBS) ##libsubtitleeditor.la
 
 
