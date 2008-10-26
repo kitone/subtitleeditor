@@ -43,8 +43,6 @@
 	bool launch_unittest();
 #endif//ENABLE_UNITTEST
 
-#include "RegEx.h"
-
 /*
  *
  */
