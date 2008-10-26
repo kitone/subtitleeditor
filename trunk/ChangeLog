@@ -1,3 +1,8 @@
+2008-10-26  kitone  <kitone@gna.org>
+
+	* src/main.cc:
+	Remove unused header RegEx.h.
+
 2008-10-24  kitone  <kitone@gna.org>
 
 	* src/actions/CombineSubtitles.cc:
