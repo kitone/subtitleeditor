@@ -1,7 +1,7 @@
 SubtitleEditor stable + 1
 -------------------
 
-	* Remove PCRE dependance,  the last is in FindAndReplace.
+	* Rewrite the FindAndReplace with Glib::Regex (waiting the Glib::MatchInfo API).
 	* check Undo/Redo subtitles selection
 	* Config use set_comment (after set value)
 	* HowTo: http://home.gna.org/subtitleeditor/docs/how-to-editing-subtitles-with-waveform.html
