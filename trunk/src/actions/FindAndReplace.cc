@@ -25,60 +25,58 @@
 #include "Plugin.h"
 #include "Config.h"
 #include "utility.h"
-#include <pcre.h>
+#include <glib/gregex.h>
 
 /*
- * FIXME: Remove me!
+ * FIXME: Remove Me
+ * Waiting the Glib::MatchInfo API in glibmm.
  */
-bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string, int options, Glib::ustring::size_type &start, Glib::ustring::size_type &len)
+bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string, bool caseless, Glib::ustring::size_type &start, Glib::ustring::size_type &len)
 {
-	int flags = PCRE_UTF8 | PCRE_MULTILINE;
+	bool found = false;
+	GRegex *regex = NULL;
+	GMatchInfo *match_info = NULL;
+	GError *error = NULL;
 
-	// pour pcre
-	pcre* m_pcre = NULL;
-	const char *error_ptr = NULL;
-	int error_offset = 0;
-	int error_code = 0;
+	int compile_flags = (GRegexMatchFlags)0;
+	
+	if(caseless)
+		compile_flags |= G_REGEX_CASELESS;
 
-	if(options & PCRE_CASELESS)
-		flags |= PCRE_CASELESS;
-
-	// crée l'objet
-	m_pcre = pcre_compile2(pattern.c_str(), flags,
-			&error_code, &error_ptr, &error_offset, NULL);
-
-	if(m_pcre == NULL || error_code != 0)
+	regex = g_regex_new(pattern.c_str(), (GRegexCompileFlags)compile_flags, (GRegexMatchFlags)0, &error);
+	if(error != NULL)
 	{
+		std::cerr << "regex_exec error: " << error->message << std::endl;
+		g_error_free(error);
 		return false;
 	}
-	else
+
+	if(g_regex_match(regex, string.c_str(), (GRegexMatchFlags)0, &match_info))
 	{
-		int options = 0;
-		int ovector[2];
-
-		int rc = pcre_exec(
-				(const pcre *)m_pcre,
-				NULL,
-				string.c_str(), (int)string.bytes(),
-				0,
-				options, 
-				ovector, 2);
-
-		pcre_free(m_pcre);
-
-		if(rc >= 0)
+		//while(g_match_info_matches(match_info))
+		if(g_match_info_matches(match_info))
 		{
-			std::string tmp = string;
-			
-			start = Glib::ustring( tmp.substr(0, ovector[0]) ).size();
-			len = Glib::ustring( tmp.substr(ovector[0], ovector[1] - ovector[0]) ).size();
-
-			return true;
+			int start_pos, end_pos;
+			// check the return
+			if(g_match_info_fetch_pos(
+							match_info, 
+							0, //match_num 0 is full text of the match
+							&start_pos,
+							&end_pos))
+			{
+				start = start_pos;
+				len = end_pos - start_pos;
+				found = true;
+			}
 		}
 	}
 
-	return false;
+	g_match_info_free(match_info);
+	g_regex_unref(regex);
+
+	return found;
 }
+
 
 class SearchResult
 {
@@ -118,12 +116,7 @@ public:
 		{
 			se_debug_message(SE_DEBUG_SEARCH, "Used regular expression");
 
-			int regexflag = 0;
-			
-			if(flag & IGNORE_CASE)
-				regexflag |= PCRE_CASELESS;
-
-			info.found = regex_exec(pattern, text, flag, info.start, info.len);
+			info.found = regex_exec(pattern, text, (flag & IGNORE_CASE), info.start, info.len);
 
 			return info.found;
 				
