@@ -192,39 +192,6 @@ AC_SUBST(ENCHANT_CFLAGS)
 AC_SUBST(ENCHANT_LIBS)
 
 
-## PCRE
-PKG_CHECK_MODULES(LIBPCRE, libpcre >= 0.20)
-
-AC_SUBST(LIBPCRE_CFLAGS)
-AC_SUBST(LIBPCRE_LIBS)
-
-pcre_saved_CFLAGS=$CFLAGS
-pcre_saved_LIBS=$LIBS
-CFLAGS="$CFLAGS $LIBPCRE_CFLAGS"
-LIBS="$LIBS $LIBPCRE_LIBS"
-
-AC_CACHE_CHECK([whether libpcre was compiled with UTF-8 support],
-    [ac_cv_have_preg_utf8_support],
-    [AC_RUN_IFELSE(
-		[AC_LANG_SOURCE(
-	    [[#include <pcre.h>
-
-	      int main() {
-					int t;
-					return (pcre_config (PCRE_CONFIG_UTF8, &t) || !t);
-	      }]])],
-	    [ac_cv_have_preg_utf8_support="yes"],
-	    [ac_cv_have_preg_utf8_support="no"],
-	    [ac_cv_have_preg_utf8_support="maybe"])])
-
-CFLAGS=$pcre_saved_CFLAGS
-LIBS=$pcre_saved_LIBS
-
-if test "$ac_cv_have_preg_utf8_support" != "yes"; then
-    AC_ERROR([pcre does not support utf-8])
-fi
-
-
 ## ISO-CODES 639 + 3166
 have_iso_code_639=no
 have_iso_code_3166=no
@@ -319,8 +286,8 @@ fi
 
 
 ## SUBTITLEEDITOR LIBS FLAGS
-SUBTITLEEDITOR_LIBS="$GTKMM_LIBS" ## ${LIBGLADEMM_LIBS} ${GSTREAMER_LIBS} ${INTLLIBS} ${LIBXML_LIBS} ${ENCHANT_LIBS} ${LIBPCRE_LIBS} -lpcrecpp ${CPPUNIT_LIBS}"
-SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS ${LIBGLADEMM_CFLAGS} ${GSTREAMER_CFLAGS} ${INTLCFLAGS} ${LIBXML_CFLAGS} ${ENCHANT_CFLAGS} ${LIBPCRE_CFLAGS} ${CPPUNIT_CFLAGS}"
+SUBTITLEEDITOR_LIBS="$GTKMM_LIBS" ## ${LIBGLADEMM_LIBS} ${GSTREAMER_LIBS} ${INTLLIBS} ${LIBXML_LIBS} ${ENCHANT_LIBS} ${CPPUNIT_LIBS}"
+SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS ${LIBGLADEMM_CFLAGS} ${GSTREAMER_CFLAGS} ${INTLCFLAGS} ${LIBXML_CFLAGS} ${ENCHANT_CFLAGS} ${CPPUNIT_CFLAGS}"
 
 AC_SUBST(SUBTITLEEDITOR_LIBS)
 AC_SUBST(SUBTITLEEDITOR_CFLAGS)

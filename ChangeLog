@@ -1,5 +1,14 @@
 2008-10-27  kitone  <kitone@gna.org>
 
+	* configure.in:
+	* src/Makefile.am:
+	Remove pcre dependance.
+
+	* src/actions/FindAndReplace.cc:
+	Using GRegex instead of pcre.
+
+2008-10-27  kitone  <kitone@gna.org>
+
 	* TODO:
 	Update.
 
