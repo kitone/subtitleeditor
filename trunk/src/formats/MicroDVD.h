@@ -57,7 +57,7 @@ public:
 				"^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
 		
 		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create(
-				"\\{[yY]:(b|i|u)\\}(.*?)$");
+				"\\{[yY]:(b|i|u)\\}(.*?)$", Glib::REGEX_MULTILINE);
 		
 		// init to frame mode
 		document()->set_timing_mode(FRAME);
@@ -82,11 +82,10 @@ public:
 			frame_end = utility::string_to_int(group[2]);
 			text = group[3];
 
+			utility::replace(text, "|", "\n");
 
 			text = tags->replace(text, 0, "<\\1>\\2</\\1>", (Glib::RegexMatchFlags)0);
 
-			utility::replace(text, "|", "\n");
-	
 			// Append a subtitle
 			Subtitle sub = subtitles.append();
 

@@ -1,3 +1,8 @@
+2008-10-28  kitone  <kitone@gna.org>
+
+	* src/formats/MicroDVD.h:
+	Fix: MicrDVD to SE tags conversion.
+
 2008-10-27  kitone  <kitone@gna.org>
 
 	* TODO:
