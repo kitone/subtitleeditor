@@ -1,3 +1,10 @@
+2008-10-29  kitone  <kitone@gna.org>
+
+	* src/formats/AdvancedSubStationAlpha.h:
+	* src/formats/SubStationAlpha.h:
+	Add a default style if the document doesn't 
+	at least one when the file is saved.
+
 2008-10-28  kitone  <kitone@gna.org>
 
 	* src/formats/MicroDVD.h:
