@@ -243,6 +243,17 @@ public:
 						"BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, "
 						"MarginR, MarginV, AlphaLevel, Encoding" << std::endl;
 
+		// Default style if it's empty
+		if(document()->styles().size() == 0)
+		{
+			// write without changing the document
+			Glib::ustring default_style = "Default,Sans,18,16777215,65535,30900,0,0,0,1,0,0,2,20,20,20,0,0";
+			file << "Style: " << default_style << std::endl;
+			
+			//Style style = document()->styles().append();
+			//style.set("name", "Default");
+		}
+
 		for(Style style = document()->styles().first(); style; ++style)
 		{
 			file 
