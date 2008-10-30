@@ -314,7 +314,7 @@ public:
 		{
 			Glib::ustring text = sub.get_text();
 
-			utility::replace(text, "\n", "\\n");
+			utility::replace(text, "\n", "\\N");
 
 			file 
 				<< "Dialogue: "
