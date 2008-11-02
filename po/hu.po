@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.0alpha1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 19:05+0200\n"
-"PO-Revision-Date: 2008-05-29 18:37+0000\n"
+"POT-Creation-Date: 2008-10-10 19:51+0200\n"
+"PO-Revision-Date: 2008-11-01 22:47+0000\n"
 "Last-Translator: Rébeli-Szabó Tamás <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-06-11 18:32+0000\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2008-11-02 14:37+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
@@ -51,105 +52,23 @@ msgid "A_vailable encodings:"
 msgstr ""
 
 #: ../share/glade/dialog-character-codings.glade.h:2
-#, fuzzy
 msgid "Character Codings"
-msgstr "Karakterkódolás:"
+msgstr ""
 
 #: ../share/glade/dialog-character-codings.glade.h:3
-#, fuzzy
 msgid "E_ncodings shown in menu:"
-msgstr "Kódolás választása"
-
-#: ../share/glade/dialog-check-errors.glade.h:1
-msgid "Check Errors"
-msgstr "Hibakeresés"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:1
-msgid "<b>Checking</b>"
-msgstr "<b>Ellenőrzés</b>"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:2
-msgid "<b>Timings</b>"
-msgstr "<b>Időzítések</b>"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:3
-msgid "Check Errors Preferences"
-msgstr "Hibakeresés beállításai"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:4
-msgid "Gap between subtitle"
-msgstr "Kevés idő a két felirat között"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:5
-#: ../src/gui/CheckErrorsUI.cc:286
-#, fuzzy
-msgid "Max lines per subtitle"
-msgstr "Sorok maximális száma a feliratban"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:6
-#: ../share/glade/dialog-preferences.glade.h:33
-msgid "Maximum characters per line:"
-msgstr "Maximális karakterszám soronként:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "Maximális karakterszám másodpercenként:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#, fuzzy
-msgid "Maximum number of lines per subtitle:"
-msgstr "Sorok maximális száma a feliratban"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Minimum characters per second:"
-msgstr "Minimális karakterszám másodpercenként:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:37
-msgid "Minimum display of the subtitle in mseconds:"
-msgstr "Felirat láthatóságának minimális ideje millisec-ben:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:11
-#: ../share/glade/dialog-preferences.glade.h:38
-#, fuzzy
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Minimális szünet két felirat között millisec-ben:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:12
-#: ../src/gui/CheckErrorsUI.cc:43
-msgid "Overlapping"
-msgstr "Átfedés"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:13
-#: ../src/gui/CheckErrorsUI.cc:154
-msgid "Too long display time"
-msgstr "Túl hosszú láthatósági idő"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:14
-msgid "Too long line"
-msgstr "Túl hosszú sor"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:15
-#: ../src/gui/CheckErrorsUI.cc:99
-msgid "Too short display time"
-msgstr "Túl rövid láthatósági idő"
+msgstr ""
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:1
-#: ../src/gui/MenuBar.cc:175
-#, fuzzy
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
 msgid "Configure Keyboard Shortcuts"
-msgstr "Dinamikus gyorsbillentyűk használata"
+msgstr ""
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
-#, fuzzy
 msgid ""
 "To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
-"Egy gyorsbillentyű szerkesztéséhez kattints a hozzátartozó sorra és add meg "
-"az új gyorsbillentyűt, vagy nyomd meg a backspace-t a törléshez."
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:1
 msgid "<b>Please choose encodings</b>"
@@ -159,10 +78,67 @@ msgstr "<b>Válsszon kódolást</b>"
 msgid "Encodings Chooser"
 msgstr "Kódolás választása"
 
+#: ../share/glade/dialog-error-checking.glade.h:1
+msgid "Error Checking"
+msgstr "Hibaellenőrzés"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:1
+msgid "<b>Error Checking</b>"
+msgstr "<b>Hibaellenőrzés</b>"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:2
+#: ../share/glade/dialog-preferences.glade.h:8
+msgid "<b>Timing Preferences</b>"
+msgstr "<b>Időzítés beállításai</b>"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:3
+msgid "Checking"
+msgstr "Ellenőrzés"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:4
+msgid "Error Checking Preferences"
+msgstr "Hibajavítás beállításai"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:5
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum characters per line:"
+msgstr "Maximális karakterszám soronként:"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:6
+#: ../share/glade/dialog-preferences.glade.h:36
+msgid "Maximum characters per second:"
+msgstr "Maximális karakterszám másodpercenként:"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:7
+msgid "Maximum number of lines per subtitle:"
+msgstr "Sorok maximális száma feliratonként"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:8
+#: ../share/glade/dialog-preferences.glade.h:38
+msgid "Minimum characters per second:"
+msgstr "Minimális karakterszám másodpercenként:"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:9
+#: ../share/glade/dialog-preferences.glade.h:39
+msgid "Minimum display of the subtitle in mseconds:"
+msgstr "Felirat láthatóságának minimális ideje millisec-ben:"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:10
+#: ../share/glade/dialog-preferences.glade.h:40
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "Minimális távolság a feliratok között milliszekundumban:"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:11
+#: ../share/glade/dialog-preferences.glade.h:51
+#: ../src/actions/ViewManager.cc:394
+msgid "Timing"
+msgstr "Időzítés"
+
 #: ../share/glade/dialog-export-text.glade.h:1
 #: ../share/glade/dialog-import-text.glade.h:1
 #: ../share/glade/dialog-open-document.glade.h:1
-#: ../share/glade/dialog-save-document.glade.h:1
+#: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:669
+#: ../src/gui/Application.cc:319
 msgid "Character Coding:"
 msgstr "Karakterkódolás:"
 
@@ -171,7 +147,7 @@ msgid "Export Text"
 msgstr "Szöveg Exportálása"
 
 #: ../share/glade/dialog-export-text.glade.h:3
-#: ../share/glade/dialog-save-document.glade.h:3 ../src/gui/Application.cc:335
+#: ../share/glade/dialog-save-document.glade.h:3
 msgid "NewLine:"
 msgstr "Új sor:"
 
@@ -202,7 +178,7 @@ msgstr "Kis-, nagybetű között nincs különbség"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
 msgid "_Use regular expression"
-msgstr "Reguláris kifejezés használata"
+msgstr ""
 
 #: ../share/glade/dialog-import-text.glade.h:2
 msgid "Import Text"
@@ -219,32 +195,28 @@ msgstr "Felirat Mozgatása"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:3
 #: ../share/glade/dialog-scale-subtitles.glade.h:6
-#, fuzzy
 msgid "_New Start:"
-msgstr "Kezdet"
+msgstr ""
 
 #. init label
 #: ../share/glade/dialog-move-subtitles.glade.h:4
 #: ../share/glade/dialog-scale-subtitles.glade.h:7
 #: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
 #: ../src/actions/ScaleSubtitles.cc:122
-#, fuzzy
 msgid "_Start Time:"
-msgstr "Idő beállítása"
+msgstr ""
 
 #: ../share/glade/dialog-open-document.glade.h:2
 msgid "Open Document"
 msgstr "Felirat megnyitása"
 
 #: ../share/glade/dialog-open-document.glade.h:3
-#, fuzzy
 msgid "Video File:"
-msgstr "Videólejátszó"
+msgstr "Videofájl:"
 
 #: ../share/glade/dialog-preferences.glade.h:1
-#, fuzzy
 msgid "<b>Activate plugins</b>"
-msgstr "<b>Margók</b>"
+msgstr "<b>Bővítmények aktiválása</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:2
 msgid "<b>File Saving</b>"
@@ -255,106 +227,108 @@ msgid "<b>General</b>"
 msgstr "<b>Általános</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:4
+msgid "<b>New Document</b>"
+msgstr "<b>Új dokumentum<b>"
+
+#: ../share/glade/dialog-preferences.glade.h:5
 msgid "<b>Output</b>"
 msgstr "<b>Kimenet</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:5
+#: ../share/glade/dialog-preferences.glade.h:6
 msgid "<b>Subtitle View</b>"
 msgstr "<b>Felirat nézet</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:6
+#: ../share/glade/dialog-preferences.glade.h:7
 msgid "<b>Text Subtitle</b>"
 msgstr "<b>Felirat szövege</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:7
-msgid "<b>Timing Preferences</b>"
-msgstr "<b>Időzítés beállításai</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:8
+#: ../share/glade/dialog-preferences.glade.h:9
 msgid "<b>Video Player For Preview</b>"
 msgstr "<b>Vidólejátszó előnézethez</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:9
+#: ../share/glade/dialog-preferences.glade.h:10
 #: ../share/glade/dialog-script-properties.glade.h:6
 msgid "<b>Video</b>"
 msgstr "<b>Videó</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:10
+#: ../share/glade/dialog-preferences.glade.h:11
 msgid "<b>Waveform Color</b>"
 msgstr "<b>Hanghullám színei</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:11
+#: ../share/glade/dialog-preferences.glade.h:12
 msgid "<b>Waveform Generator</b>"
 msgstr "<b>Hanghullám-generátor</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:12
+#: ../share/glade/dialog-preferences.glade.h:13
 msgid "<span size=\"small\">the path to the subtitle file</span>"
 msgstr "<span size=\"small\">videó helye</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:13
+#: ../share/glade/dialog-preferences.glade.h:14
 msgid "<span size=\"small\">the path to the video file</span>"
 msgstr "<span size=\"small\">videó helye</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:14
+#: ../share/glade/dialog-preferences.glade.h:15
 msgid ""
 "<span size=\"small\">the time in seconds to the current selected line</span>"
 msgstr "<span size=\"small\">az aktuális sor időpontja másodpercekben</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:15
+#: ../share/glade/dialog-preferences.glade.h:16
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
 msgstr "<span size=\"small\">videó helye (uri)</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:16
+#: ../share/glade/dialog-preferences.glade.h:17
 msgid "<span size=\"small\">the uri to the video file</span>"
 msgstr "<span size=\"small\">videó helye (uri)</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:17
+#: ../share/glade/dialog-preferences.glade.h:18
 msgid "Ask to save on _exit"
 msgstr "Kérdezzen kilépéskor"
 
-#: ../share/glade/dialog-preferences.glade.h:18
+#: ../share/glade/dialog-preferences.glade.h:19
 msgid "Automatically _choose video to open"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:19
+#: ../share/glade/dialog-preferences.glade.h:20
 msgid "Background:"
 msgstr "Háttér:"
 
-#: ../share/glade/dialog-preferences.glade.h:20
+#: ../share/glade/dialog-preferences.glade.h:21
 msgid "Command:"
 msgstr "Parancs:"
 
-#: ../share/glade/dialog-preferences.glade.h:21
+#: ../share/glade/dialog-preferences.glade.h:22
 msgid "Create a _backup copy of files before saving"
 msgstr "Biztonsági mentés készítése mentés előtt"
 
-#: ../share/glade/dialog-preferences.glade.h:22
+#: ../share/glade/dialog-preferences.glade.h:23
 msgid "Display _translated subtitle"
 msgstr "Lefordított felirat megjelenítése"
 
-#: ../share/glade/dialog-preferences.glade.h:23
+#: ../share/glade/dialog-preferences.glade.h:24
 msgid "Display background"
 msgstr "Háttér megjelenítése"
 
-#: ../share/glade/dialog-preferences.glade.h:24
-#, fuzzy
-msgid "Display subtitle text"
-msgstr "Lefordított felirat megjelenítése"
-
 #: ../share/glade/dialog-preferences.glade.h:25
+msgid "Display subtitle text"
+msgstr "Felirat szövegének megjelenítése"
+
+#: ../share/glade/dialog-preferences.glade.h:26
 msgid "Display the translated subtitle instead of the original one."
 msgstr "A lefordított felirat megjelenítése az eredeti helyett"
 
-#: ../share/glade/dialog-preferences.glade.h:26
+#: ../share/glade/dialog-preferences.glade.h:27
 msgid "Display waveform fill"
 msgstr "Hanghullám megjelenítése kitöltéssel"
 
-#: ../share/glade/dialog-preferences.glade.h:27
-#, fuzzy
-msgid "Enable _rubberband selection"
-msgstr "Radí_r kijelölés engedélyezése"
-
 #: ../share/glade/dialog-preferences.glade.h:28
+msgid "Document"
+msgstr "Dokumentum"
+
+#: ../share/glade/dialog-preferences.glade.h:29
+msgid "Enable _rubberband selection"
+msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:30
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
@@ -362,147 +336,140 @@ msgstr ""
 "Példa MPlayer-rel:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 
-#: ../share/glade/dialog-preferences.glade.h:30
+#: ../share/glade/dialog-preferences.glade.h:32
 msgid "Force aspect _ratio"
 msgstr "Kényszerített képarány"
 
-#: ../share/glade/dialog-preferences.glade.h:31
+#: ../share/glade/dialog-preferences.glade.h:33
 msgid "Interface"
 msgstr "Felület"
 
-#: ../share/glade/dialog-preferences.glade.h:32
+#: ../share/glade/dialog-preferences.glade.h:34
 msgid "Interval in seconds:"
 msgstr "Intervallum másodpercekben:"
 
-#: ../share/glade/dialog-preferences.glade.h:35
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Maximum number of line per subtitle:"
 msgstr "Sorok maximális száma a feliratban"
 
-#: ../share/glade/dialog-preferences.glade.h:39
-#, fuzzy
-msgid "Player Position:"
-msgstr "Sor lejátszása:"
-
-#: ../share/glade/dialog-preferences.glade.h:40
-#, fuzzy
-msgid "Plugins"
-msgstr "Kiegészítők"
-
 #: ../share/glade/dialog-preferences.glade.h:41
+msgid "Player Position:"
+msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:42
+msgid "Plugins"
+msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:43
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Preview"
 msgstr "Előnézet"
 
-#: ../share/glade/dialog-preferences.glade.h:43
+#: ../share/glade/dialog-preferences.glade.h:45
 msgid "Reset To _Defaults"
 msgstr "Visszaállítás alapértelmezettre"
 
-#: ../share/glade/dialog-preferences.glade.h:44
-#, fuzzy
-msgid "Subtitle Invalid:"
-msgstr "Felirat végének beállítása"
-
-#: ../share/glade/dialog-preferences.glade.h:45
-#, fuzzy
-msgid "Subtitle Selected:"
-msgstr "Ugrás a kijelölt részhez"
-
 #: ../share/glade/dialog-preferences.glade.h:46
-#, fuzzy
-msgid "Subtitle:"
-msgstr "Felirat megnyitása"
+msgid "Subtitle Invalid:"
+msgstr "Hibás felirat:"
 
 #: ../share/glade/dialog-preferences.glade.h:47
-#: ../share/glade/dialog-scale-subtitles.glade.h:5
-#, fuzzy
-msgid "Text:"
-msgstr "Szöveg"
+msgid "Subtitle Selected:"
+msgstr "Kiválasztott felirat:"
 
 #: ../share/glade/dialog-preferences.glade.h:48
+msgid "Subtitle:"
+msgstr "Felirat:"
+
+#: ../share/glade/dialog-preferences.glade.h:49
+#: ../share/glade/dialog-scale-subtitles.glade.h:5
+msgid "Text:"
+msgstr "Szöveg:"
+
+#: ../share/glade/dialog-preferences.glade.h:50
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
 msgstr "A következő paraméterek helyettesítve lesznek futtatáskor:"
 
-#: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:392
-msgid "Timing"
-msgstr "Időzítés"
-
-#: ../share/glade/dialog-preferences.glade.h:50
+#: ../share/glade/dialog-preferences.glade.h:52
 msgid "Use _dynamic keyboard shortcuts"
 msgstr "Dinamikus gyorsbillentyűk használata"
 
-#: ../share/glade/dialog-preferences.glade.h:51
+#: ../share/glade/dialog-preferences.glade.h:53
 msgid "Use shaded _background"
 msgstr "Árnyékolt háttér használata"
 
-#: ../share/glade/dialog-preferences.glade.h:52
+#: ../share/glade/dialog-preferences.glade.h:54
 msgid "Video Player"
 msgstr "Videólejátszó"
 
-#: ../share/glade/dialog-preferences.glade.h:53
+#: ../share/glade/dialog-preferences.glade.h:55
 msgid "Wave fill:"
 msgstr "Hullám töltése:"
 
-#: ../share/glade/dialog-preferences.glade.h:54
+#: ../share/glade/dialog-preferences.glade.h:56
 msgid "Wave:"
 msgstr "Hullám:"
 
-#: ../share/glade/dialog-preferences.glade.h:55
+#: ../share/glade/dialog-preferences.glade.h:57
 msgid "Waveform"
 msgstr "Hanghullám"
 
-#: ../share/glade/dialog-preferences.glade.h:56
-#, fuzzy
+#: ../share/glade/dialog-preferences.glade.h:58
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
 "key combination while the menu item is highlighted."
 msgstr ""
-"Amikor engedélyezett, megváltoztathatod a gyorsbillentyűket azzal, hogy "
-"leütöd az újat, amíg világít a menü."
 
-#: ../share/glade/dialog-preferences.glade.h:57
+#: ../share/glade/dialog-preferences.glade.h:59
 msgid "_Audio:"
 msgstr "_Audió"
 
-#: ../share/glade/dialog-preferences.glade.h:58
+#: ../share/glade/dialog-preferences.glade.h:60
 msgid "_Autosave files every"
 msgstr "Fájlok automatikus mentése minden"
 
-#: ../share/glade/dialog-preferences.glade.h:59
+#: ../share/glade/dialog-preferences.glade.h:61
 msgid "_Center the text of the subtitle in the column"
 msgstr "Felirat szövegének az oszlop közepére igazítása"
 
-#: ../share/glade/dialog-preferences.glade.h:60
+#: ../share/glade/dialog-preferences.glade.h:62
 msgid "_Font:"
 msgstr "Betű:"
 
-#: ../share/glade/dialog-preferences.glade.h:61
+#: ../share/glade/dialog-preferences.glade.h:63
+msgid "_Format:"
+msgstr "_Formátum :"
+
+#: ../share/glade/dialog-preferences.glade.h:64
 msgid "_Maximize window"
 msgstr "Ablak maximalizálása"
 
-#: ../share/glade/dialog-preferences.glade.h:62
-#, fuzzy
-msgid "_Show the number of characters per line"
-msgstr "Karakterek soronkénti számának mutatása."
+#: ../share/glade/dialog-preferences.glade.h:65
+msgid "_Newline:"
+msgstr "Ú_j sor:"
 
-#: ../share/glade/dialog-preferences.glade.h:63
+#: ../share/glade/dialog-preferences.glade.h:66
+msgid "_Show the number of characters per line"
+msgstr "Soronkénti karakterek számának mutatása"
+
+#: ../share/glade/dialog-preferences.glade.h:67
 msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:64
+#: ../share/glade/dialog-preferences.glade.h:68
 msgid "_Video:"
 msgstr "_Videó"
 
-#: ../share/glade/dialog-preferences.glade.h:65
+#: ../share/glade/dialog-preferences.glade.h:69
 msgid "minutes"
 msgstr "-ik percben"
 
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:334
+#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:320
 msgid "Format:"
 msgstr "Formátum:"
 
@@ -672,7 +639,6 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Igazítás</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-#, fuzzy
 msgid "<b>Appearance</b>"
 msgstr "<b>Megjelenés</b>"
 
@@ -697,9 +663,8 @@ msgid "<b>Margins</b>"
 msgstr "<b>Margók</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:8
-#, fuzzy
 msgid "<b>Preview</b>"
-msgstr "<b>Videó</b>"
+msgstr "<b>Előnézet</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:9
 msgid "<b>Transformation</b>"
@@ -798,14 +763,12 @@ msgid "<b>View</b>"
 msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:3
-#, fuzzy
 msgid "View Editing"
-msgstr "Szerkesztés megjelenítése"
+msgstr ""
 
 #: ../share/glade/dialog-view-manager.glade.h:4
-#, fuzzy
 msgid "View Manager"
-msgstr "Kezelő megjelenítése"
+msgstr ""
 
 #: ../share/glade/subtitleeditor.glade.h:1
 #: ../share/subtitleeditor.desktop.in.h:2
@@ -817,12 +780,12 @@ msgid "A subtitle editor based on GStreamer and Gtk+"
 msgstr ""
 
 #. comments
-#: ../src/actions/About.cc:86
+#: ../src/actions/About.cc:88
 msgid "a tool for subtitles edition"
 msgstr "egy eszköz feliratok szerkesztésére"
 
 #. translator-credits
-#: ../src/actions/About.cc:95
+#: ../src/actions/About.cc:97
 msgid "translator-credits"
 msgstr ""
 "Ványi Norbert <vanyinorbi@freemail.hu>\n"
@@ -836,27 +799,24 @@ msgid "Add 100 Milliseconds"
 msgstr "100 millisec hozzáadáas"
 
 #: ../src/actions/AdjustTime.cc:50 ../src/actions/AdjustTime.cc:66
-#, fuzzy
 msgid "To Start"
-msgstr "Kezdet"
+msgstr ""
 
 #: ../src/actions/AdjustTime.cc:50
 msgid "Add 100 Milliseconds to start for all subtitles selected"
 msgstr "100 millisec hozzáadása minden kijelölt felirat kezdetéhez"
 
 #: ../src/actions/AdjustTime.cc:54 ../src/actions/AdjustTime.cc:70
-#, fuzzy
 msgid "To Duration"
-msgstr "Hossz"
+msgstr ""
 
 #: ../src/actions/AdjustTime.cc:54
 msgid "Add 100 Milliseconds to duration for all subtitles selected"
 msgstr "Minden kijelölt felirat hosszának növelése 100 millisc-kel"
 
 #: ../src/actions/AdjustTime.cc:58 ../src/actions/AdjustTime.cc:74
-#, fuzzy
 msgid "To Start And Duration"
-msgstr "Telítettség:"
+msgstr ""
 
 #: ../src/actions/AdjustTime.cc:58
 msgid "Add 100 Milliseconds to all subtitles selected"
@@ -889,32 +849,28 @@ msgid "Please select at least a subtitle."
 msgstr "Legalább egy feliratot válaszzon."
 
 #: ../src/actions/AdjustTime.cc:223
-#, fuzzy
 msgid "Adjust time"
-msgstr "Idő hozzáadása"
+msgstr ""
 
 #: ../src/actions/ApplyTranslation.cc:46
-#, fuzzy
 msgid "Apply _Translation"
-msgstr "Fordítás elfogadása"
+msgstr ""
 
 #: ../src/actions/ApplyTranslation.cc:46
 msgid "Replace the text of the subtitle by the translation"
 msgstr "Szöveg cserélése a fordítással"
 
 #: ../src/actions/ApplyTranslation.cc:108
-#, fuzzy
 msgid "Apply translation"
-msgstr "Fordítás elfogadása"
+msgstr ""
 
 #: ../src/actions/ApplyTranslation.cc:121
 msgid "The translation was applied."
 msgstr "A fordítás elfogadva."
 
 #: ../src/actions/ChangeFramerate.cc:222
-#, fuzzy
 msgid "Change _Framerate"
-msgstr "Frémráta változtatása"
+msgstr ""
 
 #: ../src/actions/ChangeFramerate.cc:222
 msgid "Convert framerate"
@@ -934,44 +890,77 @@ msgid "Merge the selected subtitles"
 msgstr "Kijelölt feliratok egyesítése"
 
 #: ../src/actions/CombineSubtitles.cc:160 ../src/actions/SplitSubtitle.cc:112
-#, fuzzy
 msgid "Please select at least two subtitles."
-msgstr "Legalább egy feliratot válaszzon."
+msgstr ""
 
 #: ../src/actions/CombineSubtitles.cc:164
-#, fuzzy
 msgid "Combine subtitles"
-msgstr "Felirat Mozgatása"
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:95
+msgid "Actions"
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:117
+msgid "Shortcut"
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:247
+msgid "Invalid shortcut."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:265
+#, c-format
+msgid "Shortcut \"%s\" is already taken by \"%s\"."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:268
+#, c-format
+msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:271
+msgid "Conflicting Shortcuts"
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:277
+msgid "Changing shortcut failed."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:308
+msgid "Removing shortcut failed."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
+msgid "Configure _Keyboard Shortcuts"
+msgstr ""
 
 #: ../src/actions/DeleteSubtitleSelect.cc:45
 msgid "Delete the selected subtitles"
 msgstr "Kiválasztott feliratok törlése"
 
 #: ../src/actions/DeleteSubtitleSelect.cc:118
-#, fuzzy
 msgid "Delete Subtitles"
-msgstr "Stílus törlése"
+msgstr ""
 
 #: ../src/actions/DeleteSubtitleSelect.cc:130
-#, fuzzy, c-format
+#, c-format
 msgid "1 subtitle has been deleted."
 msgid_plural "%d subtitles have been deleted."
-msgstr[0] "%d felirat törölve."
-msgstr[1] "%d felirat törölve."
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/actions/Dialoguize.cc:48
 msgid "_Dialogue"
 msgstr "_Párbeszéd"
 
 #: ../src/actions/Dialoguize.cc:48
-#, fuzzy
 msgid "Add or remove dialogue line"
-msgstr "Párbeszéd sor hozzáadása vagy törlése"
+msgstr ""
 
 #: ../src/actions/Dialoguize.cc:116 ../src/actions/Italicize.cc:116
-#, fuzzy
 msgid "Italic"
-msgstr "Balti"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:41
 msgid "Close _without Saving"
@@ -983,9 +972,8 @@ msgid "Save the changes to document \"%s\" before closing?"
 msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:50
-#, fuzzy
 msgid "If you don't save, the last changes will be permanently lost."
-msgstr "A legutóbbi változások véglegesen elvesznek, ha nem menti azokat."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:78
 msgid "Create a new document"
@@ -1004,90 +992,82 @@ msgid "Save the current file with a different name"
 msgstr "Aktuális fájl mentése más néven"
 
 #: ../src/actions/DocumentManagement.cc:95
-#, fuzzy
 msgid "Save _All"
-msgstr "Minden fájl mentése"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:95
-#, fuzzy
 msgid "Save all open files"
-msgstr "Minden nyitott fájl mentése"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:100
-#, fuzzy
 msgid "Open _Translation"
-msgstr "Fordítás megnyitása"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:100
-#, fuzzy
 msgid "Open translation from file"
-msgstr "Fordítás megnyitása fájlból."
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:104
-#, fuzzy
 msgid "Save Trans_lation"
-msgstr "Fordítás mentése"
+msgstr ""
 
 #: ../src/actions/DocumentManagement.cc:104
-#, fuzzy
 msgid "Save translation to file"
-msgstr "Fordítás mentése fájlba."
+msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:109
-#, fuzzy
+#. recent files
+#: ../src/actions/DocumentManagement.cc:108
 msgid "Open _Recent"
-msgstr "Felirat megnyitása"
+msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:113
-#, fuzzy
+#: ../src/actions/DocumentManagement.cc:127
 msgid "Close the current file"
-msgstr "Aktuális fájl mentése"
+msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:118
-#, fuzzy
+#: ../src/actions/DocumentManagement.cc:132
 msgid "E_xit"
-msgstr "Kilépés"
+msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:118
+#: ../src/actions/DocumentManagement.cc:132
 msgid "Quit the program"
 msgstr "Kilépés a programból"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../src/actions/DocumentManagement.cc:250
-#, fuzzy
+#: ../src/actions/DocumentManagement.cc:263
 msgid "I am already open"
-msgstr "Már nyitva vagyok."
+msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:296
-#: ../src/actions/DocumentManagement.cc:347
+#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+#: ../src/actions/DocumentManagement.cc:297
+#: ../src/actions/DocumentManagement.cc:355
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "\"%s\" (%s, %s, %s) mentése."
 
-#: ../src/actions/DocumentManagement.cc:303
-#: ../src/actions/DocumentManagement.cc:355
+#. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
+#: ../src/actions/DocumentManagement.cc:305
+#: ../src/actions/DocumentManagement.cc:363
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "\"%s\" (%s, %s, %s) nincs elmentve."
 
-#: ../src/actions/DocumentManagement.cc:439
-#, fuzzy
+#: ../src/actions/DocumentManagement.cc:446
 msgid "Open translation"
-msgstr "Fordítás megnyitása"
+msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:467
-#, fuzzy, c-format
+#: ../src/actions/DocumentManagement.cc:474
+#, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
-msgstr[0] "%d felirat került be a fordítással"
-msgstr[1] "%d felirat került be a fordítással"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../src/actions/DocumentManagement.cc:530
+#: ../src/actions/DocumentManagement.cc:535
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "\"%s\" (%s, %s, %s) fordítás mentése."
 
-#: ../src/actions/DocumentManagement.cc:533
+#: ../src/actions/DocumentManagement.cc:538
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "A fordítás\"%s\" (%s, %s, %s) nincs elmentve."
@@ -1097,66 +1077,270 @@ msgid "_Duplicate"
 msgstr ""
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:47
-#, fuzzy
 msgid "Duplicate the selected subtitles"
-msgstr "Kijelölt felirat kettévágása"
+msgstr ""
 
 #: ../src/actions/DuplicateSelectedSubtitles.cc:115
-#, fuzzy
 msgid "Duplicate selected subtitles"
-msgstr "Kijelölt felirat kettévágása"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:47
+msgid "_Edit Cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:47
+msgid "Start the editing of the focused cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:51
+msgid "Edit _Next Cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:51
+msgid "Start the editing of the next cell"
+msgstr ""
+
+#. File
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:227
+msgid "_Error"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:230
+msgid "Try To _Fix All"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:237
+msgid "_View"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:238
+msgid "By _Categories"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:240
+msgid "By _Subtitles"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:243
+msgid "_Collapse All"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:245
+msgid "_Expand All"
+msgstr ""
+
+#. menu option
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:250
+#: ../src/gui/MenuBar.cc:68
+msgid "_Options"
+msgstr "_Opciók"
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:390
+msgid "No error was found."
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:393
+#, c-format
+msgid "1 error was found."
+msgid_plural "%d errors were found."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:407
+#, c-format
+msgid "Subtitle n°<b>%d</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:715
+#, c-format
+msgid "%s (<b>1 error</b>)"
+msgid_plural "%s (<b>%d errors</b>)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:722
+#, c-format
+msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
+msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+msgid "_Error Checking"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+msgid "Launch the error checking."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:38
+msgid "Max Characters Per Line"
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:39
+msgid "An error is detected if a line is too long."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:73
+#, c-format
+msgid "Subtitle has a too long line: <b>1 character</b>"
+msgid_plural "Subtitle has a too long line: <b>%i characters</b>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:75
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:79
+#: ../src/actions/errorchecking/Overlapping.h:74
+msgid "<b>Automatic correction:</b> unavailable, correct the error manually."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:38
+msgid "Max Line Per Subtitle"
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:39
+msgid "An error is detected if a subtitle has too many lines."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:77
+#, c-format
+msgid "Subtitle has too many lines: <b>1 line</b>"
+msgid_plural "Subtitle has too many lines: <b>%i lines</b>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:38
+msgid "Min Display Time"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the duration is inferior to the specified "
+"value."
+msgstr ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:71
+#, c-format
+msgid "Subtitle display time is too short: <b>%s</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:75
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:80
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:80
+#, c-format
+msgid "<b>Automatic correction:</b> to change current subtitle end to %s."
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:38
+msgid "Minimum Gap Between Subtitles"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:39
+msgid ""
+"Detects and fixes subtitles when the minimum gap between subtitles is too "
+"short."
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:81
+#, c-format
+msgid "Too short gap between subtitle: <b>%ims</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:85
+#, c-format
+msgid ""
+"<b>Automatic correction:</b> to clip current subtitle end to %s and to move "
+"next subtitle start to %s."
+msgstr ""
+
+#: ../src/actions/errorchecking/Overlapping.h:38
+msgid "Overlapping"
+msgstr "Átfedés"
+
+#: ../src/actions/errorchecking/Overlapping.h:39
+msgid "An error is detected when the subtitle overlap on next subtitle."
+msgstr ""
+
+#: ../src/actions/errorchecking/Overlapping.h:71
+#, c-format
+msgid "Subtitle overlap on next subtitle: <b>%ims overlap</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:38
+msgid "Too Long Display Time"
+msgstr ""
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"inferior to the specified value."
+msgstr ""
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:38
+msgid "Too Short Display Time"
+msgstr ""
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"superior to the specified value."
+msgstr ""
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/actions/ExtendLength.cc:44
-#, fuzzy
 msgid "_Extend Length"
-msgstr "Hossz _növelése"
+msgstr ""
 
 #: ../src/actions/ExtendLength.cc:44
-#, fuzzy
 msgid "Extend the length of selected subtitles to the start time of the next"
 msgstr ""
-"Megnöveli a kiválasztott felirat hosszát a következő felirat kezdetéig."
 
 #: ../src/actions/ExtendLength.cc:117
-#, fuzzy
 msgid "Extend lenght"
-msgstr "Hossz növelése"
+msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:46
-#, fuzzy
+#: ../src/actions/ExternalVideoPlayer.cc:45
 msgid "_Preview"
-msgstr "Előnézet"
+msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:49
-#, fuzzy
+#: ../src/actions/ExternalVideoPlayer.cc:48
 msgid "_Open Movie"
-msgstr "Film megnyitása"
+msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:49
-#, fuzzy
+#: ../src/actions/ExternalVideoPlayer.cc:48
 msgid "Open movie with external video player"
-msgstr "Film lejátszása külső videólejátszóval."
+msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:53
-#, fuzzy
+#: ../src/actions/ExternalVideoPlayer.cc:52
 msgid "_Play Movie"
-msgstr "Film lejátszása"
+msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:53
-#, fuzzy
+#: ../src/actions/ExternalVideoPlayer.cc:52
 msgid "Play movie with external video player"
-msgstr "Film lejátszása külső videólejátszóval."
+msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:107
-#, fuzzy
+#: ../src/actions/ExternalVideoPlayer.cc:106
 msgid "Please select a movie."
-msgstr "Nem tudok lejátszani. Válasszon egy filmet!"
+msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:176
+#: ../src/actions/ExternalVideoPlayer.cc:174
 msgid "Failed to launch the external player."
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:178
+#: ../src/actions/ExternalVideoPlayer.cc:176
 #, c-format
 msgid ""
 "%s\n"
@@ -1165,9 +1349,8 @@ msgid ""
 msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:252
-#, fuzzy
 msgid "Replace text"
-msgstr "Csere"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:288 ../src/actions/FindAndReplace.cc:510
 #: ../src/actions/FindAndReplace.cc:577
@@ -1179,85 +1362,75 @@ msgid "_Find And Replace"
 msgstr "Keresés és csere"
 
 #: ../src/actions/FindAndReplace.cc:406
-#, fuzzy
 msgid "Search and replace text"
-msgstr "Szöveg keresés és csere"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:410
 msgid "Find Ne_xt"
 msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:410
-#, fuzzy
 msgid "Search forwards for the same text"
-msgstr "Szöveg keresés és csere"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:413
 msgid "Find Pre_vious"
 msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:413
-#, fuzzy
 msgid "Search backwards for the same text"
-msgstr "Szöveg keresés és csere"
+msgstr ""
 
 #: ../src/actions/FindAndReplace.cc:560 ../src/actions/FindAndReplace.cc:627
 msgid "Not found"
 msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:45
-#, fuzzy
 msgid "Insert _Before"
-msgstr "Beszúrás elé"
+msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:45
 msgid "Insert blank subtitle before the selected subtitle"
 msgstr "Üres felirat beszúrása a kijelölt felirat elé"
 
 #: ../src/actions/InsertSubtitle.cc:49
-#, fuzzy
 msgid "Insert _After"
-msgstr "Beszúrás mögé"
+msgstr ""
 
 #: ../src/actions/InsertSubtitle.cc:49
 msgid "Insert blank subtitle after the selected subtitle"
 msgstr "Üres felirat beszúrása a kijelölt felirat után"
 
 #: ../src/actions/InsertSubtitle.cc:142 ../src/Subtitles.cc:123
-#, fuzzy
 msgid "Insert Subtitle"
-msgstr "Feliratok összeillesztése"
+msgstr ""
 
 #: ../src/actions/Italicize.cc:48
-#, fuzzy
 msgid "_Italic"
-msgstr "Balti"
+msgstr ""
 
 #: ../src/actions/Italicize.cc:48
-#, fuzzy
 msgid "Italicize the selected subtitles text"
-msgstr "Kijelölt felirat kettévágása"
+msgstr ""
 
 #: ../src/actions/JoinDocument.cc:47
-#, fuzzy
 msgid "_Join Document"
-msgstr "Felirat hozzáillesztése"
+msgstr ""
 
 #: ../src/actions/JoinDocument.cc:47
 msgid "Add subtitles from file"
 msgstr "Felirat hozzáadása fájlból"
 
-#: ../src/actions/JoinDocument.cc:124
-#, fuzzy
+#: ../src/actions/JoinDocument.cc:133
 msgid "Join document"
-msgstr "Felirat hozzáillesztése"
+msgstr ""
 
-#: ../src/actions/JoinDocument.cc:140
-#, fuzzy, c-format
+#: ../src/actions/JoinDocument.cc:145
+#, c-format
 msgid "1 subtitle has been added at this document."
 msgid_plural "%d subtitles have been added at this document."
-msgstr[0] "%d feliratok törölve."
-msgstr[1] "%d feliratok törölve."
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/actions/MoveAfterPrecedingSubtitle.cc:47
 msgid "_Move After Preceding"
@@ -1283,120 +1456,145 @@ msgid "_Move Subtitles"
 msgstr "_Felirat mozgatása"
 
 #: ../src/actions/MoveSubtitles.cc:99
-#, fuzzy
 msgid "All subtitles will be also moved after the first selected subtitle"
-msgstr "Minden későbbi felirat is átidőzítésre kerül"
+msgstr ""
+
+#: ../src/actions/preferences/PreferencesPlugin.cc:92
+msgid "Configure Subtitle Editor"
+msgstr "Subtitle Editor beállítása"
+
+#. audio output
+#. video output
+#: ../src/actions/preferences/VideoPlayerPage.h:123
+#: ../src/actions/preferences/VideoPlayerPage.h:131
+msgid "Autodetect"
+msgstr "Automatikus felismerés"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:124
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA - Advanced Linux Sound Architecture"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:125
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr "ESD - Enlightenment Sound Daemon"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:126
+msgid "OSS - Open Sound System"
+msgstr "OSS - Open Sound System"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:127
+#: ../src/actions/preferences/VideoPlayerPage.h:134
+msgid "SDL - Simple DirectMedia Layer"
+msgstr "SDL - Simple DirectMedia Layer"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:128
+#: ../src/actions/preferences/VideoPlayerPage.h:135
+msgid "GConf"
+msgstr "GConf"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:132
+msgid "X Window System (X11/XShm/Xv)"
+msgstr "X Window System (X11/XShm/Xv)"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:133
+msgid "X Window System (No Xv)"
+msgstr "X Window System (Nem Xv)"
+
+#: ../src/actions/preferences/VideoPlayerPage.h:136
+msgid "OpenGL"
+msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
-#, fuzzy
 msgid "_Reverse Text And Translation"
-msgstr "Fordítás megnyitása"
+msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
-#, fuzzy
 msgid "Reverse the text and the translation"
-msgstr "Szöveg cserélése a fordítással"
+msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:109
-#, fuzzy
 msgid "Reverse Text And Translation"
-msgstr "Fordítás megnyitása"
+msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:124
-#, fuzzy
 msgid "Reverse the text and the translation was applied."
-msgstr "A fordítás elfogadva."
+msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:109
 msgid "You can't use <i>scale</i> with this document."
 msgstr "Az igazítást nem tudja ebben a dokumentumban használni."
 
 #: ../src/actions/ScaleSubtitles.cc:242
-#, fuzzy
 msgid "_Scale"
-msgstr "Felirat igazítása"
+msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:242
-#, fuzzy
 msgid "Scale by two points"
-msgstr "Igazítás két pont közé"
+msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:329
-#, fuzzy
 msgid "Scale subtitles"
-msgstr "Felirat mentése másként"
+msgstr ""
 
 #: ../src/actions/ScaleSubtitles.cc:352
 msgid "The scale was applied"
 msgstr "A skálázás elfogadva."
 
 #: ../src/actions/Selection.cc:45
-#, fuzzy
 msgid "_Selection"
-msgstr "Kijelölt rész lejátszása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:48
-#, fuzzy
 msgid "Select _First Subtitle"
-msgstr "Következő felirat kiválasztása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:48
-#, fuzzy
 msgid "Select the first subtitle"
-msgstr "Következő felirat kiválasztása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:52
-#, fuzzy
 msgid "Select _Last Subtitle"
-msgstr "Következő felirat kiválasztása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:52
-#, fuzzy
 msgid "Select the last subtitle"
-msgstr "Következő felirat kiválasztása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:56
-#, fuzzy
 msgid "Select _Previous Subtitle"
-msgstr "Előző felirat kiválasztása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:56
 msgid "Select the previous subtitle"
 msgstr "Előző felirat kiválasztása"
 
 #: ../src/actions/Selection.cc:60
-#, fuzzy
 msgid "Select _Next Subtitle"
-msgstr "Következő felirat kiválasztása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:60
 msgid "Select the next subtitle"
 msgstr "Következő felirat kiválasztása"
 
 #: ../src/actions/Selection.cc:64
-#, fuzzy
 msgid "Select _All Subtitles"
-msgstr "Következő felirat kiválasztása"
+msgstr ""
 
 #: ../src/actions/Selection.cc:64
-#, fuzzy
 msgid "Select all subtitles"
-msgstr "Felirat mentése másként"
+msgstr ""
 
 #: ../src/actions/Selection.cc:68
-#, fuzzy
 msgid "In_vert Selection"
-msgstr "Ugrás a kijelölt részhez"
+msgstr ""
 
 #: ../src/actions/Selection.cc:68
-#, fuzzy
 msgid "Invert subtitles selection"
-msgstr "Ugrás a kijelölt részhez"
+msgstr ""
 
 #: ../src/actions/SpellChecking.cc:663
-#, fuzzy
 msgid "_Spell Check"
-msgstr "Helyesírás-ellenőrző"
+msgstr ""
 
 #: ../src/actions/SpellChecking.cc:663
 msgid "Launch the spell checking"
@@ -1408,51 +1606,45 @@ msgstr "Nem tudja a <i>kettévágás</i>-t használni ebben a feliratban."
 
 #. on supprime ensuite les sous-titres utiliser par le nouveau document
 #: ../src/actions/SplitDocument.cc:99
-#, fuzzy
 msgid "Split document"
-msgstr "Felirat kettévágása"
+msgstr ""
 
 #: ../src/actions/SplitDocument.cc:128
-#, fuzzy
 msgid "Spl_it Document"
-msgstr "Felirat kettévágása"
+msgstr ""
 
 #: ../src/actions/SplitDocument.cc:128
 msgid "Split the current document in two"
 msgstr "Aktuális felira kettévágása"
 
 #: ../src/actions/SplitSubtitle.cc:45
-#, fuzzy
 msgid "_Split"
-msgstr "Felirattöredék mentése külön fájlba"
+msgstr ""
 
 #: ../src/actions/SplitSubtitle.cc:45
 msgid "Split the selected subtitles"
 msgstr "Kijelölt felirat kettévágása"
 
-#.
+#. 
 #: ../src/actions/SplitSubtitle.cc:125
-#, fuzzy
 msgid "Split subtitles"
-msgstr "Felirat kettévágása"
+msgstr ""
 
 #: ../src/actions/StyleEditor.cc:115
 msgid "Styles"
 msgstr "Stílus"
 
 #: ../src/actions/StyleEditor.cc:435
-#, fuzzy
 msgid "_Style Editor"
-msgstr "Stílusszerkesztő"
+msgstr ""
 
 #: ../src/actions/StyleEditor.cc:435
 msgid "Launch the style editor"
 msgstr "Stílusszerkesztő indítása"
 
 #: ../src/actions/TimeModeManagement.cc:47
-#, fuzzy
 msgid "_Times"
-msgstr "_Időzítés"
+msgstr ""
 
 #: ../src/actions/TimeModeManagement.cc:47
 #: ../src/actions/TimeModeManagement.cc:51
@@ -1488,29 +1680,34 @@ msgid "_Frames"
 msgstr ""
 
 #: ../src/actions/TimeModeManagement.cc:58
-#, fuzzy
 msgid "_Framerate"
-msgstr "Frémráta változtatása"
+msgstr ""
 
-#: ../src/actions/Transcript.cc:50
-#, fuzzy
+#: ../src/actions/Transcript.cc:49
 msgid "_Import Transcript"
-msgstr "Fordítás importálása"
+msgstr ""
 
-#: ../src/actions/Transcript.cc:50
-#, fuzzy
+#: ../src/actions/Transcript.cc:49
 msgid "Create a new document with any text file"
-msgstr "Új felirat készítése bármilyen szövegfájlból."
+msgstr ""
 
-#: ../src/actions/Transcript.cc:54
-#, fuzzy
+#: ../src/actions/Transcript.cc:53
 msgid "_Export Transcript"
-msgstr "Fordítás exportálása"
+msgstr ""
 
-#: ../src/actions/Transcript.cc:54
-#, fuzzy
+#: ../src/actions/Transcript.cc:53
 msgid "Export just a text in a file"
-msgstr "Csak a szöveg exportálása"
+msgstr ""
+
+#: ../src/actions/Transcript.cc:132
+#, c-format
+msgid "Could not import from the file \"%s\"."
+msgstr ""
+
+#: ../src/actions/Transcript.cc:170
+#, c-format
+msgid "Could not export to the file \"%s\"."
+msgstr ""
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "_Try To Extend To Perfect"
@@ -1538,64 +1735,55 @@ msgid "Undo: %s"
 msgstr ""
 
 #: ../src/actions/UndoRedo.cc:158
-#, fuzzy, c-format
+#, c-format
 msgid "redo: %s"
-msgstr "Újra: %s"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:47
-#, fuzzy
 msgid "_Video"
-msgstr "_Videó"
+msgstr ""
 
 #. _("_Open Media"),
 #: ../src/actions/VideoPlayerManagement.cc:54
-#, fuzzy
 msgid "Open a multimedia file"
-msgstr "Media megnyitása"
+msgstr ""
 
 #. _("_Close Media"),
 #: ../src/actions/VideoPlayerManagement.cc:63
-#, fuzzy
 msgid "Close a multimedia file"
-msgstr "Media megnyitása"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:82
-#, fuzzy
 msgid "_Play / Pause"
-msgstr "Lejátszás / Szünet"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:83
 msgid "Play or make a pause"
 msgstr "Lejátszás vagy szünet"
 
 #: ../src/actions/VideoPlayerManagement.cc:91
-#, fuzzy
 msgid "Skip _Backwards"
-msgstr "Hátra"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:96
 #: ../src/actions/VideoPlayerManagement.cc:131
-#, fuzzy
 msgid "Very Short"
-msgstr "Nagyon kicsi"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:103
 #: ../src/actions/VideoPlayerManagement.cc:138
-#, fuzzy
 msgid "Short"
-msgstr "Kicsi:"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:110
 #: ../src/actions/VideoPlayerManagement.cc:145
-#, fuzzy
 msgid "Medium"
-msgstr "Közepes:"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:117
 #: ../src/actions/VideoPlayerManagement.cc:152
-#, fuzzy
 msgid "Long"
-msgstr "Nagy:"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:126
 msgid "Skip _Forward"
@@ -1613,23 +1801,20 @@ msgid "Define the playback rate"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:166
-#, fuzzy
 msgid "_Slower"
-msgstr "_Lassabban"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:173
-#, fuzzy
 msgid "_Faster"
-msgstr "_Gyorsabban"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:180
 msgid "_Normal"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:188
-#, fuzzy
 msgid "_Seek To Selection"
-msgstr "Ugrás a kijelölt részhez"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:189
 msgid "Seek to the first selected subtitle"
@@ -1640,27 +1825,24 @@ msgid "_Repeat"
 msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:208
-#, fuzzy
 msgid "Play _Previous Subtitle"
-msgstr "Előző felirat lejátszása"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:209
 msgid "Play previous subtitle from the first selected subtitle"
 msgstr "Az első kijelölt felirat előtti felirat lejátszása"
 
 #: ../src/actions/VideoPlayerManagement.cc:216
-#, fuzzy
 msgid "Play _Selection"
-msgstr "Kijelölt rész lejátszása"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:217
 msgid "Play the selected subtitle"
 msgstr "Kijelölt felirat lejátszása"
 
 #: ../src/actions/VideoPlayerManagement.cc:224
-#, fuzzy
 msgid "Play _Next Subtitle"
-msgstr "Következő felirat lejátszása"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:225
 msgid "Play next subtitle from the first selected subtitle"
@@ -1671,27 +1853,24 @@ msgid "Play Previous Second"
 msgstr "Előző másodperc lejátszása"
 
 #: ../src/actions/VideoPlayerManagement.cc:233
-#, fuzzy
 msgid "Play the second preceding the first selected subtitle"
-msgstr "Egy másodperc lejátszása az első kiválaszott felirat előtt"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:239
 msgid "Play First Second"
 msgstr "Első másodperc lejátszása"
 
 #: ../src/actions/VideoPlayerManagement.cc:240
-#, fuzzy
 msgid "Play the first second of the subtitle currently selected"
-msgstr "Az első másodperc lejátszása a jelenleg kiválaszott  feliratból"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:246
 msgid "Play Last Second"
 msgstr "Utolsó másodperc lejátszása"
 
 #: ../src/actions/VideoPlayerManagement.cc:247
-#, fuzzy
 msgid "Play the last second of the subtitle currently selected"
-msgstr "Az utolsó másodperc lejátszása a jelenleg kiválasztott feliratból"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:253
 msgid "Play Next Second"
@@ -1702,121 +1881,105 @@ msgid "Play the second following the subtitle currently selected"
 msgstr "A jelenleg kiválaszott feliratot követő másodperc lejátszása"
 
 #: ../src/actions/VideoPlayerManagement.cc:262
-#, fuzzy
 msgid "Set Subtitle _Start"
-msgstr "Felirat kezdetének beállítása"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:269
-#, fuzzy
 msgid "Set Subtitle _End"
-msgstr "Felirat végének beállítása"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:279
-#, fuzzy
 msgid "_Video Player"
-msgstr "Videólejátszó"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:280
-#, fuzzy
 msgid "Show or hide the video player in the current window"
-msgstr "Videolejásztó megjelenítése vagy elrejtése az aktuális ablakban"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:754
-#, fuzzy
 msgid "Set subtitle start"
-msgstr "Felirat kezdetének beállítása"
+msgstr ""
 
 #: ../src/actions/VideoPlayerManagement.cc:776
-#, fuzzy
 msgid "Set subtitle end"
-msgstr "Felirat végének beállítása"
+msgstr ""
 
 #: ../src/actions/ViewManager.cc:129
 msgid "Display"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:230
+#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:232
+#: ../src/SubtitleView.cc:1640
 msgid "Name"
 msgstr "Név"
 
-#: ../src/actions/ViewManager.cc:300
+#: ../src/actions/ViewManager.cc:302
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:389
+#: ../src/actions/ViewManager.cc:391
 msgid "Simple"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:390
+#: ../src/actions/ViewManager.cc:392
 msgid "Advanced"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:391
+#: ../src/actions/ViewManager.cc:393 ../src/SubtitleView.cc:1646
 msgid "Translation"
 msgstr "Fordítás"
 
-#: ../src/actions/ViewManager.cc:423
-#, fuzzy
+#: ../src/actions/ViewManager.cc:425
 msgid "View _Manager"
-msgstr "_Kezelő megjelenítése"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:57
 msgid "_Waveform"
 msgstr "_Hanghullám"
 
 #: ../src/actions/WaveformManagement.cc:61
-#, fuzzy
 msgid "_Open Waveform"
-msgstr "Hanghullám megnyitása"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:61
-#, fuzzy
 msgid "Open wavefrom from a file or create from a video"
-msgstr "Hullámforma megnyitása fájlból vagy létrehozása videóból"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:65
-#, fuzzy
 msgid "_Save Waveform"
-msgstr "Hanghullám mentése"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:65
-#, fuzzy
 msgid "Save wavefrom to file"
-msgstr "Hullámforma fájlba mentése"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:70
-#, fuzzy
 msgid "Zoom _In"
-msgstr "Nagyítás"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:74
-#, fuzzy
 msgid "Zoom _Out"
-msgstr "Kicsinyítés"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:78
-#, fuzzy
 msgid "Zoom _Selection"
-msgstr "Kijelölt rész nagyítása"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:82
-#, fuzzy
 msgid "Zoom _All"
-msgstr "Egész mutatása"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:87
-#, fuzzy
 msgid "_Center With Selected Subtitle"
-msgstr "Kiválasztott felirat középen"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:94
 msgid "Scrolling With _Player"
 msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:101
-#, fuzzy
 msgid "Scrolling With _Selection"
-msgstr "Görgetés kijelöléssel"
+msgstr ""
 
 #: ../src/actions/WaveformManagement.cc:108
 msgid "_Respect The Timing"
@@ -1839,27 +2002,85 @@ msgid "Save Waveform"
 msgstr "Hanghullám mentése"
 
 #: ../src/CommandSystem.cc:37
-#, fuzzy
 msgid "Subtitle Selection"
-msgstr "Ugrás a kijelölt részhez"
+msgstr ""
 
-#: ../src/Document.cc:257
+#: ../src/Document.cc:295
 #, c-format
-msgid "Could not open the file <i>%s</i>."
-msgstr "Nem nyitható meg a fájl: <i>%s</i>."
+msgid "Could not save the file \"%s\" using the character coding %s."
+msgstr ""
 
-#: ../src/Document.cc:263
-#, c-format
-msgid "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
-msgstr "Ezzel a kódolással (<i>%s</i>) nem nyitható meg a fájl (<i>%s</i>)."
+#: ../src/Document.cc:297
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character coding."
+msgstr ""
 
-#: ../src/Document.cc:353 ../src/Document.cc:357
+#: ../src/Document.cc:306
 msgid "Save Document Failed."
 msgstr "A dokumentum mentése nem sikerült."
+
+#: ../src/Document.cc:639
+#, c-format
+msgid "Could not recognize the subtitle format for the file \"%s\"."
+msgstr ""
+
+#: ../src/Document.cc:641
+msgid "Please check that the file contains subtitles in a supported format."
+msgstr ""
+
+#: ../src/Document.cc:653
+#, c-format
+msgid "Could not open automatically the file \"%s\"."
+msgstr ""
+
+#: ../src/Document.cc:654
+msgid ""
+"Subtitle Editor was not able to automatically determine the file encoding. "
+"Select a different character coding from the menu and try again."
+msgstr ""
+
+#: ../src/Document.cc:660
+#, c-format
+msgid "Could not open the file \"%s\" using the character coding %s."
+msgstr ""
+
+#: ../src/Document.cc:662
+msgid "Select a different character coding from the menu and try again."
+msgstr ""
+
+#: ../src/Document.cc:687 ../src/Document.cc:696
+#, c-format
+msgid "Could not open the file \"%s\""
+msgstr ""
+
+#: ../src/Document.cc:697
+msgid "An unknown error occurred while opening the file."
+msgstr ""
 
 #: ../src/DocumentSystem.cc:192
 #, c-format
 msgid "Untitled %d"
+msgstr ""
+
+#: ../src/Encodings.cc:102
+msgid "It's not valid UTF-8."
+msgstr ""
+
+#: ../src/Encodings.cc:113 ../src/Encodings.cc:120 ../src/Encodings.cc:125
+#, c-format
+msgid "Couldn't convert from %s to UTF-8"
+msgstr ""
+
+#: ../src/Encodings.cc:215
+msgid ""
+"subtitleeditor was not able to automatically determine the encoding of the "
+"file you want to open."
+msgstr ""
+
+#: ../src/Encodings.cc:235
+#, c-format
+msgid "Could not convert the text to the character coding '%s'"
 msgstr ""
 
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
@@ -1963,532 +2184,317 @@ msgstr "Vietnámi"
 msgid "Thai"
 msgstr "Thai"
 
-#: ../src/formats/SubtitleASS.cc:179 ../src/formats/SubtitleASS.cc:233
-#: ../src/formats/SubtitleEncoreNTSC.cc:99
-#: ../src/formats/SubtitleEncoreNTSC.cc:154
-#: ../src/formats/SubtitleEncorePAL.cc:98
-#: ../src/formats/SubtitleEncorePAL.cc:151
-#: ../src/formats/SubtitleMicroDVD.cc:167
-#: ../src/formats/SubtitleMicroDVD.cc:221 ../src/formats/SubtitleMPL2.cc:86
-#: ../src/formats/SubtitleMPL2.cc:136 ../src/formats/SubtitleMPsub.cc:90
-#: ../src/formats/SubtitleMPsub.cc:184 ../src/formats/SubtitleSSA.cc:159
-#: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
-#: ../src/formats/SubtitleSubRip.cc:155
-#: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
-msgid "I can't open this file."
-msgstr "Nem tudom megnyitni ezt a fájlt!"
+#: ../src/FileWriter.cc:54
+msgid "Couldn't open the file."
+msgstr ""
 
-#: ../src/gui/Application.cc:332
+#: ../src/formats/SubtitleEditorProject.h:68
+#: ../src/formats/SubtitleEditorProject.h:123
+#: ../src/formats/TimedTextAuthoringFormat1.h:60
+#: ../src/formats/TimedTextAuthoringFormat1.h:84
+msgid "Failed to open the file for reading."
+msgstr ""
+
+#: ../src/formats/SubtitleEditorProject.h:177
+#: ../src/formats/TimedTextAuthoringFormat1.h:117
+msgid "Failed to save the file for writing."
+msgstr ""
+
+#: ../src/gui/Application.cc:308
+msgid "Times"
+msgstr ""
+
+#: ../src/gui/Application.cc:308
+msgid "Frames"
+msgstr ""
+
+#: ../src/gui/Application.cc:317
 msgid "Name:"
 msgstr "Név:"
 
-#: ../src/gui/Application.cc:333
-msgid "Encoding:"
-msgstr "Kódolás"
-
-#: ../src/gui/CheckErrorsUI.cc:44
-msgid "An error is detected when the subtitle overlap on next subtitle."
+#: ../src/gui/Application.cc:318
+msgid "Path:"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:62
-#, c-format
-msgid ""
-"<b>Subtitle overlap on next subtitle:</b> %ims overlap\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>Átfedés a következő felirattal:</b> %ims-mal\n"
-"%s -> %s\n"
-"%s"
-
-#: ../src/gui/CheckErrorsUI.cc:100
-#, fuzzy
-msgid "An error is detected when the number of characters per second is ..."
-msgstr "Karakterek soronkénti számának mutatása."
-
-#: ../src/gui/CheckErrorsUI.cc:119
-#, c-format
-msgid ""
-"<b>Subtitle display time is too short:</b> %i char/s\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>Felirat láthatósága túl rövid:</b> %i karakter/másodperc\n"
-"%s -> %s\n"
-"%s"
-
-#: ../src/gui/CheckErrorsUI.cc:155
-msgid "An error is detected when the number ..."
+#: ../src/gui/Application.cc:321
+msgid "Newline:"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:174
-#, c-format
-msgid ""
-"<b>Subtitle display time is too long:</b> %i char/s\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-"<b>Felirat láthatósága túl hosszú:</b> %i karakter/másodperc\n"
-"%s -> %s\n"
-"%s"
-
-#: ../src/gui/CheckErrorsUI.cc:216
-#, fuzzy
-msgid "Too Long line"
-msgstr "Túl hosszú sor"
-
-#: ../src/gui/CheckErrorsUI.cc:217 ../src/gui/CheckErrorsUI.cc:287
-msgid "An error is detected when ..."
+#: ../src/gui/Application.cc:322
+msgid "Timing Mode:"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:243
-#, c-format
-msgid ""
-"<b>Subtitle has a too long line (%s):</b> %i characters\n"
-"%s -> %s\n"
-"%s"
+#: ../src/gui/ComboBoxEncoding.cc:143
+msgid "Auto Detected"
+msgstr "Automatikus felismerés"
+
+#: ../src/gui/ComboBoxEncoding.cc:156
+msgid "Current Locale"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:762 ../src/SubtitleView.cc:1682
-msgid "text"
-msgstr "szöveg"
-
-#: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:826 ../src/SubtitleView.cc:1683
-msgid "translation"
-msgstr "fordítás"
-
-#: ../src/gui/CheckErrorsUI.cc:316
-#, c-format
-msgid ""
-"<b>Subtitle has too many lines (%s):</b> %i\n"
-"%s -> %s\n"
-"%s"
+#: ../src/gui/ComboBoxEncoding.cc:177
+msgid "Add or Remove..."
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:354
-#, fuzzy
-msgid "Minimum gap between subtitles"
-msgstr "Minimális szünet két felirat között millisec-ben:"
-
-#: ../src/gui/CheckErrorsUI.cc:355
-msgid ""
-"An error is detected when the minimum gap between subtitles is too short."
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:376
-#, c-format
-msgid "<b>Too short gap between subtitle:</b> %ims"
-msgstr "<b>Túl kevés az idő a következő felirat előtt:</b> %ims"
-
-#: ../src/gui/CheckErrorsUI.cc:514
-msgid "Line"
-msgstr "Sor"
-
-#: ../src/gui/CheckErrorsUI.cc:528
-msgid "Errors"
-msgstr "Hibák"
-
-#: ../src/gui/CheckErrorsUI.cc:728
-msgid "Document not found."
+#: ../src/gui/ComboBoxVideo.cc:74
+msgid "None"
 msgstr ""
 
 #. column description
 #: ../src/gui/DialogCharacterCodings.cc:65
-#, fuzzy
 msgid "_Description"
-msgstr "Cél:"
+msgstr ""
 
 #. column encoding
 #: ../src/gui/DialogCharacterCodings.cc:79
-#, fuzzy
 msgid "_Encoding"
-msgstr "Kódolás"
-
-#: ../src/gui/DialogFileChooser.cc:186
-msgid "Auto Detected"
-msgstr "Automatikus felismerés"
-
-#: ../src/gui/DialogFileChooser.cc:211
-msgid "Add or Remove..."
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:313
-#, fuzzy
-msgid "None"
-msgstr "Megjegyzés"
-
-#: ../src/gui/DialogFileChooser.cc:384
-msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
-msgstr ""
-
-#: ../src/gui/DialogFileChooser.cc:410
+#: ../src/gui/DialogFileChooser.cc:46
 msgid "All files (*.*)"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:706
-#, fuzzy
+#: ../src/gui/DialogFileChooser.cc:53
+msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
+msgstr ""
+
+#: ../src/gui/DialogFileChooser.cc:391
 msgid "Open Video"
-msgstr "Film megnyitása"
+msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:712 ../src/gui/DialogFileChooser.cc:774
-#, fuzzy
+#: ../src/gui/DialogFileChooser.cc:397 ../src/gui/DialogFileChooser.cc:459
 msgid "Video"
-msgstr "_Videó"
+msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:723 ../src/gui/DialogFileChooser.cc:785
+#: ../src/gui/DialogFileChooser.cc:408 ../src/gui/DialogFileChooser.cc:470
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
+#: ../src/gui/DialogFileChooser.cc:416 ../src/gui/DialogFileChooser.cc:479
 msgid "ALL"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:762
+#: ../src/gui/DialogFileChooser.cc:447
 msgid "Open Waveform"
 msgstr "Hanghullám megnyitása"
 
-#: ../src/gui/DialogFileChooser.cc:768
-#, fuzzy
+#: ../src/gui/DialogFileChooser.cc:453
 msgid "Waveform (*.wf)"
-msgstr "Hanghullám"
+msgstr ""
 
-#: ../src/gui/MenuBar.cc:124
+#. create all menu
+#: ../src/gui/MenuBar.cc:63
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/gui/MenuBar.cc:126
-msgid "_Properties"
-msgstr "Tulajdonságok"
-
-#: ../src/gui/MenuBar.cc:133
+#: ../src/gui/MenuBar.cc:64
 msgid "_Edit"
 msgstr "_Szerkesztés"
 
-#: ../src/gui/MenuBar.cc:144
-#, fuzzy
+#: ../src/gui/MenuBar.cc:65
 msgid "_Timings"
-msgstr "_Időzítés"
+msgstr ""
 
-#: ../src/gui/MenuBar.cc:151
-#, fuzzy
+#: ../src/gui/MenuBar.cc:66
 msgid "T_ools"
-msgstr "_Eszközök"
+msgstr ""
 
-#. ag.item("find-and-replace", Gtk::Stock::FIND_AND_REPLACE, _("_Find And Replace"),
-#. _("Search for and replace text"), "<Control>F");
-#: ../src/gui/MenuBar.cc:155
-#, fuzzy
-msgid "_Check Errors"
-msgstr "Hibakeresés"
-
-#: ../src/gui/MenuBar.cc:156
-msgid "Launch the errors checking"
-msgstr "Hibakereső indítása"
-
-#: ../src/gui/MenuBar.cc:164
-#, fuzzy
+#: ../src/gui/MenuBar.cc:67
 msgid "V_iew"
-msgstr "_Nézet"
+msgstr ""
 
-#: ../src/gui/MenuBar.cc:171
-msgid "_Options"
-msgstr "_Opciók"
-
-#: ../src/gui/MenuBar.cc:173
-msgid "Configure Subtitle Editor"
-msgstr "Subtitle Editor beállítása"
-
-#: ../src/gui/MenuBar.cc:174
-#, fuzzy
-msgid "Configure _Keyboard Shortcuts"
-msgstr "Dinamikus gyorsbillentyűk használata"
-
-#: ../src/gui/MenuBar.cc:182
+#: ../src/gui/MenuBar.cc:69
 msgid "_Help"
 msgstr "Segí_tség"
 
-#: ../src/gui/MenuBar.cc:381
-#, fuzzy
-msgid "Actions"
-msgstr "_Opciók"
-
-#: ../src/gui/MenuBar.cc:403
-#, fuzzy
-msgid "Shortcut"
-msgstr "Kicsi:"
-
-#: ../src/gui/MenuBar.cc:533
-msgid "Invalid shortcut."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:551
-#, c-format
-msgid "Shortcut \"%s\" is already taken by \"%s\"."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:554
-#, c-format
-msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:557
-#, fuzzy
-msgid "Conflicting Shortcuts"
-msgstr "Dinamikus gyorsbillentyűk használata"
-
-#: ../src/gui/MenuBar.cc:563
-msgid "Changing shortcut failed."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:594
-#, fuzzy
-msgid "Removing shortcut failed."
-msgstr "A dokumentum megnyitása nem sikerült."
-
-#: ../src/gui/PreferencesUI.cc:89 ../src/gui/PreferencesUI.cc:99
-msgid "Autodetect"
-msgstr "Automatikus felismerés"
-
-#: ../src/gui/PreferencesUI.cc:90
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA - Advanced Linux Sound Architecture"
-
-#: ../src/gui/PreferencesUI.cc:91
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD - Enlightenment Sound Daemon"
-
-#: ../src/gui/PreferencesUI.cc:92
-msgid "OSS - Open Sound System"
-msgstr "OSS - Open Sound System"
-
-#: ../src/gui/PreferencesUI.cc:93 ../src/gui/PreferencesUI.cc:102
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL - Simple DirectMedia Layer"
-
-#: ../src/gui/PreferencesUI.cc:94 ../src/gui/PreferencesUI.cc:103
-msgid "GConf"
-msgstr "GConf"
-
-#: ../src/gui/PreferencesUI.cc:100
-msgid "X Window System (X11/XShm/Xv)"
-msgstr "X Window System (X11/XShm/Xv)"
-
-#: ../src/gui/PreferencesUI.cc:101
-msgid "X Window System (No Xv)"
-msgstr "X Window System (Nem Xv)"
-
-#: ../src/gui/PreferencesUI.cc:104
-#, fuzzy
-msgid "OpenGL"
-msgstr "OpenGL "
-
-#: ../src/main.cc:225
+#: ../src/main.cc:229
 msgid " - edit subtitles files"
 msgstr " - feliratfájlok szerkesztése"
 
-#: ../src/Options.cc:57
+#: ../src/Options.cc:40
 msgid "[FILE...]"
 msgstr "[Fájl...]"
 
-#: ../src/Options.cc:65 ../src/Options.cc:90 ../src/Options.cc:98
+#: ../src/Options.cc:48 ../src/Options.cc:73 ../src/Options.cc:81
 msgid "FILE"
 msgstr "FÁJL"
 
-#: ../src/Options.cc:74
+#: ../src/Options.cc:57
 msgid "NAME"
 msgstr ""
 
-#: ../src/Options.cc:82
+#: ../src/Options.cc:65
 msgid "ENCODING"
 msgstr "KÓDOLÁS"
 
-#: ../src/SubtitleFormat.cc:151
-msgid ""
-"It's not valid UTF-8.\n"
-"Please use another character encoding."
+#: ../src/SubtitleFormat.cc:63 ../src/SubtitleFormat.cc:71
+msgid "This function are not implemented to this format."
 msgstr ""
-"Ez nem érvényes UTF-8.\n"
-"Válasszon másik kódolást."
 
-#: ../src/SubtitleFormat.cc:161
-msgid "Please use another character encoding."
-msgstr "Válasszon másik karakterkódolást."
+#: ../src/SubtitleFormatSystem.cc:113
+msgid "Couldn't recognize format of the file."
+msgstr ""
+
+#: ../src/SubtitleFormatSystem.cc:133
+#, c-format
+msgid "Couldn't create the subtitle format '%s'."
+msgstr ""
 
 #: ../src/SubtitleModel.cc:37
-#, fuzzy
 msgid "Add Subtitle"
-msgstr "Felirat megnyitása"
+msgstr ""
 
 #: ../src/SubtitleModel.cc:75
-#, fuzzy
 msgid "Remove Subtitle"
-msgstr "Felirat Mozgatása"
+msgstr ""
 
 #: ../src/SubtitleModel.cc:521
-#, fuzzy
 msgid "Reordered Subtitle"
-msgstr "Felirat Mozgatása"
+msgstr ""
 
 #: ../src/Subtitles.cc:35
-#, fuzzy
 msgid "Append subtitle"
-msgstr "Felirat megnyitása"
+msgstr ""
 
 #: ../src/Subtitles.cc:64
-#, fuzzy
 msgid "Remove Subtitles"
-msgstr "Felirat Mozgatása"
+msgstr ""
 
-#: ../src/SubtitleSystem.cc:196
-msgid "I can't find what is this format or it's not supported."
-msgstr "Nem ismerem fel, vagy ez egy nem támogatott formátum."
-
-#: ../src/SubtitleView.cc:426
+#: ../src/SubtitleView.cc:492
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Használja a Ctrl+Enter-t kilépéshez és Enter-t a sortöréshez"
 
-#: ../src/SubtitleView.cc:428
-#, fuzzy
+#: ../src/SubtitleView.cc:494
 msgid "Use Return for exit and Ctrl+Return for line-break"
-msgstr "Használja a Ctrl+Enter-t kilépéshez és Enter-t a sortöréshez"
+msgstr ""
 
-#: ../src/SubtitleView.cc:560 ../src/SubtitleView.cc:1679
-msgid "num"
-msgstr "sorszám"
+#: ../src/SubtitleView.cc:646
+msgid "The line number"
+msgstr ""
 
-#: ../src/SubtitleView.cc:575
-msgid "This number column"
-msgstr "Sorszám oszlop"
+#: ../src/SubtitleView.cc:712
+msgid "When a subtitle appears on the screen."
+msgstr ""
 
-#: ../src/SubtitleView.cc:588 ../src/SubtitleView.cc:1673
-msgid "layer"
-msgstr "réteg"
+#: ../src/SubtitleView.cc:724
+msgid "When a subtitle disappears from the screen."
+msgstr ""
 
-#: ../src/SubtitleView.cc:604
-msgid "Layer number."
-msgstr "Réteg száma."
-
-#: ../src/SubtitleView.cc:644 ../src/SubtitleView.cc:1680
-msgid "start"
-msgstr "kezdet"
-
-#: ../src/SubtitleView.cc:647
-msgid "This time is the time when a subtitle appears on the screen."
-msgstr "Ekkor fog megjelenni a felirat a képernyőn."
-
-#: ../src/SubtitleView.cc:657 ../src/SubtitleView.cc:1672
-msgid "end"
-msgstr "vége"
-
-#: ../src/SubtitleView.cc:660
-msgid "This time is the time when a subtitle disappears from the screen."
-msgstr "Ekkor fog eltűnni a felirat a képernyőről."
-
-#: ../src/SubtitleView.cc:671 ../src/SubtitleView.cc:1670
-msgid "duration"
-msgstr "hossz"
-
-#: ../src/SubtitleView.cc:674
+#: ../src/SubtitleView.cc:737
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:687 ../src/SubtitleView.cc:1681
-msgid "style"
-msgstr "stílus"
+#: ../src/SubtitleView.cc:812
+msgid "The number of characters per second"
+msgstr ""
 
-#: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:1677
-msgid "name"
-msgstr "név"
-
-#: ../src/SubtitleView.cc:739 ../src/SubtitleView.cc:1669
-#, fuzzy
-msgid "cps"
-msgstr "kps"
-
-#: ../src/SubtitleView.cc:870 ../src/SubtitleView.cc:1678
-msgid "note"
-msgstr "megjegyzés"
-
-#: ../src/SubtitleView.cc:897 ../src/SubtitleView.cc:1671
-msgid "effect"
-msgstr "hatás"
-
-#: ../src/SubtitleView.cc:926 ../src/SubtitleView.cc:1675
-msgid "R"
-msgstr "Jobb"
-
-#: ../src/SubtitleView.cc:953 ../src/SubtitleView.cc:1674
-msgid "L"
-msgstr "Bal"
-
-#: ../src/SubtitleView.cc:980 ../src/SubtitleView.cc:1676
-msgid "V"
-msgstr "Függőleges"
-
-#: ../src/SubtitleView.cc:1040
+#: ../src/SubtitleView.cc:1064
 msgid "Editing layer"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1068 ../src/SubtitleView.cc:1079
+#: ../src/SubtitleView.cc:1092 ../src/SubtitleView.cc:1103
 msgid "Editing start"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1106 ../src/SubtitleView.cc:1117
+#: ../src/SubtitleView.cc:1130 ../src/SubtitleView.cc:1141
 msgid "Editing end"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1144 ../src/SubtitleView.cc:1155
-#, fuzzy
+#: ../src/SubtitleView.cc:1168 ../src/SubtitleView.cc:1179
 msgid "Editing duration"
-msgstr "hossz"
+msgstr ""
 
-#: ../src/SubtitleView.cc:1175
+#: ../src/SubtitleView.cc:1199
 msgid "Editing text"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1197
-#, fuzzy
+#: ../src/SubtitleView.cc:1221
 msgid "Editing translation"
-msgstr "fordítás"
+msgstr ""
 
-#: ../src/SubtitleView.cc:1217
+#: ../src/SubtitleView.cc:1241
 msgid "Editing note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1236
-#, fuzzy
+#: ../src/SubtitleView.cc:1260
 msgid "Editing effect"
-msgstr "hatás"
+msgstr ""
 
-#: ../src/SubtitleView.cc:1257
-#, fuzzy
+#: ../src/SubtitleView.cc:1281
 msgid "Editing style"
-msgstr "Időzítő rendszer"
+msgstr ""
 
-#: ../src/SubtitleView.cc:1277
+#: ../src/SubtitleView.cc:1301
 msgid "Editing name"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1297
+#: ../src/SubtitleView.cc:1321
 msgid "Editing margin-l"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1317
+#: ../src/SubtitleView.cc:1341
 msgid "Editing margin-r"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1337
+#: ../src/SubtitleView.cc:1361
 msgid "Editing margin-v"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1475
-#, fuzzy
+#: ../src/SubtitleView.cc:1499
 msgid "Set style to selection"
-msgstr "Ugrás a kijelölt részhez"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1632
+msgid "CPS"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1633
+msgid "Duration"
+msgstr "Hossz"
+
+#: ../src/SubtitleView.cc:1634
+msgid "Effect"
+msgstr "Hatás"
+
+#: ../src/SubtitleView.cc:1635
+msgid "End"
+msgstr "Vége"
+
+#: ../src/SubtitleView.cc:1636
+msgid "Layer"
+msgstr "Réteg"
+
+#: ../src/SubtitleView.cc:1637
+msgid "L"
+msgstr "Bal"
+
+#: ../src/SubtitleView.cc:1638
+msgid "R"
+msgstr "Jobb"
+
+#: ../src/SubtitleView.cc:1639
+msgid "V"
+msgstr "Függőleges"
+
+#: ../src/SubtitleView.cc:1641
+msgid "Note"
+msgstr "Megjegyzés"
+
+#: ../src/SubtitleView.cc:1642
+msgid "Num"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1643
+msgid "Start"
+msgstr "Kezdet"
+
+#: ../src/SubtitleView.cc:1644
+msgid "Style"
+msgstr "Stílus"
+
+#: ../src/SubtitleView.cc:1645
+msgid "Text"
+msgstr "Szöveg"
 
 #: ../src/TimeUtility.cc:36
 msgid "23.976 fps"
@@ -2514,31 +2520,28 @@ msgstr ""
 msgid "Invalid fps"
 msgstr ""
 
-#: ../src/utility.cc:458
+#: ../src/utility.cc:382
 msgid ""
 "GStreamer plugins missing.\n"
 "The playback of this movie requires the following decoders which are not "
 "installed:"
 msgstr ""
 
-#: ../src/utility.cc:477
-#, fuzzy, c-format
+#: ../src/utility.cc:401
+#, c-format
 msgid "Failed to create a GStreamer element '%s'."
-msgstr "Nem hozható létre: '%s'"
+msgstr ""
 
-#: ../src/utility.cc:478
-#, fuzzy
+#: ../src/utility.cc:402
 msgid "Please check your GStreamer installation."
 msgstr ""
-"A GStreamer lejátszó nem hozható létreEllenőrízze a GStreamer telepítését."
 
 #: ../src/vp/GStreamerPlayer.cc:570
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Failed to create a GStreamer pipeline (%s). Please check your GStreamer "
 "installation."
 msgstr ""
-"A GStreamer lejátszó nem hozható létreEllenőrízze a GStreamer telepítését."
 
 #: ../src/vp/GStreamerPlayer.cc:624
 #, c-format
@@ -2564,18 +2567,16 @@ msgstr ""
 "%s"
 
 #: ../src/we/WaveformEditor.cc:775 ../src/we/WaveformEditor.cc:780
-#, fuzzy
 msgid "Editing position"
-msgstr "hossz"
+msgstr ""
 
 #: ../src/we/WaveformGenerator.cc:71
 msgid "Generate Waveform"
 msgstr "Hanghullám generálása"
 
 #: ../src/we/WaveformGenerator.cc:317
-#, fuzzy
 msgid "Media file could not be played.\n"
-msgstr "Médiafájl nem játszható le."
+msgstr ""
 
 #: ../src/we/WaveformRendererGL.cc:378
 msgid ""
@@ -2583,11 +2584,41 @@ msgid ""
 "Please try with another renderer."
 msgstr ""
 
-#~ msgid "Maximum character per second:"
-#~ msgstr "Maximális karakterszám másodpercenként:"
+#~ msgid "Check Errors"
+#~ msgstr "Hibakeresés"
+
+#~ msgid "Check Errors Preferences"
+#~ msgstr "Hibakeresés beállításai"
+
+#~ msgid "<b>Checking</b>"
+#~ msgstr "<b>Ellenőrzés</b>"
+
+#~ msgid "Max line per subtitle"
+#~ msgstr "Sorok maximális száma a feliratban"
+
+#~ msgid "Gap between subtitle"
+#~ msgstr "Kevés idő a két felirat között"
+
+#~ msgid "Too long line"
+#~ msgstr "Túl hosszú sor"
+
+#~ msgid "Too long display time"
+#~ msgstr "Túl hosszú láthatósági idő"
+
+#~ msgid "Too short display time"
+#~ msgstr "Túl rövid láthatósági idő"
+
+#~ msgid "<b>Timings</b>"
+#~ msgstr "<b>Időzítések</b>"
 
 #~ msgid "Minimum gap between subtitle in mseconds:"
 #~ msgstr "Minimális szünet két felirat között millisec-ben:"
+
+#~ msgid "Maximum character per second:"
+#~ msgstr "Maximális karakterszám másodpercenként:"
+
+#~ msgid "_Used regular expression"
+#~ msgstr "Reguláris kifejezés használata"
 
 #~ msgid "Current time:"
 #~ msgstr "Aktuális idő:"
@@ -2595,17 +2626,36 @@ msgstr ""
 #~ msgid "New time:"
 #~ msgstr "Új idő:"
 
+#~ msgid ""
+#~ "When enabled, you can change keyboard shortcuts for menu items by hitting a "
+#~ "key combination while  the menu item is highlighted."
+#~ msgstr ""
+#~ "Amikor engedélyezett, megváltoztathatod a gyorsbillentyűket azzal, hogy "
+#~ "leütöd az újat, amíg világít a menü."
+
+#~ msgid "_Show the number of character per line"
+#~ msgstr "Karakterek soronkénti számának mutatása."
+
 #~ msgid "<b>Encodings Character</b>"
 #~ msgstr "<b>Karakterkódolás</b>"
 
 #~ msgid "Used \"Auto Detected\""
 #~ msgstr "Automtikus észlelés"
 
-#~ msgid "Charset"
-#~ msgstr "Karakterkészlet"
+#~ msgid "Encodings"
+#~ msgstr "Kódolás"
 
-#~ msgid "%d subtitles have been deleted."
-#~ msgstr "%d feliratok törölve."
+#~ msgid "Marker:"
+#~ msgstr "Kijelölés:"
+
+#~ msgid "Marker Higtlight:"
+#~ msgstr "Fényes kijelölés:"
+
+#~ msgid "Play line:"
+#~ msgstr "Sor lejátszása:"
+
+#~ msgid "<b>Appearence</b>"
+#~ msgstr "<b>Megjelenés</b>"
 
 #~ msgid "Play"
 #~ msgstr "Lejátszás"
@@ -2619,70 +2669,82 @@ msgstr ""
 #~ msgid "0:00:00.00"
 #~ msgstr "0:00:00.00"
 
+#, c-format
+#~ msgid "%d subtitles have been deleted."
+#~ msgstr "%d feliratok törölve."
+
+#, c-format
+#~ msgid "Could not open the file <i>%s</i>."
+#~ msgstr "Nem nyitható meg a fájl: <i>%s</i>."
+
+#, c-format
+#~ msgid ""
+#~ "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
+#~ msgstr "Ezzel a kódolással (<i>%s</i>) nem nyitható meg a fájl (<i>%s</i>)."
+
+#~ msgid "I can't open this file."
+#~ msgstr "Nem tudom megnyitni ezt a fájlt!"
+
+#~ msgid "Encoding:"
+#~ msgstr "Kódolás"
+
+#, c-format
+#~ msgid ""
+#~ "<b>Subtitle overlap on next subtitle:</b> %ims overlap\n"
+#~ "%s -> %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Átfedés a következő felirattal:</b> %ims-mal\n"
+#~ "%s -> %s\n"
+#~ "%s"
+
+#, c-format
+#~ msgid ""
+#~ "<b>Subtitle display time is too short:</b> %i char/s\n"
+#~ "%s -> %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Felirat láthatósága túl rövid:</b> %i karakter/másodperc\n"
+#~ "%s -> %s\n"
+#~ "%s"
+
+#, c-format
+#~ msgid ""
+#~ "<b>Subtitle display time is too long:</b> %i char/s\n"
+#~ "%s -> %s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "<b>Felirat láthatósága túl hosszú:</b> %i karakter/másodperc\n"
+#~ "%s -> %s\n"
+#~ "%s"
+
+#~ msgid "text"
+#~ msgstr "szöveg"
+
+#~ msgid "translation"
+#~ msgstr "fordítás"
+
+#, c-format
+#~ msgid "<b>Too short gap between subtitle:</b> %ims"
+#~ msgstr "<b>Túl kevés az idő a következő felirat előtt:</b> %ims"
+
+#~ msgid "Line"
+#~ msgstr "Sor"
+
+#~ msgid "Errors"
+#~ msgstr "Hibák"
+
+#~ msgid "_Properties"
+#~ msgstr "Tulajdonságok"
+
+#~ msgid "Launch the errors checking"
+#~ msgstr "Hibakereső indítása"
+
 #~ msgid "Open the video"
 #~ msgstr "Film megnyitása"
 
-#, fuzzy
-#~ msgid "_Play the video"
-#~ msgstr "Film lejátszása"
-
-#, fuzzy
-#~ msgid "_Make a pause"
-#~ msgstr "Szünet"
-
-#, fuzzy
-#~ msgid "_Backards Jump"
-#~ msgstr "Nagy hátraugrás"
-
-#, fuzzy
-#~ msgid "_Forward Jump"
-#~ msgstr "Nagy előreugrás"
-
-#, fuzzy
-#~ msgid "Save waveform to file"
-#~ msgstr "hanghullám mentése \"%s\"-ba"
-
-#, fuzzy
-#~ msgid "Scrolling With _Cursor"
-#~ msgstr "Görgetés kurzorral"
-
-#, fuzzy
-#~ msgid "_Simple"
-#~ msgstr "Egyszerű"
-
-#, fuzzy
-#~ msgid "_Advanced"
-#~ msgstr "Haladó"
-
-#, fuzzy
-#~ msgid "_Translation"
-#~ msgstr "Fordítás"
-
-#, fuzzy
-#~ msgid "T_iming"
-#~ msgstr "Időzítés"
-
-#, fuzzy
-#~ msgid "Columns"
-#~ msgstr "Oszlopok"
-
 #~ msgid "Number"
 #~ msgstr "Sorszám"
-
-#~ msgid "Layer"
-#~ msgstr "Réteg"
-
-#~ msgid "Start"
-#~ msgstr "Kezdet"
-
-#~ msgid "End"
-#~ msgstr "Vége"
-
-#~ msgid "Duration"
-#~ msgstr "Hossz"
-
-#~ msgid "Style"
-#~ msgstr "Stílus"
 
 #~ msgid "Margin Left"
 #~ msgstr "Bal margó"
@@ -2693,15 +2755,66 @@ msgstr ""
 #~ msgid "Margin Vertical"
 #~ msgstr "Függőleges margó"
 
-#~ msgid "Effect"
-#~ msgstr "Hatás"
+#~ msgid "Charset"
+#~ msgstr "Karakterkészlet"
 
-#~ msgid "Text"
-#~ msgstr "Szöveg"
+#~ msgid "OpenGL "
+#~ msgstr "OpenGL "
 
-#, fuzzy
-#~ msgid "Characters Per Second"
-#~ msgstr "Karakterek száma soronként"
+#~ msgid "Media file could not be played."
+#~ msgstr "Médiafájl nem játszható le."
+
+#~ msgid ""
+#~ "It's not valid UTF-8.\n"
+#~ "Please use another character encoding."
+#~ msgstr ""
+#~ "Ez nem érvényes UTF-8.\n"
+#~ "Válasszon másik kódolást."
+
+#~ msgid "Please use another character encoding."
+#~ msgstr "Válasszon másik karakterkódolást."
+
+#~ msgid "I can't find what is this format or it's not supported."
+#~ msgstr "Nem ismerem fel, vagy ez egy nem támogatott formátum."
+
+#~ msgid "num"
+#~ msgstr "sorszám"
+
+#~ msgid "This number column"
+#~ msgstr "Sorszám oszlop"
+
+#~ msgid "layer"
+#~ msgstr "réteg"
+
+#~ msgid "Layer number."
+#~ msgstr "Réteg száma."
+
+#~ msgid "start"
+#~ msgstr "kezdet"
+
+#~ msgid "This time is the time when a subtitle appears on the screen."
+#~ msgstr "Ekkor fog megjelenni a felirat a képernyőn."
+
+#~ msgid "end"
+#~ msgstr "vége"
+
+#~ msgid "This time is the time when a subtitle disappears from the screen."
+#~ msgstr "Ekkor fog eltűnni a felirat a képernyőről."
+
+#~ msgid "duration"
+#~ msgstr "hossz"
+
+#~ msgid "style"
+#~ msgstr "stílus"
+
+#~ msgid "name"
+#~ msgstr "név"
+
+#~ msgid "note"
+#~ msgstr "megjegyzés"
+
+#~ msgid "effect"
+#~ msgstr "hatás"
 
 #~ msgid "<b>End Of Document.</b>"
 #~ msgstr "<b>Felirat vége</b>"
@@ -2724,46 +2837,17 @@ msgstr ""
 #~ msgid "Short:"
 #~ msgstr "Kicsi:"
 
-#, fuzzy
-#~ msgid "_Import"
-#~ msgstr "Importálása"
-
-#, fuzzy
-#~ msgid "_Text"
-#~ msgstr "Szöveg"
-
-#, fuzzy
-#~ msgid "_Export"
-#~ msgstr "Exportálása"
-
 #~ msgid "_About"
 #~ msgstr "_Névjegy"
-
-#, fuzzy
-#~ msgid "Move subtitles"
-#~ msgstr "Felirat Mozgatása"
 
 #~ msgid "Split Subtitle"
 #~ msgstr "Felirat kettévágása"
 
-#, fuzzy
-#~ msgid "Combine Subtitles"
-#~ msgstr "Felirat Mozgatása"
-
-#, fuzzy
-#~ msgid "Delete"
-#~ msgstr "Törlés"
-
 #~ msgid "Move Forward"
 #~ msgstr "Előre"
 
-#, fuzzy
-#~ msgid "Check _Errors"
-#~ msgstr "Hibakeresés"
-
-#, fuzzy
-#~ msgid "Sc_ale"
-#~ msgstr "Felirat igazítása"
+#~ msgid "Move Backwards"
+#~ msgstr "Hátra"
 
 #~ msgid "<b>Style</b>"
 #~ msgstr "<b>Stílus</b>"
@@ -2780,26 +2864,6 @@ msgstr ""
 #~ msgid "Check"
 #~ msgstr "Ellenőrzés"
 
-#, fuzzy
-#~ msgid "Center With Subtitle Selected"
-#~ msgstr "Ugrás a kijelölt felirathoz"
-
-#, fuzzy
-#~ msgid "_Properties (disable)"
-#~ msgstr "Tulajdonságok"
-
-#, fuzzy
-#~ msgid "Import Text (disable)"
-#~ msgstr "\"%s\" Szöveg importálása."
-
-#, fuzzy
-#~ msgid "Export Text (disable)"
-#~ msgstr "Szöveg exportálása"
-
-#, fuzzy
-#~ msgid "Merge Subtitles (disable)"
-#~ msgstr "Felirat egyesítése"
-
 #~ msgid "Hours"
 #~ msgstr "Óra"
 
@@ -2814,6 +2878,9 @@ msgstr ""
 
 #~ msgid "Open Media"
 #~ msgstr "Média megnyitása"
+
+#~ msgid "Set Time"
+#~ msgstr "Idő beállítása"
 
 #~ msgid "<b>Please enter time for added or initialized:</b>"
 #~ msgstr "<b>Adjon meg egy időt:</b>"
@@ -2875,6 +2942,9 @@ msgstr ""
 #~ msgid "Scale:"
 #~ msgstr "Arány:"
 
+#~ msgid "Destination:"
+#~ msgstr "Cél:"
+
 #~ msgid "Enter time that you want:"
 #~ msgstr "Add meg a kívánt időt:"
 
@@ -2899,10 +2969,6 @@ msgstr ""
 #~ msgid "Close the current document"
 #~ msgstr "Aktuális felirat bezárása"
 
-#, fuzzy
-#~ msgid "Move subtitle after the preceding"
-#~ msgstr "Üres felirat beszúrása a kijelölt felirat után"
-
 #~ msgid "Add 100 Milliseconds To Start"
 #~ msgstr "100 millisec hozzáadása a kezdethez"
 
@@ -2914,6 +2980,9 @@ msgstr ""
 
 #~ msgid "Remove 100 Milliseconds To Duration"
 #~ msgstr "100 millisec elvétele a hossz-ból"
+
+#~ msgid "Could not create element '%s'"
+#~ msgstr "Nem hozható létre: '%s'"
 
 #~ msgid "This time is the duration..."
 #~ msgstr "Ilyen hosszan fog látszani a felirat."
@@ -2965,8 +3034,7 @@ msgstr ""
 
 #~ msgid ""
 #~ "<b>Choose the current framerate and which final framerate you want.</b>"
-#~ msgstr ""
-#~ "<b>Válassza ki az aktuális frémrátát és azt, amelyiket szeretné!</b>"
+#~ msgstr "<b>Válassza ki az aktuális frémrátát és azt, amelyiket szeretné!</b>"
 
 #~ msgid "End:"
 #~ msgstr "Vége:"
@@ -2991,17 +3059,17 @@ msgstr ""
 #~ msgstr "<span size=\"small\"><b>#video_uri</b></span>"
 
 #~ msgid ""
-#~ "<span size=\"small\">the path to the subtitle file <i>(/home/toto/"
-#~ "subtitle.ssa)</i></span>"
+#~ "<span size=\"small\">the path to the subtitle file "
+#~ "<i>(/home/toto/subtitle.ssa)</i></span>"
 #~ msgstr ""
 #~ "<span size=\"small\">felirat helye<i>(/home/toto/subtitle.ssa)</i></span>"
 
 #~ msgid ""
-#~ "<span size=\"small\">the uri to the subtitle file <i>(file:///home/toto/"
-#~ "subtitle.ssa)</i></span>"
+#~ "<span size=\"small\">the uri to the subtitle file "
+#~ "<i>(file:///home/toto/subtitle.ssa)</i></span>"
 #~ msgstr ""
-#~ "<span size=\"small\">felirat helye (uri)<i>(file:///home/toto/subtitle."
-#~ "ssa)</i></span>"
+#~ "<span size=\"small\">felirat helye "
+#~ "(uri)<i>(file:///home/toto/subtitle.ssa)</i></span>"
 
 #~ msgid "General"
 #~ msgstr "Általános"
@@ -3029,10 +3097,6 @@ msgstr ""
 
 #~ msgid "Very short jump lenght, in second."
 #~ msgstr "Nagyon kis ugrás hossza (másodpercekben)"
-
-#, fuzzy
-#~ msgid "_Jump"
-#~ msgstr "Ugrás"
 
 #~ msgid "Very Short Backwards Jump"
 #~ msgstr "Nagyon kis hátraugrás"
@@ -3079,6 +3143,12 @@ msgstr ""
 #~ msgid "Could not create element 'pipeline'"
 #~ msgstr "Nem készíthető 'csővezeték'"
 
+#~ msgid ""
+#~ "Failed to create a GStreamer play object. Please check your GStreamer "
+#~ "installation"
+#~ msgstr ""
+#~ "A GStreamer lejátszó nem hozható létreEllenőrízze a GStreamer telepítését."
+
 #~ msgid "Could not create element 'playbin'"
 #~ msgstr "Nem hozható létre a 'playbin'"
 
@@ -3086,8 +3156,8 @@ msgstr ""
 #~ "Failed to create a GStreamer audio output. Please select another audio "
 #~ "output or check your GStreamer installation."
 #~ msgstr ""
-#~ "Nem sikerült a GStreamer hangkimenetet beállítani.Válasszon másik "
-#~ "kimenetet, vagy ellenőrizze a GStreamer telepítését."
+#~ "Nem sikerült a GStreamer hangkimenetet beállítani.Válasszon másik kimenetet, "
+#~ "vagy ellenőrizze a GStreamer telepítését."
 
 #~ msgid ""
 #~ "Failed to create a GStreamer video output. Please select another video "
@@ -3108,17 +3178,3 @@ msgstr ""
 
 #~ msgid "Scroll"
 #~ msgstr "Görgetés"
-
-#~ msgid "Marker Higtlight:"
-#~ msgstr "Fényes kijelölés:"
-
-#, fuzzy
-#~ msgid "Marker Invalid:"
-#~ msgstr "Kijelölés:"
-
-#~ msgid "Marker:"
-#~ msgstr "Kijelölés:"
-
-#, fuzzy
-#~ msgid "gtk-preferences"
-#~ msgstr "Beállítások"

@@ -10,63 +10,15 @@ msgstr ""
 "Project-Id-Version: subtitleeditor 0.20.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-10-10 19:51+0200\n"
-"PO-Revision-Date: 2008-10-13 13:00+0000\n"
+"PO-Revision-Date: 2008-10-15 11:41+0000\n"
 "Last-Translator: kaiman <kaigfm@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2008-10-13 15:09+0000\n"
+"X-Launchpad-Export-Date: 2008-11-02 14:37+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#~ msgid "Encodings"
-#~ msgstr "编码"
-
-#~ msgid "Play"
-#~ msgstr "播放"
-
-#~ msgid "Pause"
-#~ msgstr "暂停"
-
-#~ msgid "Volume"
-#~ msgstr "音量"
-
-#~ msgid "Encoding:"
-#~ msgstr "编码："
-
-#~ msgid "text"
-#~ msgstr "文字"
-
-#~ msgid "Line"
-#~ msgstr "线"
-
-#~ msgid "Errors"
-#~ msgstr "错误"
-
-#~ msgid "_Properties"
-#~ msgstr "属性(_P)"
-
-#~ msgid "_Advanced"
-#~ msgstr "高级(_A)"
-
-#~ msgid "T_iming"
-#~ msgstr "单条时长(_T)"
-
-#~ msgid "Columns"
-#~ msgstr "列"
-
-#~ msgid "Charset"
-#~ msgstr "字符集"
-
-#~ msgid "Media file could not be played."
-#~ msgstr "无法播放媒体文件。"
-
-#~ msgid "end"
-#~ msgstr "结束"
-
-#~ msgid "name"
-#~ msgstr "名称"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
 msgid "<b>Apply to</b>"
@@ -1761,15 +1713,15 @@ msgstr "不能导出到文件 \"%s\"。"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "_Try To Extend To Perfect"
-msgstr "_T 尝试延伸完善"
+msgstr "尝试延长字幕以便完善(_T)"
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
 msgid "Try to extend to perfect with the respect of timing preferences"
-msgstr "设法延伸完善以计时的首选项尊敬"
+msgstr "尝试按计时的首选项延长字幕以便完善"
 
 #: ../src/actions/TryToExtendToPerfect.cc:116
 msgid "Try to extend to perfect"
-msgstr "设法延伸完善"
+msgstr "尝试延长字幕以便完善"
 
 #: ../src/actions/UndoRedo.cc:48
 msgid "Undo the last action"
@@ -2508,7 +2460,7 @@ msgstr "效果"
 
 #: ../src/SubtitleView.cc:1635
 msgid "End"
-msgstr "末"
+msgstr "结束"
 
 #: ../src/SubtitleView.cc:1636
 msgid "Layer"
@@ -2532,7 +2484,7 @@ msgstr "备忘"
 
 #: ../src/SubtitleView.cc:1642
 msgid "Num"
-msgstr ""
+msgstr "序号"
 
 #: ../src/SubtitleView.cc:1643
 msgid "Start"
@@ -2635,3 +2587,51 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr "窗口系统不支持OpenGL。"
+
+#~ msgid "Encodings"
+#~ msgstr "编码"
+
+#~ msgid "Play"
+#~ msgstr "播放"
+
+#~ msgid "Pause"
+#~ msgstr "暂停"
+
+#~ msgid "Volume"
+#~ msgstr "音量"
+
+#~ msgid "Encoding:"
+#~ msgstr "编码："
+
+#~ msgid "text"
+#~ msgstr "文字"
+
+#~ msgid "Line"
+#~ msgstr "线"
+
+#~ msgid "Errors"
+#~ msgstr "错误"
+
+#~ msgid "_Properties"
+#~ msgstr "属性(_P)"
+
+#~ msgid "_Advanced"
+#~ msgstr "高级(_A)"
+
+#~ msgid "T_iming"
+#~ msgstr "单条时长(_T)"
+
+#~ msgid "Columns"
+#~ msgstr "列"
+
+#~ msgid "Charset"
+#~ msgstr "字符集"
+
+#~ msgid "Media file could not be played."
+#~ msgstr "无法播放媒体文件。"
+
+#~ msgid "end"
+#~ msgstr "结束"
+
+#~ msgid "name"
+#~ msgstr "名称"
