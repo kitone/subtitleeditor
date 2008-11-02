@@ -25,6 +25,8 @@
 #include "utility.h"
 #include "Document.h"
 #include <iomanip>
+//FIXME remove if glibmm >= 2.16
+#include <sstream>
 
 /*
  *
@@ -872,8 +874,14 @@ void Subtitle::update_characters_per_sec()
 	SubtitleTime duration = get_duration();
 	double cps = utility::get_characters_per_second(get_text(), duration.totalmsecs);
 
-	set_characters_per_second_text(
-			Glib::ustring::format(std::fixed, std::setprecision(1), cps)); 
+	// FIXME if glibmm >= 2.16
+	//set_characters_per_second_text(
+	//		Glib::ustring::format(std::fixed, std::setprecision(1), cps)); 
+	
+	std::ostringstream oss;
+	oss << std::fixed << std::setprecision(1) << cps;
+ 
+	set_characters_per_second_text(oss.str());
 }
 
 /*
