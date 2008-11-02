@@ -1,5 +1,11 @@
 2008-11-02  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.26.0 release.
+
+2008-11-02  kitone  <kitone@gna.org>
+
 	* src/FileWriter.h:
 	* src/Subtitle.cc:
 	Fix: bug #12542 (https://gna.org/bugs/?12542)

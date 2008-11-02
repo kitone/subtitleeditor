@@ -1,3 +1,14 @@
+2008-11-02 - 0.26.0
+
+	* New: Wiki http://kitone.free.fr/subtitleeditor/wiki/
+	* Remove dependance of pcre, pcrecpp (packager)
+	* Replace pcre by Glib::Regex
+	* Fix: AdobeEncoreDVD multiple line reader
+	* Fix: MicroDVD to SE tags
+	* Fix: Add a default style if the document doesn't at least one when the file is saved (ASS/SSA)
+	* Fix: ASS/SSA newline (patch by Robert Ramiega)
+	* Fix: #12542 (https://gna.org/bugs/?12542)
+
 2008-10-13 - 0.25.0
 
 	* The subtitle format system was completely rewritten
