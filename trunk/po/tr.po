@@ -6,25 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 19:05+0200\n"
-"PO-Revision-Date: 2008-07-23 09:09+0000\n"
-"Last-Translator: Furkan KARA <kingofthepixels@gmail.com>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-10-10 19:51+0200\n"
+"PO-Revision-Date: 2008-10-13 23:49+0000\n"
+"Last-Translator: ergin üresin <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2008-08-06 06:44+0000\n"
+"X-Launchpad-Export-Date: 2008-11-02 14:37+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../share/glade/dialog-change-framerate.glade.h:1
-#, fuzzy
 msgid "<b>Apply to</b>"
 msgstr "<b>Buraya Uygula</b>"
 
 #: ../share/glade/dialog-change-framerate.glade.h:2
-#, fuzzy
 msgid "<b>Framerate</b>"
 msgstr "<b>Yenileme hızı</b>"
 
@@ -51,105 +49,26 @@ msgstr "Yeni:"
 
 #: ../share/glade/dialog-character-codings.glade.h:1
 msgid "A_vailable encodings:"
-msgstr ""
+msgstr "Kullanılabilir kodlamalar"
 
 #: ../share/glade/dialog-character-codings.glade.h:2
 msgid "Character Codings"
-msgstr ""
+msgstr "Karakter Kodları"
 
 #: ../share/glade/dialog-character-codings.glade.h:3
-#, fuzzy
 msgid "E_ncodings shown in menu:"
-msgstr "şifreleme seçici"
-
-#: ../share/glade/dialog-check-errors.glade.h:1
-msgid "Check Errors"
-msgstr "Hataları kontrol et"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:1
-msgid "<b>Checking</b>"
-msgstr "<b>Kontrol ediliyor</b>"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:2
-msgid "<b>Timings</b>"
-msgstr "<b>Zamanlama</b>"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:3
-msgid "Check Errors Preferences"
-msgstr "Hata Düzenlemelerini kontrol et"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:4
-msgid "Gap between subtitle"
-msgstr "altyazılar arasındaki boşluklar"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:5
-#: ../src/gui/CheckErrorsUI.cc:286
-#, fuzzy
-msgid "Max lines per subtitle"
-msgstr "Her altyazı için maksimum satır"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:6
-#: ../share/glade/dialog-preferences.glade.h:33
-msgid "Maximum characters per line:"
-msgstr "her satır için maksimum karakter"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:7
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Maximum characters per second:"
-msgstr "saniye başına düşen Maksimum karakter sayısı"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:8
-#, fuzzy
-msgid "Maximum number of lines per subtitle:"
-msgstr "her altyazı için maksimum satır sayısı"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Minimum characters per second:"
-msgstr "her saniye için minimum karakter"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:37
-msgid "Minimum display of the subtitle in mseconds:"
-msgstr "milisaniyedeki minumum altyazı gösterimi"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:11
-#: ../share/glade/dialog-preferences.glade.h:38
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Milisaniyede altyazılar arasındaki minumum boşluk:"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:12
-#: ../src/gui/CheckErrorsUI.cc:43
-msgid "Overlapping"
-msgstr ""
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:13
-#: ../src/gui/CheckErrorsUI.cc:154
-msgid "Too long display time"
-msgstr "Çok uzun gösterim zamanı"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:14
-msgid "Too long line"
-msgstr "çok uzun satır"
-
-#: ../share/glade/dialog-check-errors-preferences.glade.h:15
-#: ../src/gui/CheckErrorsUI.cc:99
-msgid "Too short display time"
-msgstr "çok kısa gösterim zamanı"
+msgstr "Menüde gösterilen kodlamalar:"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:1
-#: ../src/gui/MenuBar.cc:175
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
 msgid "Configure Keyboard Shortcuts"
 msgstr "klavye kısayollarını ayarla"
 
 #: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
-#, fuzzy
 msgid ""
 "To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
 msgstr ""
-"bir kısayol tuşunu düzenlemek için, eş dizinin üstünü tıklayın ve yeni bir "
-"hızlandırıcı seçin yada silmek için gerisil (backspace) tuşuna basın."
 
 #: ../share/glade/dialog-encodings-chooser.glade.h:1
 msgid "<b>Please choose encodings</b>"
@@ -159,31 +78,86 @@ msgstr "<b>Lütfen şifrelemeyi seçin</b>"
 msgid "Encodings Chooser"
 msgstr "şifreleme seçici"
 
+#: ../share/glade/dialog-error-checking.glade.h:1
+msgid "Error Checking"
+msgstr "Denetleme Hatası"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:1
+msgid "<b>Error Checking</b>"
+msgstr "<b>Denetleme Hatası</b>"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:2
+#: ../share/glade/dialog-preferences.glade.h:8
+msgid "<b>Timing Preferences</b>"
+msgstr "<b>Zamanlama Tercihleri</b>"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:3
+msgid "Checking"
+msgstr "Denetleniyor"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:4
+msgid "Error Checking Preferences"
+msgstr "Denetleme Hatası Ayarları"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:5
+#: ../share/glade/dialog-preferences.glade.h:35
+msgid "Maximum characters per line:"
+msgstr "her satır için maksimum karakter"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:6
+#: ../share/glade/dialog-preferences.glade.h:36
+msgid "Maximum characters per second:"
+msgstr "saniye başına düşen Maksimum karakter sayısı"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:7
+msgid "Maximum number of lines per subtitle:"
+msgstr "Satır başına düşen en fazla alt yazı"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:8
+#: ../share/glade/dialog-preferences.glade.h:38
+msgid "Minimum characters per second:"
+msgstr "her saniye için minimum karakter"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:9
+#: ../share/glade/dialog-preferences.glade.h:39
+msgid "Minimum display of the subtitle in mseconds:"
+msgstr "milisaniyedeki minumum altyazı gösterimi"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:10
+#: ../share/glade/dialog-preferences.glade.h:40
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "Milisaniyede altyazılar arasındaki minumum boşluk:"
+
+#: ../share/glade/dialog-error-checking-preferences.glade.h:11
+#: ../share/glade/dialog-preferences.glade.h:51
+#: ../src/actions/ViewManager.cc:394
+msgid "Timing"
+msgstr "Zamanlama"
+
 #: ../share/glade/dialog-export-text.glade.h:1
 #: ../share/glade/dialog-import-text.glade.h:1
 #: ../share/glade/dialog-open-document.glade.h:1
-#: ../share/glade/dialog-save-document.glade.h:1
+#: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:669
+#: ../src/gui/Application.cc:319
 msgid "Character Coding:"
-msgstr ""
+msgstr "Karakter Kodlaması"
 
 #: ../share/glade/dialog-export-text.glade.h:2
 msgid "Export Text"
-msgstr ""
+msgstr "Yazı Aktar"
 
 #: ../share/glade/dialog-export-text.glade.h:3
-#: ../share/glade/dialog-save-document.glade.h:3 ../src/gui/Application.cc:335
+#: ../share/glade/dialog-save-document.glade.h:3
 msgid "NewLine:"
-msgstr ""
+msgstr "YeniSatır"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:1
-#, fuzzy
 msgid "Find And Replace"
-msgstr "Bul ve Yeniden yerleştir"
+msgstr "Bul ve Değiştir"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:2
-#, fuzzy
 msgid "Pattern:"
-msgstr "Örnek"
+msgstr "Kalıp:"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:3
 msgid "Replace"
@@ -204,11 +178,11 @@ msgstr "_bilinmeyen durum"
 
 #: ../share/glade/dialog-find-and-replace.glade.h:7
 msgid "_Use regular expression"
-msgstr "_her zamanki ifadeyi kullan"
+msgstr ""
 
 #: ../share/glade/dialog-import-text.glade.h:2
 msgid "Import Text"
-msgstr ""
+msgstr "Yazı Yükle"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:1
 msgid "<b>Position</b>"
@@ -221,9 +195,8 @@ msgstr "Altyazıyı oynat"
 
 #: ../share/glade/dialog-move-subtitles.glade.h:3
 #: ../share/glade/dialog-scale-subtitles.glade.h:6
-#, fuzzy
 msgid "_New Start:"
-msgstr "Başlatmak için"
+msgstr "Ye_ni Başlangıç:"
 
 #. init label
 #: ../share/glade/dialog-move-subtitles.glade.h:4
@@ -231,16 +204,15 @@ msgstr "Başlatmak için"
 #: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
 #: ../src/actions/ScaleSubtitles.cc:122
 msgid "_Start Time:"
-msgstr ""
+msgstr "Başlama Zamanı:"
 
 #: ../share/glade/dialog-open-document.glade.h:2
 msgid "Open Document"
-msgstr ""
+msgstr "Belge Aç"
 
 #: ../share/glade/dialog-open-document.glade.h:3
-#, fuzzy
 msgid "Video File:"
-msgstr "video oynatıcı"
+msgstr "Video Dosyası:"
 
 #: ../share/glade/dialog-preferences.glade.h:1
 msgid "<b>Activate plugins</b>"
@@ -255,105 +227,109 @@ msgid "<b>General</b>"
 msgstr "<b>Genel</b>"
 
 #: ../share/glade/dialog-preferences.glade.h:4
+msgid "<b>New Document</b>"
+msgstr "Yeni Belge"
+
+#: ../share/glade/dialog-preferences.glade.h:5
 msgid "<b>Output</b>"
 msgstr "<b>Çıktı</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:5
+#: ../share/glade/dialog-preferences.glade.h:6
 msgid "<b>Subtitle View</b>"
 msgstr "<b>Altyazı Görünüşü</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:6
+#: ../share/glade/dialog-preferences.glade.h:7
 msgid "<b>Text Subtitle</b>"
 msgstr "<b>Altyazı Metni</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:7
-msgid "<b>Timing Preferences</b>"
-msgstr "<b>Zamanlama Tercihleri</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:8
+#: ../share/glade/dialog-preferences.glade.h:9
 msgid "<b>Video Player For Preview</b>"
 msgstr "<b>Ön izleme için Video Oynatıcı</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:9
+#: ../share/glade/dialog-preferences.glade.h:10
 #: ../share/glade/dialog-script-properties.glade.h:6
 msgid "<b>Video</b>"
 msgstr "<b>Video</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:10
+#: ../share/glade/dialog-preferences.glade.h:11
 msgid "<b>Waveform Color</b>"
 msgstr "<b>Dalga Türü Rengi</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:11
+#: ../share/glade/dialog-preferences.glade.h:12
 msgid "<b>Waveform Generator</b>"
 msgstr "<b>Dalga Türü Oluşturucu</b>"
 
-#: ../share/glade/dialog-preferences.glade.h:12
+#: ../share/glade/dialog-preferences.glade.h:13
 msgid "<span size=\"small\">the path to the subtitle file</span>"
 msgstr "<span size=\"small\">Altyazı dosyasının bulunduğu konum</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:13
+#: ../share/glade/dialog-preferences.glade.h:14
 msgid "<span size=\"small\">the path to the video file</span>"
 msgstr "<span size=\"small\">video dosyasının bulunduğu konum</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:14
+#: ../share/glade/dialog-preferences.glade.h:15
 msgid ""
 "<span size=\"small\">the time in seconds to the current selected line</span>"
 msgstr ""
 "<span size=\"small\">geçerli seçilmiş satırda saniyedeki zaman için</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:15
+#: ../share/glade/dialog-preferences.glade.h:16
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
 msgstr "<span size=\"small\">altyazı dosyasına uri</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:16
+#: ../share/glade/dialog-preferences.glade.h:17
 msgid "<span size=\"small\">the uri to the video file</span>"
 msgstr "<span size=\"small\">video dosyasına uri</span>"
 
-#: ../share/glade/dialog-preferences.glade.h:17
+#: ../share/glade/dialog-preferences.glade.h:18
 msgid "Ask to save on _exit"
 msgstr "_'a kaydetmek için sor ve çık"
 
-#: ../share/glade/dialog-preferences.glade.h:18
+#: ../share/glade/dialog-preferences.glade.h:19
 msgid "Automatically _choose video to open"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:19
+#: ../share/glade/dialog-preferences.glade.h:20
 msgid "Background:"
 msgstr "Arkaplan:"
 
-#: ../share/glade/dialog-preferences.glade.h:20
+#: ../share/glade/dialog-preferences.glade.h:21
 msgid "Command:"
 msgstr "Komut:"
 
-#: ../share/glade/dialog-preferences.glade.h:21
+#: ../share/glade/dialog-preferences.glade.h:22
 msgid "Create a _backup copy of files before saving"
 msgstr "Dosyaları kaydetmeden önce bir _yedekleme kopyası oluştur"
 
-#: ../share/glade/dialog-preferences.glade.h:22
+#: ../share/glade/dialog-preferences.glade.h:23
 msgid "Display _translated subtitle"
 msgstr "_çevirilmiş altyazıyı göster"
 
-#: ../share/glade/dialog-preferences.glade.h:23
+#: ../share/glade/dialog-preferences.glade.h:24
 msgid "Display background"
 msgstr "Arkaplanı göster"
 
-#: ../share/glade/dialog-preferences.glade.h:24
+#: ../share/glade/dialog-preferences.glade.h:25
 msgid "Display subtitle text"
 msgstr "altyazı metnini göster"
 
-#: ../share/glade/dialog-preferences.glade.h:25
+#: ../share/glade/dialog-preferences.glade.h:26
 msgid "Display the translated subtitle instead of the original one."
 msgstr "Orijinal altyazı yerine çevirilmiş altyazıyı göster"
 
-#: ../share/glade/dialog-preferences.glade.h:26
+#: ../share/glade/dialog-preferences.glade.h:27
 msgid "Display waveform fill"
 msgstr "Dalga türü dolgusunu göster"
 
-#: ../share/glade/dialog-preferences.glade.h:27
+#: ../share/glade/dialog-preferences.glade.h:28
+msgid "Document"
+msgstr "Belge"
+
+#: ../share/glade/dialog-preferences.glade.h:29
 msgid "Enable _rubberband selection"
 msgstr "_rubberband seçeneklerini etkinleştir"
 
-#: ../share/glade/dialog-preferences.glade.h:28
+#: ../share/glade/dialog-preferences.glade.h:30
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
@@ -361,138 +337,140 @@ msgstr ""
 "mplayer'da örnek:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 
-#: ../share/glade/dialog-preferences.glade.h:30
+#: ../share/glade/dialog-preferences.glade.h:32
 msgid "Force aspect _ratio"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:31
+#: ../share/glade/dialog-preferences.glade.h:33
 msgid "Interface"
 msgstr "Arayüz"
 
-#: ../share/glade/dialog-preferences.glade.h:32
+#: ../share/glade/dialog-preferences.glade.h:34
 msgid "Interval in seconds:"
-msgstr ""
+msgstr "Saniyeler Arası Zaman"
 
-#: ../share/glade/dialog-preferences.glade.h:35
+#: ../share/glade/dialog-preferences.glade.h:37
 msgid "Maximum number of line per subtitle:"
 msgstr "her altyazı için maksimum satır sayısı"
 
-#: ../share/glade/dialog-preferences.glade.h:39
+#: ../share/glade/dialog-preferences.glade.h:41
 msgid "Player Position:"
 msgstr "Oynatıcı Pozisyonu:"
 
-#: ../share/glade/dialog-preferences.glade.h:40
+#: ../share/glade/dialog-preferences.glade.h:42
 msgid "Plugins"
 msgstr "Eklentiler"
 
-#: ../share/glade/dialog-preferences.glade.h:41
+#: ../share/glade/dialog-preferences.glade.h:43
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: ../share/glade/dialog-preferences.glade.h:42
+#: ../share/glade/dialog-preferences.glade.h:44
 msgid "Preview"
 msgstr "Önizleme"
 
-#: ../share/glade/dialog-preferences.glade.h:43
+#: ../share/glade/dialog-preferences.glade.h:45
 msgid "Reset To _Defaults"
 msgstr "_Varsayılanlara dön"
 
-#: ../share/glade/dialog-preferences.glade.h:44
+#: ../share/glade/dialog-preferences.glade.h:46
 msgid "Subtitle Invalid:"
 msgstr "Geçersiz Altyazı:"
 
-#: ../share/glade/dialog-preferences.glade.h:45
+#: ../share/glade/dialog-preferences.glade.h:47
 msgid "Subtitle Selected:"
 msgstr "Altyazı Seçildi:"
 
-#: ../share/glade/dialog-preferences.glade.h:46
+#: ../share/glade/dialog-preferences.glade.h:48
 msgid "Subtitle:"
 msgstr "Altyazı"
 
-#: ../share/glade/dialog-preferences.glade.h:47
+#: ../share/glade/dialog-preferences.glade.h:49
 #: ../share/glade/dialog-scale-subtitles.glade.h:5
 msgid "Text:"
 msgstr "Metin:"
 
-#: ../share/glade/dialog-preferences.glade.h:48
+#: ../share/glade/dialog-preferences.glade.h:50
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:49
-#: ../src/actions/ViewManager.cc:392
-msgid "Timing"
-msgstr "Zamanlama"
-
-#: ../share/glade/dialog-preferences.glade.h:50
+#: ../share/glade/dialog-preferences.glade.h:52
 msgid "Use _dynamic keyboard shortcuts"
 msgstr "_dinamik klavye kısayollarını kullan"
 
-#: ../share/glade/dialog-preferences.glade.h:51
+#: ../share/glade/dialog-preferences.glade.h:53
 msgid "Use shaded _background"
 msgstr "gölgelenmiş _arkaplanı kullan"
 
-#: ../share/glade/dialog-preferences.glade.h:52
+#: ../share/glade/dialog-preferences.glade.h:54
 msgid "Video Player"
 msgstr "video oynatıcı"
 
-#: ../share/glade/dialog-preferences.glade.h:53
+#: ../share/glade/dialog-preferences.glade.h:55
 msgid "Wave fill:"
 msgstr "Dalga miktarı:"
 
-#: ../share/glade/dialog-preferences.glade.h:54
+#: ../share/glade/dialog-preferences.glade.h:56
 msgid "Wave:"
 msgstr "Dalga"
 
-#: ../share/glade/dialog-preferences.glade.h:55
+#: ../share/glade/dialog-preferences.glade.h:57
 msgid "Waveform"
 msgstr "Dalga Türü"
 
-#: ../share/glade/dialog-preferences.glade.h:56
+#: ../share/glade/dialog-preferences.glade.h:58
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
 "key combination while the menu item is highlighted."
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:57
+#: ../share/glade/dialog-preferences.glade.h:59
 msgid "_Audio:"
 msgstr "_Ses"
 
-#: ../share/glade/dialog-preferences.glade.h:58
+#: ../share/glade/dialog-preferences.glade.h:60
 msgid "_Autosave files every"
 msgstr "Her _ dosyaları otomatik kaydet"
 
-#: ../share/glade/dialog-preferences.glade.h:59
+#: ../share/glade/dialog-preferences.glade.h:61
 msgid "_Center the text of the subtitle in the column"
 msgstr ""
 
-#: ../share/glade/dialog-preferences.glade.h:60
+#: ../share/glade/dialog-preferences.glade.h:62
 msgid "_Font:"
 msgstr "_Yazıtipi:"
 
-#: ../share/glade/dialog-preferences.glade.h:61
-msgid "_Maximize window"
-msgstr "Pencereyi _büyüt"
-
-#: ../share/glade/dialog-preferences.glade.h:62
-#, fuzzy
-msgid "_Show the number of characters per line"
-msgstr "saniye başına düşen karakter sayısını _göster"
-
 #: ../share/glade/dialog-preferences.glade.h:63
-msgid "_Use Ctrl+Enter keys to confirm the change"
+msgid "_Format:"
 msgstr ""
 
 #: ../share/glade/dialog-preferences.glade.h:64
+msgid "_Maximize window"
+msgstr "Pencereyi _büyüt"
+
+#: ../share/glade/dialog-preferences.glade.h:65
+msgid "_Newline:"
+msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:66
+msgid "_Show the number of characters per line"
+msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:67
+msgid "_Use Ctrl+Enter keys to confirm the change"
+msgstr ""
+
+#: ../share/glade/dialog-preferences.glade.h:68
 msgid "_Video:"
 msgstr "_Video:"
 
-#: ../share/glade/dialog-preferences.glade.h:65
+#: ../share/glade/dialog-preferences.glade.h:69
 msgid "minutes"
 msgstr "dakika"
 
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:334
+#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:320
 msgid "Format:"
 msgstr ""
 
@@ -662,9 +640,8 @@ msgid "<b>Alignment</b>"
 msgstr "<b>Hizalama</b>"
 
 #: ../share/glade/dialog-style-editor.glade.h:2
-#, fuzzy
 msgid "<b>Appearance</b>"
-msgstr "<b>Görünüş</b>"
+msgstr ""
 
 #: ../share/glade/dialog-style-editor.glade.h:3
 msgid "<b>Border</b>"
@@ -804,16 +781,17 @@ msgid "A subtitle editor based on GStreamer and Gtk+"
 msgstr ""
 
 #. comments
-#: ../src/actions/About.cc:86
+#: ../src/actions/About.cc:88
 msgid "a tool for subtitles edition"
 msgstr "altyazı düzenlemek için bir araç"
 
 #. translator-credits
-#: ../src/actions/About.cc:95
+#: ../src/actions/About.cc:97
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Furkan KARA https://launchpad.net/~frkn"
+"  Furkan KARA https://launchpad.net/~frkn\n"
+"  ergin üresin https://launchpad.net/~ergin012"
 
 #: ../src/actions/AdjustTime.cc:47
 msgid "Add 100 Milliseconds"
@@ -918,6 +896,44 @@ msgstr ""
 msgid "Combine subtitles"
 msgstr ""
 
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:95
+msgid "Actions"
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:117
+msgid "Shortcut"
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:247
+msgid "Invalid shortcut."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:265
+#, c-format
+msgid "Shortcut \"%s\" is already taken by \"%s\"."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:268
+#, c-format
+msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:271
+msgid "Conflicting Shortcuts"
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:277
+msgid "Changing shortcut failed."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:308
+msgid "Removing shortcut failed."
+msgstr ""
+
+#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
+msgid "Configure _Keyboard Shortcuts"
+msgstr ""
+
 #: ../src/actions/DeleteSubtitleSelect.cc:45
 msgid "Delete the selected subtitles"
 msgstr ""
@@ -998,56 +1014,59 @@ msgstr ""
 msgid "Save translation to file"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:109
+#. recent files
+#: ../src/actions/DocumentManagement.cc:108
 msgid "Open _Recent"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:113
+#: ../src/actions/DocumentManagement.cc:127
 msgid "Close the current file"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:118
+#: ../src/actions/DocumentManagement.cc:132
 msgid "E_xit"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:118
+#: ../src/actions/DocumentManagement.cc:132
 msgid "Quit the program"
 msgstr ""
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../src/actions/DocumentManagement.cc:250
+#: ../src/actions/DocumentManagement.cc:263
 msgid "I am already open"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:296
-#: ../src/actions/DocumentManagement.cc:347
+#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+#: ../src/actions/DocumentManagement.cc:297
+#: ../src/actions/DocumentManagement.cc:355
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:303
-#: ../src/actions/DocumentManagement.cc:355
+#. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
+#: ../src/actions/DocumentManagement.cc:305
+#: ../src/actions/DocumentManagement.cc:363
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:439
+#: ../src/actions/DocumentManagement.cc:446
 msgid "Open translation"
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:467
+#: ../src/actions/DocumentManagement.cc:474
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/actions/DocumentManagement.cc:530
+#: ../src/actions/DocumentManagement.cc:535
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../src/actions/DocumentManagement.cc:533
+#: ../src/actions/DocumentManagement.cc:538
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr ""
@@ -1064,6 +1083,222 @@ msgstr ""
 msgid "Duplicate selected subtitles"
 msgstr ""
 
+#: ../src/actions/EditCell.cc:47
+msgid "_Edit Cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:47
+msgid "Start the editing of the focused cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:51
+msgid "Edit _Next Cell"
+msgstr ""
+
+#: ../src/actions/EditCell.cc:51
+msgid "Start the editing of the next cell"
+msgstr ""
+
+#. File
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:227
+msgid "_Error"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:230
+msgid "Try To _Fix All"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:237
+msgid "_View"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:238
+msgid "By _Categories"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:240
+msgid "By _Subtitles"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:243
+msgid "_Collapse All"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:245
+msgid "_Expand All"
+msgstr ""
+
+#. menu option
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:250
+#: ../src/gui/MenuBar.cc:68
+msgid "_Options"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:390
+msgid "No error was found."
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:393
+#, c-format
+msgid "1 error was found."
+msgid_plural "%d errors were found."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:407
+#, c-format
+msgid "Subtitle n°<b>%d</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:715
+#, c-format
+msgid "%s (<b>1 error</b>)"
+msgid_plural "%s (<b>%d errors</b>)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:722
+#, c-format
+msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
+msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+msgid "_Error Checking"
+msgstr ""
+
+#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:798
+msgid "Launch the error checking."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:38
+msgid "Max Characters Per Line"
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:39
+msgid "An error is detected if a line is too long."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:73
+#, c-format
+msgid "Subtitle has a too long line: <b>1 character</b>"
+msgid_plural "Subtitle has a too long line: <b>%i characters</b>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/MaxCharactersPerLine.h:75
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:79
+#: ../src/actions/errorchecking/Overlapping.h:74
+msgid "<b>Automatic correction:</b> unavailable, correct the error manually."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:38
+msgid "Max Line Per Subtitle"
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:39
+msgid "An error is detected if a subtitle has too many lines."
+msgstr ""
+
+#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:77
+#, c-format
+msgid "Subtitle has too many lines: <b>1 line</b>"
+msgid_plural "Subtitle has too many lines: <b>%i lines</b>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:38
+msgid "Min Display Time"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the duration is inferior to the specified "
+"value."
+msgstr ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:71
+#, c-format
+msgid "Subtitle display time is too short: <b>%s</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinDisplayTime.h:75
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:80
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:80
+#, c-format
+msgid "<b>Automatic correction:</b> to change current subtitle end to %s."
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:38
+msgid "Minimum Gap Between Subtitles"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:39
+msgid ""
+"Detects and fixes subtitles when the minimum gap between subtitles is too "
+"short."
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:81
+#, c-format
+msgid "Too short gap between subtitle: <b>%ims</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:85
+#, c-format
+msgid ""
+"<b>Automatic correction:</b> to clip current subtitle end to %s and to move "
+"next subtitle start to %s."
+msgstr ""
+
+#: ../src/actions/errorchecking/Overlapping.h:38
+msgid "Overlapping"
+msgstr ""
+
+#: ../src/actions/errorchecking/Overlapping.h:39
+msgid "An error is detected when the subtitle overlap on next subtitle."
+msgstr ""
+
+#: ../src/actions/errorchecking/Overlapping.h:71
+#, c-format
+msgid "Subtitle overlap on next subtitle: <b>%ims overlap</b>"
+msgstr ""
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:38
+msgid "Too Long Display Time"
+msgstr ""
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"inferior to the specified value."
+msgstr ""
+
+#: ../src/actions/errorchecking/TooLongDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:38
+msgid "Too Short Display Time"
+msgstr ""
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"superior to the specified value."
+msgstr ""
+
+#: ../src/actions/errorchecking/TooShortDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
+msgstr[0] ""
+msgstr[1] ""
+
 #: ../src/actions/ExtendLength.cc:44
 msgid "_Extend Length"
 msgstr ""
@@ -1076,35 +1311,35 @@ msgstr ""
 msgid "Extend lenght"
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:46
+#: ../src/actions/ExternalVideoPlayer.cc:45
 msgid "_Preview"
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:49
+#: ../src/actions/ExternalVideoPlayer.cc:48
 msgid "_Open Movie"
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:49
+#: ../src/actions/ExternalVideoPlayer.cc:48
 msgid "Open movie with external video player"
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:53
+#: ../src/actions/ExternalVideoPlayer.cc:52
 msgid "_Play Movie"
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:53
+#: ../src/actions/ExternalVideoPlayer.cc:52
 msgid "Play movie with external video player"
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:107
+#: ../src/actions/ExternalVideoPlayer.cc:106
 msgid "Please select a movie."
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:176
+#: ../src/actions/ExternalVideoPlayer.cc:174
 msgid "Failed to launch the external player."
 msgstr ""
 
-#: ../src/actions/ExternalVideoPlayer.cc:178
+#: ../src/actions/ExternalVideoPlayer.cc:176
 #, c-format
 msgid ""
 "%s\n"
@@ -1185,11 +1420,11 @@ msgstr ""
 msgid "Add subtitles from file"
 msgstr ""
 
-#: ../src/actions/JoinDocument.cc:124
+#: ../src/actions/JoinDocument.cc:133
 msgid "Join document"
 msgstr ""
 
-#: ../src/actions/JoinDocument.cc:140
+#: ../src/actions/JoinDocument.cc:145
 #, c-format
 msgid "1 subtitle has been added at this document."
 msgid_plural "%d subtitles have been added at this document."
@@ -1221,6 +1456,51 @@ msgstr ""
 
 #: ../src/actions/MoveSubtitles.cc:99
 msgid "All subtitles will be also moved after the first selected subtitle"
+msgstr ""
+
+#: ../src/actions/preferences/PreferencesPlugin.cc:92
+msgid "Configure Subtitle Editor"
+msgstr ""
+
+#. audio output
+#. video output
+#: ../src/actions/preferences/VideoPlayerPage.h:123
+#: ../src/actions/preferences/VideoPlayerPage.h:131
+msgid "Autodetect"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:124
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:125
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:126
+msgid "OSS - Open Sound System"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:127
+#: ../src/actions/preferences/VideoPlayerPage.h:134
+msgid "SDL - Simple DirectMedia Layer"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:128
+#: ../src/actions/preferences/VideoPlayerPage.h:135
+msgid "GConf"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:132
+msgid "X Window System (X11/XShm/Xv)"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:133
+msgid "X Window System (No Xv)"
+msgstr ""
+
+#: ../src/actions/preferences/VideoPlayerPage.h:136
+msgid "OpenGL"
 msgstr ""
 
 #: ../src/actions/ReverseTextAndTranslation.cc:46
@@ -1344,7 +1624,7 @@ msgstr ""
 msgid "Split the selected subtitles"
 msgstr ""
 
-#.
+#. 
 #: ../src/actions/SplitSubtitle.cc:125
 msgid "Split subtitles"
 msgstr ""
@@ -1362,9 +1642,8 @@ msgid "Launch the style editor"
 msgstr ""
 
 #: ../src/actions/TimeModeManagement.cc:47
-#, fuzzy
 msgid "_Times"
-msgstr "Zamanlayıcı"
+msgstr ""
 
 #: ../src/actions/TimeModeManagement.cc:47
 #: ../src/actions/TimeModeManagement.cc:51
@@ -1400,24 +1679,33 @@ msgid "_Frames"
 msgstr ""
 
 #: ../src/actions/TimeModeManagement.cc:58
-#, fuzzy
 msgid "_Framerate"
-msgstr "_Framerate Değiştir"
+msgstr ""
 
-#: ../src/actions/Transcript.cc:50
+#: ../src/actions/Transcript.cc:49
 msgid "_Import Transcript"
 msgstr ""
 
-#: ../src/actions/Transcript.cc:50
+#: ../src/actions/Transcript.cc:49
 msgid "Create a new document with any text file"
 msgstr ""
 
-#: ../src/actions/Transcript.cc:54
+#: ../src/actions/Transcript.cc:53
 msgid "_Export Transcript"
 msgstr ""
 
-#: ../src/actions/Transcript.cc:54
+#: ../src/actions/Transcript.cc:53
 msgid "Export just a text in a file"
+msgstr ""
+
+#: ../src/actions/Transcript.cc:132
+#, c-format
+msgid "Could not import from the file \"%s\"."
+msgstr ""
+
+#: ../src/actions/Transcript.cc:170
+#, c-format
+msgid "Could not export to the file \"%s\"."
 msgstr ""
 
 #: ../src/actions/TryToExtendToPerfect.cc:44
@@ -1619,27 +1907,28 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:230
+#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:232
+#: ../src/SubtitleView.cc:1640
 msgid "Name"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:300
+#: ../src/actions/ViewManager.cc:302
 msgid "Untitled"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:389
+#: ../src/actions/ViewManager.cc:391
 msgid "Simple"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:390
+#: ../src/actions/ViewManager.cc:392
 msgid "Advanced"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:391
+#: ../src/actions/ViewManager.cc:393 ../src/SubtitleView.cc:1646
 msgid "Translation"
 msgstr ""
 
-#: ../src/actions/ViewManager.cc:423
+#: ../src/actions/ViewManager.cc:425
 msgid "View _Manager"
 msgstr ""
 
@@ -1715,23 +2004,82 @@ msgstr ""
 msgid "Subtitle Selection"
 msgstr ""
 
-#: ../src/Document.cc:257
+#: ../src/Document.cc:295
 #, c-format
-msgid "Could not open the file <i>%s</i>."
+msgid "Could not save the file \"%s\" using the character coding %s."
 msgstr ""
 
-#: ../src/Document.cc:263
-#, c-format
-msgid "Could not open the file <i>%s</i> using the <i>%s</i> character coding."
+#: ../src/Document.cc:297
+msgid ""
+"The document contains one or more characters that cannot be encoded using "
+"the specified character coding."
 msgstr ""
 
-#: ../src/Document.cc:353 ../src/Document.cc:357
+#: ../src/Document.cc:306
 msgid "Save Document Failed."
+msgstr ""
+
+#: ../src/Document.cc:639
+#, c-format
+msgid "Could not recognize the subtitle format for the file \"%s\"."
+msgstr ""
+
+#: ../src/Document.cc:641
+msgid "Please check that the file contains subtitles in a supported format."
+msgstr ""
+
+#: ../src/Document.cc:653
+#, c-format
+msgid "Could not open automatically the file \"%s\"."
+msgstr ""
+
+#: ../src/Document.cc:654
+msgid ""
+"Subtitle Editor was not able to automatically determine the file encoding. "
+"Select a different character coding from the menu and try again."
+msgstr ""
+
+#: ../src/Document.cc:660
+#, c-format
+msgid "Could not open the file \"%s\" using the character coding %s."
+msgstr ""
+
+#: ../src/Document.cc:662
+msgid "Select a different character coding from the menu and try again."
+msgstr ""
+
+#: ../src/Document.cc:687 ../src/Document.cc:696
+#, c-format
+msgid "Could not open the file \"%s\""
+msgstr ""
+
+#: ../src/Document.cc:697
+msgid "An unknown error occurred while opening the file."
 msgstr ""
 
 #: ../src/DocumentSystem.cc:192
 #, c-format
 msgid "Untitled %d"
+msgstr ""
+
+#: ../src/Encodings.cc:102
+msgid "It's not valid UTF-8."
+msgstr ""
+
+#: ../src/Encodings.cc:113 ../src/Encodings.cc:120 ../src/Encodings.cc:125
+#, c-format
+msgid "Couldn't convert from %s to UTF-8"
+msgstr ""
+
+#: ../src/Encodings.cc:215
+msgid ""
+"subtitleeditor was not able to automatically determine the encoding of the "
+"file you want to open."
+msgstr ""
+
+#: ../src/Encodings.cc:235
+#, c-format
+msgid "Could not convert the text to the character coding '%s'"
 msgstr ""
 
 #: ../src/Encodings.h:37 ../src/Encodings.h:50 ../src/Encodings.h:74
@@ -1835,126 +2183,60 @@ msgstr ""
 msgid "Thai"
 msgstr ""
 
-#: ../src/formats/SubtitleASS.cc:179 ../src/formats/SubtitleASS.cc:233
-#: ../src/formats/SubtitleEncoreNTSC.cc:99
-#: ../src/formats/SubtitleEncoreNTSC.cc:154
-#: ../src/formats/SubtitleEncorePAL.cc:98
-#: ../src/formats/SubtitleEncorePAL.cc:151
-#: ../src/formats/SubtitleMicroDVD.cc:167
-#: ../src/formats/SubtitleMicroDVD.cc:221 ../src/formats/SubtitleMPL2.cc:86
-#: ../src/formats/SubtitleMPL2.cc:136 ../src/formats/SubtitleMPsub.cc:90
-#: ../src/formats/SubtitleMPsub.cc:184 ../src/formats/SubtitleSSA.cc:159
-#: ../src/formats/SubtitleSSA.cc:209 ../src/formats/SubtitleSubRip.cc:87
-#: ../src/formats/SubtitleSubRip.cc:155
-#: ../src/formats/SubtitleSubViewer2.cc:86
-#: ../src/formats/SubtitleSubViewer2.cc:135
-#: ../src/formats/SubtitleTimedText.cc:209 ../src/formats/SubtitleTTXT.cc:130
-msgid "I can't open this file."
+#: ../src/FileWriter.cc:54
+msgid "Couldn't open the file."
 msgstr ""
 
-#: ../src/gui/Application.cc:332
+#: ../src/formats/SubtitleEditorProject.h:68
+#: ../src/formats/SubtitleEditorProject.h:123
+#: ../src/formats/TimedTextAuthoringFormat1.h:60
+#: ../src/formats/TimedTextAuthoringFormat1.h:84
+msgid "Failed to open the file for reading."
+msgstr ""
+
+#: ../src/formats/SubtitleEditorProject.h:177
+#: ../src/formats/TimedTextAuthoringFormat1.h:117
+msgid "Failed to save the file for writing."
+msgstr ""
+
+#: ../src/gui/Application.cc:308
+msgid "Times"
+msgstr ""
+
+#: ../src/gui/Application.cc:308
+msgid "Frames"
+msgstr ""
+
+#: ../src/gui/Application.cc:317
 msgid "Name:"
 msgstr ""
 
-#: ../src/gui/Application.cc:333
-msgid "Encoding:"
+#: ../src/gui/Application.cc:318
+msgid "Path:"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:44
-msgid "An error is detected when the subtitle overlap on next subtitle."
+#: ../src/gui/Application.cc:321
+msgid "Newline:"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:62
-#, c-format
-msgid ""
-"<b>Subtitle overlap on next subtitle:</b> %ims overlap\n"
-"%s -> %s\n"
-"%s"
+#: ../src/gui/Application.cc:322
+msgid "Timing Mode:"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:100
-#, fuzzy
-msgid "An error is detected when the number of characters per second is ..."
-msgstr "saniye başına düşen karakter sayısını _göster"
-
-#: ../src/gui/CheckErrorsUI.cc:119
-#, c-format
-msgid ""
-"<b>Subtitle display time is too short:</b> %i char/s\n"
-"%s -> %s\n"
-"%s"
+#: ../src/gui/ComboBoxEncoding.cc:143
+msgid "Auto Detected"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:155
-msgid "An error is detected when the number ..."
+#: ../src/gui/ComboBoxEncoding.cc:156
+msgid "Current Locale"
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:174
-#, c-format
-msgid ""
-"<b>Subtitle display time is too long:</b> %i char/s\n"
-"%s -> %s\n"
-"%s"
+#: ../src/gui/ComboBoxEncoding.cc:177
+msgid "Add or Remove..."
 msgstr ""
 
-#: ../src/gui/CheckErrorsUI.cc:216
-msgid "Too Long line"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:217 ../src/gui/CheckErrorsUI.cc:287
-msgid "An error is detected when ..."
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:243
-#, c-format
-msgid ""
-"<b>Subtitle has a too long line (%s):</b> %i characters\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:762 ../src/SubtitleView.cc:1682
-msgid "text"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:244 ../src/gui/CheckErrorsUI.cc:317
-#: ../src/SubtitleView.cc:826 ../src/SubtitleView.cc:1683
-msgid "translation"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:316
-#, c-format
-msgid ""
-"<b>Subtitle has too many lines (%s):</b> %i\n"
-"%s -> %s\n"
-"%s"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:354
-msgid "Minimum gap between subtitles"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:355
-msgid ""
-"An error is detected when the minimum gap between subtitles is too short."
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:376
-#, c-format
-msgid "<b>Too short gap between subtitle:</b> %ims"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:514
-msgid "Line"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:528
-msgid "Errors"
-msgstr ""
-
-#: ../src/gui/CheckErrorsUI.cc:728
-msgid "Document not found."
+#: ../src/gui/ComboBoxVideo.cc:74
+msgid "None"
 msgstr ""
 
 #. column description
@@ -1964,203 +2246,97 @@ msgstr ""
 
 #. column encoding
 #: ../src/gui/DialogCharacterCodings.cc:79
-#, fuzzy
 msgid "_Encoding"
-msgstr "Kodlamalar"
-
-#: ../src/gui/DialogFileChooser.cc:186
-msgid "Auto Detected"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:211
-msgid "Add or Remove..."
-msgstr ""
-
-#: ../src/gui/DialogFileChooser.cc:313
-msgid "None"
-msgstr ""
-
-#: ../src/gui/DialogFileChooser.cc:384
-msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
-msgstr ""
-
-#: ../src/gui/DialogFileChooser.cc:410
+#: ../src/gui/DialogFileChooser.cc:46
 msgid "All files (*.*)"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:706
+#: ../src/gui/DialogFileChooser.cc:53
+msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
+msgstr ""
+
+#: ../src/gui/DialogFileChooser.cc:391
 msgid "Open Video"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:712 ../src/gui/DialogFileChooser.cc:774
+#: ../src/gui/DialogFileChooser.cc:397 ../src/gui/DialogFileChooser.cc:459
 msgid "Video"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:723 ../src/gui/DialogFileChooser.cc:785
+#: ../src/gui/DialogFileChooser.cc:408 ../src/gui/DialogFileChooser.cc:470
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:731 ../src/gui/DialogFileChooser.cc:794
+#: ../src/gui/DialogFileChooser.cc:416 ../src/gui/DialogFileChooser.cc:479
 msgid "ALL"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:762
+#: ../src/gui/DialogFileChooser.cc:447
 msgid "Open Waveform"
 msgstr ""
 
-#: ../src/gui/DialogFileChooser.cc:768
-#, fuzzy
+#: ../src/gui/DialogFileChooser.cc:453
 msgid "Waveform (*.wf)"
-msgstr "Dalga Türü"
+msgstr ""
 
-#: ../src/gui/MenuBar.cc:124
+#. create all menu
+#: ../src/gui/MenuBar.cc:63
 msgid "_File"
 msgstr ""
 
-#: ../src/gui/MenuBar.cc:126
-msgid "_Properties"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:133
+#: ../src/gui/MenuBar.cc:64
 msgid "_Edit"
 msgstr ""
 
-#: ../src/gui/MenuBar.cc:144
+#: ../src/gui/MenuBar.cc:65
 msgid "_Timings"
 msgstr ""
 
-#: ../src/gui/MenuBar.cc:151
+#: ../src/gui/MenuBar.cc:66
 msgid "T_ools"
 msgstr ""
 
-#. ag.item("find-and-replace", Gtk::Stock::FIND_AND_REPLACE, _("_Find And Replace"),
-#. _("Search for and replace text"), "<Control>F");
-#: ../src/gui/MenuBar.cc:155
-msgid "_Check Errors"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:156
-msgid "Launch the errors checking"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:164
+#: ../src/gui/MenuBar.cc:67
 msgid "V_iew"
 msgstr ""
 
-#: ../src/gui/MenuBar.cc:171
-msgid "_Options"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:173
-msgid "Configure Subtitle Editor"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:174
-msgid "Configure _Keyboard Shortcuts"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:182
+#: ../src/gui/MenuBar.cc:69
 msgid "_Help"
 msgstr ""
 
-#: ../src/gui/MenuBar.cc:381
-msgid "Actions"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:403
-msgid "Shortcut"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:533
-msgid "Invalid shortcut."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:551
-#, c-format
-msgid "Shortcut \"%s\" is already taken by \"%s\"."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:554
-#, c-format
-msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:557
-msgid "Conflicting Shortcuts"
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:563
-msgid "Changing shortcut failed."
-msgstr ""
-
-#: ../src/gui/MenuBar.cc:594
-msgid "Removing shortcut failed."
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:89 ../src/gui/PreferencesUI.cc:99
-msgid "Autodetect"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:90
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:91
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:92
-msgid "OSS - Open Sound System"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:93 ../src/gui/PreferencesUI.cc:102
-msgid "SDL - Simple DirectMedia Layer"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:94 ../src/gui/PreferencesUI.cc:103
-msgid "GConf"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:100
-msgid "X Window System (X11/XShm/Xv)"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:101
-msgid "X Window System (No Xv)"
-msgstr ""
-
-#: ../src/gui/PreferencesUI.cc:104
-msgid "OpenGL"
-msgstr ""
-
-#: ../src/main.cc:225
+#: ../src/main.cc:229
 msgid " - edit subtitles files"
 msgstr ""
 
-#: ../src/Options.cc:57
+#: ../src/Options.cc:40
 msgid "[FILE...]"
 msgstr ""
 
-#: ../src/Options.cc:65 ../src/Options.cc:90 ../src/Options.cc:98
+#: ../src/Options.cc:48 ../src/Options.cc:73 ../src/Options.cc:81
 msgid "FILE"
 msgstr ""
 
-#: ../src/Options.cc:74
+#: ../src/Options.cc:57
 msgid "NAME"
 msgstr ""
 
-#: ../src/Options.cc:82
+#: ../src/Options.cc:65
 msgid "ENCODING"
 msgstr ""
 
-#: ../src/SubtitleFormat.cc:151
-msgid ""
-"It's not valid UTF-8.\n"
-"Please use another character encoding."
+#: ../src/SubtitleFormat.cc:63 ../src/SubtitleFormat.cc:71
+msgid "This function are not implemented to this format."
 msgstr ""
 
-#: ../src/SubtitleFormat.cc:161
-msgid "Please use another character encoding."
+#: ../src/SubtitleFormatSystem.cc:113
+msgid "Couldn't recognize format of the file."
+msgstr ""
+
+#: ../src/SubtitleFormatSystem.cc:133
+#, c-format
+msgid "Couldn't create the subtitle format '%s'."
 msgstr ""
 
 #: ../src/SubtitleModel.cc:37
@@ -2183,144 +2359,140 @@ msgstr ""
 msgid "Remove Subtitles"
 msgstr ""
 
-#: ../src/SubtitleSystem.cc:196
-msgid "I can't find what is this format or it's not supported."
-msgstr ""
-
-#: ../src/SubtitleView.cc:426
+#: ../src/SubtitleView.cc:492
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr ""
 
-#: ../src/SubtitleView.cc:428
+#: ../src/SubtitleView.cc:494
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr ""
 
-#: ../src/SubtitleView.cc:560 ../src/SubtitleView.cc:1679
-msgid "num"
+#: ../src/SubtitleView.cc:646
+msgid "The line number"
 msgstr ""
 
-#: ../src/SubtitleView.cc:575
-msgid "This number column"
+#: ../src/SubtitleView.cc:712
+msgid "When a subtitle appears on the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:588 ../src/SubtitleView.cc:1673
-msgid "layer"
+#: ../src/SubtitleView.cc:724
+msgid "When a subtitle disappears from the screen."
 msgstr ""
 
-#: ../src/SubtitleView.cc:604
-msgid "Layer number."
-msgstr ""
-
-#: ../src/SubtitleView.cc:644 ../src/SubtitleView.cc:1680
-msgid "start"
-msgstr ""
-
-#: ../src/SubtitleView.cc:647
-msgid "This time is the time when a subtitle appears on the screen."
-msgstr ""
-
-#: ../src/SubtitleView.cc:657 ../src/SubtitleView.cc:1672
-msgid "end"
-msgstr ""
-
-#: ../src/SubtitleView.cc:660
-msgid "This time is the time when a subtitle disappears from the screen."
-msgstr ""
-
-#: ../src/SubtitleView.cc:671 ../src/SubtitleView.cc:1670
-msgid "duration"
-msgstr ""
-
-#: ../src/SubtitleView.cc:674
+#: ../src/SubtitleView.cc:737
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/SubtitleView.cc:687 ../src/SubtitleView.cc:1681
-msgid "style"
+#: ../src/SubtitleView.cc:812
+msgid "The number of characters per second"
 msgstr ""
 
-#: ../src/SubtitleView.cc:714 ../src/SubtitleView.cc:1677
-msgid "name"
-msgstr ""
-
-#: ../src/SubtitleView.cc:739 ../src/SubtitleView.cc:1669
-msgid "cps"
-msgstr ""
-
-#: ../src/SubtitleView.cc:870 ../src/SubtitleView.cc:1678
-msgid "note"
-msgstr ""
-
-#: ../src/SubtitleView.cc:897 ../src/SubtitleView.cc:1671
-msgid "effect"
-msgstr ""
-
-#: ../src/SubtitleView.cc:926 ../src/SubtitleView.cc:1675
-msgid "R"
-msgstr ""
-
-#: ../src/SubtitleView.cc:953 ../src/SubtitleView.cc:1674
-msgid "L"
-msgstr ""
-
-#: ../src/SubtitleView.cc:980 ../src/SubtitleView.cc:1676
-msgid "V"
-msgstr ""
-
-#: ../src/SubtitleView.cc:1040
+#: ../src/SubtitleView.cc:1064
 msgid "Editing layer"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1068 ../src/SubtitleView.cc:1079
+#: ../src/SubtitleView.cc:1092 ../src/SubtitleView.cc:1103
 msgid "Editing start"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1106 ../src/SubtitleView.cc:1117
+#: ../src/SubtitleView.cc:1130 ../src/SubtitleView.cc:1141
 msgid "Editing end"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1144 ../src/SubtitleView.cc:1155
+#: ../src/SubtitleView.cc:1168 ../src/SubtitleView.cc:1179
 msgid "Editing duration"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1175
+#: ../src/SubtitleView.cc:1199
 msgid "Editing text"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1197
+#: ../src/SubtitleView.cc:1221
 msgid "Editing translation"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1217
+#: ../src/SubtitleView.cc:1241
 msgid "Editing note"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1236
+#: ../src/SubtitleView.cc:1260
 msgid "Editing effect"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1257
+#: ../src/SubtitleView.cc:1281
 msgid "Editing style"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1277
+#: ../src/SubtitleView.cc:1301
 msgid "Editing name"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1297
+#: ../src/SubtitleView.cc:1321
 msgid "Editing margin-l"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1317
+#: ../src/SubtitleView.cc:1341
 msgid "Editing margin-r"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1337
+#: ../src/SubtitleView.cc:1361
 msgid "Editing margin-v"
 msgstr ""
 
-#: ../src/SubtitleView.cc:1475
+#: ../src/SubtitleView.cc:1499
 msgid "Set style to selection"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1632
+msgid "CPS"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1633
+msgid "Duration"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1634
+msgid "Effect"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1635
+msgid "End"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1636
+msgid "Layer"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1637
+msgid "L"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1638
+msgid "R"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1639
+msgid "V"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1641
+msgid "Note"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1642
+msgid "Num"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1643
+msgid "Start"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1644
+msgid "Style"
+msgstr ""
+
+#: ../src/SubtitleView.cc:1645
+msgid "Text"
 msgstr ""
 
 #: ../src/TimeUtility.cc:36
@@ -2347,19 +2519,19 @@ msgstr ""
 msgid "Invalid fps"
 msgstr ""
 
-#: ../src/utility.cc:458
+#: ../src/utility.cc:382
 msgid ""
 "GStreamer plugins missing.\n"
 "The playback of this movie requires the following decoders which are not "
 "installed:"
 msgstr ""
 
-#: ../src/utility.cc:477
+#: ../src/utility.cc:401
 #, c-format
 msgid "Failed to create a GStreamer element '%s'."
 msgstr ""
 
-#: ../src/utility.cc:478
+#: ../src/utility.cc:402
 msgid "Please check your GStreamer installation."
 msgstr ""
 
@@ -2408,21 +2580,3 @@ msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
 msgstr ""
-
-#~ msgid "Maximum character per second:"
-#~ msgstr "her saniye için maksimum karakter"
-
-#~ msgid "Minimum gap between subtitle in mseconds:"
-#~ msgstr "milisaniyede altyazılar arası minumum boşluk"
-
-#~ msgid "Current time:"
-#~ msgstr "Geçerli zaman:"
-
-#~ msgid "New time:"
-#~ msgstr "Yeni zaman"
-
-#~ msgid "<b>Encodings Character</b>"
-#~ msgstr "<b>Şifreli Karakter</b>"
-
-#~ msgid "Used \"Auto Detected\""
-#~ msgstr "\"otomatik saptama\" kullan"
