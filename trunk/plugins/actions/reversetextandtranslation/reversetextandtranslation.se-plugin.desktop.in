@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Reverse Text And Translation
+_Description=FIXME
+Categorie=action
+Type=module
+Module=reversetextandtranslation
+Authors=kitone <kitone at gna dot org>

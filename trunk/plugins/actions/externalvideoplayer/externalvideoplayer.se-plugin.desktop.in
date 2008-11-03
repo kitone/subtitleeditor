@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=External Video Player
+_Description=Run external video player.
+Categorie=action
+Type=module
+Module=externalvideoplayer
+Authors=kitone <kitone at gna dot org>

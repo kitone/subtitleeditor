@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Dialoguize
+_Description=Add or remove dialogue dash.
+Categorie=action
+Type=module
+Module=dialoguize
+Authors=kitone <kitone at gna dot org>

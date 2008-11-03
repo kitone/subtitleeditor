@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=View Manager
+_Description=Manage multiple view of the columns of subtitle
+Categorie=action
+Type=module
+Module=viewmanager
+Authors=kitone <kitone at gna dot org>

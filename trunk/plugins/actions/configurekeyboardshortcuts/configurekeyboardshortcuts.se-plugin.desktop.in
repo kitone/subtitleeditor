@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Configure Keyboard Shortcuts
+_Description=FIXME
+Categorie=action
+Type=module
+Module=configurekeyboardshortcuts
+Authors=kitone <kitone at gna dot org>

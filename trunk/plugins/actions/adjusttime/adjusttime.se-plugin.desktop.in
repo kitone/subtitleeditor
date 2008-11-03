@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Adjust Time
+_Description=FIXME
+Categorie=action
+Type=module
+Module=adjusttime
+Authors=kitone <kitone at gna dot org>
