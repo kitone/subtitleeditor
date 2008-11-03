@@ -1,5 +1,13 @@
 2008-11-03  kitone  <kitone@gna.org>
 
+	* share/menubar.xml:
+	Replace menuitem by placeholder.
+
+	* src/gui/MenuBar.cc:
+	Add menus Selection, Video and Waveform.
+
+2008-11-03  kitone  <kitone@gna.org>
+
 	* Makefile.am:
 	* configure.in:
 	* plugins/Makefile.am:
