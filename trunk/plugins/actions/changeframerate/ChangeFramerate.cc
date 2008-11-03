@@ -20,11 +20,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "gui/DialogUtility.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include <gui/DialogUtility.h>
 
 /*
  * TODO Add FPS finder
@@ -204,9 +202,20 @@ protected:
 /*
  *
  */
-class ChangeFrameratePlugin : public Plugin
+class ChangeFrameratePlugin : public Action
 {
 public:
+
+	ChangeFrameratePlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~ChangeFrameratePlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -229,7 +238,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-timings/extend-6", "change-framerate", "change-framerate");
+		ui->add_ui(ui_id, "/menubar/menu-timings/change-framerate", "change-framerate", "change-framerate");
 	}
 
 	/*
@@ -345,4 +354,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(ChangeFrameratePlugin)
+REGISTER_EXTENSION(ChangeFrameratePlugin)

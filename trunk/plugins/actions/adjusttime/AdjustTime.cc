@@ -20,17 +20,26 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 /*
  *
  */
-class AdjustTimePlugin : public Plugin
+class AdjustTimePlugin : public Action
 {
 public:
+	
+	AdjustTimePlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~AdjustTimePlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -78,12 +87,12 @@ public:
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
 		ui->insert_action_group(action_group);
-		/*
+
 		Glib::ustring submenu = 
 			"<ui>"
 			"	<menubar name='menubar'>"
 			"		<menu name='menu-timings' action='menu-timings'>"
-			"			<placeholder name='extend-3'>"
+			"			<placeholder name='adjust-time'>"
 			"				<menu action='menu-adjust-time-add'>"
 			"					<menuitem action='add-to-start'/>"
 			"					<menuitem action='add-to-duration'/>"
@@ -100,7 +109,6 @@ public:
 			"</ui>";
 
 		ui_id = ui->add_ui_from_string(submenu);
-		*/
 	}
 
 	/*
@@ -265,4 +273,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(AdjustTimePlugin)
+REGISTER_EXTENSION(AdjustTimePlugin)

@@ -20,15 +20,23 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
-
-class SplitSelectedSubtitlesPlugin : public Plugin
+class SplitSelectedSubtitlesPlugin : public Action
 {
 public:
+
+	SplitSelectedSubtitlesPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~SplitSelectedSubtitlesPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -51,7 +59,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-5", "split-selected-subtitles", "split-selected-subtitles");
+		ui->add_ui(ui_id, "/menubar/menu-edit/split-selected-subtitles", "split-selected-subtitles", "split-selected-subtitles");
 	}
 
 	/*
@@ -168,4 +176,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(SplitSelectedSubtitlesPlugin)
+REGISTER_EXTENSION(SplitSelectedSubtitlesPlugin)

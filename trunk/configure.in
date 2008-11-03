@@ -325,6 +325,7 @@ packagesharedir=share/$PACKAGE
 NO_PREFIX_PACKAGE_SHARE_DIR="${packagesharedir}"
 AC_SUBST(NO_PREFIX_PACKAGE_SHARE_DIR)
 
+PACKAGE_SHARE_DIR="${packageprefix}/${packagesharedir}"
 AC_SUBST(PACKAGE_SHARE_DIR)
 AC_DEFINE_UNQUOTED([PACKAGE_SHARE_DIR], "${packageprefix}/${packagesharedir}", "share dir")
 

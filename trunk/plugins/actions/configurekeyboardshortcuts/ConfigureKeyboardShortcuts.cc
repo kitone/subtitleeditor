@@ -24,9 +24,8 @@
 #include <libglademm/xml.h>
 #include <gtk/gtk.h>
 #include <libxml++/libxml++.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 
 /*
@@ -449,9 +448,20 @@ protected:
 /*
  *
  */
-class ConfigureKeyboardShortcuts : public Plugin
+class ConfigureKeyboardShortcuts : public Action
 {
 public:
+
+	ConfigureKeyboardShortcuts()
+	{
+		activate();
+		update_ui();
+	}
+
+	~ConfigureKeyboardShortcuts()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -473,6 +483,8 @@ public:
 		ui_id = ui->new_merge_id();
 
 		ui->insert_action_group(action_group);
+
+		ui->add_ui(ui_id, "/menubar/menu-options/configure-keyboard-shortcuts", "configure-keyboard-shortcuts", "configure-keyboard-shortcuts");
 	}
 
 	/*
@@ -512,4 +524,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(ConfigureKeyboardShortcuts)
+REGISTER_EXTENSION(ConfigureKeyboardShortcuts)

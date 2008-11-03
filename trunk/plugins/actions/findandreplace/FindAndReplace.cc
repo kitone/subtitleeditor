@@ -20,11 +20,8 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "Config.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 #include <glib/gregex.h>
 
 /*
@@ -434,9 +431,20 @@ protected:
 /*
  *	Plugin
  */
-class FindAndReplacePlugin : public Plugin
+class FindAndReplacePlugin : public Action
 {
 public:
+
+	FindAndReplacePlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~FindAndReplacePlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -462,11 +470,22 @@ public:
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui_id = ui->new_merge_id();
-
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-tools/extend-1", "find-and-replace", "find-and-replace");
+		Glib::ustring submenu = 
+			"<ui>"
+			"	<menubar name='menubar'>"
+			"		<menu name='menu-tools' action='menu-tools'>"
+			"			<placeholder name='find-and-replace'>"
+			"				<menuitem action='find-and-replace'/>"
+			"				<menuitem action='find-next'/>"
+			"				<menuitem action='find-previous'/>"
+			"			</placeholder>"
+			"		</menu>"
+			"	</menubar>"
+			"</ui>";
+
+		ui_id = ui->add_ui_from_string(submenu);
 	}
 
 	/*
@@ -679,4 +698,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(FindAndReplacePlugin)
+REGISTER_EXTENSION(FindAndReplacePlugin)

@@ -20,20 +20,29 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "gui/DialogFileChooser.h"
-#include "FileReader.h"
-#include "FileWriter.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include <gui/DialogFileChooser.h>
+#include <FileReader.h>
+#include <FileWriter.h>
 
 /*
  *
  */
-class TranscriptPlugin : public Plugin
+class PlainTextPlugin : public Action
 {
 public:
+
+	PlainTextPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~PlainTextPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -43,15 +52,15 @@ public:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		// actions
-		action_group = Gtk::ActionGroup::create("TranscriptPlugin");
+		action_group = Gtk::ActionGroup::create("PlainTextPlugin");
 
 		action_group->add(
-				Gtk::Action::create("import-transcript", _("_Import Transcript"), _("Create a new document with any text file")),
-					sigc::mem_fun(*this, &TranscriptPlugin::on_import_transcript));
+				Gtk::Action::create("plain-text-import", _("_Import Plain Text"), _("Create a new document with any text file")),
+					sigc::mem_fun(*this, &PlainTextPlugin::on_import_transcript));
 
 		action_group->add(
-				Gtk::Action::create("export-transcript", _("_Export Transcript"), _("Export just a text in a file")),
-					sigc::mem_fun(*this, &TranscriptPlugin::on_export_transcript));
+				Gtk::Action::create("plain-text-export", _("_Export Plain Text"), _("Export just a text in a file")),
+					sigc::mem_fun(*this, &PlainTextPlugin::on_export_transcript));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -60,7 +69,8 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-XX", "open-transcript", "open-transcript");
+		ui->add_ui(ui_id, "/menubar/menu-file/plain-text-import", "plain-text-import", "plain-text-import");
+		ui->add_ui(ui_id, "/menubar/menu-file/plain-text-export", "plain-text-export", "plain-text-export");
 	}
 
 	/*
@@ -85,7 +95,7 @@ public:
 
 		bool visible = (get_current_document() != NULL);
 
-		action_group->get_action("export-transcript")->set_sensitive(visible);
+		action_group->get_action("plain-text-export")->set_sensitive(visible);
 	}
 
 protected:
@@ -179,4 +189,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(TranscriptPlugin)
+REGISTER_EXTENSION(PlainTextPlugin)

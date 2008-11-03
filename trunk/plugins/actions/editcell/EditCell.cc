@@ -20,18 +20,26 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 /*
  *
  */
-class EditCellPlugin : public Plugin
+class EditCellPlugin : public Action
 {
 public:
+
+	EditCellPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~EditCellPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,9 +62,21 @@ public:
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui_id = ui->new_merge_id();
-
 		ui->insert_action_group(action_group);
+
+		Glib::ustring submenu = 
+			"<ui>"
+			"	<menubar name='menubar'>"
+			"		<menu name='menu-edit' action='menu-edit'>"
+			"			<placeholder name='edit-cell'>"
+			"				<menuitem action='edit-cell'/>"
+			"				<menuitem action='edit-next-cell'/>"
+			"			</placeholder>"
+			"		</menu>"
+			"	</menubar>"
+			"</ui>";
+
+		ui_id = ui->add_ui_from_string(submenu);
 	}
 
 	/*
@@ -128,4 +148,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(EditCellPlugin)
+REGISTER_EXTENSION(EditCellPlugin)

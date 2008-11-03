@@ -20,18 +20,27 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "gui/DialogFileChooser.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include <gui/DialogFileChooser.h>
 
 /*
  *
  */
-class ExternalVideoPlayer : public Plugin
+class ExternalVideoPlayer : public Action
 {
 public:
+
+	ExternalVideoPlayer()
+	{
+		activate();
+		update_ui();
+	}
+
+	~ExternalVideoPlayer()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -42,24 +51,36 @@ public:
 		action_group = Gtk::ActionGroup::create("ExternalVideoPlayer");
 
 		action_group->add(
-				Gtk::Action::create("menu-external-video-player", _("_Preview")));
+				Gtk::Action::create("external-video-player", Gtk::Stock::MEDIA_PLAY, _("_External Video Player")));
 
 		action_group->add(
-				Gtk::Action::create("external-video-player/open-video", Gtk::Stock::OPEN, _("_Open Movie"), _("Open movie with external video player")), Gtk::AccelKey("<Shift><Control>P"),
+				Gtk::Action::create("external-video-player/open", Gtk::Stock::OPEN, _("_Open Movie"), _("Open movie with external video player")), Gtk::AccelKey("<Shift><Control>P"),
 					sigc::mem_fun(*this, &ExternalVideoPlayer::on_open_movie));
 
 		action_group->add(
-				Gtk::Action::create("external-video-player/play-video", Gtk::Stock::MEDIA_PLAY, _("_Play Movie"), _("Play movie with external video player")), Gtk::AccelKey("<Control>space"),
+				Gtk::Action::create("external-video-player/play", Gtk::Stock::MEDIA_PLAY, _("_Play Movie"), _("Play movie with external video player")), Gtk::AccelKey("<Control>space"),
 					sigc::mem_fun(*this, &ExternalVideoPlayer::on_play_movie));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui_id = ui->new_merge_id();
-
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-XX", "external-video-player/open-video", "external-video-player/open-video");
+		Glib::ustring submenu = 
+			"<ui>"
+			"	<menubar name='menubar'>"
+			"		<menu name='menu-extensions' action='menu-extensions'>"
+			"			<placeholder name='placeholder'>"
+			"				<menu action='external-video-player'>"
+			"					<menuitem action='external-video-player/open'/>"
+			"					<menuitem action='external-video-player/play'/>"
+			"				</menu>"
+			"			</placeholder>"
+			"		</menu>"
+			"	</menubar>"
+			"</ui>";
+
+		ui_id = ui->add_ui_from_string(submenu);
 	}
 
 	/*
@@ -186,4 +207,4 @@ protected:
 	Glib::ustring m_movie_uri;
 };
 
-REGISTER_PLUGIN(ExternalVideoPlayer)
+REGISTER_EXTENSION(ExternalVideoPlayer)

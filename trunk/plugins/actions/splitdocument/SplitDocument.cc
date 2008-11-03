@@ -20,12 +20,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Document.h"
-#include "DocumentSystem.h"
-#include "Plugin.h"
-#include "utility.h"
-
+#include <extension/Action.h>
+#include <utility.h>
+#include <DocumentSystem.h>
 
 /*
  *
@@ -110,9 +107,20 @@ protected:
 /*
  *
  */
-class SplitDocumentPlugin : public Plugin
+class SplitDocumentPlugin : public Action
 {
 public:
+
+	SplitDocumentPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~SplitDocumentPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -135,7 +143,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-tools/extend-7", "split-document", "split-document");
+		ui->add_ui(ui_id, "/menubar/menu-tools/split-document", "split-document", "split-document");
 	}
 
 	/*
@@ -203,4 +211,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(SplitDocumentPlugin)
+REGISTER_EXTENSION(SplitDocumentPlugin)

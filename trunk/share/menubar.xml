@@ -23,18 +23,15 @@
 		</menu>
 
 		<menu action="menu-edit" name="menu-edit">
-			<placeholder name="undo-command"/>
-			<placeholder name="redo-command"/>
+			<placeholder name="command"/>
 			<separator/>
 			<placeholder name="edit-cell"/>
-			<placeholder name="edit-next-cell"/>
 			<separator/>
 			<!-- placeholder name="cut"/ -->
 			<!-- placeholder name="copy"/-->
 			<!-- placeholder name="paste"/-->
 			<separator/>
-			<placeholder name="insert-subtitle-before"/>
-			<placeholder name="insert-subtitle-after"/>
+			<placeholder name="insert-subtitle"/>
 			<placeholder name="delete-selected-subtitles"/>
 			<separator/>
 			<placeholder name="split-selected-subtitles"/>
@@ -46,13 +43,7 @@
 		</menu>
 
 		<menu action="menu-selection" name="menu-selection">
-			<placeholder name="select-first-subtitle"/>
-			<placeholder name="select-last-subtitle"/>
-			<placeholder name="select-previous-subtitle"/>
-			<placeholder name="select-next-subtitle"/>
-			<separator/>
-			<placeholder name="select-all-subtitles"/>
-			<placeholder name="invert-subtitles-selection"/>
+			<placeholder name="selection"/>
 		</menu>
 
 		<menu action="menu-timings" name="menu-timings">
@@ -73,8 +64,6 @@
 
 		<menu action="menu-tools">
 			<placeholder name="find-and-replace"/>
-			<placeholder name="find-next"/>
-			<placeholder name="find-previous"/>
 			<separator/>
 			<placeholder name="spell-checking"/>
 			<placeholder name="error-checking"/>
@@ -102,10 +91,9 @@
 			<placeholder name="display-placeholder"/>
 		</menu>
 
-		<!--menu action="menu-external-video-player">
-			<placeholder name="external-video-player/open-video"/>
-			<placeholder name="external-video-player/play-video"/>
-		</menu-->
+		<menu action="menu-extensions">
+			<placeholder name="placeholder"/>
+		</menu>
 
 		<menu name="menu-options" action="menu-options">
 			<placeholder name="preferences"/>

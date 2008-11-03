@@ -20,18 +20,26 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 /*
  *
  */
-class DuplicateSelectedSubtitlesPlugin : public Plugin
+class DuplicateSelectedSubtitlesPlugin : public Action
 {
 public:
+
+	DuplicateSelectedSubtitlesPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~DuplicateSelectedSubtitlesPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,7 +62,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-6", "duplicate-selected-subtitles", "duplicate-selected-subtitles");
+		ui->add_ui(ui_id, "/menubar/menu-edit/duplicate-selected-subtitles", "duplicate-selected-subtitles", "duplicate-selected-subtitles");
 	}
 
 	/*
@@ -132,4 +140,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(DuplicateSelectedSubtitlesPlugin)
+REGISTER_EXTENSION(DuplicateSelectedSubtitlesPlugin)

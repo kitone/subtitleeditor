@@ -20,15 +20,23 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
-
-class CombineSelectedSubtitlesPlugin : public Plugin
+class CombineSelectedSubtitlesPlugin : public Action
 {
 public:
+
+	CombineSelectedSubtitlesPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~CombineSelectedSubtitlesPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -51,7 +59,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-6", "combine-selected-subtitles", "combine-selected-subtitles");
+		ui->add_ui(ui_id, "/menubar/menu-edit/combine-selected-subtitles", "combine-selected-subtitles", "combine-selected-subtitles");
 	}
 
 	/*
@@ -218,4 +226,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(CombineSelectedSubtitlesPlugin)
+REGISTER_EXTENSION(CombineSelectedSubtitlesPlugin)

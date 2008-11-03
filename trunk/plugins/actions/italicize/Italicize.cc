@@ -20,18 +20,26 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 /*
  *
  */
-class ItalicizeSelectedSubtitlesPlugin : public Plugin
+class ItalicizeSelectedSubtitlesPlugin : public Action
 {
 public:
+	
+	ItalicizeSelectedSubtitlesPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~ItalicizeSelectedSubtitlesPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,7 +62,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-9", "italicize-selected-subtitles", "italicize-selected-subtitles");
+		ui->add_ui(ui_id, "/menubar/menu-edit/italicize-selected-subtitles", "italicize-selected-subtitles", "italicize-selected-subtitles");
 	}
 
 	/*
@@ -169,4 +177,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(ItalicizeSelectedSubtitlesPlugin)
+REGISTER_EXTENSION(ItalicizeSelectedSubtitlesPlugin)

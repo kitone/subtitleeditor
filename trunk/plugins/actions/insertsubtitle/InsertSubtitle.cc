@@ -20,16 +20,23 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Plugin.h"
-#include "Document.h"
-#include "utility.h"
-#include "DocumentSystem.h"
+#include <extension/Action.h>
+#include <utility.h>
 
-
-class InsertSubtitlePlugin : public Plugin
+class InsertSubtitlePlugin : public Action
 {
 public:
+
+	InsertSubtitlePlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~InsertSubtitlePlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,12 +61,12 @@ public:
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
 		ui->insert_action_group(action_group);
-		/*
+
 		Glib::ustring submenu = 
 			"<ui>"
 			"	<menubar name='menubar'>"
 			"		<menu name='menu-edit' action='menu-edit'>"
-			"			<placeholder name='extend-3'>"
+			"			<placeholder name='insert-subtitle'>"
 			"				<menuitem action='insert-subtitle-before'/>"
 			"				<menuitem action='insert-subtitle-after'/>"
 			"			</placeholder>"
@@ -68,7 +75,6 @@ public:
 			"</ui>";
 
 		ui_id = ui->add_ui_from_string(submenu);
-		*/
 	}
 
 	/*
@@ -224,4 +230,4 @@ protected:
 };
 
 
-REGISTER_PLUGIN(InsertSubtitlePlugin)
+REGISTER_EXTENSION(InsertSubtitlePlugin)
