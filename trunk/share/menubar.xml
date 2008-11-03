@@ -2,186 +2,186 @@
 	<menubar name="menubar">
 
 		<menu action="menu-file">
-			<menuitem action="new-document"/>
-			<menuitem action="open-document"/>
-			<menuitem action="open-translation"/>
+			<placeholder name="new-document"/>
+			<placeholder name="open-document"/>
+			<placeholder name="open-translation"/>
 			<separator/>
-			<menuitem action="menu-recent-open-document"/>
+			<placeholder name="menu-recent-open-document"/>
 			<separator/>
-			<menuitem action="save-document"/>
-			<menuitem action="save-as-document"/>
-			<menuitem action="save-all-documents"/>
-			<menuitem action="save-translation"/>
+			<placeholder name="save-document"/>
+			<placeholder name="save-as-document"/>
+			<placeholder name="save-all-documents"/>
+			<placeholder name="save-translation"/>
 			<separator/>
-			<!-- menuitem action="properties"/ -->
+			<!-- placeholder name="properties"/ -->
 			<separator/>
-			<menuitem action="import-transcript"/>
-			<menuitem action="export-transcript"/>
+			<placeholder name="import-transcript"/>
+			<placeholder name="export-transcript"/>
 			<separator/>
-			<menuitem action="close-document"/>
-			<menuitem action="exit"/>
+			<placeholder name="close-document"/>
+			<placeholder name="exit"/>
 		</menu>
 
 		<menu action="menu-edit" name="menu-edit">
-			<menuitem action="undo-command"/>
-			<menuitem action="redo-command"/>
+			<placeholder name="undo-command"/>
+			<placeholder name="redo-command"/>
 			<separator/>
-			<menuitem action="edit-cell"/>
-			<menuitem action="edit-next-cell"/>
+			<placeholder name="edit-cell"/>
+			<placeholder name="edit-next-cell"/>
 			<separator/>
-			<!-- menuitem action="cut"/ -->
-			<!-- menuitem action="copy"/-->
-			<!-- menuitem action="paste"/-->
+			<!-- placeholder name="cut"/ -->
+			<!-- placeholder name="copy"/-->
+			<!-- placeholder name="paste"/-->
 			<separator/>
-			<menuitem action="insert-subtitle-before"/>
-			<menuitem action="insert-subtitle-after"/>
-			<menuitem action="delete-selected-subtitles"/>
+			<placeholder name="insert-subtitle-before"/>
+			<placeholder name="insert-subtitle-after"/>
+			<placeholder name="delete-selected-subtitles"/>
 			<separator/>
-			<menuitem action="split-selected-subtitles"/>
-			<menuitem action="combine-selected-subtitles"/>
-			<menuitem action="duplicate-selected-subtitles"/>
+			<placeholder name="split-selected-subtitles"/>
+			<placeholder name="combine-selected-subtitles"/>
+			<placeholder name="duplicate-selected-subtitles"/>
 			<separator/>
-			<menuitem action="italicize-selected-subtitles"/>
-			<menuitem action="dialoguize-selected-subtitles"/>
+			<placeholder name="italicize-selected-subtitles"/>
+			<placeholder name="dialoguize-selected-subtitles"/>
 		</menu>
 
 		<menu action="menu-selection" name="menu-selection">
-			<menuitem action="select-first-subtitle"/>
-			<menuitem action="select-last-subtitle"/>
-			<menuitem action="select-previous-subtitle"/>
-			<menuitem action="select-next-subtitle"/>
+			<placeholder name="select-first-subtitle"/>
+			<placeholder name="select-last-subtitle"/>
+			<placeholder name="select-previous-subtitle"/>
+			<placeholder name="select-next-subtitle"/>
 			<separator/>
-			<menuitem action="select-all-subtitles"/>
-			<menuitem action="invert-subtitles-selection"/>
+			<placeholder name="select-all-subtitles"/>
+			<placeholder name="invert-subtitles-selection"/>
 		</menu>
 
 		<menu action="menu-timings" name="menu-timings">
-			<menuitem action="times"/>
-			<menuitem action="frames"/>
+			<placeholder name="times"/>
+			<placeholder name="frames"/>
 			<menu action="menu-framerate" name="menu-framerate">
-				<menuitem action="set-framerate-23.976"/>
-				<menuitem action="set-framerate-24"/>
-				<menuitem action="set-framerate-25"/>
-				<menuitem action="set-framerate-29.97"/>
-				<menuitem action="set-framerate-30"/>
+				<placeholder name="set-framerate-23.976"/>
+				<placeholder name="set-framerate-24"/>
+				<placeholder name="set-framerate-25"/>
+				<placeholder name="set-framerate-29.97"/>
+				<placeholder name="set-framerate-30"/>
 			</menu>
 			<separator/>
-			<menuitem action="move-subtitles"/>
+			<placeholder name="move-subtitles"/>
 			<!--separator/-->
 			<menu action="menu-adjust-time-add">
-				<menuitem action="add-to-start"/>
-				<menuitem action="add-to-duration"/>
-				<menuitem action="add-to-start-and-duration"/>
+				<placeholder name="add-to-start"/>
+				<placeholder name="add-to-duration"/>
+				<placeholder name="add-to-start-and-duration"/>
 			</menu>
 			<menu action="menu-adjust-time-remove">
-				<menuitem action="remove-to-start"/>
-				<menuitem action="remove-to-duration"/>
-				<menuitem action="remove-to-start-and-duration"/>
+				<placeholder name="remove-to-start"/>
+				<placeholder name="remove-to-duration"/>
+				<placeholder name="remove-to-start-and-duration"/>
 			</menu>
 			<separator/>
-			<menuitem action="scale-subtitles"/>
-			<menuitem action="change-framerate"/>
+			<placeholder name="scale-subtitles"/>
+			<placeholder name="change-framerate"/>
 			<separator/>
-			<!-- menuitem action="try-to-extend-to-perfect"/-->
-			<menuitem action="extend-length"/>
+			<!-- placeholder name="try-to-extend-to-perfect"/-->
+			<placeholder name="extend-length"/>
 			<!--separator/-->
-			<menuitem action="move-after-preceding-subtitle"/>
+			<placeholder name="move-after-preceding-subtitle"/>
 		</menu>
 
 		<menu action="menu-tools">
-			<menuitem action="find-and-replace"/>
-			<menuitem action="find-next"/>
-			<menuitem action="find-previous"/>
+			<placeholder name="find-and-replace"/>
+			<placeholder name="find-next"/>
+			<placeholder name="find-previous"/>
 			<separator/>
-			<menuitem action="spell-checking"/>
-			<menuitem action="error-checking"/>
+			<placeholder name="spell-checking"/>
+			<placeholder name="error-checking"/>
 			<separator/>
-			<menuitem action="split-document"/>
-			<menuitem action="join-document"/>
+			<placeholder name="split-document"/>
+			<placeholder name="join-document"/>
 			<separator/>
-			<menuitem action="style-editor"/>
+			<placeholder name="style-editor"/>
 			<separator/>
-			<menuitem action="apply-translation"/>
-			<menuitem action="reverse-text-and-translation"/>
+			<placeholder name="apply-translation"/>
+			<placeholder name="reverse-text-and-translation"/>
 		</menu>
 
 		<menu action="menu-video">
-			<menuitem action="video-player/open"/>
-			<menuitem action="video-player/close"/>
+			<placeholder name="video-player/open"/>
+			<placeholder name="video-player/close"/>
 			<separator/>
-			<menuitem action="video-player/play"/>
-			<menuitem action="video-player/pause"/>
-			<menuitem action="video-player/play-pause"/>
+			<placeholder name="video-player/play"/>
+			<placeholder name="video-player/pause"/>
+			<placeholder name="video-player/play-pause"/>
 			<separator/>
 			<menu action="video-player/menu-skip-forward">
-				<menuitem action="video-player/skip-forward-very-short"/>
-				<menuitem action="video-player/skip-forward-short"/>
-				<menuitem action="video-player/skip-forward-medium"/>
-				<menuitem action="video-player/skip-forward-long"/>
+				<placeholder name="video-player/skip-forward-very-short"/>
+				<placeholder name="video-player/skip-forward-short"/>
+				<placeholder name="video-player/skip-forward-medium"/>
+				<placeholder name="video-player/skip-forward-long"/>
 			</menu>
 			<menu action="video-player/menu-skip-backwards">
-				<menuitem action="video-player/skip-backwards-very-short"/>
-				<menuitem action="video-player/skip-backwards-short"/>
-				<menuitem action="video-player/skip-backwards-medium"/>
-				<menuitem action="video-player/skip-backwards-long"/>
+				<placeholder name="video-player/skip-backwards-very-short"/>
+				<placeholder name="video-player/skip-backwards-short"/>
+				<placeholder name="video-player/skip-backwards-medium"/>
+				<placeholder name="video-player/skip-backwards-long"/>
 			</menu>
 			<menu action="video-player/menu-rate">
-				<menuitem action="video-player/rate-slower"/>
-				<menuitem action="video-player/rate-faster"/>
-				<menuitem action="video-player/rate-normal"/>
+				<placeholder name="video-player/rate-slower"/>
+				<placeholder name="video-player/rate-faster"/>
+				<placeholder name="video-player/rate-normal"/>
 			</menu>
 			<separator/>
-			<menuitem action="video-player/seek-to-selection"/>
+			<placeholder name="video-player/seek-to-selection"/>
 			<separator/>
-			<menuitem action="video-player/play-current-subtitle"/>
-			<menuitem action="video-player/play-next-subtitle"/>
-			<menuitem action="video-player/play-previous-subtitle"/>
-			<menuitem action="video-player/repeat"/>
+			<placeholder name="video-player/play-current-subtitle"/>
+			<placeholder name="video-player/play-next-subtitle"/>
+			<placeholder name="video-player/play-previous-subtitle"/>
+			<placeholder name="video-player/repeat"/>
 			<separator/>
-			<menuitem action="video-player/play-previous-second"/>
-			<menuitem action="video-player/play-first-second"/>
-			<menuitem action="video-player/play-last-second"/>
-			<menuitem action="video-player/play-next-second"/>
+			<placeholder name="video-player/play-previous-second"/>
+			<placeholder name="video-player/play-first-second"/>
+			<placeholder name="video-player/play-last-second"/>
+			<placeholder name="video-player/play-next-second"/>
 			<separator/>
-			<menuitem action="video-player/set-subtitle-start"/>
-			<menuitem action="video-player/set-subtitle-end"/>
+			<placeholder name="video-player/set-subtitle-start"/>
+			<placeholder name="video-player/set-subtitle-end"/>
 		</menu>
 
 		<menu action="menu-waveform">
-			<menuitem action="waveform/open"/>
-			<menuitem action="waveform/save"/>
+			<placeholder name="waveform/open"/>
+			<placeholder name="waveform/save"/>
 			<separator/>
-			<menuitem action="waveform/zoom-in"/>
-			<menuitem action="waveform/zoom-out"/>
-			<menuitem action="waveform/zoom-selection"/>
-			<menuitem action="waveform/zoom-all"/>
+			<placeholder name="waveform/zoom-in"/>
+			<placeholder name="waveform/zoom-out"/>
+			<placeholder name="waveform/zoom-selection"/>
+			<placeholder name="waveform/zoom-all"/>
 			<separator/>
-			<menuitem action="waveform/center-with-selected-subtitle"/>
+			<placeholder name="waveform/center-with-selected-subtitle"/>
 			<separator/>
-			<menuitem action="waveform/scrolling-with-player"/>
-			<menuitem action="waveform/scrolling-with-selection"/>
-			<menuitem action="waveform/respect-timing"/>
+			<placeholder name="waveform/scrolling-with-player"/>
+			<placeholder name="waveform/scrolling-with-selection"/>
+			<placeholder name="waveform/respect-timing"/>
 		</menu>
 
 		<menu name="menu-view" action="menu-view">
 			<placeholder name="view-manager-placeholder"/>
 			<separator/>
-			<menuitem action="video-player/display"/>
-			<menuitem action="waveform/display"/>
+			<placeholder name="video-player/display"/>
+			<placeholder name="waveform/display"/>
 		</menu>
 
 		<menu action="menu-external-video-player">
-			<menuitem action="external-video-player/open-video"/>
-			<menuitem action="external-video-player/play-video"/>
+			<placeholder name="external-video-player/open-video"/>
+			<placeholder name="external-video-player/play-video"/>
 		</menu>
 
 		<menu name="menu-options" action="menu-options">
-			<menuitem action="preferences"/>
-			<menuitem action="configure-keyboard-shortcuts"/>
+			<placeholder name="preferences"/>
+			<placeholder name="configure-keyboard-shortcuts"/>
 		</menu>
 
 		<menu action="menu-help">
-			<menuitem action="about"/>
+			<placeholder name="about"/>
 		</menu>
 	</menubar>
 </ui>

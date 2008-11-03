@@ -61,9 +61,12 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 
 	// create all menu
 	actiongroup->add(Gtk::Action::create("menu-file", _("_File")));
+	actiongroup->add(Gtk::Action::create("menu-selection", _("_Selection")));
 	actiongroup->add(Gtk::Action::create("menu-edit", _("_Edit")));
 	actiongroup->add(Gtk::Action::create("menu-timings", _("_Timings")));
 	actiongroup->add(Gtk::Action::create("menu-tools", _("T_ools")));
+	actiongroup->add(Gtk::Action::create("menu-video", _("_Video")));
+	actiongroup->add(Gtk::Action::create("menu-waveform", _("_Waveform")));
 	actiongroup->add(Gtk::Action::create("menu-view", _("V_iew")));
 	actiongroup->add(Gtk::Action::create("menu-options", _("_Options")));
 	actiongroup->add(Gtk::Action::create("menu-help", _("_Help")));
