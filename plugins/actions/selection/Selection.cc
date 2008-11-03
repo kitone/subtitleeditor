@@ -20,16 +20,23 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Plugin.h"
-#include "Document.h"
-#include "utility.h"
-#include "DocumentSystem.h"
+#include <extension/Action.h>
+#include <utility.h>
 
-
-class SelectionPlugin : public Plugin
+class SelectionPlugin : public Action
 {
 public:
+
+	SelectionPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~SelectionPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -41,9 +48,6 @@ public:
 		// actions
 		action_group = Gtk::ActionGroup::create("SelectionPlugin");
 
-		action_group->add(
-				Gtk::Action::create("menu-selection", _("_Selection")));
-		
 		action_group->add(
 				Gtk::Action::create("select-first-subtitle", Gtk::Stock::GO_UP, _("Select _First Subtitle"), _("Select the first subtitle")),
 					sigc::mem_fun(*this, &SelectionPlugin::on_select_first_subtitle));
@@ -73,12 +77,12 @@ public:
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
 		ui->insert_action_group(action_group);
-		/*
+
 		Glib::ustring submenu = 
 			"<ui>"
 			"	<menubar name='menubar'>"
 			"		<menu name='menu-selection' action='menu-selection'>"
-			"			<placeholder name='extend-1'>"
+			"			<placeholder name='selection'>"
 			"				<menuitem action='select-first-subtitle'/>"
 			"				<menuitem action='select-last-subtitle'/>"
 			"				<menuitem action='select-previous-subtitle'/>"
@@ -92,7 +96,6 @@ public:
 			"</ui>";
 
 		ui_id = ui->add_ui_from_string(submenu);
-		*/
 	}
 
 	/*
@@ -245,4 +248,4 @@ protected:
 };
 
 
-REGISTER_PLUGIN(SelectionPlugin)
+REGISTER_EXTENSION(SelectionPlugin)

@@ -20,14 +20,23 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
-class AboutPlugin : public Plugin
+class AboutPlugin : public Action
 {
 public:
+
+	AboutPlugin()
+	{
+		activate();
+		//update_ui();
+	}
+
+	~AboutPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -50,7 +59,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-help/about", "about", "about");
+		ui->add_ui(ui_id, "/menubar/menu-help/about", "about", "about");
 	}
 
 	/*
@@ -133,4 +142,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(AboutPlugin)
+REGISTER_EXTENSION(AboutPlugin)

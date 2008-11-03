@@ -20,14 +20,11 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "StyleEditor.h"
-#include "Color.h"
-#include <gtkmm.h>
-#include "Document.h"
-#include "DocumentSystem.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include <DocumentSystem.h>
+#include <Color.h>
 
 
 class ColumnNameRecorder : public Gtk::TreeModel::ColumnRecord
@@ -417,9 +414,20 @@ void DialogStyleEditor::execute(Document *doc)
 /*
  *	Register Plugin
  */
-class StyleEditorPlugin : public Plugin
+class StyleEditorPlugin : public Action
 {
 public:
+
+	StyleEditorPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~StyleEditorPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -442,7 +450,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-tools/extend-10", "style-editor", "style-editor");
+		ui->add_ui(ui_id, "/menubar/menu-tools/style-editor", "style-editor", "style-editor");
 	}
 
 	/*
@@ -510,4 +518,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(StyleEditorPlugin)
+REGISTER_EXTENSION(StyleEditorPlugin)

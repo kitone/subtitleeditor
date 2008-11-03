@@ -20,13 +20,11 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-
-#include "SpellChecking.h"
 #include <enchant++.h>
 #include <iostream>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include "SpellChecking.h"
 
 /*
  *	erreur de compilation si j'utilise enchant++.h dans le header :(
@@ -645,9 +643,20 @@ void DialogSpellChecking::on_check_word()
 /*
  *
  */
-class SpellCheckingPlugin : public Plugin
+class SpellCheckingPlugin : public Action
 {
 public:
+
+	SpellCheckingPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~SpellCheckingPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -670,7 +679,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-tools/extend-3", "spell-checking", "spell-checking");
+		ui->add_ui(ui_id, "/menubar/menu-tools/spell-checking", "spell-checking", "spell-checking");
 	}
 
 	/*
@@ -738,4 +747,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(SpellCheckingPlugin)
+REGISTER_EXTENSION(SpellCheckingPlugin)

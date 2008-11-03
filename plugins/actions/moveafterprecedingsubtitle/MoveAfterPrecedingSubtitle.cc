@@ -20,18 +20,26 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 /*
  *
  */
-class MoveAfterPrecedingSubtitlePlugin : public Plugin
+class MoveAfterPrecedingSubtitlePlugin : public Action
 {
 public:
+
+	MoveAfterPrecedingSubtitlePlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~MoveAfterPrecedingSubtitlePlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,7 +62,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-timings/extend-9", "move-after-preceding-subtitle", "move-after-preceding-subtitle");
+		ui->add_ui(ui_id, "/menubar/menu-timings/move-after-preceding-subtitle", "move-after-preceding-subtitle", "move-after-preceding-subtitle");
 	}
 
 	/*
@@ -144,4 +152,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(MoveAfterPrecedingSubtitlePlugin)
+REGISTER_EXTENSION(MoveAfterPrecedingSubtitlePlugin)

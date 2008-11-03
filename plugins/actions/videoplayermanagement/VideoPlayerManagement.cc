@@ -19,17 +19,29 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#include "Plugin.h"
-#include "utility.h"
-#include "gui/DialogFileChooser.h"
+
+#include <utility.h>
+#include <extension/Action.h>
+#include <gui/DialogFileChooser.h>
 
 
 /*
- * Video Player Management (actions)
+ * Video Player Management
  */
-class VideoPlayerManagement : public Plugin
+class VideoPlayerManagement : public Action
 {
 public:
+
+	VideoPlayerManagement()
+	{
+		activate();
+		update_ui();
+	}
+
+	~VideoPlayerManagement()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -285,6 +297,62 @@ public:
 
 		ui->insert_action_group(action_group);
 
+		Glib::ustring submenu = 
+			"<ui>"
+			"	<menubar name='menubar'>"
+			"		<menu name='menu-video' action='menu-video'>"
+			"			<placeholder name='video-player-management'>"
+			"					<menuitem action='video-player/open'/>"
+			"					<menuitem action='video-player/close'/>"
+			"					<separator/>"
+			"					<menuitem action='video-player/play'/>"
+			"					<menuitem action='video-player/pause'/>"
+			"					<menuitem action='video-player/play-pause'/>"
+			"					<separator/>"
+			"					<menu action='video-player/menu-skip-forward'>"
+			"						<menuitem action='video-player/skip-forward-very-short'/>"
+			"						<menuitem action='video-player/skip-forward-short'/>"
+			"						<menuitem action='video-player/skip-forward-medium'/>"
+			"						<menuitem action='video-player/skip-forward-long'/>"
+			"					</menu>"
+			"					<menu action='video-player/menu-skip-backwards'>"
+			"						<menuitem action='video-player/skip-backwards-very-short'/>"
+			"						<menuitem action='video-player/skip-backwards-short'/>"
+			"						<menuitem action='video-player/skip-backwards-medium'/>"
+			"						<menuitem action='video-player/skip-backwards-long'/>"
+			"					</menu>"
+			"					<menu action='video-player/menu-rate'>"
+			"						<menuitem action='video-player/rate-slower'/>"
+			"						<menuitem action='video-player/rate-faster'/>"
+			"						<menuitem action='video-player/rate-normal'/>"
+			"					</menu>"
+			"					<separator/>"
+			"					<menuitem action='video-player/seek-to-selection'/>"
+			"					<separator/>"
+			"					<menuitem action='video-player/play-current-subtitle'/>"
+			"					<menuitem action='video-player/play-next-subtitle'/>"
+			"					<menuitem action='video-player/play-previous-subtitle'/>"
+			"					<menuitem action='video-player/repeat'/>"
+			"					<separator/>"
+			"					<menuitem action='video-player/play-previous-second'/>"
+			"					<menuitem action='video-player/play-first-second'/>"
+			"					<menuitem action='video-player/play-last-second'/>"
+			"					<menuitem action='video-player/play-next-second'/>"
+			"					<separator/>"
+			"					<menuitem action='video-player/set-subtitle-start'/>"
+			"					<menuitem action='video-player/set-subtitle-end'/>"
+			"			</placeholder>"
+			"		</menu>"
+			"	</menubar>"
+			"</ui>";
+
+		ui_id = ui->add_ui_from_string(submenu);
+
+		// Show/Hide video player
+		ui->add_ui(ui_id, "/menubar/menu-view/display-placeholder",
+				"video-player/display", "video-player/display");
+
+		// 
 		player()->signal_state_changed().connect(
 				sigc::mem_fun(*this, &VideoPlayerManagement::on_player_state_changed));
 
@@ -798,4 +866,4 @@ protected:
 };
 
 
-REGISTER_PLUGIN(VideoPlayerManagement)
+REGISTER_EXTENSION(VideoPlayerManagement)

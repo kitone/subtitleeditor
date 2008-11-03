@@ -20,16 +20,23 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "DocumentSystem.h"
+#include <extension/Action.h>
+#include <utility.h>
 
-
-class DeleteSelectedSubtitlePlugin : public Plugin
+class DeleteSelectedSubtitlePlugin : public Action
 {
 public:
+
+	DeleteSelectedSubtitlePlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~DeleteSelectedSubtitlePlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -52,7 +59,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-4", "delete-selected-subtitles", "delete-selected-subtitles");
+		ui->add_ui(ui_id, "/menubar/menu-edit/delete-selected-subtitles", "delete-selected-subtitles", "delete-selected-subtitles");
 	}
 
 	/*
@@ -140,7 +147,7 @@ protected:
 };
 
 
-REGISTER_PLUGIN(DeleteSelectedSubtitlePlugin)
+REGISTER_EXTENSION(DeleteSelectedSubtitlePlugin)
 
 
 

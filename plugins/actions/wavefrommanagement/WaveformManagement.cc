@@ -21,17 +21,16 @@
  */
 
 #include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "we/WaveformEditor.h"
-#include "we/WaveformGenerator.h"
-#include "gui/DialogFileChooser.h"
+#include <utility.h>
+#include <extension/Action.h>
+#include <we/WaveformEditor.h>
+#include <we/WaveformGenerator.h>
+#include <gui/DialogFileChooser.h>
 
 /*
  *
  */
-class WaveformManagement : public Plugin
+class WaveformManagement : public Action
 {
 public:
 
@@ -41,6 +40,13 @@ public:
 	WaveformManagement()
 	:m_waveformEditor(NULL)
 	{
+		activate();
+		update_ui();
+	}
+
+	~WaveformManagement()
+	{
+		deactivate();
 	}
 
 	/*
@@ -118,10 +124,37 @@ public:
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui_id = ui->new_merge_id();
-
 		ui->insert_action_group(action_group);
 
+		Glib::ustring submenu = 
+			"<ui>"
+			"	<menubar name='menubar'>"
+			"		<menu name='menu-waveform' action='menu-waveform'>"
+			"			<placeholder name='waveform-management'>"
+			"				<menuitem action='waveform/open'/>"
+			"				<menuitem action='waveform/save'/>"
+			"				<separator/>"
+			"				<menuitem action='waveform/zoom-in'/>"
+			"				<menuitem action='waveform/zoom-out'/>"
+			"				<menuitem action='waveform/zoom-selection'/>"
+			"				<menuitem action='waveform/zoom-all'/>"
+			"				<separator/>"
+			"				<menuitem action='waveform/center-with-selected-subtitle'/>"
+			"				<separator/>"
+			"				<menuitem action='waveform/scrolling-with-player'/>"
+			"				<menuitem action='waveform/scrolling-with-selection'/>"
+			"				<menuitem action='waveform/respect-timing'/>"
+			"			</placeholder>"
+			"		</menu>"
+			"	</menubar>"
+			"</ui>";
+
+		ui_id = ui->add_ui_from_string(submenu);
+
+		// Show/Hide Waveform Editor
+		ui->add_ui(ui_id, "/menubar/menu-view/display-placeholder",
+				"waveform/display", "waveform/display");
+		
 		// HACK
 		m_waveformEditor = get_subtitleeditor_window()->get_waveform_editor();
 		
@@ -377,4 +410,4 @@ protected:
 };
 
 
-REGISTER_PLUGIN(WaveformManagement)
+REGISTER_EXTENSION(WaveformManagement)

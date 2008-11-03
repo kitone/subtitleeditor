@@ -20,12 +20,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "gui/SpinButtonTime.h"
-
+#include <extension/Action.h>
+#include <utility.h>
+#include <gui/SpinButtonTime.h>
 
 /*
  *
@@ -81,9 +78,20 @@ protected:
 /*
  *
  */
-class MoveSubtitlesPlugin : public Plugin
+class MoveSubtitlesPlugin : public Action
 {
 public:
+
+	MoveSubtitlesPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~MoveSubtitlesPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -102,11 +110,10 @@ public:
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui_id = ui->new_merge_id();
-
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-timings/extend-1", "move-subtitles", "move-subtitles");
+		ui_id = ui->new_merge_id();
+		ui->add_ui(ui_id, "/menubar/menu-timings/move-subtitles", "move-subtitles", "move-subtitles");
 	}
 
 	/*
@@ -234,4 +241,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(MoveSubtitlesPlugin)
+REGISTER_EXTENSION(MoveSubtitlesPlugin)

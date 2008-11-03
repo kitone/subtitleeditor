@@ -20,15 +20,23 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
+#include <extension/Action.h>
+#include <utility.h>
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-
-class ExtendLengthPlugin : public Plugin
+class ExtendLengthPlugin : public Action
 {
 public:
+
+	ExtendLengthPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~ExtendLengthPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -51,7 +59,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-timings/extend-7", "extend-length", "extend-length");
+		ui->add_ui(ui_id, "/menubar/menu-timings/extend-length", "extend-length", "extend-length");
 	}
 
 	/*
@@ -141,4 +149,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(ExtendLengthPlugin)
+REGISTER_EXTENSION(ExtendLengthPlugin)

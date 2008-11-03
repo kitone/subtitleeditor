@@ -20,18 +20,26 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 /*
  *
  */
-class DialoguizeSelectedSubtitlesPlugin : public Plugin
+class DialoguizeSelectedSubtitlesPlugin : public Action
 {
 public:
+
+	DialoguizeSelectedSubtitlesPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~DialoguizeSelectedSubtitlesPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,7 +62,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-edit/extend-10", "dialoguize-selected-subtitles", "dialoguize-selected-subtitles");
+		ui->add_ui(ui_id, "/menubar/menu-edit/dialoguize-selected-subtitles", "dialoguize-selected-subtitles", "dialoguize-selected-subtitles");
 	}
 
 	/*
@@ -169,4 +177,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(DialoguizeSelectedSubtitlesPlugin)
+REGISTER_EXTENSION(DialoguizeSelectedSubtitlesPlugin)

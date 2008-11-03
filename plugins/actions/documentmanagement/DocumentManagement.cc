@@ -20,11 +20,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "gui/DialogFileChooser.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include <gui/DialogFileChooser.h>
 #include <vector>
 
 /*
@@ -59,9 +57,20 @@ public:
 /*
  *
  */
-class DocumentManagementPlugin : public Plugin
+class DocumentManagementPlugin : public Action
 {
 public:
+
+	DocumentManagementPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~DocumentManagementPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -135,8 +144,6 @@ public:
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui_id = ui->new_merge_id();
-
 		ui->insert_action_group(action_group);
 
 
@@ -156,6 +163,23 @@ public:
 			sigc::mem_fun(*this, &DocumentManagementPlugin::on_config_interface_changed));
 
 		init_autosave();
+
+		ui_id = ui->new_merge_id();
+
+		#define ADD_UI(name)	ui->add_ui(ui_id, "/menubar/menu-file/"name, name, name);
+		
+		ADD_UI("new-document");
+		ADD_UI("open-document");
+		ADD_UI("open-translation");
+		ADD_UI("menu-recent-open-document");
+		ADD_UI("save-document");
+		ADD_UI("save-as-document");
+		ADD_UI("save-all-documents");
+		ADD_UI("save-translation");
+		ADD_UI("close-document");
+		ADD_UI("exit");
+		
+		#undef ADD_UI
 	}
 
 	/*
@@ -743,4 +767,4 @@ protected:
 	sigc::connection m_autosave_timeout;
 };
 
-REGISTER_PLUGIN(DocumentManagementPlugin)
+REGISTER_EXTENSION(DocumentManagementPlugin)

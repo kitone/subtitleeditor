@@ -20,18 +20,27 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "gui/DialogFileChooser.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include <gui/DialogFileChooser.h>
 
 /*
  *
  */
-class JoinDocumentPlugin : public Plugin
+class JoinDocumentPlugin : public Action
 {
 public:
+
+	JoinDocumentPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~JoinDocumentPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,7 +63,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-tools/extend-8", "join-document", "join-document");
+		ui->add_ui(ui_id, "/menubar/menu-tools/join-document", "join-document", "join-document");
 	}
 
 	/*
@@ -160,4 +169,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(JoinDocumentPlugin)
+REGISTER_EXTENSION(JoinDocumentPlugin)

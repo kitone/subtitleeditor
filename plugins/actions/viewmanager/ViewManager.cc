@@ -20,10 +20,8 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
+#include <extension/Action.h>
+#include <utility.h>
 
 /*
  *
@@ -372,9 +370,20 @@ protected:
 /*
  *
  */
-class ViewManagerPlugin : public Plugin
+class ViewManagerPlugin : public Action
 {
 public:
+
+	ViewManagerPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~ViewManagerPlugin()
+	{
+		deactivate();
+	}
 	
 	/*
 	 * First check if the user has any preferences
@@ -426,6 +435,8 @@ public:
 					sigc::mem_fun(*this, &ViewManagerPlugin::on_view_manager));
 
 		get_ui_manager()->insert_action_group(action_group);
+
+		post_activate();
 	}
 
 	/*
@@ -449,11 +460,11 @@ public:
 			{
 				Glib::ustring name = *it;
 				
-				ui->add_ui(ui_id, "/menubar/menu-view/view-manager-placeholder", name, name, Gtk::UI_MANAGER_AUTO, false);
+				ui->add_ui(ui_id, "/menubar/menu-view/view-manager", name, name, Gtk::UI_MANAGER_AUTO, false);
 			}
 		}
 
-		ui->add_ui(ui_id, "/menubar/menu-view/view-manager-placeholder", "view-manager", "view-manager", Gtk::UI_MANAGER_AUTO, false);
+		ui->add_ui(ui_id, "/menubar/menu-view/view-manager", "view-manager", "view-manager", Gtk::UI_MANAGER_AUTO, false);
 
 		get_ui_manager()->ensure_update();
 	}
@@ -503,4 +514,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(ViewManagerPlugin)
+REGISTER_EXTENSION(ViewManagerPlugin)

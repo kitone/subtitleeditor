@@ -20,17 +20,12 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ErrorChecking.h"
-
-#include <gtkmm.h>
 #include <memory>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "DocumentSystem.h"
+#include <extension/Action.h>
+#include <utility.h>
+#include <DocumentSystem.h>
 
-#include "ErrorCheckingPreferences.h"
-
+#include "ErrorChecking.h"
 #include "Overlapping.h"
 #include "TooShortDisplayTime.h"
 #include "TooLongDisplayTime.h"
@@ -38,6 +33,11 @@
 #include "MaxCharactersPerLine.h"
 #include "MaxLinePerSubtitle.h"
 #include "MinDisplayTime.h"
+#include "ErrorCheckingPreferences.h"
+
+/*
+ * TODO: remove DocumentSystem Action->update_ui() { update window }
+ */
 
 /*
  *
@@ -797,9 +797,20 @@ DialogErrorChecking* DialogErrorChecking::m_static_instance = NULL;
 /*
  * Error Checking Plugin
  */
-class ErrorCheckingPlugin : public Plugin
+class ErrorCheckingPlugin : public Action
 {
 public:
+
+	ErrorCheckingPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~ErrorCheckingPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -822,7 +833,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-tools/error-checking", "error-checking", "error-checking"");
+		ui->add_ui(ui_id, "/menubar/menu-tools/error-checking", "error-checking", "error-checking");
 	}
 
 	/*
@@ -865,4 +876,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(ErrorCheckingPlugin)
+REGISTER_EXTENSION(ErrorCheckingPlugin)

@@ -21,7 +21,8 @@
  */
 
 #include <memory>
-#include "Plugin.h"
+#include <extension/Action.h>
+#include <utility.h>
 #include "InterfacePage.h"
 #include "DocumentPage.h"
 #include "VideoPlayerPage.h"
@@ -74,9 +75,20 @@ public:
 /*
  * Error Checking Plugin
  */
-class PreferencesPlugin : public Plugin
+class PreferencesPlugin : public Action
 {
 public:
+
+	PreferencesPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~PreferencesPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -99,7 +111,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		//ui->add_ui(ui_id, "/menubar/menu-options/preferences", "preferences", "preferences");
+		ui->add_ui(ui_id, "/menubar/menu-options/preferences", "preferences", "preferences");
 	}
 
 	/*
@@ -130,4 +142,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(PreferencesPlugin)
+REGISTER_EXTENSION(PreferencesPlugin)

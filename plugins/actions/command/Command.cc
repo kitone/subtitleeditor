@@ -20,19 +20,27 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "Document.h"
-#include "Plugin.h"
-#include "utility.h"
-#include "DocumentSystem.h"
-
+#include <extension/Action.h>
+#include <utility.h>
+#include <DocumentSystem.h>
 
 /*
  *
  */
-class CommandPlugin : public Plugin
+class CommandPlugin : public Action
 {
 public:
+
+	CommandPlugin()
+	{
+		activate();
+		update_ui();
+	}
+
+	~CommandPlugin()
+	{
+		deactivate();
+	}
 
 	/*
 	 *
@@ -54,13 +62,21 @@ public:
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui_id = ui->new_merge_id();
-
 		ui->insert_action_group(action_group);
-		/*
-		ui->add_ui(ui_id, "/menubar/menu-edit/extend-command", "redo-command", "redo-command");
-		ui->add_ui(ui_id, "/menubar/menu-edit/extend-command", "undo-command", "undo-command");
-		*/
+
+		Glib::ustring submenu = 
+			"<ui>"
+			"	<menubar name='menubar'>"
+			"		<menu name='menu-edit' action='menu-edit'>"
+			"			<placeholder name='command'>"
+			"				<menuitem action='undo-command'/>"
+			"				<menuitem action='redo-command'/>"
+			"			</placeholder>"
+			"		</menu>"
+			"	</menubar>"
+			"</ui>";
+
+		ui_id = ui->add_ui_from_string(submenu);
 	}
 
 	/*
@@ -165,4 +181,4 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_PLUGIN(CommandPlugin)
+REGISTER_EXTENSION(CommandPlugin)
