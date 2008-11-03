@@ -1,5 +1,10 @@
 2008-11-03  kitone  <kitone@gna.org>
 
+	* configure.in:
+	libtoolize subtitleeditor.
+
+2008-11-03  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/extension/Action.cc:
 	* src/extension/Action.h:
