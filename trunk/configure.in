@@ -354,6 +354,8 @@ AC_CONFIG_FILES([
 								 share/glade/Makefile
 								 docs/Makefile
 								 po/Makefile.in 
+								 plugins/Makefile
+								 plugins/actions/Makefile
 								 ])
 
 

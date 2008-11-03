@@ -1,0 +1,5 @@
+FILES = 
+
+DIST_SUBDIRS = $(FILES)
+
+SUBDIRS = $(FILES)
