@@ -1,6 +1,11 @@
 2008-11-03  kitone  <kitone@gna.org>
 
 	* share/menubar.xml:
+	Small fixes.
+
+2008-11-03  kitone  <kitone@gna.org>
+
+	* share/menubar.xml:
 	Replace menuitem by placeholder.
 
 	* src/gui/MenuBar.cc:
