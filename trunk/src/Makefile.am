@@ -76,7 +76,13 @@ FILES = \
 				SubtitleFormat.cc \
 				SubtitleFormatFactory.h \
 				SubtitleFormatSystem.h \
-				SubtitleFormatSystem.cc
+				SubtitleFormatSystem.cc \
+				Extension.h \
+				Extension.cc \
+				ExtensionInfo.h \
+				ExtensionInfo.cc \
+				ExtensionManager.h \
+				ExtensionManager.cc
 
 
 FORMATS_FILES = \
