@@ -71,8 +71,8 @@ AC_HEADER_STDBOOL
 AC_C_CONST
 AC_C_INLINE
 
-## plugins...now yet
-#AC_PROG_LIBTOOL
+## plugins
+AC_PROG_LIBTOOL
 
 ## Checks for library functions.
 AC_FUNC_SELECT_ARGTYPES
