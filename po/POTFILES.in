@@ -135,8 +135,6 @@ src/Plugin.cc
 src/Plugin.h
 src/PluginSystem.cc
 src/PluginSystem.h
-src/RegEx.cc
-src/RegEx.h
 src/ScriptInfo.cc
 src/ScriptInfo.h
 src/Signal.cc
@@ -169,7 +167,6 @@ src/SubtitleView.h
 src/TimeUtility.cc
 src/TimeUtility.h
 src/unittest/testColor.cc
-src/unittest/testRegEx.cc
 src/unittest/testSubtitleTime.cc
 src/unittest/unittest.cc
 src/utility.cc
