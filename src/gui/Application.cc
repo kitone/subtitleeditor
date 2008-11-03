@@ -29,10 +29,9 @@
 #include <algorithm>
 #include "Encodings.h"
 
-void on_current_document_changed(Document *doc)
-{
-	PluginSystem::get_instance().update_ui();
-}
+#include "ExtensionManager.h"
+#include "Extension.h"
+#include "extension/Action.h"
 
 /*
  *
@@ -75,7 +74,7 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 
 	
 	DocumentSystem::getInstance().signal_current_document_changed().connect(
-			sigc::ptr_fun(on_current_document_changed));
+			sigc::mem_fun(*this, &Application::on_current_document_changed));
 
 
 	m_notebook_documents->signal_switch_page().connect(
@@ -91,15 +90,10 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glad
 
 	show();
 
-	// FIXME: hack
-	PluginSystem::get_instance().activate_plugins();
-
 	m_menubar.create(*this, *m_statusbar);
 
-	// FIXME: hack
-	PluginSystem::get_instance().post_activate_plugins();
-	PluginSystem::get_instance().update_ui();
-
+	ExtensionManager::instance().create_extensions();
+	
 	load_config();
 
 	// open subtitle files with drag-and-drop in NoteBook
@@ -123,6 +117,8 @@ Application::~Application()
 
 	Glib::ustring path_se_accelmap = get_config_dir("accelmap");
 	Gtk::AccelMap::save(path_se_accelmap);
+
+	ExtensionManager::instance().destroy_extensions();
 }
 
 /*
@@ -351,6 +347,24 @@ void Application::on_document_delete(Document *doc)
 
 }
 
+/*
+ * The current document has changed.
+ * Needs to update the ui.
+ */
+void Application::on_current_document_changed(Document* doc)
+{
+	std::list<ExtensionInfo*> actions = ExtensionManager::instance().get_info_list_from_categorie("action");
+
+	for(std::list<ExtensionInfo*>::iterator it = actions.begin(); it != actions.end(); ++it)
+	{
+		if((*it)->get_active() == false)
+			continue;
+
+		Action* action = dynamic_cast<Action*>((*it)->get_extension());
+		if(action)
+			action->update_ui();
+	}
+}
 
 /*
  *

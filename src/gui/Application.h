@@ -110,6 +110,12 @@ protected:
 	void on_document_delete(Document *doc);
 
 	/*
+	 * The current document has changed.
+	 * Needs to update the ui.
+	 */
+	void on_current_document_changed(Document* doc);
+
+	/*
 	 *	Changement dans le notebook de la page editer
 	 *	On recupere la page pusi on init DocumentSystem avec le document
 	 */
