@@ -15,8 +15,8 @@
 			<separator/>
 			<!-- placeholder name="properties"/ -->
 			<separator/>
-			<placeholder name="import-transcript"/>
-			<placeholder name="export-transcript"/>
+			<placeholder name="plain-text-import"/>
+			<placeholder name="plain-text-export"/>
 			<separator/>
 			<placeholder name="close-document"/>
 			<placeholder name="exit"/>
