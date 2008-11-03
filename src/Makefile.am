@@ -82,7 +82,9 @@ FILES = \
 				ExtensionInfo.h \
 				ExtensionInfo.cc \
 				ExtensionManager.h \
-				ExtensionManager.cc
+				ExtensionManager.cc \
+				extension/Action.h \
+				extension/Action.cc
 
 
 FORMATS_FILES = \
