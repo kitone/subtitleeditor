@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Change Framerate
+_Description=Convert framerate.
+Categorie=action
+Type=module
+Module=changeframerate
+Authors=kitone <kitone at gna dot org>

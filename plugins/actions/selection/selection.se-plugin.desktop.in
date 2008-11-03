@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Selection
+_Description=Selecting subtitle tools.
+Categorie=action
+Type=module
+Module=selection
+Authors=kitone <kitone at gna dot org>

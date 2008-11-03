@@ -354,8 +354,41 @@ AC_CONFIG_FILES([
 								 share/glade/Makefile
 								 docs/Makefile
 								 po/Makefile.in 
-								 plugins/Makefile
-								 plugins/actions/Makefile
+								plugins/actions/Makefile
+								plugins/actions/about/Makefile
+								plugins/actions/adjusttime/Makefile
+								plugins/actions/applytranslation/Makefile
+								plugins/actions/changeframerate/Makefile
+								plugins/actions/combinesubtitles/Makefile
+								plugins/actions/command/Makefile
+								plugins/actions/configurekeyboardshortcuts/Makefile
+								plugins/actions/dialoguize/Makefile
+								plugins/actions/documentmanagement/Makefile
+								plugins/actions/duplicatesubtitle/Makefile
+								plugins/actions/editcell/Makefile
+								plugins/actions/errorchecking/Makefile
+								plugins/actions/extendlength/Makefile
+								plugins/actions/externalvideoplayer/Makefile
+								plugins/actions/findandreplace/Makefile
+								plugins/actions/insertsubtitle/Makefile
+								plugins/actions/italicize/Makefile
+								plugins/actions/joindocument/Makefile
+								plugins/actions/moveafterprecedingsubtitle/Makefile
+								plugins/actions/movesubtitles/Makefile
+								plugins/actions/plaintext/Makefile
+								plugins/actions/preferences/Makefile
+								plugins/actions/removesubtitle/Makefile
+								plugins/actions/reversetextandtranslation/Makefile
+								plugins/actions/scalesubtitles/Makefile
+								plugins/actions/selection/Makefile
+								plugins/actions/spellchecking/Makefile
+								plugins/actions/splitdocument/Makefile
+								plugins/actions/splitsubtitle/Makefile
+								plugins/actions/styleeditor/Makefile
+								plugins/actions/timemodemanagement/Makefile
+								plugins/actions/videoplayermanagement/Makefile
+								plugins/actions/viewmanager/Makefile
+								plugins/actions/wavefrommanagement/Makefile
 								 ])
 
 

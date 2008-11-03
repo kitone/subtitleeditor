@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Waveform Management
+_Description=Vaveform Management
+Categorie=action
+Type=module
+Module=waveformmanagement
+Authors=kitone <kitone at gna dot org>

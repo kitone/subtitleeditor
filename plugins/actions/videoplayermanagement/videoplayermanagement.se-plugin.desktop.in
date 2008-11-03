@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Video Player Management
+_Description=The video player management
+Categorie=action
+Type=module
+Module=videoplayermanagement
+Authors=kitone <kitone at gna dot org>

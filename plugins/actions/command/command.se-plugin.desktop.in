@@ -1,0 +1,8 @@
+[SubtitleEditor Extension]
+_Name=Command
+_Description=Undo/Redo management.
+Categorie=action
+Hidden=true
+Type=module
+Module=command
+Authors=kitone <kitone at gna dot org>

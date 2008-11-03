@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Find And Replace
+_Description=Search and replace with regular expressions support.
+Categorie=action
+Type=module
+Module=findandreplace
+Authors=kitone <kitone at gna dot org>
