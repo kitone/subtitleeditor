@@ -1,3 +1,6 @@
+bin_PROGRAMS = subtitleeditor
+
+lib_LTLIBRARIES = libsubtitleeditor.la
 
 AM_CFLAGS = -DDATA_DIR=\""$(datadir)"\" \
               -DLOCALE_DIR=\""$(datadir)/locale"\" \
@@ -160,12 +163,6 @@ GUI_FILES = \
 				gui/DialogUtility.cc \
 				gui/DialogFileChooser.h \
 				gui/DialogFileChooser.cc \
-				gui/Application.h \
-				gui/Application.cc \
-				gui/MenuBar.h \
-				gui/MenuBar.cc \
-				gui/Statusbar.h \
-				gui/Statusbar.cc \
 				gui/DialogCharacterCodings.h \
 				gui/DialogCharacterCodings.cc \
 				gui/ComboBoxEncoding.h \
@@ -227,27 +224,31 @@ LIB_FILES = \
 					Subtitles.h \
 					Subtitles.cc
 
-#noinst_LTLIBRARIES = libsubtitleeditor.la
+## TODO fixme
+APPLICATION_FILES = \
+				main.cc \
+				gui/Application.h \
+				gui/Application.cc \
+				gui/MenuBar.h \
+				gui/MenuBar.cc \
+				gui/Statusbar.h \
+				gui/Statusbar.cc
 
-#libsubtitleeditor_la_LDFAGS = #-export-dynamic -no-undefined -export-symbols-regex "^[[^_]].*"
+## libsubtitleeditor
+libsubtitleeditor_la_LDFLAGS = -export-dynamic -no-undefined
 
-#libsubtitleeditor_la_LIBADD = ##$(SUBTITLEEDITOR_LIBS)
+libsubtitleeditor_la_SOURCES = $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FILES) 
 
-#libsubtitleeditor_la_SOURCES = $(LIB_FILES)
 
-## subtitleeditor
-bin_PROGRAMS = subtitleeditor
-
-subtitleeditor_SOURCES = main.cc $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FILES) $(ACTIONS) $(UNITTEST_FILES)
-
+## subttileeditor
+subtitleeditor_SOURCES = $(APPLICATION_FILES) $(UNITTEST_FILES)
 
 subtitleeditor_LDADD = $(GTKMM_LIBS) $(LIBGLADEMM_LIBS) $(GSTREAMER_LIBS) \
 											 $(INTLLIBS) $(LIBXML_LIBS) $(ENCHANT_LIBS) \
-											 $(CPPUNIT_LIBS) $(GTKGLEXT_LIBS) $(GL_LIBS) ##libsubtitleeditor.la
+											 $(GTKGLEXT_LIBS) $(GL_LIBS) $(CPPUNIT_LIBS) \
+											 libsubtitleeditor.la
 
 
-
-##
-
+## clean
 CLEANFILES = Makefile.am~ *.cc~ *.h~ *.glade~ *.gladep *.gladep.bak
 
