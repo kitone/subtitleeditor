@@ -1,3 +1,11 @@
+2008-11-04  kitone  <kitone@gna.org>
+
+	* autogen.sh:
+	Add AC_PROG_LIBTOOL check.
+
+	* configure.in:
+	Add missing file plugins/Makefile.
+
 2008-11-03  kitone  <kitone@gna.org>
 
 	* configure.in:

@@ -342,19 +342,20 @@ AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
 
 
 AC_CONFIG_FILES([
-								 Makefile 
-								 src/Makefile 
-								 m4/Makefile 
-								 share/Makefile 
-								 share/icons/Makefile 
-								 share/icons/16x16/Makefile
-								 share/icons/22x22/Makefile
-								 share/icons/24x24/Makefile
-								 share/icons/32x32/Makefile
-								 share/icons/scalable/Makefile
-								 share/glade/Makefile
-								 docs/Makefile
-								 po/Makefile.in 
+								Makefile 
+								src/Makefile 
+								m4/Makefile 
+								share/Makefile 
+								share/icons/Makefile 
+								share/icons/16x16/Makefile
+								share/icons/22x22/Makefile
+								share/icons/24x24/Makefile
+								share/icons/32x32/Makefile
+								share/icons/scalable/Makefile
+								share/glade/Makefile
+								docs/Makefile
+								po/Makefile.in
+								plugins/Makefile
 								plugins/actions/Makefile
 								plugins/actions/about/Makefile
 								plugins/actions/adjusttime/Makefile
