@@ -1,5 +1,13 @@
 2008-11-03  kitone  <kitone@gna.org>
 
+	* Makefile.am:
+	* configure.in:
+	* plugins/Makefile.am:
+	* plugins/actions/Makefile.am:
+	New directory for plugins.
+
+2008-11-03  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	Splitting of subtitleeditor with libsubtitleeditor.
 
