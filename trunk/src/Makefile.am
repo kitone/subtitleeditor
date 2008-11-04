@@ -8,7 +8,7 @@ AM_CFLAGS = -DDATA_DIR=\""$(datadir)"\" \
 
 INCLUDES = \
 					 $(GTKMM_CFLAGS) $(LIBGLADEMM_CFLAGS) \
-					 $(GSTREAMER_CFLAGS) $(LIBXML_CFLAGS) $(ENCHANT_CFLAGS) $(GTKGLEXT_CFLAGS) $(GL_CFLAGS) \
+					 $(GSTREAMER_CFLAGS) $(LIBXML_CFLAGS) $(GTKGLEXT_CFLAGS) $(GL_CFLAGS) \
 					 -I$(top_srcdir)/include \
 					 -DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 					 -DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
@@ -244,7 +244,7 @@ libsubtitleeditor_la_SOURCES = $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FILE
 subtitleeditor_SOURCES = $(APPLICATION_FILES) $(UNITTEST_FILES)
 
 subtitleeditor_LDADD = $(GTKMM_LIBS) $(LIBGLADEMM_LIBS) $(GSTREAMER_LIBS) \
-											 $(INTLLIBS) $(LIBXML_LIBS) $(ENCHANT_LIBS) \
+											 $(INTLLIBS) $(LIBXML_LIBS) \
 											 $(GTKGLEXT_LIBS) $(GL_LIBS) $(CPPUNIT_LIBS) \
 											 libsubtitleeditor.la
 

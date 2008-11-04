@@ -3,7 +3,7 @@ plugindir = $(libdir)/subtitleeditor/plugins/actions
 INCLUDES = \
 					 -I$(top_srcdir) \
 					 -I$(top_srcdir)/src \
-					 $(SUBTITLEEDITOR_CFLAGS)
+					 $(SUBTITLEEDITOR_CFLAGS) $(ENCHANT_CFLAGS)
 
 plugin_LTLIBRARIES = libspellchecking.la
 
@@ -12,7 +12,7 @@ libspellchecking_la_SOURCES = \
 	SpellChecking.cc
 
 libspellchecking_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libspellchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libspellchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS) $(ENCHANT_LIBS)
 
 plugin_in_files = spellchecking.se-plugin.desktop.in
 

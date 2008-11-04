@@ -3,7 +3,7 @@ plugindir = $(libdir)/subtitleeditor/plugins/actions
 INCLUDES = \
 					 -I$(top_srcdir) \
 					 -I$(top_srcdir)/src \
-					 $(SUBTITLEEDITOR_CFLAGS)
+					 $(SUBTITLEEDITOR_CFLAGS) $(GSTREAMER_CFLAGS)
 
 plugin_LTLIBRARIES = libwaveformmanagement.la
 
