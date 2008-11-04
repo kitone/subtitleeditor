@@ -26,7 +26,6 @@
 #include <gtkmm.h>
 #include "Document.h"
 #include "Waveform.h"
-#include <gst/gst.h>
 
 /*
  *

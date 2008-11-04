@@ -22,6 +22,7 @@
 
 #include "WaveformRenderer.h"
 #include "utility.h"
+#include <gst/gst.h>
 
 /*
  *
