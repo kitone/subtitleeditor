@@ -174,7 +174,9 @@ GUI_FILES = \
 				gui/ComboBoxVideo.h \
 				gui/ComboBoxVideo.cc \
 				gui/SpinButtonTime.h \
-				gui/SpinButtonTime.cc
+				gui/SpinButtonTime.cc \
+				gui/TreeViewExtensionManager.h \
+				gui/TreeViewExtensionManager.cc
 
 
 if	 ENABLE_UNITTEST
