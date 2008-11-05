@@ -1,5 +1,11 @@
 2008-11-05  kitone  <kitone@gna.org>
 
+	* share/glade/dialog-style-editor.glade:
+	Fix: bug #12569
+	Allow Opacity selection for Secondary, Outline and Shadow for ASS.
+
+2008-11-05  kitone  <kitone@gna.org>
+
 	* src/formats/AdvancedSubStationAlpha.h:
 	Fix: bug #12566
 	Alpha channel support for ASS. (patch by Khalahan)

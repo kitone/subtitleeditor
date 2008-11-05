@@ -701,7 +701,7 @@
 					    <widget class="GtkColorButton" id="button-outline-color">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="use_alpha">False</property>
+					      <property name="use_alpha">True</property>
 					      <property name="focus_on_click">True</property>
 					    </widget>
 					    <packing>
@@ -746,7 +746,7 @@
 					    <widget class="GtkColorButton" id="button-secondary-color">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="use_alpha">False</property>
+					      <property name="use_alpha">True</property>
 					      <property name="focus_on_click">True</property>
 					    </widget>
 					    <packing>
@@ -791,7 +791,7 @@
 					    <widget class="GtkColorButton" id="button-shadow-color">
 					      <property name="visible">True</property>
 					      <property name="can_focus">True</property>
-					      <property name="use_alpha">False</property>
+					      <property name="use_alpha">True</property>
 					      <property name="focus_on_click">True</property>
 					    </widget>
 					    <packing>
