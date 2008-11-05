@@ -165,7 +165,10 @@ protected:
 		g_return_val_if_fail(doc, false);
 
 		// create dialog
-		DialogMoveSubtitles *dialog = utility::get_widget_derived<DialogMoveSubtitles>("dialog-move-subtitles.glade", "dialog-move-subtitles");
+		DialogMoveSubtitles *dialog = utility::get_widget_derived<DialogMoveSubtitles>(
+							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+							"dialog-move-subtitles.glade", 
+							"dialog-move-subtitles");
 
 		g_return_val_if_fail(dialog, false);
 

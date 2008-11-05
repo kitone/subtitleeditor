@@ -731,7 +731,10 @@ protected:
 		g_return_val_if_fail(doc, false);
 
 		// create dialog
-		DialogSpellChecking *dialog = utility::get_widget_derived<DialogSpellChecking>("dialog-spell-checking.glade", "dialog-spell-checking");
+		DialogSpellChecking *dialog = utility::get_widget_derived<DialogSpellChecking>(
+							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+							"dialog-spell-checking.glade", 
+							"dialog-spell-checking");
 
 		g_return_val_if_fail(dialog, false);
 

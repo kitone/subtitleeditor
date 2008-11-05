@@ -69,7 +69,10 @@ public:
 	static void create()
 	{
 		std::auto_ptr<DialogPreferences> dialog(
-				utility::get_widget_derived<DialogPreferences>("dialog-preferences.glade", "dialog-preferences"));
+				utility::get_widget_derived<DialogPreferences>(
+									(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+									"dialog-preferences.glade", 
+									"dialog-preferences"));
 
 		dialog->run();
 	}

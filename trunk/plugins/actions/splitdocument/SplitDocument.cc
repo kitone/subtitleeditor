@@ -195,7 +195,10 @@ protected:
 		g_return_val_if_fail(doc, false);
 
 		// create dialog
-		DialogSplitDocument *dialog = utility::get_widget_derived<DialogSplitDocument>("dialog-split-document.glade", "dialog-split-document");
+		DialogSplitDocument *dialog = utility::get_widget_derived<DialogSplitDocument>(
+							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+							"dialog-split-document.glade", 
+							"dialog-split-document");
 
 		g_return_val_if_fail(dialog, false);
 

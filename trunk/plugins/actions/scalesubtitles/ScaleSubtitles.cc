@@ -310,7 +310,10 @@ protected:
 		g_return_val_if_fail(doc, false);
 
 		// create dialog
-		DialogScaleSubtitles *dialog = utility::get_widget_derived<DialogScaleSubtitles>("dialog-scale-subtitles.glade", "dialog-scale-subtitles");
+		DialogScaleSubtitles *dialog = utility::get_widget_derived<DialogScaleSubtitles>(
+							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+							"dialog-scale-subtitles.glade", 
+							"dialog-scale-subtitles");
 
 		g_return_val_if_fail(dialog, false);
 

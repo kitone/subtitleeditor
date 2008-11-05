@@ -548,7 +548,10 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		DialogFindAndReplace *dialog = utility::get_widget_derived<DialogFindAndReplace>("dialog-find-and-replace.glade", "dialog-find-and-replace");
+		DialogFindAndReplace *dialog = utility::get_widget_derived<DialogFindAndReplace>(
+							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+							"dialog-find-and-replace.glade", 
+							"dialog-find-and-replace");
 
 		g_return_if_fail(dialog);
 
