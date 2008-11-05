@@ -1,3 +1,9 @@
+2008-11-05  kitone  <kitone@gna.org>
+
+	* src/ExtensionInfo.cc:
+	* src/ExtensionInfo.h:
+	Add get_authors function.
+
 2008-11-04  kitone  <kitone@gna.org>
 
 	* configure.in:

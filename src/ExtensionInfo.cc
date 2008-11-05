@@ -74,6 +74,14 @@ Glib::ustring ExtensionInfo::get_description() const
 }
 
 /*
+ * Return the authors of the extension.
+ */
+Glib::ustring ExtensionInfo::get_authors() const
+{
+	return authors;
+}
+
+/*
  * Return a categorie of the extension.
  */
 Glib::ustring ExtensionInfo::get_categorie() const

@@ -59,6 +59,11 @@ public:
 	Glib::ustring get_description() const;
 
 	/*
+	 * Return the authors of the extension.
+	 */
+	Glib::ustring get_authors() const;
+
+	/*
 	 * Return the type of the extension.
 	 * Most often it's "module"
 	 */
