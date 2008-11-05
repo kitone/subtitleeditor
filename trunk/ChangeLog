@@ -1,5 +1,10 @@
 2008-11-05  kitone  <kitone@gna.org>
 
+	* src/utility.h:
+	Add function get_widget_derived(path, file, name)
+
+2008-11-05  kitone  <kitone@gna.org>
+
 	* share/glade/dialog-style-editor.glade:
 	Fix: bug #12569
 	Allow Opacity selection for Secondary, Outline and Shadow for ASS.

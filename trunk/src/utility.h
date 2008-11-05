@@ -268,6 +268,25 @@ namespace utility
 	}
 
 	/*
+	 * Create and return a widget derived from glade file.
+	 */
+	template<class T>
+	T* get_widget_derived(const Glib::ustring &path, const Glib::ustring &glade_file, const Glib::ustring &name)
+	{
+		se_debug_message(SE_DEBUG_UTILITY, "glade_file=<%s> name=<%s>", glade_file.c_str(), name.c_str());
+
+		T *dialog = NULL;
+
+		Glib::ustring file = Glib::build_filename(path, glade_file);
+
+		Glib::RefPtr<Gnome::Glade::Xml> refXml = Gnome::Glade::Xml::create(file);
+
+		refXml->get_widget_derived(name, dialog);
+
+		return dialog;
+	}
+
+	/*
 	 *
 	 */
 	void set_transient_parent(Gtk::Window &window);
