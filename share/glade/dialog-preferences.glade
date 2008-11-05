@@ -1597,7 +1597,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkVBox" id="vbox-plugins">
+              <widget class="GtkVBox" id="vbox-extension">
                 <property name="visible">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="border_width">12</property>
@@ -1638,7 +1638,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                 <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                                 <property name="shadow_type">GTK_SHADOW_IN</property>
                                 <child>
-                                  <widget class="GtkTreeView" id="treeview1">
+                                  <widget class="GtkTreeView" id="treeview-extension">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -1654,7 +1654,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                 <property name="spacing">6</property>
                                 <property name="layout_style">GTK_BUTTONBOX_END</property>
                                 <child>
-                                  <widget class="GtkButton" id="button2">
+                                  <widget class="GtkButton" id="button-extension-about">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
@@ -1665,7 +1665,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                   </widget>
                                 </child>
                                 <child>
-                                  <widget class="GtkButton" id="button1">
+                                  <widget class="GtkButton" id="button-extension-preferences">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
