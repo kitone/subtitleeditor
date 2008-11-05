@@ -384,9 +384,9 @@ public:
 		unsigned int r = c.getR();
 		unsigned int g = c.getG();
 		unsigned int b = c.getB();
-		//unsigned int a = c.getA();
+		unsigned int a = 255 - c.getA();
 
-		unsigned int abgr = /*a << 24 |*/ b << 16 | g << 8 | r << 0;
+		unsigned int abgr = a << 24 | b << 16 | g << 8 | r << 0;
 
 		return build_message("&H%08X", abgr);
 	}
@@ -423,7 +423,7 @@ public:
 					value = value.substr(0, value.size() -2);
 				}
 			}
-			return Color(temp[0], temp[1], temp[2], 255).to_string();// temp[3]);
+			return Color(temp[0], temp[1], temp[2], 255 - temp[3]).to_string();
 		}
 		catch(...)
 		{
