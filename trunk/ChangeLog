@@ -1,5 +1,13 @@
 2008-11-05  kitone  <kitone@gna.org>
 
+	* plugins/actions/changeframerate/ChangeFramerate.cc:
+	* plugins/actions/changeframerate/Makefile.am:
+	* share/glade/Makefile.am:
+	* share/glade/dialog-change-framerate.glade:
+	Move dialog-change-framerate.glade in the plugin directory.
+
+2008-11-05  kitone  <kitone@gna.org>
+
 	* src/utility.h:
 	Add function get_widget_derived(path, file, name)
 

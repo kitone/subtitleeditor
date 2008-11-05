@@ -289,8 +289,11 @@ protected:
 
 		g_return_val_if_fail(doc, false);
 
+		Glib::ustring share_path = (Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV;
+		
 		// create dialog
-		DialogChangeFramerate *dialog = utility::get_widget_derived<DialogChangeFramerate>("dialog-change-framerate.glade", "dialog-change-framerate");
+		DialogChangeFramerate *dialog = utility::get_widget_derived<DialogChangeFramerate>(
+				share_path, "dialog-change-framerate.glade", "dialog-change-framerate");
 
 		g_return_val_if_fail(dialog, false);
 
