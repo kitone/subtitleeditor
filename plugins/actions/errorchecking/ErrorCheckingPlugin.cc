@@ -128,7 +128,10 @@ public:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		if(m_static_instance == NULL)
-			m_static_instance = utility::get_widget_derived<DialogErrorChecking>("dialog-error-checking.glade", "dialog-error-checking");
+			m_static_instance = utility::get_widget_derived<DialogErrorChecking>(
+								(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+								"dialog-error-checking.glade", 
+								"dialog-error-checking");
 
 		g_return_if_fail(m_static_instance);
 		

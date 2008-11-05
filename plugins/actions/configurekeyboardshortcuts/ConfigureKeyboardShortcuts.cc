@@ -511,6 +511,7 @@ protected:
 
 		DialogConfigureKeyboardShortcuts *dialog = 
 			utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(
+					(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
 					"dialog-configure-keyboard-shortcuts.glade", 
 					"dialog-configure-keyboard-shortcuts");
 

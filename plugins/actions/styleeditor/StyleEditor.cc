@@ -502,7 +502,10 @@ protected:
 		g_return_val_if_fail(doc, false);
 
 		// create dialog
-		DialogStyleEditor *dialog = utility::get_widget_derived<DialogStyleEditor>("dialog-style-editor.glade", "dialog-style-editor");
+		DialogStyleEditor *dialog = utility::get_widget_derived<DialogStyleEditor>(
+							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+							"dialog-style-editor.glade", 
+							"dialog-style-editor");
 
 		g_return_val_if_fail(dialog, false);
 

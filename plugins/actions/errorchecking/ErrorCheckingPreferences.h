@@ -81,7 +81,9 @@ public:
 	{
 		std::auto_ptr<DialogErrorCheckingPreferences> dialog(
 				utility::get_widget_derived<DialogErrorCheckingPreferences>(
-					"dialog-error-checking-preferences.glade", "dialog-error-checking-preferences"));
+					(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+					"dialog-error-checking-preferences.glade", 
+					"dialog-error-checking-preferences"));
 
 		dialog->set_transient_for(parent);
 		dialog->init_treeview(list);

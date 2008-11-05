@@ -32,6 +32,7 @@ plugin_in_files = changeframerate.se-plugin.desktop.in
 
 plugin_DATA = $(plugin_in_files:.se-plugin.desktop.in=.se-plugin)
 
+
 EXTRA_DIST = $(glade_DATA) $(plugin_in_files)
 
 CLEANFILES = $(plugin_DATA)

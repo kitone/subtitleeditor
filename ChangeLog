@@ -1,5 +1,46 @@
 2008-11-05  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Fix PACKAGE_PLUGIN_DIR.
+
+	* plugins/actions/changeframerate/Makefile.am:
+	* plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:
+	* plugins/actions/configurekeyboardshortcuts/Makefile.am:
+	* plugins/actions/errorchecking/ErrorCheckingPlugin.cc:
+	* plugins/actions/errorchecking/ErrorCheckingPreferences.h:
+	* plugins/actions/errorchecking/Makefile.am:
+	* plugins/actions/findandreplace/FindAndReplace.cc:
+	* plugins/actions/findandreplace/Makefile.am:
+	* plugins/actions/movesubtitles/Makefile.am:
+	* plugins/actions/movesubtitles/MoveSubtitles.cc:
+	* plugins/actions/preferences/Makefile.am:
+	* plugins/actions/preferences/PreferencesPlugin.cc:
+	* plugins/actions/scalesubtitles/Makefile.am:
+	* plugins/actions/scalesubtitles/ScaleSubtitles.cc:
+	* plugins/actions/spellchecking/Makefile.am:
+	* plugins/actions/spellchecking/SpellChecking.cc:
+	* plugins/actions/splitdocument/Makefile.am:
+	* plugins/actions/splitdocument/SplitDocument.cc:
+	* plugins/actions/styleeditor/Makefile.am:
+	* plugins/actions/styleeditor/StyleEditor.cc:
+	* plugins/actions/viewmanager/Makefile.am:
+	* plugins/actions/viewmanager/ViewManager.cc:
+	* share/glade/Makefile.am:
+	* share/glade/dialog-configure-keyboard-shortcuts.glade:
+	* share/glade/dialog-error-checking-preferences.glade:
+	* share/glade/dialog-error-checking.glade:
+	* share/glade/dialog-find-and-replace.glade:
+	* share/glade/dialog-move-subtitles.glade:
+	* share/glade/dialog-preferences.glade:
+	* share/glade/dialog-scale-subtitles.glade:
+	* share/glade/dialog-spell-checking.glade:
+	* share/glade/dialog-split-document.glade:
+	* share/glade/dialog-style-editor.glade:
+	* share/glade/dialog-view-manager.glade:
+	Move the glade files in the plugins directory if need.
+
+2008-11-05  kitone  <kitone@gna.org>
+
 	* plugins/actions/changeframerate/ChangeFramerate.cc:
 	* plugins/actions/changeframerate/Makefile.am:
 	* share/glade/Makefile.am:

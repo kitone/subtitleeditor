@@ -325,7 +325,10 @@ protected:
 		Gtk::TreeIter selected = m_treeview->get_selection()->get_selected();
 		if(selected)
 		{
-			DialogViewEdit *dialog = utility::get_widget_derived<DialogViewEdit>("dialog-view-manager.glade", "dialog-view-edit");
+			DialogViewEdit *dialog = utility::get_widget_derived<DialogViewEdit>(
+								(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+								"dialog-view-manager.glade", 
+								"dialog-view-edit");
 			
 			Glib::ustring columns = (*selected)[m_column_record.columns];
 
@@ -498,7 +501,10 @@ public:
 	 */
 	void on_view_manager()
 	{
-		DialogViewManager *dialog = utility::get_widget_derived<DialogViewManager>("dialog-view-manager.glade", "dialog-view-manager");
+		DialogViewManager *dialog = utility::get_widget_derived<DialogViewManager>(
+								(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,	
+								"dialog-view-manager.glade", 
+								"dialog-view-manager");
 
 		dialog->execute();
 
