@@ -1,5 +1,13 @@
 2008-11-05  kitone  <kitone@gna.org>
 
+	* plugins/actions/preferences/ExtensionPage.h:
+	* plugins/actions/preferences/Makefile.am:
+	* plugins/actions/preferences/PreferencesPlugin.cc:
+	* share/glade/dialog-preferences.glade:
+	Add Extension Manager in the preferences.
+
+2008-11-05  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/gui/TreeViewExtensionManager.cc:
 	* src/gui/TreeViewExtensionManager.h:

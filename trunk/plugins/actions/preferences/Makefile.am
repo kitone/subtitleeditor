@@ -8,9 +8,9 @@ INCLUDES = \
 plugin_LTLIBRARIES = libpreferences.la
 
 libpreferences_la_SOURCES = \
+	ExtensionPage.h \
 	DocumentPage.h \
 	InterfacePage.h \
-	PluginPage.h  \
 	PreferencePage.h  \
 	PreviewPage.h  \
 	TimingPage.h  \
