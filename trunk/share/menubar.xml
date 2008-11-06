@@ -38,8 +38,7 @@
 			<placeholder name="combine-selected-subtitles"/>
 			<placeholder name="duplicate-selected-subtitles"/>
 			<separator/>
-			<placeholder name="italicize-selected-subtitles"/>
-			<placeholder name="dialoguize-selected-subtitles"/>
+			<placeholder name="text-formatting"/>
 		</menu>
 
 		<menu action="menu-selection" name="menu-selection">

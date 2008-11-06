@@ -1,5 +1,12 @@
 2008-11-06  kitone  <kitone@gna.org>
 
+	* plugins/actions/dialoguize/Dialoguize.cc:
+	* plugins/actions/italicize/Italicize.cc:
+	* share/menubar.xml:
+	Create placeholder 'text-formatting' for Italicize and Dialoguize.
+
+2008-11-06  kitone  <kitone@gna.org>
+
 	* prepare-po.sh:
 	Add plugins directory.
 
