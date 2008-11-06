@@ -59,8 +59,11 @@ public:
 		// actions
 		action_group = Gtk::ActionGroup::create("WaveformManagement");
 
+		// Already create in MenuBar.cc
+		/*
 		action_group->add(
 				Gtk::Action::create("menu-waveform", _("_Waveform")));
+		*/
 
 		// open & save
 		action_group->add(
