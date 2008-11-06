@@ -1,6 +1,7 @@
 SubtitleEditor stable + 1
 -------------------
 
+	* Move WaveformGenerator in plugins/WaveformManagement
 	* Rewrite the FindAndReplace with Glib::Regex (waiting the Glib::MatchInfo API).
 	* check Undo/Redo subtitles selection
 	* Config use set_comment (after set value)
