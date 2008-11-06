@@ -53,10 +53,13 @@ public:
 		// actions
 		action_group = Gtk::ActionGroup::create("VideoPlayerManagement");
 
+		// Already create in MenuBar.cc
+		/*
 		action_group->add(
 				Gtk::Action::create(
 					"menu-video", 
 					_("_Video")));
+		*/
 
 		action_group->add(
 				Gtk::Action::create(

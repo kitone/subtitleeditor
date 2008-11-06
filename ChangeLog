@@ -1,5 +1,11 @@
 2008-11-06  kitone  <kitone@gna.org>
 
+	* plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:
+	* plugins/actions/wavefrommanagement/WaveformManagement.cc:
+	Remove menu Video and Waveform already create in MenuBar.
+
+2008-11-06  kitone  <kitone@gna.org>
+
 	* plugins/actions/dialoguize/Dialoguize.cc:
 	* plugins/actions/italicize/Italicize.cc:
 	* share/menubar.xml:
