@@ -1,5 +1,11 @@
 2008-11-07  kitone  <kitone@gna.org>
 
+	* src/formats/AdvancedSubStationAlpha.h:
+	* src/formats/SubStationAlpha.h:
+	Add line break policy option: soft, hard, intelligent.
+
+2008-11-07  kitone  <kitone@gna.org>
+
 	* src/Config.cc:
 	* src/Config.h:
 	Add value comment to set_value_* functions.

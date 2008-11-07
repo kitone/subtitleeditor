@@ -30,7 +30,50 @@
 
 class SubStationAlpha : public SubtitleFormat
 {
+	int m_line_break_policy;
 public:
+
+	SubStationAlpha()
+	:m_line_break_policy(3)
+	{
+		read_config_line_break_policy();
+	}
+
+	/*
+	 * soft:1
+	 * hard:2
+	 * intelligent:3 (default)
+	 */
+	void read_config_line_break_policy()
+	{
+		if(Config::getInstance().has_key("SubStationAlpha", "line-break-policy") == false)
+		{
+			Config::getInstance().set_value_string(
+				"SubStationAlpha", 
+				"line-break-policy",
+				"intelligent",
+				"determine the policy of the line break, 3 options: 'soft', 'hard' or 'intelligent' "
+				"(without quote, the default value is 'intelligent')");
+		}
+
+		Glib::ustring policy = Config::getInstance().get_value_string("SubStationAlpha", "line-break-policy");
+		if(policy == "soft")
+			m_line_break_policy = 1;
+		else if(policy == "hard")
+			m_line_break_policy = 2;
+		else if(policy == "intelligent")
+			m_line_break_policy = 3;
+		else
+		{
+			Config::getInstance().set_value_string(
+				"SubStationAlpha", 
+				"line-break-policy",
+				"intelligent",
+				"determine the policy of the line break, 3 options: 'soft', 'hard' or 'intelligent' "
+				"(without quote, the default value is 'intelligent')");
+			m_line_break_policy = 3;
+		}
+	}
 
 	/*
 	 *
@@ -300,11 +343,25 @@ public:
 		// format:
 		file << "Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text" << std::endl;
 
+		// line break policy: 1 = soft, 2=hard, 3=intelligent
+		Glib::RefPtr<Glib::Regex> re_intelligent_linebreak = Glib::Regex::create(
+				"\n(?=-\\s.*)", Glib::REGEX_MULTILINE);
+
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{
 			Glib::ustring text = sub.get_text();
 
-			utility::replace(text, "\n", "\\N");
+			if(m_line_break_policy == 1)
+				utility::replace(text, "\n", "\\n");
+			else if(m_line_break_policy == 2)
+				utility::replace(text, "\n", "\\N");
+			else if(m_line_break_policy == 3)
+			{
+				if(re_intelligent_linebreak->match(text))
+					utility::replace(text, "\n", "\\N");
+				else
+					utility::replace(text, "\n", "\\n");
+			}
 
 			file 
 				<< "Dialogue: "
