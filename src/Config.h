@@ -76,37 +76,37 @@ public:
 	/*
 	 *
 	 */
-	bool set_value_bool(const Glib::ustring &group, const Glib::ustring &key, const bool &value);
+	bool set_value_bool(const Glib::ustring &group, const Glib::ustring &key, const bool &value, const Glib::ustring &comment = Glib::ustring());
 	bool get_value_bool(const Glib::ustring &group, const Glib::ustring &key, bool &value);
 
 	/*
 	 *
 	 */
-	bool set_value_int(const Glib::ustring &group, const Glib::ustring &key, const int &value);
+	bool set_value_int(const Glib::ustring &group, const Glib::ustring &key, const int &value, const Glib::ustring &comment = Glib::ustring());
 	bool get_value_int(const Glib::ustring &group, const Glib::ustring &key, int &value);
 
 	/*
 	 *
 	 */
-	bool set_value_float(const Glib::ustring &group, const Glib::ustring &key, const float &value);
+	bool set_value_float(const Glib::ustring &group, const Glib::ustring &key, const float &value, const Glib::ustring &comment = Glib::ustring());
 	bool get_value_float(const Glib::ustring &group, const Glib::ustring &key, float &value);
 
 	/*
 	 *
 	 */
-	bool set_value_double(const Glib::ustring &group, const Glib::ustring &key, const double &value);
+	bool set_value_double(const Glib::ustring &group, const Glib::ustring &key, const double &value, const Glib::ustring &comment = Glib::ustring());
 	bool get_value_double(const Glib::ustring &group, const Glib::ustring &key, double &value);
 
 	/*
 	 *
 	 */
-	bool set_value_string(const Glib::ustring &group, const Glib::ustring &key, const Glib::ustring &value);
+	bool set_value_string(const Glib::ustring &group, const Glib::ustring &key, const Glib::ustring &value, const Glib::ustring &comment = Glib::ustring());
 	bool get_value_string(const Glib::ustring &group, const Glib::ustring &key, Glib::ustring &value);
 
 	/*
 	 *
 	 */
-	bool set_value_color(const Glib::ustring &group, const Glib::ustring &key, const Color &color);
+	bool set_value_color(const Glib::ustring &group, const Glib::ustring &key, const Color &color, const Glib::ustring &comment = Glib::ustring());
 	bool get_value_color(const Glib::ustring &group, const Glib::ustring &key, Color &color);
 
 	/*

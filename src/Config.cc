@@ -106,7 +106,7 @@ bool Config::loadCfg()
 
 	Glib::ustring filename = get_config_dir("config");
 
-	if(!g_key_file_load_from_file(m_keyFile, filename.c_str(), G_KEY_FILE_NONE/*G_KEY_FILE_KEEP_COMMENTS*/, &error))
+	if(!g_key_file_load_from_file(m_keyFile, filename.c_str(), (GKeyFileFlags)(G_KEY_FILE_NONE | G_KEY_FILE_KEEP_COMMENTS), &error))
 	{
 		se_debug_message(SE_DEBUG_APP, "open <%s> failed : %s", filename.c_str(), error->message);
 
@@ -299,13 +299,16 @@ bool Config::get_keys(const Glib::ustring &group, std::list<Glib::ustring> &list
 /*
  *
  */
-bool Config::set_value_bool(const Glib::ustring &group, const Glib::ustring &key, const bool &value)
+bool Config::set_value_bool(const Glib::ustring &group, const Glib::ustring &key, const bool &value, const Glib::ustring &comment)
 {
 	g_return_val_if_fail(m_keyFile, false);
 
 	se_debug_message(SE_DEBUG_APP, "[%s] %s=%i", group.c_str(), key.c_str(), value);
 
 	g_key_file_set_boolean(m_keyFile, group.c_str(), key.c_str(), (gboolean)value);
+
+	if(!comment.empty())
+		set_comment(group, key, comment);
 
 	emit_signal_changed(group, key, to_string(value));
 	return true;
@@ -340,13 +343,16 @@ bool Config::get_value_bool(const Glib::ustring &group, const Glib::ustring &key
 /*
  *
  */
-bool Config::set_value_int(const Glib::ustring &group, const Glib::ustring &key, const int &value)
+bool Config::set_value_int(const Glib::ustring &group, const Glib::ustring &key, const int &value, const Glib::ustring &comment)
 {
 	g_return_val_if_fail(m_keyFile, false);
 
 	se_debug_message(SE_DEBUG_APP, "[%s] %s=%i", group.c_str(), key.c_str(), value);
 
 	g_key_file_set_integer(m_keyFile, group.c_str(), key.c_str(), value);
+
+	if(!comment.empty())
+		set_comment(group, key, comment);
 
 	emit_signal_changed(group, key, to_string(value));
 	
@@ -384,13 +390,16 @@ bool Config::get_value_int(const Glib::ustring &group, const Glib::ustring &key,
 /*
  *
  */
-bool Config::set_value_float(const Glib::ustring &group, const Glib::ustring &key, const float &value)
+bool Config::set_value_float(const Glib::ustring &group, const Glib::ustring &key, const float &value, const Glib::ustring &comment)
 {
 	g_return_val_if_fail(m_keyFile, false);
 
 	se_debug_message(SE_DEBUG_APP, "[%s] %s=%f", group.c_str(), key.c_str(), value);
 
 	g_key_file_set_double(m_keyFile, group.c_str(), key.c_str(), (double)value);
+
+	if(!comment.empty())
+		set_comment(group, key, comment);
 
 	emit_signal_changed(group, key, to_string(value));
 	
@@ -428,13 +437,16 @@ bool Config::get_value_float(const Glib::ustring &group, const Glib::ustring &ke
 /*
  *
  */
-bool Config::set_value_double(const Glib::ustring &group, const Glib::ustring &key, const double &value)
+bool Config::set_value_double(const Glib::ustring &group, const Glib::ustring &key, const double &value, const Glib::ustring &comment)
 {
 	g_return_val_if_fail(m_keyFile, false);
 
 	se_debug_message(SE_DEBUG_APP, "[%s] %s=%f", group.c_str(), key.c_str(), value);
 
 	g_key_file_set_double(m_keyFile, group.c_str(), key.c_str(), value);
+
+	if(!comment.empty())
+		set_comment(group, key, comment);
 
 	emit_signal_changed(group, key, to_string(value));
 	
@@ -472,13 +484,16 @@ bool Config::get_value_double(const Glib::ustring &group, const Glib::ustring &k
 /*
  *
  */
-bool Config::set_value_string(const Glib::ustring &group, const Glib::ustring &key, const Glib::ustring &value)
+bool Config::set_value_string(const Glib::ustring &group, const Glib::ustring &key, const Glib::ustring &value, const Glib::ustring &comment)
 {
 	g_return_val_if_fail(m_keyFile, false);
 
 	se_debug_message(SE_DEBUG_APP, "[%s] %s=%s", group.c_str(), key.c_str(), value.c_str());
 
 	g_key_file_set_string(m_keyFile, group.c_str(), key.c_str(), value.c_str());
+
+	if(!comment.empty())
+		set_comment(group, key, comment);
 
 	emit_signal_changed(group, key, value);
 	return true;
@@ -515,11 +530,11 @@ bool Config::get_value_string(const Glib::ustring &group, const Glib::ustring &k
 /*
  *
  */
-bool Config::set_value_color(const Glib::ustring &group, const Glib::ustring &key, const Color &color)
+bool Config::set_value_color(const Glib::ustring &group, const Glib::ustring &key, const Color &color, const Glib::ustring &comment)
 {
 	g_return_val_if_fail(m_keyFile, false);
 
-	return set_value_string(group, key, color.to_string());
+	return set_value_string(group, key, color.to_string(), comment);
 }
 
 /*
