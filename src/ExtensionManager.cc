@@ -119,6 +119,12 @@ void ExtensionManager::load_path(const Glib::ustring &path)
 {
 	se_debug_message(SE_DEBUG_APP, "path=%s", path.c_str());
 
+	if(Glib::file_test(path, Glib::FILE_TEST_EXISTS | Glib::FILE_TEST_IS_DIR) == false)
+	{
+		se_debug_message(SE_DEBUG_APP, "could not open the path %s", path.c_str());
+		return;
+	}
+
 	try
 	{
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*)\\.se-plugin$");
