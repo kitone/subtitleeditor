@@ -1,5 +1,13 @@
 2008-11-08  kitone  <kitone@gna.org>
 
+	* plugins/actions/preferences/Makefile.am:
+	* plugins/actions/preferences/PreferencesPlugin.cc:
+	* plugins/actions/preferences/PreviewPage.h:
+	* plugins/actions/preferences/dialog-preferences.glade:
+	Remove Preview (External Video Player) code/page.
+
+2008-11-08  kitone  <kitone@gna.org>
+
 	* plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:
 	* plugins/actions/externalvideoplayer/Makefile.am:
 	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade:

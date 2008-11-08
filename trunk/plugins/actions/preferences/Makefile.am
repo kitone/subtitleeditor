@@ -20,7 +20,6 @@ libpreferences_la_SOURCES = \
 	DocumentPage.h \
 	InterfacePage.h \
 	PreferencePage.h  \
-	PreviewPage.h  \
 	TimingPage.h  \
 	VideoPlayerPage.h  \
 	WaveformPage.h \

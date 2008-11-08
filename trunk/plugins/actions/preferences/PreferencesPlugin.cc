@@ -28,7 +28,6 @@
 #include "VideoPlayerPage.h"
 #include "TimingPage.h"
 #include "WaveformPage.h"
-#include "PreviewPage.h"
 #include "ExtensionPage.h"
 
 /*
@@ -51,7 +50,6 @@ public:
 		WaveformPage *waveform = NULL;
 		VideoPlayerPage *videoplayer = NULL;
 		TimingPage *timing = NULL;
-		PreviewPage *preview = NULL;
 		ExtensionPage* extension = NULL;
 
 		xml->get_widget_derived("vbox-interface", interface);
@@ -59,7 +57,6 @@ public:
 		xml->get_widget_derived("vbox-waveform", waveform);
 		xml->get_widget_derived("vbox-video-player", videoplayer);
 		xml->get_widget_derived("vbox-timing", timing);
-		xml->get_widget_derived("vbox-preview", preview);
 		xml->get_widget_derived("vbox-extension", extension);
 	}
 
