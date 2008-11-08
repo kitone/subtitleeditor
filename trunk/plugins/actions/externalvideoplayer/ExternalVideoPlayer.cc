@@ -27,6 +27,32 @@
 /*
  *
  */
+class DialogExternalVideoPreferences : public Gtk::Dialog
+{
+public:
+	DialogExternalVideoPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	:Gtk::Dialog(cobject)
+	{
+		Gtk::Entry* entry = NULL;
+		xml->get_widget("entry-video-player-command", entry);
+		WidgetToConfig::read_config_and_connect(entry, "external-video-player", "command");
+	}
+
+	static void create()
+	{
+		std::auto_ptr<DialogExternalVideoPreferences> dialog(
+				utility::get_widget_derived<DialogExternalVideoPreferences>(
+									(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+									"dialog-external-video-player-preferences.glade", 
+									"dialog-external-video-player-preferences"));
+
+		dialog->run();
+	}
+};
+
+/*
+ *
+ */
 class ExternalVideoPlayer : public Action
 {
 public:
@@ -61,6 +87,10 @@ public:
 				Gtk::Action::create("external-video-player/play", Gtk::Stock::MEDIA_PLAY, _("_Play Movie"), _("Play movie with external video player")), Gtk::AccelKey("<Control>space"),
 					sigc::mem_fun(*this, &ExternalVideoPlayer::on_play_movie));
 
+		action_group->add(
+				Gtk::Action::create("external-video-player/preferences", Gtk::Stock::PREFERENCES),
+					sigc::mem_fun(*this, &ExternalVideoPlayer::create_configure_dialog));
+
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -74,6 +104,8 @@ public:
 			"				<menu action='external-video-player'>"
 			"					<menuitem action='external-video-player/open'/>"
 			"					<menuitem action='external-video-player/play'/>"
+			"					<separator/>"
+			"					<menuitem action='external-video-player/preferences'/>"
 			"				</menu>"
 			"			</placeholder>"
 			"		</menu>"
@@ -94,8 +126,22 @@ public:
 		ui->remove_action_group(action_group);
 	}
 
-protected:
+	/*
+	 *
+	 */
+	bool is_configurable()
+	{
+		return true;
+	}
 
+	/*
+	 *
+	 */
+	void create_configure_dialog()
+	{
+		DialogExternalVideoPreferences::create();
+	}
+	
 	/*
 	 *
 	 */
@@ -199,7 +245,6 @@ protected:
 		}
 	}
 
-	
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
