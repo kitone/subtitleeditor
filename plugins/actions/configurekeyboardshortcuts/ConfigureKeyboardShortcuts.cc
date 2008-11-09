@@ -23,7 +23,6 @@
 #include <gtkmm/accelmap.h>
 #include <libglademm/xml.h>
 #include <gtk/gtk.h>
-#include <libxml++/libxml++.h>
 #include <extension/Action.h>
 #include <utility.h>
 
@@ -46,7 +45,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog
 	public:
 		Columns()
 		{
-			add(can_be_modified);
 			add(label);
 			add(action);
 			add(stock_id);
@@ -54,7 +52,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog
 			add(closure);
 		}
 
-		Gtk::TreeModelColumn<bool> can_be_modified;
 		Gtk::TreeModelColumn< Glib::RefPtr<Gtk::Action> > action;
 		Gtk::TreeModelColumn<Glib::ustring> stock_id;
 		Gtk::TreeModelColumn<Glib::ustring> label;
@@ -63,6 +60,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog
 	};
 
 public:
+
 	/*
 	 *
 	 */
@@ -77,11 +75,11 @@ public:
 	}
 	
 	/*
-	 *
+	 * Create columns Actions and Shortcut.
 	 */
 	void create_treeview()
 	{
-		m_store = Gtk::TreeStore::create(m_columns);
+		m_store = Gtk::ListStore::create(m_columns);
 
 		m_treeview->set_model(m_store);
 
@@ -128,6 +126,88 @@ public:
 
 			m_treeview->append_column(*column);
 		}
+
+		// tooltip
+		m_treeview->set_has_tooltip(true);
+		m_treeview->signal_query_tooltip().connect(
+				sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_query_tooltip));
+	}
+
+	/*
+	 * Create all items (action) from the action_group.
+	 * The action with menu in the name are ignored.
+	 */
+	void create_items()
+	{
+		std::vector< Glib::RefPtr<Gtk::ActionGroup> > group = m_refUIManager->get_action_groups();
+		for(unsigned int i=0; i < group.size(); ++i)
+		{
+			std::vector<Glib::RefPtr<Gtk::Action> > actions = group[i]->get_actions();
+
+			for(unsigned int j=0; j < actions.size(); ++j)
+			{
+				if(actions[j]->get_name().find("menu") != Glib::ustring::npos)
+				{
+					std::cout << actions[j]->get_name() << std::endl;
+					continue;
+				}
+				add_action(actions[j]);
+			}
+		}
+	}
+
+	/*
+	 * Add an action in the model.
+	 */
+	void add_action(Glib::RefPtr<Gtk::Action> action)
+	{
+		Gtk::TreeModel::Row row = *m_store->append();
+
+		// action
+		row[m_columns.action] = action;
+		// stock id
+		row[m_columns.stock_id] = Gtk::StockID(action->property_stock_id()).get_string();
+		// label
+		Glib::ustring label = Glib::ustring(action->property_label());
+		utility::replace(label, "_", "");
+		row[m_columns.label] = label;
+		
+		// shortcut
+		GClosure *accel_closure = gtk_action_get_accel_closure (action->gobj());
+		if(accel_closure)
+		{
+			// closure
+			row[m_columns.closure] = accel_closure;
+
+			GtkAccelKey *key = gtk_accel_group_find(m_refUIManager->get_accel_group()->gobj(), accel_find_func, accel_closure);
+			if(key && key->accel_key)
+			{
+				row[m_columns.shortcut] = Gtk::AccelGroup::get_label(key->accel_key, (Gdk::ModifierType)key->accel_mods);
+			}
+		}
+	}
+
+	/*
+	 * Show tooltip.
+	 */
+	bool on_query_tooltip(int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Gtk::Tooltip>& tooltip)
+	{
+		Gtk::TreeIter iter;
+		if(m_treeview->get_tooltip_context_iter(x,y, keyboard_tooltip, iter) == false)
+			return false;
+
+		Glib::RefPtr<Gtk::Action> ptr = (*iter)[m_columns.action];
+		if(!ptr)
+			return false;
+
+		Glib::ustring tip = ptr->property_tooltip();
+	
+		tooltip->set_markup(tip);
+		
+		Gtk::TreePath path = m_store->get_path(iter);
+
+		m_treeview->set_tooltip_row(tooltip, path);
+		return true;
 	}
 
 	/*
@@ -227,14 +307,11 @@ public:
 	}
 
 	/*
-	 *
+	 * Try to changed the shortcut with conflict support.
 	 */
 	void on_accel_edited(const Glib::ustring& path, guint key, Gdk::ModifierType mods, guint keycode)
 	{
 		Gtk::TreeIter iter = m_store->get_iter(path);
-
-		if((*iter)[m_columns.can_be_modified] == false)
-			return;
 
 		Glib::RefPtr<Gtk::Action> action = (*iter)[m_columns.action];
 
@@ -254,21 +331,23 @@ public:
 
 			if(conflict_action)
 			{
-				Glib::ustring ak = Gtk::AccelGroup::get_label(key, mods);
+				Glib::ustring shortcut = Gtk::AccelGroup::get_label(key, mods);
 				Glib::ustring label_conflict_action = conflict_action->property_label();
 
+				utility::replace(label_conflict_action, "_", "");
 
-				Glib::ustring msg;
+				Glib::ustring message = Glib::ustring::compose(
+						Glib::ustring(_("Shortcut \"%1\" is already taken by \"%2\".")), 
+						shortcut, label_conflict_action);
+				
+				Glib::ustring secondary = Glib::ustring::compose(	
+						Glib::ustring(_("Reassigning the shortcut will cause it to be removed from \"%1\".")), 
+							label_conflict_action);
 
-				msg += "<span weight=\"bold\" size=\"larger\">";
-				msg += build_message(_("Shortcut \"%s\" is already taken by \"%s\"."), 
-									ak.c_str(), label_conflict_action.c_str());
-				msg += "</span>\n\n";
-				msg += build_message(_("Reassigning the shortcut will cause it to be removed from \"%s\"."), label_conflict_action.c_str());
-
-				Gtk::MessageDialog dialog(msg, true, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL, true);
+				Gtk::MessageDialog dialog(*this, message, false, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL, true);
 				dialog.set_title(_("Conflicting Shortcuts"));
-
+				dialog.set_secondary_text(secondary);
+						
 				if( dialog.run() == Gtk::RESPONSE_OK)
 				{
 					if(!Gtk::AccelMap::change_entry(action->get_accel_path(), key, mods, true))
@@ -285,14 +364,11 @@ public:
 	}
 
 	/*
-	 *
+	 * Remove the shortcut.
 	 */
 	void on_accel_cleared(const Glib::ustring &path)
 	{
 		Gtk::TreeIter iter = m_store->get_iter(path);
-
-		if((*iter)[m_columns.can_be_modified] == false)
-			return;
 
 		Glib::RefPtr<Gtk::Action> action = (*iter)[m_columns.action];
 
@@ -317,130 +393,15 @@ public:
 		ui->get_accel_group()->signal_accel_changed().connect(
 				sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_accel_changed));
 
-		load_ui();
+		create_items();
 
 		run();
 	}
 
-	/*
-	 *
-	 */
-	void set_action(Gtk::TreeModel::Row row, Glib::RefPtr<Gtk::Action> action, bool can_be_modified)
-	{
-		// can be modified ?
-		row[m_columns.can_be_modified] = can_be_modified;
-		// action
-		row[m_columns.action] = action;
-		// stock id
-		row[m_columns.stock_id] = Gtk::StockID(action->property_stock_id()).get_string();
-		// label
-		Glib::ustring label = Glib::ustring(action->property_label());
-		utility::replace(label, "_", "");
-		row[m_columns.label] = label;
-		
-		// shortcut
-		GClosure *accel_closure = gtk_action_get_accel_closure (action->gobj());
-		if(accel_closure)
-		{
-			// closure
-			row[m_columns.closure] = accel_closure;
-
-			GtkAccelKey *key = gtk_accel_group_find(m_refUIManager->get_accel_group()->gobj(), accel_find_func, accel_closure);
-			if(key && key->accel_key)
-			{
-				row[m_columns.shortcut] = Gtk::AccelGroup::get_label(key->accel_key, (Gdk::ModifierType)key->accel_mods);
-			}
-		}
-	}
-
-	/*
-	 *
-	 */
-	Glib::RefPtr<Gtk::Action> get_action(const Glib::ustring &name)
-	{
-		std::vector<Glib::RefPtr<Gtk::ActionGroup> > ags = m_refUIManager->get_action_groups();
-		for(unsigned int i=0; i < ags.size(); ++i)
-		{
-			Glib::RefPtr<Gtk::Action> action = ags[i]->get_action(name);
-			if(action)
-				return action;
-		}
-		
-		return Glib::RefPtr<Gtk::Action>(NULL);
-	}
-	/*
-	 *
-	 */
-	void parse_node(const xmlpp::Node *node, Gtk::TreeModel::Row &root)
-	{
-		std::string name = node->get_name();
-
-		if(name == "menuitem")
-		{
-			const xmlpp::Element *item = dynamic_cast<const xmlpp::Element*>(node);
-		
-			const xmlpp::Attribute *action = item->get_attribute("action");
-			
-			if(!action)
-				return;
-			
-			std::string action_name = action->get_value();
-
-			Gtk::TreeModel::Row row = (*m_store->append(root.children()));
-				
-			set_action(row, get_action(action_name), true);
-		}
-		else if(name == "menu")
-		{
-			const xmlpp::Element *item = dynamic_cast<const xmlpp::Element*>(node);
-		
-			const xmlpp::Attribute *action = item->get_attribute("action");
-			
-			if(!action)
-				return;
-
-			std::string action_name = action->get_value();
-
-			Gtk::TreeModel::Row row_menu = (root) ? (*m_store->append(root.children())) : (*m_store->append());
-	
-			set_action(row_menu, get_action(action_name), false);
-
-			const xmlpp::Node::NodeList list = node->get_children();
-			xmlpp::Node::NodeList::const_iterator it;
-	
-			for(it = list.begin(); it != list.end(); ++it)
-				parse_node(*it, row_menu);
-		}
-		else
-		{
-			const xmlpp::Node::NodeList list = node->get_children();
-			xmlpp::Node::NodeList::const_iterator it;
-	
-			for(it = list.begin(); it != list.end(); ++it)
-				parse_node(*it, root);
-		}
-	}
-	
-	/*
-	 *
-	 */
-	void load_ui()
-	{
-		xmlpp::DomParser parser;
-		parser.set_substitute_entities();
-		parser.parse_file(get_share_dir("menubar.xml"));
-
-		g_return_if_fail(parser);
-
-		const xmlpp::Node* root = parser.get_document()->get_root_node();
-
-		Gtk::TreeModel::Row it;
-		parse_node(root, it);
-	}
 protected:
 	Columns			m_columns;
 	Gtk::TreeView* m_treeview;
-	Glib::RefPtr<Gtk::TreeStore> m_store;
+	Glib::RefPtr<Gtk::ListStore> m_store;
 	Glib::RefPtr<Gtk::UIManager> m_refUIManager;
 };
 
