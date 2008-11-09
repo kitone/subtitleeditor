@@ -165,8 +165,7 @@ long WaveformRenderer::get_time_by_pos(int pos)
 {
 	float width = (float)widget()->get_width() * zoom();
 	float percent = ((float)pos / width);
-	float gsttime = ((float)m_waveform->get_duration() * percent);
-	return SubtitleTime(long(gsttime / GST_MSECOND)).totalmsecs;
+	return (long)(m_waveform->get_duration() * percent);
 }
 
 /*
@@ -174,8 +173,7 @@ long WaveformRenderer::get_time_by_pos(int pos)
  */
 int WaveformRenderer::get_pos_by_time(long msec)
 {
-	gint64 gsttime = msec * GST_MSECOND;
-	float percent = ((float)gsttime / (float)m_waveform->get_duration());
+	float percent = ((float)msec / (float)m_waveform->get_duration());
 	float width = (float)widget()->get_width() * zoom();
 	float pos = width * percent;
 	pos = CLAMP(pos, 0, width);
