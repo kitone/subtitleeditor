@@ -77,7 +77,7 @@ public:
 		action_group = Gtk::ActionGroup::create("ExternalVideoPlayer");
 
 		action_group->add(
-				Gtk::Action::create("external-video-player", Gtk::Stock::MEDIA_PLAY, _("_External Video Player")));
+				Gtk::Action::create("menu-external-video-player", Gtk::Stock::MEDIA_PLAY, _("_External Video Player")));
 
 		action_group->add(
 				Gtk::Action::create("external-video-player/open", Gtk::Stock::OPEN, _("_Open Movie"), _("Open movie with external video player")), Gtk::AccelKey("<Shift><Control>P"),
@@ -88,7 +88,7 @@ public:
 					sigc::mem_fun(*this, &ExternalVideoPlayer::on_play_movie));
 
 		action_group->add(
-				Gtk::Action::create("external-video-player/preferences", Gtk::Stock::PREFERENCES),
+				Gtk::Action::create("external-video-player/preferences", Gtk::Stock::PREFERENCES, "", _("External video player preferences")),
 					sigc::mem_fun(*this, &ExternalVideoPlayer::create_configure_dialog));
 
 		// ui
@@ -101,7 +101,7 @@ public:
 			"	<menubar name='menubar'>"
 			"		<menu name='menu-extensions' action='menu-extensions'>"
 			"			<placeholder name='placeholder'>"
-			"				<menu action='external-video-player'>"
+			"				<menu action='menu-external-video-player'>"
 			"					<menuitem action='external-video-player/open'/>"
 			"					<menuitem action='external-video-player/play'/>"
 			"					<separator/>"
