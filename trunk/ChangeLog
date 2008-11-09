@@ -1,5 +1,10 @@
 2008-11-09  kitone  <kitone@gna.org>
 
+	* plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:
+	Work now without menubar.xml.
+
+2008-11-09  kitone  <kitone@gna.org>
+
 	* src/Waveform.cc:
 	* src/we/WaveformGenerator.cc:
 	* src/we/WaveformRenderer.cc:
