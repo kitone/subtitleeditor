@@ -1,3 +1,10 @@
+2008-11-09  kitone  <kitone@gna.org>
+
+	* src/Waveform.cc:
+	* src/we/WaveformGenerator.cc:
+	* src/we/WaveformRenderer.cc:
+	Improvement by removing unnecessary conversion.
+
 2008-11-08  kitone  <kitone@gna.org>
 
 	* plugins/actions/preferences/Makefile.am:

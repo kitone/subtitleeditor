@@ -24,6 +24,7 @@
 #include <iostream>
 #include <math.h>
 #include <fstream>
+#include <gst/gst.h>
 
 /*
  * Open Wavefrom from file
@@ -127,8 +128,14 @@ bool Waveform::open(const Glib::ustring &file_uri)
 		file.close();
 		return false;
 	}
-	
-	if(line != "waveform")
+
+	int version = 0;
+
+	if(line == "waveform")
+		version = 1;
+	else if(line == "waveform v2")
+		version = 2;
+	else
 	{
 		file.close();
 		return false;
@@ -144,6 +151,11 @@ bool Waveform::open(const Glib::ustring &file_uri)
 	
 	file.read((char*)&m_n_channels, sizeof(m_n_channels));
 	file.read((char*)&m_duration, sizeof(m_duration));
+
+	if(version == 1)
+	{
+		m_duration = m_duration / GST_MSECOND;
+	}
 
 	for(unsigned int n=0; n< m_n_channels; ++n)
 	{
@@ -178,7 +190,7 @@ bool Waveform::save(const Glib::ustring &file_uri)
 	if(!file)
 		return false;
 	
-	file << "waveform" << std::endl;
+	file << "waveform v2" << std::endl;
 	
 	file << m_video_uri << std::endl;
 

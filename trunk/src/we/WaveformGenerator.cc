@@ -413,9 +413,8 @@ bool WaveformGenerator::on_bus_message_eos(GstBus *bus, GstMessage *msg)
 	gst_element_set_state(m_pipeline, GST_STATE_PAUSED);
 
 	m_progressbar->set_fraction(1);
-	//m_progressbar->set_text(_("The waveform is currently saved."));
 
-	m_waveform->m_duration = get_duration();
+	m_waveform->m_duration = get_duration() / GST_MSECOND;
 
 	response(Gtk::RESPONSE_OK);
 	
