@@ -147,10 +147,8 @@ public:
 			for(unsigned int j=0; j < actions.size(); ++j)
 			{
 				if(actions[j]->get_name().find("menu") != Glib::ustring::npos)
-				{
-					std::cout << actions[j]->get_name() << std::endl;
 					continue;
-				}
+
 				add_action(actions[j]);
 			}
 		}
