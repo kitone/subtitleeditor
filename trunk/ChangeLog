@@ -1,5 +1,15 @@
 2008-11-10  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/Plugin.cc:
+	* src/Plugin.h:
+	* src/PluginSystem.cc:
+	* src/PluginSystem.h:
+	* src/gui/Application.h:
+	Remove deprecated Plugin files.
+
+2008-11-10  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Fix: Change to tar-ustar. (name > 99)
 
