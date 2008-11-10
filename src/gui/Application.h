@@ -34,7 +34,6 @@
 #include "Options.h"
 
 #include "SubtitleEditorWindow.h"
-#include "PluginSystem.h"
 #include "vp/VideoPlayer.h"
 
 

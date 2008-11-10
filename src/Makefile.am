@@ -54,8 +54,6 @@ FILES = \
 				Command.cc \
 				CommandSystem.h \
 				CommandSystem.cc \
-				PluginSystem.h \
-				PluginSystem.cc \
 				Player.h \
 				vp/GStreamerPlayer.h \
 				vp/GStreamerPlayer.cc \
@@ -217,8 +215,6 @@ endif
 LIB_FILES = \
 					SubtitleEditorWindow.h \
 					SubtitleEditorWindow.cc \
-					Plugin.h \
-					Plugin.cc \
 					Document.h \
 					Document.cc \
 					Subtitle.h \
