@@ -427,14 +427,14 @@ public:
 			Glib::ustring name = *it;
 
 			action_group->add(
-				Gtk::Action::create(name, name),
+				Gtk::Action::create(name, name, _("Switch to this view")),
 					sigc::bind( sigc::mem_fun(*this, &ViewManagerPlugin::on_set_view), name));
 				
 		}
 
 		// Set View...
 		action_group->add(
-			Gtk::Action::create("view-manager", Gtk::Stock::PREFERENCES, _("View _Manager")),
+			Gtk::Action::create("view-manager", Gtk::Stock::PREFERENCES, _("View _Manager"), _("Manage the views")),
 					sigc::mem_fun(*this, &ViewManagerPlugin::on_view_manager));
 
 		get_ui_manager()->insert_action_group(action_group);
