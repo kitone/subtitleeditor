@@ -100,62 +100,6 @@ FORMATS_FILES = \
 				formats/SubViewer2.h \
 				formats/TimedTextAuthoringFormat1.h
 
-
-ACTIONS = \
-				actions/DocumentManagement.cc \
-				actions/UndoRedo.cc \
-				actions/AdjustTime.cc \
-				actions/ApplyTranslation.cc \
-				actions/DuplicateSelectedSubtitles.cc \
-				actions/ExtendLength.cc \
-				actions/TryToExtendToPerfect.cc \
-				actions/MoveSubtitles.cc \
-				actions/MoveAfterPrecedingSubtitle.cc \
-				actions/DeleteSubtitleSelect.cc \
-				actions/InsertSubtitle.cc \
-				actions/Selection.cc \
-				actions/CombineSubtitles.cc \
-				actions/SplitSubtitle.cc \
-				actions/Italicize.cc \
-				actions/ScaleSubtitles.cc \
-				actions/ChangeFramerate.cc \
-				actions/Dialoguize.cc \
-				actions/SpellChecking.h \
-				actions/SpellChecking.cc \
-				actions/ReverseTextAndTranslation.cc \
-				actions/SplitDocument.cc \
-				actions/JoinDocument.cc \
-				actions/StyleEditor.h \
-				actions/StyleEditor.cc \
-				actions/FindAndReplace.cc \
-				actions/Transcript.cc \
-				actions/ExternalVideoPlayer.cc \
-				actions/About.cc \
-				actions/ViewManager.cc \
-				actions/WaveformManagement.cc \
-				actions/VideoPlayerManagement.cc \
-				actions/TimeModeManagement.cc \
-				actions/EditCell.cc \
-				actions/ConfigureKeyboardShortcuts.cc \
-				actions/errorchecking/ErrorChecking.h \
-				actions/errorchecking/ErrorCheckingPreferences.h \
-				actions/errorchecking/ErrorCheckingPlugin.cc \
-				actions/errorchecking/MaxCharactersPerLine.h \
-				actions/errorchecking/MaxLinePerSubtitle.h \
-				actions/errorchecking/MinGapBetweenSubtitles.h \
-				actions/errorchecking/Overlapping.h \
-				actions/errorchecking/MinDisplayTime.h \
-				actions/errorchecking/TooLongDisplayTime.h \
-				actions/errorchecking/TooShortDisplayTime.h \
-				actions/preferences/InterfacePage.h \
-				actions/preferences/DocumentPage.h \
-				actions/preferences/VideoPlayerPage.h \
-				actions/preferences/TimingPage.h \
-				actions/preferences/WaveformPage.h \
-				actions/preferences/PreviewPage.h \
-				actions/preferences/PreferencePage.h \
-				actions/preferences/PreferencesPlugin.cc
-
 GUI_FILES = \
 				gui/DialogUtility.h \
 				gui/DialogUtility.cc \
