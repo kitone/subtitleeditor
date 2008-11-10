@@ -109,28 +109,28 @@ public:
 				Gtk::Action::create(
 					"video-player/skip-backwards-very-short", 
 					_("Very Short"), 
-					_("FIXME")), // FIXME
+					_("Very short skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), VERY_SHORT));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-backwards-short", 
 					_("Short"), 
-					_("FIXME")), // FIXME
+					_("Short skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), SHORT));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-backwards-medium", 
 					_("Medium"), 
-					_("FIXME")), // FIXME
+					_("Medium skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), MEDIUM));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-backwards-long", 
 					_("Long"), 
-					_("FIXME")), // FIXME
+					_("Long skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), LONG));
 
 		// Seek Forward
@@ -144,28 +144,28 @@ public:
 				Gtk::Action::create(
 					"video-player/skip-forward-very-short", 
 					_("Very Short"), 
-					_("FIXME")), // FIXME
+					_("Very short skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), VERY_SHORT));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-forward-short", 
 					_("Short"), 
-					_("FIXME")), // FIXME
+					_("Short skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), SHORT));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-forward-medium", 
 					_("Medium"), 
-					_("FIXME")), // FIXME
+					_("Medium skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), MEDIUM));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-forward-long", 
 					_("Long"), 
-					_("FIXME")), // FIXME
+					_("Long skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), LONG));
 
 		// Rate Slower & Faster
@@ -211,7 +211,7 @@ public:
 				Gtk::ToggleAction::create(
 					"video-player/repeat", 
 					_("_Repeat"), 
-					_("FIXME"), video_repeat_state), // FIXME
+					_("Enable or disable the repeat mode"), video_repeat_state), 
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_video_player_repeat_toggled));
 
 
@@ -275,14 +275,14 @@ public:
 				Gtk::Action::create(
 					"video-player/set-subtitle-start", 
 					_("Set Subtitle _Start"), 
-					_("FIXME")),// FIXME
+					_("Set from the current player position the subtitle start")), 
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_set_subtitle_start));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/set-subtitle-end", 
 					_("Set Subtitle _End"), 
-					_("FIXME")),// FIXME
+					_("Set from the current player position the subtitle end")), 
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_set_subtitle_end));
 
 		// Display Video Player
