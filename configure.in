@@ -2,19 +2,11 @@
 # Process this file with autoconf to produce a configure script.
 
 #AC_PREREQ(2.59)
-AC_INIT
+AC_INIT(subtitleeditor, trunk)
+AM_INIT_AUTOMAKE([tar-ustar])
+
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_CONFIG_HEADER([config.h])
-
-PACKAGE=subtitleeditor
-VERSION=trunk
-
-AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE")
-AC_DEFINE_UNQUOTED(VERSION, "$VERSION")
-AC_SUBST(PACKAGE)
-AC_SUBST(VERSION)
-
-AM_INIT_AUTOMAKE([$PACKAGE], [$VERSION])
 
 #AM_MAINTAINER_MODE
 #AC_CANONICAL_HOST
@@ -47,7 +39,7 @@ fi
 	AM_GLIB_GNU_GETTEXT
 ])
 
-GETTEXT_PACKAGE=[$PACKAGE]
+GETTEXT_PACKAGE=[$PACKAGE_NAME]
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
 IT_PROG_INTLTOOL([0.35.0])
@@ -320,7 +312,7 @@ fi
 ########## DEFINE #############################################################
 
 # Set PACKAGE SHARE DIR
-packagesharedir=share/$PACKAGE
+packagesharedir=share/$PACKAGE_NAME
 
 NO_PREFIX_PACKAGE_SHARE_DIR="${packagesharedir}"
 AC_SUBST(NO_PREFIX_PACKAGE_SHARE_DIR)
@@ -399,7 +391,7 @@ AC_OUTPUT
 
 AC_MSG_NOTICE([
 
-$PACKAGE $VERSION
+$PACKAGE_NAME $PACKAGE_VERSION
 
 prefix ............................... : ${prefix}
 gcc version .......................... : $(gcc -dumpversion)

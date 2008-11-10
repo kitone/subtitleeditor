@@ -1,5 +1,10 @@
 2008-11-10  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Fix: Change to tar-ustar. (name > 99)
+
+2008-11-10  kitone  <kitone@gna.org>
+
 	* plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:
 	* plugins/actions/viewmanager/ViewManager.cc:
 	Fix: add tooltips.
