@@ -1,5 +1,9 @@
-2008-11-10  kitone  <kitone@gna.org>
+2008-11-11  kitone  <kitone@gna.org>
 
+	* src/ExtensionManager.cc:
+	Fix: segfault with debug-msg.
+
+2008-11-10  kitone  <kitone@gna.org>
 
 	* plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:
 	Remove debug code.
@@ -8,7 +12,7 @@
 
 	* src/Makefile.am:
 	* src/actions/TryToExtendToPerfect.cc:
-	Remove derived files.
+	Remove deprecated files.
 
 2008-11-10  kitone  <kitone@gna.org>
 
