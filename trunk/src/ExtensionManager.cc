@@ -280,7 +280,7 @@ std::list<ExtensionInfo*> ExtensionManager::get_info_list_from_categorie(const G
 {
 	// FIXME
 	std::list<ExtensionInfo*> list = m_extension_info_map[categorie];
-	se_debug_message(SE_DEBUG_APP, "categorie='%s' size='%d'", categorie.size(), list.size());
+	se_debug_message(SE_DEBUG_APP, "categorie='%s' size='%d'", categorie.c_str(), list.size());
 		
 	return list;
 }
