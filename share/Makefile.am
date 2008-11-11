@@ -1,6 +1,6 @@
 SUBDIRS = icons glade
 
-subtitleeditor_pixmapsdir = $(prefix)/${NO_PREFIX_PACKAGE_SHARE_DIR}
+subtitleeditor_pixmapsdir = $(PACKAGE_SHARE_DIR)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = subtitleeditor.desktop.in

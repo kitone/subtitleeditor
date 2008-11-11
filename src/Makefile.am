@@ -9,9 +9,9 @@ AM_CFLAGS = -DDATA_DIR=\""$(datadir)"\" \
 INCLUDES = \
 					 $(GTKMM_CFLAGS) $(LIBGLADEMM_CFLAGS) \
 					 $(GSTREAMER_CFLAGS) $(LIBXML_CFLAGS) $(GTKGLEXT_CFLAGS) $(GL_CFLAGS) \
-					 -I$(top_srcdir)/include \
-					 -DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-					 -DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\"
+					 -DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
+					 -DPACKAGE_SHARE_DIR=\""$(PACKAGE_SHARE_DIR)"\" \
+					 -DPACKAGE_PLUGIN_DIR=\""$(PACKAGE_PLUGIN_DIR)"\"
 
 FILES = \
 				debug.h \
