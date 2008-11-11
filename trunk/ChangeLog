@@ -1,3 +1,10 @@
+2008-11-12  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* share/Makefile.am:
+	* src/Makefile.am:
+	Clean the installation directory. (Patch: Luboš Staněk)
+
 2008-11-11  kitone  <kitone@gna.org>
 
 	* src/ExtensionManager.cc:

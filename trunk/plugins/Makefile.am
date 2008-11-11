@@ -1,4 +1,4 @@
-PLUGINS = actions	
+PLUGINS = actions
 
 DIST_SUBDIRS = $(PLUGINS)
 

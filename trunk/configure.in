@@ -11,13 +11,10 @@ AM_CONFIG_HEADER([config.h])
 #AM_MAINTAINER_MODE
 #AC_CANONICAL_HOST
 
-## Set PACKAGE PREFIX
+## Set PREFIX
 if test "x${prefix}" = "xNONE"; then
-  packageprefix=${ac_default_prefix}
-else
-  packageprefix=${prefix}
+	prefix=${ac_default_prefix}
 fi
-
 
 ###############################################################################
 ########## GETTEXT ############################################################
@@ -311,20 +308,11 @@ fi
 ###############################################################################
 ########## DEFINE #############################################################
 
-# Set PACKAGE SHARE DIR
-packagesharedir=share/$PACKAGE_NAME
-
-NO_PREFIX_PACKAGE_SHARE_DIR="${packagesharedir}"
-AC_SUBST(NO_PREFIX_PACKAGE_SHARE_DIR)
-
-PACKAGE_SHARE_DIR="${packageprefix}/${packagesharedir}"
+PACKAGE_SHARE_DIR="${datadir}/${PACKAGE_NAME}"
 AC_SUBST(PACKAGE_SHARE_DIR)
-AC_DEFINE_UNQUOTED([PACKAGE_SHARE_DIR], "${packageprefix}/${packagesharedir}", "share dir")
 
-# plugin dir
-PACKAGE_PLUGIN_DIR="${packageprefix}/lib/subtitleeditor/plugins"
+PACKAGE_PLUGIN_DIR="${libdir}/${PACKAGE_NAME}/plugins"
 AC_SUBST(PACKAGE_PLUGIN_DIR)
-AC_DEFINE_UNQUOTED([PACKAGE_PLUGIN_DIR], "${packageprefix}/lib/subtitleeditor/plugins", "The plugins directory")
 
 # Checks for programs.
 AC_PROG_CXX
