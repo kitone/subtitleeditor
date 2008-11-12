@@ -1,6 +1,11 @@
 2008-11-12  kitone  <kitone@gna.org>
 
 	* configure.in:
+	Change dependence of glibmm >= 2.16.3
+
+2008-11-12  kitone  <kitone@gna.org>
+
+	* configure.in:
 	Big cleanup in the autohell!
 
 2008-11-12  kitone  <kitone@gna.org>
