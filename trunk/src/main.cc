@@ -206,9 +206,9 @@ int main(int argc, char *argv[])
 	std::clock_t start = std::clock();
 
 	// Bindtextdomain
-	bindtextdomain(PACKAGE, PACKAGE_LOCALE_DIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain(PACKAGE);
+	bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
 
 	// init Gtk+
 	Gtk::Main kit(argc, argv);
