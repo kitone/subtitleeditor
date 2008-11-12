@@ -1,126 +1,103 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-#AC_PREREQ(2.59)
+# AC_PREREQ(2.59)
 AC_INIT(subtitleeditor, trunk)
 AM_INIT_AUTOMAKE([tar-ustar])
 
 AC_CONFIG_SRCDIR([Makefile.am])
 AM_CONFIG_HEADER([config.h])
 
-#AM_MAINTAINER_MODE
-#AC_CANONICAL_HOST
-
-## Set PREFIX
-if test "x${prefix}" = "xNONE"; then
-	prefix=${ac_default_prefix}
-fi
-
-###############################################################################
-########## GETTEXT ############################################################
-AC_CONFIG_MACRO_DIR([m4])
-AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
-
-SUBTITLEEDITOR_LANG="ca cs da de en_GB es fr gl hu it nl pl pt_BR pt pt_PT ru sr tr zh_CN"
-
-AC_ARG_ENABLE(nls, , [
-if test "A$enableval" = "Ayes"; then
- 	ALL_LINGUAS="$SUBTITLEEDITOR_LANG"
-	AM_GLIB_GNU_GETTEXT
-else
-	ALL_LINGUAS=""
-	USE_NLS="no"
-fi
-], [
- 	ALL_LINGUAS="$SUBTITLEEDITOR_LANG"
-	AM_GLIB_GNU_GETTEXT
-])
-
-GETTEXT_PACKAGE=[$PACKAGE_NAME]
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[gettext domain])
-IT_PROG_INTLTOOL([0.35.0])
-
-# extend intltool's macros
-IT_SE_PLUGIN_INTLTOOL
-
-###############################################################################
-########## CHECK ##############################################################
-
-
-## Checks for header files.
+# Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h])
 
-#make it autoconf-2.59a<=compatible
-#AC_PROG_EGREP
-AC_CHECK_PROG(EGREP, egrep, egrep)
-#AC_PROG_SED
-AC_CHECK_PROG(SED, sed, sed)
-
-## Checks for typedefs, structures, and compiler characteristics.
+# Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
 AC_C_CONST
 AC_C_INLINE
 
-## plugins
-AC_PROG_LIBTOOL
+# Checks for programs.
+AC_PROG_CXX
+#AC_PROG_CC
 
-## Checks for library functions.
+# Checks for library functions.
 AC_FUNC_SELECT_ARGTYPES
 AC_CHECK_FUNCS([select])
 
+# make it autoconf-2.59a<=compatible
+AC_CHECK_PROG(EGREP, egrep, egrep) # AC_PROG_EGREP
+AC_CHECK_PROG(SED, sed, sed) # AC_PROG_SED
 
-## GTKMM
-PKG_CHECK_MODULES(GTKMM, gtkmm-2.4 >= 2.12)
+AC_CONFIG_MACRO_DIR([m4])
+AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
+
+# =========================================================================
+# libtool
+
+AC_DISABLE_STATIC
+AC_PROG_LIBTOOL
+PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
+AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
+
+# =========================================================================
+# localization
+
+GETTEXT_PACKAGE=$PACKAGE_NAME
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE],["$GETTEXT_PACKAGE"],[Package name for gettext])
+
+AC_ARG_ENABLE(nls, , [
+if test "A$enableval" = "Ayes"; then
+	AM_GLIB_GNU_GETTEXT
+else
+	USE_NLS="no"
+fi
+], [
+	AM_GLIB_GNU_GETTEXT
+])
+
+IT_PROG_INTLTOOL([0.35.0])
+# extend intltool's macros
+IT_SE_PLUGIN_INTLTOOL 
+
+# =========================================================================
+# check gtkmm
+
+PKG_CHECK_MODULES(GTKMM, gtkmm-2.4 >= 2.12 glibmm-2.4 >= 2.16.3)
 
 AC_SUBST(GTKMM_CFLAGS)
 AC_SUBST(GTKMM_LIBS)
 
-## GLIBMM
-glibmm_pkg_name=glibmm-2.4
-## minimal ABI 2.14.1 for gtkmm-2.12.x
-glibmm_min_abi_version=2.14.1
-glibmm_blacklist_versions="2.16.0 2.16.1 2.16.2"
-no_glibmm=""
-AC_MSG_CHECKING([for GLIBMM])
-# PKG_CONFIG is already populated
-if $PKG_CONFIG --exists $glibmm_pkg_name ; then
-	if $PKG_CONFIG --atleast-version=$glibmm_min_abi_version $glibmm_pkg_name ; then
-		for version in $glibmm_blacklist_versions; do
-			if $PKG_CONFIG --exact-version=$version $glibmm_pkg_name ; then
-				no_glibmm=yes
-				break
-			fi
-		done
-	else
-		no_glibmm=yes
-	fi
-	glibmm_version=`$PKG_CONFIG --modversion $glibmm_pkg_name`
-else
-	no_glibmm=yes
-fi
-if test x"$no_glibmm" = x ; then
-	AC_MSG_RESULT(yes ($glibmm_version))
-else
-	if test x"$glibmm_version" = x ; then
-		glibmm_version="not installed or unknown"
-	else
-		glibmm_version="unsupported $glibmm_version"
-	fi
-	AC_MSG_RESULT(no ($glibmm_version))
-	AC_MSG_ERROR(A required glibmm library release was not found.)
-fi
+# =========================================================================
+# check libglademm
 
-## LIBGLADEMM
 PKG_CHECK_MODULES(LIBGLADEMM, libglademm-2.4 >= 2.4)
 
 AC_SUBST(LIBGLADEMM_CFLAGS)
 AC_SUBST(LIBGLADEMM_LIBS)
 
+# =========================================================================
+# check enchant
 
-## GSTREAMER
-PKG_CHECK_MODULES(GSTREAMER, gstreamer-0.10 gstreamer-base-0.10 gstreamer-plugins-base-0.10,,
+PKG_CHECK_MODULES(ENCHANT, enchant >= 1.1.0)
+
+AC_SUBST(ENCHANT_CFLAGS)
+AC_SUBST(ENCHANT_LIBS)
+
+# =========================================================================
+# check libxml++
+
+PKG_CHECK_MODULES(LIBXML, libxml++-2.6 >= 2.10)
+AC_SUBST(LIBXML_CFLAGS)
+AC_SUBST(LIBXML_LIBS)
+
+# =========================================================================
+# check gstreamer
+
+PKG_CHECK_MODULES(
+					GSTREAMER, 
+					gstreamer-0.10 gstreamer-base-0.10 gstreamer-plugins-base-0.10,,
 					[echo "***"
 					 echo "*** Error! you need to have : "
 					 echo "*** gstreamer-0.10"
@@ -132,59 +109,13 @@ PKG_CHECK_MODULES(GSTREAMER, gstreamer-0.10 gstreamer-base-0.10 gstreamer-plugin
 AC_SUBST(GSTREAMER_CFLAGS)
 AC_SUBST(GSTREAMER_LIBS)
 
-LIBS="$LIBS $GSTREAMER_LIBS -lgstinterfaces-0.10 -lgstvideo-0.10 -lgstaudio-0.10 -lgstpbutils-0.10"
-
-
-AC_DEFUN([SE_GST_ELEMENT_CHECK_REQUIRED],
-[
-  if test "x$SED" = x; then
-    AC_MSG_ERROR([sed not found. Please install it first!])
-  fi
-
-	if test "x$EGREP" = x; then
-    AC_MSG_ERROR([egrep not found. Please install it first!])
-  fi
-
-	toolsdir=`$PKG_CONFIG --variable=toolsdir gstreamer-$1`
-
-	gst_inspect="$toolsdir/gst-inspect-$1"
-
-	if test "x$gst_inspect" != "x"; then
-		AC_MSG_CHECKING(for GStreamer-$1 element $2 ($3))
-		
-		element_version=`$gst_inspect $2 | $EGREP Version | $SED 's/^.*\s$1/$1/'`
-
-		if [ $gst_inspect $2 > /dev/null 2> /dev/null ]; then
-			AC_MSG_RESULT([yes])
-		else
-			AC_MSG_RESULT([no])
-			AC_MSG_ERROR([
-	GStreamer-$1 plugin '$2' not found. This plugins is 
-	absolutely required. Please install it.
-
-	The name of the package you need to install varies among
-	distros/systems. Debian and Ubuntu users will need to
-	install the $3 package.])
-		fi
-
-	else										# test gst_inspect
-		AC_MSG_RESULT([no])
-		AC_MSG_ERROR([gst-inspect-$1 not found. Please install it.])
-	fi
-])
-
+GSTREAMER_LIBS="$GSTREAMER_LIBS -lgstinterfaces-0.10 -lgstvideo-0.10 -lgstaudio-0.10 -lgstpbutils-0.10"
 
 SE_GST_ELEMENT_CHECK_REQUIRED([0.10], [level], [gstreamer0.10-plugins-good])
 
+# =========================================================================
+# check iso-codes 639 & 3166
 
-## enchant (spell checking)
-PKG_CHECK_MODULES(ENCHANT, enchant >= 1.1.0)
-
-AC_SUBST(ENCHANT_CFLAGS)
-AC_SUBST(ENCHANT_LIBS)
-
-
-## ISO-CODES 639 + 3166
 have_iso_code_639=no
 have_iso_code_3166=no
 
@@ -193,7 +124,7 @@ AC_MSG_CHECKING([whether iso-codes are available on this system])
 if $PKG_CONFIG iso-codes; then
 	AC_MSG_RESULT([yes])
 
-	## iso-639
+	# iso-639
 	AC_MSG_CHECKING([whether iso-codes has iso-639 domain])
 	if $PKG_CONFIG --variable=domains iso-codes | grep -q 639; then
 		AC_MSG_RESULT([yes])
@@ -202,7 +133,7 @@ if $PKG_CONFIG iso-codes; then
 		AC_MSG_RESULT([no])
 	fi
 
-	## iso-3166
+	# iso-3166
 	AC_MSG_CHECKING([whether iso-codes has iso-3166 domain])
 	if $PKG_CONFIG --variable=domains iso-codes | grep -q 3166; then
 		AC_MSG_RESULT([yes])
@@ -228,42 +159,12 @@ if test "$have_iso_code_639" == "yes"; then
 	fi
 fi
 
+# =========================================================================
+# check opengl & gtkglextmm only if the option gl is enabled (default no)
 
-## TTXT format, LIBXML++
-AC_ARG_ENABLE(ttxt,
-							[AC_HELP_STRING([--enable-ttxt], [TTXT format, don't enable it's not finished [default=no]])],,
-							[enable_ttxt=no])
-
-if test "$enable_ttxt" = "yes"; then
-  CXXFLAGS="-DENABLE_TTXT $CXXFLAGS"
-fi
-
-## libxml++
-PKG_CHECK_MODULES(LIBXML, libxml++-2.6 >= 2.10)
-AC_SUBST(LIBXML_CFLAGS)
-AC_SUBST(LIBXML_LIBS)
-
-
-
-## CppUnit (unit tests)
-AC_ARG_ENABLE(unittest,
-						 [AC_HELP_STRING([--enable-unittest], [unittest support [default=no]])],,
-							[enable_unittest=no])
-
-if test "$enable_unittest" = "yes"; then
-	PKG_CHECK_MODULES(CPPUNIT, cppunit >= 1.10.0)
-	AC_SUBST(CPPUNIT_CFLAGS)
-	AC_SUBST(CPPUNIT_LIBS)
-	AC_DEFINE([ENABLE_CPPUNIT],[1],[Define to compile with cppunit support (unit tests)])
-	CXXFLAGS="-DENABLE_UNITTEST $CXXFLAGS"
-fi
-
-AM_CONDITIONAL([ENABLE_UNITTEST], [test "x$enable_unittest" = "xyes"])
-
-
-## OpenGL & GtkGLextmm
 AC_ARG_ENABLE(gl,
-							[AC_HELP_STRING([--enable-gl], [OpenGL waveform renderer [default=no]])],,
+							[AC_HELP_STRING([--enable-gl], 
+							[OpenGL waveform renderer [default=no]])],,
 							[enable_gl=no])
 
 if test "$enable_gl" = "yes"; then
@@ -276,16 +177,25 @@ if test "$enable_gl" = "yes"; then
 	AC_SUBST(GTKGLEXT_LIBS)
 fi
 
+# =========================================================================
+# check cppunit only if unittest option is enabled (defautl no)
 
-## SUBTITLEEDITOR LIBS FLAGS
-SUBTITLEEDITOR_LIBS="$GTKMM_LIBS" ## ${LIBGLADEMM_LIBS} ${GSTREAMER_LIBS} ${INTLLIBS} ${LIBXML_LIBS} ${ENCHANT_LIBS} ${CPPUNIT_LIBS}"
-SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS ${LIBGLADEMM_CFLAGS} ${INTLCFLAGS} ${LIBXML_CFLAGS}"
+AC_ARG_ENABLE(unittest,
+							[AC_HELP_STRING([--enable-unittest], [unittest support [default=no]])],,
+							[enable_unittest=no])
 
-AC_SUBST(SUBTITLEEDITOR_LIBS)
-AC_SUBST(SUBTITLEEDITOR_CFLAGS)
+if test "$enable_unittest" = "yes"; then
+	PKG_CHECK_MODULES(CPPUNIT, cppunit >= 1.10.0)
+	AC_SUBST(CPPUNIT_CFLAGS)
+	AC_SUBST(CPPUNIT_LIBS)
+	AC_DEFINE([ENABLE_CPPUNIT],[1],[Define to compile with cppunit support (unit tests)])
+	CXXFLAGS="-DENABLE_UNITTEST $CXXFLAGS"
+fi
 
-###############################################################################
-########## COMPILATEUR FLAG ###################################################
+AM_CONDITIONAL([ENABLE_UNITTEST], [test "x$enable_unittest" = "xyes"])
+
+# =========================================================================
+# debug options (default yes)
 
 AC_ARG_ENABLE(debug,
 							[AC_HELP_STRING([--enable-debug], [turn on debugging [default=yes]])],,
@@ -296,7 +206,8 @@ if test "$enable_debug" = "yes"; then
   LDFLAGS="$LDFLAGS -g -ansi -Wall"
 fi
 
-CXXFLAGS="$CXXFLAGS -ansi -Wall" # -Wextra -Wconversion"
+# =========================================================================
+# profile options (default no)
 
 AC_ARG_ENABLE(profile,
 							[AC_HELP_STRING([--enable-profile], [turn on profiling [default=no]])],,
@@ -307,9 +218,22 @@ if test "$enable_profile" = "yes"; then
   LDFLAGS="$LDFLAGS -pg -ansi -Wall"
 fi
 
+# =========================================================================
+# gcc flags
 
-###############################################################################
-########## DEFINE #############################################################
+CXXFLAGS="$CXXFLAGS -ansi -Wall" # -Wextra -Wconversion"
+
+# =========================================================================
+# Set SUBTITLEEDITOR_LIBS and SUBTITLEEDITOR_CFLAGS
+
+SUBTITLEEDITOR_LIBS="$GTKMM_LIBS"
+SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS $LIBGLADEMM_CFLAGS $INTLCFLAGS $LIBXML_CFLAGS"
+
+AC_SUBST(SUBTITLEEDITOR_LIBS)
+AC_SUBST(SUBTITLEEDITOR_CFLAGS)
+
+# =========================================================================
+# Set package directory VAR
 
 PACKAGE_SHARE_DIR="${datadir}/${PACKAGE_NAME}"
 AC_SUBST(PACKAGE_SHARE_DIR)
@@ -317,65 +241,61 @@ AC_SUBST(PACKAGE_SHARE_DIR)
 PACKAGE_PLUGIN_DIR="${libdir}/${PACKAGE_NAME}/plugins"
 AC_SUBST(PACKAGE_PLUGIN_DIR)
 
-# Checks for programs.
-AC_PROG_CXX
-AC_PROG_CC
 
-PLUGIN_LIBTOOL_FLAGS="-module -avoid-version"
-AC_SUBST(PLUGIN_LIBTOOL_FLAGS)
-
+# =========================================================================
+# Config Makefile
 
 AC_CONFIG_FILES([
-								Makefile 
-								src/Makefile 
-								m4/Makefile 
-								share/Makefile 
-								share/icons/Makefile 
-								share/icons/16x16/Makefile
-								share/icons/22x22/Makefile
-								share/icons/24x24/Makefile
-								share/icons/32x32/Makefile
-								share/icons/scalable/Makefile
-								share/glade/Makefile
-								docs/Makefile
-								po/Makefile.in
-								plugins/Makefile
-								plugins/actions/Makefile
-								plugins/actions/about/Makefile
-								plugins/actions/adjusttime/Makefile
-								plugins/actions/applytranslation/Makefile
-								plugins/actions/changeframerate/Makefile
-								plugins/actions/combinesubtitles/Makefile
-								plugins/actions/command/Makefile
-								plugins/actions/configurekeyboardshortcuts/Makefile
-								plugins/actions/dialoguize/Makefile
-								plugins/actions/documentmanagement/Makefile
-								plugins/actions/duplicatesubtitle/Makefile
-								plugins/actions/editcell/Makefile
-								plugins/actions/errorchecking/Makefile
-								plugins/actions/extendlength/Makefile
-								plugins/actions/externalvideoplayer/Makefile
-								plugins/actions/findandreplace/Makefile
-								plugins/actions/insertsubtitle/Makefile
-								plugins/actions/italicize/Makefile
-								plugins/actions/joindocument/Makefile
-								plugins/actions/moveafterprecedingsubtitle/Makefile
-								plugins/actions/movesubtitles/Makefile
-								plugins/actions/plaintext/Makefile
-								plugins/actions/preferences/Makefile
-								plugins/actions/removesubtitle/Makefile
-								plugins/actions/reversetextandtranslation/Makefile
-								plugins/actions/scalesubtitles/Makefile
-								plugins/actions/selection/Makefile
-								plugins/actions/spellchecking/Makefile
-								plugins/actions/splitdocument/Makefile
-								plugins/actions/splitsubtitle/Makefile
-								plugins/actions/styleeditor/Makefile
-								plugins/actions/timemodemanagement/Makefile
-								plugins/actions/videoplayermanagement/Makefile
-								plugins/actions/viewmanager/Makefile
-								plugins/actions/wavefrommanagement/Makefile
-								 ])
+Makefile 
+src/Makefile 
+m4/Makefile 
+share/Makefile 
+share/icons/Makefile 
+share/icons/16x16/Makefile
+share/icons/22x22/Makefile
+share/icons/24x24/Makefile
+share/icons/32x32/Makefile
+share/icons/scalable/Makefile
+share/glade/Makefile
+docs/Makefile
+po/Makefile.in
+plugins/Makefile
+plugins/actions/Makefile
+plugins/actions/about/Makefile
+plugins/actions/adjusttime/Makefile
+plugins/actions/applytranslation/Makefile
+plugins/actions/changeframerate/Makefile
+plugins/actions/combinesubtitles/Makefile
+plugins/actions/command/Makefile
+plugins/actions/configurekeyboardshortcuts/Makefile
+plugins/actions/dialoguize/Makefile
+plugins/actions/documentmanagement/Makefile
+plugins/actions/duplicatesubtitle/Makefile
+plugins/actions/editcell/Makefile
+plugins/actions/errorchecking/Makefile
+plugins/actions/extendlength/Makefile
+plugins/actions/externalvideoplayer/Makefile
+plugins/actions/findandreplace/Makefile
+plugins/actions/insertsubtitle/Makefile
+plugins/actions/italicize/Makefile
+plugins/actions/joindocument/Makefile
+plugins/actions/moveafterprecedingsubtitle/Makefile
+plugins/actions/movesubtitles/Makefile
+plugins/actions/plaintext/Makefile
+plugins/actions/preferences/Makefile
+plugins/actions/removesubtitle/Makefile
+plugins/actions/reversetextandtranslation/Makefile
+plugins/actions/scalesubtitles/Makefile
+plugins/actions/selection/Makefile
+plugins/actions/spellchecking/Makefile
+plugins/actions/splitdocument/Makefile
+plugins/actions/splitsubtitle/Makefile
+plugins/actions/styleeditor/Makefile
+plugins/actions/timemodemanagement/Makefile
+plugins/actions/videoplayermanagement/Makefile
+plugins/actions/viewmanager/Makefile
+plugins/actions/wavefrommanagement/Makefile
+])
 
 
 AC_OUTPUT
@@ -392,11 +312,9 @@ libglademm version ................... : $(pkg-config --modversion libglademm-2.
 gstreamer version .................... : $(pkg-config --modversion gstreamer-0.10)
 
 have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
-TTXT support (not finished) .......... : $enable_ttxt
 OpenGL waveform renderer ............. : $enable_gl
 Unit test ............................ : $enable_unittest
 debug support ........................ : $enable_debug
-ALL_LINGUAS .......................... : $ALL_LINGUAS
 
 
 Configuration complete. now run make
