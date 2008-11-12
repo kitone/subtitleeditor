@@ -1,5 +1,10 @@
 2008-11-12  kitone  <kitone@gna.org>
 
+	* prepare-po.sh:
+	Add desktop.in files.
+
+2008-11-12  kitone  <kitone@gna.org>
+
 	* acinclude.m4:
 	* configure.in:
 	Add m4/intltool_se_plugin.m4. (Patch: Luboš Staněk)
