@@ -1,3 +1,11 @@
+2008-11-12  kitone  <kitone@gna.org>
+
+	* LINGUAS:
+	New file.
+
+	* POTFILES.in:
+	Update with desktop.in files.
+
 2008-11-10  kitone  <kitone@gna.org>
 
 	* POTFILES.in:
