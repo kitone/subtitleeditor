@@ -1,5 +1,11 @@
 2008-11-12  kitone  <kitone@gna.org>
 
+	* acinclude.m4:
+	* configure.in:
+	Add m4/intltool_se_plugin.m4. (Patch: Luboš Staněk)
+
+2008-11-12  kitone  <kitone@gna.org>
+
 	* configure.in:
 	* share/Makefile.am:
 	* src/Makefile.am:
