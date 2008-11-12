@@ -1,5 +1,10 @@
 2008-11-12  kitone  <kitone@gna.org>
 
+	* src/main.cc:
+	Fix: GETTEXT_PACKAGE.
+
+2008-11-12  kitone  <kitone@gna.org>
+
 	* prepare-po.sh:
 	Add desktop.in files.
 
