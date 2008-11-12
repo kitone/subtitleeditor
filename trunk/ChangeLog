@@ -1,5 +1,10 @@
 2008-11-12  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Big cleanup in the autohell!
+
+2008-11-12  kitone  <kitone@gna.org>
+
 	* src/main.cc:
 	Fix: GETTEXT_PACKAGE.
 
