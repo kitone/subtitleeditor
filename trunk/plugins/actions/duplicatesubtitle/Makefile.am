@@ -1,11 +1,11 @@
-plugindir = $(libdir)/subtitleeditor/plugins/actions
+actionplugindir = $(PACKAGE_PLUGIN_DIR)/actions
 
 INCLUDES = \
-					 -I$(top_srcdir) \
-					 -I$(top_srcdir)/src \
-					 $(SUBTITLEEDITOR_CFLAGS)
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/src \
+	$(SUBTITLEEDITOR_CFLAGS)
 
-plugin_LTLIBRARIES = libduplicatesubtitle.la
+actionplugin_LTLIBRARIES = libduplicatesubtitle.la
 
 libduplicatesubtitle_la_SOURCES = \
 	DuplicateSubtitle.cc
@@ -13,14 +13,11 @@ libduplicatesubtitle_la_SOURCES = \
 libduplicatesubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libduplicatesubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
 
-plugin_in_files = duplicatesubtitle.se-plugin.desktop.in
+actionplugin_in_files = duplicatesubtitle.se-plugin.desktop.in
+actionplugin_DATA = $(actionplugin_in_files:.se-plugin.desktop.in=.se-plugin)
 
-%.se-plugin: %.se-plugin.desktop.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+@INTLTOOL_SE_PLUGIN_RULE@
 
-plugin_DATA = $(plugin_in_files:.se-plugin.desktop.in=.se-plugin)
+EXTRA_DIST = $(actionplugin_in_files)
 
-EXTRA_DIST = $(plugin_in_files)
-
-CLEANFILES = $(plugin_DATA)
-DISTCLEANFILES = $(plugin_DATA)
-
+CLEANFILES = $(actionplugin_DATA) Makefile.am~ *.cc~ *.h~ *.in~
