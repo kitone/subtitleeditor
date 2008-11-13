@@ -95,7 +95,8 @@ protected:
 		dialog.set_copyright("kitone (IDJAAD djamel)");
 		// comments
 		dialog.set_comments(_("a tool for subtitles edition"));
-
+		// logo
+		dialog.set_logo_icon_name("subtitleeditor");
 		// authors
 		std::list<Glib::ustring>	authors;
 		authors.push_back("kitone (IDJAAD djamel)");
@@ -123,16 +124,6 @@ protected:
 			"Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111 USA	\n\n"
 			"See gpl.txt for more information regarding the GNU General Public License. \n";
 		dialog.set_license(license);
-
-		try
-		{
-			Glib::ustring filename = get_share_dir("subtitleeditor.svg");
-			dialog.set_logo(Gdk::Pixbuf::create_from_file(filename, 256,256));
-		}
-		catch(Glib::Error &ex)
-		{
-			std::cerr << ex.what() << std::endl;
-		}
 
 		dialog.run();
 	}

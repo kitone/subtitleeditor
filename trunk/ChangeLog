@@ -1,5 +1,15 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* plugins/actions/about/About.cc:
+	* plugins/actions/errorchecking/ErrorCheckingPlugin.cc:
+	* src/gui/Application.cc:
+	* src/gui/MenuBar.cc:
+	* src/utility.cc:
+	* src/utility.h:
+	Remove get_share_dir function (utility) and fix icon for all windows.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* plugins/actions/errorchecking/ErrorCheckingPreferences.h:
 	* plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:
 	* plugins/actions/findandreplace/FindAndReplace.cc:

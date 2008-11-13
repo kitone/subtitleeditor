@@ -150,22 +150,12 @@ public:
 
 		m_sort_type = BY_CATEGORIES;
 
-		try
-		{
-			set_icon_from_file(get_share_dir("subtitleeditor.svg"));
-		}
-		catch(const Glib::Error &ex)
-		{
-			std::cerr << "set_icon_from_file failed: " << ex.what() << std::endl;
-		}
-
 		create_menubar(refGlade);
 
 		refGlade->get_widget("treeview-errors", m_treeview);
 		refGlade->get_widget("statusbar", m_statusbar);
 
 		create_treeview();
-
 		refresh();
 
 		DocumentSystem::getInstance().signal_current_document_changed().connect(

@@ -62,34 +62,6 @@ Glib::ustring build_message(const char *format, ...)
 }
 
 /*
- *
- */
-Glib::ustring get_share_dir(const Glib::ustring &file)
-{
-	Glib::ustring filename;
-	
-	filename = Glib::build_filename(PACKAGE_SHARE_DIR, file);
-
-	se_debug_message(SE_DEBUG_UTILITY, "%s", filename.c_str());
-
-	if(Glib::file_test(filename, Glib::FILE_TEST_EXISTS))
-		return filename;
-
-	// utiliser pour le dev 
-	filename = Glib::build_filename("share", file);
-
-	se_debug_message(SE_DEBUG_UTILITY, "%s", filename.c_str());
-
-	if(Glib::file_test(filename, Glib::FILE_TEST_EXISTS))
-		return filename;
-
-	se_debug_message(SE_DEBUG_UTILITY, "%s not found!", filename.c_str());
-	//
-	std::cerr << "get_share_dir not found:" << file << std::endl;
-	return "";
-}
-
-/*
  *	the profile name for the config dir
  *	~/config/subtitleeditor/{profile}
  */
