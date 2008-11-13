@@ -1,5 +1,35 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* src/Default.h:
+	* src/Makefile.am:
+	* src/unittest/adobe.encore.dvd.ntsc.format:
+	* src/unittest/adobe.encore.dvd.ntsc.format.euc-jp:
+	* src/unittest/adobe.encore.dvd.pal.format:
+	* src/unittest/adobe.encore.dvd.pal.format.euc-jp:
+	* src/unittest/ass.format:
+	* src/unittest/ass.format.euc-jp:
+	* src/unittest/microdvd.format:
+	* src/unittest/microdvd.format.euc-jp:
+	* src/unittest/mpl2.format:
+	* src/unittest/mpl2.format.euc-jp:
+	* src/unittest/mpsub.format:
+	* src/unittest/mpsub.format.euc-jp:
+	* src/unittest/ssa.format:
+	* src/unittest/ssa.format.euc-jp:
+	* src/unittest/subrip.format:
+	* src/unittest/subrip.format.euc-jp:
+	* src/unittest/subtitle.editor.project.format:
+	* src/unittest/subtitle.editor.project.format.euc-jp:
+	* src/unittest/subviewer2.0.format:
+	* src/unittest/subviewer2.0.format.euc-jp:
+	* src/unittest/testColor.cc:
+	* src/unittest/testSubtitleTime.cc:
+	* src/unittest/transcript:
+	* src/unittest/unittest.cc:
+	Remove unsed file and unittest.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* plugins/actions/configurekeyboardshortcuts/Makefile.am:
 	Fix: wrong directory.
 

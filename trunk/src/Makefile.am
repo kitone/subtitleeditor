@@ -45,7 +45,6 @@ FILES = \
 				Waveform.cc \
 				Options.h \
 				Options.cc \
-				Default.h \
 				Style.h \
 				Style.cc \
 				Styles.h \
@@ -120,42 +119,7 @@ GUI_FILES = \
 				gui/TreeViewExtensionManager.h \
 				gui/TreeViewExtensionManager.cc
 
-
-if	 ENABLE_UNITTEST
-
-UNITTEST_FILES = \
-				 unittest/unittest.cc \
-				 unittest/testSubtitleTime.cc \
-				 unittest/testColor.cc
-
-EXTRA_DIST = \
-				unittest/adobe.encore.dvd.ntsc.format \
-				unittest/adobe.encore.dvd.ntsc.format.euc-jp \
-				unittest/adobe.encore.dvd.pal.format \
-				unittest/adobe.encore.dvd.pal.format.euc-jp \
-				unittest/ass.format \
-				unittest/ass.format.euc-jp \
-				unittest/microdvd.format \
-				unittest/microdvd.format.euc-jp \
-				unittest/mpl2.format \
-				unittest/mpl2.format.euc-jp \
-				unittest/mpsub.format \
-				unittest/mpsub.format.euc-jp \
-				unittest/ssa.format \
-				unittest/ssa.format.euc-jp \
-				unittest/subrip.format \
-				unittest/subrip.format.euc-jp \
-				unittest/subtitle.editor.project.format \
-				unittest/subtitle.editor.project.format.euc-jp \
-				unittest/subviewer2.0.format \
-				unittest/subviewer2.0.format.euc-jp \
-				unittest/transcript
-
-endif
-
-
 ## lib
-
 LIB_FILES = \
 					SubtitleEditorWindow.h \
 					SubtitleEditorWindow.cc \
@@ -183,11 +147,11 @@ libsubtitleeditor_la_SOURCES = $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FILE
 
 
 ## subttileeditor
-subtitleeditor_SOURCES = $(APPLICATION_FILES) $(UNITTEST_FILES)
+subtitleeditor_SOURCES = $(APPLICATION_FILES)
 
 subtitleeditor_LDADD = $(GTKMM_LIBS) $(LIBGLADEMM_LIBS) $(GSTREAMER_LIBS) \
 											 $(INTLLIBS) $(LIBXML_LIBS) \
-											 $(GTKGLEXT_LIBS) $(GL_LIBS) $(CPPUNIT_LIBS) \
+											 $(GTKGLEXT_LIBS) $(GL_LIBS) \
 											 libsubtitleeditor.la
 
 
