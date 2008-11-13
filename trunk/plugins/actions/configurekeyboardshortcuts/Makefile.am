@@ -7,8 +7,8 @@ INCLUDES = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src \
 	$(SUBTITLEEDITOR_CFLAGS) \
-	-DSE_PLUGIN_PATH_DEV=\"$(SE_PLUGIN_PATH_DEV)\" \
-	-DSE_PLUGIN_PATH_GLADE=\"$(SE_PLUGIN_PATH_GLADE)\"
+	-DSE_PLUGIN_PATH_DEV=\"$(actionplugindevdir)\" \
+	-DSE_PLUGIN_PATH_GLADE=\"$(gladedir)\"
 
 actionplugin_LTLIBRARIES = \
 	libconfigurekeyboardshortcuts.la

@@ -1,5 +1,10 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* plugins/actions/configurekeyboardshortcuts/Makefile.am:
+	Fix: wrong directory.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* plugins/actions/about/Makefile.am:
 	* plugins/actions/about/about.se-plugin.desktop.in:
 	* plugins/actions/adjusttime/Makefile.am:
