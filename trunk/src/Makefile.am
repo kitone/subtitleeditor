@@ -26,6 +26,8 @@ FILES = \
 				gstreamer_utility.cc \
 				gtkmm_utility.h \
 				gtkmm_utility.cc \
+				widget_config_utility.h \
+				widget_config_utility.cc \
 				Config.h \
 				Config.cc \
 				Signal.h \
