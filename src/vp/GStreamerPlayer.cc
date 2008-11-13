@@ -26,7 +26,7 @@
 #include <gst/pbutils/missing-plugins.h>
 #include "GStreamerPlayer.h"
 #include "utility.h"
-
+#include "gstreamer_utility.h"
 
 /*
  * Constructor
@@ -563,7 +563,7 @@ GstElement* GStreamerPlayer::create_pipeline()
 	// clean or destroy the pipeline
 	set_pipeline_null();
 
-	if(Gst::check_registry("playbin", 0, 10, 0) == false)
+	if(gstreamer_utility::check_registry("playbin", 0, 10, 0) == false)
 		return NULL;
 
 	m_pipeline = create_element("playbin", "pipeline",
@@ -993,7 +993,7 @@ bool GStreamerPlayer::check_missing_plugins()
 	if(m_missing_plugins.empty())
 		return false;
 
-	Gst::dialog_missing_plugins(m_missing_plugins);
+	gstreamer_utility::dialog_missing_plugins(m_missing_plugins);
 
 	m_missing_plugins.clear();
 

@@ -18,6 +18,8 @@ FILES = \
 				debug.cc \
 				utility.h \
 				utility.cc \
+				gstreamer_utility.h \
+				gstreamer_utility.cc \
 				Config.h \
 				Config.cc \
 				Signal.h \
