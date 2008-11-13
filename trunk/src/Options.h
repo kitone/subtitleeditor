@@ -44,10 +44,6 @@ public:
 	Glib::ustring video;		// video location
 	Glib::ustring waveform;	// waveform location
 
-#ifdef ENABLE_UNITTEST
-	bool launch_unittest;
-#endif//ENABLE_UNITTEST
-
 #ifdef DEBUG
 	bool debug_all;
 	bool debug_app;
