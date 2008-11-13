@@ -22,6 +22,7 @@
 
 #include "WaveformGenerator.h"
 #include "utility.h"
+#include "gstreamer_utility.h"
 #include <gst/pbutils/missing-plugins.h>
 
 #define TIMEOUT 100
@@ -120,13 +121,13 @@ void WaveformGenerator::create_pipeline(const Glib::ustring &uri)
 
 	// check gstreamer version
 	{
-		if(Gst::check_registry("filesrc", 0, 10, 0)	== false)
+		if(gstreamer_utility::check_registry("filesrc", 0, 10, 0)	== false)
 			return;
-		if(Gst::check_registry("decodebin", 0, 10, 0)	== false)
+		if(gstreamer_utility::check_registry("decodebin", 0, 10, 0)	== false)
 			return;
-		if(Gst::check_registry("audioconvert", 0, 10, 0)	== false)
+		if(gstreamer_utility::check_registry("audioconvert", 0, 10, 0)	== false)
 			return;
-		if(Gst::check_registry("level", 0, 10, 0)	== false)
+		if(gstreamer_utility::check_registry("level", 0, 10, 0)	== false)
 			return;
 	}
 
@@ -229,7 +230,7 @@ bool WaveformGenerator::check_missing_plugins()
 {
 	if(!m_missing_plugins.empty())
 	{
-		Gst::dialog_missing_plugins(m_missing_plugins);
+		gstreamer_utility::dialog_missing_plugins(m_missing_plugins);
 		m_missing_plugins.clear();
 
 		return true;
@@ -555,11 +556,11 @@ gint64 WaveformGenerator::get_position()
 		GstFormat fmt = GST_FORMAT_TIME;
 		if(gst_element_query_position(GST_ELEMENT(m_pipeline), &fmt, &pos))
 		{
-			se_debug_message(SE_DEBUG_WAVEFORM, "%s", Gst::time_to_string(pos).c_str());
+			se_debug_message(SE_DEBUG_WAVEFORM, "%s", gstreamer_utility::time_to_string(pos).c_str());
 			return pos;
 		}
 	}
-	se_debug_message(SE_DEBUG_WAVEFORM, "%s", Gst::time_to_string(GST_CLOCK_TIME_NONE).c_str());
+	se_debug_message(SE_DEBUG_WAVEFORM, "%s", gstreamer_utility::time_to_string(GST_CLOCK_TIME_NONE).c_str());
 	return GST_CLOCK_TIME_NONE;
 }
 
@@ -574,11 +575,11 @@ gint64 WaveformGenerator::get_duration()
 		GstFormat fmt = GST_FORMAT_TIME;
 		if(gst_element_query_duration(GST_ELEMENT(m_pipeline), &fmt, &dur))
 		{
-			se_debug_message(SE_DEBUG_WAVEFORM, "%s", Gst::time_to_string(dur).c_str());
+			se_debug_message(SE_DEBUG_WAVEFORM, "%s", gstreamer_utility::time_to_string(dur).c_str());
 			return dur;
 		}
 	}
-	se_debug_message(SE_DEBUG_WAVEFORM, "%s", Gst::time_to_string(GST_CLOCK_TIME_NONE).c_str());
+	se_debug_message(SE_DEBUG_WAVEFORM, "%s", gstreamer_utility::time_to_string(GST_CLOCK_TIME_NONE).c_str());
 	return GST_CLOCK_TIME_NONE;
 }
 
@@ -598,7 +599,7 @@ bool WaveformGenerator::update_progress_bar()
 			percent = CLAMP(percent, 0.0, 1.0);
 	
 			m_progressbar->set_fraction(percent);
-			m_progressbar->set_text(Gst::time_to_string(m_position) + " / " + Gst::time_to_string(m_duration));
+			m_progressbar->set_text(gstreamer_utility::time_to_string(m_position) + " / " + gstreamer_utility::time_to_string(m_duration));
 		}
 	}
 

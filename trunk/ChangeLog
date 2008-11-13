@@ -1,5 +1,16 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/gstreamer_utility.cc:
+	* src/gstreamer_utility.h:
+	* src/utility.cc:
+	* src/utility.h:
+	* src/vp/GStreamerPlayer.cc:
+	* src/we/WaveformGenerator.cc:
+	Move GStreamer utility code in new file gstreamer_utility.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* prepare-po.sh:
 	Add [type: gettext/ini] before the se-plugin name.
 
