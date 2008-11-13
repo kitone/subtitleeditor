@@ -34,8 +34,9 @@
 #include <gtkmm/liststore.h>
 #include <gtkmm/entry.h>
 #include <gtkmm/comboboxtext.h>
-#include "utility.h"
-#include "Document.h"
+#include <utility.h>
+#include <gtkmm_utility.h>
+#include <Document.h>
 
 /*
  *
@@ -43,6 +44,15 @@
 class DialogSpellChecking : public Gtk::Dialog
 {
 protected:
+
+	class ComboBoxText : public Gtk::ComboBoxText
+	{
+	public:
+		ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+		:Gtk::ComboBoxText(cobject)
+		{
+		}
+	};
 
 	/*
 	 *

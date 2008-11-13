@@ -29,15 +29,6 @@
 
 namespace gtkmm_utility {
 
-class ComboBoxText : public Gtk::ComboBoxText
-{
-public:
-	ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:Gtk::ComboBoxText(cobject)
-	{
-	}
-};
-
 /*
  * Create and return a widget derived from glade file.
  */

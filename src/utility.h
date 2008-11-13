@@ -29,7 +29,7 @@
 #endif /* HAVE_CONFIG_H */
 
 #include <glibmm/ustring.h>
-#include <gdkmm/color.h>
+#include <gtkmm/window.h>
 #include <sstream>
 #include <iostream>
 
@@ -158,23 +158,6 @@ void dialog_warning(const Glib::ustring &primary_text, const Glib::ustring &seco
 void dialog_error(const Glib::ustring &primary_text, const Glib::ustring &secondary_text);
 
 
-/*
- *	devired with glade 
- */
-
-#include <gtkmm/comboboxtext.h>
-#include <gtkmm/spinbutton.h>
-#include <libglademm/xml.h>
-
-class ComboBoxText : public Gtk::ComboBoxText
-{
-public:
-	ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:Gtk::ComboBoxText(cobject)
-	{
-	}
-};
-
 namespace utility
 {
 	/*
@@ -256,42 +239,6 @@ namespace utility
 	 * get a text stripped from tags
 	 */
 	Glib::ustring get_stripped_text(const Glib::ustring &text);
-
-	/*
-	 *	crée et retourne un widget à partir d'un fichier glade
-	 */
-	template<class T>
-	T* get_widget_derived(const Glib::ustring &glade_file, const Glib::ustring &name)
-	{
-		se_debug_message(SE_DEBUG_UTILITY, "glade_file=<%s> name=<%s>", glade_file.c_str(), name.c_str());
-
-		T *dialog = NULL;
-
-		Glib::RefPtr<Gnome::Glade::Xml> refXml = Gnome::Glade::Xml::create(get_share_dir("glade/" + glade_file));
-
-		refXml->get_widget_derived(name, dialog);
-
-		return dialog;
-	}
-
-	/*
-	 * Create and return a widget derived from glade file.
-	 */
-	template<class T>
-	T* get_widget_derived(const Glib::ustring &path, const Glib::ustring &glade_file, const Glib::ustring &name)
-	{
-		se_debug_message(SE_DEBUG_UTILITY, "glade_file=<%s> name=<%s>", glade_file.c_str(), name.c_str());
-
-		T *dialog = NULL;
-
-		Glib::ustring file = Glib::build_filename(path, glade_file);
-
-		Glib::RefPtr<Gnome::Glade::Xml> refXml = Gnome::Glade::Xml::create(file);
-
-		refXml->get_widget_derived(name, dialog);
-
-		return dialog;
-	}
 
 	/*
 	 *
