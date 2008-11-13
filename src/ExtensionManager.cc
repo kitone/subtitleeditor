@@ -53,7 +53,7 @@ ExtensionManager::ExtensionManager()
 	// Read the env var if is set or the default plugin dir
 	Glib::ustring path = Glib::getenv("SE_PLUGINS_PATH");
 	if(path.empty())
-		path = PACKAGE_PLUGIN_DIR;
+		path = SE_DEV_VALUE(PACKAGE_PLUGIN_DIR, PACKAGE_PLUGIN_DIR_DEV);
 		
 	load_path(path);
 }

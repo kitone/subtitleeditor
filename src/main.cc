@@ -28,6 +28,7 @@
 #include "debug.h"
 #include "DocumentSystem.h"
 #include "utility.h"
+#include "gtkmm_utility.h"
 
 #include <ctime>
 #include <gst/gst.h>
@@ -251,7 +252,10 @@ int main(int argc, char *argv[])
 	gst_init(&argc, &argv);
 
 	// Run Application
-	Application*	application = utility::get_widget_derived<Application>("subtitleeditor.glade", "window-main");
+	Application*	application = gtkmm_utility::get_widget_derived<Application>(
+			SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
+			"subtitleeditor.glade", 
+			"window-main");
 
 	application->init(options);
 

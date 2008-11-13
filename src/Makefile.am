@@ -11,7 +11,11 @@ INCLUDES = \
 					 $(GSTREAMER_CFLAGS) $(LIBXML_CFLAGS) $(GTKGLEXT_CFLAGS) $(GL_CFLAGS) \
 					 -DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 					 -DPACKAGE_SHARE_DIR=\""$(PACKAGE_SHARE_DIR)"\" \
-					 -DPACKAGE_PLUGIN_DIR=\""$(PACKAGE_PLUGIN_DIR)"\"
+					 -DPACKAGE_SHARE_DIR_DEV=\""share"\" \
+					 -DPACKAGE_GLADE_DIR=\""$(PACKAGE_SHARE_DIR)/glade"\" \
+					 -DPACKAGE_GLADE_DIR_DEV=\""share/glade"\" \
+					 -DPACKAGE_PLUGIN_DIR=\""$(PACKAGE_PLUGIN_DIR)"\" \
+					 -DPACKAGE_PLUGIN_DIR_DEV=\""plugins"\"
 
 FILES = \
 				debug.h \
