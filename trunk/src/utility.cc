@@ -469,22 +469,6 @@ namespace utility
 		return newpath;
 	}
 
-
-	/*
-	 *	est ce un chiffre
-	 */
-	bool is_num(const Glib::ustring &str)
-	{
-		if(str.empty())
-			return false;
-		
-		std::istringstream s(str);
-
-		int num = 0;
-
-		return s >> num != 0;
-	}
-
 	/*
 	 * Get the number of characters per second.
 	 * msec = SubtitleTime::totalmsecs

@@ -215,11 +215,6 @@ namespace utility
 	Glib::ustring create_full_path(const Glib::ustring &path);
 
 	/*
-	 *	est ce un chiffre
-	 */
-	bool is_num(const Glib::ustring &str);
-
-	/*
 	 * Get the number of characters per second.
 	 * msec = SubtitleTime::totalmsecs
 	 */
