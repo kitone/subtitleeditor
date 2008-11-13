@@ -20,6 +20,8 @@ FILES = \
 				utility.cc \
 				gstreamer_utility.h \
 				gstreamer_utility.cc \
+				gtkmm_utility.h \
+				gtkmm_utility.cc \
 				Config.h \
 				Config.cc \
 				Signal.h \

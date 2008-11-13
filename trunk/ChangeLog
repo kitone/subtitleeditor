@@ -1,5 +1,15 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/gtkmm_utility.cc:
+	* src/gtkmm_utility.h:
+	New files.
+
+	* src/utility.h:
+	define SE_DEV_VALUE for dev help.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade:
 	Fix: do not translate stock items. (Patch: Luboš Staněk)
 

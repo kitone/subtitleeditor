@@ -62,6 +62,13 @@
 
 
 /*
+ * Return one of the values depending on whether 
+ * environment variable SE_DEV is defined or not.
+ */
+#define SE_DEV_VALUE(value, dev_value) ((Glib::getenv("SE_DEV") == "") ? (value) : (dev_value))
+	
+
+/*
  *
  */
 Glib::ustring get_iso_name_for_lang_code(const Glib::ustring &code);
