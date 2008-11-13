@@ -74,11 +74,6 @@
 Glib::ustring get_iso_name_for_lang_code(const Glib::ustring &code);
 
 /*
- *	
- */
-Glib::ustring get_share_dir(const Glib::ustring &file);
-
-/*
  *	the profile name for the config dir
  *	~/config/subtitleeditor/{profile}
  */

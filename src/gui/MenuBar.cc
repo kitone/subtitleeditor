@@ -89,7 +89,11 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
  */
 void MenuBar::create_ui_from_file()
 {
-	m_refUIManager->add_ui_from_file(get_share_dir("menubar.xml"));
+	Glib::ustring menubar_xml = Glib::build_filename(
+			SE_DEV_VALUE(PACKAGE_SHARE_DIR, PACKAGE_SHARE_DIR_DEV),
+			"menubar.xml");
+
+	m_refUIManager->add_ui_from_file(menubar_xml);
 
 	pack_start(*m_refUIManager->get_widget("/menubar"), false, false);
 
