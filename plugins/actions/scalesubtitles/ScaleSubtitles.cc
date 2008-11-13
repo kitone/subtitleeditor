@@ -22,6 +22,7 @@
  
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 #include <gui/SpinButtonTime.h>
 
 /*
@@ -295,35 +296,19 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
-	}
-
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
 		Document *doc = get_current_document();
-
-		g_return_val_if_fail(doc, false);
+		g_return_if_fail(doc);
 
 		// create dialog
-		DialogScaleSubtitles *dialog = utility::get_widget_derived<DialogScaleSubtitles>(
-							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-							"dialog-scale-subtitles.glade", 
-							"dialog-scale-subtitles");
-
-		g_return_val_if_fail(dialog, false);
+		std::auto_ptr<DialogScaleSubtitles> dialog(
+				gtkmm_utility::get_widget_derived<DialogScaleSubtitles>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-scale-subtitles.glade", 
+						"dialog-scale-subtitles"));
 
 		dialog->signal_scale.connect(
 				sigc::mem_fun(*this, &ScaleSubtitlesPlugin::scale));
 		dialog->execute(doc);
-
-		delete dialog;
-
-		return true;
 	}
 	
 

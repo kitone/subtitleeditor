@@ -23,6 +23,7 @@
 #include <extension/Action.h>
 #include <utility.h>
 #include <glib/gregex.h>
+#include <gtkmm_utility.h>
 
 /*
  * FIXME: Remove Me
@@ -548,18 +549,14 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		DialogFindAndReplace *dialog = utility::get_widget_derived<DialogFindAndReplace>(
-							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-							"dialog-find-and-replace.glade", 
-							"dialog-find-and-replace");
-
-		g_return_if_fail(dialog);
+		std::auto_ptr<DialogFindAndReplace> dialog(
+				gtkmm_utility::get_widget_derived<DialogFindAndReplace>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-find-and-replace.glade", 
+						"dialog-find-and-replace"));
 
 		Document *doc = get_current_document();
-		
 		dialog->execute(doc);
-
-		delete dialog;
 	}
 
 	/*

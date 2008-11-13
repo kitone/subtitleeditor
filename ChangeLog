@@ -1,5 +1,22 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* plugins/actions/changeframerate/ChangeFramerate.cc:
+	* plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:
+	* plugins/actions/errorchecking/ErrorCheckingPlugin.cc:
+	* plugins/actions/errorchecking/ErrorCheckingPreferences.h:
+	* plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:
+	* plugins/actions/findandreplace/FindAndReplace.cc:
+	* plugins/actions/movesubtitles/MoveSubtitles.cc:
+	* plugins/actions/preferences/PreferencesPlugin.cc:
+	* plugins/actions/scalesubtitles/ScaleSubtitles.cc:
+	* plugins/actions/spellchecking/SpellChecking.cc:
+	* plugins/actions/splitdocument/SplitDocument.cc:
+	* plugins/actions/styleeditor/StyleEditor.cc:
+	* plugins/actions/viewmanager/ViewManager.cc:
+	Migrate to gktmm_utility::get_widget_derived.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* src/ExtensionManager.cc:
 	Support SE_DEV.
 

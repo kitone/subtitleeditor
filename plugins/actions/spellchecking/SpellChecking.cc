@@ -24,6 +24,7 @@
 #include <iostream>
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 #include "SpellChecking.h"
 
 /*
@@ -670,7 +671,7 @@ public:
 
 		action_group->add(
 				Gtk::Action::create("spell-checking", Gtk::Stock::SPELL_CHECK, _("_Spell Check"), _("Launch the spell checking")), Gtk::AccelKey("F7"),
-					sigc::mem_fun(*this, &SpellCheckingPlugin::on_scale_subtitles));
+					sigc::mem_fun(*this, &SpellCheckingPlugin::on_execute));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -712,37 +713,21 @@ protected:
 	/*
 	 *
 	 */
-	void on_scale_subtitles()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		execute();
-	}
-
-	/*
-	 *
-	 */
-	bool execute()
+	void on_execute()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
-
-		g_return_val_if_fail(doc, false);
+		g_return_if_fail(doc);
 
 		// create dialog
-		DialogSpellChecking *dialog = utility::get_widget_derived<DialogSpellChecking>(
-							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-							"dialog-spell-checking.glade", 
-							"dialog-spell-checking");
-
-		g_return_val_if_fail(dialog, false);
+		std::auto_ptr<DialogSpellChecking> dialog(
+				gtkmm_utility::get_widget_derived<DialogSpellChecking>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-spell-checking.glade", 
+						"dialog-spell-checking"));
 
 		dialog->execute(doc);
-
-		delete dialog;
-
-		return true;
 	}
 
 protected:

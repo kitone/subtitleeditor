@@ -22,6 +22,7 @@
 
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 
 /*
  *
@@ -325,18 +326,17 @@ protected:
 		Gtk::TreeIter selected = m_treeview->get_selection()->get_selected();
 		if(selected)
 		{
-			DialogViewEdit *dialog = utility::get_widget_derived<DialogViewEdit>(
-								(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-								"dialog-view-manager.glade", 
-								"dialog-view-edit");
+			std::auto_ptr<DialogViewEdit> dialog(
+					gtkmm_utility::get_widget_derived<DialogViewEdit>(
+							SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+							"dialog-view-manager.glade", 
+							"dialog-view-edit"));
 			
 			Glib::ustring columns = (*selected)[m_column_record.columns];
 
 			dialog->execute(columns);
 			// updated with the new columns displayed
 			(*selected)[m_column_record.columns] = columns;
-
-			delete dialog;
 		}
 	}
 
@@ -501,18 +501,17 @@ public:
 	 */
 	void on_view_manager()
 	{
-		DialogViewManager *dialog = utility::get_widget_derived<DialogViewManager>(
-								(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,	
-								"dialog-view-manager.glade", 
-								"dialog-view-manager");
+		std::auto_ptr<DialogViewManager> dialog(
+				gtkmm_utility::get_widget_derived<DialogViewManager>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-view-manager.glade", 
+						"dialog-view-manager"));
 
 		dialog->execute();
 
 		deactivate();
 		activate();
 		post_activate();
-
-		delete dialog;
 	}
 
 protected:

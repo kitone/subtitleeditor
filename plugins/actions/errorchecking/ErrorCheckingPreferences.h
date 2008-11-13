@@ -25,7 +25,7 @@
 
 #include "ErrorChecking.h"
 #include <memory>
-
+#include <gtkmm_utility.h>
 /*
  *
  */
@@ -80,8 +80,8 @@ public:
 	static void create(Gtk::Window &parent, std::vector<ErrorChecking*> &list)
 	{
 		std::auto_ptr<DialogErrorCheckingPreferences> dialog(
-				utility::get_widget_derived<DialogErrorCheckingPreferences>(
-					(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
+				gtkmm_utility::get_widget_derived<DialogErrorCheckingPreferences>(
+					SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
 					"dialog-error-checking-preferences.glade", 
 					"dialog-error-checking-preferences"));
 
