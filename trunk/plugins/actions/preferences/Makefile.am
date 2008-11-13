@@ -26,8 +26,8 @@ libpreferences_la_SOURCES = \
 libpreferences_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libpreferences_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
 
-actionplugin_in_files = preferences.se-plugin.desktop.in
-actionplugin_DATA = $(actionplugin_in_files:.se-plugin.desktop.in=.se-plugin)
+actionplugin_in_files = preferences.se-plugin.in
+actionplugin_DATA = $(actionplugin_in_files:.se-plugin.in=.se-plugin)
 
 @INTLTOOL_SE_PLUGIN_RULE@
 

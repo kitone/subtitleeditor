@@ -28,8 +28,8 @@ liberrorchecking_la_SOURCES = \
 liberrorchecking_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 liberrorchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
 
-actionplugin_in_files = errorchecking.se-plugin.desktop.in
-actionplugin_DATA = $(actionplugin_in_files:.se-plugin.desktop.in=.se-plugin)
+actionplugin_in_files = errorchecking.se-plugin.in
+actionplugin_DATA = $(actionplugin_in_files:.se-plugin.in=.se-plugin)
 
 @INTLTOOL_SE_PLUGIN_RULE@
 

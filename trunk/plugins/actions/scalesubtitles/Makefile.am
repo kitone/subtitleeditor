@@ -18,8 +18,8 @@ libscalesubtitles_la_SOURCES = \
 libscalesubtitles_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libscalesubtitles_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
 
-actionplugin_in_files = scalesubtitles.se-plugin.desktop.in
-actionplugin_DATA = $(actionplugin_in_files:.se-plugin.desktop.in=.se-plugin)
+actionplugin_in_files = scalesubtitles.se-plugin.in
+actionplugin_DATA = $(actionplugin_in_files:.se-plugin.in=.se-plugin)
 
 @INTLTOOL_SE_PLUGIN_RULE@
 
