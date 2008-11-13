@@ -1,5 +1,10 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade:
+	Fix: do not translate stock items. (Patch: Luboš Staněk)
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/gstreamer_utility.cc:
 	* src/gstreamer_utility.h:
