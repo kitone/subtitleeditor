@@ -23,6 +23,7 @@
 #include <extension/Action.h>
 #include <utility.h>
 #include <gtkmm_utility.h>
+#include <widget_config_utility.h>
 #include <gui/DialogFileChooser.h>
 
 /*
@@ -36,7 +37,7 @@ public:
 	{
 		Gtk::Entry* entry = NULL;
 		xml->get_widget("entry-video-player-command", entry);
-		WidgetToConfig::read_config_and_connect(entry, "external-video-player", "command");
+		widget_config::read_config_and_connect(entry, "external-video-player", "command");
 	}
 
 	static void create()

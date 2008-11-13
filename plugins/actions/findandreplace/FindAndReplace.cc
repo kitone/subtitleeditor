@@ -24,6 +24,7 @@
 #include <utility.h>
 #include <glib/gregex.h>
 #include <gtkmm_utility.h>
+#include <widget_config_utility.h>
 
 /*
  * FIXME: Remove Me
@@ -185,10 +186,10 @@ public:
 		refGlade->get_widget("button-replace", m_buttonReplace);
 		refGlade->get_widget("button-replace-all", m_buttonReplaceAll);
 
-		WidgetToConfig::read_config_and_connect(m_entryPattern, "dialog-find-and-replace", "find");
-		WidgetToConfig::read_config_and_connect(m_entryReplaceWith, "dialog-find-and-replace", "replace-with");
-		WidgetToConfig::read_config_and_connect(m_checkIgnoreCase, "dialog-find-and-replace", "ignore-case");
-		WidgetToConfig::read_config_and_connect(m_checkUsedRegularExpression, "dialog-find-and-replace", "used-regular-expression");
+		widget_config::read_config_and_connect(m_entryPattern, "dialog-find-and-replace", "find");
+		widget_config::read_config_and_connect(m_entryReplaceWith, "dialog-find-and-replace", "replace-with");
+		widget_config::read_config_and_connect(m_checkIgnoreCase, "dialog-find-and-replace", "ignore-case");
+		widget_config::read_config_and_connect(m_checkUsedRegularExpression, "dialog-find-and-replace", "used-regular-expression");
 
 		m_entryPattern->grab_focus();
 		m_entryPattern->signal_activate().connect(

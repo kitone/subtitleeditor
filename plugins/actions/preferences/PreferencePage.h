@@ -26,7 +26,7 @@
 #include "utility.h"
 #include <gtkmm.h>
 #include <libglademm/xml.h>
-
+#include <widget_config_utility.h>
 
 class PreferencePage : public Gtk::VBox
 {
@@ -53,7 +53,7 @@ public:
 
 		refGlade->get_widget(widget_name, widget);
 
-		WidgetToConfig::read_config_and_connect(widget, config_group, config_key);
+		widget_config::read_config_and_connect(widget, config_group, config_key);
 
 		return widget;
 	}
@@ -72,7 +72,7 @@ public:
 
 		refGlade->get_widget_derived(widget_name, widget);
 
-		WidgetToConfig::read_config_and_connect(widget, config_group, config_key);
+		widget_config::read_config_and_connect(widget, config_group, config_key);
 
 		return widget;
 	}
