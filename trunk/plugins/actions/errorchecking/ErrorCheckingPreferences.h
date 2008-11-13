@@ -26,6 +26,8 @@
 #include "ErrorChecking.h"
 #include <memory>
 #include <gtkmm_utility.h>
+#include <widget_config_utility.h>
+
 /*
  *
  */
@@ -102,7 +104,7 @@ public:
 
 		refGlade->get_widget(widget_name, widget);
 
-		WidgetToConfig::read_config_and_connect(widget, config_group, config_key);
+		widget_config::read_config_and_connect(widget, config_group, config_key);
 	}
 
 	/*

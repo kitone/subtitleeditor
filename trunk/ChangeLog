@@ -1,5 +1,17 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* plugins/actions/errorchecking/ErrorCheckingPreferences.h:
+	* plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:
+	* plugins/actions/findandreplace/FindAndReplace.cc:
+	* plugins/actions/preferences/PreferencePage.h:
+	Migrate to widget_config_utility.
+
+	* src/utility.cc:
+	* src/utility.h:
+	Remove WidgetToConfig code.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/widget_config_utility.cc:
 	* src/widget_config_utility.h:

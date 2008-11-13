@@ -247,29 +247,4 @@ namespace utility
 	
 }
 
-/*
- *
- */
-namespace WidgetToConfig
-{
-	/*
-	 *
-	 */
-	void connect(Gtk::Widget *widget, const Glib::ustring &group, const Glib::ustring &key);
-
-	/*
-	 *
-	 */
-	void read_config(Gtk::Widget *widget, const Glib::ustring &group, const Glib::ustring &key);
-
-	/*
-	 *
-	 */
-	void read_config_and_connect(
-													Gtk::Widget *widget, 
-													const Glib::ustring &group, 
-													const Glib::ustring &key);
-}
-
-
 #endif//_utility_h
