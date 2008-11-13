@@ -22,6 +22,7 @@
  
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 #include <gui/SpinButtonTime.h>
 
 /*
@@ -165,12 +166,11 @@ protected:
 		g_return_val_if_fail(doc, false);
 
 		// create dialog
-		DialogMoveSubtitles *dialog = utility::get_widget_derived<DialogMoveSubtitles>(
-							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-							"dialog-move-subtitles.glade", 
-							"dialog-move-subtitles");
-
-		g_return_val_if_fail(dialog, false);
+		std::auto_ptr<DialogMoveSubtitles> dialog(
+				gtkmm_utility::get_widget_derived<DialogMoveSubtitles>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-move-subtitles.glade", 
+						"dialog-move-subtitles"));
 
 		Subtitle first_selected_subtitle = doc->subtitles().get_first_selected();
 
@@ -197,8 +197,6 @@ protected:
 		{
 			doc->flash_message(_("Please select at least a subtitle."));
 		}
-
-		delete dialog;
 
 		return true;
 	}

@@ -23,6 +23,7 @@
 #include "StyleEditor.h"
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 #include <DocumentSystem.h>
 #include <Color.h>
 
@@ -487,33 +488,17 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
-	}
-
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
 		Document *doc = get_current_document();
-
-		g_return_val_if_fail(doc, false);
+		g_return_if_fail(doc);
 
 		// create dialog
-		DialogStyleEditor *dialog = utility::get_widget_derived<DialogStyleEditor>(
-							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-							"dialog-style-editor.glade", 
-							"dialog-style-editor");
-
-		g_return_val_if_fail(dialog, false);
+		std::auto_ptr<DialogStyleEditor> dialog(
+				gtkmm_utility::get_widget_derived<DialogStyleEditor>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-style-editor.glade", 
+						"dialog-style-editor"));
 
 		dialog->execute(doc);
-
-		delete dialog;
-
-		return true;
 	}
 	
 protected:

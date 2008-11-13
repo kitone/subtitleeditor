@@ -23,6 +23,7 @@
 #include <memory>
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 #include "InterfacePage.h"
 #include "DocumentPage.h"
 #include "VideoPlayerPage.h"
@@ -66,10 +67,10 @@ public:
 	static void create()
 	{
 		std::auto_ptr<DialogPreferences> dialog(
-				utility::get_widget_derived<DialogPreferences>(
-									(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-									"dialog-preferences.glade", 
-									"dialog-preferences"));
+				gtkmm_utility::get_widget_derived<DialogPreferences>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-preferences.glade", 
+						"dialog-preferences"));
 
 		dialog->run();
 	}

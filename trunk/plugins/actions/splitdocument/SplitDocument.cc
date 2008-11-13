@@ -23,7 +23,7 @@
 #include <extension/Action.h>
 #include <utility.h>
 #include <DocumentSystem.h>
-
+#include <gtkmm_utility.h>
 /*
  *
  */
@@ -180,33 +180,17 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
-	}
-
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
 		Document *doc = get_current_document();
-
-		g_return_val_if_fail(doc, false);
+		g_return_if_fail(doc);
 
 		// create dialog
-		DialogSplitDocument *dialog = utility::get_widget_derived<DialogSplitDocument>(
-							(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-							"dialog-split-document.glade", 
-							"dialog-split-document");
-
-		g_return_val_if_fail(dialog, false);
+		std::auto_ptr<DialogSplitDocument> dialog(
+				gtkmm_utility::get_widget_derived<DialogSplitDocument>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-split-document.glade", 
+						"dialog-split-document"));
 
 		dialog->execute(doc);
-
-		delete dialog;
-
-		return true;
 	}
 	
 protected:

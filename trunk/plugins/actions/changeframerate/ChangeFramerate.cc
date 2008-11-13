@@ -22,6 +22,7 @@
  
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 #include <gui/DialogUtility.h>
 
 /*
@@ -275,38 +276,21 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
-	}
-
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
 		Document *doc = get_current_document();
+		g_return_if_fail(doc);
 
-		g_return_val_if_fail(doc, false);
-
-		Glib::ustring share_path = (Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV;
-		
 		// create dialog
-		DialogChangeFramerate *dialog = utility::get_widget_derived<DialogChangeFramerate>(
-				share_path, "dialog-change-framerate.glade", "dialog-change-framerate");
-
-		g_return_val_if_fail(dialog, false);
+		std::auto_ptr<DialogChangeFramerate> dialog(
+				gtkmm_utility::get_widget_derived<DialogChangeFramerate>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV), 
+						"dialog-change-framerate.glade", 
+						"dialog-change-framerate"));
 
 		dialog->signal_change_framerate.connect(
 				sigc::mem_fun(*this, &ChangeFrameratePlugin::change_framerate));
 
 		dialog->execute();
-
-		delete dialog;
-
-		return true;
 	}
-	
 
 	/*
 	 *

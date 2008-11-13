@@ -22,6 +22,7 @@
 
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 #include <gui/DialogFileChooser.h>
 
 /*
@@ -41,10 +42,10 @@ public:
 	static void create()
 	{
 		std::auto_ptr<DialogExternalVideoPreferences> dialog(
-				utility::get_widget_derived<DialogExternalVideoPreferences>(
-									(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-									"dialog-external-video-player-preferences.glade", 
-									"dialog-external-video-player-preferences"));
+				gtkmm_utility::get_widget_derived<DialogExternalVideoPreferences>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-external-video-player-preferences.glade", 
+						"dialog-external-video-player-preferences"));
 
 		dialog->run();
 	}

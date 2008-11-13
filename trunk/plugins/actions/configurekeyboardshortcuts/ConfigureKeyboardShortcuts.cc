@@ -25,6 +25,7 @@
 #include <gtk/gtk.h>
 #include <extension/Action.h>
 #include <utility.h>
+#include <gtkmm_utility.h>
 
 
 /*
@@ -468,15 +469,13 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		DialogConfigureKeyboardShortcuts *dialog = 
-			utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(
-					(Glib::getenv("SE_DEV") == "") ? SE_PLUGIN_PATH_GLADE : SE_PLUGIN_PATH_DEV,
-					"dialog-configure-keyboard-shortcuts.glade", 
-					"dialog-configure-keyboard-shortcuts");
+		std::auto_ptr<DialogConfigureKeyboardShortcuts> dialog(
+				gtkmm_utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
+						"dialog-configure-keyboard-shortcuts.glade", 
+						"dialog-configure-keyboard-shortcuts"));
 
 		dialog->execute(get_ui_manager());
-
-		delete dialog;
 	}
 
 protected:
