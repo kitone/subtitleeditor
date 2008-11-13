@@ -23,7 +23,7 @@
 #include "DialogCharacterCodings.h"
 #include "Encodings.h"
 #include "Config.h"
-
+#include "gtkmm_utility.h"
 /*
  *
  */
@@ -297,7 +297,10 @@ void DialogCharacterCodings::on_row_displayed_activated(const Gtk::TreeModel::Pa
 std::auto_ptr<DialogCharacterCodings> DialogCharacterCodings::create()
 {
 	std::auto_ptr<DialogCharacterCodings> ptr(
-			utility::get_widget_derived<DialogCharacterCodings>("dialog-character-codings.glade", "dialog-character-codings") );
+			gtkmm_utility::get_widget_derived<DialogCharacterCodings>(
+				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
+				"dialog-character-codings.glade", 
+				"dialog-character-codings") );
 
 	return ptr;
 }

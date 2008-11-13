@@ -22,6 +22,7 @@
 
 #include "DialogFileChooser.h"
 #include "utility.h"
+#include "gtkmm_utility.h"
 #include "DialogCharacterCodings.h"
 #include "ComboBoxEncoding.h"
 #include "ComboBoxSubtitleFormat.h"
@@ -177,7 +178,10 @@ void DialogOpenDocument::show_video(bool state)
 DialogOpenDocument::auto_ptr DialogOpenDocument::create()
 {
 	auto_ptr ptr( 
-			utility::get_widget_derived<DialogOpenDocument>("dialog-open-document.glade", "dialog-open-document") );
+			gtkmm_utility::get_widget_derived<DialogOpenDocument>(
+				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
+				"dialog-open-document.glade", 
+				"dialog-open-document") );
 
 	return ptr;
 }
@@ -285,7 +289,10 @@ Glib::ustring DialogSaveDocument::get_newline() const
 DialogSaveDocument::auto_ptr DialogSaveDocument::create()
 {
 	auto_ptr ptr( 
-			utility::get_widget_derived<DialogSaveDocument>("dialog-save-document.glade", "dialog-save-document") );
+			gtkmm_utility::get_widget_derived<DialogSaveDocument>(
+				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV), 
+				"dialog-save-document.glade", 
+				"dialog-save-document") );
 
 	return ptr;
 }
@@ -324,7 +331,10 @@ Glib::ustring DialogImportText::get_encoding() const
 DialogImportText::auto_ptr DialogImportText::create()
 {
 	auto_ptr ptr( 
-			utility::get_widget_derived<DialogImportText>("dialog-import-text.glade", "dialog-import-text") );
+			gtkmm_utility::get_widget_derived<DialogImportText>(
+				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV), 
+				"dialog-import-text.glade", 
+				"dialog-import-text") );
 
 	return ptr;
 }
@@ -376,7 +386,10 @@ Glib::ustring DialogExportText::get_newline() const
 DialogExportText::auto_ptr DialogExportText::create()
 {
 	auto_ptr ptr( 
-			utility::get_widget_derived<DialogExportText>("dialog-export-text.glade", "dialog-export-text") );
+			gtkmm_utility::get_widget_derived<DialogExportText>(
+				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
+				"dialog-export-text.glade", 
+				"dialog-export-text") );
 
 	return ptr;
 }

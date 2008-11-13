@@ -1,5 +1,18 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* src/ExtensionManager.cc:
+	Support SE_DEV.
+
+	* src/Makefile.am:
+	Add DEV paths.
+
+	* src/gui/DialogCharacterCodings.cc:
+	* src/gui/DialogFileChooser.cc:
+	* src/main.cc:
+	Migrate to gktmm_utility::get_widget_derived.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/gtkmm_utility.cc:
 	* src/gtkmm_utility.h:
