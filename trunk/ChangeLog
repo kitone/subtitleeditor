@@ -1,5 +1,14 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* plugins/actions/spellchecking/SpellChecking.h:
+	* src/gtkmm_utility.h:
+	Move ComboBoxText to spellChecking file.
+
+	* src/utility.h:
+	Remove utility::get_widget_derived functions.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* plugins/actions/changeframerate/ChangeFramerate.cc:
 	* plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:
 	* plugins/actions/errorchecking/ErrorCheckingPlugin.cc:
