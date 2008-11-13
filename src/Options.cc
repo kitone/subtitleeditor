@@ -81,15 +81,6 @@ OptionGroup::OptionGroup()
 	entryWaveform.set_arg_description(_("FILE"));
 	add_entry(entryWaveform, waveform);
 
-#ifdef ENABLE_UNITTEST
-	launch_unittest = false;
-	Glib::OptionEntry entryUnitTest;
-	entryUnitTest.set_short_name('u');
-	entryUnitTest.set_long_name("unittest");
-	entryUnitTest.set_description("Launch a unit test suite");
-	add_entry(entryUnitTest, launch_unittest);
-#endif
-
 #ifdef DEBUG
 
 #define add_debug_option(name, value) { \

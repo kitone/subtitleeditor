@@ -39,10 +39,6 @@
 	#include <gtkglmm.h>
 #endif//ENABLE_GL
 
-#ifdef ENABLE_UNITTEST
-	bool launch_unittest();
-#endif//ENABLE_UNITTEST
-
 /*
  *
  */
@@ -254,13 +250,6 @@ int main(int argc, char *argv[])
 	
 	gst_init(&argc, &argv);
 
-#ifdef ENABLE_UNITTEST
-	if(options.launch_unittest)
-	{
-		return launch_unittest();
-	}
-#endif//ENABLE_UNITTEST
-	
 	// Run Application
 	Application*	application = utility::get_widget_derived<Application>("subtitleeditor.glade", "window-main");
 

@@ -1,5 +1,12 @@
 2008-11-13  kitone  <kitone@gna.org>
 
+	* src/Options.cc:
+	* src/Options.h:
+	* src/main.cc:
+	Remove unittest.
+
+2008-11-13  kitone  <kitone@gna.org>
+
 	* src/Default.h:
 	* src/Makefile.am:
 	* src/unittest/adobe.encore.dvd.ntsc.format:
