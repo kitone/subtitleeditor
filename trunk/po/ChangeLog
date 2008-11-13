@@ -1,6 +1,14 @@
 2008-11-13  kitone  <kitone@gna.org>
 
 	* POTFILES.in:
+	Add [type: gettext/ini] before the se-plugin name.
+
+	* subtitleeditor.pot:
+	Update with the last files (include se-plugin.in)
+
+2008-11-13  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
 	Update with new filename. se-plugin.desktop.in to se-plugin.in
 
 2008-11-12  kitone  <kitone@gna.org>
