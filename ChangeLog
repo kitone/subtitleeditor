@@ -1,5 +1,18 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* plugins/actions/changeframerate/ChangeFramerate.cc:
+	* plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:
+	* plugins/actions/findandreplace/FindAndReplace.cc:
+	* plugins/actions/movesubtitles/MoveSubtitles.cc:
+	* plugins/actions/scalesubtitles/ScaleSubtitles.cc:
+	* plugins/actions/spellchecking/SpellChecking.cc:
+	* plugins/actions/splitdocument/SplitDocument.cc:
+	* plugins/actions/styleeditor/StyleEditor.cc:
+	* plugins/actions/viewmanager/ViewManager.cc:
+	Fix: missing header memory. (Patch: Luboš Staněk)
+
+2008-11-14  kitone  <kitone@gna.org>
+
 	* configure.in:
 	* plugins/actions/about/Makefile.am:
 	* plugins/actions/adjusttime/Makefile.am:

@@ -26,7 +26,7 @@
 #include <gtkmm_utility.h>
 #include <DocumentSystem.h>
 #include <Color.h>
-
+#include <memory>
 
 class ColumnNameRecorder : public Gtk::TreeModel::ColumnRecord
 {

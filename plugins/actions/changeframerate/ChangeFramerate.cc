@@ -24,6 +24,7 @@
 #include <utility.h>
 #include <gtkmm_utility.h>
 #include <gui/DialogUtility.h>
+#include <memory>
 
 /*
  * TODO Add FPS finder
