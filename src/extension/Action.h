@@ -25,6 +25,7 @@
 
 #include <gtkmm.h>
 #include "SubtitleEditorWindow.h"
+#include "Document.h"
 #include "Config.h"
 #include "Extension.h"
 

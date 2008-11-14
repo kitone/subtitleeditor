@@ -22,6 +22,7 @@
 
 #include <utility.h>
 #include <extension/Action.h>
+#include <Player.h>
 #include <gui/DialogFileChooser.h>
 
 

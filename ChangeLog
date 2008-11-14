@@ -1,5 +1,14 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* plugins/actions/documentmanagement/DocumentManagement.cc:
+	* plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:
+	* src/SubtitleEditorWindow.h:
+	* src/extension/Action.h:
+	* src/gui/Application.h:
+	Hide Player and WaveformEditor.
+
+2008-11-14  kitone  <kitone@gna.org>
+
 	* src/vp/VideoPlayer.cc:
 	* src/vp/VideoPlayer.h:
 	Hide GStreamerPlayer for Player.
