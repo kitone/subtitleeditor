@@ -24,7 +24,7 @@
  */
 
 #include <gtkmm.h>
-#include "GStreamerPlayer.h"
+#include "Player.h"
 
 
 /*
@@ -54,7 +54,7 @@ public:
 	/*
 	 * Return the gstreamer player.
 	 */
-	GStreamerPlayer* player();
+	Player* player();
 
 	/*
 	 * The player state has changed. 
@@ -105,7 +105,7 @@ public:
 
 protected:
 	Subtitle m_subtitle;
-	GStreamerPlayer* m_player;
+	Player* m_player;
 
 	bool m_cfg_display_translated_subtitle;
 };
