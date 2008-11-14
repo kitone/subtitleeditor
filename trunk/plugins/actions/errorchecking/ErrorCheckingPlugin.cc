@@ -24,7 +24,6 @@
 #include <extension/Action.h>
 #include <utility.h>
 #include <gtkmm_utility.h>
-#include <DocumentSystem.h>
 
 #include "ErrorChecking.h"
 #include "Overlapping.h"
@@ -35,10 +34,6 @@
 #include "MaxLinePerSubtitle.h"
 #include "MinDisplayTime.h"
 #include "ErrorCheckingPreferences.h"
-
-/*
- * TODO: remove DocumentSystem Action->update_ui() { update window }
- */
 
 /*
  *
@@ -143,6 +138,14 @@ public:
 	/*
 	 *
 	 */
+	static DialogErrorChecking* get_instance()
+	{
+		return m_static_instance;
+	}
+
+	/*
+	 *
+	 */
 	DialogErrorChecking(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::Window(cobject)
 	{
@@ -157,9 +160,6 @@ public:
 
 		create_treeview();
 		refresh();
-
-		DocumentSystem::getInstance().signal_current_document_changed().connect(
-				sigc::mem_fun(*this, &DialogErrorChecking::on_current_document_changed));
 	}
 
 	/*
@@ -841,6 +841,10 @@ public:
 
 		ui->remove_ui(ui_id);
 		ui->remove_action_group(action_group);
+
+		DialogErrorChecking* dialog = DialogErrorChecking::get_instance();
+		if(dialog != NULL)
+			dialog->on_quit();
 	}
 
 	/*
@@ -853,6 +857,10 @@ public:
 		bool visible = (get_current_document() != NULL);
 
 		action_group->get_action("error-checking")->set_sensitive(visible);
+
+		DialogErrorChecking* dialog = DialogErrorChecking::get_instance();
+		if(dialog != NULL)
+			dialog->on_current_document_changed(get_current_document());
 	}
 
 protected:
