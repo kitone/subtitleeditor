@@ -1,5 +1,10 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* plugins/actions/viewmanager/ViewManager.cc:
+	Clean code and fix exec warning.
+
+2008-11-14  kitone  <kitone@gna.org>
+
 	* plugins/actions/about/about.se-plugin.in:
 	* plugins/actions/adjusttime/adjusttime.se-plugin.in:
 	* plugins/actions/applytranslation/applytranslation.se-plugin.in:

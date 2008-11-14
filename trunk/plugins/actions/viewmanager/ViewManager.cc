@@ -421,55 +421,43 @@ public:
 		// user settings
 		get_config().get_keys("view-manager", keys);
 
-		std::list<Glib::ustring>::const_iterator it;
-
-		for(it = keys.begin(); it != keys.end(); ++it)
+		for(std::list<Glib::ustring>::const_iterator it = keys.begin(); it != keys.end(); ++it)
 		{
 			Glib::ustring name = *it;
 
 			action_group->add(
 				Gtk::Action::create(name, name, _("Switch to this view")),
-					sigc::bind( sigc::mem_fun(*this, &ViewManagerPlugin::on_set_view), name));
-				
+					sigc::bind( sigc::mem_fun(*this, &ViewManagerPlugin::on_set_view), name));			
 		}
 
 		// Set View...
 		action_group->add(
-			Gtk::Action::create("view-manager", Gtk::Stock::PREFERENCES, _("View _Manager"), _("Manage the views")),
+			Gtk::Action::create("view-manager-preferences", Gtk::Stock::PREFERENCES, _("View _Manager"), _("Manage the views")),
 					sigc::mem_fun(*this, &ViewManagerPlugin::on_view_manager));
 
-		get_ui_manager()->insert_action_group(action_group);
-
-		post_activate();
-	}
-
-	/*
-	 *
-	 */
-	void post_activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
+		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+		ui->insert_action_group(action_group);
 
-		ui_id = ui->new_merge_id();
+		Glib::ustring submenu = 
+			"<ui>"
+			"	<menubar name='menubar'>"
+			"		<menu name='menu-view' action='menu-view'>"
+			"			<placeholder name='view-manager'>"
+			"				<placeholder name='placeholder'/>"
+			"				<menuitem action='view-manager-preferences'/>"
+			"			</placeholder>"
+			"		</menu>"
+			"	</menubar>"
+			"</ui>";
+		
+		ui_id = get_ui_manager()->add_ui_from_string(submenu);
 
-		std::list<Glib::ustring> keys;
-
-		if(get_config().get_keys("view-manager", keys))
+		// create items for the user view
+		for(std::list<Glib::ustring>::const_iterator it = keys.begin(); it != keys.end(); ++it)
 		{
-			std::list<Glib::ustring>::const_iterator it;
-
-			for(it = keys.begin(); it != keys.end(); ++it)
-			{
-				Glib::ustring name = *it;
-				
-				ui->add_ui(ui_id, "/menubar/menu-view/view-manager", name, name, Gtk::UI_MANAGER_AUTO, false);
-			}
+			ui->add_ui(ui_id, "/menubar/menu-view/view-manager/placeholder", *it, *it, Gtk::UI_MANAGER_AUTO, false);
 		}
-
-		ui->add_ui(ui_id, "/menubar/menu-view/view-manager", "view-manager", "view-manager", Gtk::UI_MANAGER_AUTO, false);
-
 		get_ui_manager()->ensure_update();
 	}
 
@@ -484,7 +472,6 @@ public:
 
 		ui->remove_ui(ui_id);
 		ui->remove_action_group(action_group);
-		ui->ensure_update();
 	}
 
 	/*
@@ -512,7 +499,6 @@ public:
 
 		deactivate();
 		activate();
-		post_activate();
 	}
 
 protected:
