@@ -85,12 +85,12 @@ protected:
 	 * Load the path and sub path to find extension description.
 	 * se-plugin file.
 	 */
-	void load_path(const Glib::ustring &path);
+	void load_path(const Glib::ustring &path, bool fhs_directory);
 
 	/*
 	 * Try to load an ExtensionInfo file.
 	 */
-	bool load_extension_info(const Glib::ustring &file);
+	bool load_extension_info(const Glib::ustring &file, bool fhs_directory);
 
 	/*
 	 * Try to activate the extension.

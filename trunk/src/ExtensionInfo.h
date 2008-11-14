@@ -115,6 +115,7 @@ protected:
 	Glib::Module* module;
 	bool active;
 	bool hidden;
+	bool fhs_directory;
 	Extension* extension;
 };
 

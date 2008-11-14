@@ -1,5 +1,49 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* configure.in:
+	* plugins/actions/about/Makefile.am:
+	* plugins/actions/adjusttime/Makefile.am:
+	* plugins/actions/applytranslation/Makefile.am:
+	* plugins/actions/changeframerate/Makefile.am:
+	* plugins/actions/combinesubtitles/Makefile.am:
+	* plugins/actions/command/Makefile.am:
+	* plugins/actions/configurekeyboardshortcuts/Makefile.am:
+	* plugins/actions/dialoguize/Makefile.am:
+	* plugins/actions/documentmanagement/Makefile.am:
+	* plugins/actions/duplicatesubtitle/Makefile.am:
+	* plugins/actions/editcell/Makefile.am:
+	* plugins/actions/errorchecking/Makefile.am:
+	* plugins/actions/extendlength/Makefile.am:
+	* plugins/actions/externalvideoplayer/Makefile.am:
+	* plugins/actions/findandreplace/Makefile.am:
+	* plugins/actions/insertsubtitle/Makefile.am:
+	* plugins/actions/italicize/Makefile.am:
+	* plugins/actions/joindocument/Makefile.am:
+	* plugins/actions/moveafterprecedingsubtitle/Makefile.am:
+	* plugins/actions/movesubtitles/Makefile.am:
+	* plugins/actions/plaintext/Makefile.am:
+	* plugins/actions/preferences/Makefile.am:
+	* plugins/actions/removesubtitle/Makefile.am:
+	* plugins/actions/reversetextandtranslation/Makefile.am:
+	* plugins/actions/scalesubtitles/Makefile.am:
+	* plugins/actions/selection/Makefile.am:
+	* plugins/actions/spellchecking/Makefile.am:
+	* plugins/actions/splitdocument/Makefile.am:
+	* plugins/actions/splitsubtitle/Makefile.am:
+	* plugins/actions/styleeditor/Makefile.am:
+	* plugins/actions/timemodemanagement/Makefile.am:
+	* plugins/actions/videoplayermanagement/Makefile.am:
+	* plugins/actions/viewmanager/Makefile.am:
+	* plugins/actions/wavefrommanagement/Makefile.am:
+	* src/ExtensionInfo.cc:
+	* src/ExtensionInfo.h:
+	* src/ExtensionManager.cc:
+	* src/ExtensionManager.h:
+	* src/Makefile.am:
+	Respect the Filesystem Hierarchy Standard.
+
+2008-11-14  kitone  <kitone@gna.org>
+
 	* plugins/actions/errorchecking/ErrorCheckingPlugin.cc:
 	Fix: segfault with exit of SE if the windows is open.
 
