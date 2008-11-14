@@ -26,7 +26,7 @@
 
 class Document;
 class Player;
-class WaveformEditor;
+class WaveformManager;
 
 class SubtitleEditorWindow
 {
@@ -65,7 +65,7 @@ public:
 	/*
 	 *
 	 */
-	virtual WaveformEditor* get_waveform_editor() = 0;
+	virtual WaveformManager* get_waveform_manager() = 0;
 
 	/*
 	 *

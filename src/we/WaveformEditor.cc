@@ -24,6 +24,7 @@
 #include "utility.h"
 #include "DocumentSystem.h"
 #include "SubtitleEditorWindow.h"
+#include "WaveformGenerator.h"
 
 /*
  *	HACK!
@@ -1105,3 +1106,18 @@ void WaveformEditor::on_config_waveform_changed(const Glib::ustring &key, const 
 		on_create_renderer();
 	}
 }
+
+/*
+ * Try to generate a wavefrom from the media.
+ */
+bool WaveformEditor::generate_waveform(const Glib::ustring &media_uri)
+{
+	Glib::RefPtr<Waveform> wf = WaveformGenerator::create(media_uri);
+	if(wf)
+	{
+		set_waveform(wf);
+		return true;
+	}
+	return false;
+}
+

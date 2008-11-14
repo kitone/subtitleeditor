@@ -1,5 +1,21 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* src/WaveformManager.h:
+	New interface for the waveform manager.
+
+	* plugins/actions/wavefrommanagement/WaveformManagement.cc:
+	* src/Makefile.am:
+	* src/SubtitleEditorWindow.h:
+	* src/Waveform.cc:
+	* src/gui/Application.cc:
+	* src/gui/Application.h:
+	* src/we/WaveformEditor.cc:
+	* src/we/WaveformEditor.h:
+	Move the WaveformEditor, gstreamer_utility from the libsubtitleeditor 
+	to subtitleeditor. Remove gstreamer dependence in libsubtitleeditor.
+
+2008-11-14  kitone  <kitone@gna.org>
+
 	* plugins/actions/documentmanagement/DocumentManagement.cc:
 	* plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:
 	* src/SubtitleEditorWindow.h:

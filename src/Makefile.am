@@ -40,8 +40,6 @@ LIB_SUBTITLEEDITOR_FILES = \
 	FileReader.h \
 	FileWriter.cc \
 	FileWriter.h \
-	gstreamer_utility.cc \
-	gstreamer_utility.h \
 	gtkmm_utility.cc \
 	gtkmm_utility.h \
 	Player.h \
@@ -80,14 +78,7 @@ LIB_SUBTITLEEDITOR_FILES = \
 	utility.h \
 	Waveform.cc \
 	Waveform.h \
-	we/WaveformEditor.cc \
-	we/WaveformEditor.h \
-	we/WaveformGenerator.cc \
-	we/WaveformGenerator.h \
-	we/WaveformRendererCairo.cc \
-	we/WaveformRenderer.cc \
-	we/WaveformRendererGL.cc \
-	we/WaveformRenderer.h \
+	WaveformManager.h \
 	widget_config_utility.cc \
 	widget_config_utility.h
 
@@ -135,10 +126,7 @@ libsubtitleeditor_la_SOURCES = \
 libsubtitleeditor_la_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \
 	$(LIBGLADEMM_CFLAGS) \
-	$(GSTREAMER_CFLAGS) \
 	$(LIBXML_CFLAGS) \
-	$(GTKGLEXT_CFLAGS) \
-	$(GL_CFLAGS) \
 	$(PACKAGE_DIRECTORY)
 
 
@@ -150,13 +138,23 @@ APPLICATION_FILES = \
 	gui/MenuBar.h \
 	gui/Statusbar.cc \
 	gui/Statusbar.h \
+	gstreamer_utility.cc \
+	gstreamer_utility.h \
 	main.cc \
 	Options.cc \
 	Options.h \
 	vp/GStreamerPlayer.cc \
 	vp/GStreamerPlayer.h \
 	vp/VideoPlayer.cc \
-	vp/VideoPlayer.h
+	vp/VideoPlayer.h \
+	we/WaveformEditor.cc \
+	we/WaveformEditor.h \
+	we/WaveformGenerator.cc \
+	we/WaveformGenerator.h \
+	we/WaveformRendererCairo.cc \
+	we/WaveformRenderer.cc \
+	we/WaveformRendererGL.cc \
+	we/WaveformRenderer.h
 
 bin_PROGRAMS = subtitleeditor
 

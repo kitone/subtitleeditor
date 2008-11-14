@@ -613,7 +613,7 @@ void Application::init(OptionGroup &options)
 		{
 			Glib::ustring uri = Glib::filename_to_uri(utility::create_full_path(waveform));
 
-			get_waveform_editor()->open_waveform(uri);
+			get_waveform_manager()->open_waveform(uri);
 		}
 		catch(const Glib::Error &ex)
 		{
@@ -687,7 +687,7 @@ Player* Application::get_player()
 /*
  *
  */
-WaveformEditor* Application::get_waveform_editor()
+WaveformManager* Application::get_waveform_manager()
 {
 	return m_waveform_editor;
 }

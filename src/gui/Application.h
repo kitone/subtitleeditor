@@ -68,7 +68,7 @@ public:
 	/*
 	 *
 	 */
-	WaveformEditor* get_waveform_editor();
+	WaveformManager* get_waveform_manager();
 
 protected:
 

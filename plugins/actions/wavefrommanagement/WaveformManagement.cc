@@ -23,8 +23,8 @@
 #include <gtkmm.h>
 #include <utility.h>
 #include <extension/Action.h>
-#include <we/WaveformEditor.h>
-#include <we/WaveformGenerator.h>
+#include <Player.h>
+#include <WaveformManager.h>
 #include <gui/DialogFileChooser.h>
 
 /*
@@ -38,7 +38,6 @@ public:
 	 *
 	 */
 	WaveformManagement()
-	:m_waveformEditor(NULL)
 	{
 		activate();
 		update_ui();
@@ -159,12 +158,12 @@ public:
 				"waveform/display", "waveform/display");
 		
 		// HACK
-		m_waveformEditor = get_subtitleeditor_window()->get_waveform_editor();
+		WaveformManager* wm = get_waveform_manager();
 		
-		m_waveformEditor->signal_waveform_changed().connect(
+		wm->signal_waveform_changed().connect(
 				sigc::mem_fun(*this, &WaveformManagement::update_ui));
 
-		m_waveformEditor->signal_waveform_changed().connect(
+		wm->signal_waveform_changed().connect(
 				sigc::mem_fun(*this, &WaveformManagement::on_waveform_changed));
 
 		get_config().signal_changed("waveform").connect(
@@ -191,7 +190,7 @@ public:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		bool has_waveform = m_waveformEditor->has_waveform();
+		bool has_waveform = get_waveform_manager()->has_waveform();
 
 		bool has_document = (get_current_document() != NULL);
 
@@ -212,6 +211,14 @@ public:
 protected:
 
 	/*
+	 *
+	 */
+	WaveformManager* get_waveform_manager()
+	{
+		return get_subtitleeditor_window()->get_waveform_manager();
+	}
+
+	/*
 	 * Launch the Dialog Open Waveform
 	 * and try to open the Waveform.
 	 * If is not a Waveform file launch the
@@ -228,15 +235,11 @@ protected:
 
 			Glib::ustring uri = dialog.get_uri();
 		
-			if(m_waveformEditor->open_waveform(uri) == false)
+			WaveformManager* wm = get_waveform_manager();
+			if(wm->open_waveform(uri) == false)
 			{
 				// try to create the Waveform from media
-				Glib::RefPtr<Waveform> wf = WaveformGenerator::create(uri);
-				
-				if(wf)
-				{
-					m_waveformEditor->set_waveform(wf);
-				}
+				wm->generate_waveform(uri);
 			}
 		}
 	}
@@ -248,7 +251,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		Glib::RefPtr<Waveform> wf = get_subtitleeditor_window()->get_waveform_editor()->get_waveform();
+		Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
 		if(wf)
 		{
 			Gtk::FileChooserDialog ui(_("Save Waveform"), Gtk::FILE_CHOOSER_ACTION_SAVE);
@@ -270,7 +273,7 @@ protected:
 	 */
 	void on_waveform_changed()
 	{
-		Glib::RefPtr<Waveform> wf = get_subtitleeditor_window()->get_waveform_editor()->get_waveform();
+		Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
 		if(wf)
 		{
 			get_subtitleeditor_window()->get_player()->open(wf->m_video_uri);
@@ -284,7 +287,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		m_waveformEditor->center_with_selected_subtitle();
+		get_waveform_manager()->center_with_selected_subtitle();
 	}
 
 	/*
@@ -294,7 +297,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		m_waveformEditor->zoom_in();
+		get_waveform_manager()->zoom_in();
 	}
 
 	/*
@@ -304,7 +307,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		m_waveformEditor->zoom_out();
+		get_waveform_manager()->zoom_out();
 	}
 
 	/*
@@ -314,7 +317,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		m_waveformEditor->zoom_selection();
+		get_waveform_manager()->zoom_selection();
 	}
 
 	/*
@@ -324,7 +327,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		m_waveformEditor->zoom_all();
+		get_waveform_manager()->zoom_all();
 	}
 
 	/*
@@ -409,7 +412,6 @@ protected:
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
-	WaveformEditor* m_waveformEditor;
 };
 
 
