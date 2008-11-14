@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Edit Cell
-_Description=Start the editing of the focused or the next cell.
+_Description=Starts editing of the focused or the next cell.
 Categorie=action
 Type=module
 Module=editcell

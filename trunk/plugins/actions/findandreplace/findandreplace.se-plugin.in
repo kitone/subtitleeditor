@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Find And Replace
-_Description=Search and replace with regular expressions support.
+_Description=Searches and replaces texts with regular expressions support.
 Categorie=action
 Type=module
 Module=findandreplace

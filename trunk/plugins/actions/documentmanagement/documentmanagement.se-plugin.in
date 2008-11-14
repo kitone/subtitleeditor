@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Document Management
-_Description=Document management as Open, Save, Save As...
+_Description=Manages the document (Open, Save, Save As...).
 Categorie=action
 Hidden=true
 Type=module

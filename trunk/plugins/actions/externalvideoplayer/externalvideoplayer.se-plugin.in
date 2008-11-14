@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=External Video Player
-_Description=Run external video player.
+_Description=Runs external video player.
 Categorie=action
 Type=module
 Module=externalvideoplayer

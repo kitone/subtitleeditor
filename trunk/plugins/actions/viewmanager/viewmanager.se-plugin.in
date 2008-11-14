@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=View Manager
-_Description=Manage multiple view of the columns of subtitle
+_Description=Manages multiple views of the columns of a subtitle.
 Categorie=action
 Type=module
 Module=viewmanager

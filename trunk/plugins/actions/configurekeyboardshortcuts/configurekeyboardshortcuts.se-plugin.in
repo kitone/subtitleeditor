@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
-_Name=Configure Keyboard Shortcuts
-_Description=FIXME
+_Name=Keyboard Shortcuts
+_Description=Configures keyboard shortcuts.
 Categorie=action
 Type=module
 Module=configurekeyboardshortcuts

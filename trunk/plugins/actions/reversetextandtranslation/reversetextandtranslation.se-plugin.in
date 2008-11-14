@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Reverse Text And Translation
-_Description=FIXME
+_Description=Reverses the original subtitle and the translated text.
 Categorie=action
 Type=module
 Module=reversetextandtranslation

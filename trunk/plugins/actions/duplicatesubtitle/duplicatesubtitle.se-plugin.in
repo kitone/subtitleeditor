@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Duplicate Subtitle
-_Description=Duplicate the selected subtitles.
+_Description=Duplicates the selected subtitles.
 Categorie=action
 Type=module
 Module=duplicatesubtitle

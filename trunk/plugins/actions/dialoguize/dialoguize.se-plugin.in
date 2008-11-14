@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Dialoguize
-_Description=Add or remove dialogue dash.
+_Description=Adds or removes the dialogue dash.
 Categorie=action
 Type=module
 Module=dialoguize

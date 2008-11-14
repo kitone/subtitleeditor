@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Move Subtitles
-_Description=Move subtitles
+_Description=Moves subtitles.
 Categorie=action
 Type=module
 Module=movesubtitles

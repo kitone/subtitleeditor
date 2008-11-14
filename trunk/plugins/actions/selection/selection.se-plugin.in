@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Selection
-_Description=Selecting subtitle tools.
+_Description=Manages selection of subtitles.
 Categorie=action
 Type=module
 Module=selection

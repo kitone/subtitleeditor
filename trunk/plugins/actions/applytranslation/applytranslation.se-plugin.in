@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Apply Translation
-_Description=Replace the text of the subtitle by the translation.
+_Description=Replaces the text of the subtitle by the translation.
 Categorie=action
 Type=module
 Module=applytranslation

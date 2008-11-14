@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Style Editor
-_Description=An ASS/SSA style editor
+_Description=An ASS/SSA style editor.
 Categorie=action
 Type=module
 Module=styleeditor

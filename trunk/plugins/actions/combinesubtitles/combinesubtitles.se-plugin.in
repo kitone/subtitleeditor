@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Combine Subtitles
-_Description=Merge the selected subtitles.
+_Description=Merges the selected subtitles.
 Categorie=action
 Type=module
 Module=combinesubtitles

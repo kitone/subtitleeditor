@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Insert Subtitle
-_Description=Insert blank subtitle.
+_Description=Inserts a blank subtitle.
 Categorie=action
 Type=module
 Module=insertsubtitle

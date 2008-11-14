@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Split Document
-_Description=Split the current document in two
+_Description=Splits the current document in two.
 Categorie=action
 Type=module
 Module=splitdocument

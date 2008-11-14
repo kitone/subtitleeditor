@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Join Document
-_Description=Add subtitles from file
+_Description=Adds subtitles from another file.
 Categorie=action
 Type=module
 Module=joindocument
