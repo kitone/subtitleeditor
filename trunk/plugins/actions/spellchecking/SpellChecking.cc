@@ -26,6 +26,7 @@
 #include <utility.h>
 #include <gtkmm_utility.h>
 #include "SpellChecking.h"
+#include <memory>
 
 /*
  *	erreur de compilation si j'utilise enchant++.h dans le header :(

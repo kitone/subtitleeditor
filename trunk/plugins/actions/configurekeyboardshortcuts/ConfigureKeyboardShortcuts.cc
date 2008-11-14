@@ -26,7 +26,7 @@
 #include <extension/Action.h>
 #include <utility.h>
 #include <gtkmm_utility.h>
-
+#include <memory>
 
 /*
  *

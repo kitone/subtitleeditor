@@ -24,6 +24,8 @@
 #include <utility.h>
 #include <DocumentSystem.h>
 #include <gtkmm_utility.h>
+#include <memory>
+
 /*
  *
  */

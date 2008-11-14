@@ -25,6 +25,7 @@
 #include <glib/gregex.h>
 #include <gtkmm_utility.h>
 #include <widget_config_utility.h>
+#include <memory>
 
 /*
  * FIXME: Remove Me
