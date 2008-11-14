@@ -24,7 +24,6 @@
 #include <iostream>
 #include <math.h>
 #include <fstream>
-#include <gst/gst.h>
 
 /*
  * Open Wavefrom from file
@@ -154,7 +153,7 @@ bool Waveform::open(const Glib::ustring &file_uri)
 
 	if(version == 1)
 	{
-		m_duration = m_duration / GST_MSECOND;
+		m_duration = m_duration / 1000000; //GST_MSECOND=1000000;
 	}
 
 	for(unsigned int n=0; n< m_n_channels; ++n)

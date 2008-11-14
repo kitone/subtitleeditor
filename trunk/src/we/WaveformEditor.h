@@ -28,12 +28,12 @@
 #include <libglademm.h>
 #include "WaveformRenderer.h"
 #include "Player.h"
-
+#include "WaveformManager.h"
 
 /*
  *
  */
-class WaveformEditor : public Gtk::HBox
+class WaveformEditor : public WaveformManager, public Gtk::HBox
 {
 public:
 
@@ -51,6 +51,11 @@ public:
 	 * Try to open a waveform file and show or hide the editor.
 	 */
 	bool open_waveform(const Glib::ustring &uri);
+
+	/*
+	 * Try to generate a wavefrom from the media.
+	 */
+	bool generate_waveform(const Glib::ustring &media_uri);
 
 	/*
 	 * Init the Waveform Editor and the WaveformRenderer with this wf
