@@ -1,5 +1,13 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Remove unittest. (Patch: Luboš Staněk)
+
+	* src/gui/MenuBar.cc:
+	Rename "_Exts" to "_Extensions".  (Patch: Luboš Staněk)
+
+2008-11-14  kitone  <kitone@gna.org>
+
 	* plugins/actions/viewmanager/ViewManager.cc:
 	Clean code and fix exec warning.
 

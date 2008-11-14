@@ -178,23 +178,6 @@ if test "$enable_gl" = "yes"; then
 fi
 
 # =========================================================================
-# check cppunit only if unittest option is enabled (defautl no)
-
-AC_ARG_ENABLE(unittest,
-							[AC_HELP_STRING([--enable-unittest], [unittest support [default=no]])],,
-							[enable_unittest=no])
-
-if test "$enable_unittest" = "yes"; then
-	PKG_CHECK_MODULES(CPPUNIT, cppunit >= 1.10.0)
-	AC_SUBST(CPPUNIT_CFLAGS)
-	AC_SUBST(CPPUNIT_LIBS)
-	AC_DEFINE([ENABLE_CPPUNIT],[1],[Define to compile with cppunit support (unit tests)])
-	CXXFLAGS="-DENABLE_UNITTEST $CXXFLAGS"
-fi
-
-AM_CONDITIONAL([ENABLE_UNITTEST], [test "x$enable_unittest" = "xyes"])
-
-# =========================================================================
 # debug options (default yes)
 
 AC_ARG_ENABLE(debug,
@@ -318,7 +301,6 @@ gstreamer version .................... : $(pkg-config --modversion gstreamer-0.1
 
 have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
 OpenGL waveform renderer ............. : $enable_gl
-Unit test ............................ : $enable_unittest
 debug support ........................ : $enable_debug
 
 
