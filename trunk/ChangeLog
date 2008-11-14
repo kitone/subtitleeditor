@@ -4,6 +4,8 @@
 	New interface for the waveform manager.
 
 	* plugins/actions/wavefrommanagement/WaveformManagement.cc:
+	Use the new interface WaveformManager.
+
 	* src/Makefile.am:
 	* src/SubtitleEditorWindow.h:
 	* src/Waveform.cc:
