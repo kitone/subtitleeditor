@@ -1,171 +1,185 @@
-bin_PROGRAMS = subtitleeditor
+PACKAGE_DIRECTORY = \
+	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
+	-DPACKAGE_SHARE_DIR=\""$(PACKAGE_SHARE_DIR)"\" \
+	-DPACKAGE_SHARE_DIR_DEV=\""share"\" \
+	-DPACKAGE_GLADE_DIR=\""$(PACKAGE_SHARE_DIR)/glade"\" \
+	-DPACKAGE_GLADE_DIR_DEV=\""share/glade"\" \
+	-DPACKAGE_PLUGIN_LIB_DIR=\""$(PACKAGE_PLUGIN_LIB_DIR)"\" \
+	-DPACKAGE_PLUGIN_DESCRIPTION_DIR=\""$(PACKAGE_PLUGIN_DESCRIPTION_DIR)"\" \
+	-DPACKAGE_PLUGIN_DIR_DEV=\""plugins"\"
+
+
+## libsubtitleeditor
+LIB_SUBTITLEEDITOR_FILES = \
+	Color.cc \
+	Color.h \
+	Command.cc \
+	Command.h \
+	CommandSystem.cc \
+	CommandSystem.h \
+	Config.cc \
+	Config.h \
+	debug.cc \
+	debug.h \
+	Document.cc \
+	Document.h \
+	DocumentSystem.cc \
+	DocumentSystem.h \
+	Encodings.cc \
+	Encodings.h \
+	Error.h \
+	extension/Action.cc \
+	extension/Action.h \
+	Extension.cc \
+	Extension.h \
+	ExtensionInfo.cc \
+	ExtensionInfo.h \
+	ExtensionManager.cc \
+	ExtensionManager.h \
+	FileReader.cc \
+	FileReader.h \
+	FileWriter.cc \
+	FileWriter.h \
+	gstreamer_utility.cc \
+	gstreamer_utility.h \
+	gtkmm_utility.cc \
+	gtkmm_utility.h \
+	Player.h \
+	ScriptInfo.cc \
+	ScriptInfo.h \
+	Signal.cc \
+	Signal.h \
+	Style.cc \
+	Style.h \
+	StyleModel.cc \
+	StyleModel.h \
+	Styles.cc \
+	Styles.h \
+	Subtitle.cc \
+	SubtitleEditorWindow.cc \
+	SubtitleEditorWindow.h \
+	SubtitleFormat.cc \
+	SubtitleFormatFactory.h \
+	SubtitleFormat.h \
+	SubtitleFormatSystem.cc \
+	SubtitleFormatSystem.h \
+	Subtitle.h \
+	SubtitleModel.cc \
+	SubtitleModel.h \
+	Subtitles.cc \
+	Subtitles.h \
+	SubtitleTags.cc \
+	SubtitleTags.h \
+	SubtitleTime.cc \
+	SubtitleTime.h \
+	SubtitleView.cc \
+	SubtitleView.h \
+	TimeUtility.cc \
+	TimeUtility.h \
+	utility.cc \
+	utility.h \
+	Waveform.cc \
+	Waveform.h \
+	we/WaveformEditor.cc \
+	we/WaveformEditor.h \
+	we/WaveformGenerator.cc \
+	we/WaveformGenerator.h \
+	we/WaveformRendererCairo.cc \
+	we/WaveformRenderer.cc \
+	we/WaveformRendererGL.cc \
+	we/WaveformRenderer.h \
+	widget_config_utility.cc \
+	widget_config_utility.h
+
+LIB_GUI_FILES = \
+	gui/ComboBoxEncoding.cc \
+	gui/ComboBoxEncoding.h \
+	gui/ComboBoxNewLine.cc \
+	gui/ComboBoxNewLine.h \
+	gui/ComboBoxSubtitleFormat.cc \
+	gui/ComboBoxSubtitleFormat.h \
+	gui/ComboBoxVideo.cc \
+	gui/ComboBoxVideo.h \
+	gui/DialogCharacterCodings.cc \
+	gui/DialogCharacterCodings.h \
+	gui/DialogFileChooser.cc \
+	gui/DialogFileChooser.h \
+	gui/DialogUtility.cc \
+	gui/DialogUtility.h \
+	gui/SpinButtonTime.cc \
+	gui/SpinButtonTime.h \
+	gui/TreeViewExtensionManager.cc \
+	gui/TreeViewExtensionManager.h
+
+LIB_FORMATS_FILES =\
+	formats/AdobeEncoreDVD.h \
+	formats/AdvancedSubStationAlpha.h \
+	formats/MicroDVD.h \
+	formats/MPL2.h \
+	formats/MPsub.h \
+	formats/SubRip.h \
+	formats/SubStationAlpha.h \
+	formats/SubtitleEditorProject.h \
+	formats/SubViewer2.h \
+	formats/TimedTextAuthoringFormat1.h
 
 lib_LTLIBRARIES = libsubtitleeditor.la
 
-AM_CFLAGS = -DDATA_DIR=\""$(datadir)"\" \
-              -DLOCALE_DIR=\""$(datadir)/locale"\" \
-              -DPIXMAPS_DIR=\""$(datadir)/pixmaps"\" 
-
-INCLUDES = \
-					 $(GTKMM_CFLAGS) $(LIBGLADEMM_CFLAGS) \
-					 $(GSTREAMER_CFLAGS) $(LIBXML_CFLAGS) $(GTKGLEXT_CFLAGS) $(GL_CFLAGS) \
-					 -DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-					 -DPACKAGE_SHARE_DIR=\""$(PACKAGE_SHARE_DIR)"\" \
-					 -DPACKAGE_SHARE_DIR_DEV=\""share"\" \
-					 -DPACKAGE_GLADE_DIR=\""$(PACKAGE_SHARE_DIR)/glade"\" \
-					 -DPACKAGE_GLADE_DIR_DEV=\""share/glade"\" \
-					 -DPACKAGE_PLUGIN_LIB_DIR=\""$(PACKAGE_PLUGIN_LIB_DIR)"\" \
-					 -DPACKAGE_PLUGIN_DESCRIPTION_DIR=\""$(PACKAGE_PLUGIN_DESCRIPTION_DIR)"\" \
-					 -DPACKAGE_PLUGIN_DIR_DEV=\""plugins"\"
-
-FILES = \
-				debug.h \
-				debug.cc \
-				utility.h \
-				utility.cc \
-				gstreamer_utility.h \
-				gstreamer_utility.cc \
-				gtkmm_utility.h \
-				gtkmm_utility.cc \
-				widget_config_utility.h \
-				widget_config_utility.cc \
-				Config.h \
-				Config.cc \
-				Signal.h \
-				Signal.cc \
-				Color.h \
-				Color.cc \
-				SubtitleTime.h \
-				SubtitleTime.cc \
-				DocumentSystem.h \
-				DocumentSystem.cc \
-				Encodings.h \
-				Encodings.cc \
-				ScriptInfo.h \
-				ScriptInfo.cc \
-				StyleModel.h \
-				StyleModel.cc \
-				Error.h \
-				SubtitleModel.h \
-				SubtitleModel.cc \
-				SubtitleView.h \
-				SubtitleView.cc \
-				SubtitleTags.h \
-				SubtitleTags.cc \
-				Waveform.h \
-				Waveform.cc \
-				Options.h \
-				Options.cc \
-				Style.h \
-				Style.cc \
-				Styles.h \
-				Styles.cc \
-				Command.h \
-				Command.cc \
-				CommandSystem.h \
-				CommandSystem.cc \
-				Player.h \
-				vp/GStreamerPlayer.h \
-				vp/GStreamerPlayer.cc \
-				vp/VideoPlayer.h \
-				vp/VideoPlayer.cc \
-				we/WaveformRenderer.h \
-				we/WaveformRenderer.cc \
-				we/WaveformRendererCairo.cc \
-				we/WaveformRendererGL.cc \
-				we/WaveformEditor.h \
-				we/WaveformEditor.cc \
-				we/WaveformGenerator.h \
-				we/WaveformGenerator.cc \
-				TimeUtility.h \
-				TimeUtility.cc \
-				FileReader.h \
-				FileReader.cc \
-				FileWriter.h \
-				FileWriter.cc \
-				SubtitleFormat.h \
-				SubtitleFormat.cc \
-				SubtitleFormatFactory.h \
-				SubtitleFormatSystem.h \
-				SubtitleFormatSystem.cc \
-				Extension.h \
-				Extension.cc \
-				ExtensionInfo.h \
-				ExtensionInfo.cc \
-				ExtensionManager.h \
-				ExtensionManager.cc \
-				extension/Action.h \
-				extension/Action.cc
-
-
-FORMATS_FILES = \
-				formats/AdobeEncoreDVD.h \
-				formats/AdvancedSubStationAlpha.h \
-				formats/MicroDVD.h \
-				formats/MPL2.h \
-				formats/MPsub.h \
-				formats/SubRip.h \
-				formats/SubStationAlpha.h \
-				formats/SubtitleEditorProject.h \
-				formats/SubViewer2.h \
-				formats/TimedTextAuthoringFormat1.h
-
-GUI_FILES = \
-				gui/DialogUtility.h \
-				gui/DialogUtility.cc \
-				gui/DialogFileChooser.h \
-				gui/DialogFileChooser.cc \
-				gui/DialogCharacterCodings.h \
-				gui/DialogCharacterCodings.cc \
-				gui/ComboBoxEncoding.h \
-				gui/ComboBoxEncoding.cc \
-				gui/ComboBoxSubtitleFormat.h \
-				gui/ComboBoxSubtitleFormat.cc \
-				gui/ComboBoxNewLine.h \
-				gui/ComboBoxNewLine.cc \
-				gui/ComboBoxVideo.h \
-				gui/ComboBoxVideo.cc \
-				gui/SpinButtonTime.h \
-				gui/SpinButtonTime.cc \
-				gui/TreeViewExtensionManager.h \
-				gui/TreeViewExtensionManager.cc
-
-## lib
-LIB_FILES = \
-					SubtitleEditorWindow.h \
-					SubtitleEditorWindow.cc \
-					Document.h \
-					Document.cc \
-					Subtitle.h \
-					Subtitle.cc \
-					Subtitles.h \
-					Subtitles.cc
-
-## TODO fixme
-APPLICATION_FILES = \
-				main.cc \
-				gui/Application.h \
-				gui/Application.cc \
-				gui/MenuBar.h \
-				gui/MenuBar.cc \
-				gui/Statusbar.h \
-				gui/Statusbar.cc
-
-## libsubtitleeditor
 libsubtitleeditor_la_LDFLAGS = -export-dynamic -no-undefined
 
-libsubtitleeditor_la_SOURCES = $(FILES) $(LIB_FILES) $(FORMATS_FILES) $(GUI_FILES) 
+libsubtitleeditor_la_SOURCES = \
+	$(LIB_SUBTITLEEDITOR_FILES) \
+	$(LIB_GUI_FILES) \
+	$(LIB_FORMATS_FILES)
+
+libsubtitleeditor_la_CXXFLAGS = \
+	$(GTKMM_CFLAGS) \
+	$(LIBGLADEMM_CFLAGS) \
+	$(GSTREAMER_CFLAGS) \
+	$(LIBXML_CFLAGS) \
+	$(GTKGLEXT_CFLAGS) \
+	$(GL_CFLAGS) \
+	$(PACKAGE_DIRECTORY)
 
 
-## subttileeditor
-subtitleeditor_SOURCES = $(APPLICATION_FILES)
+## subtitleeditor
+APPLICATION_FILES = \
+	gui/Application.cc \
+	gui/Application.h \
+	gui/MenuBar.cc \
+	gui/MenuBar.h \
+	gui/Statusbar.cc \
+	gui/Statusbar.h \
+	main.cc \
+	Options.cc \
+	Options.h \
+	vp/GStreamerPlayer.cc \
+	vp/GStreamerPlayer.h \
+	vp/VideoPlayer.cc \
+	vp/VideoPlayer.h
 
-subtitleeditor_LDADD = $(GTKMM_LIBS) $(LIBGLADEMM_LIBS) $(GSTREAMER_LIBS) \
-											 $(INTLLIBS) $(LIBXML_LIBS) \
-											 $(GTKGLEXT_LIBS) $(GL_LIBS) \
-											 libsubtitleeditor.la
+bin_PROGRAMS = subtitleeditor
+
+subtitleeditor_SOURCES = \
+	$(APPLICATION_FILES)
+
+subtitleeditor_LDADD = \
+	$(GTKMM_LIBS) \
+	$(LIBGLADEMM_LIBS) \
+	$(GSTREAMER_LIBS) \
+	$(GTKGLEXT_LIBS) \
+	$(GL_LIBS) \
+	$(LIBXML_LIBS) \
+	libsubtitleeditor.la
+
+subtitleeditor_CXXFLAGS = \
+	$(GTKMM_CFLAGS) \
+	$(LIBGLADEMM_CFLAGS) \
+	$(GSTREAMER_CFLAGS) \
+	$(LIBXML_CFLAGS) \
+	$(GTKGLEXT_CFLAGS) \
+	$(GL_CFLAGS) \
+	$(PACKAGE_DIRECTORY)
 
 
-## clean
-CLEANFILES = Makefile.am~ *.cc~ *.h~ *.glade~ *.gladep *.gladep.bak
-
+CLEANFILES = Makefile.am~ *.cc~ *.h~ *.in~
