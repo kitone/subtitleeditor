@@ -21,6 +21,7 @@
  */
 
 #include <extension/Action.h>
+#include <Player.h>
 #include <utility.h>
 #include <gui/DialogFileChooser.h>
 #include <vector>

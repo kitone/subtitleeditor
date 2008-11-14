@@ -23,10 +23,10 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include <gtkmm.h>
-#include "Player.h"
-#include "we/WaveformEditor.h"
 
 class Document;
+class Player;
+class WaveformEditor;
 
 class SubtitleEditorWindow
 {

@@ -35,7 +35,7 @@
 
 #include "SubtitleEditorWindow.h"
 #include "vp/VideoPlayer.h"
-
+#include "we/WaveformEditor.h"
 
 class Application : public Gtk::Window, public SubtitleEditorWindow
 {
