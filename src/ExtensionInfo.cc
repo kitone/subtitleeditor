@@ -33,6 +33,7 @@ ExtensionInfo::ExtensionInfo()
 	module = NULL;
 	active = false;
 	hidden = false;
+	fhs_directory = false;
 	extension = NULL;
 }
 

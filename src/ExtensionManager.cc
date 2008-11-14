@@ -48,14 +48,14 @@ ExtensionManager::ExtensionManager()
 	se_debug(SE_DEBUG_APP);
 
 	// Read the user plugins
-	load_path(get_config_dir("plugins"));
+	load_path(get_config_dir("plugins"), false);
 
 	// Read the env var if is set or the default plugin dir
 	Glib::ustring path = Glib::getenv("SE_PLUGINS_PATH");
 	if(path.empty())
-		path = SE_DEV_VALUE(PACKAGE_PLUGIN_DIR, PACKAGE_PLUGIN_DIR_DEV);
-		
-	load_path(path);
+		path = SE_DEV_VALUE(PACKAGE_PLUGIN_DESCRIPTION_DIR, PACKAGE_PLUGIN_DIR_DEV);
+	
+	load_path(path, true);
 }
 
 /*
@@ -115,7 +115,7 @@ void ExtensionManager::destroy_extensions()
  * Load the path and sub path to find extension description.
  * se-plugin file.
  */
-void ExtensionManager::load_path(const Glib::ustring &path)
+void ExtensionManager::load_path(const Glib::ustring &path, bool fhs_directory)
 {
 	se_debug_message(SE_DEBUG_APP, "path=%s", path.c_str());
 
@@ -138,9 +138,9 @@ void ExtensionManager::load_path(const Glib::ustring &path)
 			Glib::ustring filename = Glib::build_filename(path, files[i]);
 
 			if(Glib::file_test(filename, Glib::FILE_TEST_IS_DIR))
-				load_path(filename);
+				load_path(filename, fhs_directory);
 			else if(re->match(filename))
-				load_extension_info(filename);
+				load_extension_info(filename, fhs_directory);
 		}
 	}
 	catch(const Glib::Error &ex)
@@ -153,7 +153,7 @@ void ExtensionManager::load_path(const Glib::ustring &path)
 /*
  * Try to load an ExtensionInfo file.
  */
-bool ExtensionManager::load_extension_info(const Glib::ustring &file)
+bool ExtensionManager::load_extension_info(const Glib::ustring &file, bool fhs_directory)
 {
 	se_debug_message(SE_DEBUG_APP, "try to read '%s'", file.c_str());
 
@@ -229,6 +229,7 @@ bool ExtensionManager::load_extension_info(const Glib::ustring &file)
 		info->module_name = module;
 		info->authors = authors;
 		info->hidden = hidden;
+		info->fhs_directory = fhs_directory;
 
 		// Append to the list
 		m_extension_info_map[categorie].push_back(info);
@@ -419,18 +420,22 @@ void ExtensionManager::open_module(ExtensionInfo *info)
 	
 	Glib::ustring dirname = Glib::path_get_dirname(info->file);
 
-	// Build module name (path/libname.so)
-	Glib::ustring file = Glib::Module::build_path(dirname, info->module_name);
-
-	// Only if failed, try to read from .libs dir
-	if(Glib::file_test(file, Glib::FILE_TEST_EXISTS) == false)
+	// It's only used for reading plugin without installing SE
+	if(Glib::getenv("SE_DEV") == "1")
 	{
-		// It's only used for reading plugin without installing SE
 		// ext/.libs/libext.so
 		dirname = Glib::build_filename(dirname, ".libs");
-		
-		file = Glib::Module::build_path(dirname, info->module_name);
 	}
+	else if(info->fhs_directory)
+	{
+		// If the extension is installed in the system, 
+		// Filesystem Hierarchy Standard is used for the directory
+		// The description and the module are not in the same directory
+		utility::replace(dirname, PACKAGE_PLUGIN_DESCRIPTION_DIR, PACKAGE_PLUGIN_LIB_DIR);
+	}
+
+	// Build module name (path/libname.so)
+	Glib::ustring file = Glib::Module::build_path(dirname, info->module_name);
 
 	se_debug_message(SE_DEBUG_APP, "try to open module '%s'", file.c_str());
 
