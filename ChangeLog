@@ -1,5 +1,6 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* src/SubtitleEditorWindow.h:
 	* src/WaveformManager.h:
 	New interface for the waveform manager.
 
@@ -7,7 +8,6 @@
 	Use the new interface WaveformManager.
 
 	* src/Makefile.am:
-	* src/SubtitleEditorWindow.h:
 	* src/Waveform.cc:
 	* src/gui/Application.cc:
 	* src/gui/Application.h:
