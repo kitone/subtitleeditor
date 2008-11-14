@@ -1,8 +1,45 @@
 2008-11-14  kitone  <kitone@gna.org>
 
+	* plugins/actions/about/about.se-plugin.in:
+	* plugins/actions/adjusttime/adjusttime.se-plugin.in:
+	* plugins/actions/applytranslation/applytranslation.se-plugin.in:
+	* plugins/actions/changeframerate/changeframerate.se-plugin.in:
+	* plugins/actions/combinesubtitles/combinesubtitles.se-plugin.in:
+	* plugins/actions/command/command.se-plugin.in:
+	* plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.se-plugin.in:
+	* plugins/actions/dialoguize/dialoguize.se-plugin.in:
+	* plugins/actions/documentmanagement/documentmanagement.se-plugin.in:
+	* plugins/actions/duplicatesubtitle/duplicatesubtitle.se-plugin.in:
+	* plugins/actions/editcell/editcell.se-plugin.in:
+	* plugins/actions/errorchecking/errorchecking.se-plugin.in:
+	* plugins/actions/extendlength/extendlength.se-plugin.in:
+	* plugins/actions/externalvideoplayer/externalvideoplayer.se-plugin.in:
+	* plugins/actions/findandreplace/findandreplace.se-plugin.in:
+	* plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in:
+	* plugins/actions/italicize/italicize.se-plugin.in:
+	* plugins/actions/joindocument/joindocument.se-plugin.in:
+	* plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.se-plugin.in:
+	* plugins/actions/movesubtitles/movesubtitles.se-plugin.in:
+	* plugins/actions/plaintext/plaintext.se-plugin.in:
+	* plugins/actions/preferences/preferences.se-plugin.in:
+	* plugins/actions/removesubtitle/removesubtitle.se-plugin.in:
+	* plugins/actions/reversetextandtranslation/reversetextandtranslation.se-plugin.in:
+	* plugins/actions/scalesubtitles/scalesubtitles.se-plugin.in:
+	* plugins/actions/selection/selection.se-plugin.in:
+	* plugins/actions/splitdocument/splitdocument.se-plugin.in:
+	* plugins/actions/splitsubtitle/splitsubtitle.se-plugin.in:
+	* plugins/actions/styleeditor/styleeditor.se-plugin.in:
+	* plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in:
+	* plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in:
+	* plugins/actions/viewmanager/viewmanager.se-plugin.in:
+	* plugins/actions/wavefrommanagement/waveformmanagement.se-plugin.in:
+	Fix: .se-plugin texts fixes. (Patch: Luboš Staněk)
+
+2008-11-14  kitone  <kitone@gna.org>
+
 	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade:
 	Fix: modified external player glade file to exclude replaceable tokens from
-	the translation . (Patch: Luboš Staněk)
+	the translation. (Patch: Luboš Staněk)
 
 2008-11-14  kitone  <kitone@gna.org>
 

@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Split Subtitle
-_Description=Split the selected subtitles
+_Description=Splits the selected subtitles.
 Categorie=action
 Type=module
 Module=splitsubtitle

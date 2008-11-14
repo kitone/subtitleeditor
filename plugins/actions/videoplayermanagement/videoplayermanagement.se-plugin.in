@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Video Player Management
-_Description=The video player management
+_Description=Controls the video player.
 Categorie=action
 Type=module
 Module=videoplayermanagement

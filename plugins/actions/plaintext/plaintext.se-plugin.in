@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Plain Text
-_Description=Import or Export any text file
+_Description=Imports or exports any text file.
 Categorie=action
 Type=module
 Module=plaintext

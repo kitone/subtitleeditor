@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Preferences
-_Description=Subtitle Editor preferences management.
+_Description=Manages Subtitle Editor's preferences.
 Hidden=true
 Categorie=action
 Type=module

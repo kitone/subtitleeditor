@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Scale Subtitles
-_Description=Scale by two points
+_Description=Scales by two points.
 Categorie=action
 Type=module
 Module=scalesubtitles

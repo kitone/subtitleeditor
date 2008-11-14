@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Command
-_Description=Undo/Redo management.
+_Description=Manages Undo/Redo.
 Categorie=action
 Hidden=true
 Type=module

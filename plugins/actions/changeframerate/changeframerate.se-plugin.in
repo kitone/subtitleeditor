@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Change Framerate
-_Description=Convert framerate.
+_Description=Converts the framerate.
 Categorie=action
 Type=module
 Module=changeframerate

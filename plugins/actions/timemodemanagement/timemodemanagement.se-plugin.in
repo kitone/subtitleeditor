@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Time Mode Management
-_Description=Time management (Framerate, Timing Mode ...)
+_Description=Manages time modes (Framerate, Timing Mode ...).
 Categorie=action
 Type=module
 Module=timemodemanagement

@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Move After Preceding Subtitle
-_Description=Move subtitle after the preceding with the respect of the minimum gap between subtitles
+_Description=Moves a subtitle after the preceding one respecting the minimum gap between subtitles.
 Categorie=action
 Type=module
 Module=moveafterprecedingsubtitle

@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
 _Name=Italicize
-_Description=Italicize the selected subtitles text
+_Description=Italicizes the selected subtitles text.
 Categorie=action
 Type=module
 Module=italicize
