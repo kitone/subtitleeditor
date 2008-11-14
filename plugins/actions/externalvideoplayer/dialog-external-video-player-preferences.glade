@@ -39,7 +39,7 @@
                       <widget class="GtkEntry" id="entry-video-player-command">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip" translatable="yes">Example with mplayer:
+                        <property name="tooltip" translatable="yes" comments="TRANSLATORS: Do not translate replaceable tokens #xxx.">Example with mplayer:
 mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                       </widget>
                     </child>
@@ -149,7 +149,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                   <widget class="GtkLabel" id="label3">
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;&lt;b&gt;#subtitle_uri&lt;/b&gt;&lt;/span&gt;</property>
+                                    <property name="label">&lt;span size="small"&gt;&lt;b&gt;#subtitle_uri&lt;/b&gt;&lt;/span&gt;</property>
                                     <property name="use_markup">True</property>
                                     <property name="selectable">True</property>
                                   </widget>
@@ -161,7 +161,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                   <widget class="GtkLabel" id="label4">
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;&lt;b&gt;#subtitle_file&lt;/b&gt;&lt;/span&gt;</property>
+                                    <property name="label">&lt;span size="small"&gt;&lt;b&gt;#subtitle_file&lt;/b&gt;&lt;/span&gt;</property>
                                     <property name="use_markup">True</property>
                                     <property name="selectable">True</property>
                                   </widget>
@@ -175,7 +175,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                   <widget class="GtkLabel" id="label5">
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;&lt;b&gt;#video_uri&lt;/b&gt;&lt;/span&gt;</property>
+                                    <property name="label">&lt;span size="small"&gt;&lt;b&gt;#video_uri&lt;/b&gt;&lt;/span&gt;</property>
                                     <property name="use_markup">True</property>
                                     <property name="selectable">True</property>
                                   </widget>
@@ -189,7 +189,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                   <widget class="GtkLabel" id="label6">
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;&lt;b&gt;#video_file&lt;/b&gt;&lt;/span&gt;</property>
+                                    <property name="label">&lt;span size="small"&gt;&lt;b&gt;#video_file&lt;/b&gt;&lt;/span&gt;</property>
                                     <property name="use_markup">True</property>
                                     <property name="selectable">True</property>
                                   </widget>
@@ -203,7 +203,7 @@ mplayer "#video_file" -sub "#subtitle_file" -ss #seconds</property>
                                   <widget class="GtkLabel" id="label7">
                                     <property name="visible">True</property>
                                     <property name="xalign">0</property>
-                                    <property name="label" translatable="yes">&lt;span size="small"&gt;&lt;b&gt;#seconds&lt;/b&gt;&lt;/span&gt;</property>
+                                    <property name="label">&lt;span size="small"&gt;&lt;b&gt;#seconds&lt;/b&gt;&lt;/span&gt;</property>
                                     <property name="use_markup">True</property>
                                     <property name="selectable">True</property>
                                   </widget>
