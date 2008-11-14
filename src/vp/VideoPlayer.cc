@@ -24,6 +24,7 @@
 #include "utility.h"
 #include "DocumentSystem.h"
 #include "SubtitleEditorWindow.h"
+#include "GStreamerPlayer.h"
 
 /*
  * Player Controls Widgets
@@ -32,7 +33,7 @@ class PlayerControls : public Gtk::HBox
 {
 public:
 
-	PlayerControls(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)//GStreamerPlayer *player)
+	PlayerControls(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::HBox(cobject)
 	{
 		m_current_seek = false;
@@ -238,7 +239,6 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glad
 	m_cfg_display_translated_subtitle = false;
 
 	m_player = manage(new GStreamerPlayer);
-	m_player->set_size_request(360, 240);
 
 	Gtk::Frame* m_framePlayer = NULL;
 	PlayerControls* m_playerControls = NULL;
@@ -246,7 +246,8 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glad
 	refGlade->get_widget("frame-player", m_framePlayer);
 	refGlade->get_widget_derived("player-controls", m_playerControls);
 
-	m_framePlayer->add(*m_player);
+	// FIXME cast
+	m_framePlayer->add(*dynamic_cast<Gtk::Widget*>(m_player));
 	m_playerControls->init_with_player(m_player);
 
 	load_config();
@@ -292,7 +293,7 @@ void VideoPlayer::load_config()
 /*
  * Return the gstreamer player.
  */
-GStreamerPlayer* VideoPlayer::player()
+Player* VideoPlayer::player()
 {
 	return m_player;
 }
