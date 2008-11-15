@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
-_Name=AdvancedSubStationAlpha
-_Description=Advanced SubStationAlpha subtitles support.
+_Name=Advanced Sub Station Alpha
+_Description=Advanced Sub Station Alpha subtitles support.
 Categorie=subtitleformat
 Type=module
 Module=advancedsubstationalpha
