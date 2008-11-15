@@ -64,6 +64,18 @@ plugins/actions/videoplayermanagement/VideoPlayerManagement.cc
 plugins/actions/viewmanager/dialog-view-manager.glade
 plugins/actions/viewmanager/ViewManager.cc
 plugins/actions/wavefrommanagement/WaveformManagement.cc
+plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h
+plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.cc
+plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.cc
+plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc
+plugins/subtitleformats/microdvd/microdvd.cc
+plugins/subtitleformats/mpl2/mpl2.cc
+plugins/subtitleformats/mpsub/mpsub.cc
+plugins/subtitleformats/subrip/subrip.cc
+plugins/subtitleformats/substationalpha/substationalpha.cc
+plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc
+plugins/subtitleformats/subviewer2/subviewer2.cc
+plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc
 share/glade/dialog-character-codings.glade
 share/glade/dialog-encodings-chooser.glade
 share/glade/dialog-export-text.glade
@@ -98,20 +110,15 @@ src/ExtensionInfo.cc
 src/ExtensionInfo.h
 src/ExtensionManager.cc
 src/ExtensionManager.h
+src/extension/SubtitleFormat.h
 src/FileReader.cc
 src/FileReader.h
 src/FileWriter.cc
 src/FileWriter.h
-src/formats/AdobeEncoreDVD.h
-src/formats/AdvancedSubStationAlpha.h
-src/formats/MicroDVD.h
-src/formats/MPL2.h
-src/formats/MPsub.h
-src/formats/SubRip.h
-src/formats/SubStationAlpha.h
-src/formats/SubtitleEditorProject.h
-src/formats/SubViewer2.h
-src/formats/TimedTextAuthoringFormat1.h
+src/gstreamer_utility.cc
+src/gstreamer_utility.h
+src/gtkmm_utility.cc
+src/gtkmm_utility.h
 src/gui/Application.cc
 src/gui/Application.h
 src/gui/ComboBoxEncoding.cc
@@ -153,9 +160,8 @@ src/Styles.h
 src/Subtitle.cc
 src/SubtitleEditorWindow.cc
 src/SubtitleEditorWindow.h
-src/SubtitleFormat.cc
-src/SubtitleFormatFactory.h
-src/SubtitleFormat.h
+src/SubtitleFormatIO.cc
+src/SubtitleFormatIO.h
 src/SubtitleFormatSystem.cc
 src/SubtitleFormatSystem.h
 src/Subtitle.h
@@ -179,6 +185,7 @@ src/vp/VideoPlayer.cc
 src/vp/VideoPlayer.h
 src/Waveform.cc
 src/Waveform.h
+src/WaveformManager.h
 src/we/WaveformEditor.cc
 src/we/WaveformEditor.h
 src/we/WaveformGenerator.cc
@@ -187,6 +194,8 @@ src/we/WaveformRendererCairo.cc
 src/we/WaveformRenderer.cc
 src/we/WaveformRendererGL.cc
 src/we/WaveformRenderer.h
+src/widget_config_utility.cc
+src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/about/about.se-plugin.in
 [type: gettext/ini] plugins/actions/adjusttime/adjusttime.se-plugin.in
 [type: gettext/ini] plugins/actions/applytranslation/applytranslation.se-plugin.in
@@ -221,3 +230,14 @@ src/we/WaveformRenderer.h
 [type: gettext/ini] plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/viewmanager/viewmanager.se-plugin.in
 [type: gettext/ini] plugins/actions/wavefrommanagement/waveformmanagement.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/microdvd/microdvd.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/mpl2/mpl2.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/mpsub/mpsub.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/subrip/subrip.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/substationalpha/substationalpha.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/subviewer2/subviewer2.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.se-plugin.in
