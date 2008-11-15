@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: subtitleeditor 0.21.2\n"
+"Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 13:22+0200\n"
-"PO-Revision-Date: 2008-10-13 13:00+0200\n"
+"POT-Creation-Date: 2008-11-14 20:22+0100\n"
+"PO-Revision-Date: 2008-11-14 20:18+0100\n"
 "Last-Translator: Luboš Staněk <lubek@users.sourceforge.net>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,34 +19,1904 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../share/glade/dialog-change-framerate.glade.h:1
-msgid "<b>Apply to</b>"
-msgstr "<b>Aplikovat na</b>"
+#. comments
+#: ../plugins/actions/about/About.cc:97
+msgid "a tool for subtitles edition"
+msgstr "nástroj pro editaci titulků"
 
-#: ../share/glade/dialog-change-framerate.glade.h:2
-msgid "<b>Framerate</b>"
-msgstr "<b>Snímková rychlost</b>"
+#. translator-credits
+#: ../plugins/actions/about/About.cc:107
+msgid "translator-credits"
+msgstr ""
+"Luboš Staněk <lubek@users.sourceforge.net>\n"
+"Petr Písař <petr.pisar@atlas.cz>\n"
+"\n"
+"Příspěvky z Launchpadu:\n"
+"  Jaroslav Lichtblau https://launchpad.net/~dragonlord\n"
+"  Luboš Staněk https://launchpad.net/~lubek"
 
-#: ../share/glade/dialog-change-framerate.glade.h:3
-msgid "All documents"
-msgstr "Všechny dokumenty"
+#: ../plugins/actions/adjusttime/AdjustTime.cc:56
+msgid "Add 100 Milliseconds"
+msgstr "Přidat 100 ms"
 
-#: ../share/glade/dialog-change-framerate.glade.h:4
-#: ../src/actions/ChangeFramerate.cc:308
+#: ../plugins/actions/adjusttime/AdjustTime.cc:59
+#: ../plugins/actions/adjusttime/AdjustTime.cc:75
+msgid "To Start"
+msgstr "Na začátek"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:59
+msgid "Add 100 Milliseconds to start for all subtitles selected"
+msgstr "Přidat 100 ms na začátek všem vybraným titulkům"
+
+# XXX: Použito u Přidat i u Odebrat. Proto nelze „K trvání“
+#: ../plugins/actions/adjusttime/AdjustTime.cc:63
+#: ../plugins/actions/adjusttime/AdjustTime.cc:79
+msgid "To Duration"
+msgstr "U trvání"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:63
+msgid "Add 100 Milliseconds to duration for all subtitles selected"
+msgstr "Přidat 100 ms k trvání všem vybraným titulkům"
+
+# XXX: Použito u Přidat i u Odebrat. Proto nelze „K trvání“
+#: ../plugins/actions/adjusttime/AdjustTime.cc:67
+#: ../plugins/actions/adjusttime/AdjustTime.cc:83
+msgid "To Start And Duration"
+msgstr "Na začátek a u trvání"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:67
+msgid "Add 100 Milliseconds to all subtitles selected"
+msgstr "Přidat 100 ms všem vybraným titulkům"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:72
+msgid "Remove 100 Milliseconds"
+msgstr "Odebrat 100 ms"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:75
+msgid "Remove 100 Milliseconds to start for all subtitles selected"
+msgstr "Odebrat 100 ms od začátku všem vybraným titulkům"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:79
+msgid "Remove 100 Milliseconds to duration for all subtitles selected"
+msgstr "Odebrat 100 ms z trvání všem vybraným titulkům"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:83
+msgid "Remove 100 Milliseconds to all subtitles selected"
+msgstr "Odebrat 100 ms všem vybraným titulkům"
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:227
+#: ../plugins/actions/dialoguize/Dialoguize.cc:128
+#: ../plugins/actions/duplicatesubtitle/DuplicateSubtitle.cc:119
+#: ../plugins/actions/extendlength/ExtendLength.cc:119
+#: ../plugins/actions/italicize/Italicize.cc:128
+#: ../plugins/actions/moveafterprecedingsubtitle/MoveAfterPrecedingSubtitle.cc:119
+#: ../plugins/actions/movesubtitles/MoveSubtitles.cc:199
+#: ../plugins/actions/removesubtitle/RemoveSubtitle.cc:119
+msgid "Please select at least a subtitle."
+msgstr "Vyberte prosím alespoň jeden titulek."
+
+#: ../plugins/actions/adjusttime/AdjustTime.cc:231
+msgid "Adjust time"
+msgstr "Přizpůsobit čas"
+
+#: ../plugins/actions/applytranslation/ApplyTranslation.cc:55
+msgid "Apply _Translation"
+msgstr "Aplikova_t překlad"
+
+#: ../plugins/actions/applytranslation/ApplyTranslation.cc:55
+msgid "Replace the text of the subtitle by the translation"
+msgstr "Nahradit text titulku překladem"
+
+#: ../plugins/actions/applytranslation/ApplyTranslation.cc:117
+msgid "Apply translation"
+msgstr "Aplikovat překlad"
+
+#: ../plugins/actions/applytranslation/ApplyTranslation.cc:130
+msgid "The translation was applied."
+msgstr "Překlad byl aplikován."
+
+#: ../plugins/actions/changeframerate/ChangeFramerate.cc:233
+msgid "Change _Framerate"
+msgstr "Z_měnit snímkovou rychlost"
+
+#: ../plugins/actions/changeframerate/ChangeFramerate.cc:233
+msgid "Convert framerate"
+msgstr "Konvertovat snímkovou rychlost"
+
+#: ../plugins/actions/changeframerate/ChangeFramerate.cc:305
+#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:4
+#: ../plugins/actions/changeframerate/changeframerate.se-plugin.in.h:1
 msgid "Change Framerate"
 msgstr "Změnit snímkovou rychlost"
 
-#: ../share/glade/dialog-change-framerate.glade.h:5
+#: ../plugins/actions/changeframerate/ChangeFramerate.cc:324
+#, c-format
+msgid "The new framerate was applied. (%s to %s)"
+msgstr "Nová snímková rychlost byla aplikována. (%s na %s)"
+
+#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:1
+msgid "<b>Apply to</b>"
+msgstr "<b>Aplikovat na</b>"
+
+#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:2
+msgid "<b>Framerate</b>"
+msgstr "<b>Snímková rychlost</b>"
+
+#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:3
+msgid "All documents"
+msgstr "Všechny dokumenty"
+
+#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:5
 msgid "Current document"
 msgstr "Aktuální dokument"
 
-#: ../share/glade/dialog-change-framerate.glade.h:6
+#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:6
 msgid "Current:"
 msgstr "Aktuální:"
 
-#: ../share/glade/dialog-change-framerate.glade.h:7
+#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:7
 msgid "New:"
 msgstr "Nová:"
+
+#: ../plugins/actions/combinesubtitles/CombineSubtitles.cc:52
+msgid "_Combine"
+msgstr "S_loučit"
+
+#: ../plugins/actions/combinesubtitles/CombineSubtitles.cc:52
+msgid "Merge the selected subtitles"
+msgstr "Sloučit vybrané titulky"
+
+#: ../plugins/actions/combinesubtitles/CombineSubtitles.cc:167
+#: ../plugins/actions/splitsubtitle/SplitSubtitle.cc:119
+msgid "Please select at least two subtitles."
+msgstr "Vyberte prosím alespoň dva titulky."
+
+#: ../plugins/actions/combinesubtitles/CombineSubtitles.cc:171
+msgid "Combine subtitles"
+msgstr "Sloučit titulky"
+
+#: ../plugins/actions/command/Command.cc:56
+msgid "Undo the last action"
+msgstr "Vrátit předchozí akci"
+
+#: ../plugins/actions/command/Command.cc:59
+msgid "Redo the last undone action"
+msgstr "Znovu provést posledně vrácenou akci"
+
+#: ../plugins/actions/command/Command.cc:151
+#, c-format
+msgid "Undo: %s"
+msgstr "Vrátit: %s"
+
+#: ../plugins/actions/command/Command.cc:174
+#, c-format
+msgid "redo: %s"
+msgstr "Znovu: %s"
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:93
+msgid "Actions"
+msgstr "Akce"
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:115
+msgid "Shortcut"
+msgstr "Zkratka"
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:322
+msgid "Invalid shortcut."
+msgstr "Chybná zkratka."
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:339
+msgid "Shortcut \"%1\" is already taken by \"%2\"."
+msgstr "Zkratka „%1“ je již zabrána akcí „%2“."
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:343
+msgid "Reassigning the shortcut will cause it to be removed from \"%1\"."
+msgstr "Opětovné přiřazení zkratky způsobí, že bude z „%1“ odstraněna."
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:347
+msgid "Conflicting Shortcuts"
+msgstr "Zkratky ve sporu"
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:354
+msgid "Changing shortcut failed."
+msgstr "Změna zkratky selhala."
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:382
+msgid "Removing shortcut failed."
+msgstr "Odstranění zkratky selhalo."
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:437
+msgid "Configure _Keyboard Shortcuts"
+msgstr "Nastavit _klávesové zkratky"
+
+#: ../plugins/actions/configurekeyboardshortcuts/ConfigureKeyboardShortcuts.cc:437
+#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.glade.h:1
+msgid "Configure Keyboard Shortcuts"
+msgstr "Nastavit klávesové zkratky"
+
+#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.glade.h:2
+msgid ""
+"To edit a shortcut key, click on the corresponding row and type a new "
+"accelerator, or press backspace to clear."
+msgstr ""
+"Klávesovou zkratku upravíte tak, že kliknete do odpovídajícího řádku a "
+"stisknete požadovanou klávesu nebo klávesu Backspace, čímž zkratku vymažete."
+
+#: ../plugins/actions/dialoguize/Dialoguize.cc:55
+msgid "_Dialogue"
+msgstr "_Dialog"
+
+#: ../plugins/actions/dialoguize/Dialoguize.cc:55
+msgid "Add or remove dialogue line"
+msgstr "Přidat nebo odebrat dialogovou pomlčku"
+
+#: ../plugins/actions/dialoguize/Dialoguize.cc:132
+#: ../plugins/actions/italicize/Italicize.cc:132
+msgid "Italic"
+msgstr "Kurziva"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:40
+msgid "Close _without Saving"
+msgstr "Zavřít _bez uložení"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:48
+#, c-format
+msgid "Save the changes to document \"%s\" before closing?"
+msgstr "Uložit před zavřením změny do dokumentu „%s“?"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:49
+msgid "If you don't save, the last changes will be permanently lost."
+msgstr "Pokud neuložíte, poslední změny budou nenávratně ztraceny."
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:88
+msgid "Create a new document"
+msgstr "Vytvořit nový dokument"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:93
+msgid "Open a file"
+msgstr "Otevřít soubor"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:97
+msgid "Save the current file"
+msgstr "Uložit aktuální soubor"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:101
+msgid "Save the current file with a different name"
+msgstr "Uložit aktuální soubor pod jiným názvem"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:105
+msgid "Save _All"
+msgstr "Uložit _vše"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:105
+msgid "Save all open files"
+msgstr "Uložit všechny otevřené soubory"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:110
+msgid "Open _Translation"
+msgstr "Otevřít _překlad"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:110
+msgid "Open translation from file"
+msgstr "Otevřít překlad ze souboru"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:114
+msgid "Save Trans_lation"
+msgstr "Uložit přek_lad"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:114
+msgid "Save translation to file"
+msgstr "Uložit překlad do souboru"
+
+#. recent files
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:118
+msgid "Open _Recent"
+msgstr "Otevřít ne_dávný"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:137
+msgid "Close the current file"
+msgstr "Zavřít aktuální soubor"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:142
+msgid "E_xit"
+msgstr "U_končit"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:142
+msgid "Quit the program"
+msgstr "Ukončit program"
+
+#. DocumentSystem::getInstance().setCurrentDocument(already);
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:288
+msgid "I am already open"
+msgstr "Již otevřeno"
+
+#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:322
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:380
+#, c-format
+msgid "Saving file %s (%s, %s, %s)."
+msgstr "Ukládání souboru %s (%s, %s, %s)."
+
+#. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:330
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:388
+#, c-format
+msgid "The file %s (%s, %s, %s) has not been saved."
+msgstr "Soubor %s (%s, %s, %s) ještě nebyl uložen."
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:471
+msgid "Open translation"
+msgstr "Otevřít překlad"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:499
+#, c-format
+msgid "1 subtitle was added with the translation"
+msgid_plural "%d subtitles were added with the translation"
+msgstr[0] "Spolu s překladem byl přidán 1 titulek"
+msgstr[1] "Spolu s překladem byly přidány %d titulky"
+msgstr[2] "Spolu s překladem bylo přidáno %d titulků"
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:560
+#, c-format
+msgid "Saving translation file %s (%s, %s, %s)."
+msgstr "Ukládání souboru překladu %s (%s, %s, %s)."
+
+#: ../plugins/actions/documentmanagement/DocumentManagement.cc:563
+#, c-format
+msgid "The translation file %s (%s, %s, %s) has not been saved."
+msgstr "Soubor překladu %s (%s, %s, %s) ještě nebyl uložen."
+
+#: ../plugins/actions/duplicatesubtitle/DuplicateSubtitle.cc:55
+msgid "_Duplicate"
+msgstr "Zdvo_jit"
+
+#: ../plugins/actions/duplicatesubtitle/DuplicateSubtitle.cc:55
+msgid "Duplicate the selected subtitles"
+msgstr "Zdvojit vybrané titulky"
+
+#: ../plugins/actions/duplicatesubtitle/DuplicateSubtitle.cc:123
+msgid "Duplicate selected subtitles"
+msgstr "Zdvojit vybrané titulky"
+
+#: ../plugins/actions/editcell/EditCell.cc:55
+msgid "_Edit Cell"
+msgstr "_Upravit buňku"
+
+#: ../plugins/actions/editcell/EditCell.cc:55
+msgid "Start the editing of the focused cell"
+msgstr "Začít upravovat aktivní buňku"
+
+#: ../plugins/actions/editcell/EditCell.cc:59
+msgid "Edit _Next Cell"
+msgstr "Upravit _následující buňku"
+
+#: ../plugins/actions/editcell/EditCell.cc:59
+msgid "Start the editing of the next cell"
+msgstr "Začít upravovat následující buňku"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking.glade.h:1
+#: ../plugins/actions/errorchecking/errorchecking.se-plugin.in.h:2
+msgid "Error Checking"
+msgstr "Kontrola chyb"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:1
+msgid "<b>Error Checking</b>"
+msgstr "<b>Kontrola chyb</b>"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:2
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:8
+msgid "<b>Timing Preferences</b>"
+msgstr "<b>Možnosti časování</b>"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:3
+msgid "Checking"
+msgstr "Kontrola"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:4
+msgid "Error Checking Preferences"
+msgstr "Nastavení kontroly chyb"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:5
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:26
+msgid "Maximum characters per line:"
+msgstr "Maximum znaků na řádku:"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:6
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:27
+msgid "Maximum characters per second:"
+msgstr "Maximum znaků za sekundu:"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:7
+msgid "Maximum number of lines per subtitle:"
+msgstr "Maximální počet řádků na titulek:"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:8
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:29
+msgid "Minimum characters per second:"
+msgstr "Minimum znaků za sekundu:"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:9
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:30
+msgid "Minimum display of the subtitle in mseconds:"
+msgstr "Maximální doba zobrazení titulku v ms:"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:10
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:31
+msgid "Minimum gap between subtitles in mseconds:"
+msgstr "Minimální prodleva mezi titulky v milisekundách:"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:11
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:40
+#: ../plugins/actions/viewmanager/ViewManager.cc:407
+msgid "Timing"
+msgstr "Časování"
+
+#. File
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:221
+msgid "_Error"
+msgstr "_Chyba"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:224
+msgid "Try To _Fix All"
+msgstr "Pokus se _opravit vše"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:231
+msgid "_View"
+msgstr "_Zobrazení"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:232
+msgid "By _Categories"
+msgstr "Podle _kategorie"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:234
+msgid "By _Subtitles"
+msgstr "Podle _titulků"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:237
+msgid "_Collapse All"
+msgstr "_Sbalit vše"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:239
+msgid "_Expand All"
+msgstr "_Rozvinout vše"
+
+#. menu option
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:244
+#: ../src/gui/MenuBar.cc:71
+msgid "_Options"
+msgstr "_Možnosti"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:384
+msgid "No error was found."
+msgstr "Žádná chyba nebyla nalezena."
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:387
+#, c-format
+msgid "1 error was found."
+msgid_plural "%d errors were found."
+msgstr[0] "Byla nalezena 1 chyba"
+msgstr[1] "Byly nalezeny %d chyby."
+msgstr[2] "Bylo nalezeno %d chyb."
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:401
+#, c-format
+msgid "Subtitle n°<b>%d</b>"
+msgstr "Titulek č. <b>%d</b>"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:726
+#, c-format
+msgid "%s (<b>1 error</b>)"
+msgid_plural "%s (<b>%d errors</b>)"
+msgstr[0] "%s (<b>1 chyba</b>)"
+msgstr[1] "%s (<b>%d chyby</b>)"
+msgstr[2] "%s (<b>%d chyb</b>)"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:733
+#, c-format
+msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
+msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
+msgstr[0] "Titulek č. <b>%d</b> (<b>1 chyba</b>)"
+msgstr[1] "Titulek č. <b>%d</b> (<b>%d chyby</b>)"
+msgstr[2] "Titulek č. <b>%d</b> (<b>%d chyb</b>)"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:820
+msgid "_Error Checking"
+msgstr "_Kontrola chyb"
+
+#: ../plugins/actions/errorchecking/ErrorCheckingPlugin.cc:820
+msgid "Launch the error checking."
+msgstr "Spustí kontrolu chyb"
+
+#: ../plugins/actions/errorchecking/MaxCharactersPerLine.h:38
+msgid "Max Characters Per Line"
+msgstr "Maximum znaků na řádku"
+
+#: ../plugins/actions/errorchecking/MaxCharactersPerLine.h:39
+msgid "An error is detected if a line is too long."
+msgstr "Najde chybu, pokud je řádek příliš dlouhý."
+
+#: ../plugins/actions/errorchecking/MaxCharactersPerLine.h:73
+#, c-format
+msgid "Subtitle has a too long line: <b>1 character</b>"
+msgid_plural "Subtitle has a too long line: <b>%i characters</b>"
+msgstr[0] "Titulek má příliš dlouhý řádek: <b>1 znak</b>"
+msgstr[1] "Titulek má příliš dlouhý řádek: <b>%i znaky</b>"
+msgstr[2] "Titulek má příliš dlouhý řádek: <b>%i znaků</b>"
+
+#: ../plugins/actions/errorchecking/MaxCharactersPerLine.h:75
+#: ../plugins/actions/errorchecking/MaxLinePerSubtitle.h:79
+#: ../plugins/actions/errorchecking/Overlapping.h:74
+msgid "<b>Automatic correction:</b> unavailable, correct the error manually."
+msgstr "<b>Automatická oprava:</b> nedostupná, opravte chybu ručně."
+
+#: ../plugins/actions/errorchecking/MaxLinePerSubtitle.h:38
+msgid "Max Line Per Subtitle"
+msgstr "Maximum řádků na titulek"
+
+#: ../plugins/actions/errorchecking/MaxLinePerSubtitle.h:39
+msgid "An error is detected if a subtitle has too many lines."
+msgstr "Najde chybu, pokud má titulek příliš mnoho řádků."
+
+#: ../plugins/actions/errorchecking/MaxLinePerSubtitle.h:77
+#, c-format
+msgid "Subtitle has too many lines: <b>1 line</b>"
+msgid_plural "Subtitle has too many lines: <b>%i lines</b>"
+msgstr[0] "Titulek má příliš mnoho řádků: <b>1 řádek</b>"
+msgstr[1] "Titulek má příliš mnoho řádků: <b>%i řádky</b>"
+msgstr[2] "Titulek má příliš mnoho řádků: <b>%i řádků</b>"
+
+#: ../plugins/actions/errorchecking/MinDisplayTime.h:38
+msgid "Min Display Time"
+msgstr "Minimální čas zobrazení"
+
+#: ../plugins/actions/errorchecking/MinDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the duration is inferior to the specified "
+"value."
+msgstr "Najde a opraví titulky, pokud je trvání kratší než zadaná hodnota."
+
+#: ../plugins/actions/errorchecking/MinDisplayTime.h:71
+#, c-format
+msgid "Subtitle display time is too short: <b>%s</b>"
+msgstr "Čas zobrazení titulku je příliš krátký: <b>%s</b>"
+
+#: ../plugins/actions/errorchecking/MinDisplayTime.h:75
+#: ../plugins/actions/errorchecking/TooLongDisplayTime.h:80
+#: ../plugins/actions/errorchecking/TooShortDisplayTime.h:80
+#, c-format
+msgid "<b>Automatic correction:</b> to change current subtitle end to %s."
+msgstr "<b>Automatická oprava:</b> změnit konec aktuálního titulku na %s."
+
+#: ../plugins/actions/errorchecking/MinGapBetweenSubtitles.h:38
+msgid "Minimum Gap Between Subtitles"
+msgstr "Minimální prodleva mezi titulky"
+
+#: ../plugins/actions/errorchecking/MinGapBetweenSubtitles.h:39
+msgid ""
+"Detects and fixes subtitles when the minimum gap between subtitles is too "
+"short."
+msgstr ""
+"Najde a opraví titulky, pokud je minimální prodleva mezi titulky příliš "
+"krátká."
+
+#: ../plugins/actions/errorchecking/MinGapBetweenSubtitles.h:81
+#, c-format
+msgid "Too short gap between subtitle: <b>%ims</b>"
+msgstr "Příliš krátká mezera mezi titulky: <b>%i ms</b>"
+
+#: ../plugins/actions/errorchecking/MinGapBetweenSubtitles.h:85
+#, c-format
+msgid ""
+"<b>Automatic correction:</b> to clip current subtitle end to %s and to move "
+"next subtitle start to %s."
+msgstr ""
+"<b>Automatická oprava:</b> oříznout konec aktuálního titulku na %s a "
+"posunout začátek následujícího titulku na %s."
+
+#: ../plugins/actions/errorchecking/Overlapping.h:38
+msgid "Overlapping"
+msgstr "Překrývání"
+
+#: ../plugins/actions/errorchecking/Overlapping.h:39
+msgid "An error is detected when the subtitle overlap on next subtitle."
+msgstr "Najde chybu, pokud titulek překrývá následující titulek."
+
+#: ../plugins/actions/errorchecking/Overlapping.h:71
+#, c-format
+msgid "Subtitle overlap on next subtitle: <b>%ims overlap</b>"
+msgstr "Titulek přesahuje do následujícího: <b>%i ms překrytí</b>"
+
+#: ../plugins/actions/errorchecking/TooLongDisplayTime.h:38
+msgid "Too Long Display Time"
+msgstr "Příliš dlouhý čas zobrazení"
+
+#: ../plugins/actions/errorchecking/TooLongDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"inferior to the specified value."
+msgstr ""
+"Najde a opraví titulky, pokud je počet znaků za sekundu nižší než zadaná "
+"hodnota."
+
+# Shoda počítaného předmětu po desetinných číslech se v odborných textech řídí podle desetin, setin atd. Tvar počítaného předmětu je proto ve 2. p. j. č.
+#: ../plugins/actions/errorchecking/TooLongDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
+msgstr[0] "Čas zobrazení titulku je příliš dlouhý: <b>%.1f znaku/s</b>"
+msgstr[1] "Čas zobrazení titulku je příliš dlouhý: <b>%.1f znaku/s</b>"
+msgstr[2] "Čas zobrazení titulku je příliš dlouhý: <b>%.1f znaku/s</b>"
+
+#: ../plugins/actions/errorchecking/TooShortDisplayTime.h:38
+msgid "Too Short Display Time"
+msgstr "Příliš krátký čas zobrazení"
+
+#: ../plugins/actions/errorchecking/TooShortDisplayTime.h:39
+msgid ""
+"Detects and fixes subtitles when the number of characters per second is "
+"superior to the specified value."
+msgstr ""
+"Najde a opraví titulky, pokud je počet znaků za sekundu vyšší než zadaná "
+"hodnota."
+
+# Shoda počítaného předmětu po desetinných číslech se v odborných textech řídí podle desetin, setin atd. Tvar počítaného předmětu je proto ve 2. p. j. č.
+#: ../plugins/actions/errorchecking/TooShortDisplayTime.h:76
+#, c-format
+msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
+msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
+msgstr[0] "Čas zobrazení titulku je příliš krátký: <b>%.1f znaku/s</b>"
+msgstr[1] "Čas zobrazení titulku je příliš krátký: <b>%.1f znaku/s</b>"
+msgstr[2] "Čas zobrazení titulku je příliš krátký: <b>%.1f znaku/s</b>"
+
+#: ../plugins/actions/extendlength/ExtendLength.cc:52
+msgid "_Extend Length"
+msgstr "Prodloužit _trvání"
+
+#: ../plugins/actions/extendlength/ExtendLength.cc:52
+msgid "Extend the length of selected subtitles to the start time of the next"
+msgstr "Prodloužit trvání vybraných titulků až k začátku následujících "
+
+#: ../plugins/actions/extendlength/ExtendLength.cc:125
+msgid "Extend lenght"
+msgstr "Prodloužit trvání"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:1
+msgid "<b>Command</b>"
+msgstr "<b>Příkaz</b>"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:2
+msgid "<span size=\"small\">the path to the subtitle file</span>"
+msgstr "<span size=\"small\">cesta k titulkovému souboru</span>"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:3
+msgid "<span size=\"small\">the path to the video file</span>"
+msgstr "<span size=\"small\">cesta k video souboru</span>"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:4
+msgid ""
+"<span size=\"small\">the time in seconds to the current selected line</span>"
+msgstr "<span size=\"small\">čas v sekundách k aktuálně zvolenému řádku</span>"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:5
+msgid "<span size=\"small\">the uri to the subtitle file</span>"
+msgstr "<span size=\"small\">URI titulkového souboru</span>"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:6
+msgid "<span size=\"small\">the uri to the video file</span>"
+msgstr "<span size=\"small\">URI video souboru</span>"
+
+#. TRANSLATORS: Do not translate replaceable tokens #xxx.
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:8
+msgid ""
+"Example with mplayer:\n"
+"mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
+msgstr ""
+"Příklad pro mplayer:\n"
+"mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:10
+#: ../plugins/actions/externalvideoplayer/externalvideoplayer.se-plugin.in.h:1
+msgid "External Video Player"
+msgstr "Externí přehrávač videa"
+
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:11
+msgid ""
+"The following command parameters will be substituted when launching the "
+"action :"
+msgstr "Následující příkazové parametry budou nahrazeny při spuštění akce :"
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:82
+msgid "_External Video Player"
+msgstr "_Externí přehrávač videa"
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:85
+msgid "_Open Movie"
+msgstr "_Otevřít film"
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:85
+msgid "Open movie with external video player"
+msgstr "Otevřít film v externím video přehrávači"
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:89
+msgid "_Play Movie"
+msgstr "_Přehrát film"
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:89
+msgid "Play movie with external video player"
+msgstr "Přehrát film v externím video přehrávači"
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:93
+msgid "External video player preferences"
+msgstr ""
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:175
+msgid "Please select a movie."
+msgstr "Vyberte prosím film."
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:243
+msgid "Failed to launch the external player."
+msgstr "Spuštění externího přehrávače selhalo."
+
+#: ../plugins/actions/externalvideoplayer/ExternalVideoPlayer.cc:245
+#, c-format
+msgid ""
+"%s\n"
+"\n"
+"Command: <i>%s</i>"
+msgstr ""
+"%s\n"
+"\n"
+"Příkaz: <i>%s</i>"
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:1
+#: ../plugins/actions/findandreplace/findandreplace.se-plugin.in.h:1
+msgid "Find And Replace"
+msgstr "Najít a nahradit"
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:2
+msgid "Pattern:"
+msgstr "Vzorek:"
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:3
+msgid "Replace"
+msgstr "Nahradit"
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:4
+msgid "Replace _All"
+msgstr "Nahradit _vše"
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:5
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:6
+msgid "Replace with:"
+msgstr "Nahradit čím:"
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:6
+msgid "_Ignore case"
+msgstr "_Ignorovat malá/velká"
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:7
+msgid "_Use regular expression"
+msgstr "Použít _regulérní výraz"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:298
+msgid "Replace text"
+msgstr "Nahradit text"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:334
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:577
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:644
+msgid "The document is empty"
+msgstr "Dokument je prázdný"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:463
+msgid "_Find And Replace"
+msgstr "_Najít a nahradit"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:463
+msgid "Search and replace text"
+msgstr "Vyhledat a nahradit text"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:467
+msgid "Find Ne_xt"
+msgstr "Najít _další"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:467
+msgid "Search forwards for the same text"
+msgstr "Hledat vpředu stejný text"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:470
+msgid "Find Pre_vious"
+msgstr "Najít _předchozí"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:470
+msgid "Search backwards for the same text"
+msgstr "Hledat zpětně stejný text"
+
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:627
+#: ../plugins/actions/findandreplace/FindAndReplace.cc:694
+msgid "Not found"
+msgstr "Nenalezeno"
+
+#: ../plugins/actions/insertsubtitle/InsertSubtitle.cc:52
+msgid "Insert _Before"
+msgstr "Vložit _před"
+
+#: ../plugins/actions/insertsubtitle/InsertSubtitle.cc:52
+msgid "Insert blank subtitle before the selected subtitle"
+msgstr "Vložit prázdný titulek před vybraný"
+
+#: ../plugins/actions/insertsubtitle/InsertSubtitle.cc:56
+msgid "Insert _After"
+msgstr "Vložit z_a"
+
+#: ../plugins/actions/insertsubtitle/InsertSubtitle.cc:56
+msgid "Insert blank subtitle after the selected subtitle"
+msgstr "Vložit prázdný titulek za vybraný"
+
+#: ../plugins/actions/insertsubtitle/InsertSubtitle.cc:148
+#: ../src/Subtitles.cc:123
+#: ../plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in.h:1
+msgid "Insert Subtitle"
+msgstr "Vložit titulek"
+
+#: ../plugins/actions/italicize/Italicize.cc:55
+msgid "_Italic"
+msgstr "Kurz_iva"
+
+#: ../plugins/actions/italicize/Italicize.cc:55
+msgid "Italicize the selected subtitles text"
+msgstr "Převést vybraný text titulku na kurzivu"
+
+#: ../plugins/actions/joindocument/JoinDocument.cc:56
+msgid "_Join Document"
+msgstr "Spo_jit dokument"
+
+#: ../plugins/actions/joindocument/JoinDocument.cc:56
+msgid "Add subtitles from file"
+msgstr "Přidat titulky ze souboru"
+
+#: ../plugins/actions/joindocument/JoinDocument.cc:142
+msgid "Join document"
+msgstr "Spojit dokument"
+
+#: ../plugins/actions/joindocument/JoinDocument.cc:154
+#, c-format
+msgid "1 subtitle has been added at this document."
+msgid_plural "%d subtitles have been added at this document."
+msgstr[0] "Do tohoto dokumentu byl přidán 1 titulek."
+msgstr[1] "Do tohoto dokumentu byly přidány %d titulky."
+msgstr[2] "Do tohoto dokumentu bylo přidáno %d titulků."
+
+#: ../plugins/actions/moveafterprecedingsubtitle/MoveAfterPrecedingSubtitle.cc:55
+msgid "_Move After Preceding"
+msgstr "Přesunout _za předchozí"
+
+#: ../plugins/actions/moveafterprecedingsubtitle/MoveAfterPrecedingSubtitle.cc:55
+msgid ""
+"Move subtitle after the preceding with the respect of the minimum gap "
+"between subtitles"
+msgstr ""
+"Přesunout titulek za předchozí s ohledem na minimální prodlevu mezi titulky"
+
+#: ../plugins/actions/moveafterprecedingsubtitle/MoveAfterPrecedingSubtitle.cc:126
+msgid "Move After Preceding"
+msgstr "Přesunout za předchozí"
+
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:1
+msgid "<b>Position</b>"
+msgstr "<b>Pozice</b>"
+
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:2
+#: ../plugins/actions/movesubtitles/MoveSubtitles.cc:188
+#: ../plugins/actions/movesubtitles/movesubtitles.se-plugin.in.h:1
+msgid "Move Subtitles"
+msgstr "Přesunout titulky"
+
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:3
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:6
+msgid "_New Start:"
+msgstr "_Nový začátek:"
+
+#. init label
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:4
+#: ../plugins/actions/movesubtitles/MoveSubtitles.cc:52
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:7
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:121
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:122
+msgid "_Start Time:"
+msgstr "_Počáteční čas:"
+
+#: ../plugins/actions/movesubtitles/MoveSubtitles.cc:52
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:121
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:122
+msgid "_Start Frame:"
+msgstr "_Počáteční snímek:"
+
+#: ../plugins/actions/movesubtitles/MoveSubtitles.cc:109
+msgid "_Move Subtitles"
+msgstr "_Přesunout titulky"
+
+#: ../plugins/actions/movesubtitles/MoveSubtitles.cc:109
+msgid "All subtitles will be also moved after the first selected subtitle"
+msgstr "Všechny titulky budou rovněž přesunuty za první vybraný titulek"
+
+#: ../plugins/actions/plaintext/PlainText.cc:58
+msgid "_Import Plain Text"
+msgstr "_Importovat text"
+
+#: ../plugins/actions/plaintext/PlainText.cc:58
+msgid "Create a new document with any text file"
+msgstr "Vytvořit nový dokument z libovolného textového souboru"
+
+#: ../plugins/actions/plaintext/PlainText.cc:62
+msgid "_Export Plain Text"
+msgstr "_Exportovat text"
+
+#: ../plugins/actions/plaintext/PlainText.cc:62
+msgid "Export just a text in a file"
+msgstr "Exportovat jen text do souboru"
+
+#: ../plugins/actions/plaintext/PlainText.cc:142
+#, c-format
+msgid "Could not import from the file \"%s\"."
+msgstr "Nešlo importovat ze souboru „%s“."
+
+#: ../plugins/actions/plaintext/PlainText.cc:180
+#, c-format
+msgid "Could not export to the file \"%s\"."
+msgstr "Nešlo exportovat do souboru „%s“."
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:1
+msgid "<b>Activate plugins</b>"
+msgstr "<b>Zapnout zásuvné moduly</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:2
+msgid "<b>File Saving</b>"
+msgstr "<b>Ukládání souborů</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:3
+msgid "<b>General</b>"
+msgstr "<b>Obecné</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:4
+msgid "<b>New Document</b>"
+msgstr "<b>Nový dokument</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:5
+msgid "<b>Output</b>"
+msgstr "<b>Výstup</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:6
+msgid "<b>Subtitle View</b>"
+msgstr "<b>Titulkový pohled</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:7
+msgid "<b>Text Subtitle</b>"
+msgstr "<b>Textové titulky</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:9
+#: ../share/glade/dialog-script-properties.glade.h:6
+msgid "<b>Video</b>"
+msgstr "<b>Video</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:10
+msgid "<b>Waveform Color</b>"
+msgstr "<b>Barvy vlnovky</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:11
+msgid "<b>Waveform Generator</b>"
+msgstr "<b>Generátor vlnovek</b>"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:12
+msgid "Ask to save on _exit"
+msgstr "Zeptat se před ukončením na _uložení"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:13
+msgid "Automatically _choose video to open"
+msgstr "Automatcky _vybrat video pro otevření"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:14
+msgid "Background:"
+msgstr "Pozadí:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:15
+msgid "Create a _backup copy of files before saving"
+msgstr "Vytvořit záložní _kopii souborů před uložením"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:16
+msgid "Display _translated subtitle"
+msgstr "Zobrazit _přeložený titulek"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:17
+msgid "Display background"
+msgstr "Zobrazit pozadí"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:18
+msgid "Display subtitle text"
+msgstr "Zobrazit text titulku"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:19
+msgid "Display the translated subtitle instead of the original one."
+msgstr "Zobrazit překlad titulku místo originálního."
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:20
+msgid "Display waveform fill"
+msgstr "Zobrazit výplň vlnovky"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:21
+msgid "Document"
+msgstr "Dokument"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:22
+msgid "Enable _rubberband selection"
+msgstr "Povolit gumový výbě_r"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:23
+msgid "Force aspect _ratio"
+msgstr "Vynutit poměr st_ran"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:24
+msgid "Interface"
+msgstr "Rozhraní"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:25
+msgid "Interval in seconds:"
+msgstr "Interval v sekundách:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:28
+msgid "Maximum number of line per subtitle:"
+msgstr "Maximální počet řádků na titulek:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:32
+msgid "Player Position:"
+msgstr "Pozice přehrávače:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:33
+msgid "Plugins"
+msgstr "Zásuvné moduly"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:34
+#: ../plugins/actions/preferences/preferences.se-plugin.in.h:2
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:35
+msgid "Reset To _Defaults"
+msgstr "Obnovit _výchozí hodnoty"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:36
+msgid "Subtitle Invalid:"
+msgstr "Chybný titulek:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:37
+msgid "Subtitle Selected:"
+msgstr "Vybraný titulek:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:38
+msgid "Subtitle:"
+msgstr "Titulek:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:39
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:5
+msgid "Text:"
+msgstr "Text:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:41
+msgid "Use _dynamic keyboard shortcuts"
+msgstr "Použít _dynamické klávesové zkratky"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:42
+msgid "Use shaded _background"
+msgstr "Použít _stínované pozadí"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:43
+msgid "Video Player"
+msgstr "Video přehrávač"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:44
+msgid "Wave fill:"
+msgstr "Výplň vlnovky:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:45
+msgid "Wave:"
+msgstr "Vlnovka:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:46
+msgid "Waveform"
+msgstr "Vlnovka"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:47
+msgid ""
+"When enabled, you can change keyboard shortcuts for menu items by hitting a "
+"key combination while the menu item is highlighted."
+msgstr ""
+"Pokud je volba povolena, můžete měnit klávesové zkratky pro položky menu "
+"stiskem klávesové kombinace, když je položka menu zvýrazněna."
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:48
+msgid "_Audio:"
+msgstr "_Zvuk:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:49
+msgid "_Autosave files every"
+msgstr "_Automaticky uložit každých"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:50
+msgid "_Center the text of the subtitle in the column"
+msgstr "_Vystředit text titulku ve sloupci"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:51
+msgid "_Font:"
+msgstr "_Písmo:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:52
+msgid "_Format:"
+msgstr "_Formát:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:53
+msgid "_Maximize window"
+msgstr "_Maximalizovat okno"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:54
+msgid "_Newline:"
+msgstr "_Konec řádku:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:55
+msgid "_Show the number of characters per line"
+msgstr "_Zobrazit počet znaků na řádku"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:56
+msgid "_Use Ctrl+Enter keys to confirm the change"
+msgstr "Použít klávesy Ctrl+Enter pro potvrzení změny"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:57
+msgid "_Video:"
+msgstr "_Video:"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:58
+msgid "minutes"
+msgstr "minut"
+
+#: ../plugins/actions/preferences/PreferencesPlugin.cc:108
+msgid "Configure Subtitle Editor"
+msgstr "Konfigurace titulkového editoru"
+
+#. audio output
+#. video output
+#: ../plugins/actions/preferences/VideoPlayerPage.h:123
+#: ../plugins/actions/preferences/VideoPlayerPage.h:131
+msgid "Autodetect"
+msgstr "Automatická detekce"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:124
+msgid "ALSA - Advanced Linux Sound Architecture"
+msgstr "ALSA – Advanced Linux Sound Architecture"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:125
+msgid "ESD - Enlightenment Sound Daemon"
+msgstr "ESD – Enlightenment Sound Daemon"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:126
+msgid "OSS - Open Sound System"
+msgstr "OSS – Open Sound System"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:127
+#: ../plugins/actions/preferences/VideoPlayerPage.h:134
+msgid "SDL - Simple DirectMedia Layer"
+msgstr "SDL – Simple DirectMedia Layer"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:128
+#: ../plugins/actions/preferences/VideoPlayerPage.h:135
+msgid "GConf"
+msgstr "GConf"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:132
+msgid "X Window System (X11/XShm/Xv)"
+msgstr "X Window System (X11/XShm/Xv)"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:133
+msgid "X Window System (No Xv)"
+msgstr "X Window System (No Xv)"
+
+#: ../plugins/actions/preferences/VideoPlayerPage.h:136
+msgid "OpenGL"
+msgstr "OpenGL"
+
+#: ../plugins/actions/removesubtitle/RemoveSubtitle.cc:52
+msgid "Delete the selected subtitles"
+msgstr "Smazat vybrané titulky"
+
+#: ../plugins/actions/removesubtitle/RemoveSubtitle.cc:125
+msgid "Delete Subtitles"
+msgstr "Smazat titulky"
+
+#: ../plugins/actions/removesubtitle/RemoveSubtitle.cc:137
+#, c-format
+msgid "1 subtitle has been deleted."
+msgid_plural "%d subtitles have been deleted."
+msgstr[0] "1 titulek byl odstraněn."
+msgstr[1] "%d titulky byly odstraněny."
+msgstr[2] "%d titulků bylo odstraněno."
+
+#: ../plugins/actions/reversetextandtranslation/ReverseTextAndTranslation.cc:55
+msgid "_Reverse Text And Translation"
+msgstr "_Otočit pořadí textu a překladu"
+
+#: ../plugins/actions/reversetextandtranslation/ReverseTextAndTranslation.cc:55
+msgid "Reverse the text and the translation"
+msgstr "Otočit pořadí textu a překladu"
+
+#: ../plugins/actions/reversetextandtranslation/ReverseTextAndTranslation.cc:118
+#: ../plugins/actions/reversetextandtranslation/reversetextandtranslation.se-plugin.in.h:1
+msgid "Reverse Text And Translation"
+msgstr "Otočit text a překlad"
+
+#: ../plugins/actions/reversetextandtranslation/ReverseTextAndTranslation.cc:133
+msgid "Reverse the text and the translation was applied."
+msgstr "Text a překlad byly obráceny."
+
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:1
+msgid "<b>First Point</b>"
+msgstr "<b>První bod</b>"
+
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:2
+msgid "<b>Last Point</b>"
+msgstr "<b>Poslední bod</b>"
+
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:3
+msgid "Number:"
+msgstr "Číslo:"
+
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:4
+msgid "Scale"
+msgstr "Škálovat"
+
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:109
+msgid "You can't use <i>scale</i> with this document."
+msgstr "Tento dokument nelze <i>škálovat</i>."
+
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:253
+msgid "_Scale"
+msgstr "Š_kálovat"
+
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:253
+msgid "Scale by two points"
+msgstr "Škálovat mezi dvěma body"
+
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:327
+msgid "Scale subtitles"
+msgstr "Škálovat titulky"
+
+#: ../plugins/actions/scalesubtitles/ScaleSubtitles.cc:350
+msgid "The scale was applied"
+msgstr "Škálování bylo aplikováno"
+
+#: ../plugins/actions/selection/Selection.cc:52
+msgid "Select _First Subtitle"
+msgstr "Vybrat p_rvní titulek"
+
+#: ../plugins/actions/selection/Selection.cc:52
+msgid "Select the first subtitle"
+msgstr "Vybrat první titulek"
+
+#: ../plugins/actions/selection/Selection.cc:56
+msgid "Select _Last Subtitle"
+msgstr "Vybrat pos_lední titulek"
+
+#: ../plugins/actions/selection/Selection.cc:56
+msgid "Select the last subtitle"
+msgstr "Vybrat poslední titulek"
+
+#: ../plugins/actions/selection/Selection.cc:60
+msgid "Select _Previous Subtitle"
+msgstr "Vybrat _předchozí titulek"
+
+#: ../plugins/actions/selection/Selection.cc:60
+msgid "Select the previous subtitle"
+msgstr "Vybrat předchozí titulek"
+
+#: ../plugins/actions/selection/Selection.cc:64
+msgid "Select _Next Subtitle"
+msgstr "Vybrat _následující titulek"
+
+#: ../plugins/actions/selection/Selection.cc:64
+msgid "Select the next subtitle"
+msgstr "Vybrat následující titulek"
+
+#: ../plugins/actions/selection/Selection.cc:68
+msgid "Select _All Subtitles"
+msgstr "Vybrat _všechny titulky"
+
+#: ../plugins/actions/selection/Selection.cc:68
+msgid "Select all subtitles"
+msgstr "Vybrat všechny titulky"
+
+#: ../plugins/actions/selection/Selection.cc:72
+msgid "In_vert Selection"
+msgstr "_Obrátit výběr"
+
+#: ../plugins/actions/selection/Selection.cc:72
+msgid "Invert subtitles selection"
+msgstr "Prohodit výběr titulků"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:1
+msgid "<b>Completed spell checking.</b>"
+msgstr "<b>Kontrola pravopisu dokončena.</b>"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:2
+msgid "<b>Language:</b>"
+msgstr "<b>Jazyk:</b>"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:3
+msgid "A_dd Word"
+msgstr "_Přidat slovo"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:4
+msgid "Check _Word"
+msgstr "Zkontrolovat _slovo"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:5
+msgid "Ignore _All"
+msgstr "Ignorovat _vše"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
+#: ../plugins/actions/spellchecking/SpellChecking.cc:294
+#: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:2
+msgid "Spell Checking"
+msgstr "Kontrola pravopisu"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:8
+msgid "User dictionary:"
+msgstr "Uživatelský slovník:"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:9
+msgid "_Ignore"
+msgstr "_Ignorovat"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:10
+msgid "_Replace"
+msgstr "_Nahradit"
+
+#: ../plugins/actions/spellchecking/SpellChecking.cc:674
+msgid "_Spell Check"
+msgstr "_Kontrola pravopisu"
+
+#: ../plugins/actions/spellchecking/SpellChecking.cc:674
+msgid "Launch the spell checking"
+msgstr "Spustí kontrolu pravopisu"
+
+#: ../plugins/actions/splitdocument/dialog-split-document.glade.h:1
+#: ../plugins/actions/splitdocument/splitdocument.se-plugin.in.h:1
+msgid "Split Document"
+msgstr "Rozdělit dokument"
+
+#: ../plugins/actions/splitdocument/dialog-split-document.glade.h:2
+msgid "The beginning for the new document:"
+msgstr "Začátek nového dokumentu:"
+
+#: ../plugins/actions/splitdocument/SplitDocument.cc:57
+msgid "You can't use <i>split</i> with this document."
+msgstr "Tento dokument nelze <i>rozdělit</i>."
+
+#. on supprime ensuite les sous-titres utiliser par le nouveau document
+#: ../plugins/actions/splitdocument/SplitDocument.cc:98
+msgid "Split document"
+msgstr "Rozdělit dokument"
+
+#: ../plugins/actions/splitdocument/SplitDocument.cc:138
+msgid "Spl_it Document"
+msgstr "Rozdě_lit dokument"
+
+#: ../plugins/actions/splitdocument/SplitDocument.cc:138
+msgid "Split the current document in two"
+msgstr "Rozdělit aktuální dokument na dva"
+
+#: ../plugins/actions/splitsubtitle/SplitSubtitle.cc:52
+msgid "_Split"
+msgstr "_Rozdělit"
+
+#: ../plugins/actions/splitsubtitle/SplitSubtitle.cc:52
+msgid "Split the selected subtitles"
+msgstr "Rozdělit vybrané titulky"
+
+#.
+#: ../plugins/actions/splitsubtitle/SplitSubtitle.cc:132
+msgid "Split subtitles"
+msgstr "Rozdělit titulky"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:1
+msgid "<b>Alignment</b>"
+msgstr "<b>Zarovnání</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:2
+msgid "<b>Appearance</b>"
+msgstr "<b>Vzhled</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:3
+msgid "<b>Border</b>"
+msgstr "<b>Okraj</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:4
+msgid "<b>Colors</b>"
+msgstr "<b>Barvy</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:5
+msgid "<b>Font</b>"
+msgstr "<b>Písmo</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:6
+msgid "<b>Fonts</b>"
+msgstr "<b>Písma</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:7
+msgid "<b>Margins</b>"
+msgstr "<b>Okraje</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:8
+msgid "<b>Preview</b>"
+msgstr "<b>Náhled</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:9
+msgid "<b>Transformation</b>"
+msgstr "<b>Transformace</b>"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:10
+msgid "Angle:"
+msgstr "Úhel:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:11
+msgid "Copy Style"
+msgstr "Zkopírovat styl"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:12
+msgid "Create New Style"
+msgstr "Vytvořit nový styl"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:13
+msgid "Delete Style"
+msgstr "Smazat styl"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:14
+msgid "Distance:"
+msgstr "Vzdálenost:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:15
+msgid "Left:"
+msgstr "Levý:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:16
+msgid "Manage Styles"
+msgstr "Spravovat styly"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:17
+msgid "Opaque Box"
+msgstr "Neprůhledný rám"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:18
+msgid "Outline"
+msgstr "Obrys"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:19
+msgid "Outline:"
+msgstr "Obrys:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:20
+msgid "Primary:"
+msgstr "Prvotní:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:21
+msgid "Right:"
+msgstr "Pravý:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:22
+msgid "Scale X:"
+msgstr "Měřítko X:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:23
+msgid "Scale Y:"
+msgstr "Měřítko Y:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:24
+msgid "Secondary:"
+msgstr "Druhotná:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:25
+msgid "Shadow:"
+msgstr "Stín:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:26
+msgid "Size:"
+msgstr "Velikost:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:27
+msgid "Spacing:"
+msgstr "Rozteč:"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:28
+msgid "Subtitle Editor - Style Editor"
+msgstr "Titulkový editor - Editor stylů"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:29
+msgid "TODO"
+msgstr "V plánu"
+
+#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:30
+msgid "Vertical:"
+msgstr "Svislý:"
+
+#: ../plugins/actions/styleeditor/StyleEditor.cc:113
+msgid "Styles"
+msgstr "Styly"
+
+#: ../plugins/actions/styleeditor/StyleEditor.cc:444
+msgid "_Style Editor"
+msgstr "Editor _stylů"
+
+#: ../plugins/actions/styleeditor/StyleEditor.cc:444
+msgid "Launch the style editor"
+msgstr "Spustit titulkový editor"
+
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:55
+msgid "_Times"
+msgstr "Č_asy"
+
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:55
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:59
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:66
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:69
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:73
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:77
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:81
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:85
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:79
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:83
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:87
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:91
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:96
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:103
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:110
+msgid "FIXME"
+msgstr "OPRAVMĚ"
+
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:59
+msgid "_Frames"
+msgstr "_Snímky"
+
+#: ../plugins/actions/timemodemanagement/TimeModeManagement.cc:66
+msgid "_Framerate"
+msgstr "Snímková _rychlost"
+
+#. _("_Open Media"),
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:70
+msgid "Open a multimedia file"
+msgstr "Otevřít multimediální soubor"
+
+#. _("_Close Media"),
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:79
+msgid "Close a multimedia file"
+msgstr "Zavřít multimediální soubor"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:98
+msgid "_Play / Pause"
+msgstr "Přehrávání / Pa_uza"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:99
+msgid "Play or make a pause"
+msgstr "Přehrávání nebo pauza"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:107
+msgid "Skip _Backwards"
+msgstr "Skok zpě_t"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:112
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:147
+msgid "Very Short"
+msgstr "Velmi krátký"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:113
+#, fuzzy
+msgid "Very short skip backwards"
+msgstr "Skok zpě_t"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:119
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:154
+msgid "Short"
+msgstr "Krátký"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:120
+#, fuzzy
+msgid "Short skip backwards"
+msgstr "Skok zpě_t"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:126
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:161
+msgid "Medium"
+msgstr "Střední"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:127
+#, fuzzy
+msgid "Medium skip backwards"
+msgstr "Skok zpě_t"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:133
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:168
+msgid "Long"
+msgstr "Dlouhý"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:134
+#, fuzzy
+msgid "Long skip backwards"
+msgstr "Skok zpě_t"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:142
+msgid "Skip _Forward"
+msgstr "Skok vpře_d"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:148
+msgid "Very short skip forward"
+msgstr ""
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:155
+#, fuzzy
+msgid "Short skip forward"
+msgstr "Skok vpře_d"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:162
+#, fuzzy
+msgid "Medium skip forward"
+msgstr "Skok vpře_d"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:169
+#, fuzzy
+msgid "Long skip forward"
+msgstr "Skok vpře_d"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:176
+msgid "Rate"
+msgstr "Rychlost"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:177
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:183
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:190
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:197
+msgid "Define the playback rate"
+msgstr "Určit rychlost přehrávání"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:182
+msgid "_Slower"
+msgstr "_Pomaleji"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:189
+msgid "_Faster"
+msgstr "_Rychleji"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:196
+msgid "_Normal"
+msgstr "_Normálně"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:204
+msgid "_Seek To Selection"
+msgstr "_Skok k výběru"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:205
+msgid "Seek to the first selected subtitle"
+msgstr "Přejít na první zvolený titulek"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:214
+msgid "_Repeat"
+msgstr "Opa_kovat"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:215
+msgid "Enable or disable the repeat mode"
+msgstr ""
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:224
+msgid "Play _Previous Subtitle"
+msgstr "Přehrát před_chozí titulek"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:225
+msgid "Play previous subtitle from the first selected subtitle"
+msgstr "Přehrát předchozí titulek od prvního vybraného"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:232
+msgid "Play _Selection"
+msgstr "Přehrát _výběr"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:233
+msgid "Play the selected subtitle"
+msgstr "Přehrát vybraný titulek"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:240
+msgid "Play _Next Subtitle"
+msgstr "Přehrát _následující titulek"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:241
+msgid "Play next subtitle from the first selected subtitle"
+msgstr "Přehrát následující titulek od prvního vybraného"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:248
+msgid "Play Previous Second"
+msgstr "Přehrát předchozí sekundu"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:249
+msgid "Play the second preceding the first selected subtitle"
+msgstr "Přehrát sekundu před prvním vybraným titulkem"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:255
+msgid "Play First Second"
+msgstr "Přehrát první sekundu"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:256
+msgid "Play the first second of the subtitle currently selected"
+msgstr "Přehrát první sekundu právě vybraného titulku"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:262
+msgid "Play Last Second"
+msgstr "Přehrát poslední sekundu"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:263
+msgid "Play the last second of the subtitle currently selected"
+msgstr "Přehrát poslední sekundu právě vybraného titulku"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:269
+msgid "Play Next Second"
+msgstr "Přehrát následující sekundu"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:270
+msgid "Play the second following the subtitle currently selected"
+msgstr "Přehrát sekundu po právě vybraném titlku"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:278
+msgid "Set Subtitle _Start"
+msgstr "Nastavit z_ačátek titulků"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:279
+msgid "Set from the current player position the subtitle start"
+msgstr ""
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:285
+msgid "Set Subtitle _End"
+msgstr "Nastavit kon_ec titulků"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:286
+msgid "Set from the current player position the subtitle end"
+msgstr ""
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:295
+msgid "_Video Player"
+msgstr "Přehrávač _videa"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:296
+msgid "Show or hide the video player in the current window"
+msgstr "Ukázat nebo skrýt přehrávat videa v aktuálním okně"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:826
+msgid "Set subtitle start"
+msgstr "Nastavit začátek titulků"
+
+#: ../plugins/actions/videoplayermanagement/VideoPlayerManagement.cc:848
+msgid "Set subtitle end"
+msgstr "Nastavit konec titulků"
+
+#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:1
+msgid "<b>Columns</b>"
+msgstr "<b>Sloupce</b>"
+
+#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:2
+msgid "<b>View</b>"
+msgstr "<b>Zobrazení</b>"
+
+#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:3
+msgid "View Editing"
+msgstr "Úprava zobrazení"
+
+#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:4
+#: ../plugins/actions/viewmanager/viewmanager.se-plugin.in.h:2
+msgid "View Manager"
+msgstr "Správce zobrazení"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:129
+msgid "Display"
+msgstr "Ukazovat"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:141
+#: ../plugins/actions/viewmanager/ViewManager.cc:232
+#: ../src/SubtitleView.cc:1643
+msgid "Name"
+msgstr "Název"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:302
+msgid "Untitled"
+msgstr "Nepojmenováno"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:404
+msgid "Simple"
+msgstr "Jednoduché"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:405
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:406
+#: ../src/SubtitleView.cc:1649
+msgid "Translation"
+msgstr "Překlad"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:429
+msgid "Switch to this view"
+msgstr ""
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:435
+msgid "View _Manager"
+msgstr "_Správce zobrazení"
+
+#: ../plugins/actions/viewmanager/ViewManager.cc:435
+msgid "Manage the views"
+msgstr "Spravovat zobrazení"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:70
+msgid "_Open Waveform"
+msgstr "_Otevřít vlnovku"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:70
+msgid "Open wavefrom from a file or create from a video"
+msgstr "Otevřít vlnovku ze souboru nebo vytvořit z videa"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:74
+msgid "_Save Waveform"
+msgstr "_Uložit vlnovku"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:74
+msgid "Save wavefrom to file"
+msgstr "Uložit vlnovku do souboru"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:79
+msgid "Zoom _In"
+msgstr "Zvětš_it"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:83
+msgid "Zoom _Out"
+msgstr "Zme_nšit"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:87
+msgid "Zoom _Selection"
+msgstr "Zao_střit na výběr"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:91
+msgid "Zoom _All"
+msgstr "Pojmout _vše"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:96
+msgid "_Center With Selected Subtitle"
+msgstr "Vystředit _na vybraný titulek"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:103
+msgid "Scrolling With _Player"
+msgstr "Rolování s _přehrávačem"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:110
+msgid "Scrolling With _Selection"
+msgstr "Rolování s vý_běrem"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:117
+msgid "_Respect The Timing"
+msgstr "_Respektovat časování"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:117
+msgid "Try to respect the timing preferences"
+msgstr "Zkusit dodržet nastavené časování"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:124
+msgid "_Wavform"
+msgstr "V_lnovka"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:124
+msgid "Show or hide the waveform in the current window"
+msgstr "Ukázat nebo skrýt vlnovku v aktuálním okně"
+
+#: ../plugins/actions/wavefrommanagement/WaveformManagement.cc:254
+msgid "Save Waveform"
+msgstr "Uložit vlnovku"
 
 #: ../share/glade/dialog-character-codings.glade.h:1
 msgid "A_vailable encodings:"
@@ -60,19 +1930,6 @@ msgstr "Kódování znaků"
 msgid "E_ncodings shown in menu:"
 msgstr "Kódování zobrazená v _nabídce:"
 
-#: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:1
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
-msgid "Configure Keyboard Shortcuts"
-msgstr "Nastavit klávesové zkratky"
-
-#: ../share/glade/dialog-configure-keyboard-shortcuts.glade.h:2
-msgid ""
-"To edit a shortcut key, click on the corresponding row and type a new "
-"accelerator, or press backspace to clear."
-msgstr ""
-"Klávesovou zkratku upravíte tak, že kliknete do odpovídajícího řádku a "
-"stisknete požadovanou klávesu nebo klávesu Backspace, čímž zkratku vymažete."
-
 #: ../share/glade/dialog-encodings-chooser.glade.h:1
 msgid "<b>Please choose encodings</b>"
 msgstr "<b>Zvolte prosím kódování</b>"
@@ -81,67 +1938,11 @@ msgstr "<b>Zvolte prosím kódování</b>"
 msgid "Encodings Chooser"
 msgstr "Volič kódování"
 
-#: ../share/glade/dialog-error-checking.glade.h:1
-msgid "Error Checking"
-msgstr "Kontrola chyb"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:1
-msgid "<b>Error Checking</b>"
-msgstr "<b>Kontrola chyb</b>"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:2
-#: ../share/glade/dialog-preferences.glade.h:8
-msgid "<b>Timing Preferences</b>"
-msgstr "<b>Možnosti časování</b>"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:3
-msgid "Checking"
-msgstr "Kontrola"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:4
-msgid "Error Checking Preferences"
-msgstr "Nastavení kontroly chyb"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:5
-#: ../share/glade/dialog-preferences.glade.h:35
-msgid "Maximum characters per line:"
-msgstr "Maximum znaků na řádku:"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:6
-#: ../share/glade/dialog-preferences.glade.h:36
-msgid "Maximum characters per second:"
-msgstr "Maximum znaků za sekundu:"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:7
-msgid "Maximum number of lines per subtitle:"
-msgstr "Maximální počet řádků na titulek:"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:8
-#: ../share/glade/dialog-preferences.glade.h:38
-msgid "Minimum characters per second:"
-msgstr "Minimum znaků za sekundu:"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:9
-#: ../share/glade/dialog-preferences.glade.h:39
-msgid "Minimum display of the subtitle in mseconds:"
-msgstr "Maximální doba zobrazení titulku v ms:"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:10
-#: ../share/glade/dialog-preferences.glade.h:40
-msgid "Minimum gap between subtitles in mseconds:"
-msgstr "Minimální prodleva mezi titulky v milisekundách:"
-
-#: ../share/glade/dialog-error-checking-preferences.glade.h:11
-#: ../share/glade/dialog-preferences.glade.h:51
-#: ../src/actions/ViewManager.cc:394
-msgid "Timing"
-msgstr "Časování"
-
 #: ../share/glade/dialog-export-text.glade.h:1
 #: ../share/glade/dialog-import-text.glade.h:1
 #: ../share/glade/dialog-open-document.glade.h:1
 #: ../share/glade/dialog-save-document.glade.h:1 ../src/Document.cc:669
-#: ../src/gui/Application.cc:319
+#: ../src/gui/Application.cc:307
 msgid "Character Coding:"
 msgstr "Kódování znaků:"
 
@@ -154,60 +1955,9 @@ msgstr "Exportovat text"
 msgid "NewLine:"
 msgstr "Konec řádku:"
 
-#: ../share/glade/dialog-find-and-replace.glade.h:1
-msgid "Find And Replace"
-msgstr "Najít a nahradit"
-
-#: ../share/glade/dialog-find-and-replace.glade.h:2
-msgid "Pattern:"
-msgstr "Vzorek:"
-
-#: ../share/glade/dialog-find-and-replace.glade.h:3
-msgid "Replace"
-msgstr "Nahradit"
-
-#: ../share/glade/dialog-find-and-replace.glade.h:4
-msgid "Replace _All"
-msgstr "Nahradit _vše"
-
-#: ../share/glade/dialog-find-and-replace.glade.h:5
-#: ../share/glade/dialog-spell-checking.glade.h:6
-msgid "Replace with:"
-msgstr "Nahradit čím:"
-
-#: ../share/glade/dialog-find-and-replace.glade.h:6
-msgid "_Ignore case"
-msgstr "_Ignorovat malá/velká"
-
-#: ../share/glade/dialog-find-and-replace.glade.h:7
-msgid "_Use regular expression"
-msgstr "Použít _regulérní výraz"
-
 #: ../share/glade/dialog-import-text.glade.h:2
 msgid "Import Text"
 msgstr "Importovat text"
-
-#: ../share/glade/dialog-move-subtitles.glade.h:1
-msgid "<b>Position</b>"
-msgstr "<b>Pozice</b>"
-
-#: ../share/glade/dialog-move-subtitles.glade.h:2
-#: ../src/actions/MoveSubtitles.cc:177
-msgid "Move Subtitles"
-msgstr "Přesunout titulky"
-
-#: ../share/glade/dialog-move-subtitles.glade.h:3
-#: ../share/glade/dialog-scale-subtitles.glade.h:6
-msgid "_New Start:"
-msgstr "_Nový začátek:"
-
-#. init label
-#: ../share/glade/dialog-move-subtitles.glade.h:4
-#: ../share/glade/dialog-scale-subtitles.glade.h:7
-#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
-#: ../src/actions/ScaleSubtitles.cc:122
-msgid "_Start Time:"
-msgstr "_Počáteční čas:"
 
 #: ../share/glade/dialog-open-document.glade.h:2
 msgid "Open Document"
@@ -217,286 +1967,13 @@ msgstr "Otevřít dokument"
 msgid "Video File:"
 msgstr "Video soubor:"
 
-#: ../share/glade/dialog-preferences.glade.h:1
-msgid "<b>Activate plugins</b>"
-msgstr "<b>Zapnout zásuvné moduly</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:2
-msgid "<b>File Saving</b>"
-msgstr "<b>Ukládání souborů</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:3
-msgid "<b>General</b>"
-msgstr "<b>Obecné</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:4
-msgid "<b>New Document</b>"
-msgstr "<b>Nový dokument</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:5
-msgid "<b>Output</b>"
-msgstr "<b>Výstup</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:6
-msgid "<b>Subtitle View</b>"
-msgstr "<b>Titulkový pohled</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:7
-msgid "<b>Text Subtitle</b>"
-msgstr "<b>Textové titulky</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:9
-msgid "<b>Video Player For Preview</b>"
-msgstr "<b>Video přehrávač pro náhled</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:10
-#: ../share/glade/dialog-script-properties.glade.h:6
-msgid "<b>Video</b>"
-msgstr "<b>Video</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:11
-msgid "<b>Waveform Color</b>"
-msgstr "<b>Barvy vlnovky</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:12
-msgid "<b>Waveform Generator</b>"
-msgstr "<b>Generátor vlnovek</b>"
-
-#: ../share/glade/dialog-preferences.glade.h:13
-msgid "<span size=\"small\">the path to the subtitle file</span>"
-msgstr "<span size=\"small\">cesta k titulkovému souboru</span>"
-
-#: ../share/glade/dialog-preferences.glade.h:14
-msgid "<span size=\"small\">the path to the video file</span>"
-msgstr "<span size=\"small\">cesta k video souboru</span>"
-
-#: ../share/glade/dialog-preferences.glade.h:15
-msgid ""
-"<span size=\"small\">the time in seconds to the current selected line</span>"
-msgstr "<span size=\"small\">čas v sekundách k aktuálně zvolenému řádku</span>"
-
-#: ../share/glade/dialog-preferences.glade.h:16
-msgid "<span size=\"small\">the uri to the subtitle file</span>"
-msgstr "<span size=\"small\">URI titulkového souboru</span>"
-
-#: ../share/glade/dialog-preferences.glade.h:17
-msgid "<span size=\"small\">the uri to the video file</span>"
-msgstr "<span size=\"small\">URI video souboru</span>"
-
-#: ../share/glade/dialog-preferences.glade.h:18
-msgid "Ask to save on _exit"
-msgstr "Zeptat se před ukončením na _uložení"
-
-#: ../share/glade/dialog-preferences.glade.h:19
-msgid "Automatically _choose video to open"
-msgstr "Automatcky _vybrat video pro otevření"
-
-#: ../share/glade/dialog-preferences.glade.h:20
-msgid "Background:"
-msgstr "Pozadí:"
-
-#: ../share/glade/dialog-preferences.glade.h:21
-msgid "Command:"
-msgstr "Příkaz:"
-
-#: ../share/glade/dialog-preferences.glade.h:22
-msgid "Create a _backup copy of files before saving"
-msgstr "Vytvořit záložní _kopii souborů před uložením"
-
-#: ../share/glade/dialog-preferences.glade.h:23
-msgid "Display _translated subtitle"
-msgstr "Zobrazit _přeložený titulek"
-
-#: ../share/glade/dialog-preferences.glade.h:24
-msgid "Display background"
-msgstr "Zobrazit pozadí"
-
-#: ../share/glade/dialog-preferences.glade.h:25
-msgid "Display subtitle text"
-msgstr "Zobrazit text titulku"
-
-#: ../share/glade/dialog-preferences.glade.h:26
-msgid "Display the translated subtitle instead of the original one."
-msgstr "Zobrazit překlad titulku místo originálního."
-
-#: ../share/glade/dialog-preferences.glade.h:27
-msgid "Display waveform fill"
-msgstr "Zobrazit výplň vlnovky"
-
-#: ../share/glade/dialog-preferences.glade.h:28
-msgid "Document"
-msgstr "Dokument"
-
-#: ../share/glade/dialog-preferences.glade.h:29
-msgid "Enable _rubberband selection"
-msgstr "Povolit gumový výbě_r"
-
-#: ../share/glade/dialog-preferences.glade.h:30
-msgid ""
-"Example with mplayer:\n"
-"mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
-msgstr ""
-"Příklad pro mplayer:\n"
-"mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
-
-#: ../share/glade/dialog-preferences.glade.h:32
-msgid "Force aspect _ratio"
-msgstr "Vynutit poměr st_ran"
-
-#: ../share/glade/dialog-preferences.glade.h:33
-msgid "Interface"
-msgstr "Rozhraní"
-
-#: ../share/glade/dialog-preferences.glade.h:34
-msgid "Interval in seconds:"
-msgstr "Interval v sekundách:"
-
-#: ../share/glade/dialog-preferences.glade.h:37
-msgid "Maximum number of line per subtitle:"
-msgstr "Maximální počet řádků na titulek:"
-
-#: ../share/glade/dialog-preferences.glade.h:41
-msgid "Player Position:"
-msgstr "Pozice přehrávače:"
-
-#: ../share/glade/dialog-preferences.glade.h:42
-msgid "Plugins"
-msgstr "Zásuvné moduly"
-
-#: ../share/glade/dialog-preferences.glade.h:43
-msgid "Preferences"
-msgstr "Nastavení"
-
-#: ../share/glade/dialog-preferences.glade.h:44
-msgid "Preview"
-msgstr "Náhled"
-
-#: ../share/glade/dialog-preferences.glade.h:45
-msgid "Reset To _Defaults"
-msgstr "Obnovit _výchozí hodnoty"
-
-#: ../share/glade/dialog-preferences.glade.h:46
-msgid "Subtitle Invalid:"
-msgstr "Chybný titulek:"
-
-#: ../share/glade/dialog-preferences.glade.h:47
-msgid "Subtitle Selected:"
-msgstr "Vybraný titulek:"
-
-#: ../share/glade/dialog-preferences.glade.h:48
-msgid "Subtitle:"
-msgstr "Titulek:"
-
-#: ../share/glade/dialog-preferences.glade.h:49
-#: ../share/glade/dialog-scale-subtitles.glade.h:5
-msgid "Text:"
-msgstr "Text:"
-
-#: ../share/glade/dialog-preferences.glade.h:50
-msgid ""
-"The following command parameters will be substituted when launching the "
-"action :"
-msgstr "Následující příkazové parametry budou nahrazeny při spuštění akce :"
-
-#: ../share/glade/dialog-preferences.glade.h:52
-msgid "Use _dynamic keyboard shortcuts"
-msgstr "Použít _dynamické klávesové zkratky"
-
-#: ../share/glade/dialog-preferences.glade.h:53
-msgid "Use shaded _background"
-msgstr "Použít _stínované pozadí"
-
-#: ../share/glade/dialog-preferences.glade.h:54
-msgid "Video Player"
-msgstr "Video přehrávač"
-
-#: ../share/glade/dialog-preferences.glade.h:55
-msgid "Wave fill:"
-msgstr "Výplň vlnovky:"
-
-#: ../share/glade/dialog-preferences.glade.h:56
-msgid "Wave:"
-msgstr "Vlnovka:"
-
-#: ../share/glade/dialog-preferences.glade.h:57
-msgid "Waveform"
-msgstr "Vlnovka"
-
-#: ../share/glade/dialog-preferences.glade.h:58
-msgid ""
-"When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while the menu item is highlighted."
-msgstr ""
-"Pokud je volba povolena, můžete měnit klávesové zkratky pro položky menu "
-"stiskem klávesové kombinace, když je položka menu zvýrazněna."
-
-#: ../share/glade/dialog-preferences.glade.h:59
-msgid "_Audio:"
-msgstr "_Zvuk:"
-
-#: ../share/glade/dialog-preferences.glade.h:60
-msgid "_Autosave files every"
-msgstr "_Automaticky uložit každých"
-
-#: ../share/glade/dialog-preferences.glade.h:61
-msgid "_Center the text of the subtitle in the column"
-msgstr "_Vystředit text titulku ve sloupci"
-
-#: ../share/glade/dialog-preferences.glade.h:62
-msgid "_Font:"
-msgstr "_Písmo:"
-
-#: ../share/glade/dialog-preferences.glade.h:63
-msgid "_Format:"
-msgstr "_Formát:"
-
-#: ../share/glade/dialog-preferences.glade.h:64
-msgid "_Maximize window"
-msgstr "_Maximalizovat okno"
-
-#: ../share/glade/dialog-preferences.glade.h:65
-msgid "_Newline:"
-msgstr "_Konec řádku:"
-
-#: ../share/glade/dialog-preferences.glade.h:66
-msgid "_Show the number of characters per line"
-msgstr "_Zobrazit počet znaků na řádku"
-
-#: ../share/glade/dialog-preferences.glade.h:67
-msgid "_Use Ctrl+Enter keys to confirm the change"
-msgstr "Použít klávesy Ctrl+Enter pro potvrzení změny"
-
-#: ../share/glade/dialog-preferences.glade.h:68
-msgid "_Video:"
-msgstr "_Video:"
-
-#: ../share/glade/dialog-preferences.glade.h:69
-msgid "minutes"
-msgstr "minut"
-
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:320
+#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/Application.cc:308
 msgid "Format:"
 msgstr "Formát:"
 
 #: ../share/glade/dialog-save-document.glade.h:4
 msgid "Save Document"
 msgstr "Uložit dokument"
-
-#: ../share/glade/dialog-scale-subtitles.glade.h:1
-msgid "<b>First Point</b>"
-msgstr "<b>První bod</b>"
-
-#: ../share/glade/dialog-scale-subtitles.glade.h:2
-msgid "<b>Last Point</b>"
-msgstr "<b>Poslední bod</b>"
-
-#: ../share/glade/dialog-scale-subtitles.glade.h:3
-msgid "Number:"
-msgstr "Číslo:"
-
-#: ../share/glade/dialog-scale-subtitles.glade.h:4
-msgid "Scale"
-msgstr "Škálovat"
 
 #: ../share/glade/dialog-script-properties.glade.h:1
 msgid "*"
@@ -594,187 +2071,6 @@ msgstr "Podrobnosti aktualizace:"
 msgid "Wrap Style:"
 msgstr "Styl zalamování:"
 
-#: ../share/glade/dialog-spell-checking.glade.h:1
-msgid "<b>Completed spell checking.</b>"
-msgstr "<b>Kontrola pravopisu dokončena.</b>"
-
-#: ../share/glade/dialog-spell-checking.glade.h:2
-msgid "<b>Language:</b>"
-msgstr "<b>Jazyk:</b>"
-
-#: ../share/glade/dialog-spell-checking.glade.h:3
-msgid "A_dd Word"
-msgstr "_Přidat slovo"
-
-#: ../share/glade/dialog-spell-checking.glade.h:4
-msgid "Check _Word"
-msgstr "Zkontrolovat _slovo"
-
-#: ../share/glade/dialog-spell-checking.glade.h:5
-msgid "Ignore _All"
-msgstr "Ignorovat _vše"
-
-#: ../share/glade/dialog-spell-checking.glade.h:7
-#: ../src/actions/SpellChecking.cc:294
-msgid "Spell Checking"
-msgstr "Kontrola pravopisu"
-
-#: ../share/glade/dialog-spell-checking.glade.h:8
-msgid "User dictionary:"
-msgstr "Uživatelský slovník:"
-
-#: ../share/glade/dialog-spell-checking.glade.h:9
-msgid "_Ignore"
-msgstr "_Ignorovat"
-
-#: ../share/glade/dialog-spell-checking.glade.h:10
-msgid "_Replace"
-msgstr "_Nahradit"
-
-#: ../share/glade/dialog-split-document.glade.h:1
-msgid "Split Document"
-msgstr "Rozdělit dokument"
-
-#: ../share/glade/dialog-split-document.glade.h:2
-msgid "The beginning for the new document:"
-msgstr "Začátek nového dokumentu:"
-
-#: ../share/glade/dialog-style-editor.glade.h:1
-msgid "<b>Alignment</b>"
-msgstr "<b>Zarovnání</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:2
-msgid "<b>Appearance</b>"
-msgstr "<b>Vzhled</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:3
-msgid "<b>Border</b>"
-msgstr "<b>Okraj</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:4
-msgid "<b>Colors</b>"
-msgstr "<b>Barvy</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:5
-msgid "<b>Font</b>"
-msgstr "<b>Písmo</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:6
-msgid "<b>Fonts</b>"
-msgstr "<b>Písma</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:7
-msgid "<b>Margins</b>"
-msgstr "<b>Okraje</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:8
-msgid "<b>Preview</b>"
-msgstr "<b>Náhled</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:9
-msgid "<b>Transformation</b>"
-msgstr "<b>Transformace</b>"
-
-#: ../share/glade/dialog-style-editor.glade.h:10
-msgid "Angle:"
-msgstr "Úhel:"
-
-#: ../share/glade/dialog-style-editor.glade.h:11
-msgid "Copy Style"
-msgstr "Zkopírovat styl"
-
-#: ../share/glade/dialog-style-editor.glade.h:12
-msgid "Create New Style"
-msgstr "Vytvořit nový styl"
-
-#: ../share/glade/dialog-style-editor.glade.h:13
-msgid "Delete Style"
-msgstr "Smazat styl"
-
-#: ../share/glade/dialog-style-editor.glade.h:14
-msgid "Distance:"
-msgstr "Vzdálenost:"
-
-#: ../share/glade/dialog-style-editor.glade.h:15
-msgid "Left:"
-msgstr "Levý:"
-
-#: ../share/glade/dialog-style-editor.glade.h:16
-msgid "Manage Styles"
-msgstr "Spravovat styly"
-
-#: ../share/glade/dialog-style-editor.glade.h:17
-msgid "Opaque Box"
-msgstr "Neprůhledný rám"
-
-#: ../share/glade/dialog-style-editor.glade.h:18
-msgid "Outline"
-msgstr "Obrys"
-
-#: ../share/glade/dialog-style-editor.glade.h:19
-msgid "Outline:"
-msgstr "Obrys:"
-
-#: ../share/glade/dialog-style-editor.glade.h:20
-msgid "Primary:"
-msgstr "Prvotní:"
-
-#: ../share/glade/dialog-style-editor.glade.h:21
-msgid "Right:"
-msgstr "Pravý:"
-
-#: ../share/glade/dialog-style-editor.glade.h:22
-msgid "Scale X:"
-msgstr "Měřítko X:"
-
-#: ../share/glade/dialog-style-editor.glade.h:23
-msgid "Scale Y:"
-msgstr "Měřítko Y:"
-
-#: ../share/glade/dialog-style-editor.glade.h:24
-msgid "Secondary:"
-msgstr "Druhotná:"
-
-#: ../share/glade/dialog-style-editor.glade.h:25
-msgid "Shadow:"
-msgstr "Stín:"
-
-#: ../share/glade/dialog-style-editor.glade.h:26
-msgid "Size:"
-msgstr "Velikost:"
-
-#: ../share/glade/dialog-style-editor.glade.h:27
-msgid "Spacing:"
-msgstr "Rozteč:"
-
-#: ../share/glade/dialog-style-editor.glade.h:28
-msgid "Subtitle Editor - Style Editor"
-msgstr "Titulkový editor - Editor stylů"
-
-#: ../share/glade/dialog-style-editor.glade.h:29
-msgid "TODO"
-msgstr "V plánu"
-
-#: ../share/glade/dialog-style-editor.glade.h:30
-msgid "Vertical:"
-msgstr "Svislý:"
-
-#: ../share/glade/dialog-view-manager.glade.h:1
-msgid "<b>Columns</b>"
-msgstr "<b>Sloupce</b>"
-
-#: ../share/glade/dialog-view-manager.glade.h:2
-msgid "<b>View</b>"
-msgstr "<b>Zobrazení</b>"
-
-#: ../share/glade/dialog-view-manager.glade.h:3
-msgid "View Editing"
-msgstr "Úprava zobrazení"
-
-#: ../share/glade/dialog-view-manager.glade.h:4
-msgid "View Manager"
-msgstr "Správce zobrazení"
-
 #: ../share/glade/subtitleeditor.glade.h:1
 #: ../share/subtitleeditor.desktop.in.h:2
 msgid "Subtitle Editor"
@@ -784,1254 +2080,6 @@ msgstr "Titulkový editor"
 msgid "A subtitle editor based on GStreamer and Gtk+"
 msgstr "Titulkový editor založený na GStreameru and Gtk+"
 
-#. comments
-#: ../src/actions/About.cc:88
-msgid "a tool for subtitles edition"
-msgstr "nástroj pro editaci titulků"
-
-#. translator-credits
-#: ../src/actions/About.cc:97
-msgid "translator-credits"
-msgstr ""
-"Luboš Staněk <lubek@users.sourceforge.net>\n"
-"Petr Písař <petr.pisar@atlas.cz>\n"
-"\n"
-"Příspěvky z Launchpadu:\n"
-"  Jaroslav Lichtblau https://launchpad.net/~dragonlord\n"
-"  Luboš Staněk https://launchpad.net/~lubek"
-
-#: ../src/actions/AdjustTime.cc:47
-msgid "Add 100 Milliseconds"
-msgstr "Přidat 100 ms"
-
-#: ../src/actions/AdjustTime.cc:50 ../src/actions/AdjustTime.cc:66
-msgid "To Start"
-msgstr "Na začátek"
-
-#: ../src/actions/AdjustTime.cc:50
-msgid "Add 100 Milliseconds to start for all subtitles selected"
-msgstr "Přidat 100 ms na začátek všem vybraným titulkům"
-
-# XXX: Použito u Přidat i u Odebrat. Proto nelze „K trvání“
-#: ../src/actions/AdjustTime.cc:54 ../src/actions/AdjustTime.cc:70
-msgid "To Duration"
-msgstr "U trvání"
-
-#: ../src/actions/AdjustTime.cc:54
-msgid "Add 100 Milliseconds to duration for all subtitles selected"
-msgstr "Přidat 100 ms k trvání všem vybraným titulkům"
-
-# XXX: Použito u Přidat i u Odebrat. Proto nelze „K trvání“
-#: ../src/actions/AdjustTime.cc:58 ../src/actions/AdjustTime.cc:74
-msgid "To Start And Duration"
-msgstr "Na začátek a u trvání"
-
-#: ../src/actions/AdjustTime.cc:58
-msgid "Add 100 Milliseconds to all subtitles selected"
-msgstr "Přidat 100 ms všem vybraným titulkům"
-
-#: ../src/actions/AdjustTime.cc:63
-msgid "Remove 100 Milliseconds"
-msgstr "Odebrat 100 ms"
-
-#: ../src/actions/AdjustTime.cc:66
-msgid "Remove 100 Milliseconds to start for all subtitles selected"
-msgstr "Odebrat 100 ms od začátku všem vybraným titulkům"
-
-#: ../src/actions/AdjustTime.cc:70
-msgid "Remove 100 Milliseconds to duration for all subtitles selected"
-msgstr "Odebrat 100 ms z trvání všem vybraným titulkům"
-
-#: ../src/actions/AdjustTime.cc:74
-msgid "Remove 100 Milliseconds to all subtitles selected"
-msgstr "Odebrat 100 ms všem vybraným titulkům"
-
-#: ../src/actions/AdjustTime.cc:219 ../src/actions/DeleteSubtitleSelect.cc:112
-#: ../src/actions/Dialoguize.cc:112
-#: ../src/actions/DuplicateSelectedSubtitles.cc:111
-#: ../src/actions/ExtendLength.cc:111 ../src/actions/Italicize.cc:112
-#: ../src/actions/MoveAfterPrecedingSubtitle.cc:111
-#: ../src/actions/MoveSubtitles.cc:188
-#: ../src/actions/TryToExtendToPerfect.cc:110
-msgid "Please select at least a subtitle."
-msgstr "Vyberte prosím alespoň jeden titulek."
-
-#: ../src/actions/AdjustTime.cc:223
-msgid "Adjust time"
-msgstr "Přizpůsobit čas"
-
-#: ../src/actions/ApplyTranslation.cc:46
-msgid "Apply _Translation"
-msgstr "Aplikova_t překlad"
-
-#: ../src/actions/ApplyTranslation.cc:46
-msgid "Replace the text of the subtitle by the translation"
-msgstr "Nahradit text titulku překladem"
-
-#: ../src/actions/ApplyTranslation.cc:108
-msgid "Apply translation"
-msgstr "Aplikovat překlad"
-
-#: ../src/actions/ApplyTranslation.cc:121
-msgid "The translation was applied."
-msgstr "Překlad byl aplikován."
-
-#: ../src/actions/ChangeFramerate.cc:222
-msgid "Change _Framerate"
-msgstr "Z_měnit snímkovou rychlost"
-
-#: ../src/actions/ChangeFramerate.cc:222
-msgid "Convert framerate"
-msgstr "Konvertovat snímkovou rychlost"
-
-#: ../src/actions/ChangeFramerate.cc:327
-#, c-format
-msgid "The new framerate was applied. (%s to %s)"
-msgstr "Nová snímková rychlost byla aplikována. (%s na %s)"
-
-#: ../src/actions/CombineSubtitles.cc:45
-msgid "_Combine"
-msgstr "S_loučit"
-
-#: ../src/actions/CombineSubtitles.cc:45
-msgid "Merge the selected subtitles"
-msgstr "Sloučit vybrané titulky"
-
-#: ../src/actions/CombineSubtitles.cc:160 ../src/actions/SplitSubtitle.cc:112
-msgid "Please select at least two subtitles."
-msgstr "Vyberte prosím alespoň dva titulky."
-
-#: ../src/actions/CombineSubtitles.cc:164
-msgid "Combine subtitles"
-msgstr "Sloučit titulky"
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:95
-msgid "Actions"
-msgstr "Akce"
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:117
-msgid "Shortcut"
-msgstr "Zkratka"
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:247
-msgid "Invalid shortcut."
-msgstr "Chybná zkratka."
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:265
-#, c-format
-msgid "Shortcut \"%s\" is already taken by \"%s\"."
-msgstr "Zkratka „%s“ je již zabrána akcí „%s“."
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:268
-#, c-format
-msgid "Reassigning the shortcut will cause it to be removed from \"%s\"."
-msgstr "Přiřazení zkratky způsobí, že bude z „%s“ odstraněna."
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:271
-msgid "Conflicting Shortcuts"
-msgstr "Zkratky ve sporu"
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:277
-msgid "Changing shortcut failed."
-msgstr "Změna zkratky selhala."
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:308
-msgid "Removing shortcut failed."
-msgstr "Odstranění zkratky selhalo."
-
-#: ../src/actions/ConfigureKeyboardShortcuts.cc:467
-msgid "Configure _Keyboard Shortcuts"
-msgstr "Nastavit _klávesové zkratky"
-
-#: ../src/actions/DeleteSubtitleSelect.cc:45
-msgid "Delete the selected subtitles"
-msgstr "Smazat vybrané titulky"
-
-#: ../src/actions/DeleteSubtitleSelect.cc:118
-msgid "Delete Subtitles"
-msgstr "Smazat titulky"
-
-#: ../src/actions/DeleteSubtitleSelect.cc:130
-#, c-format
-msgid "1 subtitle has been deleted."
-msgid_plural "%d subtitles have been deleted."
-msgstr[0] "1 titulek byl odstraněn."
-msgstr[1] "%d titulky byly odstraněny."
-msgstr[2] "%d titulků bylo odstraněno."
-
-#: ../src/actions/Dialoguize.cc:48
-msgid "_Dialogue"
-msgstr "_Dialog"
-
-#: ../src/actions/Dialoguize.cc:48
-msgid "Add or remove dialogue line"
-msgstr "Přidat nebo odebrat dialogovou pomlčku"
-
-#: ../src/actions/Dialoguize.cc:116 ../src/actions/Italicize.cc:116
-msgid "Italic"
-msgstr "Kurziva"
-
-#: ../src/actions/DocumentManagement.cc:41
-msgid "Close _without Saving"
-msgstr "Zavřít _bez uložení"
-
-#: ../src/actions/DocumentManagement.cc:49
-#, c-format
-msgid "Save the changes to document \"%s\" before closing?"
-msgstr "Uložit před zavřením změny do dokumentu „%s“?"
-
-#: ../src/actions/DocumentManagement.cc:50
-msgid "If you don't save, the last changes will be permanently lost."
-msgstr "Pokud neuložíte, poslední změny budou nenávratně ztraceny."
-
-#: ../src/actions/DocumentManagement.cc:78
-msgid "Create a new document"
-msgstr "Vytvořit nový dokument"
-
-#: ../src/actions/DocumentManagement.cc:83
-msgid "Open a file"
-msgstr "Otevřít soubor"
-
-#: ../src/actions/DocumentManagement.cc:87
-msgid "Save the current file"
-msgstr "Uložit aktuální soubor"
-
-#: ../src/actions/DocumentManagement.cc:91
-msgid "Save the current file with a different name"
-msgstr "Uložit aktuální soubor pod jiným názvem"
-
-#: ../src/actions/DocumentManagement.cc:95
-msgid "Save _All"
-msgstr "Uložit _vše"
-
-#: ../src/actions/DocumentManagement.cc:95
-msgid "Save all open files"
-msgstr "Uložit všechny otevřené soubory"
-
-#: ../src/actions/DocumentManagement.cc:100
-msgid "Open _Translation"
-msgstr "Otevřít _překlad"
-
-#: ../src/actions/DocumentManagement.cc:100
-msgid "Open translation from file"
-msgstr "Otevřít překlad ze souboru"
-
-#: ../src/actions/DocumentManagement.cc:104
-msgid "Save Trans_lation"
-msgstr "Uložit přek_lad"
-
-#: ../src/actions/DocumentManagement.cc:104
-msgid "Save translation to file"
-msgstr "Uložit překlad do souboru"
-
-#. recent files
-#: ../src/actions/DocumentManagement.cc:108
-msgid "Open _Recent"
-msgstr "Otevřít ne_dávný"
-
-#: ../src/actions/DocumentManagement.cc:127
-msgid "Close the current file"
-msgstr "Zavřít aktuální soubor"
-
-#: ../src/actions/DocumentManagement.cc:132
-msgid "E_xit"
-msgstr "U_končit"
-
-#: ../src/actions/DocumentManagement.cc:132
-msgid "Quit the program"
-msgstr "Ukončit program"
-
-#. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../src/actions/DocumentManagement.cc:263
-msgid "I am already open"
-msgstr "Již otevřeno"
-
-#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../src/actions/DocumentManagement.cc:297
-#: ../src/actions/DocumentManagement.cc:355
-#, c-format
-msgid "Saving file %s (%s, %s, %s)."
-msgstr "Ukládání souboru %s (%s, %s, %s)."
-
-#. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../src/actions/DocumentManagement.cc:305
-#: ../src/actions/DocumentManagement.cc:363
-#, c-format
-msgid "The file %s (%s, %s, %s) has not been saved."
-msgstr "Soubor %s (%s, %s, %s) ještě nebyl uložen."
-
-#: ../src/actions/DocumentManagement.cc:446
-msgid "Open translation"
-msgstr "Otevřít překlad"
-
-#: ../src/actions/DocumentManagement.cc:474
-#, c-format
-msgid "1 subtitle was added with the translation"
-msgid_plural "%d subtitles were added with the translation"
-msgstr[0] "Spolu s překladem byl přidán 1 titulek"
-msgstr[1] "Spolu s překladem byly přidány %d titulky"
-msgstr[2] "Spolu s překladem bylo přidáno %d titulků"
-
-#: ../src/actions/DocumentManagement.cc:535
-#, c-format
-msgid "Saving translation file %s (%s, %s, %s)."
-msgstr "Ukládání souboru překladu %s (%s, %s, %s)."
-
-#: ../src/actions/DocumentManagement.cc:538
-#, c-format
-msgid "The translation file %s (%s, %s, %s) has not been saved."
-msgstr "Soubor překladu %s (%s, %s, %s) ještě nebyl uložen."
-
-#: ../src/actions/DuplicateSelectedSubtitles.cc:47
-msgid "_Duplicate"
-msgstr "Zdvo_jit"
-
-#: ../src/actions/DuplicateSelectedSubtitles.cc:47
-msgid "Duplicate the selected subtitles"
-msgstr "Zdvojit vybrané titulky"
-
-#: ../src/actions/DuplicateSelectedSubtitles.cc:115
-msgid "Duplicate selected subtitles"
-msgstr "Zdvojit vybrané titulky"
-
-#: ../src/actions/EditCell.cc:47
-msgid "_Edit Cell"
-msgstr "_Upravit buňku"
-
-#: ../src/actions/EditCell.cc:47
-msgid "Start the editing of the focused cell"
-msgstr "Začít upravovat aktivní buňku"
-
-#: ../src/actions/EditCell.cc:51
-msgid "Edit _Next Cell"
-msgstr "Upravit _následující buňku"
-
-#: ../src/actions/EditCell.cc:51
-msgid "Start the editing of the next cell"
-msgstr "Začít upravovat následující buňku"
-
-#. File
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:227
-msgid "_Error"
-msgstr "_Chyba"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:230
-msgid "Try To _Fix All"
-msgstr "Pokus se _opravit vše"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:237
-msgid "_View"
-msgstr "_Zobrazení"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:238
-msgid "By _Categories"
-msgstr "Podle _kategorie"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:240
-msgid "By _Subtitles"
-msgstr "Podle _titulků"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:243
-msgid "_Collapse All"
-msgstr "_Sbalit vše"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:245
-msgid "_Expand All"
-msgstr "_Rozvinout vše"
-
-#. menu option
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:250
-#: ../src/gui/MenuBar.cc:68
-msgid "_Options"
-msgstr "_Možnosti"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:390
-msgid "No error was found."
-msgstr "Žádná chyba nebyla nalezena."
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:393
-#, c-format
-msgid "1 error was found."
-msgid_plural "%d errors were found."
-msgstr[0] "Byla nalezena 1 chyba"
-msgstr[1] "Byly nalezeny %d chyby."
-msgstr[2] "Bylo nalezeno %d chyb."
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:407
-#, c-format
-msgid "Subtitle n°<b>%d</b>"
-msgstr "Titulek č. <b>%d</b>"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:732
-#, c-format
-msgid "%s (<b>1 error</b>)"
-msgid_plural "%s (<b>%d errors</b>)"
-msgstr[0] "%s (<b>1 chyba</b>)"
-msgstr[1] "%s (<b>%d chyby</b>)"
-msgstr[2] "%s (<b>%d chyb</b>)"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:739
-#, c-format
-msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
-msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
-msgstr[0] "Titulek č. <b>%d</b> (<b>1 chyba</b>)"
-msgstr[1] "Titulek č. <b>%d</b> (<b>%d chyby</b>)"
-msgstr[2] "Titulek č. <b>%d</b> (<b>%d chyb</b>)"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:815
-msgid "_Error Checking"
-msgstr "_Kontrola chyb"
-
-#: ../src/actions/errorchecking/ErrorCheckingPlugin.cc:815
-msgid "Launch the error checking."
-msgstr "Spustí kontrolu chyb"
-
-#: ../src/actions/errorchecking/MaxCharactersPerLine.h:38
-msgid "Max Characters Per Line"
-msgstr "Maximum znaků na řádku"
-
-#: ../src/actions/errorchecking/MaxCharactersPerLine.h:39
-msgid "An error is detected if a line is too long."
-msgstr "Najde chybu, pokud je řádek příliš dlouhý."
-
-#: ../src/actions/errorchecking/MaxCharactersPerLine.h:73
-#, c-format
-msgid "Subtitle has a too long line: <b>1 character</b>"
-msgid_plural "Subtitle has a too long line: <b>%i characters</b>"
-msgstr[0] "Titulek má příliš dlouhý řádek: <b>1 znak</b>"
-msgstr[1] "Titulek má příliš dlouhý řádek: <b>%i znaky</b>"
-msgstr[2] "Titulek má příliš dlouhý řádek: <b>%i znaků</b>"
-
-#: ../src/actions/errorchecking/MaxCharactersPerLine.h:75
-#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:79
-#: ../src/actions/errorchecking/Overlapping.h:74
-msgid "<b>Automatic correction:</b> unavailable, correct the error manually."
-msgstr "<b>Automatická oprava:</b> nedostupná, opravte chybu ručně."
-
-#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:38
-msgid "Max Line Per Subtitle"
-msgstr "Maximum řádků na titulek"
-
-#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:39
-msgid "An error is detected if a subtitle has too many lines."
-msgstr "Najde chybu, pokud má titulek příliš mnoho řádků."
-
-#: ../src/actions/errorchecking/MaxLinePerSubtitle.h:77
-#, c-format
-msgid "Subtitle has too many lines: <b>1 line</b>"
-msgid_plural "Subtitle has too many lines: <b>%i lines</b>"
-msgstr[0] "Titulek má příliš mnoho řádků: <b>1 řádek</b>"
-msgstr[1] "Titulek má příliš mnoho řádků: <b>%i řádky</b>"
-msgstr[2] "Titulek má příliš mnoho řádků: <b>%i řádků</b>"
-
-#: ../src/actions/errorchecking/MinDisplayTime.h:38
-msgid "Min Display Time"
-msgstr "Minimální čas zobrazení"
-
-#: ../src/actions/errorchecking/MinDisplayTime.h:39
-msgid ""
-"Detects and fixes subtitles when the duration is inferior to the specified "
-"value."
-msgstr "Najde a opraví titulky, pokud je trvání kratší než zadaná hodnota."
-
-#: ../src/actions/errorchecking/MinDisplayTime.h:71
-#, c-format
-msgid "Subtitle display time is too short: <b>%s</b>"
-msgstr "Čas zobrazení titulku je příliš krátký: <b>%s</b>"
-
-#: ../src/actions/errorchecking/MinDisplayTime.h:75
-#: ../src/actions/errorchecking/TooLongDisplayTime.h:80
-#: ../src/actions/errorchecking/TooShortDisplayTime.h:80
-#, c-format
-msgid "<b>Automatic correction:</b> to change current subtitle end to %s."
-msgstr "<b>Automatická oprava:</b> změnit konec aktuálního titulku na %s."
-
-#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:38
-msgid "Minimum Gap Between Subtitles"
-msgstr "Minimální prodleva mezi titulky"
-
-#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:39
-msgid ""
-"Detects and fixes subtitles when the minimum gap between subtitles is too "
-"short."
-msgstr ""
-"Najde a opraví titulky, pokud je minimální prodleva mezi titulky příliš "
-"krátká."
-
-#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:81
-#, c-format
-msgid "Too short gap between subtitle: <b>%ims</b>"
-msgstr "Příliš krátká mezera mezi titulky: <b>%i ms</b>"
-
-#: ../src/actions/errorchecking/MinGapBetweenSubtitles.h:85
-#, c-format
-msgid ""
-"<b>Automatic correction:</b> to clip current subtitle end to %s and to move "
-"next subtitle start to %s."
-msgstr ""
-"<b>Automatická oprava:</b> oříznout konec aktuálního titulku na %s a "
-"posunout začátek následujícího titulku na %s."
-
-#: ../src/actions/errorchecking/Overlapping.h:38
-msgid "Overlapping"
-msgstr "Překrývání"
-
-#: ../src/actions/errorchecking/Overlapping.h:39
-msgid "An error is detected when the subtitle overlap on next subtitle."
-msgstr "Najde chybu, pokud titulek překrývá následující titulek."
-
-#: ../src/actions/errorchecking/Overlapping.h:71
-#, c-format
-msgid "Subtitle overlap on next subtitle: <b>%ims overlap</b>"
-msgstr "Titulek přesahuje do následujícího: <b>%i ms překrytí</b>"
-
-#: ../src/actions/errorchecking/TooLongDisplayTime.h:38
-msgid "Too Long Display Time"
-msgstr "Příliš dlouhý čas zobrazení"
-
-#: ../src/actions/errorchecking/TooLongDisplayTime.h:39
-msgid ""
-"Detects and fixes subtitles when the number of characters per second is "
-"inferior to the specified value."
-msgstr ""
-"Najde a opraví titulky, pokud je počet znaků za sekundu nižší než zadaná "
-"hodnota."
-
-#: ../src/actions/errorchecking/TooLongDisplayTime.h:76
-#, c-format
-msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
-msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
-msgstr[0] "Čas zobrazení titulku je příliš dlouhý: <b>%.1f znak/s</b>"
-msgstr[1] "Čas zobrazení titulku je příliš dlouhý: <b>%.1f znaky/s</b>"
-msgstr[2] "Čas zobrazení titulku je příliš dlouhý: <b>%.1f znaků/s</b>"
-
-#: ../src/actions/errorchecking/TooShortDisplayTime.h:38
-msgid "Too Short Display Time"
-msgstr "Příliš krátký čas zobrazení"
-
-#: ../src/actions/errorchecking/TooShortDisplayTime.h:39
-msgid ""
-"Detects and fixes subtitles when the number of characters per second is "
-"superior to the specified value."
-msgstr ""
-"Najde a opraví titulky, pokud je počet znaků za sekundu vyšší než zadaná "
-"hodnota."
-
-#: ../src/actions/errorchecking/TooShortDisplayTime.h:76
-#, c-format
-msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
-msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
-msgstr[0] "Čas zobrazení titulku je příliš krátký: <b>%.1f znak/s</b>"
-msgstr[1] "Čas zobrazení titulku je příliš krátký: <b>%.1f znaky/s</b>"
-msgstr[2] "Čas zobrazení titulku je příliš krátký: <b>%.1f znaků/s</b>"
-
-#: ../src/actions/ExtendLength.cc:44
-msgid "_Extend Length"
-msgstr "Prodloužit _trvání"
-
-#: ../src/actions/ExtendLength.cc:44
-msgid "Extend the length of selected subtitles to the start time of the next"
-msgstr "Prodloužit trvání vybraných titulků až k začátku následujících "
-
-#: ../src/actions/ExtendLength.cc:117
-msgid "Extend lenght"
-msgstr "Prodloužit trvání"
-
-#: ../src/actions/ExternalVideoPlayer.cc:45
-msgid "_Preview"
-msgstr "Ná_hled"
-
-#: ../src/actions/ExternalVideoPlayer.cc:48
-msgid "_Open Movie"
-msgstr "_Otevřít film"
-
-#: ../src/actions/ExternalVideoPlayer.cc:48
-msgid "Open movie with external video player"
-msgstr "Otevřít film v externím video přehrávači"
-
-#: ../src/actions/ExternalVideoPlayer.cc:52
-msgid "_Play Movie"
-msgstr "_Přehrát film"
-
-#: ../src/actions/ExternalVideoPlayer.cc:52
-msgid "Play movie with external video player"
-msgstr "Přehrát film v externím video přehrávači"
-
-#: ../src/actions/ExternalVideoPlayer.cc:106
-msgid "Please select a movie."
-msgstr "Vyberte prosím film."
-
-#: ../src/actions/ExternalVideoPlayer.cc:174
-msgid "Failed to launch the external player."
-msgstr "Spuštění externího přehrávače selhalo."
-
-#: ../src/actions/ExternalVideoPlayer.cc:176
-#, c-format
-msgid ""
-"%s\n"
-"\n"
-"Command: <i>%s</i>"
-msgstr ""
-"%s\n"
-"\n"
-"Příkaz: <i>%s</i>"
-
-#: ../src/actions/FindAndReplace.cc:252
-msgid "Replace text"
-msgstr "Nahradit text"
-
-#: ../src/actions/FindAndReplace.cc:288 ../src/actions/FindAndReplace.cc:510
-#: ../src/actions/FindAndReplace.cc:577
-msgid "The document is empty"
-msgstr "Dokument je prázdný"
-
-#: ../src/actions/FindAndReplace.cc:406
-msgid "_Find And Replace"
-msgstr "_Najít a nahradit"
-
-#: ../src/actions/FindAndReplace.cc:406
-msgid "Search and replace text"
-msgstr "Vyhledat a nahradit text"
-
-#: ../src/actions/FindAndReplace.cc:410
-msgid "Find Ne_xt"
-msgstr "Najít _další"
-
-#: ../src/actions/FindAndReplace.cc:410
-msgid "Search forwards for the same text"
-msgstr "Hledat vpředu stejný text"
-
-#: ../src/actions/FindAndReplace.cc:413
-msgid "Find Pre_vious"
-msgstr "Najít _předchozí"
-
-#: ../src/actions/FindAndReplace.cc:413
-msgid "Search backwards for the same text"
-msgstr "Hledat zpětně stejný text"
-
-#: ../src/actions/FindAndReplace.cc:560 ../src/actions/FindAndReplace.cc:627
-msgid "Not found"
-msgstr "Nenalezeno"
-
-#: ../src/actions/InsertSubtitle.cc:45
-msgid "Insert _Before"
-msgstr "Vložit _před"
-
-#: ../src/actions/InsertSubtitle.cc:45
-msgid "Insert blank subtitle before the selected subtitle"
-msgstr "Vložit prázdný titulek před vybraný"
-
-#: ../src/actions/InsertSubtitle.cc:49
-msgid "Insert _After"
-msgstr "Vložit z_a"
-
-#: ../src/actions/InsertSubtitle.cc:49
-msgid "Insert blank subtitle after the selected subtitle"
-msgstr "Vložit prázdný titulek za vybraný"
-
-#: ../src/actions/InsertSubtitle.cc:142 ../src/Subtitles.cc:123
-msgid "Insert Subtitle"
-msgstr "Vložit titulek"
-
-#: ../src/actions/Italicize.cc:48
-msgid "_Italic"
-msgstr "Kurz_iva"
-
-#: ../src/actions/Italicize.cc:48
-msgid "Italicize the selected subtitles text"
-msgstr "Převést vybraný text titulku na kurzivu"
-
-#: ../src/actions/JoinDocument.cc:47
-msgid "_Join Document"
-msgstr "Spo_jit dokument"
-
-#: ../src/actions/JoinDocument.cc:47
-msgid "Add subtitles from file"
-msgstr "Přidat titulky ze souboru"
-
-#: ../src/actions/JoinDocument.cc:133
-msgid "Join document"
-msgstr "Spojit dokument"
-
-#: ../src/actions/JoinDocument.cc:145
-#, c-format
-msgid "1 subtitle has been added at this document."
-msgid_plural "%d subtitles have been added at this document."
-msgstr[0] "Do tohoto dokumentu byl přidán 1 titulek."
-msgstr[1] "Do tohoto dokumentu byly přidány %d titulky."
-msgstr[2] "Do tohoto dokumentu bylo přidáno %d titulků."
-
-#: ../src/actions/MoveAfterPrecedingSubtitle.cc:47
-msgid "_Move After Preceding"
-msgstr "Přesunout _za předchozí"
-
-#: ../src/actions/MoveAfterPrecedingSubtitle.cc:47
-msgid ""
-"Move subtitle after the preceding with the respect of the minimum gap "
-"between subtitles"
-msgstr ""
-"Přesunout titulek za předchozí s ohledem na minimální prodlevu mezi titulky"
-
-#: ../src/actions/MoveAfterPrecedingSubtitle.cc:118
-msgid "Move After Preceding"
-msgstr "Přesunout za předchozí"
-
-#: ../src/actions/MoveSubtitles.cc:53 ../src/actions/ScaleSubtitles.cc:121
-#: ../src/actions/ScaleSubtitles.cc:122
-msgid "_Start Frame:"
-msgstr "_Počáteční snímek:"
-
-#: ../src/actions/MoveSubtitles.cc:99
-msgid "_Move Subtitles"
-msgstr "_Přesunout titulky"
-
-#: ../src/actions/MoveSubtitles.cc:99
-msgid "All subtitles will be also moved after the first selected subtitle"
-msgstr "Všechny titulky budou rovněž přesunuty za první vybraný titulek"
-
-#: ../src/actions/preferences/PreferencesPlugin.cc:92
-msgid "Configure Subtitle Editor"
-msgstr "Konfigurace titulkového editoru"
-
-#. audio output
-#. video output
-#: ../src/actions/preferences/VideoPlayerPage.h:123
-#: ../src/actions/preferences/VideoPlayerPage.h:131
-msgid "Autodetect"
-msgstr "Automatická detekce"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:124
-msgid "ALSA - Advanced Linux Sound Architecture"
-msgstr "ALSA – Advanced Linux Sound Architecture"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:125
-msgid "ESD - Enlightenment Sound Daemon"
-msgstr "ESD – Enlightenment Sound Daemon"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:126
-msgid "OSS - Open Sound System"
-msgstr "OSS – Open Sound System"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:127
-#: ../src/actions/preferences/VideoPlayerPage.h:134
-msgid "SDL - Simple DirectMedia Layer"
-msgstr "SDL – Simple DirectMedia Layer"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:128
-#: ../src/actions/preferences/VideoPlayerPage.h:135
-msgid "GConf"
-msgstr "GConf"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:132
-msgid "X Window System (X11/XShm/Xv)"
-msgstr "X Window System (X11/XShm/Xv)"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:133
-msgid "X Window System (No Xv)"
-msgstr "X Window System (No Xv)"
-
-#: ../src/actions/preferences/VideoPlayerPage.h:136
-msgid "OpenGL"
-msgstr "OpenGL"
-
-#: ../src/actions/ReverseTextAndTranslation.cc:46
-msgid "_Reverse Text And Translation"
-msgstr "_Otočit pořadí textu a překladu"
-
-#: ../src/actions/ReverseTextAndTranslation.cc:46
-msgid "Reverse the text and the translation"
-msgstr "Otočit pořadí textu a překladu"
-
-#: ../src/actions/ReverseTextAndTranslation.cc:109
-msgid "Reverse Text And Translation"
-msgstr "Otočit text a překlad"
-
-#: ../src/actions/ReverseTextAndTranslation.cc:124
-msgid "Reverse the text and the translation was applied."
-msgstr "Text a překlad byly obráceny."
-
-#: ../src/actions/ScaleSubtitles.cc:109
-msgid "You can't use <i>scale</i> with this document."
-msgstr "Tento dokument nelze <i>škálovat</i>."
-
-#: ../src/actions/ScaleSubtitles.cc:242
-msgid "_Scale"
-msgstr "Š_kálovat"
-
-#: ../src/actions/ScaleSubtitles.cc:242
-msgid "Scale by two points"
-msgstr "Škálovat mezi dvěma body"
-
-#: ../src/actions/ScaleSubtitles.cc:329
-msgid "Scale subtitles"
-msgstr "Škálovat titulky"
-
-#: ../src/actions/ScaleSubtitles.cc:352
-msgid "The scale was applied"
-msgstr "Škálování bylo aplikováno"
-
-#: ../src/actions/Selection.cc:45
-msgid "_Selection"
-msgstr "_Výběr"
-
-#: ../src/actions/Selection.cc:48
-msgid "Select _First Subtitle"
-msgstr "Vybrat p_rvní titulek"
-
-#: ../src/actions/Selection.cc:48
-msgid "Select the first subtitle"
-msgstr "Vybrat první titulek"
-
-#: ../src/actions/Selection.cc:52
-msgid "Select _Last Subtitle"
-msgstr "Vybrat pos_lední titulek"
-
-#: ../src/actions/Selection.cc:52
-msgid "Select the last subtitle"
-msgstr "Vybrat poslední titulek"
-
-#: ../src/actions/Selection.cc:56
-msgid "Select _Previous Subtitle"
-msgstr "Vybrat _předchozí titulek"
-
-#: ../src/actions/Selection.cc:56
-msgid "Select the previous subtitle"
-msgstr "Vybrat předchozí titulek"
-
-#: ../src/actions/Selection.cc:60
-msgid "Select _Next Subtitle"
-msgstr "Vybrat _následující titulek"
-
-#: ../src/actions/Selection.cc:60
-msgid "Select the next subtitle"
-msgstr "Vybrat následující titulek"
-
-#: ../src/actions/Selection.cc:64
-msgid "Select _All Subtitles"
-msgstr "Vybrat _všechny titulky"
-
-#: ../src/actions/Selection.cc:64
-msgid "Select all subtitles"
-msgstr "Vybrat všechny titulky"
-
-#: ../src/actions/Selection.cc:68
-msgid "In_vert Selection"
-msgstr "_Obrátit výběr"
-
-#: ../src/actions/Selection.cc:68
-msgid "Invert subtitles selection"
-msgstr "Prohodit výběr titulků"
-
-#: ../src/actions/SpellChecking.cc:663
-msgid "_Spell Check"
-msgstr "_Kontrola pravopisu"
-
-#: ../src/actions/SpellChecking.cc:663
-msgid "Launch the spell checking"
-msgstr "Spustí kontrolu pravopisu"
-
-#: ../src/actions/SplitDocument.cc:58
-msgid "You can't use <i>split</i> with this document."
-msgstr "Tento dokument nelze <i>rozdělit</i>."
-
-#. on supprime ensuite les sous-titres utiliser par le nouveau document
-#: ../src/actions/SplitDocument.cc:99
-msgid "Split document"
-msgstr "Rozdělit dokument"
-
-#: ../src/actions/SplitDocument.cc:128
-msgid "Spl_it Document"
-msgstr "Rozdě_lit dokument"
-
-#: ../src/actions/SplitDocument.cc:128
-msgid "Split the current document in two"
-msgstr "Rozdělit aktuální dokument na dva"
-
-#: ../src/actions/SplitSubtitle.cc:45
-msgid "_Split"
-msgstr "_Rozdělit"
-
-#: ../src/actions/SplitSubtitle.cc:45
-msgid "Split the selected subtitles"
-msgstr "Rozdělit vybrané titulky"
-
-#.
-#: ../src/actions/SplitSubtitle.cc:125
-msgid "Split subtitles"
-msgstr "Rozdělit titulky"
-
-#: ../src/actions/StyleEditor.cc:115
-msgid "Styles"
-msgstr "Styly"
-
-#: ../src/actions/StyleEditor.cc:435
-msgid "_Style Editor"
-msgstr "Editor _stylů"
-
-#: ../src/actions/StyleEditor.cc:435
-msgid "Launch the style editor"
-msgstr "Spustit titulkový editor"
-
-#: ../src/actions/TimeModeManagement.cc:47
-msgid "_Times"
-msgstr "Č_asy"
-
-#: ../src/actions/TimeModeManagement.cc:47
-#: ../src/actions/TimeModeManagement.cc:51
-#: ../src/actions/TimeModeManagement.cc:58
-#: ../src/actions/TimeModeManagement.cc:61
-#: ../src/actions/TimeModeManagement.cc:65
-#: ../src/actions/TimeModeManagement.cc:69
-#: ../src/actions/TimeModeManagement.cc:73
-#: ../src/actions/TimeModeManagement.cc:77
-#: ../src/actions/VideoPlayerManagement.cc:97
-#: ../src/actions/VideoPlayerManagement.cc:104
-#: ../src/actions/VideoPlayerManagement.cc:111
-#: ../src/actions/VideoPlayerManagement.cc:118
-#: ../src/actions/VideoPlayerManagement.cc:132
-#: ../src/actions/VideoPlayerManagement.cc:139
-#: ../src/actions/VideoPlayerManagement.cc:146
-#: ../src/actions/VideoPlayerManagement.cc:153
-#: ../src/actions/VideoPlayerManagement.cc:199
-#: ../src/actions/VideoPlayerManagement.cc:263
-#: ../src/actions/VideoPlayerManagement.cc:270
-#: ../src/actions/WaveformManagement.cc:70
-#: ../src/actions/WaveformManagement.cc:74
-#: ../src/actions/WaveformManagement.cc:78
-#: ../src/actions/WaveformManagement.cc:82
-#: ../src/actions/WaveformManagement.cc:87
-#: ../src/actions/WaveformManagement.cc:94
-#: ../src/actions/WaveformManagement.cc:101
-msgid "FIXME"
-msgstr "OPRAVMĚ"
-
-#: ../src/actions/TimeModeManagement.cc:51
-msgid "_Frames"
-msgstr "_Snímky"
-
-#: ../src/actions/TimeModeManagement.cc:58
-msgid "_Framerate"
-msgstr "Snímková _rychlost"
-
-#: ../src/actions/Transcript.cc:49
-msgid "_Import Transcript"
-msgstr "_Importovat přepis"
-
-#: ../src/actions/Transcript.cc:49
-msgid "Create a new document with any text file"
-msgstr "Vytvořit nový dokument z libovolného textového souboru"
-
-#: ../src/actions/Transcript.cc:53
-msgid "_Export Transcript"
-msgstr "_Exportovat přepis"
-
-#: ../src/actions/Transcript.cc:53
-msgid "Export just a text in a file"
-msgstr "Exportovat jen text do souboru"
-
-#: ../src/actions/Transcript.cc:132
-#, c-format
-msgid "Could not import from the file \"%s\"."
-msgstr "Nešlo importovat ze souboru \"%s\"."
-
-#: ../src/actions/Transcript.cc:170
-#, c-format
-msgid "Could not export to the file \"%s\"."
-msgstr "Nešlo exportovat do souboru \"%s\"."
-
-#: ../src/actions/TryToExtendToPerfect.cc:44
-msgid "_Try To Extend To Perfect"
-msgstr "Pokusi_t se prodloužit k dokonalosti"
-
-#: ../src/actions/TryToExtendToPerfect.cc:44
-msgid "Try to extend to perfect with the respect of timing preferences"
-msgstr ""
-"Zkusit prodloužit trvání do dokonalé podoby s ohledem na nastavení časování"
-
-#: ../src/actions/TryToExtendToPerfect.cc:116
-msgid "Try to extend to perfect"
-msgstr "Pokusit se prodloužit k dokonalosti"
-
-#: ../src/actions/UndoRedo.cc:48
-msgid "Undo the last action"
-msgstr "Vrátit předchozí akci"
-
-#: ../src/actions/UndoRedo.cc:51
-msgid "Redo the last undone action"
-msgstr "Znovu provést posledně vrácenou akci"
-
-#: ../src/actions/UndoRedo.cc:135
-#, c-format
-msgid "Undo: %s"
-msgstr "Vrátit: %s"
-
-#: ../src/actions/UndoRedo.cc:158
-#, c-format
-msgid "redo: %s"
-msgstr "Znovu: %s"
-
-#: ../src/actions/VideoPlayerManagement.cc:47
-msgid "_Video"
-msgstr "V_ideo"
-
-#. _("_Open Media"),
-#: ../src/actions/VideoPlayerManagement.cc:54
-msgid "Open a multimedia file"
-msgstr "Otevřít multimediální soubor"
-
-#. _("_Close Media"),
-#: ../src/actions/VideoPlayerManagement.cc:63
-msgid "Close a multimedia file"
-msgstr "Zavřít multimediální soubor"
-
-#: ../src/actions/VideoPlayerManagement.cc:82
-msgid "_Play / Pause"
-msgstr "Přehrávání / Pa_uza"
-
-#: ../src/actions/VideoPlayerManagement.cc:83
-msgid "Play or make a pause"
-msgstr "Přehrávání nebo pauza"
-
-#: ../src/actions/VideoPlayerManagement.cc:91
-msgid "Skip _Backwards"
-msgstr "Skok zpě_t"
-
-#: ../src/actions/VideoPlayerManagement.cc:96
-#: ../src/actions/VideoPlayerManagement.cc:131
-msgid "Very Short"
-msgstr "Velmi krátký"
-
-#: ../src/actions/VideoPlayerManagement.cc:103
-#: ../src/actions/VideoPlayerManagement.cc:138
-msgid "Short"
-msgstr "Krátký"
-
-#: ../src/actions/VideoPlayerManagement.cc:110
-#: ../src/actions/VideoPlayerManagement.cc:145
-msgid "Medium"
-msgstr "Střední"
-
-#: ../src/actions/VideoPlayerManagement.cc:117
-#: ../src/actions/VideoPlayerManagement.cc:152
-msgid "Long"
-msgstr "Dlouhý"
-
-#: ../src/actions/VideoPlayerManagement.cc:126
-msgid "Skip _Forward"
-msgstr "Skok vpře_d"
-
-#: ../src/actions/VideoPlayerManagement.cc:160
-msgid "Rate"
-msgstr "Rychlost"
-
-#: ../src/actions/VideoPlayerManagement.cc:161
-#: ../src/actions/VideoPlayerManagement.cc:167
-#: ../src/actions/VideoPlayerManagement.cc:174
-#: ../src/actions/VideoPlayerManagement.cc:181
-msgid "Define the playback rate"
-msgstr "Určit rychlost přehrávání"
-
-#: ../src/actions/VideoPlayerManagement.cc:166
-msgid "_Slower"
-msgstr "_Pomaleji"
-
-#: ../src/actions/VideoPlayerManagement.cc:173
-msgid "_Faster"
-msgstr "_Rychleji"
-
-#: ../src/actions/VideoPlayerManagement.cc:180
-msgid "_Normal"
-msgstr "_Normálně"
-
-#: ../src/actions/VideoPlayerManagement.cc:188
-msgid "_Seek To Selection"
-msgstr "_Skok k výběru"
-
-#: ../src/actions/VideoPlayerManagement.cc:189
-msgid "Seek to the first selected subtitle"
-msgstr "Přejít na první zvolený titulek"
-
-#: ../src/actions/VideoPlayerManagement.cc:198
-msgid "_Repeat"
-msgstr "Opa_kovat"
-
-#: ../src/actions/VideoPlayerManagement.cc:208
-msgid "Play _Previous Subtitle"
-msgstr "Přehrát před_chozí titulek"
-
-#: ../src/actions/VideoPlayerManagement.cc:209
-msgid "Play previous subtitle from the first selected subtitle"
-msgstr "Přehrát předchozí titulek od prvního vybraného"
-
-#: ../src/actions/VideoPlayerManagement.cc:216
-msgid "Play _Selection"
-msgstr "Přehrát _výběr"
-
-#: ../src/actions/VideoPlayerManagement.cc:217
-msgid "Play the selected subtitle"
-msgstr "Přehrát vybraný titulek"
-
-#: ../src/actions/VideoPlayerManagement.cc:224
-msgid "Play _Next Subtitle"
-msgstr "Přehrát _následující titulek"
-
-#: ../src/actions/VideoPlayerManagement.cc:225
-msgid "Play next subtitle from the first selected subtitle"
-msgstr "Přehrát následující titulek od prvního vybraného"
-
-#: ../src/actions/VideoPlayerManagement.cc:232
-msgid "Play Previous Second"
-msgstr "Přehrát předchozí sekundu"
-
-#: ../src/actions/VideoPlayerManagement.cc:233
-msgid "Play the second preceding the first selected subtitle"
-msgstr "Přehrát sekundu před prvním vybraným titulkem"
-
-#: ../src/actions/VideoPlayerManagement.cc:239
-msgid "Play First Second"
-msgstr "Přehrát první sekundu"
-
-#: ../src/actions/VideoPlayerManagement.cc:240
-msgid "Play the first second of the subtitle currently selected"
-msgstr "Přehrát první sekundu právě vybraného titulku"
-
-#: ../src/actions/VideoPlayerManagement.cc:246
-msgid "Play Last Second"
-msgstr "Přehrát poslední sekundu"
-
-#: ../src/actions/VideoPlayerManagement.cc:247
-msgid "Play the last second of the subtitle currently selected"
-msgstr "Přehrát poslední sekundu právě vybraného titulku"
-
-#: ../src/actions/VideoPlayerManagement.cc:253
-msgid "Play Next Second"
-msgstr "Přehrát následující sekundu"
-
-#: ../src/actions/VideoPlayerManagement.cc:254
-msgid "Play the second following the subtitle currently selected"
-msgstr "Přehrát sekundu po právě vybraném titlku"
-
-#: ../src/actions/VideoPlayerManagement.cc:262
-msgid "Set Subtitle _Start"
-msgstr "Nastavit z_ačátek titulků"
-
-#: ../src/actions/VideoPlayerManagement.cc:269
-msgid "Set Subtitle _End"
-msgstr "Nastavit kon_ec titulků"
-
-#: ../src/actions/VideoPlayerManagement.cc:279
-msgid "_Video Player"
-msgstr "Přehrávač _videa"
-
-#: ../src/actions/VideoPlayerManagement.cc:280
-msgid "Show or hide the video player in the current window"
-msgstr "Ukázat nebo skrýt přehrávat videa v aktuálním okně"
-
-#: ../src/actions/VideoPlayerManagement.cc:754
-msgid "Set subtitle start"
-msgstr "Nastavit začátek titulků"
-
-#: ../src/actions/VideoPlayerManagement.cc:776
-msgid "Set subtitle end"
-msgstr "Nastavit konec titulků"
-
-#: ../src/actions/ViewManager.cc:129
-msgid "Display"
-msgstr "Ukazovat"
-
-#: ../src/actions/ViewManager.cc:141 ../src/actions/ViewManager.cc:232
-#: ../src/SubtitleView.cc:1640
-msgid "Name"
-msgstr "Název"
-
-#: ../src/actions/ViewManager.cc:302
-msgid "Untitled"
-msgstr "Nepojmenováno"
-
-#: ../src/actions/ViewManager.cc:391
-msgid "Simple"
-msgstr "Jednoduché"
-
-#: ../src/actions/ViewManager.cc:392
-msgid "Advanced"
-msgstr "Pokročilé"
-
-#: ../src/actions/ViewManager.cc:393 ../src/SubtitleView.cc:1646
-msgid "Translation"
-msgstr "Překlad"
-
-#: ../src/actions/ViewManager.cc:425
-msgid "View _Manager"
-msgstr "_Správce zobrazení"
-
-#: ../src/actions/WaveformManagement.cc:57
-msgid "_Waveform"
-msgstr "V_lnovka"
-
-#: ../src/actions/WaveformManagement.cc:61
-msgid "_Open Waveform"
-msgstr "_Otevřít vlnovku"
-
-#: ../src/actions/WaveformManagement.cc:61
-msgid "Open wavefrom from a file or create from a video"
-msgstr "Otevřít vlnovku ze souboru nebo vytvořit z videa"
-
-#: ../src/actions/WaveformManagement.cc:65
-msgid "_Save Waveform"
-msgstr "_Uložit vlnovku"
-
-#: ../src/actions/WaveformManagement.cc:65
-msgid "Save wavefrom to file"
-msgstr "Uložit vlnovku do souboru"
-
-#: ../src/actions/WaveformManagement.cc:70
-msgid "Zoom _In"
-msgstr "Zvětš_it"
-
-#: ../src/actions/WaveformManagement.cc:74
-msgid "Zoom _Out"
-msgstr "Zme_nšit"
-
-#: ../src/actions/WaveformManagement.cc:78
-msgid "Zoom _Selection"
-msgstr "Zao_střit na výběr"
-
-#: ../src/actions/WaveformManagement.cc:82
-msgid "Zoom _All"
-msgstr "Pojmout _vše"
-
-#: ../src/actions/WaveformManagement.cc:87
-msgid "_Center With Selected Subtitle"
-msgstr "Vystředit _na vybraný titulek"
-
-#: ../src/actions/WaveformManagement.cc:94
-msgid "Scrolling With _Player"
-msgstr "Rolování s _přehrávačem"
-
-#: ../src/actions/WaveformManagement.cc:101
-msgid "Scrolling With _Selection"
-msgstr "Rolování s vý_běrem"
-
-#: ../src/actions/WaveformManagement.cc:108
-msgid "_Respect The Timing"
-msgstr "_Respektovat časování"
-
-#: ../src/actions/WaveformManagement.cc:108
-msgid "Try to respect the timing preferences"
-msgstr "Zkusit dodržet nastavené časování"
-
-#: ../src/actions/WaveformManagement.cc:115
-msgid "_Wavform"
-msgstr "V_lnovka"
-
-#: ../src/actions/WaveformManagement.cc:115
-msgid "Show or hide the waveform in the current window"
-msgstr "Ukázat nebo skrýt vlnovku v aktuálním okně"
-
-#: ../src/actions/WaveformManagement.cc:218
-msgid "Save Waveform"
-msgstr "Uložit vlnovku"
-
 #: ../src/CommandSystem.cc:37
 msgid "Subtitle Selection"
 msgstr "Výběr titulků"
@@ -2039,7 +2087,7 @@ msgstr "Výběr titulků"
 #: ../src/Document.cc:295
 #, c-format
 msgid "Could not save the file \"%s\" using the character coding %s."
-msgstr "Nešlo uložit soubor \"%s\" za použití kódování %s."
+msgstr "Nešlo uložit soubor „%s“ za použití kódování %s."
 
 #: ../src/Document.cc:297
 msgid ""
@@ -2056,7 +2104,7 @@ msgstr "Uložení dokumentu se nezdařilo."
 #: ../src/Document.cc:639
 #, c-format
 msgid "Could not recognize the subtitle format for the file \"%s\"."
-msgstr "Nepodařilo se rozpoznat formát titulků pro soubor \"%s\"."
+msgstr "Nepodařilo se rozpoznat formát titulků pro soubor „%s“."
 
 #: ../src/Document.cc:641
 msgid "Please check that the file contains subtitles in a supported format."
@@ -2065,7 +2113,7 @@ msgstr "Ověřte, že soubor obsahuje titulky v nějakém podporovaném formátu
 #: ../src/Document.cc:653
 #, c-format
 msgid "Could not open automatically the file \"%s\"."
-msgstr "Nešlo automaticky otevřít soubor \"%s\"."
+msgstr "Nešlo automaticky otevřít soubor „%s“."
 
 #: ../src/Document.cc:654
 msgid ""
@@ -2078,7 +2126,7 @@ msgstr ""
 #: ../src/Document.cc:660
 #, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
-msgstr "Nešlo otevřít soubor \"%s\" za použití kódování %s."
+msgstr "Nešlo otevřít soubor „%s“ za použití kódování %s."
 
 #: ../src/Document.cc:662
 msgid "Select a different character coding from the menu and try again."
@@ -2087,7 +2135,7 @@ msgstr "Zvolte z menu jiné kódování znaků a zkuste to znovu."
 #: ../src/Document.cc:687 ../src/Document.cc:696
 #, c-format
 msgid "Could not open the file \"%s\""
-msgstr "Nešlo otevřít soubor \"%s\""
+msgstr "Nešlo otevřít soubor „%s“"
 
 #: ../src/Document.cc:697
 msgid "An unknown error occurred while opening the file."
@@ -2237,27 +2285,27 @@ msgstr "Otevření souboru pro čtení selhalo."
 msgid "Failed to write to the file."
 msgstr "Selhal zápis do souboru."
 
-#: ../src/gui/Application.cc:308
+#: ../src/gui/Application.cc:296
 msgid "Times"
 msgstr "Časy"
 
-#: ../src/gui/Application.cc:308
+#: ../src/gui/Application.cc:296
 msgid "Frames"
 msgstr "Snímky"
 
-#: ../src/gui/Application.cc:317
+#: ../src/gui/Application.cc:305
 msgid "Name:"
 msgstr "Název:"
 
-#: ../src/gui/Application.cc:318
+#: ../src/gui/Application.cc:306
 msgid "Path:"
 msgstr "Cesta:"
 
-#: ../src/gui/Application.cc:321
+#: ../src/gui/Application.cc:309
 msgid "Newline:"
 msgstr "Konec řádku:"
 
-#: ../src/gui/Application.cc:322
+#: ../src/gui/Application.cc:310
 msgid "Timing Mode:"
 msgstr "Režim časování:"
 
@@ -2273,7 +2321,7 @@ msgstr "Aktuální kódování"
 msgid "Add or Remove..."
 msgstr "Přidat nebo odebrat"
 
-#: ../src/gui/ComboBoxVideo.cc:74
+#: ../src/gui/ComboBoxVideo.cc:72
 msgid "None"
 msgstr "Žádný"
 
@@ -2295,27 +2343,27 @@ msgstr "Všechny soubory (*.*)"
 msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
 msgstr "Všechny podporované formáty (*.ass, *.ssa, *.srt, ...)"
 
-#: ../src/gui/DialogFileChooser.cc:391
+#: ../src/gui/DialogFileChooser.cc:403
 msgid "Open Video"
 msgstr "Otevřít video"
 
-#: ../src/gui/DialogFileChooser.cc:397 ../src/gui/DialogFileChooser.cc:459
+#: ../src/gui/DialogFileChooser.cc:409 ../src/gui/DialogFileChooser.cc:471
 msgid "Video"
 msgstr "Video"
 
-#: ../src/gui/DialogFileChooser.cc:408 ../src/gui/DialogFileChooser.cc:470
+#: ../src/gui/DialogFileChooser.cc:420 ../src/gui/DialogFileChooser.cc:482
 msgid "Audio"
 msgstr "Zvuk"
 
-#: ../src/gui/DialogFileChooser.cc:416 ../src/gui/DialogFileChooser.cc:479
+#: ../src/gui/DialogFileChooser.cc:428 ../src/gui/DialogFileChooser.cc:491
 msgid "ALL"
 msgstr "Všechny"
 
-#: ../src/gui/DialogFileChooser.cc:447
+#: ../src/gui/DialogFileChooser.cc:459
 msgid "Open Waveform"
 msgstr "Otevřít vlnovku"
 
-#: ../src/gui/DialogFileChooser.cc:453
+#: ../src/gui/DialogFileChooser.cc:465
 msgid "Waveform (*.wf)"
 msgstr "Vlnovka (*.wf)"
 
@@ -2325,26 +2373,42 @@ msgid "_File"
 msgstr "_Soubor"
 
 #: ../src/gui/MenuBar.cc:64
+msgid "_Selection"
+msgstr "_Výběr"
+
+#: ../src/gui/MenuBar.cc:65
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/gui/MenuBar.cc:65
+#: ../src/gui/MenuBar.cc:66
 msgid "_Timings"
 msgstr "Č_asování"
 
-#: ../src/gui/MenuBar.cc:66
+#: ../src/gui/MenuBar.cc:67
 msgid "T_ools"
 msgstr "Nástr_oje"
 
-#: ../src/gui/MenuBar.cc:67
+#: ../src/gui/MenuBar.cc:68
+msgid "_Video"
+msgstr "V_ideo"
+
+#: ../src/gui/MenuBar.cc:69
+msgid "_Waveform"
+msgstr "V_lnovka"
+
+#: ../src/gui/MenuBar.cc:70
 msgid "V_iew"
 msgstr "_Zobrazení"
 
-#: ../src/gui/MenuBar.cc:69
+#: ../src/gui/MenuBar.cc:72
+msgid "_Extensions"
+msgstr "_Rozšíření"
+
+#: ../src/gui/MenuBar.cc:73
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../src/main.cc:229
+#: ../src/main.cc:224
 msgid " - edit subtitles files"
 msgstr " – edituje titulkové soubory"
 
@@ -2382,6 +2446,7 @@ msgid "Add Subtitle"
 msgstr "Přidat titulek"
 
 #: ../src/SubtitleModel.cc:75
+#: ../plugins/actions/removesubtitle/removesubtitle.se-plugin.in.h:2
 msgid "Remove Subtitle"
 msgstr "Odebrat titulek"
 
@@ -2477,59 +2542,59 @@ msgstr "Upravuji pravý okraj"
 msgid "Editing margin-v"
 msgstr "Upravuji svislé okraje"
 
-#: ../src/SubtitleView.cc:1499
+#: ../src/SubtitleView.cc:1502
 msgid "Set style to selection"
 msgstr "Nastavit styl do výběru"
 
-#: ../src/SubtitleView.cc:1632
+#: ../src/SubtitleView.cc:1635
 msgid "CPS"
 msgstr "z/s"
 
-#: ../src/SubtitleView.cc:1633
+#: ../src/SubtitleView.cc:1636
 msgid "Duration"
 msgstr "Trvání"
 
-#: ../src/SubtitleView.cc:1634
+#: ../src/SubtitleView.cc:1637
 msgid "Effect"
 msgstr "Efekt"
 
-#: ../src/SubtitleView.cc:1635
+#: ../src/SubtitleView.cc:1638
 msgid "End"
 msgstr "Konec"
 
-#: ../src/SubtitleView.cc:1636
+#: ../src/SubtitleView.cc:1639
 msgid "Layer"
 msgstr "Vrstva"
 
-#: ../src/SubtitleView.cc:1637
+#: ../src/SubtitleView.cc:1640
 msgid "L"
 msgstr "L"
 
-#: ../src/SubtitleView.cc:1638
+#: ../src/SubtitleView.cc:1641
 msgid "R"
 msgstr "P"
 
-#: ../src/SubtitleView.cc:1639
+#: ../src/SubtitleView.cc:1642
 msgid "V"
 msgstr "S"
 
-#: ../src/SubtitleView.cc:1641
+#: ../src/SubtitleView.cc:1644
 msgid "Note"
 msgstr "Poznámka"
 
-#: ../src/SubtitleView.cc:1642
+#: ../src/SubtitleView.cc:1645
 msgid "Num"
 msgstr "Č."
 
-#: ../src/SubtitleView.cc:1643
+#: ../src/SubtitleView.cc:1646
 msgid "Start"
 msgstr "Začátek"
 
-#: ../src/SubtitleView.cc:1644
+#: ../src/SubtitleView.cc:1647
 msgid "Style"
 msgstr "Styl"
 
-#: ../src/SubtitleView.cc:1645
+#: ../src/SubtitleView.cc:1648
 msgid "Text"
 msgstr "Text"
 
@@ -2556,25 +2621,6 @@ msgstr "3_0 fps"
 #: ../src/TimeUtility.cc:51
 msgid "Invalid fps"
 msgstr "Neplatné fps"
-
-#: ../src/utility.cc:382
-msgid ""
-"GStreamer plugins missing.\n"
-"The playback of this movie requires the following decoders which are not "
-"installed:"
-msgstr ""
-"Chybějící zásuvné moduly GStreameru.\n"
-"Přehrávání tohoto filmu vyžaduje následující dekodéry, které nejsou "
-"nainstalovány:"
-
-#: ../src/utility.cc:401
-#, c-format
-msgid "Failed to create a GStreamer element '%s'."
-msgstr "Vytváření gstreamerového prvku „%s“ selhalo."
-
-#: ../src/utility.cc:402
-msgid "Please check your GStreamer installation."
-msgstr "Prosím, zkontrolujte vaši instalaci GStreameru."
 
 #: ../src/vp/GStreamerPlayer.cc:570
 #, c-format
@@ -2616,11 +2662,11 @@ msgstr ""
 msgid "Editing position"
 msgstr "Upravuji pozici"
 
-#: ../src/we/WaveformGenerator.cc:71
+#: ../src/we/WaveformGenerator.cc:72
 msgid "Generate Waveform"
 msgstr "Vytvořit vlnovku"
 
-#: ../src/we/WaveformGenerator.cc:317
+#: ../src/we/WaveformGenerator.cc:318
 msgid "Media file could not be played.\n"
 msgstr "Multimediální soubor nebylo možné přehrát.\n"
 
@@ -2631,3 +2677,281 @@ msgid ""
 msgstr ""
 "Okenní systém nepodporuje OpenGL.\n"
 "Prosím, zkuste jiný způsob vykreslování."
+
+#: ../plugins/actions/about/about.se-plugin.in.h:1
+msgid "About"
+msgstr "O aplikaci"
+
+#: ../plugins/actions/about/about.se-plugin.in.h:2
+msgid "Displays the application's information."
+msgstr "Zobrazí informace o aplikaci."
+
+#: ../plugins/actions/adjusttime/adjusttime.se-plugin.in.h:1
+msgid "Adjust Time"
+msgstr "Přizpůsobit čas"
+
+#: ../plugins/actions/adjusttime/adjusttime.se-plugin.in.h:2
+msgid "Adjusts subtitle times."
+msgstr "Přizpůsobí časy titulku."
+
+#: ../plugins/actions/applytranslation/applytranslation.se-plugin.in.h:1
+msgid "Apply Translation"
+msgstr "Aplikovat překlad"
+
+#: ../plugins/actions/applytranslation/applytranslation.se-plugin.in.h:2
+msgid "Replaces the text of the subtitle by the translation."
+msgstr "Nahradí text titulku překladem."
+
+#: ../plugins/actions/changeframerate/changeframerate.se-plugin.in.h:2
+msgid "Converts the framerate."
+msgstr "Konvertuje snímkovou rychlost."
+
+#: ../plugins/actions/combinesubtitles/combinesubtitles.se-plugin.in.h:1
+msgid "Combine Subtitles"
+msgstr "Sloučit titulky"
+
+#: ../plugins/actions/combinesubtitles/combinesubtitles.se-plugin.in.h:2
+msgid "Merges the selected subtitles."
+msgstr "Sloučí vybrané titulky."
+
+#: ../plugins/actions/command/command.se-plugin.in.h:1
+msgid "Command"
+msgstr "Příkaz"
+
+#: ../plugins/actions/command/command.se-plugin.in.h:2
+msgid "Manages Undo/Redo."
+msgstr ""
+
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.se-plugin.in.h:1
+msgid "Configures keyboard shortcuts."
+msgstr "Konfiguruje klávesové zkratky."
+
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.se-plugin.in.h:2
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové zkratky"
+
+#: ../plugins/actions/dialoguize/dialoguize.se-plugin.in.h:1
+msgid "Adds or removes the dialogue dash."
+msgstr "Přidá nebo odebere dialogovou pomlčku."
+
+#: ../plugins/actions/dialoguize/dialoguize.se-plugin.in.h:2
+msgid "Dialoguize"
+msgstr "Dialog"
+
+#: ../plugins/actions/documentmanagement/documentmanagement.se-plugin.in.h:1
+msgid "Document Management"
+msgstr "Správa dokumentu"
+
+#: ../plugins/actions/documentmanagement/documentmanagement.se-plugin.in.h:2
+msgid "Manages the document (Open, Save, Save As...)."
+msgstr "Spravuje dokument (otevření, uložení, uložení jako...)."
+
+#: ../plugins/actions/duplicatesubtitle/duplicatesubtitle.se-plugin.in.h:1
+#, fuzzy
+msgid "Duplicate Subtitle"
+msgstr "Smazat titulky"
+
+#: ../plugins/actions/duplicatesubtitle/duplicatesubtitle.se-plugin.in.h:2
+#, fuzzy
+msgid "Duplicates the selected subtitles."
+msgstr "Zdvojit vybrané titulky"
+
+#: ../plugins/actions/editcell/editcell.se-plugin.in.h:1
+msgid "Edit Cell"
+msgstr "Upravit buňku"
+
+#: ../plugins/actions/editcell/editcell.se-plugin.in.h:2
+msgid "Starts editing of the focused or the next cell."
+msgstr "Začne upravovat aktivní nebo následující buňku."
+
+#: ../plugins/actions/errorchecking/errorchecking.se-plugin.in.h:1
+msgid "Detects and fixes errors."
+msgstr "Hledá a opravuje chyby."
+
+#: ../plugins/actions/extendlength/extendlength.se-plugin.in.h:1
+msgid "Extend Length"
+msgstr "Prodloužit trvání"
+
+#: ../plugins/actions/extendlength/extendlength.se-plugin.in.h:2
+msgid "Extends the length of selected subtitles."
+msgstr "Prodlouží trvání vybraných titulků."
+
+#: ../plugins/actions/externalvideoplayer/externalvideoplayer.se-plugin.in.h:2
+msgid "Runs external video player."
+msgstr "Spustí externí přehrávač videa."
+
+#: ../plugins/actions/findandreplace/findandreplace.se-plugin.in.h:2
+msgid "Searches and replaces texts with regular expressions support."
+msgstr "Hledá a nahrazuje texty s podporou regulérních výrazů."
+
+#: ../plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in.h:2
+msgid "Inserts a blank subtitle."
+msgstr "Vloží prázdný titulek."
+
+#: ../plugins/actions/italicize/italicize.se-plugin.in.h:1
+msgid "Italicize"
+msgstr "Kurzíva"
+
+#: ../plugins/actions/italicize/italicize.se-plugin.in.h:2
+msgid "Italicizes the selected subtitles text."
+msgstr "Převede vybrané titulky na kurzívu."
+
+#: ../plugins/actions/joindocument/joindocument.se-plugin.in.h:1
+msgid "Adds subtitles from another file."
+msgstr "Přidá titulky z jiného souboru."
+
+#: ../plugins/actions/joindocument/joindocument.se-plugin.in.h:2
+msgid "Join Document"
+msgstr "Připojit dokument"
+
+#: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.se-plugin.in.h:1
+msgid "Move After Preceding Subtitle"
+msgstr "Přesunout za předchozí titulek"
+
+#: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.se-plugin.in.h:2
+msgid ""
+"Moves a subtitle after the preceding one respecting the minimum gap between "
+"subtitles."
+msgstr ""
+"Přesune titulek za předchozí s ohledem na minimální prodlevu mezi titulky."
+
+#: ../plugins/actions/movesubtitles/movesubtitles.se-plugin.in.h:2
+msgid "Moves subtitles."
+msgstr "Přesune titulky."
+
+#: ../plugins/actions/plaintext/plaintext.se-plugin.in.h:1
+msgid "Imports or exports any text file."
+msgstr "Importuje nebo exportuje textový soubor."
+
+#: ../plugins/actions/plaintext/plaintext.se-plugin.in.h:2
+#, fuzzy
+msgid "Plain Text"
+msgstr "Najít _další"
+
+#: ../plugins/actions/preferences/preferences.se-plugin.in.h:1
+#, fuzzy
+msgid "Manages Subtitle Editor's preferences."
+msgstr "Konfigurace titulkového editoru"
+
+#: ../plugins/actions/removesubtitle/removesubtitle.se-plugin.in.h:1
+msgid "Deletes the selected subtitles."
+msgstr "Smaže vybrané titulky."
+
+#: ../plugins/actions/reversetextandtranslation/reversetextandtranslation.se-plugin.in.h:2
+msgid "Reverses the original subtitle and the translated text."
+msgstr "Prohodí původní titulek a přeložený text."
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.se-plugin.in.h:1
+msgid "Scale Subtitles"
+msgstr "Škálovat titulky"
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.se-plugin.in.h:2
+msgid "Scales by two points."
+msgstr "Škáluje mezi dvěma body."
+
+#: ../plugins/actions/selection/selection.se-plugin.in.h:1
+msgid "Manages selection of subtitles."
+msgstr "Spravuje výběr titulků."
+
+#: ../plugins/actions/selection/selection.se-plugin.in.h:2
+msgid "Selection"
+msgstr "Výběr"
+
+#: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:1
+msgid "Checks the spelling of the current document."
+msgstr "Zkontroluje pravopis aktuálního dokumentu."
+
+#: ../plugins/actions/splitdocument/splitdocument.se-plugin.in.h:2
+msgid "Splits the current document in two."
+msgstr "Rozdělí aktuální dokument na dva."
+
+#: ../plugins/actions/splitsubtitle/splitsubtitle.se-plugin.in.h:1
+msgid "Split Subtitle"
+msgstr "Rozdělit titulky"
+
+#: ../plugins/actions/splitsubtitle/splitsubtitle.se-plugin.in.h:2
+msgid "Splits the selected subtitles."
+msgstr "Rozdělí vybrané titulky."
+
+#: ../plugins/actions/styleeditor/styleeditor.se-plugin.in.h:1
+msgid "An ASS/SSA style editor."
+msgstr "Editor stylů ASS/SSA."
+
+#: ../plugins/actions/styleeditor/styleeditor.se-plugin.in.h:2
+msgid "Style Editor"
+msgstr "Editor stylů"
+
+#: ../plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in.h:1
+msgid "Manages time modes (Framerate, Timing Mode ...)."
+msgstr ""
+
+#: ../plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in.h:2
+msgid "Time Mode Management"
+msgstr ""
+
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:1
+msgid "Controls the video player."
+msgstr "Ovládá externí přehrávač videa."
+
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:2
+#, fuzzy
+msgid "Video Player Management"
+msgstr "Video přehrávač"
+
+#: ../plugins/actions/viewmanager/viewmanager.se-plugin.in.h:1
+msgid "Manages multiple views of the columns of a subtitle."
+msgstr ""
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.se-plugin.in.h:1
+#, fuzzy
+msgid "Manages a waveform."
+msgstr "Uložit vlnovku"
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.se-plugin.in.h:2
+msgid "Waveform Management"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Selecting subtitle tools."
+#~ msgstr "Vybrat všechny titulky"
+
+#~ msgid ""
+#~ "GStreamer plugins missing.\n"
+#~ "The playback of this movie requires the following decoders which are not "
+#~ "installed:"
+#~ msgstr ""
+#~ "Chybějící zásuvné moduly GStreameru.\n"
+#~ "Přehrávání tohoto filmu vyžaduje následující dekodéry, které nejsou "
+#~ "nainstalovány:"
+
+#~ msgid "Failed to create a GStreamer element '%s'."
+#~ msgstr "Vytváření gstreamerového prvku „%s“ selhalo."
+
+#~ msgid "Please check your GStreamer installation."
+#~ msgstr "Prosím, zkontrolujte vaši instalaci GStreameru."
+
+#~ msgid "<b>Video Player For Preview</b>"
+#~ msgstr "<b>Video přehrávač pro náhled</b>"
+
+#~ msgid "Preview"
+#~ msgstr "Náhled"
+
+#~ msgid "_Preview"
+#~ msgstr "Ná_hled"
+
+#~ msgid "_Import Transcript"
+#~ msgstr "_Importovat přepis"
+
+#~ msgid "_Export Transcript"
+#~ msgstr "_Exportovat přepis"
+
+#~ msgid "_Try To Extend To Perfect"
+#~ msgstr "Pokusi_t se prodloužit k dokonalosti"
+
+#~ msgid "Try to extend to perfect with the respect of timing preferences"
+#~ msgstr ""
+#~ "Zkusit prodloužit trvání do dokonalé podoby s ohledem na nastavení "
+#~ "časování"
+
+#~ msgid "Try to extend to perfect"
+#~ msgstr "Pokusit se prodloužit k dokonalosti"
