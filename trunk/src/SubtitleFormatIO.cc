@@ -1,6 +1,3 @@
-#ifndef _Action_h
-#define _Action_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,66 +20,53 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
-#include "SubtitleEditorWindow.h"
-#include "Document.h"
-#include "Config.h"
-#include "Extension.h"
+#include "SubtitleFormatIO.h"
+#include "Error.h"
+#include "utility.h"
 
-
-class Action : public Extension, public sigc::trackable
+/*
+ *
+ */
+SubtitleFormatIO::SubtitleFormatIO()
 {
-public:
+	m_document = NULL;
+}
 
-	/*
-	 *
-	 */
-	Action();
+/*
+ *
+ */
+SubtitleFormatIO::~SubtitleFormatIO()
+{
+}
 
-	/*
-	 *
-	 */
-	virtual ~Action();
+/*
+ *
+ */
+void SubtitleFormatIO::set_document(Document *document)
+{
+	m_document = document;
+}
 
-	/*
-	 *
-	 */
-	virtual void activate();
+/*
+ *
+ */
+Document* SubtitleFormatIO::document()
+{
+	return m_document;
+}
 
-	/*
-	 *
-	 */
-	virtual void deactivate();
+/*
+ *
+ */
+void SubtitleFormatIO::open(FileReader &file)
+{
+	throw IOFileError(_("This function is not implemented for this format."));
+}
 
-	/*
-	 *
-	 */
-	virtual void update_ui();
-
-	/*
-	 *	static method
-	 */
-
-	/*
-	 *
-	 */
-	static SubtitleEditorWindow* get_subtitleeditor_window();
-
-	/*
-	 *
-	 */
-	static Config& get_config();
-
-	/*
-	 *
-	 */
-	static Document* get_current_document();
-
-	/*
-	 *
-	 */
-	static Glib::RefPtr<Gtk::UIManager> get_ui_manager();
-
-};
-
-#endif//_Action_h
+/*
+ *
+ */
+void SubtitleFormatIO::save(FileWriter &file)
+{
+	throw IOFileError(_("This function is not implemented for this format."));
+}

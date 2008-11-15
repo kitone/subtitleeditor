@@ -1,6 +1,3 @@
-#ifndef _AdvancedSubStationAlpha_h
-#define _AdvancedSubStationAlpha_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,14 +20,15 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
-#include <glibmm.h>
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
 #include <iomanip>
+#include <Document.h>
 
 /*
  *
  */
-class AdvancedSubStationAlpha : public SubtitleFormat
+class AdvancedSubStationAlpha : public SubtitleFormatIO
 {
 	int m_line_break_policy;
 public:
@@ -75,19 +73,6 @@ public:
 				"(without quote, the default value is 'intelligent')");
 			m_line_break_policy = 3;
 		}
-	}
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-		info.name = "Advanced Sub Station Alpha";
-		info.extension = "ass";
-		info.pattern = "^ScriptType:\\s*[vV]4.00\\+$";
-		
-		return info;
 	}
 
 	/*
@@ -501,5 +486,31 @@ public:
 	}
 };
 
-#endif//_AdvancedSubStationAlpha_h
+class AdvancedSubStationAlphaPlugin : public SubtitleFormat
+{
+public:
 
+	/*
+	 *
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+		info.name = "Advanced Sub Station Alpha";
+		info.extension = "ass";
+		info.pattern = "^ScriptType:\\s*[vV]4.00\\+$";
+		
+		return info;
+	}
+
+	/*
+	 *
+	 */
+	virtual SubtitleFormatIO* create()
+	{
+		AdvancedSubStationAlpha *sf = new AdvancedSubStationAlpha();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(AdvancedSubStationAlphaPlugin)

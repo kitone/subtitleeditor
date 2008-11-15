@@ -1,24 +1,11 @@
 #include <memory>
 #include <map>
+#include "debug.h"
+#include "utility.h"
+#include "Error.h"
 #include "SubtitleFormatSystem.h"
-#include "SubtitleFormatFactory.h"
-
-#include "formats/AdobeEncoreDVD.h"
-#include "formats/AdvancedSubStationAlpha.h"
-#include "formats/MicroDVD.h"
-#include "formats/MPL2.h"
-#include "formats/MPsub.h"
-#include "formats/SubRip.h"
-#include "formats/SubStationAlpha.h"
-#include "formats/SubtitleEditorProject.h"
-#include "formats/SubViewer2.h"
-#include "formats/TimedTextAuthoringFormat1.h"
-
-
-/*
- * FIXME
- */
-std::map<Glib::ustring, SubtitleFormatFactory*> m_sf_map;
+#include "extension/SubtitleFormat.h"
+#include "ExtensionManager.h"
 
 /*
  * Return the instance.
@@ -35,21 +22,6 @@ SubtitleFormatSystem& SubtitleFormatSystem::instance()
  */
 SubtitleFormatSystem::SubtitleFormatSystem()
 {
-#define REGISTER_FORMAT(x)	add_subtitle_format_factory(new SubtitleFormatFactoryRegister<x>());
-
-	REGISTER_FORMAT(AdobeEncoreDVDNTSC);
-	REGISTER_FORMAT(AdobeEncoreDVDPAL);
-	REGISTER_FORMAT(AdvancedSubStationAlpha);
-	REGISTER_FORMAT(MicroDVD);
-	REGISTER_FORMAT(MPL2);
-	REGISTER_FORMAT(MPsub);
-	REGISTER_FORMAT(SubRip);
-	REGISTER_FORMAT(SubStationAlpha);
-	REGISTER_FORMAT(SubtitleEditorProject);
-	REGISTER_FORMAT(SubViewer2);
-	REGISTER_FORMAT(TimedTextAuthoringFormat1);
-
-#undef REGISTER_FORMAT
 }
 
 /*
@@ -57,20 +29,6 @@ SubtitleFormatSystem::SubtitleFormatSystem()
  */
 SubtitleFormatSystem::~SubtitleFormatSystem()
 {
-	std::map<Glib::ustring, SubtitleFormatFactory*>::iterator it;
-	for(it = m_sf_map.begin(); it != m_sf_map.end(); ++it)
-	{
-		delete it->second;
-	}
-	m_sf_map.clear();
-}
-
-/*
- *  Append subtitle format.
- */
-void SubtitleFormatSystem::add_subtitle_format_factory(SubtitleFormatFactory *creator)
-{
-	m_sf_map[creator->get_info().name] = creator;
 }
 
 /*
@@ -92,18 +50,18 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(cons
 
 	se_debug_message(SE_DEBUG_APP, "Trying to determinate the file format...");
 
-	std::map<Glib::ustring, SubtitleFormatFactory*>::iterator it;
-	for(it = m_sf_map.begin(); it != m_sf_map.end(); ++it)
+	SubtitleFormatList sfe_list = get_subtitle_format_list();
+	for(SubtitleFormatList::const_iterator it = sfe_list.begin(); it != sfe_list.end(); ++it)
 	{
-		SubtitleFormatFactory* sff = it->second;
+		SubtitleFormatInfo sfi = (*it)->get_info();
 
-		se_debug_message(SE_DEBUG_APP, "Try with '%s' format", sff->get_info().name.c_str());
+		se_debug_message(SE_DEBUG_APP, "Try with '%s' format", sfi.name.c_str());
 
-		Glib::ustring pattern = sff->get_info().pattern;
+		Glib::ustring pattern = sfi.pattern;
 
 		if(Glib::Regex::match_simple(pattern, contents, compile_flags))
 		{
-			Glib::ustring name = sff->get_info().name;
+			Glib::ustring name = sfi.name;
 
 			se_debug_message(SE_DEBUG_APP, "Determine the format as '%s'", name.c_str());
 			return name;
@@ -117,19 +75,18 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(cons
  * Create a SubtitleFormat from a name.
  * Throw UnrecognizeFormatError if failed.
  */
-SubtitleFormat* SubtitleFormatSystem::create_subtitle_format(const Glib::ustring &name)
+SubtitleFormatIO* SubtitleFormatSystem::create_subtitle_format_io(const Glib::ustring &name)
 {
 	se_debug_message(SE_DEBUG_APP, "Trying to create the subtitle format '%s'", name.c_str());
 
-	std::map<Glib::ustring, SubtitleFormatFactory*>::iterator it;
-
-	it = m_sf_map.find(name);
-
-	if(it != m_sf_map.end())
+	SubtitleFormatList sfe_list = get_subtitle_format_list();
+	for(SubtitleFormatList::const_iterator it = sfe_list.begin(); it != sfe_list.end(); ++it)
 	{
-		return it->second->create();
-	}
+		SubtitleFormat* sfe = *it;
 
+		if(sfe->get_info().name == name)
+			return sfe->create();
+	}
 	throw UnrecognizeFormatError(build_message(_("Couldn't create the subtitle format '%s'."), name.c_str()));
 }
 
@@ -148,15 +105,15 @@ void SubtitleFormatSystem::open(Document *document, const Glib::ustring &uri, co
 	
 	FileReader file(uri, charset);
 
-	std::auto_ptr<SubtitleFormat> sf( create_subtitle_format(format) );
+	std::auto_ptr<SubtitleFormatIO> sfio( create_subtitle_format_io(format) );
 
 	se_debug_message(SE_DEBUG_APP, "Trying to read the file ...");
 
 	// init the reader
-	sf->set_document(document);
+	sfio->set_document(document);
 	//sf->set_charset(file.get_charset());
 	
-	sf->open(file);
+	sfio->open(file);
 
 	se_debug_message(SE_DEBUG_APP, "Sets the document property ...");
 
@@ -189,15 +146,15 @@ void SubtitleFormatSystem::save(	Document *document,
 			charset.c_str(),
 			newline.c_str());
 
-	std::auto_ptr<SubtitleFormat> sf(create_subtitle_format(format));
+	std::auto_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
 	// init the reader
-	sf->set_document(document);
+	sfio->set_document(document);
 
 	FileWriter writer(uri, charset, newline);
 
 	se_debug_message(SE_DEBUG_APP, "Save in the Writer...");
 
-	sf->save(writer);
+	sfio->save(writer);
 
 	se_debug_message(SE_DEBUG_APP, "Save to the file...");
 
@@ -221,9 +178,11 @@ std::list<SubtitleFormatInfo> SubtitleFormatSystem::get_infos()
 {
 	std::list<SubtitleFormatInfo> infos;
 
-	std::map<Glib::ustring, SubtitleFormatFactory*>::iterator it;
-	for(it = m_sf_map.begin(); it != m_sf_map.end(); ++it)
-		infos.push_back(it->second->get_info());
+	SubtitleFormatList sfe_list = get_subtitle_format_list();
+
+	SubtitleFormatList::const_iterator it;
+	for(it = sfe_list.begin(); it != sfe_list.end(); ++it)
+		infos.push_back((*it)->get_info());
 
 	return infos;
 }
@@ -233,12 +192,44 @@ std::list<SubtitleFormatInfo> SubtitleFormatSystem::get_infos()
  */
 bool SubtitleFormatSystem::is_supported(const Glib::ustring &format)
 {
-	std::map<Glib::ustring, SubtitleFormatFactory*>::iterator it;
-	for(it = m_sf_map.begin(); it != m_sf_map.end(); ++it)
+	SubtitleFormatList sfe_list = get_subtitle_format_list();
+
+	SubtitleFormatList::const_iterator it;
+	for(it = sfe_list.begin(); it != sfe_list.end(); ++it)
 	{
-		if(it->second->get_info().name == format)
+		if((*it)->get_info().name == format)
 			return true;
 	}
+
 	return false;
+}
+
+/*
+ * Sort by name (SubtitleInfo.name)
+ */
+bool on_sort_sf(SubtitleFormat* a, SubtitleFormat *b)
+{
+	return a->get_info().name < b->get_info().name;
+}
+
+/*
+ * Return a list of SubtitleFormat from ExtensionManager.
+ */
+SubtitleFormatList SubtitleFormatSystem::get_subtitle_format_list()
+{
+	std::list<SubtitleFormat*> list;
+	// Get from ExtensionManager
+	std::list<ExtensionInfo*> sf_list = ExtensionManager::instance().get_info_list_from_categorie("subtitleformat");
+	for(std::list<ExtensionInfo*>::iterator it = sf_list.begin(); it != sf_list.end(); ++it)
+	{
+		if((*it)->get_active() == false)
+			continue;
+
+		SubtitleFormat *sf = dynamic_cast<SubtitleFormat*>((*it)->get_extension());
+		if(sf)
+			list.push_back(sf);
+	}
+	list.sort(on_sort_sf);
+	return list;
 }
 

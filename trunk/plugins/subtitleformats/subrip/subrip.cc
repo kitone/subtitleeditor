@@ -1,6 +1,3 @@
-#ifndef _SubRip_h
-#define _SubRip_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,8 +20,8 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
-
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
 
 /*
  * format:
@@ -34,25 +31,9 @@
  * text
  * (empty line)
  */
-class SubRip : public SubtitleFormat
+class SubRip : public SubtitleFormatIO
 {
 public:
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-		info.name = "SubRip";
-		info.extension = "srt";
-
-		info.pattern = 
-			"\\d\\R"
-			"\\d+:\\d+:\\d+,\\d+\\s-->\\s\\d+:\\d+:\\d+,\\d+\\R";
-		
-		return info;
-	}
 
 	/*
 	 *
@@ -154,5 +135,34 @@ public:
 	}
 };
 
-#endif//_SubRip_h
+class SubRipPlugin : public SubtitleFormat
+{
+public:
 
+	/*
+	 *
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+		info.name = "SubRip";
+		info.extension = "srt";
+
+		info.pattern = 
+			"\\d\\R"
+			"\\d+:\\d+:\\d+,\\d+\\s-->\\s\\d+:\\d+:\\d+,\\d+\\R";
+		
+		return info;
+	}
+
+	/*
+	 *
+	 */
+	SubtitleFormatIO* create()
+	{
+		SubRip *sf = new SubRip();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(SubRipPlugin)

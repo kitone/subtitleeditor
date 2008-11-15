@@ -1,6 +1,3 @@
-#ifndef _MicroDVD_h
-#define _MicroDVD_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,30 +20,17 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
 
 /*
  * format:
  *
  * {start_frame}{end_frame}text
  */
-class MicroDVD : public SubtitleFormat
+class MicroDVD : public SubtitleFormatIO
 {
 public:
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-
-		info.name = "MicroDVD";
-		info.extension = "sub";
-		info.pattern = "^\\{\\d+\\}\\{\\d+\\}.*?\\R";
-		
-		return info;
-	}
 
 	/*
 	 *
@@ -122,5 +106,26 @@ public:
 	}
 };
 
-#endif//_MicroDVD_h
+class MicroDVDPlugin : public SubtitleFormat
+{
+public:
 
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+
+		info.name = "MicroDVD";
+		info.extension = "sub";
+		info.pattern = "^\\{\\d+\\}\\{\\d+\\}.*?\\R";
+		
+		return info;
+	}
+
+	SubtitleFormatIO* create()
+	{
+		MicroDVD *sf = new MicroDVD();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(MicroDVDPlugin)

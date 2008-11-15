@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=SubStationAlpha
+_Description=SubStationAlpha subtitles support.
+Categorie=subtitleformat
+Type=module
+Module=substationalpha
+Authors=kitone <kitone at gna dot org>

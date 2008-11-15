@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=SubtitleEditorProject
+_Description=Subtitle Editor Project subtitles support.
+Categorie=subtitleformat
+Type=module
+Module=subtitleeditorproject
+Authors=kitone <kitone at gna dot org>

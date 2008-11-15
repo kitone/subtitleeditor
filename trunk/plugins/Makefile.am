@@ -1,4 +1,6 @@
-PLUGINS = actions
+PLUGINS = \
+	actions \
+	subtitleformats
 
 DIST_SUBDIRS = $(PLUGINS)
 

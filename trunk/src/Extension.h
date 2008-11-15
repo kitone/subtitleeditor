@@ -51,4 +51,13 @@ public:
 	virtual void create_configure_dialog();
 };
 
+/*
+ *
+ */
+#define REGISTER_EXTENSION(classname) \
+	extern "C" Extension* extension_register() \
+	{ \
+		return new classname; \
+	}
+
 #endif//_Extension_h

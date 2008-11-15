@@ -1,6 +1,3 @@
-#ifndef _TimedTextAuthoringFormat1_h
-#define _TimedTextAuthoringFormat1_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,26 +20,15 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
+#include <Error.h>
 #include <libxml++/libxml++.h>
 
 
-class TimedTextAuthoringFormat1 : public SubtitleFormat
+class TimedTextAuthoringFormat1 : public SubtitleFormatIO
 {
 public:
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-		info.name = "Timed Text Authoring Format 1.0";
-		info.extension = "xml";
-		info.pattern = "^<tt";
-		
-		return info;
-	}
 
 	/*
 	 *
@@ -206,5 +192,31 @@ public:
 
 };
 
-#endif//_TimedTextAuthoringFormat1_h
+class TimedTextAuthoringFormat1Plugin : public SubtitleFormat
+{
+public:
 
+	/*
+	 *
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+		info.name = "Timed Text Authoring Format 1.0";
+		info.extension = "xml";
+		info.pattern = "^<tt";
+		
+		return info;
+	}
+
+	/*
+	 *
+	 */
+	SubtitleFormatIO* create()
+	{
+		TimedTextAuthoringFormat1 *sf = new TimedTextAuthoringFormat1();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(TimedTextAuthoringFormat1Plugin)

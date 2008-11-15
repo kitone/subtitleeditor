@@ -23,12 +23,12 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "utility.h"
 #include "Document.h"
-#include "SubtitleFormat.h"
-#include "Error.h"
+#include "SubtitleFormatIO.h"
 
-class SubtitleFormatFactory;
+class SubtitleFormat;
+
+typedef std::list<SubtitleFormat*> SubtitleFormatList;
 
 /*
  *
@@ -84,11 +84,6 @@ protected:
 	~SubtitleFormatSystem();
 
 	/*
-	 * Append subtitle format.
-	 */
-	void add_subtitle_format_factory(SubtitleFormatFactory *creator);
-
-	/*
 	 * Try to determine the format of the file, and return the format name.
 	 * Exceptions:
 	 *	UnrecognizeFormatError.
@@ -100,7 +95,12 @@ protected:
 	 * Create a SubtitleFormat from a name.
 	 * Throw UnrecognizeFormatError if failed.
 	 */
-	SubtitleFormat* create_subtitle_format(const Glib::ustring &name);
+	SubtitleFormatIO* create_subtitle_format_io(const Glib::ustring &name);
+
+	/*
+	 * Return a list of SubtitleFormat from ExtensionManager.
+	 */
+	SubtitleFormatList get_subtitle_format_list();
 };
 
 #endif//_SubtitleFormatSystem_h

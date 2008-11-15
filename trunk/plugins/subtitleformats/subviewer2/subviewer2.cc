@@ -1,6 +1,3 @@
-#ifndef _SubViewer2_h
-#define _SubViewer2_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,26 +20,12 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
 
-
-class SubViewer2 : public SubtitleFormat
+class SubViewer2 : public SubtitleFormatIO
 {
 public:
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-		info.name = "SubViewer 2.0";
-		info.extension = "sub";
-
-		info.pattern = "\\d{2}:\\d{2}:\\d{2}.\\d+,\\d{2}:\\d{2}:\\d{2}.\\d+\\s*\\R";
-		
-		return info;
-	}
 
 	/*
 	 *
@@ -129,5 +112,32 @@ public:
 	}
 };
 
-#endif//_SubViewer2_h
+class SubViewer2Plugin : public SubtitleFormat
+{
+public:
 
+	/*
+	 *
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+		info.name = "SubViewer 2.0";
+		info.extension = "sub";
+
+		info.pattern = "\\d{2}:\\d{2}:\\d{2}.\\d+,\\d{2}:\\d{2}:\\d{2}.\\d+\\s*\\R";
+		
+		return info;
+	}
+
+	/*
+	 *
+	 */
+	SubtitleFormatIO* create()
+	{
+		SubViewer2 *sf = new SubViewer2();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(SubViewer2Plugin)

@@ -1,6 +1,3 @@
-#ifndef _MPL2_h
-#define _MPL2_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,29 +20,15 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
-#include "utility.h"
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
 
 /*
  *
  */
-class MPL2 : public SubtitleFormat
+class MPL2 : public SubtitleFormatIO
 {
 public:
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-
-		info.name = "MPL2";
-		info.extension = "txt";
-		info.pattern = "^\\[(\\d+)\\]\\[(\\d+)\\](.*?)\\R";
-		
-		return info;
-	}
 
 	/*
 	 *
@@ -110,5 +93,32 @@ public:
 	}
 };
 
-#endif//_MPL2_h
+class MPL2Plugin : public SubtitleFormat
+{
+public:
 
+	/*
+	 *
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+
+		info.name = "MPL2";
+		info.extension = "txt";
+		info.pattern = "^\\[(\\d+)\\]\\[(\\d+)\\](.*?)\\R";
+		
+		return info;
+	}
+
+	/*
+	 *
+	 */
+	SubtitleFormatIO* create()
+	{
+		MPL2 *sf = new MPL2();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(MPL2Plugin)

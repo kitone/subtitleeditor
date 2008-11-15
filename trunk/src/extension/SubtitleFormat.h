@@ -1,5 +1,5 @@
-#ifndef _SubtitleFormatFactory_h
-#define _SubtitleFormatFactory_h
+#ifndef _SubtitleFormat_h
+#define _SubtitleFormat_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -23,22 +23,15 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
+#include "Extension.h"
+#include "SubtitleFormatIO.h"
 
 /*
  *
  */
-class SubtitleFormatFactory
+class SubtitleFormat : public Extension
 {
 public:
-
-	/*
-	 * Virtual desctructor
-	 */
-	virtual ~SubtitleFormatFactory()
-	{
-		// nothing
-	}
 
 	/*
 	 *
@@ -48,33 +41,7 @@ public:
 	/*
 	 *
 	 */
-	virtual SubtitleFormat* create() = 0;
+	virtual SubtitleFormatIO* create() = 0;
 };
 
-/*
- * 
- */
-template<class T>
-class SubtitleFormatFactoryRegister : public SubtitleFormatFactory
-{
-public:
-
-	/*
-	 *
-	 */
-	SubtitleFormatInfo get_info()
-	{
-		return T::get_info();
-	}
-
-	/*
-	 *
-	 */
-	virtual SubtitleFormat* create()
-	{
-		T *sf = new T();
-		return sf;
-	}
-};
-
-#endif//_SubtitleFormatFactory_h
+#endif//_SubtitleFormat_h

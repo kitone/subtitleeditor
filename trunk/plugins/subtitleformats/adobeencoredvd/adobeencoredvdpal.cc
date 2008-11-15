@@ -18,55 +18,49 @@
  *
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ *	Adobe Encore DVD text script support for subtitle editor
+ *      PAL/NTSC version.
+ *
+ *	Adobe Encore DVD text script support by Laurens Keek
+ *      Created using following documentation:
+ *	http://www.adobe.com/support/techdocs/329569.html
  */
 
-#include "SubtitleFormat.h"
-#include "Error.h"
-#include "utility.h"
+#include "adobeencoredvd.h"
 
 /*
  *
  */
-SubtitleFormat::SubtitleFormat()
+class AdobeEncoreDVDPALPlugin : public SubtitleFormat
 {
-	m_document = NULL;
-}
+public:
 
-/*
- *
- */
-SubtitleFormat::~SubtitleFormat()
-{
-}
+	/*
+	 * First line should simply be:
+	 * number start_time stop_time some_text
+	 *
+	 * 1 00:00:00:1 00:00:10:5 text  (PAL)
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
 
-/*
- *
- */
-void SubtitleFormat::set_document(Document *document)
-{
-	m_document = document;
-}
+		info.name = "Adobe Encore DVD (PAL)";
+		info.extension = "txt";
+		info.pattern = "^\\d+\\s(\\d+(:)\\d+\\2\\d+\\2\\d+ ){2}.*?\\R";
 
-/*
- *
- */
-Document* SubtitleFormat::document()
-{
-	return m_document;
-}
+		return info;
+	}
 
-/*
- *
- */
-void SubtitleFormat::open(FileReader &file)
-{
-	throw IOFileError(_("This function is not implemented for this format."));
-}
+	/*
+	 *
+	 */
+	SubtitleFormatIO* create()
+	{
+		return new AdobeEncoreDVD(FRAMERATE_25);
+	}
+};
 
-/*
- *
- */
-void SubtitleFormat::save(FileWriter &file)
-{
-	throw IOFileError(_("This function is not implemented for this format."));
-}
+REGISTER_EXTENSION(AdobeEncoreDVDPALPlugin)

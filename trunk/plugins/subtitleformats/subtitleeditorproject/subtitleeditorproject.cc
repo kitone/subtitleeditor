@@ -1,6 +1,3 @@
-#ifndef _SubtitleEditorProject_h
-#define _SubtitleEditorProject_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,7 +20,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
+#include <Error.h>
 #include <libxml++/libxml++.h>
 
 /*
@@ -35,22 +34,9 @@
  *				video, title, info, comment ...
  *				</metadata>
  */
-class SubtitleEditorProject : public SubtitleFormat
+class SubtitleEditorProject : public SubtitleFormatIO
 {
 public:
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-		info.name = "Subtitle Editor Project";
-		info.extension = "xml";
-		info.pattern = "^<SubtitleEditorProject\\s.*>$";
-		
-		return info;
-	}
 
 	/*
 	 *
@@ -180,5 +166,31 @@ public:
 
 };
 
-#endif//_SubtitleEditorProject_h
+class SubtitleEditorProjectPlugin : public SubtitleFormat
+{
+public:
 
+	/*
+	 *
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+		info.name = "Subtitle Editor Project";
+		info.extension = "xml";
+		info.pattern = "^<SubtitleEditorProject\\s.*>$";
+		
+		return info;
+	}
+
+	/*
+	 *
+	 */
+	SubtitleFormatIO* create()
+	{
+		SubtitleEditorProject *sf = new SubtitleEditorProject();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(SubtitleEditorProjectPlugin)

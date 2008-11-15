@@ -210,7 +210,7 @@ CXXFLAGS="$CXXFLAGS -ansi -Wall" # -Wextra -Wconversion"
 # Set SUBTITLEEDITOR_LIBS and SUBTITLEEDITOR_CFLAGS
 
 SUBTITLEEDITOR_LIBS="$GTKMM_LIBS"
-SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS $LIBGLADEMM_CFLAGS $INTLCFLAGS $LIBXML_CFLAGS"
+SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS $LIBGLADEMM_CFLAGS $INTLCFLAGS"
 
 AC_SUBST(SUBTITLEEDITOR_LIBS)
 AC_SUBST(SUBTITLEEDITOR_CFLAGS)
@@ -283,6 +283,17 @@ plugins/actions/timemodemanagement/Makefile
 plugins/actions/videoplayermanagement/Makefile
 plugins/actions/viewmanager/Makefile
 plugins/actions/wavefrommanagement/Makefile
+plugins/subtitleformats/Makefile
+plugins/subtitleformats/adobeencoredvd/Makefile
+plugins/subtitleformats/advancedsubstationalpha/Makefile
+plugins/subtitleformats/microdvd/Makefile
+plugins/subtitleformats/mpl2/Makefile
+plugins/subtitleformats/mpsub/Makefile
+plugins/subtitleformats/subrip/Makefile
+plugins/subtitleformats/substationalpha/Makefile
+plugins/subtitleformats/subtitleeditorproject/Makefile
+plugins/subtitleformats/subviewer2/Makefile
+plugins/subtitleformats/timedtextauthoringformat1/Makefile
 ])
 
 

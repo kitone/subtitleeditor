@@ -31,10 +31,11 @@
  *	http://www.adobe.com/support/techdocs/329569.html
  */
 
-#include "SubtitleFormat.h"
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
 
 
-class AdobeEncoreDVD : public SubtitleFormat
+class AdobeEncoreDVD : public SubtitleFormatIO
 {
 public:
 
@@ -140,64 +141,4 @@ protected:
 	double m_framerate_value;
 };
 
-/*
- *
- */
-class AdobeEncoreDVDPAL : public AdobeEncoreDVD
-{
-public:
-	AdobeEncoreDVDPAL()
-	:AdobeEncoreDVD(FRAMERATE_25)
-	{
-	}
-
-	/*
-	 * First line should simply be:
-	 * number start_time stop_time some_text
-	 *
-	 * 1 00:00:00:1 00:00:10:5 text  (PAL)
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-
-		info.name = "Adobe Encore DVD (PAL)";
-		info.extension = "txt";
-		info.pattern = "^\\d+\\s(\\d+(:)\\d+\\2\\d+\\2\\d+ ){2}.*?\\R";
-
-		return info;
-	}
-};
-
-/*
- *
- */
-class AdobeEncoreDVDNTSC : public AdobeEncoreDVD
-{
-public:
-	AdobeEncoreDVDNTSC()
-	:AdobeEncoreDVD(FRAMERATE_29_97)
-	{
-	}
-
-	/*
-	 * First line should simply be:
-	 * number start_time stop_time some_text
-	 *
-	 * 1 00;00;00;1 00;00;10;5 text	 (NTSC)
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-
-		info.name = "Adobe Encore DVD (NTSC)";
-		info.extension = "txt";
-		info.pattern = "^\\d+\\s(\\d+(;)\\d+\\2\\d+\\2\\d+ ){2}.*?\\R";
-
-		return info;
-	}
-};
-
-
 #endif//_AdobeEncoreDVD_h
-
