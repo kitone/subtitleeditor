@@ -1,6 +1,6 @@
 [SubtitleEditor Extension]
-_Name=AdobeEncoreDVD (PAL)
-_Description=AdobeEncoreDVD subtitles support.
+_Name=Adobe Encore DVD (PAL)
+_Description=Adobe Encore DVD subtitles support.
 Categorie=subtitleformat
 Type=module
 Module=adobeencoredvdpal
