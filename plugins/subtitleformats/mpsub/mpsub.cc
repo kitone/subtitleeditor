@@ -1,6 +1,3 @@
-#ifndef _MPsub_h
-#define _MPsub_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -23,29 +20,15 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SubtitleFormat.h"
-#include "utility.h"
+#include <extension/SubtitleFormat.h>
+#include <utility.h>
 
 /*
  *
  */
-class MPsub : public SubtitleFormat
+class MPsub : public SubtitleFormatIO
 {
 public:
-
-	/*
-	 *
-	 */
-	static SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-
-		info.name = "MPsub";
-		info.extension = "sub";
-		info.pattern = "^FORMAT=(TIME|[0-9])";
-		
-		return info;
-	}
 
 	/*
 	 *
@@ -163,5 +146,32 @@ public:
 	}
 };
 
-#endif//_MPsub_h
+class MPsubPlugin : public SubtitleFormat
+{
+public:
 
+	/*
+	 *
+	 */
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+
+		info.name = "MPsub";
+		info.extension = "sub";
+		info.pattern = "^FORMAT=(TIME|[0-9])";
+		
+		return info;
+	}
+
+	/*
+	 *
+	 */
+	SubtitleFormatIO* create()
+	{
+		MPsub *sf = new MPsub();
+		return sf;
+	}
+};
+
+REGISTER_EXTENSION(MPsubPlugin)

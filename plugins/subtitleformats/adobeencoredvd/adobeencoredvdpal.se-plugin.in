@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=AdobeEncoreDVD (PAL)
+_Description=AdobeEncoreDVD subtitles support.
+Categorie=subtitleformat
+Type=module
+Module=adobeencoredvdpal
+Authors=kitone <kitone at gna dot org>

@@ -30,6 +30,7 @@ LIB_SUBTITLEEDITOR_FILES = \
 	Error.h \
 	extension/Action.cc \
 	extension/Action.h \
+	extension/SubtitleFormat.h \
 	Extension.cc \
 	Extension.h \
 	ExtensionInfo.cc \
@@ -56,9 +57,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	Subtitle.cc \
 	SubtitleEditorWindow.cc \
 	SubtitleEditorWindow.h \
-	SubtitleFormat.cc \
-	SubtitleFormatFactory.h \
-	SubtitleFormat.h \
+	SubtitleFormatIO.cc \
+	SubtitleFormatIO.h \
 	SubtitleFormatSystem.cc \
 	SubtitleFormatSystem.h \
 	Subtitle.h \
@@ -102,31 +102,17 @@ LIB_GUI_FILES = \
 	gui/TreeViewExtensionManager.cc \
 	gui/TreeViewExtensionManager.h
 
-LIB_FORMATS_FILES =\
-	formats/AdobeEncoreDVD.h \
-	formats/AdvancedSubStationAlpha.h \
-	formats/MicroDVD.h \
-	formats/MPL2.h \
-	formats/MPsub.h \
-	formats/SubRip.h \
-	formats/SubStationAlpha.h \
-	formats/SubtitleEditorProject.h \
-	formats/SubViewer2.h \
-	formats/TimedTextAuthoringFormat1.h
-
 lib_LTLIBRARIES = libsubtitleeditor.la
 
 libsubtitleeditor_la_LDFLAGS = -export-dynamic -no-undefined
 
 libsubtitleeditor_la_SOURCES = \
 	$(LIB_SUBTITLEEDITOR_FILES) \
-	$(LIB_GUI_FILES) \
-	$(LIB_FORMATS_FILES)
+	$(LIB_GUI_FILES)
 
 libsubtitleeditor_la_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \
 	$(LIBGLADEMM_CFLAGS) \
-	$(LIBXML_CFLAGS) \
 	$(PACKAGE_DIRECTORY)
 
 

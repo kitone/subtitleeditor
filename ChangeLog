@@ -1,3 +1,79 @@
+2008-11-15  kitone  <kitone@gna.org>
+
+	The subtitle formats are now plugins.
+
+	* configure.in:
+	* plugins/Makefile.am:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/adobeencoredvd/Makefile.am:
+	* plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h:
+	* plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.cc:
+	* plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.se-plugin.in:
+	* plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.cc:
+	* plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.se-plugin.in:
+	* plugins/subtitleformats/advancedsubstationalpha/Makefile.am:
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.se-plugin.in:
+	* plugins/subtitleformats/microdvd/Makefile.am:
+	* plugins/subtitleformats/microdvd/microdvd.cc:
+	* plugins/subtitleformats/microdvd/microdvd.se-plugin.in:
+	* plugins/subtitleformats/mpl2/Makefile.am:
+	* plugins/subtitleformats/mpl2/mpl2.cc:
+	* plugins/subtitleformats/mpl2/mpl2.se-plugin.in:
+	* plugins/subtitleformats/mpsub/Makefile.am:
+	* plugins/subtitleformats/mpsub/mpsub.cc:
+	* plugins/subtitleformats/mpsub/mpsub.se-plugin.in:
+	* plugins/subtitleformats/subrip/Makefile.am:
+	* plugins/subtitleformats/subrip/subrip.cc:
+	* plugins/subtitleformats/subrip/subrip.se-plugin.in:
+	* plugins/subtitleformats/substationalpha/Makefile.am:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.se-plugin.in:
+	* plugins/subtitleformats/subtitleeditorproject/Makefile.am:
+	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
+	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in:
+	* plugins/subtitleformats/subviewer2/Makefile.am:
+	* plugins/subtitleformats/subviewer2/subviewer2.cc:
+	* plugins/subtitleformats/subviewer2/subviewer2.se-plugin.in:
+	* plugins/subtitleformats/timedtextauthoringformat1/Makefile.am:
+	* plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:
+	* plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.se-plugin.in:
+	The subtitle formats are now plugins.
+
+	* src/extension/Action.h:
+	* src/Extension.h:
+	* src/extension/SubtitleFormat.h:
+	Move REGISTER_EXTENSION macro from Action to Extension.
+	New file SubtitleFormat.
+	
+	* src/Makefile.am:
+	* src/SubtitleFormatFactory.h:
+	* src/SubtitleFormat.cc:
+	* src/SubtitleFormat.h:
+	* src/SubtitleFormatIO.cc:
+	* src/SubtitleFormatIO.h:
+	Rename SubtitleFormat to SubtitleFormatIO.
+	Remove file SubtitleFormatFactory.
+
+	* src/SubtitleFormatSystem.cc:
+	* src/SubtitleFormatSystem.h:
+	Get SubtitleFormat from ExtensionManager.
+
+	* src/formats/AdobeEncoreDVD.h:
+	* src/formats/AdvancedSubStationAlpha.h:
+	* src/formats/MPL2.h:
+	* src/formats/MPsub.h:
+	* src/formats/MicroDVD.h:
+	* src/formats/SubRip.h:
+	* src/formats/SubStationAlpha.h:
+	* src/formats/SubViewer2.h:
+	* src/formats/SubtitleEditorProject.h:
+	* src/formats/TimedTextAuthoringFormat1.h:
+	Remove files.
+
+	* src/gui/DialogFileChooser.cc:
+	Fix: file pattern.
+
 2008-11-14  kitone  <kitone@gna.org>
 
 	* src/SubtitleEditorWindow.h:

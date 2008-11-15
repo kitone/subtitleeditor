@@ -1,6 +1,3 @@
-#ifndef _Action_h
-#define _Action_h
-
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -21,68 +18,49 @@
  *
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ *	Adobe Encore DVD text script support for subtitle editor
+ *      PAL/NTSC version.
+ *
+ *	Adobe Encore DVD text script support by Laurens Keek
+ *      Created using following documentation:
+ *	http://www.adobe.com/support/techdocs/329569.html
  */
 
-#include <gtkmm.h>
-#include "SubtitleEditorWindow.h"
-#include "Document.h"
-#include "Config.h"
-#include "Extension.h"
+#include "adobeencoredvd.h"
 
-
-class Action : public Extension, public sigc::trackable
+/*
+ *
+ */
+class AdobeEncoreDVDNTSCPlugin : public SubtitleFormat
 {
 public:
 
 	/*
+	 * First line should simply be:
+	 * number start_time stop_time some_text
 	 *
+	 * 1 00;00;00;1 00;00;10;5 text	 (NTSC)
 	 */
-	Action();
+	SubtitleFormatInfo get_info()
+	{
+		SubtitleFormatInfo info;
+
+		info.name = "Adobe Encore DVD (NTSC)";
+		info.extension = "txt";
+		info.pattern = "^\\d+\\s(\\d+(;)\\d+\\2\\d+\\2\\d+ ){2}.*?\\R";
+
+		return info;
+	}
 
 	/*
 	 *
 	 */
-	virtual ~Action();
-
-	/*
-	 *
-	 */
-	virtual void activate();
-
-	/*
-	 *
-	 */
-	virtual void deactivate();
-
-	/*
-	 *
-	 */
-	virtual void update_ui();
-
-	/*
-	 *	static method
-	 */
-
-	/*
-	 *
-	 */
-	static SubtitleEditorWindow* get_subtitleeditor_window();
-
-	/*
-	 *
-	 */
-	static Config& get_config();
-
-	/*
-	 *
-	 */
-	static Document* get_current_document();
-
-	/*
-	 *
-	 */
-	static Glib::RefPtr<Gtk::UIManager> get_ui_manager();
-
+	SubtitleFormatIO* create()
+	{
+		return new AdobeEncoreDVD(FRAMERATE_29_97);
+	}
 };
 
-#endif//_Action_h
+REGISTER_EXTENSION(AdobeEncoreDVDNTSCPlugin)

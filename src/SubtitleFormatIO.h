@@ -1,5 +1,5 @@
-#ifndef _SubtitleFormat_h
-#define _SubtitleFormat_h
+#ifndef _SubtitleFormatIO_h
+#define _SubtitleFormatIO_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -41,14 +41,14 @@ public:
 /*
  *
  */
-class SubtitleFormat
+class SubtitleFormatIO
 {
 public:
 
 	/*
 	 *
 	 */
-	SubtitleFormat();
+	SubtitleFormatIO();
 	
 	/*
 	 *
@@ -63,7 +63,7 @@ public:
 	/*
 	 *
 	 */
-	virtual ~SubtitleFormat();
+	virtual ~SubtitleFormatIO();
 
 	/*
 	 *
@@ -79,4 +79,4 @@ private:
 	Document *m_document;
 };
 
-#endif//_SubtitleFormat_h
+#endif//_SubtitleFormatIO_h

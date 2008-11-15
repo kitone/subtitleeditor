@@ -68,7 +68,7 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 	
 			Gtk::FileFilter filter;
 			filter.set_name(name + " (" + ext + ")");
-			filter.add_pattern(ext);
+			filter.add_pattern("*." + ext);
 			dialog->add_filter(filter);
 		}
 	}
