@@ -21,7 +21,7 @@
  */
  
 #include "TimeUtility.h"
-#include "utility.h"
+#include "i18n.h"
 
 /*
  * Return the label of the framerate.

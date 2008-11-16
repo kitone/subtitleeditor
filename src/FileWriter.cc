@@ -23,7 +23,7 @@
 #include "FileWriter.h"
 #include <fstream>
 #include "Error.h"
-#include "utility.h"
+#include "debug.h"
 #include "Encodings.h"
 
 /*

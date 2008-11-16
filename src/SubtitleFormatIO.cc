@@ -22,7 +22,7 @@
 
 #include "SubtitleFormatIO.h"
 #include "Error.h"
-#include "utility.h"
+#include "i18n.h"
 
 /*
  *

@@ -43,6 +43,7 @@ LIB_SUBTITLEEDITOR_FILES = \
 	FileWriter.h \
 	gtkmm_utility.cc \
 	gtkmm_utility.h \
+	i18n.h \
 	Player.h \
 	ScriptInfo.cc \
 	ScriptInfo.h \

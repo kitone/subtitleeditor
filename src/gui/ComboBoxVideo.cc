@@ -22,7 +22,7 @@
 
 #include "ComboBoxVideo.h"
 #include "Config.h"
-#include "utility.h"
+#include "i18n.h"
 
 /*
  * Constructor

@@ -21,8 +21,6 @@
  */
  
 #include "DocumentSystem.h"
-#include "debug.h"
-#include <iostream>
 #include "utility.h"
 
 /*

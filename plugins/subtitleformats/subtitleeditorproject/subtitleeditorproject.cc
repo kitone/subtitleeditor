@@ -21,7 +21,8 @@
  */
 
 #include <extension/SubtitleFormat.h>
-#include <utility.h>
+#include <debug.h>
+#include <i18n.h>
 #include <Error.h>
 #include <libxml++/libxml++.h>
 

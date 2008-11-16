@@ -22,7 +22,8 @@
 
 #include <memory>
 #include <extension/Action.h>
-#include <utility.h>
+#include <i18n.h>
+#include <debug.h>
 #include <gtkmm_utility.h>
 #include "InterfacePage.h"
 #include "DocumentPage.h"

@@ -24,6 +24,8 @@
 #include "Encodings.h"
 #include "Config.h"
 #include "gtkmm_utility.h"
+#include "utility.h"
+
 /*
  *
  */
