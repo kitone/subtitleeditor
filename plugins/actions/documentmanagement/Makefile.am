@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libdocumentmanagement.la
 
 libdocumentmanagement_la_SOURCES = \
-	DocumentManagement.cc
+	documentmanagement.cc
 
 libdocumentmanagement_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libdocumentmanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

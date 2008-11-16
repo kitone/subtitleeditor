@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libplaintext.la
 
 libplaintext_la_SOURCES = \
-	PlainText.cc
+	plaintext.cc
 
 libplaintext_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libplaintext_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

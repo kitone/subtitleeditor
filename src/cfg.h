@@ -29,7 +29,7 @@
 #include <list>
 #include <map>
 #include <sigc++/sigc++.h>
-#include "Color.h"
+#include "color.h"
 
 /*
  *

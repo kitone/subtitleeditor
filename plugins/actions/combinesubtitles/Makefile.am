@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libcombinesubtitles.la
 
 libcombinesubtitles_la_SOURCES = \
-	CombineSubtitles.cc
+	combinesubtitles.cc
 
 libcombinesubtitles_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libcombinesubtitles_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

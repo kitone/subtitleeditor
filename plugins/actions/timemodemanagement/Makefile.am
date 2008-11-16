@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libtimemodemanagement.la
 
 libtimemodemanagement_la_SOURCES = \
-	TimeModeManagement.cc
+	timemodemanagement.cc
 
 libtimemodemanagement_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libtimemodemanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

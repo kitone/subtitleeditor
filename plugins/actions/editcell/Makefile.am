@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libeditcell.la
 
 libeditcell_la_SOURCES = \
-	EditCell.cc
+	editcell.cc
 
 libeditcell_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libeditcell_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

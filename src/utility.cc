@@ -28,8 +28,8 @@
 #include <sstream>
 #include <gtkmm.h>
 #include "cfg.h"
-#include "SubtitleTime.h"
-#include "SubtitleEditorWindow.h"
+#include "subtitletime.h"
+#include "subtitleeditorwindow.h"
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>

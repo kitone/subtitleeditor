@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libdialoguize.la
 
 libdialoguize_la_SOURCES = \
-	Dialoguize.cc
+	dialoguize.cc
 
 libdialoguize_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libdialoguize_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

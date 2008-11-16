@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libitalicize.la
 
 libitalicize_la_SOURCES = \
-	Italicize.cc
+	italicize.cc
 
 libitalicize_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libitalicize_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

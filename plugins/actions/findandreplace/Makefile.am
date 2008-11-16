@@ -15,7 +15,7 @@ pluginlib_LTLIBRARIES = \
 	libfindandreplace.la
 
 libfindandreplace_la_SOURCES = \
-	FindAndReplace.cc
+	findandreplace.cc
 
 libfindandreplace_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libfindandreplace_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

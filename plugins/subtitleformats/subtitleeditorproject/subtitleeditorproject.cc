@@ -20,10 +20,10 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <extension/SubtitleFormat.h>
+#include <extension/subtitleformat.h>
 #include <debug.h>
 #include <i18n.h>
-#include <Error.h>
+#include <error.h>
 #include <libxml++/libxml++.h>
 
 /*

@@ -15,8 +15,8 @@ pluginlib_LTLIBRARIES = \
 	libspellchecking.la
 
 libspellchecking_la_SOURCES = \
-	SpellChecking.h \
-	SpellChecking.cc
+	spellchecking.h \
+	spellchecking.cc
 
 libspellchecking_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libspellchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS) $(ENCHANT_LIBS)

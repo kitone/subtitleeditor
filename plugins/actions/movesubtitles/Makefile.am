@@ -15,7 +15,7 @@ pluginlib_LTLIBRARIES = \
 	libmovesubtitles.la
 
 libmovesubtitles_la_SOURCES = \
-	MoveSubtitles.cc
+	movesubtitles.cc
 
 libmovesubtitles_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libmovesubtitles_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

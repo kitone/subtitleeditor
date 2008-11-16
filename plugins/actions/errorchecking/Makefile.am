@@ -15,16 +15,16 @@ pluginlib_LTLIBRARIES = \
 	liberrorchecking.la
 
 liberrorchecking_la_SOURCES = \
-	ErrorChecking.h \
-	ErrorCheckingPreferences.h \
-	ErrorCheckingPlugin.cc \
-	MaxCharactersPerLine.h \
-	MaxLinePerSubtitle.h \
-	MinGapBetweenSubtitles.h \
-	Overlapping.h \
-	MinDisplayTime.h \
-	TooLongDisplayTime.h \
-	TooShortDisplayTime.h
+	errorchecking.h \
+	errorcheckingpreferences.h \
+	errorcheckingplugin.cc \
+	maxcharactersperline.h \
+	maxlinepersubtitle.h \
+	mingapbetweensubtitles.h \
+	overlapping.h \
+	mindisplaytime.h \
+	toolongdisplaytime.h \
+	tooshortdisplaytime.h
 
 liberrorchecking_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 liberrorchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

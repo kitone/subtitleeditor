@@ -15,7 +15,7 @@ pluginlib_LTLIBRARIES = \
 	libexternalvideoplayer.la
 
 libexternalvideoplayer_la_SOURCES = \
-	ExternalVideoPlayer.cc
+	externalvideoplayer.cc
 
 libexternalvideoplayer_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libexternalvideoplayer_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

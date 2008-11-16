@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libreversetextandtranslation.la
 
 libreversetextandtranslation_la_SOURCES = \
-	ReverseTextAndTranslation.cc
+	reversetextandtranslation.cc
 
 libreversetextandtranslation_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libreversetextandtranslation_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

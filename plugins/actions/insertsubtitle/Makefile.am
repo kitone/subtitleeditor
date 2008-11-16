@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libinsertsubtitle.la
 
 libinsertsubtitle_la_SOURCES = \
-	InsertSubtitle.cc
+	insertsubtitle.cc
 
 libinsertsubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libinsertsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

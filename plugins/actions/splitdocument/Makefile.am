@@ -15,7 +15,7 @@ pluginlib_LTLIBRARIES = \
 	libsplitdocument.la
 
 libsplitdocument_la_SOURCES = \
-	SplitDocument.cc
+	splitdocument.cc
 
 libsplitdocument_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libsplitdocument_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

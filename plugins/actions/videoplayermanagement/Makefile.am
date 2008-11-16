@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libvideoplayermanagement.la
 
 libvideoplayermanagement_la_SOURCES = \
-	VideoPlayerManagement.cc
+	videoplayermanagement.cc
 
 libvideoplayermanagement_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libvideoplayermanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

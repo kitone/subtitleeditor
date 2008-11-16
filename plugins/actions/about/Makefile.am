@@ -11,7 +11,7 @@ pluginlib_LTLIBRARIES = \
 	libabout.la
 
 libabout_la_SOURCES = \
-	About.cc
+	about.cc
 
 libabout_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libabout_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

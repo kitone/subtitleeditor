@@ -15,7 +15,7 @@ pluginlib_LTLIBRARIES = \
 	libconfigurekeyboardshortcuts.la
 
 libconfigurekeyboardshortcuts_la_SOURCES = \
-	ConfigureKeyboardShortcuts.cc
+	configurekeyboardshortcuts.cc
 
 libconfigurekeyboardshortcuts_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libconfigurekeyboardshortcuts_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

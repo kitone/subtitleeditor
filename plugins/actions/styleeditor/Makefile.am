@@ -15,8 +15,8 @@ pluginlib_LTLIBRARIES = \
 	libstyleeditor.la
 
 libstyleeditor_la_SOURCES = \
-	StyleEditor.h \
-	StyleEditor.cc
+	styleeditor.h \
+	styleeditor.cc
 
 libstyleeditor_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libstyleeditor_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

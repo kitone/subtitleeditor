@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libsplitsubtitle.la
 
 libsplitsubtitle_la_SOURCES = \
-	SplitSubtitle.cc
+	splitsubtitle.cc
 
 libsplitsubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libsplitsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
