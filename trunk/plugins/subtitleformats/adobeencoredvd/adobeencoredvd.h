@@ -31,7 +31,7 @@
  *	http://www.adobe.com/support/techdocs/329569.html
  */
 
-#include <extension/SubtitleFormat.h>
+#include <extension/subtitleformat.h>
 #include <utility.h>
 
 

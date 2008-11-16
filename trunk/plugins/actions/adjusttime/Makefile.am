@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libadjusttime.la
 
 libadjusttime_la_SOURCES = \
-	AdjustTime.cc
+	adjusttime.cc
 
 libadjusttime_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libadjusttime_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

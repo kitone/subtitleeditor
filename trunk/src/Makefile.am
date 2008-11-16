@@ -11,95 +11,95 @@ PACKAGE_DIRECTORY = \
 
 ## libsubtitleeditor
 LIB_SUBTITLEEDITOR_FILES = \
-	Color.cc \
-	Color.h \
-	Command.cc \
-	Command.h \
-	CommandSystem.cc \
-	CommandSystem.h \
+	color.cc \
+	color.h \
+	command.cc \
+	command.h \
+	commandsystem.cc \
+	commandsystem.h \
 	cfg.cc \
 	cfg.h \
 	debug.cc \
 	debug.h \
-	Document.cc \
-	Document.h \
-	DocumentSystem.cc \
-	DocumentSystem.h \
-	Encodings.cc \
-	Encodings.h \
-	Error.h \
-	extension/Action.cc \
-	extension/Action.h \
-	extension/SubtitleFormat.h \
-	Extension.cc \
-	Extension.h \
-	ExtensionInfo.cc \
-	ExtensionInfo.h \
-	ExtensionManager.cc \
-	ExtensionManager.h \
-	FileReader.cc \
-	FileReader.h \
-	FileWriter.cc \
-	FileWriter.h \
+	document.cc \
+	document.h \
+	documentsystem.cc \
+	documentsystem.h \
+	encodings.cc \
+	encodings.h \
+	error.h \
+	extension/action.cc \
+	extension/action.h \
+	extension/subtitleformat.h \
+	extension.cc \
+	extension.h \
+	extensioninfo.cc \
+	extensioninfo.h \
+	extensionmanager.cc \
+	extensionmanager.h \
+	filereader.cc \
+	filereader.h \
+	filewriter.cc \
+	filewriter.h \
 	gtkmm_utility.cc \
 	gtkmm_utility.h \
 	i18n.h \
-	Player.h \
-	ScriptInfo.cc \
-	ScriptInfo.h \
-	Style.cc \
-	Style.h \
-	StyleModel.cc \
-	StyleModel.h \
-	Styles.cc \
-	Styles.h \
-	Subtitle.cc \
-	SubtitleEditorWindow.cc \
-	SubtitleEditorWindow.h \
-	SubtitleFormatIO.cc \
-	SubtitleFormatIO.h \
-	SubtitleFormatSystem.cc \
-	SubtitleFormatSystem.h \
-	Subtitle.h \
-	SubtitleModel.cc \
-	SubtitleModel.h \
-	Subtitles.cc \
-	Subtitles.h \
-	SubtitleTags.cc \
-	SubtitleTags.h \
-	SubtitleTime.cc \
-	SubtitleTime.h \
-	SubtitleView.cc \
-	SubtitleView.h \
-	TimeUtility.cc \
-	TimeUtility.h \
+	player.h \
+	scriptinfo.cc \
+	scriptinfo.h \
+	style.cc \
+	style.h \
+	stylemodel.cc \
+	stylemodel.h \
+	styles.cc \
+	styles.h \
+	subtitle.cc \
+	subtitleeditorwindow.cc \
+	subtitleeditorwindow.h \
+	subtitleformatio.cc \
+	subtitleformatio.h \
+	subtitleformatsystem.cc \
+	subtitleformatsystem.h \
+	subtitle.h \
+	subtitlemodel.cc \
+	subtitlemodel.h \
+	subtitles.cc \
+	subtitles.h \
+	subtitletags.cc \
+	subtitletags.h \
+	subtitletime.cc \
+	subtitletime.h \
+	subtitleview.cc \
+	subtitleview.h \
+	timeutility.cc \
+	timeutility.h \
 	utility.cc \
 	utility.h \
-	Waveform.cc \
-	Waveform.h \
-	WaveformManager.h \
+	waveform.cc \
+	waveform.h \
+	waveformmanager.h \
 	widget_config_utility.cc \
 	widget_config_utility.h
 
 LIB_GUI_FILES = \
-	gui/ComboBoxEncoding.cc \
-	gui/ComboBoxEncoding.h \
-	gui/ComboBoxNewLine.cc \
-	gui/ComboBoxNewLine.h \
-	gui/ComboBoxSubtitleFormat.cc \
-	gui/ComboBoxSubtitleFormat.h \
-	gui/ComboBoxVideo.cc \
-	gui/ComboBoxVideo.h \
-	gui/DialogCharacterCodings.cc \
-	gui/DialogCharacterCodings.h \
-	gui/DialogFileChooser.cc \
-	gui/DialogFileChooser.h \
-	gui/DialogUtility.cc \
-	gui/DialogUtility.h \
-	gui/SpinButtonTime.cc \
-	gui/SpinButtonTime.h \
-	gui/TreeViewExtensionManager.cc \
-	gui/TreeViewExtensionManager.h
+	gui/comboboxencoding.cc \
+	gui/comboboxencoding.h \
+	gui/comboboxnewline.cc \
+	gui/comboboxnewline.h \
+	gui/comboboxsubtitleformat.cc \
+	gui/comboboxsubtitleformat.h \
+	gui/comboboxvideo.cc \
+	gui/comboboxvideo.h \
+	gui/dialogcharactercodings.cc \
+	gui/dialogcharactercodings.h \
+	gui/dialogfilechooser.cc \
+	gui/dialogfilechooser.h \
+	gui/dialogutility.cc \
+	gui/dialogutility.h \
+	gui/spinbuttontime.cc \
+	gui/spinbuttontime.h \
+	gui/treeviewextensionmanager.cc \
+	gui/treeviewextensionmanager.h
 
 lib_LTLIBRARIES = libsubtitleeditor.la
 
@@ -117,29 +117,29 @@ libsubtitleeditor_la_CXXFLAGS = \
 
 ## subtitleeditor
 APPLICATION_FILES = \
-	gui/Application.cc \
-	gui/Application.h \
-	gui/MenuBar.cc \
-	gui/MenuBar.h \
-	gui/Statusbar.cc \
-	gui/Statusbar.h \
+	gui/application.cc \
+	gui/application.h \
+	gui/menubar.cc \
+	gui/menubar.h \
+	gui/statusbar.cc \
+	gui/statusbar.h \
 	gstreamer_utility.cc \
 	gstreamer_utility.h \
 	main.cc \
-	Options.cc \
-	Options.h \
-	vp/GStreamerPlayer.cc \
-	vp/GStreamerPlayer.h \
-	vp/VideoPlayer.cc \
-	vp/VideoPlayer.h \
-	we/WaveformEditor.cc \
-	we/WaveformEditor.h \
-	we/WaveformGenerator.cc \
-	we/WaveformGenerator.h \
-	we/WaveformRendererCairo.cc \
-	we/WaveformRenderer.cc \
-	we/WaveformRendererGL.cc \
-	we/WaveformRenderer.h
+	options.cc \
+	options.h \
+	vp/gstreamerplayer.cc \
+	vp/gstreamerplayer.h \
+	vp/videoplayer.cc \
+	vp/videoplayer.h \
+	we/waveformeditor.cc \
+	we/waveformeditor.h \
+	we/waveformgenerator.cc \
+	we/waveformgenerator.h \
+	we/waveformrenderercairo.cc \
+	we/waveformrenderer.cc \
+	we/waveformrenderergl.cc \
+	we/waveformrenderer.h
 
 bin_PROGRAMS = subtitleeditor
 

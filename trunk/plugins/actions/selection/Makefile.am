@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libselection.la
 
 libselection_la_SOURCES = \
-	Selection.cc
+	selection.cc
 
 libselection_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libselection_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libmoveafterprecedingsubtitle.la
 
 libmoveafterprecedingsubtitle_la_SOURCES = \
-	MoveAfterPrecedingSubtitle.cc
+	moveafterprecedingsubtitle.cc
 
 libmoveafterprecedingsubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libmoveafterprecedingsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

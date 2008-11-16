@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libcommand.la
 
 libcommand_la_SOURCES = \
-	Command.cc
+	command.cc
 
 libcommand_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libcommand_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

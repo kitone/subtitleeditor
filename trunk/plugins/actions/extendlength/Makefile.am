@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libextendlength.la
 
 libextendlength_la_SOURCES = \
-	ExtendLength.cc
+	extendlength.cc
 
 libextendlength_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libextendlength_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

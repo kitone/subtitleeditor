@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libwaveformmanagement.la
 
 libwaveformmanagement_la_SOURCES = \
-	WaveformManagement.cc
+	waveformmanagement.cc
 
 libwaveformmanagement_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libwaveformmanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

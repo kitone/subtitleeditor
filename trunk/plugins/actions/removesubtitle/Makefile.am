@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libremovesubtitle.la
 
 libremovesubtitle_la_SOURCES = \
-	RemoveSubtitle.cc
+	removesubtitle.cc
 
 libremovesubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libremovesubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

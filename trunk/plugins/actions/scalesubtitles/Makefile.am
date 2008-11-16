@@ -14,7 +14,7 @@ INCLUDES = \
 pluginlib_LTLIBRARIES = libscalesubtitles.la
 
 libscalesubtitles_la_SOURCES = \
-	ScaleSubtitles.cc
+	scalesubtitles.cc
 
 libscalesubtitles_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libscalesubtitles_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

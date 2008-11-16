@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libapplytranslation.la
 
 libapplytranslation_la_SOURCES = \
-	ApplyTranslation.cc
+	applytranslation.cc
 
 libapplytranslation_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libapplytranslation_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

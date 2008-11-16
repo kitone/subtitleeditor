@@ -23,10 +23,10 @@
 #include <iostream>
 #include <config.h>
 #include <gtkmm/main.h>
-#include "gui/Application.h"
+#include "gui/application.h"
 #include "utility.h"
 #include "gtkmm_utility.h"
-#include "Options.h"
+#include "options.h"
 
 #include <ctime>
 #include <gst/gst.h>

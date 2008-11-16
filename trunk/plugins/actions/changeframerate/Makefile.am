@@ -15,7 +15,7 @@ pluginlib_LTLIBRARIES = \
 	libchangeframerate.la
 
 libchangeframerate_la_SOURCES = \
-	ChangeFramerate.cc
+	changeframerate.cc
 
 libchangeframerate_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libchangeframerate_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

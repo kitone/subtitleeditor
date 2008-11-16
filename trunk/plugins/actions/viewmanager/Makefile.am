@@ -15,7 +15,7 @@ pluginlib_LTLIBRARIES = \
 	libviewmanager.la
 
 libviewmanager_la_SOURCES = \
-	ViewManager.cc
+	viewmanager.cc
 
 libviewmanager_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libviewmanager_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

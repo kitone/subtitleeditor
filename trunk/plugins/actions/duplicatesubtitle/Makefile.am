@@ -9,7 +9,7 @@ INCLUDES = \
 pluginlib_LTLIBRARIES = libduplicatesubtitle.la
 
 libduplicatesubtitle_la_SOURCES = \
-	DuplicateSubtitle.cc
+	duplicatesubtitle.cc
 
 libduplicatesubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libduplicatesubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

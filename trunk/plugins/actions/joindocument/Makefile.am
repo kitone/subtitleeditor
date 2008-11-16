@@ -10,7 +10,7 @@ pluginlib_LTLIBRARIES = \
 	libjoindocument.la
 
 libjoindocument_la_SOURCES = \
-	JoinDocument.cc
+	joindocument.cc
 
 libjoindocument_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libjoindocument_la_LIBADD = $(SUBTITLEEDITOR_LIBS)

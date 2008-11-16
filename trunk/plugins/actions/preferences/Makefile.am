@@ -15,14 +15,14 @@ pluginlib_LTLIBRARIES = \
 	libpreferences.la
 
 libpreferences_la_SOURCES = \
-	ExtensionPage.h \
-	DocumentPage.h \
-	InterfacePage.h \
-	PreferencePage.h  \
-	TimingPage.h  \
-	VideoPlayerPage.h  \
-	WaveformPage.h \
-	PreferencesPlugin.cc
+	extensionpage.h \
+	documentpage.h \
+	interfacepage.h \
+	preferencepage.h  \
+	timingpage.h  \
+	videoplayerpage.h  \
+	waveformpage.h \
+	preferencesplugin.cc
 
 libpreferences_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libpreferences_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
