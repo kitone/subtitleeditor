@@ -47,8 +47,6 @@ LIB_SUBTITLEEDITOR_FILES = \
 	Player.h \
 	ScriptInfo.cc \
 	ScriptInfo.h \
-	Signal.cc \
-	Signal.h \
 	Style.cc \
 	Style.h \
 	StyleModel.cc \
