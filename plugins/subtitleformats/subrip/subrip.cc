@@ -110,17 +110,15 @@ public:
 		unsigned int count = 1;
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub, ++count)
 		{
-			file 
-				<< count 
-				<< std::endl
-				<< time_to_subrip(sub.get_start())
-				<< " --> "
-				<< time_to_subrip(sub.get_end())
-				<< std::endl;
-
 			Glib::ustring text = sub.get_text();
 
-			file << text << std::endl << std::endl;
+			file.write(
+				Glib::ustring::compose(
+					"%1\n%2 --> %3\n%4\n\n",
+					count, 
+					time_to_subrip(sub.get_start()),
+					time_to_subrip(sub.get_end()),
+					text));
 		}
 	}
 

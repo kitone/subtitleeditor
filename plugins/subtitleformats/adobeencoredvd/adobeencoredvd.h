@@ -111,15 +111,12 @@ public:
 		{
 			Glib::ustring text =sub.get_text();
 
-			file 
-				<< sub.get_num() 
-				<< " " 
-				<< to_encore_dvd_time(sub.get_start())
-				<< " "
-				<< to_encore_dvd_time(sub.get_end())
-				<< " "
-				<< text
-				<< std::endl;
+			file.write(	Glib::ustring::compose(
+					"%1 %2 %3 %4\n",
+					sub.get_num(),
+					to_encore_dvd_time(sub.get_start()),
+					to_encore_dvd_time(sub.get_end()),
+					text));
 		}
 	}
 

@@ -247,9 +247,12 @@ public:
 	 */
 	void write_script_info(FileWriter &file)
 	{
-		file << "[Script Info]" << std::endl;
-		file << "; This script was created by subtitleeditor (" << VERSION << ")" << std::endl;
-		file << "; http://home.gna.org/subtitleeditor/" << std::endl;
+		file.write(
+			Glib::ustring::compose(
+				"[Script Info]\n"
+				"; This script was created by subtitleeditor (%1)\n"
+				"; http://home.gna.org/subtitleeditor/\n",
+				Glib::ustring(VERSION)));
 
 		ScriptInfo& scriptInfo = document()->get_script_info();
 
@@ -259,11 +262,11 @@ public:
 				it != scriptInfo.data.end(); 
 				++it)
 		{
-			file << it->first << ": " << it->second << std::endl;
+			file.write(it->first + ": " + it->second + "\n");
 		}
 
 		// End of block, empty line
-		file << std::endl;
+		file.write("\n");
 	}
 
 	/*
@@ -271,18 +274,19 @@ public:
 	 */
 	void write_styles(FileWriter &file)
 	{
-		file << "[V4+ Styles]" << std::endl;
-		file << "Format: "
-						"Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, "
-						"BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, "
-						"BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding" << std::endl;
+		file.write("[V4+ Styles]\n");
+		file.write(
+				"Format: "
+				"Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, "
+				"BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, "
+				"BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n");
 
 		// Default style if it's empty
 		if(document()->styles().size() == 0)
 		{
 			// write without changing the document
 			Glib::ustring default_style = "Default,Sans,18,&H00FFFFFF,&H0000FFFF,&H000078B4,&H00000000,0,0,0,0,100,100,0,0,1,0,0,2,20,20,20,0";
-			file << "Style: " << default_style << std::endl;
+			file.write("Style: " + default_style + "\n");
 			
 			//Style style = document()->styles().append();
 			//style.set("name", "Default");
@@ -290,42 +294,46 @@ public:
 
 		for(Style style = document()->styles().first(); style; ++style)
 		{
-			file 
-				<< "Style: " 
-				<< style.get("name") << ","
-				<< style.get("font-name") << ","
-				<< style.get("font-size") << ","
+			file.write( Glib::ustring::compose("Style: %1,%2,%3,%4,%5,%6,%7\n",
+				Glib::ustring::compose("%1,%2,%3",
+					style.get("name"),
+					style.get("font-name"),
+					style.get("font-size")),
 				
-				<< to_ass_color(style.get("primary-color")) << ","
-				<< to_ass_color(style.get("secondary-color")) << ","
-				<< to_ass_color(style.get("outline-color")) << ","
-				<< to_ass_color(style.get("shadow-color")) << ","
+				Glib::ustring::compose("%1,%2,%3,%4",
+					to_ass_color(style.get("primary-color")),
+					to_ass_color(style.get("secondary-color")),
+					to_ass_color(style.get("outline-color")),
+					to_ass_color(style.get("shadow-color"))),
 				
-				<< to_ass_bool(style.get("bold")) << ","
-				<< to_ass_bool(style.get("italic")) << ","
-				<< to_ass_bool(style.get("underline")) << ","
-				<< to_ass_bool(style.get("strikeout")) << ","
+				Glib::ustring::compose("%1,%2,%3,%4",
+					to_ass_bool(style.get("bold")),
+					to_ass_bool(style.get("italic")),
+					to_ass_bool(style.get("underline")),
+					to_ass_bool(style.get("strikeout"))),
 				
-				<< style.get("scale-x") << ","
-				<< style.get("scale-y") << ","
-				<< style.get("spacing") << ","
-				<< style.get("angle") << ","
+				Glib::ustring::compose("%1,%2,%3,%4",
+					style.get("scale-x") ,
+					style.get("scale-y"),
+					style.get("spacing"),
+					style.get("angle")),
 				
-				<< style.get("border-style") << ","
-				<< style.get("outline") << ","
-				<< style.get("shadow") << ","
-				<< style.get("alignment") << ","
+				Glib::ustring::compose("%1,%2,%3,%4",
+					style.get("border-style"),
+					style.get("outline"),
+					style.get("shadow"),
+					style.get("alignment")),
 				
-				<< style.get("margin-l") << ","
-				<< style.get("margin-r") << ","
-				<< style.get("margin-v") << ","
+				Glib::ustring::compose("%1,%2,%3",
+					style.get("margin-l"),
+					style.get("margin-r"),
+					style.get("margin-v")),
 				
-				<< style.get("encoding") 
-				<< std::endl;
+					style.get("encoding")));
 		}
 
 		// End of block, empty line
-		file << std::endl;
+		file.write("\n");
 	}
 
 	/*
@@ -333,10 +341,9 @@ public:
 	 */
 	void write_events(FileWriter &file)
 	{
-		file << "[Events]" << std::endl;
-		
+		file.write("[Events]\n");
 		// format:
-		file << "Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text" << std::endl;
+		file.write("Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text\n");
 
 		Glib::RefPtr<Glib::Regex> re_intelligent_linebreak = Glib::Regex::create(
 				"\n(?=-\\s.*)", Glib::REGEX_MULTILINE);
@@ -359,18 +366,20 @@ public:
 					utility::replace(text, "\n", "\\n");
 			}
 
-			file 
-				<< "Dialogue: "
-				<< sub.get_layer() << "," 
-				<< to_ass_time(sub.get_start()) << ","
-				<< to_ass_time(sub.get_end()) << ","
-				<< sub.get_style() << ","
-				<< sub.get_name() << ","
-				<< std::setw(4) << std::setfill('0') << sub.get_margin_l() << ","
-				<< std::setw(4) << std::setfill('0') << sub.get_margin_r() << ","
-				<< std::setw(4) << std::setfill('0') << sub.get_margin_v() << ","
-				<< sub.get_effect() << ","
-				<< text << std::endl;
+			file.write(
+				Glib::ustring::compose(
+					"Dialogue: %1,%2,%3,%4,%5,%6,%7,%8\n",
+					sub.get_layer(), 
+					to_ass_time(sub.get_start()), 
+					to_ass_time(sub.get_end()), 
+					sub.get_style(), 
+					sub.get_name(), 
+					Glib::ustring::compose("%1,%2,%3", 
+						Glib::ustring::format( std::setw(4), std::setfill(L'0'), sub.get_margin_l()),
+						Glib::ustring::format( std::setw(4), std::setfill(L'0'), sub.get_margin_r()),
+						Glib::ustring::format( std::setw(4), std::setfill(L'0'), sub.get_margin_v())),
+					sub.get_effect(),
+					text));
 		}
 
 		// End of block, empty line

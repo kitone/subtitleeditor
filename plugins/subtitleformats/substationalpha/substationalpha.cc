@@ -235,11 +235,12 @@ public:
 	 */
 	void write_script_info(FileWriter &file)
 	{
-		// --------------------------------------------------------------
-		// [Script Info]
-		file << "[Script Info]" << std::endl;
-		file << "; This script was created by subtitleeditor (" << VERSION << ")" << std::endl;
-		file << "; http://home.gna.org/subtitleeditor/" << std::endl;
+		file.write(
+			Glib::ustring::compose(
+				"[Script Info]\n"
+				"; This script was created by subtitleeditor (%1)\n"
+				"; http://home.gna.org/subtitleeditor/\n",
+				Glib::ustring(VERSION)));
 
 		ScriptInfo& scriptInfo = document()->get_script_info();
 
@@ -249,11 +250,11 @@ public:
 				it != scriptInfo.data.end(); 
 				++it)
 		{
-			file << it->first << ": " << it->second << std::endl;
+			file.write(it->first + ": " + it->second + "\n");
 		}
 
 		// End of block, empty line
-		file << std::endl;
+		file.write("\n");
 	}
 
 	/*
@@ -261,21 +262,19 @@ public:
 	 */
 	void write_styles(FileWriter &file)
 	{
-		// --------------------------------------------------------------
-		// [V4+ Styles]
-		file << "[V4 Styles]" << std::endl;
-
-		file << "Format: "
-						"Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, "
-						"BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, "
-						"MarginR, MarginV, AlphaLevel, Encoding" << std::endl;
+		file.write("[V4 Styles]\n");
+		file.write(
+				"Format: "
+				"Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, TertiaryColour, "
+				"BackColour, Bold, Italic, BorderStyle, Outline, Shadow, Alignment, MarginL, "
+				"MarginR, MarginV, AlphaLevel, Encoding\n");
 
 		// Default style if it's empty
 		if(document()->styles().size() == 0)
 		{
 			// write without changing the document
 			Glib::ustring default_style = "Default,Sans,18,16777215,65535,30900,0,0,0,1,0,0,2,20,20,20,0,0";
-			file << "Style: " << default_style << std::endl;
+			file.write("Style: " + default_style + "\n");
 			
 			//Style style = document()->styles().append();
 			//style.set("name", "Default");
@@ -283,49 +282,50 @@ public:
 
 		for(Style style = document()->styles().first(); style; ++style)
 		{
-			file 
-				<< "Style: " 
-				<< style.get("name") << ","
-				<< style.get("font-name") << ","
-				<< style.get("font-size") << ","
+			file.write( Glib::ustring::compose("Style: %1,%2,%3,%4,%5,%6\n",
+				Glib::ustring::compose("%1,%2,%3",
+					style.get("name"),
+					style.get("font-name"),
+					style.get("font-size")),
 				
-				<< to_ssa_color(style.get("primary-color")) << ","
-				<< to_ssa_color(style.get("secondary-color")) << ","
-				<< to_ssa_color(style.get("outline-color")) << ","
-				<< to_ssa_color(style.get("shadow-color")) << ","
+				Glib::ustring::compose("%1,%2,%3,%4",
+					to_ssa_color(style.get("primary-color")),
+					to_ssa_color(style.get("secondary-color")),
+					to_ssa_color(style.get("outline-color")),
+					to_ssa_color(style.get("shadow-color"))),
 				
-				<< to_ssa_bool(style.get("bold")) << ","
-				<< to_ssa_bool(style.get("italic")) << ","
+				Glib::ustring::compose("%1,%2",
+					to_ssa_bool(style.get("bold")),
+					to_ssa_bool(style.get("italic"))),
 				
-				<< style.get("border-style") << ","
-				<< style.get("outline") << ","
-				<< style.get("shadow") << ","
-				<< alignment_to_ssa(style.get("alignment")) << ","
+				Glib::ustring::compose("%1,%2,%3,%4",
+					style.get("border-style"),
+					style.get("outline"),
+					style.get("shadow"),
+					alignment_to_ssa(style.get("alignment"))),
 				
-				<< style.get("margin-l") << ","
-				<< style.get("margin-r") << ","
-				<< style.get("margin-v") << ","
+				Glib::ustring::compose("%1,%2,%3",
+					style.get("margin-l"),
+					style.get("margin-r"),
+					style.get("margin-v")),
 				
-				<< 0 << "," // alpha
-				<< style.get("encoding") 
-				<< std::endl;
+				Glib::ustring::compose("%1,%2",
+					0, // alpha
+					style.get("encoding"))));
 		}
 
 		// End of block, empty line
-		file << std::endl;
+		file.write("\n");
 	}
 
 	/*
-	 *
+	 * Write the block [Events]
 	 */
 	void write_events(FileWriter &file)
 	{
-		// --------------------------------------------------------------
-		// [Events]
-		file << "[Events]" << std::endl;
-		
+		file.write("[Events]\n");
 		// format:
-		file << "Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text" << std::endl;
+		file.write("Format: Marked, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n");
 
 		// line break policy: 1 = soft, 2=hard, 3=intelligent
 		Glib::RefPtr<Glib::Regex> re_intelligent_linebreak = Glib::Regex::create(
@@ -347,26 +347,22 @@ public:
 					utility::replace(text, "\n", "\\n");
 			}
 
-			file 
-				<< "Dialogue: "
-				<< "Marked=0" << "," 
-
-				<< to_ssa_time(sub.get_start()) << ","
-				<< to_ssa_time(sub.get_end()) << ","
-				
-				<< sub.get_style() << ","
-				<< sub.get_name() << ","
-				
-				<< std::setw(4) << std::setfill('0') << sub.get_margin_l() << ","
-				<< std::setw(4) << std::setfill('0') << sub.get_margin_r() << ","
-				<< std::setw(4) << std::setfill('0') << sub.get_margin_v() << ","
-				
-				<< sub.get_effect() << ","
-				<< text << std::endl;
+			file.write(
+				Glib::ustring::compose(
+					"Dialogue: Marked=0,%1,%2,%3,%4,%5,%6,%7\n",
+					to_ssa_time(sub.get_start()), 
+					to_ssa_time(sub.get_end()), 
+					sub.get_style(), 
+					sub.get_name(), 
+					Glib::ustring::compose("%1,%2,%3", 
+						Glib::ustring::format( std::setw(4), std::setfill(L'0'), sub.get_margin_l()),
+						Glib::ustring::format( std::setw(4), std::setfill(L'0'), sub.get_margin_r()),
+						Glib::ustring::format( std::setw(4), std::setfill(L'0'), sub.get_margin_v())),
+					sub.get_effect(),
+					text));
 		}
-
 		// End of block, empty line
-		//file << std::endl;
+		file.write("\n");
 	}
 
 	/*

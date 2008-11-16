@@ -41,13 +41,11 @@ FileWriter::FileWriter(const Glib::ustring &uri, const Glib::ustring &charset, c
  */
 void FileWriter::to_file()
 {
-	Glib::ustring udata = str();
-
 	// Convert newline if needs
 	if(m_newline != "Unix")
-		udata = Glib::Regex::create("\n")->replace(udata, 0, (m_newline == "Windows") ? "\r\n": "\r", (Glib::RegexMatchFlags)0);
+		m_data = Glib::Regex::create("\n")->replace(m_data, 0, (m_newline == "Windows") ? "\r\n": "\r", (Glib::RegexMatchFlags)0);
 
-	std::string data = Encoding::convert_from_utf8_to_charset(udata, m_charset); 
+	std::string data = Encoding::convert_from_utf8_to_charset(m_data, m_charset); 
 
 	std::ofstream file(Glib::filename_from_uri(m_uri).c_str());
 	if(!file)
@@ -57,3 +55,10 @@ void FileWriter::to_file()
 	file.close();
 }
 
+/*
+ *
+ */
+void FileWriter::write(const Glib::ustring &buf)
+{
+	m_data += buf;
+}

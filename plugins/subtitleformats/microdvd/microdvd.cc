@@ -95,13 +95,12 @@ public:
 			text = tags->replace(text, 0, "{y:\\1}\\2", (Glib::RegexMatchFlags)0);
 
 			// {start_frame}{end_frame}text
-			file << "{" 
-				<< sub.get_start_frame()
-				<< "}{"
-				<< sub.get_end_frame()
-				<< "}"
-				<< text
-				<< std::endl;
+			file.write(
+				Glib::ustring::compose(
+					"{%1}{%2}%3\n",
+					sub.get_start_frame(),
+					sub.get_end_frame(),
+					text));
 		}
 	}
 };
