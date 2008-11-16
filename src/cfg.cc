@@ -21,7 +21,7 @@
  */
 
 
-#include "Config.h"
+#include "cfg.h"
 #include <iostream>
 #include <fstream>
 #include <glibmm.h>

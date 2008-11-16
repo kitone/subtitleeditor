@@ -17,8 +17,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	Command.h \
 	CommandSystem.cc \
 	CommandSystem.h \
-	Config.cc \
-	Config.h \
+	cfg.cc \
+	cfg.h \
 	debug.cc \
 	debug.h \
 	Document.cc \

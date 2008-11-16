@@ -32,7 +32,7 @@
 #include <gtkmm/celleditable.h>
 #include <gtkmm/spinbutton.h>
 
-#include "Config.h"
+#include "cfg.h"
 #include "SubtitleModel.h"
 #include "Subtitles.h"
 #include "Document.h"

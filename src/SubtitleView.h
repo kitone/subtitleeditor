@@ -27,7 +27,7 @@
 #include <gtkmm/treeview.h>
 #include <libglademm.h>
 #include "StyleModel.h"
-#include "Config.h"
+#include "cfg.h"
 
 class Document;
 class SubtitleModel;

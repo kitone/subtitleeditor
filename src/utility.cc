@@ -27,7 +27,7 @@
 #include <iostream>
 #include <sstream>
 #include <gtkmm.h>
-#include "Config.h"
+#include "cfg.h"
 #include "SubtitleTime.h"
 #include "SubtitleEditorWindow.h"
 

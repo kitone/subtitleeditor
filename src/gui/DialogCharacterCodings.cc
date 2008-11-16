@@ -22,7 +22,7 @@
 
 #include "DialogCharacterCodings.h"
 #include "Encodings.h"
-#include "Config.h"
+#include "cfg.h"
 #include "gtkmm_utility.h"
 #include "utility.h"
 

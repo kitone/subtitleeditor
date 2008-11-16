@@ -22,7 +22,7 @@
 
 #include <gtkmm.h>
 #include "widget_config_utility.h"
-#include "Config.h"
+#include "cfg.h"
 #include "debug.h"
 
 /*

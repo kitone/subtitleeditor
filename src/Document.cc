@@ -22,7 +22,7 @@
  
 
 #include "Document.h"
-#include "Config.h"
+#include "cfg.h"
 #include <iostream>
 #include "utility.h"
 #include "gui/ComboBoxEncoding.h"
