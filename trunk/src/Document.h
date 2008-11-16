@@ -25,12 +25,14 @@
  
 
 //#include "SubtitleModel.h"
+#include <string>
+#include <map>
+#include <sigc++/sigc++.h>
 #include "StyleModel.h"
 #include "ScriptInfo.h"
 #include "Subtitles.h"
 #include "Styles.h"
 #include "SubtitleView.h"
-#include "Signal.h"
 #include "CommandSystem.h"
 #include "TimeUtility.h"
 
@@ -47,7 +49,7 @@ typedef std::list<Document*> DocumentList;
  *	"subtitle-time-changed"	
  */
 
-class Document : protected CommandSystem, public Signal
+class Document : protected CommandSystem
 {
 public:
 
@@ -292,6 +294,16 @@ public:
 	 */
 	FRAMERATE get_framerate();
 
+	/*
+	 *
+	 */
+	sigc::signal<void>& get_signal(const std::string &name);
+
+	/*
+ 	 *
+	 */
+	void emit_signal(const std::string &name);
+
 protected:
 	friend class Command;
 	friend class Subtitle;
@@ -347,6 +359,8 @@ protected:
 
 	SubtitleView*									m_subtitleView;
 	Glib::RefPtr<SubtitleModel>		m_subtitleModel;
+
+	std::map< std::string, sigc::signal<void> > m_signal;
 };
 
 #endif//_Document_h

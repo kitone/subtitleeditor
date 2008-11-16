@@ -703,3 +703,19 @@ Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustri
 	return NULL;
 }
 
+/*
+ *
+ */
+sigc::signal<void>& Document::get_signal(const std::string &name)
+{
+	return m_signal[name];
+}
+
+/*
+ *
+ */
+void Document::emit_signal(const std::string &name)
+{
+	m_signal[name].emit();
+}
+

@@ -1,6 +1,21 @@
 2008-11-16  kitone  <kitone@gna.org>
 
 	* src/Makefile.am:
+	* src/Signal.cc:
+	* src/Signal.h:
+	Remove files Signal.
+
+	* src/Document.cc:
+	* src/Document.h:
+	Add Signal code.
+
+	* src/i18n.h:
+	* src/utility.h:
+	Fix: config header.
+
+2008-11-16  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
 	* src/i18n.h:
 	New file. Move i18n core from utility.
 
