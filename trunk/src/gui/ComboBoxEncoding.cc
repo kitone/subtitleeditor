@@ -23,7 +23,7 @@
 #include "ComboBoxEncoding.h"
 #include "Encodings.h"
 #include "DialogCharacterCodings.h"
-#include "Config.h"
+#include "cfg.h"
 
 
 /*

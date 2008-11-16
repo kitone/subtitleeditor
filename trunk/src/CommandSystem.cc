@@ -24,7 +24,7 @@
 #include "CommandSystem.h"
 #include "utility.h"
 #include "Document.h"
-#include "Config.h"
+#include "cfg.h"
 
 
 /*

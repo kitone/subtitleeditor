@@ -21,7 +21,7 @@
  */
 
 #include "ComboBoxVideo.h"
-#include "Config.h"
+#include "cfg.h"
 #include "i18n.h"
 
 /*

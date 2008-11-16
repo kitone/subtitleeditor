@@ -1,6 +1,30 @@
 2008-11-16  kitone  <kitone@gna.org>
 
 	* src/Makefile.am:
+	* src/cfg.cc:
+	* src/cfg.cc:
+	Rename file Config to cfg.
+
+	* src/CommandSystem.cc:
+	* src/Config.cc:
+	* src/Config.h:
+	* src/Document.cc:
+	* src/Encodings.cc:
+	* src/ExtensionManager.cc:
+	* src/SubtitleView.cc:
+	* src/SubtitleView.h:
+	* src/extension/Action.h:
+	* src/gui/ComboBoxEncoding.cc:
+	* src/gui/ComboBoxVideo.cc:
+	* src/gui/DialogCharacterCodings.cc:
+	* src/gui/MenuBar.h:
+	* src/utility.cc:
+	* src/widget_config_utility.cc:
+	Update with new cfg filename.
+
+2008-11-16  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
 	* src/Signal.cc:
 	* src/Signal.h:
 	Remove files Signal.

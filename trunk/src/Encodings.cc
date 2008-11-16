@@ -23,7 +23,7 @@
 #include "utility.h"
 #include "Encodings.h"
 #include "Error.h"
-#include "Config.h"
+#include "cfg.h"
 
 /*
  *

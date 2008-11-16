@@ -26,7 +26,7 @@
 
 #include <gtkmm.h>
 #include <map>
-#include "Config.h"
+#include "cfg.h"
 #include "Statusbar.h"
 
 

@@ -28,7 +28,7 @@
 #include <vector>
 #include "Error.h"
 #include "utility.h"
-#include "Config.h"
+#include "cfg.h"
 
 /*
  * Return the ExtensionManager instance.
