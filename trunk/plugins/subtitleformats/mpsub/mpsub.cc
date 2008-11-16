@@ -115,9 +115,13 @@ public:
 	{
 		// TODO: FRAME support
 		// header
-		file << "FORMAT=TIME" << std::endl;
-		file << "# This script was created by subtitleeditor (" << VERSION << ")" << std::endl;
-		file << "# http://home.gna.org/subtitleeditor/" << std::endl << std::endl;
+		file.write(
+			Glib::ustring::compose(
+				"FORMAT=TIME\n"
+				"# This script was created by subtitleeditor (%1)\n"
+				"# http://home.gna.org/subtitleeditor/\n"
+				"\n",
+				Glib::ustring(VERSION)));
 
 		SubtitleTime start, end, previous_end;
 		Glib::ustring text;
@@ -136,10 +140,10 @@ public:
 			// start duration
 			// text
 			// (empty line)
-			file
-				<< s << " " << d << std::endl
-				<< text
-				<< std::endl << std::endl;
+			file.write(
+				Glib::ustring::compose(
+					"%1 %2\n%3\n\n", 
+					s, d, text));
 
 			previous_end = end;
 		}

@@ -156,7 +156,7 @@ public:
 					xml->set_attribute(it->first, it->second);
 			}
 
-			file << xmldoc.write_to_string_formatted();
+			file.write(xmldoc.write_to_string_formatted());
 		}
 		catch(const std::exception &ex)
 		{

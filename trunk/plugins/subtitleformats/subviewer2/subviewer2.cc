@@ -82,12 +82,17 @@ public:
 	{
 		ScriptInfo& script = document()->get_script_info();
 
-		file << "[INFORMATION]" << std::endl;
-		file << "[TITLE]" << script.data["Title"] << std::endl;
-		file << "[AUTHOR]" << script.data["OriginalEditing"] << std::endl;
-		file << "[COMMENT]" << script.data["Comment"] << std::endl;
-		file << "[END INFORMATION]" << std::endl;
-		file << "[SUBTITLE]" << std::endl;
+		file.write(
+			Glib::ustring::compose(
+				"[INFORMATION]\n"
+				"[TITLE]%1\n"
+				"[AUTHOR]%2\n"
+				"[COMMENT]%3\n"
+				"[END INFORMATION]\n"
+				"[SUBTITLE]\n",
+				script.data["Title"],
+				script.data["OriginalEditing"],
+				script.data["Comment"]));
 
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{
@@ -95,9 +100,12 @@ public:
 
 			utility::replace(text, "\n", "[br]");
 
-			file << to_subviewer_time(sub.get_start()) << "," << to_subviewer_time(sub.get_end()) << std::endl;
-			file << text << std::endl;
-			file << std::endl; // empty line
+			file.write(
+				Glib::ustring::compose(
+					"%1,%2\n%3\n\n",
+					to_subviewer_time(sub.get_start()),
+					to_subviewer_time(sub.get_end()),
+					text));
 		}
 	}
 

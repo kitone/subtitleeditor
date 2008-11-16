@@ -23,7 +23,6 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <sstream>
 #include <glibmm.h>
 
 /*
@@ -32,7 +31,7 @@
  * Convert from UTF-8 to the character coding.
  * Convert Unix newline to Windows or Macintosh if need.
  */
-class FileWriter : public std::ostringstream
+class FileWriter
 {
 public:
 	
@@ -46,10 +45,16 @@ public:
 	 */
 	void to_file();
 
+	/*
+	 *
+	 */
+	void write(const Glib::ustring &buf);
+
 protected:
 	Glib::ustring m_uri;
 	Glib::ustring m_charset;
 	Glib::ustring m_newline;
+	Glib::ustring m_data;
 };
 
 #endif//_FileWriter_h

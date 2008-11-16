@@ -96,7 +96,7 @@ public:
 				write_subtitle(div, sub);
 			}
 
-			file << doc.write_to_string_formatted();
+			file.write(doc.write_to_string_formatted());
 		}
 		catch(const std::exception &ex)
 		{

@@ -88,7 +88,10 @@ public:
 			long end = (long)(sub.get_end().totalmsecs / ds);
 
 			// [start][end]text
-			file << "[" << start << "]["	<< end << "]" << text	<< std::endl;
+			file.write(
+				Glib::ustring::compose(
+					"[%1][%2]%3\n", 
+					start, end, text));
 		}
 	}
 };

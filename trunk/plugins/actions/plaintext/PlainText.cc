@@ -169,7 +169,7 @@ protected:
 
 				for(Subtitle sub = doc->subtitles().get_first(); sub; ++sub)
 				{
-					file << sub.get_text() << std::endl;
+					file.write(sub.get_text() + "\n");
 				}
 
 				file.to_file();

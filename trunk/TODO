@@ -1,7 +1,6 @@
 SubtitleEditor stable + 1
 -------------------
 
-	* Fix: FileWriter with no UTF-8 system (Dâniel Fraga email)
 	* Move WaveformGenerator in plugins/WaveformManagement
 	* Rewrite the FindAndReplace with Glib::Regex (waiting the Glib::MatchInfo API).
 	* check Undo/Redo subtitles selection
@@ -36,4 +35,5 @@ SubtitleEditor stable + 2
 	* Script (ScriptPlugin)
 		* python
 		* lua
+	* Remove SubtitleTime ? (typedef)
 
