@@ -1,6 +1,5 @@
 #include <memory>
 #include <map>
-#include "debug.h"
 #include "utility.h"
 #include "Error.h"
 #include "SubtitleFormatSystem.h"

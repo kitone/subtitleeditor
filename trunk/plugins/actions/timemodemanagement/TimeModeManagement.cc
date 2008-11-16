@@ -22,7 +22,8 @@
  
 #include <gtkmm.h>
 #include <extension/Action.h>
-#include <utility.h>
+#include <i18n.h>
+#include <debug.h>
 
 class TimeModeManagement : public Action
 {

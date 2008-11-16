@@ -23,7 +23,8 @@
 
 #include "SubtitleModel.h"
 #include "Command.h"
-#include "utility.h"
+#include "debug.h"
+#include "i18n.h"
 #include "Document.h"
 #include <gtkmm/treemodel.h>
 

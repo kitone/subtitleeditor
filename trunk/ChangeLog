@@ -1,5 +1,52 @@
 2008-11-16  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/i18n.h:
+	New file. Move i18n core from utility.
+
+	* plugins/actions/adjusttime/AdjustTime.cc:
+	* plugins/actions/applytranslation/ApplyTranslation.cc:
+	* plugins/actions/combinesubtitles/CombineSubtitles.cc:
+	* plugins/actions/command/Command.cc:
+	* plugins/actions/dialoguize/Dialoguize.cc:
+	* plugins/actions/duplicatesubtitle/DuplicateSubtitle.cc:
+	* plugins/actions/editcell/EditCell.cc:
+	* plugins/actions/extendlength/ExtendLength.cc:
+	* plugins/actions/insertsubtitle/InsertSubtitle.cc:
+	* plugins/actions/italicize/Italicize.cc:
+	* plugins/actions/joindocument/JoinDocument.cc:
+	* plugins/actions/moveafterprecedingsubtitle/MoveAfterPrecedingSubtitle.cc:
+	* plugins/actions/preferences/PreferencesPlugin.cc:
+	* plugins/actions/removesubtitle/RemoveSubtitle.cc:
+	* plugins/actions/reversetextandtranslation/ReverseTextAndTranslation.cc:
+	* plugins/actions/selection/Selection.cc:
+	* plugins/actions/spellchecking/SpellChecking.h:
+	* plugins/actions/splitsubtitle/SplitSubtitle.cc:
+	* plugins/actions/timemodemanagement/TimeModeManagement.cc:
+	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
+	* src/Command.cc:
+	* src/DocumentSystem.cc:
+	* src/Encodings.cc:
+	* src/Encodings.h:
+	* src/Extension.cc:
+	* src/FileReader.cc:
+	* src/FileWriter.cc:
+	* src/Options.cc:
+	* src/SubtitleFormatIO.cc:
+	* src/SubtitleFormatSystem.cc:
+	* src/SubtitleModel.cc:
+	* src/SubtitleView.cc:
+	* src/TimeUtility.cc:
+	* src/gui/ComboBoxEncoding.cc:
+	* src/gui/ComboBoxVideo.cc:
+	* src/gui/DialogCharacterCodings.cc:
+	* src/gui/DialogFileChooser.h:
+	* src/main.cc:
+	* src/utility.h:
+	Cleanup header dependences.
+
+2008-11-16  kitone  <kitone@gna.org>
+
 	* src/FileWriter.cc:
 	* src/FileWriter.h:
 	Remove std::ostringstream and add write function.

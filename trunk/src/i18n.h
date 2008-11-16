@@ -1,3 +1,6 @@
+#ifndef _i18n_h
+#define _i18n_h
+
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
@@ -20,37 +23,24 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Extension.h"
-#include "debug.h"
+#ifdef HAVE_CONFIG_H
+	#include "config.h"
+#endif /* HAVE_CONFIG_H */
 
-/*
- *
- */
-Extension::Extension()
-{
-	se_debug(SE_DEBUG_PLUGINS);
-}
+#ifdef ENABLE_NLS
+	#include <libintl.h>
+	#include <glib/gi18n.h>
+#else /* NLS is disabled */
+	#define _(String) (String)
+	#define N_(String) (String)
+	#define textdomain(String) (String)
+	#define gettext(String) (String)
+	#define ngettext(String,StringPlural,Number) \
+		(((Number)==1)?(String):(StringPlural))
+	#define dgettext(Domain,String) (String)
+	#define dcgettext(Domain,String,Type) (String)
+	#define bindtextdomain(Domain,Directory) (Domain) 
+	#define bind_textdomain_codeset(Domain,Codeset) (Codeset) 
+#endif /* ENABLE_NLS */
 
-/*
- *
- */
-Extension::~Extension()
-{
-	se_debug(SE_DEBUG_PLUGINS);
-}
-
-/*
- *
- */
-bool Extension::is_configurable()
-{
-	return false;
-}
-
-/*
- *
- */
-void Extension::create_configure_dialog()
-{
-}
-
+#endif//_i18n_h

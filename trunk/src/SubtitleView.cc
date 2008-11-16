@@ -33,9 +33,7 @@
 #include <gtkmm/spinbutton.h>
 
 #include "Config.h"
-#include "debug.h"
 #include "SubtitleModel.h"
-
 #include "Subtitles.h"
 #include "Document.h"
 #include "SubtitleView.h"

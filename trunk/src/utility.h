@@ -32,40 +32,14 @@
 #include <gtkmm/window.h>
 #include <sstream>
 #include <iostream>
-
+#include "i18n.h"
 #include "debug.h"
-
-
-#ifdef ENABLE_NLS
-	#include <libintl.h>
-	#include <glib/gi18n.h>
-	/*
-	#define _(String) gettext(String)
-	#ifdef gettext_noop
-	#define N_(String) gettext_noop(String)
-	#else
-	#define N_(String) (String)
-	#endif
-	*/
-#else /* NLS is disabled */
-	#define _(String) (String)
-	#define N_(String) (String)
-	#define textdomain(String) (String)
-	#define gettext(String) (String)
-	#define ngettext(String,StringPlural,Number) \
-		(((Number)==1)?(String):(StringPlural))
-	#define dgettext(Domain,String) (String)
-	#define dcgettext(Domain,String,Type) (String)
-	#define bindtextdomain(Domain,Directory) (Domain) 
-	#define bind_textdomain_codeset(Domain,Codeset) (Codeset) 
-#endif /* ENABLE_NLS */
-
 
 /*
  * Return one of the values depending on whether 
  * environment variable SE_DEV is defined or not.
  */
-#define SE_DEV_VALUE(value, dev_value) ((Glib::getenv("SE_DEV") == "") ? (value) : (dev_value))
+#define SE_DEV_VALUE(value, dev_value) ((Glib::getenv("SE_DEV") != "1") ? (value) : (dev_value))
 	
 
 /*

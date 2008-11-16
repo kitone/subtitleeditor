@@ -21,7 +21,6 @@
  */
 
 #include "ComboBoxEncoding.h"
-#include "utility.h"
 #include "Encodings.h"
 #include "DialogCharacterCodings.h"
 #include "Config.h"

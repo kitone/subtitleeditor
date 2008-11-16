@@ -21,7 +21,8 @@
  */
  
 #include <extension/Action.h>
-#include <utility.h>
+#include <i18n.h>
+#include <debug.h>
 #include <gui/DialogFileChooser.h>
 
 /*
@@ -157,7 +158,7 @@ protected:
 			}
 			catch(...)
 			{
-				std::cerr << "Failed to join document: " << filename << std::endl;
+				se_debug_message(SE_DEBUG_PLUGINS, "Failed to join document: %s", filename.c_str());
 			}
 		}
 

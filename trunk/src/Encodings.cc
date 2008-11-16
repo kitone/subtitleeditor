@@ -20,7 +20,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
+#include "utility.h"
 #include "Encodings.h"
 #include "Error.h"
 #include "Config.h"

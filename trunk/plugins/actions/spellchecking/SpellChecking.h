@@ -34,7 +34,7 @@
 #include <gtkmm/liststore.h>
 #include <gtkmm/entry.h>
 #include <gtkmm/comboboxtext.h>
-#include <utility.h>
+#include <i18n.h>
 #include <gtkmm_utility.h>
 #include <Document.h>
 

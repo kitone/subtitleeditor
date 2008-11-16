@@ -27,7 +27,6 @@
 
 #include <gtkmm.h>
 #include <libglademm.h>
-#include "utility.h"
 #include <memory>
 
 /*

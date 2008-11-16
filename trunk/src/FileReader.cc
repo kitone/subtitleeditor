@@ -1,5 +1,5 @@
 #include "FileReader.h"
-#include "utility.h"
+#include "debug.h"
 #include "Error.h"
 #include "Encodings.h"
 

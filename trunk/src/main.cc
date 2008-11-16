@@ -24,17 +24,14 @@
 #include <config.h>
 #include <gtkmm/main.h>
 #include "gui/Application.h"
-
-#include "debug.h"
-#include "DocumentSystem.h"
 #include "utility.h"
 #include "gtkmm_utility.h"
+#include "Options.h"
 
 #include <ctime>
 #include <gst/gst.h>
 #include <gdk/gdkx.h>
 #include <glib.h>
-#include "Options.h"
 
 #ifdef ENABLE_GL
 	#include <gtkglmm.h>

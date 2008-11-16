@@ -23,8 +23,7 @@
 
 #include "Document.h"
 #include "Command.h"
-#include <iostream>
-#include "utility.h"
+#include "debug.h"
 
 /*
  *

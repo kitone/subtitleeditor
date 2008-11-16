@@ -21,7 +21,8 @@
  */
  
 #include "Options.h"
-#include "utility.h"
+#include "i18n.h"
+#include "debug.h"
 
 /*
  *
