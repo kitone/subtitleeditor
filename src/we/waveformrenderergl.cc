@@ -27,7 +27,7 @@
 #include "waveformrenderer.h"
 
 #include <gtkglmm.h>
-#include <gl/gl.h>
+#include <GL/gl.h>
 
 #define FONT_SIZE 256
 
