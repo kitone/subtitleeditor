@@ -1,3 +1,9 @@
+2008-11-20  kitone  <kitone@gna.org>
+
+	* plugins/actions/errorchecking/toolongdisplaytime.h:
+	* plugins/actions/errorchecking/tooshortdisplaytime.h:
+	Remove ngettext for gettext.
+
 2008-11-17  kitone  <kitone@gna.org>
 
 	* src/we/waveformrenderergl.cc:

@@ -24,6 +24,7 @@
  */
 
 #include "errorchecking.h"
+#include <i18n.h>
 
 /*
  *
@@ -72,9 +73,8 @@ public:
 			return true;
 		}
 
-		info.error = build_message(ngettext(
-				"Subtitle display time is too short: <b>%.1f char/s</b>",
-				"Subtitle display time is too short: <b>%.1f chars/s</b>", cps), cps);
+		info.error = build_message(
+				_("Subtitle display time is too short: <b>%.1f chars/s</b>"), cps);
 
 		info.solution = build_message(
 				_("<b>Automatic correction:</b> to change current subtitle end to %s."),
