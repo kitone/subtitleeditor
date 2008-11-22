@@ -1,3 +1,8 @@
+2008-11-22  kitone  <kitone@gna.org>
+
+	* plugins/actions/joindocument/joindocument.cc:
+	Move subtitles added after the last original subtitle.
+
 2008-11-20  kitone  <kitone@gna.org>
 
 	* plugins/actions/errorchecking/toolongdisplaytime.h:
