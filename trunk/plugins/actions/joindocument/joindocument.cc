@@ -144,6 +144,26 @@ protected:
 				doc->setCharset(encoding);
 				doc->open(filename);
 
+				// Moves added subtitles after the last original
+				if(subtitle_size > 0)
+				{
+					// Get the last subtitle of the original document
+					Subtitle last_orig_sub = doc->subtitles().get(subtitle_size);
+					// Get The first subtitle added to the original document
+					Subtitle first_new_subs = doc->subtitles().get_next(last_orig_sub); 
+
+					// The offset from the last original sub
+					SubtitleTime offset = last_orig_sub.get_end();
+					for(Subtitle sub = first_new_subs ; sub; ++sub)
+					{
+						sub.set_start_and_end(
+								sub.get_start() + offset,
+								sub.get_end() + offset);
+					}
+					// Make the user life easy by selecting the first new subtitle
+					doc->subtitles().select(first_new_subs);
+				}
+
 				doc->setFilename(ofile);
 				doc->setFormat(oformat);
 				doc->setCharset(ocharset);
