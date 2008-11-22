@@ -67,7 +67,7 @@ public:
 
 		// open & save
 		action_group->add(
-				Gtk::Action::create("waveform/open", Gtk::Stock::OPEN, _("_Open Waveform"), _("Open wavefrom from a file or create from a video")), Gtk::AccelKey("<Control><Alt>O"),
+				Gtk::Action::create("waveform/open", Gtk::Stock::OPEN, _("_Open Waveform From File"), _("Open wavefrom from a file or create from a video")), Gtk::AccelKey("<Control><Alt>O"),
 					sigc::mem_fun(*this, &WaveformManagement::on_open_waveform));
 
 		action_group->add(
