@@ -681,7 +681,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		ui->add_ui(ui_id, "/menubar/menu-tools/spell-checking", "spell-checking", "spell-checking");
+		ui->add_ui(ui_id, "/menubar/menu-tools/checking", "spell-checking", "spell-checking");
 	}
 
 	/*

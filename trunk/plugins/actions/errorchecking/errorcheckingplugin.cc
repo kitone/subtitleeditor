@@ -827,7 +827,7 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		ui->add_ui(ui_id, "/menubar/menu-tools/error-checking", "error-checking", "error-checking");
+		ui->add_ui(ui_id, "/menubar/menu-tools/checking", "error-checking", "error-checking");
 	}
 
 	/*
