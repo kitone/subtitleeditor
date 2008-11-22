@@ -102,6 +102,14 @@ void GStreamerPlayer::close()
 }
 
 /*
+ * Return the uri of the current video.
+ */
+Glib::ustring GStreamerPlayer::get_uri()
+{
+	return m_uri;
+}
+
+/*
  * Set the state of the pipeline.
  * The state change can be asynchronously.
  */

@@ -72,6 +72,11 @@ public:
 	void close();
 
 	/*
+	 * Return the uri of the current video.
+	 */
+	Glib::ustring get_uri();
+
+	/*
 	 * Sets the pipeline state to playing.
 	 */
 	void play();

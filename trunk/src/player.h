@@ -66,6 +66,11 @@ public:
 	virtual void close() = 0;
 
 	/*
+	 * Return the uri of the current video.
+	 */
+	virtual Glib::ustring get_uri() = 0;
+
+	/*
 	 *
 	 */
 	virtual void play() = 0;
