@@ -41,6 +41,7 @@ public:
 	{
 		activate();
 		update_ui();
+		update_ui_from_player(Player::NONE);
 	}
 
 	~WaveformManagement()
@@ -68,6 +69,11 @@ public:
 		action_group->add(
 				Gtk::Action::create("waveform/open", Gtk::Stock::OPEN, _("_Open Waveform"), _("Open wavefrom from a file or create from a video")), Gtk::AccelKey("<Control><Alt>O"),
 					sigc::mem_fun(*this, &WaveformManagement::on_open_waveform));
+
+		action_group->add(
+				Gtk::Action::create("waveform/generate-from-player-file", _("_Generate Waveform From Video"), 
+					_("Generate the waveform from the current video file")), 
+					sigc::mem_fun(*this, &WaveformManagement::on_generate_from_player_file));
 
 		action_group->add(
 				Gtk::Action::create("waveform/save", Gtk::Stock::SAVE, _("_Save Waveform"), _("Save wavefrom to file")), Gtk::AccelKey("<Control><Alt>S"),
@@ -134,6 +140,7 @@ public:
 			"		<menu name='menu-waveform' action='menu-waveform'>"
 			"			<placeholder name='waveform-management'>"
 			"				<menuitem action='waveform/open'/>"
+			"				<menuitem action='waveform/generate-from-player-file'/>"
 			"				<menuitem action='waveform/save'/>"
 			"				<separator/>"
 			"				<menuitem action='waveform/zoom-in'/>"
@@ -168,6 +175,10 @@ public:
 
 		get_config().signal_changed("waveform").connect(
 				sigc::mem_fun(*this, &WaveformManagement::on_config_waveform_changed));
+
+		// Player state
+		get_subtitleeditor_window()->get_player()->signal_state_changed().connect(
+				sigc::mem_fun(*this, &WaveformManagement::update_ui_from_player));
 	}
 
 	/*
@@ -207,6 +218,15 @@ public:
 		action_group->get_action("waveform/center-with-selected-subtitle")->set_sensitive(has_waveform && has_document);
 	}
 
+	/*
+	 * Update the ui state from the player state.
+	 */
+	void update_ui_from_player(Player::State state)
+	{
+		bool has_player_file = (state != Player::NONE);
+
+		action_group->get_action("waveform/generate-from-player-file")->set_sensitive(has_player_file);
+	}
 
 protected:
 
@@ -245,6 +265,16 @@ protected:
 	}
 
 	/*
+	 * Generate a waveform from the current file in the player.
+	 */
+	void on_generate_from_player_file()
+	{
+		Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
+		if(uri.empty() == false)
+			get_waveform_manager()->generate_waveform(uri);
+	}
+
+	/*
 	 *
 	 */
 	void on_save_waveform()
@@ -269,12 +299,13 @@ protected:
 	}
 
 	/*
-	 * Update the video player with the new Waveform.
+	 * Update the video player with the new Waveform
+	 * only if it's different.
 	 */
 	void on_waveform_changed()
 	{
 		Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
-		if(wf)
+		if(wf && get_subtitleeditor_window()->get_player()->get_uri() != wf->m_video_uri)
 		{
 			get_subtitleeditor_window()->get_player()->open(wf->m_video_uri);
 		}
