@@ -460,6 +460,22 @@ DialogOpenWaveform::DialogOpenWaveform()
 {
 	utility::set_transient_parent(*this);
 
+	// waveform, video and audio filter
+	Gtk::FileFilter m_filterSupported;
+	m_filterSupported.set_name(_("Waveform & Media)"));
+	m_filterSupported.add_pattern("*.wf");
+	m_filterSupported.add_mime_type("video/*");
+	m_filterSupported.add_pattern("*.avi");
+	m_filterSupported.add_pattern("*.wma");
+	m_filterSupported.add_pattern("*.mkv");
+	m_filterSupported.add_pattern("*.mpg");
+	m_filterSupported.add_pattern("*.mpeg");
+	m_filterSupported.add_mime_type("audio/*");
+	m_filterSupported.add_pattern("*.mp3");
+	m_filterSupported.add_pattern("*.ogg");
+	m_filterSupported.add_pattern("*.wav");
+	add_filter(m_filterSupported);
+
 	// waveform filter
 	Gtk::FileFilter m_filterWaveform;
 	m_filterWaveform.set_name(_("Waveform (*.wf)"));
