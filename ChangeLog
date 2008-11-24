@@ -1,5 +1,11 @@
 2008-11-24  kitone  <kitone@gna.org>
 
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* plugins/actions/viewmanager/viewmanager.cc:
+	Fix typo. (Patch: Luboš Staněk)
+
+2008-11-24  kitone  <kitone@gna.org>
+
 	* src/gui/dialogfilechooser.cc:
 	Fix typo. (Patch: Luboš Staněk)
 

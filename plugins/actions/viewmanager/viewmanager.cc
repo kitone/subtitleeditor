@@ -426,7 +426,7 @@ public:
 			Glib::ustring name = *it;
 
 			action_group->add(
-				Gtk::Action::create(name, name, _("Switch to this view")),
+				Gtk::Action::create(name, name, _("Switches to this view")),
 					sigc::bind( sigc::mem_fun(*this, &ViewManagerPlugin::on_set_view), name));			
 		}
 
