@@ -1,5 +1,11 @@
 2008-11-24  kitone  <kitone@gna.org>
 
+	* Makefile.am:
+	* intltool.m4:
+	Restore intltool.m4 file. Fix bug #12626.
+
+2008-11-24  kitone  <kitone@gna.org>
+
 	reviewed by: <delete if not using a buddy>
 
 	* Makefile.am:
