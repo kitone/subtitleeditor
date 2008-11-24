@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-16 21:07+0100\n"
+"POT-Creation-Date: 2008-11-24 20:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -604,39 +604,35 @@ msgstr ""
 msgid "Subtitle overlap on next subtitle: <b>%ims overlap</b>"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/toolongdisplaytime.h:38
+#: ../plugins/actions/errorchecking/toolongdisplaytime.h:39
 msgid "Too Long Display Time"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/toolongdisplaytime.h:39
+#: ../plugins/actions/errorchecking/toolongdisplaytime.h:40
 msgid ""
 "Detects and fixes subtitles when the number of characters per second is "
 "inferior to the specified value."
 msgstr ""
 
-#: ../plugins/actions/errorchecking/toolongdisplaytime.h:76
+#: ../plugins/actions/errorchecking/toolongdisplaytime.h:77
 #, c-format
-msgid "Subtitle display time is too long: <b>%.1f char/s</b>"
-msgid_plural "Subtitle display time is too long: <b>%.1f chars/s</b>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../plugins/actions/errorchecking/tooshortdisplaytime.h:38
-msgid "Too Short Display Time"
+msgid "Subtitle display time is too long: <b>%.1f chars/s</b>"
 msgstr ""
 
 #: ../plugins/actions/errorchecking/tooshortdisplaytime.h:39
+msgid "Too Short Display Time"
+msgstr ""
+
+#: ../plugins/actions/errorchecking/tooshortdisplaytime.h:40
 msgid ""
 "Detects and fixes subtitles when the number of characters per second is "
 "superior to the specified value."
 msgstr ""
 
-#: ../plugins/actions/errorchecking/tooshortdisplaytime.h:76
+#: ../plugins/actions/errorchecking/tooshortdisplaytime.h:77
 #, c-format
-msgid "Subtitle display time is too short: <b>%.1f char/s</b>"
-msgid_plural "Subtitle display time is too short: <b>%.1f chars/s</b>"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Subtitle display time is too short: <b>%.1f chars/s</b>"
+msgstr ""
 
 #: ../plugins/actions/extendlength/extendlength.cc:53
 msgid "_Extend Length"
@@ -844,7 +840,7 @@ msgstr ""
 msgid "Join document"
 msgstr ""
 
-#: ../plugins/actions/joindocument/joindocument.cc:155
+#: ../plugins/actions/joindocument/joindocument.cc:175
 #, c-format
 msgid "1 subtitle has been added at this document."
 msgid_plural "%d subtitles have been added at this document."
@@ -1528,13 +1524,13 @@ msgstr ""
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:78
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:82
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:86
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:78
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:82
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:86
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:90
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:95
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:102
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:109
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:88
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:92
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:96
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:108
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:115
 msgid "FIXME"
 msgstr ""
 
@@ -1807,67 +1803,75 @@ msgstr ""
 msgid "Manage the views"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:69
-msgid "_Open Waveform"
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:70
+msgid "_Open Waveform From File"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:69
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:70
 msgid "Open wavefrom from a file or create from a video"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:73
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:74
+msgid "_Generate Waveform From Video"
+msgstr ""
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:75
+msgid "Generate the waveform from the current video file"
+msgstr ""
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:79
 msgid "_Save Waveform"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:73
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:79
 msgid "Save wavefrom to file"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:78
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
 msgid "Zoom _In"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:82
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:88
 msgid "Zoom _Out"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:86
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:92
 msgid "Zoom _Selection"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:90
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:96
 msgid "Zoom _All"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:95
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
 msgid "_Center With Selected Subtitle"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:102
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:108
 msgid "Scrolling With _Player"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:109
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:115
 msgid "Scrolling With _Selection"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:116
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:122
 msgid "_Respect The Timing"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:116
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:122
 msgid "Try to respect the timing preferences"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:123
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:129
 msgid "_Wavform"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:123
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:129
 msgid "Show or hide the waveform in the current window"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:257
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:287
 msgid "Save Waveform"
 msgstr ""
 
@@ -2308,15 +2312,15 @@ msgstr ""
 msgid "Open Video"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:409 ../src/gui/dialogfilechooser.cc:471
+#: ../src/gui/dialogfilechooser.cc:409 ../src/gui/dialogfilechooser.cc:487
 msgid "Video"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:420 ../src/gui/dialogfilechooser.cc:482
+#: ../src/gui/dialogfilechooser.cc:420 ../src/gui/dialogfilechooser.cc:498
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:428 ../src/gui/dialogfilechooser.cc:491
+#: ../src/gui/dialogfilechooser.cc:428 ../src/gui/dialogfilechooser.cc:507
 msgid "ALL"
 msgstr ""
 
@@ -2325,6 +2329,10 @@ msgid "Open Waveform"
 msgstr ""
 
 #: ../src/gui/dialogfilechooser.cc:465
+msgid "Waveform & Media"
+msgstr ""
+
+#: ../src/gui/dialogfilechooser.cc:481
 msgid "Waveform (*.wf)"
 msgstr ""
 
@@ -2583,28 +2591,28 @@ msgstr ""
 msgid "Invalid fps"
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:570
+#: ../src/vp/gstreamerplayer.cc:578
 #, c-format
 msgid ""
 "Failed to create a GStreamer pipeline (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:624
+#: ../src/vp/gstreamerplayer.cc:632
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:628
+#: ../src/vp/gstreamerplayer.cc:636
 #, c-format
 msgid ""
 "Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:822
+#: ../src/vp/gstreamerplayer.cc:830
 #, c-format
 msgid ""
 "Media file could not be played.\n"
