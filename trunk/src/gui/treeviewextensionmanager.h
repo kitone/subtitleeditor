@@ -74,6 +74,12 @@ protected:
 	 */
 	bool on_filter_visible(const Gtk::TreeModel::const_iterator &iter, Glib::ustring categorie);
 
+	/*
+	 * Used to define the separator
+	 * "---"
+	 */
+	bool on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &model, const Gtk::TreeModel::iterator &it);
+
 protected:
 	Glib::RefPtr<Gtk::ListStore> m_model;
 };

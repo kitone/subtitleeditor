@@ -42,6 +42,16 @@ public:
 };
 
 /*
+ * Sort extension by categorie and by locale name
+ */
+bool on_sort_extension(ExtensionInfo* a, ExtensionInfo *b)
+{
+	if(a->get_categorie() != b->get_categorie())
+		return a->get_categorie() < b->get_categorie();
+	return a->get_label() < b->get_label();
+}
+
+/*
  * Call automatically create_view().
  */
 TreeViewExtensionManager::TreeViewExtensionManager(BaseObjectType *cobject, Glib::RefPtr<Gnome::Glade::Xml>&)
@@ -67,6 +77,8 @@ void TreeViewExtensionManager::create_view()
 	ColumnExtension m_column;
 
 	set_headers_visible(false);
+	set_row_separator_func(
+			sigc::mem_fun(*this, &TreeViewExtensionManager::on_row_separator_func));
 
 	m_model = Gtk::ListStore::create(m_column);
 	set_model(m_model);
@@ -98,13 +110,29 @@ void TreeViewExtensionManager::create_view()
 	// property
 	set_rules_hint(true);
 	
+	Glib::ustring categorie;
 
 	std::list<ExtensionInfo*> list = ExtensionManager::instance().get_extension_info_list();
+	// Sort by categorie and by locale name
+	list.sort(on_sort_extension);
 	for(std::list<ExtensionInfo*>::const_iterator it = list.begin(); it != list.end(); ++it)
 	{
 		if((*it)->get_hidden())
 			continue;
 
+		if(categorie.empty())
+			categorie = (*it)->get_categorie();
+		else if(categorie != (*it)->get_categorie())
+		{
+			// Categorie changed, add separator
+			categorie = (*it)->get_categorie();
+			
+			Gtk::TreeIter sep = m_model->append();
+			(*sep)[m_column.info] = NULL;
+			(*sep)[m_column.active] = false;
+			(*sep)[m_column.label] = "---";
+		}
+	
 		Gtk::TreeIter iter = m_model->append();
 		(*iter)[m_column.info] = (*it);
 		(*iter)[m_column.active] = (*it)->get_active();
@@ -174,5 +202,19 @@ ExtensionInfo* TreeViewExtensionManager::get_selected_extension()
 	
 	ColumnExtension column;
 	return (*it)[column.info];
+}
+
+/*
+ * Used to define the separator
+ * "---"
+ */
+bool TreeViewExtensionManager::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &model, const Gtk::TreeModel::iterator &it)
+{
+	static ColumnExtension column;
+
+	Glib::ustring text = (*it)[column.label];
+	if(text == "---")
+		return true;
+	return false;
 }
 
