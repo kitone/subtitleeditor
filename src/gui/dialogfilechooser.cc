@@ -462,7 +462,7 @@ DialogOpenWaveform::DialogOpenWaveform()
 
 	// waveform, video and audio filter
 	Gtk::FileFilter m_filterSupported;
-	m_filterSupported.set_name(_("Waveform & Media)"));
+	m_filterSupported.set_name(_("Waveform & Media"));
 	m_filterSupported.add_pattern("*.wf");
 	m_filterSupported.add_mime_type("video/*");
 	m_filterSupported.add_pattern("*.avi");
