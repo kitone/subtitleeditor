@@ -276,14 +276,14 @@ public:
 				Gtk::Action::create(
 					"video-player/set-subtitle-start", 
 					_("Set Subtitle _Start"), 
-					_("Set from the current player position the subtitle start")), 
+					_("Use the current player position to set the subtitle start")), 
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_set_subtitle_start));
 
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/set-subtitle-end", 
 					_("Set Subtitle _End"), 
-					_("Set from the current player position the subtitle end")), 
+					_("Use the current player position to set the subtitle end")), 
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_set_subtitle_end));
 
 		// Display Video Player
