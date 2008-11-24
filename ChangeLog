@@ -1,3 +1,9 @@
+2008-11-24  kitone  <kitone@gna.org>
+
+	* acinclude.m4:
+	* configure.in:
+	Speeds up the build with ccache option. (Patch: Luboš Staněk)
+
 2008-11-22  kitone  <kitone@gna.org>
 
 	* plugins/actions/errorchecking/errorcheckingplugin.cc:

@@ -207,6 +207,10 @@ fi
 CXXFLAGS="$CXXFLAGS -ansi -Wall" # -Wextra -Wconversion"
 
 # =========================================================================
+# make use of ccache
+ACX_CCACHE
+
+# =========================================================================
 # Set SUBTITLEEDITOR_LIBS and SUBTITLEEDITOR_CFLAGS
 
 SUBTITLEEDITOR_LIBS="$GTKMM_LIBS"
@@ -313,6 +317,7 @@ gstreamer version .................... : $(pkg-config --modversion gstreamer-0.1
 have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
 OpenGL waveform renderer ............. : $enable_gl
 debug support ........................ : $enable_debug
+ccache support ....................... : ${enable_ccache:-no}
 
 
 Configuration complete. now run make
