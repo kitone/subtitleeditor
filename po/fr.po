@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: subtitleeditor 0.22\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-24 22:24+0100\n"
-"PO-Revision-Date: 2008-11-24 22:51+0100\n"
+"PO-Revision-Date: 2008-11-25 12:18+0100\n"
 "Last-Translator: kitone <kitone@gna.org>\n"
 "Language-Team: French <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -825,7 +825,7 @@ msgstr "Insérer un sous-titre blanc après le sous-titre sélectionné"
 #: ../src/subtitles.cc:123
 #: ../plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in.h:1
 msgid "Insert Subtitle"
-msgstr "_Insérer un sous-titre"
+msgstr "Insérer un sous-titre"
 
 #: ../plugins/actions/italicize/italicize.cc:56
 msgid "_Italic"
@@ -944,7 +944,7 @@ msgstr "<b>Général</b>"
 
 #: ../plugins/actions/preferences/dialog-preferences.glade.h:4
 msgid "<b>New Document</b>"
-msgstr "<b>Nouveau document.</b>"
+msgstr "<b>Nouveau document</b>"
 
 #: ../plugins/actions/preferences/dialog-preferences.glade.h:5
 msgid "<b>Output</b>"
@@ -1574,7 +1574,7 @@ msgstr "Très court"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:113
 msgid "Very short skip backwards"
-msgstr "Très court saut arrière"
+msgstr "Saut arrière très court"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:119
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:154
@@ -1613,7 +1613,7 @@ msgstr "Saut avant très court"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:155
 msgid "Short skip forward"
-msgstr "Court saut avant"
+msgstr "Saut avant court"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:162
 msgid "Medium skip forward"
@@ -1621,7 +1621,7 @@ msgstr "Saut avant"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:169
 msgid "Long skip forward"
-msgstr "Long saut avant"
+msgstr "Saut avant long"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:176
 msgid "Rate"
@@ -2709,7 +2709,7 @@ msgstr "Convertir le framerate."
 
 #: ../plugins/actions/combinesubtitles/combinesubtitles.se-plugin.in.h:1
 msgid "Combine Subtitles"
-msgstr "Fusionne les sous-titres"
+msgstr "Fusionner les sous-titres"
 
 #: ../plugins/actions/combinesubtitles/combinesubtitles.se-plugin.in.h:2
 msgid "Merges the selected subtitles."
