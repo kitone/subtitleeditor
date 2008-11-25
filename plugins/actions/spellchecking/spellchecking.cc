@@ -304,8 +304,21 @@ bool DialogSpellChecking::check_word(const Glib::ustring &word)
 {
 	se_debug_message(SE_DEBUG_SPELL_CHECKING, "word=<%s>", word.c_str());
 
-	if(m_enchantDict)
-		return m_enchantDict->check(word);
+	try
+	{
+		if(m_enchantDict)
+			return m_enchantDict->check(word);
+	}
+	catch(std::exception &ex) // enchant::Exception
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "exception '%s'", ex.what());
+		dialog_error("Failed to check word", ex.what());
+	}
+	catch(...)
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "unknow exception");
+		dialog_error("Failed to check word", "Unknow exception");
+	}
 	return false;
 }
 

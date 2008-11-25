@@ -20,6 +20,7 @@ SubtitleEditor stable + 1
 	* SubtitleEditorWindow : send_message, signal ... like ActionSystem for Column View...
 	* Subdownloader plugin
 	* Document Template
+	*	Toolbar plugin (evince style) ?
 	* Special characters input (Lubos email)
 
 SubtitleEditor stable + 2
