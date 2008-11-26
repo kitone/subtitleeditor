@@ -1,3 +1,21 @@
+2008-11-26 - 0.30.0
+
+	* Each function work around extension system (enable/disable/configure)
+	* Add 'Generate Wavefrom From Video'
+	* Add line break policy option: soft, hard, intelligent (ASS/SSA)
+	* Add 'Wavefrom & Media' filter in the wavefrom dialog
+	* Add build option ccache
+	* Fix: Subtitle saving with no UTF-8 system (locale)
+	* Fix: Move subtitles added after the last original subtitle (Join Document)
+	* Fix: Alpha channel support for ASS (#12566)
+	* Fix: Allow opacity selection for Secondary, Outline and Shadow for ASS (#12569)
+	* Fix: Don't reload the player if the file is the same
+	* Fix: Catch enchant exception (spellchecking)
+	* Fix: Missing m4/intltool.m4 (#12626)
+	* Translations update
+	* Cleanup (code & autohell)
+	Special thanks to Luboš Staněk.
+
 2008-11-02 - 0.26.0
 
 	* New: Wiki http://kitone.free.fr/subtitleeditor/wiki/
