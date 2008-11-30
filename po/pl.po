@@ -977,7 +977,7 @@ msgstr "<b>Ogólne</b>"
 
 #: ../plugins/actions/preferences/dialog-preferences.glade.h:4
 msgid "<b>New Document</b>"
-msgstr "<b>Nowy Dokument<b>"
+msgstr "<b>Nowy Dokument</b>"
 
 #: ../plugins/actions/preferences/dialog-preferences.glade.h:5
 msgid "<b>Output</b>"
