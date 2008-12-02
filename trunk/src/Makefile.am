@@ -21,6 +21,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	cfg.h \
 	debug.cc \
 	debug.h \
+	defaultcfg.h \
+	defaultcfg.cc \
 	document.cc \
 	document.h \
 	documentsystem.cc \
@@ -108,6 +110,10 @@ libsubtitleeditor_la_LDFLAGS = -export-dynamic -no-undefined
 libsubtitleeditor_la_SOURCES = \
 	$(LIB_SUBTITLEEDITOR_FILES) \
 	$(LIB_GUI_FILES)
+
+libsubtitleeditor_la_LIBADD = \
+	$(GTKMM_LIBS) \
+	$(LIBGLADEMM_LIBS)
 
 libsubtitleeditor_la_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \

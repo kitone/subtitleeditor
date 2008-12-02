@@ -14,7 +14,7 @@ libabout_la_SOURCES = \
 	about.cc
 
 libabout_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libabout_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libabout_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = about.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

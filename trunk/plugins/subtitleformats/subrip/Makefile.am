@@ -13,7 +13,7 @@ libsubrip_la_SOURCES = \
 	subrip.cc
 
 libsubrip_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libsubrip_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libsubrip_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = subrip.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

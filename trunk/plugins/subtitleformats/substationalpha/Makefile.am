@@ -13,7 +13,7 @@ libsubstationalpha_la_SOURCES = \
 	substationalpha.cc
 
 libsubstationalpha_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libsubstationalpha_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libsubstationalpha_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = substationalpha.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

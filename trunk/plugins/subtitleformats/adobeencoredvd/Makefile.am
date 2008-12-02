@@ -16,7 +16,7 @@ libadobeencoredvdntsc_la_SOURCES = \
 	adobeencoredvdntsc.cc
 
 libadobeencoredvdntsc_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libadobeencoredvdntsc_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libadobeencoredvdntsc_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 ## pal
 libadobeencoredvdpal_la_CXXFLAGS = \
@@ -29,7 +29,7 @@ libadobeencoredvdpal_la_SOURCES = \
 	adobeencoredvdpal.cc
 
 libadobeencoredvdpal_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libadobeencoredvdpal_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libadobeencoredvdpal_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = \
 	adobeencoredvdntsc.se-plugin.in \

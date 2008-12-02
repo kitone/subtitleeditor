@@ -15,7 +15,7 @@ libsubtitleeditorproject_la_SOURCES = \
 
 libsubtitleeditorproject_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libsubtitleeditorproject_la_LIBADD = \
-	$(SUBTITLEEDITOR_LIBS) \
+	$(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor \
 	$(LIBXML_LIBS)
 
 plugindescription_in_files = subtitleeditorproject.se-plugin.in

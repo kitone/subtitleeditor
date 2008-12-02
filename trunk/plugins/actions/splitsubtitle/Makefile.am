@@ -13,7 +13,7 @@ libsplitsubtitle_la_SOURCES = \
 	splitsubtitle.cc
 
 libsplitsubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libsplitsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libsplitsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = splitsubtitle.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

@@ -13,7 +13,7 @@ libjoindocument_la_SOURCES = \
 	joindocument.cc
 
 libjoindocument_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libjoindocument_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libjoindocument_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = joindocument.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

@@ -15,7 +15,7 @@ libtimedtextauthoringformat1_la_SOURCES = \
 
 libtimedtextauthoringformat1_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 libtimedtextauthoringformat1_la_LIBADD = \
-	$(SUBTITLEEDITOR_LIBS) \
+	$(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor \
 	$(LIBXML_LIBS)
 
 plugindescription_in_files = timedtextauthoringformat1.se-plugin.in

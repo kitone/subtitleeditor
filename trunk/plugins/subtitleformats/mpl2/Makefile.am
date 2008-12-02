@@ -13,7 +13,7 @@ libmpl2_la_SOURCES = \
 	mpl2.cc
 
 libmpl2_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libmpl2_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libmpl2_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = mpl2.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)
