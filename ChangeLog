@@ -1,5 +1,10 @@
 2008-12-02  kitone  <kitone@gna.org>
 
+	* src/extensionmanager.cc:
+	Fix: bug #12651 : 0.30.0 build error.
+
+2008-12-02  kitone  <kitone@gna.org>
+
 	* configure.in:
 	* plugins/actions/about/Makefile.am:
 	* plugins/actions/adjusttime/Makefile.am:

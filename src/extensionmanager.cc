@@ -457,7 +457,9 @@ void ExtensionManager::open_module(ExtensionInfo *info)
 					Glib::Module::get_last_error()));
 	}
 
-	ExtensionRegisterFunc extension_register = reinterpret_cast<ExtensionRegisterFunc>(func);
+	//Fix: bug #12651 : 0.30.0 build error
+	//ExtensionRegisterFunc extension_register = reinterpret_cast<ExtensionRegisterFunc>(func);
+	ExtensionRegisterFunc extension_register = (ExtensionRegisterFunc)func;
 	
 	if(extension_register == NULL)
 		throw SubtitleError("reinterpret from the function to the ExtensionRegisterFunc failed");
