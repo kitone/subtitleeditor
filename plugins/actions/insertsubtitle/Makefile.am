@@ -13,7 +13,7 @@ libinsertsubtitle_la_SOURCES = \
 	insertsubtitle.cc
 
 libinsertsubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libinsertsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libinsertsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = insertsubtitle.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

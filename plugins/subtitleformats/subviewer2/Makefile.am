@@ -13,7 +13,7 @@ libsubviewer2_la_SOURCES = \
 	subviewer2.cc
 
 libsubviewer2_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libsubviewer2_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libsubviewer2_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = subviewer2.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

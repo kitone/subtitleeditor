@@ -13,7 +13,7 @@ libselection_la_SOURCES = \
 	selection.cc
 
 libselection_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libselection_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libselection_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = selection.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

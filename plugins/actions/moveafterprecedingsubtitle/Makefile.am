@@ -13,7 +13,7 @@ libmoveafterprecedingsubtitle_la_SOURCES = \
 	moveafterprecedingsubtitle.cc
 
 libmoveafterprecedingsubtitle_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libmoveafterprecedingsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libmoveafterprecedingsubtitle_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = moveafterprecedingsubtitle.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

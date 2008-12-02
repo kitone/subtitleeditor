@@ -13,7 +13,7 @@ libcommand_la_SOURCES = \
 	command.cc
 
 libcommand_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libcommand_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libcommand_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = command.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

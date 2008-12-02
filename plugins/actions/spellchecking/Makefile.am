@@ -19,7 +19,7 @@ libspellchecking_la_SOURCES = \
 	spellchecking.cc
 
 libspellchecking_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libspellchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS) $(ENCHANT_LIBS)
+libspellchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor $(ENCHANT_LIBS)
 
 plugindescription_in_files = spellchecking.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

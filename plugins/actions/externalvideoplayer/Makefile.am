@@ -18,7 +18,7 @@ libexternalvideoplayer_la_SOURCES = \
 	externalvideoplayer.cc
 
 libexternalvideoplayer_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libexternalvideoplayer_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libexternalvideoplayer_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = externalvideoplayer.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

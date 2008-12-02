@@ -27,7 +27,7 @@ liberrorchecking_la_SOURCES = \
 	tooshortdisplaytime.h
 
 liberrorchecking_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-liberrorchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+liberrorchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = errorchecking.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

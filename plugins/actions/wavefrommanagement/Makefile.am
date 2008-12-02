@@ -13,7 +13,7 @@ libwaveformmanagement_la_SOURCES = \
 	waveformmanagement.cc
 
 libwaveformmanagement_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libwaveformmanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libwaveformmanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = waveformmanagement.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

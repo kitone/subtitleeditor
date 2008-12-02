@@ -18,7 +18,7 @@ libviewmanager_la_SOURCES = \
 	viewmanager.cc
 
 libviewmanager_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libviewmanager_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libviewmanager_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = viewmanager.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

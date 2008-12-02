@@ -13,7 +13,7 @@ libreversetextandtranslation_la_SOURCES = \
 	reversetextandtranslation.cc
 
 libreversetextandtranslation_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libreversetextandtranslation_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libreversetextandtranslation_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = reversetextandtranslation.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

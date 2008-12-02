@@ -13,7 +13,7 @@ libapplytranslation_la_SOURCES = \
 	applytranslation.cc
 
 libapplytranslation_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libapplytranslation_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libapplytranslation_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = applytranslation.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

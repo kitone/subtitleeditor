@@ -13,7 +13,7 @@ libplaintext_la_SOURCES = \
 	plaintext.cc
 
 libplaintext_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libplaintext_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libplaintext_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = plaintext.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

@@ -13,7 +13,7 @@ libdocumentmanagement_la_SOURCES = \
 	documentmanagement.cc
 
 libdocumentmanagement_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libdocumentmanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS)
+libdocumentmanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = documentmanagement.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)
