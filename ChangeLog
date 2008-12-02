@@ -1,5 +1,21 @@
 2008-12-02  kitone  <kitone@gna.org>
 
+	* plugins/actions/changeframerate/Makefile.am:
+	* plugins/actions/configurekeyboardshortcuts/Makefile.am:
+	* plugins/actions/errorchecking/Makefile.am:
+	* plugins/actions/externalvideoplayer/Makefile.am:
+	* plugins/actions/findandreplace/Makefile.am:
+	* plugins/actions/movesubtitles/Makefile.am:
+	* plugins/actions/preferences/Makefile.am:
+	* plugins/actions/scalesubtitles/Makefile.am:
+	* plugins/actions/spellchecking/Makefile.am:
+	* plugins/actions/splitdocument/Makefile.am:
+	* plugins/actions/styleeditor/Makefile.am:
+	* plugins/actions/viewmanager/Makefile.am:
+	Fix: Absolute path for dev directory with $(abs_srcdir).
+
+2008-12-02  kitone  <kitone@gna.org>
+
 	* src/extensionmanager.cc:
 	Fix: bug #12651 : 0.30.0 build error.
 

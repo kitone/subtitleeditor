@@ -1,7 +1,7 @@
 plugin_name = splitdocument
 pluginlibdir = $(PACKAGE_PLUGIN_LIB_DIR)/actions
 plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/actions
-actionplugindevdir = plugins/actions/$(plugin_name)
+actionplugindevdir = $(abs_srcdir)
 gladedir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 
 INCLUDES = \
