@@ -47,8 +47,8 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["video-player"]["skip-short"] = "10";
 	config["video-player"]["skip-medium"] = "60";
 	config["video-player"]["skip-long"] = "300";
-	config["video-player"]["audio-sink"] = "autoaudiosink";
-	config["video-player"]["video-sink"] = "xvimagesink";
+	config["video-player"]["audio-sink"] = DEFAULT_PLAYER_AUDIO_SINK;
+	config["video-player"]["video-sink"] = DEFAULT_PLAYER_VIDEO_SINK;
 	config["video-player"]["timeout"] = "100";
 	config["video-player"]["repeat"] = "false";
 	config["video-player"]["display"] = "false";

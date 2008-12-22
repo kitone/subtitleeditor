@@ -178,6 +178,56 @@ if test "$enable_gl" = "yes"; then
 fi
 
 # =========================================================================
+# Set default video player output
+
+AC_ARG_WITH(default-video-sink,
+	[AC_HELP_STRING([--with-default-video-sink=@<:@autovideosink/xvimagesink/ximagesink/sdlvideosink/gconfvideosink/glimagesink@:>@],
+		[change default video output preference])],,)
+AC_MSG_CHECKING([whether to change the video output preference])
+if test "x$with_default_video_sink" = "x"; then
+	DEFAULT_PLAYER_VIDEO_SINK="xvimagesink"
+	AC_MSG_RESULT([no, $DEFAULT_PLAYER_VIDEO_SINK])
+else
+	# check against available sinks
+	for sink in autovideosink xvimagesink ximagesink sdlvideosink gconfvideosink glimagesink;
+	do
+		if test "x$with_default_video_sink" = "x$sink"; then
+			DEFAULT_PLAYER_VIDEO_SINK="$with_default_video_sink"
+			break
+		fi
+	done
+	AC_MSG_RESULT([yes, $with_default_video_sink])
+	if test "x$DEFAULT_PLAYER_VIDEO_SINK" = "x"; then
+		AC_MSG_ERROR([unknown sink $with_default_video_sink])
+	fi
+fi
+AC_SUBST(DEFAULT_PLAYER_VIDEO_SINK)
+
+AC_ARG_WITH(default-audio-sink,
+	[AC_HELP_STRING([--with-default-audio-sink=@<:@autoaudiosink/pulsesink/alsasink/esdsink/osssink/sdlaudiosink/gconfaudiosink@:>@],
+		[change default audio output preference])],,)
+AC_MSG_CHECKING([whether to change the audio output preference])
+if test "x$with_default_audio_sink" = "x"; then
+	DEFAULT_PLAYER_AUDIO_SINK="autoaudiosink"
+	AC_MSG_RESULT([no, $DEFAULT_PLAYER_AUDIO_SINK])
+else
+	# check against available sinks
+	for sink in autoaudiosink pulsesink alsasink esdsink osssink sdlaudiosink gconfaudiosink;
+	do
+		if test "x$with_default_audio_sink" = "x$sink"; then
+			DEFAULT_PLAYER_AUDIO_SINK="$with_default_audio_sink"
+			break
+		fi
+	done
+	AC_MSG_RESULT([yes, $with_default_audio_sink])
+	if test "x$DEFAULT_PLAYER_AUDIO_SINK" = "x"; then
+		AC_MSG_ERROR([unknown sink $with_default_audio_sink])
+	fi
+
+fi
+AC_SUBST(DEFAULT_PLAYER_AUDIO_SINK)
+
+# =========================================================================
 # debug options (default yes)
 
 AC_ARG_ENABLE(debug,
@@ -313,6 +363,8 @@ gtk+ version ......................... : $(pkg-config --modversion gtk+-2.0)
 gtkmm version ........................ : $(pkg-config --modversion gtkmm-2.4)
 libglademm version ................... : $(pkg-config --modversion libglademm-2.4)
 gstreamer version .................... : $(pkg-config --modversion gstreamer-0.10)
+default video output ................. : $DEFAULT_PLAYER_VIDEO_SINK
+default audio output ................. : $DEFAULT_PLAYER_AUDIO_SINK
 
 have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
 OpenGL waveform renderer ............. : $enable_gl
