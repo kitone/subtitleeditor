@@ -1,3 +1,9 @@
+2009-01-09  kitone  <kitone@gna.org>
+
+	* plugins/actions/preferences/dialog-preferences.glade:
+	Fix Gtk warning: adjustment with non-zero page size is deprecated and
+	default color.
+
 2008-12-22  kitone  <kitone@gna.org>
 
 	* configure.in:
