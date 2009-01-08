@@ -234,7 +234,7 @@
                                   <widget class="GtkSpinButton" id="spin-autosave">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="adjustment">1 1 59 1 10 10</property>
+                                    <property name="adjustment">1 1 59 1 0 0</property>
                                     <property name="climb_rate">1</property>
                                   </widget>
                                   <packing>
@@ -764,7 +764,7 @@
                               <widget class="GtkSpinButton" id="spin-min-characters-per-second">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="adjustment">1 1 100 1 10 10</property>
+                                <property name="adjustment">1 1 100 1 0 0</property>
                                 <property name="climb_rate">1</property>
                               </widget>
                               <packing>
@@ -778,7 +778,7 @@
                               <widget class="GtkSpinButton" id="spin-max-characters-per-second">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="adjustment">1 1 100 1 10 10</property>
+                                <property name="adjustment">1 1 100 1 0 0</property>
                                 <property name="climb_rate">1</property>
                               </widget>
                               <packing>
@@ -794,7 +794,7 @@
                               <widget class="GtkSpinButton" id="spin-min-gap-between-subtitles">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="adjustment">1 0 10000 1 10 10</property>
+                                <property name="adjustment">1 0 10000 1 0 0</property>
                                 <property name="climb_rate">1</property>
                               </widget>
                               <packing>
@@ -810,7 +810,7 @@
                               <widget class="GtkSpinButton" id="spin-max-characters-per-line">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="adjustment">1 1 100 1 10 10</property>
+                                <property name="adjustment">1 1 100 1 0 0</property>
                                 <property name="climb_rate">1</property>
                               </widget>
                               <packing>
@@ -825,7 +825,7 @@
                               <widget class="GtkSpinButton" id="spin-min-display">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="adjustment">1 0 10000 1 10 10</property>
+                                <property name="adjustment">1 0 10000 1 0 0</property>
                                 <property name="climb_rate">1</property>
                               </widget>
                               <packing>
@@ -841,7 +841,7 @@
                               <widget class="GtkSpinButton" id="spin-max-line-per-subtitle">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="adjustment">1 1 100 1 10 10</property>
+                                <property name="adjustment">1 1 100 1 0 0</property>
                                 <property name="climb_rate">1</property>
                               </widget>
                               <packing>
@@ -938,6 +938,7 @@
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
                                                 <property name="use_alpha">True</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -967,6 +968,7 @@
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
                                                 <property name="use_alpha">True</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -995,6 +997,7 @@
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
                                                 <property name="use_alpha">True</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1023,6 +1026,7 @@
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
                                                 <property name="use_alpha">True</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1051,6 +1055,7 @@
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
                                                 <property name="use_alpha">True</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1079,6 +1084,7 @@
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
                                                 <property name="use_alpha">True</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1106,6 +1112,7 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1133,6 +1140,7 @@
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">True</property>
                                                 <property name="response_id">0</property>
+                                                <property name="color">#000000000000</property>
                                               </widget>
                                               <packing>
                                                 <property name="expand">False</property>
@@ -1270,7 +1278,7 @@
                                     <property name="visible">True</property>
                                     <property name="sensitive">False</property>
                                     <property name="can_focus">True</property>
-                                    <property name="adjustment">1000 1 100000 1 10 10</property>
+                                    <property name="adjustment">1000 1 100000 1 0 0</property>
                                     <property name="climb_rate">1</property>
                                   </widget>
                                   <packing>
