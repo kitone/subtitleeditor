@@ -114,10 +114,11 @@ GSTREAMER_LIBS="$GSTREAMER_LIBS -lgstinterfaces-0.10 -lgstvideo-0.10 -lgstaudio-
 SE_GST_ELEMENT_CHECK_REQUIRED([0.10], [level], [gstreamer0.10-plugins-good])
 
 # =========================================================================
-# check iso-codes 639 & 3166
+# check iso-codes 639, 3166 and 15924
 
 have_iso_code_639=no
 have_iso_code_3166=no
+have_iso_code_15924=no
 
 AC_MSG_CHECKING([whether iso-codes are available on this system])
 
@@ -142,20 +143,31 @@ if $PKG_CONFIG iso-codes; then
 		AC_MSG_RESULT([no])
 	fi
 
+	# iso-15924
+	AC_MSG_CHECKING([whether iso-codes has iso-15924 domain])
+	if $PKG_CONFIG --variable=domains iso-codes | grep -q 15924; then
+		AC_MSG_RESULT([yes])
+		have_iso_code_15924=yes
+	else
+		AC_MSG_RESULT([no])
+	fi
+
 else
 	AC_MSG_RESULT([no])
 fi
 
 if test "$have_iso_code_639" == "yes"; then
 	if test "$have_iso_code_3166" == "yes"; then
-	  
-		AC_DEFINE(HAVE_ISO_CODES, 1, [Define to 1 if iso-codes is supported.])
+		if test "$have_iso_code_15924" == "yes"; then
 
-		ISO_CODES_PREFIX=`$PKG_CONFIG --variable=prefix iso-codes`
-		ISO_CODES_PATH="$ISO_CODES_PREFIX/share/iso-codes"
+			AC_DEFINE(HAVE_ISO_CODES, 1, [Define to 1 if iso-codes is supported.])
 
-		AC_SUBST([ISO_CODES_PATH])
-		AC_DEFINE_UNQUOTED([ISO_CODES_PATH], ["$ISO_CODES_PATH"], [iso-codes path for files])
+			ISO_CODES_PREFIX=`$PKG_CONFIG --variable=prefix iso-codes`
+			ISO_CODES_PATH="$ISO_CODES_PREFIX/share/xml/iso-codes"
+
+			AC_SUBST([ISO_CODES_PATH])
+			AC_DEFINE_UNQUOTED([ISO_CODES_PATH], ["$ISO_CODES_PATH"], [iso-codes path for files])
+		fi
 	fi
 fi
 
@@ -366,7 +378,7 @@ gstreamer version .................... : $(pkg-config --modversion gstreamer-0.1
 default video output ................. : $DEFAULT_PLAYER_VIDEO_SINK
 default audio output ................. : $DEFAULT_PLAYER_AUDIO_SINK
 
-have iso-codes 639 and 3166 .......... : $have_iso_code_639, $have_iso_code_3166
+have iso-codes 639, 3166 and 15924 ... : $have_iso_code_639, $have_iso_code_3166, $have_iso_code_15924
 OpenGL waveform renderer ............. : $enable_gl
 debug support ........................ : $enable_debug
 ccache support ....................... : ${enable_ccache:-no}

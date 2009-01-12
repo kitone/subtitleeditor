@@ -1,3 +1,22 @@
+2009-01-12  kitone  <kitone@gna.org>
+
+	* configure.in:
+	Change ISO_CODES_PATH for xml files and add iso code 15924 test.
+
+	* plugins/actions/spellchecking/spellchecking.cc:
+	Use the new isocodes code and sort the language per translated name.
+
+	* src/Makefile.am:
+	Add isocodes files.
+
+	* src/isocodes.cc:
+	* src/isocodes.h:
+	New file to manage iso-codes.
+
+	* src/utility.cc:
+	* src/utility.h:
+	Remove iso-codes function.
+
 2009-01-09  kitone  <kitone@gna.org>
 
 	* plugins/actions/preferences/dialog-preferences.glade:

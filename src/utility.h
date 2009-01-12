@@ -41,12 +41,6 @@
  */
 #define SE_DEV_VALUE(value, dev_value) ((Glib::getenv("SE_DEV") != "1") ? (value) : (dev_value))
 	
-
-/*
- *
- */
-Glib::ustring get_iso_name_for_lang_code(const Glib::ustring &code);
-
 /*
  *	the profile name for the config dir
  *	~/config/subtitleeditor/{profile}

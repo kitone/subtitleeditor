@@ -24,6 +24,7 @@
 #include <iostream>
 #include <extension/action.h>
 #include <utility.h>
+#include <isocodes.h>
 #include <gtkmm_utility.h>
 #include "spellchecking.h"
 #include <memory>
@@ -50,7 +51,7 @@ Glib::ustring get_language_by_abrev(const Glib::ustring &abrev)
 		return m_iso_to_lang[abrev];
 	}
 	
-	Glib::ustring lang = get_iso_name_for_lang_code(abrev);
+	Glib::ustring lang = isocodes::to_name(abrev);
 
 	m_iso_to_lang[abrev] = lang;
 	
@@ -89,12 +90,12 @@ void callback_list_dicts(const char *const lang_tag,
 	se_debug_message(SE_DEBUG_SPELL_CHECKING, "%s %s %s %s", 
 			lang_tag, provider_name, provider_desc, provider_file);
 
-	Gtk::ComboBoxText *combo = (Gtk::ComboBoxText*)user_data;
+	std::list<Glib::ustring> *list = (std::list<Glib::ustring>*)user_data;
 
 	Glib::ustring name = get_language_by_abrev(lang_tag);
 
 	if(!name.empty())
-		combo->append_text(name);
+		list->push_back(name);
 }
 
 
@@ -169,7 +170,12 @@ DialogSpellChecking::DialogSpellChecking(BaseObjectType* cobject, const Glib::Re
 
 
 	// recupere la list des dicts
-	enchant::Broker::instance()->list_dicts(callback_list_dicts, m_comboboxDicts);
+	std::list<Glib::ustring> list_dicts;
+	enchant::Broker::instance()->list_dicts(callback_list_dicts, &list_dicts);
+
+	list_dicts.sort();
+	for(std::list<Glib::ustring>::iterator it = list_dicts.begin(); it != list_dicts.end(); ++it)
+		m_comboboxDicts->append_text(*it);
 
 	// config dicts
 	Glib::ustring lang, tmp_lang;
