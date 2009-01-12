@@ -48,6 +48,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	gtkmm_utility.cc \
 	gtkmm_utility.h \
 	i18n.h \
+	isocodes.cc \
+	isocodes.h \
 	player.h \
 	scriptinfo.cc \
 	scriptinfo.h \
@@ -115,11 +117,13 @@ libsubtitleeditor_la_SOURCES = \
 
 libsubtitleeditor_la_LIBADD = \
 	$(GTKMM_LIBS) \
-	$(LIBGLADEMM_LIBS)
+	$(LIBGLADEMM_LIBS) \
+	$(LIBXML_LIBS)
 
 libsubtitleeditor_la_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \
 	$(LIBGLADEMM_CFLAGS) \
+	$(LIBXML_CFLAGS) \
 	$(PACKAGE_DIRECTORY)
 
 
