@@ -1,5 +1,18 @@
 2009-01-13  kitone  <kitone@gna.org>
 
+	Introduce se-pattern support.
+
+	* acinclude.m4:
+	Add intltool_se_plugin.m4 file.
+
+	* configure.in:
+	Add IT_SE_PATTERN_INTLTOOL marco.
+
+	* prepare-po.sh:
+	Add se-pattern.in file.
+
+2009-01-13  kitone  <kitone@gna.org>
+
 	* src/waveform.cc:
 	Fix: bug #12847 : Waveform creation from video causes a crash with file name contains spaces.
 
