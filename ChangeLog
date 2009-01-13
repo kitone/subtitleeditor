@@ -1,3 +1,8 @@
+2009-01-13  kitone  <kitone@gna.org>
+
+	* src/waveform.cc:
+	Fix: bug #12847 : Waveform creation from video causes a crash with file name contains spaces.
+
 2009-01-12  kitone  <kitone@gna.org>
 
 	* configure.in:
