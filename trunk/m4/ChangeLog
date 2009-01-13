@@ -1,3 +1,9 @@
+2009-01-13  kitone  <kitone@gna.org>
+
+	* Makefile.am:
+	* intltool_se_pattern.m4:
+	New file for subtitleeditor pattern (se-pattern).
+
 2008-11-24  kitone  <kitone@gna.org>
 
 	* Makefile.am:
