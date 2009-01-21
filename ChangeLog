@@ -1,3 +1,29 @@
+2009-01-21  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/actions/Makefile.am:
+	* plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in:
+	* plugins/actions/textcorrection/Latn.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in:
+	* plugins/actions/textcorrection/Makefile.am:
+	* plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/assistant-text-correction.glade:
+	* plugins/actions/textcorrection/commonerrorpage.h:
+	* plugins/actions/textcorrection/confirmationpage.h:
+	* plugins/actions/textcorrection/hearingimpairedpage.h:
+	* plugins/actions/textcorrection/page.h:
+	* plugins/actions/textcorrection/pattern.cc:
+	* plugins/actions/textcorrection/pattern.h:
+	* plugins/actions/textcorrection/patternmanager.cc:
+	* plugins/actions/textcorrection/patternmanager.h:
+	* plugins/actions/textcorrection/patternspage.h:
+	* plugins/actions/textcorrection/taskspage.h:
+	* plugins/actions/textcorrection/textcorrection.cc:
+	* plugins/actions/textcorrection/textcorrection.se-plugin.in:
+	New plugin 'textcorrection'.
+
 2009-01-13  kitone  <kitone@gna.org>
 
 	Introduce se-pattern support.
