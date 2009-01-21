@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Text Correction
+_Description=FIXME
+Categorie=action
+Type=module
+Module=textcorrection
+Authors=kitone <kitone at gna dot org>

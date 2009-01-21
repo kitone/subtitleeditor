@@ -29,6 +29,7 @@ FILES = \
 		splitdocument \
 		splitsubtitle \
 		styleeditor \
+		textcorrection \
 		timemodemanagement \
 		videoplayermanagement \
 		viewmanager \
