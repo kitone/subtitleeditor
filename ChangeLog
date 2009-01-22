@@ -1,3 +1,8 @@
+2009-01-22  kitone  <kitone@gna.org>
+
+	* plugins/actions/textcorrection/Latn.common-error.se-pattern.in:
+	Fix: sentence rule.
+
 2009-01-21  kitone  <kitone@gna.org>
 
 	* configure.in:
