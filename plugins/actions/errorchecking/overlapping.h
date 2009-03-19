@@ -56,7 +56,7 @@ public:
 		if(!info.nextSub)
 			return false;
 
-		if(info.currentSub.get_end() < info.nextSub.get_start())
+		if(info.currentSub.get_end() <= info.nextSub.get_start())
 			return false;
 
 		long overlap = (info.currentSub.get_end() - info.nextSub.get_start()).totalmsecs;
