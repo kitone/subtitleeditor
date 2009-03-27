@@ -26,6 +26,8 @@
 #include "page.h"
 #include "patternmanager.h"
 #include <widget_config_utility.h>
+#include <gui/textviewcell.h>
+#include <gui/cellrenderercustom.h>
 
 /*
  */
@@ -96,7 +98,7 @@ public:
 			Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("Original Text")));
 			m_treeview->append_column(*column);
 
-			Gtk::CellRendererText* label = manage(new Gtk::CellRendererText);
+			CellRendererCustom<TextViewCell>* label = manage(new CellRendererCustom<TextViewCell>);
 			column->pack_start(*label);
 			column->add_attribute(label->property_text(), m_column.original);
 		}
@@ -105,7 +107,7 @@ public:
 			Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("Corrected Text")));
 			m_treeview->append_column(*column);
 
-			Gtk::CellRendererText* renderer = manage(new Gtk::CellRendererText);
+			CellRendererCustom<TextViewCell>* renderer = manage(new CellRendererCustom<TextViewCell>);
 			column->pack_start(*renderer);
 			column->add_attribute(renderer->property_text(), m_column.corrected);
 			renderer->property_editable() = true;
