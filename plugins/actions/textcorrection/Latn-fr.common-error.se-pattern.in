@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Point et virgule sont suivis d'un blanc.
+ * Point d'interrogation, point d'exclamation, point-virgule et deux-points sont suivis d'un blanc et précédés d'une "espace fine insécable". 
+ * Les guillemets ouvrants ou fermants sont, respectivement, précédés ou suivis d'un blanc.
+ * Les parenthèses ou crochets ouvrants sont précédés d'un blanc.
+ * Les parenthèses ou crochets fermants sont suivis d'un blanc.
+ * Les apostrophes et traits d'union ne sont ni précédés ni suivis de blanc.
+ * Le tiret est précédé et suivi d'un blanc.
+ * Les points de suspension sont suivis d'un blanc. 
+
+ Space before: ( [
+ Space after: . , ) ] ...
+ Space before and after: ? ! ; : « » -
+ Without space: - ' `
+-->
+<patterns type="Common Error">
+  <pattern _name="Space before punctuation marks" _description="Remove space before various punctuation marks" classes="Human;OCR;" policy="Replace">
+    <rule regex=" +([&quot;']?(?!\.\.)([,.])(?!\d))" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1" repeat="False"/>
+  </pattern>
+  <pattern _name="Add space before punctuation marks" _description="Add space before various punctuation marks" classes="Human;OCR;" policy="Replace">
+    <rule regex="(\w)([?!;:])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/>
+    <rule regex="([^\s])([\(\[])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/>
+  </pattern>
+  <pattern _name="Space after punctuation marks" _description="Add space after various punctuation marks" classes="Human;OCR;" policy="Replace">
+    <rule regex="([\.,?!;:])([^\W\d][\w\s])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/>
+    <rule regex="([\)\]])([^\W\d][\w\s])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/>
+  </pattern>
+  <pattern _name="Spaces around guillemets" _description="Fixes spaces around guillemets (French quotation mark)" classes="OCR;">
+    <rule regex="([^\s])([«»])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/> <!-- Add space before -->
+    <rule regex="([«»])([^\W\d][\w\s])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/> <!-- Add space after -->
+  </pattern>
+  <pattern _name="Spaces around parentheses" _description="Fixes spaces around parentheses" classes="OCR;">
+    <rule regex="([^\s])(\()" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/> <!-- Add space before -->
+    <rule regex="(\()\s(\w)" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1\2" repeat="False"/> <!-- Remove space after -->
+    <rule regex="(\w)\s(\))" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1\2" repeat="False"/> <!-- Remove space before -->
+    <rule regex="(\))([^\W\d][\w\s])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/> <!-- Add space after -->
+  </pattern>
+</patterns>

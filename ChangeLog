@@ -1,5 +1,11 @@
 2009-03-27  kitone  <kitone@gna.org>
 
+	* plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Makefile.am:
+	New French pattern file.
+
+2009-03-27  kitone  <kitone@gna.org>
+
 	* plugins/actions/textcorrection/confirmationpage.h:
 	Used the CellRendererCustom with multiline support.
 
