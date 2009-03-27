@@ -43,6 +43,7 @@ pattern_in_files = \
 	Latn-en.common-error.se-pattern.in \
 	Latn-en.hearing-impaired.se-pattern.in \
 	Latn-en-US.common-error.se-pattern.in \
+	Latn-fr.common-error.se-pattern.in \
 	Latn.hearing-impaired.se-pattern.in \
 	Zyyy.common-error.se-pattern.in
 
