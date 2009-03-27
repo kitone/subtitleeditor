@@ -1,5 +1,10 @@
 2009-03-27  kitone  <kitone@gna.org>
 
+	* plugins/actions/textcorrection/confirmationpage.h:
+	Used the CellRendererCustom with multiline support.
+
+2009-03-27  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/gui/cellrenderercustom.cc:
 	* src/gui/cellrenderercustom.h:
