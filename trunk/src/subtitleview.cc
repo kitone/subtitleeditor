@@ -41,150 +41,8 @@
 #include <gdkmm/window.h>
 #include "subtitleeditorwindow.h"
 
-
-/*
- *	une CellEditable deriver de TextView qui permet d'avoir plusieur ligne
- *	contrairement a GtkEntry (par defaut)
- */
-class TextViewCell : public Gtk::TextView, public Gtk::CellEditable
-{
-public:
-
-	/*
-	 *
-	 */
-	TextViewCell()
-	:	Glib::ObjectBase(typeid(TextViewCell)),
-		Gtk::CellEditable()
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		m_canceled = false;
-		m_in_popup = false;
-
-		m_used_ctrl_enter_to_confirm_change = Config::getInstance().get_value_bool("subtitle-view", "used-ctrl-enter-to-confirm-change");
-
-		if(Config::getInstance().get_value_bool("subtitle-view", "property-alignment-center"))
-			set_justification(Gtk::JUSTIFY_CENTER);
-
-		set_wrap_mode(Gtk::WRAP_NONE);
-	}
-
-	/*
-	 *
-	 */
-	Glib::ustring get_text() 
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		Glib::RefPtr<Gtk::TextBuffer> buffer = get_buffer();
-
-		Gtk::TextBuffer::iterator start, end;
-
-		buffer->get_bounds(start,end);
-		return buffer->get_text(start,end);
-	}
-
-	/*
-	 *
-	 */
-	void set_text(const Glib::ustring &text)
-	{
-		se_debug_message(SE_DEBUG_VIEW, "text=<%s>", text.c_str());
-
-		get_buffer()->set_text(text);
-	}
-
-protected:
-
-	/*
-	 *
-	 */
-	bool on_key_press_event(GdkEventKey* event)
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		if(event->keyval == GDK_Escape)
-		{
-			m_canceled = true;
-			remove_widget();
-			return true;
-		}
-		
-		bool st_enter = (
-				 event->keyval == GDK_Return ||  
-				 event->keyval == GDK_KP_Enter ||  
-				 event->keyval == GDK_ISO_Enter ||  
-				 event->keyval == GDK_3270_Enter );
-
-		bool st_ctrl = (event->state & GDK_CONTROL_MASK);
-
-		if((m_used_ctrl_enter_to_confirm_change ? (st_enter && st_ctrl) : (st_enter && !st_ctrl)))
-		{
-			editing_done();
-			remove_widget();
-			return true;
-		}
-		
-		Gtk::TextView::on_key_press_event(event);
-		return true;
-	}
-
-	/*
-	 *
-	 */
-	bool on_focus_out_event(GdkEventFocus *ev)
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		// fix #10061 : Title editor field clears too easily
-		if(!m_canceled)
-			editing_done();
-
-		return Gtk::TextView::on_focus_out_event(ev);
-	}
-
-	/*
-	 *
-	 */
-	void editing_done()
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		if(m_in_popup)
-			return;
-
-		Gtk::CellEditable::editing_done();
-	}
- 
-	/*
-	 *
-	 */
-	void on_populate_popup (Gtk::Menu* menu)
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		m_in_popup = true;
-
-		menu->signal_unmap().connect(
-				sigc::mem_fun(*this, &TextViewCell::unmap_popup));
-	}
-
-	/*
-	 *
-	 */
-	void unmap_popup()
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		m_in_popup = false;
-	}
-
-protected:
-	bool m_in_popup;
-	bool m_canceled;
-	bool m_used_ctrl_enter_to_confirm_change;
-};
+#include "gui/textviewcell.h"
+#include "gui/cellrenderercustom.h"
 
 /*
  *
@@ -315,23 +173,25 @@ protected:
 
 };
 
-
 /*
+ * Basic cell renderer template
  *
+ * Disable all actions at the begining of the editing and 
+ * enable the actions when it's finished.
+ *
+ * Support also the flash message.
  */
 template<class T>
-class CellRendererCustom : public Gtk::CellRendererText
+class SubtitleViewCellRendererCustom : public CellRendererCustom<T>
 {
 public:
 
 	/*
 	 *
 	 */
-	CellRendererCustom(Document *doc)
-	:
-		Glib::ObjectBase(typeid(CellRendererCustom)),
-		Gtk::CellRendererText(),
-		m_editable(NULL), m_document(doc)
+	SubtitleViewCellRendererCustom(Document *doc)
+	: CellRendererCustom<T>(),
+	 m_document(doc)
 	{
 		se_debug(SE_DEBUG_VIEW);
 	}
@@ -347,40 +207,14 @@ public:
 			const Gdk::Rectangle& cell_area,
 			Gtk::CellRendererState flags)
 	{
-		se_debug(SE_DEBUG_VIEW);
 
-		if(!property_editable())
-			return NULL;
-
-		m_editable = manage(new T);
-		m_editable->set_size_request(cell_area.get_width(), cell_area.get_height());
-
-		m_editable->signal_editing_done().connect(
-				sigc::bind(sigc::mem_fun(*this, &CellRendererCustom::cell_editing_done), path));
-		
-		// prepare widget
-		if(Gtk::Entry *entry = dynamic_cast<Gtk::Entry*>(m_editable))
-		{
-			entry->set_has_frame(false);
-			entry->set_alignment(property_xalign());
-		}
-		m_editable->set_text(property_text());
-
-
-		// Begin/Finish editing (Fix #10494)
-		// Disable actions during editing. Enable at the exit. 
-		begin_editing();
-
-		m_editable->signal_remove_widget().connect(
-				sigc::mem_fun(*this, &CellRendererCustom::finish_editing));
+		Gtk::CellEditable *editable = CellRendererCustom<T>::start_editing_vfunc(event, widget, path, background_area, cell_area, flags);
 
 		// display flash message
 		if(m_document)
 			on_flash_message();
 
-		m_editable->show();
-
-		return m_editable;
+		return editable;
 	}
 
 	/*
@@ -423,37 +257,18 @@ protected:
 		set_action_groups_sensitives(true);
 	}
 
-	/*
-	 *
-	 */
-	void cell_editing_done(const Glib::ustring &path)
-	{
-		se_debug(SE_DEBUG_VIEW);
-
-		if(m_editable == NULL)
-			return;
-
-		Glib::ustring text = m_editable->get_text();
-			
-		// pour eviter un doublon
-		m_editable = NULL;
-
-		edited(path, text);
-	}
-
 protected:
-	T* m_editable;
 	Document* m_document;
 };
 
 /*
  * Represents a cell time.
  */
-class CellRendererTime : public CellRendererCustom<TimeCell>
+class CellRendererTime : public SubtitleViewCellRendererCustom<TimeCell>
 {
 public:
 	CellRendererTime(Document *doc)
-	:CellRendererCustom<TimeCell>(doc)
+	:SubtitleViewCellRendererCustom<TimeCell>(doc)
 	{
 		property_editable() = true;
 		property_yalign() = 0.0;
@@ -465,11 +280,11 @@ public:
 /*
  *
  */
-class CellRendererTextMultiline : public CellRendererCustom<TextViewCell>
+class CellRendererTextMultiline : public SubtitleViewCellRendererCustom<TextViewCell>
 {
 public:
 	CellRendererTextMultiline(Document *doc)
-	:CellRendererCustom<TextViewCell>(doc)
+	:SubtitleViewCellRendererCustom<TextViewCell>(doc)
 	{
 		property_editable() = true;
 		property_yalign() = 0.0;
@@ -772,7 +587,7 @@ void SubtitleView::createColumnName()
 
 	Gtk::TreeViewColumn* column = create_treeview_column("name");
 
-	CellRendererCustom<TextViewCell>* renderer = manage(new CellRendererCustom<TextViewCell>(m_refDocument));
+	SubtitleViewCellRendererCustom<TextViewCell>* renderer = manage(new SubtitleViewCellRendererCustom<TextViewCell>(m_refDocument));
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.name);

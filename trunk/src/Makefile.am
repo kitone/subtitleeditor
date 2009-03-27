@@ -88,6 +88,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	widget_config_utility.h
 
 LIB_GUI_FILES = \
+	gui/cellrenderercustom.cc \
+	gui/cellrenderercustom.h \
 	gui/comboboxencoding.cc \
 	gui/comboboxencoding.h \
 	gui/comboboxnewline.cc \
@@ -104,6 +106,8 @@ LIB_GUI_FILES = \
 	gui/dialogutility.h \
 	gui/spinbuttontime.cc \
 	gui/spinbuttontime.h \
+	gui/textviewcell.cc \
+	gui/textviewcell.h \
 	gui/treeviewextensionmanager.cc \
 	gui/treeviewextensionmanager.h
 
