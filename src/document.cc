@@ -716,6 +716,8 @@ sigc::signal<void>& Document::get_signal(const std::string &name)
  */
 void Document::emit_signal(const std::string &name)
 {
+	se_debug_message(SE_DEBUG_APP, "signal named '%s'", name.c_str());
+
 	m_signal[name].emit();
 }
 
