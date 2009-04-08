@@ -333,6 +333,11 @@ void VideoPlayer::on_config_video_player_changed(const Glib::ustring &key, const
  */
 void VideoPlayer::on_current_document_changed(Document *doc)
 {
+	m_connection_document_changed.disconnect();
+	if(doc != NULL)
+		m_connection_document_changed = doc->get_signal("document-changed").connect(
+				sigc::mem_fun(*this, &VideoPlayer::clear_subtitle));
+
 	clear_subtitle();
 	find_subtitle();
 }

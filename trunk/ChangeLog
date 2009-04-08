@@ -1,5 +1,11 @@
 2009-04-08  kitone  <kitone@gna.org>
 
+	* src/vp/videoplayer.cc:
+	* src/vp/videoplayer.h:
+	Fix: bug #12682 : 0.30.0 deleting a subtitle while playing throws segfault.
+
+2009-04-08  kitone  <kitone@gna.org>
+
 	* src/document.cc:
 	Add debug message to emit_signal function.
 

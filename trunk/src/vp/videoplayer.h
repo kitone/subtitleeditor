@@ -104,6 +104,7 @@ public:
 	void show_subtitle_text();
 
 protected:
+	sigc::connection m_connection_document_changed;
 	Subtitle m_subtitle;
 	Player* m_player;
 
