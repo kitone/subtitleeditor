@@ -59,6 +59,18 @@ plugins/actions/splitsubtitle/splitsubtitle.cc
 plugins/actions/styleeditor/dialog-style-editor.glade
 plugins/actions/styleeditor/styleeditor.cc
 plugins/actions/styleeditor/styleeditor.h
+plugins/actions/textcorrection/assistant-text-correction.glade
+plugins/actions/textcorrection/commonerrorpage.h
+plugins/actions/textcorrection/confirmationpage.h
+plugins/actions/textcorrection/hearingimpairedpage.h
+plugins/actions/textcorrection/page.h
+plugins/actions/textcorrection/pattern.cc
+plugins/actions/textcorrection/pattern.h
+plugins/actions/textcorrection/patternmanager.cc
+plugins/actions/textcorrection/patternmanager.h
+plugins/actions/textcorrection/patternspage.h
+plugins/actions/textcorrection/taskspage.h
+plugins/actions/textcorrection/textcorrection.cc
 plugins/actions/timemodemanagement/timemodemanagement.cc
 plugins/actions/videoplayermanagement/videoplayermanagement.cc
 plugins/actions/viewmanager/dialog-view-manager.glade
@@ -95,6 +107,8 @@ src/commandsystem.cc
 src/commandsystem.h
 src/debug.cc
 src/debug.h
+src/defaultcfg.cc
+src/defaultcfg.h
 src/document.cc
 src/document.h
 src/documentsystem.cc
@@ -121,6 +135,8 @@ src/gtkmm_utility.cc
 src/gtkmm_utility.h
 src/gui/application.cc
 src/gui/application.h
+src/gui/cellrenderercustom.cc
+src/gui/cellrenderercustom.h
 src/gui/comboboxencoding.cc
 src/gui/comboboxencoding.h
 src/gui/comboboxnewline.cc
@@ -141,9 +157,13 @@ src/gui/spinbuttontime.cc
 src/gui/spinbuttontime.h
 src/gui/statusbar.cc
 src/gui/statusbar.h
+src/gui/textviewcell.cc
+src/gui/textviewcell.h
 src/gui/treeviewextensionmanager.cc
 src/gui/treeviewextensionmanager.h
 src/i18n.h
+src/isocodes.cc
+src/isocodes.h
 src/main.cc
 src/options.cc
 src/options.h
@@ -225,6 +245,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/splitdocument/splitdocument.se-plugin.in
 [type: gettext/ini] plugins/actions/splitsubtitle/splitsubtitle.se-plugin.in
 [type: gettext/ini] plugins/actions/styleeditor/styleeditor.se-plugin.in
+[type: gettext/ini] plugins/actions/textcorrection/textcorrection.se-plugin.in
 [type: gettext/ini] plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/viewmanager/viewmanager.se-plugin.in
@@ -240,3 +261,10 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/subviewer2/subviewer2.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.se-plugin.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn.common-error.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in
