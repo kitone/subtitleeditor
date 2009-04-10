@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 22:24+0100\n"
+"POT-Creation-Date: 2009-04-10 12:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1141,41 +1141,45 @@ msgstr ""
 #. audio output
 #. video output
 #: ../plugins/actions/preferences/videoplayerpage.h:123
-#: ../plugins/actions/preferences/videoplayerpage.h:131
+#: ../plugins/actions/preferences/videoplayerpage.h:132
 msgid "Autodetect"
 msgstr ""
 
 #: ../plugins/actions/preferences/videoplayerpage.h:124
-msgid "ALSA - Advanced Linux Sound Architecture"
+msgid "Pulse - PulseAudio Sound Server"
 msgstr ""
 
 #: ../plugins/actions/preferences/videoplayerpage.h:125
-msgid "ESD - Enlightenment Sound Daemon"
+msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr ""
 
 #: ../plugins/actions/preferences/videoplayerpage.h:126
-msgid "OSS - Open Sound System"
+msgid "ESD - Enlightenment Sound Daemon"
 msgstr ""
 
 #: ../plugins/actions/preferences/videoplayerpage.h:127
-#: ../plugins/actions/preferences/videoplayerpage.h:134
-msgid "SDL - Simple DirectMedia Layer"
+msgid "OSS - Open Sound System"
 msgstr ""
 
 #: ../plugins/actions/preferences/videoplayerpage.h:128
 #: ../plugins/actions/preferences/videoplayerpage.h:135
+msgid "SDL - Simple DirectMedia Layer"
+msgstr ""
+
+#: ../plugins/actions/preferences/videoplayerpage.h:129
+#: ../plugins/actions/preferences/videoplayerpage.h:136
 msgid "GConf"
 msgstr ""
 
-#: ../plugins/actions/preferences/videoplayerpage.h:132
+#: ../plugins/actions/preferences/videoplayerpage.h:133
 msgid "X Window System (X11/XShm/Xv)"
 msgstr ""
 
-#: ../plugins/actions/preferences/videoplayerpage.h:133
+#: ../plugins/actions/preferences/videoplayerpage.h:134
 msgid "X Window System (No Xv)"
 msgstr ""
 
-#: ../plugins/actions/preferences/videoplayerpage.h:136
+#: ../plugins/actions/preferences/videoplayerpage.h:137
 msgid "OpenGL"
 msgstr ""
 
@@ -1316,7 +1320,7 @@ msgid "Ignore _All"
 msgstr ""
 
 #: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
-#: ../plugins/actions/spellchecking/spellchecking.cc:294
+#: ../plugins/actions/spellchecking/spellchecking.cc:300
 #: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:2
 msgid "Spell Checking"
 msgstr ""
@@ -1333,11 +1337,11 @@ msgstr ""
 msgid "_Replace"
 msgstr ""
 
-#: ../plugins/actions/spellchecking/spellchecking.cc:674
+#: ../plugins/actions/spellchecking/spellchecking.cc:693
 msgid "_Spell Check"
 msgstr ""
 
-#: ../plugins/actions/spellchecking/spellchecking.cc:674
+#: ../plugins/actions/spellchecking/spellchecking.cc:693
 msgid "Launch the spell checking"
 msgstr ""
 
@@ -1512,6 +1516,120 @@ msgstr ""
 msgid "Launch the style editor"
 msgstr ""
 
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:1
+msgid "Acc_ept, discard or edit changes:"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:2
+#: ../plugins/actions/textcorrection/confirmationpage.h:185
+#: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:2
+msgid "Text Correction"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:3
+msgid "_Mark All"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:4
+msgid "_Remove all blank subtitles"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:5
+msgid "_Select correction to performed text:"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:6
+msgid "_Unmark All"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/commonerrorpage.h:34
+msgid "Select Common Error Pattern"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/commonerrorpage.h:35
+msgid "Correct common errors"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/commonerrorpage.h:36
+msgid "Correct common errors made by humans or image recognition software"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:78
+#: ../src/subtitleview.cc:1458
+msgid "Num"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:87
+msgid "Accept"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:98
+msgid "Original Text"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:107
+msgid "Corrected Text"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:168
+msgid "There Is No Change"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:171
+msgid "Confirm %1 Change"
+msgid_plural "Confirm %1 Changes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../plugins/actions/textcorrection/hearingimpairedpage.h:34
+msgid "Select Hearing Impaired Patterns"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/hearingimpairedpage.h:35
+msgid "Remove hearing impaired texts"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/hearingimpairedpage.h:36
+msgid "Remove explanatory texts meant for the hearing impaired"
+msgstr ""
+
+#. Script
+#: ../plugins/actions/textcorrection/patternspage.h:230
+msgid "_Script:"
+msgstr ""
+
+#. Language
+#: ../plugins/actions/textcorrection/patternspage.h:237
+msgid "_Language:"
+msgstr ""
+
+#. Country
+#: ../plugins/actions/textcorrection/patternspage.h:244
+msgid "_Country:"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/patternspage.h:437
+#: ../plugins/actions/textcorrection/patternspage.h:465
+#: ../plugins/actions/textcorrection/patternspage.h:493
+msgid "Other"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/taskspage.h:66
+#: ../plugins/actions/viewmanager/viewmanager.cc:129
+msgid "Display"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/taskspage.h:77
+#: ../plugins/actions/viewmanager/viewmanager.cc:141
+#: ../plugins/actions/viewmanager/viewmanager.cc:232
+#: ../src/subtitleview.cc:1456
+msgid "Name"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/textcorrection.cc:186
+msgid "Text _Correction"
+msgstr ""
+
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:56
 msgid "_Times"
 msgstr ""
@@ -1531,6 +1649,7 @@ msgstr ""
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:108
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:115
+#: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:1
 msgid "FIXME"
 msgstr ""
 
@@ -1764,16 +1883,6 @@ msgstr ""
 msgid "View Manager"
 msgstr ""
 
-#: ../plugins/actions/viewmanager/viewmanager.cc:129
-msgid "Display"
-msgstr ""
-
-#: ../plugins/actions/viewmanager/viewmanager.cc:141
-#: ../plugins/actions/viewmanager/viewmanager.cc:232
-#: ../src/subtitleview.cc:1641
-msgid "Name"
-msgstr ""
-
 #: ../plugins/actions/viewmanager/viewmanager.cc:302
 msgid "Untitled"
 msgstr ""
@@ -1787,7 +1896,7 @@ msgid "Advanced"
 msgstr ""
 
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
-#: ../src/subtitleview.cc:1647
+#: ../src/subtitleview.cc:1462
 msgid "Translation"
 msgstr ""
 
@@ -2377,7 +2486,7 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
-#: ../src/main.cc:221
+#: ../src/main.cc:118
 msgid " - edit subtitles files"
 msgstr ""
 
@@ -2431,139 +2540,135 @@ msgstr ""
 msgid "Remove Subtitles"
 msgstr ""
 
-#: ../src/subtitleview.cc:490
+#: ../src/subtitleview.cc:305
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr ""
 
-#: ../src/subtitleview.cc:492
+#: ../src/subtitleview.cc:307
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr ""
 
-#: ../src/subtitleview.cc:644
+#: ../src/subtitleview.cc:459
 msgid "The line number"
 msgstr ""
 
-#: ../src/subtitleview.cc:710
+#: ../src/subtitleview.cc:525
 msgid "When a subtitle appears on the screen."
 msgstr ""
 
-#: ../src/subtitleview.cc:722
+#: ../src/subtitleview.cc:537
 msgid "When a subtitle disappears from the screen."
 msgstr ""
 
-#: ../src/subtitleview.cc:735
+#: ../src/subtitleview.cc:550
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/subtitleview.cc:810
+#: ../src/subtitleview.cc:625
 msgid "The number of characters per second"
 msgstr ""
 
-#: ../src/subtitleview.cc:1062
+#: ../src/subtitleview.cc:877
 msgid "Editing layer"
 msgstr ""
 
-#: ../src/subtitleview.cc:1090 ../src/subtitleview.cc:1101
+#: ../src/subtitleview.cc:905 ../src/subtitleview.cc:916
 msgid "Editing start"
 msgstr ""
 
-#: ../src/subtitleview.cc:1128 ../src/subtitleview.cc:1139
+#: ../src/subtitleview.cc:943 ../src/subtitleview.cc:954
 msgid "Editing end"
 msgstr ""
 
-#: ../src/subtitleview.cc:1166 ../src/subtitleview.cc:1177
+#: ../src/subtitleview.cc:981 ../src/subtitleview.cc:992
 msgid "Editing duration"
 msgstr ""
 
-#: ../src/subtitleview.cc:1197
+#: ../src/subtitleview.cc:1012
 msgid "Editing text"
 msgstr ""
 
-#: ../src/subtitleview.cc:1219
+#: ../src/subtitleview.cc:1034
 msgid "Editing translation"
 msgstr ""
 
-#: ../src/subtitleview.cc:1239
+#: ../src/subtitleview.cc:1054
 msgid "Editing note"
 msgstr ""
 
-#: ../src/subtitleview.cc:1258
+#: ../src/subtitleview.cc:1073
 msgid "Editing effect"
 msgstr ""
 
-#: ../src/subtitleview.cc:1279
+#: ../src/subtitleview.cc:1094
 msgid "Editing style"
 msgstr ""
 
-#: ../src/subtitleview.cc:1299
+#: ../src/subtitleview.cc:1114
 msgid "Editing name"
 msgstr ""
 
-#: ../src/subtitleview.cc:1319
+#: ../src/subtitleview.cc:1134
 msgid "Editing margin-l"
 msgstr ""
 
-#: ../src/subtitleview.cc:1339
+#: ../src/subtitleview.cc:1154
 msgid "Editing margin-r"
 msgstr ""
 
-#: ../src/subtitleview.cc:1359
+#: ../src/subtitleview.cc:1174
 msgid "Editing margin-v"
 msgstr ""
 
-#: ../src/subtitleview.cc:1500
+#: ../src/subtitleview.cc:1315
 msgid "Set style to selection"
 msgstr ""
 
-#: ../src/subtitleview.cc:1633
+#: ../src/subtitleview.cc:1448
 msgid "CPS"
 msgstr ""
 
-#: ../src/subtitleview.cc:1634
+#: ../src/subtitleview.cc:1449
 msgid "Duration"
 msgstr ""
 
-#: ../src/subtitleview.cc:1635
+#: ../src/subtitleview.cc:1450
 msgid "Effect"
 msgstr ""
 
-#: ../src/subtitleview.cc:1636
+#: ../src/subtitleview.cc:1451
 msgid "End"
 msgstr ""
 
-#: ../src/subtitleview.cc:1637
+#: ../src/subtitleview.cc:1452
 msgid "Layer"
 msgstr ""
 
-#: ../src/subtitleview.cc:1638
+#: ../src/subtitleview.cc:1453
 msgid "L"
 msgstr ""
 
-#: ../src/subtitleview.cc:1639
+#: ../src/subtitleview.cc:1454
 msgid "R"
 msgstr ""
 
-#: ../src/subtitleview.cc:1640
+#: ../src/subtitleview.cc:1455
 msgid "V"
 msgstr ""
 
-#: ../src/subtitleview.cc:1642
+#: ../src/subtitleview.cc:1457
 msgid "Note"
 msgstr ""
 
-#: ../src/subtitleview.cc:1643
-msgid "Num"
-msgstr ""
-
-#: ../src/subtitleview.cc:1644
+#: ../src/subtitleview.cc:1459
 msgid "Start"
 msgstr ""
 
-#: ../src/subtitleview.cc:1645
+#: ../src/subtitleview.cc:1460
 msgid "Style"
 msgstr ""
 
-#: ../src/subtitleview.cc:1646
+#: ../src/subtitleview.cc:1461
 msgid "Text"
 msgstr ""
 
@@ -2946,4 +3051,276 @@ msgstr ""
 
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.se-plugin.in.h:2
 msgid "Timed Text Authoring Format 1.0 subtitles support."
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:1
+msgid "Add space after a dialogue dash"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:2
+msgid "Add space after an ellipsis"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:3
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:1
+msgid "Add space after various punctuation marks"
+msgstr ""
+
+#.
+#. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'.
+#. 'previousmatch' is also not supported by gaupol.
+#.
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:8
+msgid "Capitalize the first word of a sentence"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:9
+msgid "Double apostrophe"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:10
+msgid "Letter \"O\" in a number"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:11
+msgid "Multiple question- and exclamation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:12
+msgid "Periods around a punctuation mark"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:13
+msgid "Remove period before or after various punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:14
+msgid "Remove space after a starting- and before an ending quotation mark"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:15
+msgid "Remove space after an ellipsis that starts a line"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:16
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:6
+msgid "Remove space before various punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:17
+msgid "Replace a double apostrophe with a quotation mark"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:18
+msgid "Replace letter \"O\" with a zero in a number"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:19
+msgid ""
+"Replace multiple consequtive question- and exclamation marks with only one"
+msgstr ""
+
+#.
+#. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'.
+#. 'previousmatch' is also not supported by gaupol.
+#.
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:24
+msgid "Sentence"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:25
+msgid "Space after a dialogue dash"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:26
+msgid "Space after a starting ellipsis"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:27
+msgid "Space after an ellipsis"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:28
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:7
+msgid "Space after punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:29
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:8
+msgid "Space before punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:30
+msgid "Spaces around a quotation mark"
+msgstr ""
+
+#. \u is not supported by gaupol, gaupol used special a pattern 'capitalization'
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:2
+msgid "Capitalize the first person pronoun \"I\""
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:3
+msgid "Convert various two-letter spellings of okay to \"OK\""
+msgstr ""
+
+#. \u is not supported by gaupol, gaupol used special a pattern 'capitalization'
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:5
+msgid "First person pronoun"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:6
+msgid "Letter \"I\" in a lower case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:7
+msgid "Letter \"l\" in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:8
+msgid "Okay"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:9
+msgid "Remove spaces around an apostrophe"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:10
+msgid "Replace letter \"I\" with letter \"l\" in a lower case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:11
+msgid "Replace letter \"l\" with letter \"I\" in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:12
+msgid "Replace zero with letter \"O\" in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:13
+msgid "Spaces around an apostrophe"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:14
+msgid "Zero in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:1
+msgid ""
+"Replace the uppercase name of the speaker before a colon with a dialogue dash"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:2
+msgid "Uppercase speaker before a colon"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:1
+msgid "Add period after a shortened title, such as \"Mr\" and \"Dr\""
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:2
+msgid "Period after title"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:2
+msgid "Add space before punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:3
+msgid "Add space before various punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:4
+msgid "Fixes spaces around guillemets (French quotation mark)"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:5
+msgid "Fixes spaces around parentheses"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:9
+msgid "Spaces around guillemets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:10
+msgid "Spaces around parentheses"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:1
+msgid "One-line song lyrics between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:2
+msgid "One-line song lyrics between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:3
+msgid "Remove description of a sound between parantheses"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:4
+msgid "Remove description of a sound between square brackets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:5
+msgid "Remove one-line song lyrics starting with or between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:6
+msgid "Remove one-line song lyrics starting with or between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:7
+msgid "Remove song lyrics starting with or between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:8
+msgid "Remove song lyrics starting with or between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:9
+msgid "Replace the name of the speaker before a colon with a dialogue dash"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:10
+msgid "Song lyrics between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:11
+msgid "Song lyrics between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:12
+msgid "Sound in brackets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:13
+msgid "Sound in parantheses"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:14
+msgid "Speaker before a colon"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:1
+msgid "Leading and trailing spaces"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:2
+msgid "Multiple consecutive spaces"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:3
+msgid "Remove space between digits of a number"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:4
+msgid "Remove spaces from the beginning and end of lines"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:5
+msgid "Replace multiple consecutive spaces with only one"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:6
+msgid "Space between digits"
 msgstr ""
