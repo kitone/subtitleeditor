@@ -36,4 +36,10 @@
     <rule regex="(\w)\s(\))" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1\2" repeat="False"/> <!-- Remove space before -->
     <rule regex="(\))([^\W\d][\w\s])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/> <!-- Add space after -->
   </pattern>
+  <pattern _name="Spaces around square brackets" _description="Fixes spaces around square brackets" classes="OCR;">
+    <rule regex="([^\s])(\[)" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/> <!-- Add space before -->
+    <rule regex="(\[)\s(\w)" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1\2" repeat="False"/> <!-- Remove space after -->
+    <rule regex="(\w)\s(\])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1\2" repeat="False"/> <!-- Remove space before -->
+    <rule regex="(\])([^\W\d][\w\s])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/> <!-- Add space after -->
+  </pattern>
 </patterns>
