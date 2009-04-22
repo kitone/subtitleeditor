@@ -1,5 +1,10 @@
 2009-04-22  kitone  <kitone@gna.org>
 
+	* COPYING:
+	Update with GPLv3.
+
+2009-04-22  kitone  <kitone@gna.org>
+
 	* plugins/actions/about/about.cc:
 	* plugins/actions/adjusttime/adjusttime.cc:
 	* plugins/actions/applytranslation/applytranslation.cc:
