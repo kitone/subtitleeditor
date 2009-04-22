@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-10 12:32+0200\n"
+"POT-Creation-Date: 2009-04-22 10:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3103,7 +3103,7 @@ msgid "Remove space after an ellipsis that starts a line"
 msgstr ""
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:16
-#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:6
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:7
 msgid "Remove space before various punctuation marks"
 msgstr ""
 
@@ -3141,12 +3141,12 @@ msgid "Space after an ellipsis"
 msgstr ""
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:28
-#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:7
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:8
 msgid "Space after punctuation marks"
 msgstr ""
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:29
-#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:8
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:9
 msgid "Space before punctuation marks"
 msgstr ""
 
@@ -3237,12 +3237,20 @@ msgstr ""
 msgid "Fixes spaces around parentheses"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:9
-msgid "Spaces around guillemets"
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:6
+msgid "Fixes spaces around square brackets"
 msgstr ""
 
 #: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:10
+msgid "Spaces around guillemets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:11
 msgid "Spaces around parentheses"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:12
+msgid "Spaces around square brackets"
 msgstr ""
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:1
