@@ -1,3 +1,18 @@
+2009-04-22 - 0.31.0
+
+	* New plugin 'textcorrection'
+	* Fix: #12682 deleting a subtitle while playing throws segfault
+	* Fix: #12649 subtitleeditor does not build with LDFLAGS='-Wl,--as-needed -Wl,--no-undefined'
+	* Fix: #12847 Waveform creation from video causes a crash with file name contains spaces
+	* Cleanup
+
+	Patch: Luboš Staněk
+	* Enable changing of default audio and video sink preferences in the build time
+	* Add pulsesink to audio outputs and fix OSS sing ID
+
+	Patch: Frank Luithle <sigi>
+	* Fix: #13069 Error checker reports back-to-back subtitles as "overlapping"
+
 2008-11-26 - 0.30.0
 
 	* Each function work around extension system (enable/disable/configure)
