@@ -1,3 +1,9 @@
+2009-04-26  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* src/isocodes.cc:
+	Fix: ISO_CODES* test.
+
 2009-04-22  kitone  <kitone@gna.org>
 
 	* COPYING:
