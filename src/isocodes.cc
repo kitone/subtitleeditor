@@ -35,6 +35,7 @@ namespace isocodes {
  */
 bool iso_codes_load_file(const Glib::ustring &iso_id, const Glib::ustring &id_code, std::map<Glib::ustring, Glib::ustring> &codes)
 {
+#ifdef HAVE_ISO_CODES
 	try
 	{
 		Glib::ustring filename = Glib::build_filename(ISO_CODES_PATH, iso_id + ".xml");
@@ -61,12 +62,16 @@ bool iso_codes_load_file(const Glib::ustring &iso_id, const Glib::ustring &id_co
 		}
 		// 
 		bind_textdomain_codeset(iso_id.c_str(), "UTF-8");
+
+		return true;
 	}
 	catch(const std::exception &ex)
 	{
 		std::cerr << ex.what() << std::endl;
 	}
-	return true;
+#endif//HAVE_ISO_CODES
+	
+	return false;
 }
 
 /*

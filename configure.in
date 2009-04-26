@@ -157,19 +157,14 @@ else
 	AC_MSG_RESULT([no])
 fi
 
-if test "$have_iso_code_639" == "yes"; then
-	if test "$have_iso_code_3166" == "yes"; then
-		if test "$have_iso_code_15924" == "yes"; then
+if test "$have_iso_code_639" == "yes" || test "$have_iso_code_3166" == "yes" || test "$have_iso_code_15924" == "yes" ; then
+	AC_DEFINE(HAVE_ISO_CODES, 1, [Define to 1 if iso-codes is supported.])
 
-			AC_DEFINE(HAVE_ISO_CODES, 1, [Define to 1 if iso-codes is supported.])
+	ISO_CODES_PREFIX=`$PKG_CONFIG --variable=prefix iso-codes`
+	ISO_CODES_PATH="$ISO_CODES_PREFIX/share/xml/iso-codes"
 
-			ISO_CODES_PREFIX=`$PKG_CONFIG --variable=prefix iso-codes`
-			ISO_CODES_PATH="$ISO_CODES_PREFIX/share/xml/iso-codes"
-
-			AC_SUBST([ISO_CODES_PATH])
-			AC_DEFINE_UNQUOTED([ISO_CODES_PATH], ["$ISO_CODES_PATH"], [iso-codes path for files])
-		fi
-	fi
+	AC_SUBST([ISO_CODES_PATH])
+	AC_DEFINE_UNQUOTED([ISO_CODES_PATH], ["$ISO_CODES_PATH"], [iso-codes path for files])
 fi
 
 # =========================================================================
