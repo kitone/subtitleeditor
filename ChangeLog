@@ -1,3 +1,9 @@
+2009-04-28  kitone  <kitone@gna.org>
+
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* src/vp/gstreamerplayer.cc:
+	Fix: bug #7019. The black rectangle.
+
 2009-04-26  kitone  <kitone@gna.org>
 
 	* configure.in:

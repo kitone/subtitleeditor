@@ -44,6 +44,8 @@ GStreamerPlayer::GStreamerPlayer()
 	modify_bg(Gtk::STATE_NORMAL, Gdk::Color("black"));
 
 	add_events(Gdk::EXPOSURE_MASK);
+	unset_flags(Gtk::DOUBLE_BUFFERED);
+	set_flags(Gtk::APP_PAINTABLE);
 
 	show();
 
