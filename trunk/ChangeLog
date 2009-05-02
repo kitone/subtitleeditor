@@ -1,5 +1,12 @@
 2009-05-02  kitone  <kitone@gna.org>
 
+	* plugins/actions/movesubtitles/dialog-move-subtitles.glade:
+	* plugins/actions/movesubtitles/movesubtitles.cc:
+	Improvement of "Move Subtitles" with the option "Only selected subtitles".
+	Fix Gtk warning: adjustment with non-zero page size is deprecated.
+
+2009-05-02  kitone  <kitone@gna.org>
+
 	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
 	* plugins/subtitleformats/mpsub/mpsub.cc:
 	* plugins/subtitleformats/substationalpha/substationalpha.cc:
