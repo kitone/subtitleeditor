@@ -23,6 +23,7 @@
 #include <extension/subtitleformat.h>
 #include <utility.h>
 #include <iomanip>
+#include <cstdio>
 #include <document.h>
 
 /*

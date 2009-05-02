@@ -1,3 +1,10 @@
+2009-05-02  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/mpsub/mpsub.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	Fix: Debian bug #526155: FTBFS with GCC 4.4: missing #include.
+
 2009-04-28  kitone  <kitone@gna.org>
 
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
