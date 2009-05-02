@@ -39,7 +39,7 @@
                       <widget class="GtkTable" id="table2">
                         <property name="visible">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="n_rows">2</property>
+                        <property name="n_rows">3</property>
                         <property name="n_columns">2</property>
                         <property name="column_spacing">6</property>
                         <property name="row_spacing">6</property>
@@ -47,7 +47,7 @@
                           <widget class="GtkSpinButton" id="spin-new-start">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="adjustment">1 0 100 1 10 10</property>
+                            <property name="adjustment">1 0 100 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
@@ -63,7 +63,7 @@
                           <widget class="GtkSpinButton" id="spin-start-value">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="adjustment">1 0 100 1 10 10</property>
+                            <property name="adjustment">1 0 100 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
@@ -97,6 +97,22 @@
                           <packing>
                             <property name="x_options">GTK_FILL</property>
                             <property name="y_options"></property>
+                          </packing>
+                        </child>
+                        <child>
+                          <widget class="GtkCheckButton" id="check-only-selected-subtitles">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="tooltip_text">If the option is activated, only the selected subtitles are moved. Without this option, it starts from the first selected subtitle until the last subtitle of the document without taking into account the selection.</property>
+                            <property name="label" translatable="yes">_Only selected subtitles</property>
+                            <property name="use_underline">True</property>
+                            <property name="response_id">0</property>
+                            <property name="draw_indicator">True</property>
+                          </widget>
+                          <packing>
+                            <property name="right_attach">2</property>
+                            <property name="top_attach">2</property>
+                            <property name="bottom_attach">3</property>
                           </packing>
                         </child>
                       </widget>

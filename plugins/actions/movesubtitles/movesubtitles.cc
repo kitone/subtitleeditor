@@ -40,6 +40,7 @@ public:
 		refGlade->get_widget("label-start-value", m_labelStartValue);
 		refGlade->get_widget_derived("spin-start-value", m_spinStartValue);
 		refGlade->get_widget_derived("spin-new-start", m_spinNewStart);
+		refGlade->get_widget("check-only-selected-subtitles", m_checkOnlySelectedSubtitles);
 	}
 
 	/*
@@ -71,10 +72,19 @@ public:
 		return (long)(m_spinNewStart->get_value() - m_spinStartValue->get_value());
 	}
 
+	/*
+	 *
+	 */
+	bool only_selected_subtitles()
+	{
+		return m_checkOnlySelectedSubtitles->get_active();
+	}
+
 protected:
 	Gtk::Label*			m_labelStartValue;
 	SpinButtonTime*	m_spinStartValue;
 	SpinButtonTime*	m_spinNewStart;
+	Gtk::CheckButton* m_checkOnlySelectedSubtitles;
 };
 
 /*
@@ -186,8 +196,11 @@ protected:
 				if(diff != 0)
 				{
 					doc->start_command(_("Move Subtitles"));
-				
-					move_first_selected_subtitle_and_next(doc, diff);
+					
+					if(dialog->only_selected_subtitles())
+						move_selected_subtitles(doc, diff);
+					else
+						move_first_selected_subtitle_and_next(doc, diff);
 
 					doc->emit_signal("subtitle-time-changed");
 					doc->finish_command();
@@ -201,11 +214,10 @@ protected:
 
 		return true;
 	}
-	
+		
 	/*
-	 * on n'utilise seulement le premier s-t de la selection
-	 * ensuite on utilise on applique les modifications au suivant
-	 * sans prendre en compte la selection
+	 * Used only the first selected subtitles and move all the next 
+	 * subtitles selected or not.
 	 */
 	bool move_first_selected_subtitle_and_next(Document *doc, const long &diff)
 	{
@@ -231,6 +243,45 @@ protected:
 		{
 			for(Subtitle sub = selection[0]; sub; ++sub)
 			{
+				sub.set_start_frame( sub.get_start_frame() + diff);
+				sub.set_end_frame( sub.get_end_frame() + diff);
+			}
+		}
+
+		return true;
+	}
+
+	/*
+	 * Move only the selected subtitles.
+	 */
+	bool move_selected_subtitles(Document *doc, const long &diff)
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		std::vector<Subtitle> selection = doc->subtitles().get_selection();
+
+		if(selection.empty())
+			return false;
+
+		if(doc->get_edit_timing_mode() == TIME)
+		{
+			SubtitleTime time(diff);
+			
+			std::vector<Subtitle>::iterator it;
+			for(it = selection.begin(); it != selection.end(); ++it)
+			{
+				Subtitle sub = (*it);
+				sub.set_start_and_end(
+						sub.get_start() + time,
+						sub.get_end() + time);
+			}
+		}
+		else
+		{
+			std::vector<Subtitle>::iterator it;
+			for(it = selection.begin(); it != selection.end(); ++it)
+			{
+				Subtitle sub = (*it);
 				sub.set_start_frame( sub.get_start_frame() + diff);
 				sub.set_end_frame( sub.get_end_frame() + diff);
 			}
