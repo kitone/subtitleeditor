@@ -22,6 +22,7 @@
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
+#include <cstdio>
 
 /*
  *
