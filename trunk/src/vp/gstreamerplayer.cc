@@ -41,8 +41,6 @@ GStreamerPlayer::GStreamerPlayer()
 	m_pipeline_state = GST_STATE_NULL;
 	m_pipeline_duration = GST_CLOCK_TIME_NONE;
 
-	modify_bg(Gtk::STATE_NORMAL, Gdk::Color("black"));
-
 	add_events(Gdk::EXPOSURE_MASK);
 	unset_flags(Gtk::DOUBLE_BUFFERED);
 	set_flags(Gtk::APP_PAINTABLE);
@@ -500,6 +498,11 @@ bool GStreamerPlayer::on_expose_event(GdkEventExpose *ev)
 			//gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(m_video_output), GDK_WINDOW_XID(window->gobj()));
 			gst_x_overlay_expose(GST_X_OVERLAY(m_video_output));
 		}
+	}
+	else
+	{
+		// black canvas
+		get_window()->draw_rectangle(get_style()->get_black_gc(), TRUE, 0, 0, get_width(), get_height());
 	}
 	
 	return true;

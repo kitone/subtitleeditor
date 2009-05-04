@@ -1,3 +1,8 @@
+2009-05-04  kitone  <kitone@gna.org>
+
+	* src/vp/gstreamerplayer.cc:
+	Fix: Draw black canvas.
+
 2009-05-02  kitone  <kitone@gna.org>
 
 	* plugins/actions/movesubtitles/dialog-move-subtitles.glade:
