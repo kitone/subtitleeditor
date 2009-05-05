@@ -117,6 +117,11 @@ public:
 	/*
 	 *
 	 */
+	void select(std::vector<Subtitle> &sub);
+
+	/*
+	 *
+	 */
 	void select(const Subtitle &sub, bool start_editing=false);
 
 	/*
