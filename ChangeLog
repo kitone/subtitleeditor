@@ -1,3 +1,9 @@
+2009-05-05  kitone  <kitone@gna.org>
+
+	* src/subtitles.cc:
+	* src/subtitles.h:
+	New function select multiple subtitles.
+
 2009-05-04  kitone  <kitone@gna.org>
 
 	* src/vp/gstreamerplayer.cc:

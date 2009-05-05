@@ -350,6 +350,17 @@ Subtitle Subtitles::get_first_selected()
 /*
  *
  */
+void Subtitles::select(std::vector<Subtitle> &sub)
+{
+	for(unsigned int i=0; i< sub.size(); ++i)
+	{
+		m_document.get_subtitle_view()->get_selection()->select(sub[i].m_iter);
+	}
+}
+
+/*
+ *
+ */
 void Subtitles::select(const Subtitle &sub, bool start_editing)
 {
 	m_document.get_subtitle_view()->select_and_set_cursor(sub.m_iter, start_editing);
