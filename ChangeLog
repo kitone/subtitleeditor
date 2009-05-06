@@ -1,5 +1,14 @@
 2009-05-06  kitone  <kitone@gna.org>
 
+	* plugins/actions/errorchecking/dialog-error-checking-preferences.glade:
+	* plugins/actions/scalesubtitles/dialog-scale-subtitles.glade:
+	* plugins/actions/splitdocument/dialog-split-document.glade:
+	* share/glade/dialog-script-properties.glade:
+	* share/glade/subtitleeditor.glade:
+	Fix Gtk warning: adjustment with non-zero page size is deprecated.
+
+2009-05-06  kitone  <kitone@gna.org>
+
 	* plugins/actions/styleeditor/dialog-style-editor.glade:
 	Fix Gtk warning: adjustment with non-zero page size is deprecated.
 

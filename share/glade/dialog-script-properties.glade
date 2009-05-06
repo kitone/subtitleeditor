@@ -1025,7 +1025,7 @@ Reverse</property>
 			  <property name="update_policy">GTK_UPDATE_ALWAYS</property>
 			  <property name="snap_to_ticks">False</property>
 			  <property name="wrap">False</property>
-			  <property name="adjustment">100 1 200 1 10 10</property>
+			  <property name="adjustment">100 1 200 1 0 0</property>
 			</widget>
 			<packing>
 			  <property name="left_attach">1</property>

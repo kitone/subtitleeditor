@@ -98,7 +98,7 @@
                           <widget class="GtkSpinButton" id="spin-first-number">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="adjustment">0 0 0 1 10 10</property>
+                            <property name="adjustment">0 0 0 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
@@ -110,7 +110,7 @@
                         <child>
                           <widget class="GtkSpinButton" id="spin-first-start-value">
                             <property name="visible">True</property>
-                            <property name="adjustment">0 0 100 1 10 10</property>
+                            <property name="adjustment">0 0 100 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
@@ -125,7 +125,7 @@
                           <widget class="GtkSpinButton" id="spin-first-new-start">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="adjustment">1 0 100 1 10 10</property>
+                            <property name="adjustment">1 0 100 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
@@ -243,7 +243,7 @@
                           <widget class="GtkSpinButton" id="spin-last-number">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="adjustment">0 0 0 1 10 10</property>
+                            <property name="adjustment">0 0 0 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
@@ -255,7 +255,7 @@
                         <child>
                           <widget class="GtkSpinButton" id="spin-last-start-value">
                             <property name="visible">True</property>
-                            <property name="adjustment">1 0 100 1 10 10</property>
+                            <property name="adjustment">1 0 100 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
@@ -270,7 +270,7 @@
                           <widget class="GtkSpinButton" id="spin-last-new-start">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="adjustment">1 0 100 1 10 10</property>
+                            <property name="adjustment">1 0 100 1 0 0</property>
                             <property name="climb_rate">1</property>
                           </widget>
                           <packing>
