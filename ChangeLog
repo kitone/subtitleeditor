@@ -1,3 +1,10 @@
+2009-05-07  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
+	Fix: bug #10439 : Better project file.
+	Improve open/save with framerate, timing mode, edit timing mode, 
+	subtitle selection, video and waveform uri...
+
 2009-05-06  kitone  <kitone@gna.org>
 
 	* plugins/actions/errorchecking/dialog-error-checking-preferences.glade:
