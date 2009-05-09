@@ -251,16 +251,12 @@ std::list<Pattern*> PatternManager::get_patterns(const Glib::ustring &script, co
 
 	std::list<Pattern*> patterns;
 
-	std::list<Pattern*>::const_iterator it;
-	for(it = m_patterns.begin(); it != m_patterns.end(); ++it)
+	for(unsigned int i=0; i< codes.size(); ++i)
 	{
-		for(unsigned int i=0; i< codes.size(); ++i)
+		for(std::list<Pattern*>::const_iterator it = m_patterns.begin(); it != m_patterns.end(); ++it)
 		{
 			if((*it)->m_codes == codes[i])
-			{
 				patterns.push_back(*it);
-				break;
-			}
 		}
 	}
 	// the patterns need to be filtered to respect the Replace policy
@@ -363,6 +359,7 @@ std::list<Pattern*> PatternManager::filter_patterns(std::list<Pattern*> &list)
 		if(have_replacement == false)
 			filter.push_back(*it);
 	}
+	filter.reverse();
 	return filter;
 }
 
