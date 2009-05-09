@@ -1,3 +1,8 @@
+2009-05-09  kitone  <kitone@gna.org>
+
+	* plugins/actions/textcorrection/patternmanager.cc:
+	Fixed error in implementation. Poorly sorted patternmanager: get_patterns.
+
 2009-05-07  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
