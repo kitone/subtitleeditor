@@ -1,5 +1,11 @@
 2009-05-12  kitone  <kitone@gna.org>
 
+	* plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in:
+	Update with policy value.
+
+2009-05-12  kitone  <kitone@gna.org>
+
 	* plugins/actions/textcorrection/confirmationpage.h:
 	Select modified subtitles.
 
