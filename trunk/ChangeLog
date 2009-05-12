@@ -1,3 +1,19 @@
+2009-05-12  kitone  <kitone@gna.org>
+
+	* plugins/actions/textcorrection/Latn-en.capitalization.se-pattern.in:
+	* plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn.capitalization.se-pattern.in:
+	* plugins/actions/textcorrection/Latn.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in:
+	* plugins/actions/textcorrection/Makefile.am:
+	* plugins/actions/textcorrection/capitalizationpage.h:
+	* plugins/actions/textcorrection/textcorrection.cc:
+	Extract capitalization pattern from common-error to
+	capitalization.se-pattern. New Latn-fi pattern. Update from Gaupol
+	repository.
+
 2009-05-09  kitone  <kitone@gna.org>
 
 	* plugins/actions/textcorrection/patternmanager.cc:

@@ -9,7 +9,7 @@
     <rule regex="(?&lt;=[A-Z][A-Z])l" flags="DOTALL;MULTILINE;UNICODE;" replacement="I" repeat="True"/>
     <rule regex="l(?=[A-Z])" flags="DOTALL;MULTILINE;UNICODE;" replacement="I" repeat="True"/>
     <rule regex="(?&lt;![a-hj-z]-)\bl\b(?!-[a-hj-z])" flags="DOTALL;MULTILINE;UNICODE;" replacement="I" repeat="True"/>
-    <rule regex="((\s|^)[&quot;']?)l(?!bs)(?!lama)([bcdfghjklmnpqrstvwxz])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1I\3" repeat="False"/>
+    <rule regex="((\s|^)[&quot;'«»]?)l(?!bs)(?!lama)([bcdfghjklmnpqrstvwxz])" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1I\3" repeat="False"/>
   </pattern>
   <pattern _name="Zero in an upper case word" _description="Replace zero with letter &quot;O&quot; in an upper case word" classes="OCR;">
     <rule regex="(?&lt;=[A-Z])0(?!\d)" flags="DOTALL;MULTILINE;UNICODE;" replacement="O" repeat="True"/>
@@ -20,9 +20,5 @@
   </pattern>
   <pattern _name="Okay" _description="Convert various two-letter spellings of okay to &quot;OK&quot;" classes="Human;">
     <rule regex="\b(ok|Ok|O\.K\.)\b" flags="DOTALL;MULTILINE;UNICODE;" replacement="OK" repeat="False"/>
-  </pattern>
-	<!-- \u is not supported by gaupol, gaupol used special a pattern 'capitalization' -->
-  <pattern _name="First person pronoun" _description="Capitalize the first person pronoun &quot;I&quot;" classes="Human;OCR;">
-    <rule regex="(\bi\b)" flags="DOTALL;MULTILINE;UNICODE;" replacement="\u\1" repeat="False"/>
   </pattern>
 </patterns>

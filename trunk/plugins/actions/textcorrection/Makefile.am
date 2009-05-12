@@ -18,6 +18,7 @@ pluginlib_LTLIBRARIES = \
 	libtextcorrection.la
 
 libtextcorrection_la_SOURCES = \
+	capitalizationpage.h \
 	commonerrorpage.h \
 	confirmationpage.h \
 	hearingimpairedpage.h \
@@ -39,10 +40,13 @@ plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)
 @INTLTOOL_SE_PLUGIN_RULE@
 
 pattern_in_files = \
+	Latn.capitalization.se-pattern.in \
 	Latn.common-error.se-pattern.in \
 	Latn-en.common-error.se-pattern.in \
+	Latn-en.capitalization.se-pattern.in \
 	Latn-en.hearing-impaired.se-pattern.in \
 	Latn-en-US.common-error.se-pattern.in \
+	Latn-fi.common-error.se-pattern.in \
 	Latn-fr.common-error.se-pattern.in \
 	Latn.hearing-impaired.se-pattern.in \
 	Zyyy.common-error.se-pattern.in
