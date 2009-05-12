@@ -29,6 +29,7 @@
 #include "taskspage.h"
 #include "hearingimpairedpage.h"
 #include "commonerrorpage.h"
+#include "capitalizationpage.h"
 #include "confirmationpage.h"
 
 /*
@@ -62,6 +63,7 @@ public:
 	{
 		add_page(manage(new HearingImpairedPage), 1);
 		add_page(manage(new CommonErrorPage), 2);
+		add_page(manage(new CapitalizationPage), 3);
 	}
 
 	/*

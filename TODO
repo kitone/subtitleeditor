@@ -1,6 +1,9 @@
 SubtitleEditor stable + 1
 -------------------
 
+	* Fix pattern
+		- Spaces around guillemets replace with ([^\s])([«»])
+
 	* Move WaveformGenerator in plugins/WaveformManagement
 	* Rewrite the FindAndReplace with Glib::Regex (waiting the Glib::MatchInfo API) and fix segault (find; replace all).
 	* check Undo/Redo subtitles selection
