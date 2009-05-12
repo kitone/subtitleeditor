@@ -1,5 +1,10 @@
 2009-05-12  kitone  <kitone@gna.org>
 
+	* plugins/actions/textcorrection/confirmationpage.h:
+	Select modified subtitles.
+
+2009-05-12  kitone  <kitone@gna.org>
+
 	* plugins/actions/textcorrection/Latn-en.capitalization.se-pattern.in:
 	* plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in:
 	* plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in:

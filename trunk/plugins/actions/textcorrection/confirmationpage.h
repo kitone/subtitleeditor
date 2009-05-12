@@ -180,7 +180,7 @@ public:
 		g_return_if_fail(doc);
 
 		bool remove_blank = m_checkRemoveBlank->get_active();
-		std::vector<Subtitle> blank_subs;
+		std::vector<Subtitle> blank_subs, selection;
 
 		doc->start_command(_("Text Correction"));
 		Subtitles subtitles = doc->subtitles();
@@ -196,12 +196,16 @@ public:
 
 			Subtitle sub = subtitles.get(num);
 			if(sub.get_text() != corrected)
+			{
 				sub.set_text(corrected);
-
+				selection.push_back(sub);
+			}
 			if(remove_blank)
 				if(sub.get_text().empty())
 					blank_subs.push_back(sub);
 		}
+		// Select the modified subtitles
+		subtitles.select(selection);
 		// Remove the blank subtitles
 		if(remove_blank && blank_subs.empty() == false)
 			subtitles.remove(blank_subs);
