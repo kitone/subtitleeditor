@@ -105,6 +105,7 @@ protected:
 
 	/*
 	 * The patterns need to be filtered to respect the Replace policy
+	 * Maintain order of patterns with the same name
 	 */
 	std::list<Pattern*> filter_patterns(std::list<Pattern*> &list);
 

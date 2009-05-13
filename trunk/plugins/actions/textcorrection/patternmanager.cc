@@ -247,6 +247,8 @@ std::vector<Glib::ustring> PatternManager::get_codes(const Glib::ustring &script
  */
 std::list<Pattern*> PatternManager::get_patterns(const Glib::ustring &script, const Glib::ustring &language, const Glib::ustring &country)
 {
+	se_debug_message(SE_DEBUG_PLUGINS, "Codes: %s-%s-%s", script.c_str(), language.c_str(), country.c_str());
+
 	std::vector<Glib::ustring> codes = get_codes(script, language, country);
 
 	std::list<Pattern*> patterns;
@@ -260,7 +262,22 @@ std::list<Pattern*> PatternManager::get_patterns(const Glib::ustring &script, co
 		}
 	}
 	// the patterns need to be filtered to respect the Replace policy
-	return filter_patterns(patterns);
+	std::list<Pattern*> filtered = filter_patterns(patterns);
+	
+	if(se_debug_check_flags(SE_DEBUG_PLUGINS))
+	{
+		std::list<Pattern*>::iterator it;
+
+		se_debug_message(SE_DEBUG_PLUGINS, "pattern list before filter (%d)", patterns.size());
+		for(it = patterns.begin(); it != patterns.end(); ++it)
+			se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", (*it)->m_codes.c_str(), (*it)->m_name.c_str());
+
+		se_debug_message(SE_DEBUG_PLUGINS, "pattern list after filter (%d)", filtered.size());
+		for(it = filtered.begin(); it != filtered.end(); ++it)
+			se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", (*it)->m_codes.c_str(), (*it)->m_name.c_str());
+	}
+	
+	return filtered;
 }
 
 /*
@@ -337,30 +354,44 @@ std::vector<Glib::ustring> PatternManager::get_countries(const Glib::ustring &sc
 
 /*
  * The patterns need to be filtered to respect the Replace policy
+ * Maintain order of patterns with the same name
  */
-std::list<Pattern*> PatternManager::filter_patterns(std::list<Pattern*> &list)
+std::list<Pattern*> PatternManager::filter_patterns(std::list<Pattern*> &pattern)
 {
-	list.reverse();
-
-	std::list<Pattern*> filter;
-	std::list<Pattern*>::iterator it, it2;
-	for(it = list.begin(); it != list.end(); ++it)
+	std::list<Pattern*> filtered;
+	std::list<Pattern*>::iterator p, f, last_idx;
+	
+	for( p = pattern.begin(); p != pattern.end(); ++p)
 	{
-		bool have_replacement = false;
-		
-		for(it2 = it, ++it2; it2 != list.end(); ++it2)
+		bool replace = ((*p)->m_policy == "Replace");
+
+		last_idx = filtered.end();
+		for(f=filtered.begin(); f!=filtered.end(); ++f)
 		{
-			if((*it2)->m_name == (*it)->m_name)
+			if((*f)->m_name == (*p)->m_name)
 			{
-				if((*it2)->m_policy == "Replace")
-					have_replacement = true;
+				last_idx = f;
+				if(replace)
+					*f = NULL;
 			}
 		}
-		if(have_replacement == false)
-			filter.push_back(*it);
+		
+		if(last_idx == filtered.end())
+			filtered.push_back(*p);
+		else
+			filtered.insert(++last_idx, *p);
+
+		// Remove NULL
+		f = filtered.begin();
+		while(f != filtered.end() )
+		{
+			if(*f == NULL)
+				f = filtered.erase(f);
+			else
+				++f;
+		}
 	}
-	filter.reverse();
-	return filter;
+	return filtered;
 }
 
 /*
