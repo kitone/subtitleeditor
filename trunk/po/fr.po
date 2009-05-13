@@ -2886,7 +2886,7 @@ msgstr ""
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:1
 msgid "Controls the video player."
-msgstr "Ouvrir film avec lecteur vidéo externe"
+msgstr "Contrôle le lecteur vidéo."
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:2
 msgid "Video Player Management"
