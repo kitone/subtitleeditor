@@ -1,3 +1,8 @@
+2009-05-16  kitone  <kitone@gna.org>
+
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	Fix: 'play/pause' doesn't work after 'play selection'.
+
 2009-05-13  kitone  <kitone@gna.org>
 
 	* plugins/actions/textcorrection/patternmanager.cc:
