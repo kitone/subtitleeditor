@@ -43,6 +43,7 @@ public:
 		init_widget(xml, "check-show-character-per-line", "subtitle-view", "show-character-per-line");
 		init_widget(xml, "check-enable-rubberband-selection", "subtitle-view", "enable-rubberband-selection");
 		init_widget(xml, "check-used-ctrl-enter-to-confirm-change", "subtitle-view", "used-ctrl-enter-to-confirm-change");
+		init_widget(xml, "check-do-not-disable-actions-during-editing", "subtitle-view", "do-not-disable-actions-during-editing");
 
 		init_widget(xml, "check-create-backup-copy", "interface", "create-backup-copy");
 		init_widget(xml, "check-autosave", "interface", "used-autosave");

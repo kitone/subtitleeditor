@@ -165,6 +165,21 @@
                                 <property name="position">3</property>
                               </packing>
                             </child>
+                            <child>
+                              <widget class="GtkCheckButton" id="check-do-not-disable-actions-during-editing">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="has_tooltip">True</property>
+                                <property name="tooltip_text">When enabled, the actions are not disabled while editing, but this can make a conflict with keyboard shortcuts without modifier.</property>
+                                <property name="label" translatable="yes">_Do not disable the actions during editing</property>
+                                <property name="use_underline">True</property>
+                                <property name="response_id">0</property>
+                                <property name="draw_indicator">True</property>
+                              </widget>
+                              <packing>
+                                <property name="position">4</property>
+                              </packing>
+                            </child>
                           </widget>
                         </child>
                       </widget>
@@ -1371,7 +1386,6 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="headers_clickable">True</property>
                                   </widget>
                                 </child>
                               </widget>
