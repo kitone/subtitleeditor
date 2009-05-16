@@ -565,7 +565,10 @@ protected:
 		if(player()->is_playing())
 			player()->pause();
 		else
+		{
+			player()->seek(player()->get_position());
 			player()->play();
+		}
 	}
 
 	/*
