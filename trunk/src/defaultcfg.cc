@@ -97,6 +97,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["subtitle-view"]["columns-displayed"] = "number;start;end;duration;text";
 	config["subtitle-view"]["columns-list"] = "cps;duration;effect;end;layer;margin-l;margin-r;margin-v;name;note;number;start;style;text;translation";
 	config["subtitle-view"]["used-ctrl-enter-to-confirm-change"] = "false";
+	config["subtitle-view"]["do-not-disable-actions-during-editing"] = "false";
 
 	//[timing]
 	config["timing"]["min-characters-per-second"] = "5";

@@ -231,6 +231,9 @@ protected:
 	 */
 	void set_action_groups_sensitives(bool state)
 	{
+		if(Config::getInstance().get_value_bool("subtitle-view", "do-not-disable-actions-during-editing"))
+			return;
+
 		std::list< Glib::RefPtr<Gtk::ActionGroup> > actions = 
 			SubtitleEditorWindow::get_instance()->get_ui_manager()->get_action_groups();
 
@@ -238,7 +241,7 @@ protected:
 		for(it = actions.begin(); it != actions.end(); ++it)
 		{
 			(*it)->set_sensitive(state);
-		} 
+		}
 	}
 
 	/*

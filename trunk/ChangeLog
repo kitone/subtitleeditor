@@ -1,5 +1,13 @@
 2009-05-16  kitone  <kitone@gna.org>
 
+	* plugins/actions/preferences/dialog-preferences.glade:
+	* plugins/actions/preferences/interfacepage.h:
+	* src/defaultcfg.cc:
+	* src/subtitleview.cc:
+	Fix: bug #2341 : Add option to don't disable the actions during editing.
+
+2009-05-16  kitone  <kitone@gna.org>
+
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
 	Fix: 'play/pause' doesn't work after 'play selection'.
 
