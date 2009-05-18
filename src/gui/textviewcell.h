@@ -41,6 +41,11 @@ public:
 	/*
 	 *
 	 */
+	~TextViewCell();
+
+	/*
+	 *
+	 */
 	Glib::ustring get_text();
 
 	/*
