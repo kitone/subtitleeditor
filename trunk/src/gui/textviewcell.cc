@@ -23,7 +23,6 @@
 #include <cfg.h>
 #include <debug.h>
 #include "textviewcell.h"
-#include <iostream>
 
 /*
  *
@@ -32,8 +31,6 @@ TextViewCell::TextViewCell()
 :	Glib::ObjectBase(typeid(TextViewCell)),
 	Gtk::CellEditable()
 {
-	std::cout << "TextViewCell" << std::endl;
-
 	se_debug(SE_DEBUG_VIEW);
 
 	m_canceled = false;
@@ -45,14 +42,6 @@ TextViewCell::TextViewCell()
 		set_justification(Gtk::JUSTIFY_CENTER);
 
 	set_wrap_mode(Gtk::WRAP_NONE);
-}
-
-/*
- *
- */
-TextViewCell::~TextViewCell()
-{
-	std::cout << "~TextViewCell" << std::endl;
 }
 
 /*
