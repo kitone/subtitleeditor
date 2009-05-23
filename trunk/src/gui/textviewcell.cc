@@ -23,6 +23,7 @@
 #include <cfg.h>
 #include <debug.h>
 #include "textviewcell.h"
+#include "automaticspellchecker.h"
 
 /*
  *
@@ -42,6 +43,8 @@ TextViewCell::TextViewCell()
 		set_justification(Gtk::JUSTIFY_CENTER);
 
 	set_wrap_mode(Gtk::WRAP_NONE);
+
+	AutomaticSpellChecker::create_from_textview(this);
 }
 
 /*
