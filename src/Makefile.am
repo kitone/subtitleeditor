@@ -53,6 +53,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	player.h \
 	scriptinfo.cc \
 	scriptinfo.h \
+	spellchecker.cc \
+	spellchecker.h \
 	style.cc \
 	style.h \
 	stylemodel.cc \
@@ -122,12 +124,14 @@ libsubtitleeditor_la_SOURCES = \
 libsubtitleeditor_la_LIBADD = \
 	$(GTKMM_LIBS) \
 	$(LIBGLADEMM_LIBS) \
-	$(LIBXML_LIBS)
+	$(LIBXML_LIBS) \
+	$(ENCHANT_LIBS)
 
 libsubtitleeditor_la_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \
 	$(LIBGLADEMM_CFLAGS) \
 	$(LIBXML_CFLAGS) \
+	$(ENCHANT_CFLAGS) \
 	$(PACKAGE_DIRECTORY)
 
 
