@@ -1,6 +1,15 @@
 2009-05-23  kitone  <kitone@gna.org>
 
 	* src/Makefile.am:
+	Add new files automaticspellchecker.h and automaticspellchecker.cc.
+
+	* src/gui/automaticspellchecker.cc:
+	* src/gui/automaticspellchecker.h:
+	Introduce a new class AutomaticSpellChecker.
+
+2009-05-23  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
 	Add new files spellchecker.h and spellchecker.cc.
 
 	* src/spellchecker.cc:
