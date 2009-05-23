@@ -90,6 +90,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	widget_config_utility.h
 
 LIB_GUI_FILES = \
+	gui/automaticspellchecker.cc \
+	gui/automaticspellchecker.h \
 	gui/cellrenderercustom.cc \
 	gui/cellrenderercustom.h \
 	gui/comboboxencoding.cc \
