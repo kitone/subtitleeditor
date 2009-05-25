@@ -467,7 +467,7 @@ void AutomaticSpellChecker::build_suggestion_menu(const Glib::ustring &word, Gtk
 	menu->prepend(*mi);
 	// ignore all
 	mi = manage(new Gtk::ImageMenuItem(
-				*manage(new Gtk::Image(Gtk::Stock::GOTO_BOTTOM, Gtk::ICON_SIZE_MENU)) , 
+				*manage(new Gtk::Image(Gtk::Stock::REMOVE, Gtk::ICON_SIZE_MENU)) , 
 				_("_Ignore all"), true));
 	mi->signal_activate().connect(
 			sigc::mem_fun(*this, &AutomaticSpellChecker::on_ignore_all));
