@@ -1,5 +1,10 @@
 2009-05-25  kitone  <kitone@gna.org>
 
+	* src/gui/automaticspellchecker.cc:
+	Change icon 'goto-bottom' to 'remove'.
+
+2009-05-25  kitone  <kitone@gna.org>
+
 	* src/spellchecker.cc:
 	Add debug msg.
 
