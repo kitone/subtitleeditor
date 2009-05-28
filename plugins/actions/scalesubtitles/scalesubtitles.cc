@@ -19,7 +19,7 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include <extension/action.h>
 #include <utility.h>
 #include <gtkmm_utility.h>
@@ -73,23 +73,38 @@ public:
 			unsigned int firstNumber = (unsigned int)m_spinFirstNumber->get_value();
 			unsigned int lastNumber = (unsigned int)m_spinLastNumber->get_value();
 
-			Subtitle firstSubtitle = subtitles.get(firstNumber);
-			Subtitle lastSubtitle = subtitles.get(lastNumber);
+			if(firstNumber > lastNumber)
+			{
+				dialog_warning(
+						_("You can't use <i>scale</i> with this values."), 
+						_("The first point is superior to the last point."));
+			}
+			else if(firstNumber == lastNumber)
+			{
+				dialog_warning(
+						_("You can't use <i>scale</i> with this values."), 
+						_("The first point is equal to the last point."));
+			}
+			else
+			{
+				Subtitle firstSubtitle = subtitles.get(firstNumber);
+				Subtitle lastSubtitle = subtitles.get(lastNumber);
 			
-			SubtitleTime dest1( (long int)m_spinFirstNewStart->get_value() );
-			SubtitleTime dest2( (long int)m_spinLastNewStart->get_value() );
+				SubtitleTime dest1( (long int)m_spinFirstNewStart->get_value() );
+				SubtitleTime dest2( (long int)m_spinLastNewStart->get_value() );
 
-			// apply change
-			signal_scale(firstSubtitle, dest1, lastSubtitle, dest2);
+				// apply change
+				doc->start_command(_("Scale subtitles"));
+				
+				scale(firstSubtitle, dest1, lastSubtitle, dest2);
+
+				doc->emit_signal("subtitle-time-changed");
+				doc->finish_command();
+				doc->flash_message(_("The scale was applied"));
+			}
 		}
-
 		hide();
 	}
-
-	/*
-	 *	
-	 */
-	sigc::signal<void, Subtitle, SubtitleTime, Subtitle, SubtitleTime> signal_scale;
 
 protected:
 
@@ -205,6 +220,51 @@ protected:
 		label->set_text(text);
 	}
 
+	/*
+	 *
+	 */
+	void scale(
+			const Subtitle &sub1, const SubtitleTime &dest1,
+			const Subtitle &sub2, const SubtitleTime &dest2)
+	{
+		SubtitleTime source1 = sub1.get_start();
+		SubtitleTime source2 = sub2.get_start();
+
+		double scale = calcul_scale(
+				sub1.get_start().totalmsecs, dest1.totalmsecs,
+				sub2.get_start().totalmsecs, dest2.totalmsecs);
+
+		// sub2 + 1
+		Subtitle end = sub2; ++end;
+
+		for(Subtitle subtitle=sub1; subtitle != end; ++subtitle)
+		{
+			SubtitleTime start = calcul(subtitle.get_start(), scale, source1, dest1);
+			SubtitleTime end = calcul(subtitle.get_end(), scale, source1, dest1);
+
+			subtitle.set_start_and_end(start, end);
+		}
+	}
+
+
+	/*
+	 *
+	 */
+	SubtitleTime calcul(
+			const SubtitleTime &source, double scale,
+			const SubtitleTime &sourcedisp, const SubtitleTime &destdisp)
+	{
+		return (source + (((source - sourcedisp) * scale) + (destdisp - sourcedisp)));
+	}
+
+	/*
+	 *
+	 */
+	double calcul_scale(long source1, long dest1, long source2, long dest2)
+	{
+		return (double)(((dest2 - source2) - (dest1 - source1)) / (double)(source2 - source1));
+	}
+
 protected:
 	Document*					m_document;
 	TIMING_MODE				m_edit_timing_mode;
@@ -307,72 +367,9 @@ protected:
 						"dialog-scale-subtitles.glade", 
 						"dialog-scale-subtitles"));
 
-		dialog->signal_scale.connect(
-				sigc::mem_fun(*this, &ScaleSubtitlesPlugin::scale));
 		dialog->execute(doc);
 	}
 	
-
-	/*
-	 *
-	 */
-	void scale(
-			const Subtitle &sub1, const SubtitleTime &dest1,
-			const Subtitle &sub2, const SubtitleTime &dest2)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		Document *doc = get_current_document();
-
-		doc->start_command(_("Scale subtitles"));
-
-		SubtitleTime source1 = sub1.get_start();
-		SubtitleTime source2 = sub2.get_start();
-
-
-		double scale = calcul_scale(
-				sub1.get_start().totalmsecs, dest1.totalmsecs,
-				sub2.get_start().totalmsecs, dest2.totalmsecs);
-
-		// sub2 + 1
-		Subtitle end = sub2; ++end;
-
-		for(Subtitle subtitle=sub1; subtitle != end; ++subtitle)
-		{
-			SubtitleTime start = calcul(subtitle.get_start(), scale, source1, dest1);
-			SubtitleTime end = calcul(subtitle.get_end(), scale, source1, dest1);
-
-			subtitle.set_start_and_end(start, end);
-		}
-
-		doc->emit_signal("subtitle-time-changed");
-		doc->finish_command();
-		doc->flash_message(_("The scale was applied"));
-	}
-
-
-	/*
-	 *
-	 */
-	SubtitleTime calcul(
-			const SubtitleTime &source, double scale,
-			const SubtitleTime &sourcedisp, const SubtitleTime &destdisp)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		return (source + (((source - sourcedisp) * scale) + (destdisp - sourcedisp)));
-	}
-
-	/*
-	 *
-	 */
-	double calcul_scale(long source1, long dest1, long source2, long dest2)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		return (double)(((dest2 - source2) - (dest1 - source1)) / (double)(source2 - source1));
-	}
-
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;

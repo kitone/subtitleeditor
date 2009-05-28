@@ -1,5 +1,10 @@
 2009-05-28  kitone  <kitone@gna.org>
 
+	* plugins/actions/scalesubtitles/scalesubtitles.cc:
+	More robust with the wrong values of the points, display error messages.
+
+2009-05-28  kitone  <kitone@gna.org>
+
 	* src/gui/automaticspellchecker.cc:
 	* src/gui/automaticspellchecker.h:
 	Don't split a word with apostrophe.
