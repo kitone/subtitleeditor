@@ -1,3 +1,9 @@
+2009-05-28  kitone  <kitone@gna.org>
+
+	* src/gui/automaticspellchecker.cc:
+	* src/gui/automaticspellchecker.h:
+	Don't split a word with apostrophe.
+
 2009-05-25  kitone  <kitone@gna.org>
 
 	* src/gui/automaticspellchecker.cc:

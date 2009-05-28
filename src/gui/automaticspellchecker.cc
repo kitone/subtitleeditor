@@ -227,12 +227,12 @@ void AutomaticSpellChecker::get_word_extents_from_mark(const Glib::RefPtr<Gtk::T
 	start = m_buffer->get_iter_at_mark(mark);
 
 	if(!start.starts_word())
-		start.backward_word_start();
+		iter_backward_word_start(start);
 
 	end = start;
 
 	if(end.inside_word())
-		end.forward_word_end();
+		iter_forward_word_end(end);
 }
 
 /*
@@ -276,21 +276,21 @@ void AutomaticSpellChecker::check_range(Gtk::TextIter start, Gtk::TextIter end, 
 	bool highlight;
 
 	if(end.inside_word())
-		end.forward_word_end();
+		iter_forward_word_end(end);
 
 	if(!start.starts_word())
 	{
 		if(start.inside_word() || start.ends_word())
 		{
-			start.backward_word_start();
+			iter_backward_word_start(start);
 		}
 		else
 		{
 			// if we're neither at the beginning nor inside a word,
 			// me must be in some spaces.
 			// skip forward to the beginning of the next word.
-			if(start.forward_word_end())
-				start.backward_word_start();
+			if(iter_forward_word_end(start))
+				iter_backward_word_start(start);
 		}
 	}
 
@@ -310,8 +310,8 @@ void AutomaticSpellChecker::check_range(Gtk::TextIter start, Gtk::TextIter end, 
 	// even if it's not.  Possibly a pango bug.
 	if(start.get_offset() == 0)
 	{
-		start.forward_word_end();
-		start.backward_word_start();
+		iter_forward_word_end(start);
+		iter_backward_word_start(start);
 	}
 
 	wstart = start;
@@ -320,7 +320,7 @@ void AutomaticSpellChecker::check_range(Gtk::TextIter start, Gtk::TextIter end, 
 	{
 		// move wend to the end of the current word.
 		wend = wstart;
-		wend.forward_word_end();
+		iter_forward_word_end(wend);
 
 		bool inword = (wstart.compare(cursor) < 0) && (cursor.compare(wend) < 0);
 
@@ -341,8 +341,8 @@ void AutomaticSpellChecker::check_range(Gtk::TextIter start, Gtk::TextIter end, 
 		}
 
 		// now move wend to the beginning of the next word,
-		wend.forward_word_end();
-		wend.backward_word_start();
+		iter_forward_word_end(wend);
+		iter_backward_word_start(wend);
 
 		// make sure we've actually advanced
 		// (we don't advance in some corner cases),
@@ -670,5 +670,43 @@ void AutomaticSpellChecker::on_set_current_language(const Glib::ustring &isocode
 	SpellChecker::instance()->set_dictionary(isocode);
 	// FIXME: connect to SpellChecker ?
 	recheck_all();
+}
+
+/*
+ * heuristic:
+ * if we're on an singlequote/apostrophe and
+ * if the next letter is alphanumeric, this is an apostrophe.
+ */
+bool AutomaticSpellChecker::iter_forward_word_end(Gtk::TextIter &i)
+{
+	if(!i.forward_word_end())
+		return false;
+	if(i.get_char() != '\'')
+		return true;
+
+	Gtk::TextIter iter = i;
+	if(iter.forward_char())
+		if(g_unichar_isalpha(iter.get_char()))
+			return i.forward_word_end();
+	return true;
+}
+
+/*
+ * heuristic:
+ * if we're on an singlequote/apostrophe and
+ * if the next letter is alphanumeric, this is an apostrophe.
+ */
+bool AutomaticSpellChecker::iter_backward_word_start(Gtk::TextIter &i)
+{
+	if(!i.backward_word_start())
+		return false;
+
+	Gtk::TextIter iter = i;
+	if(iter.backward_char())
+		if(iter.get_char() == '\'')
+			if(iter.backward_char())
+				if(g_unichar_isalpha(iter.get_char()))
+					return i.backward_word_start();
+	return true;
 }
 

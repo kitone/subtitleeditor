@@ -229,6 +229,20 @@ protected:
 	 */
 	static void automatic_spell_checker_destroy(gpointer data);
 
+	/*
+	 * heuristic:
+	 * if we're on an singlequote/apostrophe and
+	 * if the next letter is alphanumeric, this is an apostrophe.
+	 */
+	bool iter_forward_word_end(Gtk::TextIter &i);
+
+	/*
+	 * heuristic:
+	 * if we're on an singlequote/apostrophe and
+	 * if the next letter is alphanumeric, this is an apostrophe.
+	 */
+	bool iter_backward_word_start(Gtk::TextIter &i);
+
 protected:
 	Gtk::TextView* m_textview;
 	Glib::RefPtr<Gtk::TextBuffer::Mark> m_mark_insert_start;
