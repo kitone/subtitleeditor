@@ -178,6 +178,17 @@ protected:
 	std::string m_active_lang;
 };
 
+/*
+ */
+bool spell_checker_is_digit(const Glib::ustring &text)
+{
+	for( Glib::ustring::const_iterator it = text.begin(); it != text.end(); ++it)
+	{
+		if(!g_unichar_isdigit(*it) && *it != '.' && *it != ',')
+			return false;
+	}
+	return true;
+}
 
 /*
  * Constructor
@@ -276,6 +287,10 @@ bool SpellChecker::check(const Glib::ustring &word)
 	se_debug_message(SE_DEBUG_SPELL_CHECKING, "check the word '%s'", word.c_str());
 	try
 	{
+		// Don't check number
+		if(spell_checker_is_digit(word))
+			return true;
+
 		return m_spellcheckerDict->check(word);
 	}
 	catch(std::exception &ex)
