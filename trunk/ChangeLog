@@ -1,3 +1,8 @@
+2009-05-30  kitone  <kitone@gna.org>
+
+	* src/spellchecker.cc:
+	Don't check number.
+
 2009-05-28  kitone  <kitone@gna.org>
 
 	* plugins/actions/scalesubtitles/scalesubtitles.cc:
