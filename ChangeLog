@@ -1,5 +1,16 @@
 2009-06-01  kitone  <kitone@gna.org>
 
+	* plugins/actions/spellchecking/Makefile.am:
+	* plugins/actions/spellchecking/spellchecking.h:
+	Remove file spellchecking.h.
+
+	* plugins/actions/spellchecking/dialog-spell-checking.glade:
+	* plugins/actions/spellchecking/spellchecking.cc:
+	Complete rewrite of the spellchecking plugin. 
+	Use the SpellChecker, can check the translation. 
+
+2009-06-01  kitone  <kitone@gna.org>
+
 	* src/document.cc:
 	* src/document.h:
 	* src/subtitleview.cc:

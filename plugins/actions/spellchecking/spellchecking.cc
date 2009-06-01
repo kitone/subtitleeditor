@@ -19,650 +19,670 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#include <enchant++.h>
-#include <iostream>
+
 #include <extension/action.h>
-#include <utility.h>
 #include <isocodes.h>
+#include <utility.h>
 #include <gtkmm_utility.h>
-#include "spellchecking.h"
+#include <spellchecker.h>
 #include <memory>
 
 /*
- *	erreur de compilation si j'utilise enchant++.h dans le header :(
  */
-static enchant::Dict* m_enchantDict = NULL;
-
-/*
- *
- */
-std::map<Glib::ustring, Glib::ustring> m_iso_to_lang;
-
-/*
- *
- */
-Glib::ustring get_language_by_abrev(const Glib::ustring &abrev)
+class DialogSpellChecking : public Gtk::Dialog
 {
-	se_debug_message(SE_DEBUG_SPELL_CHECKING, "abrev=<%s>", abrev.c_str());
-
-	if(m_iso_to_lang.find(abrev) != m_iso_to_lang.end())
-	{
-		return m_iso_to_lang[abrev];
-	}
-	
-	Glib::ustring lang = isocodes::to_name(abrev);
-
-	m_iso_to_lang[abrev] = lang;
-	
-	return lang;
-}
-
-/*
- *
- */
-Glib::ustring get_abrev_by_language(const Glib::ustring &name)
-{
-	se_debug_message(SE_DEBUG_SPELL_CHECKING, "language=<%s>", name.c_str());
-
-	std::map<Glib::ustring, Glib::ustring>::const_iterator it;
-
-	for(it = m_iso_to_lang.begin(); it != m_iso_to_lang.end(); ++it)
-	{
-		if(it->second == name)
-			return it->first;
-	}
-	return "";
-}
-
-
-
-
-/*
- *	callback utiliser pour recuperer les dicts
- */
-void callback_list_dicts(const char *const lang_tag,
-		const char *const provider_name,
-		const char *const provider_desc,
-		const char *const provider_file,
-		void *user_data)
-{
-	se_debug_message(SE_DEBUG_SPELL_CHECKING, "%s %s %s %s", 
-			lang_tag, provider_name, provider_desc, provider_file);
-
-	std::list<Glib::ustring> *list = (std::list<Glib::ustring>*)user_data;
-
-	Glib::ustring name = get_language_by_abrev(lang_tag);
-
-	if(!name.empty())
-		list->push_back(name);
-}
-
-
-/*
- *
- */
-DialogSpellChecking::DialogSpellChecking(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-:Gtk::Dialog(cobject)
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	utility::set_transient_parent(*this);
-
-	// get widgets
-	refGlade->get_widget("textview", m_textview);
-
-	refGlade->get_widget("entry-replace-with", m_entryReplaceWith);
-	refGlade->get_widget("button-check-word", m_buttonCheckWord);
-	
-	refGlade->get_widget("treeview-suggestions", m_treeviewSuggestions);
-
-	create_treeview_suggestions();
-
-	refGlade->get_widget("button-replace", m_buttonReplace);
-	refGlade->get_widget("button-ignore", m_buttonIgnore);
-	refGlade->get_widget("button-ignore-all", m_buttonIgnoreAll);
-	refGlade->get_widget("button-add-word", m_buttonAddWord);
-
-
-	refGlade->get_widget_derived("combobox-dicts", m_comboboxDicts);
-
-	refGlade->get_widget("label-completed-spell-checking", m_labelCompletedSpellChecking);
-
-	// connect signal
-	m_buttonCheckWord->signal_clicked().connect(
-			sigc::mem_fun(*this, &DialogSpellChecking::on_check_word));
-	
-	m_buttonReplace->signal_clicked().connect(
-			sigc::mem_fun(*this, &DialogSpellChecking::on_replace));
-	
-	m_buttonIgnore->signal_clicked().connect(
-			sigc::mem_fun(*this, &DialogSpellChecking::on_ignore));
-	
-	m_buttonIgnoreAll->signal_clicked().connect(
-			sigc::mem_fun(*this, &DialogSpellChecking::on_ignore_all));
-	
-	m_buttonAddWord->signal_clicked().connect(
-			sigc::mem_fun(*this, &DialogSpellChecking::on_add_word));
-
-	m_treeviewSuggestions->get_selection()->signal_changed().connect(
-			sigc::mem_fun(*this, &DialogSpellChecking::on_treeview_suggestions_selection_changed));
-
-
-	// init ui sensitive
-	m_textview->set_editable(false);
-	m_textview->set_sensitive(false);
-	Glib::RefPtr<Gtk::TextTag> bold = m_textview->get_buffer()->create_tag("word");
-	bold->property_weight() = Pango::WEIGHT_BOLD;
-	bold->property_foreground() = "red";
-	//bold->property_underline() = Pango::UNDERLINE_ERROR;
-
-
-	m_entryReplaceWith->set_sensitive(false);
-	m_buttonCheckWord->set_sensitive(false);
-	m_treeviewSuggestions->set_sensitive(false);
-	m_buttonIgnore->set_sensitive(false);
-	m_buttonIgnoreAll->set_sensitive(false);
-	m_buttonReplace->set_sensitive(false);
-	m_buttonAddWord->set_sensitive(false);
-
-	m_labelCompletedSpellChecking->hide();
-
-
-	// recupere la list des dicts
-	std::list<Glib::ustring> list_dicts;
-	enchant::Broker::instance()->list_dicts(callback_list_dicts, &list_dicts);
-
-	list_dicts.sort();
-	for(std::list<Glib::ustring>::iterator it = list_dicts.begin(); it != list_dicts.end(); ++it)
-		m_comboboxDicts->append_text(*it);
-
-	// config dicts
-	Glib::ustring lang, tmp_lang;
-
-	// lecture de la config
-	if(Config::getInstance().get_value_string("spell-checking", "lang", tmp_lang))
-	{
-		if(set_dict(tmp_lang))
-		{
-			lang = tmp_lang;
-		}
-	}
-
-	// s'il n'y a pas de config utiliser LANG
-	if(lang.empty())
-	{
-		Glib::ustring tmp_lang = Glib::getenv("LANG");
-
-		Glib::ustring::size_type p = tmp_lang.find(".");
-		if( p != Glib::ustring::npos)
-		{
-			if(set_dict(tmp_lang.substr(0, p)))
-				lang = tmp_lang.substr(0, p);
-		}
-		else
-		{
-			if(set_dict(tmp_lang))
-				lang = tmp_lang;
-		}
-	}
-
-	// init le combobox
-	if(!lang.empty())
-		m_comboboxDicts->set_active_text(get_language_by_abrev(lang));
-
-	m_comboboxDicts->signal_changed().connect(
-			sigc::mem_fun(*this, &DialogSpellChecking::on_combobox_dicts_changed));
-}
-
-/*
- *
- */
-DialogSpellChecking::~DialogSpellChecking()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	delete m_enchantDict;
-	m_enchantDict = NULL;
-}
-
-/*
- *
- */
-bool DialogSpellChecking::set_dict(const Glib::ustring &name)
-{
-	se_debug_message(SE_DEBUG_SPELL_CHECKING, "lang=<%s>", name.c_str());
-
-
-	if(m_enchantDict)
-		delete m_enchantDict;
-
-	m_enchantDict = NULL;
-
-	try
-	{
-		m_enchantDict = enchant::Broker::instance()->request_dict(name);
-
-		Config::getInstance().set_value_string("spell-checking", "lang", name);
-
-		//m_treeviewSuggestions->set_sensitive(true);
-
-		return true;
-	}
-	catch(enchant::Exception &ex)
-	{
-		std::cerr << ex.what() << std::endl;
-		m_enchantDict = NULL;
-	}
-
-	return false;
-}
-
-/*
- *
- */
-void DialogSpellChecking::create_treeview_suggestions()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	m_listSuggestions = Glib::RefPtr<ListSuggestions>(new ListSuggestions);
-
-	m_treeviewSuggestions->set_model(m_listSuggestions);
-
-	Gtk::TreeViewColumn *column = NULL;
-	Gtk::CellRendererText *renderer = NULL;
-
-	column = manage(new Gtk::TreeViewColumn("Suggestions"));
-	renderer = manage(new Gtk::CellRendererText);
-	
-	column->pack_start(*renderer, false);
-	column->add_attribute(renderer->property_text(), m_listSuggestions->m_column.string);
-	
-	m_treeviewSuggestions->append_column(*column);	
-}
-
-/*
- *
- */
-void DialogSpellChecking::execute(Document *doc)
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	m_current_word = "";
-	m_current_text = "";
-	m_current_word_start = 0;
-	m_current_next_word = 0;
-	m_current_subtitle = doc->subtitles().get_first();
-
-	if(m_current_subtitle)
-		check_line(m_current_subtitle);
-
-	doc->start_command(_("Spell Checking"));
-	run();
-	doc->finish_command();
-}
-
-/*
- *	verifie le mot "word"
- *	return false en cas d'erreur dans le mot
- */
-bool DialogSpellChecking::check_word(const Glib::ustring &word)
-{
-	se_debug_message(SE_DEBUG_SPELL_CHECKING, "word=<%s>", word.c_str());
-
-	try
-	{
-		if(m_enchantDict)
-			return m_enchantDict->check(word);
-	}
-	catch(std::exception &ex) // enchant::Exception
-	{
-		se_debug_message(SE_DEBUG_SPELL_CHECKING, "exception '%s'", ex.what());
-		dialog_error("Failed to check word", ex.what());
-	}
-	catch(...)
-	{
-		se_debug_message(SE_DEBUG_SPELL_CHECKING, "unknow exception");
-		dialog_error("Failed to check word", "Unknow exception");
-	}
-	return false;
-}
-
-/*
- *	recupere le texte de l'iter
- *	init les m_current_xxx
- *	et appel check_text pour verifie le text
- */
-bool DialogSpellChecking::check_line(Subtitle subtitle)
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	if(subtitle)
-	{	
-		m_current_word.clear();
-		m_current_word_start = 0;
-		m_current_next_word = 0;
-
-		m_current_text = subtitle.get_text();
-
-		return check_text();
-	}
-	
-	return false;
-}
-
-/*
- * recupere le mot suivant a partir des info de m_current_word_
- */
-bool DialogSpellChecking::check_text()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	if(!m_current_text.empty())
-	{
-		for(unsigned int i=m_current_next_word; i<=m_current_text.size(); ++i)
-		{
-			if(is_end_char(m_current_text[i]))
-			{
-				m_current_word_start = m_current_next_word;
-
-				m_current_word = m_current_text.substr(m_current_word_start, i-m_current_next_word);
-
-				m_current_next_word = i+1;
-
-				if(!m_current_word.empty())
-				{
-					if(check_word(m_current_word) == false)
-					{
-						init_with_word(m_current_text, m_current_word);
-						return true;
-					}
-				}
-			}
-		}
-	}
-
-	return check_next_line();
-}
-
-/*
- *	passe a la ligne suivante grace a l'iter (m_current_subtitle)
- *	s'il n'y a pas de ligne suivante alors on init l'interface 
- *	set_sensitive(false) et affiche le message "Completed spell checking."
- */
-bool DialogSpellChecking::check_next_line()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	if(m_current_subtitle)
-	{
-		++m_current_subtitle;
-	
-		if(m_current_subtitle)
-			return check_line(m_current_subtitle);
-	}
-	
-	m_textview->get_buffer()->set_text("");
-	m_listSuggestions->clear();
-
-	m_textview->set_sensitive(false);
-	m_entryReplaceWith->set_sensitive(false);
-	m_buttonCheckWord->set_sensitive(false);
-	m_treeviewSuggestions->set_sensitive(false);
-	m_buttonReplace->set_sensitive(false);
-	m_buttonIgnore->set_sensitive(false);
-	m_buttonIgnoreAll->set_sensitive(false);
-	m_buttonAddWord->set_sensitive(false);
-	
-	m_labelCompletedSpellChecking->show();
-	
-	return false;
-}
-
-/*
- *	verifie les mots suivant
- */
-bool DialogSpellChecking::check_next_word()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	return check_text();
-}
-
-/*
- *	verifie la lettre pour savoir si c'est un nouveau mot
- *	, . " * 123456789, ...
- */
-bool DialogSpellChecking::is_end_char(gchar c)
-{
-	switch(c)
-	{
-	case ' ':
-	//case '\'':
-	case '\0':
-	case '\n':
-	case '.':
-	case ',':
-	case ':':
-	case ';':
-	case '*':
-	case '+':
-	case '=':
-	case '\t':
-	case '(':
-	case ')':
-	case '!':
-	case '|':
-	case '?':
-	case '-':
-	case '"':
-	case '0':
-	case '1':
-	case '2':
-	case '3':
-	case '4':
-	case '5':
-	case '6':
-	case '7':
-	case '8':
-	case '9':
-		return true;
-	default:
-	 return false;
-	}
-	return false;
-}
-
-/*
- *	init l'interface avec ce mot
- *	textview select
- *	list suggestion
- *	...
- */
-void DialogSpellChecking::init_with_word(const Glib::ustring &text, const Glib::ustring &word)
-{
-	se_debug_message(SE_DEBUG_SPELL_CHECKING, "text=<%s> word=<%s>", text.c_str(), word.c_str());
-
-	m_textview->set_sensitive(true);
-	m_treeviewSuggestions->set_sensitive(true);
-	
-	m_buttonCheckWord->set_sensitive(true);
-	m_entryReplaceWith->set_sensitive(true);
-
-	m_buttonReplace->set_sensitive(true);
-	m_buttonIgnore->set_sensitive(true);
-	m_buttonIgnoreAll->set_sensitive(true);
-
-	m_buttonAddWord->set_sensitive(true	);
-
-	m_entryReplaceWith->set_text("");
-
-	m_textview->get_buffer()->set_text(text);
 	/*
-	std::vector<std::string> suggestions;
-
-	if(m_enchantDict)
-		m_enchantDict->suggest(word, suggestions);
-
-	m_listSuggestions->clear();
-
-	for(unsigned int i=0; i<suggestions.size(); ++i)
-		m_listSuggestions->add(suggestions[i]);
-	*/
-	init_suggestions(word);
-
-	Gtk::TextIter ins, bound;
-
-	Glib::RefPtr<Gtk::TextBuffer> buffer = m_textview->get_buffer();
-
-	ins = buffer->get_iter_at_offset(m_current_word_start);
-	bound = buffer->get_iter_at_offset(m_current_word_start + m_current_word.size());
-
-	//buffer->select_range(ins, bound);
-	buffer->apply_tag_by_name("word", ins, bound);
-}
-
-/*
- *	init la list des suggestions par rapport au mot "word"
- */
-void DialogSpellChecking::init_suggestions(const Glib::ustring &word)
-{
-	m_listSuggestions->clear();
-
-	if(m_enchantDict)
+	 */
+	class ComboBoxLanguages : public Gtk::ComboBox
 	{
-		std::vector<std::string> suggestions;
-	
-		m_enchantDict->suggest(word, suggestions);
-
-		for(unsigned int i=0; i<suggestions.size(); ++i)
-			m_listSuggestions->add(suggestions[i]);
-	}
-}
-
-
-/*
- *	callback 
- */
-
-/*
- *	remplace le mot par celui de la list des suggestions (m_entryReplaceWith)
- */
-void DialogSpellChecking::on_replace()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	Glib::ustring new_word = m_entryReplaceWith->get_text();
-
-	m_current_text.replace(m_current_word_start, m_current_word.size(), new_word);
-
-	m_current_subtitle.set_text(m_current_text);
-
-	m_current_next_word += (new_word.size() - m_current_word.size());
-
-	check_next_word();
-}
-
-/*
- *	passe simplement au mot suivant
- */
-void DialogSpellChecking::on_ignore()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	check_next_word();
-}
-
-/*
- *	ajoute le mot dans le dico de la session
- */
-void DialogSpellChecking::on_ignore_all()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	if(!m_current_word.empty() && m_enchantDict)
-		m_enchantDict->add_to_session(m_current_word);
-	
-	check_next_word();
-}
-
-/*
- *	ajoute le mot dans le dico perso
- */
-void DialogSpellChecking::on_add_word()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	if(!m_current_word.empty() && m_enchantDict)
-		m_enchantDict->add_to_pwl(m_current_word);
-
-	check_next_word();
-}
-
-/*
- *	la selection a changer dans la list des suggestions
- *	init l'interface selon le choix
- */
-void DialogSpellChecking::on_treeview_suggestions_selection_changed()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	Gtk::TreeIter iter = m_treeviewSuggestions->get_selection()->get_selected();
-	if(iter)
-	{
-		//m_buttonReplace->set_sensitive(true);
-		//m_entryReplaceWith->set_sensitive(true);
-
-		Glib::ustring word = (*iter)[m_listSuggestions->m_column.string];
-
-		m_entryReplaceWith->set_text(word);
-	}
-	else
-	{
-		//m_buttonReplace->set_sensitive(false);
-		//m_entryReplaceWith->set_sensitive(false);
-	}
-}
-
-/*
- *
- */
-void DialogSpellChecking::on_combobox_dicts_changed()
-{
-	se_debug(SE_DEBUG_SPELL_CHECKING);
-
-	Glib::ustring name = m_comboboxDicts->get_active_text();
-
-	// on recupere le code du dico
-	Glib::ustring abrev = get_abrev_by_language(name);
-
-	if(!abrev.empty())
-	{
-		set_dict(abrev);
-	}
-	check_next_word();
-}
-
-/*
- *	quand on utilise le bouton "Check Word" (m_buttonCheckWord)
- *	verifie le mot dans "Replace With:" (m_entryReplaceWith)
- */
-void DialogSpellChecking::on_check_word()
-{
-	Glib::ustring word = m_entryReplaceWith->get_text();
-
-	if(!word.empty())
-	{
-		//if(check_word(word) == false)
+		class Column : public Gtk::TreeModel::ColumnRecord
 		{
-			init_suggestions(word);
+		public:
+			Column()
+			{
+				add(label);
+				add(isocode);
+			}
+			Gtk::TreeModelColumn<Glib::ustring> label;
+			Gtk::TreeModelColumn<Glib::ustring> isocode;
+		};
+
+	public:
+		ComboBoxLanguages(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+		:Gtk::ComboBox(cobject)
+		{
+			liststore = Gtk::ListStore::create(column);
+			set_model(liststore);
+
+			Gtk::CellRendererText* renderer = manage(new Gtk::CellRendererText);
+			pack_start(*renderer);
+			add_attribute(*renderer, "text", 0);
+
+			liststore->set_sort_column(0, Gtk::SORT_ASCENDING);
+		}
+
+		void append_lang(const Glib::ustring &isocode)
+		{
+			Gtk::TreeIter it = liststore->append();
+			(*it)[column.isocode] = isocode;
+			(*it)[column.label] = isocodes::to_name(isocode);
+		}
+
+		Glib::ustring get_active_lang()
+		{
+			Gtk::TreeIter it = get_active();
+			if(it)
+				return (*it)[column.isocode];
+			return Glib::ustring();
+		}
+
+		bool set_active_lang(const Glib::ustring &isocode)
+		{
+			Gtk::TreeIter it = liststore->children().begin();
+			while(it)
+			{
+				if((*it)[column.isocode] == isocode)
+				{
+					set_active(it);
+					return true;
+				}
+				++it;
+			}
+			return false;
+		}
+	protected:
+		Column column;
+		Glib::RefPtr<Gtk::ListStore> liststore;
+	};
+
+	/*
+	 */
+	class SuggestionColumn : public Gtk::TreeModel::ColumnRecord
+	{
+	public:
+		SuggestionColumn()
+		{
+			add(string);
+		}
+		Gtk::TreeModelColumn<Glib::ustring> string;
+	};
+
+public:
+	
+	/*
+	 *
+	 */
+	DialogSpellChecking(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	:Gtk::Dialog(cobject), m_current_document(NULL), m_current_column("text")
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "create spellchecking dialog..."); 
+		
+		utility::set_transient_parent(*this);
+
+		xml->get_widget_derived("combobox-languages", m_comboLanguages);
+
+		xml->get_widget("textview", m_textview);
+		xml->get_widget("entry-replace-with", m_entryReplaceWith);
+		xml->get_widget("button-check-word", m_buttonCheckWord);
+
+		xml->get_widget("treeview-suggestions", m_treeviewSuggestions);
+
+		xml->get_widget("button-replace", m_buttonReplace);
+		xml->get_widget("button-ignore", m_buttonIgnore);
+		xml->get_widget("button-ignore-all", m_buttonIgnoreAll);
+		xml->get_widget("button-add-word", m_buttonAddWord);
+
+		setup_languages();
+		setup_signals();
+		setup_text_view();
+		setup_suggestions_view();
+	}
+
+	/*
+	 *
+	 */
+	void execute(Document *doc)
+	{
+		g_return_if_fail(doc);
+
+		m_current_document = doc;
+		// If the current focus is in the translation column,
+		// check the translation. default value is "text".
+		if(doc->get_current_column_name() == "translation")
+			m_current_column = "translation";
+
+		show_column_warning();	
+
+		m_current_sub = doc->subtitles().get_first();
+		
+		init_text_view_with_subtitle(m_current_sub);
+		update_status_from_replace_word(); // init the state of buttons
+		check_next_word();
+
+		doc->start_command(_("Spell Checking"));
+		run();
+		doc->finish_command();
+	}
+
+protected:
+
+	/*
+	 * Information: Display a message about how-to spellcheck 
+	 * the translation column.
+	 */
+	void show_column_warning()
+	{
+		// Don't disable this message again option
+		if(Config::getInstance().has_key("spell-checking", "disable-column-warning"))
+			if(Config::getInstance().get_value_bool("spell-checking", "disable-column-warning"))
+				return;
+
+		Glib::ustring msg(_(
+				"The spell check is applied to the column \"text\" as default. "
+				"You can check the column \"translation\" by setting the focus "
+				"to this column before starting the spell check."));
+
+		Gtk::MessageDialog dialog(msg);
+
+		Gtk::CheckButton checkDisable(_("_Do not show this message again"), true); 
+		checkDisable.show();
+		dialog.get_vbox()->pack_start(checkDisable, false, false);
+
+		dialog.run();
+		// Save the status if it's activated
+		if(checkDisable.get_active())
+			Config::getInstance().set_value_bool("spell-checking", "disable-column-warning", true);
+	}
+
+	/*
+	 */
+	void setup_languages()
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "setup languages dictionaries"); 
+
+		// Add dictionaries
+		std::vector<Glib::ustring> dicts = SpellChecker::instance()->get_dictionaries();
+		for(std::vector<Glib::ustring>::const_iterator it = dicts.begin(); it != dicts.end(); ++it)
+		{
+			m_comboLanguages->append_lang(*it);
+		}
+		// Set the current dictionary
+		m_comboLanguages->set_active_lang(SpellChecker::instance()->get_dictionary());
+
+		m_comboLanguages->signal_changed().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_combo_languages_changed));
+	}
+
+	/*
+	 */
+	void setup_signals()
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "setup signals (buttons ...)"); 
+
+		m_buttonCheckWord->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_check_word));
+
+		m_buttonReplace->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_replace));
+
+		m_buttonIgnore->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_ignore));
+
+		m_buttonIgnoreAll->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_ignore_all));
+
+		m_buttonAddWord->signal_clicked().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_add_word_to_dictionary));
+
+		// 
+		m_entryReplaceWith->signal_changed().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::update_status_from_replace_word));
+	}
+
+	/*
+	 */
+	void setup_text_view()
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "setup textview, create highlight tag and marks"); 
+
+		m_textview->set_editable(false);
+		m_textview->set_sensitive(false);
+
+		m_buffer = m_textview->get_buffer();
+		// create misspelled tag
+		m_tag_highlight = m_buffer->create_tag("misspelled");
+		m_tag_highlight->property_foreground() = "red";
+		m_tag_highlight->property_weight() = Pango::WEIGHT_BOLD;
+		// create start/end marks
+		m_mark_start = m_buffer->create_mark("mark-start", m_buffer->begin(), true);
+		m_mark_end = m_buffer->create_mark("mark-end", m_buffer->begin(), true);
+	}
+
+	/*
+	 * Create a model and a column "Suggestions" and connect 
+	 * the signal selection-changed to update the text value
+	 * of the widget m_entryReplaceWith.
+	 */
+	void setup_suggestions_view()
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "create model and view for the suggestions");
+
+		SuggestionColumn column;
+		m_listSuggestions = Gtk::ListStore::create(column);
+		m_treeviewSuggestions->set_model(m_listSuggestions);
+
+		Gtk::TreeViewColumn *col = manage(new Gtk::TreeViewColumn(_("Suggestions")));
+		Gtk::CellRendererText *renderer = manage(new Gtk::CellRendererText);
+
+		col->pack_start(*renderer, false);
+		col->add_attribute(renderer->property_text(), column.string);
+		m_treeviewSuggestions->append_column(*col);
+
+		m_treeviewSuggestions->get_selection()->signal_changed().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_suggestions_selection_changed));
+	}
+
+	/*
+	 * Initialize the textview with the current subtitle text (text or translation);
+	 * update the mark to the beginning.
+	 */
+	bool init_text_view_with_subtitle(const Subtitle &sub)
+	{
+		if(!sub)
+		{
+			se_debug_message(SE_DEBUG_SPELL_CHECKING, "Subtitle is not valid");
+			return false;
+		}
+		// Check the translation or the text column.
+		Glib::ustring text = (m_current_column == "translation") ? sub.get_translation() : sub.get_text();
+		
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "Update the textview with (%s column): '%s'", m_current_column.c_str(), text.c_str());
+
+		m_buffer->set_text(text);
+		m_textview->set_sensitive(!text.empty());
+		// move the marks to the beginning
+		Gtk::TextIter begin = m_buffer->begin();
+		m_buffer->move_mark(m_mark_start, begin);
+		m_buffer->move_mark(m_mark_end, begin);
+		return true;
+	}
+
+	/*
+	 * Update the subtitle text (or translation) 
+	 * from the current text in the textview. 
+	 */
+	void update_subtitle_from_text_view()
+	{
+		if(!m_current_sub)
+			return;
+
+		Glib::ustring text = m_buffer->get_text();
+		
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "the subtitle (%s) is update with the text '%s'", m_current_column.c_str(), text.c_str());
+
+		if(m_current_column == "translation")
+		{
+			if(m_current_sub.get_translation() != text)
+				m_current_sub.set_translation(text);
+		}
+		else // "text"
+		{
+			if(m_current_sub.get_text() != text)
+				m_current_sub.set_text(text);
 		}
 	}
-}
 
+	/*
+	 * Initialize the list with the suggestions array.
+	 */
+	void init_suggestions(const Glib::ustring &word)
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "initialize the suggestion with the word '%s'", word.c_str());
+
+		m_entryReplaceWith->set_text("");
+		m_listSuggestions->clear();
+
+		if(word.empty())
+			return;
+
+		std::vector<Glib::ustring> suggs = SpellChecker::instance()->get_suggest(word);
+		
+		SuggestionColumn column;
+
+		for(unsigned int i=0; i<suggs.size(); ++i)
+		{
+			Gtk::TreeIter it = m_listSuggestions->append();
+			(*it)[column.string] = suggs[i];
+
+			se_debug_message(SE_DEBUG_SPELL_CHECKING, "suggested word: '%s'", suggs[i].c_str());
+		}
+	}
+
+	/*
+	 */
+	bool next_check()
+	{
+		if(check_next_word())
+			return true;
+		return check_next_subtitle();
+	}
+
+	/*
+	 */
+	bool check_next_subtitle()
+	{
+		if(!m_current_sub || !(++m_current_sub))
+		{
+			completed_spell_changed();
+			return false;
+		}
+		init_text_view_with_subtitle(m_current_sub);
+		return next_check();
+	}
+
+	/*
+	 */
+	bool iter_forward_word_end(Gtk::TextIter &i)
+	{
+		if(!i.forward_word_end())
+			return false;
+		if(i.get_char() != '\'')
+			return true;
+
+		Gtk::TextIter iter = i;
+		if(iter.forward_char())
+			if(g_unichar_isalpha(iter.get_char()))
+				return i.forward_word_end();
+
+		return true;
+	}
+
+	/*
+	 */
+	bool iter_backward_word_start(Gtk::TextIter &i)
+	{
+		if(!i.backward_word_start())
+			return false;
+
+		Gtk::TextIter iter = i;
+		if(iter.backward_char())
+			if(iter.get_char() == '\'')
+				if(iter.backward_char())
+					if(g_unichar_isalpha(iter.get_char()))
+						return i.backward_word_start();
+
+		return true;
+	}
+
+	/*
+	 * return True if there is misspelled word.
+	 */
+	bool check_next_word()
+	{
+		Gtk::TextIter start = m_buffer->begin();
+		Gtk::TextIter end = m_buffer->end();
+
+		m_buffer->remove_tag(m_tag_highlight, start, end);
+
+		Gtk::TextIter wstart, wend;
+
+		// Start at the mark_end, go to the next word
+		wstart = m_mark_end->get_iter();
+		if(!iter_forward_word_end(wstart) || !iter_backward_word_start(wstart))
+			return check_next_subtitle();
+
+		while(wstart.compare(end) < 0)// && wstart.compare(end) != 0)
+		{
+			// move wend to the end of the current word
+			wend = wstart;
+			iter_forward_word_end(wend);
+	
+			// Check the word
+			if(is_misspelled(wstart, wend))
+				return true; // misspelled word
+
+			// Good word 
+			// so we move wend to the beginning of the next word
+			iter_forward_word_end(wend);
+			iter_backward_word_start(wend);
+
+			if(wstart.compare(wend) == 0)
+				break;
+
+			// and then pick this as the new next word beginning.
+			wstart = wend;
+		}
+		return check_next_subtitle();
+	}
+
+	/*
+	 * Check the word (start, end)
+	 * Return true if the word is misspelled.
+	 */
+	bool is_misspelled(Gtk::TextIter start, Gtk::TextIter end)
+	{
+		Glib::ustring word = m_textview->get_buffer()->get_text(start, end, false);
+		
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "check the word : '%s'", word.c_str());
+
+		if(SpellChecker::instance()->check(word))
+		{
+			se_debug_message(SE_DEBUG_SPELL_CHECKING, "the word '%s' is not misspelled", word.c_str());
+			return false;
+		}
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "the word '%s' is misspelled", word.c_str());
+		
+		m_buffer->apply_tag(m_tag_highlight, start, end);
+		m_buffer->move_mark(m_mark_start, start);
+		m_buffer->move_mark(m_mark_end, end);
+
+		// Update the suggestions list
+		init_suggestions(word);
+		// Select the subtitle if it's not already select
+		if(!m_current_document->subtitles().is_selected(m_current_sub))
+			m_current_document->subtitles().select(m_current_sub);
+		return true;
+	}
+
+	/*
+	 * Return the current word misspelled (the mark tags are used)
+	 */
+	Glib::ustring get_current_word()
+	{
+		Gtk::TextIter start = m_mark_start->get_iter();
+		Gtk::TextIter end = m_mark_end->get_iter();
+
+		Glib::ustring word = m_textview->get_buffer()->get_text(start, end, false);
+		
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "the current word is '%s'", word.c_str());
+
+		return word;		
+	}
+
+	/*
+	 * Callbacks
+	 */
+
+	/*
+	 * Used by the button "Check Word" (m_buttonCheckWord)
+	 * Check the word from the entry "Replace With:" (m_entryReplaceWith)
+	 * and display show the suggestions.
+	 */
+	void on_check_word()
+	{
+		se_debug(SE_DEBUG_SPELL_CHECKING);
+
+		Glib::ustring newword = m_entryReplaceWith->get_text();
+		init_suggestions(newword);
+		// Because init_suggestions clean the widget with empty text,
+		// we need to reset it with the neword
+		m_entryReplaceWith->set_text(newword);
+	}
+
+	/*
+	 * Replace the word by the selected suggestion (m_entryReplaceWith)
+	 */
+	void on_replace()
+	{
+		se_debug(SE_DEBUG_SPELL_CHECKING);
+
+		Glib::ustring newword = m_entryReplaceWith->get_text();
+		if(newword.empty())
+			return;
+
+		Gtk::TextIter start = m_mark_start->get_iter();
+		Gtk::TextIter end = m_mark_end->get_iter();
+
+		Glib::ustring oldword = m_buffer->get_text(start, end, false);
+
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "replace the word '%s' by the new word '%s'", oldword.c_str(), newword.c_str());
+
+		m_buffer->begin_user_action();
+		start = m_buffer->erase(start, end);
+		end = m_buffer->insert(start, newword);
+		m_buffer->end_user_action();
+
+		// update the mark_end, the mark_start doesn't move
+		m_buffer->move_mark(m_mark_end, end);
+
+		SpellChecker::instance()->store_replacement(oldword, newword);
+
+		// we update the subtitle with the text changed
+		update_subtitle_from_text_view();
+
+		next_check();
+	}
+
+	/*
+	 * Ignore the word and just go to the next word.
+	 */
+	void on_ignore()
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "ignore the word '%s'", get_current_word().c_str());
+
+		next_check();
+	}
+
+	/*
+	 * Ignore the word the time of the session.
+	 */
+	void on_ignore_all()
+	{
+		Glib::ustring word = get_current_word();
+
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "ignore all the word '%s' by adding the word to the session", word.c_str());
+
+		SpellChecker::instance()->add_word_to_session(word);
+		next_check();
+	}
+
+	/*
+	 * Add the misspelled word to the personal dictionary
+	 */
+	void on_add_word_to_dictionary()
+	{
+		Glib::ustring word = get_current_word();
+
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "add the word '%s' to the personal dictionary", word.c_str());
+
+		SpellChecker::instance()->add_word_to_personal(word);
+
+		next_check();
+	}
+
+	/*
+	 * Update the entry "Replace With:" with the 
+	 * current selected suggestion.
+	 */
+	void on_suggestions_selection_changed()
+	{
+		Gtk::TreeIter it = m_treeviewSuggestions->get_selection()->get_selected();
+		if(it)
+		{
+			SuggestionColumn col;
+			Glib::ustring word = (*it)[col.string];
+
+			m_entryReplaceWith->set_text(word);
+		}
+	}
+
+	/*
+	 * The user change the current dictionary.
+	 * We need to recheck the current word after we have setting a new dictionary.
+	 */
+	void on_combo_languages_changed()
+	{
+		Glib::ustring lang = m_comboLanguages->get_active_lang();
+		if(lang == SpellChecker::instance()->get_dictionary())
+			return;
+
+		SpellChecker::instance()->set_dictionary(lang);
+		// recheck the current word and if it's not misspelled check the next word
+		if(!is_misspelled(m_mark_start->get_iter(), m_mark_end->get_iter()))
+			next_check();
+	}
+
+	/*
+	 * Update the sensitivity of some buttons
+	 * from the status of the entry "Replace With:" (empty or not)
+	 */
+	void update_status_from_replace_word()
+	{
+		bool state = !m_entryReplaceWith->get_text().empty();
+
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "set sensitive to %s", (state) ? "true" : "false");
+
+		m_buttonCheckWord->set_sensitive(state);
+		m_buttonReplace->set_sensitive(state);
+	}
+
+	/*
+	 * Disable the interface and display a message:
+	 * "Completed spell checking."
+	 */
+	void completed_spell_changed()
+	{
+		se_debug_message(SE_DEBUG_SPELL_CHECKING, "completed spell checking, disable the ui.");
+
+		m_comboLanguages->set_sensitive(false);
+
+		m_textview->set_sensitive(false);
+		m_buffer->set_text(_("Completed spell checking."));
+
+		m_entryReplaceWith->set_sensitive(false);
+		m_buttonCheckWord->set_sensitive(false);
+		
+		m_treeviewSuggestions->set_sensitive(false);
+		m_buttonIgnore->set_sensitive(false);
+		m_buttonIgnoreAll->set_sensitive(false);
+		m_buttonReplace->set_sensitive(false);
+		m_buttonAddWord->set_sensitive(false);
+	}
+protected:
+	ComboBoxLanguages* m_comboLanguages;
+
+	Gtk::TextView*								m_textview;
+	Glib::RefPtr<Gtk::TextBuffer> m_buffer;
+	Glib::RefPtr<Gtk::TextMark>		m_mark_start;
+	Glib::RefPtr<Gtk::TextMark>		m_mark_end;
+	Glib::RefPtr<Gtk::TextTag>		m_tag_highlight;
+
+	Gtk::Entry*										m_entryReplaceWith;
+	Gtk::TreeView*								m_treeviewSuggestions;
+	Glib::RefPtr<Gtk::ListStore>	m_listSuggestions;
+
+	Gtk::Button*		m_buttonCheckWord;
+	Gtk::Button*		m_buttonReplace;
+	Gtk::Button*		m_buttonIgnore;
+	Gtk::Button*		m_buttonIgnoreAll;
+	Gtk::Button*		m_buttonAddWord;
+
+	Document* m_current_document;
+	Glib::ustring m_current_column;
+	Subtitle m_current_sub;
+};
 
 /*
- *
  */
 class SpellCheckingPlugin : public Action
 {
@@ -680,7 +700,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void activate()
 	{
@@ -704,7 +723,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void deactivate()
 	{
@@ -717,7 +735,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void update_ui()
 	{
