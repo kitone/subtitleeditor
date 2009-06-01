@@ -1,5 +1,10 @@
 2009-06-01  kitone  <kitone@gna.org>
 
+	* src/spellchecker.cc:
+	Use enchant_dict_add instead of enchant_dict_add_to_pwl (deprecated).
+
+2009-06-01  kitone  <kitone@gna.org>
+
 	* plugins/actions/spellchecking/Makefile.am:
 	* plugins/actions/spellchecking/spellchecking.h:
 	Remove file spellchecking.h.
