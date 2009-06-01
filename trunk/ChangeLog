@@ -1,3 +1,11 @@
+2009-06-01  kitone  <kitone@gna.org>
+
+	* src/document.cc:
+	* src/document.h:
+	* src/subtitleview.cc:
+	* src/subtitleview.h:
+	New function get_current_column_name.
+
 2009-05-30  kitone  <kitone@gna.org>
 
 	* src/spellchecker.cc:

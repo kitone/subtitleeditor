@@ -721,3 +721,12 @@ void Document::emit_signal(const std::string &name)
 	m_signal[name].emit();
 }
 
+/*
+ * Return the name of the current column focus. 
+ * (start, end, duration, text, translation ...)
+ */
+Glib::ustring Document::get_current_column_name()
+{
+	return m_subtitleView->get_current_column_name();
+}
+

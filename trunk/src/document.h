@@ -304,6 +304,12 @@ public:
 	 */
 	void emit_signal(const std::string &name);
 
+	/*
+	 * Return the name of the current column focus. 
+	 * (start, end, duration, text, translation ...)
+	 */
+	Glib::ustring get_current_column_name();
+
 protected:
 	friend class Command;
 	friend class Subtitle;

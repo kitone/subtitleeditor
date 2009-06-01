@@ -57,6 +57,12 @@ public:
 	 */
 	static Glib::ustring get_column_label_by_name(const Glib::ustring &name);
 
+	/*
+	 * Return the name of the current column focus. 
+	 * (start, end, duration, text, translation ...)
+	 */
+	Glib::ustring get_current_column_name();
+
 protected:	
 	void loadCfg();
 

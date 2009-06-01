@@ -1513,3 +1513,15 @@ void SubtitleView::on_cursor_changed()
 		m_currentColumn = focused_column;
 	}
 }
+
+/*
+ * Return the name of the current column focus. 
+ * (start, end, duration, text, translation ...)
+ */
+Glib::ustring SubtitleView::get_current_column_name()
+{
+	if(m_currentColumn)
+		return get_name_of_column(m_currentColumn);
+	return Glib::ustring();
+}
+
