@@ -90,7 +90,7 @@ public:
 		g_return_if_fail(m_dict);
 		g_return_if_fail(!m_active_lang.empty());
 
-		enchant_dict_add_to_pwl(m_dict, utf8.c_str(), utf8.size());
+		enchant_dict_add(m_dict, utf8.c_str(), utf8.size());
 	}
 
 	bool check(const std::string &utf8)
