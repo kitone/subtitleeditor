@@ -52,7 +52,6 @@ plugins/actions/scalesubtitles/scalesubtitles.cc
 plugins/actions/selection/selection.cc
 plugins/actions/spellchecking/dialog-spell-checking.glade
 plugins/actions/spellchecking/spellchecking.cc
-plugins/actions/spellchecking/spellchecking.h
 plugins/actions/splitdocument/dialog-split-document.glade
 plugins/actions/splitdocument/splitdocument.cc
 plugins/actions/splitsubtitle/splitsubtitle.cc
@@ -60,6 +59,7 @@ plugins/actions/styleeditor/dialog-style-editor.glade
 plugins/actions/styleeditor/styleeditor.cc
 plugins/actions/styleeditor/styleeditor.h
 plugins/actions/textcorrection/assistant-text-correction.glade
+plugins/actions/textcorrection/capitalizationpage.h
 plugins/actions/textcorrection/commonerrorpage.h
 plugins/actions/textcorrection/confirmationpage.h
 plugins/actions/textcorrection/hearingimpairedpage.h
@@ -135,6 +135,8 @@ src/gtkmm_utility.cc
 src/gtkmm_utility.h
 src/gui/application.cc
 src/gui/application.h
+src/gui/automaticspellchecker.cc
+src/gui/automaticspellchecker.h
 src/gui/cellrenderercustom.cc
 src/gui/cellrenderercustom.h
 src/gui/comboboxencoding.cc
@@ -170,6 +172,8 @@ src/options.h
 src/player.h
 src/scriptinfo.cc
 src/scriptinfo.h
+src/spellchecker.cc
+src/spellchecker.h
 src/style.cc
 src/style.h
 src/stylemodel.cc
@@ -261,10 +265,13 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/subviewer2/subviewer2.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.se-plugin.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn.capitalization.se-pattern.in
 [type: gettext/xml] plugins/actions/textcorrection/Latn.common-error.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn-en.capitalization.se-pattern.in
 [type: gettext/xml] plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in
 [type: gettext/xml] plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in
 [type: gettext/xml] plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in
+[type: gettext/xml] plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in
 [type: gettext/xml] plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in
 [type: gettext/xml] plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in
 [type: gettext/xml] plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in
