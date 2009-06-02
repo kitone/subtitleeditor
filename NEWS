@@ -1,3 +1,26 @@
+2009-06-03 - 0.32.0
+
+	* Add inline spellchecker capability to any textview (subtitle view, text correction...)
+	* Spell Checking Plugin completely rewrite
+		* Fix: #13211 Translation checking support
+		* Fix: #13070 Spell checker should use 'sgml' filter to skip over HTML tags
+		* Fix: #11567 Italics-codes are parsed to the spell-check
+	* Text Correction Plugin
+		* New Latn-fi pattern (Osmo Salomaa, Gaupol)
+		* Select the modified subtitles
+		* Extract capitalization pattern from common-error to capitalization.se-pattern
+		* Fix: Maintain order of patterns with the same name
+	* Add an option "Only selected subtitles" to "Move Subtitles"
+	* Fix: #10439 Improve Subtitle Editor Project (selection, video, framerate...)
+	* Fix: #7019 Black rectangle with the video player
+	* Fix: #2341 Add option to don't disable the actions during editing
+	* Fix: #13428 Change dependence of libxml++ >= 2.20 (packager)
+	* Fix: #526155 (Debian bug) FTBFS with GCC 4.4: missing #include
+	* Fix: 'play/pause' doesn't work after 'play selection'
+	* Fix: Gtk warning adjustment with non-zero page size is deprecated
+	* Fix: More robust with the wrong values of the points, display error messages (scalesubtitles)
+	* Fix: icon in pixmaps directory
+
 2009-04-22 - 0.31.0
 
 	* New plugin 'textcorrection'

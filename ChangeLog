@@ -1,3 +1,9 @@
+2009-06-03  kitone  <kitone@gna.org>
+
+	* NEWS:
+	* configure.in:
+	Preparing 0.32.0 release.
+
 2009-06-02  kitone  <kitone@gna.org>
 
 	* share/Makefile.am:
