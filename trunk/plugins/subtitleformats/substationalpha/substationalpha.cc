@@ -76,7 +76,7 @@ public:
 	/*
 	 * Read the block [Script Info]
 	 */
-	void read_script_info(FileReader &file)
+	void read_script_info(const std::vector<Glib::ustring> &lines)
 	{
 		se_debug_message(SE_DEBUG_IO, "read script info...");
 
@@ -84,11 +84,27 @@ public:
 		
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"^(.*?):\\s(.*?)$");
+		Glib::RefPtr<Glib::Regex> re_block = Glib::Regex::create(
+				"^\\[.*\\]$");
 
-		Glib::ustring line;
-		while(file.getline(line) && !line.empty())
+		bool read = false;
+		for(std::vector<Glib::ustring>::const_iterator it = lines.begin(); it != lines.end(); ++it)
 		{
-			std::vector<Glib::ustring> group = re->split(line);
+			// We want to only read the scrip info block
+			if(read)
+			{
+				if(re_block->match(*it))
+					return; // new block, stop reading
+			}
+			else if((*it).find("[Script Info]") != Glib::ustring::npos)
+					read = true; // This is the beginning of the script info block, start reading
+
+			if(!read)
+				continue;
+			if(!re->match(*it))
+				continue;
+
+			std::vector<Glib::ustring> group = re->split(*it);
 
 			if(group.size() == 1)
 				continue;
@@ -103,7 +119,7 @@ public:
 	/*
 	 * Read the bloc [V4 Style]
 	 */
-	void read_styles(FileReader &file)
+	void read_styles(const std::vector<Glib::ustring> &lines)
 	{
 		se_debug_message(SE_DEBUG_IO, "read style...");
 
@@ -112,11 +128,12 @@ public:
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"^Style:\\s*([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*)$");
 
-		Glib::ustring line;
-		while(file.getline(line) && !line.empty())
+		for(std::vector<Glib::ustring>::const_iterator it = lines.begin(); it != lines.end(); ++it)
 		{
-			std::vector<Glib::ustring> group = re->split(line);
+			if(!re->match(*it))
+				continue;
 
+			std::vector<Glib::ustring> group = re->split(*it);
 			if(group.size() == 1)
 				continue;
 
@@ -154,7 +171,7 @@ public:
 	/*
 	 * Read the bloc [Events]
 	 */
-	void read_events(FileReader &file)
+	void read_events(const std::vector<Glib::ustring> &lines)
 	{
 		se_debug_message(SE_DEBUG_IO, "read events...");
 
@@ -163,11 +180,12 @@ public:
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"^Dialogue:\\s*([^,]*),([^,]*),([^,]*),\\**([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),(.*)$");
 
-		Glib::ustring line;
-		while(file.getline(line) && !line.empty())
+		for(std::vector<Glib::ustring>::const_iterator it = lines.begin(); it != lines.end(); ++it)
 		{
-			std::vector<Glib::ustring> group = re->split(line);
+			if(!re->match(*it))
+				continue;
 
+			std::vector<Glib::ustring> group = re->split(*it);
 			if(group.size() == 1)
 				continue;
 
@@ -205,17 +223,11 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		Glib::ustring line;
+		std::vector<Glib::ustring> lines = file.get_lines();
 
-		while(file.getline(line))
-		{
-			if(line.find("[Script Info]") != Glib::ustring::npos)
-				read_script_info(file);
-			else if(line.find("[V4 Styles]") != Glib::ustring::npos)
-				read_styles(file);
-			else if(line.find("[Events]") != Glib::ustring::npos)
-				read_events(file);
-		}
+		read_script_info(lines);
+		read_styles(lines);
+		read_events(lines);
 	}
 
 
@@ -225,9 +237,7 @@ public:
 	void save(FileWriter &file)
 	{
 		write_script_info(file);
-
 		write_styles(file);
-
 		write_events(file);
 	}
 
