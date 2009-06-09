@@ -1,5 +1,11 @@
 2009-06-09  kitone  <kitone@gna.org>
 
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	Make reading more robust to the files invalid. Fix bug #13656.
+
+2009-06-09  kitone  <kitone@gna.org>
+
 	* src/filereader.cc:
 	* src/filereader.h:
 	New function get_lines.
