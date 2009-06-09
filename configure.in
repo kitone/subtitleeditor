@@ -343,6 +343,7 @@ plugins/actions/splitsubtitle/Makefile
 plugins/actions/styleeditor/Makefile
 plugins/actions/textcorrection/Makefile
 plugins/actions/timemodemanagement/Makefile
+plugins/actions/timingfromplayer/Makefile
 plugins/actions/videoplayermanagement/Makefile
 plugins/actions/viewmanager/Makefile
 plugins/actions/wavefrommanagement/Makefile

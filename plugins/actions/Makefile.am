@@ -31,6 +31,7 @@ FILES = \
 		styleeditor \
 		textcorrection \
 		timemodemanagement \
+		timingfromplayer \
 		videoplayermanagement \
 		viewmanager \
 		wavefrommanagement
