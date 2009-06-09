@@ -1,3 +1,9 @@
+2009-06-09  kitone  <kitone@gna.org>
+
+	* src/filereader.cc:
+	* src/filereader.h:
+	New function get_lines.
+
 2009-06-05  kitone  <kitone@gna.org>
 
 	* configure.in:
