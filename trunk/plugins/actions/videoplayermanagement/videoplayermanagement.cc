@@ -270,22 +270,6 @@ public:
 					_("Play the second following the subtitle currently selected")),
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_play_next_second));
 
-
-		// Set Subtitle Time
-		action_group->add(
-				Gtk::Action::create(
-					"video-player/set-subtitle-start", 
-					_("Set Subtitle _Start"), 
-					_("Use the current player position to set the subtitle start")), 
-					sigc::mem_fun(*this, &VideoPlayerManagement::on_set_subtitle_start));
-
-		action_group->add(
-				Gtk::Action::create(
-					"video-player/set-subtitle-end", 
-					_("Set Subtitle _End"), 
-					_("Use the current player position to set the subtitle end")), 
-					sigc::mem_fun(*this, &VideoPlayerManagement::on_set_subtitle_end));
-
 		// Display Video Player
 		bool video_player_display_state = get_config().get_value_bool("video-player", "display");
 		
@@ -342,9 +326,6 @@ public:
 			"					<menuitem action='video-player/play-first-second'/>"
 			"					<menuitem action='video-player/play-last-second'/>"
 			"					<menuitem action='video-player/play-next-second'/>"
-			"					<separator/>"
-			"					<menuitem action='video-player/set-subtitle-start'/>"
-			"					<menuitem action='video-player/set-subtitle-end'/>"
 			"			</placeholder>"
 			"		</menu>"
 			"	</menubar>"
@@ -421,9 +402,6 @@ public:
 		SET_SENSITIVE("video-player/play-first-second", has_media && has_doc);
 		SET_SENSITIVE("video-player/play-last-second", has_media && has_doc);
 		SET_SENSITIVE("video-player/play-next-second", has_media && has_doc);
-
-		SET_SENSITIVE("video-player/set-subtitle-start", has_media && has_doc);
-		SET_SENSITIVE("video-player/set-subtitle-end", has_media && has_doc);
 		
 #undef SET_SENSITIVE
 	}
@@ -810,63 +788,6 @@ protected:
 		}
 	}
 
-	/*
-	 * Set Subtitle Time
-	 */
-
-	/*
-	 * Sets the begining of the selected subtitle at the current position of the player.
-	 */
-	void on_set_subtitle_start()
-	{
-		Document *doc = get_current_document();
-		
-		Subtitle sub = doc->subtitles().get_first_selected();
-		if(sub)
-		{
-			long position = player()->get_position();
-
-			doc->start_command(_("Set subtitle start"));
-			
-			sub.set_start(SubtitleTime(position));
-
-			doc->emit_signal("subtitle-time-changed");
-			doc->finish_command();
-		}
-	}
-
-	/*
-	 * Sets the end of the selected subtitle at the current position of the player.
-	 * The next subtitle is selected or created after that.
-	 */
-	void on_set_subtitle_end()
-	{
-		Document *doc = get_current_document();
-		
-		Subtitle sub = doc->subtitles().get_first_selected();
-		if(sub)
-		{
-			long position = player()->get_position();
-
-			doc->start_command(_("Set subtitle end"));
-			
-			sub.set_end(SubtitleTime(position));
-
-			// try to select the next subtitle
-			// TODO option for enable/disable this ?
-			{
-				Subtitle next = doc->subtitles().get_next(sub);
-				if(!next)
-				{
-					next = doc->subtitles().append();
-				}
-				doc->subtitles().select(next);
-			}
-
-			doc->emit_signal("subtitle-time-changed");
-			doc->finish_command();
-		}
-	}
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
