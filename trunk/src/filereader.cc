@@ -119,15 +119,7 @@ Glib::ustring FileReader::get_newline()
  */
 bool FileReader::getline(Glib::ustring &line)
 {
-	// init only if needs
-	if(m_lines_init == false)
-	{
-		se_debug_message(SE_DEBUG_IO, "split lines...");
-
-		m_lines = Glib::Regex::split_simple("\\R", m_data); 
-		m_iter = m_lines.begin();
-		m_lines_init = true;
-	}
+	initialize_lines();
 
 	if(m_iter == m_lines.end())
 	{
@@ -141,5 +133,31 @@ bool FileReader::getline(Glib::ustring &line)
 	se_debug_message(SE_DEBUG_IO, "\"%s\"", line.c_str());
 
 	return true;
+}
+
+/*
+ * Return all lines detected of the file, without newline character (CR, LF or CRLF).
+ */
+std::vector<Glib::ustring> FileReader::get_lines()
+{
+	initialize_lines();
+
+	return m_lines;
+}
+
+/*
+ * Split the data to separate lines.
+ */
+void FileReader::initialize_lines()
+{
+	// init only if needs
+	if(m_lines_init)
+		return;
+
+	se_debug_message(SE_DEBUG_IO, "split lines...");
+
+	m_lines = Glib::Regex::split_simple("\\R", m_data); 
+	m_iter = m_lines.begin();
+	m_lines_init = true;
 }
 

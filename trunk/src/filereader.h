@@ -72,6 +72,18 @@ public:
 	 */
 	bool getline(Glib::ustring &line);
 
+	/*
+	 * Return all lines detected of the file, without newline character (CR, LF or CRLF).
+	 */
+	std::vector<Glib::ustring> get_lines();
+
+private:
+
+	/*
+	 * Split the data to separate lines.
+	 */
+	void initialize_lines();
+
 protected:
 	Glib::ustring m_uri;
 	Glib::ustring m_data;
