@@ -1,5 +1,19 @@
 2009-06-09  kitone  <kitone@gna.org>
 
+	* configure.in:
+	* plugins/actions/Makefile.am:
+	Introduce new plugin 'timingfromplayer'.
+
+	* share/menubar.xml:
+	* plugins/actions/timingfromplayer/Makefile.am:
+	* plugins/actions/timingfromplayer/timingfromplayer.cc:
+	* plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in:
+	New plugin to define the subtitle time from the player position. This
+	plugin is extract from videoplayermanagement (see previous commit) with a 
+	new action 'Set Subtitle Start and End'. Fix bug #12570.
+
+2009-06-09  kitone  <kitone@gna.org>
+
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
 	Remove actions 'Set Subtitle Start' and 'Set Subtitle End' of the videoplayermanagement plugin.
 

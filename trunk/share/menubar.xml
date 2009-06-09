@@ -77,6 +77,8 @@
 
 		<menu action="menu-video">
 			<placeholder name="video-player-management"/>
+			<separator/>
+			<placeholder name="placeholder"/>
 		</menu>
 
 		<menu action="menu-waveform">
