@@ -1,3 +1,8 @@
+2009-06-12  kitone  <kitone@gna.org>
+
+	* plugins/actions/command/command.cc:
+	Fix small typo.
+
 2009-06-09  kitone  <kitone@gna.org>
 
 	* configure.in:

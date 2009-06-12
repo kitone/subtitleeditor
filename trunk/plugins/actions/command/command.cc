@@ -172,7 +172,7 @@ protected:
 		if(!description.empty())
 		{
 			doc->get_command_system().redo();
-			doc->flash_message(_("redo: %s"), description.c_str());
+			doc->flash_message(_("Redo: %s"), description.c_str());
 		}
 		update_label();
 	}
