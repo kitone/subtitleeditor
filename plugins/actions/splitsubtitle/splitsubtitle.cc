@@ -23,6 +23,7 @@
 #include <extension/action.h>
 #include <i18n.h>
 #include <debug.h>
+#include <utility.h>
 
 class SplitSelectedSubtitlesPlugin : public Action
 {
@@ -40,7 +41,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void activate()
 	{
@@ -51,7 +51,7 @@ public:
 
 		action_group->add(
 				Gtk::Action::create("split-selected-subtitles", _("_Split"), _("Split the selected subtitles")),
-					sigc::mem_fun(*this, &SplitSelectedSubtitlesPlugin::on_split_selected_subtitles));
+					sigc::mem_fun(*this, &SplitSelectedSubtitlesPlugin::split_selected_subtitles));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -64,7 +64,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void deactivate()
 	{
@@ -77,7 +76,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void update_ui()
 	{
@@ -88,88 +86,138 @@ public:
 		action_group->get_action("split-selected-subtitles")->set_sensitive(visible);
 	}
 
-protected:
-
 	/*
-	 *
 	 */
-	void on_split_selected_subtitles()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		execute();
-	}
-
-	/*
-	 *
-	 */
-	bool execute()
+	void split_selected_subtitles()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
 
-		g_return_val_if_fail(doc, false);
+		g_return_if_fail(doc);
 
 		Subtitles subtitles = doc->subtitles();
 
 		std::vector<Subtitle> selection = subtitles.get_selection();
 
-		if(selection.size() < 1)
+		if(selection.empty())
 		{
 			doc->flash_message(_("Please select at least two subtitles."));
-			return false;
+			return;
 		}
 
-		// respect minimum gap between subtitles
-		int min_gap_between_subtitles = get_config().get_value_int("timing", "min-gap-between-subtitles");
-
-		SubtitleTime gap(min_gap_between_subtitles / 2);
-
-		// utilisé pour couper en deux
-		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*?)\\n(.*?)$");
-
-		//
 		doc->start_command(_("Split subtitles"));
 
 		for(std::vector<Subtitle>::reverse_iterator it=selection.rbegin(); it != selection.rend(); ++it)
 		{
-			Subtitle sub = (*it);		
-
-			Subtitle next = subtitles.insert_after(sub);
-
-			sub.copy_to(next);
-
-			// centre la coupe avec le respect du minimum entre les s-t si possible
-			SubtitleTime middle = sub.get_start() + sub.get_duration() * 0.5;
-	
-			// prev
-			if((middle - gap) > sub.get_start())
-				sub.set_end(middle - gap);
-			else
-				sub.set_end(middle);
-
-			// next
-			if((middle + gap) < next.get_end())
-				next.set_start(middle + gap);
-			else
-				next.set_start(middle);
-
-			// s'il y a deux lignes alors on coupe le texte en deux 
-			{
-				if(re->match(sub.get_text()))
-				{
-					std::vector<Glib::ustring> group = re->split(sub.get_text());
-					sub.set_text(group[1]);
-					next.set_text(group[2]);
-				}
-			}
+			split(subtitles, *it);
 		}
 
 		doc->emit_signal("subtitle-time-changed");
 		doc->finish_command();
+	}
 
-		return true;
+	/*
+	 */
+	void split(Subtitles& subtitles, Subtitle &sub)
+	{
+		unsigned int i=0;
+
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("\\n");
+
+		Glib::ustring text = sub.get_text();
+
+		// TODO
+		//try_to_fix_tags(text);
+
+		std::vector<Glib::ustring> lines = re->split(text);
+
+		// If there's not at least two lines, it's not necessary to split
+		if(lines.size() < 2)
+			return;
+
+		// Original values
+		Glib::ustring otext = text;
+		SubtitleTime ostart = sub.get_start();
+		SubtitleTime oduration = sub.get_duration();
+
+
+		// Array for new subtitles
+		std::vector<Subtitle> newsubs;
+		// Represente the total number of characters in the original subtitles (without tag)
+		unsigned int total_chars = 0;
+
+		// We can add directly the original subtitle, it will be reused
+		// we just need to add other lines (size-1)
+		newsubs.push_back(sub);
+
+		for(i=1; i < lines.size(); ++i)
+		{
+			Subtitle next = subtitles.insert_after(newsubs[i-1]);
+			sub.copy_to(next); // Copy all values (style, note, ...)
+			newsubs.push_back(next);
+		}
+
+		// Updated subtitles text with each line
+		for(i=0; i< newsubs.size(); ++i)
+		{
+			newsubs[i].set_text( lines[i] );
+
+			// We take the loop to calculate the total number of characters
+			total_chars += utility::get_stripped_text(lines[i]).size();
+		}
+
+		// Now we set the time for each subtitle
+		// Divides the original duration by using the ratio to the number of characters per line
+		// If the total number of characters is equal to 0 (empty lines) we divide by the number of lines
+
+		SubtitleTime start = ostart;
+		SubtitleTime dur;
+
+		for(i=0; i< newsubs.size(); ++i)
+		{
+			if(total_chars > 0)
+				dur = oduration * ((double)lines[i].size() / (double)total_chars);
+			else
+				dur = oduration / newsubs.size();
+
+			newsubs[i].set_start_and_end(start, start + dur);
+
+			start = start + dur; // Update the beginning of the next subtitle
+		}
+
+		// Try to apply timing prefs like gap between subs...
+		try_to_respect_timing_preferences(newsubs);
+
+		// We add to the selection the new subtitles
+		subtitles.select(newsubs);
+	}
+
+	/*
+	 * Try to apply some timing preferences
+	 * - minimum gap between subtitles
+	 * - minimum display time (TODO ?)
+	 */
+	void try_to_respect_timing_preferences(std::vector<Subtitle> &subs)
+	{
+		//int min_display = get_config().get_value_int("timing", "min-display");
+		int min_gap_between_subtitles = get_config().get_value_int("timing", "min-gap-between-subtitles");
+
+		SubtitleTime gap = SubtitleTime(min_gap_between_subtitles) * 0.5;
+		SubtitleTime tmp;
+		for(unsigned int i=0; i< subs.size(); ++i)
+		{
+			SubtitleTime start = subs[i].get_start();
+			SubtitleTime end = subs[i].get_end();
+
+			if(i > 0) // Move the beginning if it's not the first subtitle
+				start = start + gap;				
+
+			if(i < subs.size() -1) // Move the end if it's not the last subtitle
+				end = end - gap;
+
+			subs[i].set_start_and_end(start, end);
+		}
 	}
 
 protected:

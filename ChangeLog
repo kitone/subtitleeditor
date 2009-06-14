@@ -1,5 +1,11 @@
 2009-06-14  kitone  <kitone@gna.org>
 
+	* plugins/actions/splitsubtitle/splitsubtitle.cc:
+	Split a subtitle for each lines and sets the duration according to number of
+	characters in each part. Fix bug #13270.
+
+2009-06-14  kitone  <kitone@gna.org>
+
 	* configure.in:
 	* plugins/subtitleformats/Makefile.am:
 	* plugins/subtitleformats/bitc/Makefile.am:
