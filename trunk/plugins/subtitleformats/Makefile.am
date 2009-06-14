@@ -1,6 +1,7 @@
 FILES = \
 	adobeencoredvd \
 	advancedsubstationalpha \
+	bitc \
 	microdvd \
 	mpl2 \
 	mpsub \
