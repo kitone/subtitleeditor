@@ -1,3 +1,13 @@
+2009-06-14  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/bitc/Makefile.am:
+	* plugins/subtitleformats/bitc/bitc.cc:
+	* plugins/subtitleformats/bitc/bitc.se-plugin.in:
+	* plugins/subtitleformats/bitc/dialog-bitc.glade:
+	Introduce new subtitle format: BITC. Fix bug #12858.
+
 2009-06-12  kitone  <kitone@gna.org>
 
 	* plugins/actions/command/command.cc:

@@ -350,6 +350,7 @@ plugins/actions/wavefrommanagement/Makefile
 plugins/subtitleformats/Makefile
 plugins/subtitleformats/adobeencoredvd/Makefile
 plugins/subtitleformats/advancedsubstationalpha/Makefile
+plugins/subtitleformats/bitc/Makefile
 plugins/subtitleformats/microdvd/Makefile
 plugins/subtitleformats/mpl2/Makefile
 plugins/subtitleformats/mpsub/Makefile
