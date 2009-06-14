@@ -2612,23 +2612,23 @@ msgstr "Texte"
 
 #: ../src/timeutility.cc:36
 msgid "23.976 fps"
-msgstr "2_3.976 fps"
+msgstr "23.976 fps"
 
 #: ../src/timeutility.cc:39
 msgid "24 fps"
-msgstr "2_4 fps"
+msgstr "24 fps"
 
 #: ../src/timeutility.cc:42
 msgid "25 fps"
-msgstr "2_5 fps"
+msgstr "25 fps"
 
 #: ../src/timeutility.cc:45
 msgid "29.97 fps"
-msgstr "2_9.97 fps"
+msgstr "29.97 fps"
 
 #: ../src/timeutility.cc:48
 msgid "30 fps"
-msgstr "3_0 fps"
+msgstr "30 fps"
 
 #: ../src/timeutility.cc:51
 msgid "Invalid fps"
