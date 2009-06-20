@@ -1,3 +1,8 @@
+2009-06-20  kitone  <kitone@gna.org>
+
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	New action 'Generate Dummy Waveform'. Fix bug #13696 : Waveform window for silent films.
+
 2009-06-14  kitone  <kitone@gna.org>
 
 	* plugins/actions/splitsubtitle/splitsubtitle.cc:

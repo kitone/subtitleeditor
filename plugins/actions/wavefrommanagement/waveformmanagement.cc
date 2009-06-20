@@ -76,6 +76,11 @@ public:
 					sigc::mem_fun(*this, &WaveformManagement::on_generate_from_player_file));
 
 		action_group->add(
+				Gtk::Action::create("waveform/generate-dummy", _("_Generate Dummy Waveform"), 
+					_("Generate an dummy waveform (sine)")), 
+					sigc::mem_fun(*this, &WaveformManagement::on_generate_dummy));
+
+		action_group->add(
 				Gtk::Action::create("waveform/save", Gtk::Stock::SAVE, _("_Save Waveform"), _("Save wavefrom to file")), Gtk::AccelKey("<Control><Alt>S"),
 					sigc::mem_fun(*this, &WaveformManagement::on_save_waveform));
 
@@ -141,6 +146,7 @@ public:
 			"			<placeholder name='waveform-management'>"
 			"				<menuitem action='waveform/open'/>"
 			"				<menuitem action='waveform/generate-from-player-file'/>"
+			"				<menuitem action='waveform/generate-dummy'/>"
 			"				<menuitem action='waveform/save'/>"
 			"				<separator/>"
 			"				<menuitem action='waveform/zoom-in'/>"
@@ -226,6 +232,7 @@ public:
 		bool has_player_file = (state != Player::NONE);
 
 		action_group->get_action("waveform/generate-from-player-file")->set_sensitive(has_player_file);
+		action_group->get_action("waveform/generate-dummy")->set_sensitive(has_player_file);
 	}
 
 protected:
@@ -272,6 +279,39 @@ protected:
 		Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
 		if(uri.empty() == false)
 			get_waveform_manager()->generate_waveform(uri);
+	}
+
+	/*
+	 * Generate an Sine Waveform
+	 */
+	void on_generate_dummy()
+	{
+		Player* player = get_subtitleeditor_window()->get_player();
+		if(player->get_state() == Player::NONE)
+			return;
+
+		// Create and initialize Waveform
+		Glib::RefPtr<Waveform> wf(new Waveform);
+		wf->m_video_uri = player->get_uri();		
+		wf->m_n_channels = 1;
+		wf->m_duration = player->get_duration();
+		
+		// Create Sine Waveform
+		int second = SubtitleTime(0,0,1,0).totalmsecs;
+		wf->m_channels[0].resize(wf->m_duration);
+		
+		double freq = (wf->m_duration % second) / 2;
+		double amp = 0.5;
+		double rate = SubtitleTime(0,1,0,0).totalmsecs;
+		double rfreq = 2.0 * 3.141592653589793 * freq;
+
+		for(unsigned int i=1; i<= wf->m_duration; ++i)
+		{
+			double a = amp - (amp * (i % second) * 0.001);
+			wf->m_channels[0][i-1] = a * sin(rfreq * (i/rate));
+		}
+
+		get_waveform_manager()->set_waveform(wf);
 	}
 
 	/*
