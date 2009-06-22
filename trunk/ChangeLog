@@ -1,3 +1,8 @@
+2009-06-22  kitone  <kitone@gna.org>
+
+	* plugins/actions/splitsubtitle/splitsubtitle.cc:
+	Improve split subtitle. Fix bug #13271 : Splitting italic subtitles.
+
 2009-06-20  kitone  <kitone@gna.org>
 
 	* plugins/actions/wavefrommanagement/waveformmanagement.cc:

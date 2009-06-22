@@ -127,14 +127,13 @@ public:
 
 		Glib::ustring text = sub.get_text();
 
-		// TODO
-		//try_to_fix_tags(text);
-
 		std::vector<Glib::ustring> lines = re->split(text);
 
 		// If there's not at least two lines, it's not necessary to split
 		if(lines.size() < 2)
 			return;
+
+		fix_multiline_tag(lines);
 
 		// Original values
 		Glib::ustring otext = text;
@@ -217,6 +216,42 @@ public:
 				end = end - gap;
 
 			subs[i].set_start_and_end(start, end);
+		}
+	}
+
+	/*
+	 */
+	void fix_multiline_tag(std::vector<Glib::ustring> &lines)
+	{
+		Glib::RefPtr<Glib::Regex> re_tag_open = Glib::Regex::create("<(\\w+)>");
+		
+		for(std::vector<Glib::ustring>::iterator it = lines.begin(); it != lines.end(); ++it)
+		{
+			// Is there a tag open ?
+			if(re_tag_open->match(*it))
+			{
+				std::vector<Glib::ustring> matches = re_tag_open->split(*it);
+				
+				Glib::ustring tag = matches[1];
+	
+				Glib::RefPtr<Glib::Regex> re_tag_close = Glib::Regex::create(
+						Glib::ustring::compose("</(%1)>", tag));
+				
+				//The tag open is closed on the same line?
+				if(re_tag_close->match(*it) == false)
+				{
+					// No, we close the tag at the end of this line 
+					// and add an opened tag to the start of the next.
+					*it = Glib::ustring::compose("%1</%2>", *it, tag);
+
+					std::vector<Glib::ustring>::iterator it_next = it; 
+					++it_next;
+					if(it_next != lines.end()) // Only if there is a next line
+					{
+						*it_next = Glib::ustring::compose("<%1>%2", tag, *it_next);
+					}
+				}
+			}
 		}
 	}
 
