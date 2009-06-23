@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 22:24+0100\n"
-"PO-Revision-Date: 2008-11-25 12:18+0100\n"
+"POT-Creation-Date: 2009-06-23 13:49+0200\n"
+"PO-Revision-Date: 2009-06-23 15:38+0100\n"
 "Last-Translator: kitone <kitone@gna.org>\n"
 "Language-Team: French <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgstr "Enlever 100 Millisecondes aux sous-titres sélectionnés."
 #: ../plugins/actions/extendlength/extendlength.cc:120
 #: ../plugins/actions/italicize/italicize.cc:129
 #: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc:120
-#: ../plugins/actions/movesubtitles/movesubtitles.cc:199
+#: ../plugins/actions/movesubtitles/movesubtitles.cc:212
 #: ../plugins/actions/removesubtitle/removesubtitle.cc:120
 msgid "Please select at least a subtitle."
 msgstr "Veuillez sélectionner au moins un sous-titre."
@@ -174,7 +174,7 @@ msgid "Merge the selected subtitles"
 msgstr "Fusionner les sous-titres sélectionnés"
 
 #: ../plugins/actions/combinesubtitles/combinesubtitles.cc:168
-#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:120
+#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:105
 msgid "Please select at least two subtitles."
 msgstr "Veuillez sélectionner au moins deux sous-titres."
 
@@ -197,8 +197,8 @@ msgstr "Annuler : %s"
 
 #: ../plugins/actions/command/command.cc:175
 #, c-format
-msgid "redo: %s"
-msgstr "refaire : %s"
+msgid "Redo: %s"
+msgstr "Refaire : %s"
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:93
 msgid "Actions"
@@ -715,7 +715,7 @@ msgstr "Jouer le film avec le lecteur video externe"
 
 #: ../plugins/actions/externalvideoplayer/externalvideoplayer.cc:93
 msgid "External video player preferences"
-msgstr ""
+msgstr "Préférences du lecteur vidéo externe"
 
 #: ../plugins/actions/externalvideoplayer/externalvideoplayer.cc:175
 msgid "Please select a movie."
@@ -754,7 +754,7 @@ msgid "Replace _All"
 msgstr "Remplacer _tout"
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:5
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:6
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:3
 msgid "Replace with:"
 msgstr "Remplacer par :"
 
@@ -871,7 +871,7 @@ msgid "<b>Position</b>"
 msgstr "<b>Position</b>"
 
 #: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:2
-#: ../plugins/actions/movesubtitles/movesubtitles.cc:188
+#: ../plugins/actions/movesubtitles/movesubtitles.cc:198
 #: ../plugins/actions/movesubtitles/movesubtitles.se-plugin.in.h:1
 msgid "Move Subtitles"
 msgstr "Décaler les sous-titres"
@@ -881,26 +881,30 @@ msgstr "Décaler les sous-titres"
 msgid "_New Start:"
 msgstr "Nouveau début :"
 
-#. init label
 #: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:4
-#: ../plugins/actions/movesubtitles/movesubtitles.cc:52
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:7
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:121
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:122
-msgid "_Start Time:"
-msgstr "Temps de début"
+msgid "_Only selected subtitles"
+msgstr "_Seulement les sous-titres sélectionnés"
 
-#: ../plugins/actions/movesubtitles/movesubtitles.cc:52
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:121
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:122
+#. init label
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:5
+#: ../plugins/actions/movesubtitles/movesubtitles.cc:53
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:7
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
+msgid "_Start Time:"
+msgstr "Temps de début :"
+
+#: ../plugins/actions/movesubtitles/movesubtitles.cc:53
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
 msgid "_Start Frame:"
 msgstr "Image de début :"
 
-#: ../plugins/actions/movesubtitles/movesubtitles.cc:109
+#: ../plugins/actions/movesubtitles/movesubtitles.cc:119
 msgid "_Move Subtitles"
 msgstr "Décaler les sous-titres"
 
-#: ../plugins/actions/movesubtitles/movesubtitles.cc:109
+#: ../plugins/actions/movesubtitles/movesubtitles.cc:119
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr "Tous les sous-titres seront également déplacés après le premier sous-titre"
 
@@ -1106,34 +1110,38 @@ msgid "_Center the text of the subtitle in the column"
 msgstr "_Centrer le texte du sous-titre dans la colonne"
 
 #: ../plugins/actions/preferences/dialog-preferences.glade.h:51
+msgid "_Do not disable the actions during editing"
+msgstr "_Ne pas désactiver les actions pendant l'édition"
+
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:52
 msgid "_Font:"
 msgstr "_Police :"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:52
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:53
 msgid "_Format:"
 msgstr "_Format :"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:53
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:54
 msgid "_Maximize window"
 msgstr "_Maximiser la fenêtre"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:54
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:55
 msgid "_Newline:"
 msgstr "_Nouvelle ligne :"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:55
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:56
 msgid "_Show the number of characters per line"
 msgstr "_Afficher le nombre de caractères par ligne"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:56
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:57
 msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr "Utiliser Ctrl+Enter pour confirmer le changement"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:57
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:58
 msgid "_Video:"
 msgstr "_Vidéo :"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:58
+#: ../plugins/actions/preferences/dialog-preferences.glade.h:59
 msgid "minutes"
 msgstr "minutes"
 
@@ -1144,41 +1152,45 @@ msgstr "Configurer Subtitle Editor"
 #. audio output
 #. video output
 #: ../plugins/actions/preferences/videoplayerpage.h:123
-#: ../plugins/actions/preferences/videoplayerpage.h:131
+#: ../plugins/actions/preferences/videoplayerpage.h:132
 msgid "Autodetect"
 msgstr "Détection automatique"
 
 #: ../plugins/actions/preferences/videoplayerpage.h:124
+msgid "Pulse - PulseAudio Sound Server"
+msgstr "Pulse - PulseAudio Sound Server"
+
+#: ../plugins/actions/preferences/videoplayerpage.h:125
 msgid "ALSA - Advanced Linux Sound Architecture"
 msgstr "ALSA - Advanced Linux Sound Architecture"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:125
+#: ../plugins/actions/preferences/videoplayerpage.h:126
 msgid "ESD - Enlightenment Sound Daemon"
 msgstr "ESD - Enlightenment Sound Daemon"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:126
+#: ../plugins/actions/preferences/videoplayerpage.h:127
 msgid "OSS - Open Sound System"
 msgstr "OSS - Open Sound System"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:127
-#: ../plugins/actions/preferences/videoplayerpage.h:134
+#: ../plugins/actions/preferences/videoplayerpage.h:128
+#: ../plugins/actions/preferences/videoplayerpage.h:135
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simple DirectMedia Layer"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:128
-#: ../plugins/actions/preferences/videoplayerpage.h:135
+#: ../plugins/actions/preferences/videoplayerpage.h:129
+#: ../plugins/actions/preferences/videoplayerpage.h:136
 msgid "GConf"
 msgstr "GConf"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:132
+#: ../plugins/actions/preferences/videoplayerpage.h:133
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window System (X11/XShm/Xv)"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:133
+#: ../plugins/actions/preferences/videoplayerpage.h:134
 msgid "X Window System (No Xv)"
 msgstr "X Window System (sans Xv)"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:136
+#: ../plugins/actions/preferences/videoplayerpage.h:137
 msgid "OpenGL"
 msgstr "OpenGL"
 
@@ -1230,25 +1242,39 @@ msgstr "Numéro :"
 msgid "Scale"
 msgstr "Échelle"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:109
-msgid "You can't use <i>scale</i> with this document."
-msgstr "Vous ne pouvez pas utiliser l'<i>échelle</i> avec ce document."
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:79
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:85
+msgid "You can't use <i>scale</i> with this values."
+msgstr "Vous ne pouvez pas utiliser l'<i>échelle</i> avec ces valeurs."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:253
-msgid "_Scale"
-msgstr "_Échelle"
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:80
+msgid "The first point is superior to the last point."
+msgstr "Le premier point est supérieur au dernier point."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:253
-msgid "Scale by two points"
-msgstr "Échelle à partir de deux points"
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:86
+msgid "The first point is equal to the last point."
+msgstr "Le premier point est égal au dernier point."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:327
+#. apply change
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:97
 msgid "Scale subtitles"
 msgstr "Échelle"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:350
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:103
 msgid "The scale was applied"
 msgstr "L'échelle a été appliquée."
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:124
+msgid "You can't use <i>scale</i> with this document."
+msgstr "Vous ne pouvez pas utiliser l'<i>échelle</i> avec ce document."
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+msgid "_Scale"
+msgstr "_Échelle"
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+msgid "Scale by two points"
+msgstr "Échelle à partir de deux points"
 
 #: ../plugins/actions/selection/selection.cc:53
 msgid "Select _First Subtitle"
@@ -1299,48 +1325,54 @@ msgid "Invert subtitles selection"
 msgstr "Inverser la sélection des sous-titres"
 
 #: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:1
-msgid "<b>Completed spell checking.</b>"
-msgstr "<b>Vérification orthographique complète.</b>"
-
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:2
-msgid "<b>Language:</b>"
-msgstr "<b>Langue :</b>"
-
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:3
 msgid "A_dd Word"
 msgstr "_Ajouter le mot"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:4
-msgid "Check _Word"
-msgstr "_Vérifier le mot"
-
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:5
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:2
 msgid "Ignore _All"
 msgstr "Ignorer _tout"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
-#: ../plugins/actions/spellchecking/spellchecking.cc:294
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:4
+#: ../plugins/actions/spellchecking/spellchecking.cc:162
 #: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:2
 msgid "Spell Checking"
 msgstr "Vérification orthographique"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:8
-msgid "User dictionary:"
-msgstr "Dictionnaire de l'utilisateur :"
-
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:9
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:5
 msgid "_Ignore"
 msgstr "_Ignorer"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:10
+#. Language
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:6
+#: ../plugins/actions/textcorrection/patternspage.h:237
+msgid "_Language:"
+msgstr "_Langue :"
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
 msgid "_Replace"
 msgstr "_Remplacer"
 
-#: ../plugins/actions/spellchecking/spellchecking.cc:674
+#: ../plugins/actions/spellchecking/spellchecking.cc:181
+msgid "The spell check is applied to the column \"text\" as default. You can check the column \"translation\" by setting the focus to this column before starting the spell check."
+msgstr "La vérification orthographique est appliqué à la colonne « texte » par défaut. Vous pouvez vérifier la colonne « traduction » en plaçant le curseur sur cette colonne avant de lancer la vérification orthographique."
+
+#: ../plugins/actions/spellchecking/spellchecking.cc:187
+msgid "_Do not show this message again"
+msgstr "_Ne plus jamais afficher ce message"
+
+#: ../plugins/actions/spellchecking/spellchecking.cc:274
+msgid "Suggestions"
+msgstr "Suggestion"
+
+#: ../plugins/actions/spellchecking/spellchecking.cc:650
+msgid "Completed spell checking."
+msgstr "Vérification orthographique complète."
+
+#: ../plugins/actions/spellchecking/spellchecking.cc:712
 msgid "_Spell Check"
 msgstr "Vérification _orthographique"
 
-#: ../plugins/actions/spellchecking/spellchecking.cc:674
+#: ../plugins/actions/spellchecking/spellchecking.cc:712
 msgid "Launch the spell checking"
 msgstr "Lance la vérification orthographique"
 
@@ -1378,8 +1410,7 @@ msgstr "_Scinder"
 msgid "Split the selected subtitles"
 msgstr "Scinder les sous-titres sélectionnés."
 
-#.
-#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:133
+#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:109
 msgid "Split subtitles"
 msgstr "Scinder les sous-titres"
 
@@ -1515,6 +1546,128 @@ msgstr "Éditeur de style"
 msgid "Launch the style editor"
 msgstr "Lancer l'éditeur de style"
 
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:1
+msgid "Acc_ept, discard or edit changes:"
+msgstr "Acc_epter, rejeter ou modifier les changements :"
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:2
+#: ../plugins/actions/textcorrection/confirmationpage.h:185
+#: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:2
+msgid "Text Correction"
+msgstr "Correction du texte"
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:3
+msgid "_Mark All"
+msgstr "Activer _tous"
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:4
+msgid "_Remove all blank subtitles"
+msgstr "_Retirer les sous-titres vide"
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:5
+msgid "_Select correction to performed text:"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:6
+msgid "_Unmark All"
+msgstr "_Désactiver Tout"
+
+#: ../plugins/actions/textcorrection/capitalizationpage.h:34
+msgid "Select Capitalization Patterns"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/capitalizationpage.h:35
+msgid "Capitalize texts"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/capitalizationpage.h:36
+msgid "Capitalize texts written in lower case"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/commonerrorpage.h:34
+msgid "Select Common Error Pattern"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/commonerrorpage.h:35
+msgid "Correct common errors"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/commonerrorpage.h:36
+msgid "Correct common errors made by humans or image recognition software"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:78
+#: ../src/subtitleview.cc:1461
+msgid "Num"
+msgstr "Num"
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:87
+msgid "Accept"
+msgstr "Accepter"
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:98
+msgid "Original Text"
+msgstr "Texte original"
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:107
+msgid "Corrected Text"
+msgstr "Texte corrigé"
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:168
+msgid "There Is No Change"
+msgstr "Il n'y a pas de changement"
+
+#: ../plugins/actions/textcorrection/confirmationpage.h:171
+msgid "Confirm %1 Change"
+msgid_plural "Confirm %1 Changes"
+msgstr[0] "Confirmer %1 modification"
+msgstr[1] "Confirmer %1 modifications"
+
+#: ../plugins/actions/textcorrection/hearingimpairedpage.h:34
+msgid "Select Hearing Impaired Patterns"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/hearingimpairedpage.h:35
+msgid "Remove hearing impaired texts"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/hearingimpairedpage.h:36
+msgid "Remove explanatory texts meant for the hearing impaired"
+msgstr ""
+
+#. Script
+#: ../plugins/actions/textcorrection/patternspage.h:230
+msgid "_Script:"
+msgstr "_Script :"
+
+#. Country
+#: ../plugins/actions/textcorrection/patternspage.h:244
+msgid "_Country:"
+msgstr "_Pays :"
+
+#: ../plugins/actions/textcorrection/patternspage.h:437
+#: ../plugins/actions/textcorrection/patternspage.h:465
+#: ../plugins/actions/textcorrection/patternspage.h:493
+#, fuzzy
+msgid "Other"
+msgstr "Autre"
+
+#: ../plugins/actions/textcorrection/taskspage.h:66
+#: ../plugins/actions/viewmanager/viewmanager.cc:129
+msgid "Display"
+msgstr "Afficher"
+
+#: ../plugins/actions/textcorrection/taskspage.h:77
+#: ../plugins/actions/viewmanager/viewmanager.cc:141
+#: ../plugins/actions/viewmanager/viewmanager.cc:232
+#: ../src/subtitleview.cc:1459
+msgid "Name"
+msgstr "Nom"
+
+#: ../plugins/actions/textcorrection/textcorrection.cc:188
+msgid "Text _Correction"
+msgstr "_Correction de texte"
+
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:56
 msgid "_Times"
 msgstr "_Temps"
@@ -1527,13 +1680,14 @@ msgstr "_Temps"
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:78
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:82
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:86
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:88
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:92
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:96
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:89
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:93
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:97
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:108
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:115
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:106
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:113
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:120
+#: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:1
 msgid "FIXME"
 msgstr "FIXME"
 
@@ -1544,6 +1698,48 @@ msgstr "_Images"
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:67
 msgid "_Framerate"
 msgstr "_Framerate"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:59
+#: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:1
+#, fuzzy
+msgid "Timing From Player"
+msgstr "Couche d'édition"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:60
+msgid "Use the current player position to set subtitle time"
+msgstr "Utilise la position du lecteur pour définir le temps du sous-titre"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:65
+msgid "Set Subtitle _Start"
+msgstr "Définir le _début du sous-titre"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:66
+msgid "Use the current player position to set the subtitle start"
+msgstr "Utilise la position du lecteur pour définir le début du sous-titre"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:72
+msgid "Set Subtitle _End"
+msgstr "Définir la _fin du sous-titre"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:73
+msgid "Use the current player position to set the subtitle end"
+msgstr "Utilise la position du lecteur pour définir la fin du sous-titre"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:79
+msgid "Set Subtitle Start _And End"
+msgstr "Définir le début et de la _fin d'un sous-titre"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
+msgid "Use only one key to set beginning of the subtitle when the key is pressed and the end when the key is released."
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:170
+msgid "Set subtitle start"
+msgstr "Définir le début du sous-titre"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:195
+msgid "Set subtitle end"
+msgstr "Définir la fin du sous-titre"
 
 #. _("_Open Media"),
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:70
@@ -1660,7 +1856,7 @@ msgstr "_Répéter"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:215
 msgid "Enable or disable the repeat mode"
-msgstr ""
+msgstr "Activer ou désactiver le mode répétition"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:224
 msgid "Play _Previous Subtitle"
@@ -1718,37 +1914,13 @@ msgstr "Jouer la prochaine seconde"
 msgid "Play the second following the subtitle currently selected"
 msgstr "Jouer la seconde qui suit le sous-titre"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:278
-msgid "Set Subtitle _Start"
-msgstr "Positionner le _début du sous-titre"
-
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:279
-msgid "Use the current player position to set the subtitle start"
-msgstr "Utilise la position du lecteur pour définir le début du sous-titre"
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:285
-msgid "Set Subtitle _End"
-msgstr "Positionner la _fin du sous-titre"
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:286
-msgid "Use the current player position to set the subtitle end"
-msgstr "Utilise la position du lecteur pour définir la fin du sous-titre"
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:295
 msgid "_Video Player"
 msgstr "Lecteur vidéo"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:296
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:280
 msgid "Show or hide the video player in the current window"
 msgstr "Montrer ou cacher le lecteur vidéo dans la fenêtre courante"
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:826
-msgid "Set subtitle start"
-msgstr "Positionner le début du sous-titre"
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:848
-msgid "Set subtitle end"
-msgstr "Positionner la fin du sous-titre"
 
 #: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:1
 msgid "<b>Columns</b>"
@@ -1767,16 +1939,6 @@ msgstr "Éditer l'Affichage"
 msgid "View Manager"
 msgstr "Gestion de l'affichage"
 
-#: ../plugins/actions/viewmanager/viewmanager.cc:129
-msgid "Display"
-msgstr "Afficher"
-
-#: ../plugins/actions/viewmanager/viewmanager.cc:141
-#: ../plugins/actions/viewmanager/viewmanager.cc:232
-#: ../src/subtitleview.cc:1641
-msgid "Name"
-msgstr "Nom"
-
 #: ../plugins/actions/viewmanager/viewmanager.cc:302
 msgid "Untitled"
 msgstr "Sans titre"
@@ -1790,7 +1952,7 @@ msgid "Advanced"
 msgstr "Avancé"
 
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
-#: ../src/subtitleview.cc:1647
+#: ../src/subtitleview.cc:1465
 msgid "Translation"
 msgstr "Traduction"
 
@@ -1823,69 +1985,91 @@ msgid "Generate the waveform from the current video file"
 msgstr "Création de l'onde à partir du fichier vidéo"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:79
+msgid "_Generate Dummy Waveform"
+msgstr "Création d'une _fausse onde"
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:80
+msgid "Generate an dummy waveform (sine)"
+msgstr "Création d'une fausse onde (sine)"
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
 msgid "_Save Waveform"
 msgstr "_Enregistrer l'onde"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:79
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
 msgid "Save wavefrom to file"
 msgstr "Enregistrer l'onde dans un fichier"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:89
 msgid "Zoom _In"
 msgstr "Zoom a_vant"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:88
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:93
 msgid "Zoom _Out"
 msgstr "Zoom a_rrière"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:92
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:97
 msgid "Zoom _Selection"
 msgstr "Zoom sur la _sélection"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:96
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
 msgid "Zoom _All"
 msgstr "Zoom _ajusté à la fenêtre"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:106
 msgid "_Center With Selected Subtitle"
 msgstr "_Centrer sur le sous-titre sélectionné "
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:108
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:113
 msgid "Scrolling With _Player"
 msgstr "Défiler avec le lecteur"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:115
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:120
 msgid "Scrolling With _Selection"
 msgstr "Défiler avec la _sélection"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:122
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:127
 msgid "_Respect The Timing"
 msgstr "Respecter la synchronisation"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:122
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:127
 msgid "Try to respect the timing preferences"
 msgstr "Essayer de respecter les préférences de synchronisation"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:129
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:134
 msgid "_Wavform"
 msgstr "_Onde"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:129
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:134
 msgid "Show or hide the waveform in the current window"
 msgstr "Afficher ou masquer l'onde dans la fenêtre courante"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:287
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:327
 msgid "Save Waveform"
 msgstr "Enregistrer l'onde"
 
-#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:55
-#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:110
+#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:1
+msgid "<b>What framerate do you want used to import or export?</b>"
+msgstr ""
+
+#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:2
+#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
+msgid "BITC (Burnt-in timecode)"
+msgstr "BITC (Burnt-in timecode)"
+
+#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:3
+#, fuzzy
+msgid "_Framerate:"
+msgstr "_Framerate"
+
+#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
+#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:70
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:46
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:70
 msgid "Failed to open the file for reading."
 msgstr "Impossible d'ouvrir le fichier pour la lecture."
 
-#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:164
+#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:95
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:103
 msgid "Failed to write to the file."
 msgstr "Erreur d'écriture du fichier."
@@ -2308,6 +2492,26 @@ msgstr "Nouvelle ligne :"
 msgid "Timing Mode:"
 msgstr "Mode de synchronisation :"
 
+#: ../src/gui/automaticspellchecker.cc:406
+msgid "_Languages"
+msgstr "_Langues"
+
+#: ../src/gui/automaticspellchecker.cc:471
+msgid "_Ignore all"
+msgstr "Ignorer _tout"
+
+#: ../src/gui/automaticspellchecker.cc:480
+msgid "_Add \"%1\" to Dictionary"
+msgstr "_Ajouter « %1 » au dictionnaire"
+
+#: ../src/gui/automaticspellchecker.cc:493
+msgid "(no suggested words)"
+msgstr "(aucun mot suggéré)"
+
+#: ../src/gui/automaticspellchecker.cc:520
+msgid "_More..."
+msgstr "_Plus..."
+
 #: ../src/gui/comboboxencoding.cc:142
 msgid "Auto Detected"
 msgstr "Auto détecté"
@@ -2414,7 +2618,7 @@ msgstr "_Extensions"
 msgid "_Help"
 msgstr "_Aide"
 
-#: ../src/main.cc:221
+#: ../src/main.cc:118
 msgid " - edit subtitles files"
 msgstr " - editer fichiers sous-titres"
 
@@ -2439,7 +2643,7 @@ msgstr "CODAGE"
 #: ../src/subtitleformatio.cc:63
 #: ../src/subtitleformatio.cc:71
 msgid "This function is not implemented for this format."
-msgstr ""
+msgstr "Cette fonction n'est pas implémentée pour ce format."
 
 #: ../src/subtitleformatsystem.cc:70
 msgid "Couldn't recognize format of the file."
@@ -2471,142 +2675,138 @@ msgstr "Sous-titre ajouté"
 msgid "Remove Subtitles"
 msgstr "Sous-titres supprimés"
 
-#: ../src/subtitleview.cc:490
+#: ../src/subtitleview.cc:308
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Utiliser Ctrl+Return pour sortir et Return pour le retour à la ligne"
 
-#: ../src/subtitleview.cc:492
+#: ../src/subtitleview.cc:310
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr "Utiliser Ctrl+Return pour le retour à la ligne"
 
-#: ../src/subtitleview.cc:644
+#: ../src/subtitleview.cc:462
 msgid "The line number"
 msgstr "Numéro de la ligne"
 
-#: ../src/subtitleview.cc:710
+#: ../src/subtitleview.cc:528
 msgid "When a subtitle appears on the screen."
 msgstr "Quand le sous-titre apparaît à l'écran."
 
-#: ../src/subtitleview.cc:722
+#: ../src/subtitleview.cc:540
 msgid "When a subtitle disappears from the screen."
 msgstr "Quand le sous-titre disparaît de l'écran."
 
-#: ../src/subtitleview.cc:735
+#: ../src/subtitleview.cc:553
 msgid "The duration of the subtitle."
 msgstr "La durée du sous-titre."
 
-#: ../src/subtitleview.cc:810
+#: ../src/subtitleview.cc:628
 msgid "The number of characters per second"
 msgstr "Nombre de caractères par seconde"
 
-#: ../src/subtitleview.cc:1062
+#: ../src/subtitleview.cc:880
 msgid "Editing layer"
 msgstr "Couche d'édition"
 
-#: ../src/subtitleview.cc:1090
-#: ../src/subtitleview.cc:1101
+#: ../src/subtitleview.cc:908
+#: ../src/subtitleview.cc:919
 msgid "Editing start"
 msgstr "Début d'édition"
 
-#: ../src/subtitleview.cc:1128
-#: ../src/subtitleview.cc:1139
+#: ../src/subtitleview.cc:946
+#: ../src/subtitleview.cc:957
 msgid "Editing end"
 msgstr "Fin d'édition"
 
-#: ../src/subtitleview.cc:1166
-#: ../src/subtitleview.cc:1177
+#: ../src/subtitleview.cc:984
+#: ../src/subtitleview.cc:995
 msgid "Editing duration"
 msgstr "Édition de la durée"
 
-#: ../src/subtitleview.cc:1197
+#: ../src/subtitleview.cc:1015
 msgid "Editing text"
 msgstr "Texte d'édition"
 
-#: ../src/subtitleview.cc:1219
+#: ../src/subtitleview.cc:1037
 msgid "Editing translation"
 msgstr "Édition de la traduction"
 
-#: ../src/subtitleview.cc:1239
+#: ../src/subtitleview.cc:1057
 msgid "Editing note"
 msgstr "Note d'édition"
 
-#: ../src/subtitleview.cc:1258
+#: ../src/subtitleview.cc:1076
 msgid "Editing effect"
 msgstr "Édition de l'effet"
 
-#: ../src/subtitleview.cc:1279
+#: ../src/subtitleview.cc:1097
 msgid "Editing style"
 msgstr "Édition du style"
 
-#: ../src/subtitleview.cc:1299
+#: ../src/subtitleview.cc:1117
 msgid "Editing name"
 msgstr "Nom d'édition"
 
-#: ../src/subtitleview.cc:1319
+#: ../src/subtitleview.cc:1137
 msgid "Editing margin-l"
 msgstr "marge-l d'édition"
 
-#: ../src/subtitleview.cc:1339
+#: ../src/subtitleview.cc:1157
 msgid "Editing margin-r"
 msgstr "Marge-r d'édition"
 
-#: ../src/subtitleview.cc:1359
+#: ../src/subtitleview.cc:1177
 msgid "Editing margin-v"
 msgstr "Marge-v d'édition"
 
-#: ../src/subtitleview.cc:1500
+#: ../src/subtitleview.cc:1318
 msgid "Set style to selection"
 msgstr "Appliquer le style à la sélection"
 
-#: ../src/subtitleview.cc:1633
+#: ../src/subtitleview.cc:1451
 msgid "CPS"
 msgstr "CPS"
 
-#: ../src/subtitleview.cc:1634
+#: ../src/subtitleview.cc:1452
 msgid "Duration"
 msgstr "Durée"
 
-#: ../src/subtitleview.cc:1635
+#: ../src/subtitleview.cc:1453
 msgid "Effect"
 msgstr "Effet"
 
-#: ../src/subtitleview.cc:1636
+#: ../src/subtitleview.cc:1454
 msgid "End"
 msgstr "Fin"
 
-#: ../src/subtitleview.cc:1637
+#: ../src/subtitleview.cc:1455
 msgid "Layer"
 msgstr "Couche"
 
-#: ../src/subtitleview.cc:1638
+#: ../src/subtitleview.cc:1456
 msgid "L"
 msgstr "L"
 
-#: ../src/subtitleview.cc:1639
+#: ../src/subtitleview.cc:1457
 msgid "R"
 msgstr "R"
 
-#: ../src/subtitleview.cc:1640
+#: ../src/subtitleview.cc:1458
 msgid "V"
 msgstr "V"
 
-#: ../src/subtitleview.cc:1642
+#: ../src/subtitleview.cc:1460
 msgid "Note"
 msgstr "Note"
 
-#: ../src/subtitleview.cc:1643
-msgid "Num"
-msgstr "Num"
-
-#: ../src/subtitleview.cc:1644
+#: ../src/subtitleview.cc:1462
 msgid "Start"
 msgstr "Début"
 
-#: ../src/subtitleview.cc:1645
+#: ../src/subtitleview.cc:1463
 msgid "Style"
 msgstr "Style"
 
-#: ../src/subtitleview.cc:1646
+#: ../src/subtitleview.cc:1464
 msgid "Text"
 msgstr "Texte"
 
@@ -2634,22 +2834,22 @@ msgstr "30 fps"
 msgid "Invalid fps"
 msgstr "Invalide fps"
 
-#: ../src/vp/gstreamerplayer.cc:578
+#: ../src/vp/gstreamerplayer.cc:583
 #, c-format
 msgid "Failed to create a GStreamer pipeline (%s). Please check your GStreamer installation."
 msgstr "La création d'un objet GStreamer a échoué (%s). Vérifiez votre installation de GStreamer.\""
 
-#: ../src/vp/gstreamerplayer.cc:632
+#: ../src/vp/gstreamerplayer.cc:637
 #, c-format
 msgid "Failed to create a GStreamer converts video (%s). Please check your GStreamer installation."
 msgstr "Impossible de créer un GStreamer de conversion de vidéo (%s). Veuillez vérifier votre installation de GStreamer."
 
-#: ../src/vp/gstreamerplayer.cc:636
+#: ../src/vp/gstreamerplayer.cc:641
 #, c-format
 msgid "Failed to create a GStreamer text overlay (%s). Please check your GStreamer installation."
 msgstr "Impossible de créer un GStreamer de sur-couche texte (%s). Veuillez vérifier votre installation de GStreamer."
 
-#: ../src/vp/gstreamerplayer.cc:830
+#: ../src/vp/gstreamerplayer.cc:835
 #, c-format
 msgid ""
 "Media file could not be played.\n"
@@ -2741,7 +2941,7 @@ msgstr "Dialogue"
 
 #: ../plugins/actions/documentmanagement/documentmanagement.se-plugin.in.h:1
 msgid "Document Management"
-msgstr ""
+msgstr "Gestion de documents"
 
 #: ../plugins/actions/documentmanagement/documentmanagement.se-plugin.in.h:2
 msgid "Manages the document (Open, Save, Save As...)."
@@ -2846,7 +3046,7 @@ msgstr "Échelle à partir de deux points."
 
 #: ../plugins/actions/selection/selection.se-plugin.in.h:1
 msgid "Manages selection of subtitles."
-msgstr ""
+msgstr "Gestion de la sélection des sous-titres"
 
 #: ../plugins/actions/selection/selection.se-plugin.in.h:2
 msgid "Selection"
@@ -2883,6 +3083,10 @@ msgstr ""
 #: ../plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in.h:2
 msgid "Time Mode Management"
 msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:2
+msgid "Use the current player position to set the subtitle time."
+msgstr "Utilise la position du lecteur pour définir le temps du sous-titre"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:1
 msgid "Controls the video player."
@@ -2923,6 +3127,10 @@ msgstr "Advanced Sub Station Alpha"
 
 #: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.se-plugin.in.h:2
 msgid "Advanced Sub Station Alpha subtitles support."
+msgstr ""
+
+#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:2
+msgid "BITC (Burnt-in timecode) subtitles support."
 msgstr ""
 
 #: ../plugins/subtitleformats/microdvd/microdvd.se-plugin.in.h:1
@@ -2989,6 +3197,278 @@ msgstr "Timed Text Authoring Format 1.0"
 msgid "Timed Text Authoring Format 1.0 subtitles support."
 msgstr ""
 
+#.
+#. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'.
+#. 'previousmatch' is also not supported by gaupol.
+#.
+#: ../plugins/actions/textcorrection/Latn.capitalization.se-pattern.in.h:5
+msgid "Capitalize the first word of a sentence"
+msgstr ""
+
+#.
+#. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'.
+#. 'previousmatch' is also not supported by gaupol.
+#.
+#: ../plugins/actions/textcorrection/Latn.capitalization.se-pattern.in.h:10
+msgid "Sentence"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:1
+msgid "Add or remove spaces around parantheses and square brackets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:2
+#, fuzzy
+msgid "Add space after a dialogue dash"
+msgstr "Ajouter ou retirer la ligne de dialogue."
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:3
+msgid "Add space after an ellipsis"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:4
+#: ../plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in.h:1
+msgid "Add space after various punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:5
+msgid "Double apostrophe"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:6
+msgid "Letter \"O\" in a number"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:7
+msgid "Multiple question- and exclamation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:8
+msgid "Periods around a punctuation mark"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:9
+msgid "Remove period before or after various punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:10
+msgid "Remove space after a starting- and before an ending quotation mark"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:11
+msgid "Remove space after an ellipsis that starts a line"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:12
+msgid "Remove space before various punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:13
+msgid "Replace a double apostrophe with a quotation mark"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:14
+msgid "Replace letter \"O\" with a zero in a number"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:15
+msgid "Replace multiple consequtive question- and exclamation marks with only one"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:16
+msgid "Space after a dialogue dash"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:17
+msgid "Space after a starting ellipsis"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:18
+msgid "Space after an ellipsis"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:19
+#: ../plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in.h:2
+msgid "Space after punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:20
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:3
+msgid "Space before punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:21
+msgid "Spaces around a quotation mark"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:22
+msgid "Spaces around brackets"
+msgstr ""
+
+#. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'
+#: ../plugins/actions/textcorrection/Latn-en.capitalization.se-pattern.in.h:2
+msgid "Capitalize the first person pronoun \"I\""
+msgstr ""
+
+#. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'
+#: ../plugins/actions/textcorrection/Latn-en.capitalization.se-pattern.in.h:4
+msgid "First person pronoun"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:1
+msgid "Convert various two-letter spellings of okay to \"OK\""
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:2
+msgid "Letter \"I\" in a lower case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:3
+msgid "Letter \"l\" in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:4
+msgid "Okay"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:5
+msgid "Remove spaces around an apostrophe"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:6
+msgid "Replace letter \"I\" with letter \"l\" in a lower case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:7
+msgid "Replace letter \"l\" with letter \"I\" in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:8
+msgid "Replace zero with letter \"O\" in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:9
+msgid "Spaces around an apostrophe"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:10
+msgid "Zero in an upper case word"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:1
+msgid "Replace the uppercase name of the speaker before a colon with a dialogue dash"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:2
+msgid "Uppercase speaker before a colon"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:1
+msgid "Add period after a shortened title, such as \"Mr\" and \"Dr\""
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:2
+#, fuzzy
+msgid "Period after title"
+msgstr "Réorganisés les sous-titres"
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:1
+msgid "Add or remove space before various punctuation marks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:2
+msgid "Add spaces around guillemets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:4
+msgid "Spaces around guillemets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:1
+msgid "One-line song lyrics between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:2
+msgid "One-line song lyrics between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:3
+msgid "Remove description of a sound between parantheses"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:4
+msgid "Remove description of a sound between square brackets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:5
+msgid "Remove one-line song lyrics starting with or between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:6
+msgid "Remove one-line song lyrics starting with or between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:7
+msgid "Remove song lyrics starting with or between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:8
+msgid "Remove song lyrics starting with or between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:9
+msgid "Replace the name of the speaker before a colon with a dialogue dash"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:10
+msgid "Song lyrics between asterisks"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:11
+msgid "Song lyrics between number signs"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:12
+msgid "Sound in brackets"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:13
+msgid "Sound in parantheses"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:14
+msgid "Speaker before a colon"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:1
+msgid "Leading and trailing spaces"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:2
+msgid "Multiple consecutive spaces"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:3
+msgid "Remove space between digits of a number"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:4
+msgid "Remove spaces from the beginning and end of lines"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:5
+msgid "Replace multiple consecutive spaces with only one"
+msgstr ""
+
+#: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:6
+#, fuzzy
+msgid "Space between digits"
+msgstr "Espace entre les sous-titres"
+
+#~ msgid "Check _Word"
+#~ msgstr "_Vérifier le mot"
+#~ msgid "User dictionary:"
+#~ msgstr "Dictionnaire de l'utilisateur :"
 #~ msgid "<b>Video Player For Preview</b>"
 #~ msgstr "<b>Lecteur Vidéo pour Prévisualisation</b>"
 #~ msgid "Preview"
@@ -3034,8 +3514,6 @@ msgstr ""
 #~ msgstr "Contrôle des erreurs"
 #~ msgid "<b>Timings</b>"
 #~ msgstr "<b>Synchronisations</b>"
-#~ msgid "Gap between subtitle"
-#~ msgstr "Espace entre les sous-titres"
 #~ msgid "Too long line"
 #~ msgstr "Ligne trop longue"
 #~ msgid "An error is detected when the number ..."
@@ -3217,8 +3695,6 @@ msgstr ""
 #~ msgstr "Changer FPS: %f -> %f"
 #~ msgid "_Save Subtitle"
 #~ msgstr "_Enregistrer sous-titre"
-#~ msgid "_Move"
-#~ msgstr "Déplacer"
 #~ msgid "Import text \"%s\"."
 #~ msgstr "Importer texte \"%s\"."
 #~ msgid "Export text \"%s\" (%s)."
@@ -3274,10 +3750,6 @@ msgstr ""
 #~ msgstr "Remplacer:"
 #~ msgid "Find What:"
 #~ msgstr "Chercher:"
-#~ msgid "no suggestion"
-#~ msgstr "pas de suggestion"
-#~ msgid "Suggestions"
-#~ msgstr "Suggestion"
 #~ msgid "Move Subtitle End +0.1"
 #~ msgstr "Décaler la fin du sous-titre +0.1"
 #~ msgid "Move Subtitle End -0.1"
