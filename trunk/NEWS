@@ -1,3 +1,13 @@
+2009-06-23 - 0.33.0
+
+	* Fix: #13696 New action 'Generate Dummy Waveform'
+	* Fix: #13271 Improve split subtitle (tag)
+	* Fix: #13270 Improve split subtitle (multiline)
+	* Fix: #12858 New format BITC
+	* Fix: #12570 New plugin 'timingfromplayer' with new action 'Set Subtitle Start And End' 
+	* Fix: #13656 ASS/SSA Make reading more robust to the invalid files
+	* Translations update
+
 2009-06-03 - 0.32.0
 
 	* Add inline spellchecker capability to any textview (subtitle view, text correction...)
