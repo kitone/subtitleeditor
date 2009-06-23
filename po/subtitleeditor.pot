@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-01 11:36+0200\n"
+"POT-Creation-Date: 2009-06-23 13:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,7 +157,7 @@ msgid "Merge the selected subtitles"
 msgstr ""
 
 #: ../plugins/actions/combinesubtitles/combinesubtitles.cc:168
-#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:120
+#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:105
 msgid "Please select at least two subtitles."
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 
 #: ../plugins/actions/command/command.cc:175
 #, c-format
-msgid "redo: %s"
+msgid "Redo: %s"
 msgstr ""
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:93
@@ -1410,8 +1410,7 @@ msgstr ""
 msgid "Split the selected subtitles"
 msgstr ""
 
-#.
-#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:133
+#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:109
 msgid "Split subtitles"
 msgstr ""
 
@@ -1680,13 +1679,13 @@ msgstr ""
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:78
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:82
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:86
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:88
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:92
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:96
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:89
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:93
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:97
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:108
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:115
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:106
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:113
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:120
 #: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:1
 msgid "FIXME"
 msgstr ""
@@ -1697,6 +1696,49 @@ msgstr ""
 
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:67
 msgid "_Framerate"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:59
+#: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:1
+msgid "Timing From Player"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:60
+msgid "Use the current player position to set subtitle time"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:65
+msgid "Set Subtitle _Start"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:66
+msgid "Use the current player position to set the subtitle start"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:72
+msgid "Set Subtitle _End"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:73
+msgid "Use the current player position to set the subtitle end"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:79
+msgid "Set Subtitle Start _And End"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
+msgid ""
+"Use only one key to set beginning of the subtitle when the key is pressed "
+"and the end when the key is released."
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:170
+msgid "Set subtitle start"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:195
+msgid "Set subtitle end"
 msgstr ""
 
 #. _("_Open Media"),
@@ -1872,36 +1914,12 @@ msgstr ""
 msgid "Play the second following the subtitle currently selected"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:278
-msgid "Set Subtitle _Start"
-msgstr ""
-
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:279
-msgid "Use the current player position to set the subtitle start"
-msgstr ""
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:285
-msgid "Set Subtitle _End"
-msgstr ""
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:286
-msgid "Use the current player position to set the subtitle end"
-msgstr ""
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:295
 msgid "_Video Player"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:296
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:280
 msgid "Show or hide the video player in the current window"
-msgstr ""
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:829
-msgid "Set subtitle start"
-msgstr ""
-
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:851
-msgid "Set subtitle end"
 msgstr ""
 
 #: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:1
@@ -1967,59 +1985,80 @@ msgid "Generate the waveform from the current video file"
 msgstr ""
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:79
-msgid "_Save Waveform"
+msgid "_Generate Dummy Waveform"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:79
-msgid "Save wavefrom to file"
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:80
+msgid "Generate an dummy waveform (sine)"
 msgstr ""
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
+msgid "_Save Waveform"
+msgstr ""
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
+msgid "Save wavefrom to file"
+msgstr ""
+
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:89
 msgid "Zoom _In"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:88
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:93
 msgid "Zoom _Out"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:92
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:97
 msgid "Zoom _Selection"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:96
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
 msgid "Zoom _All"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:101
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:106
 msgid "_Center With Selected Subtitle"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:108
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:113
 msgid "Scrolling With _Player"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:115
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:120
 msgid "Scrolling With _Selection"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:122
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:127
 msgid "_Respect The Timing"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:122
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:127
 msgid "Try to respect the timing preferences"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:129
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:134
 msgid "_Wavform"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:129
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:134
 msgid "Show or hide the waveform in the current window"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:287
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:327
 msgid "Save Waveform"
+msgstr ""
+
+#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:1
+msgid "<b>What framerate do you want used to import or export?</b>"
+msgstr ""
+
+#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:2
+#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
+msgid "BITC (Burnt-in timecode)"
+msgstr ""
+
+#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:3
+msgid "_Framerate:"
 msgstr ""
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
@@ -3006,6 +3045,10 @@ msgstr ""
 msgid "Time Mode Management"
 msgstr ""
 
+#: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:2
+msgid "Use the current player position to set the subtitle time."
+msgstr ""
+
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:1
 msgid "Controls the video player."
 msgstr ""
@@ -3045,6 +3088,10 @@ msgstr ""
 
 #: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.se-plugin.in.h:2
 msgid "Advanced Sub Station Alpha subtitles support."
+msgstr ""
+
+#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:2
+msgid "BITC (Burnt-in timecode) subtitles support."
 msgstr ""
 
 #: ../plugins/subtitleformats/microdvd/microdvd.se-plugin.in.h:1
