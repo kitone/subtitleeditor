@@ -81,7 +81,7 @@ AC_SUBST(LIBGLADEMM_LIBS)
 # =========================================================================
 # check enchant
 
-PKG_CHECK_MODULES(ENCHANT, enchant >= 1.1.0)
+PKG_CHECK_MODULES(ENCHANT, enchant >= 1.4.0)
 
 AC_SUBST(ENCHANT_CFLAGS)
 AC_SUBST(ENCHANT_LIBS)
