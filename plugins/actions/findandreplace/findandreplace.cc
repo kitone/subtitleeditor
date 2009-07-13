@@ -21,145 +21,449 @@
  */
 
 #include <extension/action.h>
+#include <memory>
 #include <utility.h>
-#include <glib/gregex.h>
+#include <gui/dialogutility.h>
 #include <gtkmm_utility.h>
 #include <widget_config_utility.h>
-#include <memory>
+#include <glib/gregex.h>
 
 /*
- * FIXME: Remove Me
- * Waiting the Glib::MatchInfo API in glibmm.
+ * FIXME:
+ *	Subtitle selected changed caused by no modal window (find)
  */
-bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string, bool caseless, Glib::ustring::size_type &start, Glib::ustring::size_type &len)
-{
-	bool found = false;
-	GRegex *regex = NULL;
-	GMatchInfo *match_info = NULL;
-	GError *error = NULL;
 
-	int compile_flags = (GRegexMatchFlags)0;
-	
-	if(caseless)
-		compile_flags |= G_REGEX_CASELESS;
-
-	regex = g_regex_new(pattern.c_str(), (GRegexCompileFlags)compile_flags, (GRegexMatchFlags)0, &error);
-	if(error != NULL)
-	{
-		std::cerr << "regex_exec error: " << error->message << std::endl;
-		g_error_free(error);
-		return false;
-	}
-
-	if(g_regex_match(regex, string.c_str(), (GRegexMatchFlags)0, &match_info))
-	{
-		//while(g_match_info_matches(match_info))
-		if(g_match_info_matches(match_info))
-		{
-			int start_pos, end_pos;
-			// check the return
-			if(g_match_info_fetch_pos(
-							match_info, 
-							0, //match_num 0 is full text of the match
-							&start_pos,
-							&end_pos))
-			{
-				start = start_pos;
-				len = end_pos - start_pos;
-				found = true;
-			}
-		}
-	}
-
-	g_match_info_free(match_info);
-	g_regex_unref(regex);
-
-	return found;
-}
-
-
-class SearchResult
+/*
+ */
+class MatchInfo
 {
 public:
-	SearchResult()
+	MatchInfo()
 	{
+		column = 0;
 		found = false;
 		start = len = Glib::ustring::npos;
 	}
 
+	void reset()
+	{
+		text = Glib::ustring();
+		column = 0;
+		found = false;
+		start = len = Glib::ustring::npos;
+	}
+
+public:
+	int column;
+	Glib::ustring text;
 	bool found;
 	Glib::ustring::size_type start;
 	Glib::ustring::size_type len;
 };
 
+/*
+ */
+enum PatternOptions
+{
+	USE_REGEX    = 1 << 1,
+	IGNORE_CASE  = 1 << 2
+};
 
-	enum
-	{
-		USE_REGEX			= 1 << 1,
-		IGNORE_CASE		= 1 << 2
-	};
+/*
+ */
+enum ColumnOptions
+{
+	TEXT        = 1 << 1,
+	TRANSLATION = 1 << 2
+};
+
+/*
+ * FaR Find and Replace
+ */
+class FaR
+{
+public:
 
 	/*
-	 *
+	 * Return an instance of the engine.
 	 */
-	bool find(const Glib::ustring &pattern, int flag, const Glib::ustring &text, SearchResult &info)
+	static FaR& instance()
 	{
-		se_debug_message(SE_DEBUG_SEARCH, "pattern=<%s> text=<%s>", pattern.c_str(), text.c_str());
+		static FaR engine;
+		return engine;
+	}
 
-		info.start = info.len = Glib::ustring::npos;
-		info.found = false;
+	/*
+	 * Returns the search option flag
+	 * IGNORE_CASE & USE_REGEX
+	 */
+	int get_pattern_options()
+	{
+		Config& cfg = Config::getInstance();
 
-		if(pattern.empty())
+		int flags = 0;
+		if(cfg.get_value_bool("find-and-replace", "used-regular-expression"))
+			flags |= USE_REGEX;
+		if(cfg.get_value_bool("find-and-replace", "ignore-case"))
+			flags |= IGNORE_CASE;
+		
+		return flags;
+	}
+
+	/*
+	 * Search in which columns?
+	 * TEXT & TRANSLATION
+	 */
+	int get_columns_options()
+	{
+		Config& cfg = Config::getInstance();
+
+		int flags = 0;
+		if(cfg.get_value_bool("find-and-replace", "column-text"))
+			flags |= TEXT;
+		if(cfg.get_value_bool("find-and-replace", "column-translation"))
+			flags |= TRANSLATION;
+		
+		return flags;
+	}
+
+	/*
+	 * Return the current pattern text.
+	 */
+	Glib::ustring get_pattern()
+	{
+		return Config::getInstance().get_value_string("find-and-replace", "pattern");
+	}
+
+	/*
+	 * Return the current remplacement text.
+	 */
+	Glib::ustring get_replacement()
+	{
+		return Config::getInstance().get_value_string("find-and-replace", "replacement");
+	}
+
+	/*
+	 * Try to find the pattern in the subtitle. 
+	 * A MatchInfo is used to get information on the match, 
+	 * is stored in matchinfo if not NULL.
+	 */
+	bool find_in_subtitle(const Subtitle &sub, MatchInfo *matchinfo)
+	{
+		if(!sub)
 			return false;
 
-		if(flag & USE_REGEX)
+		int columns_options = get_columns_options();
+		int current_column = (matchinfo) ? matchinfo->column : 0;
+
+		if(columns_options & TEXT && current_column <= TEXT)
 		{
-			se_debug_message(SE_DEBUG_SEARCH, "Used regular expression");
-
-			info.found = regex_exec(pattern, text, (flag & IGNORE_CASE), info.start, info.len);
-
-			return info.found;
-				
-		}
-		else
-		{
-			if(flag & IGNORE_CASE)
+			if(find_in_text(sub.get_text(), matchinfo))
 			{
-				Glib::ustring pattern_lc = pattern.lowercase();
-				Glib::ustring text_lc = text.lowercase();
-
-				Glib::ustring::size_type res = text_lc.find(pattern_lc);
-				if(res != Glib::ustring::npos)
-				{
-					info.found = true;
-					info.start = res;
-					info.len = pattern.size();
-
-					return true;
-				}
-			}
-			else // without ignore case
-			{
-				Glib::ustring::size_type res = text.find(pattern);
-				if(res != Glib::ustring::npos)
-				{
-					info.found = true;
-					info.start = res;
-					info.len = pattern.size();
-
-					return true;
-				}
+				if(matchinfo)
+					matchinfo->column = TEXT;
+				return true;
 			}
 		}
-		
+		if(columns_options & TRANSLATION && current_column <= TRANSLATION)
+		{
+			if(find_in_text(sub.get_translation(), matchinfo))
+			{
+				if(matchinfo)
+					matchinfo->column = TRANSLATION;
+				return true;
+			}
+		}
+		// Nothing found reset values to default
+		if(matchinfo)
+			matchinfo->reset();
+
 		return false;
 	}
 
+	/*
+	 * Replace the current search (MatchInfo) by the remplacement text.
+	 */
+	bool replace(Document &doc, Subtitle &sub, MatchInfo &info)
+	{
+		if(!sub)
+			return false;
+
+		if( (info.start == 0 && info.len == 0) || 
+				(info.start == Glib::ustring::npos && info.len == Glib::ustring::npos))
+			return false;
+
+		Glib::ustring text = info.text;
+
+		if(text.empty())
+			return false;
+
+		Glib::ustring replacement = get_replacement();
+		
+		text.replace(info.start, info.len, replacement);
+		// update lenght of info
+		info.len = replacement.size();
+
+		doc.start_command(_("Replace text"));
+
+		if(info.column == TEXT)
+			sub.set_text(text);
+		else if(info.column == TRANSLATION)
+			sub.set_translation(text);
+
+		doc.subtitles().select(sub);
+		doc.finish_command();
+		return true;
+	}
+
+protected:
+
+	/*
+	 */
+	bool find_in_text(const Glib::ustring &otext, MatchInfo *info)
+	{
+		Glib::ustring text = otext;
+		Glib::ustring::size_type beginning = Glib::ustring::npos;
+
+		try
+		{
+			if(info)
+			{
+				if(info->start != Glib::ustring::npos && info->len != Glib::ustring::npos)
+					beginning = info->start + info->len;
+				// We reset some values
+				info->start = info->len = Glib::ustring::npos;
+				info->found = false;
+				info->text = Glib::ustring();
+			}
+
+			if(beginning != Glib::ustring::npos)
+				text = text.substr(beginning, text.size());
+
+			if(!find(get_pattern(), get_pattern_options(), text, info))
+				return false;
+
+			if(info) // Found, update matchinfo values
+			{
+				info->text = otext;
+				if(beginning != Glib::ustring::npos)
+					info->start += beginning; // if we used a substring (start != 0)n we need to update the beginning
+			}
+			return true;
+		}
+		catch(std::exception &ex)
+		{
+			std::cerr << "# Exception: " << ex.what() << std::endl;
+		}
+		return false;
+	}
+
+	/*
+	 */
+	bool find(const Glib::ustring &pattern, int pattern_options, const Glib::ustring &text, MatchInfo *info)
+	{
+		if(pattern.empty())
+			return false;
+
+		bool found = false;
+		Glib::ustring::size_type start, len;
+
+		if(pattern_options & USE_REGEX) // Search with regular expression
+		{
+			found = regex_exec(pattern, text, (pattern_options & IGNORE_CASE), start, len);
+		}
+		else // Without regular expression
+		{
+			Glib::ustring pat = (pattern_options & IGNORE_CASE) ? pattern.lowercase() : pattern;
+			Glib::ustring txt = (pattern_options & IGNORE_CASE) ? text.lowercase() : text;
+
+			Glib::ustring::size_type res = txt.find(pat);
+			if(res != Glib::ustring::npos)
+			{
+				found = true;
+				start = res;
+				len = pattern.size();
+			}
+		}
+
+		if(found && info)
+		{
+			info->found = true;
+			info->start = start;
+			info->len = len;
+		}
+		return found;
+	}
+
+	/*
+	 * FIXME: Remove Me
+	 * Waiting the Glib::MatchInfo API in glibmm.
+	 */
+	bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string, bool caseless, Glib::ustring::size_type &start, Glib::ustring::size_type &len)
+	{
+		bool found = false;
+		GRegex *regex = NULL;
+		GMatchInfo *match_info = NULL;
+		GError *error = NULL;
+
+		int compile_flags = (GRegexMatchFlags)0;
+		if(caseless)
+			compile_flags |= G_REGEX_CASELESS;
+		regex = g_regex_new(pattern.c_str(), (GRegexCompileFlags)compile_flags, (GRegexMatchFlags)0, &error);
+		if(error != NULL)
+		{
+			std::cerr << "regex_exec error: " << error->message << std::endl;
+			g_error_free(error);
+			return false;
+		}
+
+		if(g_regex_match(regex, string.c_str(), (GRegexMatchFlags)0, &match_info))
+		{
+			//while(g_match_info_matches(match_info))
+			if(g_match_info_matches(match_info))
+			{
+				int start_pos, end_pos;
+				// check the return
+				if(g_match_info_fetch_pos(
+								match_info, 
+								0, //match_num 0 is full text of the match
+								&start_pos,
+								&end_pos))
+				{
+					start = start_pos;
+					len = end_pos - start_pos;
+					found = true;
+				}
+			}
+		}
+		g_match_info_free(match_info);
+		g_regex_unref(regex);
+		return found;
+	}
+};
+
+
+
+/*
+ */
+class ComboBoxEntryHistory : public Gtk::ComboBoxEntryText
+{
+public:
+	ComboBoxEntryHistory(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	:Gtk::ComboBoxEntryText(cobject)
+	{
+	}
+
+	/*
+	 * Initialize the widget with the group and the key for the config.
+	 * Sets the widget history.
+	 */
+	void initialize(const Glib::ustring &group, const Glib::ustring &key)
+	{
+		m_group = group;
+		m_key = key;
+
+		load_history();
+	}
+
+	/*
+	 * Add the current entry text to the history model.
+	 */
+	void push_to_history()
+	{
+		Glib::ustring text = get_entry()->get_text();
+		if(!text.empty())
+		{
+			remove_item(text);
+			prepend_text(text);
+			clamp_items();
+		}
+	}
+
+	/*
+	 * Read the history of the widget.
+	 */
+	void load_history()
+	{
+		Config &cfg = Config::getInstance();
+
+		std::list<Glib::ustring> keys;
+		cfg.get_keys(m_group, keys);
+
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(m_key + "-(\\d+)");
+
+		std::list<Glib::ustring>::iterator it;
+		for(it = keys.begin(); it != keys.end(); ++it)
+		{
+			if(re->match(*it))
+				append_text(cfg.get_value_string(m_group, *it));
+		}
+		get_entry()->set_text(cfg.get_value_string(m_group, m_key));
+	}
+
+	/*
+	 * Write the history of the widget to the config.
+	 */
+	void save_history()
+	{
+		Config::getInstance().set_value_string(
+				m_group, m_key, get_entry()->get_text());
+
+		get_model()->foreach(sigc::mem_fun(*this, &ComboBoxEntryHistory::save_iter));
+	}
+
+	/*
+	 */
+	bool save_iter(const Gtk::TreePath &path, const Gtk::TreeIter &it)
+	{
+		TextModelColumns cols;
+		Config::getInstance().set_value_string(	m_group,
+				Glib::ustring::compose("%1-%2", m_key, path.to_string()), // key-id
+				(*it)[cols.m_column]); // text
+		return false;
+	}
+
+	/*
+	 * Remove items equal to text.
+	 */
+	void remove_item(const Glib::ustring &text)
+	{
+		TextModelColumns cols;
+		Glib::RefPtr<Gtk::ListStore> model = Glib::RefPtr<Gtk::ListStore>::cast_dynamic(get_model());
+
+		Gtk::TreeIter it = model->children().begin();
+		while(it)
+		{
+			if((*it)[cols.m_column] == text)
+				it = model->erase(it);
+			else
+				++it;
+		}
+	}
+
+	/*
+	 * Clamp items to maximum
+	 */
+	void clamp_items()
+	{
+		Glib::RefPtr<Gtk::ListStore> model = Glib::RefPtr<Gtk::ListStore>::cast_dynamic(get_model());
+		while(model->children().size() > 10)
+		{
+			Gtk::TreeIter it = model->get_iter("10");
+			if(it)
+				model->erase(it);
+		}
+	}
+
+protected:
+	Glib::ustring m_group;
+	Glib::ustring m_key;
+};
 
 /*
  *	Dialog Find And Replace
  */
-class DialogFindAndReplace : public Gtk::Dialog
+class DialogFindAndReplace : public DialogActionMultiDoc
 {
 public:
 	// like to glade file
@@ -171,239 +475,159 @@ public:
 	};
 
 	/*
-	 *	constructor
+	 * Constructor
 	 */
-	DialogFindAndReplace(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:Gtk::Dialog(cobject), m_document(NULL)
+	DialogFindAndReplace(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	:DialogActionMultiDoc(cobject, xml), m_document(NULL)
 	{
 		utility::set_transient_parent(*this);
 		
-		refGlade->get_widget("textview", m_textview);
+		xml->get_widget("label-current-column", m_labelCurrentColumn);
+		xml->get_widget("textview", m_textview);
 	
-		refGlade->get_widget("entry-pattern", m_entryPattern);
-		refGlade->get_widget("entry-replace-with", m_entryReplaceWith);
-		refGlade->get_widget("check-ignore-case", m_checkIgnoreCase);
-		refGlade->get_widget("check-used-regular-expression", m_checkUsedRegularExpression);
-		refGlade->get_widget("button-replace", m_buttonReplace);
-		refGlade->get_widget("button-replace-all", m_buttonReplaceAll);
+		xml->get_widget_derived("comboboxentry-pattern", m_comboboxPattern);
+		xml->get_widget_derived("comboboxentry-replacement", m_comboboxReplacement);
+		xml->get_widget("check-ignore-case", m_checkIgnoreCase);
+		xml->get_widget("check-used-regular-expression", m_checkUsedRegularExpression);
+		xml->get_widget("button-replace", m_buttonReplace);
+		xml->get_widget("button-replace-all", m_buttonReplaceAll);
+		xml->get_widget("button-find", m_buttonFind);
 
-		widget_config::read_config_and_connect(m_entryPattern, "dialog-find-and-replace", "find");
-		widget_config::read_config_and_connect(m_entryReplaceWith, "dialog-find-and-replace", "replace-with");
-		widget_config::read_config_and_connect(m_checkIgnoreCase, "dialog-find-and-replace", "ignore-case");
-		widget_config::read_config_and_connect(m_checkUsedRegularExpression, "dialog-find-and-replace", "used-regular-expression");
+		xml->get_widget("check-column-text", m_checkColumnText);
+		xml->get_widget("check-column-translation", m_checkColumnTranslation);
 
-		m_entryPattern->grab_focus();
-		m_entryPattern->signal_activate().connect(
+		m_comboboxPattern->initialize("find-and-replace", "pattern");
+		m_comboboxReplacement->initialize("find-and-replace", "replacement");
+
+		// Connect entry of the combobox
+		widget_config::read_config_and_connect(m_comboboxPattern->get_entry(), "find-and-replace", "pattern");
+		widget_config::read_config_and_connect(m_comboboxReplacement->get_entry(), "find-and-replace", "replacement");
+
+		widget_config::read_config_and_connect(m_checkIgnoreCase, "find-and-replace", "ignore-case");
+		widget_config::read_config_and_connect(m_checkUsedRegularExpression, "find-and-replace", "used-regular-expression");
+
+		widget_config::read_config_and_connect(m_checkColumnText, "find-and-replace", "column-text");
+		widget_config::read_config_and_connect(m_checkColumnTranslation, "find-and-replace", "column-translation");
+
+		m_comboboxPattern->grab_focus();
+		m_comboboxPattern->get_entry()->signal_activate().connect(
 				sigc::bind(sigc::mem_fun(*this, &DialogFindAndReplace::on_response), FIND));
-		
+
 		set_default_response(Gtk::RESPONSE_CLOSE);
 
-
+		// Create tag found
 		Glib::RefPtr<Gtk::TextTag> found = m_textview->get_buffer()->create_tag("found");
 		found->property_weight() = Pango::WEIGHT_BOLD;
 		found->property_foreground() = "blue";
+		found->property_underline() = Pango::UNDERLINE_SINGLE;
+		found->property_underline_set() = true;
 
 		hide();
-}
+	}
 
 	/*
-	 *
+	 * Create a single instance of the dialog.
 	 */
-	bool find_in_subtitle(Subtitle &sub, SearchResult &info)
+	static void create()
 	{
-		se_debug(SE_DEBUG_SEARCH);
-
-		if(!sub)
-			return false;
-
-		Glib::ustring pattern = m_entryPattern->get_text();
-		Glib::ustring text = sub.get_text();
-
-		Glib::ustring::size_type beginning = 0;
-
-		if(info.start != Glib::ustring::npos && info.len != Glib::ustring::npos)
-			beginning = info.start + info.len;
-
-		text = text.substr(beginning, text.size());
-		
-		SearchResult old_info = info;
-		
-		int flag = 0;
-		
-		if(m_checkIgnoreCase->get_active())
-			flag = IGNORE_CASE;
-		if(m_checkUsedRegularExpression->get_active())
-			flag = USE_REGEX;
-
-		if(find(pattern, flag, text, info))
+		if(m_instance == NULL)
 		{
-			info.start += beginning;
-			return true;
+			m_instance = gtkmm_utility::get_widget_derived<DialogFindAndReplace>(
+					SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV), 
+					"dialog-find-and-replace.glade", 
+					"dialog-find-and-replace");
 		}
-		
-		return false;
+		m_instance->show();
+		m_instance->present();
 	}
 
 	/*
-	 *
+	 * Return a unique instance of the dialog.
 	 */
-	bool find_forwards(Subtitle &sub, SearchResult &info)
+	static DialogFindAndReplace* instance()
 	{
-		se_debug(SE_DEBUG_SEARCH);
-
-		if(!sub)
-			return false;
-
-		// search again in the subtitle
-		if(find_in_subtitle(sub, info))
-		{
-			return true;
-		}
-		// next subtitle
-		++sub;
-		
-		if(!sub)
-			return false;
-		// init
-		info = SearchResult();
-
-		return find_forwards(sub, info);
+		return m_instance;
 	}
 
 	/*
-	 *
+	 * Initialize the ui with this document
 	 */
-	bool replace(Subtitle &sub, SearchResult &info)
-	{
-		se_debug(SE_DEBUG_SEARCH);
-
-		if(!sub)
-			return false;
-
-		if(info.start == 0 && info.len == 0)
-			return false;
-
-		Glib::ustring text = sub.get_text();
-
-		if(text.empty())
-			return false;
-
-		Glib::ustring replace_with = m_entryReplaceWith->get_text();
-		
-		text.replace(info.start, info.len, replace_with);
-
-		// update lenght of info
-		info.len = replace_with.size();
-
-		m_document->start_command(_("Replace text"));
-		sub.set_text(text);
-		m_document->subtitles().select(sub);	// for undo/redo
-		m_document->finish_command();
-		return true;
-	}
-
-	/*
-	 *
-	 */
-	bool replace_all()
-	{
-		m_subtitle = m_document->subtitles().get_first();
-
-		while(m_subtitle)
-		{
-			while(find_forwards(m_subtitle, m_info))
-			{
-				replace(m_subtitle, m_info);
-			}
-		}
-
-		return true;
-	}
-
-	/*
-	 *
-	 */
-	void execute(Document *doc)
+	void init_with_document(Document *doc)
 	{
 		m_document = doc;
+		bool has_doc = (doc != NULL);
+		// Update the sensitivity of widgets
+		m_buttonReplace->set_sensitive(has_doc);
+		m_buttonReplaceAll->set_sensitive(has_doc);
+		m_buttonFind->set_sensitive(has_doc);
+
+		m_comboboxPattern->set_sensitive(has_doc);
+		m_comboboxReplacement->set_sensitive(has_doc);
+
+		m_checkIgnoreCase->set_sensitive(has_doc);
+		m_checkUsedRegularExpression->set_sensitive(has_doc);
+
+		// Reset values
+		m_subtitle = Subtitle();
+		m_info.reset();
+
+		if(doc == NULL)
+			return;
 
 		Subtitles subtitles = doc->subtitles();
-
 		if(subtitles.size() == 0)
-		{
 			doc->flash_message(_("The document is empty"));
-			return;
-		}
-
-		m_subtitle = subtitles.get_first_selected();
-
-		if(!m_subtitle)
-			m_subtitle = subtitles.get_first();
-
-
-		update_ui();
-
-		show();
-
-		while(true)
+		else
 		{
-			int response = run();
-
-			if(response == Gtk::RESPONSE_CLOSE || response == Gtk::RESPONSE_DELETE_EVENT)
-				break;
+			m_subtitle = subtitles.get_first_selected();
+			if(!m_subtitle)
+				m_subtitle = subtitles.get_first();
+			update_search_ui();
 		}
 	}
 
 	/*
-	 *
+	 * The current document has changed. We need do update the ui.
 	 */
-	void on_response(int response)
+	void on_current_document_changed(Document *newdoc)
 	{
-		if(response == FIND)
+		if(newdoc != m_document)
 		{
-			if(find_forwards(m_subtitle, m_info))
-				m_document->subtitles().select(m_subtitle);
-			else
-			{
-				m_document->subtitles().unselect_all();
-				m_info = SearchResult();
-				m_subtitle = m_document->subtitles().get_first();
+			m_document = newdoc;
 
-				if(find_forwards(m_subtitle, m_info))
-					m_document->subtitles().select(m_subtitle);
-			}
-
-			update_ui();
-		}
-		else if(response == REPLACE)
-		{
-			replace(m_subtitle, m_info);
-			// next
-			Gtk::Dialog::response(FIND);
-		}
-		else if(response == REPLACE_ALL)
-		{
-			replace_all();
+			init_with_document(newdoc);
+			update_search_ui();
 		}
 	}
-	
-	/*
-	 *	update sensitive and textview
-	 */
-	void update_ui()
-	{
-		Glib::RefPtr<Gtk::TextBuffer> buffer = m_textview->get_buffer();
 
-		bool state = m_info.found;
-		m_textview->set_sensitive(state);
-		
-		m_buttonReplace->set_sensitive(state);
-		//m_buttonReplaceAll->set_sensitive(state);
+	/*
+	 * Update the label of the current column and sets the sensitivity.
+	 */
+	void update_column_label()
+	{
+		m_labelCurrentColumn->set_sensitive(m_info.found);
+
+		if(m_info.column == TEXT)
+			m_labelCurrentColumn->set_text(_("Text"));
+		else if(m_info.column == TRANSLATION)
+			m_labelCurrentColumn->set_text(_("Translation"));
+	}
+
+	/*
+	 * Update some widgets from the current info search.
+	 */
+	void update_search_ui()
+	{
+		m_textview->set_sensitive(m_info.found);
+		m_buttonReplace->set_sensitive(m_info.found);
+
+		update_column_label();
 
 		if(m_info.found && m_info.start != Glib::ustring::npos && m_info.len != Glib::ustring::npos)
 		{
-			Glib::ustring text = m_subtitle.get_text();
-			buffer->set_text(text);
+			Glib::RefPtr<Gtk::TextBuffer> buffer = m_textview->get_buffer();
+
+			buffer->set_text(m_info.text);
 	
 			Gtk::TextIter ins = buffer->get_iter_at_offset(m_info.start);
 			Gtk::TextIter bound = buffer->get_iter_at_offset(m_info.start + m_info.len);
@@ -411,25 +635,218 @@ public:
 			buffer->apply_tag_by_name("found", ins, bound);
 		}
 		else
+			m_textview->get_buffer()->set_text("");
+	}
+
+	/*
+	 * Response handler for signals:
+	 * FIND, REPLACE, REPLACE_ALL and (RESPONSE_CLOSE & RESPONSE_DELETE_EVENT)
+	 */
+	void on_response(int response)
+	{
+		if(response == FIND)
 		{
-			buffer->set_text("");
+			if(find_forwards(m_subtitle, &m_info))
+			{
+				m_document->subtitles().select(m_subtitle);
+				m_comboboxPattern->push_to_history();
+			}
+			else
+			{
+				// Failed to find from last position to the end of the document.
+				// If the option 'all documents' is activated, check with the next document.
+				if(apply_to_all_documents())
+				{
+					m_document = get_next_document();
+					set_current_document(m_document);
+				}
+				// We try to search from the beginning of the document (new or not)
+				m_document->subtitles().unselect_all();
+				m_info.reset();
+				m_subtitle = m_document->subtitles().get_first();
+
+				if(find_forwards(m_subtitle, &m_info))
+				{
+					m_document->subtitles().select(m_subtitle);
+					m_comboboxPattern->push_to_history();
+				}
+			}
+			update_search_ui();
 		}
+		else if(response == REPLACE)
+		{
+			if(FaR::instance().replace(*m_document, m_subtitle, m_info))
+				m_comboboxReplacement->push_to_history();
+			// next
+			Gtk::Dialog::response(FIND);
+		}
+		else if(response == REPLACE_ALL)
+		{
+			replace_all();
+		}
+		else if(response == Gtk::RESPONSE_CLOSE || response == Gtk::RESPONSE_DELETE_EVENT)
+		{
+			m_comboboxPattern->save_history();
+			m_comboboxReplacement->save_history();
+
+			delete m_instance;
+			m_instance = NULL;
+		}
+	}
+
+	/*
+	 * Find the next pattern from the current subtitle and the current info.
+	 * Recrusive function.
+	 */
+	bool find_forwards(Subtitle &sub, MatchInfo *info)
+	{
+		se_debug(SE_DEBUG_SEARCH);
+
+		if(!sub)
+			return false;
+
+		// search again in the subtitle
+		if(FaR::instance().find_in_subtitle(sub, info))
+			return true;
+		
+		if(info)
+			info->reset();
+
+		++sub; // next subtitle
+
+		if(!sub)
+			return false;
+		
+		return find_forwards(sub, info);
+	}
+
+	/*
+	 * Start with the beginning of all documents and try to replace all.
+	 */
+	bool replace_all()
+	{
+		DocumentList docs;
+
+		if(apply_to_all_documents())
+			docs = get_sort_documents();
+		else
+			docs.push_back(m_document);
+
+		for(DocumentList::iterator it = docs.begin(); it != docs.end(); ++it)
+		{
+			set_current_document(*it);
+			// List of the modified subtitles
+			std::list<Subtitle> selection;
+
+			m_subtitle = m_document->subtitles().get_first();
+			m_info.reset();
+
+			while(m_subtitle)
+			{
+				while(find_forwards(m_subtitle, &m_info))
+				{
+					if(FaR::instance().replace(*m_document, m_subtitle, m_info))
+						selection.push_back(m_subtitle);
+				}
+			}
+			// We select the modified subtitles
+			m_document->subtitles().select(selection);
+		}
+		update_search_ui();
+		return true;
+	}
+
+	/*
+	 * Return a sorted documents list from the current to the last.
+	 */
+	DocumentList get_sort_documents()
+	{
+		DocumentList list = get_documents_to_apply();
+
+		DocumentList::iterator it_cur = list.end();
+		// First we get the current document iterator
+		for(DocumentList::iterator it = list.begin(); it != list.end(); ++it)
+		{
+			if(*it == m_document)
+			{
+				it_cur = it;
+				break;
+			}
+		}
+		// We move the previous document to the last
+		if(it_cur != list.end())
+		{
+			DocumentList previous(list.begin(), it_cur);
+			it_cur = list.erase(list.begin(), it_cur);
+			list.insert(list.end(), previous.begin(), previous.end());
+		}
+		return list;
+	}
+
+	/*
+	 * Return the next document. This function make a loop:
+	 *
+	 *               (m_document)
+	 * +-- previous -> current -> next ----+
+	 * |                                   |
+	 * +---<------------------------<------+
+	 */
+	Document* get_next_document()
+	{
+		DocumentList list = get_documents_to_apply();
+
+		Document* cur = m_document;
+		for(DocumentList::iterator it = list.begin(); it != list.end(); ++it)
+		{
+			if(*it == cur)
+			{
+				++it;
+				if(it != list.end())
+					return *it;
+				else
+					return list.front();
+			}
+		}
+		return m_document;
+	}
+
+	/*
+	 * Sets the current document an update ui.
+	 */
+	void set_current_document(Document *doc)
+	{
+		m_document = doc;
+		DocumentSystem::getInstance().setCurrentDocument(doc);
+		// Update ui
+		while(Gtk::Main::events_pending())
+			Gtk::Main::iteration();
 	}
 
 protected:
 	Document* m_document;
 	Subtitle	m_subtitle;
-	SearchResult	m_info;
+	MatchInfo	m_info;
 
+	Gtk::Label* m_labelCurrentColumn;
 	Gtk::TextView* m_textview;
-	Gtk::Entry*	m_entryPattern;
-	Gtk::Entry* m_entryReplaceWith;
+	ComboBoxEntryHistory* m_comboboxPattern;
+	ComboBoxEntryHistory* m_comboboxReplacement;
 	Gtk::CheckButton* m_checkIgnoreCase;
 	Gtk::CheckButton* m_checkUsedRegularExpression;
 	Gtk::Button* m_buttonReplace;
 	Gtk::Button* m_buttonReplaceAll;
 	Gtk::Button* m_buttonFind;
+
+	Gtk::CheckButton* m_checkColumnText;
+	Gtk::CheckButton* m_checkColumnTranslation;
+
+	static DialogFindAndReplace* m_instance;
 };
+
+/*
+ * Static instance of the dialog
+ */
+DialogFindAndReplace* DialogFindAndReplace::m_instance = NULL;
 
 /*
  *	Plugin
@@ -450,7 +867,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void activate()
 	{
@@ -489,10 +905,11 @@ public:
 			"</ui>";
 
 		ui_id = ui->add_ui_from_string(submenu);
+
+		check_default_values();
 	}
 
 	/*
-	 *
 	 */
 	void deactivate()
 	{
@@ -505,7 +922,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void update_ui()
 	{
@@ -516,122 +932,57 @@ public:
 		action_group->get_action("find-and-replace")->set_sensitive(visible);
 		action_group->get_action("find-next")->set_sensitive(visible);
 		action_group->get_action("find-previous")->set_sensitive(visible);
+
+		DialogFindAndReplace* instance = DialogFindAndReplace::instance();
+		if(instance)
+			instance->on_current_document_changed(get_current_document());
 	}
 
 protected:
 
 	/*
-	 *	
 	 */
-	bool find_in_subtitle(const Subtitle &sub)
+	void check_default_values()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		bool used_regex = get_config().get_value_bool("dialog-find-and-replace", "used-regular-expression");
-		bool ignore_case = get_config().get_value_bool("dialog-find-and-replace", "ignore-case");
-		
-		Glib::ustring pattern = get_config().get_value_string("dialog-find-and-replace", "find");
-		Glib::ustring text = sub.get_text();
-		
-		int flag = 0;
-		if(used_regex)
-			flag |= USE_REGEX;
-		if(ignore_case)
-			flag |= IGNORE_CASE;
-
-		SearchResult info;
-		return find(pattern, flag, text, info);
+		if(!get_config().has_key("find-and-replace", "column-text"))
+			get_config().set_value_bool("find-and-replace", "column-text", true);
+		if(!get_config().has_key("find-and-replace", "column-translation"))
+			get_config().set_value_bool("find-and-replace", "column-translation", true);
+		if(!get_config().has_key("find-and-replace", "ignore-case"))
+			get_config().set_value_bool("find-and-replace", "ignore-case", false);
+		if(!get_config().has_key("find-and-replace", "used-regular-expression"))
+			get_config().set_value_bool("find-and-replace", "used-regular-expression", false);
 	}
 
-
 	/*
-	 *
 	 */
 	void on_search_and_replace()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		std::auto_ptr<DialogFindAndReplace> dialog(
-				gtkmm_utility::get_widget_derived<DialogFindAndReplace>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-find-and-replace.glade", 
-						"dialog-find-and-replace"));
-
-		Document *doc = get_current_document();
-		dialog->execute(doc);
+		DialogFindAndReplace::create();
+		DialogFindAndReplace::instance()->init_with_document(get_current_document());
 	}
 
 	/*
-	 *
 	 */
 	void on_find_next()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
-
-		Document *doc = get_current_document();
-
-		Subtitles subtitles = doc->subtitles();
-
-		if(subtitles.size() == 0)
-		{
-			doc->flash_message(_("The document is empty"));
-			return;
-		}
-
-		// try to start the search from the subtitle selected
-		Subtitle sub = subtitles.get_first_selected();
-
-		if(sub)
-		{
-			++sub; // start from the next subtitle
-			while(sub)
-			{
-				if(find_in_subtitle(sub))
-					break;	// found
-
-				++sub;
-			}
-
-			// if not found search again from the beginning
-			if(!sub)
-			{
-				sub = subtitles.get_first();
-				while(sub)
-				{
-					if(find_in_subtitle(sub))
-						break;
-
-					++sub;
-				}
-			}
-		}
-		else // start the search from the beginning
-		{
-			sub = subtitles.get_first();
-			while(sub)
-			{
-				if(find_in_subtitle(sub))
-					break;
-				++sub;
-			}
-		}
-
-
-		if(sub)	// found
-		{
-			doc->subtitles().select(sub);
-		}
-		else	// not found
-		{
-			doc->subtitles().unselect_all();
-			doc->flash_message(_("Not found"));
-		}
+		find_sub(false);
 	}
 
 	/*
-	 *
 	 */
 	void on_find_previous()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+		find_sub(true);
+	}
+
+	/*
+	 */
+	void find_sub(bool backwards)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -650,39 +1001,37 @@ protected:
 
 		if(sub)
 		{
-			sub = subtitles.get_previous(sub); // start from the next subtitle
+			// Start from the previous/next subtitle
+			sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
 			while(sub)
 			{
-				if(find_in_subtitle(sub))
+				if(FaR::instance().find_in_subtitle(sub, NULL))
 					break;	// found
-
-				sub = subtitles.get_previous(sub);
+				sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
 			}
 
 			// if not found search again from the last
 			if(!sub)
 			{
-				sub = subtitles.get_last();
+				sub = (backwards) ? subtitles.get_last() : subtitles.get_first();
 				while(sub)
 				{
-					if(find_in_subtitle(sub))
+					if(FaR::instance().find_in_subtitle(sub, NULL))
 						break;
-
-					sub = subtitles.get_previous(sub);
+					sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
 				}
 			}
 		}
-		else // start the search from the last
+		else // start the search from the beginning/last
 		{
-			sub = subtitles.get_last();
+			sub = (backwards) ? subtitles.get_last() : subtitles.get_first();
 			while(sub)
 			{
-				if(find_in_subtitle(sub))
+				if(FaR::instance().find_in_subtitle(sub, NULL))
 					break;
-				sub = subtitles.get_previous(sub);
+				sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
 			}
 		}
-
 
 		if(sub)	// found
 		{
