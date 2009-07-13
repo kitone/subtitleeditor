@@ -117,7 +117,8 @@ public:
 	/*
 	 *
 	 */
-	void select(std::vector<Subtitle> &sub);
+	void select(const std::vector<Subtitle> &sub);
+	void select(const std::list<Subtitle> &sub);
 
 	/*
 	 *
