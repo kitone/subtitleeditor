@@ -345,6 +345,27 @@ void Application::on_document_delete(Document *doc)
  */
 void Application::on_current_document_changed(Document* doc)
 {
+	// Update page
+	// First check if it's not already the good page
+	int cur_id = m_notebook_documents->get_current_page();
+	Gtk::Widget *cur_w = m_notebook_documents->get_nth_page(cur_id);
+
+	Document* cur_doc = static_cast<Document*>(cur_w->get_data("document"));
+	if(cur_doc != doc)
+	{
+		// This is not the good page, active it
+		for( int i = 0; i < m_notebook_documents->get_n_pages(); ++i)
+		{
+			Gtk::Widget *w = m_notebook_documents->get_nth_page(i);
+			Document *document = static_cast<Document*>(w->get_data("document"));
+			if(document == doc)
+			{
+				m_notebook_documents->set_current_page(i);
+				break;
+			}
+		}
+	}
+	// Update actions
 	std::list<ExtensionInfo*> actions = ExtensionManager::instance().get_info_list_from_categorie("action");
 
 	for(std::list<ExtensionInfo*>::iterator it = actions.begin(); it != actions.end(); ++it)
