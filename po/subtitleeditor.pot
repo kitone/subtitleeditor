@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-23 13:44+0200\n"
+"POT-Creation-Date: 2009-07-14 18:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,6 +125,7 @@ msgid "The new framerate was applied. (%s to %s)"
 msgstr ""
 
 #: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:1
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:1
 msgid "<b>Apply to</b>"
 msgstr ""
 
@@ -133,10 +134,12 @@ msgid "<b>Framerate</b>"
 msgstr ""
 
 #: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:3
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:3
 msgid "All documents"
 msgstr ""
 
 #: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:5
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:5
 msgid "Current document"
 msgstr ""
 
@@ -729,72 +732,101 @@ msgid ""
 "Command: <i>%s</i>"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:1
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:2
+#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:1
+msgid "<b>Columns</b>"
+msgstr ""
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:4
+msgid "Column:"
+msgstr ""
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:6
 #: ../plugins/actions/findandreplace/findandreplace.se-plugin.in.h:1
 msgid "Find And Replace"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:2
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:7
 msgid "Pattern:"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:3
-msgid "Replace"
-msgstr ""
-
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:4
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:8
 msgid "Replace _All"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:5
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:9
 #: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:3
 msgid "Replace with:"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:6
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:10
+msgid "Search"
+msgstr ""
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:11
+msgid "Target"
+msgstr ""
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:12
+#: ../plugins/actions/findandreplace/findandreplace.cc:611
+#: ../src/subtitleview.cc:1464
+msgid "Text"
+msgstr ""
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:13
+#: ../plugins/actions/findandreplace/findandreplace.cc:613
+#: ../plugins/actions/viewmanager/viewmanager.cc:406
+#: ../src/subtitleview.cc:1465
+msgid "Translation"
+msgstr ""
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:14
 msgid "_Ignore case"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:7
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:15
+#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
+msgid "_Replace"
+msgstr ""
+
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:16
 msgid "_Use regular expression"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:298
+#: ../plugins/actions/findandreplace/findandreplace.cc:207
 msgid "Replace text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:334
-#: ../plugins/actions/findandreplace/findandreplace.cc:577
-#: ../plugins/actions/findandreplace/findandreplace.cc:644
+#: ../plugins/actions/findandreplace/findandreplace.cc:579
+#: ../plugins/actions/findandreplace/findandreplace.cc:995
 msgid "The document is empty"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:463
+#: ../plugins/actions/findandreplace/findandreplace.cc:879
 msgid "_Find And Replace"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:463
+#: ../plugins/actions/findandreplace/findandreplace.cc:879
 msgid "Search and replace text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:467
+#: ../plugins/actions/findandreplace/findandreplace.cc:883
 msgid "Find Ne_xt"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:467
+#: ../plugins/actions/findandreplace/findandreplace.cc:883
 msgid "Search forwards for the same text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:470
+#: ../plugins/actions/findandreplace/findandreplace.cc:886
 msgid "Find Pre_vious"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:470
+#: ../plugins/actions/findandreplace/findandreplace.cc:886
 msgid "Search backwards for the same text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:627
-#: ../plugins/actions/findandreplace/findandreplace.cc:694
+#: ../plugins/actions/findandreplace/findandreplace.cc:1043
 msgid "Not found"
 msgstr ""
 
@@ -1343,10 +1375,6 @@ msgstr ""
 #: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:6
 #: ../plugins/actions/textcorrection/patternspage.h:237
 msgid "_Language:"
-msgstr ""
-
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
-msgid "_Replace"
 msgstr ""
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:181
@@ -1922,10 +1950,6 @@ msgstr ""
 msgid "Show or hide the video player in the current window"
 msgstr ""
 
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:1
-msgid "<b>Columns</b>"
-msgstr ""
-
 #: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:2
 msgid "<b>View</b>"
 msgstr ""
@@ -1949,11 +1973,6 @@ msgstr ""
 
 #: ../plugins/actions/viewmanager/viewmanager.cc:405
 msgid "Advanced"
-msgstr ""
-
-#: ../plugins/actions/viewmanager/viewmanager.cc:406
-#: ../src/subtitleview.cc:1465
-msgid "Translation"
 msgstr ""
 
 #: ../plugins/actions/viewmanager/viewmanager.cc:429
@@ -2763,10 +2782,6 @@ msgstr ""
 
 #: ../src/subtitleview.cc:1463
 msgid "Style"
-msgstr ""
-
-#: ../src/subtitleview.cc:1464
-msgid "Text"
 msgstr ""
 
 #: ../src/timeutility.cc:36
