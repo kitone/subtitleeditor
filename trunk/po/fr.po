@@ -1761,7 +1761,7 @@ msgstr "Jouer ou faire une pause"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:107
 msgid "Skip _Backwards"
-msgstr "Retour_Rapide"
+msgstr "Retour _Rapide"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:112
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:147
