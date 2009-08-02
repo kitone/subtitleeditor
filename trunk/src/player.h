@@ -25,6 +25,7 @@
 
 #include <glibmm.h>
 #include "document.h"
+#include "keyframes.h"
 
 /*
  *
@@ -152,6 +153,19 @@ public:
 	 * Works only with play_subtitle.
 	 */
 	virtual void set_repeat(bool state) = 0;
+
+
+	/*
+	 */
+	virtual void set_keyframes(Glib::RefPtr<KeyFrames> keyframes) = 0;
+
+	/*
+	 */
+	virtual Glib::RefPtr<KeyFrames> get_keyframes() = 0;
+
+	/*
+	 */
+	virtual sigc::signal<void>& signal_keyframes_changed() = 0;
 };
 
 #endif//_Player_h

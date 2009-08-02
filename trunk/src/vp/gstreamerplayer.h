@@ -170,6 +170,18 @@ public:
 	 */
 	void on_config_video_player_changed(const Glib::ustring &key, const Glib::ustring &value);
 
+	/*
+	 */
+	void set_keyframes(Glib::RefPtr<KeyFrames> keyframes);
+
+	/*
+	 */
+	Glib::RefPtr<KeyFrames> get_keyframes();
+
+	/*
+	 */
+	sigc::signal<void>& signal_keyframes_changed();
+
 protected:
 
 	/*
@@ -297,6 +309,9 @@ protected:
 	Subtitle m_subtitle_play;
 
 	std::list<Glib::ustring> m_missing_plugins;
+
+	Glib::RefPtr<KeyFrames> m_keyframes;
+	sigc::signal<void> m_keyframes_signal_changed;
 };
 
 #endif//_GStreamerPlayer_h
