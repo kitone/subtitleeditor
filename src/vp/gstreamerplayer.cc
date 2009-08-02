@@ -1083,3 +1083,26 @@ void GStreamerPlayer::on_config_video_player_changed(const Glib::ustring &key, c
 	}
 }
 
+
+/*
+ */
+void GStreamerPlayer::set_keyframes(Glib::RefPtr<KeyFrames> keyframes)
+{
+	m_keyframes = keyframes;
+	m_keyframes_signal_changed();
+}
+
+/*
+ */
+Glib::RefPtr<KeyFrames> GStreamerPlayer::get_keyframes()
+{
+	return m_keyframes;
+}
+
+/*
+ */
+sigc::signal<void>& GStreamerPlayer::signal_keyframes_changed()
+{
+	return m_keyframes_signal_changed;
+}
+
