@@ -58,6 +58,7 @@ void WaveformRenderer::init_default_config()
 	SET_COLOR(m_color_subtitle_selected, 0.9, 0.5, 0.3, 0.6);
 	SET_COLOR(m_color_subtitle_invalid, 1, 1, 0.0, 0.8); // invalid time start > end
 	SET_COLOR(m_color_text, 1, 1, 1, 1);
+	SET_COLOR(m_color_keyframe, 0.3, 0.6, 1.0, 1.0);
 
 #undef SET_COLOR
 
@@ -80,6 +81,7 @@ void WaveformRenderer::init_default_config()
 	check_color("color-subtitle-invalid", m_color_subtitle_invalid);
 	check_color("color-text", m_color_text);
 	check_color("color-player-position", m_color_player_position);
+	check_color("color-keyframe", m_color_keyframe);
 
 
 #undef check_color
@@ -105,6 +107,7 @@ void WaveformRenderer::load_config()
 	get_color("color-subtitle-invalid", m_color_subtitle_invalid);
 	get_color("color-text", m_color_text);
 	get_color("color-player-position", m_color_player_position);
+	get_color("color-keyframe", m_color_keyframe);
 
 #undef get_color
 }
@@ -124,6 +127,12 @@ void WaveformRenderer::set_waveform(const Glib::RefPtr<Waveform> &wf)
  * Like a new Waveform.
  */
 void WaveformRenderer::waveform_changed()
+{
+}
+
+/*
+ */
+void WaveformRenderer::keyframes_changed()
 {
 }
 
@@ -270,6 +279,10 @@ void WaveformRenderer::on_config_waveform_renderer_changed(const Glib::ustring &
 	else if("color-player-position" == key)
 	{
 		string_to_rgba(value, m_color_player_position);
+	}
+	else if("color-keyframe" == key)
+	{
+		string_to_rgba(value, m_color_keyframe);
 	}
 
 #undef string_to_rgba
