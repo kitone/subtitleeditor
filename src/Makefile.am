@@ -50,6 +50,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	i18n.h \
 	isocodes.cc \
 	isocodes.h \
+	keyframes.cc \
+	keyframes.h \
 	player.h \
 	scriptinfo.cc \
 	scriptinfo.h \

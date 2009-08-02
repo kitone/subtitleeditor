@@ -1,3 +1,12 @@
+2009-08-02  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
+	Add new files keyframes.h & keyframes.cc.
+
+	* src/keyframes.cc:
+	* src/keyframes.h:
+	Introduce new class KeyFrames.
+
 2009-07-13  kitone  <kitone@gna.org>
 
 	* plugins/actions/findandreplace/dialog-find-and-replace.glade:
