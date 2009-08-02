@@ -1,5 +1,11 @@
 2009-08-02  kitone  <kitone@gna.org>
 
+	* src/we/waveformeditor.cc:
+	* src/we/waveformeditor.h:
+	Update waveform when the keyframes changed.
+
+2009-08-02  kitone  <kitone@gna.org>
+
 	* src/we/waveformrenderer.cc:
 	* src/we/waveformrenderer.h:
 	Add keyframes support to the waveform renderer.
