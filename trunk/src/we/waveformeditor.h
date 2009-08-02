@@ -297,6 +297,12 @@ protected:
 	void on_subtitle_time_changed();
 
 	/*
+	 * This callback is connected at the player.
+	 * The keyframes has changed, it's need to redraw the view.
+	 */
+	void on_keyframes_changed();
+
+	/*
 	 * Go at the position on the scrollbar. 
 	 * A little margin is added in the border.
 	 */

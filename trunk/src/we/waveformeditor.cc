@@ -256,6 +256,9 @@ void WaveformEditor::set_player(Player *player)
 	// init
 	m_connection_timeout = m_player->signal_timeout().connect(
 			sigc::mem_fun(*this, &WaveformEditor::on_player_timeout));
+	// Update the view when the keyframes changed
+	m_player->signal_keyframes_changed().connect(
+			sigc::mem_fun(*this, &WaveformEditor::on_keyframes_changed));
 }
 
 /*
@@ -613,6 +616,19 @@ void WaveformEditor::on_subtitle_time_changed()
 	if((has_renderer() && has_waveform()) == false)
 		return;
 	
+	redraw_renderer();
+}
+
+/*
+ * This callback is connected at the player.
+ * The keyframes has changed, it's need to redraw the view.
+ */
+void WaveformEditor::on_keyframes_changed()
+{
+	if(has_renderer())
+		return;
+	
+	renderer()->keyframes_changed();
 	redraw_renderer();
 }
 
