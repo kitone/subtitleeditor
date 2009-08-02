@@ -66,6 +66,10 @@ public:
 	virtual void waveform_changed();
 
 	/*
+	 */
+	virtual void keyframes_changed();
+
+	/*
 	 *
 	 */
 	virtual void redraw_all();
@@ -156,6 +160,7 @@ public:
 	float m_color_subtitle_invalid[4]; // invalid time start > end
 	float m_color_text[4]; // used for time, subtitle text ...
 	float m_color_player_position[4];
+	float m_color_keyframe[4];
 
 	bool m_display_subtitle_text;
 	bool m_display_time_info; // when is true display the time of the mouse
