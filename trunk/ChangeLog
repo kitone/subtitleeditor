@@ -1,5 +1,11 @@
 2009-08-03  kitone  <kitone@gna.org>
 
+	* src/gui/dialogfilechooser.cc:
+	* src/gui/dialogfilechooser.h:
+	Add DialogOpenKeyframe class.
+
+2009-08-03  kitone  <kitone@gna.org>
+
 	* src/we/waveformrenderercairo.cc:
 	Display the keyframes.
 
