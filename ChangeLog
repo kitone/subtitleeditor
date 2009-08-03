@@ -1,3 +1,11 @@
+2009-08-03  kitone  <kitone@gna.org>
+
+	* src/we/waveformrenderercairo.cc:
+	Display the keyframes.
+
+	* src/we/waveformrenderergl.cc:
+	Display the keyframes. Need to be tested.
+
 2009-08-02  kitone  <kitone@gna.org>
 
 	* src/we/waveformeditor.cc:

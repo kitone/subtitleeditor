@@ -23,6 +23,9 @@
 #include "utility.h"
 #include "document.h"
 #include "waveformrenderer.h"
+#include "subtitleeditorwindow.h"
+#include "keyframes.h"
+#include "player.h"
 
 #define TRIANGLE_SIZE 10
 
@@ -58,6 +61,12 @@ public:
 	 * Need to force to redisplay the waveform (m_wf_surface)
 	 */
 	void waveform_changed();
+
+	/*
+	 * The keyframe is changed.
+	 * Need to redisplay the waveform.
+	 */
+	void keyframes_changed();
 
 	/*
 	 * Call queue_draw
@@ -138,6 +147,10 @@ public:
 	 */
 	void display_time_info(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 
+	/*
+	 */
+	void draw_keyframes(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+
 protected:
 
 	Cairo::RefPtr<Cairo::Surface> m_wf_surface;
@@ -183,6 +196,13 @@ void WaveformRendererCairo::waveform_changed()
 {
 	if(m_wf_surface)
 		m_wf_surface.clear();
+	queue_draw();
+}
+
+/*
+ */
+void WaveformRendererCairo::keyframes_changed()
+{
 	queue_draw();
 }
 
@@ -301,6 +321,7 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 			draw_marker(cr, warea);
 		}
 
+		draw_keyframes(cr, warea);
 		draw_player_position(cr, warea);
 
 		cr->restore();
@@ -724,6 +745,37 @@ void WaveformRendererCairo::display_time_info(Cairo::RefPtr<Cairo::Context> &cr,
 	}
 }
 
+/*
+ */
+void WaveformRendererCairo::draw_keyframes(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+{
+	Player *player = SubtitleEditorWindow::get_instance()->get_player();
+	if(player == NULL)
+		return;
+
+	Glib::RefPtr<KeyFrames> keyframes = player->get_keyframes();
+	if(!keyframes)
+		return;
+
+	set_color(cr, m_color_keyframe);
+
+	long start_clip = get_time_by_pos(get_start_area());
+	long end_clip = get_time_by_pos(get_end_area());
+
+	for(KeyFrames::const_iterator it = keyframes->begin(); it != keyframes->end(); ++it)
+	{
+		// display only if it's in the area
+		if(*it < start_clip && *it < end_clip)
+			continue;
+		if(*it > end_clip)
+			break; // the next keyframes are out of the area
+
+		long pos = get_pos_by_time(*it);
+		cr->move_to(pos, 0);
+		cr->line_to(pos, area.get_height());
+		cr->stroke();
+	}
+}
 
 
 

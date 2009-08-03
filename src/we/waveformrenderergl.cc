@@ -25,6 +25,9 @@
 #include "utility.h"
 #include "document.h"
 #include "waveformrenderer.h"
+#include "subtitleeditorwindow.h"
+#include "keyframes.h"
+#include "player.h"
 
 #include <gtkglmm.h>
 #include <GL/gl.h>
@@ -148,6 +151,11 @@ public:
 	void display_time_info(const Gdk::Rectangle &area);
 
 	/*
+	 * Draw the keyframes position.
+	 */
+	void draw_keyframes(const Gdk::Rectangle &area);
+
+	/*
 	 * Delete the OpenGL Display List (Waveform)
 	 */
 	void delete_display_lists();
@@ -168,6 +176,12 @@ public:
 	 * Delete the display list
 	 */
 	void waveform_changed();
+
+	/*
+	 * The keyframe is changed.
+	 * Need to redisplay the waveform.
+	 */
+	void keyframes_changed();
 
 	/*
 	 * Call queue_draw
@@ -487,7 +501,10 @@ void WaveformRendererGL::draw(GdkEventExpose *ev)
 		draw_timeline(timeline_area);
 	glPopMatrix();
 
-	
+	// FIXME: test it
+	// keyframes
+	//draw_keyframes(waveform_area);
+
 	// player position
 	{
 		glColor4fv(m_color_player_position);
@@ -808,6 +825,41 @@ void WaveformRendererGL::display_time_info(const Gdk::Rectangle &area)
 }
 
 /*
+ */
+void WaveformRendererGL::draw_keyframes(const Gdk::Rectangle &rect)
+{
+	Player *player = SubtitleEditorWindow::get_instance()->get_player();
+	if(player == NULL)
+		return;
+
+	Glib::RefPtr<KeyFrames> keyframes = player->get_keyframes();
+	if(!keyframes)
+		return;
+
+	int height = rect.get_height();
+
+	glColor4fv(m_color_keyframe);
+
+	long start_clip = get_time_by_pos(get_start_area());
+	long end_clip = get_time_by_pos(get_end_area());
+
+	glBegin(GL_LINES);
+	for(KeyFrames::const_iterator it = keyframes->begin(); it != keyframes->end(); ++it)
+	{
+		// display only if it's in the area
+		if(*it < start_clip && *it < end_clip)
+			continue;
+		if(*it > end_clip)
+			break; // the next keyframes are out of the area
+
+		long pos = get_pos_by_time(*it);
+		glVertex2f(pos, 0);
+		glVertex2f(pos, height);
+	}
+	glEnd();
+}
+
+/*
  * Draw the left and the right marker of the subtitle selected. 
  */
 void WaveformRendererGL::draw_marker(const Gdk::Rectangle &rect)
@@ -985,6 +1037,13 @@ void WaveformRendererGL::waveform_changed()
 {
 	delete_display_lists();
 
+	queue_draw();
+}
+
+/*
+ */
+void WaveformRendererGL::keyframes_changed()
+{
 	queue_draw();
 }
 
