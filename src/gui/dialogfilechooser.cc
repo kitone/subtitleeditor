@@ -531,3 +531,69 @@ DialogOpenWaveform::~DialogOpenWaveform()
 	Config::getInstance().set_value_string("dialog-last-folder", "dialog-open-waveform", floder);
 }
 
+
+/*
+ * Keyframes or Video
+ */
+DialogOpenKeyframe::DialogOpenKeyframe()
+:Gtk::FileChooserDialog(_("Open Keyframe"), Gtk::FILE_CHOOSER_ACTION_OPEN)
+{
+	utility::set_transient_parent(*this);
+
+	// keyframes and video filter
+	Gtk::FileFilter m_filterSupported;
+	m_filterSupported.set_name(_("Keyframe & Media"));
+	m_filterSupported.add_pattern("*.kf");
+	m_filterSupported.add_mime_type("video/*");
+	m_filterSupported.add_pattern("*.avi");
+	m_filterSupported.add_pattern("*.wma");
+	m_filterSupported.add_pattern("*.mkv");
+	m_filterSupported.add_pattern("*.mpg");
+	m_filterSupported.add_pattern("*.mpeg");
+	add_filter(m_filterSupported);
+
+	// keyframe filter
+	Gtk::FileFilter m_filterKeyframe;
+	m_filterKeyframe.set_name(_("Keyframe (*.kf)"));
+	m_filterKeyframe.add_pattern("*.kf");
+	add_filter(m_filterKeyframe);
+
+	// movies filter
+	Gtk::FileFilter m_filterMovie;
+	m_filterMovie.set_name(_("Video"));
+	m_filterMovie.add_pattern("*.avi");
+	m_filterMovie.add_pattern("*.wma");
+	m_filterMovie.add_pattern("*.mkv");
+	m_filterMovie.add_pattern("*.mpg");
+	m_filterMovie.add_pattern("*.mpeg");
+	m_filterMovie.add_mime_type("video/*");
+	add_filter(m_filterMovie);
+
+	// all filter
+	Gtk::FileFilter m_filterAll;
+	m_filterAll.set_name(_("ALL"));
+	m_filterAll.add_pattern("*.*");
+	add_filter(m_filterAll);
+	
+	
+	add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+	add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+	set_default_response(Gtk::RESPONSE_OK);
+
+
+	Config &cfg = Config::getInstance();
+
+	Glib::ustring floder;
+	if(cfg.get_value_string("dialog-last-folder", "dialog-open-keyframe", floder))
+		set_current_folder_uri(floder);
+}
+
+/*
+ */
+DialogOpenKeyframe::~DialogOpenKeyframe()
+{
+	Glib::ustring floder = get_current_folder_uri();
+
+	Config::getInstance().set_value_string("dialog-last-folder", "dialog-open-keyframe", floder);
+}
+

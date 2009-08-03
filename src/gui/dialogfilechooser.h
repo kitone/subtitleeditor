@@ -271,5 +271,15 @@ public:
 	~DialogOpenWaveform();
 };
 
+/*
+ * Keyframe or Video
+ */
+class DialogOpenKeyframe : public Gtk::FileChooserDialog
+{
+public:
+	DialogOpenKeyframe();
+	~DialogOpenKeyframe();
+};
+
 #endif//_DialogFileChooser_h
 
