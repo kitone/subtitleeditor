@@ -1,5 +1,20 @@
 2009-08-03  kitone  <kitone@gna.org>
 
+	* configure.in:
+	* plugins/actions/Makefile.am:
+	Add new plugin keyframesmanagement.
+
+	* plugins/actions/keyframesmanagement/Makefile.am:
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	* plugins/actions/keyframesmanagement/keyframesmanagement.se-plugin.in:
+	Introduce new plugin keyframes management.
+
+	* share/menubar.xml:
+	* src/gui/menubar.cc:
+	Add menu keyframes.
+
+2009-08-03  kitone  <kitone@gna.org>
+
 	* src/gui/dialogfilechooser.cc:
 	* src/gui/dialogfilechooser.h:
 	Add DialogOpenKeyframe class.

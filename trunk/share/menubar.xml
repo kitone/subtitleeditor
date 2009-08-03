@@ -85,6 +85,12 @@
 			<placeholder name="waveform-management"/>
 		</menu>
 
+		<menu action="menu-keyframes">
+			<placeholder name="placeholder"/>
+			<separator/>
+			<placeholder name="placeholder-2"/>
+		</menu>
+
 		<menu name="menu-view" action="menu-view">
 			<placeholder name="view-manager"/>
 			<separator/>

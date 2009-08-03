@@ -17,6 +17,7 @@ FILES = \
 		insertsubtitle \
 		italicize \
 		joindocument \
+		keyframesmanagement \
 		moveafterprecedingsubtitle \
 		movesubtitles \
 		plaintext \
