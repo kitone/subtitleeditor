@@ -329,6 +329,7 @@ plugins/actions/findandreplace/Makefile
 plugins/actions/insertsubtitle/Makefile
 plugins/actions/italicize/Makefile
 plugins/actions/joindocument/Makefile
+plugins/actions/keyframesmanagement/Makefile
 plugins/actions/moveafterprecedingsubtitle/Makefile
 plugins/actions/movesubtitles/Makefile
 plugins/actions/plaintext/Makefile

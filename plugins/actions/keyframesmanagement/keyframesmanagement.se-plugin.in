@@ -1,0 +1,7 @@
+[SubtitleEditor Extension]
+_Name=Keyframes Management
+_Description=FIXME
+Categorie=action
+Type=module
+Module=keyframesmanagement
+Authors=kitone <kitone at gna dot org>
