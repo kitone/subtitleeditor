@@ -62,8 +62,6 @@ public:
 	 */
 	void unreference() const;
 
-protected:
-
 	/*
 	 */
 	KeyFrames();

@@ -1,3 +1,8 @@
+2009-08-04  kitone  <kitone@gna.org>
+
+	* src/keyframes.h:
+	Move constructor and desctructor from protected to public.
+
 2009-08-03  kitone  <kitone@gna.org>
 
 	* configure.in:
