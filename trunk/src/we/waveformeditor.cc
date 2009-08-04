@@ -625,7 +625,7 @@ void WaveformEditor::on_subtitle_time_changed()
  */
 void WaveformEditor::on_keyframes_changed()
 {
-	if(has_renderer())
+	if(!has_renderer())
 		return;
 	
 	renderer()->keyframes_changed();
