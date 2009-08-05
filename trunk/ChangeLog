@@ -1,3 +1,8 @@
+2009-08-05  kitone  <kitone@gna.org>
+
+	* configure.in:
+	Introduce new dependence to gstreamermm-0.10 >= 0.10.2.
+
 2009-08-04  kitone  <kitone@gna.org>
 
 	* src/we/waveformeditor.cc:
