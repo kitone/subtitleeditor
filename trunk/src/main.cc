@@ -29,7 +29,7 @@
 #include "options.h"
 
 #include <ctime>
-#include <gst/gst.h>
+#include <gstreamermm.h>
 #include <gdk/gdkx.h>
 #include <glib.h>
 
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 	// Init GStreamer 
 	se_debug_message(SE_DEBUG_APP, "Init GStreamer");
 	
-	gst_init(&argc, &argv);
+	Gst::init(argc, argv);
 
 	// Run Application
 	Application*	application = gtkmm_utility::get_widget_derived<Application>(
