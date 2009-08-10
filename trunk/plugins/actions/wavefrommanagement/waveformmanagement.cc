@@ -28,6 +28,11 @@
 #include <gui/dialogfilechooser.h>
 
 /*
+ * Declared in waveformgenerator.cc
+ */
+Glib::RefPtr<Waveform> generate_waveform_from_file(const Glib::ustring &uri);
+
+/*
  *
  */
 class WaveformManagement : public Action
@@ -261,13 +266,12 @@ protected:
 			dialog.hide();
 
 			Glib::ustring uri = dialog.get_uri();
-		
-			WaveformManager* wm = get_waveform_manager();
-			if(wm->open_waveform(uri) == false)
-			{
-				// try to create the Waveform from media
-				wm->generate_waveform(uri);
-			}
+			Glib::RefPtr<Waveform> wf = Waveform::create_from_file(uri);
+			if(!wf)
+				wf = generate_waveform_from_file(uri);
+
+			if(wf)
+				get_waveform_manager()->set_waveform(wf);
 		}
 	}
 
@@ -278,7 +282,12 @@ protected:
 	{
 		Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
 		if(uri.empty() == false)
-			get_waveform_manager()->generate_waveform(uri);
+		{
+			//get_waveform_manager()->generate_waveform(uri);
+			Glib::RefPtr<Waveform> wf = generate_waveform_from_file(uri);
+			if(wf)
+				get_waveform_manager()->set_waveform(wf);
+		}
 	}
 
 	/*
