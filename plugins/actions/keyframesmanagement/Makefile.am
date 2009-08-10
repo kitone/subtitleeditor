@@ -5,16 +5,22 @@ actionsharedir = $(PACKAGE_PLUGIN_SHARE_DIR)/actions
 INCLUDES = \
 	 -I$(top_srcdir) \
 	 -I$(top_srcdir)/src \
-	 $(SUBTITLEEDITOR_CFLAGS)
+	 $(SUBTITLEEDITOR_CFLAGS) \
+	 $(GSTREAMER_CFLAGS)
 
 pluginlib_LTLIBRARIES = \
 	libkeyframesmanagement.la
 
 libkeyframesmanagement_la_SOURCES = \
-	keyframesmanagement.cc
+	keyframesgenerator.cc \
+	keyframesmanagement.cc \
+	mediadecoder.h
 
 libkeyframesmanagement_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
-libkeyframesmanagement_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
+libkeyframesmanagement_la_LIBADD = \
+	$(SUBTITLEEDITOR_LIBS) \
+	$(GSTREAMER_LIBS) \
+	-L$(top_srcdir)/src -lsubtitleeditor
 
 plugindescription_in_files = keyframesmanagement.se-plugin.in
 plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)

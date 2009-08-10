@@ -1,3 +1,13 @@
+2009-08-10  kitone  <kitone@gna.org>
+
+	* plugins/actions/keyframesmanagement/Makefile.am:
+	New files mediadecoder.h & keyframesgenerator.cc.
+
+	* plugins/actions/keyframesmanagement/keyframesgenerator.cc:
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	* plugins/actions/keyframesmanagement/mediadecoder.h:
+	Introduce keyframesgenerator.
+
 2009-08-06  kitone  <kitone@gna.org>
 
 	* src/main.cc:
