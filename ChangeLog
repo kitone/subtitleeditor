@@ -1,5 +1,15 @@
 2009-08-10  kitone  <kitone@gna.org>
 
+	* plugins/actions/wavefrommanagement/Makefile.am:
+	New files mediadecoder.h & waveformgenerator.cc.
+
+	* plugins/actions/wavefrommanagement/mediadecoder.h:
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Move waveformgenerator in the plugin. (switch to gstreamermm).
+
+2009-08-10  kitone  <kitone@gna.org>
+
 	* plugins/actions/keyframesmanagement/Makefile.am:
 	New files mediadecoder.h & keyframesgenerator.cc.
 
