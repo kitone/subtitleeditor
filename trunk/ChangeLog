@@ -1,5 +1,17 @@
 2009-08-10  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	* src/we/waveformgenerator.cc:
+	* src/we/waveformgenerator.h:
+	Remove files src/we/waveformgenerator.*.
+
+	* src/waveformmanager.h:
+	* src/we/waveformeditor.cc:
+	* src/we/waveformeditor.h:
+	Remove waveformgenerator calls.
+
+2009-08-10  kitone  <kitone@gna.org>
+
 	* plugins/actions/wavefrommanagement/Makefile.am:
 	New files mediadecoder.h & waveformgenerator.cc.
 
