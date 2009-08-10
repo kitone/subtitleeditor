@@ -27,6 +27,11 @@
 #include <gui/dialogfilechooser.h>
 
 /*
+ * declared in keyframesgenerator.cc
+ */
+Glib::RefPtr<KeyFrames> generate_keyframes_from_file(const Glib::ustring &uri);
+
+/*
  */
 class KeyframesManagementPlugin : public Action
 {
@@ -244,7 +249,11 @@ protected:
 		DialogOpenKeyframe ui;
 		if(ui.run() == Gtk::RESPONSE_OK)
 		{
+			ui.hide();
 			Glib::RefPtr<KeyFrames> kf = KeyFrames::create_from_file(ui.get_uri());
+			if(!kf)
+				kf = generate_keyframes_from_file(ui.get_uri());
+
 			if(kf)
 				player()->set_keyframes(kf);
 		}
@@ -276,7 +285,13 @@ protected:
 	 */
 	void on_generate()
 	{
-		// FIXME
+		Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
+		if(uri.empty())
+			return;
+
+		Glib::RefPtr<KeyFrames> kf = generate_keyframes_from_file(uri);
+		if(kf)
+			player()->set_keyframes(kf);
 	}
 
 	/*
