@@ -32,6 +32,9 @@ plugins/actions/findandreplace/findandreplace.cc
 plugins/actions/insertsubtitle/insertsubtitle.cc
 plugins/actions/italicize/italicize.cc
 plugins/actions/joindocument/joindocument.cc
+plugins/actions/keyframesmanagement/keyframesgenerator.cc
+plugins/actions/keyframesmanagement/keyframesmanagement.cc
+plugins/actions/keyframesmanagement/mediadecoder.h
 plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc
 plugins/actions/movesubtitles/dialog-move-subtitles.glade
 plugins/actions/movesubtitles/movesubtitles.cc
@@ -76,6 +79,8 @@ plugins/actions/timingfromplayer/timingfromplayer.cc
 plugins/actions/videoplayermanagement/videoplayermanagement.cc
 plugins/actions/viewmanager/dialog-view-manager.glade
 plugins/actions/viewmanager/viewmanager.cc
+plugins/actions/wavefrommanagement/mediadecoder.h
+plugins/actions/wavefrommanagement/waveformgenerator.cc
 plugins/actions/wavefrommanagement/waveformmanagement.cc
 plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h
 plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.cc
@@ -169,6 +174,8 @@ src/gui/treeviewextensionmanager.h
 src/i18n.h
 src/isocodes.cc
 src/isocodes.h
+src/keyframes.cc
+src/keyframes.h
 src/main.cc
 src/options.cc
 src/options.h
@@ -214,8 +221,6 @@ src/waveform.h
 src/waveformmanager.h
 src/we/waveformeditor.cc
 src/we/waveformeditor.h
-src/we/waveformgenerator.cc
-src/we/waveformgenerator.h
 src/we/waveformrenderercairo.cc
 src/we/waveformrenderer.cc
 src/we/waveformrenderergl.cc
@@ -240,6 +245,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in
 [type: gettext/ini] plugins/actions/italicize/italicize.se-plugin.in
 [type: gettext/ini] plugins/actions/joindocument/joindocument.se-plugin.in
+[type: gettext/ini] plugins/actions/keyframesmanagement/keyframesmanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.se-plugin.in
 [type: gettext/ini] plugins/actions/movesubtitles/movesubtitles.se-plugin.in
 [type: gettext/ini] plugins/actions/plaintext/plaintext.se-plugin.in
