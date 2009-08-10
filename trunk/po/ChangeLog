@@ -1,3 +1,13 @@
+2009-08-10  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	* subtitleeditor.pot:
+	Update with new files.
+
+	* LINGUAS:
+	* eo.po:
+	Add Esperanto translation.
+
 2009-07-31  kitone  <kitone@gna.org>
 
 	* fr.po:
