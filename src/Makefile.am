@@ -158,8 +158,6 @@ APPLICATION_FILES = \
 	vp/videoplayer.h \
 	we/waveformeditor.cc \
 	we/waveformeditor.h \
-	we/waveformgenerator.cc \
-	we/waveformgenerator.h \
 	we/waveformrenderercairo.cc \
 	we/waveformrenderer.cc \
 	we/waveformrenderergl.cc \

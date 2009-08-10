@@ -43,11 +43,6 @@ public:
 	virtual bool open_waveform(const Glib::ustring &uri) = 0;
 
 	/*
-	 * Try to generate a wavefrom from the media.
-	 */
-	virtual bool generate_waveform(const Glib::ustring &media_uri) = 0;
-
-	/*
 	 * Init the Waveform Editor and the WaveformRenderer with this wf
 	 */
 	virtual void set_waveform(const Glib::RefPtr<Waveform> &wf) = 0;
