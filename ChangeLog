@@ -1,3 +1,9 @@
+2009-08-17  kitone  <kitone@gna.org>
+
+	* plugins/actions/keyframesmanagement/keyframesgenerator.cc:
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	Small fixes.
+
 2009-08-10  kitone  <kitone@gna.org>
 
 	* src/Makefile.am:

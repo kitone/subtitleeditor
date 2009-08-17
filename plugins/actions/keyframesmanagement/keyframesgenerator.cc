@@ -26,7 +26,6 @@
 #include <iomanip>
 #include <keyframes.h>
 #include <utility.h>
-//#include <gstreamer_utility.h>
 #include "mediadecoder.h"
 
 /*
@@ -44,6 +43,7 @@ public:
 		set_default_size(300, -1);
 		get_vbox()->pack_start(m_progressbar, false, false);
 		add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+		m_progressbar.set_text(_("Waiting..."));
 		show_all();
 
 		try
