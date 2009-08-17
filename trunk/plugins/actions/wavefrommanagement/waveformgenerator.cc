@@ -43,6 +43,7 @@ public:
 		set_default_size(300, -1);
 		get_vbox()->pack_start(m_progressbar, false, false);
 		add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+		m_progressbar.set_text(_("Waiting..."));
 		show_all();
 
 		try
@@ -56,7 +57,6 @@ public:
 				wf->m_n_channels = 1;
 				wf->m_channels[0] = std::vector<double>(m_values.begin(), m_values.end());
 				wf->m_video_uri = uri;
-				std::cout << "waveform pushed: duration:" << time_to_string(m_duration) << std::endl;
 			}
 		}
 		catch(const std::runtime_error &ex)
