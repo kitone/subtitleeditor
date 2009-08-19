@@ -29,15 +29,15 @@
 /*
  *
  */
-DialogCharacterCodings::DialogCharacterCodings(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+DialogCharacterCodings::DialogCharacterCodings(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::Dialog(cobject)
 {
 	utility::set_transient_parent(*this);
 
-	refGlade->get_widget("treeview-available", treeviewAvailable);
-	refGlade->get_widget("treeview-displayed", m_treeviewDisplayed);
-	refGlade->get_widget("button-add", m_buttonAdd);
-	refGlade->get_widget("button-remove", m_buttonRemove);
+	builder->get_widget("treeview-available", treeviewAvailable);
+	builder->get_widget("treeview-displayed", m_treeviewDisplayed);
+	builder->get_widget("button-add", m_buttonAdd);
+	builder->get_widget("button-remove", m_buttonRemove);
 
 	init_encodings_available();
 	init_encodings_displayed();
@@ -293,15 +293,15 @@ void DialogCharacterCodings::on_row_displayed_activated(const Gtk::TreeModel::Pa
 
 
 /*
- * Create an instance of the dialog (glade file)
+ * Create an instance of the dialog .ui file)
  * If the response is OK the config is saved.
  */
 std::auto_ptr<DialogCharacterCodings> DialogCharacterCodings::create()
 {
 	std::auto_ptr<DialogCharacterCodings> ptr(
 			gtkmm_utility::get_widget_derived<DialogCharacterCodings>(
-				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
-				"dialog-character-codings.glade", 
+				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
+				"dialog-character-codings.ui", 
 				"dialog-character-codings") );
 
 	return ptr;

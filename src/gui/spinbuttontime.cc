@@ -36,7 +36,7 @@ SpinButtonTime::SpinButtonTime()
 /*
  *
  */
-SpinButtonTime::SpinButtonTime(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+SpinButtonTime::SpinButtonTime(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::SpinButton(cobject)
 {
 	default_init();

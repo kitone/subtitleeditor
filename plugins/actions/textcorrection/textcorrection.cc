@@ -38,13 +38,13 @@
 class AssistantTextCorrection : public Gtk::Assistant
 {
 public:
-	AssistantTextCorrection(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	AssistantTextCorrection(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Assistant(cobject)
 	{
 		doc = SubtitleEditorWindow::get_instance()->get_current_document();
 
-		refGlade->get_widget_derived("vbox-tasks", m_tasksPage);
-		refGlade->get_widget_derived("vbox-comfirmation", m_comfirmationPage);
+		builder->get_widget_derived("vbox-tasks", m_tasksPage);
+		builder->get_widget_derived("vbox-comfirmation", m_comfirmationPage);
 
 		add_tasks();
 
@@ -230,14 +230,14 @@ public:
 		/*
 		std::auto_ptr<AssistantTextCorrection> assistant(
 				gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"assistant-text-correction.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"assistant-text-correction.ui", 
 						"assistant"));
 		*/
 		AssistantTextCorrection *assistant = 
 			gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"assistant-text-correction.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"assistant-text-correction.ui", 
 						"assistant");
 		//assistant->set_document(document());
 		assistant->show();

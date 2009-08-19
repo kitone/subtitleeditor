@@ -5,6 +5,6 @@ EXTRA_DIST = autogen.sh prepare-ChangeLog.pl prepare-po.sh \
 
 ACLOCAL_AMFLAGS = -I m4
 
-CLEANFILES = Makefile.am~ *.c~ *.cc~ *.h~ *.glade~ *.gladep *.gladep.bak
+CLEANFILES = Makefile.am~ *.c~ *.cc~ *.h~ *.ui~ *.uip *.uip.bak
 
 DISTCLEANFILES = intltool-extract intltool-merge intltool-update

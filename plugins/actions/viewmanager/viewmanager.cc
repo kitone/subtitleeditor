@@ -47,12 +47,12 @@ class DialogViewEdit : public Gtk::Dialog
 
 public:
 
-	DialogViewEdit(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogViewEdit(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
 		
-		refGlade->get_widget("treeview-columns", m_treeview);
+		builder->get_widget("treeview-columns", m_treeview);
 
 		create_treeview();
 	}
@@ -117,7 +117,7 @@ protected:
 	
 	/*
 	 * Create the treeview with two columns : Display and Name
-	 * Support DND (glade).
+	 * Support DND .ui).
 	 */
 	void create_treeview()
 	{
@@ -187,15 +187,15 @@ class DialogViewManager : public Gtk::Dialog
 
 public:
 
-	DialogViewManager(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogViewManager(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
 
-		refGlade->get_widget("treeview", m_treeview);
-		refGlade->get_widget("button-add", m_buttonAdd);
-		refGlade->get_widget("button-remove", m_buttonRemove);
-		refGlade->get_widget("button-edit", m_buttonEdit);
+		builder->get_widget("treeview", m_treeview);
+		builder->get_widget("button-add", m_buttonAdd);
+		builder->get_widget("button-remove", m_buttonRemove);
+		builder->get_widget("button-edit", m_buttonEdit);
 
 		m_buttonAdd->signal_clicked().connect(
 				sigc::mem_fun(*this, &DialogViewManager::on_add));
@@ -329,8 +329,8 @@ protected:
 		{
 			std::auto_ptr<DialogViewEdit> dialog(
 					gtkmm_utility::get_widget_derived<DialogViewEdit>(
-							SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-							"dialog-view-manager.glade", 
+							SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+							"dialog-view-manager.ui", 
 							"dialog-view-edit"));
 			
 			Glib::ustring columns = (*selected)[m_column_record.columns];
@@ -491,8 +491,8 @@ public:
 	{
 		std::auto_ptr<DialogViewManager> dialog(
 				gtkmm_utility::get_widget_derived<DialogViewManager>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-view-manager.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-view-manager.ui", 
 						"dialog-view-manager"));
 
 		dialog->execute();

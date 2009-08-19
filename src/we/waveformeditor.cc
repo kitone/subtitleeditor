@@ -37,16 +37,16 @@ WaveformRenderer* create_waveform_renderer_gl();
 /*
  *
  */
-WaveformEditor::WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+WaveformEditor::WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::HBox(cobject), m_waveformRenderer(NULL), m_document(NULL), m_player(NULL)
 {
 	set_size_request(240, 240);
 
-	refGlade->get_widget("frame-waveform-renderer", m_frameWaveformRenderer);
-	refGlade->get_widget("hscrollbar-waveform-renderer", m_hscrollbarWaveformRenderer);
+	builder->get_widget("frame-waveform-renderer", m_frameWaveformRenderer);
+	builder->get_widget("hscrollbar-waveform-renderer", m_hscrollbarWaveformRenderer);
 
-	refGlade->get_widget("vscale-zoom", m_sliderZoom);
-	refGlade->get_widget("vscale-scale", m_sliderScale);
+	builder->get_widget("vscale-zoom", m_sliderZoom);
+	builder->get_widget("vscale-scale", m_sliderScale);
 
 	// connect signal
 	

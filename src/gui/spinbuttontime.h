@@ -24,7 +24,7 @@
  */
 
 #include <gtkmm/spinbutton.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 #include "subtitletime.h"
 #include "timeutility.h"
 
@@ -43,7 +43,7 @@ public:
 	/*
 	 *
 	 */
-	SpinButtonTime(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	SpinButtonTime(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 	
 	/*
 	 *

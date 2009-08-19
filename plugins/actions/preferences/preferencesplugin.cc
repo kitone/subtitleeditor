@@ -42,7 +42,7 @@ public:
 	/*
 	 *
 	 */
-	DialogPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	DialogPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
@@ -69,8 +69,8 @@ public:
 	{
 		std::auto_ptr<DialogPreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogPreferences>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-preferences.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-preferences.ui", 
 						"dialog-preferences"));
 
 		dialog->run();

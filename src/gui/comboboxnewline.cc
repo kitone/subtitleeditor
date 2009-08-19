@@ -25,7 +25,7 @@
 /*
  * Constructor
  */
-ComboBoxNewLine::ComboBoxNewLine(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+ComboBoxNewLine::ComboBoxNewLine(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::ComboBoxText(cobject)
 {
 	append_text("Macintosh");

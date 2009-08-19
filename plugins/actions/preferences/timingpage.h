@@ -32,7 +32,7 @@ public:
 	/*
 	 *
 	 */
-	TimingPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	TimingPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:PreferencePage(cobject)
 	{
 		init_widget(xml, "spin-min-characters-per-second", "timing", "min-characters-per-second");

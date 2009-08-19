@@ -125,8 +125,8 @@ public:
 
 		if(m_static_instance == NULL)
 			m_static_instance = gtkmm_utility::get_widget_derived<DialogErrorChecking>(
-								SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-								"dialog-error-checking.glade", 
+								SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+								"dialog-error-checking.ui", 
 								"dialog-error-checking");
 
 		g_return_if_fail(m_static_instance);
@@ -146,17 +146,17 @@ public:
 	/*
 	 *
 	 */
-	DialogErrorChecking(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogErrorChecking(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Window(cobject)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		m_sort_type = BY_CATEGORIES;
 
-		create_menubar(refGlade);
+		create_menubar(builder);
 
-		refGlade->get_widget("treeview-errors", m_treeview);
-		refGlade->get_widget("statusbar", m_statusbar);
+		builder->get_widget("treeview-errors", m_treeview);
+		builder->get_widget("statusbar", m_statusbar);
 
 		create_treeview();
 		refresh();
@@ -186,10 +186,10 @@ public:
 	/*
 	 * Create the menubar and actions
 	 */
-	void create_menubar(const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	void create_menubar(const Glib::RefPtr<Gtk::Builder>& builder)
 	{
 		Gtk::VBox* vbox;
-		refGlade->get_widget("vbox", vbox);
+		builder->get_widget("vbox", vbox);
 
 		// ui
 		Glib::ustring ui_info =

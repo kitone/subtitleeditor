@@ -24,7 +24,7 @@
  */
 
 #include <gtkmm/comboboxtext.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 
 /*
  * ComboBox for choosing the encoding.
@@ -43,7 +43,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Sets the current value.

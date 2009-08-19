@@ -32,12 +32,12 @@
 class DialogSplitDocument : public Gtk::Dialog
 {
 public:
-	DialogSplitDocument(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogSplitDocument(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
 		
-		refGlade->get_widget("spin-number", m_spinNumber);
+		builder->get_widget("spin-number", m_spinNumber);
 
 		set_default_response(Gtk::RESPONSE_OK);
 	}
@@ -188,8 +188,8 @@ protected:
 		// create dialog
 		std::auto_ptr<DialogSplitDocument> dialog(
 				gtkmm_utility::get_widget_derived<DialogSplitDocument>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-split-document.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-split-document.ui", 
 						"dialog-split-document"));
 
 		dialog->execute(doc);

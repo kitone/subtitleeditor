@@ -33,7 +33,7 @@ public:
 	/*
 	 *
 	 */
-	WaveformPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	WaveformPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:PreferencePage(cobject)
 	{
 		init_color_button(xml, "colorbutton-background", "waveform-renderer", "color-background");
@@ -86,7 +86,7 @@ protected:
 	 *
 	 */
 	void init_color_button(
-				const Glib::RefPtr<Gnome::Glade::Xml>& xml, 
+				const Glib::RefPtr<Gtk::Builder>& xml, 
 				const Glib::ustring &widget_name, 
 				const Glib::ustring &config_group,
 				const Glib::ustring &config_key)

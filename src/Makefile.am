@@ -2,8 +2,8 @@ PACKAGE_DIRECTORY = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SHARE_DIR=\""$(PACKAGE_SHARE_DIR)"\" \
 	-DPACKAGE_SHARE_DIR_DEV=\""share"\" \
-	-DPACKAGE_GLADE_DIR=\""$(PACKAGE_SHARE_DIR)/glade"\" \
-	-DPACKAGE_GLADE_DIR_DEV=\""share/glade"\" \
+	-DPACKAGE_UI_DIR=\""$(PACKAGE_SHARE_DIR)/ui"\" \
+	-DPACKAGE_UI_DIR_DEV=\""share/ui"\" \
 	-DPACKAGE_PLUGIN_LIB_DIR=\""$(PACKAGE_PLUGIN_LIB_DIR)"\" \
 	-DPACKAGE_PLUGIN_DESCRIPTION_DIR=\""$(PACKAGE_PLUGIN_DESCRIPTION_DIR)"\" \
 	-DPACKAGE_PLUGIN_DIR_DEV=\""plugins"\" \
@@ -127,13 +127,13 @@ libsubtitleeditor_la_SOURCES = \
 
 libsubtitleeditor_la_LIBADD = \
 	$(GTKMM_LIBS) \
-	$(LIBGLADEMM_LIBS) \
+	$(LIBUIMM_LIBS) \
 	$(LIBXML_LIBS) \
 	$(ENCHANT_LIBS)
 
 libsubtitleeditor_la_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \
-	$(LIBGLADEMM_CFLAGS) \
+	$(LIBUIMM_CFLAGS) \
 	$(LIBXML_CFLAGS) \
 	$(ENCHANT_CFLAGS) \
 	$(PACKAGE_DIRECTORY)
@@ -170,7 +170,7 @@ subtitleeditor_SOURCES = \
 
 subtitleeditor_LDADD = \
 	$(GTKMM_LIBS) \
-	$(LIBGLADEMM_LIBS) \
+	$(LIBUIMM_LIBS) \
 	$(GSTREAMER_LIBS) \
 	$(GTKGLEXT_LIBS) \
 	$(GL_LIBS) \
@@ -179,7 +179,7 @@ subtitleeditor_LDADD = \
 
 subtitleeditor_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \
-	$(LIBGLADEMM_CFLAGS) \
+	$(LIBUIMM_CFLAGS) \
 	$(GSTREAMER_CFLAGS) \
 	$(LIBXML_CFLAGS) \
 	$(GTKGLEXT_CFLAGS) \

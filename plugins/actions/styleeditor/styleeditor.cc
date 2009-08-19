@@ -42,18 +42,18 @@ public:
 /*
  *
  */
-DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::Dialog(cobject)
 {
 	utility::set_transient_parent(*this);
 
 #define init_widget(WidgetClass, widget_name, signal, callback, key) { \
-					refGlade->get_widget(widget_name, m_widgets[widget_name]); \
+					builder->get_widget(widget_name, m_widgets[widget_name]); \
 					WidgetClass *w = dynamic_cast<WidgetClass*>(m_widgets[widget_name]); \
 					w->signal().connect( sigc::bind( \
 							sigc::mem_fun(*this, &DialogStyleEditor::callback), w, Glib::ustring(key))); }
 	
-	refGlade->get_widget("vbox-style", m_widgets["vbox-style"]);
+	builder->get_widget("vbox-style", m_widgets["vbox-style"]);
 
 	init_widget(Gtk::Button, "button-new-style", signal_clicked, callback_button_clicked, "new-style");
 	init_widget(Gtk::Button, "button-delete-style", signal_clicked, callback_button_clicked, "delete-style");
@@ -88,7 +88,7 @@ DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr
 	for(unsigned int i=0; i<9; ++i)
 	{
 		Glib::ustring b = build_message("button-alignment-%d", i+1);
-		refGlade->get_widget(b, m_widgets[b]);
+		builder->get_widget(b, m_widgets[b]);
 
 		Gtk::RadioButton *w = dynamic_cast<Gtk::RadioButton*>(m_widgets[b]);
 		w->signal_toggled().connect(
@@ -103,7 +103,7 @@ DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr
 		Gtk::CellRendererText* renderer = NULL;
 		ColumnNameRecorder column_name;
 
-		refGlade->get_widget("treeview-style", m_widgets["treeview-style"]);
+		builder->get_widget("treeview-style", m_widgets["treeview-style"]);
 
 		m_liststore = Gtk::ListStore::create(column_name);
 
@@ -494,8 +494,8 @@ protected:
 		// create dialog
 		std::auto_ptr<DialogStyleEditor> dialog(
 				gtkmm_utility::get_widget_derived<DialogStyleEditor>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-style-editor.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-style-editor.ui", 
 						"dialog-style-editor"));
 
 		dialog->execute(doc);

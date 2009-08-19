@@ -46,10 +46,10 @@ class TasksPage : public AssistantPage
 	};
 
 public:
-	TasksPage(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:AssistantPage(cobject, refGlade)
+	TasksPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
+	:AssistantPage(cobject, builder)
 	{
-		refGlade->get_widget("treeview-tasks", m_treeview);
+		builder->get_widget("treeview-tasks", m_treeview);
 		create_treeview();
 	}
 

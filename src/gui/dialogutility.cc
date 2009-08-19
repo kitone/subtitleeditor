@@ -26,11 +26,11 @@
 /*
  *
  */
-DialogActionMultiDoc::DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+DialogActionMultiDoc::DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::Dialog(cobject)
 {
-	refGlade->get_widget("radio-current-document", m_radioCurrentDocument);
-	refGlade->get_widget("radio-all-documents", m_radioAllDocuments);
+	builder->get_widget("radio-current-document", m_radioCurrentDocument);
+	builder->get_widget("radio-all-documents", m_radioAllDocuments);
 }
 
 /*

@@ -113,12 +113,12 @@ DialogFileChooser::~DialogFileChooser()
 /*
  * Constructor
  */
-DialogOpenDocument::DialogOpenDocument(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+DialogOpenDocument::DialogOpenDocument(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :DialogFileChooser(cobject, "dialog-open-document")
 {
-	refGlade->get_widget_derived("combobox-encodings", m_comboEncodings);
-	refGlade->get_widget("label-video", m_labelVideo);
-	refGlade->get_widget_derived("combobox-video", m_comboVideo);
+	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
+	builder->get_widget("label-video", m_labelVideo);
+	builder->get_widget_derived("combobox-video", m_comboVideo);
 
 	signal_current_folder_changed().connect(
 			sigc::mem_fun(*this, &DialogOpenDocument::on_current_folder_changed));
@@ -179,8 +179,8 @@ DialogOpenDocument::auto_ptr DialogOpenDocument::create()
 {
 	auto_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogOpenDocument>(
-				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
-				"dialog-open-document.glade", 
+				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
+				"dialog-open-document.ui", 
 				"dialog-open-document") );
 
 	return ptr;
@@ -217,12 +217,12 @@ void DialogOpenDocument::on_selection_changed()
 /*
  * Constructor
  */
-DialogSaveDocument::DialogSaveDocument(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+DialogSaveDocument::DialogSaveDocument(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :DialogFileChooser(cobject, "dialog-save-document")
 {
-	refGlade->get_widget_derived("combobox-format", m_comboFormat);
-	refGlade->get_widget_derived("combobox-encodings", m_comboEncodings);
-	refGlade->get_widget_derived("combobox-newline", m_comboNewLine);
+	builder->get_widget_derived("combobox-format", m_comboFormat);
+	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
+	builder->get_widget_derived("combobox-newline", m_comboNewLine);
 
 	init_dialog_subtitle_filters(this);
 
@@ -290,8 +290,8 @@ DialogSaveDocument::auto_ptr DialogSaveDocument::create()
 {
 	auto_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogSaveDocument>(
-				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV), 
-				"dialog-save-document.glade", 
+				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), 
+				"dialog-save-document.ui", 
 				"dialog-save-document") );
 
 	return ptr;
@@ -305,10 +305,10 @@ DialogSaveDocument::auto_ptr DialogSaveDocument::create()
 /*
  * Constructor
  */
-DialogImportText::DialogImportText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+DialogImportText::DialogImportText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :DialogFileChooser(cobject, "dialog-import-text")
 {
-	refGlade->get_widget_derived("combobox-encodings", m_comboEncodings);
+	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
 
 	add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
 	add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
@@ -332,8 +332,8 @@ DialogImportText::auto_ptr DialogImportText::create()
 {
 	auto_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogImportText>(
-				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV), 
-				"dialog-import-text.glade", 
+				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), 
+				"dialog-import-text.ui", 
 				"dialog-import-text") );
 
 	return ptr;
@@ -349,11 +349,11 @@ DialogImportText::auto_ptr DialogImportText::create()
 /*
  * Constructor
  */
-DialogExportText::DialogExportText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+DialogExportText::DialogExportText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :DialogFileChooser(cobject, "dialog-export-text")
 {
-	refGlade->get_widget_derived("combobox-encodings", m_comboEncodings);
-	refGlade->get_widget_derived("combobox-newline", m_comboNewLine);
+	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
+	builder->get_widget_derived("combobox-newline", m_comboNewLine);
 
 	m_comboEncodings->show_auto_detected(false);
 
@@ -387,8 +387,8 @@ DialogExportText::auto_ptr DialogExportText::create()
 {
 	auto_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogExportText>(
-				SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
-				"dialog-export-text.glade", 
+				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
+				"dialog-export-text.ui", 
 				"dialog-export-text") );
 
 	return ptr;

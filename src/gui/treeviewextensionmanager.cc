@@ -54,7 +54,7 @@ bool on_sort_extension(ExtensionInfo* a, ExtensionInfo *b)
 /*
  * Call automatically create_view().
  */
-TreeViewExtensionManager::TreeViewExtensionManager(BaseObjectType *cobject, Glib::RefPtr<Gnome::Glade::Xml>&)
+TreeViewExtensionManager::TreeViewExtensionManager(BaseObjectType *cobject, Glib::RefPtr<Gtk::Builder>&)
 :Gtk::TreeView(cobject)
 {
 	create_view();

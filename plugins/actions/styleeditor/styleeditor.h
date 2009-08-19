@@ -24,7 +24,7 @@
  */
 
 
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 #include <gtkmm.h>
 #include "styles.h"
 
@@ -32,7 +32,7 @@
 class DialogStyleEditor : public Gtk::Dialog
 {
 public:
-	DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	void execute(Document *doc);
 protected:

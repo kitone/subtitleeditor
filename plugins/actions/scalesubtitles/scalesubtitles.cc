@@ -32,24 +32,24 @@
 class DialogScaleSubtitles : public Gtk::Dialog
 {
 public:
-	DialogScaleSubtitles(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogScaleSubtitles(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
 		
 		m_document = NULL;
 
-		refGlade->get_widget("spin-first-number", m_spinFirstNumber);
-		refGlade->get_widget("label-first-start-value", m_labelFirstStartValue);
-		refGlade->get_widget_derived("spin-first-start-value", m_spinFirstStartValue);
-		refGlade->get_widget_derived("spin-first-new-start", m_spinFirstNewStart);
-		refGlade->get_widget("label-first-text", m_labelFirstText);
+		builder->get_widget("spin-first-number", m_spinFirstNumber);
+		builder->get_widget("label-first-start-value", m_labelFirstStartValue);
+		builder->get_widget_derived("spin-first-start-value", m_spinFirstStartValue);
+		builder->get_widget_derived("spin-first-new-start", m_spinFirstNewStart);
+		builder->get_widget("label-first-text", m_labelFirstText);
 
-		refGlade->get_widget("spin-last-number", m_spinLastNumber);
-		refGlade->get_widget("label-last-start-value", m_labelLastStartValue);
-		refGlade->get_widget_derived("spin-last-start-value", m_spinLastStartValue);
-		refGlade->get_widget_derived("spin-last-new-start", m_spinLastNewStart);
-		refGlade->get_widget("label-last-text", m_labelLastText);
+		builder->get_widget("spin-last-number", m_spinLastNumber);
+		builder->get_widget("label-last-start-value", m_labelLastStartValue);
+		builder->get_widget_derived("spin-last-start-value", m_spinLastStartValue);
+		builder->get_widget_derived("spin-last-new-start", m_spinLastNewStart);
+		builder->get_widget("label-last-text", m_labelLastText);
 
 		// signaux
 		m_spinFirstNumber->signal_value_changed().connect(
@@ -363,8 +363,8 @@ protected:
 		// create dialog
 		std::auto_ptr<DialogScaleSubtitles> dialog(
 				gtkmm_utility::get_widget_derived<DialogScaleSubtitles>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-scale-subtitles.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-scale-subtitles.ui", 
 						"dialog-scale-subtitles"));
 
 		dialog->execute(doc);

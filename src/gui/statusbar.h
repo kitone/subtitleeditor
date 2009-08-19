@@ -25,12 +25,12 @@
  
 
 #include <gtkmm/statusbar.h>
-#include <libglademm.h>
+#include <gtkmm/builder.h>
 
 class Statusbar : public Gtk::Statusbar
 {
 public:
-	Statusbar(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	Statusbar(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 	~Statusbar();
 
 	void push_text(const Glib::ustring &text);
