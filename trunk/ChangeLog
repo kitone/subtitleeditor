@@ -1,3 +1,11 @@
+2009-08-19  kitone  <kitone@gna.org>
+
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	Fix bug #13061 : Wave form barely usable with 5.1 channel audio.
+
+	* src/waveform.h:
+	Waveform can have 3 channels.
+
 2009-08-17  kitone  <kitone@gna.org>
 
 	* plugins/actions/keyframesmanagement/keyframesgenerator.cc:

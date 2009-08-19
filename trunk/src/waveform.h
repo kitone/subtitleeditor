@@ -90,7 +90,7 @@ public:
 	Glib::ustring	m_waveform_uri;
 	Glib::ustring m_video_uri;
 	guint	m_n_channels;
-	std::vector<double> m_channels[2];
+	std::vector<double> m_channels[3];
 	gint64	m_duration;
 protected:
 	mutable int ref_count_;

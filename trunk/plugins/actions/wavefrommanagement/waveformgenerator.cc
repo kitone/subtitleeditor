@@ -37,7 +37,7 @@ public:
 	/*
 	 */
 	WaveformGenerator(const Glib::ustring &uri, Glib::RefPtr<Waveform> &wf)
-	:Gtk::Dialog(_("Generate Waveform"), true), MediaDecoder(1000), m_duration(GST_CLOCK_TIME_NONE)
+	:Gtk::Dialog(_("Generate Waveform"), true), MediaDecoder(1000), m_duration(GST_CLOCK_TIME_NONE), m_n_channels(0)
 	{
 		set_border_width(12);
 		set_default_size(300, -1);
@@ -54,8 +54,9 @@ public:
 			{
 				wf = Glib::RefPtr<Waveform>(new Waveform);
 				wf->m_duration = m_duration / GST_MSECOND;
-				wf->m_n_channels = 1;
-				wf->m_channels[0] = std::vector<double>(m_values.begin(), m_values.end());
+				wf->m_n_channels = m_n_channels;
+				for(guint i=0; i< m_n_channels; ++i)
+					wf->m_channels[i] = std::vector<double>(m_values[i].begin(), m_values[i].end());
 				wf->m_video_uri = uri;
 			}
 		}
@@ -79,8 +80,8 @@ public:
 			Glib::RefPtr<Gst::Bin> audiobin = Glib::RefPtr<Gst::Bin>::cast_dynamic(
 					Gst::Parse::create_bin(
 						"audioconvert ! "
-						"audioresample ! "
-						"audio/x-raw-float, channels=1 ! "
+						//"audioresample ! "
+						//"audio/x-raw-float, channels=1 ! "
 						"level name=level ! "
 						"fakesink name=asink"
 						, true));
@@ -135,8 +136,7 @@ public:
 
 			return pos != len;
 		}
-		else
-			m_progressbar.set_text(_("Waiting..."));
+
 		return true;
 	}
 
@@ -145,21 +145,39 @@ public:
 	bool on_bus_message_element_level(Glib::RefPtr<Gst::Message> msg)
 	{
 		Gst::Structure structure = msg->get_structure();
-		//for(unsigned int i=0; i < 1; ++i) // channels
-			//structure.get_field("rms", rms_dB);
 
-		gdouble rms_dB = 0.0;
 		const GValue* list = gst_structure_get_value(structure.gobj(), "rms");
-		gint size = gst_value_list_get_size(list);
-		for(int i=0; i<size; ++i)
-		{
-			const GValue* value = gst_value_list_get_value(list, i);
-			rms_dB += g_value_get_double(value);
-		}
-		rms_dB = rms_dB / size;
+		gint num_channels = gst_value_list_get_size(list);
 
-		double rms = pow(10, rms_dB / 20);
-		m_values.push_back(rms);
+		guint first_channel, last_channel;
+		if(num_channels >= 6)
+		{
+			first_channel = 1;
+			last_channel = 3;
+		}
+		else if(num_channels == 5)
+		{
+			first_channel = 1;
+			last_channel = 2;
+		}
+		else if(num_channels == 2)
+		{
+			first_channel = 0;
+			last_channel = 1;
+		}
+		else
+		{
+			first_channel = last_channel = 0;
+		}
+		// build the number of channels
+		m_n_channels = last_channel - first_channel + 1;
+
+		// get peak from channels
+		for(guint c= first_channel, i=0; c <= last_channel; ++c, ++i)
+		{
+			double peak = pow(10, g_value_get_double(gst_value_list_get_value(list, c)) / 20);
+			m_values[i].push_back(peak);
+		}
 		return true;
 	}
 
@@ -180,7 +198,8 @@ public:
 protected:
 	Gtk::ProgressBar m_progressbar;
 	guint64 m_duration;
-	std::list<gdouble> m_values;
+	guint m_n_channels;
+	std::list<gdouble> m_values[3];
 };
 
 Glib::RefPtr<Waveform> generate_waveform_from_file(const Glib::ustring &uri)
