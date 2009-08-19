@@ -1,5 +1,10 @@
 2009-08-19  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Remove libglademm dependence.
+
+2009-08-19  kitone  <kitone@gna.org>
+
 	* Makefile.am:
 	* configure.in:
 	* plugins/actions/changeframerate/Makefile.am:
