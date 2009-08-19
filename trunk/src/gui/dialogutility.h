@@ -25,7 +25,7 @@
  
 
 #include <gtkmm.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 #include "documentsystem.h"
 
 /*
@@ -35,7 +35,7 @@
 class DialogActionMultiDoc : public Gtk::Dialog
 {
 public:
-	DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 *	applique l'action à tous les documents

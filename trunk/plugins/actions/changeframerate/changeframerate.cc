@@ -40,7 +40,7 @@ class DialogChangeFramerate : public DialogActionMultiDoc
 	class ComboBoxEntryText : public Gtk::ComboBoxEntryText
 	{
 	public:
-		ComboBoxEntryText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+		ComboBoxEntryText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 		:Gtk::ComboBoxEntryText(cobject)
 		{
 			get_entry()->signal_focus_out_event().connect(
@@ -91,13 +91,13 @@ public:
 	/*
 	 *
 	 */
-	DialogChangeFramerate(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:DialogActionMultiDoc(cobject, refGlade)
+	DialogChangeFramerate(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+	:DialogActionMultiDoc(cobject, xml)
 	{
 		utility::set_transient_parent(*this);
 
-		refGlade->get_widget_derived("combo-src", m_comboSrc);
-		refGlade->get_widget_derived("combo-dest", m_comboDest);
+		xml->get_widget_derived("combo-src", m_comboSrc);
+		xml->get_widget_derived("combo-dest", m_comboDest);
 
 		m_comboSrc->get_entry()->signal_activate().connect(
 				sigc::bind<ComboBoxEntryText*>(
@@ -283,8 +283,8 @@ protected:
 		// create dialog
 		std::auto_ptr<DialogChangeFramerate> dialog(
 				gtkmm_utility::get_widget_derived<DialogChangeFramerate>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV), 
-						"dialog-change-framerate.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV), 
+						"dialog-change-framerate.ui", 
 						"dialog-change-framerate"));
 
 		dialog->signal_change_framerate.connect(

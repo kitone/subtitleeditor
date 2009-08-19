@@ -26,7 +26,7 @@
 #include <gtkmm/treeview.h>
 #include <gtkmm/liststore.h>
 #include "extensionmanager.h"
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 
 /*
  * Help to create a view to manage the extension.
@@ -38,7 +38,7 @@ public:
 	/*
 	 * Call automatically create_view().
 	 */
-	TreeViewExtensionManager(BaseObjectType *cobject, Glib::RefPtr<Gnome::Glade::Xml>&);
+	TreeViewExtensionManager(BaseObjectType *cobject, Glib::RefPtr<Gtk::Builder>&);
 
 	/*
 	 * Call automatically create_view().

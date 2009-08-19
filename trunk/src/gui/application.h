@@ -40,7 +40,7 @@
 class Application : public Gtk::Window, public SubtitleEditorWindow
 {
 public:
-	Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);//int argc, char *argv[]);
+	Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder);//int argc, char *argv[]);
 	~Application();
 
 	void init(OptionGroup &options);

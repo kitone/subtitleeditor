@@ -46,7 +46,7 @@ ComboBoxEncoding::ComboBoxEncoding(bool auto_detected)
 /*
  * Constructor
  */
-ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::ComboBoxText(cobject), m_with_auto_detected(true)
 {
 	init_encodings();

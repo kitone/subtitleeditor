@@ -2,14 +2,14 @@ plugin_name = externalvideoplayer
 pluginlibdir = $(PACKAGE_PLUGIN_LIB_DIR)/actions
 plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/actions
 actionplugindevdir = $(abs_srcdir)
-gladedir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
+uidir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 
 INCLUDES = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src \
 	$(SUBTITLEEDITOR_CFLAGS) \
 	-DSE_PLUGIN_PATH_DEV=\"$(actionplugindevdir)\" \
-	-DSE_PLUGIN_PATH_GLADE=\"$(gladedir)\"
+	-DSE_PLUGIN_PATH_UI=\"$(uidir)\"
 
 pluginlib_LTLIBRARIES = \
 	libexternalvideoplayer.la
@@ -25,8 +25,8 @@ plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)
 
 @INTLTOOL_SE_PLUGIN_RULE@
 
-glade_DATA = dialog-external-video-player-preferences.glade
+ui_DATA = dialog-external-video-player-preferences.ui
 
-EXTRA_DIST = $(plugindescription_in_files) $(glade_DATA)
+EXTRA_DIST = $(plugindescription_in_files) $(ui_DATA)
 
-CLEANFILES = $(plugindescription_DATA) Makefile.am~ *.cc~ *.h~ *.glade~ *.gladep *.gladep.bak *.in~
+CLEANFILES = $(plugindescription_DATA) Makefile.am~ *.cc~ *.h~ *.ui~ *.uip *.uip.bak *.in~

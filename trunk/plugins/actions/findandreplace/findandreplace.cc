@@ -349,7 +349,7 @@ protected:
 class ComboBoxEntryHistory : public Gtk::ComboBoxEntryText
 {
 public:
-	ComboBoxEntryHistory(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	ComboBoxEntryHistory(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:Gtk::ComboBoxEntryText(cobject)
 	{
 	}
@@ -466,7 +466,7 @@ protected:
 class DialogFindAndReplace : public DialogActionMultiDoc
 {
 public:
-	// like to glade file
+	// like to.ui file
 	enum RESPONSE
 	{
 		FIND = 1,
@@ -477,7 +477,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	DialogFindAndReplace(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	DialogFindAndReplace(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:DialogActionMultiDoc(cobject, xml), m_document(NULL)
 	{
 		utility::set_transient_parent(*this);
@@ -533,8 +533,8 @@ public:
 		if(m_instance == NULL)
 		{
 			m_instance = gtkmm_utility::get_widget_derived<DialogFindAndReplace>(
-					SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV), 
-					"dialog-find-and-replace.glade", 
+					SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV), 
+					"dialog-find-and-replace.ui", 
 					"dialog-find-and-replace");
 		}
 		m_instance->show();

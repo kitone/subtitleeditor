@@ -32,7 +32,7 @@
 class AssistantPage : public Gtk::VBox
 {
 public:
-	AssistantPage(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	AssistantPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::VBox(cobject)
 	{
 	}

@@ -147,8 +147,8 @@ int main(int argc, char *argv[])
 
 	// Run Application
 	Application*	application = gtkmm_utility::get_widget_derived<Application>(
-			SE_DEV_VALUE(PACKAGE_GLADE_DIR, PACKAGE_GLADE_DIR_DEV),
-			"subtitleeditor.glade", 
+			SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
+			"subtitleeditor.ui", 
 			"window-main");
 
 	application->init(options);

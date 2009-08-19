@@ -35,7 +35,7 @@ public:
 	/*
 	 *
 	 */
-	DocumentPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	DocumentPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:PreferencePage(cobject)
 	{
 		init_widget_derived<ComboBoxSubtitleFormat>(xml, "combo-format", "document", "format");

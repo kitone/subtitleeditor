@@ -27,7 +27,7 @@
 /*
  * Constructor
  */
-ComboBoxVideo::ComboBoxVideo(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+ComboBoxVideo::ComboBoxVideo(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::ComboBoxText(cobject)
 {
 	// separator function

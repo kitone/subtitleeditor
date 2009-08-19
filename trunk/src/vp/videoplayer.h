@@ -39,7 +39,7 @@ public:
 	 *
 	 * Create the GStreamer Player, the PlayerControls (play/pause + seek)
 	 */
-	VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Destructor

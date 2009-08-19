@@ -21,7 +21,7 @@
  */
  
 #include <gtkmm/accelmap.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 #include <gtk/gtk.h>
 #include <extension/action.h>
 #include <utility.h>
@@ -65,12 +65,12 @@ public:
 	/*
 	 *
 	 */
-	DialogConfigureKeyboardShortcuts(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogConfigureKeyboardShortcuts(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
 
-		refGlade->get_widget("treeview", m_treeview);
+		builder->get_widget("treeview", m_treeview);
 
 		create_treeview();
 	}
@@ -471,8 +471,8 @@ protected:
 
 		std::auto_ptr<DialogConfigureKeyboardShortcuts> dialog(
 				gtkmm_utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-configure-keyboard-shortcuts.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-configure-keyboard-shortcuts.ui", 
 						"dialog-configure-keyboard-shortcuts"));
 
 		dialog->execute(get_ui_manager());

@@ -32,15 +32,15 @@
 class DialogMoveSubtitles : public Gtk::Dialog
 {
 public:
-	DialogMoveSubtitles(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogMoveSubtitles(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
 		
-		refGlade->get_widget("label-start-value", m_labelStartValue);
-		refGlade->get_widget_derived("spin-start-value", m_spinStartValue);
-		refGlade->get_widget_derived("spin-new-start", m_spinNewStart);
-		refGlade->get_widget("check-only-selected-subtitles", m_checkOnlySelectedSubtitles);
+		builder->get_widget("label-start-value", m_labelStartValue);
+		builder->get_widget_derived("spin-start-value", m_spinStartValue);
+		builder->get_widget_derived("spin-new-start", m_spinNewStart);
+		builder->get_widget("check-only-selected-subtitles", m_checkOnlySelectedSubtitles);
 	}
 
 	/*
@@ -179,8 +179,8 @@ protected:
 		// create dialog
 		std::auto_ptr<DialogMoveSubtitles> dialog(
 				gtkmm_utility::get_widget_derived<DialogMoveSubtitles>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-move-subtitles.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-move-subtitles.ui", 
 						"dialog-move-subtitles"));
 
 		Subtitle first_selected_subtitle = doc->subtitles().get_first_selected();

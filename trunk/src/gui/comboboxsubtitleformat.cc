@@ -26,7 +26,7 @@
 /*
  * Constructor
  */
-ComboBoxSubtitleFormat::ComboBoxSubtitleFormat(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+ComboBoxSubtitleFormat::ComboBoxSubtitleFormat(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::ComboBoxText(cobject)
 {
 	std::list<SubtitleFormatInfo> infos = SubtitleFormatSystem::instance().get_infos();

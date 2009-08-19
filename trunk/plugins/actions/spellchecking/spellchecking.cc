@@ -48,7 +48,7 @@ class DialogSpellChecking : public Gtk::Dialog
 		};
 
 	public:
-		ComboBoxLanguages(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+		ComboBoxLanguages(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 		:Gtk::ComboBox(cobject)
 		{
 			liststore = Gtk::ListStore::create(column);
@@ -112,7 +112,7 @@ public:
 	/*
 	 *
 	 */
-	DialogSpellChecking(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	DialogSpellChecking(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:Gtk::Dialog(cobject), m_current_document(NULL), m_current_column("text")
 	{
 		se_debug_message(SE_DEBUG_SPELL_CHECKING, "create spellchecking dialog..."); 
@@ -760,8 +760,8 @@ protected:
 		// create dialog
 		std::auto_ptr<DialogSpellChecking> dialog(
 				gtkmm_utility::get_widget_derived<DialogSpellChecking>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-spell-checking.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-spell-checking.ui", 
 						"dialog-spell-checking"));
 
 		dialog->execute(doc);

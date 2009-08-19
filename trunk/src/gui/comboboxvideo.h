@@ -24,7 +24,7 @@
  */
 
 #include <gtkmm/comboboxtext.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 
 /*
  * The combobox display all videos on the current folder.
@@ -37,7 +37,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	ComboBoxVideo(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	ComboBoxVideo(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Search all videos in the folder.

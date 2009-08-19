@@ -1,4 +1,4 @@
-SUBDIRS = icons glade
+SUBDIRS = icons ui 
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = subtitleeditor.svg
@@ -25,4 +25,4 @@ install-data-hook:
 
 EXTRA_DIST = $(pixmap_DATA) $(ui_DATA) $(desktop_in_files)
 
-CLEANFILES = Makefile.am~ *.c~ *.h~ *.glade~ *.gladep *.gladep.bak $(desktop_DATA)
+CLEANFILES = Makefile.am~ *.c~ *.h~ *.ui~ *.uip *.uip.bak $(desktop_DATA)

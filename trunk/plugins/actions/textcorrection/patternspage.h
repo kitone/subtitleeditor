@@ -44,7 +44,7 @@ class ComboBoxText : public Gtk::ComboBox
 	};
 
 public:
-	ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::ComboBox(cobject)
 	{
 		init();
@@ -181,17 +181,17 @@ public:
 	 * label = the label of the page
 	 * description = a short description of the page
 	 */
-	PatternsPage(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade, const Glib::ustring &type, const Glib::ustring &label, const Glib::ustring &description)
-	:AssistantPage(cobject, refGlade), m_patternManager(type)
+	PatternsPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder, const Glib::ustring &type, const Glib::ustring &label, const Glib::ustring &description)
+	:AssistantPage(cobject, builder), m_patternManager(type)
 	{
 		m_page_name = type;
 		m_page_label = label;
 		m_page_description = description;
 
-		refGlade->get_widget("treeview-" + type, m_treeview);
-		refGlade->get_widget_derived("combobox-script-" + type, m_comboScript);
-		refGlade->get_widget_derived("combobox-language-" + type, m_comboLanguage);
-		refGlade->get_widget_derived("combobox-country-" + type, m_comboCountry);
+		builder->get_widget("treeview-" + type, m_treeview);
+		builder->get_widget_derived("combobox-script-" + type, m_comboScript);
+		builder->get_widget_derived("combobox-language-" + type, m_comboLanguage);
+		builder->get_widget_derived("combobox-country-" + type, m_comboCountry);
 
 		initialize();
 	}

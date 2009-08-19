@@ -32,7 +32,7 @@ public:
 	/*
 	 *
 	 */
-	InterfacePage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	InterfacePage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:PreferencePage(cobject)
 	{
 		init_widget(xml, "check-use-dynamic-keyboard-shortcuts", "interface", "use-dynamic-keyboard-shortcuts");

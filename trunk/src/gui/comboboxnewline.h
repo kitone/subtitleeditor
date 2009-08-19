@@ -24,7 +24,7 @@
  */
 
 #include <gtkmm/comboboxtext.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 
 /*
  * ComboBox for choosing the NewLine type. 
@@ -37,7 +37,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	ComboBoxNewLine(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	ComboBoxNewLine(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Sets current value.

@@ -26,7 +26,7 @@
 #include "dialogutility.h"
 
 #include <gtkmm.h>
-#include <libglademm.h>
+#include <gtkmm/builder.h>
 #include <memory>
 
 /*
@@ -75,7 +75,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	DialogOpenDocument(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	DialogOpenDocument(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Returns the encoding value.
@@ -133,7 +133,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	DialogSaveDocument(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	DialogSaveDocument(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Sets the current format value.
@@ -193,7 +193,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	DialogImportText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	DialogImportText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Returns the encoding value.
@@ -226,7 +226,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	DialogExportText(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	DialogExportText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 * Returns the encoding value. or empty string (Auto Detected).

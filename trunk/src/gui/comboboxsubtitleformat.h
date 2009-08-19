@@ -23,7 +23,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include <gtkmm/comboboxtext.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 
 /*
  * ComboBox for choosing the format of subtitle.
@@ -35,7 +35,7 @@ public:
 	/*
 	 * Constructor
 	 */
-	ComboBoxSubtitleFormat(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	ComboBoxSubtitleFormat(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 *

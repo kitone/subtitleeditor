@@ -25,7 +25,7 @@
 
 #include "utility.h"
 #include <gtkmm.h>
-#include <libglademm/xml.h>
+#include <gtkmm/builder.h>
 #include <widget_config_utility.h>
 
 class PreferencePage : public Gtk::VBox
@@ -41,17 +41,17 @@ public:
 	}
 
 	/*
-	 * Get widget from glade::xml and init/connect with config.
+	 * Get widget from.ui::xml and init/connect with config.
 	 */
 	Gtk::Widget* init_widget( 
-			const Glib::RefPtr<Gnome::Glade::Xml>& refGlade, 
+			const Glib::RefPtr<Gtk::Builder>& builder, 
 			const Glib::ustring &widget_name, 
 			const Glib::ustring &config_group,
 			const Glib::ustring &config_key)
 	{
 		Gtk::Widget *widget =NULL;
 
-		refGlade->get_widget(widget_name, widget);
+		builder->get_widget(widget_name, widget);
 
 		widget_config::read_config_and_connect(widget, config_group, config_key);
 
@@ -59,18 +59,18 @@ public:
 	}
 	
 	/*
-	 * Get widget from glade::xml and init/connect with config.
+	 * Get widget from.ui::xml and init/connect with config.
 	 */
 	template<class W>
 	W* init_widget_derived( 
-			const Glib::RefPtr<Gnome::Glade::Xml>& refGlade, 
+			const Glib::RefPtr<Gtk::Builder>& builder, 
 			const Glib::ustring &widget_name, 
 			const Glib::ustring &config_group,
 			const Glib::ustring &config_key)
 	{
 		W *widget =NULL;
 
-		refGlade->get_widget_derived(widget_name, widget);
+		builder->get_widget_derived(widget_name, widget);
 
 		widget_config::read_config_and_connect(widget, config_group, config_key);
 

@@ -33,17 +33,17 @@ class PlayerControls : public Gtk::HBox
 {
 public:
 
-	PlayerControls(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	PlayerControls(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::HBox(cobject)
 	{
 		m_current_seek = false;
 
 		m_player = NULL;
 
-		refGlade->get_widget("button-play", m_button_play);
-		refGlade->get_widget("button-pause", m_button_pause);
+		builder->get_widget("button-play", m_button_play);
+		builder->get_widget("button-pause", m_button_pause);
 
-		refGlade->get_widget("hscale-seek", m_hscale_seek);
+		builder->get_widget("hscale-seek", m_hscale_seek);
 
 		// hscale
 		Gtk::Adjustment *adj = manage(new Gtk::Adjustment(0, 0, 1, 0.1, 1.0, 1.0));
@@ -233,7 +233,7 @@ protected:
  *
  * Create the GStreamer Player, the PlayerControls (play/pause + seek)
  */
-VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::VBox(cobject)
 {
 	m_cfg_display_translated_subtitle = false;
@@ -243,8 +243,8 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glad
 	Gtk::Frame* m_framePlayer = NULL;
 	PlayerControls* m_playerControls = NULL;
 
-	refGlade->get_widget("frame-player", m_framePlayer);
-	refGlade->get_widget_derived("player-controls", m_playerControls);
+	builder->get_widget("frame-player", m_framePlayer);
+	builder->get_widget_derived("player-controls", m_playerControls);
 
 	// FIXME cast
 	m_framePlayer->add(*dynamic_cast<Gtk::Widget*>(m_player));

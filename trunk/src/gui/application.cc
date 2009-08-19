@@ -36,16 +36,16 @@
 /*
  *
  */
-Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)//int argc, char *argv[])
+Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder)//int argc, char *argv[])
 :Gtk::Window(cobject)
 {
-	refGlade->get_widget_derived("statusbar", m_statusbar);
+	builder->get_widget_derived("statusbar", m_statusbar);
 
-	refGlade->get_widget("vbox-main", m_vboxMain);
-	refGlade->get_widget("paned-multimedia", m_paned_multimedia);
-	refGlade->get_widget_derived("video-player", m_video_player);
-	refGlade->get_widget_derived("waveform-editor", m_waveform_editor);
-	refGlade->get_widget("notebook-documents", m_notebook_documents);
+	builder->get_widget("vbox-main", m_vboxMain);
+	builder->get_widget("paned-multimedia", m_paned_multimedia);
+	builder->get_widget_derived("video-player", m_video_player);
+	builder->get_widget_derived("waveform-editor", m_waveform_editor);
+	builder->get_widget("notebook-documents", m_notebook_documents);
 
 	init_panel_multimedia();
 

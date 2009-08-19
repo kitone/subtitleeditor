@@ -312,7 +312,7 @@ share/icons/22x22/Makefile
 share/icons/24x24/Makefile
 share/icons/32x32/Makefile
 share/icons/scalable/Makefile
-share/glade/Makefile
+share/ui/Makefile
 docs/Makefile
 po/Makefile.in
 plugins/Makefile

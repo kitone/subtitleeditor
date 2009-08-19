@@ -25,7 +25,7 @@
 
 #include <gtkmm.h>
 #include <gtkmm/scalebutton.h>
-#include <libglademm.h>
+#include <gtkmm/builder.h>
 #include "waveformrenderer.h"
 #include "player.h"
 #include "waveformmanager.h"
@@ -40,7 +40,7 @@ public:
 	/*
 	 *
 	 */
-	WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
 	 *

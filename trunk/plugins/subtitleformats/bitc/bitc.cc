@@ -45,7 +45,7 @@ class DialogBITC : public Gtk::Dialog
 			Gtk::TreeModelColumn<FRAMERATE> value;
 		};
 	public:
-		ComboBoxFramerate(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+		ComboBoxFramerate(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 		:ComboBox(cobject)
 		{
 			liststore = Gtk::ListStore::create(column);
@@ -85,7 +85,7 @@ class DialogBITC : public Gtk::Dialog
 	};
 
 public:
-	DialogBITC(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	DialogBITC(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
@@ -211,8 +211,8 @@ public:
 		// create dialog
 		std::auto_ptr<DialogBITC> dialog(
 				gtkmm_utility::get_widget_derived<DialogBITC>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV), 
-						"dialog-bitc.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV), 
+						"dialog-bitc.ui", 
 						"dialog-bitc"));
 		return dialog->execute();
 	}

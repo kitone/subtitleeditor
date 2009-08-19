@@ -25,7 +25,7 @@
  
 
 #include <gtkmm/treeview.h>
-#include <libglademm.h>
+#include <gtkmm/builder.h>
 #include "stylemodel.h"
 #include "cfg.h"
 

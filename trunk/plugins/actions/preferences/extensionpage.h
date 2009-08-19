@@ -37,7 +37,7 @@ public:
 	/*
 	 *
 	 */
-	ExtensionPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	ExtensionPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:PreferencePage(cobject)
 	{
 		xml->get_widget_derived("treeview-extension", m_treeview);

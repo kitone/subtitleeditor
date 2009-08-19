@@ -32,7 +32,7 @@
 class DialogExternalVideoPreferences : public Gtk::Dialog
 {
 public:
-	DialogExternalVideoPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	DialogExternalVideoPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:Gtk::Dialog(cobject)
 	{
 		Gtk::Entry* entry = NULL;
@@ -44,8 +44,8 @@ public:
 	{
 		std::auto_ptr<DialogExternalVideoPreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogExternalVideoPreferences>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-						"dialog-external-video-player-preferences.glade", 
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-external-video-player-preferences.ui", 
 						"dialog-external-video-player-preferences"));
 
 		dialog->run();

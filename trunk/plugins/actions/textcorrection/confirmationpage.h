@@ -52,13 +52,13 @@ class ComfirmationPage : public AssistantPage
 public:
 	/*
 	 */
-	ComfirmationPage(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:AssistantPage(cobject, refGlade)
+	ComfirmationPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
+	:AssistantPage(cobject, builder)
 	{
-		refGlade->get_widget("treeview-comfirmation", m_treeview);
-		refGlade->get_widget("button-comfirmation-mark-all", m_buttonMarkAll);
-		refGlade->get_widget("button-comfirmation-unmark-all", m_buttonUnmarkAll);
-		refGlade->get_widget("check-comfirmation-remove-blank", m_checkRemoveBlank);
+		builder->get_widget("treeview-comfirmation", m_treeview);
+		builder->get_widget("button-comfirmation-mark-all", m_buttonMarkAll);
+		builder->get_widget("button-comfirmation-unmark-all", m_buttonUnmarkAll);
+		builder->get_widget("check-comfirmation-remove-blank", m_checkRemoveBlank);
 
 		create_treeview();
 		init_signals();

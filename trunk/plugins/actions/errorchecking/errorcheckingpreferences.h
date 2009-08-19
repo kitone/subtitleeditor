@@ -50,21 +50,21 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog
 	};
 
 public:
-	DialogErrorCheckingPreferences(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+	DialogErrorCheckingPreferences(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
 
-		refGlade->get_widget("treeview-plugins", m_treeviewPlugins);
-		refGlade->get_widget("button-about", m_buttonAbout);
-		refGlade->get_widget("button-preferences", m_buttonPreferences);
+		builder->get_widget("treeview-plugins", m_treeviewPlugins);
+		builder->get_widget("button-about", m_buttonAbout);
+		builder->get_widget("button-preferences", m_buttonPreferences);
 
-		get_and_init_widget(refGlade, "spin-min-characters-per-second", "timing", "min-characters-per-second");
-		get_and_init_widget(refGlade, "spin-max-characters-per-second", "timing", "max-characters-per-second");
-		get_and_init_widget(refGlade, "spin-min-gap-between-subtitles", "timing", "min-gap-between-subtitles");
-		get_and_init_widget(refGlade, "spin-min-display", "timing", "min-display");
-		get_and_init_widget(refGlade, "spin-max-characters-per-line", "timing", "max-characters-per-line");
-		get_and_init_widget(refGlade, "spin-max-line-per-subtitle", "timing", "max-line-per-subtitle");
+		get_and_init_widget(builder, "spin-min-characters-per-second", "timing", "min-characters-per-second");
+		get_and_init_widget(builder, "spin-max-characters-per-second", "timing", "max-characters-per-second");
+		get_and_init_widget(builder, "spin-min-gap-between-subtitles", "timing", "min-gap-between-subtitles");
+		get_and_init_widget(builder, "spin-min-display", "timing", "min-display");
+		get_and_init_widget(builder, "spin-max-characters-per-line", "timing", "max-characters-per-line");
+		get_and_init_widget(builder, "spin-max-line-per-subtitle", "timing", "max-line-per-subtitle");
 
 		create_treeview();
 
@@ -83,8 +83,8 @@ public:
 	{
 		std::auto_ptr<DialogErrorCheckingPreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogErrorCheckingPreferences>(
-					SE_DEV_VALUE(SE_PLUGIN_PATH_GLADE, SE_PLUGIN_PATH_DEV),
-					"dialog-error-checking-preferences.glade", 
+					SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+					"dialog-error-checking-preferences.ui", 
 					"dialog-error-checking-preferences"));
 
 		dialog->set_transient_for(parent);
@@ -95,14 +95,14 @@ public:
 	 *
 	 */
 	void get_and_init_widget( 
-			const Glib::RefPtr<Gnome::Glade::Xml>& refGlade, 
+			const Glib::RefPtr<Gtk::Builder>& builder, 
 			const Glib::ustring &widget_name, 
 			const Glib::ustring &config_group,
 			const Glib::ustring &config_key)
 	{
 		Gtk::Widget *widget =NULL;
 
-		refGlade->get_widget(widget_name, widget);
+		builder->get_widget(widget_name, widget);
 
 		widget_config::read_config_and_connect(widget, config_group, config_key);
 	}

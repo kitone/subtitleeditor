@@ -45,7 +45,7 @@ class ComboBoxOutput : public Gtk::ComboBox
 public:
 	/*
 	 */
-	ComboBoxOutput(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	ComboBoxOutput(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:Gtk::ComboBox(cobject)
 	{
 		m_model = Gtk::ListStore::create(m_column);
@@ -105,7 +105,7 @@ public:
 	/*
 	 *
 	 */
-	VideoPlayerPage(BaseObjectType *cobject, const Glib::RefPtr<Gnome::Glade::Xml>& xml)
+	VideoPlayerPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
 	:PreferencePage(cobject)
 	{
 		init_widget(xml, "fontbutton-subtitle", "video-player", "font-desc");

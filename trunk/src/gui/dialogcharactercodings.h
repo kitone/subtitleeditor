@@ -24,7 +24,7 @@
  */
 
 #include <gtkmm.h>
-#include <libglademm.h>
+#include <gtkmm/builder.h>
 #include <memory>
 
 /*
@@ -53,10 +53,10 @@ public:
 	/*
 	 *
 	 */
-	DialogCharacterCodings(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	DialogCharacterCodings(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
-	 * Create an instance of the dialog (glade file)
+	 * Create an instance of the dialog .ui file)
 	 * If the response is OK the config is saved.
 	 */
 	static std::auto_ptr<DialogCharacterCodings> create();
