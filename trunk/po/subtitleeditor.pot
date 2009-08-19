@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-10 11:32+0200\n"
+"POT-Creation-Date: 2009-08-19 16:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgid "Convert framerate"
 msgstr ""
 
 #: ../plugins/actions/changeframerate/changeframerate.cc:305
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:4
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:4
 #: ../plugins/actions/changeframerate/changeframerate.se-plugin.in.h:1
 msgid "Change Framerate"
 msgstr ""
@@ -124,30 +124,30 @@ msgstr ""
 msgid "The new framerate was applied. (%s to %s)"
 msgstr ""
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:1
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:1
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:1
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:1
 msgid "<b>Apply to</b>"
 msgstr ""
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:2
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:2
 msgid "<b>Framerate</b>"
 msgstr ""
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:3
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:3
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:3
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:3
 msgid "All documents"
 msgstr ""
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:5
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:5
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:5
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:5
 msgid "Current document"
 msgstr ""
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:6
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:6
 msgid "Current:"
 msgstr ""
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:7
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:7
 msgid "New:"
 msgstr ""
 
@@ -223,11 +223,11 @@ msgid "Configure _Keyboard Shortcuts"
 msgstr ""
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:437
-#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.glade.h:1
+#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui.h:1
 msgid "Configure Keyboard Shortcuts"
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.glade.h:2
+#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui.h:2
 msgid ""
 "To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
@@ -384,61 +384,61 @@ msgstr ""
 msgid "Start the editing of the next cell"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking.glade.h:1
-#: ../plugins/actions/errorchecking/errorchecking.se-plugin.in.h:2
-msgid "Error Checking"
-msgstr ""
-
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:1
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:1
 msgid "<b>Error Checking</b>"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:2
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:8
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:2
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:8
 msgid "<b>Timing Preferences</b>"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:3
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:3
 msgid "Checking"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:4
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:4
 msgid "Error Checking Preferences"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:5
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:26
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:5
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:26
 msgid "Maximum characters per line:"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:6
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:27
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:6
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:27
 msgid "Maximum characters per second:"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:7
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:7
 msgid "Maximum number of lines per subtitle:"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:8
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:29
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:8
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:29
 msgid "Minimum characters per second:"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:9
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:30
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:9
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:30
 msgid "Minimum display of the subtitle in mseconds:"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:10
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:31
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:10
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:31
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:11
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:40
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:11
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:40
 #: ../plugins/actions/viewmanager/viewmanager.cc:407
 msgid "Timing"
+msgstr ""
+
+#: ../plugins/actions/errorchecking/dialog-error-checking.ui.h:1
+#: ../plugins/actions/errorchecking/errorchecking.se-plugin.in.h:2
+msgid "Error Checking"
 msgstr ""
 
 #. File
@@ -649,44 +649,43 @@ msgstr ""
 msgid "Extend lenght"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:1
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:1
 msgid "<b>Command</b>"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:2
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:2
 msgid "<span size=\"small\">the path to the subtitle file</span>"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:3
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:3
 msgid "<span size=\"small\">the path to the video file</span>"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:4
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:4
 msgid ""
 "<span size=\"small\">the time in seconds to the current selected line</span>"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:5
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:5
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:6
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:6
 msgid "<span size=\"small\">the uri to the video file</span>"
 msgstr ""
 
-#. TRANSLATORS: Do not translate replaceable tokens #xxx.
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:8
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:7
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:10
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:9
 #: ../plugins/actions/externalvideoplayer/externalvideoplayer.se-plugin.in.h:1
 msgid "External Video Player"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:11
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:10
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
@@ -732,64 +731,64 @@ msgid ""
 "Command: <i>%s</i>"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:2
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:1
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:2
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:1
 msgid "<b>Columns</b>"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:4
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:4
 msgid "Column:"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:6
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:6
 #: ../plugins/actions/findandreplace/findandreplace.se-plugin.in.h:1
 msgid "Find And Replace"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:7
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:7
 msgid "Pattern:"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:8
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:8
 msgid "Replace _All"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:9
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:3
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:9
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:3
 msgid "Replace with:"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:10
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:10
 msgid "Search"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:11
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:11
 msgid "Target"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:12
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:12
 #: ../plugins/actions/findandreplace/findandreplace.cc:611
 #: ../src/subtitleview.cc:1464
 msgid "Text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:13
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:13
 #: ../plugins/actions/findandreplace/findandreplace.cc:613
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
 #: ../src/subtitleview.cc:1465
 msgid "Translation"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:14
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:14
 msgid "_Ignore case"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:15
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:15
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:7
 msgid "_Replace"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:16
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:16
 msgid "_Use regular expression"
 msgstr ""
 
@@ -879,12 +878,13 @@ msgid_plural "%d subtitles have been added at this document."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:41
+#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:40
 msgid "Generate Keyframes"
 msgstr ""
 
+#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:46
 #: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:139
-#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:139
+#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:46
 msgid "Waiting..."
 msgstr ""
 
@@ -1006,29 +1006,29 @@ msgstr ""
 msgid "Move After Preceding"
 msgstr ""
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:1
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:1
 msgid "<b>Position</b>"
 msgstr ""
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:2
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:2
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:198
 #: ../plugins/actions/movesubtitles/movesubtitles.se-plugin.in.h:1
 msgid "Move Subtitles"
 msgstr ""
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:3
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:6
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:3
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:6
 msgid "_New Start:"
 msgstr ""
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:4
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:4
 msgid "_Only selected subtitles"
 msgstr ""
 
 #. init label
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:5
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:5
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:7
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:7
 #: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
 #: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
 msgid "_Start Time:"
@@ -1074,216 +1074,216 @@ msgstr ""
 msgid "Could not export to the file \"%s\"."
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:1
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:1
 msgid "<b>Activate plugins</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:2
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:2
 msgid "<b>File Saving</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:3
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:3
 msgid "<b>General</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:4
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:4
 msgid "<b>New Document</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:5
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:5
 msgid "<b>Output</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:6
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:6
 msgid "<b>Subtitle View</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:7
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:7
 msgid "<b>Text Subtitle</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:9
-#: ../share/glade/dialog-script-properties.glade.h:6
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:9
+#: ../share/ui/dialog-script-properties.ui.h:6
 msgid "<b>Video</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:10
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:10
 msgid "<b>Waveform Color</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:11
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:11
 msgid "<b>Waveform Generator</b>"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:12
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:12
 msgid "Ask to save on _exit"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:13
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:13
 msgid "Automatically _choose video to open"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:14
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:14
 msgid "Background:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:15
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:15
 msgid "Create a _backup copy of files before saving"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:16
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:16
 msgid "Display _translated subtitle"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:17
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:17
 msgid "Display background"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:18
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:18
 msgid "Display subtitle text"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:19
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:19
 msgid "Display the translated subtitle instead of the original one."
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:20
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:20
 msgid "Display waveform fill"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:21
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:21
 msgid "Document"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:22
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:22
 msgid "Enable _rubberband selection"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:23
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:23
 msgid "Force aspect _ratio"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:24
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:24
 msgid "Interface"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:25
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:25
 msgid "Interval in seconds:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:28
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:28
 msgid "Maximum number of line per subtitle:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:32
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:32
 msgid "Player Position:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:33
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:33
 msgid "Plugins"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:34
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:34
 #: ../plugins/actions/preferences/preferences.se-plugin.in.h:2
 msgid "Preferences"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:35
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:35
 msgid "Reset To _Defaults"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:36
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:36
 msgid "Subtitle Invalid:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:37
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:37
 msgid "Subtitle Selected:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:38
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:38
 msgid "Subtitle:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:39
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:5
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:39
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:5
 msgid "Text:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:41
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:41
 msgid "Use _dynamic keyboard shortcuts"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:42
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:42
 msgid "Use shaded _background"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:43
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:43
 msgid "Video Player"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:44
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:44
 msgid "Wave fill:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:45
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:45
 msgid "Wave:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:46
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:46
 msgid "Waveform"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:47
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:47
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
 "key combination while the menu item is highlighted."
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:48
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:48
 msgid "_Audio:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:49
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:49
 msgid "_Autosave files every"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:50
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:50
 msgid "_Center the text of the subtitle in the column"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:51
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:51
 msgid "_Do not disable the actions during editing"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:52
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:52
 msgid "_Font:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:53
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:53
 msgid "_Format:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:54
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:54
 msgid "_Maximize window"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:55
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:55
 msgid "_Newline:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:56
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:56
 msgid "_Show the number of characters per line"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:57
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:57
 msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:58
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:58
 msgid "_Video:"
 msgstr ""
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:59
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:59
 msgid "minutes"
 msgstr ""
 
@@ -1368,19 +1368,19 @@ msgstr ""
 msgid "Reverse the text and the translation was applied."
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:1
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:1
 msgid "<b>First Point</b>"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:2
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:2
 msgid "<b>Last Point</b>"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:3
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:3
 msgid "Number:"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:4
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:4
 msgid "Scale"
 msgstr ""
 
@@ -1466,26 +1466,26 @@ msgstr ""
 msgid "Invert subtitles selection"
 msgstr ""
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:1
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:1
 msgid "A_dd Word"
 msgstr ""
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:2
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:2
 msgid "Ignore _All"
 msgstr ""
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:4
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:4
 #: ../plugins/actions/spellchecking/spellchecking.cc:162
 #: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:2
 msgid "Spell Checking"
 msgstr ""
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:5
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:5
 msgid "_Ignore"
 msgstr ""
 
 #. Language
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:6
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:6
 #: ../plugins/actions/textcorrection/patternspage.h:237
 msgid "_Language:"
 msgstr ""
@@ -1517,12 +1517,12 @@ msgstr ""
 msgid "Launch the spell checking"
 msgstr ""
 
-#: ../plugins/actions/splitdocument/dialog-split-document.glade.h:1
+#: ../plugins/actions/splitdocument/dialog-split-document.ui.h:1
 #: ../plugins/actions/splitdocument/splitdocument.se-plugin.in.h:1
 msgid "Split Document"
 msgstr ""
 
-#: ../plugins/actions/splitdocument/dialog-split-document.glade.h:2
+#: ../plugins/actions/splitdocument/dialog-split-document.ui.h:2
 msgid "The beginning for the new document:"
 msgstr ""
 
@@ -1555,123 +1555,123 @@ msgstr ""
 msgid "Split subtitles"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:1
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:1
 msgid "<b>Alignment</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:2
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:2
 msgid "<b>Appearance</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:3
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:3
 msgid "<b>Border</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:4
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:4
 msgid "<b>Colors</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:5
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:5
 msgid "<b>Font</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:6
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:6
 msgid "<b>Fonts</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:7
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:7
 msgid "<b>Margins</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:8
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:8
 msgid "<b>Preview</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:9
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:9
 msgid "<b>Transformation</b>"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:10
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:10
 msgid "Angle:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:11
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:11
 msgid "Copy Style"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:12
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:12
 msgid "Create New Style"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:13
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:13
 msgid "Delete Style"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:14
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:14
 msgid "Distance:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:15
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:15
 msgid "Left:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:16
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:16
 msgid "Manage Styles"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:17
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:17
 msgid "Opaque Box"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:18
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:18
 msgid "Outline"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:19
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:19
 msgid "Outline:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:20
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:20
 msgid "Primary:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:21
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:21
 msgid "Right:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:22
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:22
 msgid "Scale X:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:23
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:23
 msgid "Scale Y:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:24
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:24
 msgid "Secondary:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:25
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:25
 msgid "Shadow:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:26
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:26
 msgid "Size:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:27
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:27
 msgid "Spacing:"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:28
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:28
 msgid "Subtitle Editor - Style Editor"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:29
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:29
 msgid "TODO"
 msgstr ""
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:30
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:30
 msgid "Vertical:"
 msgstr ""
 
@@ -1687,29 +1687,29 @@ msgstr ""
 msgid "Launch the style editor"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:1
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:1
 msgid "Acc_ept, discard or edit changes:"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:2
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:2
 #: ../plugins/actions/textcorrection/confirmationpage.h:185
 #: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:2
 msgid "Text Correction"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:3
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:3
 msgid "_Mark All"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:4
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:4
 msgid "_Remove all blank subtitles"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:5
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:5
 msgid "_Select correction to performed text:"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:6
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:6
 msgid "_Unmark All"
 msgstr ""
 
@@ -2044,15 +2044,15 @@ msgstr ""
 msgid "Show or hide the video player in the current window"
 msgstr ""
 
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:2
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:2
 msgid "<b>View</b>"
 msgstr ""
 
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:3
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:3
 msgid "View Editing"
 msgstr ""
 
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:4
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:4
 #: ../plugins/actions/viewmanager/viewmanager.se-plugin.in.h:2
 msgid "View Manager"
 msgstr ""
@@ -2165,16 +2165,16 @@ msgstr ""
 msgid "Save Waveform"
 msgstr ""
 
-#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:1
+#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:1
 msgid "<b>What framerate do you want used to import or export?</b>"
 msgstr ""
 
-#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:2
+#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:2
 #: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
 msgid "BITC (Burnt-in timecode)"
 msgstr ""
 
-#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:3
+#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:3
 msgid "_Framerate:"
 msgstr ""
 
@@ -2190,164 +2190,12 @@ msgstr ""
 msgid "Failed to write to the file."
 msgstr ""
 
-#: ../share/glade/dialog-character-codings.glade.h:1
-msgid "A_vailable encodings:"
-msgstr ""
-
-#: ../share/glade/dialog-character-codings.glade.h:2
-msgid "Character Codings"
-msgstr ""
-
-#: ../share/glade/dialog-character-codings.glade.h:3
-msgid "E_ncodings shown in menu:"
-msgstr ""
-
-#: ../share/glade/dialog-encodings-chooser.glade.h:1
-msgid "<b>Please choose encodings</b>"
-msgstr ""
-
-#: ../share/glade/dialog-encodings-chooser.glade.h:2
-msgid "Encodings Chooser"
-msgstr ""
-
-#: ../share/glade/dialog-export-text.glade.h:1
-#: ../share/glade/dialog-import-text.glade.h:1
-#: ../share/glade/dialog-open-document.glade.h:1
-#: ../share/glade/dialog-save-document.glade.h:1 ../src/document.cc:669
-#: ../src/gui/application.cc:307
-msgid "Character Coding:"
-msgstr ""
-
-#: ../share/glade/dialog-export-text.glade.h:2
-msgid "Export Text"
-msgstr ""
-
-#: ../share/glade/dialog-export-text.glade.h:3
-#: ../share/glade/dialog-save-document.glade.h:3
-msgid "NewLine:"
-msgstr ""
-
-#: ../share/glade/dialog-import-text.glade.h:2
-msgid "Import Text"
-msgstr ""
-
-#: ../share/glade/dialog-open-document.glade.h:2
-msgid "Open Document"
-msgstr ""
-
-#: ../share/glade/dialog-open-document.glade.h:3
-msgid "Video File:"
-msgstr ""
-
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/application.cc:308
-msgid "Format:"
-msgstr ""
-
-#: ../share/glade/dialog-save-document.glade.h:4
-msgid "Save Document"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:1
-msgid "*"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:2
-msgid "<b>Basic</b>"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:3
-msgid "<b>Behaviour</b>"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:4
-msgid "<b>Miscellaneous</b>"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:5
-msgid "<b>Read-only info</b>"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:7
-msgid "Collisions:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:8
-msgid ""
-"Normal\n"
-"Reverse"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:10
-msgid "Original Editing:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:11
-msgid "Original Script:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:12
-msgid "Original Timing:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:13
-msgid "Original Translation:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:14
-msgid "PlayDepth:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:15
-msgid "PlayResX:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:16
-msgid "PlayResY:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:17
-msgid "Point Time: "
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:18
-msgid "Script Properties"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:19
-msgid "Script Type:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:20
-msgid "Script Updated By:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:21
-msgid "Sync Point:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:22
-msgid "Timer:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:23
-msgid "Title:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:24
-msgid "Update Details:"
-msgstr ""
-
-#: ../share/glade/dialog-script-properties.glade.h:25
-msgid "Wrap Style:"
-msgstr ""
-
-#: ../share/glade/subtitleeditor.glade.h:1
-#: ../share/subtitleeditor.desktop.in.h:2
-msgid "Subtitle Editor"
-msgstr ""
-
 #: ../share/subtitleeditor.desktop.in.h:1
 msgid "A subtitle editor based on GStreamer and Gtk+"
+msgstr ""
+
+#: ../share/subtitleeditor.desktop.in.h:2 ../share/ui/subtitleeditor.ui.h:1
+msgid "Subtitle Editor"
 msgstr ""
 
 #: ../src/commandsystem.cc:37
@@ -2396,6 +2244,13 @@ msgstr ""
 
 #: ../src/document.cc:662
 msgid "Select a different character coding from the menu and try again."
+msgstr ""
+
+#: ../src/document.cc:669 ../src/gui/application.cc:307
+#: ../share/ui/dialog-export-text.ui.h:1 ../share/ui/dialog-import-text.ui.h:1
+#: ../share/ui/dialog-open-document.ui.h:1
+#: ../share/ui/dialog-save-document.ui.h:1
+msgid "Character Coding:"
 msgstr ""
 
 #: ../src/document.cc:687 ../src/document.cc:696
@@ -2560,6 +2415,10 @@ msgstr ""
 
 #: ../src/gui/application.cc:306
 msgid "Path:"
+msgstr ""
+
+#: ../src/gui/application.cc:308 ../share/ui/dialog-save-document.ui.h:2
+msgid "Format:"
 msgstr ""
 
 #: ../src/gui/application.cc:309
@@ -2953,6 +2812,147 @@ msgstr ""
 msgid ""
 "Window system doesn't support OpenGL.\n"
 "Please try with another renderer."
+msgstr ""
+
+#: ../share/ui/dialog-character-codings.ui.h:1
+msgid "A_vailable encodings:"
+msgstr ""
+
+#: ../share/ui/dialog-character-codings.ui.h:2
+msgid "Character Codings"
+msgstr ""
+
+#: ../share/ui/dialog-character-codings.ui.h:3
+msgid "E_ncodings shown in menu:"
+msgstr ""
+
+#: ../share/ui/dialog-encodings-chooser.ui.h:1
+msgid "<b>Please choose encodings</b>"
+msgstr ""
+
+#: ../share/ui/dialog-encodings-chooser.ui.h:2
+msgid "Encodings Chooser"
+msgstr ""
+
+#: ../share/ui/dialog-export-text.ui.h:2
+msgid "Export Text"
+msgstr ""
+
+#: ../share/ui/dialog-export-text.ui.h:3
+#: ../share/ui/dialog-save-document.ui.h:3
+msgid "NewLine:"
+msgstr ""
+
+#: ../share/ui/dialog-import-text.ui.h:2
+msgid "Import Text"
+msgstr ""
+
+#: ../share/ui/dialog-open-document.ui.h:2
+msgid "Open Document"
+msgstr ""
+
+#: ../share/ui/dialog-open-document.ui.h:3
+msgid "Video File:"
+msgstr ""
+
+#: ../share/ui/dialog-save-document.ui.h:4
+msgid "Save Document"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:1
+msgid "*"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:2
+msgid "<b>Basic</b>"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:3
+msgid "<b>Behaviour</b>"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:4
+msgid "<b>Miscellaneous</b>"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:5
+msgid "<b>Read-only info</b>"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:7
+msgid "Collisions:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:8
+msgid "Normal"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:9
+msgid "Original Editing:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:10
+msgid "Original Script:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:11
+msgid "Original Timing:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:12
+msgid "Original Translation:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:13
+msgid "PlayDepth:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:14
+msgid "PlayResX:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:15
+msgid "PlayResY:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:16
+msgid "Point Time: "
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:17
+msgid "Reverse"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:18
+msgid "Script Properties"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:19
+msgid "Script Type:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:20
+msgid "Script Updated By:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:21
+msgid "Sync Point:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:22
+msgid "Timer:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:23
+msgid "Title:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:24
+msgid "Update Details:"
+msgstr ""
+
+#: ../share/ui/dialog-script-properties.ui.h:25
+msgid "Wrap Style:"
 msgstr ""
 
 #: ../plugins/actions/about/about.se-plugin.in.h:1
