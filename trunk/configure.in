@@ -71,14 +71,6 @@ AC_SUBST(GTKMM_CFLAGS)
 AC_SUBST(GTKMM_LIBS)
 
 # =========================================================================
-# check libglademm
-
-PKG_CHECK_MODULES(LIBGLADEMM, libglademm-2.4 >= 2.4)
-
-AC_SUBST(LIBGLADEMM_CFLAGS)
-AC_SUBST(LIBGLADEMM_LIBS)
-
-# =========================================================================
 # check enchant
 
 PKG_CHECK_MODULES(ENCHANT, enchant >= 1.4.0)
@@ -277,8 +269,8 @@ ACX_CCACHE
 # =========================================================================
 # Set SUBTITLEEDITOR_LIBS and SUBTITLEEDITOR_CFLAGS
 
-SUBTITLEEDITOR_LIBS="$GTKMM_LIBS $LIBGLADEMM_LIBS"
-SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS $LIBGLADEMM_CFLAGS $INTLCFLAGS"
+SUBTITLEEDITOR_LIBS="$GTKMM_LIBS"
+SUBTITLEEDITOR_CFLAGS="$GTKMM_CFLAGS $INTLCFLAGS"
 
 AC_SUBST(SUBTITLEEDITOR_LIBS)
 AC_SUBST(SUBTITLEEDITOR_CFLAGS)
@@ -379,7 +371,6 @@ prefix ............................... : ${prefix}
 gcc version .......................... : $(gcc -dumpversion)
 gtk+ version ......................... : $(pkg-config --modversion gtk+-2.0)
 gtkmm version ........................ : $(pkg-config --modversion gtkmm-2.4)
-libglademm version ................... : $(pkg-config --modversion libglademm-2.4)
 gstreamer version .................... : $(pkg-config --modversion gstreamer-0.10)
 gstreamermm version .................. : $(pkg-config --modversion gstreamermm-0.10)
 default video output ................. : $DEFAULT_PLAYER_VIDEO_SINK
