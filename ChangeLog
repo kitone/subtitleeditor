@@ -1,6 +1,11 @@
 2009-08-19  kitone  <kitone@gna.org>
 
 	* prepare-po.sh:
+	Fix ui type files.
+
+2009-08-19  kitone  <kitone@gna.org>
+
+	* prepare-po.sh:
 	Change glade to ui.
 
 2009-08-19  kitone  <kitone@gna.org>
