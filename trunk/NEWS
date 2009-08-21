@@ -1,3 +1,26 @@
+2009-08-21 - 0.34.0
+
+	* New plugin 'keyframesmanagement'
+		* Keyframe generator
+		* Snap to keyframe
+	* Find And Replace Plugin completly rewrite with many improvements:
+		* Can search in text and translation columns
+		* Support multiple documents
+		* Select modified subtitles
+	* Waveform renderer can display 3 channels
+	* Move waveform generator in waveformmanagement plugin
+	* Switch from libglade(mm) to Gtk::Builder
+	* Fix bug #13061 : Wave form barely usable with 5.1 channel audio
+	
+	* Translation:
+	* Add Esperanto translation
+	
+	* Packager:
+	* New dependence to gstreamermm-0.10 >= 0.10.4
+	* Change dependence of enchant >= 1.4.0
+	* Change dependence of gtkmm >= 2.14.0
+	* Remove dependence of libglademm
+
 2009-06-23 - 0.33.0
 
 	* Fix: #13696 New action 'Generate Dummy Waveform'
