@@ -315,13 +315,14 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 		cr->save();
 		cr->translate(-get_start_area(), 30);
 
+		draw_keyframes(cr, warea);
+
 		if(document())
 		{
 			draw_subtitles(cr, warea);
 			draw_marker(cr, warea);
 		}
 
-		draw_keyframes(cr, warea);
 		draw_player_position(cr, warea);
 
 		cr->restore();
