@@ -20,10 +20,12 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <iostream>
+#include <giomm.h>
+#include <cstdio>
+#include "error.h"
 #include "keyframes.h"
 #include "utility.h"
-#include <iostream>
-#include <fstream>
 
 /*
  */
@@ -68,60 +70,39 @@ Glib::ustring KeyFrames::get_uri() const
 }
 
 /*
- * FIXME
  */
 bool KeyFrames::open(const Glib::ustring &uri)
 {
 	try
 	{
-		Glib::ustring filename = Glib::filename_from_uri(uri);
-
-		std::ifstream file(filename.c_str());
-		if(!file)
-			return false;
-
-		std::string line;
-		if(!std::getline(file, line))
-		{
-			file.close();
-			return false;
-		}
-
-		if(line != "#subtitleeditor keyframes v1")
-		{
-			file.close();
-			return false;
-		}
+		Glib::RefPtr<Gio::File> file = Gio::File::create_for_uri(uri);
+		Glib::RefPtr<Gio::FileInputStream> fstream = file->read();
+		Glib::RefPtr<Gio::DataInputStream> dstream = Gio::DataInputStream::create(fstream);
 
 		int size = 0;
-		std::getline(file, line);
-		if(sscanf(line.c_str(), "size: %d", &size) == 0)
-		{
-			file.close();
-			return false;
-		}
+		std::string line;
 
+		// Check the file type
+		if((dstream->read_line(line) && line == "#subtitleeditor keyframes v1") == false)
+			throw SubtitleError(_("Couldn't recognize format of the file."));
+
+		// Read the keyframes number
+		if((dstream->read_line(line) && sscanf(line.c_str(), "size: %d", &size) != 0) == false)
+			throw SubtitleError(_("Couldn't get the keyframe size on the file."));
+
+		// Read the keyframes data
 		reserve(size);
-
-		while(!file.eof() && std::getline(file, line))
+		while(dstream->read_line(line))
 		{
-			int time = utility::string_to_int(line);
-			push_back(time);
+			push_back( utility::string_to_int(line) );
 		}
-
-		file.close();
-		
+		// Update the uri of the keyframe
 		set_uri(uri);
-
 		return true;
 	}
-	catch(std::exception &ex)
+	catch(const std::exception &ex)
 	{
-		std::cerr << ex.what() << std::endl;
-	}
-	catch(Glib::Error &ex)
-	{
-		std::cerr << ex.what() << std::endl;
+		std::cerr << Glib::ustring::compose("KeyFrames::open failed '%1' : %2", uri, ex.what()) << std::endl;
 	}
 	return false;
 }
@@ -130,6 +111,33 @@ bool KeyFrames::open(const Glib::ustring &uri)
  */
 bool KeyFrames::save(const Glib::ustring &uri)
 {
+	try
+	{
+		Glib::RefPtr<Gio::File> file = Gio::File::create_for_uri(uri);
+		// If the file exists then replace it. Otherwise, create it.
+		Glib::RefPtr<Gio::FileOutputStream> stream = (file->query_exists()) ? file->replace() : file->create_file();
+
+		if(!stream)
+			throw SubtitleError(Glib::ustring::compose("Gio::File::create_file returned an emptry ptr from the uri '%1'.", uri));
+
+		stream->write("#subtitleeditor keyframes v1\n");
+		stream->write(Glib::ustring::compose("size: %1\n", size()));
+
+		for(guint i=0; i < size(); ++i)
+			stream->write(Glib::ustring::compose("%1\n", (*this)[i]));
+
+		// Close the stream to make sure that changes are write now.
+		stream->close();
+		stream.reset();
+		// Update the uri of the keyframe
+		set_uri(uri);
+
+		return true;
+	}
+	catch(const std::exception &ex)
+	{
+		std::cerr << Glib::ustring::compose("KeyFrames::save failed '%1' : %2", uri, ex.what()) << std::endl;
+	}
 	return false;
 }
 

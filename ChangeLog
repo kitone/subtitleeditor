@@ -1,5 +1,10 @@
 2009-11-01  kitone  <kitone@gna.org>
 
+	* src/keyframes.cc:
+	Fix sr #2449 : keyframe does'nt save - 0.34.0.
+
+2009-11-01  kitone  <kitone@gna.org>
+
 	* plugins/subtitleformats/subrip/subrip.cc:
 	Fix bug #14437 : DATA LOSS - [opening SubRip] first subtitle being omitted.
 
