@@ -53,50 +53,48 @@ public:
 
 		while(file.getline(line))
 		{
-			// Read the subtitle number (don't needs)
-			if(re_num->match(line))
+			// Read the subtitle time "start --> end"
+			if(re_time->match(line))
 			{
-				file.getline(line); // Next line is a time line
+				std::vector<Glib::ustring> group = re_time->split(line);
+				//if(group.size() == 1)
+				//	continue;
 
-				// Read the subtitle time "start --> end"
-				if(re_time->match(line))
+				start[0] = utility::string_to_int(group[1]);
+				start[1] = utility::string_to_int(group[2]);
+				start[2] = utility::string_to_int(group[3]);
+				start[3] = utility::string_to_int(group[4]);
+
+				end[0] = utility::string_to_int(group[5]);
+				end[1] = utility::string_to_int(group[6]);
+				end[2] = utility::string_to_int(group[7]);
+				end[3] = utility::string_to_int(group[8]);
+
+				Glib::ustring text;
+				int count = 0;
+
+				// Read the text lines
+				while(file.getline(line) && !line.empty())
 				{
-					std::vector<Glib::ustring> group = re_time->split(line);
-					//if(group.size() == 1)
-					//	continue;
+					if(count > 0)
+						text += '\n';
 
-					start[0] = utility::string_to_int(group[1]);
-					start[1] = utility::string_to_int(group[2]);
-					start[2] = utility::string_to_int(group[3]);
-					start[3] = utility::string_to_int(group[4]);
+					text += line;
 
-					end[0] = utility::string_to_int(group[5]);
-					end[1] = utility::string_to_int(group[6]);
-					end[2] = utility::string_to_int(group[7]);
-					end[3] = utility::string_to_int(group[8]);
-
-					Glib::ustring text;
-					int count = 0;
-
-					// Read the text lines
-					while(file.getline(line) && !line.empty())
-					{
-						if(count > 0)
-							text += '\n';
-
-						text += line;
-
-						++count;
-					}
-		
-					// Append a subtitle
-					Subtitle sub = subtitles.append();
-
-					sub.set_text(text);
-					sub.set_start_and_end(
-								SubtitleTime(start[0], start[1], start[2], start[3]),
-								SubtitleTime(end[0], end[1], end[2], end[3]));
+					++count;
 				}
+		
+				// Append a subtitle
+				Subtitle sub = subtitles.append();
+
+				sub.set_text(text);
+				sub.set_start_and_end(
+							SubtitleTime(start[0], start[1], start[2], start[3]),
+							SubtitleTime(end[0], end[1], end[2], end[3]));
+			}
+			else
+			{
+				se_debug_message(SE_DEBUG_PLUGINS, "can not match time line: '%s'", line.c_str());
 			}
 		}
 	}
