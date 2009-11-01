@@ -127,6 +127,9 @@ public:
 		m_comboAudioOutput->append_output(_("OSS - Open Sound System"), "osssink");
 		m_comboAudioOutput->append_output(_("SDL - Simple DirectMedia Layer"), "sdlaudiosink");
 		m_comboAudioOutput->append_output(_("GConf"), "gconfaudiosink");
+#ifdef USE_OSX
+		m_comboAudioOutput->append_output(_("OSX"), "osxaudiosink");
+#endif
 
 		// video output
 		m_comboVideoOutput->append_output(_("Autodetect"), "autovideosink");
@@ -135,6 +138,9 @@ public:
 		m_comboVideoOutput->append_output(_("SDL - Simple DirectMedia Layer"), "sdlvideosink");
 		m_comboVideoOutput->append_output(_("GConf"), "gconfvideosink");
 		m_comboVideoOutput->append_output(_("OpenGL"), "glimagesink");
+#ifdef USE_OSX
+		m_comboVideoOutput->append_output(_("OSX"), "osxvideosink");
+#endif
 
 		Glib::ustring audiosink = Config::getInstance().get_value_string("video-player", "audio-sink");
 		Glib::ustring videosink = Config::getInstance().get_value_string("video-player", "video-sink");
