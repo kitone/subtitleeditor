@@ -329,7 +329,7 @@ protected:
 
 		long pos = player()->get_position();
 
-		for(KeyFrames::const_reverse_iterator it = keyframes->rbegin(); it != keyframes->rend(); ++it)
+		for(KeyFrames::reverse_iterator it = keyframes->rbegin(); it != keyframes->rend(); ++it)
 		{
 			if(*it < pos)
 			{
@@ -347,7 +347,7 @@ protected:
 		if(!keyframes)
 			return false;
 
-		for(KeyFrames::const_reverse_iterator it = keyframes->rbegin(); it != keyframes->rend(); ++it)
+		for(KeyFrames::reverse_iterator it = keyframes->rbegin(); it != keyframes->rend(); ++it)
 		{
 			if(*it < pos)
 			{
