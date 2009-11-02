@@ -1,3 +1,8 @@
+2009-11-02  kitone  <kitone@gna.org>
+
+	* plugins/actions/splitsubtitle/splitsubtitle.cc:
+	Fix typo.
+
 2009-11-01  kitone  <kitone@gna.org>
 
 	* src/keyframes.cc:
