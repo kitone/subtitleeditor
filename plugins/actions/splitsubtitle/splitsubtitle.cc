@@ -102,7 +102,7 @@ public:
 
 		if(selection.empty())
 		{
-			doc->flash_message(_("Please select at least two subtitles."));
+			doc->flash_message(_("Please select at least one subtitle."));
 			return;
 		}
 
