@@ -21,7 +21,7 @@
  */
 
 #include "filewriter.h"
-#include <fstream>
+#include <giomm.h>
 #include "error.h"
 #include "debug.h"
 #include "encodings.h"
@@ -38,6 +38,8 @@ FileWriter::FileWriter(const Glib::ustring &uri, const Glib::ustring &charset, c
 
 /*
  * Write to the file.
+ *
+ * Error: throw an IOFileError exception if failed.
  */
 void FileWriter::to_file()
 {
@@ -45,14 +47,35 @@ void FileWriter::to_file()
 	if(m_newline != "Unix")
 		m_data = Glib::Regex::create("\n")->replace(m_data, 0, (m_newline == "Windows") ? "\r\n": "\r", (Glib::RegexMatchFlags)0);
 
-	std::string data = Encoding::convert_from_utf8_to_charset(m_data, m_charset); 
+	try
+	{
+		std::string content = Encoding::convert_from_utf8_to_charset(m_data, m_charset); 
 
-	std::ofstream file(Glib::filename_from_uri(m_uri).c_str());
-	if(!file)
-		throw IOFileError(_("Couldn't open the file."));
+		Glib::RefPtr<Gio::File> file = Gio::File::create_for_uri(m_uri);
+		if(!file)
+			throw IOFileError(_("Couldn't open the file."));
 
-	file << data;
-	file.close();
+		Glib::RefPtr<Gio::FileOutputStream> stream = (file->query_exists()) ? file->replace() : file->create_file();
+		if(!stream)
+			throw IOFileError("Gio::File could not create stream.");
+
+		stream->write(content);
+		// Close the stream to make sure that changes are written now
+		stream->close();
+		stream.reset();
+
+		se_debug_message(SE_DEBUG_IO, 
+				"Success to write the contents on the file '%s' with '%s' charset", 
+				m_uri.c_str(), m_charset.c_str());
+	}
+	catch(const std::exception &ex)
+	{
+		se_debug_message(SE_DEBUG_IO, 
+					"Failed to write the contents on the file '%s' with '%s' charset", 
+					uri.c_str(), charset.c_str());
+					return true;
+		throw IOFileError(ex.what());
+	}
 }
 
 /*

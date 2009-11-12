@@ -32,8 +32,6 @@
  * Can automatically detect the character coding and convert to UTF-8.
  * Detect the newline type.
  * Return lines without character of newline (CR,LF or CRLF)
- *
- * TODO: GIO support
  */
 class FileReader
 {
@@ -44,6 +42,8 @@ public:
 	 *
 	 * Open the file from an uri and convert the contents from charset to UTF-8.
 	 * If charset is empty, try to autodetect the character coding.
+	 *
+	 * Error: throw an IOFileError exception if failed.
 	 */
 	FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size = -1);
 

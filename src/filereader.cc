@@ -2,6 +2,7 @@
 #include "debug.h"
 #include "error.h"
 #include "encodings.h"
+#include <giomm.h>
 
 /*
  * Reads an entire file into a string, with good error checking.
@@ -13,7 +14,24 @@ bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &chars
 
 	try
 	{
-		std::string content = Glib::file_get_contents(Glib::filename_from_uri(uri));
+		Glib::ustring content;
+
+		{
+			Glib::RefPtr<Gio::File> file = Gio::File::create_for_uri(uri);
+			if(!file)
+				throw IOFileError(_("Couldn't open the file."));
+
+			gchar* raw = NULL;
+			gsize bytes_read = 0;
+			std::string e_tag;
+
+			if(file->load_contents(raw, bytes_read, e_tag) == false)
+				throw IOFileError(_("Couldn't read the contents of the file."));
+
+			content = std::string(raw, bytes_read);
+
+			g_free(raw);
+		}
 
 		if(max_data_size > 0)
 		{
@@ -43,7 +61,7 @@ bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &chars
 					return true;
 		}
 	}
-	catch(const Glib::Exception &ex)
+	catch(const std::exception &ex)
 	{
 		throw IOFileError(ex.what());
 	}
@@ -56,6 +74,8 @@ bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &chars
  * 
  * Open the file from an uri and convert the contents from charset to UTF-8.
  * If charset is empty, try to autodetect the character coding.
+ * 
+ * Error: throw an IOFileError exception if failed.
  */
 FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size)
 {
