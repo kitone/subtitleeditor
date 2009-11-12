@@ -42,6 +42,8 @@ public:
 
 	/*
 	 * Write to the file.
+	 *
+	 * Error: throw an IOFileError exception if failed.
 	 */
 	void to_file();
 
