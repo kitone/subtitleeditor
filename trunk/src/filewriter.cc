@@ -72,8 +72,8 @@ void FileWriter::to_file()
 	{
 		se_debug_message(SE_DEBUG_IO, 
 					"Failed to write the contents on the file '%s' with '%s' charset", 
-					uri.c_str(), charset.c_str());
-					return true;
+					m_uri.c_str(), m_charset.c_str());
+		
 		throw IOFileError(ex.what());
 	}
 }
