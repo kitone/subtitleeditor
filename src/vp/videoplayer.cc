@@ -24,7 +24,7 @@
 #include "utility.h"
 #include "documentsystem.h"
 #include "subtitleeditorwindow.h"
-#include "gstreamerplayer.h"
+#include "gstplayer.h"
 
 /*
  * Player Controls Widgets
@@ -74,7 +74,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void on_play()
 	{
@@ -86,7 +85,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void on_pause()
 	{
@@ -94,7 +92,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void init_with_player(Player *player)
 	{
@@ -108,7 +105,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void on_player_state_changed(Player::State state)
 	{
@@ -143,7 +139,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void on_timeout()
 	{
@@ -153,7 +148,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void set_duration(long duration)
 	{
@@ -161,7 +155,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void set_position(long position)
 	{
@@ -175,7 +168,6 @@ public:
 protected:
 
 	/*
-	 *
 	 */
 	Gtk::Button* create_button(Gtk::StockID stock)
 	{
@@ -189,7 +181,6 @@ protected:
 	}
 
 	/*
-	 *
 	 */
 	Glib::ustring position_to_string(double value)
 	{
@@ -197,7 +188,6 @@ protected:
 	}
 
 	/*
-	 *
 	 */
 	bool on_seek_event(GdkEvent *ev)
 	{
@@ -238,7 +228,7 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builde
 {
 	m_cfg_display_translated_subtitle = false;
 
-	m_player = manage(new GStreamerPlayer);
+	m_player = manage(new GstPlayer);
 
 	Gtk::Frame* m_framePlayer = NULL;
 	PlayerControls* m_playerControls = NULL;
@@ -246,7 +236,6 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builde
 	builder->get_widget("frame-player", m_framePlayer);
 	builder->get_widget_derived("player-controls", m_playerControls);
 
-	// FIXME cast
 	m_framePlayer->add(*dynamic_cast<Gtk::Widget*>(m_player));
 	m_playerControls->init_with_player(m_player);
 

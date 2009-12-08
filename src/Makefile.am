@@ -52,6 +52,7 @@ LIB_SUBTITLEEDITOR_FILES = \
 	isocodes.h \
 	keyframes.cc \
 	keyframes.h \
+	player.cc \
 	player.h \
 	scriptinfo.cc \
 	scriptinfo.h \
@@ -154,6 +155,8 @@ APPLICATION_FILES = \
 	options.h \
 	vp/gstreamerplayer.cc \
 	vp/gstreamerplayer.h \
+	vp/gstplayer.cc \
+	vp/gstplayer.h \
 	vp/videoplayer.cc \
 	vp/videoplayer.h \
 	we/waveformeditor.cc \

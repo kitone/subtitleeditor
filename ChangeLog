@@ -1,3 +1,14 @@
+2009-12-08  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
+	* src/player.cc:
+	* src/player.h:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	* src/vp/videoplayer.cc:
+	Introduce gstplayer (gstreamermm) to replace the old player (gstreamer).
+	Fix bug #14386 : Subtitle Editor Fails to Load any Video File.
+
 2009-11-13  kitone  <kitone@gna.org>
 
 	* src/filewriter.cc:
