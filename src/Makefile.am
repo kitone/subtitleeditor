@@ -153,8 +153,6 @@ APPLICATION_FILES = \
 	main.cc \
 	options.cc \
 	options.h \
-	vp/gstreamerplayer.cc \
-	vp/gstreamerplayer.h \
 	vp/gstplayer.cc \
 	vp/gstplayer.h \
 	vp/videoplayer.cc \
