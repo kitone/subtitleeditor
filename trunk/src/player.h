@@ -43,18 +43,24 @@ public:
 	};
 
 	/*
-	 *
 	 */
-	Player()
-	{
-	}
+	Player();
 
 	/*
-	 *
 	 */
-	virtual ~Player()
-	{
-	}
+	virtual ~Player();
+
+	/*
+	 */
+	State get_state();
+
+	/*
+	 */
+	sigc::signal<void, State>& signal_state_changed();
+
+	/*
+	 */
+	sigc::signal<void>& signal_timeout();
 
 	/*
 	 * 
@@ -62,7 +68,6 @@ public:
 	virtual bool open(const Glib::ustring &uri) = 0;
 
 	/*
-	 *
 	 */
 	virtual void close() = 0;
 
@@ -72,7 +77,6 @@ public:
 	virtual Glib::ustring get_uri() = 0;
 
 	/*
-	 *
 	 */
 	virtual void play() = 0;
 
@@ -91,49 +95,28 @@ public:
 	virtual void play_segment(const SubtitleTime &start, const SubtitleTime &end) = 0;
 
 	/*
-	 *
 	 */
 	virtual void pause() = 0;
 
 	/*
-	 *
 	 */
 	virtual bool is_playing() = 0;
 
 	/*
-	 *
 	 */
 	virtual long get_duration() = 0;
 
 	/*
-	 *
 	 */
 	virtual long get_position() = 0;
 
 	/*
-	 *
 	 */
 	virtual void seek(long position) = 0;
 
 	/*
-	 *
 	 */
 	virtual void set_subtitle_text(const Glib::ustring &text) = 0;
-
-	/*
-	 *
-	 */
-	virtual State get_state() = 0;
-
-	/*
-	 *
-	 */
-	virtual sigc::signal<void, State>& signal_state_changed() = 0;
-
-	/*
-	 *
-	 */
-	virtual sigc::signal<void>& signal_timeout() = 0;
 
 	/*
 	 * Sets the new playback rate. Used for slow or fast motion.
@@ -157,15 +140,37 @@ public:
 
 	/*
 	 */
-	virtual void set_keyframes(Glib::RefPtr<KeyFrames> keyframes) = 0;
+	void set_keyframes(Glib::RefPtr<KeyFrames> keyframes);
 
 	/*
 	 */
-	virtual Glib::RefPtr<KeyFrames> get_keyframes() = 0;
+	Glib::RefPtr<KeyFrames> get_keyframes();
 
 	/*
 	 */
-	virtual sigc::signal<void>& signal_keyframes_changed() = 0;
+	sigc::signal<void>& signal_keyframes_changed();
+
+protected:
+
+	/*
+	 */
+	void set_player_state(State state);
+
+	/*
+	 */
+	bool on_timeout();
+
+protected:
+	// Signals
+	sigc::signal<void, Player::State> m_signal_state_changed;
+	
+	sigc::connection m_timeout_connection;
+	sigc::signal<void> m_timeout_signal;
+
+	Player::State m_player_state;
+
+	Glib::RefPtr<KeyFrames> m_keyframes;
+	sigc::signal<void> m_keyframes_signal_changed;
 };
 
 #endif//_Player_h
