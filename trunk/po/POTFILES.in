@@ -171,6 +171,7 @@ src/keyframes.h
 src/main.cc
 src/options.cc
 src/options.h
+src/player.cc
 src/player.h
 src/scriptinfo.cc
 src/scriptinfo.h
@@ -204,8 +205,8 @@ src/timeutility.cc
 src/timeutility.h
 src/utility.cc
 src/utility.h
-src/vp/gstreamerplayer.cc
-src/vp/gstreamerplayer.h
+src/vp/gstplayer.cc
+src/vp/gstplayer.h
 src/vp/videoplayer.cc
 src/vp/videoplayer.h
 src/waveform.cc

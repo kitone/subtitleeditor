@@ -1,3 +1,8 @@
+2009-12-08  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	Update with new and delete files. (gstplayer & gstreamerplayer)
+
 2009-11-01  kitone  <kitone@gna.org>
 
 	* Makefile.in.in:
