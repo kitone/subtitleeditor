@@ -1,5 +1,10 @@
 2009-12-09  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Display the status of osx option.
+
+2009-12-09  kitone  <kitone@gna.org>
+
 	* plugins/actions/preferences/dialog-preferences.ui:
 	Small fixes.
 
