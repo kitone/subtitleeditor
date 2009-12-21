@@ -993,7 +993,7 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key, const G
 					NULL);
 			queue_draw();
 		}
-		else if(key == "shaded-background")
+		else if(key == "shaded-background" && m_textoverlay)
 		{
 			m_textoverlay->property_shaded_background() = utility::string_to_bool(value);
 		}

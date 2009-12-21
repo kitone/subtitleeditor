@@ -1,5 +1,10 @@
 2009-12-21  kitone  <kitone@gna.org>
 
+	* src/vp/gstplayer.cc:
+	Fix segfault with the text overlay.
+
+2009-12-21  kitone  <kitone@gna.org>
+
 	* share/subtitleeditor.desktop.in:
 	Fix bug #14974 : More appropriate Video category for subtitleeditor.desktop 
 	(patch by Dan S <danstowell>)
