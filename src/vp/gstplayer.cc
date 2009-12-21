@@ -883,6 +883,8 @@ void GstPlayer::on_bus_message_warning(const Glib::RefPtr<Gst::MessageWarning> &
 	
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER,	"GST_MESSAGE_WARNING : %s [%s]", 
 			err.what().c_str(), err_dbg.c_str());
+
+	g_warning("%s [%s]", err.what().c_str(), err_dbg.c_str());
 }
 
 /*
