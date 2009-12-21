@@ -7,6 +7,6 @@ Exec=subtitleeditor %F
 Terminal=false
 Type=Application
 Icon=subtitleeditor
-Categories=Audio;AudioVideo;AudioVideoEditing;
+Categories=Video;AudioVideo;AudioVideoEditing;
 StartupNotify=true
 MimeType=application/x-microdvd;application/x-subrip;application/x-subviewer;text/x-mpsub;text/x-ssa;text/plain;

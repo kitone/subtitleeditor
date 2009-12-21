@@ -1,3 +1,9 @@
+2009-12-21  kitone  <kitone@gna.org>
+
+	* share/subtitleeditor.desktop.in:
+	Fix bug #14974 : More appropriate Video category for subtitleeditor.desktop 
+	(patch by Dan S <danstowell>)
+
 2009-12-09  kitone  <kitone@gna.org>
 
 	* configure.in:
