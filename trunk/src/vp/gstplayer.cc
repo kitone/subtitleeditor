@@ -800,6 +800,9 @@ void GstPlayer::on_bus_message_sync( const Glib::RefPtr<Gst::Message> &msg)
 		g_warning("Failed to get xoverlay");
 		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "failed to get xoverlay");
 	}
+	// We don't need to keep sync message
+	Glib::RefPtr<Gst::Bus> bus = m_pipeline->get_bus();
+	bus->disable_sync_message_emission();
 }
 
 /*
