@@ -1,6 +1,11 @@
 2009-12-23  kitone  <kitone@gna.org>
 
 	* src/vp/gstplayer.cc:
+	Improve debug msg in the on_bus_message_sync.
+
+2009-12-23  kitone  <kitone@gna.org>
+
+	* src/vp/gstplayer.cc:
 	Disable sync message when prepare-xwindow-id is done.
 
 2009-12-23  kitone  <kitone@gna.org>
