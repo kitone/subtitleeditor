@@ -772,7 +772,9 @@ bool GstPlayer::check_missing_plugins()
  */
 void GstPlayer::on_bus_message_sync( const Glib::RefPtr<Gst::Message> &msg)
 {
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, 
+			"type='%s' name='%s'", 
+			GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
 
 	// Ignore anything but 'prepare-xwindow-id' element messages
 	if(msg->get_message_type() != Gst::MESSAGE_ELEMENT)
