@@ -244,15 +244,20 @@ bool GstPlayer::seek(long start, long end, const Gst::SeekFlags &flags)
 
 	if(!m_pipeline)
 		return false;
+	long dur = get_duration();
 	// clamp
-	start = CLAMP(start, 0, get_duration());
-	end = CLAMP(end, 0, get_duration());
+	start = CLAMP(start, 0, dur);
+	end = CLAMP(end, 0, dur);
 	// check the order
 	if(start > end)
 		std::swap(start, end);
 	// convert to gstreamer time
 	gint64 gstart = start * GST_MSECOND;
 	gint64 gend = end * GST_MSECOND;
+
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER,
+			"pipeline->seek(%" GST_TIME_FORMAT", %"GST_TIME_FORMAT")", 
+			GST_TIME_ARGS(gstart), GST_TIME_ARGS(gend));
 
 	bool ret = m_pipeline->seek(
 			m_pipeline_rate,
