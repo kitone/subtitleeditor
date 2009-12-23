@@ -1,3 +1,8 @@
+2009-12-23  kitone  <kitone@gna.org>
+
+	* src/vp/gstplayer.cc:
+	Fix: return the audio sink.
+
 2009-12-21  kitone  <kitone@gna.org>
 
 	* src/vp/gstplayer.cc:

@@ -599,6 +599,7 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_audio_element()
 						_("Failed to create a GStreamer audio output (%s). "
 							"Please check your GStreamer installation."), cfg_audiosink.c_str()));
 		}
+		return sink;
 	}
 	catch(std::runtime_error &ex)
 	{
