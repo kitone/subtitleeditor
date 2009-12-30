@@ -1,5 +1,11 @@
 2009-12-30  kitone  <kitone@gna.org>
 
+	* src/gstreamer_utility.h:
+	* src/vp/gstplayer.cc:
+	Add GSTREAMERMM_CHECK_VERSION. Support gstreamermm version >= 0.10.3 without patch.
+
+2009-12-30  kitone  <kitone@gna.org>
+
 	* plugins/actions/keyframesmanagement/mediadecoder.h:
 	* plugins/actions/wavefrommanagement/mediadecoder.h:
 	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
