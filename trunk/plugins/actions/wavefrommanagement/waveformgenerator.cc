@@ -39,6 +39,8 @@ public:
 	WaveformGenerator(const Glib::ustring &uri, Glib::RefPtr<Waveform> &wf)
 	:Gtk::Dialog(_("Generate Waveform"), true), MediaDecoder(1000), m_duration(GST_CLOCK_TIME_NONE), m_n_channels(0)
 	{
+		se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+
 		set_border_width(12);
 		set_default_size(300, -1);
 		get_vbox()->pack_start(m_progressbar, false, false);
@@ -71,6 +73,7 @@ public:
 	 */
 	Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &structure_name)
 	{
+		se_debug_message(SE_DEBUG_PLUGINS, "structure_name=%s", structure_name.c_str());
 		try
 		{
 			// We only need and want create the video sink
@@ -94,6 +97,7 @@ public:
 		}
 		catch(std::runtime_error &ex)
 		{
+			se_debug_message(SE_DEBUG_PLUGINS, "runtime_error=%s", ex.what());
 			std::cerr << "create_audio_bin: " << ex.what() << std::endl;
 		}
 		return Glib::RefPtr<Gst::Element>(NULL);
@@ -119,6 +123,8 @@ public:
 	 */
 	bool on_timeout()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		if(!m_pipeline)
 			return false;
 
@@ -144,6 +150,10 @@ public:
 	 */
 	bool on_bus_message_element_level(Glib::RefPtr<Gst::Message> msg)
 	{
+		se_debug_message(SE_DEBUG_PLUGINS, 
+				"type='%s' name='%s'", 
+				GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
+		
 		Gst::Structure structure = msg->get_structure();
 
 		const GValue* list = gst_structure_get_value(structure.gobj(), "rms");
@@ -185,6 +195,8 @@ public:
 	 */
 	void on_work_finished()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		response(Gtk::RESPONSE_OK);
 	}
 
@@ -192,6 +204,8 @@ public:
 	 */
 	void on_work_cancel()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		response(Gtk::RESPONSE_CANCEL);
 	}
 

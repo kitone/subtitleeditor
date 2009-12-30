@@ -56,6 +56,8 @@ public:
 	 */
 	void create_pipeline(const Glib::ustring &uri)
 	{
+		se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+
 		if(m_pipeline)
 			destroy_pipeline();
 
@@ -96,6 +98,8 @@ public:
 	 */
 	void destroy_pipeline()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		if(m_connection_timeout)
 			m_connection_timeout.disconnect();
 
@@ -104,7 +108,7 @@ public:
 			m_pipeline->get_bus()->remove_watch(m_watch_id);
 			m_pipeline->set_state(Gst::STATE_NULL);
 		}
-		
+
 		m_watch_id = 0;
 		m_pipeline = Glib::RefPtr<Gst::Pipeline>();
 	}
@@ -113,7 +117,10 @@ public:
 	 */
 	virtual void on_new_decoded_pad(const Glib::RefPtr<Gst::Pad> &newpad, bool last)
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		Glib::RefPtr<Gst::Caps> caps = newpad->get_caps();
+		se_debug_message(SE_DEBUG_PLUGINS, "newpad->caps: %s", caps->to_string().c_str());
 
 		const Gst::Structure structure = caps->get_structure(0);
 		if(!structure)
@@ -130,6 +137,7 @@ public:
 			if( retst == Gst::STATE_CHANGE_FAILURE )
 			{
 				std::cerr << "Could not change state of new sink: " << retst << std::endl;
+				se_debug_message(SE_DEBUG_PLUGINS, "Could not change the state of new sink");
 				m_pipeline->remove(sink);
 				return;
 			}
@@ -139,7 +147,18 @@ public:
 			Gst::PadLinkReturn ret = newpad->link(sinkpad);
 
 			if(ret != Gst::PAD_LINK_OK && ret != Gst::PAD_LINK_WAS_LINKED)
+			{
 				std::cerr << "Linking of pads " << newpad->get_name() << " and " << sinkpad->get_name() << " failed." << std::endl;
+				se_debug_message(SE_DEBUG_PLUGINS, "Linking of pads failed");
+			}
+			else
+			{
+				se_debug_message(SE_DEBUG_PLUGINS, "Pads linking with success");
+			}
+		}
+		else
+		{
+			se_debug_message(SE_DEBUG_PLUGINS, "create_element return an NULL sink");
 		}
 	}
 
@@ -147,7 +166,14 @@ public:
 	 */
 	virtual void on_no_more_pads()
 	{
-		m_pipeline->set_state(Gst::STATE_PLAYING);
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Gst::StateChangeReturn retst = m_pipeline->set_state(Gst::STATE_PLAYING);
+		if(retst == Gst::STATE_CHANGE_FAILURE)
+		{
+			se_debug_message(SE_DEBUG_PLUGINS, 
+					"Failed to change the state of the pipeline to PLAYING");
+		}
 	}
 
 	/*
@@ -155,6 +181,10 @@ public:
 	 */
 	virtual bool on_bus_message(const Glib::RefPtr<Gst::Bus> &bus, const Glib::RefPtr<Gst::Message> &msg)
 	{
+		se_debug_message(SE_DEBUG_PLUGINS, 
+				"type='%s' name='%s'", 
+				GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
+
 		check_missing_plugin_message(msg);
 
 		switch(msg->get_message_type())
@@ -262,6 +292,8 @@ protected:
 	 */
 	bool on_bus_message_state_changed_timeout(Glib::RefPtr<Gst::MessageStateChanged> msg)
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		// We only update when it is the pipeline object
 		if(msg->get_source()->get_name() != "pipeline")
 			return true;
