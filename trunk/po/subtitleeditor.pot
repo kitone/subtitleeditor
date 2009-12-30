@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-19 16:15+0200\n"
+"POT-Creation-Date: 2009-12-30 16:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,7 +160,6 @@ msgid "Merge the selected subtitles"
 msgstr ""
 
 #: ../plugins/actions/combinesubtitles/combinesubtitles.cc:168
-#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:105
 msgid "Please select at least two subtitles."
 msgstr ""
 
@@ -884,7 +883,7 @@ msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:46
 #: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:139
-#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:46
+#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:48
 msgid "Waiting..."
 msgstr ""
 
@@ -976,15 +975,15 @@ msgstr ""
 msgid "Snap End to Keyframe"
 msgstr ""
 
-#: ../plugins/actions/keyframesmanagement/mediadecoder.h:184
-#: ../plugins/actions/keyframesmanagement/mediadecoder.h:197
-#: ../plugins/actions/wavefrommanagement/mediadecoder.h:184
-#: ../plugins/actions/wavefrommanagement/mediadecoder.h:197
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:214
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:227
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:214
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:227
 msgid "Media file could not be played.\n"
 msgstr ""
 
-#: ../plugins/actions/keyframesmanagement/mediadecoder.h:329
-#: ../plugins/actions/wavefrommanagement/mediadecoder.h:329
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:361
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:361
 #: ../src/gstreamer_utility.cc:63
 msgid ""
 "GStreamer plugins missing.\n"
@@ -1294,7 +1293,7 @@ msgstr ""
 #. audio output
 #. video output
 #: ../plugins/actions/preferences/videoplayerpage.h:123
-#: ../plugins/actions/preferences/videoplayerpage.h:132
+#: ../plugins/actions/preferences/videoplayerpage.h:135
 msgid "Autodetect"
 msgstr ""
 
@@ -1315,24 +1314,29 @@ msgid "OSS - Open Sound System"
 msgstr ""
 
 #: ../plugins/actions/preferences/videoplayerpage.h:128
-#: ../plugins/actions/preferences/videoplayerpage.h:135
+#: ../plugins/actions/preferences/videoplayerpage.h:138
 msgid "SDL - Simple DirectMedia Layer"
 msgstr ""
 
 #: ../plugins/actions/preferences/videoplayerpage.h:129
-#: ../plugins/actions/preferences/videoplayerpage.h:136
+#: ../plugins/actions/preferences/videoplayerpage.h:139
 msgid "GConf"
 msgstr ""
 
-#: ../plugins/actions/preferences/videoplayerpage.h:133
+#: ../plugins/actions/preferences/videoplayerpage.h:131
+#: ../plugins/actions/preferences/videoplayerpage.h:142
+msgid "OSX"
+msgstr ""
+
+#: ../plugins/actions/preferences/videoplayerpage.h:136
 msgid "X Window System (X11/XShm/Xv)"
 msgstr ""
 
-#: ../plugins/actions/preferences/videoplayerpage.h:134
+#: ../plugins/actions/preferences/videoplayerpage.h:137
 msgid "X Window System (No Xv)"
 msgstr ""
 
-#: ../plugins/actions/preferences/videoplayerpage.h:137
+#: ../plugins/actions/preferences/videoplayerpage.h:140
 msgid "OpenGL"
 msgstr ""
 
@@ -1549,6 +1553,10 @@ msgstr ""
 
 #: ../plugins/actions/splitsubtitle/splitsubtitle.cc:53
 msgid "Split the selected subtitles"
+msgstr ""
+
+#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:105
+msgid "Please select at least one subtitle."
 msgstr ""
 
 #: ../plugins/actions/splitsubtitle/splitsubtitle.cc:109
@@ -2388,8 +2396,12 @@ msgstr ""
 msgid "Thai"
 msgstr ""
 
-#: ../src/filewriter.cc:52
+#: ../src/filereader.cc:22 ../src/filewriter.cc:56
 msgid "Couldn't open the file."
+msgstr ""
+
+#: ../src/filereader.cc:29
+msgid "Couldn't read the contents of the file."
 msgstr ""
 
 #: ../src/gstreamer_utility.cc:82
@@ -2570,6 +2582,14 @@ msgstr ""
 msgid "_Help"
 msgstr ""
 
+#: ../src/keyframes.cc:87 ../src/subtitleformatsystem.cc:70
+msgid "Couldn't recognize format of the file."
+msgstr ""
+
+#: ../src/keyframes.cc:91
+msgid "Couldn't get the keyframe size on the file."
+msgstr ""
+
 #: ../src/main.cc:118
 msgid " - edit subtitles files"
 msgstr ""
@@ -2592,10 +2612,6 @@ msgstr ""
 
 #: ../src/subtitleformatio.cc:63 ../src/subtitleformatio.cc:71
 msgid "This function is not implemented for this format."
-msgstr ""
-
-#: ../src/subtitleformatsystem.cc:70
-msgid "Couldn't recognize format of the file."
 msgstr ""
 
 #: ../src/subtitleformatsystem.cc:89
@@ -2776,28 +2792,35 @@ msgstr ""
 msgid "Invalid fps"
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:583
+#: ../src/vp/gstplayer.cc:604
 #, c-format
 msgid ""
-"Failed to create a GStreamer pipeline (%s). Please check your GStreamer "
+"Failed to create a GStreamer audio output (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:637
+#: ../src/vp/gstplayer.cc:642
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:641
+#: ../src/vp/gstplayer.cc:651
 #, c-format
 msgid ""
-"Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
+"Failed to create a GStreamer textoverlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstreamerplayer.cc:835
+#: ../src/vp/gstplayer.cc:664
+#, c-format
+msgid ""
+"Failed to create a GStreamer sink (%s). Please check your GStreamer "
+"installation."
+msgstr ""
+
+#: ../src/vp/gstplayer.cc:881
 #, c-format
 msgid ""
 "Media file could not be played.\n"
