@@ -33,7 +33,7 @@ Glib::RefPtr<Waveform> Waveform::create_from_file(const Glib::ustring &uri)
 	Glib::RefPtr<Waveform> wf = Glib::RefPtr<Waveform>(new Waveform);
 	if(!wf->open(uri))
 	{
-		g_warning("Failed to open waveform from file %s", uri.c_str());
+		std::cout << "SE Info: The file '" << uri << "' is not a waveform file" << std::endl;
 		wf.clear();
 
 		return Glib::RefPtr<Waveform>(NULL);
