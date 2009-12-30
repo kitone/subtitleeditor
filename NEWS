@@ -1,3 +1,20 @@
+2009-12-30 - 0.35.0
+
+	* Player completly rewrite
+		* Switch to gstreamermm
+		* Fix bug #14386 : Subtitle Editor Fails to Load any Video File (crash with XError)
+	* Improve Waveform Editor
+		* Improvement of the renderer by displaying keyframes before subtitles
+		* Unusable, caused by the option 'respect the timing' when the next subtitle is at 0:00:00.000
+	* Improve OSX support (need to be tested)
+		* Add option --enable-osx
+		* OSX video output added in the preferences
+		* Add support of OSX in the player
+	* Switch file reader/writer to gio(mm)
+	* Fix sr #2449 : keyframe does'nt save - 0.34.0
+	* Fix sr #2128 : Fix build with old gcc
+	* Fix bug #14974 : More appropriate Video category for subtitleeditor.desktop (patch by Dan S <danstowell>)
+
 2009-08-21 - 0.34.0
 
 	* New plugin 'keyframesmanagement'
