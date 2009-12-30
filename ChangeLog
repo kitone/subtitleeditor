@@ -1,5 +1,12 @@
 2009-12-30  kitone  <kitone@gna.org>
 
+	* plugins/actions/keyframesmanagement/mediadecoder.h:
+	* plugins/actions/wavefrommanagement/mediadecoder.h:
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	Improve debug messages in the mediadecoder and waveformgenerator.
+
+2009-12-30  kitone  <kitone@gna.org>
+
 	* src/we/waveformeditor.cc:
 	Fix invalid subtitle end when the next subtitle isn't really the next.
 	Caused by the option 'respect the timing'.
