@@ -1053,7 +1053,15 @@ bool WaveformEditor::move_subtitle_end(const SubtitleTime &_time, bool disable_r
 			{
 				SubtitleTime start_of_next_sub = next.get_start();
 
-				if(subtitle_end + min_gap > start_of_next_sub)
+				// Only if the next subtitle is really after this one.
+				// Avoid to invalidate the subtitle end when the next is 
+				// equal to 0:00:000.0 or inferior
+				bool is_really_next = next.get_start() > subtitle.get_start();
+				
+				// Have we an overlapping ?
+				bool is_on_next = subtitle_end + min_gap > start_of_next_sub;
+				
+				if(is_on_next && is_really_next)
 				{
 					// if around is enable
 					// try to move the start of the next subtitle
