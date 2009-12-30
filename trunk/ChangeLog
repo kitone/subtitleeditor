@@ -1,3 +1,9 @@
+2009-12-30  kitone  <kitone@gna.org>
+
+	* src/we/waveformeditor.cc:
+	Fix invalid subtitle end when the next subtitle isn't really the next.
+	Caused by the option 'respect the timing'.
+
 2009-12-23  kitone  <kitone@gna.org>
 
 	* src/vp/gstplayer.cc:
