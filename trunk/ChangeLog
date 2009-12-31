@@ -1,5 +1,11 @@
 2009-12-31  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.35.1 release.
+
+2009-12-31  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Update gstreamermm version to 0.10.4.
 

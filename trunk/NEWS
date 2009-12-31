@@ -1,3 +1,8 @@
+2009-12-31 - 0.35.1
+
+	* Fix build error
+	* Define gstreamermm version to 0.10.4
+
 2009-12-30 - 0.35.0
 
 	* Player completly rewrite
