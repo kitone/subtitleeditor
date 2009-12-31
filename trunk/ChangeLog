@@ -1,3 +1,11 @@
+2009-12-31  kitone  <kitone@gna.org>
+
+	* configure.in:
+	Update gstreamermm version to 0.10.4.
+
+	* src/vp/gstplayer.cc:
+	Remove gstreamermm check version.
+
 2009-12-30  kitone  <kitone@gna.org>
 
 	* NEWS:

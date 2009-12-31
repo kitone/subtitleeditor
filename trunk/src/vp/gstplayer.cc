@@ -675,11 +675,7 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element()
 
 		// Add sink pad to bin element
 		Glib::RefPtr<Gst::Pad> pad = conv->get_static_pad("sink");
-#if GSTREAMERMM_CHECK_VERSION(0, 10, 3)
 		bin->add_pad(	Gst::GhostPad::create(pad, "sink"));
-#else// version < 0.10.3
-		bin->add_pad(	Gst::GhostPad::create("sink", pad));
-#endif
 
 		// configure text overlay
 		m_textoverlay = Glib::RefPtr<Gst::TextOverlay>::cast_dynamic(textoverlay);
