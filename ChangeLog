@@ -1,5 +1,10 @@
 2010-01-01  kitone  <kitone@gna.org>
 
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Fix typo.
+
+2010-01-01  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Switching back to development version.
 

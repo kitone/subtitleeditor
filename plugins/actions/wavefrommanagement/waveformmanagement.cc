@@ -136,7 +136,7 @@ public:
 		bool waveform_display_state = get_config().get_value_bool("waveform", "display");
 
 		action_group->add(
-				Gtk::ToggleAction::create("waveform/display", _("_Wavform"), _("Show or hide the waveform in the current window"), waveform_display_state),
+				Gtk::ToggleAction::create("waveform/display", _("_Waveform"), _("Show or hide the waveform in the current window"), waveform_display_state),
 					sigc::mem_fun(*this, &WaveformManagement::on_waveform_display));
 
 		// ui
