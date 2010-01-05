@@ -70,7 +70,7 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 	actiongroup->add(Gtk::Action::create("menu-waveform", _("_Waveform")));
 	actiongroup->add(Gtk::Action::create("menu-view", _("V_iew")));
 	actiongroup->add(Gtk::Action::create("menu-options", _("_Options")));
-	actiongroup->add(Gtk::Action::create("menu-extensions", _("_Extensions")));
+	actiongroup->add(Gtk::Action::create("menu-extensions", _("E_xtensions")));
 	actiongroup->add(Gtk::Action::create("menu-help", _("_Help")));
 
 	// UIManager
