@@ -1,5 +1,11 @@
 2010-01-05  kitone  <kitone@gna.org>
 
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	Update the duration value after the EOS signal and only set duration on
+	waveform if we actually know it. (patch by Philip Jägenstedt <foolip>)
+
+2010-01-05  kitone  <kitone@gna.org>
+
 	* src/gui/menubar.cc:
 	Change AccelKey of Extensions (conflict with Edit).
 
