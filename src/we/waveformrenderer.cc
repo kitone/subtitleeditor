@@ -182,7 +182,10 @@ long WaveformRenderer::get_time_by_pos(int pos)
  */
 int WaveformRenderer::get_pos_by_time(long msec)
 {
-	float percent = ((float)msec / (float)m_waveform->get_duration());
+	float duration = (float)m_waveform->get_duration();
+	if(duration <= 0)
+		return 0;
+	float percent = (float)msec / duration;
 	float width = (float)widget()->get_width() * zoom();
 	float pos = width * percent;
 	pos = CLAMP(pos, 0, width);

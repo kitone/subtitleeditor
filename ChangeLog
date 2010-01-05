@@ -1,5 +1,10 @@
 2010-01-05  kitone  <kitone@gna.org>
 
+	* src/we/waveformrenderer.cc:
+	Return zero if the duration is not positive. (patch by Philip Jägenstedt <foolip>)
+
+2010-01-05  kitone  <kitone@gna.org>
+
 	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
 	Update the duration value after the EOS signal and only set duration on
 	waveform if we actually know it. (patch by Philip Jägenstedt <foolip>)
