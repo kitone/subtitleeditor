@@ -55,7 +55,8 @@ public:
 			if(run() == Gtk::RESPONSE_OK)
 			{
 				wf = Glib::RefPtr<Waveform>(new Waveform);
-				wf->m_duration = m_duration / GST_MSECOND;
+				if(GST_CLOCK_TIME_IS_VALID(m_duration))
+					wf->m_duration = m_duration / GST_MSECOND;
 				wf->m_n_channels = m_n_channels;
 				for(guint i=0; i< m_n_channels; ++i)
 					wf->m_channels[i] = std::vector<double>(m_values[i].begin(), m_values[i].end());
@@ -138,7 +139,6 @@ public:
 	
 			m_progressbar.set_fraction(percent);
 			m_progressbar.set_text(time_to_string(pos) + " / " + time_to_string(len));
-			m_duration = len;
 
 			return pos != len;
 		}
@@ -196,6 +196,12 @@ public:
 	void on_work_finished()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
+
+		// set duration to position at eos
+		Gst::Format fmt = Gst::FORMAT_TIME;
+		gint64 pos = 0;
+		if(m_pipeline && m_pipeline->query_position(fmt, pos))
+			m_duration = pos;
 
 		response(Gtk::RESPONSE_OK);
 	}
