@@ -55,8 +55,7 @@ public:
 			if(run() == Gtk::RESPONSE_OK)
 			{
 				wf = Glib::RefPtr<Waveform>(new Waveform);
-				if(GST_CLOCK_TIME_IS_VALID(m_duration))
-					wf->m_duration = m_duration / GST_MSECOND;
+				wf->m_duration = m_duration / GST_MSECOND;
 				wf->m_n_channels = m_n_channels;
 				for(guint i=0; i< m_n_channels; ++i)
 					wf->m_channels[i] = std::vector<double>(m_values[i].begin(), m_values[i].end());
@@ -200,10 +199,17 @@ public:
 		// set duration to position at eos
 		Gst::Format fmt = Gst::FORMAT_TIME;
 		gint64 pos = 0;
-		if(m_pipeline && m_pipeline->query_position(fmt, pos))
-			m_duration = pos;
 
-		response(Gtk::RESPONSE_OK);
+		if(m_pipeline && m_pipeline->query_position(fmt, pos))
+		{
+			m_duration = pos;
+			response(Gtk::RESPONSE_OK);
+		}
+		else
+		{
+			GST_ELEMENT_ERROR(m_pipeline->gobj(), STREAM, FAILED, 
+					(_("Could not determinate the duration of the stream.")), (NULL));
+		}
 	}
 
 	/*

@@ -1,3 +1,8 @@
+2010-01-06  kitone  <kitone@gna.org>
+
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	Launch a gstreamer error if we cannot get the duration of the stream.
+
 2010-01-05  kitone  <kitone@gna.org>
 
 	* src/we/waveformrenderer.cc:
