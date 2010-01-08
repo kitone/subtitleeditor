@@ -278,6 +278,21 @@ protected:
 	 */
 	void update_pipeline_state_and_timeout();
 
+	/*
+	 * Return the number of audio track.
+	 */
+	gint get_n_audio();
+
+	/*
+	 * Sets the current audio track. (-1 = auto)
+	 */
+	void set_current_audio(gint track);
+
+	/*
+	 * Return the current audio track.
+	 */
+	gint get_current_audio();
+
 protected:
 
 	Glib::RefPtr<Gdk::Window> m_video_window;
