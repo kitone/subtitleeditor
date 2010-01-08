@@ -568,6 +568,9 @@ bool GstPlayer::create_pipeline()
 
 	m_pipeline->property_audio_sink() = gen_audio_element();
 	m_pipeline->property_video_sink() = gen_video_element();
+	// each time the audio changed, emit the Player::signal_audio_changed
+	m_pipeline->signal_audio_changed().connect(
+			sigc::mem_fun(m_signal_audio_changed, &sigc::signal<void>::emit));
 
 	Glib::RefPtr<Gst::Bus> bus = m_pipeline->get_bus();
 
@@ -1073,4 +1076,47 @@ void GstPlayer::update_pipeline_state_and_timeout()
 	Gst::State old_st, new_st;
 	m_pipeline->get_state(old_st, new_st, 100 * GST_MSECOND);
 	on_timeout();
+}
+
+/*
+ * Return the number of audio track.
+ */
+gint GstPlayer::get_n_audio()
+{
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "n_audio: %d", 
+			(m_pipeline) ? m_pipeline->property_n_audio() : 0);
+
+	if(m_pipeline)
+		return m_pipeline->property_n_audio();
+	return 0;
+}
+
+/*
+ * Sets the current audio track. (-1 = auto)
+ */
+void GstPlayer::set_current_audio(gint track)
+{
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "track=%d", track);
+
+	if(!m_pipeline)
+		return;
+
+	if(track < -1)
+		track = -1;
+	
+	m_pipeline->property_current_audio() = track;
+	m_signal_audio_changed.emit(); // emit signal
+}
+
+/*
+ * Return the current audio track.
+ */
+gint GstPlayer::get_current_audio()
+{
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "current_audio: %d", 
+			(m_pipeline) ? m_pipeline->property_current_audio() : 0);
+
+	if(m_pipeline)
+		return m_pipeline->property_current_audio();
+	return -1;
 }

@@ -137,6 +137,26 @@ public:
 	 */
 	virtual void set_repeat(bool state) = 0;
 
+	/*
+	 * Return the number of audio track.
+	 */
+	virtual gint get_n_audio() = 0;
+
+	/*
+	 * Sets the current audio track. (-1 = auto)
+	 */
+	virtual void set_current_audio(gint track) = 0;
+
+	/*
+	 * Return the current audio track.
+	 */
+	virtual gint get_current_audio() = 0;
+
+	/*
+	 * A signal is emited when the audio changed, 
+	 * like the current audio track.
+	 */
+	sigc::signal<void>& signal_audio_changed();
 
 	/*
 	 */
@@ -163,7 +183,8 @@ protected:
 protected:
 	// Signals
 	sigc::signal<void, Player::State> m_signal_state_changed;
-	
+	sigc::signal<void> m_signal_audio_changed;
+
 	sigc::connection m_timeout_connection;
 	sigc::signal<void> m_timeout_signal;
 

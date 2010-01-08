@@ -120,3 +120,11 @@ sigc::signal<void>& Player::signal_keyframes_changed()
 	return m_keyframes_signal_changed;
 }
 
+/*
+ * A signal is emited when the audio changed, 
+ * like the current audio track.
+ */
+sigc::signal<void>& Player::signal_audio_changed()
+{
+	return m_signal_audio_changed;
+}
