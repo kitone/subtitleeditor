@@ -280,6 +280,12 @@ public:
 					_("Show or hide the video player in the current window"), video_player_display_state),
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_video_player_display_toggled));
 
+		action_group->add(
+				Gtk::Action::create(
+					"menu-audio-track",
+					_("Audio Track"),
+					_("Choice of an audio track")));
+
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -292,6 +298,10 @@ public:
 			"			<placeholder name='video-player-management'>"
 			"					<menuitem action='video-player/open'/>"
 			"					<menuitem action='video-player/close'/>"
+			"					<separator/>"
+			"					<menu action='menu-audio-track'>"
+			"						<placeholder name='audio-track-placeholder'/>"
+			"					</menu>"
 			"					<separator/>"
 			"					<menuitem action='video-player/play'/>"
 			"					<menuitem action='video-player/pause'/>"
@@ -332,6 +342,7 @@ public:
 			"</ui>";
 
 		ui_id = ui->add_ui_from_string(submenu);
+		ui_id_audio = ui->new_merge_id();
 
 		// Show/Hide video player
 		ui->add_ui(ui_id, "/menubar/menu-view/display-placeholder",
@@ -340,6 +351,8 @@ public:
 		// 
 		player()->signal_state_changed().connect(
 				sigc::mem_fun(*this, &VideoPlayerManagement::on_player_state_changed));
+		player()->signal_audio_changed().connect(
+				sigc::mem_fun(*this, &VideoPlayerManagement::on_player_audio_changed));
 
 		get_config().signal_changed("video-player").connect(
 				sigc::mem_fun(*this, &VideoPlayerManagement::on_config_video_player_changed));
@@ -354,6 +367,7 @@ public:
 
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
+		remove_menu_audio_track();
 		ui->remove_ui(ui_id);
 		ui->remove_action_group(action_group);
 	}
@@ -416,12 +430,27 @@ public:
 		// don't update if is playing or paused
 		if(state == Player::NONE || state == Player::READY)
 		{
+			if(state == Player::NONE)
+				remove_menu_audio_track();
+			else if(state == Player::READY)
+				build_menu_audio_track();
 			update_ui();
 
 			if(state == Player::READY)
 				if(get_config().get_value_bool("video-player", "display") == false)
 					get_config().set_value_bool("video-player", "display", true);
 		}
+	}
+
+	/*
+	 * The player emit the signal audio changed.
+	 * We update the current audio if need.
+	 */
+	void on_player_audio_changed()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		update_audio_track_from_player();	
 	}
 
 	/*
@@ -481,6 +510,112 @@ public:
 			}
 		}
 	}
+
+	/*
+	 * We remove the ActionGroup "VideoPlayerManagementAudioTrack"
+	 * and the ui.
+	 */
+	void remove_menu_audio_track()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+		if(action_group_audio)
+		{
+			get_ui_manager()->remove_ui(ui_id_audio);
+			get_ui_manager()->remove_action_group(action_group_audio);
+			action_group_audio.reset();
+		}
+	}
+
+	/*
+	 * Remove old menu items (tracks) and actions
+	 * and create a new one.
+	 */
+	void build_menu_audio_track()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+		// We clean the old audio menu
+		remove_menu_audio_track();
+		// Create audio actions
+		action_group_audio = Gtk::ActionGroup::create("VideoPlayerManagementAudioTrack");
+		get_ui_manager()->insert_action_group(action_group_audio);
+
+		Gtk::RadioButtonGroup group;
+		// A default track "Auto"
+		add_audio_track_entry(group, "audio-track-auto", _("Auto"), -1);
+		// Now we build an entry for each audio track
+		gint n_audio = player()->get_n_audio();
+		for(gint i=0; i < n_audio; ++i)
+		{
+			Glib::ustring track = Glib::ustring::compose("audio-track-%1", i);
+			Glib::ustring track_name = Glib::ustring::compose("Track %1", i + 1);
+
+			add_audio_track_entry(group, track, track_name, i);
+		}
+		// active the good track
+		update_audio_track_from_player();
+	}
+
+	/*
+	 * Update the radio item with the current audio track
+	 * from the player.
+	 */
+	void update_audio_track_from_player()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		if(!action_group_audio)
+			return;
+
+		gint current_audio = player()->get_n_audio();
+		// If it's < -1, we choose the track "Auto"
+		Glib::ustring track_action =  (current_audio < 0) ? "audio-track-auto" : Glib::ustring::compose("audio-track-%1", current_audio);
+
+		Glib::RefPtr<Gtk::ToggleAction> action = Glib::RefPtr<Gtk::ToggleAction>::cast_static(action_group_audio->get_action(track_action));
+		if(action)
+		{
+			if(action->get_active() == false) // Only if need
+				action->set_active(true);
+		}
+	}
+
+	/*
+	 * Create a new track entry (action and menu item).
+	 */
+	void add_audio_track_entry(
+			Gtk::RadioButtonGroup& group, 
+			const Glib::ustring &track_action, 
+			const Glib::ustring &track_label, 
+			gint track_number)
+	{
+		// action
+		Glib::RefPtr<Gtk::RadioAction> action = Gtk::RadioAction::create(group, track_action, track_label);
+		action_group_audio->add( action,
+				sigc::bind(
+					sigc::mem_fun(*this, &VideoPlayerManagement::set_current_audio), track_number, action));
+		// menuitem
+		get_ui_manager()->add_ui(
+				ui_id_audio, 
+				"/menubar/menu-video/video-player-management/menu-audio-track/audio-track-placeholder", 
+				track_action, track_action, Gtk::UI_MANAGER_AUTO, false);
+		// update
+		get_ui_manager()->ensure_update();
+	}
+
+	/*
+	 * The user choose a new track from the track menu, 
+	 * we update the player.
+	 */
+	void set_current_audio(gint track, Glib::RefPtr<Gtk::RadioAction> action)
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+		// Switching a toggle button launch two signal, 
+		// one for the button toggle to unactivated and an other to activated. 
+		// We need to check only for the signal activate.   
+		if(!action->get_active())
+			return;
+		player()->set_current_audio(track);
+	}
+
 protected:
 
 	/*
@@ -790,7 +925,9 @@ protected:
 
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
+	Gtk::UIManager::ui_merge_id ui_id_audio;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
+	Glib::RefPtr<Gtk::ActionGroup> action_group_audio;
 };
 
 

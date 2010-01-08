@@ -1,5 +1,11 @@
 2010-01-08  kitone  <kitone@gna.org>
 
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	Fix bug #14915 : Add the possibility of choice of an audio track to the
+	videoplayermanagement.
+
+2010-01-08  kitone  <kitone@gna.org>
+
 	* src/player.cc:
 	* src/player.h:
 	* src/vp/gstplayer.cc:
