@@ -363,6 +363,7 @@ bool VideoPlayer::is_good_subtitle(const Subtitle &sub, long time)
 
 /*
  * Try to found the good subtitle and init the player (text).
+ * FIXME: this's call each time
  */
 bool VideoPlayer::find_subtitle()
 {
