@@ -1,3 +1,8 @@
+2010-01-08  kitone  <kitone@gna.org>
+
+	* src/vp/videoplayer.cc:
+	FIXME comment for later.
+
 2010-01-06  kitone  <kitone@gna.org>
 
 	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
