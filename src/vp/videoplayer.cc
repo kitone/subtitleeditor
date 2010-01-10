@@ -381,6 +381,10 @@ bool VideoPlayer::find_subtitle()
 	if(!m_subtitle)
 	{
 		m_subtitle = doc->subtitles().find(time);
+		if(m_subtitle)
+			show_subtitle_text();
+		else
+			show_subtitle_null();
 	}
 	else
 	{
@@ -394,9 +398,17 @@ bool VideoPlayer::find_subtitle()
 		}
 		else if(time > m_subtitle.get_end()) // it's the old, try with the next subtitle
 		{
+			show_subtitle_null();
+
 			Subtitle next = doc->subtitles().get_next(m_subtitle);
 			if(next)
+			{
 				m_subtitle = next;
+				if(is_good_subtitle(m_subtitle, position))
+					show_subtitle_text();
+			}
+			else
+				m_subtitle = Subtitle();
 		}
 	}
 	return true;

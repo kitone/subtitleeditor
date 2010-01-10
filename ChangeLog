@@ -1,5 +1,10 @@
 2010-01-11  kitone  <kitone@gna.org>
 
+	* src/vp/videoplayer.cc:
+	Fix bug #15085 : last subtitle remains visible after playing in video player.
+
+2010-01-11  kitone  <kitone@gna.org>
+
 	* src/main.cc: 
 	Fix bug #15095 : gracefully exit if e.g. subtitleeditor.ui is missing.
 	(patch by Philip Jägenstedt <foolip>)
