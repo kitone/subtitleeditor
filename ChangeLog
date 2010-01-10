@@ -1,3 +1,9 @@
+2010-01-10  kitone  <kitone@gna.org>
+
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	Fix bug #15084 : default to the document format when saving
+	translations. (patch by Philip Jägenstedt <foolip>)
+
 2010-01-08  kitone  <kitone@gna.org>
 
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:

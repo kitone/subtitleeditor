@@ -530,6 +530,10 @@ protected:
 		if(dialog.get() == NULL)
 			dialog = DialogSaveDocument::create();
 
+		// default to the format of the original document
+		dialog->set_format(current->getFormat());
+		dialog->set_encoding(current->getCharset());
+		dialog->set_newline(current->getNewLine());
 		dialog->show();
 		if(dialog->run() == Gtk::RESPONSE_OK)
 		{
