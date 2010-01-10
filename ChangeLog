@@ -1,3 +1,9 @@
+2010-01-11  kitone  <kitone@gna.org>
+
+	* src/main.cc: 
+	Fix bug #15095 : gracefully exit if e.g. subtitleeditor.ui is missing.
+	(patch by Philip Jägenstedt <foolip>)
+
 2010-01-10  kitone  <kitone@gna.org>
 
 	* plugins/actions/documentmanagement/documentmanagement.cc:

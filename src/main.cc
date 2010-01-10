@@ -151,6 +151,9 @@ int main(int argc, char *argv[])
 			"subtitleeditor.ui", 
 			"window-main");
 
+	if(!application)
+		return EXIT_FAILURE;
+
 	application->init(options);
 
 	application->show();
