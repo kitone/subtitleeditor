@@ -111,7 +111,7 @@ protected:
 		if(subs.size() < 2)
 			return;
 
-		Glib::ustring text, translation;
+		Glib::ustring text, translation, note;
 
 		std::vector<Subtitle>::iterator it;
 
@@ -131,6 +131,10 @@ protected:
 
 				translation += (*it).get_translation();
 			}
+
+			if(!note.empty())
+				note += "\n";
+			note += (*it).get_note();
 		}
 
 		Subtitle first = subs.front();
@@ -138,6 +142,7 @@ protected:
 
 		first.set_text(text);
 		first.set_translation(translation);
+		first.set_note(note);
 		first.set_end(last.get_end());
 
 		// efface tous sauf le premiers
