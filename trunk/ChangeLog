@@ -1,6 +1,11 @@
 2010-01-12  kitone  <kitone@gna.org>
 
 	* plugins/actions/combinesubtitles/combinesubtitles.cc:
+	Typo and comments translated from French to English (or something close).
+
+2010-01-12  kitone  <kitone@gna.org>
+
+	* plugins/actions/combinesubtitles/combinesubtitles.cc:
 	Fix bug #15101 : Comments are not merged while merging subtitles.
 
 2010-01-11  kitone  <kitone@gna.org>

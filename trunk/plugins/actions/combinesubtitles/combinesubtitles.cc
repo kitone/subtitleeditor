@@ -64,7 +64,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void deactivate()
 	{
@@ -77,7 +76,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void update_ui()
 	{
@@ -91,7 +89,6 @@ public:
 protected:
 
 	/*
-	 *
 	 */
 	void on_combine_selected_subtitles()
 	{
@@ -101,8 +98,8 @@ protected:
 	}
 
 	/*
-	 *	Fusionne un groupe de s-t (text & translation)
-	 *	puis efface les s-t suivant
+	 * Merge a group of subtitles (text, translation and note)
+	 * to the first and delete next subtitles.
 	 */
 	void combine(Document *doc, std::vector<Subtitle> &subs)
 	{
@@ -117,20 +114,13 @@ protected:
 
 		for(it=subs.begin() ; it != subs.end(); ++it)
 		{
-			//if(!sub.get_text().empty())
-			{
-				if(!text.empty())
-					text += "\n";
-				text += (*it).get_text();
-			}
+			if(!text.empty())
+				text += "\n";
+			text += (*it).get_text();
 
-			//if(!sub.get_translation().empty())
-			{
-				if(!translation.empty())
-					translation += "\n";
-
-				translation += (*it).get_translation();
-			}
+			if(!translation.empty())
+				translation += "\n";
+			translation += (*it).get_translation();
 
 			if(!note.empty())
 				note += "\n";
@@ -145,15 +135,14 @@ protected:
 		first.set_note(note);
 		first.set_end(last.get_end());
 
-		// efface tous sauf le premiers
+		// delete subtitles without the first
 		std::vector<Subtitle> t(++subs.begin(), subs.end());
 		
 		doc->subtitles().remove(t);
 	}
 
 	/*
-	 *	Ne fonctionne que s'il y a plus d'un sous-titre dans la sélection
-	 *	est seulement si ils se suivent.
+	 * Work only if there are at less two subtitles and if they follow.
 	 */
 	bool execute()
 	{
@@ -165,9 +154,7 @@ protected:
 
 		Subtitles subtitles = doc->subtitles();
 
-
 		std::vector<Subtitle> selection = subtitles.get_selection();
-
 		if(selection.size() < 2)
 		{
 			doc->flash_message(_("Please select at least two subtitles."));
@@ -176,9 +163,8 @@ protected:
 
 		doc->start_command(_("Combine subtitles"));
 
-		//	Cette structure nous permet de fusionner 
-		//	seulement les sous-titres qui se suivent
-		//	le numéro du sous-titre est utiliser pour le teste.
+		// This structure is used to merge only the subtitles that follow.
+		// We use the subtitle number to check if it's the next.
 
 		std::list< std::vector<Subtitle> > subs;
 	
@@ -190,7 +176,7 @@ protected:
 		{
 			Subtitle sub = selection[i];
 
-			// Est-ce le sous-titre suivant ?
+			// Is the next subtitle?
 			if(sub.get_num() == last_id + 1)
 			{
 				subs.back().push_back( sub );
@@ -199,7 +185,7 @@ protected:
 			}
 			else
 			{
-				// On crée une nouvelle list seulement si la précédante est vide.
+				// Create new list only if the previous is empty.
 				if(!subs.back().empty())
 					subs.push_back( std::vector<Subtitle> () );
 			
@@ -209,11 +195,8 @@ protected:
 			}
 		}
 
-		//	fusion des sous-titres par la fin
-		//	dans un souci de simplicité.
-		//	Car après chaque fusion on éfface les sous-titres suivant
-		//	il faut donc partir de la fin pour ne pas rendre invalide les 
-		//	sous-titre (GtkTreeIter) dans le model.
+		// Merge subtitle from the end. This make your life easy.
+		// this avoid to have an invalidate subtitle caused by the delete of one.
 
 		while(!subs.empty())
 		{
