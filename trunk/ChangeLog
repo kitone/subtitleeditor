@@ -1,5 +1,12 @@
 2010-01-13  kitone  <kitone@gna.org>
 
+	* src/we/waveformrenderercairo.cc:
+	* src/we/waveformrenderergl.cc:
+	Fix bug #15032 : stuck in infinite loop for bad duration and other problems
+	with duration. (patch by Philip Jägenstedt <foolip>)
+
+2010-01-13  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/subtitletags.cc:
 	* src/subtitletags.h:

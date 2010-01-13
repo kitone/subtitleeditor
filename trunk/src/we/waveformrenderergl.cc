@@ -716,16 +716,22 @@ void WaveformRendererGL::draw_timeline(const Gdk::Rectangle &area)
 	long sec_5 = SubtitleTime(0,0,5,0).totalmsecs;
 	long sec_10 = SubtitleTime(0,0,10,0).totalmsecs;
 
-	int text_width = get_text_width("0:00:00");
-	
+	if(get_pos_by_time(sec_1) <= 0)
+		return;
 
-	while(get_pos_by_time(sec_1) < text_width + text_width * 0.5)//60)
+	int text_width = get_text_width("0:00:00");
+
+	float margin = text_width + text_width * 0.5;
+	while(get_pos_by_time(sec_1) < marker)
 	{
+		// for a sufficiently long duration sec_* will overflow before
+		// the loop terminates. check the largest of them.
+		if (sec_10 > (LONG_MAX/2))
+			break;
 		sec_1  *= 2;
 		sec_5  *= 2;
 		sec_10 *= 2;
 	}
-
 
 	draw_timeline_msecs(area, sec_1, 3);
 	draw_timeline_msecs(area, sec_5, 6);

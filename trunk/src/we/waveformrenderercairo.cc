@@ -370,12 +370,19 @@ void WaveformRendererCairo::draw_timeline(Cairo::RefPtr<Cairo::Context> &cr, con
 	long sec_5 = SubtitleTime(0,0,5,0).totalmsecs;
 	long sec_10 = SubtitleTime(0,0,10,0).totalmsecs;
 
+	if(get_pos_by_time(sec_1) <= 0)
+		return;
 
 	Cairo::TextExtents extents;
 	cr->get_text_extents("0:00:00", extents);
-	
-	while(get_pos_by_time(sec_1) < extents.width + extents.width * 0.5)
+
+	float margin = extents.width + extents.width * 0.5;
+	while(get_pos_by_time(sec_1) < margin)
 	{
+		// for a sufficiently long duration sec_* will overflow before
+		// the loop terminates. check the largest of them.
+		if (sec_10 > (LONG_MAX/2))
+			break;
 		sec_1  *= 2;
 		sec_5  *= 2;
 		sec_10 *= 2;
