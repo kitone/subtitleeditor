@@ -195,8 +195,6 @@ src/subtitlemodel.cc
 src/subtitlemodel.h
 src/subtitles.cc
 src/subtitles.h
-src/subtitletags.cc
-src/subtitletags.h
 src/subtitletime.cc
 src/subtitletime.h
 src/subtitleview.cc

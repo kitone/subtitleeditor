@@ -76,8 +76,6 @@ LIB_SUBTITLEEDITOR_FILES = \
 	subtitlemodel.h \
 	subtitles.cc \
 	subtitles.h \
-	subtitletags.cc \
-	subtitletags.h \
 	subtitletime.cc \
 	subtitletime.h \
 	subtitleview.cc \
