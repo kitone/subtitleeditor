@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
-<!--Generated with glade3 3.4.5 on Tue Jan 13 16:08:02 2009 -->
 <interface>
+  <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkAssistant" id="assistant">
     <property name="border_width">12</property>
     <property name="title" translatable="yes">Text Correction</property>
@@ -8,13 +9,18 @@
     <property name="default_width">700</property>
     <property name="default_height">600</property>
     <child>
+      <placeholder/>
+    </child>
+    <child>
       <object class="GtkVBox" id="vbox-tasks">
         <property name="visible">True</property>
         <property name="border_width">12</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <child>
           <object class="GtkVBox" id="vbox2">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="label5">
@@ -25,15 +31,16 @@
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">automatic</property>
+                <property name="shadow_type">etched-in</property>
                 <child>
                   <object class="GtkTreeView" id="treeview-tasks">
                     <property name="visible">True</property>
@@ -48,10 +55,13 @@
               </packing>
             </child>
           </object>
+          <packing>
+            <property name="position">0</property>
+          </packing>
         </child>
       </object>
       <packing>
-        <property name="page_type">GTK_ASSISTANT_PAGE_INTRO</property>
+        <property name="page_type">intro</property>
         <property name="title">Select Task</property>
       </packing>
     </child>
@@ -59,6 +69,7 @@
       <object class="GtkVBox" id="vbox-comfirmation">
         <property name="visible">True</property>
         <property name="border_width">12</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <child>
           <object class="GtkLabel" id="label2">
@@ -69,15 +80,16 @@
           </object>
           <packing>
             <property name="expand">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow4">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-            <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-            <property name="shadow_type">GTK_SHADOW_ETCHED_OUT</property>
+            <property name="hscrollbar_policy">automatic</property>
+            <property name="vscrollbar_policy">automatic</property>
+            <property name="shadow_type">etched-out</property>
             <child>
               <object class="GtkTreeView" id="treeview-comfirmation">
                 <property name="visible">True</property>
@@ -99,38 +111,47 @@
                 <property name="visible">True</property>
                 <property name="spacing">6</property>
                 <property name="homogeneous">True</property>
-                <property name="layout_style">GTK_BUTTONBOX_START</property>
+                <property name="layout_style">start</property>
                 <child>
                   <object class="GtkButton" id="button-comfirmation-mark-all">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
                     <property name="label" translatable="yes">_Mark All</property>
-                    <property name="use_underline">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="button-comfirmation-unmark-all">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="label" translatable="yes">_Unmark All</property>
                     <property name="use_underline">True</property>
                   </object>
                   <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button-comfirmation-unmark-all">
+                    <property name="label" translatable="yes">_Unmark All</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_underline">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
                     <property name="position">1</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
               <object class="GtkCheckButton" id="check-comfirmation-remove-blank">
+                <property name="label" translatable="yes">_Remove all blank subtitles</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label" translatable="yes">_Remove all blank subtitles</property>
+                <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
                 <property name="draw_indicator">True</property>
               </object>
@@ -147,7 +168,7 @@
         </child>
       </object>
       <packing>
-        <property name="page_type">GTK_ASSISTANT_PAGE_CONFIRM</property>
+        <property name="page_type">confirm</property>
         <property name="title">Comfirme Changement</property>
       </packing>
     </child>
