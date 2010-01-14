@@ -1,3 +1,30 @@
+2010-01-14  kitone  <kitone@gna.org>
+
+	* plugins/actions/changeframerate/dialog-change-framerate.ui:
+	* plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui:
+	* plugins/actions/errorchecking/dialog-error-checking-preferences.ui:
+	* plugins/actions/errorchecking/dialog-error-checking.ui:
+	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:
+	* plugins/actions/findandreplace/dialog-find-and-replace.ui:
+	* plugins/actions/movesubtitles/dialog-move-subtitles.ui:
+	* plugins/actions/preferences/dialog-preferences.ui:
+	* plugins/actions/scalesubtitles/dialog-scale-subtitles.ui:
+	* plugins/actions/spellchecking/dialog-spell-checking.ui:
+	* plugins/actions/splitdocument/dialog-split-document.ui:
+	* plugins/actions/styleeditor/dialog-style-editor.ui:
+	* plugins/actions/textcorrection/assistant-text-correction.ui:
+	* plugins/actions/viewmanager/dialog-view-manager.ui:
+	* plugins/subtitleformats/bitc/dialog-bitc.ui:
+	* share/ui/dialog-character-codings.ui:
+	* share/ui/dialog-encodings-chooser.ui:
+	* share/ui/dialog-export-text.ui:
+	* share/ui/dialog-import-text.ui:
+	* share/ui/dialog-open-document.ui:
+	* share/ui/dialog-save-document.ui:
+	* share/ui/dialog-script-properties.ui:
+	* share/ui/subtitleeditor.ui:
+	Fixes and update all ui files with the good GtkOrientation value.
+
 2010-01-13  kitone  <kitone@gna.org>
 
 	* src/we/waveformrenderercairo.cc:
