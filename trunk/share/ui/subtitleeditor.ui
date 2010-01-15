@@ -17,7 +17,7 @@
     <property name="step_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="adjustment4">
-    <property name="value">1</property>
+    <property name="value">3</property>
     <property name="lower">0.10000000000000001</property>
     <property name="upper">10</property>
     <property name="step_increment">0.10000000000000001</property>
@@ -179,7 +179,6 @@
                             <property name="visible">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <property name="adjustment">adjustment2</property>
-                            <property name="fill_level">0</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -199,7 +198,6 @@
                         <property name="orientation">vertical</property>
                         <property name="adjustment">adjustment3</property>
                         <property name="inverted">True</property>
-                        <property name="fill_level">0</property>
                         <property name="draw_value">False</property>
                       </object>
                       <packing>
@@ -215,7 +213,6 @@
                         <property name="orientation">vertical</property>
                         <property name="adjustment">adjustment4</property>
                         <property name="inverted">True</property>
-                        <property name="fill_level">0</property>
                         <property name="draw_value">False</property>
                       </object>
                       <packing>
