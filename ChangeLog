@@ -1,3 +1,8 @@
+2010-01-15  kitone  <kitone@gna.org>
+
+	* share/ui/subtitleeditor.ui:
+	Fix previous error commit.
+
 2010-01-14  kitone  <kitone@gna.org>
 
 	* plugins/actions/changeframerate/dialog-change-framerate.ui:
