@@ -1,3 +1,8 @@
+2010-01-16  kitone  <kitone@gna.org>
+
+	* src/keyframes.cc:
+	Fix possible leak caused by an uninitialized value.
+
 2010-01-15  kitone  <kitone@gna.org>
 
 	* share/ui/subtitleeditor.ui:

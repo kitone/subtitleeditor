@@ -30,6 +30,7 @@
 /*
  */
 KeyFrames::KeyFrames()
+:ref_count_(0)
 {
 	reference();
 }
