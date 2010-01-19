@@ -72,7 +72,15 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 	actiongroup->add(Gtk::Action::create("menu-options", _("_Options")));
 	actiongroup->add(Gtk::Action::create("menu-extensions", _("E_xtensions")));
 	actiongroup->add(Gtk::Action::create("menu-help", _("_Help")));
-
+	// file submenu
+	actiongroup->add(Gtk::Action::create("menu-open", _("_Open")));
+	actiongroup->add(Gtk::Action::create("menu-save", _("_Save")));
+	// If we add the stock_id when we create the actions, 
+	// they will automatically set up with the 
+	// default shortcut (Open: Ctrl+O, Save: Ctrl+S). 
+	// This make a conflict with others actions.  
+	actiongroup->get_action("menu-open")->set_stock_id(Gtk::Stock::OPEN);
+	actiongroup->get_action("menu-save")->set_stock_id(Gtk::Stock::SAVE);
 	// UIManager
 
 	m_refUIManager->signal_connect_proxy().connect(

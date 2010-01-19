@@ -94,8 +94,18 @@ public:
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_open));
 
 		action_group->add(
+				Gtk::Action::create("open-project", _("Open Project"), _("Open a Subtitle Editor Project")),
+					sigc::mem_fun(*this, &DocumentManagementPlugin::on_open_project));
+		action_group->get_action("open-project")->set_stock_id(Gtk::Stock::OPEN);
+
+		action_group->add(
 				Gtk::Action::create("save-document", Gtk::Stock::SAVE, "", _("Save the current file")), Gtk::AccelKey("<Control>S"),
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_save));
+
+		action_group->add(
+				Gtk::Action::create("save-project", _("Save Project"), _("Save the current file as Subtitle Editor Project")),
+					sigc::mem_fun(*this, &DocumentManagementPlugin::on_save_project));
+		action_group->get_action("save-project")->set_stock_id(Gtk::Stock::SAVE);
 
 		action_group->add(
 				Gtk::Action::create("save-as-document", Gtk::Stock::SAVE_AS, "", _("Save the current file with a different name")), Gtk::AccelKey("<Shift><Control>S"),
@@ -167,20 +177,26 @@ public:
 
 		ui_id = ui->new_merge_id();
 
-		#define ADD_UI(name)	ui->add_ui(ui_id, "/menubar/menu-file/"name, name, name);
+		#define ADD_UI(name) ui->add_ui(ui_id, "/menubar/menu-file/"name, name, name);
+		#define ADD_OPEN_UI(name) ui->add_ui(ui_id, "/menubar/menu-file/menu-open/"name, name, name);
+		#define ADD_SAVE_UI(name) ui->add_ui(ui_id, "/menubar/menu-file/menu-save/"name, name, name);
 		
 		ADD_UI("new-document");
-		ADD_UI("open-document");
-		ADD_UI("open-translation");
+		ADD_OPEN_UI("open-document");
+		ADD_OPEN_UI("open-project");
+		ADD_OPEN_UI("open-translation");
 		ADD_UI("menu-recent-open-document");
-		ADD_UI("save-document");
-		ADD_UI("save-as-document");
-		ADD_UI("save-all-documents");
-		ADD_UI("save-translation");
+		ADD_SAVE_UI("save-document");
+		ADD_SAVE_UI("save-project");
+		ADD_SAVE_UI("save-as-document");
+		ADD_SAVE_UI("save-all-documents");
+		ADD_SAVE_UI("save-translation");
 		ADD_UI("close-document");
 		ADD_UI("exit");
-		
+	
 		#undef ADD_UI
+		#undef ADD_OPEN_UI
+		#undef ADD_SAVE_UI
 	}
 
 	/*
@@ -210,6 +226,7 @@ public:
 
 		action_group->get_action("open-translation")->set_sensitive(visible);
 		action_group->get_action("save-document")->set_sensitive(visible);
+		action_group->get_action("save-project")->set_sensitive(visible);
 		action_group->get_action("save-as-document")->set_sensitive(visible);
 		action_group->get_action("save-all-documents")->set_sensitive(visible);
 		action_group->get_action("save-translation")->set_sensitive(visible);
@@ -235,15 +252,30 @@ protected:
 	}
 
 	/*
-	 *	launch a filechooser dialog
-	 *	and open a document
 	 */
 	void on_open()
+	{
+		open_filechooser();
+	}
+
+	/*
+	 */
+	void on_open_project()
+	{
+		open_filechooser("Subtitle Editor Project");
+	}
+
+	/*
+	 * Launch a filechooser dialog and open a document
+	 */
+	void open_filechooser(const Glib::ustring &filterformat = Glib::ustring())
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		DialogOpenDocument::auto_ptr dialog = DialogOpenDocument::create();
 
+		if(!filterformat.empty())
+			dialog->set_current_filter(filterformat);
 		dialog->show();
 		
 		if(dialog->run() != Gtk::RESPONSE_OK)
@@ -340,7 +372,7 @@ protected:
 	/*
 	 *
 	 */
-	bool save_as_document(Document *doc)
+	bool save_as_document(Document *doc, const Glib::ustring &default_format = Glib::ustring())
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -353,7 +385,8 @@ protected:
 		else
 			dialog->set_current_name(doc->getName());
 
-		dialog->set_format(doc->getFormat());
+		dialog->set_format(
+				default_format.empty() ? doc->getFormat() : default_format);
 		dialog->set_encoding(doc->getCharset());
 		dialog->set_newline(doc->getNewLine());
 		dialog->set_do_overwrite_confirmation(true);
@@ -404,6 +437,20 @@ protected:
 		g_return_if_fail(doc);
 
 		save_document(doc);
+	}
+
+	/*
+	 */
+	void on_save_project()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Document *doc = get_current_document();
+
+		g_return_if_fail(doc);
+
+		save_as_document(doc, "Subtitle Editor Project");
+
 	}
 
 	/*
