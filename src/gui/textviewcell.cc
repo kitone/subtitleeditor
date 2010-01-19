@@ -26,16 +26,16 @@
 #include "automaticspellchecker.h"
 
 /*
- *
+ * Contructor
+ * Initialize the widget with the AutomaticSpellChecker.
  */
 TextViewCell::TextViewCell()
 :	Glib::ObjectBase(typeid(TextViewCell)),
-	Gtk::CellEditable()
+	Gtk::CellEditable(), 
+	m_editing_canceled(false), 
+	m_used_ctrl_enter_to_confirm_change(false)
 {
 	se_debug(SE_DEBUG_VIEW);
-
-	m_canceled = false;
-	m_in_popup = false;
 
 	m_used_ctrl_enter_to_confirm_change = Config::getInstance().get_value_bool("subtitle-view", "used-ctrl-enter-to-confirm-change");
 
@@ -48,7 +48,24 @@ TextViewCell::TextViewCell()
 }
 
 /*
- *
+ * Destructor
+ */
+TextViewCell::~TextViewCell()
+{
+	se_debug(SE_DEBUG_VIEW);
+}
+
+/*
+ * Define the current text.
+ */
+void TextViewCell::set_text(const Glib::ustring &text)
+{
+	se_debug_message(SE_DEBUG_VIEW, "text=<%s>", text.c_str());
+	get_buffer()->set_text(text);
+}
+
+/*
+ * Return the current text.
  */
 Glib::ustring TextViewCell::get_text() 
 {
@@ -63,16 +80,8 @@ Glib::ustring TextViewCell::get_text()
 }
 
 /*
- *
- */
-void TextViewCell::set_text(const Glib::ustring &text)
-{
-	se_debug_message(SE_DEBUG_VIEW, "text=<%s>", text.c_str());
-	get_buffer()->set_text(text);
-}
-
-/*
- *
+ * Check if the user cancel the editing with Escape.
+ * Check if the user apply the editing with Enter (depend on user prefs).
  */
 bool TextViewCell::on_key_press_event(GdkEventKey* event)
 {
@@ -80,7 +89,7 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event)
 
 	if(event->keyval == GDK_Escape)
 	{
-		m_canceled = true;
+		m_editing_canceled = true;
 		remove_widget();
 		return true;
 	}
@@ -95,61 +104,23 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event)
 
 	if((m_used_ctrl_enter_to_confirm_change ? (st_enter && st_ctrl) : (st_enter && !st_ctrl)))
 	{
-		editing_done();
+		// We don't need to call editing_done(), there's a call in on_remove_widget()
+		//editing_done();
 		remove_widget();
 		return true;
 	}
-
-	Gtk::TextView::on_key_press_event(event);
-	return true;
+	return Gtk::TextView::on_key_press_event(event);
 }
 
 /*
- *
+ * Before removing the widget we call editing_done 
+ * if there's no canceled signal.
  */
-bool TextViewCell::on_focus_out_event(GdkEventFocus *ev)
+void TextViewCell::on_remove_widget()
 {
 	se_debug(SE_DEBUG_VIEW);
-
-	// fix #10061 : Title editor field clears too easily
-	if(!m_canceled)
+	// We apply the editing if there's not a canceled signal. 
+	if(m_editing_canceled == false)
 		editing_done();
-
-	return Gtk::TextView::on_focus_out_event(ev);
+	Gtk::CellEditable::on_remove_widget();
 }
-
-/*
- *
- */
-void TextViewCell::editing_done()
-{
-	se_debug(SE_DEBUG_VIEW);
-
-	if(m_in_popup)
-		return;
-
-	Gtk::CellEditable::editing_done();
-}
- 
-/*
- *
- */
-void TextViewCell::on_populate_popup (Gtk::Menu* menu)
-{
-	se_debug(SE_DEBUG_VIEW);
-
-	m_in_popup = true;
-
-	menu->signal_unmap().connect(
-			sigc::mem_fun(*this, &TextViewCell::unmap_popup));
-}
-
-/*
- *
- */
-void TextViewCell::unmap_popup()
-{
-	se_debug(SE_DEBUG_VIEW);
-	m_in_popup = false;
-}
-

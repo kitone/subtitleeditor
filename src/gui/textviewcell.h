@@ -34,50 +34,44 @@ class TextViewCell : public Gtk::TextView, public Gtk::CellEditable
 public:
 
 	/*
-	 *
+	 * Contructor
+	 * Initialize the widget with the AutomaticSpellChecker.
 	 */
 	TextViewCell();
 
 	/*
-	 *
+	 * Destructor
 	 */
-	Glib::ustring get_text();
+	~TextViewCell();
 
 	/*
-	 *
+	 * Define the current text.
 	 */
 	void set_text(const Glib::ustring &text);
+
+	/*
+	 * Return the current text.
+	 */
+	Glib::ustring get_text();
 
 protected:
 
 	/*
-	 *
+	 * Check if the user cancel the editing with Escape.
+	 * Check if the user apply the editing with Enter (depend on user prefs).
 	 */
 	bool on_key_press_event(GdkEventKey* event);
 
 	/*
-	 *
+	 * Before removing the widget we call editing_done 
+	 * if there's no canceled signal.
 	 */
-	bool on_focus_out_event(GdkEventFocus *ev);
-
-	/*
-	 *
-	 */
-	void editing_done();
- 
-	/*
-	 *
-	 */
-	void on_populate_popup (Gtk::Menu* menu);
-
-	/*
-	 *
-	 */
-	void unmap_popup();
+	void on_remove_widget();
 
 protected:
-	bool m_in_popup;
-	bool m_canceled;
+
+	bool m_editing_canceled;
+	// User preference to confirm and exit editing
 	bool m_used_ctrl_enter_to_confirm_change;
 };
 
