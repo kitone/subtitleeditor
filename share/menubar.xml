@@ -3,15 +3,19 @@
 
 		<menu action="menu-file">
 			<placeholder name="new-document"/>
-			<placeholder name="open-document"/>
-			<placeholder name="open-translation"/>
-			<separator/>
+			<menu action="menu-open" name="menu-open">
+				<placeholder name="open-document"/>
+				<placeholder name="open-project"/>
+				<placeholder name="open-translation"/>
+			</menu>
 			<placeholder name="menu-recent-open-document"/>
-			<separator/>
-			<placeholder name="save-document"/>
-			<placeholder name="save-as-document"/>
-			<placeholder name="save-all-documents"/>
-			<placeholder name="save-translation"/>
+			<menu action="menu-save" name="menu-save">
+				<placeholder name="save-document"/>
+				<placeholder name="save-as-document"/>
+				<placeholder name="save-all-documents"/>
+				<placeholder name="save-project"/>
+				<placeholder name="save-translation"/>
+			</menu>
 			<separator/>
 			<!-- placeholder name="properties"/ -->
 			<separator/>
