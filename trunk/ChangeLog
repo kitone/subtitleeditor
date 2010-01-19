@@ -1,5 +1,12 @@
 2010-01-19  kitone  <kitone@gna.org>
 
+	* src/gui/textviewcell.cc:
+	* src/gui/textviewcell.h:
+	Fixes the cell editing. 
+	Undesirable behavior with focus out/in.
+
+2010-01-19  kitone  <kitone@gna.org>
+
 	* src/gui/cellrenderercustom.h:
 	Improve debug info and fix fr comment.
 
