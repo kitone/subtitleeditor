@@ -1,3 +1,8 @@
+2010-01-20  kitone  <kitone@gna.org>
+
+	* share/ui/subtitleeditor.ui:
+	Fix previous commit. (2010-01-14)
+
 2010-01-19  kitone  <kitone@gna.org>
 
 	* plugins/actions/documentmanagement/documentmanagement.cc:
