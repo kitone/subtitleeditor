@@ -1,5 +1,11 @@
 2010-01-19  kitone  <kitone@gna.org>
 
+	* src/gui/dialogfilechooser.cc:
+	* src/gui/dialogfilechooser.h:
+	Add function set_current filter. Use dynamic Gtk::FileFilter.
+
+2010-01-19  kitone  <kitone@gna.org>
+
 	* src/gui/textviewcell.cc:
 	* src/gui/textviewcell.h:
 	Fixes the cell editing. 
