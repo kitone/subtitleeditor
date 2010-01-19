@@ -55,6 +55,12 @@ public:
 	 */
 	virtual ~DialogFileChooser();
 
+	/*
+	 * Define the current file filter.
+	 * ex: 'Subtitle Editor Project', 'SubRip', 'MicroDVD' ...
+	 */
+	void set_current_filter(const Glib::ustring &subtitleformat_name);
+
 protected:
 	Glib::ustring m_name;
 };

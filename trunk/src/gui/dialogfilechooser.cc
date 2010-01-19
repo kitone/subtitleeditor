@@ -40,23 +40,23 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 	std::list<SubtitleFormatInfo>::const_iterator it;
 	std::list<SubtitleFormatInfo> infos = SubtitleFormatSystem::instance().get_infos();
 
-	Gtk::FileFilter all, supported;
+	Gtk::FileFilter *all=manage(new Gtk::FileFilter), *supported = manage(new Gtk::FileFilter);
 	// all files
 	{
-		all.set_name(_("All files (*.*)"));
-		all.add_pattern("*");
-		dialog->add_filter(all);
+		all->set_name(_("All files (*.*)"));
+		all->add_pattern("*");
+		dialog->add_filter(*all);
 	}
 
 	// all supported formats
 	{
-		supported.set_name(_("All supported formats (*.ass, *.ssa, *.srt, ...)"));
+		supported->set_name(_("All supported formats (*.ass, *.ssa, *.srt, ...)"));
 		for(it = infos.begin(); it != infos.end(); ++it)
 		{
-			supported.add_pattern("*." + (*it).extension);
+			supported->add_pattern("*." + (*it).extension);
 		}
 
-		dialog->add_filter(supported);
+		dialog->add_filter(*supported);
 	}
 
 	// by format
@@ -66,15 +66,15 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 			Glib::ustring name = (*it).name;
 			Glib::ustring ext = (*it).extension;
 	
-			Gtk::FileFilter filter;
-			filter.set_name(name + " (" + ext + ")");
-			filter.add_pattern("*." + ext);
-			dialog->add_filter(filter);
+			Gtk::FileFilter *filter = manage(new Gtk::FileFilter);
+			filter->set_name(name + " (" + ext + ")");
+			filter->add_pattern("*." + ext);
+			dialog->add_filter(*filter);
 		}
 	}
 
 	// select by default
-	dialog->set_filter(supported);
+	dialog->set_filter(*supported);
 }
 
 /*
@@ -103,6 +103,22 @@ DialogFileChooser::~DialogFileChooser()
 	Config::getInstance().set_value_string("dialog-last-folder", m_name, last);
 }
 
+/*
+ * Define the current file filter.
+ * ex: 'Subtitle Editor Project', 'SubRip', 'MicroDVD' ...
+ */
+void DialogFileChooser::set_current_filter(const Glib::ustring &subtitleformat_name)
+{
+	std::list<Gtk::FileFilter*> filters = list_filters();
+	for(std::list<Gtk::FileFilter*>::const_iterator it = filters.begin(); it != filters.end(); ++it)
+	{
+		if((*it)->get_name().find(subtitleformat_name) == Glib::ustring::npos)
+			continue;
+		
+		set_filter(*(*it));
+		return;
+	}
+}
 
 
 /*
