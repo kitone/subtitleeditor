@@ -108,7 +108,7 @@ Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
 
 	m_editable->signal_editing_done().connect(
 			sigc::bind(sigc::mem_fun(*this, &CellRendererCustom<T>::cell_editing_done), path));
-		
+
 	// prepare widget
 	if(Gtk::Entry *entry = dynamic_cast<Gtk::Entry*>(m_editable))
 	{
@@ -154,11 +154,15 @@ void CellRendererCustom<T>::cell_editing_done(const Glib::ustring &path)
 	se_debug(SE_DEBUG_VIEW);
 
 	if(m_editable == NULL)
+	{
+		se_debug_message(SE_DEBUG_VIEW, "m_editable is NULL");
 		return;
+	}
 
 	Glib::ustring text = m_editable->get_text();
-	
-	// pour eviter un doublon
+	se_debug_message(SE_DEBUG_VIEW, "text from editable='%s'", text.c_str());
+
+	// Define to NULL to avoid a duplicate call
 	m_editable = NULL;
 	edited(path, text);
 }

@@ -1,3 +1,8 @@
+2010-01-19  kitone  <kitone@gna.org>
+
+	* src/gui/cellrenderercustom.h:
+	Improve debug info and fix fr comment.
+
 2010-01-16  kitone  <kitone@gna.org>
 
 	* src/keyframes.cc:
