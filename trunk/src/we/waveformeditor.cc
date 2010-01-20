@@ -461,6 +461,9 @@ void WaveformEditor::on_scale_changed()
 
 	se_debug_message(SE_DEBUG_WAVEFORM, "scale=%f", value);
 
+	if(Config::getInstance().get_value_int("waveform", "scale") != value)
+		Config::getInstance().set_value_int("waveform", "scale", value);
+
 	redraw_renderer();
 }
 
