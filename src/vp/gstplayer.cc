@@ -536,6 +536,7 @@ void GstPlayer::on_size_allocate(Gtk::Allocation& rect)
 		return;
 
 	videowindow->move_resize(0,0, rect.get_width(), rect.get_height());
+	videowindow->clear();
 }
 
 /*
@@ -561,6 +562,8 @@ bool GstPlayer::on_visibility_notify_event(GdkEventVisibility* ev)
  */
 bool GstPlayer::create_pipeline()
 {
+	se_debug(SE_DEBUG_VIDEO_PLAYER);
+
 	// Clean or destroy the old pipeline
 	set_pipeline_null();
 
