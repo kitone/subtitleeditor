@@ -1,3 +1,8 @@
+2010-01-26  kitone  <kitone@gna.org>
+
+	* src/vp/gstplayer.cc:
+	Clear Gdk::Window when the widget is resize.
+
 2010-01-20  kitone  <kitone@gna.org>
 
 	* src/we/waveformeditor.cc:
