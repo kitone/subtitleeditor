@@ -41,6 +41,8 @@ public:
 	AssistantTextCorrection(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 	:Gtk::Assistant(cobject)
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		doc = SubtitleEditorWindow::get_instance()->get_current_document();
 
 		builder->get_widget_derived("vbox-tasks", m_tasksPage);
@@ -48,6 +50,7 @@ public:
 
 		add_tasks();
 
+		se_debug_message(SE_DEBUG_PLUGINS, "Init tasks pages");
 		// Init tasks pages
 		for(int i=0; i< get_n_pages(); ++i)
 		{
@@ -59,8 +62,17 @@ public:
 
 	/*
 	 */
+	~AssistantTextCorrection()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+	}
+
+	/*
+	 */
 	void add_tasks()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		add_page(manage(new HearingImpairedPage), 1);
 		add_page(manage(new CommonErrorPage), 2);
 		add_page(manage(new CapitalizationPage), 3);
@@ -70,6 +82,8 @@ public:
 	 */
 	void add_page(PatternsPage *page, unsigned int pos)
 	{
+		se_debug_message(SE_DEBUG_PLUGINS, "new task page '%s' to the position '%d'", page->get_page_title().c_str(), pos);
+
 		insert_page(*page, pos);
 		set_page_title(*page, page->get_page_title());
 	}
@@ -80,6 +94,8 @@ public:
 	 */
 	void on_prepare(Gtk::Widget* page)
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		AssistantPage* ap = dynamic_cast<AssistantPage*>(page);
 		if(ap && ap == m_comfirmationPage)
 		{
@@ -96,6 +112,8 @@ public:
 	 */
 	std::list<Pattern*> get_patterns()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		std::list<Pattern*> patterns;
 
 		for(int i=0; i< get_n_pages(); ++i)
@@ -117,10 +135,13 @@ public:
 	 */
 	void on_apply()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		m_comfirmationPage->apply(doc);
+		
+		se_debug_message(SE_DEBUG_PLUGINS, "save config...");
+
 		save_cfg();
-		destroy_();
-		//delete this;
 	}
 
 	/*
@@ -128,8 +149,19 @@ public:
 	 */
 	void on_cancel()
 	{
-		destroy_();
-		//delete this;
+		se_debug(SE_DEBUG_PLUGINS);
+		//destroy_();
+		delete this;
+	}
+
+	/*
+	 * Close signal, destroy the window.
+	 */
+	void on_close()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+		//destroy_();
+		delete this;
 	}
 
 	/*
@@ -137,6 +169,8 @@ public:
 	 */
 	void save_cfg()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
 		for(int i=0; i< get_n_pages(); ++i)
 		{
 			PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
