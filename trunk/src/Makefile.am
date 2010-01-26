@@ -126,13 +126,11 @@ libsubtitleeditor_la_SOURCES = \
 
 libsubtitleeditor_la_LIBADD = \
 	$(GTKMM_LIBS) \
-	$(LIBUIMM_LIBS) \
 	$(LIBXML_LIBS) \
 	$(ENCHANT_LIBS)
 
 libsubtitleeditor_la_CXXFLAGS = \
 	$(GTKMM_CFLAGS) \
-	$(LIBUIMM_CFLAGS) \
 	$(LIBXML_CFLAGS) \
 	$(ENCHANT_CFLAGS) \
 	$(PACKAGE_DIRECTORY)

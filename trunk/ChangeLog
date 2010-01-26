@@ -1,5 +1,10 @@
 2010-01-26  kitone  <kitone@gna.org>
 
+	* src/Makefile.am:
+	Remove unused value LIBUIMM_LIBS & LIBUIMM_FLAGS.
+
+2010-01-26  kitone  <kitone@gna.org>
+
 	* src/vp/gstplayer.cc:
 	Clear Gdk::Window when the widget is resize.
 
