@@ -271,7 +271,7 @@ fi
 # =========================================================================
 # gcc flags
 
-CXXFLAGS="$CXXFLAGS -ansi -Wall" # -Wextra -Wconversion"
+CXXFLAGS="$CXXFLAGS -ansi -Wall -Wextra -Wconversion" #-Werror
 
 # =========================================================================
 # make use of ccache
