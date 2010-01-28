@@ -1,6 +1,15 @@
 2010-01-28  kitone  <kitone@gna.org>
 
 	* configure.in:
+	* plugins/actions/Makefile.am:
+	* plugins/actions/typewriter/Makefile.am:
+	* plugins/actions/typewriter/typewriter.cc:
+	* plugins/actions/typewriter/typewriter.se-plugin.in:
+	Introduce new plugin typewriter.
+
+2010-01-28  kitone  <kitone@gna.org>
+
+	* configure.in:
 	Add -Wextra -Wconversion to the CXXFLAGS.
 
 2010-01-26  kitone  <kitone@gna.org>

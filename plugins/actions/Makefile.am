@@ -33,6 +33,7 @@ FILES = \
 		textcorrection \
 		timemodemanagement \
 		timingfromplayer \
+		typewriter \
 		videoplayermanagement \
 		viewmanager \
 		wavefrommanagement
