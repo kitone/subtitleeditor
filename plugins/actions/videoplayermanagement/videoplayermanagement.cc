@@ -109,6 +109,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-backwards-very-short", 
+					Gtk::Stock::MEDIA_REWIND,
 					_("Very Short"), 
 					_("Very short skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), VERY_SHORT));
@@ -116,6 +117,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-backwards-short", 
+					Gtk::Stock::MEDIA_REWIND,
 					_("Short"), 
 					_("Short skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), SHORT));
@@ -123,6 +125,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-backwards-medium", 
+					Gtk::Stock::MEDIA_REWIND,
 					_("Medium"), 
 					_("Medium skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), MEDIUM));
@@ -130,6 +133,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-backwards-long", 
+					Gtk::Stock::MEDIA_REWIND,
 					_("Long"), 
 					_("Long skip backwards")),
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), LONG));
@@ -144,6 +148,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-forward-very-short", 
+					Gtk::Stock::MEDIA_FORWARD,
 					_("Very Short"), 
 					_("Very short skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), VERY_SHORT));
@@ -151,6 +156,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-forward-short", 
+					Gtk::Stock::MEDIA_FORWARD,
 					_("Short"), 
 					_("Short skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), SHORT));
@@ -158,6 +164,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-forward-medium", 
+					Gtk::Stock::MEDIA_FORWARD,
 					_("Medium"), 
 					_("Medium skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), MEDIUM));
@@ -165,6 +172,7 @@ public:
 		action_group->add(
 				Gtk::Action::create(
 					"video-player/skip-forward-long", 
+					Gtk::Stock::MEDIA_FORWARD,
 					_("Long"), 
 					_("Long skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), LONG));

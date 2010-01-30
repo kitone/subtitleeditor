@@ -1,3 +1,8 @@
+2010-01-30  kitone  <kitone@gna.org>
+
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	Add icons to the skip items.
+
 2010-01-28  kitone  <kitone@gna.org>
 
 	* configure.in:
