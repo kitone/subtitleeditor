@@ -1,3 +1,9 @@
+2010-01-31  kitone  <kitone@gna.org>
+
+	* src/subtitleformatsystem.cc:
+	* src/subtitleformatsystem.h:
+	New function get_info from the format.
+
 2010-01-30  kitone  <kitone@gna.org>
 
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
