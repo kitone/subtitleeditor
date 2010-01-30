@@ -248,6 +248,9 @@ DialogSaveDocument::DialogSaveDocument(BaseObjectType* cobject, const Glib::RefP
 	add_button(Gtk::Stock::SAVE, Gtk::RESPONSE_OK);
 	
 	set_default_response(Gtk::RESPONSE_OK);
+
+	m_comboFormat->signal_changed().connect(
+			sigc::mem_fun(*this, &DialogSaveDocument::on_combo_format_changed));
 }
 
 /*
@@ -297,6 +300,35 @@ void DialogSaveDocument::set_newline(const Glib::ustring &newline)
 Glib::ustring DialogSaveDocument::get_newline() const
 {
 	return m_comboNewLine->get_value();
+}
+
+/*
+ * Update the extension of the current filename.
+ */
+void DialogSaveDocument::on_combo_format_changed()
+{
+	Glib::ustring filename = get_filename();
+	if(filename.empty())
+		return;
+
+	// Only work with the name of the file
+	Glib::ustring basename = Glib::path_get_basename(filename);
+
+	// Try to get the extension from the format
+	SubtitleFormatInfo sfinfo;
+	if(SubtitleFormatSystem::instance().get_info(get_format(), sfinfo) == false)
+		return;
+	
+	// Test if the name already have an extension then replace the 
+	// previous extension by the new one or simply add the extension to the name.
+	Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*)(\\.)(.*)$");
+	if(re->match(basename))
+		basename = re->replace(basename, 0, "\\1." + sfinfo.extension, Glib::RegexMatchFlags(0));
+	else
+		basename = basename + "." + sfinfo.extension;
+
+	// Update only the current name
+	set_current_name(basename);
 }
 
 /*
