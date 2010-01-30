@@ -1,5 +1,13 @@
 2010-01-31  kitone  <kitone@gna.org>
 
+	* share/ui/dialog-export-text.ui:
+	* share/ui/dialog-import-text.ui:
+	* share/ui/dialog-open-document.ui:
+	* share/ui/dialog-save-document.ui:
+	Small fixes in the border-with value.
+
+2010-01-31  kitone  <kitone@gna.org>
+
 	* src/gui/dialogfilechooser.cc:
 	* src/gui/dialogfilechooser.h:
 	Update the extension of the filename when the format change.
