@@ -173,6 +173,11 @@ public:
 	Glib::ustring get_newline() const;
 
 	/*
+	 * Update the extension of the current filename.
+	 */
+	void on_combo_format_changed();
+
+	/*
 	 * Create a instance of the dialog.
 	 */
 	static auto_ptr create();
