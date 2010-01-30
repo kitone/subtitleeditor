@@ -67,6 +67,11 @@ public:
 	std::list<SubtitleFormatInfo> get_infos();
 
 	/*
+	 * Return information about the subtitle format.
+	 */
+	bool get_info(const Glib::ustring &subtitle_format, SubtitleFormatInfo &info);
+
+	/*
 	 * Check if the subtitle format is supported.
 	 */
 	bool is_supported(const Glib::ustring &format);

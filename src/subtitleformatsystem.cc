@@ -187,6 +187,23 @@ std::list<SubtitleFormatInfo> SubtitleFormatSystem::get_infos()
 }
 
 /*
+ * Return information about the subtitle format.
+ */
+bool SubtitleFormatSystem::get_info(const Glib::ustring &subtitle_format, SubtitleFormatInfo &info)
+{
+	std::list<SubtitleFormatInfo> infos = get_infos();
+	for(std::list<SubtitleFormatInfo>::const_iterator it = infos.begin(); it != infos.end(); ++it)
+	{
+		if((*it).name == subtitle_format)
+		{
+			info = *it;
+			return true;
+		}
+	}
+	return false;
+}
+
+/*
  * Check if the subtitle format is supported.
  */
 bool SubtitleFormatSystem::is_supported(const Glib::ustring &format)
