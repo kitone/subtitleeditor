@@ -26,6 +26,7 @@ FILES = \
 		reversetextandtranslation \
 		scalesubtitles \
 		selection \
+		sortsubtitles \
 		spellchecking \
 		splitdocument \
 		splitsubtitle \

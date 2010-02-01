@@ -91,6 +91,11 @@ public:
 	void remove(unsigned int start, unsigned int end);
 
 	/*
+	 * Prefer the function using an array if there is a need to remove several subtitles.
+	 */
+	void remove(const Subtitle &sub);
+
+	/*
 	 *
 	 */
 	Subtitle find(const SubtitleTime &time);
