@@ -294,6 +294,16 @@ void Subtitles::remove(unsigned int start, unsigned int end)
 }
 
 /*
+ * Prefer the function using an array if there is a need to remove several subtitles.
+ */
+void Subtitles::remove(const Subtitle &sub)
+{
+	std::vector<Subtitle> buf;
+	buf.push_back(sub);
+	remove(buf);
+}
+
+/*
  *
  */
 Subtitle Subtitles::find(const SubtitleTime &time)

@@ -63,6 +63,8 @@
 			<placeholder name="extend-length"/>
 			<!--separator/-->
 			<placeholder name="move-after-preceding-subtitle"/>
+			<separator/>
+			<placeholder name="placeholder"/>
 		</menu>
 
 		<menu action="menu-tools">
