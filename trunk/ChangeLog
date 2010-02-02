@@ -1,3 +1,9 @@
+2010-02-02  kitone  <kitone@gna.org>
+
+	* NEWS:
+	* configure.in:
+	Preparing 0.36.0 release.
+
 2010-02-01  kitone  <kitone@gna.org>
 
 	Fix bug #14651 : Subtitle sorting option.

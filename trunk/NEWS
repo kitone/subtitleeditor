@@ -1,3 +1,24 @@
+2010-02-02 - 0.36.0
+
+	* Two new plugins : sortsubtitles, typewriter
+	* Update the extension of the filename when the format change (dialog save)
+	* Add 'Open Project' and 'Save Project' in the menu File
+	* Cleanup in the menu File
+	* Improve Waveform Generator
+	* Fix crash caused by the text correction tool
+	* Fix an undesirable behavior with the cell editing
+	* Fix leak caused by an uninitialized value (waveform)
+	* Fix bug #14915 : Add the possibility of choice of an audio track to the player
+	* Fix bug #15101 : Comments are not merged while merging subtitles
+	* Fix bug #15085 : last subtitle remains visible after playing in video player
+	* Fix bug #14651 : Subtitle sorting option. (see sortsubtitles plugin)
+
+	Patch: Philip Jägensted
+	* Fix bug #15084 : default to the document format when saving translations
+	* Fix bug #15095 : gracefully exit if e.g. subtitleeditor.ui is missing
+	* Fix bug #15032 : Update duration value after EOS signal (waveform generator)
+	* Fix bug #15032 : stuck in infinite loop for bad duration and other problems with duration (waveform)
+
 2009-12-31 - 0.35.1
 
 	* Fix build error
