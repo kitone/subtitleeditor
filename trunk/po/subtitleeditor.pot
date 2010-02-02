@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-30 16:37+0100\n"
+"POT-Creation-Date: 2010-02-02 11:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,11 +159,11 @@ msgstr ""
 msgid "Merge the selected subtitles"
 msgstr ""
 
-#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:168
+#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:160
 msgid "Please select at least two subtitles."
 msgstr ""
 
-#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:172
+#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:164
 msgid "Combine subtitles"
 msgstr ""
 
@@ -267,90 +267,106 @@ msgid "Open a file"
 msgstr ""
 
 #: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+msgid "Open Project"
+msgstr ""
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+msgid "Open a Subtitle Editor Project"
+msgstr ""
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:102
 msgid "Save the current file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:101
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:106
+msgid "Save Project"
+msgstr ""
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:106
+msgid "Save the current file as Subtitle Editor Project"
+msgstr ""
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:111
 msgid "Save the current file with a different name"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:105
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
 msgid "Save _All"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:105
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
 msgid "Save all open files"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:110
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:120
 msgid "Open _Translation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:110
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:120
 msgid "Open translation from file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:114
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Save Trans_lation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:114
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Save translation to file"
 msgstr ""
 
 #. recent files
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:118
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
 msgid "Open _Recent"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:137
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:147
 msgid "Close the current file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:142
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:152
 msgid "E_xit"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:142
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:152
 msgid "Quit the program"
 msgstr ""
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:288
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:320
 msgid "I am already open"
 msgstr ""
 
 #. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:322
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:380
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:354
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:413
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr ""
 
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:330
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:388
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:362
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:421
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:471
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:518
 msgid "Open translation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:499
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:546
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:560
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:611
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:563
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:614
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr ""
@@ -673,18 +689,19 @@ msgstr ""
 msgid "<span size=\"small\">the uri to the video file</span>"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:7
+#. TRANSLATORS: Do not translate replaceable tokens #xxx.
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:8
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:9
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:10
 #: ../plugins/actions/externalvideoplayer/externalvideoplayer.se-plugin.in.h:1
 msgid "External Video Player"
 msgstr ""
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:10
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:11
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
@@ -1102,7 +1119,7 @@ msgid "<b>Text Subtitle</b>"
 msgstr ""
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:9
-#: ../share/ui/dialog-script-properties.ui.h:6
+#: ../share/ui/dialog-script-properties.ui.h:5
 msgid "<b>Video</b>"
 msgstr ""
 
@@ -1470,6 +1487,25 @@ msgstr ""
 msgid "Invert subtitles selection"
 msgstr ""
 
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:55
+msgid "S_ort Subtitles"
+msgstr ""
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:55
+msgid "Sort subtitles based on their start time"
+msgstr ""
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:157
+#, c-format
+msgid "1 subtitle has been reordered."
+msgid_plural "%d subtitles have been reordered."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:162
+msgid "No need to sort subtitles."
+msgstr ""
+
 #: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:1
 msgid "A_dd Word"
 msgstr ""
@@ -1556,10 +1592,12 @@ msgid "Split the selected subtitles"
 msgstr ""
 
 #: ../plugins/actions/splitsubtitle/splitsubtitle.cc:105
+#: ../plugins/actions/typewriter/typewriter.cc:156
 msgid "Please select at least one subtitle."
 msgstr ""
 
 #: ../plugins/actions/splitsubtitle/splitsubtitle.cc:109
+#: ../plugins/actions/typewriter/typewriter.cc:160
 msgid "Split subtitles"
 msgstr ""
 
@@ -1812,7 +1850,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: ../plugins/actions/textcorrection/textcorrection.cc:188
+#: ../plugins/actions/textcorrection/textcorrection.cc:222
 msgid "Text _Correction"
 msgstr ""
 
@@ -1871,6 +1909,26 @@ msgstr ""
 msgid "Set subtitle end"
 msgstr ""
 
+#: ../plugins/actions/typewriter/typewriter.cc:54
+msgid "_Type Writer"
+msgstr ""
+
+#: ../plugins/actions/typewriter/typewriter.cc:57
+msgid "Characters - Linear"
+msgstr ""
+
+#: ../plugins/actions/typewriter/typewriter.cc:62
+msgid "Characters - Random"
+msgstr ""
+
+#: ../plugins/actions/typewriter/typewriter.cc:67
+msgid "Words - Linear"
+msgstr ""
+
+#: ../plugins/actions/typewriter/typewriter.cc:72
+msgid "Words - Random"
+msgstr ""
+
 #. _("_Open Media"),
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:70
 msgid "Open a multimedia file"
@@ -1893,163 +1951,176 @@ msgstr ""
 msgid "Skip _Backwards"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:112
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:147
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:113
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:152
 msgid "Very Short"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:113
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:114
 msgid "Very short skip backwards"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:119
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:154
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:121
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:160
 msgid "Short"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:120
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:122
 msgid "Short skip backwards"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:126
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:161
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:129
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:168
 msgid "Medium"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:127
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:130
 msgid "Medium skip backwards"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:133
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:168
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:137
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:176
 msgid "Long"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:134
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:138
 msgid "Long skip backwards"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:142
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:146
 msgid "Skip _Forward"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:148
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:153
 msgid "Very short skip forward"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:155
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:161
 msgid "Short skip forward"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:162
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:169
 msgid "Medium skip forward"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:169
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:177
 msgid "Long skip forward"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:176
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:184
 msgid "Rate"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:177
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:183
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:190
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:197
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:185
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:191
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:198
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:205
 msgid "Define the playback rate"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:182
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:190
 msgid "_Slower"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:189
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:197
 msgid "_Faster"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:196
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:204
 msgid "_Normal"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:204
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:212
 msgid "_Seek To Selection"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:205
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:213
 msgid "Seek to the first selected subtitle"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:214
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:222
 msgid "_Repeat"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:215
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:223
 msgid "Enable or disable the repeat mode"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:224
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:232
 msgid "Play _Previous Subtitle"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:225
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:233
 msgid "Play previous subtitle from the first selected subtitle"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:232
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:240
 msgid "Play _Selection"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:233
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:241
 msgid "Play the selected subtitle"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:240
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:248
 msgid "Play _Next Subtitle"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:241
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:249
 msgid "Play next subtitle from the first selected subtitle"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:248
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:256
 msgid "Play Previous Second"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:249
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:257
 msgid "Play the second preceding the first selected subtitle"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:255
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:263
 msgid "Play First Second"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:256
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:264
 msgid "Play the first second of the subtitle currently selected"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:262
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:270
 msgid "Play Last Second"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:263
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:271
 msgid "Play the last second of the subtitle currently selected"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:269
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:277
 msgid "Play Next Second"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:270
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:278
 msgid "Play the second following the subtitle currently selected"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:279
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:287
 msgid "_Video Player"
 msgstr ""
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:280
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:288
 msgid "Show or hide the video player in the current window"
+msgstr ""
+
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:294
+msgid "Audio Track"
+msgstr ""
+
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:295
+msgid "Choice of an audio track"
+msgstr ""
+
+#. A default track "Auto"
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:552
+msgid "Auto"
 msgstr ""
 
 #: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:2
@@ -2091,6 +2162,10 @@ msgstr ""
 
 #: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:40
 msgid "Generate Waveform"
+msgstr ""
+
+#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:211
+msgid "Could not determinate the duration of the stream."
 msgstr ""
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:75
@@ -2162,7 +2237,8 @@ msgid "Try to respect the timing preferences"
 msgstr ""
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:139
-msgid "_Wavform"
+#: ../src/gui/menubar.cc:70
+msgid "_Waveform"
 msgstr ""
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:139
@@ -2495,45 +2571,45 @@ msgstr ""
 msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:403
+#: ../src/gui/dialogfilechooser.cc:451
 msgid "Open Video"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:409 ../src/gui/dialogfilechooser.cc:487
-#: ../src/gui/dialogfilechooser.cc:563
+#: ../src/gui/dialogfilechooser.cc:457 ../src/gui/dialogfilechooser.cc:535
+#: ../src/gui/dialogfilechooser.cc:611
 msgid "Video"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:420 ../src/gui/dialogfilechooser.cc:498
+#: ../src/gui/dialogfilechooser.cc:468 ../src/gui/dialogfilechooser.cc:546
 msgid "Audio"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:428 ../src/gui/dialogfilechooser.cc:507
-#: ../src/gui/dialogfilechooser.cc:574
+#: ../src/gui/dialogfilechooser.cc:476 ../src/gui/dialogfilechooser.cc:555
+#: ../src/gui/dialogfilechooser.cc:622
 msgid "ALL"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:459
+#: ../src/gui/dialogfilechooser.cc:507
 msgid "Open Waveform"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:465
+#: ../src/gui/dialogfilechooser.cc:513
 msgid "Waveform & Media"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:481
+#: ../src/gui/dialogfilechooser.cc:529
 msgid "Waveform (*.wf)"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:539
+#: ../src/gui/dialogfilechooser.cc:587
 msgid "Open Keyframe"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:545
+#: ../src/gui/dialogfilechooser.cc:593
 msgid "Keyframe & Media"
 msgstr ""
 
-#: ../src/gui/dialogfilechooser.cc:557
+#: ../src/gui/dialogfilechooser.cc:605
 msgid "Keyframe (*.kf)"
 msgstr ""
 
@@ -2566,27 +2642,32 @@ msgstr ""
 msgid "_Keyframes"
 msgstr ""
 
-#: ../src/gui/menubar.cc:70
-msgid "_Waveform"
-msgstr ""
-
 #: ../src/gui/menubar.cc:71
 msgid "V_iew"
 msgstr ""
 
 #: ../src/gui/menubar.cc:73
-msgid "_Extensions"
+msgid "E_xtensions"
 msgstr ""
 
 #: ../src/gui/menubar.cc:74
 msgid "_Help"
 msgstr ""
 
-#: ../src/keyframes.cc:87 ../src/subtitleformatsystem.cc:70
+#. file submenu
+#: ../src/gui/menubar.cc:76
+msgid "_Open"
+msgstr ""
+
+#: ../src/gui/menubar.cc:77
+msgid "_Save"
+msgstr ""
+
+#: ../src/keyframes.cc:88 ../src/subtitleformatsystem.cc:70
 msgid "Couldn't recognize format of the file."
 msgstr ""
 
-#: ../src/keyframes.cc:91
+#: ../src/keyframes.cc:92
 msgid "Couldn't get the keyframe size on the file."
 msgstr ""
 
@@ -2792,42 +2873,42 @@ msgstr ""
 msgid "Invalid fps"
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:604
+#: ../src/vp/gstplayer.cc:610
 #, c-format
 msgid ""
 "Failed to create a GStreamer audio output (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:642
+#: ../src/vp/gstplayer.cc:648
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:651
+#: ../src/vp/gstplayer.cc:657
 #, c-format
 msgid ""
 "Failed to create a GStreamer textoverlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:664
+#: ../src/vp/gstplayer.cc:670
 #, c-format
 msgid ""
 "Failed to create a GStreamer sink (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:881
+#: ../src/vp/gstplayer.cc:883
 #, c-format
 msgid ""
 "Media file could not be played.\n"
 "%s"
 msgstr ""
 
-#: ../src/we/waveformeditor.cc:791 ../src/we/waveformeditor.cc:796
+#: ../src/we/waveformeditor.cc:794 ../src/we/waveformeditor.cc:799
 msgid "Editing position"
 msgstr ""
 
@@ -2883,98 +2964,94 @@ msgid "Save Document"
 msgstr ""
 
 #: ../share/ui/dialog-script-properties.ui.h:1
-msgid "*"
-msgstr ""
-
-#: ../share/ui/dialog-script-properties.ui.h:2
 msgid "<b>Basic</b>"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:3
+#: ../share/ui/dialog-script-properties.ui.h:2
 msgid "<b>Behaviour</b>"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:4
+#: ../share/ui/dialog-script-properties.ui.h:3
 msgid "<b>Miscellaneous</b>"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:5
+#: ../share/ui/dialog-script-properties.ui.h:4
 msgid "<b>Read-only info</b>"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:7
+#: ../share/ui/dialog-script-properties.ui.h:6
 msgid "Collisions:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:8
+#: ../share/ui/dialog-script-properties.ui.h:7
 msgid "Normal"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:9
+#: ../share/ui/dialog-script-properties.ui.h:8
 msgid "Original Editing:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:10
+#: ../share/ui/dialog-script-properties.ui.h:9
 msgid "Original Script:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:11
+#: ../share/ui/dialog-script-properties.ui.h:10
 msgid "Original Timing:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:12
+#: ../share/ui/dialog-script-properties.ui.h:11
 msgid "Original Translation:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:13
+#: ../share/ui/dialog-script-properties.ui.h:12
 msgid "PlayDepth:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:14
+#: ../share/ui/dialog-script-properties.ui.h:13
 msgid "PlayResX:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:15
+#: ../share/ui/dialog-script-properties.ui.h:14
 msgid "PlayResY:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:16
+#: ../share/ui/dialog-script-properties.ui.h:15
 msgid "Point Time: "
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:17
+#: ../share/ui/dialog-script-properties.ui.h:16
 msgid "Reverse"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:18
+#: ../share/ui/dialog-script-properties.ui.h:17
 msgid "Script Properties"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:19
+#: ../share/ui/dialog-script-properties.ui.h:18
 msgid "Script Type:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:20
+#: ../share/ui/dialog-script-properties.ui.h:19
 msgid "Script Updated By:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:21
+#: ../share/ui/dialog-script-properties.ui.h:20
 msgid "Sync Point:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:22
+#: ../share/ui/dialog-script-properties.ui.h:21
 msgid "Timer:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:23
+#: ../share/ui/dialog-script-properties.ui.h:22
 msgid "Title:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:24
+#: ../share/ui/dialog-script-properties.ui.h:23
 msgid "Update Details:"
 msgstr ""
 
-#: ../share/ui/dialog-script-properties.ui.h:25
+#: ../share/ui/dialog-script-properties.ui.h:24
 msgid "Wrap Style:"
 msgstr ""
 
@@ -3156,6 +3233,14 @@ msgstr ""
 msgid "Selection"
 msgstr ""
 
+#: ../plugins/actions/sortsubtitles/sortsubtitles.se-plugin.in.h:1
+msgid "Sort Subtitles"
+msgstr ""
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.se-plugin.in.h:2
+msgid "Sort subtitles based on their start time."
+msgstr ""
+
 #: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:1
 msgid "Checks the spelling of the current document."
 msgstr ""
@@ -3190,6 +3275,14 @@ msgstr ""
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:2
 msgid "Use the current player position to set the subtitle time."
+msgstr ""
+
+#: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:1
+msgid "FIXME."
+msgstr ""
+
+#: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:2
+msgid "Type Writer"
 msgstr ""
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:1
