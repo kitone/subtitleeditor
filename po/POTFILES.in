@@ -53,6 +53,7 @@ plugins/actions/reversetextandtranslation/reversetextandtranslation.cc
 plugins/actions/scalesubtitles/dialog-scale-subtitles.ui
 plugins/actions/scalesubtitles/scalesubtitles.cc
 plugins/actions/selection/selection.cc
+plugins/actions/sortsubtitles/sortsubtitles.cc
 plugins/actions/spellchecking/dialog-spell-checking.ui
 plugins/actions/spellchecking/spellchecking.cc
 plugins/actions/splitdocument/dialog-split-document.ui
@@ -76,6 +77,7 @@ plugins/actions/textcorrection/taskspage.h
 plugins/actions/textcorrection/textcorrection.cc
 plugins/actions/timemodemanagement/timemodemanagement.cc
 plugins/actions/timingfromplayer/timingfromplayer.cc
+plugins/actions/typewriter/typewriter.cc
 plugins/actions/videoplayermanagement/videoplayermanagement.cc
 plugins/actions/viewmanager/dialog-view-manager.ui
 plugins/actions/viewmanager/viewmanager.cc
@@ -268,6 +270,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/reversetextandtranslation/reversetextandtranslation.se-plugin.in
 [type: gettext/ini] plugins/actions/scalesubtitles/scalesubtitles.se-plugin.in
 [type: gettext/ini] plugins/actions/selection/selection.se-plugin.in
+[type: gettext/ini] plugins/actions/sortsubtitles/sortsubtitles.se-plugin.in
 [type: gettext/ini] plugins/actions/spellchecking/spellchecking.se-plugin.in
 [type: gettext/ini] plugins/actions/splitdocument/splitdocument.se-plugin.in
 [type: gettext/ini] plugins/actions/splitsubtitle/splitsubtitle.se-plugin.in
@@ -275,6 +278,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/textcorrection/textcorrection.se-plugin.in
 [type: gettext/ini] plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in
+[type: gettext/ini] plugins/actions/typewriter/typewriter.se-plugin.in
 [type: gettext/ini] plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/viewmanager/viewmanager.se-plugin.in
 [type: gettext/ini] plugins/actions/wavefrommanagement/waveformmanagement.se-plugin.in
