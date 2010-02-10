@@ -1,5 +1,12 @@
 2010-02-10  kitone  <kitone@gna.org>
 
+	* plugins/actions/plaintext/plaintext.cc:
+	* share/menubar.xml:
+	* src/gui/menubar.cc:
+	Reorganize the menu file with a sub-menu import and export. 
+
+2010-02-10  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Switching back to development version.
 
