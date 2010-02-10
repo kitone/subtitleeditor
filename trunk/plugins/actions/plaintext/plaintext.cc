@@ -45,7 +45,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void activate()
 	{
@@ -69,12 +68,11 @@ public:
 
 		ui->insert_action_group(action_group);
 
-		ui->add_ui(ui_id, "/menubar/menu-file/plain-text-import", "plain-text-import", "plain-text-import");
-		ui->add_ui(ui_id, "/menubar/menu-file/plain-text-export", "plain-text-export", "plain-text-export");
+		ui->add_ui(ui_id, "/menubar/menu-file/menu-import/placeholder", "plain-text-import", "plain-text-import");
+		ui->add_ui(ui_id, "/menubar/menu-file/menu-export/placeholder", "plain-text-export", "plain-text-export");
 	}
 
 	/*
-	 *
 	 */
 	void deactivate()
 	{
@@ -87,7 +85,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void update_ui()
 	{
@@ -101,7 +98,6 @@ public:
 protected:
 
 	/*
-	 *
 	 */
 	void on_import_transcript()
 	{
@@ -141,13 +137,11 @@ protected:
 				dialog_error(
 						build_message(_("Could not import from the file \"%s\"."), uri.c_str()), 
 						ex.what());
-
 			}
 		}
 	}
 
 	/*
-	 *
 	 */
 	void on_export_transcript()
 	{
