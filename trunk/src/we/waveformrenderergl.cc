@@ -722,7 +722,7 @@ void WaveformRendererGL::draw_timeline(const Gdk::Rectangle &area)
 	int text_width = get_text_width("0:00:00");
 
 	float margin = text_width + text_width * 0.5;
-	while(get_pos_by_time(sec_1) < marker)
+	while(get_pos_by_time(sec_1) < margin)
 	{
 		// for a sufficiently long duration sec_* will overflow before
 		// the loop terminates. check the largest of them.
