@@ -1,3 +1,8 @@
+2010-02-15  kitone  <kitone@gna.org>
+
+	* src/we/waveformrenderergl.cc:
+	Fix waveform renderer gl build error.
+
 2010-02-10  kitone  <kitone@gna.org>
 
 	* plugins/actions/plaintext/plaintext.cc:
