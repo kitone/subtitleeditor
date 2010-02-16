@@ -81,10 +81,12 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar)
 	// they will automatically set up with the 
 	// default shortcut (Open: Ctrl+O, Save: Ctrl+S). 
 	// This make a conflict with others actions.  
+#if GTKMM_CHECK_VERSION(2,16,0)
 	actiongroup->get_action("menu-open")->set_stock_id(Gtk::Stock::OPEN);
 	actiongroup->get_action("menu-save")->set_stock_id(Gtk::Stock::SAVE);
-	// UIManager
+#endif//GTKMM_CHECK_VERSION(2, 16, 0)
 
+	// UIManager
 	m_refUIManager->signal_connect_proxy().connect(
 			sigc::mem_fun(*this, &MenuBar::connect_proxy));
 
