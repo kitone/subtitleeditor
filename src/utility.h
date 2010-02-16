@@ -36,6 +36,16 @@
 #include "debug.h"
 
 /*
+ * Check whether a gtkmm version equal to or greater than 
+ * major.minor.micro is present.
+ */
+#define	GTKMM_CHECK_VERSION(major,minor,micro) \
+	(GTKMM_MAJOR_VERSION > (major) || \
+	 (GTKMM_MAJOR_VERSION == (major) && GTKMM_MINOR_VERSION > (minor)) || \
+	 (GTKMM_MAJOR_VERSION == (major) && GTKMM_MINOR_VERSION == (minor) && \
+		GTKMM_MICRO_VERSION >= (micro)))
+
+/*
  * Return one of the values depending on whether 
  * environment variable SE_DEV is defined or not.
  */

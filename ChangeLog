@@ -1,3 +1,9 @@
+2010-02-16  kitone  <kitone@gna.org>
+
+	* src/gui/menubar.cc:
+	* src/utility.h:
+	Fix bug #15374 : gtkmm-2.14 has not Gtk::Action set_stock_id.
+
 2010-02-15  kitone  <kitone@gna.org>
 
 	* src/we/waveformrenderergl.cc:
