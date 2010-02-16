@@ -96,7 +96,9 @@ public:
 		action_group->add(
 				Gtk::Action::create("open-project", _("Open Project"), _("Open a Subtitle Editor Project")),
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_open_project));
+#if GTKMM_CHECK_VERSION(2,16,0)
 		action_group->get_action("open-project")->set_stock_id(Gtk::Stock::OPEN);
+#endif//GTKMM_CHECK_VERSION(2,16,0)
 
 		action_group->add(
 				Gtk::Action::create("save-document", Gtk::Stock::SAVE, "", _("Save the current file")), Gtk::AccelKey("<Control>S"),
@@ -105,7 +107,9 @@ public:
 		action_group->add(
 				Gtk::Action::create("save-project", _("Save Project"), _("Save the current file as Subtitle Editor Project")),
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_save_project));
+#if GTKMM_CHECK_VERSION(2,16,0)
 		action_group->get_action("save-project")->set_stock_id(Gtk::Stock::SAVE);
+#endif//GTKMM_CHECK_VERSION(2,16,0)
 
 		action_group->add(
 				Gtk::Action::create("save-as-document", Gtk::Stock::SAVE_AS, "", _("Save the current file with a different name")), Gtk::AccelKey("<Shift><Control>S"),
