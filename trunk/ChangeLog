@@ -1,3 +1,9 @@
+2010-03-03  kitone  <kitone@gna.org>
+
+	* src/we/waveformeditor.cc:
+	* src/we/waveformrenderercairo.cc:
+	Improve dbg msg.
+
 2010-02-16  kitone  <kitone@gna.org>
 
 	* plugins/actions/documentmanagement/documentmanagement.cc:

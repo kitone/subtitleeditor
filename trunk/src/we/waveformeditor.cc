@@ -122,6 +122,8 @@ void WaveformEditor::load_config()
  */
 void WaveformEditor::on_create_renderer()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	Glib::ustring renderer_name = Config::getInstance().get_value_string("waveform", "renderer");
 
 #ifdef ENABLE_GL
@@ -150,6 +152,8 @@ void WaveformEditor::on_create_renderer()
  */
 void WaveformEditor::init_document(Document *doc)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	m_document = NULL;
 	for(unsigned int i=0; i<m_document_connection.size(); ++i)
 		m_document_connection[i].disconnect();
@@ -181,6 +185,8 @@ void WaveformEditor::init_document(Document *doc)
  */
 void WaveformEditor::init_renderer(WaveformRenderer *renderer)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	// Remove the old renderer and destroy.
 	if(m_waveformRenderer != NULL)
 	{
@@ -250,6 +256,8 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer)
  */
 void WaveformEditor::set_player(Player *player)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	m_player = player;
 
 	// init
@@ -335,6 +343,8 @@ long WaveformEditor::get_player_time()
  */
 void WaveformEditor::set_scale(float value)
 {
+	se_debug_message(SE_DEBUG_WAVEFORM, "scale=%f", value);
+
 	m_sliderScale->set_value(value);
 }
 
@@ -351,6 +361,8 @@ float WaveformEditor::get_scale()
  */
 void WaveformEditor::set_zoom(int value)
 {
+	se_debug_message(SE_DEBUG_WAVEFORM, "zoom=%d", value);
+
 	m_sliderZoom->set_value(value);
 }
 

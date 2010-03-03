@@ -163,6 +163,7 @@ protected:
 WaveformRendererCairo::WaveformRendererCairo()
 :WaveformRenderer()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
 }
 
 /*
@@ -170,6 +171,7 @@ WaveformRendererCairo::WaveformRendererCairo()
  */
 WaveformRendererCairo::~WaveformRendererCairo()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
 }
 
 /*
@@ -177,6 +179,8 @@ WaveformRendererCairo::~WaveformRendererCairo()
  */
 Gtk::Widget* WaveformRendererCairo::widget()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	return this;
 }
 
@@ -185,6 +189,8 @@ Gtk::Widget* WaveformRendererCairo::widget()
  */
 void WaveformRendererCairo::set_color(Cairo::RefPtr<Cairo::Context> &cr, float color[4])
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	cr->set_source_rgba(color[0], color[1], color[2], color[3]);
 }
 
@@ -194,6 +200,8 @@ void WaveformRendererCairo::set_color(Cairo::RefPtr<Cairo::Context> &cr, float c
  */
 void WaveformRendererCairo::waveform_changed()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(m_wf_surface)
 		m_wf_surface.clear();
 	queue_draw();
@@ -203,6 +211,8 @@ void WaveformRendererCairo::waveform_changed()
  */
 void WaveformRendererCairo::keyframes_changed()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	queue_draw();
 }
 
@@ -211,6 +221,8 @@ void WaveformRendererCairo::keyframes_changed()
  */
 void WaveformRendererCairo::redraw_all()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	queue_draw();
 }
 
@@ -219,6 +231,8 @@ void WaveformRendererCairo::redraw_all()
  */
 void WaveformRendererCairo::force_redraw_all()
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(m_wf_surface)
 		m_wf_surface.clear();
 	queue_draw();
@@ -248,6 +262,8 @@ bool WaveformRendererCairo::on_configure_event(GdkEventConfigure *ev)
  */
 bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	static Glib::Timer m_timer;
 
 	// check minimum size
@@ -355,6 +371,8 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
  */
 void WaveformRendererCairo::draw_timeline(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	// timeline
 	int width = area.get_width();
 	int height = area.get_height();
@@ -400,6 +418,8 @@ void WaveformRendererCairo::draw_timeline(Cairo::RefPtr<Cairo::Context> &cr, con
  */
 void WaveformRendererCairo::draw_timeline_msecs(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec, int upper)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	int height = area.get_height();
 
 	int start_area = get_start_area();
@@ -426,6 +446,8 @@ void WaveformRendererCairo::draw_timeline_msecs(Cairo::RefPtr<Cairo::Context> &c
  */
 void WaveformRendererCairo::draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	int start_area = get_start_area();
 
 	long start = get_time_by_pos(start_area);
@@ -461,6 +483,8 @@ void WaveformRendererCairo::draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr
  */
 void WaveformRendererCairo::draw_waveform(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(!m_waveform)
 		return;
 
@@ -482,6 +506,8 @@ void WaveformRendererCairo::draw_waveform(Cairo::RefPtr<Cairo::Context> &cr, con
  */
 void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, unsigned int channel)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(!m_waveform)
 		return;
 
@@ -543,6 +569,8 @@ void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, cons
  */
 void WaveformRendererCairo::draw_subtitle_text(Cairo::RefPtr<Cairo::Context> &cr, const Subtitle &sub, int start, int end)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	cr->save();
 
 	cr->rectangle(start, 0, end - start, get_height());
@@ -569,6 +597,8 @@ void WaveformRendererCairo::draw_subtitle_text(Cairo::RefPtr<Cairo::Context> &cr
  */
 void WaveformRendererCairo::draw_subtitles(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(!document())
 		return;
 
@@ -645,6 +675,8 @@ void WaveformRendererCairo::draw_subtitles(Cairo::RefPtr<Cairo::Context> &cr, co
  */
 void WaveformRendererCairo::draw_marker(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	if(!document())
 		return;
 
@@ -703,6 +735,8 @@ void WaveformRendererCairo::draw_marker(Cairo::RefPtr<Cairo::Context> &cr, const
  */
 void WaveformRendererCairo::draw_player_position(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	set_color(cr, m_color_player_position);
 
 	int pos = get_pos_by_time(player_time());
@@ -718,6 +752,8 @@ void WaveformRendererCairo::draw_player_position(Cairo::RefPtr<Cairo::Context> &
  */
 void WaveformRendererCairo::display_time_info(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	Cairo::TextExtents extents;
 	cr->get_text_extents(SubtitleTime::null(), extents);
 
@@ -757,6 +793,8 @@ void WaveformRendererCairo::display_time_info(Cairo::RefPtr<Cairo::Context> &cr,
  */
 void WaveformRendererCairo::draw_keyframes(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
+	se_debug(SE_DEBUG_WAVEFORM);
+
 	Player *player = SubtitleEditorWindow::get_instance()->get_player();
 	if(player == NULL)
 		return;
