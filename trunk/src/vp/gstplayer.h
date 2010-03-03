@@ -206,6 +206,12 @@ protected:
 	bool check_missing_plugins();
 
 	/*
+	 * Check if it's a Missing Plugin Message.
+	 * Add the description of the missing plugin in the list.
+	 */
+	bool is_missing_plugin_message(const Glib::RefPtr<Gst::MessageElement> &msg);
+
+	/*
 	 * Receive synchronous message emission to set up video. 
 	 */
 	void on_bus_message_sync(const Glib::RefPtr<Gst::Message> &msg);
@@ -220,6 +226,13 @@ protected:
 	 * Update the player state.
 	 */
 	void on_bus_message_state_changed(const Glib::RefPtr<Gst::MessageStateChanged> &msg);
+
+	/*
+	 * Check the missing plugin.
+	 * If is missing add in the list of missing plugins.
+	 * This list should be show later.
+	 */
+	void on_bus_message_element(const Glib::RefPtr<Gst::MessageElement> &msg);
 
 	/*
 	 * An error is detected. 

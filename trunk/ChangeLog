@@ -1,5 +1,13 @@
 2010-03-03  kitone  <kitone@gna.org>
 
+	* plugins/actions/keyframesmanagement/mediadecoder.h:
+	* plugins/actions/wavefrommanagement/mediadecoder.h:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	Move gstreamer missing plugin message in the Gst::MESSAGE_ELEMENT case.
+
+2010-03-03  kitone  <kitone@gna.org>
+
 	* src/we/waveformeditor.cc:
 	* src/we/waveformrenderercairo.cc:
 	Improve dbg msg.

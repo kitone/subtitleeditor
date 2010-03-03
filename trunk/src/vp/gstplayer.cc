@@ -779,6 +779,33 @@ bool GstPlayer::check_missing_plugins()
 }
 
 /*
+ * Check if it's a Missing Plugin Message.
+ * Add the description of the missing plugin in the list.
+ */
+bool GstPlayer::is_missing_plugin_message(const Glib::RefPtr<Gst::MessageElement> &msg)
+{
+	se_debug(SE_DEBUG_VIDEO_PLAYER);
+
+	if(!msg)
+		return false;
+	GstMessage *gstmsg = GST_MESSAGE(msg->gobj());
+	if(!gstmsg)
+		return false;
+	if(!gst_is_missing_plugin_message(gstmsg))
+		return false;
+
+	gchar *description = gst_missing_plugin_message_get_description(gstmsg);
+	if(!description)
+		return false;
+
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "missing plugin msg '%s'", description);
+
+	m_missing_plugins.push_back(description);
+	g_free(description);
+	return true;
+}
+
+/*
  * Receive synchronous message emission to set up video. 
  */
 void GstPlayer::on_bus_message_sync( const Glib::RefPtr<Gst::Message> &msg)
@@ -827,21 +854,11 @@ bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &bus, const Glib::Re
 			"type='%s' name='%s'", 
 			GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
 
-	// check the missing plugin.
-	// If is missing add in the list of missing plugins.
-	// This list should be show later.
-	if(gst_is_missing_plugin_message(msg->gobj()))
-	{
-		gchar *description = gst_missing_plugin_message_get_description(msg->gobj());
-		if(description)
-		{
-			m_missing_plugins.push_back(description);
-			g_free(description);
-		}
-	}
-
 	switch(msg->get_message_type())
 	{
+	case Gst::MESSAGE_ELEMENT: 
+			on_bus_message_element( Glib::RefPtr<Gst::MessageElement>::cast_dynamic(msg) );
+			break;
 	case Gst::MESSAGE_EOS: 
 			on_bus_message_eos( Glib::RefPtr<Gst::MessageEos>::cast_dynamic(msg) );
 			break;
@@ -861,6 +878,18 @@ bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &bus, const Glib::Re
 			break;
 	}
 	return true;
+}
+
+/*
+ * Check the missing plugin.
+ * If is missing add in the list of missing plugins.
+ * This list should be show later.
+ */
+void GstPlayer::on_bus_message_element(const Glib::RefPtr<Gst::MessageElement> &msg)
+{
+	se_debug(SE_DEBUG_VIDEO_PLAYER);
+
+	is_missing_plugin_message(msg);
 }
 
 /*

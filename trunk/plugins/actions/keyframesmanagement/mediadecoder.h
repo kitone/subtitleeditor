@@ -185,10 +185,10 @@ public:
 				"type='%s' name='%s'", 
 				GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
 
-		check_missing_plugin_message(msg);
-
 		switch(msg->get_message_type())
 		{
+		case Gst::MESSAGE_ELEMENT: 
+				return on_bus_message_element( Glib::RefPtr<Gst::MessageElement>::cast_dynamic(msg) );
 		case Gst::MESSAGE_EOS: 
 				return on_bus_message_eos( Glib::RefPtr<Gst::MessageEos>::cast_dynamic(msg) );
 		case Gst::MESSAGE_ERROR:
@@ -246,6 +246,15 @@ public:
 		on_work_finished();
 		return true;
 	}
+
+	/*
+	 */
+	virtual bool on_bus_message_element(Glib::RefPtr<Gst::MessageElement> msg)
+	{
+		check_missing_plugin_message(msg);
+		return true;
+	}
+
 
 	/*
 	 */
@@ -318,14 +327,27 @@ protected:
 
 	/*
 	 */
-	void check_missing_plugin_message(const Glib::RefPtr<Gst::Message> &msg)
+	void check_missing_plugin_message(const Glib::RefPtr<Gst::MessageElement> &msg)
 	{
-		if(gst_is_missing_plugin_message(msg->gobj()))
-		{
-			gchar *description = gst_missing_plugin_message_get_description(msg->gobj());
-			m_missing_plugins.push_back(description);
-			g_free(description);
-		}
+		se_debug(SE_DEBUG_PLUGINS);
+
+		if(!msg)
+			return;
+		GstMessage *gstmsg = GST_MESSAGE(msg->gobj());
+		if(!gstmsg)
+			return;
+		if(!gst_is_missing_plugin_message(gstmsg))
+			return;
+
+		gchar *description = gst_missing_plugin_message_get_description(gstmsg);
+		if(!description)
+			return;
+
+		se_debug_message(SE_DEBUG_PLUGINS, "missing plugin msg '%s'", description);
+
+		m_missing_plugins.push_back(description);
+		g_free(description);
+		return;
 	}
 
 	/*
