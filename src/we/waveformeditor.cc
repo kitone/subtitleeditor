@@ -504,7 +504,16 @@ bool WaveformEditor::open_waveform(const Glib::ustring &uri)
  */
 void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf)
 {
-	se_debug(SE_DEBUG_WAVEFORM);
+	if(wf)
+	{
+		se_debug_message(SE_DEBUG_WAVEFORM, 
+				"uri='%s' video_uri='%s' size='%d' channels='%d' duration='%d'", 
+				wf->get_uri().c_str(), wf->get_video_uri().c_str(), wf->get_size(), wf->get_n_channels(), wf->get_duration());
+	}
+	else
+	{
+		se_debug_message(SE_DEBUG_WAVEFORM, "the waveform RefPtr is NULL");
+	}
 
 	m_waveform = wf;
 
