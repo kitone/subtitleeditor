@@ -543,20 +543,23 @@ void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, cons
 
 	double begin = peaks.size() * ((double)get_start_area() / (width * zoom()));
 	double move = peaks.size() * ((double)skip / (width * zoom()));
-	int lenght = width;
+	int length = width;
+	int peaks_size = peaks.size();
 
 	double x = begin;
 	
 	cr->line_to(0, bottom);
-	for(int t=0; t<lenght; t+=skip, x+=move)
+	for(int t=0; t<length; t+=skip, x+=move)
 	{
+		if((int)x > peaks_size)
+			break;
 		double peakOnScreen = peaks[(int)x] * scale_value;
 
 		peakOnScreen = CLAMP(peakOnScreen, 0, bottom);
 
 		cr->line_to(t, bottom - peakOnScreen);
 	}
-	cr->line_to(lenght, bottom);
+	cr->line_to(length, bottom);
 	cr->fill();
 }
 

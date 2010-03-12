@@ -1,5 +1,11 @@
 2010-03-12  kitone  <kitone@gna.org>
 
+	* src/we/waveformrenderercairo.cc:
+	Fix bug #15464 : segfault on waveform generation. 
+	Avoid segfault in waveformrenderercairo.
+
+2010-03-12  kitone  <kitone@gna.org>
+
 	* src/we/waveformeditor.cc:
 	Improve dbg msg.
 
