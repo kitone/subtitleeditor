@@ -1,3 +1,8 @@
+2010-03-12  kitone  <kitone@gna.org>
+
+	* src/we/waveformeditor.cc:
+	Improve dbg msg.
+
 2010-03-03  kitone  <kitone@gna.org>
 
 	* plugins/actions/keyframesmanagement/mediadecoder.h:
