@@ -261,11 +261,11 @@ void WaveformEditor::set_player(Player *player)
 	m_player = player;
 
 	// init
-	m_connection_timeout = m_player->signal_timeout().connect(
-			sigc::mem_fun(*this, &WaveformEditor::on_player_timeout));
+	m_connection_player_tick = m_player->signal_tick().connect(
+			sigc::mem_fun(*this, &WaveformEditor::on_player_tick));
 	// Update the view when the keyframes changed
-	m_player->signal_keyframes_changed().connect(
-			sigc::mem_fun(*this, &WaveformEditor::on_keyframes_changed));
+	m_player->signal_message().connect(
+			sigc::mem_fun(*this, &WaveformEditor::on_player_message));
 }
 
 /*
@@ -284,39 +284,39 @@ Player* WaveformEditor::player()
 }
 
 /*
- * Enable the signal timeout (Player)
+ * Enable the signal tick (Player)
  */
 void WaveformEditor::on_map()
 {
 	Gtk::HBox::on_map();
 
-	if(m_connection_timeout)
+	if(m_connection_player_tick)
 	{
-		if(m_connection_timeout.connected())
-			m_connection_timeout.unblock();
+		if(m_connection_player_tick.connected())
+			m_connection_player_tick.unblock();
 	}
 
 	redraw_renderer();
 }
 
 /*
- * Disable the signal timeout (Player)
+ * Disable the signal tick (Player)
  */
 void WaveformEditor::on_unmap()
 {
 	Gtk::HBox::on_unmap();
 
-	if(m_connection_timeout)
+	if(m_connection_player_tick)
 	{
-		if(m_connection_timeout.connected())
-			m_connection_timeout.block();
+		if(m_connection_player_tick.connected())
+			m_connection_player_tick.block();
 	}
 }
 
 /*
  *
  */
-void WaveformEditor::on_player_timeout()
+void WaveformEditor::on_player_tick(long current_time, long stream_length, double current_position)
 {
 	if(has_renderer() && player() && has_waveform())
 	{
@@ -646,8 +646,10 @@ void WaveformEditor::on_subtitle_time_changed()
  * This callback is connected at the player.
  * The keyframes has changed, it's need to redraw the view.
  */
-void WaveformEditor::on_keyframes_changed()
+void WaveformEditor::on_player_message(Player::Message msg)
 {
+	if(msg != Player::KEYFRAME_CHANGED)
+		return;
 	if(!has_renderer())
 		return;
 	

@@ -37,7 +37,6 @@ public:
 	:Gtk::HBox(cobject)
 	{
 		m_current_seek = false;
-
 		m_player = NULL;
 
 		builder->get_widget("button-play", m_button_play);
@@ -45,16 +44,17 @@ public:
 
 		builder->get_widget("hscale-seek", m_hscale_seek);
 
-		// hscale
-		Gtk::Adjustment *adj = manage(new Gtk::Adjustment(0, 0, 1, 0.1, 1.0, 1.0));
-
-		m_hscale_seek->set_adjustment(*adj);
-		m_hscale_seek->set_digits(2);
+		m_hscale_seek->set_range(0, 1);
+		m_hscale_seek->set_value(0);
+		m_hscale_seek->set_increments(0.05, 0.05);//get_adjustment()->set_step_increment(0.05);
 		m_hscale_seek->set_update_policy(Gtk::UPDATE_CONTINUOUS);
 		m_hscale_seek->set_value_pos(Gtk::POS_RIGHT);
-
+		
 		m_hscale_seek->signal_format_value().connect(
 				sigc::mem_fun(*this, &PlayerControls::position_to_string));
+
+		m_connection_scale_changed = m_hscale_seek->signal_value_changed().connect(
+				sigc::mem_fun(*this, &PlayerControls::on_seek_value_changed));
 
 		m_hscale_seek->signal_event().connect(
 				sigc::mem_fun(*this, &PlayerControls::on_seek_event), true);
@@ -71,6 +71,17 @@ public:
 		m_button_pause->hide();
 
 		set_sensitive(false);
+	}
+
+	/*
+	 */
+	void on_seek_value_changed()
+	{
+		if(m_current_seek)
+			return;
+		// convert pos (as percentage) to position in the stream
+		double pos = m_hscale_seek->get_value();
+		m_player->seek(long(m_player->get_duration() * pos));
 	}
 
 	/*
@@ -97,68 +108,65 @@ public:
 	{
 		m_player = player;
 
-		m_player->signal_state_changed().connect(
-				sigc::mem_fun(*this, &PlayerControls::on_player_state_changed));
+		m_player->signal_message().connect(
+				sigc::mem_fun(*this, &PlayerControls::on_player_message));
 
-		m_player->signal_timeout().connect(
-				sigc::mem_fun(*this, &PlayerControls::on_timeout));
+		m_player->signal_tick().connect(
+				sigc::mem_fun(*this, &PlayerControls::on_player_tick));
 	}
 
 	/*
 	 */
-	void on_player_state_changed(Player::State state)
+	void on_player_message(Player::Message msg)
 	{
-		if(state == Player::NONE)
+		switch(msg)
 		{
+		case Player::STATE_NONE:
+			{
+				m_hscale_seek->set_value(0);
+				m_button_play->show();
+				m_button_pause->hide();
+				set_sensitive(false);
+			} break;
+		case Player::STATE_PAUSED:
+			{
+				m_button_play->show();
+				m_button_pause->hide();
+				set_sensitive(true);
+			} break;
+		case Player::STATE_PLAYING:
+			{
+				m_button_play->hide();
+				m_button_pause->show();
+				set_sensitive(true);
+			} break;
+		case Player::STREAM_DURATION_CHANGED:
+		case Player::STREAM_READY:
+			{
+				long pos = m_player->get_position();
+				long dur = m_player->get_duration();
+				double perc = (dur == 0) ? 0 : (double)pos / dur;
+				set_seek_position(perc);
+			} break;
+		default:
+			break;
 		}
-		else if(state == Player::READY)
-		{
-			long position = m_player->get_position();
-			long duration = m_player->get_duration();
-
-			m_hscale_seek->set_range(0, duration);
-			m_hscale_seek->set_value(position);
-
-			m_button_play->show();
-			m_button_pause->hide();
-		}
-		else if(state == Player::PAUSED)
-		{
-			m_button_play->show();
-			m_button_pause->hide();
-		}
-		else if(state == Player::PLAYING)
-		{
-			m_button_pause->show();
-			m_button_play->hide();
-		}
-
-		bool sensitive = (state == Player::PAUSED || state == Player::PLAYING);
-	
-		set_sensitive(sensitive);
 	}
 
 	/*
 	 */
-	void on_timeout()
+	void on_player_tick(long current_time, long stream_length, double current_position)
 	{
-		long position = m_player->get_position();
-
-		set_position(position);
+		m_connection_scale_changed.block();
+		set_seek_position(current_position);
+		m_connection_scale_changed.unblock();
 	}
 
 	/*
 	 */
-	void set_duration(long duration)
+	void set_seek_position(double position)
 	{
-		m_hscale_seek->set_range(0, duration);
-	}
-
-	/*
-	 */
-	void set_position(long position)
-	{
-		if(m_current_seek == false)
+		if(m_current_seek == false && m_hscale_seek->get_value() != position)
 		{
 			m_hscale_seek->set_value(position);
 			m_hscale_seek->queue_draw();
@@ -184,7 +192,8 @@ protected:
 	 */
 	Glib::ustring position_to_string(double value)
 	{
-		return SubtitleTime((long)value).str();
+		// convert pos (as percentage) to position in the stream
+		return SubtitleTime(long(m_player->get_duration() * value)).str();
 	}
 
 	/*
@@ -197,9 +206,9 @@ protected:
 		}
 		else if(ev->type == GDK_BUTTON_RELEASE)
 		{
-			long pos = (long)m_hscale_seek->get_value();
-
-			m_player->seek(pos);
+			// convert pos (as percentage) to position in the stream
+			double pos = m_hscale_seek->get_value();
+			m_player->seek(long(m_player->get_duration() * pos));
 
 			m_current_seek = false;
 		}
@@ -212,7 +221,7 @@ protected:
 	Gtk::Button* m_button_pause;
 	Gtk::HScale* m_hscale_seek;
 	bool m_current_seek;
-
+	sigc::connection m_connection_scale_changed;
 	Player* m_player;
 };
 
@@ -247,11 +256,11 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builde
 	DocumentSystem::getInstance().signal_current_document_changed().connect(
 			sigc::mem_fun(*this, &VideoPlayer::on_current_document_changed));
 
-	m_player->signal_timeout().connect(
-			sigc::mem_fun(*this, &VideoPlayer::on_timeout));
+	m_player->signal_tick().connect(
+			sigc::mem_fun(*this, &VideoPlayer::on_player_tick));
 
-	m_player->signal_state_changed().connect(
-			sigc::mem_fun(*this, &VideoPlayer::on_player_state_changed));
+	m_player->signal_message().connect(
+			sigc::mem_fun(*this, &VideoPlayer::on_player_message));
 }
 
 /*
@@ -291,9 +300,18 @@ Player* VideoPlayer::player()
  * The player state has changed. 
  * Clear subtitle.
  */
-void VideoPlayer::on_player_state_changed(Player::State state)
+void VideoPlayer::on_player_message(Player::Message msg)
 {
-	clear_subtitle();
+	switch(msg)
+	{
+	case Player::STATE_NONE:
+	case Player::STATE_PAUSED:
+	case Player::STATE_PLAYING:
+		clear_subtitle();
+		break;
+	default:
+		break;
+	}
 }
 
 /*
@@ -334,7 +352,7 @@ void VideoPlayer::on_current_document_changed(Document *doc)
 /*
  * Check or search the good subtitle (find_subtitle).
  */
-void VideoPlayer::on_timeout()
+void VideoPlayer::on_player_tick(long current_time, long stream_length, double current_position)
 {
 	find_subtitle();
 }
