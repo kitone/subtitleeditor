@@ -1,5 +1,10 @@
 2010-03-21  kitone  <kitone@gna.org>
 
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Update ui only if needed.
+
+2010-03-21  kitone  <kitone@gna.org>
+
 	* src/player.cc:
 	* src/player.h:
 	* src/vp/gstplayer.cc:

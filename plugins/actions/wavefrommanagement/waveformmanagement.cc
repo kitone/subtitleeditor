@@ -234,10 +234,19 @@ public:
 	 */
 	void update_ui_from_player(Player::Message msg)
 	{
-		bool has_player_file = (msg != Player::STATE_NONE);
-
-		action_group->get_action("waveform/generate-from-player-file")->set_sensitive(has_player_file);
-		action_group->get_action("waveform/generate-dummy")->set_sensitive(has_player_file);
+		switch(msg)
+		{
+		case Player::STATE_NONE:
+		case Player::STREAM_READY:
+			{
+				Player* player = get_subtitleeditor_window()->get_player();
+				bool has_player_file = (player->get_state() != Player::NONE);
+				action_group->get_action("waveform/generate-from-player-file")->set_sensitive(has_player_file);
+				action_group->get_action("waveform/generate-dummy")->set_sensitive(has_player_file);
+			} break;
+		default:
+			break;
+		}
 	}
 
 protected:
