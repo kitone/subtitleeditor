@@ -37,9 +37,24 @@ public:
 	enum State
 	{
 		NONE,
-		READY,
 		PAUSED,
 		PLAYING
+	};
+
+	enum Message
+	{
+		STATE_NONE,
+		STATE_PAUSED,
+		STATE_PLAYING,
+		
+		STREAM_READY,
+		STREAM_INFO_CHANGED,
+		STREAM_AUDIO_CHANGED,
+		STREAM_VIDEO_CHANGED,
+		STREAM_DURATION_CHANGED,
+		STREAM_EOS,
+	
+		KEYFRAME_CHANGED,
 	};
 
 	/*
@@ -55,12 +70,21 @@ public:
 	State get_state();
 
 	/*
+	 * Callback used by the player to send message to the application 
+	 * like the change of the state of the player or change on the stream...
 	 */
-	sigc::signal<void, State>& signal_state_changed();
+	sigc::signal<void, Message>& signal_message();
 
 	/*
+	 * void my_tick(long current_time, long stream_length, double current_position)
+	 *
+	 * current_time: position in the stream in milliseconds
+	 * stream_length: length of the stream in milliseconds
+	 * current_position: position in the stream as a percentage betwwen 0 and 1 (%)
+	 *
+	 * Emitted every time event happens or at regular intervals during playing state.
 	 */
-	sigc::signal<void>& signal_timeout();
+	sigc::signal<void, long, long, double>& signal_tick();
 
 	/*
 	 * 
@@ -153,22 +177,12 @@ public:
 	virtual gint get_current_audio() = 0;
 
 	/*
-	 * A signal is emited when the audio changed, 
-	 * like the current audio track.
-	 */
-	sigc::signal<void>& signal_audio_changed();
-
-	/*
 	 */
 	void set_keyframes(Glib::RefPtr<KeyFrames> keyframes);
 
 	/*
 	 */
 	Glib::RefPtr<KeyFrames> get_keyframes();
-
-	/*
-	 */
-	sigc::signal<void>& signal_keyframes_changed();
 
 protected:
 
@@ -178,20 +192,25 @@ protected:
 
 	/*
 	 */
+	void got_tick();
+
+	/*
+	 */
 	bool on_timeout();
 
+	/*
+	 */
+	void send_message(Message msg);
+
 protected:
-	// Signals
-	sigc::signal<void, Player::State> m_signal_state_changed;
-	sigc::signal<void> m_signal_audio_changed;
+	sigc::signal<void, Player::Message> m_signal_message;
 
 	sigc::connection m_timeout_connection;
-	sigc::signal<void> m_timeout_signal;
+	sigc::signal<void, long, long, double> m_signal_tick;
 
 	Player::State m_player_state;
 
 	Glib::RefPtr<KeyFrames> m_keyframes;
-	sigc::signal<void> m_keyframes_signal_changed;
 };
 
 #endif//_Player_h

@@ -357,10 +357,8 @@ public:
 				"video-player/display", "video-player/display");
 
 		// 
-		player()->signal_state_changed().connect(
-				sigc::mem_fun(*this, &VideoPlayerManagement::on_player_state_changed));
-		player()->signal_audio_changed().connect(
-				sigc::mem_fun(*this, &VideoPlayerManagement::on_player_audio_changed));
+		player()->signal_message().connect(
+				sigc::mem_fun(*this, &VideoPlayerManagement::on_player_message));
 
 		get_config().signal_changed("video-player").connect(
 				sigc::mem_fun(*this, &VideoPlayerManagement::on_config_video_player_changed));
@@ -432,33 +430,29 @@ public:
 	 * Check the state of the player. 
 	 * Display the video player if need and update the menu.
 	 */
-	void on_player_state_changed(Player::State state)
+	void on_player_message(Player::Message msg)
 	{
-		// only if the player is enable or disable
-		// don't update if is playing or paused
-		if(state == Player::NONE || state == Player::READY)
+		if(msg == Player::STATE_NONE || msg == Player::STREAM_READY)
 		{
-			if(state == Player::NONE)
+			// only if the player is enable or disable
+			// don't update if is playing or paused
+
+			if(msg == Player::STATE_NONE)
 				remove_menu_audio_track();
-			else if(state == Player::READY)
+			else if(msg == Player::STREAM_READY)
 				build_menu_audio_track();
 			update_ui();
-
-			if(state == Player::READY)
+			// If need, ask to display the video player
+			if(msg == Player::STREAM_READY)
 				if(get_config().get_value_bool("video-player", "display") == false)
 					get_config().set_value_bool("video-player", "display", true);
 		}
-	}
-
-	/*
-	 * The player emit the signal audio changed.
-	 * We update the current audio if need.
-	 */
-	void on_player_audio_changed()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		update_audio_track_from_player();	
+		else if(msg == Player::STREAM_AUDIO_CHANGED)
+		{
+			// The player emit the signal audio changed.
+			// We update the current audio if need.
+			update_audio_track_from_player();
+		}
 	}
 
 	/*

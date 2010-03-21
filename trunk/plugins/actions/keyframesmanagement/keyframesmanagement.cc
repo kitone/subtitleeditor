@@ -179,10 +179,8 @@ public:
 		ui_id = ui->add_ui_from_string(submenu);
 
 		// connect the player state signals
-		player()->signal_state_changed().connect(
-				sigc::mem_fun(*this, &KeyframesManagementPlugin::on_player_state_changed));
-		player()->signal_keyframes_changed().connect(
-				sigc::mem_fun(*this, &KeyframesManagementPlugin::update_ui));
+		player()->signal_message().connect(
+				sigc::mem_fun(*this, &KeyframesManagementPlugin::on_player_message));
 	}
 
 	/*
@@ -199,11 +197,13 @@ public:
 
 	/*
 	 */
-	void on_player_state_changed(Player::State state)
+	void on_player_message(Player::Message msg)
 	{
 		// only if the player is enable or disable
 		// don't update if is playing or paused
-		if(state == Player::NONE || state == Player::READY)
+		if(msg == Player::STREAM_READY || msg == Player::STATE_NONE)
+			update_ui();
+		else if(msg == Player::KEYFRAME_CHANGED)
 			update_ui();
 	}
 

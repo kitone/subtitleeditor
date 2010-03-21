@@ -292,6 +292,11 @@ protected:
 	void update_pipeline_state_and_timeout();
 
 	/*
+	 * Set up the duration value of the stream if need.
+	 */
+	bool update_pipeline_duration();
+
+	/*
 	 * Return the number of audio track.
 	 */
 	gint get_n_audio();
@@ -317,6 +322,7 @@ protected:
 	Glib::RefPtr< Gst::ElementInterfaced<Gst::XOverlay> > m_xoverlay;
 	Glib::RefPtr<Gst::TextOverlay> m_textoverlay;
 
+	bool m_pipeline_async_done;
 	Gst::State m_pipeline_state;
 	gint64 m_pipeline_duration;
 	double m_pipeline_rate;

@@ -47,8 +47,9 @@ GstPlayer::GstPlayer()
 	m_xWindowId = 0;
 	m_watch_id = 0;
 	m_pipeline_state = Gst::STATE_NULL;
-	m_pipeline_duration = GST_CLOCK_TIME_NONE;
+	m_pipeline_duration = Gst::CLOCK_TIME_NONE;
 	m_pipeline_rate = 1.0;
+	m_pipeline_async_done = false;
 	m_loop_seek = Config::getInstance().get_value_bool("video-player", "repeat");
 
 	set_events(Gdk::ALL_EVENTS_MASK);
@@ -210,9 +211,13 @@ long GstPlayer::get_duration()
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
-	if(!GST_CLOCK_TIME_IS_VALID(m_pipeline_duration) && m_pipeline)
+	if(!m_pipeline)
 		return 0;
-	return m_pipeline_duration / GST_MSECOND;
+	if(!GST_CLOCK_TIME_IS_VALID(m_pipeline_duration))
+		if(!update_pipeline_duration())
+			return 0;
+
+	return m_pipeline_duration / Gst::MILLI_SECOND;
 }
 
 /*
@@ -230,7 +235,7 @@ long GstPlayer::get_position()
 
 	if(!m_pipeline->query_position(fmt, pos))
 		return 0;
-	return pos / GST_MSECOND;
+	return pos / Gst::MILLI_SECOND;
 }
 
 /*
@@ -252,8 +257,8 @@ bool GstPlayer::seek(long start, long end, const Gst::SeekFlags &flags)
 	if(start > end)
 		std::swap(start, end);
 	// convert to gstreamer time
-	gint64 gstart = start * GST_MSECOND;
-	gint64 gend = end * GST_MSECOND;
+	gint64 gstart = start * Gst::MILLI_SECOND;
+	gint64 gend = end * Gst::MILLI_SECOND;
 
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER,
 			"pipeline->seek(%" GST_TIME_FORMAT", %"GST_TIME_FORMAT")", 
@@ -571,9 +576,11 @@ bool GstPlayer::create_pipeline()
 
 	m_pipeline->property_audio_sink() = gen_audio_element();
 	m_pipeline->property_video_sink() = gen_video_element();
-	// each time the audio changed, emit the Player::signal_audio_changed
+	// each time the audio changed, emit the message STREAM_AUDIO_CHANGED
 	m_pipeline->signal_audio_changed().connect(
-			sigc::mem_fun(m_signal_audio_changed, &sigc::signal<void>::emit));
+			sigc::bind(
+				sigc::mem_fun(*this, &GstPlayer::send_message), 
+				Player::STREAM_AUDIO_CHANGED));
 
 	Glib::RefPtr<Gst::Bus> bus = m_pipeline->get_bus();
 
@@ -582,7 +589,7 @@ bool GstPlayer::create_pipeline()
 
 	// Connect synchronous msg to set up xoverlay with the widget
 	bus->signal_sync_message().connect(
-			sigc::mem_fun(*this, &GstPlayer::on_bus_message_sync));
+		sigc::mem_fun(*this, &GstPlayer::on_bus_message_sync));
 
 	m_watch_id = bus->add_watch(
 			sigc::mem_fun(*this, &GstPlayer::on_bus_message));
@@ -750,14 +757,15 @@ void GstPlayer::set_pipeline_null()
 
 	m_watch_id = 0;
 	m_pipeline_state = Gst::STATE_NULL;
-	m_pipeline_duration = GST_CLOCK_TIME_NONE;
+	m_pipeline_duration = Gst::CLOCK_TIME_NONE;
+	m_pipeline_rate = 1.0;
+	m_pipeline_async_done = false;
 
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "clear RefPtr");
 
 	m_pipeline.clear();
 	m_textoverlay.clear();
 	m_xoverlay.clear();
-	m_pipeline_rate = 1.0;
 
 	set_player_state(NONE);
 
@@ -874,6 +882,15 @@ bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &bus, const Glib::Re
 	case Gst::MESSAGE_SEGMENT_DONE:
 			on_bus_message_segment_done( Glib::RefPtr<Gst::MessageSegmentDone>::cast_dynamic(msg) );
 			break;
+	case Gst::MESSAGE_ASYNC_DONE:
+			if(m_pipeline_async_done == false)
+			{
+				// We wait for the first async-done message, then the application 
+				// can ask about duration, info about the stream... 
+				m_pipeline_async_done = true;
+				send_message(Player::STREAM_READY);
+			}
+			break;
 	default:
 			break;
 	}
@@ -958,13 +975,6 @@ void GstPlayer::on_bus_message_state_changed(const Glib::RefPtr<Gst::MessageStat
 	}
 	else if(old_state == Gst::STATE_READY && new_state == Gst::STATE_PAUSED)
 	{
-		// get the duration of the pipeline
-		gint64 dur;
-		Gst::Format fmt = Gst::FORMAT_TIME;
-		if(m_pipeline->query_duration(fmt, dur))
-			m_pipeline_duration = dur;
-
-		set_player_state(READY);
 		set_player_state(PAUSED);
 		
 		check_missing_plugins();
@@ -1106,8 +1116,35 @@ void GstPlayer::update_pipeline_state_and_timeout()
 	if(!m_pipeline)
 		return;
 	Gst::State old_st, new_st;
-	m_pipeline->get_state(old_st, new_st, 100 * GST_MSECOND);
-	on_timeout();
+	m_pipeline->get_state(old_st, new_st, 100 * Gst::MILLI_SECOND);
+	got_tick();
+}
+
+/*
+ * Set up the duration value of the stream if need.
+ */
+bool GstPlayer::update_pipeline_duration()
+{
+	se_debug(SE_DEBUG_VIDEO_PLAYER);
+
+	if(!m_pipeline)
+		return false;
+
+	m_pipeline_duration = Gst::CLOCK_TIME_NONE;
+	
+	gint64 dur = -1;
+	Gst::Format fmt = Gst::FORMAT_TIME;
+	if(m_pipeline->query_duration(fmt, dur) && dur != -1)
+	{
+		m_pipeline_duration = dur;
+		se_debug_message(SE_DEBUG_VIDEO_PLAYER, 
+				"Success to query the duration (%" GST_TIME_FORMAT")", GST_TIME_ARGS(dur));
+		//send_message(STREAM_DURATION_CHANGED);
+		return true;
+	}
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, 
+			"The query of the duration of the stream failed");
+	return false;
 }
 
 /*
@@ -1135,9 +1172,8 @@ void GstPlayer::set_current_audio(gint track)
 
 	if(track < -1)
 		track = -1;
-	
 	m_pipeline->property_current_audio() = track;
-	m_signal_audio_changed.emit(); // emit signal
+	send_message(Player::STREAM_AUDIO_CHANGED); 
 }
 
 /*

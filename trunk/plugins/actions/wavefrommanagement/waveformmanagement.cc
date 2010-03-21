@@ -46,7 +46,7 @@ public:
 	{
 		activate();
 		update_ui();
-		update_ui_from_player(Player::NONE);
+		update_ui_from_player(Player::STATE_NONE);
 	}
 
 	~WaveformManagement()
@@ -188,7 +188,7 @@ public:
 				sigc::mem_fun(*this, &WaveformManagement::on_config_waveform_changed));
 
 		// Player state
-		get_subtitleeditor_window()->get_player()->signal_state_changed().connect(
+		get_subtitleeditor_window()->get_player()->signal_message().connect(
 				sigc::mem_fun(*this, &WaveformManagement::update_ui_from_player));
 	}
 
@@ -232,9 +232,9 @@ public:
 	/*
 	 * Update the ui state from the player state.
 	 */
-	void update_ui_from_player(Player::State state)
+	void update_ui_from_player(Player::Message msg)
 	{
-		bool has_player_file = (state != Player::NONE);
+		bool has_player_file = (msg != Player::STATE_NONE);
 
 		action_group->get_action("waveform/generate-from-player-file")->set_sensitive(has_player_file);
 		action_group->get_action("waveform/generate-dummy")->set_sensitive(has_player_file);

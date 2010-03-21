@@ -105,8 +105,8 @@ public:
 
 		// Connect to the player state changed
 		// the actions can only be used when the player has a media
-		get_subtitleeditor_window()->get_player()->signal_state_changed().connect(
-				sigc::mem_fun(*this, &TimingFromPlayer::on_player_state_changed));
+		get_subtitleeditor_window()->get_player()->signal_message().connect(
+				sigc::mem_fun(*this, &TimingFromPlayer::on_player_message));
 	}
 
 	/*
@@ -143,12 +143,12 @@ public:
 	 * Check the state of the player. 
 	 * Update the menu from the current state of the player.
 	 */
-	void on_player_state_changed(Player::State state)
+	void on_player_message(Player::Message msg)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 		// only if the player is enable or disable
 		// don't update if is playing or paused
-		if(state == Player::NONE || state == Player::READY)
+		if(msg == Player::STATE_NONE || msg == Player::STREAM_READY)
 			update_ui();
 	}
 

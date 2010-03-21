@@ -83,9 +83,8 @@ public:
 	Player* player();
 
 	/*
-	 *
 	 */
-	void on_player_timeout();
+	void on_player_tick(long current_time, long stream_length, double current_position);
 
 	/*
 	 * Return the current time of the player.
@@ -130,12 +129,12 @@ protected:
 	Gtk::Widget* create_control_widget();
 
 	/*
-	 * Enable the signal timeout (Player)
+	 * Enable the signal tick (Player)
 	 */
 	void on_map();
 
 	/*
-	 * Disable the signal timeout (Player).
+	 * Disable the signal tick (Player).
 	 */
 	void on_unmap();
 	
@@ -295,7 +294,7 @@ protected:
 	 * This callback is connected at the player.
 	 * The keyframes has changed, it's need to redraw the view.
 	 */
-	void on_keyframes_changed();
+	void on_player_message(Player::Message msg);
 
 	/*
 	 * Go at the position on the scrollbar. 
@@ -361,7 +360,7 @@ protected:
 	bool m_cfg_respect_timing;
 
 	Player* m_player;
-	sigc::connection m_connection_timeout;
+	sigc::connection m_connection_player_tick;
 };
 
 

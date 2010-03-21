@@ -60,7 +60,7 @@ public:
 	 * The player state has changed. 
 	 * Clear subtitle.
 	 */
-	void on_player_state_changed(Player::State state);
+	void on_player_message(Player::Message msg);
 
 	/*
 	 * The config of video player has changed.
@@ -76,7 +76,7 @@ public:
 	/*
 	 * Check or search the good subtitle (find_subtitle).
 	 */
-	void on_timeout();
+	void on_player_tick(long current_time, long stream_length, double current_position);
 
 	/*
 	 * Initialize the current subtitle and the player text to NULL.

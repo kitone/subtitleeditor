@@ -53,40 +53,74 @@ void Player::set_player_state(Player::State state)
 		m_timeout_connection.block();
 	}
 
-	if(state == PLAYING)
+	switch(state)
 	{
-		m_timeout_connection.unblock();
-		m_timeout_signal();
+	case NONE:
+	case PAUSED:
+		{
+			// Update with the last position, block the signal and
+			// send a player state message
+			got_tick();
+			m_timeout_connection.block();
+			send_message((state == NONE) ? STATE_NONE : STATE_PAUSED);
+		} break;
+	case PLAYING:
+		{
+			m_timeout_connection.unblock();
+			got_tick();
+			send_message(STATE_PLAYING);
+		} break;
 	}
-	else
-	{
-		m_timeout_signal(); // update with last position
-		m_timeout_connection.block();
-	}
-	m_signal_state_changed(state);
+}
+
+/*
+ */
+void Player::got_tick()
+{
+	long current_time = get_position();
+	long stream_length = get_duration();
+	double current_position = (stream_length == 0) ? 0 : (double) current_time / stream_length;
+	
+	m_signal_tick(current_time, stream_length, current_position);
 }
 
 /*
  */
 bool Player::on_timeout()
 {
-	m_timeout_signal();
+	got_tick();
 
 	return is_playing();
 }
 
 /*
+ * Callback used by the player to send message to the application 
+ * like the change of the state of the player or change on the stream...
  */
-sigc::signal<void, Player::State>& Player::signal_state_changed()
+sigc::signal<void, Player::Message>& Player::signal_message()
 {
-	return m_signal_state_changed;
+	return m_signal_message;
 }
 
 /*
  */
-sigc::signal<void>& Player::signal_timeout()
+void Player::send_message(Player::Message msg)
 {
-	return m_timeout_signal;
+	m_signal_message(msg);
+}
+
+/*
+ * void my_tick(long current_time, long stream_length, double current_position)
+ *
+ * current_time: position in the stream in milliseconds
+ * stream_length: length of the stream in milliseconds
+ * current_position: position in the stream as a percentage betwwen 0 and 1 (%)
+ *
+ * Emitted every time event happens or at regular intervals during playing state.
+ */
+sigc::signal<void, long, long, double>& Player::signal_tick()
+{
+	return m_signal_tick;
 }
 
 /*
@@ -103,7 +137,7 @@ Player::State Player::get_state()
 void Player::set_keyframes(Glib::RefPtr<KeyFrames> keyframes)
 {
 	m_keyframes = keyframes;
-	m_keyframes_signal_changed();
+	send_message(KEYFRAME_CHANGED);
 }
 
 /*
@@ -113,18 +147,3 @@ Glib::RefPtr<KeyFrames> Player::get_keyframes()
 	return m_keyframes;
 }
 
-/*
- */
-sigc::signal<void>& Player::signal_keyframes_changed()
-{
-	return m_keyframes_signal_changed;
-}
-
-/*
- * A signal is emited when the audio changed, 
- * like the current audio track.
- */
-sigc::signal<void>& Player::signal_audio_changed()
-{
-	return m_signal_audio_changed;
-}

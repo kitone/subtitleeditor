@@ -1,3 +1,21 @@
+2010-03-21  kitone  <kitone@gna.org>
+
+	* src/player.cc:
+	* src/player.h:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	* src/vp/videoplayer.cc:
+	* src/vp/videoplayer.h:
+	Improvement of the player to work with messages.
+
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	* plugins/actions/timingfromplayer/timingfromplayer.cc:
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	* src/we/waveformeditor.cc:
+	* src/we/waveformeditor.h:
+	Updated to work with the messages of the player.
+
 2010-03-12  kitone  <kitone@gna.org>
 
 	* src/we/waveformrenderercairo.cc:
