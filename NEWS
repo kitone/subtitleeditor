@@ -1,3 +1,11 @@
+2010-03-22 - 0.36.1
+
+	* Reorganize the menu file with a sub-menu import and export
+	* Fix bug #15525 : Video playback doesn't work
+	* Fix bug #15374 : gtkmm-2.14 has not Gtk::Action set_stock_id
+	* Fix bug #15464 : segfault on waveform generation
+	* Fix build error with the WaveformRendererGL
+
 2010-02-02 - 0.36.0
 
 	* Two new plugins : sortsubtitles, typewriter
