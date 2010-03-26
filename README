@@ -2,63 +2,75 @@ Subtitle Editor
 ===============
 
  Graphical subtitle editor with sound waves representation
- Author: IDJAAD djamel <kitone at free dot fr>
- Homepage: http://kitone.free.fr/subtitleeditor/
+ Author: IDJAAD djamel - kitone <kitone at gna dot org>
+ Homepage: http://home.gna.org/subtitleeditor//
 
 What is it?
 ===========
 
-Subtitle Editor is a GTK+2 tool to edit subtitles for GNU/*.
+Subtitle Editor is a GTK+2 tool to edit subtitles for GNU/Linux/*BSD.
 
-It can be used for new subtitles or as a tool to transform, edit, correct and
-refine existing subtitle.
+It can be used for new subtitles or as a tool to transform, edit,
+correct and refine existing subtitle. This program also shows sound
+waves, which makes it easier to synchronise subtitles to voices.
 
-This program also shows sound waves, which makes it easier to synchronise
-subtitles to voices.
-
-Subtitle Editor is free software released under the GNU General Public License
-(GPL).
+Subtitle Editor is free software released under the GNU General Public
+License (GPL3).
 
 Features
 ========
 
-    * Really easy to use
-    * Can create new subtitle
-    * Can be used for timing (gstreamer)
-    * Can be used for translating
-    * Internal format is Advanced Sub Station Alpha
-    * Can edit the script header (authors, translators, timers, video informations, etc.)
-    * Style Editor
-    * Framerate convertion
-    * Scale
-    * Split subtitle
-    * Joint subtitle
-    * Spell check using aspell
-    * Encoding support
-    * Edit text and adjust time (start, end)
-    * Move subtitle
-    * Find and replace (can use Regular Expression)
-    * Remove line empty
-    * Set All end time
-    * Can play video preview (using MPlayer or other)
-    * ...
+	* Really easy to use
+	* Multiple document interface
+	* Undo/Redo
+	* Internationalization support
+	* Drag-and-drop
+	* Video player integrated in the main window (based on GStreamer)
+	* Can play preview with external video player (using MPlayer or other)
+	* Can be used for timing
+	* Generate and display a waveform
+	* Generate and display keyframes
+	* Can be used for translating
+	* Shows subtitles over the video
+
+Editing
+=======
+
+	* Style Editor
+	* Spell checking
+	* Text correction (Space around punctuation, capitalize, empty subtitle ...)
+	* Errors checking (Overlapping, too short or long duration ...)
+	* Framerate convertion
+	* Edit times and frames
+	* Scale subtitles
+	* Split or joint subtitles
+	* Split or joint documents
+	* Edit text and adjust time (start, end)
+	* Move subtitle
+	* Find and replace (Support regular expressions)
+	* Sort subtitles
+	* Type writer effect
+	* Lots of timing and editing tools
 
 Supported Formats
 =================
 
-    * Sub Station Alpha
-    * Advanced Sub Station Alpha
-    * SubRip
-    * MicroDVD
-    * MPL2
-    * MPsub (MPlayer subtitle)
-    * SubViewer 2.0
-    * Plain-Text
+	* Adobe Encore DVD
+	* Advanced Sub Station Alpha
+	* Burnt-in timecode (BITC)
+	* MicroDVD
+	* MPL2
+	* MPsub (MPlayer subtitle)
+	* SubRip
+	* Sub Station Alpha
+	* SubViewer 2.0
+	* Timed Text Authoring Format (TTAF)
+	* Plain-Text
 
 News
 ====
 
-See ChangeLog
+See NEWS and ChangeLog
 
 Installation
 ============
