@@ -1,3 +1,9 @@
+2010-03-28  kitone  <kitone@gna.org>
+
+	* LINGUAS:
+	* el.po:
+	Add Greek translation by Manolis Stefanis.
+
 2010-02-02  kitone  <kitone@gna.org>
 
 	* POTFILES.in:
