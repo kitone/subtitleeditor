@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 11:32+0100\n"
+"POT-Creation-Date: 2010-03-30 00:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -274,99 +274,99 @@ msgstr ""
 msgid "Open a Subtitle Editor Project"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:102
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:104
 msgid "Save the current file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:106
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
 msgid "Save Project"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:106
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
 msgid "Save the current file as Subtitle Editor Project"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:111
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
 msgid "Save the current file with a different name"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
 msgid "Save _All"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
 msgid "Save all open files"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:120
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Open _Translation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:120
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Open translation from file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
 msgid "Save Trans_lation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
 msgid "Save translation to file"
 msgstr ""
 
 #. recent files
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:132
 msgid "Open _Recent"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:147
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:151
 msgid "Close the current file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:152
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
 msgid "E_xit"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:152
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
 msgid "Quit the program"
 msgstr ""
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:320
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:324
 msgid "I am already open"
 msgstr ""
 
 #. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:354
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:413
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:358
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:417
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr ""
 
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:362
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:421
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:366
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:425
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:518
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:522
 msgid "Open translation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:546
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:550
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:611
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:615
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:614
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:618
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr ""
@@ -909,7 +909,7 @@ msgid "Open Keyframes"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:72
-msgid "Open a keyframe from file"
+msgid "Open keyframes from a file"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:80
@@ -918,7 +918,7 @@ msgid "Save Keyframes"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:81
-msgid "Save a keyframe to the file"
+msgid "Save keyframes to the file"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:89
@@ -926,11 +926,11 @@ msgid "Generate Keyframes From Video"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:90
-msgid "Generate a keyframe from the current video"
+msgid "Generate keyframes from the current video"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:97
-msgid "Close the keyframe"
+msgid "Close the keyframes"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:98
@@ -999,8 +999,8 @@ msgstr ""
 msgid "Media file could not be played.\n"
 msgstr ""
 
-#: ../plugins/actions/keyframesmanagement/mediadecoder.h:361
-#: ../plugins/actions/wavefrommanagement/mediadecoder.h:361
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:383
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:383
 #: ../src/gstreamer_utility.cc:63
 msgid ""
 "GStreamer plugins missing.\n"
@@ -1064,28 +1064,28 @@ msgstr ""
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr ""
 
-#: ../plugins/actions/plaintext/plaintext.cc:58
+#: ../plugins/actions/plaintext/plaintext.cc:57
 msgid "_Import Plain Text"
 msgstr ""
 
-#: ../plugins/actions/plaintext/plaintext.cc:58
+#: ../plugins/actions/plaintext/plaintext.cc:57
 msgid "Create a new document with any text file"
 msgstr ""
 
-#: ../plugins/actions/plaintext/plaintext.cc:62
+#: ../plugins/actions/plaintext/plaintext.cc:61
 msgid "_Export Plain Text"
 msgstr ""
 
-#: ../plugins/actions/plaintext/plaintext.cc:62
+#: ../plugins/actions/plaintext/plaintext.cc:61
 msgid "Export just a text in a file"
 msgstr ""
 
-#: ../plugins/actions/plaintext/plaintext.cc:142
+#: ../plugins/actions/plaintext/plaintext.cc:138
 #, c-format
 msgid "Could not import from the file \"%s\"."
 msgstr ""
 
-#: ../plugins/actions/plaintext/plaintext.cc:180
+#: ../plugins/actions/plaintext/plaintext.cc:174
 #, c-format
 msgid "Could not export to the file \"%s\"."
 msgstr ""
@@ -1910,7 +1910,7 @@ msgid "Set subtitle end"
 msgstr ""
 
 #: ../plugins/actions/typewriter/typewriter.cc:54
-msgid "_Type Writer"
+msgid "_Typewriter"
 msgstr ""
 
 #: ../plugins/actions/typewriter/typewriter.cc:57
@@ -2119,7 +2119,7 @@ msgid "Choice of an audio track"
 msgstr ""
 
 #. A default track "Auto"
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:552
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:546
 msgid "Auto"
 msgstr ""
 
@@ -2245,7 +2245,7 @@ msgstr ""
 msgid "Show or hide the waveform in the current window"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:336
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:345
 msgid "Save Waveform"
 msgstr ""
 
@@ -2663,6 +2663,14 @@ msgstr ""
 msgid "_Save"
 msgstr ""
 
+#: ../src/gui/menubar.cc:78
+msgid "_Import"
+msgstr ""
+
+#: ../src/gui/menubar.cc:79
+msgid "_Export"
+msgstr ""
+
 #: ../src/keyframes.cc:88 ../src/subtitleformatsystem.cc:70
 msgid "Couldn't recognize format of the file."
 msgstr ""
@@ -2873,42 +2881,42 @@ msgstr ""
 msgid "Invalid fps"
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:610
+#: ../src/vp/gstplayer.cc:617
 #, c-format
 msgid ""
 "Failed to create a GStreamer audio output (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:648
+#: ../src/vp/gstplayer.cc:655
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:657
+#: ../src/vp/gstplayer.cc:664
 #, c-format
 msgid ""
 "Failed to create a GStreamer textoverlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:670
+#: ../src/vp/gstplayer.cc:677
 #, c-format
 msgid ""
 "Failed to create a GStreamer sink (%s). Please check your GStreamer "
 "installation."
 msgstr ""
 
-#: ../src/vp/gstplayer.cc:883
+#: ../src/vp/gstplayer.cc:929
 #, c-format
 msgid ""
 "Media file could not be played.\n"
 "%s"
 msgstr ""
 
-#: ../src/we/waveformeditor.cc:794 ../src/we/waveformeditor.cc:799
+#: ../src/we/waveformeditor.cc:817 ../src/we/waveformeditor.cc:822
 msgid "Editing position"
 msgstr ""
 
