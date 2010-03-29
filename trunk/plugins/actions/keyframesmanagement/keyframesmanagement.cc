@@ -69,7 +69,7 @@ public:
 					"keyframes/open", 
 					Gtk::Stock::OPEN,
 					_("Open Keyframes"), 
-					_("Open a keyframe from file")),
+					_("Open keyframes from a file")),
 					Gtk::AccelKey("<Control>K"),
 					sigc::mem_fun(*this, &KeyframesManagementPlugin::on_open));
 		// Save
@@ -78,7 +78,7 @@ public:
 					"keyframes/save", 
 					Gtk::Stock::SAVE,
 					_("Save Keyframes"), 
-					_("Save a keyframe to the file")),
+					_("Save keyframes to the file")),
 					Gtk::AccelKey("<Shift><Control>K"),
 					sigc::mem_fun(*this, &KeyframesManagementPlugin::on_save));
 		// Generate
@@ -87,14 +87,14 @@ public:
 					"keyframes/generate", 
 					Gtk::Stock::EXECUTE,
 					_("Generate Keyframes From Video"), 
-					_("Generate a keyframe from the current video")),
+					_("Generate keyframes from the current video")),
 					sigc::mem_fun(*this, &KeyframesManagementPlugin::on_generate));
 		// Close
 		action_group->add(
 				Gtk::Action::create(
 					"keyframes/close", 
 					Gtk::Stock::CLOSE,
-					_("Close the keyframe"), 
+					_("Close the keyframes"), 
 					_("FIXME")),
 					Gtk::AccelKey("<Alt><Control>K"),
 					sigc::mem_fun(*this, &KeyframesManagementPlugin::on_close));

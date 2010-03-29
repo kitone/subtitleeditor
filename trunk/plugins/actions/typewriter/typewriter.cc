@@ -26,17 +26,17 @@
 #include <algorithm>
 
 
-class TypeWriterPlugin : public Action
+class TypewriterPlugin : public Action
 {
 public:
 	
-	TypeWriterPlugin()
+	TypewriterPlugin()
 	{
 		activate();
 		update_ui();
 	}
 
-	~TypeWriterPlugin()
+	~TypewriterPlugin()
 	{
 		deactivate();
 	}
@@ -48,30 +48,30 @@ public:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		// actions
-		action_group = Gtk::ActionGroup::create("TypeWriterPlugin");
+		action_group = Gtk::ActionGroup::create("TypewriterPlugin");
 
 		action_group->add(
-				Gtk::Action::create("typewriter", _("_Type Writer")));
+				Gtk::Action::create("typewriter", _("_Typewriter")));
 
 		action_group->add(
 				Gtk::Action::create("typewriter-characters-linear",  _("Characters - Linear")),
 				sigc::bind(
-					sigc::mem_fun(*this, &TypeWriterPlugin::split_selected_subtitles), CHARACTERS, LINEAR));
+					sigc::mem_fun(*this, &TypewriterPlugin::split_selected_subtitles), CHARACTERS, LINEAR));
 
 		action_group->add(
 				Gtk::Action::create("typewriter-characters-random",  _("Characters - Random")),
 				sigc::bind(
-					sigc::mem_fun(*this, &TypeWriterPlugin::split_selected_subtitles), CHARACTERS, RANDOM));
+					sigc::mem_fun(*this, &TypewriterPlugin::split_selected_subtitles), CHARACTERS, RANDOM));
 
 		action_group->add(
 				Gtk::Action::create("typewriter-words-linear",  _("Words - Linear")),
 				sigc::bind(
-					sigc::mem_fun(*this, &TypeWriterPlugin::split_selected_subtitles), WORDS, LINEAR));
+					sigc::mem_fun(*this, &TypewriterPlugin::split_selected_subtitles), WORDS, LINEAR));
 		
 		action_group->add(
 				Gtk::Action::create("typewriter-words-random",  _("Words - Random")),
 				sigc::bind(
-					sigc::mem_fun(*this, &TypeWriterPlugin::split_selected_subtitles), WORDS, RANDOM));
+					sigc::mem_fun(*this, &TypewriterPlugin::split_selected_subtitles), WORDS, RANDOM));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -311,5 +311,5 @@ protected:
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-REGISTER_EXTENSION(TypeWriterPlugin)
+REGISTER_EXTENSION(TypewriterPlugin)
 
