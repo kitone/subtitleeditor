@@ -1,3 +1,9 @@
+2010-03-30  kitone  <kitone@gna.org>
+
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	* plugins/actions/typewriter/typewriter.cc:
+	Fix typo.
+
 2010-03-26  kitone  <kitone@gna.org>
 
 	* README:
