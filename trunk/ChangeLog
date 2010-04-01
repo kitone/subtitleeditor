@@ -1,3 +1,8 @@
+2010-04-01  kitone  <kitone@gna.org>
+
+	* plugins/actions/changeframerate/dialog-change-framerate.ui:
+	Fix HIG.
+
 2010-03-30  kitone  <kitone@gna.org>
 
 	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
