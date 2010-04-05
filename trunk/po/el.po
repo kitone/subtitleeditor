@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor 0.36.0 el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-27 15:04+0200\n"
-"PO-Revision-Date: 2010-03-27 20:33+0200\n"
+"POT-Creation-Date: 2010-04-06 00:07+0200\n"
+"PO-Revision-Date: 2010-04-06 00:07+0100\n"
 "Last-Translator: Manolis Stefanis <mstefanis@hotmail.com>\n"
 "Language-Team: Language el <>\n"
 "MIME-Version: 1.0\n"
@@ -63,13 +63,11 @@ msgstr "Αφαίρεση 100 msec"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:76
 msgid "Remove 100 Milliseconds to start for all subtitles selected"
-msgstr ""
-"Αφαίρεση 100 msec από την έναρξη για όλους τους επιλεγμένους υπότιτλους"
+msgstr "Αφαίρεση 100 msec από την έναρξη για όλους τους επιλεγμένους υπότιτλους"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:80
 msgid "Remove 100 Milliseconds to duration for all subtitles selected"
-msgstr ""
-"Αφαίρεση 100 msec από τη διάρκεια για όλους τους επιλεγμένους υπότιτλους"
+msgstr "Αφαίρεση 100 msec από τη διάρκεια για όλους τους επιλεγμένους υπότιτλους"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:84
 msgid "Remove 100 Milliseconds to all subtitles selected"
@@ -204,9 +202,7 @@ msgstr "Η συντόμευση \"%2\" είναι ήδη κατειλημμέν�
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:343
 msgid "Reassigning the shortcut will cause it to be removed from \"%1\"."
-msgstr ""
-"Ο επαναπροσδιορισμός της συντόμευσης θα προκαλέσει την αφαίρεσή της από την "
-"\"%1\"."
+msgstr "Ο επαναπροσδιορισμός της συντόμευσης θα προκαλέσει την αφαίρεσή της από την \"%1\"."
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:347
 msgid "Conflicting Shortcuts"
@@ -230,13 +226,8 @@ msgid "Configure Keyboard Shortcuts"
 msgstr "Διαμόρφωση Συντομεύσεων Πληκτρολογίου"
 
 #: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui.h:2
-msgid ""
-"To edit a shortcut key, click on the corresponding row and type a new "
-"accelerator, or press backspace to clear."
-msgstr ""
-"Για να επεξεργαστείτε ένα κουμπί συντόμευσης, κάντε κλικ στην αντίστοιχη "
-"σειρά και πληκτρολογήστε έναν νέο επιταχυντή, ή πιέστε Backspace για "
-"διαγραφή."
+msgid "To edit a shortcut key, click on the corresponding row and type a new accelerator, or press backspace to clear."
+msgstr "Για να επεξεργαστείτε ένα κουμπί συντόμευσης, κάντε κλικ στην αντίστοιχη σειρά και πληκτρολογήστε έναν νέο επιταχυντή, ή πιέστε Backspace για διαγραφή."
 
 #: ../plugins/actions/dialoguize/dialoguize.cc:56
 msgid "_Dialogue"
@@ -280,99 +271,99 @@ msgstr "Άνοιγμα σχεδίου"
 msgid "Open a Subtitle Editor Project"
 msgstr "Άνοιγμα ενός σχεδίου Subtitle Editor"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:102
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:104
 msgid "Save the current file"
 msgstr "Αποθήκευση του τρέχοντος αρχείου"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:106
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
 msgid "Save Project"
 msgstr "Αποθήκευση σχεδίου"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:106
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
 msgid "Save the current file as Subtitle Editor Project"
 msgstr "Αποθήκευση του τρέχοντος αρχείου ως Σχέδιο Subtitle Editor"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:111
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
 msgid "Save the current file with a different name"
 msgstr "Αποθήκευση του τρέχοντος αρχείου με διαφορετικό όνομα"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
 msgid "Save _All"
 msgstr "Αποθήκευση _όλων"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
 msgid "Save all open files"
 msgstr "Αποθήκευση όλων των ανοιχτών αρχείων"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:120
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Open _Translation"
 msgstr "Άνοιγμα _Μετάφρασης"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:120
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Open translation from file"
 msgstr "Άνοιγμα μετάφρασης από αρχείο"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
 msgid "Save Trans_lation"
 msgstr "Αποθήκευση _Μετάφρασης"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
 msgid "Save translation to file"
 msgstr "Αποθήκευση μετάφρασης σε αρχείο"
 
 #. recent files
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:132
 msgid "Open _Recent"
 msgstr "Άνοιγμα _Πρόσφατων"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:147
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:151
 msgid "Close the current file"
 msgstr "Κλείσιμο του τρέχοντος εγγράφου"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:152
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
 msgid "E_xit"
 msgstr "Έ_ξοδος"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:152
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
 msgid "Quit the program"
 msgstr "Έξοδος από το πρόγραμμα"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:320
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:324
 msgid "I am already open"
 msgstr "Είναι ήδη ανοιχτό"
 
 #. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:354
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:413
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:358
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:417
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "Αποθήκευση αρχείου %s (%s, %s, %s)."
 
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:362
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:421
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:366
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:425
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "Το αρχείο %s (%s, %s, %s) δεν αποθηκεύτηκε."
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:518
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:522
 msgid "Open translation"
 msgstr "Άνοιγμα μετάφρασης"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:546
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:550
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] "1 υπότιτλος προστέθηκε στη μετάφραση"
 msgstr[1] "%d υπότιτλοι προστέθηκαν στη μετάφραση"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:611
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:615
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "Αποθήκευση αρχείου μετάφρασης %s (%s, %s, %s)."
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:614
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:618
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "Το αρχείο μετάφρασης %s (%s, %s, %s) δεν αποθηκεύτηκε."
@@ -554,8 +545,7 @@ msgstr[1] "Ο υπότιτλος έχει μία πολύ μεγάλη γραμ�
 #: ../plugins/actions/errorchecking/maxlinepersubtitle.h:79
 #: ../plugins/actions/errorchecking/overlapping.h:74
 msgid "<b>Automatic correction:</b> unavailable, correct the error manually."
-msgstr ""
-"<b>Αυτόματη διόρθωση:</b> μη διαθέσιμη, διορθώστε το σφάλμα χειροκίνητα."
+msgstr "<b>Αυτόματη διόρθωση:</b> μη διαθέσιμη, διορθώστε το σφάλμα χειροκίνητα."
 
 #: ../plugins/actions/errorchecking/maxlinepersubtitle.h:38
 msgid "Max Line Per Subtitle"
@@ -577,12 +567,8 @@ msgid "Min Display Time"
 msgstr "Ελάχιστος Χρόνος Εμφάνισης"
 
 #: ../plugins/actions/errorchecking/mindisplaytime.h:39
-msgid ""
-"Detects and fixes subtitles when the duration is inferior to the specified "
-"value."
-msgstr ""
-"Ανιχνεύει και διορθώνει τους υπότιτλους όταν η διάρκεια είναι μικρότερη από "
-"την καθορισμένη τιμή."
+msgid "Detects and fixes subtitles when the duration is inferior to the specified value."
+msgstr "Ανιχνεύει και διορθώνει τους υπότιτλους όταν η διάρκεια είναι μικρότερη από την καθορισμένη τιμή."
 
 #: ../plugins/actions/errorchecking/mindisplaytime.h:71
 #, c-format
@@ -594,21 +580,15 @@ msgstr "Ο χρόνος εμφάνισης του υπότιτλου είναι 
 #: ../plugins/actions/errorchecking/tooshortdisplaytime.h:80
 #, c-format
 msgid "<b>Automatic correction:</b> to change current subtitle end to %s."
-msgstr ""
-"<b>Αυτόματη διόρθωση:</b> για να μεταβάλλει το τέλος του τρέχοντος υπότιτλου "
-"σε %s."
+msgstr "<b>Αυτόματη διόρθωση:</b> για να μεταβάλλει το τέλος του τρέχοντος υπότιτλου σε %s."
 
 #: ../plugins/actions/errorchecking/mingapbetweensubtitles.h:38
 msgid "Minimum Gap Between Subtitles"
 msgstr "Ελάχιστο Κενό Μεταξύ Υπότιτλων"
 
 #: ../plugins/actions/errorchecking/mingapbetweensubtitles.h:39
-msgid ""
-"Detects and fixes subtitles when the minimum gap between subtitles is too "
-"short."
-msgstr ""
-"Ανιχνεύει και διορθώνει τους υπότιτλους όταν το ελάχιστο κενό μεταξύ τους "
-"είναι πολύ μικρό."
+msgid "Detects and fixes subtitles when the minimum gap between subtitles is too short."
+msgstr "Ανιχνεύει και διορθώνει τους υπότιτλους όταν το ελάχιστο κενό μεταξύ τους είναι πολύ μικρό."
 
 #: ../plugins/actions/errorchecking/mingapbetweensubtitles.h:81
 #, c-format
@@ -617,12 +597,8 @@ msgstr "Πολύ μικρό κενό μεταξύ υπότιτλων: <b>%i msec
 
 #: ../plugins/actions/errorchecking/mingapbetweensubtitles.h:85
 #, c-format
-msgid ""
-"<b>Automatic correction:</b> to clip current subtitle end to %s and to move "
-"next subtitle start to %s."
-msgstr ""
-"<b>Αυτόματη διόρθωση:</b> περικοπή του τέλους του τρέχοντος υπότιτλου κατά %"
-"s και μετατόπιση της έναρξης του επόμενου υπότιτλου κατά %s."
+msgid "<b>Automatic correction:</b> to clip current subtitle end to %s and to move next subtitle start to %s."
+msgstr "<b>Αυτόματη διόρθωση:</b> περικοπή του τέλους του τρέχοντος υπότιτλου κατά %s και μετατόπιση της έναρξης του επόμενου υπότιτλου κατά %s."
 
 #: ../plugins/actions/errorchecking/overlapping.h:38
 msgid "Overlapping"
@@ -630,8 +606,7 @@ msgstr "Επικάλυψη"
 
 #: ../plugins/actions/errorchecking/overlapping.h:39
 msgid "An error is detected when the subtitle overlap on next subtitle."
-msgstr ""
-"Εντοπισμός σφάλματος όταν ο υπότιτλος επικαλύπτει τον επόμενο υπότιτλο."
+msgstr "Εντοπισμός σφάλματος όταν ο υπότιτλος επικαλύπτει τον επόμενο υπότιτλο."
 
 #: ../plugins/actions/errorchecking/overlapping.h:71
 #, c-format
@@ -643,38 +618,26 @@ msgid "Too Long Display Time"
 msgstr "Πολύ Μεγάλος Χρόνος Εμφάνισης"
 
 #: ../plugins/actions/errorchecking/toolongdisplaytime.h:40
-msgid ""
-"Detects and fixes subtitles when the number of characters per second is "
-"inferior to the specified value."
-msgstr ""
-"Ανιχνεύει και διορθώνει τους υπότιτλους όταν ο αριθμός χαρακτήρων ανά "
-"δευτερόλεπτο είναι μικρότερος από την καθορισμένη τιμή."
+msgid "Detects and fixes subtitles when the number of characters per second is inferior to the specified value."
+msgstr "Ανιχνεύει και διορθώνει τους υπότιτλους όταν ο αριθμός χαρακτήρων ανά δευτερόλεπτο είναι μικρότερος από την καθορισμένη τιμή."
 
 #: ../plugins/actions/errorchecking/toolongdisplaytime.h:77
 #, c-format
 msgid "Subtitle display time is too long: <b>%.1f chars/s</b>"
-msgstr ""
-"Ο χρόνος εμφάνισης του υπότιτλου είναι πολύ μεγάλος: <b>%.1f χαρακτήρες/sec</"
-"b>"
+msgstr "Ο χρόνος εμφάνισης του υπότιτλου είναι πολύ μεγάλος: <b>%.1f χαρακτήρες/sec</b>"
 
 #: ../plugins/actions/errorchecking/tooshortdisplaytime.h:39
 msgid "Too Short Display Time"
 msgstr "Πολύ Μικρός Χρόνος Εμφάνισης"
 
 #: ../plugins/actions/errorchecking/tooshortdisplaytime.h:40
-msgid ""
-"Detects and fixes subtitles when the number of characters per second is "
-"superior to the specified value."
-msgstr ""
-"Ανιχνεύει και διορθώνει τους υπότιτλους όταν ο αριθμός χαρακτήρων ανά "
-"δευτερόλεπτο είναι μεγαλύτερος από την καθορισμένη τιμή."
+msgid "Detects and fixes subtitles when the number of characters per second is superior to the specified value."
+msgstr "Ανιχνεύει και διορθώνει τους υπότιτλους όταν ο αριθμός χαρακτήρων ανά δευτερόλεπτο είναι μεγαλύτερος από την καθορισμένη τιμή."
 
 #: ../plugins/actions/errorchecking/tooshortdisplaytime.h:77
 #, c-format
 msgid "Subtitle display time is too short: <b>%.1f chars/s</b>"
-msgstr ""
-"Ο χρόνος εμφάνισης του υπότιτλου είναι πολύ μικρός: <b>%.1f χαρακτήρες/sec</"
-"b>"
+msgstr "Ο χρόνος εμφάνισης του υπότιτλου είναι πολύ μικρός: <b>%.1f χαρακτήρες/sec</b>"
 
 #: ../plugins/actions/extendlength/extendlength.cc:53
 msgid "_Extend Length"
@@ -682,9 +645,7 @@ msgstr "_Επέκταση Μήκους"
 
 #: ../plugins/actions/extendlength/extendlength.cc:53
 msgid "Extend the length of selected subtitles to the start time of the next"
-msgstr ""
-"Επέκταση της διάρκειας των επιλεγμένων υπότιτλων έως το χρόνο έναρξης του "
-"επόμενου"
+msgstr "Επέκταση της διάρκειας των επιλεγμένων υπότιτλων έως το χρόνο έναρξης του επόμενου"
 
 #: ../plugins/actions/extendlength/extendlength.cc:126
 msgid "Extend lenght"
@@ -703,11 +664,8 @@ msgid "<span size=\"small\">the path to the video file</span>"
 msgstr "<span size=\"small\">η διαδρομή προς το αρχείο βίντεο</span>"
 
 #: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:4
-msgid ""
-"<span size=\"small\">the time in seconds to the current selected line</span>"
-msgstr ""
-"<span size=\"small\">ο χρόνος σε δευτερόλεπτα στην τρέχουσα επιλεγμένη "
-"γραμμή</span>"
+msgid "<span size=\"small\">the time in seconds to the current selected line</span>"
+msgstr "<span size=\"small\">ο χρόνος σε δευτερόλεπτα στην τρέχουσα επιλεγμένη γραμμή</span>"
 
 #: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:5
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
@@ -732,11 +690,8 @@ msgid "External Video Player"
 msgstr "Εξωτερικός Αναπαραγωγός Βίντεο"
 
 #: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:11
-msgid ""
-"The following command parameters will be substituted when launching the "
-"action :"
-msgstr ""
-"Οι ακόλουθες παράμετροι εντολών θα αντικατασταθούν όταν ξεκινήσει η ενέργεια:"
+msgid "The following command parameters will be substituted when launching the action :"
+msgstr "Οι ακόλουθες παράμετροι εντολών θα αντικατασταθούν όταν ξεκινήσει η ενέργεια:"
 
 #: ../plugins/actions/externalvideoplayer/externalvideoplayer.cc:82
 msgid "_External Video Player"
@@ -943,7 +898,7 @@ msgid "Open Keyframes"
 msgstr "Άνοιγμα Καρέ-κλειδιών"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:72
-msgid "Open a keyframe from file"
+msgid "Open keyframes from a file"
 msgstr "Άνοιγμα καρέ-κλειδιού από αρχείο"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:80
@@ -952,7 +907,7 @@ msgid "Save Keyframes"
 msgstr "Αποθήκευση Kαρέ-κλειδιών"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:81
-msgid "Save a keyframe to the file"
+msgid "Save keyframes to the file"
 msgstr "Αποθήκευση καρέ-κλειδιού στο αρχείο"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:89
@@ -960,11 +915,11 @@ msgid "Generate Keyframes From Video"
 msgstr "Δημιουργία Καρέ-κλειδιών Από Βίντεο"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:90
-msgid "Generate a keyframe from the current video"
+msgid "Generate keyframes from the current video"
 msgstr "Δημιουργία καρέ-κλειδιού από το τρέχον βίντεο"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:97
-msgid "Close the keyframe"
+msgid "Close the keyframes"
 msgstr "Κλείσιμο καρέ-κλειδιού"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:98
@@ -1033,29 +988,23 @@ msgstr "Μετακίνηση Τέλους στο Καρέ-κλειδί"
 msgid "Media file could not be played.\n"
 msgstr "Το αρχείο πολυμέσων δεν μπορεί να αναπαραχθεί.\n"
 
-#: ../plugins/actions/keyframesmanagement/mediadecoder.h:361
-#: ../plugins/actions/wavefrommanagement/mediadecoder.h:361
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:383
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:383
 #: ../src/gstreamer_utility.cc:63
 msgid ""
 "GStreamer plugins missing.\n"
-"The playback of this movie requires the following decoders which are not "
-"installed:"
+"The playback of this movie requires the following decoders which are not installed:"
 msgstr ""
 "Δεν υπάρχουν εμφυτεύματα GStreamer.\n"
-"Η αναπαραγωγή αυτής της ταινίας απαιτεί τους ακόλουθους αποκωδικοποιητές οι "
-"οποίοι δεν είναι εγκατεστημένοι:"
+"Η αναπαραγωγή αυτής της ταινίας απαιτεί τους ακόλουθους αποκωδικοποιητές οι οποίοι δεν είναι εγκατεστημένοι:"
 
 #: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc:56
 msgid "_Move After Preceding"
 msgstr "_Μετακίνηση Αμέσως Μετά τον Προηγούμενο"
 
 #: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc:56
-msgid ""
-"Move subtitle after the preceding with the respect of the minimum gap "
-"between subtitles"
-msgstr ""
-"Μετακίνηση υπότιτλου αμέσως μετά τον προηγούμενο τηρώντας το ελάχιστο κενό "
-"μεταξύ υπότιτλων"
+msgid "Move subtitle after the preceding with the respect of the minimum gap between subtitles"
+msgstr "Μετακίνηση υπότιτλου αμέσως μετά τον προηγούμενο τηρώντας το ελάχιστο κενό μεταξύ υπότιτλων"
 
 #: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc:127
 msgid "Move After Preceding"
@@ -1103,29 +1052,28 @@ msgstr "_Μετακίνηση υπότιτλων"
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr "Όλοι οι υπότιτλοι θα μεταφερθούν μετά τον πρώτο επιλεγμένο υπότιτλο."
 
-#: ../plugins/actions/plaintext/plaintext.cc:58
+#: ../plugins/actions/plaintext/plaintext.cc:57
 msgid "_Import Plain Text"
 msgstr "_Εισαγωγή Απλού Κειμένου"
 
-#: ../plugins/actions/plaintext/plaintext.cc:58
+#: ../plugins/actions/plaintext/plaintext.cc:57
 msgid "Create a new document with any text file"
-msgstr ""
-"Δημιουργία ενός νέου εγγράφου χρησιμοποιώντας οποιοδήποτε αρχείο κειμένου"
+msgstr "Δημιουργία ενός νέου εγγράφου χρησιμοποιώντας οποιοδήποτε αρχείο κειμένου"
 
-#: ../plugins/actions/plaintext/plaintext.cc:62
+#: ../plugins/actions/plaintext/plaintext.cc:61
 msgid "_Export Plain Text"
 msgstr "_Εξαγωγή Απλού Κειμένου"
 
-#: ../plugins/actions/plaintext/plaintext.cc:62
+#: ../plugins/actions/plaintext/plaintext.cc:61
 msgid "Export just a text in a file"
 msgstr "Απλή εξαγωγή κειμένου σε αρχείο"
 
-#: ../plugins/actions/plaintext/plaintext.cc:142
+#: ../plugins/actions/plaintext/plaintext.cc:138
 #, c-format
 msgid "Could not import from the file \"%s\"."
 msgstr "Αδυναμία εισαγωγής από το αρχείο \"%s\"."
 
-#: ../plugins/actions/plaintext/plaintext.cc:180
+#: ../plugins/actions/plaintext/plaintext.cc:174
 #, c-format
 msgid "Could not export to the file \"%s\"."
 msgstr "Αδυναμία εξαγωγής στο αρχείο \"%s\"."
@@ -1290,13 +1238,8 @@ msgid "Waveform"
 msgstr "Κυματομορφή"
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:47
-msgid ""
-"When enabled, you can change keyboard shortcuts for menu items by hitting a "
-"key combination while the menu item is highlighted."
-msgstr ""
-"Όταν είναι ενεργοποιημένο, μπορείτε να αλλάξετε τις συντομεύσεις "
-"πληκτρολογίου για αντικείμενα των μενού πατώντας ένα συνδυασμό πλήκτρων ενώ "
-"το αντικείμενο του μενού είναι υπογραμμισμένο."
+msgid "When enabled, you can change keyboard shortcuts for menu items by hitting a key combination while the menu item is highlighted."
+msgstr "Όταν είναι ενεργοποιημένο, μπορείτε να αλλάξετε τις συντομεύσεις πληκτρολογίου για αντικείμενα των μενού πατώντας ένα συνδυασμό πλήκτρων ενώ το αντικείμενο του μενού είναι υπογραμμισμένο."
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:48
 msgid "_Audio:"
@@ -1312,8 +1255,7 @@ msgstr "Κεντράρισμα του κειμένου του υπότιτλου
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:51
 msgid "_Do not disable the actions during editing"
-msgstr ""
-"_Να μην απενεργοποιούνται οι ενέργειες κατά τη διάρκεια της επεξεργασίας"
+msgstr "_Να μην απενεργοποιούνται οι ενέργειες κατά τη διάρκεια της επεξεργασίας"
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:52
 msgid "_Font:"
@@ -1575,14 +1517,8 @@ msgid "_Language:"
 msgstr "_Γλώσσα:"
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:181
-msgid ""
-"The spell check is applied to the column \"text\" as default. You can check "
-"the column \"translation\" by setting the focus to this column before "
-"starting the spell check."
-msgstr ""
-"Ο ορθογραφικός έλεγχος εφαρμόζεται στη στήλη \"Κείμενο\" ως προεπιλογή. "
-"Μπορείτε να εφαρμόσετε τον ορθογραφικό έλεγχο και στη στήλη \"Μετάφραση\", "
-"εάν εστιάσετε σε αυτή τη στήλη πριν ξεκινήσετε τον έλεγχο."
+msgid "The spell check is applied to the column \"text\" as default. You can check the column \"translation\" by setting the focus to this column before starting the spell check."
+msgstr "Ο ορθογραφικός έλεγχος εφαρμόζεται στη στήλη \"Κείμενο\" ως προεπιλογή. Μπορείτε να εφαρμόσετε τον ορθογραφικό έλεγχο και στη στήλη \"Μετάφραση\", εάν εστιάσετε σε αυτή τη στήλη πριν ξεκινήσετε τον έλεγχο."
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:187
 msgid "_Do not show this message again"
@@ -1828,9 +1764,7 @@ msgstr "Διόρθωση συνήθων σφαλμάτων"
 
 #: ../plugins/actions/textcorrection/commonerrorpage.h:36
 msgid "Correct common errors made by humans or image recognition software"
-msgstr ""
-"Διόρθωση συνήθων σφαλμάτων που έγιναν από χρήστες ή λογισμικό αναγνώρισης "
-"εικόνων"
+msgstr "Διόρθωση συνήθων σφαλμάτων που έγιναν από χρήστες ή λογισμικό αναγνώρισης εικόνων"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:78
 #: ../src/subtitleview.cc:1461
@@ -1922,9 +1856,7 @@ msgstr "Συγχρονισμός Από Τον Αναπαραγωγό"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:60
 msgid "Use the current player position to set subtitle time"
-msgstr ""
-"Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση του χρόνου του "
-"υπότιτλου"
+msgstr "Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση του χρόνου του υπότιτλου"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:65
 msgid "Set Subtitle _Start"
@@ -1932,9 +1864,7 @@ msgstr "Ρύθμιση _Αρχής Υπότιτλου"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:66
 msgid "Use the current player position to set the subtitle start"
-msgstr ""
-"Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση της αρχής του "
-"υπότιτλου"
+msgstr "Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση της αρχής του υπότιτλου"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:72
 msgid "Set Subtitle _End"
@@ -1942,21 +1872,15 @@ msgstr "Ρύθμιση _Τέλους Υπότιτλου"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:73
 msgid "Use the current player position to set the subtitle end"
-msgstr ""
-"Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση του τέλους του "
-"υπότιτλου"
+msgstr "Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση του τέλους του υπότιτλου"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:79
 msgid "Set Subtitle Start _And End"
 msgstr "Ρύθμιση Αρχής _Και Τέλους Υπότιτλου"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
-msgid ""
-"Use only one key to set beginning of the subtitle when the key is pressed "
-"and the end when the key is released."
-msgstr ""
-"Χρήση ενός μόνο πλήκτρου για τη ρύθμιση της έναρξης του υπότιτλου με το "
-"πλήκτρο πατημένο και τη ρύθμιση του τέλους με το πλήκτρο  απελευθερωμένο."
+msgid "Use only one key to set beginning of the subtitle when the key is pressed and the end when the key is released."
+msgstr "Χρήση ενός μόνο πλήκτρου για τη ρύθμιση της έναρξης του υπότιτλου με το πλήκτρο πατημένο και τη ρύθμιση του τέλους με το πλήκτρο  απελευθερωμένο."
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:170
 msgid "Set subtitle start"
@@ -1967,7 +1891,7 @@ msgid "Set subtitle end"
 msgstr "Ρύθμιση τέλους υπότιτλου"
 
 #: ../plugins/actions/typewriter/typewriter.cc:54
-msgid "_Type Writer"
+msgid "_Typewriter"
 msgstr "_Γραφομηχανή"
 
 #: ../plugins/actions/typewriter/typewriter.cc:57
@@ -2141,8 +2065,7 @@ msgstr "Αναπαραγωγή Πρώτου Δευτερολέπτου"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:264
 msgid "Play the first second of the subtitle currently selected"
-msgstr ""
-"Αναπαραγωγή του πρώτου δευτερόλεπτου του τρέχοντος επιλεγμένου  υπότιτλου"
+msgstr "Αναπαραγωγή του πρώτου δευτερόλεπτου του τρέχοντος επιλεγμένου  υπότιτλου"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:270
 msgid "Play Last Second"
@@ -2150,8 +2073,7 @@ msgstr "Αναπαραγωγή Τελευταίου Δευτερολέπτου"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:271
 msgid "Play the last second of the subtitle currently selected"
-msgstr ""
-"Αναπαραγωγή του τελευταίου δευτερόλεπτου του τρέχοντος επιλεγμένου  υπότιτλου"
+msgstr "Αναπαραγωγή του τελευταίου δευτερόλεπτου του τρέχοντος επιλεγμένου  υπότιτλου"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:277
 msgid "Play Next Second"
@@ -2159,8 +2081,7 @@ msgstr "Αναπαραγωγή Επόμενου Δευτερολέπτου"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:278
 msgid "Play the second following the subtitle currently selected"
-msgstr ""
-"Αναπαραγωγή του δευτερόλεπτου μετά από τον τρέχοντα επιλεγμένο υπότιτλο"
+msgstr "Αναπαραγωγή του δευτερόλεπτου μετά από τον τρέχοντα επιλεγμένο υπότιτλο"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:287
 msgid "_Video Player"
@@ -2179,7 +2100,7 @@ msgid "Choice of an audio track"
 msgstr "Επιλογή ηχητικού κομματιού"
 
 #. A default track "Auto"
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:552
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:546
 msgid "Auto"
 msgstr "Αυτόματα"
 
@@ -2305,14 +2226,13 @@ msgstr "_Κυματομορφή"
 msgid "Show or hide the waveform in the current window"
 msgstr "Προβολή ή απόκρυψη της κυματομορφής στο τρέχον παράθυρο"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:336
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:345
 msgid "Save Waveform"
 msgstr "Αποθήκευση Κυματομορφής"
 
 #: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:1
 msgid "<b>What framerate do you want used to import or export?</b>"
-msgstr ""
-"<b>Ποιον ρυθμό καρέ θέλετε να χρησιμοποιήσετε για εισαγωγή ή εξαγωγή;</b>"
+msgstr "<b>Ποιον ρυθμό καρέ θέλετε να χρησιμοποιήσετε για εισαγωγή ή εξαγωγή;</b>"
 
 #: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:2
 #: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
@@ -2339,7 +2259,8 @@ msgstr "Αποτυχία εγγραφής στο αρχείο."
 msgid "A subtitle editor based on GStreamer and Gtk+"
 msgstr "Ένας επεξεργαστής υπότιτλων βασισμένος σε GStreamer και Gtk+"
 
-#: ../share/subtitleeditor.desktop.in.h:2 ../share/ui/subtitleeditor.ui.h:1
+#: ../share/subtitleeditor.desktop.in.h:2
+#: ../share/ui/subtitleeditor.ui.h:1
 msgid "Subtitle Editor"
 msgstr "Subtitle Editor"
 
@@ -2350,17 +2271,11 @@ msgstr "Επιλογή υπότιτλου"
 #: ../src/document.cc:295
 #, c-format
 msgid "Could not save the file \"%s\" using the character coding %s."
-msgstr ""
-"Αδύνατη η αποθήκευση του αρχείου \"%s\" χρησιμοποιώντας την κωδικοποίηση "
-"χαρακτήρων %s."
+msgstr "Αδύνατη η αποθήκευση του αρχείου \"%s\" χρησιμοποιώντας την κωδικοποίηση χαρακτήρων %s."
 
 #: ../src/document.cc:297
-msgid ""
-"The document contains one or more characters that cannot be encoded using "
-"the specified character coding."
-msgstr ""
-"Το έγγραφο περιέχει έναν ή περισσότερους χαρακτήρες που δεν μπορούν να "
-"κωδικοποιηθούν χρησιμοποιώντας τη συγκεκριμένη κωδικοποίηση χαρακτήρων."
+msgid "The document contains one or more characters that cannot be encoded using the specified character coding."
+msgstr "Το έγγραφο περιέχει έναν ή περισσότερους χαρακτήρες που δεν μπορούν να κωδικοποιηθούν χρησιμοποιώντας τη συγκεκριμένη κωδικοποίηση χαρακτήρων."
 
 #: ../src/document.cc:306
 msgid "Save Document Failed."
@@ -2373,9 +2288,7 @@ msgstr "Αδυναμία αναγνώρισης της μορφής υπότιτ
 
 #: ../src/document.cc:641
 msgid "Please check that the file contains subtitles in a supported format."
-msgstr ""
-"Παρακαλώ ελέγξτε εάν το αρχείο περιέχει υπότιτλους σε μια υποστηριζόμενη "
-"μορφή."
+msgstr "Παρακαλώ ελέγξτε εάν το αρχείο περιέχει υπότιτλους σε μια υποστηριζόμενη μορφή."
 
 #: ../src/document.cc:653
 #, c-format
@@ -2383,35 +2296,29 @@ msgid "Could not open automatically the file \"%s\"."
 msgstr "Αδυναμία αυτόματου ανοίγματος του αρχείου \"%s\"."
 
 #: ../src/document.cc:654
-msgid ""
-"Subtitle Editor was not able to automatically determine the file encoding. "
-"Select a different character coding from the menu and try again."
-msgstr ""
-"Το Subtitle Editor δεν ήταν δυνατόν να προσδιορίσει αυτόματα την "
-"κωδικοποίηση του αρχείου. Επιλέξτε μια διαφορετική κωδικοποίηση χαρακτήρων "
-"από το μενού και προσπαθήστε ξανά."
+msgid "Subtitle Editor was not able to automatically determine the file encoding. Select a different character coding from the menu and try again."
+msgstr "Το Subtitle Editor δεν ήταν δυνατόν να προσδιορίσει αυτόματα την κωδικοποίηση του αρχείου. Επιλέξτε μια διαφορετική κωδικοποίηση χαρακτήρων από το μενού και προσπαθήστε ξανά."
 
 #: ../src/document.cc:660
 #, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
-msgstr ""
-"Αδυναμία ανοίγματος του αρχείου \"%s\" χρησιμοποιώντας την κωδικοποίηση "
-"χαρακτήρων %s."
+msgstr "Αδυναμία ανοίγματος του αρχείου \"%s\" χρησιμοποιώντας την κωδικοποίηση χαρακτήρων %s."
 
 #: ../src/document.cc:662
 msgid "Select a different character coding from the menu and try again."
-msgstr ""
-"Επιλέξτε μία διαφορετική κωδικοποίηση χαρακτήρων από το μενού και "
-"προσπαθήστε ξανά."
+msgstr "Επιλέξτε μία διαφορετική κωδικοποίηση χαρακτήρων από το μενού και προσπαθήστε ξανά."
 
-#: ../src/document.cc:669 ../src/gui/application.cc:307
-#: ../share/ui/dialog-export-text.ui.h:1 ../share/ui/dialog-import-text.ui.h:1
+#: ../src/document.cc:669
+#: ../src/gui/application.cc:307
+#: ../share/ui/dialog-export-text.ui.h:1
+#: ../share/ui/dialog-import-text.ui.h:1
 #: ../share/ui/dialog-open-document.ui.h:1
 #: ../share/ui/dialog-save-document.ui.h:1
 msgid "Character Coding:"
 msgstr "Κωδικοποίηση χαρακτήρων"
 
-#: ../src/document.cc:687 ../src/document.cc:696
+#: ../src/document.cc:687
+#: ../src/document.cc:696
 #, c-format
 msgid "Could not open the file \"%s\""
 msgstr "Αδυναμία ανοίγματος του αρχείου \"%s\""
@@ -2429,30 +2336,32 @@ msgstr "Ανώνυμο %d"
 msgid "It's not valid UTF-8."
 msgstr "Δεν είναι έγκυρη UTF-8."
 
-#: ../src/encodings.cc:113 ../src/encodings.cc:120 ../src/encodings.cc:125
+#: ../src/encodings.cc:113
+#: ../src/encodings.cc:120
+#: ../src/encodings.cc:125
 #, c-format
 msgid "Couldn't convert from %s to UTF-8"
 msgstr "Αδυναμία μετατροπής από %s σε UTF-8"
 
 #: ../src/encodings.cc:215
-msgid ""
-"subtitleeditor was not able to automatically determine the encoding of the "
-"file you want to open."
-msgstr ""
-"Το Subtitle Editor δεν ήταν δυνατόν να προσδιορίσει αυτόματα την "
-"κωδικοποίηση του αρχείου που θέλετε να ανοίξετε."
+msgid "subtitleeditor was not able to automatically determine the encoding of the file you want to open."
+msgstr "Το Subtitle Editor δεν ήταν δυνατόν να προσδιορίσει αυτόματα την κωδικοποίηση του αρχείου που θέλετε να ανοίξετε."
 
 #: ../src/encodings.cc:235
 #, c-format
 msgid "Could not convert the text to the character coding '%s'"
 msgstr "Αδυναμία μετατροπής του κειμένου στην κωδικοποίηση χαρακτήρων '%s'"
 
-#: ../src/encodings.h:38 ../src/encodings.h:51 ../src/encodings.h:75
+#: ../src/encodings.h:38
+#: ../src/encodings.h:51
+#: ../src/encodings.h:75
 #: ../src/encodings.h:98
 msgid "Western"
 msgstr "Δυτική"
 
-#: ../src/encodings.h:39 ../src/encodings.h:76 ../src/encodings.h:96
+#: ../src/encodings.h:39
+#: ../src/encodings.h:76
+#: ../src/encodings.h:96
 msgid "Central European"
 msgstr "Κεντρικής Ευρώπης"
 
@@ -2460,20 +2369,28 @@ msgstr "Κεντρικής Ευρώπης"
 msgid "South European"
 msgstr "Νότιας Ευρώπης"
 
-#: ../src/encodings.h:41 ../src/encodings.h:49 ../src/encodings.h:103
+#: ../src/encodings.h:41
+#: ../src/encodings.h:49
+#: ../src/encodings.h:103
 msgid "Baltic"
 msgstr "Βαλτικής"
 
-#: ../src/encodings.h:42 ../src/encodings.h:77 ../src/encodings.h:84
-#: ../src/encodings.h:86 ../src/encodings.h:97
+#: ../src/encodings.h:42
+#: ../src/encodings.h:77
+#: ../src/encodings.h:84
+#: ../src/encodings.h:86
+#: ../src/encodings.h:97
 msgid "Cyrillic"
 msgstr "Κυριλλική"
 
-#: ../src/encodings.h:43 ../src/encodings.h:80 ../src/encodings.h:102
+#: ../src/encodings.h:43
+#: ../src/encodings.h:80
+#: ../src/encodings.h:102
 msgid "Arabic"
 msgstr "Αραβική"
 
-#: ../src/encodings.h:44 ../src/encodings.h:99
+#: ../src/encodings.h:44
+#: ../src/encodings.h:99
 msgid "Greek"
 msgstr "Ελληνική"
 
@@ -2481,11 +2398,15 @@ msgstr "Ελληνική"
 msgid "Hebrew Visual"
 msgstr "Οπτική Εβραϊκή"
 
-#: ../src/encodings.h:46 ../src/encodings.h:79 ../src/encodings.h:101
+#: ../src/encodings.h:46
+#: ../src/encodings.h:79
+#: ../src/encodings.h:101
 msgid "Hebrew"
 msgstr "Εβραϊκή"
 
-#: ../src/encodings.h:47 ../src/encodings.h:78 ../src/encodings.h:100
+#: ../src/encodings.h:47
+#: ../src/encodings.h:78
+#: ../src/encodings.h:100
 msgid "Turkish"
 msgstr "Τουρκική"
 
@@ -2501,8 +2422,11 @@ msgstr "Κελτική"
 msgid "Romanian"
 msgstr "Ρουμανική"
 
-#: ../src/encodings.h:54 ../src/encodings.h:55 ../src/encodings.h:56
-#: ../src/encodings.h:57 ../src/encodings.h:58
+#: ../src/encodings.h:54
+#: ../src/encodings.h:55
+#: ../src/encodings.h:56
+#: ../src/encodings.h:57
+#: ../src/encodings.h:58
 msgid "Unicode"
 msgstr "Unicode"
 
@@ -2510,7 +2434,9 @@ msgstr "Unicode"
 msgid "Armenian"
 msgstr "Αρμενική"
 
-#: ../src/encodings.h:61 ../src/encodings.h:62 ../src/encodings.h:67
+#: ../src/encodings.h:61
+#: ../src/encodings.h:62
+#: ../src/encodings.h:67
 msgid "Chinese Traditional"
 msgstr "Κινέζικη Παραδοσιακή"
 
@@ -2518,16 +2444,22 @@ msgstr "Κινέζικη Παραδοσιακή"
 msgid "Cyrillic/Russian"
 msgstr "Κυριλλική/Ρωσική"
 
-#: ../src/encodings.h:65 ../src/encodings.h:82 ../src/encodings.h:90
+#: ../src/encodings.h:65
+#: ../src/encodings.h:82
+#: ../src/encodings.h:90
 msgid "Japanese"
 msgstr "Ιαπωνική"
 
-#: ../src/encodings.h:66 ../src/encodings.h:83 ../src/encodings.h:85
+#: ../src/encodings.h:66
+#: ../src/encodings.h:83
+#: ../src/encodings.h:85
 #: ../src/encodings.h:93
 msgid "Korean"
 msgstr "Κορεατική"
 
-#: ../src/encodings.h:69 ../src/encodings.h:70 ../src/encodings.h:71
+#: ../src/encodings.h:69
+#: ../src/encodings.h:70
+#: ../src/encodings.h:71
 #: ../src/encodings.h:73
 msgid "Chinese Simplified"
 msgstr "Κινεζική Απλοποιημένη"
@@ -2540,7 +2472,9 @@ msgstr "Γεωργιανή"
 msgid "Cyrillic/Ukrainian"
 msgstr "Κυριλλική/Ουκρανική"
 
-#: ../src/encodings.h:91 ../src/encodings.h:94 ../src/encodings.h:104
+#: ../src/encodings.h:91
+#: ../src/encodings.h:94
+#: ../src/encodings.h:104
 msgid "Vietnamese"
 msgstr "Βιετναμέζικη"
 
@@ -2548,7 +2482,8 @@ msgstr "Βιετναμέζικη"
 msgid "Thai"
 msgstr "Ταϊλανδική"
 
-#: ../src/filereader.cc:22 ../src/filewriter.cc:56
+#: ../src/filereader.cc:22
+#: ../src/filewriter.cc:56
 msgid "Couldn't open the file."
 msgstr "Αδυναμία ανοίγματος του αρχείου"
 
@@ -2581,7 +2516,8 @@ msgstr "Όνομα:"
 msgid "Path:"
 msgstr "Τοποθεσία:"
 
-#: ../src/gui/application.cc:308 ../share/ui/dialog-save-document.ui.h:2
+#: ../src/gui/application.cc:308
+#: ../share/ui/dialog-save-document.ui.h:2
 msgid "Format:"
 msgstr "Μορφή:"
 
@@ -2651,16 +2587,19 @@ msgstr "Όλες οι υποστηριζόμενες μορφές (*.ass, *.ssa,
 msgid "Open Video"
 msgstr "Άνοιγμα Βίντεο"
 
-#: ../src/gui/dialogfilechooser.cc:457 ../src/gui/dialogfilechooser.cc:535
+#: ../src/gui/dialogfilechooser.cc:457
+#: ../src/gui/dialogfilechooser.cc:535
 #: ../src/gui/dialogfilechooser.cc:611
 msgid "Video"
 msgstr "Βίντεο"
 
-#: ../src/gui/dialogfilechooser.cc:468 ../src/gui/dialogfilechooser.cc:546
+#: ../src/gui/dialogfilechooser.cc:468
+#: ../src/gui/dialogfilechooser.cc:546
 msgid "Audio"
 msgstr "Ήχος"
 
-#: ../src/gui/dialogfilechooser.cc:476 ../src/gui/dialogfilechooser.cc:555
+#: ../src/gui/dialogfilechooser.cc:476
+#: ../src/gui/dialogfilechooser.cc:555
 #: ../src/gui/dialogfilechooser.cc:622
 msgid "ALL"
 msgstr "ΟΛΑ"
@@ -2739,7 +2678,16 @@ msgstr "_Άνοιγμα"
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
-#: ../src/keyframes.cc:88 ../src/subtitleformatsystem.cc:70
+#: ../src/gui/menubar.cc:78
+msgid "_Import"
+msgstr "_Εισαγωγή"
+
+#: ../src/gui/menubar.cc:79
+msgid "_Export"
+msgstr "_Εξαγωγή"
+
+#: ../src/keyframes.cc:88
+#: ../src/subtitleformatsystem.cc:70
 msgid "Couldn't recognize format of the file."
 msgstr "Αδυναμία αναγνώρισης της μορφής του αρχείου."
 
@@ -2755,7 +2703,9 @@ msgstr " - επεξεργασία αρχείων υπότιτλων"
 msgid "[FILE...]"
 msgstr "[ΑΡΧΕΙΟ]"
 
-#: ../src/options.cc:49 ../src/options.cc:74 ../src/options.cc:82
+#: ../src/options.cc:49
+#: ../src/options.cc:74
+#: ../src/options.cc:82
 msgid "FILE"
 msgstr "ΑΡΧΕΙΟ"
 
@@ -2767,7 +2717,8 @@ msgstr "ΟΝΟΜΑ"
 msgid "ENCODING"
 msgstr "ΚΩΔΙΚΟΠΟΙΗΣΗ"
 
-#: ../src/subtitleformatio.cc:63 ../src/subtitleformatio.cc:71
+#: ../src/subtitleformatio.cc:63
+#: ../src/subtitleformatio.cc:71
 msgid "This function is not implemented for this format."
 msgstr "Αυτή η λειτουργία δεν εφαρμόζεται γι αυτή τη μορφή."
 
@@ -2829,15 +2780,18 @@ msgstr "Ο αριθμός χαρακτήρων ανά δευτερόλεπτο"
 msgid "Editing layer"
 msgstr "Επεξεργασία επιπέδου"
 
-#: ../src/subtitleview.cc:908 ../src/subtitleview.cc:919
+#: ../src/subtitleview.cc:908
+#: ../src/subtitleview.cc:919
 msgid "Editing start"
 msgstr "Επεξεργασία έναρξης"
 
-#: ../src/subtitleview.cc:946 ../src/subtitleview.cc:957
+#: ../src/subtitleview.cc:946
+#: ../src/subtitleview.cc:957
 msgid "Editing end"
 msgstr "Επεξεργασία τέλους"
 
-#: ../src/subtitleview.cc:984 ../src/subtitleview.cc:995
+#: ../src/subtitleview.cc:984
+#: ../src/subtitleview.cc:995
 msgid "Editing duration"
 msgstr "Επεξεργασία διάρκειας"
 
@@ -2949,43 +2903,27 @@ msgstr "30 fps"
 msgid "Invalid fps"
 msgstr "Άκυρος fps"
 
-#: ../src/vp/gstplayer.cc:610
+#: ../src/vp/gstplayer.cc:617
 #, c-format
-msgid ""
-"Failed to create a GStreamer audio output (%s). Please check your GStreamer "
-"installation."
-msgstr ""
-"Αδυναμία δημιουργίας μίας εξόδου ήχου GStreamer (%s). Παρακαλώ ελέγξτε την "
-"εγκατάσταση GStreamer."
+msgid "Failed to create a GStreamer audio output (%s). Please check your GStreamer installation."
+msgstr "Αδυναμία δημιουργίας μίας εξόδου ήχου GStreamer (%s). Παρακαλώ ελέγξτε την εγκατάσταση GStreamer."
 
-#: ../src/vp/gstplayer.cc:648
+#: ../src/vp/gstplayer.cc:655
 #, c-format
-msgid ""
-"Failed to create a GStreamer converts video (%s). Please check your "
-"GStreamer installation."
-msgstr ""
-"Αδυναμία δημιουργίας μίας μετατροπής βίντεο GStreamer (%s). Παρακαλώ ελέγξτε "
-"την εγκατάσταση GStreamer."
+msgid "Failed to create a GStreamer converts video (%s). Please check your GStreamer installation."
+msgstr "Αδυναμία δημιουργίας μίας μετατροπής βίντεο GStreamer (%s). Παρακαλώ ελέγξτε την εγκατάσταση GStreamer."
 
-#: ../src/vp/gstplayer.cc:657
+#: ../src/vp/gstplayer.cc:664
 #, c-format
-msgid ""
-"Failed to create a GStreamer textoverlay (%s). Please check your GStreamer "
-"installation."
-msgstr ""
-"Αδυναμία δημιουργίας υπέρθεσης κειμένου GStreamer (%s). Παρακαλώ ελέγξτε την "
-"εγκατάσταση GStreamer."
+msgid "Failed to create a GStreamer textoverlay (%s). Please check your GStreamer installation."
+msgstr "Αδυναμία δημιουργίας υπέρθεσης κειμένου GStreamer (%s). Παρακαλώ ελέγξτε την εγκατάσταση GStreamer."
 
-#: ../src/vp/gstplayer.cc:670
+#: ../src/vp/gstplayer.cc:677
 #, c-format
-msgid ""
-"Failed to create a GStreamer sink (%s). Please check your GStreamer "
-"installation."
-msgstr ""
-"Αδυναμία δημιουργίας ενός αποδέκτη δεδομένων GStreamer (%s). Παρακαλώ "
-"ελέγξτε την εγκατάσταση GStreamer."
+msgid "Failed to create a GStreamer sink (%s). Please check your GStreamer installation."
+msgstr "Αδυναμία δημιουργίας ενός αποδέκτη δεδομένων GStreamer (%s). Παρακαλώ ελέγξτε την εγκατάσταση GStreamer."
 
-#: ../src/vp/gstplayer.cc:883
+#: ../src/vp/gstplayer.cc:929
 #, c-format
 msgid ""
 "Media file could not be played.\n"
@@ -2994,7 +2932,8 @@ msgstr ""
 "Το αρχείο πολυμέσων δεν μπορεί να αναπαραχθεί.\n"
 "%s"
 
-#: ../src/we/waveformeditor.cc:794 ../src/we/waveformeditor.cc:799
+#: ../src/we/waveformeditor.cc:817
+#: ../src/we/waveformeditor.cc:822
 msgid "Editing position"
 msgstr "Επεξεργασία θέσης"
 
@@ -3276,12 +3215,8 @@ msgid "Move After Preceding Subtitle"
 msgstr "Μετακίνηση Αμέσως Μετά τον Προηγούμενο Υπότιτλο"
 
 #: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.se-plugin.in.h:2
-msgid ""
-"Moves a subtitle after the preceding one respecting the minimum gap between "
-"subtitles."
-msgstr ""
-"Μετακινεί έναν υπότιτλο μετά τον προηγούμενο τηρώντας το ελάχιστο κενό "
-"μεταξύ των υπότιτλων."
+msgid "Moves a subtitle after the preceding one respecting the minimum gap between subtitles."
+msgstr "Μετακινεί έναν υπότιτλο μετά τον προηγούμενο τηρώντας το ελάχιστο κενό μεταξύ των υπότιτλων."
 
 #: ../plugins/actions/movesubtitles/movesubtitles.se-plugin.in.h:2
 msgid "Moves subtitles."
@@ -3357,9 +3292,7 @@ msgstr "Επεξεργαστής Στυλ"
 
 #: ../plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in.h:1
 msgid "Manages time modes (Framerate, Timing Mode ...)."
-msgstr ""
-"Διαχειρίζεται τις λειτουργίες χρόνου (Ρυθμός Εναλλαγής Καρέ, Λειτουργία "
-"Συγχρονισμού ...)."
+msgstr "Διαχειρίζεται τις λειτουργίες χρόνου (Ρυθμός Εναλλαγής Καρέ, Λειτουργία Συγχρονισμού ...)."
 
 #: ../plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in.h:2
 msgid "Time Mode Management"
@@ -3367,9 +3300,7 @@ msgstr "Διαχείριση λειτουργιών χρόνου."
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:2
 msgid "Use the current player position to set the subtitle time."
-msgstr ""
-"Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση του χρόνου του "
-"υπότιτλου."
+msgstr "Χρήση της τρέχουσας θέσης του αναπαραγωγού για ρύθμιση του χρόνου του υπότιτλου."
 
 #: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:1
 msgid "FIXME."
@@ -3543,9 +3474,7 @@ msgstr "Αφαίρεση περιόδου πριν ή μετά από διάφο
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:10
 msgid "Remove space after a starting- and before an ending quotation mark"
-msgstr ""
-"Αφαίρεση διαστήματος μετά από αρχικό σύμβολο εισαγωγικού και πριν από τελικό "
-"σύμβολο εισαγωγικού"
+msgstr "Αφαίρεση διαστήματος μετά από αρχικό σύμβολο εισαγωγικού και πριν από τελικό σύμβολο εισαγωγικού"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:11
 msgid "Remove space after an ellipsis that starts a line"
@@ -3564,10 +3493,8 @@ msgid "Replace letter \"O\" with a zero in a number"
 msgstr "Αντικατάσταση του γράμματος \"Ο\" με μηδενικό σε αριθμό"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:15
-msgid ""
-"Replace multiple consequtive question- and exclamation marks with only one"
-msgstr ""
-"Αντικατάσταση πολλαπλών συνεχόμενων ερωτηματικών και θαυμαστικών με μόνο ένα"
+msgid "Replace multiple consequtive question- and exclamation marks with only one"
+msgstr "Αντικατάσταση πολλαπλών συνεχόμενων ερωτηματικών και θαυμαστικών με μόνο ένα"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:16
 msgid "Space after a dialogue dash"
@@ -3631,18 +3558,15 @@ msgstr "Αφαίρεση διαστημάτων από μία απόστροφο
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:6
 msgid "Replace letter \"I\" with letter \"l\" in a lower case word"
-msgstr ""
-"Αντικατάσταση γράμματος \"I\" με το γράμμα \"l\" σε λέξη με μικρά γράμματα"
+msgstr "Αντικατάσταση γράμματος \"I\" με το γράμμα \"l\" σε λέξη με μικρά γράμματα"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:7
 msgid "Replace letter \"l\" with letter \"I\" in an upper case word"
-msgstr ""
-"Αντικατάσταση γράμματος \"l\" με το γράμμα \"I\" σε λέξη με κεφαλαία γράμματα"
+msgstr "Αντικατάσταση γράμματος \"l\" με το γράμμα \"I\" σε λέξη με κεφαλαία γράμματα"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:8
 msgid "Replace zero with letter \"O\" in an upper case word"
-msgstr ""
-"Αντικατάσταση μηδενικού με το γράμμα \"Ο\" σε λέξη με κεφαλαία γράμματα"
+msgstr "Αντικατάσταση μηδενικού με το γράμμα \"Ο\" σε λέξη με κεφαλαία γράμματα"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:9
 msgid "Spaces around an apostrophe"
@@ -3653,11 +3577,8 @@ msgid "Zero in an upper case word"
 msgstr "Μηδενικό σε λέξη με κεφαλαία γράμματα"
 
 #: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:1
-msgid ""
-"Replace the uppercase name of the speaker before a colon with a dialogue dash"
-msgstr ""
-"Αντικατάσταση του κεφαλαίου γράμματος του ομιλητή πριν από άνω και κάτω "
-"τελεία με παύλα διαλόγου"
+msgid "Replace the uppercase name of the speaker before a colon with a dialogue dash"
+msgstr "Αντικατάσταση του κεφαλαίου γράμματος του ομιλητή πριν από άνω και κάτω τελεία με παύλα διαλόγου"
 
 #: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:2
 msgid "Uppercase speaker before a colon"
@@ -3665,8 +3586,7 @@ msgstr "Κεφαλαίο γράμμα ομιλητή πριν από άνω κα
 
 #: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:1
 msgid "Add period after a shortened title, such as \"Mr\" and \"Dr\""
-msgstr ""
-"Προσθήκη περιόδου μετά από συντομευμένους τίτλους, όπως \"κ.' και \"Δρ.\" "
+msgstr "Προσθήκη περιόδου μετά από συντομευμένους τίτλους, όπως \"κ.' και \"Δρ.\" "
 
 #: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:2
 msgid "Period after title"
@@ -3702,19 +3622,15 @@ msgstr "Αφαίρεση περιγραφής ενός ήχου ανάμεσα �
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:5
 msgid "Remove one-line song lyrics starting with or between asterisks"
-msgstr ""
-"Αφαίρεση μονόστιχων των τραγουδιών που αρχίζουν ή βρίσκονται μεταξύ "
-"αστερίσκων"
+msgstr "Αφαίρεση μονόστιχων των τραγουδιών που αρχίζουν ή βρίσκονται μεταξύ αστερίσκων"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:6
 msgid "Remove one-line song lyrics starting with or between number signs"
-msgstr ""
-"Αφαίρεση μονόστιχων των τραγουδιών που αρχίζουν ή βρίσκονται μεταξύ # #"
+msgstr "Αφαίρεση μονόστιχων των τραγουδιών που αρχίζουν ή βρίσκονται μεταξύ # #"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:7
 msgid "Remove song lyrics starting with or between asterisks"
-msgstr ""
-"Αφαίρεση στίχων τραγουδιών που ξεκινούν από αστερίσκο ή μεταξύ αστερίσκων"
+msgstr "Αφαίρεση στίχων τραγουδιών που ξεκινούν από αστερίσκο ή μεταξύ αστερίσκων"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:8
 msgid "Remove song lyrics starting with or between number signs"
@@ -3722,9 +3638,7 @@ msgstr "Αφαίρεση στίχων τραγουδιών που ξεκινού
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:9
 msgid "Replace the name of the speaker before a colon with a dialogue dash"
-msgstr ""
-"Αντικατάσταση του ονόματος του ομιλητή πριν από άνω και κάτω τελεία με παύλα "
-"διαλόγου"
+msgstr "Αντικατάσταση του ονόματος του ομιλητή πριν από άνω και κάτω τελεία με παύλα διαλόγου"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:10
 msgid "Song lyrics between asterisks"
@@ -3769,3 +3683,4 @@ msgstr "Αντικατάσταση πολλαπλών διαδοχικών δι�
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:6
 msgid "Space between digits"
 msgstr "Κενό μεταξύ ψηφίων"
+
