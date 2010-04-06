@@ -1,5 +1,12 @@
 2010-04-06  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* README:
+	* configure.in:
+	Preparing 0.36.2 release.
+
+2010-04-06  kitone  <kitone@gna.org>
+
 	* configure.in:
 	* plugins/subtitleformats/Makefile.am:
 	* plugins/subtitleformats/sbv/Makefile.am:

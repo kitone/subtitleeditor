@@ -1,3 +1,10 @@
+2010-04-06 - 0.36.2
+
+	* New subtitle format SBV
+	* Small fixes (typo and HIG)
+	* New Greek translation (by Manolis Stefanis)
+	* Update French translation
+
 2010-03-22 - 0.36.1
 
 	* Reorganize the menu file with a sub-menu import and export
