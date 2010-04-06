@@ -1,3 +1,12 @@
+2010-04-06  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/sbv/Makefile.am:
+	* plugins/subtitleformats/sbv/sbv.cc:
+	* plugins/subtitleformats/sbv/sbv.se-plugin.in:
+	Introduce new subtitle format: SBV.
+
 2010-04-01  kitone  <kitone@gna.org>
 
 	* plugins/actions/changeframerate/dialog-change-framerate.ui:
