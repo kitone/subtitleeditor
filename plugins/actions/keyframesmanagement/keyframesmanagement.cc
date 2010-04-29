@@ -271,6 +271,8 @@ protected:
 			ui.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
 			ui.set_default_response(Gtk::RESPONSE_OK);
 
+			set_default_filename_from_video(&ui, kf->get_video_uri(), "kf");
+
 			if(ui.run() == Gtk::RESPONSE_OK)
 			{
 				Glib::ustring uri = ui.get_uri();
@@ -278,6 +280,31 @@ protected:
 				// FIXME check return value
 				kf->save(uri);
 			}
+		}
+	}
+
+	/*
+	 */
+	void set_default_filename_from_video(Gtk::FileChooser *fc, const Glib::ustring &video_uri, const Glib::ustring &ext)
+	{
+		try
+		{
+			Glib::ustring videofn = Glib::filename_from_uri(video_uri);
+			Glib::ustring pathname = Glib::path_get_dirname(videofn);
+			Glib::ustring basename = Glib::path_get_basename(videofn);
+
+			Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*)(\\.)(.*)$");
+			if(re->match(basename))
+				basename = re->replace(basename, 0, "\\1." + ext, Glib::RegexMatchFlags(0));
+			else
+				basename = Glib::ustring::compose("%1.%2", basename, ext);
+		
+			fc->set_current_folder(pathname); // set_current_folder_uri ?
+			fc->set_current_name(basename);
+		}
+		catch(const Glib::Exception &ex)
+		{
+			std::cerr << "set_default_filename_from_video failed : " << ex.what() << std::endl;
 		}
 	}
 
