@@ -295,7 +295,10 @@ protected:
 			//get_waveform_manager()->generate_waveform(uri);
 			Glib::RefPtr<Waveform> wf = generate_waveform_from_file(uri);
 			if(wf)
+			{
 				get_waveform_manager()->set_waveform(wf);
+				on_save_waveform();
+			}
 		}
 	}
 
