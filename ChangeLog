@@ -1,5 +1,11 @@
 2010-04-29  kitone  <kitone@gna.org>
 
+	* src/keyframes.cc:
+	* src/keyframes.h:
+	Add video uri and update kf format to the v2.
+
+2010-04-29  kitone  <kitone@gna.org>
+
 	* configure.in:
 	Switching back to development version.
 

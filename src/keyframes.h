@@ -52,6 +52,14 @@ public:
 	 */
 	Glib::ustring get_uri() const;
 
+	/*
+	 */
+	void set_video_uri(const Glib::ustring &uri);
+
+	/*
+	 */
+	Glib::ustring get_video_uri() const;
+
 public:
 
 	/*
@@ -74,6 +82,7 @@ protected:
 
 	mutable int ref_count_;
 	Glib::ustring m_uri;
+	Glib::ustring m_video_uri;
 };
 
 #endif//_KeyFrames_h
