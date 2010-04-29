@@ -72,6 +72,20 @@ Glib::ustring KeyFrames::get_uri() const
 
 /*
  */
+void KeyFrames::set_video_uri(const Glib::ustring &uri)
+{
+	m_video_uri = uri;
+}
+
+/*
+ */
+Glib::ustring KeyFrames::get_video_uri() const
+{
+	return m_video_uri;
+}
+
+/*
+ */
 bool KeyFrames::open(const Glib::ustring &uri)
 {
 	try
@@ -80,22 +94,43 @@ bool KeyFrames::open(const Glib::ustring &uri)
 		Glib::RefPtr<Gio::FileInputStream> fstream = file->read();
 		Glib::RefPtr<Gio::DataInputStream> dstream = Gio::DataInputStream::create(fstream);
 
-		int size = 0;
+		guint32 version = 0;
+		guint32 num_of_kf = 0;
 		std::string line;
-
 		// Check the file type
-		if((dstream->read_line(line) && line == "#subtitleeditor keyframes v1") == false)
+		if(!dstream->read_line(line))
 			throw SubtitleError(_("Couldn't recognize format of the file."));
 
-		// Read the keyframes number
-		if((dstream->read_line(line) && sscanf(line.c_str(), "size: %d", &size) != 0) == false)
-			throw SubtitleError(_("Couldn't get the keyframe size on the file."));
+		if(line == "#subtitleeditor keyframes v1")
+			version = 1;
+		else if(line == "#subtitleeditor keyframes v2")
+			version = 2;
+		else
+			throw SubtitleError(_("Couldn't recognize format of the file."));
 
-		// Read the keyframes data
-		reserve(size);
-		while(dstream->read_line(line))
+		if(version == 2)
 		{
-			push_back( utility::string_to_int(line) );
+			// Read the video uri
+			dstream->read_line(line);
+			set_video_uri(line);
+			// Read the keyframes number
+			dstream->read_line(line);
+			num_of_kf = utility::string_to_int(line);
+			// Read the keyframes data
+			resize(num_of_kf);
+			dstream->read(&(*this)[0], sizeof(long)*num_of_kf);
+		}
+		else if(version == 1) // TODO deprecated
+		{
+			// Read the keyframes number
+			if((dstream->read_line(line) && sscanf(line.c_str(), "size: %d", &num_of_kf) != 0) == false)
+				throw SubtitleError(_("Couldn't get the keyframe size on the file."));
+			// Read the keyframes data
+			reserve(num_of_kf);
+			while(dstream->read_line(line))
+			{
+				push_back( utility::string_to_int(line) );
+			}
 		}
 		// Update the uri of the keyframe
 		set_uri(uri);
@@ -121,18 +156,17 @@ bool KeyFrames::save(const Glib::ustring &uri)
 		if(!stream)
 			throw SubtitleError(Glib::ustring::compose("Gio::File::create_file returned an emptry ptr from the uri '%1'.", uri));
 
-		stream->write("#subtitleeditor keyframes v1\n");
-		stream->write(Glib::ustring::compose("size: %1\n", size()));
-
-		for(guint i=0; i < size(); ++i)
-			stream->write(Glib::ustring::compose("%1\n", (*this)[i]));
-
+		// Write header (version + video uri + num of kf)
+		stream->write("#subtitleeditor keyframes v2\n");
+		stream->write( Glib::ustring::compose("%1\n", get_video_uri()) );
+		stream->write( Glib::ustring::compose("%1\n", size()) );
+		// Write keyframes data
+		stream->write(&(*this)[0], sizeof(long)*size());
 		// Close the stream to make sure that changes are write now.
 		stream->close();
 		stream.reset();
 		// Update the uri of the keyframe
 		set_uri(uri);
-
 		return true;
 	}
 	catch(const std::exception &ex)
