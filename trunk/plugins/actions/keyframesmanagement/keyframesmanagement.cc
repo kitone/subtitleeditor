@@ -318,7 +318,10 @@ protected:
 
 		Glib::RefPtr<KeyFrames> kf = generate_keyframes_from_file(uri);
 		if(kf)
+		{
 			player()->set_keyframes(kf);
+			on_save();
+		}
 	}
 
 	/*

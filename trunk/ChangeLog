@@ -2,6 +2,12 @@
 
 	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
 	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Display the saving dialog after generating waveform or keyframes.
+
+2010-04-29  kitone  <kitone@gna.org>
+
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
 	Fix bug #15942 : Default location in file select dialog (waveform and
 	keyframes).
 
