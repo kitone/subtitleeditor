@@ -54,6 +54,7 @@ public:
 			{
 				keyframes = Glib::RefPtr<KeyFrames>(new KeyFrames);
 				keyframes->insert(keyframes->end(), m_values.begin(), m_values.end());
+				keyframes->set_video_uri(uri);
 			}
 		}
 		catch(const std::runtime_error &ex)
