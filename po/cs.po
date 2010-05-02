@@ -5,13 +5,14 @@
 # Luboš Staněk <lubek@users.sourceforge.net>, 2006-2008.
 # Jaroslav Lichtblau <https://translations.launchpad.net/~dragonlord>, 2008
 # Petr Pisar <petr.pisar@atlas.cz>, 2008.
+# Pavel Dvořák <id@dqd.cz>, 2010
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-01 13:34+0200\n"
-"PO-Revision-Date: 2010-05-01 20:00+0100\n"
+"PO-Revision-Date: 2010-05-02 11:30+0100\n"
 "Last-Translator: Pavel Dvořák <id@dqd.cz>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3540,7 +3541,7 @@ msgstr "Nahradí dvojitý apostrof za uvozovku"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:14
 msgid "Replace letter \"O\" with a zero in a number"
-msgstr "Nahradí uprostřed čísel znak „O“ za nulu"
+msgstr "Nahradí uprostřed čísel písmeno „O“ za nulu"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:15
 msgid ""
@@ -3614,11 +3615,11 @@ msgstr "Nahradit písmeno „I“ ve slově napsaném malými písmeny"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:7
 msgid "Replace letter \"l\" with letter \"I\" in an upper case word"
-msgstr ""
+msgstr "Nahradit písmeno „l“ ve slově napsaném velkými písmeny"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:8
 msgid "Replace zero with letter \"O\" in an upper case word"
-msgstr "Nahradit písmeno „l“ ve slově napsaném velkými písmeny"
+msgstr "Nahradí nulu za písmeno „O“ ve slově napsaném velkými písmeny"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:9
 msgid "Spaces around an apostrophe"
