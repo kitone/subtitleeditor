@@ -1,3 +1,8 @@
+2010-05-04  kitone  <kitone@gna.org>
+
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Display the saving dialog after generating waveform (with open waveform).
+
 2010-04-29  kitone  <kitone@gna.org>
 
 	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
