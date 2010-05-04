@@ -276,11 +276,17 @@ protected:
 
 			Glib::ustring uri = dialog.get_uri();
 			Glib::RefPtr<Waveform> wf = Waveform::create_from_file(uri);
-			if(!wf)
-				wf = generate_waveform_from_file(uri);
-
 			if(wf)
 				get_waveform_manager()->set_waveform(wf);
+			else
+			{
+				wf = generate_waveform_from_file(uri);
+				if(wf)
+				{
+					get_waveform_manager()->set_waveform(wf);
+					on_save_waveform();
+				}
+			}
 		}
 	}
 
