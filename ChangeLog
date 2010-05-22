@@ -1,3 +1,12 @@
+2010-05-22  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/sprucestl/Makefile.am:
+	* plugins/subtitleformats/sprucestl/sprucestl.cc:
+	* plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in:
+	Introduce new subtitle format Spruce STL. Fix sr #2543 : Support for .stl file format.
+
 2010-05-04  kitone  <kitone@gna.org>
 
 	* plugins/actions/wavefrommanagement/waveformmanagement.cc:

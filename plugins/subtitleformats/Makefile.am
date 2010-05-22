@@ -6,6 +6,7 @@ FILES = \
 	mpl2 \
 	mpsub \
 	sbv \
+	sprucestl \
 	subrip \
 	substationalpha \
 	subtitleeditorproject \
