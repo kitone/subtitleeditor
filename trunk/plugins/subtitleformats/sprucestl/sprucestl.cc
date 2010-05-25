@@ -22,17 +22,23 @@
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
+#include <gui/dialogutility.h>
 
 class SpruceSTL : public SubtitleFormatIO
 {
+	double m_framerate_value;
 public:
 
 	/*
 	 */
 	void open(FileReader &file)
 	{
+		// Ask for the framerate value
+		FramerateChooserDialog fcd;
+		m_framerate_value = get_framerate_value(fcd.execute());
+
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
-				"^(\\d+):(\\d+):(\\d+):(\\d+)\\s,\\s(\\d+):(\\d+):(\\d+):(\\d+)\\s,\\s\\s(.*?)$");
+				"^(\\d+):(\\d+):(\\d+):(\\d+)\\s,\\s(\\d+):(\\d+):(\\d+):(\\d+)\\s,\\s+(.*?)$");
 
 		int start[4], end[4];
 		Subtitles subtitles = document()->subtitles();
@@ -54,8 +60,12 @@ public:
 				end[2] = utility::string_to_int(group[7]);
 				end[3] = utility::string_to_int(group[8]);
 
+				// last value are frame, not time
+				start[3] = start[3] * 1000 / m_framerate_value;
+				end[3] = end[3] * 1000 / m_framerate_value;
+
 				text = group[9];
-				utility::replace(text, "| ", "\n");
+				utility::replace(text, "|", "\n");
 
 				// Append a subtitle
 				Subtitle sub = subtitles.append();
@@ -72,33 +82,38 @@ public:
 		}
 	}
 
-
 	/*
 	 */
 	void save(FileWriter &file)
 	{
+		// Ask for the framerate value
+		FramerateChooserDialog fcd;
+		m_framerate_value = get_framerate_value(fcd.execute());
+
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{
 			Glib::ustring text = sub.get_text();
 
-			utility::replace(text, "\n", "| ");
+			utility::replace(text, "\n", "|");
 
 			file.write(
 				Glib::ustring::compose(
-					"%1 , %2 ,  %3\n",
-					time_to_sprucestl(sub.get_start()),
-					time_to_sprucestl(sub.get_end()),
+					"%1 , %2 , %3\n",
+					to_sprucestl_time(sub.get_start()),
+					to_sprucestl_time(sub.get_end()),
 					text));
 		}
 	}
 
 	/*
 	 */
-	Glib::ustring time_to_sprucestl(const SubtitleTime &t)
+	Glib::ustring to_sprucestl_time(const SubtitleTime &t)
 	{
+		int frame = (int)(t.mseconds() * m_framerate_value * 0.001);
+
 		return build_message(
 				"%02i:%02i:%02i:%02i",
-				t.hours(), t.minutes(), t.seconds(), t.mseconds());
+				t.hours(), t.minutes(), t.seconds(), frame);
 	}
 };
 
