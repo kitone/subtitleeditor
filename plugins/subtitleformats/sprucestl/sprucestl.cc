@@ -129,7 +129,7 @@ public:
 		info.name = "Spruce STL";
 		info.extension = "stl";
 		info.pattern = 
-			"\\d\\d:\\d\\d:\\d\\d:\\d\\d" "\\s,\\s" "\\d\\d:\\d\\d:\\d\\d:\\d\\d" "\\s,\\s\\s" ".*?\\R";	
+			"\\d\\d:\\d\\d:\\d\\d:\\d\\d" "\\s,\\s" "\\d\\d:\\d\\d:\\d\\d:\\d\\d" "\\s,\\s+" ".*?\\R";	
 		return info;
 	}
 
