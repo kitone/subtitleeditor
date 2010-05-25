@@ -82,6 +82,10 @@ public:
 	 */
 	FRAMERATE execute();
 
+	/*
+	 */
+	void set_default_framerate(FRAMERATE framerate);
+
 protected:
 	Gtk::ComboBox* m_comboFramerate;
 };

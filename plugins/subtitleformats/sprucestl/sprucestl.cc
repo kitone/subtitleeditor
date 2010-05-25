@@ -35,7 +35,10 @@ public:
 	{
 		// Ask for the framerate value
 		FramerateChooserDialog fcd;
-		m_framerate_value = get_framerate_value(fcd.execute());
+		FRAMERATE framerate = fcd.execute();
+		m_framerate_value = get_framerate_value(framerate);
+
+		document()->set_framerate(framerate);
 
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"^(\\d+):(\\d+):(\\d+):(\\d+)\\s,\\s(\\d+):(\\d+):(\\d+):(\\d+)\\s,\\s+(.*?)$");
@@ -88,6 +91,8 @@ public:
 	{
 		// Ask for the framerate value
 		FramerateChooserDialog fcd;
+		fcd.set_default_framerate(document()->get_framerate());
+
 		m_framerate_value = get_framerate_value(fcd.execute());
 
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)

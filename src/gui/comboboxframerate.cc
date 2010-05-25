@@ -56,6 +56,24 @@ FRAMERATE ComboBoxFramerate::get_value()
 }
 
 /*
+ * Set the current framerate value
+ */
+void ComboBoxFramerate::set_value(FRAMERATE value)
+{
+	Gtk::TreeIter it = get_model()->children().begin();
+	while(it)
+	{
+		FRAMERATE framerate = (*it)[column.value];
+		if(framerate == value)
+		{
+			set_active(it);
+			return;
+		}
+		++it;
+	}
+}
+
+/*
  * Add a new item
  */
 void ComboBoxFramerate::append(FRAMERATE framerate, const Glib::ustring &text)
