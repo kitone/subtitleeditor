@@ -1,5 +1,12 @@
 2010-05-25  kitone  <kitone@gna.org>
 
+	* plugins/subtitleformats/bitc/Makefile.am:
+	* plugins/subtitleformats/bitc/bitc.cc:
+	* plugins/subtitleformats/bitc/dialog-bitc.ui:
+	Remove the file dialog-bitc.ui, use instead FramerateChooserDialog.
+
+2010-05-25  kitone  <kitone@gna.org>
+
 	* src/Makefile.am:
 	* src/gui/comboboxframerate.cc:
 	* src/gui/comboboxframerate.h:

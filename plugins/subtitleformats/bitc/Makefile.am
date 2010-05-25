@@ -25,7 +25,7 @@ plugindescription_DATA = $(plugindescription_in_files:.se-plugin.in=.se-plugin)
 
 @INTLTOOL_SE_PLUGIN_RULE@
 
-ui_DATA = dialog-bitc.ui
+ui_DATA = 
 
 EXTRA_DIST = $(plugindescription_in_files) $(ui_DATA)
 
