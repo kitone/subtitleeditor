@@ -25,83 +25,6 @@
 #include <gtkmm_utility.h>
 #include <gui/dialogutility.h>
 #include <utility.h>
-#include <timeutility.h>
-
-/*
- */
-class DialogBITC : public Gtk::Dialog
-{
-	class ComboBoxFramerate : public Gtk::ComboBox
-	{
-		class Column : public Gtk::TreeModel::ColumnRecord
-		{
-		public:
-			Column()
-			{
-				add(label);
-				add(value);
-			}
-			Gtk::TreeModelColumn<Glib::ustring> label;
-			Gtk::TreeModelColumn<FRAMERATE> value;
-		};
-	public:
-		ComboBoxFramerate(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
-		:ComboBox(cobject)
-		{
-			liststore = Gtk::ListStore::create(column);
-			set_model(liststore);
-
-			Gtk::CellRendererText* renderer = manage(new Gtk::CellRendererText);
-			pack_start(*renderer);
-			add_attribute(*renderer, "text", 0);
-
-			liststore->set_sort_column(0, Gtk::SORT_ASCENDING);
-
-			append(FRAMERATE_23_976);
-			append(FRAMERATE_24);
-			append(FRAMERATE_25, " (PAL)");
-			append(FRAMERATE_29_97, " (NTSC)");
-			append(FRAMERATE_30);
-
-			set_active(0);
-		}
-
-		FRAMERATE get_value()
-		{
-			Gtk::TreeIter it = get_active();
-			return (*it)[column.value];
-		}
-
-		void append(FRAMERATE framerate, const Glib::ustring &text = Glib::ustring())
-		{
-			Gtk::TreeIter it = liststore->append();
-			(*it)[column.label] = get_framerate_label(framerate) + text;
-			(*it)[column.value] = framerate;
-		}
-
-	protected:
-		Column column;
-		Glib::RefPtr<Gtk::ListStore> liststore;
-	};
-
-public:
-	DialogBITC(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
-	:Gtk::Dialog(cobject)
-	{
-		utility::set_transient_parent(*this);
-
-		xml->get_widget_derived("combobox-framerate", m_comboFramerate);
-	}
-
-	FRAMERATE execute()
-	{
-		run();
-		return m_comboFramerate->get_value();
-
-	}
-protected:
-	ComboBoxFramerate* m_comboFramerate;
-};
 
 /*
  * BITC (Burnt-in timecode)
@@ -122,7 +45,7 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		FRAMERATE framerate = create_bitc_dialog();
+		FRAMERATE framerate = create_framerate_dialog();
 		m_framerate_value = get_framerate_value(framerate);
 
 		Glib::RefPtr<Glib::Regex> re_time = Glib::Regex::create(
@@ -175,7 +98,7 @@ public:
 	 */
 	void save(FileWriter &file)
 	{
-		FRAMERATE framerate = create_bitc_dialog();
+		FRAMERATE framerate = create_framerate_dialog();
 		m_framerate_value = get_framerate_value(framerate);
 
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
@@ -206,15 +129,10 @@ public:
 
 	/*
 	 */
-	FRAMERATE create_bitc_dialog()
+	FRAMERATE create_framerate_dialog()
 	{
-		// create dialog
-		std::auto_ptr<DialogBITC> dialog(
-				gtkmm_utility::get_widget_derived<DialogBITC>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV), 
-						"dialog-bitc.ui", 
-						"dialog-bitc"));
-		return dialog->execute();
+		FramerateChooserDialog dialog;
+		return dialog.execute();
 	}
 protected:
 	FRAMERATE m_framerate;
