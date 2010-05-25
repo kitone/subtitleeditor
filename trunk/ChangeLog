@@ -1,6 +1,11 @@
 2010-05-25  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/sprucestl/sprucestl.cc:
+	Small fix in the regex.
+
+2010-05-25  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/sprucestl/sprucestl.cc:
 	Ask framerate value with the FramerateChooserDialog. Small improvements.
 
 2010-05-25  kitone  <kitone@gna.org>
