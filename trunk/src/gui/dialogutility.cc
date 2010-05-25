@@ -24,7 +24,7 @@
 #include "utility.h"
 
 /*
- *
+ * Constructor
  */
 DialogActionMultiDoc::DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::Dialog(cobject)
@@ -34,7 +34,7 @@ DialogActionMultiDoc::DialogActionMultiDoc(BaseObjectType* cobject, const Glib::
 }
 
 /*
- *
+ * Return true if the user choose to apply the action on all documents.
  */
 bool DialogActionMultiDoc::apply_to_all_documents()
 {
@@ -42,8 +42,7 @@ bool DialogActionMultiDoc::apply_to_all_documents()
 }
 
 /*
- *	retourne la list des documents à modifier
- *	selon qu'on utilise "current document" ou "All documents"
+ * Return a list of documents that the user wants to change.
  */
 DocumentList DialogActionMultiDoc::get_documents_to_apply()
 {
@@ -68,5 +67,59 @@ ErrorDialog::ErrorDialog(const Glib::ustring &primary, const Glib::ustring &seco
 
 	if(secondary.empty() == false)
 		set_secondary_text(secondary, false);
+}
+
+
+/*
+ */
+FramerateChooserDialog::FramerateChooserDialog()
+:Gtk::Dialog()
+{
+	utility::set_transient_parent(*this);
+
+	set_resizable(false);
+	set_has_separator(false);
+	add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+
+	// hbox
+	Gtk::HBox* hbox = manage(new Gtk::HBox(false, 12));
+	hbox->set_border_width(12);
+	get_vbox()->pack_start(*hbox, false, false);
+	// img (info)
+	Gtk::Image* img = manage(new Gtk::Image(Gtk::Stock::DIALOG_INFO, Gtk::ICON_SIZE_DIALOG));
+	img->set_alignment(0.0, 0.0);
+	hbox->pack_start(*img, false, false);
+	// vbox
+	Gtk::VBox* vbox = manage(new Gtk::VBox(false, 12));
+	hbox->pack_start(*vbox, false, false);
+	// label (ask ?)
+	Gtk::Label* label = manage(new Gtk::Label(_("<b>What framerate do you want used to import or export?</b>"), 0.0, 0.5));
+	label->set_use_markup(true);
+	label->set_line_wrap(true);
+	vbox->pack_start(*label, false, false);
+	// alignment
+	Gtk::Alignment* alignment = manage(new Gtk::Alignment());
+	alignment->set_padding(0, 0, 12, 0);
+	vbox->pack_start(*alignment, false, false);
+	// hbox2
+	Gtk::HBox* hbox2 = manage(new Gtk::HBox(false, 6));
+	alignment->add(*hbox2);
+	// label2 (framerate:)
+	Gtk::Label* label2 = manage(new Gtk::Label(_("_Framerate:"), 0.0, 0.5, true));
+	hbox2->pack_start(*label2, false, false);
+	// combobox
+	m_comboFramerate = manage(new ComboBoxFramerate);
+	hbox2->pack_start(*m_comboFramerate, false, false);
+
+	hbox->show_all();
+}
+
+/*
+ * Launch the dialog and return the framerate value.
+ */
+FRAMERATE FramerateChooserDialog::execute()
+{
+	run();
+	return dynamic_cast<ComboBoxFramerate*>(m_comboFramerate)->get_value();
 }
 
