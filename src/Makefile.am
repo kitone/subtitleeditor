@@ -97,6 +97,8 @@ LIB_GUI_FILES = \
 	gui/cellrenderercustom.h \
 	gui/comboboxencoding.cc \
 	gui/comboboxencoding.h \
+	gui/comboboxframerate.cc \
+	gui/comboboxframerate.h \
 	gui/comboboxnewline.cc \
 	gui/comboboxnewline.h \
 	gui/comboboxsubtitleformat.cc \

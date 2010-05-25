@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -27,24 +27,26 @@
 #include <gtkmm.h>
 #include <gtkmm/builder.h>
 #include "documentsystem.h"
+#include <gui/comboboxframerate.h>
 
 /*
- *
- *
  */
 class DialogActionMultiDoc : public Gtk::Dialog
 {
 public:
+
+	/*
+	 * Constructor
+	 */
 	DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
 
 	/*
-	 *	applique l'action à tous les documents
+	 * Return true if the user choose to apply the action on all documents.
 	 */
 	bool apply_to_all_documents();
 
 	/*
-	 *	retourne la list des documents à modifier
-	 *	selon qu'on utilise "current document" ou "All documents"
+	 * Return a list of documents that the user wants to change.
 	 */
 	DocumentList get_documents_to_apply();
 
@@ -55,16 +57,33 @@ protected:
 
 
 /*
- *
  */
 class ErrorDialog : public Gtk::MessageDialog
 {
 public:
 
 	/*
-	 *
 	 */
 	ErrorDialog(const Glib::ustring &primary, const Glib::ustring &secondary=Glib::ustring());
+};
+
+/*
+ */
+class FramerateChooserDialog : public Gtk::Dialog
+{
+public:
+
+	/*
+	 */
+	FramerateChooserDialog();
+
+	/*
+	 * Launch the dialog and return the framerate value.
+	 */
+	FRAMERATE execute();
+
+protected:
+	Gtk::ComboBox* m_comboFramerate;
 };
 
 #endif//_DialogUtility_h

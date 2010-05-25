@@ -1,0 +1,70 @@
+#ifndef _ComboBoxFramerate_h
+#define _ComboBoxFramerate_h
+
+/*
+ *	subtitleeditor -- a tool to create or edit subtitle
+ *
+ *	http://home.gna.org/subtitleeditor/
+ *	https://gna.org/projects/subtitleeditor/
+ *
+ *	Copyright @ 2005-2010, kitone
+ *
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 3 of the License, or
+ *	(at your option) any later version.
+ *
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	GNU General Public License for more details.
+ *
+ *	You should have received a copy of the GNU General Public License
+ *	along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <gtkmm/comboboxtext.h>
+#include <gtkmm/liststore.h>
+#include <gtkmm/builder.h>
+#include <timeutility.h>
+
+class ComboBoxFramerate : public Gtk::ComboBox
+{
+
+	class Column : public Gtk::TreeModel::ColumnRecord
+	{
+	public:
+		Column()
+		{
+			add(label);
+			add(value);
+		}
+		Gtk::TreeModelColumn<Glib::ustring> label;
+		Gtk::TreeModelColumn<FRAMERATE> value;
+	};
+
+public:
+
+	/*
+	 * Constructor
+	 */
+	ComboBoxFramerate();
+
+	/*
+	 * Return the current framerate value
+	 */
+	FRAMERATE get_value();
+
+protected:
+
+	/*
+	 * Add a new item
+	 */
+	void append(FRAMERATE framerate, const Glib::ustring &text = Glib::ustring());
+
+protected:
+	Column column;
+	Glib::RefPtr<Gtk::ListStore> liststore;
+};
+
+#endif//_ComboBoxFramerate_h

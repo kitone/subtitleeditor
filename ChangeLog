@@ -1,3 +1,12 @@
+2010-05-25  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
+	* src/gui/comboboxframerate.cc:
+	* src/gui/comboboxframerate.h:
+	* src/gui/dialogutility.cc:
+	* src/gui/dialogutility.h:
+	Introduce ComboBoxFramerate and FramerateChooserDialog.
+
 2010-05-22  kitone  <kitone@gna.org>
 
 	* configure.in:
