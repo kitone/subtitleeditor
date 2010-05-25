@@ -1,5 +1,19 @@
 2010-05-25  kitone  <kitone@gna.org>
 
+	* src/gui/comboboxframerate.cc:
+	* src/gui/comboboxframerate.h:
+	* src/gui/dialogutility.cc:
+	* src/gui/dialogutility.h:
+	Add set_value to ComboBoxFramerate and set_default_framerate to
+	FramerateChooserDialog.
+
+	* plugins/subtitleformats/bitc/bitc.cc:
+	* plugins/subtitleformats/sprucestl/sprucestl.cc:
+	Sets the framerate of the document after the user have chosen and sets 
+	the default value from the document during saving.
+
+2010-05-25  kitone  <kitone@gna.org>
+
 	* plugins/subtitleformats/sprucestl/sprucestl.cc:
 	Small fix in the regex.
 

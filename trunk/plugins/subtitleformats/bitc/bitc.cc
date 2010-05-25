@@ -45,8 +45,12 @@ public:
 	 */
 	void open(FileReader &file)
 	{
-		FRAMERATE framerate = create_framerate_dialog();
+		// Ask for the framerate value
+		FramerateChooserDialog fcd;
+		FRAMERATE framerate = fcd.execute();
 		m_framerate_value = get_framerate_value(framerate);
+
+		document()->set_framerate(framerate);
 
 		Glib::RefPtr<Glib::Regex> re_time = Glib::Regex::create(
 				"^(\\d+):(\\d+):(\\d+):(\\d+)\\s(\\d+):(\\d+):(\\d+):(\\d+)$");
@@ -98,8 +102,11 @@ public:
 	 */
 	void save(FileWriter &file)
 	{
-		FRAMERATE framerate = create_framerate_dialog();
-		m_framerate_value = get_framerate_value(framerate);
+		// Ask for the framerate value
+		FramerateChooserDialog fcd;
+		fcd.set_default_framerate(document()->get_framerate());
+
+		m_framerate_value = get_framerate_value(fcd.execute());
 
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{

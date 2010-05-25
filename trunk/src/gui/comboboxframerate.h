@@ -55,6 +55,11 @@ public:
 	 */
 	FRAMERATE get_value();
 
+	/*
+	 * Set the current framerate value
+	 */
+	void set_value(FRAMERATE value);
+
 protected:
 
 	/*

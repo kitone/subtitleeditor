@@ -123,3 +123,11 @@ FRAMERATE FramerateChooserDialog::execute()
 	return dynamic_cast<ComboBoxFramerate*>(m_comboFramerate)->get_value();
 }
 
+/*
+ */
+void FramerateChooserDialog::set_default_framerate(FRAMERATE framerate)
+{
+	ComboBoxFramerate* cbf = dynamic_cast<ComboBoxFramerate*>(m_comboFramerate);
+	cbf->set_value(framerate);
+}
+
