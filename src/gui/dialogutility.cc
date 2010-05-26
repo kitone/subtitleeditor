@@ -72,14 +72,23 @@ ErrorDialog::ErrorDialog(const Glib::ustring &primary, const Glib::ustring &seco
 
 /*
  */
-FramerateChooserDialog::FramerateChooserDialog()
+FramerateChooserDialog::FramerateChooserDialog(FramerateChooserDialog::Action action)
 :Gtk::Dialog()
 {
 	utility::set_transient_parent(*this);
 
+	set_title("");
 	set_resizable(false);
 	set_has_separator(false);
 	add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+
+	Glib::ustring query;
+	if(action == IMPORT)
+		query = _("At what frame rate do you want to import?");
+	else // == EXPORT
+		query = _("At what frame rate do you want to export?");
+
+	query = Glib::ustring::compose("<span weight=\"bold\" size=\"larger\">%1</span>", query); 
 
 	// hbox
 	Gtk::HBox* hbox = manage(new Gtk::HBox(false, 12));
@@ -91,19 +100,15 @@ FramerateChooserDialog::FramerateChooserDialog()
 	hbox->pack_start(*img, false, false);
 	// vbox
 	Gtk::VBox* vbox = manage(new Gtk::VBox(false, 12));
-	hbox->pack_start(*vbox, false, false);
-	// label (ask ?)
-	Gtk::Label* label = manage(new Gtk::Label(_("<b>What framerate do you want used to import or export?</b>"), 0.0, 0.5));
+	hbox->pack_start(*vbox);
+	// label (query)
+	Gtk::Label* label = manage(new Gtk::Label(query, 0.0, 0.0));
 	label->set_use_markup(true);
 	label->set_line_wrap(true);
 	vbox->pack_start(*label, false, false);
-	// alignment
-	Gtk::Alignment* alignment = manage(new Gtk::Alignment());
-	alignment->set_padding(0, 0, 12, 0);
-	vbox->pack_start(*alignment, false, false);
 	// hbox2
 	Gtk::HBox* hbox2 = manage(new Gtk::HBox(false, 6));
-	alignment->add(*hbox2);
+	vbox->pack_start(*hbox2);
 	// label2 (framerate:)
 	Gtk::Label* label2 = manage(new Gtk::Label(_("_Framerate:"), 0.0, 0.5, true));
 	hbox2->pack_start(*label2, false, false);

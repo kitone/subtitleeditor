@@ -1,3 +1,11 @@
+2010-05-26  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/bitc/bitc.cc:
+	* plugins/subtitleformats/sprucestl/sprucestl.cc:
+	* src/gui/dialogutility.cc:
+	* src/gui/dialogutility.h:
+	Split the framerate query with import and export labels.
+
 2010-05-25  kitone  <kitone@gna.org>
 
 	* src/gui/comboboxframerate.cc:

@@ -46,7 +46,7 @@ public:
 	void open(FileReader &file)
 	{
 		// Ask for the framerate value
-		FramerateChooserDialog fcd;
+		FramerateChooserDialog fcd(FramerateChooserDialog::IMPORT);
 		FRAMERATE framerate = fcd.execute();
 		m_framerate_value = get_framerate_value(framerate);
 
@@ -103,7 +103,7 @@ public:
 	void save(FileWriter &file)
 	{
 		// Ask for the framerate value
-		FramerateChooserDialog fcd;
+		FramerateChooserDialog fcd(FramerateChooserDialog::EXPORT);
 		fcd.set_default_framerate(document()->get_framerate());
 
 		m_framerate_value = get_framerate_value(fcd.execute());
