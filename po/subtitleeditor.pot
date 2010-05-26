@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-06 00:08+0200\n"
+"POT-Creation-Date: 2010-05-26 11:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -899,7 +899,7 @@ msgid "Generate Keyframes"
 msgstr ""
 
 #: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:46
-#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:139
+#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:140
 #: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:48
 msgid "Waiting..."
 msgstr ""
@@ -984,11 +984,11 @@ msgstr ""
 msgid "Snap End To Next Keyframe"
 msgstr ""
 
-#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:396
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:426
 msgid "Snap Start to Keyframe"
 msgstr ""
 
-#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:418
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:448
 msgid "Snap End to Keyframe"
 msgstr ""
 
@@ -2245,21 +2245,8 @@ msgstr ""
 msgid "Show or hide the waveform in the current window"
 msgstr ""
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:345
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:354
 msgid "Save Waveform"
-msgstr ""
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:1
-msgid "<b>What framerate do you want used to import or export?</b>"
-msgstr ""
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:2
-#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
-msgid "BITC (Burnt-in timecode)"
-msgstr ""
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:3
-msgid "_Framerate:"
 msgstr ""
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
@@ -2613,6 +2600,20 @@ msgstr ""
 msgid "Keyframe (*.kf)"
 msgstr ""
 
+#: ../src/gui/dialogutility.cc:87
+msgid "At what frame rate do you want to import?"
+msgstr ""
+
+#. == EXPORT
+#: ../src/gui/dialogutility.cc:89
+msgid "At what frame rate do you want to export?"
+msgstr ""
+
+#. label2 (framerate:)
+#: ../src/gui/dialogutility.cc:113
+msgid "_Framerate:"
+msgstr ""
+
 #. create all menu
 #: ../src/gui/menubar.cc:63
 msgid "_File"
@@ -2671,11 +2672,12 @@ msgstr ""
 msgid "_Export"
 msgstr ""
 
-#: ../src/keyframes.cc:88 ../src/subtitleformatsystem.cc:70
+#: ../src/keyframes.cc:102 ../src/keyframes.cc:109
+#: ../src/subtitleformatsystem.cc:70
 msgid "Couldn't recognize format of the file."
 msgstr ""
 
-#: ../src/keyframes.cc:92
+#: ../src/keyframes.cc:127
 msgid "Couldn't get the keyframe size on the file."
 msgstr ""
 
@@ -3334,6 +3336,10 @@ msgstr ""
 msgid "Advanced Sub Station Alpha subtitles support."
 msgstr ""
 
+#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
+msgid "BITC (Burnt-in timecode)"
+msgstr ""
+
 #: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:2
 msgid "BITC (Burnt-in timecode) subtitles support."
 msgstr ""
@@ -3360,6 +3366,22 @@ msgstr ""
 
 #: ../plugins/subtitleformats/mpsub/mpsub.se-plugin.in.h:2
 msgid "MPsub subtitles support."
+msgstr ""
+
+#: ../plugins/subtitleformats/sbv/sbv.se-plugin.in.h:1
+msgid "SBV"
+msgstr ""
+
+#: ../plugins/subtitleformats/sbv/sbv.se-plugin.in.h:2
+msgid "SBV subtitles support."
+msgstr ""
+
+#: ../plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in.h:1
+msgid "Spruce STL"
+msgstr ""
+
+#: ../plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in.h:2
+msgid "Spruce subtitles support."
 msgstr ""
 
 #: ../plugins/subtitleformats/subrip/subrip.se-plugin.in.h:1

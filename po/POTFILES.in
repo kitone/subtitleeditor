@@ -89,10 +89,11 @@ plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.cc
 plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.cc
 plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc
 plugins/subtitleformats/bitc/bitc.cc
-plugins/subtitleformats/bitc/dialog-bitc.ui
 plugins/subtitleformats/microdvd/microdvd.cc
 plugins/subtitleformats/mpl2/mpl2.cc
 plugins/subtitleformats/mpsub/mpsub.cc
+plugins/subtitleformats/sbv/sbv.cc
+plugins/subtitleformats/sprucestl/sprucestl.cc
 plugins/subtitleformats/subrip/subrip.cc
 plugins/subtitleformats/substationalpha/substationalpha.cc
 plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc
@@ -143,6 +144,8 @@ src/gui/cellrenderercustom.cc
 src/gui/cellrenderercustom.h
 src/gui/comboboxencoding.cc
 src/gui/comboboxencoding.h
+src/gui/comboboxframerate.cc
+src/gui/comboboxframerate.h
 src/gui/comboboxnewline.cc
 src/gui/comboboxnewline.h
 src/gui/comboboxsubtitleformat.cc
@@ -234,7 +237,6 @@ src/widget_config_utility.h
 [type: gettext/glade] plugins/actions/styleeditor/dialog-style-editor.ui
 [type: gettext/glade] plugins/actions/textcorrection/assistant-text-correction.ui
 [type: gettext/glade] plugins/actions/viewmanager/dialog-view-manager.ui
-[type: gettext/glade] plugins/subtitleformats/bitc/dialog-bitc.ui
 [type: gettext/glade] share/ui/dialog-character-codings.ui
 [type: gettext/glade] share/ui/dialog-encodings-chooser.ui
 [type: gettext/glade] share/ui/dialog-export-text.ui
@@ -289,6 +291,8 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/subtitleformats/microdvd/microdvd.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpl2/mpl2.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpsub/mpsub.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/sbv/sbv.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/subrip/subrip.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/substationalpha/substationalpha.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in
