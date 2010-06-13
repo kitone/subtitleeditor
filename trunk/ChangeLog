@@ -1,3 +1,10 @@
+2010-06-13  kitone  <kitone@gna.org>
+
+	* plugins/actions/scalesubtitles/dialog-scale-subtitles.ui:
+	* plugins/actions/scalesubtitles/scalesubtitles.cc:
+	Fix bug #16121 : Feature request: add option to scale all subtitles. (Orig.
+	patch by Ludek <anomen>)
+
 2010-05-26  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/bitc/bitc.cc:

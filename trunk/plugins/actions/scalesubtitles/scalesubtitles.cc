@@ -36,7 +36,7 @@ public:
 	:Gtk::Dialog(cobject)
 	{
 		utility::set_transient_parent(*this);
-		
+
 		m_document = NULL;
 
 		builder->get_widget("spin-first-number", m_spinFirstNumber);
@@ -51,7 +51,10 @@ public:
 		builder->get_widget_derived("spin-last-new-start", m_spinLastNewStart);
 		builder->get_widget("label-last-text", m_labelLastText);
 
-		// signaux
+		builder->get_widget("radio-selected-range", m_radioSelectedRange);
+		builder->get_widget("radio-all-subtitles", m_radioAllSubtitles);
+
+		// connect signals
 		m_spinFirstNumber->signal_value_changed().connect(
 				sigc::mem_fun(*this, &DialogScaleSubtitles::on_spin_first_number_changed));
 		m_spinLastNumber->signal_value_changed().connect(
@@ -95,8 +98,24 @@ public:
 
 				// apply change
 				doc->start_command(_("Scale subtitles"));
+
+				// Apply to all subs or selected subs
+				Subtitle subbegin, subend;
 				
-				scale(firstSubtitle, dest1, lastSubtitle, dest2);
+				if(apply_to_all_subtitles())
+				{
+					Subtitles subs = doc->subtitles();
+					subbegin = subs.get_first();
+					subend = subs.get_last();
+				}
+				else
+				{
+					subbegin = firstSubtitle;
+					subend = lastSubtitle;
+				}
+
+				// Apply the scale
+				scale(subbegin, subend, firstSubtitle, dest1, lastSubtitle, dest2);
 
 				doc->emit_signal("subtitle-time-changed");
 				doc->finish_command();
@@ -167,7 +186,6 @@ protected:
 	}
 
 	/*
-	 *
 	 */
 	void on_spin_first_number_changed()
 	{
@@ -180,7 +198,6 @@ protected:
 	}
 
 	/*
-	 *
 	 */
 	void on_spin_last_number_changed()
 	{
@@ -193,7 +210,6 @@ protected:
 	}
 	
 	/*
-	 *
 	 */
 	void init_spin(const Subtitle &subtitle, SpinButtonTime *current, SpinButtonTime *newtime, Gtk::Label *label)
 	{
@@ -207,37 +223,28 @@ protected:
 		// text
 		Glib::ustring text = subtitle.get_text();
 
-		//label->set_tooltip_text(text);
 		Gtk::Tooltips tooltips;
 		tooltips.set_tip(*label, text);
 
-		/*
-		if(text.size() > 15)
-		{
-			text = text.substr(0, 15) + "...";
-		}
-		*/
 		label->set_text(text);
 	}
 
 	/*
-	 *
 	 */
 	void scale(
+			Subtitle &first, Subtitle &last,
 			const Subtitle &sub1, const SubtitleTime &dest1,
 			const Subtitle &sub2, const SubtitleTime &dest2)
 	{
 		SubtitleTime source1 = sub1.get_start();
-		SubtitleTime source2 = sub2.get_start();
+		//SubtitleTime source2 = sub2.get_start();
 
 		double scale = calcul_scale(
 				sub1.get_start().totalmsecs, dest1.totalmsecs,
 				sub2.get_start().totalmsecs, dest2.totalmsecs);
 
-		// sub2 + 1
-		Subtitle end = sub2; ++end;
-
-		for(Subtitle subtitle=sub1; subtitle != end; ++subtitle)
+		++last; // stop to the next sub
+		for(Subtitle subtitle=first; subtitle != last; ++subtitle)
 		{
 			SubtitleTime start = calcul(subtitle.get_start(), scale, source1, dest1);
 			SubtitleTime end = calcul(subtitle.get_end(), scale, source1, dest1);
@@ -248,7 +255,6 @@ protected:
 
 
 	/*
-	 *
 	 */
 	SubtitleTime calcul(
 			const SubtitleTime &source, double scale,
@@ -258,11 +264,20 @@ protected:
 	}
 
 	/*
-	 *
 	 */
 	double calcul_scale(long source1, long dest1, long source2, long dest2)
 	{
 		return (double)(((dest2 - source2) - (dest1 - source1)) / (double)(source2 - source1));
+	}
+
+	/*
+	 * Do we apply this action to all the subtitles?
+	 */
+	bool apply_to_all_subtitles()
+	{
+		if(m_radioAllSubtitles->get_active())
+			return true;
+		return false;
 	}
 
 protected:
@@ -279,6 +294,9 @@ protected:
 	Gtk::Label*				m_labelLastStartValue;
 	SpinButtonTime*		m_spinLastNewStart;
 	Gtk::Label*				m_labelLastText;
+
+	Gtk::RadioButton* m_radioSelectedRange;
+	Gtk::RadioButton* m_radioAllSubtitles;
 };
 
 /*
