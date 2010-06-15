@@ -1,3 +1,8 @@
+2010-06-15  kitone  <kitone@gna.org>
+
+	* plugins/actions/findandreplace/findandreplace.cc:
+	Fix bug #16058 : crash at "find and replace" with regexp.
+
 2010-06-13  kitone  <kitone@gna.org>
 
 	* plugins/actions/scalesubtitles/dialog-scale-subtitles.ui:

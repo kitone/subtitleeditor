@@ -199,8 +199,16 @@ public:
 			return false;
 
 		Glib::ustring replacement = get_replacement();
-		
-		text.replace(info.start, info.len, replacement);
+
+		try
+		{
+			text.replace(info.start, info.len, replacement);
+		}
+		catch(const std::exception &ex)
+		{
+			std::cerr << "FindAndReplacePlugin::Exception : " << ex.what() << std::endl;
+			return false;
+		}
 		// update lenght of info
 		info.len = replacement.size();
 
@@ -319,7 +327,6 @@ protected:
 
 		if(g_regex_match(regex, string.c_str(), (GRegexMatchFlags)0, &match_info))
 		{
-			//while(g_match_info_matches(match_info))
 			if(g_match_info_matches(match_info))
 			{
 				int start_pos, end_pos;
@@ -330,6 +337,10 @@ protected:
 								&start_pos,
 								&end_pos))
 				{
+					// We need to convert the position from the byte position to a character position.
+					start_pos = g_utf8_pointer_to_offset(string.c_str(), string.c_str() + start_pos);
+					end_pos = g_utf8_pointer_to_offset(string.c_str(), string.c_str() + end_pos);
+
 					start = start_pos;
 					len = end_pos - start_pos;
 					found = true;
@@ -633,6 +644,7 @@ public:
 			Gtk::TextIter bound = buffer->get_iter_at_offset(m_info.start + m_info.len);
 		
 			buffer->apply_tag_by_name("found", ins, bound);
+			buffer->select_range(ins, bound);
 		}
 		else
 			m_textview->get_buffer()->set_text("");
