@@ -1,3 +1,12 @@
+2010-06-20  kitone  <kitone@gna.org>
+
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	* plugins/actions/externalvideoplayer/externalvideoplayer.cc:
+	* plugins/actions/joindocument/joindocument.cc:
+	* src/document.cc:
+	* src/document.h:
+	Code clean up.
+
 2010-06-15  kitone  <kitone@gna.org>
 
 	* plugins/actions/findandreplace/findandreplace.cc:

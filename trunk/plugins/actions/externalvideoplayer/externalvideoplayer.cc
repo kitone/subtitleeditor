@@ -184,7 +184,7 @@ public:
 		// save now tmp subtitle
 		Glib::ustring old_filename = doc->getFilename();
 
-		doc->save(subtitle_file);
+		doc->save(Glib::filename_to_uri(subtitle_file));
 		doc->setFilename(old_filename);
 	
 		long start_position = 0;

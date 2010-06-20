@@ -348,11 +348,12 @@ protected:
 		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS))
 		{
 			Glib::ustring filename = doc->getFilename();
+			Glib::ustring uri = Glib::filename_to_uri(filename);
 			Glib::ustring format = doc->getFormat();
 			Glib::ustring charset = doc->getCharset();
 			Glib::ustring newline = doc->getNewLine();
 
-			if(doc->save(filename))
+			if(doc->save(uri))
 			{
 				// "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
 				doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
@@ -403,16 +404,16 @@ protected:
 		if(response == Gtk::RESPONSE_OK)
 		{
 			Glib::ustring filename = dialog->get_filename();
+			Glib::ustring uri = dialog->get_uri();
 			Glib::ustring format = dialog->get_format();
 			Glib::ustring encoding = dialog->get_encoding();
 			Glib::ustring newline = dialog->get_newline();
-
 
 			doc->setFormat(format);
 			doc->setCharset(encoding);
 			doc->setNewLine(newline);
 
-			if(doc->save(filename))
+			if(doc->save(uri))
 			{
 				doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
 						filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
@@ -589,6 +590,7 @@ protected:
 		if(dialog->run() == Gtk::RESPONSE_OK)
 		{
 			Glib::ustring filename = dialog->get_filename();
+			Glib::ustring uri = dialog->get_uri();
 			Glib::ustring format = dialog->get_format();
 			Glib::ustring encoding = dialog->get_encoding();
 			Glib::ustring newline = dialog->get_newline();
@@ -611,7 +613,7 @@ protected:
 					++sub;
 				}
 				//
-				if(doc_translation.save(filename))
+				if(doc_translation.save(uri))
 					current->flash_message(_("Saving translation file %s (%s, %s, %s)."), 
 							filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
 				else
