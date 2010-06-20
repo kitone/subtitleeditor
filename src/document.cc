@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -35,9 +35,8 @@
 #include "subtitleformatsystem.h"
 
 /*
- *	constructeur
- *	s'il y a une option dans le fichier config [encodings] default=xxxx
- *	on l'utilise pour choisir le charset, sinon on utilise UTF-8
+ * Constructor
+ * The default values of the document are sets from the user config.
  */
 Document::Document()
 :CommandSystem(*this), m_subtitles(*this), m_styles(*this), m_subtitleView(NULL)
@@ -77,7 +76,7 @@ Document::Document()
 }
 
 /*
- *	constructeur par copy
+ * Constructor by copy
  */
 Document::Document(Document &src)
 :CommandSystem(*this), m_subtitles(*this), m_styles(*this), m_subtitleView(NULL)
@@ -99,32 +98,28 @@ Document::Document(Document &src)
 	m_newline = src.m_newline;
 
 	m_scriptInfo = src.m_scriptInfo;
-	
+
 	m_name = src.m_name;
 	m_filename = src.m_filename;
 
-	m_uriMovie = src.m_uriMovie;
-	
 	// model
 	m_subtitleModel->copy(src.get_subtitle_model());
 
 	m_styleModel->copy(src.get_style_model());
-
-	m_data = src.m_data;
 
 	CommandSystem::signal_changed().connect(
 			sigc::mem_fun(*this, &Document::make_document_changed));
 }
 
 /*
- *	destructeur
+ * Destructor
  */
 Document::~Document()
 {
 }
 
 /*
- *
+ * Return the subtitle view widget (Gtk::TreeView)
  */
 Gtk::Widget* Document::widget()
 {
@@ -132,8 +127,10 @@ Gtk::Widget* Document::widget()
 }
 
 /*
- *	le nom complet du document 
- *	ex: /home/toto/subtitle05.ass
+ * Define the full filename of the document.
+ * ex: /home/toto/subtitle05.ass
+ *
+ * A signal "document-property-changed" is emited.
  */
 void Document::setFilename(const Glib::ustring &filename)
 {
@@ -145,8 +142,7 @@ void Document::setFilename(const Glib::ustring &filename)
 }
 
 /*
- *	le nom complet du document 
- *	ex: /home/toto/subtitle05.ass
+ * Return the full filename of the document.
  */
 Glib::ustring Document::getFilename()
 {
@@ -154,9 +150,9 @@ Glib::ustring Document::getFilename()
 }
 
 /*
- *	le nom du document
- *	si filename = /home/toto/subtitle05.ass
- *	name = subtitle05.ass
+ * Define the name of the document.
+ *
+ * A signal "document-property-changed" is emited.
  */
 void Document::setName(const Glib::ustring &name)
 {
@@ -166,9 +162,9 @@ void Document::setName(const Glib::ustring &name)
 }
 
 /*
- *	le nom du document
- *	si filename = /home/toto/subtitle05.ass
- *	name = subtitle05.ass
+ * Return the name of the document.
+ * If the fullname is "/home/toto/subtitle05.ass"
+ * then return "subtitle05.ass"
  */
 Glib::ustring Document::getName()
 {
@@ -176,7 +172,8 @@ Glib::ustring Document::getName()
 }
 
 /*
- *
+ * Define the subtitle format of the document.
+ * (SubRip, MicroDVD...)
  */
 void Document::setFormat(const Glib::ustring &format)
 {
@@ -184,7 +181,8 @@ void Document::setFormat(const Glib::ustring &format)
 }
 
 /*
- *
+ * Return the subtitle format of the document.
+ * (SubRip, MicroDVD...)
  */
 Glib::ustring Document::getFormat()
 {
@@ -192,7 +190,7 @@ Glib::ustring Document::getFormat()
 }
 
 /*
- *
+ * Define the charset of the document.
  */
 void Document::setCharset(const Glib::ustring &charset)
 {
@@ -200,9 +198,7 @@ void Document::setCharset(const Glib::ustring &charset)
 }
 
 /*
- *	retourne le charset (encodage) du document
- *	ça permet de sauvegarder dans le meme encodage qu'a la lecture
- *	...
+ * Return the charset of the document.
  */
 Glib::ustring Document::getCharset()
 {
@@ -210,7 +206,8 @@ Glib::ustring Document::getCharset()
 }
 
 /*
- *	"Unix", "Windows"
+ * Define the newline type of the document.
+ * Value can be "Unix", "Windows" or "Macintosh"
  */
 void Document::setNewLine(const Glib::ustring &name)
 {
@@ -218,7 +215,8 @@ void Document::setNewLine(const Glib::ustring &name)
 }
 
 /*
- *	"Unix", "Windows"
+ * Return the newline type of the document.
+ * Value can be "Unix", "Windows" or "Macintosh"
  */
 Glib::ustring Document::getNewLine()
 {
@@ -226,67 +224,35 @@ Glib::ustring Document::getNewLine()
 }
 
 /*
- *	efface les informations :
- *	 - script info
- *	 - subtitle model
- *	 - style model
- *	
- *	reinitialize le charset
+ * Try to open a file from an uri.
+ * The document charset is used to open the file.
+ * Prefer the function create_from_file for create a new document.
+ * 
+ * Launch an Exception if it fails.
+ * Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError, Glib::Error...
  */
-void Document::clear()
+void Document::open(const Glib::ustring &uri)
 {
-	Config &cfg = Config::getInstance();
-	Glib::ustring encoding;
-
-	if(cfg.get_value_string("encodings", "default", encoding))
-		m_charset = encoding;
-	else
-		m_charset = "UTF-8";
-
-	//m_format = ASS;
-	
-	m_scriptInfo = ScriptInfo();
-	
-	m_filename.clear();
-	m_uriMovie.clear();
-	
-	m_subtitleModel->clear();
-	m_styleModel->clear();
-	//m_nameModel->clear();
+	SubtitleFormatSystem::instance().open(this, uri, getCharset());
 }
 
 /*
- *
+ * Try to save the document to the file.
+ * The format, charset and newline used are the document values.
+ * The document name will be renamed from the uri.
+ * An error dialog will be display if needed.
+ * Return true if it succeeds or false.
  */
-bool Document::open(const Glib::ustring &_filename)
+bool Document::save(const Glib::ustring &uri)
 {
-	Glib::ustring uri = Glib::filename_to_uri(_filename);
-	Glib::ustring charset = getCharset();
-
-	SubtitleFormatSystem::instance().open(this, uri, charset);
-
-	return true;
-}
-
-
-
-/*
- *	encodings ""=auto, "UTF-8", ...
- *	format "SubRip", "MicroDVD", "MPL2", ...
- *	rename, change le nom du document (filename)
- */
-bool Document::save(const Glib::ustring &_filename)
-{
-	Glib::ustring filename = _filename;
-	Glib::ustring basename = Glib::path_get_basename(filename);
+	Glib::ustring basename = Glib::path_get_basename(Glib::filename_from_uri(uri));
 	Glib::ustring format = getFormat();
 	Glib::ustring charset = getCharset();
 	Glib::ustring newline = getNewLine();
 
 	try
 	{
-		SubtitleFormatSystem::instance().save(this, Glib::filename_to_uri(_filename), format, charset, newline);
-
+		SubtitleFormatSystem::instance().save(this, uri, format, charset, newline);
 		return true;
 	}
 	catch(const EncodingConvertError &ex)
@@ -309,9 +275,8 @@ bool Document::save(const Glib::ustring &_filename)
 }
 
 /*
- *	retourne le model pour la gestion des sous-titres
- *	on passe par un model (gtk) pour eviter d'avoir des doublons 
- *	dans les données et donc une grosse consomation memoire (inutile)
+ * Return the subtitle model.
+ * A Gtk Model is used internally to avoid duplicate data.
  */
 Glib::RefPtr<SubtitleModel> Document::get_subtitle_model()
 {
@@ -319,7 +284,7 @@ Glib::RefPtr<SubtitleModel> Document::get_subtitle_model()
 }
 
 /*
- *	retourne le model pour la gestion des styles
+ * Return the StyleModel of the document.
  */
 Glib::RefPtr<StyleModel> Document::get_style_model()
 {
@@ -327,8 +292,8 @@ Glib::RefPtr<StyleModel> Document::get_style_model()
 }
 
 /*
- *	retourne les informations sur le script 
- *	principalement pour SSA/ASS
+ * FIXME (Need to be fixed)
+ * Return the ScriptInfo of the document.
  */
 ScriptInfo& Document::get_script_info()
 {
@@ -336,7 +301,7 @@ ScriptInfo& Document::get_script_info()
 }
 
 /*
- *
+ * Return the (Gtk) subtitle view of the document.
  */
 SubtitleView* Document::get_subtitle_view()
 {
@@ -347,7 +312,7 @@ SubtitleView* Document::get_subtitle_view()
 }
 
 /*
- *
+ * Create an attach the subtitle view of the document.
  */
 void Document::create_subtitle_view()
 {
@@ -358,8 +323,7 @@ void Document::create_subtitle_view()
 }
 
 /*
- *	affiche un message pour l'utilisateur sur ce document
- *	statusbar
+ * Display a message to the user. (statusbar)
  */
 void Document::message(const gchar *format, ...)
 {
@@ -378,7 +342,7 @@ void Document::message(const gchar *format, ...)
 }
 
 /*
- *
+ * Signal connector to received message from the document.
  */
 sigc::signal<void, Glib::ustring>& Document::get_signal_message()
 {
@@ -387,8 +351,7 @@ sigc::signal<void, Glib::ustring>& Document::get_signal_message()
 
 
 /*
- *	affiche un message pour l'utilisateur sur ce document
- *	statusbar
+ * Display a flash message (3 seconds) to the user. (statusbar)
  */
 void Document::flash_message(const gchar *format, ...)
 {
@@ -407,62 +370,15 @@ void Document::flash_message(const gchar *format, ...)
 }
 
 /*
- *
+ * Signal connector to received flash message from the document.
  */
 sigc::signal<void, Glib::ustring>& Document::get_signal_flash_message()
 {
 	return m_signal_flash_message;
 }
 
-
-
 /*
- * TODO
- *	uri :
- *		file:///home/toto/mysubtitle.srt
- *	name :
- *		mysubtitle.srt
- *	filename :
- *		/home/toto/mysubtitle.srt
- *	media-uri :
- *		audio or video for internal player
- */
-void Document::set_data(const Glib::ustring &key, const Glib::ustring &value)
-{
-	m_data[key] = value;
-}
-
-/*
- *
- */
-Glib::ustring Document::get_data(const Glib::ustring &key)
-{
-	std::map<Glib::ustring, Glib::ustring>::iterator it = m_data.find(key);
-
-	if(it == m_data.end())
-	{
-		std::cerr << build_message("get_data failed:'%s'", key.c_str()) << std::endl;
-		return "";
-	}
-
-	return it->second;
-}
-
-/*
- *
- */
-bool Document::has_data(const Glib::ustring &key)
-{
-	std::map<Glib::ustring, Glib::ustring>::iterator it = m_data.find(key);
-
-	if(it != m_data.end())
-		return true;
-	return false;
-}
-
-
-/*
- *
+ * Return a Subtitles manager of the document.
  */
 Subtitles Document::subtitles()
 {
@@ -470,7 +386,7 @@ Subtitles Document::subtitles()
 }
 
 /*
- *
+ * Return a Styles manager of the document.
  */
 Styles Document::styles()
 {
@@ -511,7 +427,6 @@ void Document::finish_command()
 }
 
 /*
- *
  */
 CommandSystem& Document::get_command_system()
 {
@@ -519,9 +434,9 @@ CommandSystem& Document::get_command_system()
 }
 
 /*
- *	the document has changed (start_command and finish_command are used)
- *	after save the document toggle state of false
- *	the signal "document-changed" is used after any change
+ * The document has changed (start_command and finish_command are used)
+ * after save the document toggle state of false
+ * the signal "document-changed" is used after any change
  */
 bool Document::get_document_changed()
 {
@@ -529,7 +444,7 @@ bool Document::get_document_changed()
 }
 
 /*
- *	turn m_document_changed to true and emit a signal "document-changed"
+ * Turn m_document_changed to true and emit a signal "document-changed"
  */
 void Document::make_document_changed()
 {
@@ -539,7 +454,7 @@ void Document::make_document_changed()
 }
 
 /*
- *	turn m_document_changed to false and emit a signal "document-changed"
+ * Turn m_document_changed to false and emit a signal "document-changed"
  */
 void Document::make_document_unchanged()
 {
@@ -549,7 +464,11 @@ void Document::make_document_unchanged()
 }
 
 /*
+ * Define the timing mode of the document.
+ * This is the internal timing mode (frame or time) used
+ * to represent subtitle.
  *
+ * A signal "timing-mode-changed" is emited.
  */
 void Document::set_timing_mode(TIMING_MODE mode)
 {
@@ -559,7 +478,9 @@ void Document::set_timing_mode(TIMING_MODE mode)
 }
 	
 /*
- *
+ * Return the timing mode of the document.
+ * This is the internal timing mode (frame or time) used
+ * to represent subtitle.
  */
 TIMING_MODE Document::get_timing_mode()
 {
@@ -567,7 +488,8 @@ TIMING_MODE Document::get_timing_mode()
 }
 
 /*
- *
+ * Define the editing timing mode of the document.
+ * A signal "edit-timing-mode-changed" is emited.
  */
 void Document::set_edit_timing_mode(TIMING_MODE mode)
 {
@@ -581,7 +503,7 @@ void Document::set_edit_timing_mode(TIMING_MODE mode)
 }
 	
 /*
- *
+ * Return the editing timing mode of the document.
  */
 TIMING_MODE Document::get_edit_timing_mode()
 {
@@ -589,7 +511,8 @@ TIMING_MODE Document::get_edit_timing_mode()
 }
 
 /*
- *
+ * Define the framerate of the document.
+ * A signal "framerate-changed" is emited.
  */
 void Document::set_framerate(FRAMERATE framerate)
 {
@@ -603,7 +526,7 @@ void Document::set_framerate(FRAMERATE framerate)
 }
 
 /*
- *
+ * Return the framerate of the document.
  */
 FRAMERATE Document::get_framerate()
 {
@@ -612,7 +535,9 @@ FRAMERATE Document::get_framerate()
 
 
 /*
- *
+ * Create a new document from an uri, if the charset is empty then it will try to 
+ * auto detect the good value. This function display a dialog ask or error if needed.
+ * Return a new document or NULL.
  */
 Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustring &charset)
 {
@@ -626,12 +551,8 @@ Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustri
 	{
 		Document *doc = new Document;
 		doc->setCharset(charset);
-
-		if(doc->open(filename))
-			return doc;
-
-		delete doc;
-		return NULL;// throw ?
+		doc->open(uri);
+		return doc;
 	}
 	catch(const UnrecognizeFormatError &ex)
 	{
@@ -704,7 +625,7 @@ Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustri
 }
 
 /*
- *
+ * Return a signal connector from his name.
  */
 sigc::signal<void>& Document::get_signal(const std::string &name)
 {
@@ -712,7 +633,7 @@ sigc::signal<void>& Document::get_signal(const std::string &name)
 }
 
 /*
- *
+ * Emit a signal from his name.
  */
 void Document::emit_signal(const std::string &name)
 {

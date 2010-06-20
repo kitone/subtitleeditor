@@ -122,8 +122,9 @@ protected:
 	
 		if(ui->run() == Gtk::RESPONSE_OK)
 		{
+			Glib::ustring uri = ui->get_uri();
 			// tmp document to try to open the file
-			Document *tmp = Document::create_from_file(ui->get_uri());
+			Document *tmp = Document::create_from_file(uri);
 			if(tmp == NULL)
 				return false;
 
@@ -131,7 +132,6 @@ protected:
 			Glib::ustring oformat = doc->getFormat();
 			Glib::ustring ocharset = doc->getCharset();
 
-			Glib::ustring filename = ui->get_filename();
 			Glib::ustring encoding = tmp->getCharset();
 
 			delete tmp;
@@ -142,7 +142,7 @@ protected:
 			{
 				doc->start_command(_("Join document"));
 				doc->setCharset(encoding);
-				doc->open(filename);
+				doc->open(uri);
 
 				// Moves added subtitles after the last original
 				if(subtitle_size > 0)
@@ -178,7 +178,7 @@ protected:
 			}
 			catch(...)
 			{
-				se_debug_message(SE_DEBUG_PLUGINS, "Failed to join document: %s", filename.c_str());
+				se_debug_message(SE_DEBUG_PLUGINS, "Failed to join document: %s", uri.c_str());
 			}
 		}
 
