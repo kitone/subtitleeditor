@@ -539,6 +539,8 @@ void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, cons
 	cr->fill();
 	*/
 
+	se_debug_message(SE_DEBUG_WAVEFORM, "init drawing values");
+
 	double skip = 4;
 
 	double begin = peaks.size() * ((double)get_start_area() / (width * zoom()));
@@ -548,12 +550,15 @@ void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, cons
 
 	double x = begin;
 	
+	se_debug_message(SE_DEBUG_WAVEFORM, "start drawing peaks");
+
 	cr->line_to(0, bottom);
 	for(int t=0; t<length; t+=skip, x+=move)
 	{
-		if((int)x > peaks_size)
+		int px = (int)x;
+		if(px > peaks_size)
 			break;
-		double peakOnScreen = peaks[(int)x] * scale_value;
+		double peakOnScreen = peaks[px] * scale_value;
 
 		peakOnScreen = CLAMP(peakOnScreen, 0, bottom);
 
@@ -561,6 +566,8 @@ void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, cons
 	}
 	cr->line_to(length, bottom);
 	cr->fill();
+
+	se_debug_message(SE_DEBUG_WAVEFORM, "end of drawing peaks");
 }
 
 /*
