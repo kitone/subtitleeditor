@@ -25,7 +25,6 @@
 #include "debug.h"
 
 /*
- *
  */
 OptionGroup::OptionGroup()
 :Glib::OptionGroup("subtitleeditor...", "description...", "help...")
@@ -48,7 +47,6 @@ OptionGroup::OptionGroup()
 	entryFile.set_description("open a file (-f file1 -f file2 --file=file3)");
 	entryFile.set_arg_description(_("FILE"));
 	add_entry(entryFile, files_list);
-
 
 	// profile
 	Glib::OptionEntry entryProfile;
@@ -104,7 +102,53 @@ OptionGroup::OptionGroup()
 	add_debug_option(command, debug_command);
 	add_debug_option(plugins, debug_plugins);
 	add_debug_option(profiling, debug_profiling);
+
+#undef add_debug_option
+
 #endif//DEBUG
+}
+
+
+/*
+ */
+int OptionGroup::get_debug_flags()
+{
+	int flags = 0;
+
+#ifdef DEBUG
+	if(debug_all) {
+		flags |= SE_DEBUG_ALL;
+		return flags;
+	}
+
+	if(debug_app)
+		flags |= SE_DEBUG_APP;
+	if(debug_view)
+		flags |= SE_DEBUG_VIEW;
+	if(debug_io)
+		flags |= SE_DEBUG_IO;
+	if(debug_search)
+		flags |= SE_DEBUG_SEARCH;
+	if(debug_regex)
+		flags |= SE_DEBUG_REGEX;
+	if(debug_video_player)
+		flags |= SE_DEBUG_VIDEO_PLAYER;
+	if(debug_spell_checking)
+		flags |= SE_DEBUG_SPELL_CHECKING;
+	if(debug_waveform)
+		flags |= SE_DEBUG_WAVEFORM;
+	if(debug_utility)
+		flags |= SE_DEBUG_UTILITY;
+	if(debug_command)
+		flags |= SE_DEBUG_COMMAND;
+	if(debug_plugins)
+		flags |= SE_DEBUG_PLUGINS;
+	if(debug_profiling)
+		flags |= SE_DEBUG_PROFILING;
+
+#endif//DEBUG
+
+	return flags;
 }
 
 

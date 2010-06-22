@@ -39,9 +39,8 @@ static Glib::Timer profiling_timer;
 static double profiling_timer_last = 0.0;
 
 /*
- *
  */
-void se_debug_init(int flags)
+void __se_debug_init(int flags)
 {
 	debug_flags = flags;
 
@@ -53,7 +52,6 @@ void se_debug_init(int flags)
 }
 
 /*
- *	simple teste avec le flags
  */
 bool se_debug_check_flags(int flag)
 {

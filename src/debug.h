@@ -55,17 +55,14 @@ enum SE_DEBUG_MESSAGE_FLAG
 
 
 /*
- *
  */
-void se_debug_init(int flags);
+void __se_debug_init(int flags);
 
 /*
- *	simple teste avec le flags
  */
 bool se_debug_check_flags(int flags);
 
 /*
- *
  */
 void __se_debug( int flag, 
 		const gchar* file, 
@@ -73,7 +70,6 @@ void __se_debug( int flag,
 		const gchar* fonction);
 
 /*
- *
  */
 void __se_debug_message( int flag, 
 		const gchar* file, 
@@ -84,17 +80,14 @@ void __se_debug_message( int flag,
 
 #ifdef DEBUG
 
-	/*
-	 *
-	 */
+	#define se_debug_init(flags) __se_debug_init(flags);
+
 	#define se_debug(flag) if(se_debug_check_flags(flag)) { __se_debug(flag, __FILE__, __LINE__, __FUNCTION__); }
 
-	/*
-	 *
-	 */
 	#define se_debug_message(flag, ...) if(se_debug_check_flags(flag)) { __se_debug_message(flag, __FILE__, __LINE__, __FUNCTION__, __VA_ARGS__); }
 
 #else//DEBUG
+	#define se_debug_init(flags)
 	#define se_debug(flag)
 	#define se_debug_message(flag, ...)
 #endif//DEBUG

@@ -37,66 +37,13 @@
 	#include <gtkglmm.h>
 #endif//ENABLE_GL
 
-
-#ifdef DEBUG
-
-void parse_debug_options(OptionGroup &op)
-{
-	int flags = 0;
-	if(op.debug_all)
-	{
-		std::cout << "DEBUG_ALL" << std::endl;
-
-		flags |= SE_DEBUG_ALL;
-
-		se_debug_init(flags);
-	}
-	else
-	{
-		if(op.debug_app)
-			flags |= SE_DEBUG_APP;
-		if(op.debug_view)
-			flags |= SE_DEBUG_VIEW;
-		if(op.debug_io)
-			flags |= SE_DEBUG_IO;
-		if(op.debug_search)
-			flags |= SE_DEBUG_SEARCH;
-		if(op.debug_regex)
-			flags |= SE_DEBUG_REGEX;
-		if(op.debug_video_player)
-			flags |= SE_DEBUG_VIDEO_PLAYER;
-		if(op.debug_spell_checking)
-			flags |= SE_DEBUG_SPELL_CHECKING;
-		if(op.debug_waveform)
-			flags |= SE_DEBUG_WAVEFORM;
-		if(op.debug_utility)
-			flags |= SE_DEBUG_UTILITY;
-		if(op.debug_command)
-			flags |= SE_DEBUG_COMMAND;
-		if(op.debug_plugins)
-			flags |= SE_DEBUG_PLUGINS;
-		if(op.debug_profiling)
-			flags |= SE_DEBUG_PROFILING;
-
-		se_debug_init(flags);
-	}
-}
-
-#endif//DEBUG
-
-
 /*
- *
  */
 int main(int argc, char *argv[])
 {
 	if(!g_thread_supported())
 		g_thread_init (NULL);
 
-	// DEBUG
-	std::clock_t start = std::clock();
-
-	// Bindtextdomain
 	bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
@@ -130,19 +77,18 @@ int main(int argc, char *argv[])
 	{
 		std::cerr << "Error loading options : " << ex.what() << std::endl;
 	}
-	
-	// Init Debug
-#ifdef DEBUG
-	parse_debug_options(options);
-	se_debug_message(SE_DEBUG_APP, "Startup subtitle version %s", VERSION);
-#endif//DEBUG
 
+	// Init the debug options
+	se_debug_init(options.get_debug_flags());
+	se_debug_message(SE_DEBUG_APP, "Startup subtitle version %s", VERSION);
+
+	// If the user want to use a other profile 
+	// this is the last time we can do that.
 	if(!options.profile.empty())
 		set_profile_name(options.profile);
 
-	// Init GStreamer 
 	se_debug_message(SE_DEBUG_APP, "Init GStreamer");
-	
+
 	Gst::init(argc, argv);
 
 	// Run Application
@@ -150,17 +96,14 @@ int main(int argc, char *argv[])
 			SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
 			"subtitleeditor.ui", 
 			"window-main");
-
 	if(!application)
 		return EXIT_FAILURE;
 
 	application->init(options);
-
 	application->show();
 
-	// DEBUG
-	std::cout << "application run: " << double(std::clock() - start) / CLOCKS_PER_SEC << std::endl;
-	
+	se_debug_message(SE_DEBUG_APP, "Run the main loop");
+
 	kit.run(*application);
 
 	delete application;
