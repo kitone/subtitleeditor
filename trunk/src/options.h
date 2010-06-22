@@ -35,6 +35,8 @@ class OptionGroup : public Glib::OptionGroup
 public:
 	OptionGroup();
 
+	int get_debug_flags();
+
 public:
 	std::vector<Glib::ustring> files;
 	std::vector<Glib::ustring> files_list; // simple file (glibmm Bug #526831)
@@ -59,6 +61,7 @@ public:
 	bool debug_plugins;
 	bool debug_profiling;
 #endif//DEBUG
+
 };
 
 #endif//_Options_h

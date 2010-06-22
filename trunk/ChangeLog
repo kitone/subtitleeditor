@@ -1,5 +1,14 @@
 2010-06-22  kitone  <kitone@gna.org>
 
+	* src/debug.cc:
+	* src/debug.h:
+	* src/main.cc:
+	* src/options.cc:
+	* src/options.h:
+	Code clean up. (thanks Erik)
+
+2010-06-22  kitone  <kitone@gna.org>
+
 	* src/we/waveformrenderercairo.cc:
 	Fix bug #16016 : waveform segmentation fault.
 
