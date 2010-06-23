@@ -1,3 +1,12 @@
+2010-06-23  kitone  <kitone@gna.org>
+
+	* src/debug.cc:
+	* src/debug.h:
+	* src/main.cc:
+	* src/options.cc:
+	* src/options.h:
+	Update copyright to 2010.
+
 2010-06-22  kitone  <kitone@gna.org>
 
 	* src/debug.cc:
