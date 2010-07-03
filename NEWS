@@ -1,3 +1,13 @@
+2010-07-03 - 0.37.0
+
+	* Display the saving dialog after generating waveform or keyframes
+	* Fix sr #2543 : Support for .stl file format (Spruce STL)
+	* Fix bug #15942 : Default location in file select dialog (waveform and keyframes)
+	* Fix bug #16121 : Feature request: add option to scale all subtitles (Orig. patch by Ludek <anomen>)
+	* Fix bug #16058 : crash at "find and replace" with regexp
+	* Fix bug #16016 : waveform segmentation fault
+	* Code cleanup
+
 2010-04-06 - 0.36.2
 
 	* New subtitle format SBV

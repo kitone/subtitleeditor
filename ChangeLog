@@ -1,5 +1,11 @@
 2010-07-03  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.37.0 release.
+
+2010-07-03  kitone  <kitone@gna.org>
+
 	* prepare-po.sh:
 	Fix sort command.
 
