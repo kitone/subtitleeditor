@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 11:59+0200\n"
+"POT-Creation-Date: 2010-07-03 09:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,6 +126,7 @@ msgstr ""
 
 #: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:1
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:1
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:1
 msgid "<b>Apply to</b>"
 msgstr ""
 
@@ -337,36 +338,36 @@ msgid "I am already open"
 msgstr ""
 
 #. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:358
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:417
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:359
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:418
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr ""
 
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:366
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:425
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:367
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:426
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:522
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:523
 msgid "Open translation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:550
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:551
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:615
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:617
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:618
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:620
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr ""
@@ -783,13 +784,13 @@ msgid "Target"
 msgstr ""
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:12
-#: ../plugins/actions/findandreplace/findandreplace.cc:611
+#: ../plugins/actions/findandreplace/findandreplace.cc:622
 #: ../src/subtitleview.cc:1464
 msgid "Text"
 msgstr ""
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:13
-#: ../plugins/actions/findandreplace/findandreplace.cc:613
+#: ../plugins/actions/findandreplace/findandreplace.cc:624
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
 #: ../src/subtitleview.cc:1465
 msgid "Translation"
@@ -808,40 +809,40 @@ msgstr ""
 msgid "_Use regular expression"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:207
+#: ../plugins/actions/findandreplace/findandreplace.cc:215
 msgid "Replace text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:579
-#: ../plugins/actions/findandreplace/findandreplace.cc:995
+#: ../plugins/actions/findandreplace/findandreplace.cc:590
+#: ../plugins/actions/findandreplace/findandreplace.cc:1007
 msgid "The document is empty"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:879
+#: ../plugins/actions/findandreplace/findandreplace.cc:891
 msgid "_Find And Replace"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:879
+#: ../plugins/actions/findandreplace/findandreplace.cc:891
 msgid "Search and replace text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:883
+#: ../plugins/actions/findandreplace/findandreplace.cc:895
 msgid "Find Ne_xt"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:883
+#: ../plugins/actions/findandreplace/findandreplace.cc:895
 msgid "Search forwards for the same text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:886
+#: ../plugins/actions/findandreplace/findandreplace.cc:898
 msgid "Find Pre_vious"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:886
+#: ../plugins/actions/findandreplace/findandreplace.cc:898
 msgid "Search backwards for the same text"
 msgstr ""
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:1043
+#: ../plugins/actions/findandreplace/findandreplace.cc:1055
 msgid "Not found"
 msgstr ""
 
@@ -1033,7 +1034,7 @@ msgid "Move Subtitles"
 msgstr ""
 
 #: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:3
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:6
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:8
 msgid "_New Start:"
 msgstr ""
 
@@ -1044,15 +1045,15 @@ msgstr ""
 #. init label
 #: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:5
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:7
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:10
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:155
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:156
 msgid "_Start Time:"
 msgstr ""
 
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:155
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:156
 msgid "_Start Frame:"
 msgstr ""
 
@@ -1221,7 +1222,7 @@ msgid "Subtitle:"
 msgstr ""
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:39
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:5
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:6
 msgid "Text:"
 msgstr ""
 
@@ -1389,53 +1390,61 @@ msgstr ""
 msgid "Reverse the text and the translation was applied."
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:1
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:2
 msgid "<b>First Point</b>"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:2
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:3
 msgid "<b>Last Point</b>"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:3
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:4
 msgid "Number:"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:4
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:5
 msgid "Scale"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:79
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:85
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:7
+msgid "_All Subtitles"
+msgstr ""
+
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:9
+msgid "_Selected Range"
+msgstr ""
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:82
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:88
 msgid "You can't use <i>scale</i> with this values."
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:80
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:83
 msgid "The first point is superior to the last point."
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:86
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:89
 msgid "The first point is equal to the last point."
 msgstr ""
 
 #. apply change
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:97
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:100
 msgid "Scale subtitles"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:103
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:122
 msgid "The scale was applied"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:124
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:143
 msgid "You can't use <i>scale</i> with this document."
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:331
 msgid "_Scale"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:331
 msgid "Scale by two points"
 msgstr ""
 
@@ -2273,63 +2282,63 @@ msgstr ""
 msgid "Subtitle Selection"
 msgstr ""
 
-#: ../src/document.cc:295
+#: ../src/document.cc:261
 #, c-format
 msgid "Could not save the file \"%s\" using the character coding %s."
 msgstr ""
 
-#: ../src/document.cc:297
+#: ../src/document.cc:263
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character coding."
 msgstr ""
 
-#: ../src/document.cc:306
+#: ../src/document.cc:272
 msgid "Save Document Failed."
 msgstr ""
 
-#: ../src/document.cc:639
+#: ../src/document.cc:560
 #, c-format
 msgid "Could not recognize the subtitle format for the file \"%s\"."
 msgstr ""
 
-#: ../src/document.cc:641
+#: ../src/document.cc:562
 msgid "Please check that the file contains subtitles in a supported format."
 msgstr ""
 
-#: ../src/document.cc:653
+#: ../src/document.cc:574
 #, c-format
 msgid "Could not open automatically the file \"%s\"."
 msgstr ""
 
-#: ../src/document.cc:654
+#: ../src/document.cc:575
 msgid ""
 "Subtitle Editor was not able to automatically determine the file encoding. "
 "Select a different character coding from the menu and try again."
 msgstr ""
 
-#: ../src/document.cc:660
+#: ../src/document.cc:581
 #, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
 msgstr ""
 
-#: ../src/document.cc:662
+#: ../src/document.cc:583
 msgid "Select a different character coding from the menu and try again."
 msgstr ""
 
-#: ../src/document.cc:669 ../src/gui/application.cc:307
+#: ../src/document.cc:590 ../src/gui/application.cc:307
 #: ../share/ui/dialog-export-text.ui.h:1 ../share/ui/dialog-import-text.ui.h:1
 #: ../share/ui/dialog-open-document.ui.h:1
 #: ../share/ui/dialog-save-document.ui.h:1
 msgid "Character Coding:"
 msgstr ""
 
-#: ../src/document.cc:687 ../src/document.cc:696
+#: ../src/document.cc:608 ../src/document.cc:617
 #, c-format
 msgid "Could not open the file \"%s\""
 msgstr ""
 
-#: ../src/document.cc:697
+#: ../src/document.cc:618
 msgid "An unknown error occurred while opening the file."
 msgstr ""
 
@@ -2681,23 +2690,23 @@ msgstr ""
 msgid "Couldn't get the keyframe size on the file."
 msgstr ""
 
-#: ../src/main.cc:118
+#: ../src/main.cc:65
 msgid " - edit subtitles files"
 msgstr ""
 
-#: ../src/options.cc:41
+#: ../src/options.cc:40
 msgid "[FILE...]"
 msgstr ""
 
-#: ../src/options.cc:49 ../src/options.cc:74 ../src/options.cc:82
+#: ../src/options.cc:48 ../src/options.cc:72 ../src/options.cc:80
 msgid "FILE"
 msgstr ""
 
-#: ../src/options.cc:58
+#: ../src/options.cc:56
 msgid "NAME"
 msgstr ""
 
-#: ../src/options.cc:66
+#: ../src/options.cc:64
 msgid "ENCODING"
 msgstr ""
 
