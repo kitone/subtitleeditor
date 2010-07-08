@@ -102,9 +102,13 @@ void WaveformEditor::load_config()
 
 	if(cfg.has_key("waveform", "scale"))
 		m_sliderScale->set_value(cfg.get_value_int("waveform", "scale"));
+	else
+		m_sliderScale->set_value(3);
 
 	if(cfg.has_key("waveform", "zoom"))
 		m_sliderZoom->set_value(cfg.get_value_int("waveform", "zoom"));
+	else
+		m_sliderZoom->set_value(1);
 
 	cfg.get_value_bool("waveform", "scrolling-with-player", m_cfg_scrolling_with_player);
 	cfg.get_value_bool("waveform", "scrolling-with-selection", m_cfg_scrolling_with_selection);
@@ -371,7 +375,10 @@ void WaveformEditor::set_zoom(int value)
  */
 int WaveformEditor::get_zoom()
 {
-	return (int)m_sliderZoom->get_value();
+	int value = (int)m_sliderZoom->get_value();
+	if(value < 1)
+		return 1;
+	return value;
 }
 
 /*
