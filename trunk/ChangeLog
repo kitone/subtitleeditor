@@ -1,3 +1,9 @@
+2010-07-08  kitone  <kitone@gna.org>
+
+	* src/we/waveformeditor.cc:
+	* src/we/waveformrenderercairo.cc:
+	Fix bug #16016 : segfault (divide by zero).
+
 2010-07-03  kitone  <kitone@gna.org>
 
 	* NEWS:
