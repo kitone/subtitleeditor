@@ -1,3 +1,16 @@
+2010-07-11  kitone  <kitone@gna.org>
+
+	* LINGUAS:
+	* bg.po:
+	Add Bulgarian translation.
+
+	* de.po:
+	* es.po:
+	* ru.po:
+	* tr.po:
+	* zh_CN.po:
+	Update translations.
+
 2010-07-08  kitone  <kitone@gna.org>
 
 	* gl.po:
