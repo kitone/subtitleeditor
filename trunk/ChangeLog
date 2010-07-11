@@ -1,3 +1,9 @@
+2010-07-11  kitone  <kitone@gna.org>
+
+	* NEWS:
+	* configure.in:
+	Preparing 0.37.1 release.
+
 2010-07-08  kitone  <kitone@gna.org>
 
 	* src/we/waveformeditor.cc:
