@@ -1,5 +1,10 @@
 2010-07-11  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Switching back to development version.
+
+2010-07-11  kitone  <kitone@gna.org>
+
 	* NEWS:
 	* configure.in:
 	Preparing 0.37.1 release.
