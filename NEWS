@@ -1,3 +1,9 @@
+2010-07-11 - 0.37.1
+
+	* Fix bug #16016 (#16087) : segfault (divide by zero)
+	* Add Bulgarian translation
+	* Update de, es, gl, ru, tr and zh_CN translations
+
 2010-07-03 - 0.37.0
 
 	* Display the saving dialog after generating waveform or keyframes
