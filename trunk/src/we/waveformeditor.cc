@@ -987,7 +987,15 @@ bool WaveformEditor::move_subtitle_start(const SubtitleTime &_time, bool disable
 			{
 				SubtitleTime end_of_previous_sub = previous.get_end();
 
-				if(subtitle_start < end_of_previous_sub + min_gap)
+				// Only if the previous subtitle is really before this one.
+				// Avoid to invalidate the subtitle start when the previous is 
+				// equal to 0:00:000.0 or superior
+				bool is_really_previous = previous.get_start() < subtitle.get_start();
+
+				// Have we an overlapping ?
+				bool is_on_previous = subtitle_start < end_of_previous_sub + min_gap;
+
+				if(is_on_previous && is_really_previous)
 				{
 					// if around is enable
 					// try to move the end of the previous subtitle
@@ -996,20 +1004,18 @@ bool WaveformEditor::move_subtitle_start(const SubtitleTime &_time, bool disable
 						SubtitleTime new_previous_end = subtitle_start - min_gap;
 							
 						// try to move the end of the previous
+						// check first if after move is respect the min display
+						if(new_previous_end - previous.get_start() > min_display) 
 						{
-							// check first if after move is respect the min display
-							if(new_previous_end - previous.get_start() > min_display) 
-							{
-								previous.set_end(new_previous_end); 
-							}
-							else // I can, move with gap respect
-							{
-								new_previous_end = previous.get_start() + min_display;
+							previous.set_end(new_previous_end); 
+						}
+						else // I can, move with gap respect
+						{
+							new_previous_end = previous.get_start() + min_display;
 
-								previous.set_end(new_previous_end);
+							previous.set_end(new_previous_end);
 
-								subtitle_start = new_previous_end + min_gap;
-							}
+							subtitle_start = new_previous_end + min_gap;
 						}
 					}
 					else // around is disable, clamp at the end of the previous with gap respect
@@ -1019,7 +1025,7 @@ bool WaveformEditor::move_subtitle_start(const SubtitleTime &_time, bool disable
 		}//m_cfg_respect_timing && gab between subtitles
 	}//!disable_respect
 
-	if(subtitle.get_start() != subtitle_start)
+	if(subtitle.get_start() != subtitle_start && subtitle_start.totalmsecs >= 0)
 		subtitle.set_start(subtitle_start);
 	
 	document()->emit_signal("subtitle-time-changed");
