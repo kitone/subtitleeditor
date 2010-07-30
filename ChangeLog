@@ -1,3 +1,8 @@
+2010-07-30  kitone  <kitone@gna.org>
+
+	* src/we/waveformeditor.cc:
+	Fix bug #16314 : Unable to set subtitle times after importing plain text.
+
 2010-07-11  kitone  <kitone@gna.org>
 
 	* configure.in:
