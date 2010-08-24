@@ -74,7 +74,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void activate()
 	{
@@ -145,7 +144,7 @@ public:
 		recentAction->signal_item_activated().connect(
 				sigc::mem_fun(*this, &DocumentManagementPlugin::on_recent_item_activated));
 		action_group->add(recentAction);
-		
+
 		// close
 		action_group->add(
 				Gtk::Action::create("close-document", Gtk::Stock::CLOSE, "", _("Close the current file")),
@@ -166,12 +165,9 @@ public:
 				sigc::mem_fun(*this, &DocumentManagementPlugin::on_document_create));
 
 		Gtk::Window *window = dynamic_cast<Gtk::Window*>(get_subtitleeditor_window());
-		
-		g_return_if_fail(window);
-		{
+		if(window)
 			window->signal_delete_event().connect(
 					sigc::mem_fun(*this, &DocumentManagementPlugin::on_subtitleeditor_window_delete_event));
-		}
 
 		// config connection
 		m_config_interface_connection = get_config().signal_changed("interface").connect(
@@ -184,7 +180,7 @@ public:
 		#define ADD_UI(name) ui->add_ui(ui_id, "/menubar/menu-file/"name, name, name);
 		#define ADD_OPEN_UI(name) ui->add_ui(ui_id, "/menubar/menu-file/menu-open/"name, name, name);
 		#define ADD_SAVE_UI(name) ui->add_ui(ui_id, "/menubar/menu-file/menu-save/"name, name, name);
-		
+
 		ADD_UI("new-document");
 		ADD_OPEN_UI("open-document");
 		ADD_OPEN_UI("open-project");
@@ -197,14 +193,13 @@ public:
 		ADD_SAVE_UI("save-translation");
 		ADD_UI("close-document");
 		ADD_UI("exit");
-	
+
 		#undef ADD_UI
 		#undef ADD_OPEN_UI
 		#undef ADD_SAVE_UI
 	}
 
 	/*
-	 *
 	 */
 	void deactivate()
 	{
@@ -240,7 +235,7 @@ public:
 protected:
 
 	/*
-	 *	create a new document with unique name
+	 * Create a new document with unique name
 	 */
 	void on_new()
 	{
@@ -307,7 +302,6 @@ protected:
 	}
 
 	/*
-	 *
 	 */
 	bool open_document(const Glib::ustring &uri, const Glib::ustring &charset)
 	{
@@ -320,24 +314,21 @@ protected:
 
 		if(already)
 		{
-			//DocumentSystem::getInstance().setCurrentDocument(already);
 			already->flash_message(_("I am already open"));
+			return false;
 		}
-		else
-		{
-			Document *doc = Document::create_from_file(uri, charset);
-			if(doc)
-			{
-				DocumentSystem::getInstance().append(doc);
-				return true;
-			}
-		}
+		// Don't need to catch error, create_from_file catch and 
+		// display errors messages if needs.
+		Document *doc = Document::create_from_file(uri, charset);
+		if(!doc)
+			return false;
 
-		return false;
+		DocumentSystem::getInstance().append(doc);
+		return true;
 	}
 
 	/*
-	 *	Save a document. If file doesn't exist use save_as
+	 * Save a document. If file doesn't exist use save_as
 	 */
 	bool save_document(Document *doc)
 	{
@@ -345,37 +336,29 @@ protected:
 
 		g_return_val_if_fail(doc, false);
 
-		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS))
-		{
-			Glib::ustring filename = doc->getFilename();
-			Glib::ustring uri = Glib::filename_to_uri(filename);
-			Glib::ustring format = doc->getFormat();
-			Glib::ustring charset = doc->getCharset();
-			Glib::ustring newline = doc->getNewLine();
-
-			if(doc->save(uri))
-			{
-				// "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-				doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
-							filename.c_str(), format.c_str(), charset.c_str(), newline.c_str());
-
-				return true;
-			}
-			else
-			{
-				// "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-				doc->message(_("The file %s (%s, %s, %s) has not been saved."), 
-							filename.c_str(), format.c_str(), charset.c_str(), newline.c_str());
-			}
-		}
-		else
+		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS) == false)
 			return save_as_document(doc);
 
-		return false;
+		Glib::ustring filename = doc->getFilename();
+		Glib::ustring uri = Glib::filename_to_uri(filename);
+		Glib::ustring format = doc->getFormat();
+		Glib::ustring charset = doc->getCharset();
+		Glib::ustring newline = doc->getNewLine();
+
+		if(doc->save(uri) == false)
+		{
+			// "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
+			doc->message(_("The file %s (%s, %s, %s) has not been saved."), 
+						filename.c_str(), format.c_str(), charset.c_str(), newline.c_str());
+			return false;
+		}
+		// "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+		doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
+					filename.c_str(), format.c_str(), charset.c_str(), newline.c_str());
+		return true;
 	}
 
 	/*
-	 *
 	 */
 	bool save_as_document(Document *doc, const Glib::ustring &default_format = Glib::ustring())
 	{
@@ -398,47 +381,42 @@ protected:
 		dialog->show();
 
 		int response = dialog->run();
-		
+
 		dialog->hide();
+		if(response != Gtk::RESPONSE_OK)
+			return false;
 
-		if(response == Gtk::RESPONSE_OK)
+		Glib::ustring filename = dialog->get_filename();
+		Glib::ustring uri = dialog->get_uri();
+		Glib::ustring format = dialog->get_format();
+		Glib::ustring encoding = dialog->get_encoding();
+		Glib::ustring newline = dialog->get_newline();
+
+		doc->setFormat(format);
+		doc->setCharset(encoding);
+		doc->setNewLine(newline);
+
+		if(doc->save(uri) == false)
 		{
-			Glib::ustring filename = dialog->get_filename();
-			Glib::ustring uri = dialog->get_uri();
-			Glib::ustring format = dialog->get_format();
-			Glib::ustring encoding = dialog->get_encoding();
-			Glib::ustring newline = dialog->get_newline();
-
-			doc->setFormat(format);
-			doc->setCharset(encoding);
-			doc->setNewLine(newline);
-
-			if(doc->save(uri))
-			{
-				doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
-						filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
-				// update in recent manager
-				add_document_in_recent_manager(doc);
-
-				return true;
-			}
-			else
-				doc->message(_("The file %s (%s, %s, %s) has not been saved."), 
-						filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
+			doc->message(_("The file %s (%s, %s, %s) has not been saved."), 
+					filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
+			return false;
 		}
-
-		return false;
+		doc->flash_message(_("Saving file %s (%s, %s, %s)."), 
+				filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
+		// update in recent manager
+		add_document_in_recent_manager(doc);
+		return true;
 	}
 
 	/*
-	 *	Save a document. If file doesn't exist use on_save_as
+	 * Save a document. If file doesn't exist use on_save_as
 	 */
 	void on_save()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
-
 		g_return_if_fail(doc);
 
 		save_document(doc);
@@ -451,22 +429,19 @@ protected:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
-
 		g_return_if_fail(doc);
 
 		save_as_document(doc, "Subtitle Editor Project");
-
 	}
 
 	/*
-	 *	Save document with new name
+	 * Save document with new name
 	 */
 	void on_save_as()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
-
 		g_return_if_fail(doc);
 
 		save_as_document(doc);
@@ -480,7 +455,7 @@ protected:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		DocumentList list = get_subtitleeditor_window()->get_documents();
-		
+
 		for(DocumentList::const_iterator it = list.begin(); it != list.end(); ++it)
 		{
 			save_document(*it);
@@ -488,17 +463,16 @@ protected:
 	}
 	
 	/*
-	 *	Open translation from file.
-	 *	Create a new document with a translation
-	 *	and move the text of this new document (trans) to the current document
-	 *	at the column "translation". After that delete the new document (trans)
+	 * Open translation from file.
+	 * Create a new document with a translation
+	 * and move the text of this new document (trans) to the current document
+	 * at the column "translation". After that delete the new document (trans)
 	 */
 	void on_open_translation()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *current = get_current_document();
-
 		g_return_if_fail(current);
 
 		DialogOpenDocument::auto_ptr ui = DialogOpenDocument::create();
@@ -507,152 +481,124 @@ protected:
 		ui->set_select_multiple(false);
 		ui->show();
 		
-		if(ui->run() == Gtk::RESPONSE_OK)
-		{
-			ui->hide();
-	
-			Glib::ustring encoding = ui->get_encoding();
-			Glib::ustring uri = ui->get_uri();
+		if(ui->run() != Gtk::RESPONSE_OK)
+			return;
 
-			try
-			{
-				Document *doc = Document::create_from_file(uri, encoding);
-		
-				if(doc)
-				{
-					current->start_command(_("Open translation"));
-
-					Subtitle s1 = current->subtitles().get_first();
-					Subtitle s2 = doc->subtitles().get_first();
-
-					while(s1 && s2)
-					{
-						s1.set_translation(s2.get_text());
-
-						++s1;
-						++s2;
-					}
-
-					// create new subtitle
-					if(s2)
-					{
-						int size = doc->subtitles().size() - current->subtitles().size();
-
-						while(s2)
-						{
-							s1 = current->subtitles().append();
-
-							s1.set_translation(s2.get_text());
-							s1.set_start_and_end(s2.get_start(), s2.get_end());
-							++s2;
-						}
-
-						current->flash_message(ngettext(
-								"1 subtitle was added with the translation",
-								"%d subtitles were added with the translation",
-								size), size);
-					}
-
-					current->finish_command();
-
-					delete doc;
-				}
-			}
-			catch(...)
-			{
-			}
-		}
-		
 		ui->hide();
+	
+		Glib::ustring encoding = ui->get_encoding();
+		Glib::ustring uri = ui->get_uri();
+
+		// We don't need to catch error because Document::create_from_file already 
+		// catch and show a error dialog if needs.
+		Document *doc = Document::create_from_file(uri, encoding);
+		if(doc == NULL)
+			return;
+
+		current->start_command(_("Open translation"));
+
+		Subtitle s1 = current->subtitles().get_first();
+		Subtitle s2 = doc->subtitles().get_first();
+
+		while(s1 && s2)
+		{
+			s1.set_translation(s2.get_text());
+
+			++s1;
+			++s2;
+		}
+
+		// create new subtitle
+		if(s2)
+		{
+			int size = doc->subtitles().size() - current->subtitles().size();
+
+			while(s2)
+			{
+				s1 = current->subtitles().append();
+
+				s1.set_translation(s2.get_text());
+				s1.set_start_and_end(s2.get_start(), s2.get_end());
+				++s2;
+			}
+
+			current->flash_message(ngettext(
+					"1 subtitle was added with the translation",
+					"%d subtitles were added with the translation",
+					size), size);
+		}
+		current->finish_command();
+		delete doc;
 	}
 
 	/*
-	 *	Save the current translation in a new document
+	 * Save the current translation in a new document
 	 */
 	void on_save_translation()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *current = get_current_document();
-
 		g_return_if_fail(current);
 
 		DialogSaveDocument::auto_ptr dialog = DialogSaveDocument::create();
-
-		if(dialog.get() == NULL)
-			dialog = DialogSaveDocument::create();
 
 		// default to the format of the original document
 		dialog->set_format(current->getFormat());
 		dialog->set_encoding(current->getCharset());
 		dialog->set_newline(current->getNewLine());
 		dialog->show();
-		if(dialog->run() == Gtk::RESPONSE_OK)
-		{
-			Glib::ustring filename = dialog->get_filename();
-			Glib::ustring uri = dialog->get_uri();
-			Glib::ustring format = dialog->get_format();
-			Glib::ustring encoding = dialog->get_encoding();
-			Glib::ustring newline = dialog->get_newline();
 
-			try
-			{
-				Document doc_translation(*current);
-
-				doc_translation.setFilename(filename);
-				doc_translation.setFormat(format);
-				doc_translation.setCharset(encoding);
-				doc_translation.setNewLine(newline);
-
-				// apply translation
-				Subtitle sub = doc_translation.subtitles().get_first();
-				while(sub)
-				{
-					sub.set_text(sub.get_translation());
-
-					++sub;
-				}
-				//
-				if(doc_translation.save(uri))
-					current->flash_message(_("Saving translation file %s (%s, %s, %s)."), 
-							filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
-				else
-					current->message(_("The translation file %s (%s, %s, %s) has not been saved."), 
-							filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str()); 
-			}
-			catch(...)
-			{
-			}
-		}
-
+		if(dialog->run() != Gtk::RESPONSE_OK)
+			return;
 		dialog->hide();
+
+		Glib::ustring filename = dialog->get_filename();
+		Glib::ustring uri = dialog->get_uri();
+		Glib::ustring format = dialog->get_format();
+		Glib::ustring encoding = dialog->get_encoding();
+		Glib::ustring newline = dialog->get_newline();
+
+		Document doc_translation(*current);
+
+		doc_translation.setFilename(filename);
+		doc_translation.setFormat(format);
+		doc_translation.setCharset(encoding);
+		doc_translation.setNewLine(newline);
+
+		// apply translation
+		Subtitle sub = doc_translation.subtitles().get_first();
+		while(sub)
+		{
+			sub.set_text(sub.get_translation());
+			++sub;
+		}
+		// display message for user
+		if(doc_translation.save(uri) == false)
+			current->message(_("The translation file %s (%s, %s, %s) has not been saved."), 
+					filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
+		else
+			current->flash_message(_("Saving translation file %s (%s, %s, %s)."), 
+					filename.c_str(), format.c_str(), encoding.c_str(), newline.c_str());
 	}
 
 	/*
-	 *	
 	 */
-	bool on_subtitleeditor_window_delete_event(GdkEventAny *ev)
+	bool on_subtitleeditor_window_delete_event(GdkEventAny* /*ev*/)
 	{
-		bool state = false;
-
 		while(get_current_document() != NULL)
 		{
-			state = close_current_document();
-
-			if(state == false)
+			if(close_current_document() == false)
 				return true;	// true to stop the closing
 		}
-
 		return false;
 	}
 
 	/*
-	 *
 	 */
 	bool close_current_document()
 	{
 		Document *doc = get_current_document();
-		
 		g_return_val_if_fail(doc, false);
 
 		if(get_config().get_value_bool("interface", "ask-to-save-on-exit") == false)
@@ -686,12 +632,11 @@ protected:
 				return false;
 			}
 		}
-
 		return true;
 	}
 
 	/*
-	 *	remove the current document
+	 * Remove the current document
 	 */
 	void on_close()
 	{
@@ -701,8 +646,8 @@ protected:
 	}
 
 	/*
-	 *	quit the program
-	 *	close all document with support to ask to save if is enable
+	 * Quit the program
+	 * Close all document with support to ask to save if is enable
 	 */
 	void on_exit()
 	{
@@ -711,13 +656,12 @@ protected:
 			if(!close_current_document())
 				return;
 		}
-
 		Gtk::Main::quit();
 	}
 
 
 	/*
-	 *	a new document has been create, update the recent manager 
+	 * A new document has been create, update the recent manager 
 	 */
 	void on_document_create(Document *doc)
 	{
@@ -727,36 +671,34 @@ protected:
 	}
 
 	/*
-	 *
 	 */
 	void add_document_in_recent_manager(Document *doc)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		if(doc)
-		{
-			Glib::ustring filename = doc->getFilename();
+		if(doc == NULL)
+			return;
 
-			if(!Glib::file_test(filename, Glib::FILE_TEST_EXISTS))
-				return;
+		Glib::ustring filename = doc->getFilename();
 
-			Glib::ustring uri = Glib::filename_to_uri(filename);
+		if(!Glib::file_test(filename, Glib::FILE_TEST_EXISTS))
+			return;
 
-			se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+		Glib::ustring uri = Glib::filename_to_uri(filename);
 
-			Gtk::RecentManager::Data data;
-			//data.mime_type = "subtitle/";
-			data.app_name = Glib::get_application_name();
-			data.app_exec = Glib::get_prgname();
-			data.groups.push_back("subtitleeditor");
-			data.is_private = false;
+		se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
 
-			Gtk::RecentManager::get_default()->add_item(uri, data);
-		}
+		Gtk::RecentManager::Data data;
+		//data.mime_type = "subtitle/";
+		data.app_name = Glib::get_application_name();
+		data.app_exec = Glib::get_prgname();
+		data.groups.push_back("subtitleeditor");
+		data.is_private = false;
+		Gtk::RecentManager::get_default()->add_item(uri, data);
 	}
 
 	/*
-	 *	open a recent document
+	 * Open a recent document
 	 */
 	void on_recent_item_activated()
 	{
@@ -777,14 +719,13 @@ protected:
 	/*
 	 * Only for "used-autosave" and "autosave-minutes".
 	 */
-	void on_config_interface_changed(const Glib::ustring &key, const Glib::ustring &value)
+	void on_config_interface_changed(const Glib::ustring &key, const Glib::ustring &/*value*/)
 	{
 		if(key == "used-autosave" || key == "autosave-minutes")
 			init_autosave();
 	}
 
 	/*
-	 *
 	 */
 	void init_autosave()
 	{
@@ -793,17 +734,16 @@ protected:
 		m_autosave_timeout.disconnect();
 
 		bool used_autosave = Config::getInstance().get_value_bool("interface", "used-autosave");
-		if(used_autosave)
-		{
-			int autosave_minutes = Config::getInstance().get_value_int("interface", "autosave-minutes");
+		if(used_autosave == false)
+			return;
+		int autosave_minutes = Config::getInstance().get_value_int("interface", "autosave-minutes");
 
-			long mseconds = SubtitleTime(0, autosave_minutes, 0, 0).totalmsecs;
+		long mseconds = SubtitleTime(0, autosave_minutes, 0, 0).totalmsecs;
 
-			m_autosave_timeout = Glib::signal_timeout().connect(
-					sigc::mem_fun(*this, &DocumentManagementPlugin::on_autosave_files), mseconds);
+		m_autosave_timeout = Glib::signal_timeout().connect(
+				sigc::mem_fun(*this, &DocumentManagementPlugin::on_autosave_files), mseconds);
 
-			se_debug_message(SE_DEBUG_PLUGINS, "save files every %d minutes", autosave_minutes);
-		}
+		se_debug_message(SE_DEBUG_PLUGINS, "save files every %d minutes", autosave_minutes);
 	}
 
 	/*
@@ -814,7 +754,6 @@ protected:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		on_save_all_documents();
-		
 		return true;
 	}
 
