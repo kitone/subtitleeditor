@@ -564,18 +564,13 @@ public:
 		if(doc == NULL)
 			return;
 
-
-		unsigned int count = 0;
-		
 		ErrorCheckingGroup group;
 		ErrorCheckingGroup::iterator it;
 		for(it = group.begin(); it != group.end(); ++it)
 		{
 			if((*it)->get_active())
-				count += fix_error(*it, doc);
+				fix_error(*it, doc);
 		}
-
-		//
 		refresh();
 	}
 
