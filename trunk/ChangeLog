@@ -1,5 +1,10 @@
 2010-08-24  kitone  <kitone@gna.org>
 
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	Code cleanup.
+
+2010-08-24  kitone  <kitone@gna.org>
+
 	* src/document.cc:
 	Catch glib exception and display error dialog (open, save).
 
