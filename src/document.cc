@@ -271,6 +271,10 @@ bool Document::save(const Glib::ustring &uri)
 	{
 		dialog_error(_("Save Document Failed."), ex.what());
 	}
+	catch(const Glib::Exception &ex)
+	{
+		dialog_error(_("Save Document Failed."), ex.what());
+	}
 	return false;
 }
 
@@ -604,6 +608,15 @@ Document* Document::create_from_file(const Glib::ustring &uri, const Glib::ustri
 		}
 	}
 	catch(const std::exception &ex)
+	{
+		Glib::ustring title = build_message(_("Could not open the file \"%s\""), basename.c_str());
+		Glib::ustring msg = ex.what();
+
+		ErrorDialog dialog(title, msg);
+		dialog.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
+		dialog.run();
+	}
+	catch(const Glib::Exception &ex)
 	{
 		Glib::ustring title = build_message(_("Could not open the file \"%s\""), basename.c_str());
 		Glib::ustring msg = ex.what();

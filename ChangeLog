@@ -1,5 +1,10 @@
 2010-08-24  kitone  <kitone@gna.org>
 
+	* src/document.cc:
+	Catch glib exception and display error dialog (open, save).
+
+2010-08-24  kitone  <kitone@gna.org>
+
 	* src/subtitle.cc:
 	Fix bug #16524 : Broken character count (column translation).
 
