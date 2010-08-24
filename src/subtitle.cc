@@ -655,22 +655,21 @@ void Subtitle::set_translation(const Glib::ustring &text)
 		(*m_iter)[column.characters_per_line_translation] = "0";
 	else
 	{
-		std::istringstream iss(text);
-		std::string line;
+		std::vector<int> num_characters = utility::get_characters_per_line(text);
 		std::string cpl;
 
 		unsigned int count=0;
 
-		while( std::getline(iss, line) )
+		for (std::vector<int>::const_iterator it = num_characters.begin(); it != num_characters.end(); ++it)
 		{
 			if(count == 0)
-				cpl += to_string(line.size());
+				cpl += to_string(*it);
 			else
-				cpl += "\n" + to_string(line.size());
+				cpl += "\n" + to_string(*it);
 
 			++count;
 		}
-	
+
 		(*m_iter)[column.characters_per_line_translation] = cpl;
 	}
 }

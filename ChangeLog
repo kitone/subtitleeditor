@@ -1,3 +1,8 @@
+2010-08-24  kitone  <kitone@gna.org>
+
+	* src/subtitle.cc:
+	Fix bug #16524 : Broken character count (column translation).
+
 2010-07-30  kitone  <kitone@gna.org>
 
 	* src/we/waveformeditor.cc:
