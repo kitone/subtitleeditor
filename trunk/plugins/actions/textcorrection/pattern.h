@@ -63,22 +63,22 @@ public:
 	/*
 	 * Return the name of the pattern.
 	 */
-	Glib::ustring get_name();
+	Glib::ustring get_name() const;
 
 	/*
 	 * Return the name of the pattern.
 	 */
-	Glib::ustring get_label();
+	Glib::ustring get_label() const;
 
 	/*
 	 * Return the name of the pattern.
 	 */
-	Glib::ustring get_description();
+	Glib::ustring get_description() const;
 
 	/*
 	 * Return the active state of the pattern. (Enable by default)
 	 */
-	bool is_enable();
+	bool is_enable() const;
 
 	/*
 	 * Apply the pattern if it is enabled.

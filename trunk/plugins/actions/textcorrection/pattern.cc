@@ -46,7 +46,7 @@ Pattern::~Pattern()
 /*
  * Return the name of the pattern.
  */
-Glib::ustring Pattern::get_name()
+Glib::ustring Pattern::get_name() const
 {
 	return m_name;
 }
@@ -54,7 +54,7 @@ Glib::ustring Pattern::get_name()
 /*
  * Return the name of the pattern.
  */
-Glib::ustring Pattern::get_label()
+Glib::ustring Pattern::get_label() const
 {
 	return m_label;
 }
@@ -62,7 +62,7 @@ Glib::ustring Pattern::get_label()
 /*
  * Return the name of the pattern.
  */
-Glib::ustring Pattern::get_description()
+Glib::ustring Pattern::get_description() const
 {
 	return m_description;
 }
@@ -70,7 +70,7 @@ Glib::ustring Pattern::get_description()
 /*
  * Return the active state of the pattern. (Enable by default)
  */
-bool Pattern::is_enable()
+bool Pattern::is_enable() const
 {
 	return m_enabled;
 }
@@ -83,7 +83,7 @@ void Pattern::execute(Glib::ustring &text, const Glib::ustring &previous)
 {
 	if(!m_enabled)
 		return;
-	
+
 	Glib::RegexMatchFlags flag = (Glib::RegexMatchFlags)0;
 	for(std::list<Rule*>::iterator it = m_rules.begin(); it != m_rules.end(); ++it)
 	{

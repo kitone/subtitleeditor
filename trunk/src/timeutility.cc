@@ -106,6 +106,9 @@ FRAMERATE get_framerate_from_value(float fps)
 		framerate = FRAMERATE_29_97;
 	else if(value == 30000)
 		framerate = FRAMERATE_30;
-
+	else {
+		framerate = FRAMERATE_23_976;
+		g_warning("FIXME");
+	}
 	return framerate;
 }

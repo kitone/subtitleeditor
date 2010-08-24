@@ -1,5 +1,13 @@
 2010-08-24  kitone  <kitone@gna.org>
 
+	* plugins/actions/errorchecking/errorcheckingplugin.cc:
+	* plugins/actions/textcorrection/pattern.cc:
+	* plugins/actions/textcorrection/pattern.h:
+	* src/timeutility.cc:
+	Code cleanup.
+
+2010-08-24  kitone  <kitone@gna.org>
+
 	* plugins/actions/documentmanagement/documentmanagement.cc:
 	Code cleanup.
 
