@@ -301,15 +301,15 @@ bool WaveformRendererGL::create_gl_font(const Glib::ustring &font_desc_str)
  * Use pango to get the size of the text (pixel)
  */
 int WaveformRendererGL::get_text_width(const Glib::ustring &text)
-{
-	int text_width=0, text_height=0;
-		
+{	
 	Glib::RefPtr<Pango::Layout> layout = create_pango_layout(text);
 	if(layout)
 	{
+		int text_width=0, text_height=0;
+
 		layout->set_font_description(m_fontDescription);
 		layout->get_pixel_size(text_width, text_height);
-		
+
 		return text_width;
 	}
 	return 0;

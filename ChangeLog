@@ -1,3 +1,13 @@
+2010-09-01  kitone  <kitone@gna.org>
+
+	* plugins/actions/errorchecking/errorchecking.h:
+	* src/style.cc:
+	* src/style.h:
+	* src/subtitletime.cc:
+	* src/subtitletime.h:
+	* src/we/waveformrenderergl.cc:
+	Code cleanup.
+
 2010-08-24  kitone  <kitone@gna.org>
 
 	* plugins/actions/errorchecking/errorcheckingplugin.cc:

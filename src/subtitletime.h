@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -36,68 +36,56 @@ public:
 	SubtitleTime();
 	
 	/*
-	 *
 	 */
 	SubtitleTime(const long &total_msecs);
 
 	/*
-	 *	ex : "0:10:50.600"
+	 * e.g "0:10:50.600"
 	 */
 	SubtitleTime(const Glib::ustring &srt);
 	
 	/*
-	 *
 	 */
 	SubtitleTime(const int &h, const int &m, const int &s, const int &ms);
 
 	/*
-	 *
 	 */
 	void set(const int &h, const int &m, const int &s, const int &ms);
 	
 	/*
-	 *
 	 */
 	int hours() const;
 
 	/*
-	 *
 	 */
 	void set_hours(int value);
 
 	/*
-	 *
 	 */
 	int minutes() const;
 
 	/*
-	 *
 	 */
 	void set_minutes(int value);
 
 	/*
-	 *
 	 */
 	int seconds() const;
 
 	/*
-	 *
 	 */
 	void set_seconds(int value);
 
 	/*
-	 *
 	 */
 	int mseconds() const;
 
 	/*
-	 *
 	 */
 	void set_mseconds(int value);
 
 
 	/*
-	 *
 	 */
 	SubtitleTime operator-(const SubtitleTime &b) const;
 	SubtitleTime operator+(const SubtitleTime &b) const;
@@ -115,24 +103,23 @@ public:
 	Glib::ustring str() const;
 
 	/*
-	 *	valide le format du temps
-	 *	h:mm:ss.ms or -h:mm:ss.ms
+	 * Check if the string has the good format 'H:MM:SS.MS'
 	 */
 	static bool validate(const Glib::ustring &str);
 
 	/*
-	 *	return "0:00:00.000"
+	 * Return "0:00:00.000"
 	 */
 	static Glib::ustring null();
 
 	/*
-	 *	calcul le temps à partir d'une frame et d'un framerate
-	 *	ex: (450, 23.976)
+	 * Convert the time to a frame using a framerate
+	 * e.g (450, 23.976)
 	 */
 	static SubtitleTime frame_to_time(const long int& frame, const float& framerate);
 
 	/*
-	 *
+	 * Convert the frame to the time using a framerate
 	 */
 	static long int time_to_frame(const SubtitleTime& time, const float& framerate);
 
