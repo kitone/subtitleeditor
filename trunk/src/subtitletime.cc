@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@
 #include "utility.h"
 
 /*
- *
  */
 SubtitleTime::SubtitleTime()
 :totalmsecs(0)
@@ -39,7 +38,6 @@ SubtitleTime::SubtitleTime()
 }
 
 /*
- *
  */
 SubtitleTime::SubtitleTime(const long &total)
 :totalmsecs(total)
@@ -47,7 +45,6 @@ SubtitleTime::SubtitleTime(const long &total)
 }
 
 /*
- *
  */
 SubtitleTime::SubtitleTime(const Glib::ustring &str)
 :totalmsecs(0)
@@ -90,12 +87,12 @@ SubtitleTime::SubtitleTime(const Glib::ustring &str)
 	}
 	catch(...)
 	{
+		g_warning("Could not initialize time from string :'%s'", str.c_str());
 	}
 
 }
 
 /*
- *
  */
 SubtitleTime::SubtitleTime(const int &h, const int &m, const int &s, const int &ms)
 :totalmsecs(0)
@@ -104,7 +101,6 @@ SubtitleTime::SubtitleTime(const int &h, const int &m, const int &s, const int &
 }
 
 /*
- *
  */
 void SubtitleTime::set(const int &h, const int &m, const int &s, const int &ms)
 {
@@ -112,7 +108,6 @@ void SubtitleTime::set(const int &h, const int &m, const int &s, const int &ms)
 }
 
 /*
- *
  */
 int SubtitleTime::hours() const
 {
@@ -120,7 +115,6 @@ int SubtitleTime::hours() const
 }
 
 /*
- *
  */
 void SubtitleTime::set_hours(int value)
 {
@@ -128,7 +122,6 @@ void SubtitleTime::set_hours(int value)
 }
 
 /*
- *
  */
 int SubtitleTime::minutes() const
 {
@@ -136,7 +129,6 @@ int SubtitleTime::minutes() const
 }
 
 /*
- *
  */
 void SubtitleTime::set_minutes(int value)
 {
@@ -144,7 +136,6 @@ void SubtitleTime::set_minutes(int value)
 }
 
 /*
- *
  */
 int SubtitleTime::seconds() const
 {
@@ -152,7 +143,6 @@ int SubtitleTime::seconds() const
 }
 
 /*
- *
  */
 void SubtitleTime::set_seconds(int value)
 {
@@ -160,7 +150,6 @@ void SubtitleTime::set_seconds(int value)
 }
 
 /*
- *
  */
 int SubtitleTime::mseconds() const
 {
@@ -168,7 +157,6 @@ int SubtitleTime::mseconds() const
 }
 
 /*
- *
  */
 void SubtitleTime::set_mseconds(int value)
 {
@@ -176,7 +164,6 @@ void SubtitleTime::set_mseconds(int value)
 }
 
 /*
- *
  */
 SubtitleTime SubtitleTime::operator-(const SubtitleTime &b) const
 {
@@ -185,7 +172,6 @@ SubtitleTime SubtitleTime::operator-(const SubtitleTime &b) const
 }
 
 /*
- *
  */
 SubtitleTime SubtitleTime::operator+(const SubtitleTime &b) const
 {
@@ -194,7 +180,6 @@ SubtitleTime SubtitleTime::operator+(const SubtitleTime &b) const
 }
 
 /*
- *
  */
 double SubtitleTime::operator/(const SubtitleTime &b) const
 {
@@ -203,7 +188,6 @@ double SubtitleTime::operator/(const SubtitleTime &b) const
 }
 
 /*
- *
  */
 SubtitleTime SubtitleTime::operator*(const double &mult) const
 {
@@ -212,7 +196,6 @@ SubtitleTime SubtitleTime::operator*(const double &mult) const
 }
 
 /*
- *
  */
 bool SubtitleTime::operator>(const SubtitleTime &time) const
 {
@@ -220,7 +203,6 @@ bool SubtitleTime::operator>(const SubtitleTime &time) const
 }
 
 /*
- *
  */
 bool SubtitleTime::operator==(const SubtitleTime &time) const
 {
@@ -228,7 +210,6 @@ bool SubtitleTime::operator==(const SubtitleTime &time) const
 }
 
 /*
- *
  */
 bool SubtitleTime::operator!=(const SubtitleTime &time) const
 {
@@ -236,7 +217,6 @@ bool SubtitleTime::operator!=(const SubtitleTime &time) const
 }
 
 /*
- *
  */
 bool SubtitleTime::operator>=(const SubtitleTime &time) const
 {
@@ -244,7 +224,6 @@ bool SubtitleTime::operator>=(const SubtitleTime &time) const
 }
 
 /*
- *
  */
 bool SubtitleTime::operator<(const SubtitleTime &time) const
 {
@@ -252,7 +231,6 @@ bool SubtitleTime::operator<(const SubtitleTime &time) const
 }
 
 /*
- *
  */
 bool SubtitleTime::operator<=(const SubtitleTime &time) const
 {
@@ -260,7 +238,6 @@ bool SubtitleTime::operator<=(const SubtitleTime &time) const
 }
 
 /*
- *
  */
 Glib::ustring SubtitleTime::str() const
 {
@@ -288,7 +265,6 @@ Glib::ustring SubtitleTime::str() const
 }
 
 /*
- *
  */
 long getMSecs(const SubtitleTime &time)
 {
@@ -296,8 +272,7 @@ long getMSecs(const SubtitleTime &time)
 }
 
 /*
- *	valide le format du temps
- *	h:mm:ss,ms
+ * Check if the string has the good format 'H:MM:SS.MS'
  */
 bool SubtitleTime::validate(const Glib::ustring &str)
 {
@@ -309,7 +284,7 @@ bool SubtitleTime::validate(const Glib::ustring &str)
 }
 
 /*
- *	return "0:00:00.000"
+ * Return "0:00:00.000"
  */
 Glib::ustring SubtitleTime::null()
 {
@@ -317,8 +292,8 @@ Glib::ustring SubtitleTime::null()
 }
 
 /*
- *	calcul le temps à partir d'une frame et d'un framerate
- *	ex: (450, 23.976)
+ * Convert the time to a frame using a framerate
+ * e.g (450, 23.976)
  */
 SubtitleTime SubtitleTime::frame_to_time(const long int& frame, const float& framerate)
 {
@@ -329,7 +304,7 @@ SubtitleTime SubtitleTime::frame_to_time(const long int& frame, const float& fra
 }
 
 /*
- *
+ * Convert the frame to the time using a framerate
  */
 long int SubtitleTime::time_to_frame(const SubtitleTime& time, const float& framerate)
 {

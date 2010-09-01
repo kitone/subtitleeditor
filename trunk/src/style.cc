@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -31,14 +31,13 @@
 StyleColumnRecorder Style::column;
 
 /*
- *
  */
 Style::Style()
+:m_document(NULL)
 {
 }
 
 /*
- *
  */
 Style::Style(Document *doc, const Gtk::TreeIter &iter)
 :m_document(doc), m_iter(iter)
@@ -47,14 +46,12 @@ Style::Style(Document *doc, const Gtk::TreeIter &iter)
 
 
 /*
- *
  */
 Style::~Style()
 {
 }
 
 /*
- *
  */
 Style::operator bool() const
 {
@@ -62,7 +59,6 @@ Style::operator bool() const
 }
 
 /*
- *
  */
 Style& Style::operator++()
 {
@@ -72,7 +68,6 @@ Style& Style::operator++()
 }
 
 /*
- *
  */
 Style& Style::operator--()
 {
@@ -82,7 +77,6 @@ Style& Style::operator--()
 }
 
 /*
- *
  */
 bool Style::operator==(const Style &style) const
 {
@@ -90,7 +84,6 @@ bool Style::operator==(const Style &style) const
 }
 
 /*
- *
  */
 bool Style::operator!=(const Style &style) const
 {
@@ -98,7 +91,6 @@ bool Style::operator!=(const Style &style) const
 }
 
 /*
- *
  */
 void Style::set(const Glib::ustring &name, const Glib::ustring &value)
 {
@@ -155,7 +147,6 @@ void Style::set(const Glib::ustring &name, const Glib::ustring &value)
 }
 
 /*
- *
  */
 Glib::ustring Style::get(const Glib::ustring &name) const
 {
@@ -214,7 +205,6 @@ Glib::ustring Style::get(const Glib::ustring &name) const
 }
 
 /*
- *
  */
 void Style::copy_to(Style &style)
 {
@@ -228,7 +218,6 @@ void Style::copy_to(Style &style)
 }
 
 /*
- *
  */
 void Style::set(const std::map<Glib::ustring, Glib::ustring> &values)
 {
@@ -242,7 +231,6 @@ void Style::set(const std::map<Glib::ustring, Glib::ustring> &values)
 }
 
 /*
- *
  */
 void Style::get(std::map<Glib::ustring, Glib::ustring> &values)
 {

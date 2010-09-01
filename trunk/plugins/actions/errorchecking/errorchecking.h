@@ -116,7 +116,7 @@ public:
 	/*
 	 *
 	 */
-	bool has_configuration()
+	bool has_configuration() const
 	{
 		return m_has_configuration;
 	}
