@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -175,6 +175,11 @@ public:
 	 * Return the current audio track.
 	 */
 	virtual gint get_current_audio() = 0;
+
+	/*
+	 * Return the framerate of the video.
+	 */
+	virtual float get_framerate() = 0;
 
 	/*
 	 */

@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -1188,3 +1188,38 @@ gint GstPlayer::get_current_audio()
 		return m_pipeline->property_current_audio();
 	return -1;
 }
+
+/*
+ * Return the framerate of the video or zero (0).
+ */
+float GstPlayer::get_framerate()
+{
+	se_debug(SE_DEBUG_VIDEO_PLAYER);
+
+	if(!m_pipeline)
+		return 0;
+
+	Glib::RefPtr<Gst::Pad> pad = m_pipeline->get_video_pad(0);
+	g_return_val_if_fail(pad, 0);
+
+	Glib::RefPtr<Gst::Caps> caps = pad->get_negotiated_caps();
+	g_return_val_if_fail(caps, 0);
+
+	const Gst::Structure structure = caps->get_structure(0);
+	if(structure.has_field("framerate") == false)
+	{
+		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "structure has not field \"framerate\"");
+		return 0;
+	}
+
+	Glib::ValueBase gst_value;
+	structure.get_field("framerate", gst_value);
+
+	Gst::Fraction fps(gst_value);
+	float framerate = (float)fps.num / (float)fps.denom;
+
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "framerate: %f", framerate);
+
+	return framerate;
+}
+
