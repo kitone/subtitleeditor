@@ -1,3 +1,10 @@
+2010-09-02  kitone  <kitone@gna.org>
+
+	* src/player.h:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	Add the capability to return the framerate of the video.
+
 2010-09-01  kitone  <kitone@gna.org>
 
 	* plugins/actions/errorchecking/errorchecking.h:
