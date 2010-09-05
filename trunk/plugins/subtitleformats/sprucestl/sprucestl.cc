@@ -23,6 +23,8 @@
 #include <extension/subtitleformat.h>
 #include <utility.h>
 #include <gui/dialogutility.h>
+#include <subtitleeditorwindow.h>
+#include <player.h>
 
 class SpruceSTL : public SubtitleFormatIO
 {
@@ -35,6 +37,15 @@ public:
 	{
 		// Ask for the framerate value
 		FramerateChooserDialog fcd(FramerateChooserDialog::IMPORT);
+
+		// Define the default value of the framerate from the player
+		Player* player = SubtitleEditorWindow::get_instance()->get_player();
+		if(player->get_state() != Player::NONE)
+		{
+			float player_framerate = player->get_framerate();
+			if(player_framerate > 0)
+				fcd.set_default_framerate(get_framerate_from_value(player_framerate));
+		}
 		FRAMERATE framerate = fcd.execute();
 		m_framerate_value = get_framerate_value(framerate);
 
