@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@
 #include <gtkmm_utility.h>
 #include <gui/dialogutility.h>
 #include <utility.h>
+#include <subtitleeditorwindow.h>
+#include <player.h>
 
 /*
  * BITC (Burnt-in timecode)
@@ -47,6 +49,15 @@ public:
 	{
 		// Ask for the framerate value
 		FramerateChooserDialog fcd(FramerateChooserDialog::IMPORT);
+
+		// Define the default value of the framerate from the player
+		Player* player = SubtitleEditorWindow::get_instance()->get_player();
+		if(player->get_state() != Player::NONE)
+		{
+			float player_framerate = player->get_framerate();
+			if(player_framerate > 0)
+				fcd.set_default_framerate(get_framerate_from_value(player_framerate));
+		}
 		FRAMERATE framerate = fcd.execute();
 		m_framerate_value = get_framerate_value(framerate);
 
@@ -134,13 +145,6 @@ public:
 		return build_message("%02i:%02i:%02i:%02i", t.hours(), t.minutes(), t.seconds(), frame);
 	}
 
-	/*
-	 */
-	FRAMERATE create_framerate_dialog()
-	{
-		FramerateChooserDialog dialog;
-		return dialog.execute();
-	}
 protected:
 	FRAMERATE m_framerate;
 	double m_framerate_value;
