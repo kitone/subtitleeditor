@@ -1,5 +1,10 @@
 2010-11-01  kitone  <kitone@gna.org>
 
+	* plugins/subtitleformats/microdvd/microdvd.cc:
+	Fix bug #16898 : Feature request - movie fps detecting.
+
+2010-11-01  kitone  <kitone@gna.org>
+
 	* plugins/actions/scalesubtitles/scalesubtitles.cc:
 	Fix bug #16917 : scale option doesn't work correctly with frame-based subtitles.
 
