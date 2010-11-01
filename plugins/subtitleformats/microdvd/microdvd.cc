@@ -22,6 +22,8 @@
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
+#include <subtitleeditorwindow.h>
+#include <player.h>
 
 /*
  * format:
@@ -47,6 +49,16 @@ public:
 		document()->set_timing_mode(FRAME);
 		document()->set_edit_timing_mode(FRAME);
 
+		// Try to define the default value of the framerate from the player
+		Player* player = SubtitleEditorWindow::get_instance()->get_player();
+		if(player->get_state() != Player::NONE)
+		{
+			float player_framerate = player->get_framerate();
+			if(player_framerate > 0)
+				document()->set_framerate(get_framerate_from_value(player_framerate));
+		}
+
+		// Read subtitles
 		Subtitles subtitles = document()->subtitles();
 
 		int frame_start, frame_end;
