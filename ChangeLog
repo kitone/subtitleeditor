@@ -1,3 +1,8 @@
+2010-11-01  kitone  <kitone@gna.org>
+
+	* plugins/actions/scalesubtitles/scalesubtitles.cc:
+	Fix bug #16917 : scale option doesn't work correctly with frame-based subtitles.
+
 2010-09-05  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/bitc/bitc.cc:

@@ -92,9 +92,13 @@ public:
 			{
 				Subtitle firstSubtitle = subtitles.get(firstNumber);
 				Subtitle lastSubtitle = subtitles.get(lastNumber);
-			
-				SubtitleTime dest1( (long int)m_spinFirstNewStart->get_value() );
-				SubtitleTime dest2( (long int)m_spinLastNewStart->get_value() );
+
+				TIMING_MODE timing_mode = doc->get_edit_timing_mode();
+
+				long src1 = (timing_mode == TIME) ? firstSubtitle.get_start().totalmsecs : firstSubtitle.get_start_frame();
+				long src2 = (timing_mode == TIME) ? lastSubtitle.get_start().totalmsecs : lastSubtitle.get_start_frame();
+				long dest1 = (long)m_spinFirstNewStart->get_value();
+				long dest2 = (long)m_spinLastNewStart->get_value();
 
 				// apply change
 				doc->start_command(_("Scale subtitles"));
@@ -115,7 +119,7 @@ public:
 				}
 
 				// Apply the scale
-				scale(subbegin, subend, firstSubtitle, dest1, lastSubtitle, dest2);
+				scale_range(timing_mode, subbegin, subend, src1, dest1, src2, dest2);
 
 				doc->emit_signal("subtitle-time-changed");
 				doc->finish_command();
@@ -231,34 +235,44 @@ protected:
 
 	/*
 	 */
-	void scale(
+	void scale_range(
+			TIMING_MODE timing_mode,
 			Subtitle &first, Subtitle &last,
-			const Subtitle &sub1, const SubtitleTime &dest1,
-			const Subtitle &sub2, const SubtitleTime &dest2)
+			const long &sub1_value, const long &dest1_value, // can be time or frame
+			const long &sub2_value, const long &dest2_value) // can be time or frame
 	{
-		SubtitleTime source1 = sub1.get_start();
-		//SubtitleTime source2 = sub2.get_start();
+		double scale = calcul_scale(sub1_value, dest1_value, sub2_value, dest2_value);
 
-		double scale = calcul_scale(
-				sub1.get_start().totalmsecs, dest1.totalmsecs,
-				sub2.get_start().totalmsecs, dest2.totalmsecs);
-
-		++last; // stop to the next sub
-		for(Subtitle subtitle=first; subtitle != last; ++subtitle)
+		if(timing_mode == TIME)
 		{
-			SubtitleTime start = calcul(subtitle.get_start(), scale, source1, dest1);
-			SubtitleTime end = calcul(subtitle.get_end(), scale, source1, dest1);
+			++last; // we need to stop to the next
+			for(Subtitle subtitle = first; subtitle != last; ++subtitle)
+			{
+				long start = calcul(subtitle.get_start().totalmsecs, scale, sub1_value, dest1_value);
+				long end = calcul(subtitle.get_end().totalmsecs, scale, sub1_value, dest1_value);
 
-			subtitle.set_start_and_end(start, end);
+				subtitle.set_start_and_end(start, end);
+			}
+		}
+		else // timing_mode == FRAME
+		{
+			++last; // we need to stop to the next
+			for(Subtitle subtitle = first; subtitle != last; ++subtitle)
+			{
+				long start = calcul(subtitle.get_start_frame(), scale, sub1_value, dest1_value);
+				long end = calcul(subtitle.get_end_frame(), scale, sub1_value, dest1_value);
+
+				subtitle.set_start_frame(start);
+				subtitle.set_end_frame(end);
+			}
 		}
 	}
 
-
 	/*
 	 */
-	SubtitleTime calcul(
-			const SubtitleTime &source, double scale,
-			const SubtitleTime &sourcedisp, const SubtitleTime &destdisp)
+	long calcul(
+			const long &source, double scale,
+			const long &sourcedisp, const long &destdisp)
 	{
 		return (source + (((source - sourcedisp) * scale) + (destdisp - sourcedisp)));
 	}
