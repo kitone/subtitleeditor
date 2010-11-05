@@ -1,3 +1,14 @@
+2010-11-05  kitone  <kitone@gna.org>
+
+	* src/subtitlemodel.cc:
+	* src/subtitlemodel.h:
+	* src/subtitles.cc:
+	* src/subtitles.h:
+	Fix bug #17000 : Subtitles in MicroDVD format don't display correct.
+	SubtitleModel::find doesn't work if the document is frame based.
+	Remove unused function find_in_or_after. 
+	Clean code.
+
 2010-11-01  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/microdvd/microdvd.cc:

@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -304,19 +304,22 @@ void Subtitles::remove(const Subtitle &sub)
 }
 
 /*
- *
  */
 Subtitle Subtitles::find(const SubtitleTime &time)
 {
+	// Calling 'SubtitleModel::find' is doing the same thing 
+	// that the next code, but in an optimized way
+	/*
+	Subtitle sub = get_first();
+	while(sub)
+	{
+		if(time >= sub.get_start() && time <= sub.get_end())
+			return sub;
+		++sub;
+	}
+	return Subtitle();
+	*/
 	return Subtitle(&m_document, m_document.get_subtitle_model()->find(time));
-}
-
-/*
- *
- */
-Subtitle Subtitles::find_in_or_after(const SubtitleTime &time)
-{
-	return Subtitle(&m_document, m_document.get_subtitle_model()->find_in_or_after(time));
 }
 
 /*

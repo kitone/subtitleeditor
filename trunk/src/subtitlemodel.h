@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -162,7 +162,7 @@ public:
 	/*
 	 *	FONCTION DE RECHERCHE ****************************************************
 	 */
-	
+
 	/*
 	 *	recherche un subtitle grace a son numero
 	 */
@@ -173,13 +173,7 @@ public:
 	 *	si time est compris entre start et end
 	 */
 	Gtk::TreeIter find(const SubtitleTime &time);
-	
-	/*
-	 *	recherche un soustitre par rapport au temps
-	 *	mais seulement si il est compris ou superieur au temps
-	 */
-	Gtk::TreeIter find_in_or_after(const SubtitleTime &time);
-	
+
 	/*
 	 *	recherche a partir de start (+1) dans le text des subtitles
 	 */

@@ -101,11 +101,6 @@ public:
 	Subtitle find(const SubtitleTime &time);
 
 	/*
-	 *
-	 */
-	Subtitle find_in_or_after(const SubtitleTime &time);
-
-	/*
 	 * Selection
 	 */
 

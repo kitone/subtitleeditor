@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -321,34 +321,20 @@ Gtk::TreeIter SubtitleModel::find(unsigned int num)
 }
 
 /*
- *	recherche un subtitle grace au temps
- *	si time est compris entre start et end
  */
 Gtk::TreeIter SubtitleModel::find(const SubtitleTime &time)
 {
-	Gtk::TreeNodeChildren rows = children();
-	for(Gtk::TreeIter it = rows.begin(); it; ++it)
-	{
-		if(time.totalmsecs >= SubtitleTime((*it)[m_column.start]).totalmsecs && time.totalmsecs <= SubtitleTime((*it)[m_column.end]).totalmsecs)
-			return it;
-	}		 
-	Gtk::TreeIter nul;
-	return nul;
-}
+	// We need to convert time to frame if the current model is frame based. 
+	long val = 0;
+	if(m_document->get_timing_mode() == TIME)
+		val = time.totalmsecs;
+	else
+		val = SubtitleTime::time_to_frame(time, get_framerate_value(m_document->get_framerate()));
 
-/*
- *	recherche un soustitre par rapport au temps
- *	mais seulement si il est compris ou superieur au temps
- */
-Gtk::TreeIter SubtitleModel::find_in_or_after(const SubtitleTime &time)
-{
 	Gtk::TreeNodeChildren rows = children();
 	for(Gtk::TreeIter it = rows.begin(); it; ++it)
 	{
-		SubtitleTime s((*it)[m_column.start]);
-		SubtitleTime e((*it)[m_column.end]);
-		
-		if(s >= time)
+		if(val >= long((*it)[m_column.start_value]) && val <= long((*it)[m_column.end_value]))
 			return it;
 	}		 
 	Gtk::TreeIter nul;
