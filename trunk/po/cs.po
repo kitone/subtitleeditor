@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-01 13:34+0200\n"
-"PO-Revision-Date: 2010-05-02 11:30+0100\n"
+"POT-Creation-Date: 2010-11-06 12:59+0100\n"
+"PO-Revision-Date: 2010-11-06 12:30+0100\n"
 "Last-Translator: Pavel Dvořák <id@dqd.cz>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -42,29 +42,24 @@ msgid "Add 100 Milliseconds"
 msgstr "Přidat 100 ms"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:60
-#: ../plugins/actions/adjusttime/adjusttime.cc:76
 msgid "To Start"
-msgstr "Na začátek"
+msgstr "K začátku"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:60
 msgid "Add 100 Milliseconds to start for all subtitles selected"
-msgstr "Přidat 100 ms na začátek všem vybraným titulkům"
+msgstr "Přidat 100 ms k začátku všech vybraných titulků"
 
-# XXX: Použito u Přidat i u Odebrat. Proto nelze „K trvání“
 #: ../plugins/actions/adjusttime/adjusttime.cc:64
-#: ../plugins/actions/adjusttime/adjusttime.cc:80
 msgid "To Duration"
-msgstr "U trvání"
+msgstr "K trvání"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:64
 msgid "Add 100 Milliseconds to duration for all subtitles selected"
-msgstr "Přidat 100 ms k trvání všem vybraným titulkům"
+msgstr "Přidat 100 ms k trvání všech vybraných titulků"
 
-# XXX: Použito u Přidat i u Odebrat. Proto nelze „K trvání“
 #: ../plugins/actions/adjusttime/adjusttime.cc:68
-#: ../plugins/actions/adjusttime/adjusttime.cc:84
-msgid "To Start And Duration"
-msgstr "Na začátek a u trvání"
+msgid "To Start And To Duration"
+msgstr "K začátku a k trvání"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:68
 msgid "Add 100 Milliseconds to all subtitles selected"
@@ -75,15 +70,27 @@ msgid "Remove 100 Milliseconds"
 msgstr "Odebrat 100 ms"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:76
-msgid "Remove 100 Milliseconds to start for all subtitles selected"
-msgstr "Odebrat 100 ms od začátku všem vybraným titulkům"
+msgid "From Start"
+msgstr "Ze začátku"
+
+#: ../plugins/actions/adjusttime/adjusttime.cc:76
+msgid "Remove 100 Milliseconds from start for all subtitles selected"
+msgstr "Odebrat 100 ms ze začátku všech vybraných titulků"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:80
-msgid "Remove 100 Milliseconds to duration for all subtitles selected"
-msgstr "Odebrat 100 ms z trvání všem vybraným titulkům"
+msgid "From Duration"
+msgstr "Z trvání"
+
+#: ../plugins/actions/adjusttime/adjusttime.cc:80
+msgid "Remove 100 Milliseconds from duration for all subtitles selected"
+msgstr "Odebrat 100 ms z trvání všech vybraných titulků"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:84
-msgid "Remove 100 Milliseconds to all subtitles selected"
+msgid "From Start And From Duration"
+msgstr "Ze začátku a z trvání"
+
+#: ../plugins/actions/adjusttime/adjusttime.cc:84
+msgid "Remove 100 Milliseconds from all subtitles selected"
 msgstr "Odebrat 100 ms všem vybraným titulkům"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:228
@@ -103,7 +110,7 @@ msgstr "Přizpůsobit čas"
 
 #: ../plugins/actions/applytranslation/applytranslation.cc:56
 msgid "Apply _Translation"
-msgstr "Aplikova_t překlad"
+msgstr "Použít_t překlad"
 
 #: ../plugins/actions/applytranslation/applytranslation.cc:56
 msgid "Replace the text of the subtitle by the translation"
@@ -111,11 +118,11 @@ msgstr "Nahradit text titulku překladem"
 
 #: ../plugins/actions/applytranslation/applytranslation.cc:118
 msgid "Apply translation"
-msgstr "Aplikovat překlad"
+msgstr "Použít překlad"
 
 #: ../plugins/actions/applytranslation/applytranslation.cc:131
 msgid "The translation was applied."
-msgstr "Překlad byl aplikován."
+msgstr "Překlad byl použit."
 
 #: ../plugins/actions/changeframerate/changeframerate.cc:233
 msgid "Change _Framerate"
@@ -134,12 +141,13 @@ msgstr "Změnit snímkovou rychlost"
 #: ../plugins/actions/changeframerate/changeframerate.cc:324
 #, c-format
 msgid "The new framerate was applied. (%s to %s)"
-msgstr "Nová snímková rychlost byla aplikována. (%s na %s)"
+msgstr "Nová snímková rychlost byla změněna. (%s na %s)"
 
 #: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:1
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:1
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:1
 msgid "<b>Apply to</b>"
-msgstr "<b>Aplikovat na</b>"
+msgstr "<b>Použít na</b>"
 
 #: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:2
 msgid "<b>Framerate</b>"
@@ -272,103 +280,102 @@ msgstr "Uložit před zavřením změny do dokumentu „%s“?"
 msgid "If you don't save, the last changes will be permanently lost."
 msgstr "Pokud neuložíte, poslední změny budou nenávratně ztraceny."
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:88
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:87
 msgid "Create a new document"
 msgstr "Vytvořit nový dokument"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:93
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:92
 msgid "Open a file"
 msgstr "Otevřít soubor"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:96
 msgid "Open Project"
 msgstr "Otevřít p_rojekt"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:96
 msgid "Open a Subtitle Editor Project"
 msgstr "Otevřít projekt Titulkového editoru"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:104
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:103
 msgid "Save the current file"
 msgstr "Uložit aktuální soubor"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:107
 msgid "Save Project"
 msgstr "Uložit projekt"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:107
 msgid "Save the current file as Subtitle Editor Project"
 msgstr "Uložit aktuální soubor jako projekt Titulkového editoru"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:114
 msgid "Save the current file with a different name"
 msgstr "Uložit aktuální soubor pod jiným názvem"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:118
 msgid "Save _All"
 msgstr "Uložit _vše"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:118
 msgid "Save all open files"
 msgstr "Uložit všechny otevřené soubory"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:123
 msgid "Open _Translation"
 msgstr "Otevřít _překlad"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:123
 msgid "Open translation from file"
 msgstr "Otevřít překlad ze souboru"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:127
 msgid "Save Trans_lation"
 msgstr "Uložit přek_lad"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:127
 msgid "Save translation to file"
 msgstr "Uložit překlad do souboru"
 
 #. recent files
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:132
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:131
 msgid "Open _Recent"
 msgstr "Otevřít ne_dávný"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:151
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:150
 msgid "Close the current file"
 msgstr "Zavřít aktuální soubor"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:155
 msgid "E_xit"
 msgstr "U_končit"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:155
 msgid "Quit the program"
 msgstr "Ukončit program"
 
-#. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:324
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:317
 msgid "I am already open"
 msgstr "Již otevřeno"
 
-#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:358
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:417
-#, c-format
-msgid "Saving file %s (%s, %s, %s)."
-msgstr "Ukládání souboru %s (%s, %s, %s)."
-
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:366
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:425
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:351
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:401
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "Soubor %s (%s, %s, %s) ještě nebyl uložen."
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:522
+#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:356
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:405
+#, c-format
+msgid "Saving file %s (%s, %s, %s)."
+msgstr "Ukládání souboru %s (%s, %s, %s)."
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:498
 msgid "Open translation"
 msgstr "Otevřít překlad"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:550
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:526
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
@@ -376,15 +383,15 @@ msgstr[0] "Spolu s překladem byl přidán 1 titulek"
 msgstr[1] "Spolu s překladem byly přidány %d titulky"
 msgstr[2] "Spolu s překladem bylo přidáno %d titulků"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:615
-#, c-format
-msgid "Saving translation file %s (%s, %s, %s)."
-msgstr "Ukládání souboru překladu %s (%s, %s, %s)."
-
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:618
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:578
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "Soubor překladu %s (%s, %s, %s) ještě nebyl uložen."
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:581
+#, c-format
+msgid "Saving translation file %s (%s, %s, %s)."
+msgstr "Ukládání souboru překladu %s (%s, %s, %s)."
 
 #: ../plugins/actions/duplicatesubtitle/duplicatesubtitle.cc:56
 msgid "_Duplicate"
@@ -523,7 +530,7 @@ msgstr[2] "Bylo nalezeno %d chyb."
 msgid "Subtitle n°<b>%d</b>"
 msgstr "Titulek č. <b>%d</b>"
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:726
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:721
 #, c-format
 msgid "%s (<b>1 error</b>)"
 msgid_plural "%s (<b>%d errors</b>)"
@@ -531,7 +538,7 @@ msgstr[0] "%s (<b>1 chyba</b>)"
 msgstr[1] "%s (<b>%d chyby</b>)"
 msgstr[2] "%s (<b>%d chyb</b>)"
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:733
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:728
 #, c-format
 msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
 msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
@@ -539,11 +546,11 @@ msgstr[0] "Titulek č. <b>%d</b> (<b>1 chyba</b>)"
 msgstr[1] "Titulek č. <b>%d</b> (<b>%d chyby</b>)"
 msgstr[2] "Titulek č. <b>%d</b> (<b>%d chyb</b>)"
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:820
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:815
 msgid "_Error Checking"
 msgstr "_Kontrola chyb"
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:820
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:815
 msgid "Launch the error checking."
 msgstr "Spustí kontrolu chyb"
 
@@ -735,7 +742,7 @@ msgstr "Externí přehrávač videa"
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
-msgstr "Následující příkazové parametry budou nahrazeny při spuštění akce :"
+msgstr "Následující příkazové parametry budou nahrazeny při spuštění akce:"
 
 #: ../plugins/actions/externalvideoplayer/externalvideoplayer.cc:82
 msgid "_External Video Player"
@@ -816,13 +823,13 @@ msgid "Target"
 msgstr "Výběr"
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:12
-#: ../plugins/actions/findandreplace/findandreplace.cc:611
+#: ../plugins/actions/findandreplace/findandreplace.cc:622
 #: ../src/subtitleview.cc:1464
 msgid "Text"
 msgstr "Text"
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:13
-#: ../plugins/actions/findandreplace/findandreplace.cc:613
+#: ../plugins/actions/findandreplace/findandreplace.cc:624
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
 #: ../src/subtitleview.cc:1465
 msgid "Translation"
@@ -841,40 +848,40 @@ msgstr "_Nahradit"
 msgid "_Use regular expression"
 msgstr "Použít _regulérní výraz"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:207
+#: ../plugins/actions/findandreplace/findandreplace.cc:215
 msgid "Replace text"
 msgstr "Nahradit text"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:579
-#: ../plugins/actions/findandreplace/findandreplace.cc:995
+#: ../plugins/actions/findandreplace/findandreplace.cc:590
+#: ../plugins/actions/findandreplace/findandreplace.cc:1007
 msgid "The document is empty"
 msgstr "Dokument je prázdný"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:879
+#: ../plugins/actions/findandreplace/findandreplace.cc:891
 msgid "_Find And Replace"
 msgstr "_Najít a nahradit"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:879
+#: ../plugins/actions/findandreplace/findandreplace.cc:891
 msgid "Search and replace text"
 msgstr "Vyhledat a nahradit text"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:883
+#: ../plugins/actions/findandreplace/findandreplace.cc:895
 msgid "Find Ne_xt"
 msgstr "Najít _další"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:883
+#: ../plugins/actions/findandreplace/findandreplace.cc:895
 msgid "Search forwards for the same text"
 msgstr "Hledat vpředu stejný text"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:886
+#: ../plugins/actions/findandreplace/findandreplace.cc:898
 msgid "Find Pre_vious"
 msgstr "Najít _předchozí"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:886
+#: ../plugins/actions/findandreplace/findandreplace.cc:898
 msgid "Search backwards for the same text"
 msgstr "Hledat zpětně stejný text"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:1043
+#: ../plugins/actions/findandreplace/findandreplace.cc:1055
 msgid "Not found"
 msgstr "Nenalezeno"
 
@@ -936,7 +943,7 @@ msgstr "Vytvořit klíčové snímky"
 #: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:140
 #: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:48
 msgid "Waiting..."
-msgstr "Načítání..."
+msgstr "Načítání…"
 
 #: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:71
 msgid "Open Keyframes"
@@ -1071,7 +1078,7 @@ msgid "Move Subtitles"
 msgstr "Přesunout titulky"
 
 #: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:3
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:6
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:8
 msgid "_New Start:"
 msgstr "_Nový začátek:"
 
@@ -1082,15 +1089,15 @@ msgstr "P_ouze vybraný titulek"
 #. init label
 #: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:5
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:7
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:10
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:159
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:160
 msgid "_Start Time:"
 msgstr "_Počáteční čas:"
 
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:159
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:160
 msgid "_Start Frame:"
 msgstr "_Počáteční snímek:"
 
@@ -1259,7 +1266,7 @@ msgid "Subtitle:"
 msgstr "Titulek:"
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:39
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:5
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:6
 msgid "Text:"
 msgstr "Text:"
 
@@ -1345,7 +1352,7 @@ msgstr "minut"
 
 #: ../plugins/actions/preferences/preferencesplugin.cc:109
 msgid "Configure Subtitle Editor"
-msgstr "Konfigurace titulkového editoru"
+msgstr "Nastavení Titulkového editoru"
 
 #. audio output
 #. video output
@@ -1430,53 +1437,61 @@ msgstr "Otočit text a překlad"
 msgid "Reverse the text and the translation was applied."
 msgstr "Text a překlad byly obráceny."
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:1
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:2
 msgid "<b>First Point</b>"
 msgstr "<b>První bod</b>"
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:2
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:3
 msgid "<b>Last Point</b>"
 msgstr "<b>Poslední bod</b>"
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:3
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:4
 msgid "Number:"
 msgstr "Číslo:"
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:4
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:5
 msgid "Scale"
 msgstr "Škálovat"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:79
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:85
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:7
+msgid "_All Subtitles"
+msgstr "_Všechny titulky"
+
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:9
+msgid "_Selected Range"
+msgstr "_Vybraný rozsah"
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:82
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:88
 msgid "You can't use <i>scale</i> with this values."
 msgstr "Nelze <i>škálovat</i> pomocí těchto hodnot."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:80
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:83
 msgid "The first point is superior to the last point."
 msgstr "První bod je důležitější než poslední."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:86
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:89
 msgid "The first point is equal to the last point."
 msgstr "První bod je rovnocenný poslednímu."
 
 #. apply change
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:97
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:104
 msgid "Scale subtitles"
 msgstr "Škálovat titulky"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:103
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:126
 msgid "The scale was applied"
-msgstr "Škálování bylo aplikováno"
+msgstr "Škálování bylo použito"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:124
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:147
 msgid "You can't use <i>scale</i> with this document."
 msgstr "Tento dokument nelze <i>škálovat</i>."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:345
 msgid "_Scale"
 msgstr "Š_kálovat"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:345
 msgid "Scale by two points"
 msgstr "Škálovat mezi dvěma body"
 
@@ -1578,9 +1593,9 @@ msgid ""
 "the column \"translation\" by setting the focus to this column before "
 "starting the spell check."
 msgstr ""
-"Kontrola pravopisu ve výchozím nastavení pracuje se sloupcem „text“. "
-"Můžete přepnout na sloupec „překlad“ vybráním tohoto sloupce před "
-"spuštěním kontroly pravopisu."
+"Kontrola pravopisu ve výchozím nastavení pracuje se sloupcem „text“. Můžete "
+"přepnout na sloupec „překlad“ vybráním tohoto sloupce před spuštěním "
+"kontroly pravopisu."
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:187
 msgid "_Do not show this message again"
@@ -1826,7 +1841,8 @@ msgstr "Opraví běžné chyby"
 
 #: ../plugins/actions/textcorrection/commonerrorpage.h:36
 msgid "Correct common errors made by humans or image recognition software"
-msgstr "Opraví běžné chyby způsobené lidmi nebo softwarem na rozpoznávání textu"
+msgstr ""
+"Opraví běžné chyby způsobené lidmi nebo softwarem na rozpoznávání textu"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:78
 #: ../src/subtitleview.cc:1461
@@ -1946,8 +1962,8 @@ msgid ""
 "Use only one key to set beginning of the subtitle when the key is pressed "
 "and the end when the key is released."
 msgstr ""
-"Pro nastavení začátku titulku stiskněte klávesu, pro nastavení konce "
-"titulku ji uvolněte."
+"Pro nastavení začátku titulku stiskněte klávesu, pro nastavení konce titulku "
+"ji uvolněte."
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:170
 msgid "Set subtitle start"
@@ -2262,7 +2278,7 @@ msgstr "Zao_střit na výběr"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:106
 msgid "Zoom _All"
-msgstr "Pojmout _vše"
+msgstr "Ukázat _vše"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:111
 msgid "_Center With Selected Subtitle"
@@ -2293,22 +2309,9 @@ msgstr "V_lnovka"
 msgid "Show or hide the waveform in the current window"
 msgstr "Ukázat nebo skrýt vlnovku v aktuálním okně"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:348
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:354
 msgid "Save Waveform"
 msgstr "Uložit vlnovku"
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:1
-msgid "<b>What framerate do you want used to import or export?</b>"
-msgstr "<b>Jakou snímkovou rychlost chcete použít pro import nebo export?</b>"
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:2
-#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
-msgid "BITC (Burnt-in timecode)"
-msgstr "BITC (Burnt-in timecode)"
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.ui.h:3
-msgid "_Framerate:"
-msgstr "Snímková _rychlost:"
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:70
@@ -2324,7 +2327,7 @@ msgstr "Selhal zápis do souboru."
 
 #: ../share/subtitleeditor.desktop.in.h:1
 msgid "A subtitle editor based on GStreamer and Gtk+"
-msgstr "Titulkový editor založený na GStreameru and Gtk+"
+msgstr "Titulkový editor založený na GStreameru and GTK+"
 
 #: ../share/subtitleeditor.desktop.in.h:2 ../share/ui/subtitleeditor.ui.h:1
 msgid "Subtitle Editor"
@@ -2334,12 +2337,12 @@ msgstr "Titulkový editor"
 msgid "Subtitle Selection"
 msgstr "Výběr titulků"
 
-#: ../src/document.cc:295
+#: ../src/document.cc:261
 #, c-format
 msgid "Could not save the file \"%s\" using the character coding %s."
 msgstr "Nešlo uložit soubor „%s“ za použití kódování %s."
 
-#: ../src/document.cc:297
+#: ../src/document.cc:263
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character coding."
@@ -2347,25 +2350,25 @@ msgstr ""
 "Dokument obsahuje jeden nebo více znaků, které nemohou být kódovány pomocí "
 "zadaného kódování znaků."
 
-#: ../src/document.cc:306
+#: ../src/document.cc:272 ../src/document.cc:276
 msgid "Save Document Failed."
 msgstr "Uložení dokumentu se nezdařilo."
 
-#: ../src/document.cc:639
+#: ../src/document.cc:564
 #, c-format
 msgid "Could not recognize the subtitle format for the file \"%s\"."
 msgstr "Nepodařilo se rozpoznat formát titulků pro soubor „%s“."
 
-#: ../src/document.cc:641
+#: ../src/document.cc:566
 msgid "Please check that the file contains subtitles in a supported format."
 msgstr "Ověřte, zda soubor obsahuje titulky v nějakém podporovaném formátu."
 
-#: ../src/document.cc:653
+#: ../src/document.cc:578
 #, c-format
 msgid "Could not open automatically the file \"%s\"."
 msgstr "Nešlo automaticky otevřít soubor „%s“."
 
-#: ../src/document.cc:654
+#: ../src/document.cc:579
 msgid ""
 "Subtitle Editor was not able to automatically determine the file encoding. "
 "Select a different character coding from the menu and try again."
@@ -2373,28 +2376,28 @@ msgstr ""
 "Titlukový editor nebyl schopen automaticky určit kódování souboru. Zvolte z "
 "menu jiné kódování znaků a zkuste to znovu."
 
-#: ../src/document.cc:660
+#: ../src/document.cc:585
 #, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
 msgstr "Nešlo otevřít soubor „%s“ za použití kódování %s."
 
-#: ../src/document.cc:662
+#: ../src/document.cc:587
 msgid "Select a different character coding from the menu and try again."
 msgstr "Zvolte z menu jiné kódování znaků a zkuste to znovu."
 
-#: ../src/document.cc:669 ../src/gui/application.cc:307
+#: ../src/document.cc:594 ../src/gui/application.cc:307
 #: ../share/ui/dialog-export-text.ui.h:1 ../share/ui/dialog-import-text.ui.h:1
 #: ../share/ui/dialog-open-document.ui.h:1
 #: ../share/ui/dialog-save-document.ui.h:1
 msgid "Character Coding:"
 msgstr "Kódování znaků:"
 
-#: ../src/document.cc:687 ../src/document.cc:696
+#: ../src/document.cc:612 ../src/document.cc:621 ../src/document.cc:630
 #, c-format
 msgid "Could not open the file \"%s\""
 msgstr "Nešlo otevřít soubor „%s“"
 
-#: ../src/document.cc:697
+#: ../src/document.cc:631
 msgid "An unknown error occurred while opening the file."
 msgstr "Při otevírání souboru došlo k neznámé chybě."
 
@@ -2417,7 +2420,7 @@ msgid ""
 "subtitleeditor was not able to automatically determine the encoding of the "
 "file you want to open."
 msgstr ""
-"subtitleeditor nebyl schopen automaticky určit kódování souboru, který "
+"Subtitleeditor nebyl schopen automaticky určit kódování souboru, který "
 "chcete otevřít."
 
 #: ../src/encodings.cc:235
@@ -2494,7 +2497,7 @@ msgstr "Čínské tradiční"
 
 #: ../src/encodings.h:63
 msgid "Cyrillic/Russian"
-msgstr "Cyrilika/Ruské"
+msgstr "Azbuka/Ruské"
 
 #: ../src/encodings.h:65 ../src/encodings.h:82 ../src/encodings.h:90
 msgid "Japanese"
@@ -2516,7 +2519,7 @@ msgstr "Gruzínské"
 
 #: ../src/encodings.h:87
 msgid "Cyrillic/Ukrainian"
-msgstr "Cyrilika/Ukrajinské"
+msgstr "Azbuka/Ukrajinské"
 
 #: ../src/encodings.h:91 ../src/encodings.h:94 ../src/encodings.h:104
 msgid "Vietnamese"
@@ -2623,7 +2626,7 @@ msgstr "Všechny soubory (*.*)"
 
 #: ../src/gui/dialogfilechooser.cc:53
 msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
-msgstr "Všechny podporované formáty (*.ass, *.ssa, *.srt, ...)"
+msgstr "Všechny podporované formáty (*.ass, *.ssa, *.srt…)"
 
 #: ../src/gui/dialogfilechooser.cc:451
 msgid "Open Video"
@@ -2666,6 +2669,20 @@ msgstr "Klíčové snímky a média"
 #: ../src/gui/dialogfilechooser.cc:605
 msgid "Keyframe (*.kf)"
 msgstr "Klíčové snímky (*.wf)"
+
+#: ../src/gui/dialogutility.cc:87
+msgid "At what frame rate do you want to import?"
+msgstr "Jakou snímkovou rychlost chcete použít pro import?"
+
+#. == EXPORT
+#: ../src/gui/dialogutility.cc:89
+msgid "At what frame rate do you want to export?"
+msgstr "Jakou snímkovou rychlost chcete použít pro export?"
+
+#. label2 (framerate:)
+#: ../src/gui/dialogutility.cc:113
+msgid "_Framerate:"
+msgstr "Snímková _rychlost:"
 
 #. create all menu
 #: ../src/gui/menubar.cc:63
@@ -2734,23 +2751,23 @@ msgstr "Nešlo určit formát souboru."
 msgid "Couldn't get the keyframe size on the file."
 msgstr "Nešlo zjistit velikost klíčových snímků v souboru."
 
-#: ../src/main.cc:118
+#: ../src/main.cc:65
 msgid " - edit subtitles files"
 msgstr " – edituje titulkové soubory"
 
-#: ../src/options.cc:41
+#: ../src/options.cc:40
 msgid "[FILE...]"
 msgstr "[SOUBOR…]"
 
-#: ../src/options.cc:49 ../src/options.cc:74 ../src/options.cc:82
+#: ../src/options.cc:48 ../src/options.cc:72 ../src/options.cc:80
 msgid "FILE"
 msgstr "SOUBOR"
 
-#: ../src/options.cc:58
+#: ../src/options.cc:56
 msgid "NAME"
 msgstr "NÁZEV"
 
-#: ../src/options.cc:66
+#: ../src/options.cc:64
 msgid "ENCODING"
 msgstr "KÓDOVÁNÍ"
 
@@ -2772,7 +2789,7 @@ msgstr "Přidat titulek"
 msgid "Remove Subtitle"
 msgstr "Odebrat titulek"
 
-#: ../src/subtitlemodel.cc:522
+#: ../src/subtitlemodel.cc:508
 msgid "Reordered Subtitle"
 msgstr "Přesunutý titulek"
 
@@ -2786,11 +2803,11 @@ msgstr "Odebrat titulky"
 
 #: ../src/subtitleview.cc:308
 msgid "Use Ctrl+Return for exit and Return for line-break"
-msgstr "Použijte Ctrl+Enter pro ukončení a Enter pro konec řádku"
+msgstr "Použijte Ctrl+Enter pro ukončení a Enter pro nový řádek"
 
 #: ../src/subtitleview.cc:310
 msgid "Use Return for exit and Ctrl+Return for line-break"
-msgstr "Použijte Enter pro ukončení a Ctrl+Enter pro konec řádku"
+msgstr "Použijte Enter pro ukončení a Ctrl+Enter pro nový řádek"
 
 #: ../src/subtitleview.cc:462
 msgid "The line number"
@@ -2806,7 +2823,7 @@ msgstr "Kdy titulek zmizí z obrazovky."
 
 #: ../src/subtitleview.cc:553
 msgid "The duration of the subtitle."
-msgstr "Délka trvání titulu."
+msgstr "Délka trvání titulku."
 
 #: ../src/subtitleview.cc:628
 msgid "The number of characters per second"
@@ -2951,8 +2968,8 @@ msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
 "GStreamer installation."
 msgstr ""
-"Vytvoření videokonverze GStreamerem (%s) selhalo. Zkontrolujte prosím "
-"svou instalaci GStreameru."
+"Vytvoření videokonverze GStreamerem (%s) selhalo. Zkontrolujte prosím svou "
+"instalaci GStreameru."
 
 #: ../src/vp/gstplayer.cc:664
 #, c-format
@@ -2969,8 +2986,8 @@ msgid ""
 "Failed to create a GStreamer sink (%s). Please check your GStreamer "
 "installation."
 msgstr ""
-"Vytvoření kolony GStreameru (%s) selhalo. Zkontrolujte prosím "
-"svou instalaci GStreameru."
+"Vytvoření kolony GStreameru (%s) selhalo. Zkontrolujte prosím svou instalaci "
+"GStreameru."
 
 #: ../src/vp/gstplayer.cc:929
 #, c-format
@@ -2981,7 +2998,7 @@ msgstr ""
 "Multimediální soubor nelze přehrát.\n"
 "%s"
 
-#: ../src/we/waveformeditor.cc:817 ../src/we/waveformeditor.cc:822
+#: ../src/we/waveformeditor.cc:824 ../src/we/waveformeditor.cc:829
 msgid "Editing position"
 msgstr "Upravuji pozici"
 
@@ -3148,7 +3165,7 @@ msgstr "Přizpůsobí časy titulku."
 
 #: ../plugins/actions/applytranslation/applytranslation.se-plugin.in.h:1
 msgid "Apply Translation"
-msgstr "Aplikovat překlad"
+msgstr "Použít překlad"
 
 #: ../plugins/actions/applytranslation/applytranslation.se-plugin.in.h:2
 msgid "Replaces the text of the subtitle by the translation."
@@ -3176,7 +3193,7 @@ msgstr "Spravuje příkazy Vrátit/Opakovat."
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.se-plugin.in.h:1
 msgid "Configures keyboard shortcuts."
-msgstr "Konfiguruje klávesové zkratky."
+msgstr "Nastaví klávesové zkratky."
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.se-plugin.in.h:2
 msgid "Keyboard Shortcuts"
@@ -3196,7 +3213,7 @@ msgstr "Správa dokumentu"
 
 #: ../plugins/actions/documentmanagement/documentmanagement.se-plugin.in.h:2
 msgid "Manages the document (Open, Save, Save As...)."
-msgstr "Spravuje dokument (otevření, uložení, uložení jako...)."
+msgstr "Spravuje dokument (otevření, uložení, uložení jako…)."
 
 #: ../plugins/actions/duplicatesubtitle/duplicatesubtitle.se-plugin.in.h:1
 msgid "Duplicate Subtitle"
@@ -3283,7 +3300,7 @@ msgstr "Holý text"
 
 #: ../plugins/actions/preferences/preferences.se-plugin.in.h:1
 msgid "Manages Subtitle Editor's preferences."
-msgstr "Spravuje nastavení titulkového editoru."
+msgstr "Spravuje nastavení Titulkového editoru."
 
 #: ../plugins/actions/removesubtitle/removesubtitle.se-plugin.in.h:1
 msgid "Deletes the selected subtitles."
@@ -3343,7 +3360,7 @@ msgstr "Editor stylů"
 
 #: ../plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in.h:1
 msgid "Manages time modes (Framerate, Timing Mode ...)."
-msgstr "Spravuje časové režimy (snímková rychlost, režim časování ...)"
+msgstr "Spravuje časové režimy (snímková rychlost, režim časování…)"
 
 #: ../plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in.h:2
 msgid "Time Mode Management"
@@ -3402,6 +3419,10 @@ msgstr "Advanced Sub Station Alpha"
 msgid "Advanced Sub Station Alpha subtitles support."
 msgstr "Podpora pro titulky Advanced Sub Station Alpha."
 
+#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
+msgid "BITC (Burnt-in timecode)"
+msgstr "BITC (Burnt-in timecode)"
+
 #: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:2
 msgid "BITC (Burnt-in timecode) subtitles support."
 msgstr "Podpora pro titulky BITC (Burnt-in timecode)."
@@ -3430,6 +3451,22 @@ msgstr "MPsub"
 msgid "MPsub subtitles support."
 msgstr "Podpora pro titulky MPsub."
 
+#: ../plugins/subtitleformats/sbv/sbv.se-plugin.in.h:1
+msgid "SBV"
+msgstr "SBV"
+
+#: ../plugins/subtitleformats/sbv/sbv.se-plugin.in.h:2
+msgid "SBV subtitles support."
+msgstr "Podpora pro titulky SBV."
+
+#: ../plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in.h:1
+msgid "Spruce STL"
+msgstr "Spruce STL"
+
+#: ../plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in.h:2
+msgid "Spruce subtitles support."
+msgstr "Podpora pro titulky Spruce."
+
 #: ../plugins/subtitleformats/subrip/subrip.se-plugin.in.h:1
 msgid "SubRip"
 msgstr "SubRip"
@@ -3448,11 +3485,11 @@ msgstr "Podpora pro titulky Sub Station Alpha."
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in.h:1
 msgid "Subtitle Editor Project"
-msgstr "Projekt Titulkový editor"
+msgstr "Projekt Titulkového editoru"
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in.h:2
 msgid "Subtitle Editor Project subtitles support."
-msgstr "Podpora pro titulky Projekt Titulkový editor."
+msgstr "Podpora pro titulky projektu Titulkového editoru."
 
 #: ../plugins/subtitleformats/subviewer2/subviewer2.se-plugin.in.h:1
 msgid "SubViewer2"
@@ -3546,8 +3583,7 @@ msgstr "Nahradí uprostřed čísel písmeno „O“ za nulu"
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:15
 msgid ""
 "Replace multiple consequtive question- and exclamation marks with only one"
-msgstr ""
-"Nahradí vícenásobné otazníky a vykřičníky za jeden"
+msgstr "Nahradí vícenásobné otazníky a vykřičníky za jeden"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:16
 msgid "Space after a dialogue dash"
@@ -3633,7 +3669,8 @@ msgstr "Nula ve napsaném velkými písmeny"
 msgid ""
 "Replace the uppercase name of the speaker before a colon with a dialogue dash"
 msgstr ""
-"Nahradí jméno mluvčího před dvojtečkou začínající velkým písmenem za dialogovou pomlčku"
+"Nahradí jméno mluvčího před dvojtečkou začínající velkým písmenem za "
+"dialogovou pomlčku"
 
 #: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:2
 msgid "Uppercase speaker before a colon"
@@ -3677,11 +3714,15 @@ msgstr "Odstranit popis zvuku v hranatých závorkách"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:5
 msgid "Remove one-line song lyrics starting with or between asterisks"
-msgstr "Odstranit jednořádkový text písně začínající nebo nacházející se mezi symboly hvězdiček"
+msgstr ""
+"Odstranit jednořádkový text písně začínající nebo nacházející se mezi "
+"symboly hvězdiček"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:6
 msgid "Remove one-line song lyrics starting with or between number signs"
-msgstr "Odstranit jednořádkový text písně začínající nebo nacházející se mezi symboly dvojitých křížků"
+msgstr ""
+"Odstranit jednořádkový text písně začínající nebo nacházející se mezi "
+"symboly dvojitých křížků"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:7
 msgid "Remove song lyrics starting with or between asterisks"
@@ -3689,7 +3730,8 @@ msgstr "Odstranit text písně začínající nebo nacházející se mezi hvězd
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:8
 msgid "Remove song lyrics starting with or between number signs"
-msgstr "Odstranit text písně začínající nebo nacházející se mezi dvojitými křížky"
+msgstr ""
+"Odstranit text písně začínající nebo nacházející se mezi dvojitými křížky"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:9
 msgid "Replace the name of the speaker before a colon with a dialogue dash"
@@ -3738,18 +3780,3 @@ msgstr "Nahradí více mezer na jednu"
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:6
 msgid "Space between digits"
 msgstr "Mezery mezi číslicemi"
-
-#~ msgid "Replace"
-#~ msgstr "Nahradit"
-
-#~ msgid "Check _Word"
-#~ msgstr "Zkontrolovat _slovo"
-
-#~ msgid "User dictionary:"
-#~ msgstr "Uživatelský slovník:"
-
-#~ msgid "_Wavform"
-#~ msgstr "V_lnovka"
-
-#~ msgid "*"
-#~ msgstr "*"
