@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-03 09:22+0200\n"
+"POT-Creation-Date: 2010-11-10 01:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +33,6 @@ msgid "Add 100 Milliseconds"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:60
-#: ../plugins/actions/adjusttime/adjusttime.cc:76
 msgid "To Start"
 msgstr ""
 
@@ -41,7 +41,6 @@ msgid "Add 100 Milliseconds to start for all subtitles selected"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:64
-#: ../plugins/actions/adjusttime/adjusttime.cc:80
 msgid "To Duration"
 msgstr ""
 
@@ -50,8 +49,7 @@ msgid "Add 100 Milliseconds to duration for all subtitles selected"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:68
-#: ../plugins/actions/adjusttime/adjusttime.cc:84
-msgid "To Start And Duration"
+msgid "To Start And To Duration"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:68
@@ -63,15 +61,27 @@ msgid "Remove 100 Milliseconds"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:76
-msgid "Remove 100 Milliseconds to start for all subtitles selected"
+msgid "From Start"
+msgstr ""
+
+#: ../plugins/actions/adjusttime/adjusttime.cc:76
+msgid "Remove 100 Milliseconds from start for all subtitles selected"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:80
-msgid "Remove 100 Milliseconds to duration for all subtitles selected"
+msgid "From Duration"
+msgstr ""
+
+#: ../plugins/actions/adjusttime/adjusttime.cc:80
+msgid "Remove 100 Milliseconds from duration for all subtitles selected"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:84
-msgid "Remove 100 Milliseconds to all subtitles selected"
+msgid "From Start And From Duration"
+msgstr ""
+
+#: ../plugins/actions/adjusttime/adjusttime.cc:84
+msgid "Remove 100 Milliseconds from all subtitles selected"
 msgstr ""
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:228
@@ -259,117 +269,116 @@ msgstr ""
 msgid "If you don't save, the last changes will be permanently lost."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:88
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:87
 msgid "Create a new document"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:93
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:92
 msgid "Open a file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:96
 msgid "Open Project"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:96
 msgid "Open a Subtitle Editor Project"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:104
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:103
 msgid "Save the current file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:107
 msgid "Save Project"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:107
 msgid "Save the current file as Subtitle Editor Project"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:114
 msgid "Save the current file with a different name"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:118
 msgid "Save _All"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:118
 msgid "Save all open files"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:123
 msgid "Open _Translation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:123
 msgid "Open translation from file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:127
 msgid "Save Trans_lation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:127
 msgid "Save translation to file"
 msgstr ""
 
 #. recent files
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:132
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:131
 msgid "Open _Recent"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:151
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:150
 msgid "Close the current file"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:155
 msgid "E_xit"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:155
 msgid "Quit the program"
 msgstr ""
 
-#. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:324
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:317
 msgid "I am already open"
 msgstr ""
 
-#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:359
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:418
-#, c-format
-msgid "Saving file %s (%s, %s, %s)."
-msgstr ""
-
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:367
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:426
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:351
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:401
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:523
+#. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:356
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:405
+#, c-format
+msgid "Saving file %s (%s, %s, %s)."
+msgstr ""
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:498
 msgid "Open translation"
 msgstr ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:551
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:526
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:617
-#, c-format
-msgid "Saving translation file %s (%s, %s, %s)."
-msgstr ""
-
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:620
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:578
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
+msgstr ""
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:581
+#, c-format
+msgid "Saving translation file %s (%s, %s, %s)."
 msgstr ""
 
 #: ../plugins/actions/duplicatesubtitle/duplicatesubtitle.cc:56
@@ -508,25 +517,25 @@ msgstr[1] ""
 msgid "Subtitle n°<b>%d</b>"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:726
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:721
 #, c-format
 msgid "%s (<b>1 error</b>)"
 msgid_plural "%s (<b>%d errors</b>)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:733
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:728
 #, c-format
 msgid "Subtitle n°<b>%d</b> (<b>1 error</b>)"
 msgid_plural "Subtitle n°<b>%d</b> (<b>%d errors</b>)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:820
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:815
 msgid "_Error Checking"
 msgstr ""
 
-#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:820
+#: ../plugins/actions/errorchecking/errorcheckingplugin.cc:815
 msgid "Launch the error checking."
 msgstr ""
 
@@ -1046,14 +1055,14 @@ msgstr ""
 #: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:5
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
 #: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:10
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:155
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:156
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:159
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:160
 msgid "_Start Time:"
 msgstr ""
 
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:155
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:156
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:159
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:160
 msgid "_Start Frame:"
 msgstr ""
 
@@ -1428,23 +1437,23 @@ msgid "The first point is equal to the last point."
 msgstr ""
 
 #. apply change
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:100
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:104
 msgid "Scale subtitles"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:122
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:126
 msgid "The scale was applied"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:143
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:147
 msgid "You can't use <i>scale</i> with this document."
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:331
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:345
 msgid "_Scale"
 msgstr ""
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:331
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:345
 msgid "Scale by two points"
 msgstr ""
 
@@ -2293,52 +2302,52 @@ msgid ""
 "the specified character coding."
 msgstr ""
 
-#: ../src/document.cc:272
+#: ../src/document.cc:272 ../src/document.cc:276
 msgid "Save Document Failed."
 msgstr ""
 
-#: ../src/document.cc:560
+#: ../src/document.cc:564
 #, c-format
 msgid "Could not recognize the subtitle format for the file \"%s\"."
 msgstr ""
 
-#: ../src/document.cc:562
+#: ../src/document.cc:566
 msgid "Please check that the file contains subtitles in a supported format."
 msgstr ""
 
-#: ../src/document.cc:574
+#: ../src/document.cc:578
 #, c-format
 msgid "Could not open automatically the file \"%s\"."
 msgstr ""
 
-#: ../src/document.cc:575
+#: ../src/document.cc:579
 msgid ""
 "Subtitle Editor was not able to automatically determine the file encoding. "
 "Select a different character coding from the menu and try again."
 msgstr ""
 
-#: ../src/document.cc:581
+#: ../src/document.cc:585
 #, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
 msgstr ""
 
-#: ../src/document.cc:583
+#: ../src/document.cc:587
 msgid "Select a different character coding from the menu and try again."
 msgstr ""
 
-#: ../src/document.cc:590 ../src/gui/application.cc:307
+#: ../src/document.cc:594 ../src/gui/application.cc:307
 #: ../share/ui/dialog-export-text.ui.h:1 ../share/ui/dialog-import-text.ui.h:1
 #: ../share/ui/dialog-open-document.ui.h:1
 #: ../share/ui/dialog-save-document.ui.h:1
 msgid "Character Coding:"
 msgstr ""
 
-#: ../src/document.cc:608 ../src/document.cc:617
+#: ../src/document.cc:612 ../src/document.cc:621 ../src/document.cc:630
 #, c-format
 msgid "Could not open the file \"%s\""
 msgstr ""
 
-#: ../src/document.cc:618
+#: ../src/document.cc:631
 msgid "An unknown error occurred while opening the file."
 msgstr ""
 
@@ -2682,7 +2691,7 @@ msgid "_Export"
 msgstr ""
 
 #: ../src/keyframes.cc:102 ../src/keyframes.cc:109
-#: ../src/subtitleformatsystem.cc:70
+#: ../src/subtitleformatsystem.cc:124
 msgid "Couldn't recognize format of the file."
 msgstr ""
 
@@ -2710,11 +2719,12 @@ msgstr ""
 msgid "ENCODING"
 msgstr ""
 
-#: ../src/subtitleformatio.cc:63 ../src/subtitleformatio.cc:71
+#: ../src/subtitleformatio.cc:58 ../src/subtitleformatio.cc:65
+#: ../src/subtitleformatio.cc:72 ../src/subtitleformatio.cc:79
 msgid "This function is not implemented for this format."
 msgstr ""
 
-#: ../src/subtitleformatsystem.cc:89
+#: ../src/subtitleformatsystem.cc:143
 #, c-format
 msgid "Couldn't create the subtitle format '%s'."
 msgstr ""
@@ -2728,7 +2738,7 @@ msgstr ""
 msgid "Remove Subtitle"
 msgstr ""
 
-#: ../src/subtitlemodel.cc:522
+#: ../src/subtitlemodel.cc:508
 msgid "Reordered Subtitle"
 msgstr ""
 
@@ -2927,7 +2937,7 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../src/we/waveformeditor.cc:817 ../src/we/waveformeditor.cc:822
+#: ../src/we/waveformeditor.cc:824 ../src/we/waveformeditor.cc:829
 msgid "Editing position"
 msgstr ""
 
