@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -65,24 +65,24 @@ public:
 					sigc::mem_fun(*this, &AdjustTimePlugin::on_add_to_duration));
 
 		action_group->add(
-				Gtk::Action::create("add-to-start-and-duration", _("To Start And Duration"), _("Add 100 Milliseconds to all subtitles selected")),
-					sigc::mem_fun(*this, &AdjustTimePlugin::on_add_to_start_and_duration));
+				Gtk::Action::create("add-to-start-and-to-duration", _("To Start And To Duration"), _("Add 100 Milliseconds to all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_add_to_start_and_to_duration));
 
 		// menu remove
 		action_group->add(
 				Gtk::Action::create("menu-adjust-time-remove", Gtk::Stock::REMOVE, _("Remove 100 Milliseconds")));
 
 		action_group->add(
-				Gtk::Action::create("remove-to-start", _("To Start"), _("Remove 100 Milliseconds to start for all subtitles selected")),
-					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_to_start));
+				Gtk::Action::create("remove-from-start", _("From Start"), _("Remove 100 Milliseconds from start for all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_from_start));
 		
 		action_group->add(
-				Gtk::Action::create("remove-to-duration", _("To Duration"), _("Remove 100 Milliseconds to duration for all subtitles selected")),
-					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_to_duration));
+				Gtk::Action::create("remove-from-duration", _("From Duration"), _("Remove 100 Milliseconds from duration for all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_from_duration));
 
 		action_group->add(
-				Gtk::Action::create("remove-to-start-and-duration", _("To Start And Duration"), _("Remove 100 Milliseconds to all subtitles selected")),
-					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_to_start_and_duration));
+				Gtk::Action::create("remove-from-start-and-from-duration", _("From Start And From Duration"), _("Remove 100 Milliseconds from all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_from_start_and_from_duration));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -97,12 +97,12 @@ public:
 			"				<menu action='menu-adjust-time-add'>"
 			"					<menuitem action='add-to-start'/>"
 			"					<menuitem action='add-to-duration'/>"
-			"					<menuitem action='add-to-start-and-duration'/>"
+			"					<menuitem action='add-to-start-and-to-duration'/>"
 			"				</menu>"
 			"				<menu action='menu-adjust-time-remove'>"
-			"					<menuitem action='remove-to-start'/>"
-			"					<menuitem action='remove-to-duration'/>"
-			"					<menuitem action='remove-to-start-and-duration'/>"
+			"					<menuitem action='remove-from-start'/>"
+			"					<menuitem action='remove-from-duration'/>"
+			"					<menuitem action='remove-from-start-and-from-duration'/>"
 			"				</menu>"
 			"			</placeholder>"
 			"		</menu>"
@@ -163,7 +163,7 @@ protected:
 	/*
 	 *
 	 */
-	void on_add_to_start_and_duration()
+	void on_add_to_start_and_to_duration()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -173,7 +173,7 @@ protected:
 	/*
 	 *
 	 */
-	void on_remove_to_start()
+	void on_remove_from_start()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -183,7 +183,7 @@ protected:
 	/*
 	 *
 	 */
-	void on_remove_to_duration()
+	void on_remove_from_duration()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -193,7 +193,7 @@ protected:
 	/*
 	 *
 	 */
-	void on_remove_to_start_and_duration()
+	void on_remove_from_start_and_from_duration()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
