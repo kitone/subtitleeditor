@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -61,6 +61,7 @@ public:
 
 			open_player(root);
 			open_waveform(root);
+			open_keyframes(root);
 			open_styles(root);
 			open_subtitles(root);
 			open_subtitles_selection(root);
@@ -84,6 +85,7 @@ public:
 
 			save_player(root);
 			save_waveform(root);
+			save_keyframes(root);
 			save_styles(root);
 			save_subtitles(root);
 			save_subtitles_selection(root);
@@ -168,6 +170,36 @@ private:
 		xmlpp::Element *xmlwf = root->add_child("waveform");
 
 		xmlwf->set_attribute("uri", wf->get_uri());
+	}
+
+	/*
+	 */
+	void open_keyframes(const xmlpp::Node* root)
+	{
+		const xmlpp::Element *xml_kf = get_unique_children(root, "keyframes");
+		if(xml_kf == NULL)
+			return;
+
+		Glib::ustring uri = xml_kf->get_attribute_value("uri");
+		if(uri.empty())
+			return;
+		Glib::RefPtr<KeyFrames> kf = KeyFrames::create_from_file(uri);
+		if(!kf)
+			return;
+		SubtitleEditorWindow::get_instance()->get_player()->set_keyframes(kf);
+	}
+
+	/*
+	 */
+	void save_keyframes(xmlpp::Element *root)
+	{
+		Glib::RefPtr<KeyFrames> kf = SubtitleEditorWindow::get_instance()->get_player()->get_keyframes();
+		if(!kf)
+			return; // don't need to save without KeyFrames... 
+
+		xmlpp::Element *xmlwf = root->add_child("keyframes");
+
+		xmlwf->set_attribute("uri", kf->get_uri());
 	}
 
 	/*
