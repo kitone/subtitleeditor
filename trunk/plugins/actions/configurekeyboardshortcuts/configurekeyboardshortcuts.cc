@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2010, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@
 #include <memory>
 
 /*
- *
  */
 static gboolean accel_find_func (GtkAccelKey *key, GClosure *closure, gpointer data)
 {
@@ -37,7 +36,6 @@ static gboolean accel_find_func (GtkAccelKey *key, GClosure *closure, gpointer d
 }
 
 /*
- *
  */
 class DialogConfigureKeyboardShortcuts : public Gtk::Dialog
 {
@@ -216,13 +214,11 @@ public:
 	{
 		Glib::ustring ak = (*iter)[m_columns.shortcut];
 
-		if(label == ak)
-		{
-			*result = iter;
-			return true;
-		}
+		if(label != ak)
+			return false;
 
-		return false;
+		*result = iter;
+		return true;
 	}
 
 	/*
@@ -232,13 +228,11 @@ public:
 	{
 		GClosure *c = (*iter)[m_columns.closure];
 
-		if(closure == c)
-		{
-			*result = iter;
-			return true;
-		}
+		if(closure != c)
+			return false;
 
-		return false;
+		*result = iter;
+		return true;
 	}
 
 	/*
@@ -293,7 +287,6 @@ public:
 
 			return true;
 		}
-
 		return false;
 	}
 
@@ -320,9 +313,12 @@ public:
 		if(!key)
 		{
 			dialog_error(_("Invalid shortcut."), "");
+			return;
 		}
-		else if(!Gtk::AccelMap::change_entry(action->get_accel_path(), key, mods, false))
+
+		if(Gtk::AccelMap::change_entry(action->get_accel_path(), key, mods, false) == false)
 		{
+			// We try to find if there's already an another action with the same shortcut
 			Glib::RefPtr<Gtk::Action> conflict_action = get_action_by_accel(key, mods);
 			
 			if(conflict_action == action)
