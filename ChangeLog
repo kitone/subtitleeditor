@@ -1,3 +1,10 @@
+2011-01-10  kitone  <kitone@gna.org>
+
+	* plugins/actions/sortsubtitles/sortsubtitles.cc:
+	* src/subtitles.cc:
+	* src/subtitles.h:
+	Rewrite sort subtitles. Speed improvements.
+
 2010-12-22  kitone  <kitone@gna.org>
 
 	* plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:

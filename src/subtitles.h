@@ -150,6 +150,11 @@ public:
 	 */
 	void invert_selection();
 
+
+	/*
+	 */
+	guint sort_by_time();
+
 protected:
 	Document& m_document;
 };
