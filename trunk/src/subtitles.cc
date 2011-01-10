@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2010, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 #include "document.h"
 
 /*
- *
  */
 class AppendSubtitleCommand : public Command
 {
@@ -55,7 +54,6 @@ protected:
 };
 
 /*
- *
  */
 class RemoveSubtitlesCommand : public Command
 {
@@ -108,7 +106,6 @@ protected:
 };
 
 /*
- *
  */
 class InsertSubtitleCommand : public Command
 {
@@ -151,6 +148,95 @@ protected:
 	Glib::ustring m_path;
 };
 
+/*
+ */
+class ReorderSubtitlesCommand : public Command
+{
+public:
+	ReorderSubtitlesCommand(Document *doc, std::vector<gint> &old_order, std::vector<gint> &new_order)
+	:Command(doc, _("Reorder Subtitles")), 
+		m_new_order(new_order), 
+		m_old_order(old_order)
+	{
+	}
+
+	void execute()
+	{
+		get_document_subtitle_model()->reorder(m_new_order);
+		get_document_subtitle_model()->rebuild_column_num();
+	}
+
+	void restore()
+	{
+		get_document_subtitle_model()->reorder(m_old_order);
+		get_document_subtitle_model()->rebuild_column_num();
+	}
+protected:
+	std::vector<gint> m_new_order;
+	std::vector<gint> m_old_order;
+};
+
+/*
+ * This class is used to store subtitle
+ * information for sorted function.
+ */
+class SortedBuffer
+{
+public:
+
+	/*
+	 */
+	static bool compare_num_func(const SortedBuffer &a, const SortedBuffer &b)
+	{
+		return (a.num < b.num);
+	}
+
+	/*
+	 */
+	static bool compare_time_func(const SortedBuffer &a, const SortedBuffer &b)
+	{
+		return (a.time < b.time);
+	}
+
+	/*
+	 */
+	static void create_buffers(Subtitles &subtitles, std::vector<SortedBuffer> &buf)
+	{
+		gint index = 0;
+		for(Subtitle s = subtitles.get_first(); s; ++s, ++index)
+		{
+			buf[index].index = index;
+			buf[index].num = s.get_num();
+			buf[index].time = s.get_start().totalmsecs;
+		}
+	}
+
+	/*
+	 */
+	static guint count_number_of_subtitle_reorder(std::vector<SortedBuffer> &buf)
+	{
+		guint count = 0;
+		for(guint index = 0; index < buf.size(); ++index)
+		{
+			if(buf[index].index != index)
+				++count;
+		}
+		return count;
+	}
+
+	/*
+	 */
+	static void to_vector(std::vector<SortedBuffer> &buf, std::vector<gint> &order)
+	{
+		for(guint index = 0; index < buf.size(); ++index)
+			order[index] = buf[index].index;
+	}
+
+public:
+	gint index;
+	gint num;
+	long time;
+};
 
 
 /*
@@ -438,4 +524,45 @@ void Subtitles::invert_selection()
 void Subtitles::unselect_all()
 {
 	m_document.get_subtitle_view()->get_selection()->unselect_all();
+}
+
+/*
+ */
+guint Subtitles::sort_by_time()
+{
+	guint number_of_subtitles = size();
+	guint number_of_sub_reorder = 0;
+
+	// We want to keep 2 order, the new one and the old
+	std::vector<int> old_order(number_of_subtitles), new_order(number_of_subtitles);
+
+	std::vector<SortedBuffer> buf(number_of_subtitles);
+
+	// Create the Buffer structure used to sort
+	SortedBuffer::create_buffers(*this, buf);
+	// Sort using the Time
+	std::sort(buf.begin(), buf.end(), SortedBuffer::compare_time_func);
+	SortedBuffer::to_vector(buf, new_order);
+
+	number_of_sub_reorder = SortedBuffer::count_number_of_subtitle_reorder(buf);
+	if(number_of_sub_reorder == 0)
+		return 0;
+
+	// Reorder the model
+	m_document.get_subtitle_model()->reorder(new_order);
+
+	// We need to resort by using the subtitle number for Undo
+	// Create the Buffer structure used to sort
+	SortedBuffer::create_buffers(*this, buf);
+	// Sort using the Num this time
+	std::sort(buf.begin(), buf.end(), SortedBuffer::compare_num_func);
+	SortedBuffer::to_vector(buf, old_order);
+
+	// We can now update the num of subtitles
+	m_document.get_subtitle_model()->rebuild_column_num();
+
+	if(m_document.is_recording())
+		m_document.add_command(new ReorderSubtitlesCommand(&m_document, old_order, new_order));
+
+	return number_of_sub_reorder;
 }
