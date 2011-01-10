@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-10 01:20+0100\n"
+"POT-Creation-Date: 2011-01-10 20:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -196,43 +196,43 @@ msgstr ""
 msgid "Redo: %s"
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:93
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:91
 msgid "Actions"
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:115
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:113
 msgid "Shortcut"
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:322
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:315
 msgid "Invalid shortcut."
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:339
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:335
 msgid "Shortcut \"%1\" is already taken by \"%2\"."
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:343
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:339
 msgid "Reassigning the shortcut will cause it to be removed from \"%1\"."
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:347
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:343
 msgid "Conflicting Shortcuts"
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:354
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:350
 msgid "Changing shortcut failed."
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:382
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:378
 msgid "Removing shortcut failed."
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:437
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:433
 msgid "Configure _Keyboard Shortcuts"
 msgstr ""
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:437
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:433
 #: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui.h:1
 msgid "Configure Keyboard Shortcuts"
 msgstr ""
@@ -872,7 +872,7 @@ msgid "Insert blank subtitle after the selected subtitle"
 msgstr ""
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:149
-#: ../src/subtitles.cc:123
+#: ../src/subtitles.cc:120
 #: ../plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in.h:1
 msgid "Insert Subtitle"
 msgstr ""
@@ -1513,14 +1513,14 @@ msgstr ""
 msgid "Sort subtitles based on their start time"
 msgstr ""
 
-#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:157
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:110
 #, c-format
 msgid "1 subtitle has been reordered."
 msgid_plural "%d subtitles have been reordered."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:162
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:114
 msgid "No need to sort subtitles."
 msgstr ""
 
@@ -2268,13 +2268,13 @@ msgid "Save Waveform"
 msgstr ""
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
-#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:70
+#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:71
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:46
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:70
 msgid "Failed to open the file for reading."
 msgstr ""
 
-#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:95
+#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:97
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:103
 msgid "Failed to write to the file."
 msgstr ""
@@ -2691,7 +2691,7 @@ msgid "_Export"
 msgstr ""
 
 #: ../src/keyframes.cc:102 ../src/keyframes.cc:109
-#: ../src/subtitleformatsystem.cc:124
+#: ../src/subtitleformatsystem.cc:70
 msgid "Couldn't recognize format of the file."
 msgstr ""
 
@@ -2719,12 +2719,11 @@ msgstr ""
 msgid "ENCODING"
 msgstr ""
 
-#: ../src/subtitleformatio.cc:58 ../src/subtitleformatio.cc:65
-#: ../src/subtitleformatio.cc:72 ../src/subtitleformatio.cc:79
+#: ../src/subtitleformatio.cc:63 ../src/subtitleformatio.cc:71
 msgid "This function is not implemented for this format."
 msgstr ""
 
-#: ../src/subtitleformatsystem.cc:143
+#: ../src/subtitleformatsystem.cc:89
 #, c-format
 msgid "Couldn't create the subtitle format '%s'."
 msgstr ""
@@ -2742,12 +2741,16 @@ msgstr ""
 msgid "Reordered Subtitle"
 msgstr ""
 
-#: ../src/subtitles.cc:35
+#: ../src/subtitles.cc:34
 msgid "Append subtitle"
 msgstr ""
 
-#: ../src/subtitles.cc:64
+#: ../src/subtitles.cc:62
 msgid "Remove Subtitles"
+msgstr ""
+
+#: ../src/subtitles.cc:157
+msgid "Reorder Subtitles"
 msgstr ""
 
 #: ../src/subtitleview.cc:308
