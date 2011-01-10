@@ -1,3 +1,16 @@
+2011-01-10 - 0.38.0
+
+	* Fix sort subtitles, speed improvements.
+	* Fix bug #17231 : Opening SEP project wont open a Keyframes file automatically
+	* Fix bug #17000 : Subtitles in MicroDVD format don't display correct
+	* Fix bug #16898 : Feature request - movie fps detecting
+	* Fix bug #16917 : scale option doesn't work correctly with frame-based subtitles
+	* Fix bug #16524 : Broken character count (column translation)
+	* Fix bug #16314 : Unable to set subtitle times after importing plain text
+	* Fix English errors (patch by Pavel Dvořák)
+	* Update of Czech translation by Pavel Dvořák
+	* Update of Polish translation by Franciszek Janowski
+
 2010-07-11 - 0.37.1
 
 	* Fix bug #16016 (#16087) : segfault (divide by zero)

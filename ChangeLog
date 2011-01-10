@@ -1,5 +1,11 @@
 2011-01-10  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.38.0 release.
+
+2011-01-10  kitone  <kitone@gna.org>
+
 	* plugins/actions/sortsubtitles/sortsubtitles.cc:
 	* src/subtitles.cc:
 	* src/subtitles.h:
