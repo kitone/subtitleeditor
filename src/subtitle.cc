@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -25,8 +25,6 @@
 #include "utility.h"
 #include "document.h"
 #include <iomanip>
-//FIXME remove if glibmm >= 2.16
-#include <sstream>
 
 /*
  *
@@ -873,14 +871,8 @@ void Subtitle::update_characters_per_sec()
 	SubtitleTime duration = get_duration();
 	double cps = utility::get_characters_per_second(get_text(), duration.totalmsecs);
 
-	// FIXME if glibmm >= 2.16
-	//set_characters_per_second_text(
-	//		Glib::ustring::format(std::fixed, std::setprecision(1), cps)); 
-	
-	std::ostringstream oss;
-	oss << std::fixed << std::setprecision(1) << cps;
- 
-	set_characters_per_second_text(oss.str());
+	set_characters_per_second_text(
+			Glib::ustring::format(std::fixed, std::setprecision(1), cps)); 
 }
 
 /*
