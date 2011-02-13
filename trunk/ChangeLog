@@ -1,5 +1,13 @@
 2011-02-13  kitone  <kitone@gna.org>
 
+	* src/subtitle.cc:
+	Clean code.
+
+	* src/subtitleview.cc:
+	Fix bug #17686 : CPS error detection, display CPS with colors.
+
+2011-02-13  kitone  <kitone@gna.org>
+
 	* plugins/actions/timingfromplayer/timingfromplayer.cc:
 	Fix bug #17686 : set_subtitle_end_and_start (original patch by Tomas Partl <eltomito>)
 	Fix bug #17648 : Add new command to plugin TimingFromPlayer (original patch by Victor Cighir <victorcighir>)

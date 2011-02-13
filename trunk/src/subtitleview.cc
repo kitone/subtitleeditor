@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -278,6 +278,65 @@ public:
 		property_xalign() = 1.0;
 		property_alignment() = Pango::ALIGN_RIGHT;
 	}
+};
+
+/*
+ */
+class CellRendererCPS : public Gtk::CellRendererText
+{
+public:
+	CellRendererCPS()
+	:Glib::ObjectBase(typeid(CellRendererCPS)), Gtk::CellRendererText()
+	{
+		property_yalign() = 0;
+		//property_weight() = Pango::WEIGHT_ULTRALIGHT;
+		property_xalign() = 1.0;
+		property_alignment() = Pango::ALIGN_RIGHT;
+
+		Config &cfg = Config::getInstance();
+
+		mincps = cfg.get_value_int("timing", "min-characters-per-second");
+		maxcps = cfg.get_value_int("timing", "max-characters-per-second");
+		// We want to keep trace of new min and max values
+		cfg.signal_changed("timing").connect(
+				sigc::mem_fun(*this, &CellRendererCPS::on_config_timing_changed));
+	}
+
+	/*
+	 */
+	virtual void render_vfunc (
+			const Glib::RefPtr< Gdk::Drawable >& window,
+			Gtk::Widget& widget,
+			const Gdk::Rectangle& bg_area,
+			const Gdk::Rectangle& cell_area,
+			const Gdk::Rectangle& expose_area,
+			Gtk::CellRendererState flags)
+	{
+
+		double value = utility::string_to_double(Glib::ustring(property_text()));
+
+		if(value > maxcps)
+			property_foreground() = "red";
+		else if(value < mincps)
+			property_foreground() = "blue";
+		else
+			property_foreground() = "black";
+
+		Gtk::CellRendererText::render_vfunc(window, widget, bg_area, cell_area, expose_area, flags);
+	}
+
+	/*
+	 */
+	void on_config_timing_changed(const Glib::ustring &key, const Glib::ustring &value)
+	{
+		if(key == "min-characters-per-second")
+			mincps = utility::string_to_double(value);
+		else if(key == "max-characters-per-second")
+			maxcps = utility::string_to_double(value);
+	}
+protected:
+	double mincps;
+	double maxcps;
 };
 
 /*
@@ -613,16 +672,11 @@ void SubtitleView::createColumnCPS()
 
 	Gtk::TreeViewColumn* column = create_treeview_column("cps");
 
-	Gtk::CellRendererText* renderer = manage(new Gtk::CellRendererText);
+	CellRendererCPS* renderer = manage(new CellRendererCPS);
 	
 	column->pack_start(*renderer);
 	column->add_attribute(renderer->property_text(), m_column.characters_per_second_text);
 
-	renderer->property_yalign() = 0;
-	renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
-	renderer->property_xalign() = 1.0;
-	renderer->property_alignment() = Pango::ALIGN_RIGHT;
-	
 	append_column(*column);
 
 	set_tooltips(column, _("The number of characters per second"));
