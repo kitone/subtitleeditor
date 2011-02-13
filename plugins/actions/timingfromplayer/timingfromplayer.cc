@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ public:
 					"menu-timing-from-player", 
 					_("Timing From Player"), 
 					_("Use the current player position to set subtitle time")));
-
+		// set current subtitle
 		action_group->add(
 				Gtk::Action::create(
 					"timing-from-player/set-subtitle-start", 
@@ -73,13 +73,44 @@ public:
 					_("Use the current player position to set the subtitle end")), 
 					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_end));
 
+		// set current subtitle and go to the next
 		action_group->add(
 				Gtk::Action::create(
-					"timing-from-player/set-subtitle-start-and-end", 
+					"timing-from-player/set-subtitle-start-and-go-next", 
+					_("Set Subtitle Start And Go Next"), 
+					_("Use the current player position to set the start of the selected subtitle and go to the next")), 
+					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_start_and_go_next));
+
+		action_group->add(
+				Gtk::Action::create(
+					"timing-from-player/set-subtitle-end-and-go-next", 
+					_("Set Subtitle End And Go Next"), 
+					_("Use the current player position to set the end of the selected subtitle and go to the next")), 
+					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_end_and_go_next));
+
+		// set current subtitle and define the next
+		action_group->add(
+				Gtk::Action::create(
+					"timing-from-player/set-subtitle-start-and-next", 
+					_("Set Subtitle Start And Next"), 
+					_("Use the current player position to set the start of the current selected subtitle and the position of the next")), 
+					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_start_and_next));
+
+		action_group->add(
+				Gtk::Action::create(
+					"timing-from-player/set-subtitle-end-and-next", 
+					_("Set Subtitle End And Next"), 
+					_("Use the current player position to set the end of the current selected subtitle and the position of the next")), 
+					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_end_and_next));
+
+		// set current subtile start and and with one key
+		action_group->add(
+				Gtk::Action::create(
+					"timing-from-player/set-subtitle-start-and-end-with-one-key", 
 					_("Set Subtitle Start _And End"), 
 					_("Use only one key to set beginning of the subtitle when the key "
 						"is pressed and the end when the key is released.")), 
-					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_start_and_end));
+					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_start_and_end_with_one_key));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -94,7 +125,14 @@ public:
 			"				<menu action='menu-timing-from-player'>"
 			"					<menuitem action='timing-from-player/set-subtitle-start'/>"
 			"					<menuitem action='timing-from-player/set-subtitle-end'/>"
-			"					<menuitem action='timing-from-player/set-subtitle-start-and-end'/>"
+			"					<separator />"
+			"					<menuitem action='timing-from-player/set-subtitle-start-and-go-next'/>"
+			"					<menuitem action='timing-from-player/set-subtitle-end-and-go-next'/>"
+			"					<separator />"
+			"					<menuitem action='timing-from-player/set-subtitle-start-and-next'/>"
+			"					<menuitem action='timing-from-player/set-subtitle-end-and-next'/>"
+			"					<separator />"
+			"					<menuitem action='timing-from-player/set-subtitle-start-and-end-with-one-key'/>"
 			"				</menu>"
 			"			</placeholder>"
 			"		</menu>"
@@ -134,7 +172,14 @@ public:
 
 		SET_SENSITIVE("timing-from-player/set-subtitle-start", has_media && has_doc);
 		SET_SENSITIVE("timing-from-player/set-subtitle-end", has_media && has_doc);
-		SET_SENSITIVE("timing-from-player/set-subtitle-start-and-end", has_media && has_doc);
+
+		SET_SENSITIVE("timing-from-player/set-subtitle-start-and-go-next", has_media && has_doc);
+		SET_SENSITIVE("timing-from-player/set-subtitle-end-and-go-next", has_media && has_doc);
+
+		SET_SENSITIVE("timing-from-player/set-subtitle-start-and-next", has_media && has_doc);
+		SET_SENSITIVE("timing-from-player/set-subtitle-end-and-next", has_media && has_doc);
+
+		SET_SENSITIVE("timing-from-player/set-subtitle-start-and-end-with-one-key", has_media && has_doc);
 
 #undef SET_SENSITIVE
 	}
@@ -153,63 +198,116 @@ public:
 	}
 
 	/*
-	 * Sets the begining of the selected subtitle at the current position of the player.
 	 */
-	void set_subtitle_start()
+	enum OPTIONS {
+		SET_SUBTITLE_START		= 1 << 0,
+		SET_SUBTITLE_END			= 1 << 1,
+		SELECT_NEXT_OR_CREATE	= 1 << 2,
+		SET_NEXT_SUBTITLE_POS	= 1 << 3
+	};
+
+	/*
+	 */
+	Glib::ustring get_command_name_from_option(int op)
 	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		Document *doc = get_current_document();
-		g_return_if_fail(doc);
-
-		Subtitle sub = doc->subtitles().get_first_selected();
-		if(sub)
-		{
-			long position = get_subtitleeditor_window()->get_player()->get_position();
-
-			doc->start_command(_("Set subtitle start"));
-
-			sub.set_start(SubtitleTime(position));
-
-			doc->emit_signal("subtitle-time-changed");
-			doc->finish_command();
-		}
+		if(op & SET_SUBTITLE_START)
+			return _("Set subtitle start");
+		else if(op & SET_SUBTITLE_END)
+			return _("Set subtitle end");
+		return _("Set subtitle"); // should not have happened
 	}
 
 	/*
-	 * Sets the end of the selected subtitle at the current position of the player.
-	 * The next subtitle is selected or created after that.
 	 */
-	void set_subtitle_end()
+	bool set_subtitle_from_player(int op)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
-		g_return_if_fail(doc);
+		g_return_val_if_fail(doc, false);
 
 		Subtitle sub = doc->subtitles().get_first_selected();
-		if(sub)
+		if(!sub)
+			return false;
+
+		SubtitleTime pos = get_subtitleeditor_window()->get_player()->get_position();
+		SubtitleTime dur = sub.get_duration();
+
+		// Start recording
+		doc->start_command(get_command_name_from_option(op));
+
+		if(op & SET_SUBTITLE_START) // Define the start of the subtitle from the video position, we keep the duration
 		{
-			long position = get_subtitleeditor_window()->get_player()->get_position();
-
-			doc->start_command(_("Set subtitle end"));
-
-			sub.set_end(SubtitleTime(position));
-
-			// try to select the next subtitle
-			// TODO option for enable/disable this ?
-			{
-				Subtitle next = doc->subtitles().get_next(sub);
-				if(!next)
-				{
-					next = doc->subtitles().append();
-				}
-				doc->subtitles().select(next);
-			}
-
-			doc->emit_signal("subtitle-time-changed");
-			doc->finish_command();
+			sub.set_start_and_end(pos, pos + dur);
 		}
+		else if (op & SET_SUBTITLE_END)
+		{
+			sub.set_end(pos);
+		}
+
+		// Select or create the next subtitle
+		if(op & SELECT_NEXT_OR_CREATE)
+		{
+			Subtitle next = doc->subtitles().get_next(sub);
+			if(!next)
+			{
+				next = doc->subtitles().append();
+				next.set_duration(	get_config().get_value_int("timing", "min-display") );
+			}
+			if(op & SET_NEXT_SUBTITLE_POS)
+			{
+				SubtitleTime sub_end = sub.get_end();
+				SubtitleTime gap( get_config().get_value_int("timing", "min-gap-between-subtitles") );
+				next.set_start_and_end(sub_end + gap, sub_end + next.get_duration());
+			}
+			doc->subtitles().select(next);
+		}
+
+		doc->emit_signal("subtitle-time-changed");
+		doc->finish_command();
+		return true;
+	}
+
+	/*
+	 */
+	void set_subtitle_start()
+	{
+		set_subtitle_from_player(SET_SUBTITLE_START);
+	}
+
+	/*
+	 */
+	void set_subtitle_end()
+	{
+		set_subtitle_from_player(SET_SUBTITLE_END);
+	}
+
+	/*
+	 */
+	void set_subtitle_start_and_go_next()
+	{
+		set_subtitle_from_player(SET_SUBTITLE_START | SELECT_NEXT_OR_CREATE);
+	}
+
+	/*
+	 */
+	void set_subtitle_end_and_go_next()
+	{
+		set_subtitle_from_player(SET_SUBTITLE_END | SELECT_NEXT_OR_CREATE);
+	}
+
+	/*
+	 */
+	void set_subtitle_start_and_next()
+	{
+		set_subtitle_from_player(SET_SUBTITLE_START | SELECT_NEXT_OR_CREATE | SET_NEXT_SUBTITLE_POS);
+	}
+
+	/*
+	 */
+	void set_subtitle_end_and_next()
+	{
+		set_subtitle_from_player(SET_SUBTITLE_END | SELECT_NEXT_OR_CREATE | SET_NEXT_SUBTITLE_POS);
 	}
 
 	/*
@@ -217,7 +315,7 @@ public:
 	 * We connect the signal key_release_event to update the 
 	 * end of the subtitle when the key is released.
 	 */
-	void set_subtitle_start_and_end()
+	void set_subtitle_start_and_end_with_one_key()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -247,7 +345,7 @@ public:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		set_subtitle_end();
+		set_subtitle_end_and_go_next();
 		co.disconnect();
 		return true;
 	}

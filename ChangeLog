@@ -1,3 +1,10 @@
+2011-02-13  kitone  <kitone@gna.org>
+
+	* plugins/actions/timingfromplayer/timingfromplayer.cc:
+	Fix bug #17686 : set_subtitle_end_and_start (original patch by Tomas Partl <eltomito>)
+	Fix bug #17648 : Add new command to plugin TimingFromPlayer (original patch by Victor Cighir <victorcighir>)
+	Improvement of the plugin timingfromplayer, new actions and code refactoring.
+
 2011-01-10  kitone  <kitone@gna.org>
 
 	* configure.in:
