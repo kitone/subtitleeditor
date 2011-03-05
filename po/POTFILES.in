@@ -29,6 +29,7 @@ plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui
 plugins/actions/externalvideoplayer/externalvideoplayer.cc
 plugins/actions/findandreplace/dialog-find-and-replace.ui
 plugins/actions/findandreplace/findandreplace.cc
+plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc
 plugins/actions/insertsubtitle/insertsubtitle.cc
 plugins/actions/italicize/italicize.cc
 plugins/actions/joindocument/joindocument.cc
@@ -260,6 +261,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/extendlength/extendlength.se-plugin.in
 [type: gettext/ini] plugins/actions/externalvideoplayer/externalvideoplayer.se-plugin.in
 [type: gettext/ini] plugins/actions/findandreplace/findandreplace.se-plugin.in
+[type: gettext/ini] plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.se-plugin.in
 [type: gettext/ini] plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in
 [type: gettext/ini] plugins/actions/italicize/italicize.se-plugin.in
 [type: gettext/ini] plugins/actions/joindocument/joindocument.se-plugin.in
