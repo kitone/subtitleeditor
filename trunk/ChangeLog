@@ -1,3 +1,14 @@
+2011-03-05  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/actions/Makefile.am:
+	New plugin insertsubtitlefromkeyframe.
+	
+	* plugins/actions/insertsubtitlefromkeyframe/Makefile.am:
+	* plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:
+	* plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.se-plugin.in:
+	Fix bug #17828 : Feature request: Create subtitles automatically according to keyframes.
+
 2011-02-13  kitone  <kitone@gna.org>
 
 	* src/subtitle.cc:

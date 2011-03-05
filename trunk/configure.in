@@ -336,6 +336,7 @@ plugins/actions/extendlength/Makefile
 plugins/actions/externalvideoplayer/Makefile
 plugins/actions/findandreplace/Makefile
 plugins/actions/insertsubtitle/Makefile
+plugins/actions/insertsubtitlefromkeyframe/Makefile
 plugins/actions/italicize/Makefile
 plugins/actions/joindocument/Makefile
 plugins/actions/keyframesmanagement/Makefile

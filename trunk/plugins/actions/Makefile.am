@@ -15,6 +15,7 @@ FILES = \
 		externalvideoplayer \
 		findandreplace \
 		insertsubtitle \
+		insertsubtitlefromkeyframe \
 		italicize \
 		joindocument \
 		keyframesmanagement \

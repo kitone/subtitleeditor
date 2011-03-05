@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-10 20:01+0100\n"
+"POT-Creation-Date: 2011-03-05 10:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -794,14 +794,14 @@ msgstr ""
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:12
 #: ../plugins/actions/findandreplace/findandreplace.cc:622
-#: ../src/subtitleview.cc:1464
+#: ../src/subtitleview.cc:1518
 msgid "Text"
 msgstr ""
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:13
 #: ../plugins/actions/findandreplace/findandreplace.cc:624
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
-#: ../src/subtitleview.cc:1465
+#: ../src/subtitleview.cc:1519
 msgid "Translation"
 msgstr ""
 
@@ -854,6 +854,43 @@ msgstr ""
 #: ../plugins/actions/findandreplace/findandreplace.cc:1055
 msgid "Not found"
 msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:54
+msgid "Create Subtitle From Player And Keyframes"
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:54
+msgid ""
+"Create subtitle automatically according to keyframes around the position of "
+"the player."
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:58
+msgid "Create Subtitles According Keyframes"
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:58
+msgid "Create subtitles automatically according to keyframes"
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:148
+msgid "Insert Subtitle Between Keyframes"
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:205
+msgid "Can't insert subtitle between keyframes, not enough keyframes."
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:212
+msgid "Insert Subtitle Between Each Keyframes"
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:235
+#, c-format
+msgid "1 subtitle has been inserted."
+msgid_plural "%d subtitles have been inserted."
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:53
 msgid "Insert _Before"
@@ -1802,7 +1839,7 @@ msgid "Correct common errors made by humans or image recognition software"
 msgstr ""
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:78
-#: ../src/subtitleview.cc:1461
+#: ../src/subtitleview.cc:1515
 msgid "Num"
 msgstr ""
 
@@ -1864,7 +1901,7 @@ msgstr ""
 #: ../plugins/actions/textcorrection/taskspage.h:77
 #: ../plugins/actions/viewmanager/viewmanager.cc:141
 #: ../plugins/actions/viewmanager/viewmanager.cc:232
-#: ../src/subtitleview.cc:1459
+#: ../src/subtitleview.cc:1513
 msgid "Name"
 msgstr ""
 
@@ -1909,22 +1946,66 @@ msgstr ""
 msgid "Use the current player position to set the subtitle end"
 msgstr ""
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:79
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
+msgid "Set Subtitle Start And Go Next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:81
+msgid ""
+"Use the current player position to set the start of the selected subtitle "
+"and go to the next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:87
+msgid "Set Subtitle End And Go Next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:88
+msgid ""
+"Use the current player position to set the end of the selected subtitle and "
+"go to the next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:95
+msgid "Set Subtitle Start And Next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:96
+msgid ""
+"Use the current player position to set the start of the current selected "
+"subtitle and the position of the next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:102
+msgid "Set Subtitle End And Next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:103
+msgid ""
+"Use the current player position to set the end of the current selected "
+"subtitle and the position of the next"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:110
 msgid "Set Subtitle Start _And End"
 msgstr ""
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:111
 msgid ""
 "Use only one key to set beginning of the subtitle when the key is pressed "
 "and the end when the key is released."
 msgstr ""
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:170
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:214
 msgid "Set subtitle start"
 msgstr ""
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:195
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:216
 msgid "Set subtitle end"
+msgstr ""
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:217
+msgid "Set subtitle"
 msgstr ""
 
 #: ../plugins/actions/typewriter/typewriter.cc:54
@@ -2753,131 +2834,131 @@ msgstr ""
 msgid "Reorder Subtitles"
 msgstr ""
 
-#: ../src/subtitleview.cc:308
+#: ../src/subtitleview.cc:367
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr ""
 
-#: ../src/subtitleview.cc:310
+#: ../src/subtitleview.cc:369
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr ""
 
-#: ../src/subtitleview.cc:462
+#: ../src/subtitleview.cc:521
 msgid "The line number"
 msgstr ""
 
-#: ../src/subtitleview.cc:528
+#: ../src/subtitleview.cc:587
 msgid "When a subtitle appears on the screen."
 msgstr ""
 
-#: ../src/subtitleview.cc:540
+#: ../src/subtitleview.cc:599
 msgid "When a subtitle disappears from the screen."
 msgstr ""
 
-#: ../src/subtitleview.cc:553
+#: ../src/subtitleview.cc:612
 msgid "The duration of the subtitle."
 msgstr ""
 
-#: ../src/subtitleview.cc:628
+#: ../src/subtitleview.cc:682
 msgid "The number of characters per second"
 msgstr ""
 
-#: ../src/subtitleview.cc:880
+#: ../src/subtitleview.cc:934
 msgid "Editing layer"
 msgstr ""
 
-#: ../src/subtitleview.cc:908 ../src/subtitleview.cc:919
+#: ../src/subtitleview.cc:962 ../src/subtitleview.cc:973
 msgid "Editing start"
 msgstr ""
 
-#: ../src/subtitleview.cc:946 ../src/subtitleview.cc:957
+#: ../src/subtitleview.cc:1000 ../src/subtitleview.cc:1011
 msgid "Editing end"
 msgstr ""
 
-#: ../src/subtitleview.cc:984 ../src/subtitleview.cc:995
+#: ../src/subtitleview.cc:1038 ../src/subtitleview.cc:1049
 msgid "Editing duration"
 msgstr ""
 
-#: ../src/subtitleview.cc:1015
+#: ../src/subtitleview.cc:1069
 msgid "Editing text"
 msgstr ""
 
-#: ../src/subtitleview.cc:1037
+#: ../src/subtitleview.cc:1091
 msgid "Editing translation"
 msgstr ""
 
-#: ../src/subtitleview.cc:1057
+#: ../src/subtitleview.cc:1111
 msgid "Editing note"
 msgstr ""
 
-#: ../src/subtitleview.cc:1076
+#: ../src/subtitleview.cc:1130
 msgid "Editing effect"
 msgstr ""
 
-#: ../src/subtitleview.cc:1097
+#: ../src/subtitleview.cc:1151
 msgid "Editing style"
 msgstr ""
 
-#: ../src/subtitleview.cc:1117
+#: ../src/subtitleview.cc:1171
 msgid "Editing name"
 msgstr ""
 
-#: ../src/subtitleview.cc:1137
+#: ../src/subtitleview.cc:1191
 msgid "Editing margin-l"
 msgstr ""
 
-#: ../src/subtitleview.cc:1157
+#: ../src/subtitleview.cc:1211
 msgid "Editing margin-r"
 msgstr ""
 
-#: ../src/subtitleview.cc:1177
+#: ../src/subtitleview.cc:1231
 msgid "Editing margin-v"
 msgstr ""
 
-#: ../src/subtitleview.cc:1318
+#: ../src/subtitleview.cc:1372
 msgid "Set style to selection"
 msgstr ""
 
-#: ../src/subtitleview.cc:1451
+#: ../src/subtitleview.cc:1505
 msgid "CPS"
 msgstr ""
 
-#: ../src/subtitleview.cc:1452
+#: ../src/subtitleview.cc:1506
 msgid "Duration"
 msgstr ""
 
-#: ../src/subtitleview.cc:1453
+#: ../src/subtitleview.cc:1507
 msgid "Effect"
 msgstr ""
 
-#: ../src/subtitleview.cc:1454
+#: ../src/subtitleview.cc:1508
 msgid "End"
 msgstr ""
 
-#: ../src/subtitleview.cc:1455
+#: ../src/subtitleview.cc:1509
 msgid "Layer"
 msgstr ""
 
-#: ../src/subtitleview.cc:1456
+#: ../src/subtitleview.cc:1510
 msgid "L"
 msgstr ""
 
-#: ../src/subtitleview.cc:1457
+#: ../src/subtitleview.cc:1511
 msgid "R"
 msgstr ""
 
-#: ../src/subtitleview.cc:1458
+#: ../src/subtitleview.cc:1512
 msgid "V"
 msgstr ""
 
-#: ../src/subtitleview.cc:1460
+#: ../src/subtitleview.cc:1514
 msgid "Note"
 msgstr ""
 
-#: ../src/subtitleview.cc:1462
+#: ../src/subtitleview.cc:1516
 msgid "Start"
 msgstr ""
 
-#: ../src/subtitleview.cc:1463
+#: ../src/subtitleview.cc:1517
 msgid "Style"
 msgstr ""
 
@@ -3189,6 +3270,14 @@ msgstr ""
 
 #: ../plugins/actions/findandreplace/findandreplace.se-plugin.in.h:2
 msgid "Searches and replaces texts with regular expressions support."
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.se-plugin.in.h:1
+msgid "Insert Subtitle From Keyframe"
+msgstr ""
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.se-plugin.in.h:2
+msgid "Inserts subtitle using keyframe."
 msgstr ""
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in.h:2
