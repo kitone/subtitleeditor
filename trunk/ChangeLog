@@ -1,5 +1,10 @@
 2011-03-05  kitone  <kitone@gna.org>
 
+	* src/gui/treeviewextensionmanager.cc:
+	Display an icon when an extension is configurable.
+
+2011-03-05  kitone  <kitone@gna.org>
+
 	* configure.in:
 	* plugins/actions/Makefile.am:
 	New plugin insertsubtitlefromkeyframe.

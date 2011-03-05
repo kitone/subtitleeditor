@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -32,11 +32,13 @@ public:
 	ColumnExtension()
 	{
 		add(active);
+		add(stock_id);
 		add(label);
 		add(info);
 	}
 
 	Gtk::TreeModelColumn<bool> active;
+	Gtk::TreeModelColumn<Glib::ustring> stock_id;
 	Gtk::TreeModelColumn<Glib::ustring> label;
 	Gtk::TreeModelColumn<ExtensionInfo*> info;
 };
@@ -86,6 +88,7 @@ void TreeViewExtensionManager::create_view()
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererToggle* cell_toggle = NULL;
 	Gtk::CellRendererText* cell_text = NULL;
+	Gtk::CellRendererPixbuf* cell_pixbuf = NULL;
 
 	// active
 	column = manage(new Gtk::TreeViewColumn);
@@ -96,6 +99,15 @@ void TreeViewExtensionManager::create_view()
 			sigc::mem_fun(*this, &TreeViewExtensionManager::on_active_toggled));
 	column->pack_start(*cell_toggle, false);
 	column->add_attribute(cell_toggle->property_active(), m_column.active);
+
+
+	// stock_id
+	column = manage(new Gtk::TreeViewColumn);
+	append_column(*column);
+
+	cell_pixbuf = manage(new Gtk::CellRendererPixbuf);
+	column->pack_start(*cell_pixbuf, true);
+	column->add_attribute(cell_pixbuf->property_stock_id(), m_column.stock_id);
 
 
 	// label
@@ -137,6 +149,9 @@ void TreeViewExtensionManager::create_view()
 		(*iter)[m_column.info] = (*it);
 		(*iter)[m_column.active] = (*it)->get_active();
 		(*iter)[m_column.label] = Glib::ustring::compose("<b>%1</b>\n%2", (*it)->get_label(), (*it)->get_description());
+
+		if((*it)->get_extension() && (*it)->get_extension()->is_configurable())
+			(*iter)[m_column.stock_id] = "gtk-preferences";
 	}
 }
 
