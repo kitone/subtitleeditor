@@ -1,3 +1,13 @@
+2011-04-02  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/advancedsubstationalpha/Makefile.am:
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui:
+	* plugins/subtitleformats/substationalpha/Makefile.am:
+	* plugins/subtitleformats/substationalpha/dialog-substationalpha-preferences.ui:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	Fix bug #17821 : Using capital N for linebreaks in ASS format.
+
 2011-03-05  kitone  <kitone@gna.org>
 
 	* src/gui/treeviewextensionmanager.cc:
