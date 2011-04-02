@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -22,10 +22,110 @@
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
-#include <cstdio>
 #include <iomanip>
+#include <cstdio>
+#include <document.h>
+#include <gtkmm_utility.h>
+#include <gtkmm.h>
+#include <memory>
 
+/*
+ */
+class DialogSubStationAlphaPreferences : public Gtk::Dialog
+{
+protected:
 
+	/*
+	 */
+	class ComboBoxLineBreakPolicy : public Gtk::ComboBoxText
+	{
+	public:
+
+		/*
+		 */
+		ComboBoxLineBreakPolicy(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+		:Gtk::ComboBoxText(cobject)
+		{
+			append_text(_("Soft"));
+			append_text(_("Hard"));
+			append_text(_("Intelligent"));
+		}
+		
+		/*
+		 * From config value
+		 */
+		void set_line_break_policy(const Glib::ustring &value)
+		{
+			if(value == "soft")
+				set_active(0);
+			else if(value == "hard")
+				set_active(1);
+			else if(value == "intelligent")
+				set_active(2);
+			else // default if value is empty
+				set_active(2);
+		}
+
+		/*
+		 */
+		Glib::ustring get_line_break_policy()
+		{
+			gint active = get_active_row_number();
+	
+			if(active == 0)
+				return "soft";
+			else if(active == 1)
+				return "hard";
+			else
+				return "intelligent";
+		}
+	};
+
+public:
+
+	/*
+	 */
+	DialogSubStationAlphaPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+	:Gtk::Dialog(cobject), m_comboLineBreakPolicy(NULL)
+	{
+		xml->get_widget_derived("combo-line-break-policy", m_comboLineBreakPolicy);
+
+		m_comboLineBreakPolicy->signal_changed().connect(
+				sigc::mem_fun(*this, &DialogSubStationAlphaPreferences::on_combo_line_break_policy_changed));
+
+		Glib::ustring policy = Config::getInstance().get_value_string("SubStationAlpha", "line-break-policy");
+		m_comboLineBreakPolicy->set_line_break_policy(policy);
+	}
+
+	/*
+	 */
+	static void create()
+	{
+		std::auto_ptr<DialogSubStationAlphaPreferences> dialog(
+				gtkmm_utility::get_widget_derived<DialogSubStationAlphaPreferences>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-substationalpha-preferences.ui", 
+						"dialog-substationalpha-preferences"));
+
+		dialog->run();
+	}
+
+	/*
+	 */
+	void on_combo_line_break_policy_changed()
+	{
+		Config::getInstance().set_value_string(
+				"SubStationAlpha",
+				"line-break-policy",
+				m_comboLineBreakPolicy->get_line_break_policy());
+	}
+
+protected:
+	ComboBoxLineBreakPolicy* m_comboLineBreakPolicy;
+};
+
+/*
+ */
 class SubStationAlpha : public SubtitleFormatIO
 {
 	int m_line_break_policy;
@@ -491,7 +591,20 @@ class SubStationAlphaPlugin : public SubtitleFormat
 public:
 
 	/*
-	 *
+	 */
+	bool is_configurable()
+	{
+		return true;
+	}
+
+	/*
+	 */
+	void create_configure_dialog()
+	{
+		DialogSubStationAlphaPreferences::create();
+	}
+
+	/*
 	 */
 	SubtitleFormatInfo get_info()
 	{
@@ -504,7 +617,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	SubtitleFormatIO* create()
 	{
