@@ -11,10 +11,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 12:59+0100\n"
-"PO-Revision-Date: 2010-11-06 12:30+0100\n"
+"POT-Creation-Date: 2011-04-07 20:44+0200\n"
+"PO-Revision-Date: 2011-04-07 22:00+0100\n"
 "Last-Translator: Pavel Dvořák <id@dqd.cz>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -110,7 +111,7 @@ msgstr "Přizpůsobit čas"
 
 #: ../plugins/actions/applytranslation/applytranslation.cc:56
 msgid "Apply _Translation"
-msgstr "Použít_t překlad"
+msgstr "Použí_t překlad"
 
 #: ../plugins/actions/applytranslation/applytranslation.cc:56
 msgid "Replace the text of the subtitle by the translation"
@@ -205,43 +206,43 @@ msgstr "Vrátit: %s"
 msgid "Redo: %s"
 msgstr "Znovu: %s"
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:93
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:91
 msgid "Actions"
 msgstr "Akce"
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:115
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:113
 msgid "Shortcut"
 msgstr "Zkratka"
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:322
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:315
 msgid "Invalid shortcut."
 msgstr "Chybná zkratka."
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:339
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:335
 msgid "Shortcut \"%1\" is already taken by \"%2\"."
 msgstr "Zkratka „%1“ je již zabrána akcí „%2“."
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:343
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:339
 msgid "Reassigning the shortcut will cause it to be removed from \"%1\"."
 msgstr "Opětovné přiřazení zkratky způsobí, že bude z „%1“ odstraněna."
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:347
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:343
 msgid "Conflicting Shortcuts"
 msgstr "Zkratky ve sporu"
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:354
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:350
 msgid "Changing shortcut failed."
 msgstr "Změna zkratky selhala."
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:382
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:378
 msgid "Removing shortcut failed."
 msgstr "Odstranění zkratky selhalo."
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:437
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:433
 msgid "Configure _Keyboard Shortcuts"
 msgstr "Nastavit _klávesové zkratky"
 
-#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:437
+#: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:433
 #: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui.h:1
 msgid "Configure Keyboard Shortcuts"
 msgstr "Nastavit klávesové zkratky"
@@ -379,7 +380,7 @@ msgstr "Otevřít překlad"
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
-msgstr[0] "Spolu s překladem byl přidán 1 titulek"
+msgstr[0] "Spolu s překladem byl přidán jeden titulek"
 msgstr[1] "Spolu s překladem byly přidány %d titulky"
 msgstr[2] "Spolu s překladem bylo přidáno %d titulků"
 
@@ -824,14 +825,14 @@ msgstr "Výběr"
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:12
 #: ../plugins/actions/findandreplace/findandreplace.cc:622
-#: ../src/subtitleview.cc:1464
+#: ../src/subtitleview.cc:1518
 msgid "Text"
 msgstr "Text"
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:13
 #: ../plugins/actions/findandreplace/findandreplace.cc:624
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
-#: ../src/subtitleview.cc:1465
+#: ../src/subtitleview.cc:1519
 msgid "Translation"
 msgstr "Překlad"
 
@@ -846,7 +847,7 @@ msgstr "_Nahradit"
 
 #: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:16
 msgid "_Use regular expression"
-msgstr "Použít _regulérní výraz"
+msgstr "Použít _regulární výraz"
 
 #: ../plugins/actions/findandreplace/findandreplace.cc:215
 msgid "Replace text"
@@ -885,6 +886,43 @@ msgstr "Hledat zpětně stejný text"
 msgid "Not found"
 msgstr "Nenalezeno"
 
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:54
+msgid "Create Subtitle From Player And Keyframes"
+msgstr "Vytvořit titulky pomocí přehrávače a klíčových snímků"
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:54
+msgid ""
+"Create subtitle automatically according to keyframes around the position of "
+"the player."
+msgstr "Vytvoří titulek automaticky na základě klíčových snímků na pozici přehrávače."
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:58
+msgid "Create Subtitles According Keyframes"
+msgstr "Vytvořit titulky dle klíčových snímků"
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:58
+msgid "Create subtitles automatically according to keyframes"
+msgstr "Vytvoří titulek automaticky na základě klíčových snímků"
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:148
+msgid "Insert Subtitle Between Keyframes"
+msgstr "Vložit titulek mezi klíčové snímky"
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:205
+msgid "Can't insert subtitle between keyframes, not enough keyframes."
+msgstr "Nelze vložit titulek mezi klíčové snímky, není jich dostatek."
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:212
+msgid "Insert Subtitle Between Each Keyframes"
+msgstr "Vložit titulek mezi každé klíčové snímky"
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:235
+msgid "1 subtitle has been inserted."
+msgid_plural "%d subtitles have been inserted."
+msgstr[0] "Jeden titulek byl vložen."
+msgstr[1] "%d titulky byly vloženy."
+msgstr[2] "%d titulků bylo vloženo."
+
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:53
 msgid "Insert _Before"
 msgstr "Vložit _před"
@@ -902,7 +940,7 @@ msgid "Insert blank subtitle after the selected subtitle"
 msgstr "Vložit prázdný titulek za vybraný"
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:149
-#: ../src/subtitles.cc:123
+#: ../src/subtitles.cc:120
 #: ../plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in.h:1
 msgid "Insert Subtitle"
 msgstr "Vložit titulek"
@@ -931,7 +969,7 @@ msgstr "Spojit dokument"
 #, c-format
 msgid "1 subtitle has been added at this document."
 msgid_plural "%d subtitles have been added at this document."
-msgstr[0] "Do tohoto dokumentu byl přidán 1 titulek."
+msgstr[0] "Do tohoto dokumentu byl přidán jeden titulek."
 msgstr[1] "Do tohoto dokumentu byly přidány %d titulky."
 msgstr[2] "Do tohoto dokumentu bylo přidáno %d titulků."
 
@@ -1182,7 +1220,7 @@ msgstr "Zeptat se před ukončením na _uložení"
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:13
 msgid "Automatically _choose video to open"
-msgstr "Automatcky _vybrat video pro otevření"
+msgstr "Automaticky _vybrat video pro otevření"
 
 #: ../plugins/actions/preferences/dialog-preferences.ui.h:14
 msgid "Background:"
@@ -1416,7 +1454,7 @@ msgstr "Smazat titulky"
 #, c-format
 msgid "1 subtitle has been deleted."
 msgid_plural "%d subtitles have been deleted."
-msgstr[0] "1 titulek byl odstraněn."
+msgstr[0] "titulek byl odstraněn."
 msgstr[1] "%d titulky byly odstraněny."
 msgstr[2] "%d titulků bylo odstraněno."
 
@@ -1551,15 +1589,15 @@ msgstr "_Seřadit titulky"
 msgid "Sort subtitles based on their start time"
 msgstr "Seřadit titulky podle jejich počátečního času"
 
-#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:157
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:110
 #, c-format
 msgid "1 subtitle has been reordered."
 msgid_plural "%d subtitles have been reordered."
-msgstr[0] "1 titulek byl přesunut."
+msgstr[0] "Jeden titulek byl přesunut."
 msgstr[1] "%d titulky byly přesunut."
 msgstr[2] "%d titulků bylo přesunut."
 
-#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:162
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:114
 msgid "No need to sort subtitles."
 msgstr "Není třeba řadit titulky."
 
@@ -1845,7 +1883,7 @@ msgstr ""
 "Opraví běžné chyby způsobené lidmi nebo softwarem na rozpoznávání textu"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:78
-#: ../src/subtitleview.cc:1461
+#: ../src/subtitleview.cc:1515
 msgid "Num"
 msgstr "Č."
 
@@ -1908,7 +1946,7 @@ msgstr "Ukazovat"
 #: ../plugins/actions/textcorrection/taskspage.h:77
 #: ../plugins/actions/viewmanager/viewmanager.cc:141
 #: ../plugins/actions/viewmanager/viewmanager.cc:232
-#: ../src/subtitleview.cc:1459
+#: ../src/subtitleview.cc:1513
 msgid "Name"
 msgstr "Název"
 
@@ -1953,11 +1991,59 @@ msgstr "Nastavit kon_ec titulků"
 msgid "Use the current player position to set the subtitle end"
 msgstr "Nastaví konec titulků podle aktuální pozice přehrávače"
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:79
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
+msgid "Set Subtitle Start And Go Next"
+msgstr "Nastavit začátek titulku a pokračovat"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:81
+msgid ""
+"Use the current player position to set the start of the selected subtitle "
+"and go to the next"
+msgstr ""
+"Nastaví začátek vybraného titulku podle aktuální pozice přehrávače "
+"a přesune se na další titulek"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:87
+msgid "Set Subtitle End And Go Next"
+msgstr "Nastavit konec titulku a pokračovat"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:88
+msgid ""
+"Use the current player position to set the end of the selected subtitle and "
+"go to the next"
+msgstr ""
+"Nastaví konec vybraného titulku podle aktuální pozice přehrávače "
+"a přesune se na další titulek"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:95
+msgid "Set Subtitle Start And Next"
+msgstr "Nastavit začátek titulku a další"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:96
+msgid ""
+"Use the current player position to set the start of the current selected "
+"subtitle and the position of the next"
+msgstr ""
+"Nastaví začátek vybraného titulku podle aktuální pozice přehrávače "
+"a pozici na další titulek"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:102
+msgid "Set Subtitle End And Next"
+msgstr "Nastavit konec titulku a další"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:103
+msgid ""
+"Use the current player position to set the end of the current selected "
+"subtitle and the position of the next"
+msgstr ""
+"Nastaví konec vybraného titulku podle aktuální pozice přehrávače "
+"a pozici na další titulek"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:110
 msgid "Set Subtitle Start _And End"
 msgstr "Nastavit začátek _a konec titulků"
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:111
 msgid ""
 "Use only one key to set beginning of the subtitle when the key is pressed "
 "and the end when the key is released."
@@ -1965,13 +2051,17 @@ msgstr ""
 "Pro nastavení začátku titulku stiskněte klávesu, pro nastavení konce titulku "
 "ji uvolněte."
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:170
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:214
 msgid "Set subtitle start"
 msgstr "Nastavit začátek titulků"
 
-#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:195
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:216
 msgid "Set subtitle end"
 msgstr "Nastavit konec titulků"
+
+#: ../plugins/actions/timingfromplayer/timingfromplayer.cc:217
+msgid "Set subtitle"
+msgstr "Nastavit titulek"
 
 #: ../plugins/actions/typewriter/typewriter.cc:54
 msgid "_Typewriter"
@@ -2313,14 +2403,29 @@ msgstr "Ukázat nebo skrýt vlnovku v aktuálním okně"
 msgid "Save Waveform"
 msgstr "Uložit vlnovku"
 
+#: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:49
+#: ../plugins/subtitleformats/substationalpha/substationalpha.cc:49
+msgid "Soft"
+msgstr "Měkké"
+
+#: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:50
+#: ../plugins/subtitleformats/substationalpha/substationalpha.cc:50
+msgid "Hard"
+msgstr "Tvrdé"
+
+#: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:51
+#: ../plugins/subtitleformats/substationalpha/substationalpha.cc:51
+msgid "Intelligent"
+msgstr "Inteligentní"
+
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
-#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:70
+#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:71
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:46
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:70
 msgid "Failed to open the file for reading."
 msgstr "Otevření souboru pro čtení selhalo."
 
-#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:95
+#: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:97
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:103
 msgid "Failed to write to the file."
 msgstr "Selhal zápis do souboru."
@@ -2793,139 +2898,143 @@ msgstr "Odebrat titulek"
 msgid "Reordered Subtitle"
 msgstr "Přesunutý titulek"
 
-#: ../src/subtitles.cc:35
+#: ../src/subtitles.cc:34
 msgid "Append subtitle"
 msgstr "Připojit titulek"
 
-#: ../src/subtitles.cc:64
+#: ../src/subtitles.cc:62
 msgid "Remove Subtitles"
 msgstr "Odebrat titulky"
 
-#: ../src/subtitleview.cc:308
+#: ../src/subtitles.cc:157
+msgid "Reorder Subtitles"
+msgstr "Přeuspořádat titulky"
+
+#: ../src/subtitleview.cc:367
 msgid "Use Ctrl+Return for exit and Return for line-break"
 msgstr "Použijte Ctrl+Enter pro ukončení a Enter pro nový řádek"
 
-#: ../src/subtitleview.cc:310
+#: ../src/subtitleview.cc:369
 msgid "Use Return for exit and Ctrl+Return for line-break"
 msgstr "Použijte Enter pro ukončení a Ctrl+Enter pro nový řádek"
 
-#: ../src/subtitleview.cc:462
+#: ../src/subtitleview.cc:521
 msgid "The line number"
 msgstr "Číslo řádku"
 
-#: ../src/subtitleview.cc:528
+#: ../src/subtitleview.cc:587
 msgid "When a subtitle appears on the screen."
 msgstr "Kdy se titulek objeví na obrazovce."
 
-#: ../src/subtitleview.cc:540
+#: ../src/subtitleview.cc:599
 msgid "When a subtitle disappears from the screen."
 msgstr "Kdy titulek zmizí z obrazovky."
 
-#: ../src/subtitleview.cc:553
+#: ../src/subtitleview.cc:612
 msgid "The duration of the subtitle."
 msgstr "Délka trvání titulku."
 
-#: ../src/subtitleview.cc:628
+#: ../src/subtitleview.cc:682
 msgid "The number of characters per second"
 msgstr "Počet znaků za sekundu"
 
-#: ../src/subtitleview.cc:880
+#: ../src/subtitleview.cc:934
 msgid "Editing layer"
 msgstr "Upravuji rozvržení"
 
-#: ../src/subtitleview.cc:908 ../src/subtitleview.cc:919
+#: ../src/subtitleview.cc:962 ../src/subtitleview.cc:973
 msgid "Editing start"
 msgstr "Upravuji začátek"
 
-#: ../src/subtitleview.cc:946 ../src/subtitleview.cc:957
+#: ../src/subtitleview.cc:1000 ../src/subtitleview.cc:1011
 msgid "Editing end"
 msgstr "Upravuji konec"
 
-#: ../src/subtitleview.cc:984 ../src/subtitleview.cc:995
+#: ../src/subtitleview.cc:1038 ../src/subtitleview.cc:1049
 msgid "Editing duration"
 msgstr "Upravuji trvání"
 
-#: ../src/subtitleview.cc:1015
+#: ../src/subtitleview.cc:1069
 msgid "Editing text"
 msgstr "Upravuji text"
 
-#: ../src/subtitleview.cc:1037
+#: ../src/subtitleview.cc:1091
 msgid "Editing translation"
 msgstr "Upravuji překlad"
 
-#: ../src/subtitleview.cc:1057
+#: ../src/subtitleview.cc:1111
 msgid "Editing note"
 msgstr "Upravuji poznámku"
 
-#: ../src/subtitleview.cc:1076
+#: ../src/subtitleview.cc:1130
 msgid "Editing effect"
 msgstr "Upravuji efekt"
 
-#: ../src/subtitleview.cc:1097
+#: ../src/subtitleview.cc:1151
 msgid "Editing style"
 msgstr "Upravuji styl"
 
-#: ../src/subtitleview.cc:1117
+#: ../src/subtitleview.cc:1171
 msgid "Editing name"
 msgstr "Upravuji název"
 
-#: ../src/subtitleview.cc:1137
+#: ../src/subtitleview.cc:1191
 msgid "Editing margin-l"
 msgstr "Upravuji levý okraj"
 
-#: ../src/subtitleview.cc:1157
+#: ../src/subtitleview.cc:1211
 msgid "Editing margin-r"
 msgstr "Upravuji pravý okraj"
 
-#: ../src/subtitleview.cc:1177
+#: ../src/subtitleview.cc:1231
 msgid "Editing margin-v"
 msgstr "Upravuji svislé okraje"
 
-#: ../src/subtitleview.cc:1318
+#: ../src/subtitleview.cc:1372
 msgid "Set style to selection"
 msgstr "Nastavit styl do výběru"
 
-#: ../src/subtitleview.cc:1451
+#: ../src/subtitleview.cc:1505
 msgid "CPS"
 msgstr "z/s"
 
-#: ../src/subtitleview.cc:1452
+#: ../src/subtitleview.cc:1506
 msgid "Duration"
 msgstr "Trvání"
 
-#: ../src/subtitleview.cc:1453
+#: ../src/subtitleview.cc:1507
 msgid "Effect"
 msgstr "Efekt"
 
-#: ../src/subtitleview.cc:1454
+#: ../src/subtitleview.cc:1508
 msgid "End"
 msgstr "Konec"
 
-#: ../src/subtitleview.cc:1455
+#: ../src/subtitleview.cc:1509
 msgid "Layer"
 msgstr "Vrstva"
 
-#: ../src/subtitleview.cc:1456
+#: ../src/subtitleview.cc:1510
 msgid "L"
 msgstr "L"
 
-#: ../src/subtitleview.cc:1457
+#: ../src/subtitleview.cc:1511
 msgid "R"
 msgstr "P"
 
-#: ../src/subtitleview.cc:1458
+#: ../src/subtitleview.cc:1512
 msgid "V"
 msgstr "S"
 
-#: ../src/subtitleview.cc:1460
+#: ../src/subtitleview.cc:1514
 msgid "Note"
 msgstr "Poznámka"
 
-#: ../src/subtitleview.cc:1462
+#: ../src/subtitleview.cc:1516
 msgid "Start"
 msgstr "Začátek"
 
-#: ../src/subtitleview.cc:1463
+#: ../src/subtitleview.cc:1517
 msgid "Style"
 msgstr "Styl"
 
@@ -3249,7 +3358,15 @@ msgstr "Spustí externí přehrávač videa."
 
 #: ../plugins/actions/findandreplace/findandreplace.se-plugin.in.h:2
 msgid "Searches and replaces texts with regular expressions support."
-msgstr "Hledá a nahrazuje texty s podporou regulérních výrazů."
+msgstr "Hledá a nahrazuje texty s podporou regulárních výrazů."
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.se-plugin.in.h:1
+msgid "Insert Subtitle From Keyframe"
+msgstr "Vložit titulek z klíčového snímku"
+
+#: ../plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.se-plugin.in.h:2
+msgid "Inserts subtitle using keyframe."
+msgstr "Vloží titulek pomocí klíčového snímku"
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.se-plugin.in.h:2
 msgid "Inserts a blank subtitle."

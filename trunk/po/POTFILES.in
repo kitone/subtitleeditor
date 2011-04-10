@@ -10,6 +10,7 @@ plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc
 plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui
 plugins/actions/dialoguize/dialoguize.cc
 plugins/actions/documentmanagement/documentmanagement.cc
+plugins/actions/documentsnavigation/documentsnavigation.cc
 plugins/actions/duplicatesubtitle/duplicatesubtitle.cc
 plugins/actions/editcell/editcell.cc
 plugins/actions/errorchecking/dialog-error-checking-preferences.ui
@@ -89,6 +90,7 @@ plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h
 plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.cc
 plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.cc
 plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc
+plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui
 plugins/subtitleformats/bitc/bitc.cc
 plugins/subtitleformats/microdvd/microdvd.cc
 plugins/subtitleformats/mpl2/mpl2.cc
@@ -96,6 +98,7 @@ plugins/subtitleformats/mpsub/mpsub.cc
 plugins/subtitleformats/sbv/sbv.cc
 plugins/subtitleformats/sprucestl/sprucestl.cc
 plugins/subtitleformats/subrip/subrip.cc
+plugins/subtitleformats/substationalpha/dialog-substationalpha-preferences.ui
 plugins/subtitleformats/substationalpha/substationalpha.cc
 plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc
 plugins/subtitleformats/subviewer2/subviewer2.cc
@@ -238,6 +241,8 @@ src/widget_config_utility.h
 [type: gettext/glade] plugins/actions/styleeditor/dialog-style-editor.ui
 [type: gettext/glade] plugins/actions/textcorrection/assistant-text-correction.ui
 [type: gettext/glade] plugins/actions/viewmanager/dialog-view-manager.ui
+[type: gettext/glade] plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui
+[type: gettext/glade] plugins/subtitleformats/substationalpha/dialog-substationalpha-preferences.ui
 [type: gettext/glade] share/ui/dialog-character-codings.ui
 [type: gettext/glade] share/ui/dialog-encodings-chooser.ui
 [type: gettext/glade] share/ui/dialog-export-text.ui
@@ -255,6 +260,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.se-plugin.in
 [type: gettext/ini] plugins/actions/dialoguize/dialoguize.se-plugin.in
 [type: gettext/ini] plugins/actions/documentmanagement/documentmanagement.se-plugin.in
+[type: gettext/ini] plugins/actions/documentsnavigation/documentsnavigation.se-plugin.in
 [type: gettext/ini] plugins/actions/duplicatesubtitle/duplicatesubtitle.se-plugin.in
 [type: gettext/ini] plugins/actions/editcell/editcell.se-plugin.in
 [type: gettext/ini] plugins/actions/errorchecking/errorchecking.se-plugin.in
