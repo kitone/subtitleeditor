@@ -653,6 +653,8 @@ void Document::emit_signal(const std::string &name)
 	se_debug_message(SE_DEBUG_APP, "signal named '%s'", name.c_str());
 
 	m_signal[name].emit();
+
+	DocumentSystem::getInstance().signals_document().emit(this, name);
 }
 
 /*

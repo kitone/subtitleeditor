@@ -8,6 +8,7 @@ FILES = \
 		configurekeyboardshortcuts \
 		dialoguize \
 		documentmanagement \
+		documentsnavigation \
 		duplicatesubtitle \
 		editcell \
 		errorchecking \

@@ -1,3 +1,16 @@
+2011-04-10  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/actions/Makefile.am:
+	* plugins/actions/documentsnavigation/Makefile.am:
+	* plugins/actions/documentsnavigation/documentsnavigation.cc:
+	* plugins/actions/documentsnavigation/documentsnavigation.se-plugin.in:
+	* src/document.cc:
+	* src/documentsystem.cc:
+	* src/documentsystem.h:
+	Fix bug #18010 : Feature request: keyboard shortcut for switching between
+	opened files. New plugin documentsnavigation.
+
 2011-04-02  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/advancedsubstationalpha/Makefile.am:
