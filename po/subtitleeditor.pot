@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-05 10:33+0100\n"
+"POT-Creation-Date: 2011-04-10 14:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -379,6 +379,26 @@ msgstr ""
 #: ../plugins/actions/documentmanagement/documentmanagement.cc:581
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
+msgstr ""
+
+#: ../plugins/actions/documentsnavigation/documentsnavigation.cc:53
+msgid "_Documents"
+msgstr ""
+
+#: ../plugins/actions/documentsnavigation/documentsnavigation.cc:56
+msgid "_First Document"
+msgstr ""
+
+#: ../plugins/actions/documentsnavigation/documentsnavigation.cc:61
+msgid "_Last Document"
+msgstr ""
+
+#: ../plugins/actions/documentsnavigation/documentsnavigation.cc:66
+msgid "_Previous Document"
+msgstr ""
+
+#: ../plugins/actions/documentsnavigation/documentsnavigation.cc:71
+msgid "_Next Document"
 msgstr ""
 
 #: ../plugins/actions/duplicatesubtitle/duplicatesubtitle.cc:56
@@ -2348,6 +2368,31 @@ msgstr ""
 msgid "Save Waveform"
 msgstr ""
 
+#: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:49
+#: ../plugins/subtitleformats/substationalpha/substationalpha.cc:49
+msgid "Soft"
+msgstr ""
+
+#: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:50
+#: ../plugins/subtitleformats/substationalpha/substationalpha.cc:50
+msgid "Hard"
+msgstr ""
+
+#: ../plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:51
+#: ../plugins/subtitleformats/substationalpha/substationalpha.cc:51
+msgid "Intelligent"
+msgstr ""
+
+#: ../plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui.h:1
+#: ../plugins/subtitleformats/substationalpha/dialog-substationalpha-preferences.ui.h:1
+msgid "<b>Line Break Policy</b>"
+msgstr ""
+
+#: ../plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui.h:2
+#: ../plugins/subtitleformats/substationalpha/dialog-substationalpha-preferences.ui.h:2
+msgid "Policy"
+msgstr ""
+
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:71
 #: ../plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:46
@@ -2432,7 +2477,7 @@ msgstr ""
 msgid "An unknown error occurred while opening the file."
 msgstr ""
 
-#: ../src/documentsystem.cc:190
+#: ../src/documentsystem.cc:197
 #, c-format
 msgid "Untitled %d"
 msgstr ""
@@ -3236,6 +3281,15 @@ msgstr ""
 msgid "Manages the document (Open, Save, Save As...)."
 msgstr ""
 
+#: ../plugins/actions/documentsnavigation/documentsnavigation.se-plugin.in.h:1
+msgid "Documents Navigation"
+msgstr ""
+
+#: ../plugins/actions/documentsnavigation/documentsnavigation.se-plugin.in.h:2
+#: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:1
+msgid "FIXME."
+msgstr ""
+
 #: ../plugins/actions/duplicatesubtitle/duplicatesubtitle.se-plugin.in.h:1
 msgid "Duplicate Subtitle"
 msgstr ""
@@ -3396,10 +3450,6 @@ msgstr ""
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:2
 msgid "Use the current player position to set the subtitle time."
-msgstr ""
-
-#: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:1
-msgid "FIXME."
 msgstr ""
 
 #: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:2
