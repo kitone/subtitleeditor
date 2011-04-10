@@ -329,6 +329,7 @@ plugins/actions/command/Makefile
 plugins/actions/configurekeyboardshortcuts/Makefile
 plugins/actions/dialoguize/Makefile
 plugins/actions/documentmanagement/Makefile
+plugins/actions/documentsnavigation/Makefile
 plugins/actions/duplicatesubtitle/Makefile
 plugins/actions/editcell/Makefile
 plugins/actions/errorchecking/Makefile

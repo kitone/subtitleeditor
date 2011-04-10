@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -120,6 +120,13 @@ sigc::signal<void, Document*>& DocumentSystem::signal_current_document_changed()
 	return m_signal_current_document_changed;
 }
 
+/*
+ */
+sigc::signal<void, Document*, const std::string&>& DocumentSystem::signals_document()
+{
+	se_debug(SE_DEBUG_APP);
+	return m_signal_document;
+}
 
 /*
  *
