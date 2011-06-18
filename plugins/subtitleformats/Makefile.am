@@ -5,6 +5,7 @@ FILES = \
 	microdvd \
 	mpl2 \
 	mpsub \
+	sami \
 	sbv \
 	sprucestl \
 	subrip \
