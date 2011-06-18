@@ -95,6 +95,7 @@ plugins/subtitleformats/bitc/bitc.cc
 plugins/subtitleformats/microdvd/microdvd.cc
 plugins/subtitleformats/mpl2/mpl2.cc
 plugins/subtitleformats/mpsub/mpsub.cc
+plugins/subtitleformats/sami/sami.cc
 plugins/subtitleformats/sbv/sbv.cc
 plugins/subtitleformats/sprucestl/sprucestl.cc
 plugins/subtitleformats/subrip/subrip.cc
@@ -299,6 +300,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/subtitleformats/microdvd/microdvd.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpl2/mpl2.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpsub/mpsub.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/sami/sami.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/sbv/sbv.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/subrip/subrip.se-plugin.in
