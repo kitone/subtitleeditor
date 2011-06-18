@@ -1,3 +1,12 @@
+2011-06-18  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/sami/Makefile.am:
+	* plugins/subtitleformats/sami/sami.cc:
+	* plugins/subtitleformats/sami/sami.se-plugin.in:
+	Introduce new subtitle format SAMI. Patch by Dongsu Park <advance38 at gmail dot com>
+
 2011-04-10  kitone  <kitone@gna.org>
 
 	* configure.in:
