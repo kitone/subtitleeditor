@@ -1,5 +1,11 @@
 2011-06-18  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.39.0 release.
+
+2011-06-18  kitone  <kitone@gna.org>
+
 	* configure.in:
 	* plugins/subtitleformats/Makefile.am:
 	* plugins/subtitleformats/sami/Makefile.am:

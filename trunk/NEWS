@@ -1,3 +1,13 @@
+2011-06-18 - 0.39.0
+
+	* New subtitle format SAMI (Patch by Dongsu Park)
+	* Fix bug #18010 : Feature request: keyboard shortcut for switching between	opened files. New plugin documentsnavigation.
+	* Fix bug #17821 : Using capital N for linebreaks in ASS format.
+	* Fix bug #17828 : Feature request: Create subtitles automatically according to keyframes.
+	* Fix bug #17686 : CPS error detection, display CPS with colors.
+	* Fix bug #17686 : set_subtitle_end_and_start (original patch by Tomas Partl <eltomito>)
+	* Fix bug #17648 : Add new command to plugin TimingFromPlayer (original patch by Victor Cighir)
+
 2011-01-10 - 0.38.0
 
 	* Fix sort subtitles, speed improvements.

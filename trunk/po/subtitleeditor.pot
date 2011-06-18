@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-10 14:04+0200\n"
+"POT-Creation-Date: 2011-06-18 15:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3527,6 +3527,14 @@ msgstr ""
 
 #: ../plugins/subtitleformats/mpsub/mpsub.se-plugin.in.h:2
 msgid "MPsub subtitles support."
+msgstr ""
+
+#: ../plugins/subtitleformats/sami/sami.se-plugin.in.h:1
+msgid "Sami"
+msgstr ""
+
+#: ../plugins/subtitleformats/sami/sami.se-plugin.in.h:2
+msgid "Sami subtitles support."
 msgstr ""
 
 #: ../plugins/subtitleformats/sbv/sbv.se-plugin.in.h:1
