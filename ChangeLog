@@ -1,5 +1,10 @@
 2011-09-03  kitone  <kitone@gna.org>
 
+	* plugins/subtitleformats/subrip/subrip.cc:
+	Fix bug #18381 : Fails to open srt file with co-ordinates in the first subtitle.
+
+2011-09-03  kitone  <kitone@gna.org>
+
 	* share/subtitleeditor.desktop.in:
 	Fix bug #18449 : Encoding key is deprecated in share/subtitleeditor.desktop.in
 
