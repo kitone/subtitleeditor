@@ -146,8 +146,10 @@ public:
 
 		info.pattern = 
 			"\\d\\R"
-			"\\d+:\\d+:\\d+,\\d+\\s-->\\s\\d+:\\d+:\\d+,\\d+\\R";
-		
+			"\\d+:\\d+:\\d+,\\d+\\s-->\\s\\d+:\\d+:\\d+,\\d+"
+			"(\\sX1:\\d+ X2:\\d+ Y1:\\d+ Y2:\\d+)?\\s*" // Be cool with coordinates, this is not documented
+			"\\R";
+
 		return info;
 	}
 
