@@ -1,6 +1,11 @@
 2011-09-03  kitone  <kitone@gna.org>
 
 	* share/subtitleeditor.desktop.in:
+	Fix bug #18449 : Encoding key is deprecated in share/subtitleeditor.desktop.in
+
+2011-09-03  kitone  <kitone@gna.org>
+
+	* share/subtitleeditor.desktop.in:
 	Fix bug #18448 : Subtitleeditor should not handle MIME-Type "text/plain".
 
 2011-07-02  kitone  <kitone@gna.org>
