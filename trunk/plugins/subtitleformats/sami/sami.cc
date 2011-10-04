@@ -28,6 +28,7 @@
 
 const static int MAXBUF = 1024;
 const static char STARTATT[] = "start=";
+const static char SYNCTAG[] = "<Sync";
 const static char BRTAG[] = "<br>";
 const static char CRCHAR = '\r';
 const static char LFCHAR = '\n';
@@ -216,16 +217,16 @@ public:
 				}
 				else if (*inptr == CRCHAR)
 					inptr++;
-				else if (strncasecmp (inptr, BRTAG, 4) == 0 || *inptr == LFCHAR)
+				else if (strncasecmp (inptr, BRTAG, sizeof(BRTAG)-1) == 0 || *inptr == LFCHAR)
 				{
 					*p++ = LFCHAR;
 					trail_space(inptr);
 					if (*inptr == LFCHAR)
 						inptr++;
 					else
-						inptr += 4;
+						inptr += (sizeof(BRTAG) - 1);
 				}
-				else if (*inptr == '<')
+				else if (strncasecmp (inptr, SYNCTAG, sizeof(SYNCTAG)-1) == 0)
 					state = SAMI_STATE_SYNC_END;
 				else
 					*p++ = *inptr++;

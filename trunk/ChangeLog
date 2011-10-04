@@ -1,3 +1,9 @@
+2011-10-04  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/sami/Makefile.am:
+	* plugins/subtitleformats/sami/sami.cc:
+	Fix bug #18697 : Cannot parse <font> tags in sami subtitles. Patch by Dongsu Park <advance38 at gmail dot com>
+
 2011-09-03  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/subrip/subrip.cc:
