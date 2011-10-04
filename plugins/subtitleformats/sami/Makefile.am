@@ -7,6 +7,7 @@ pluginlib_LTLIBRARIES = \
 libsami_la_CXXFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src \
+	-fpermissive \
 	$(SUBTITLEEDITOR_CFLAGS)
 
 libsami_la_SOURCES = \
