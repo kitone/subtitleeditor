@@ -1,3 +1,10 @@
+2011-10-13  kitone  <kitone@gna.org>
+
+	* LINGUAS:
+	* subtitleeditor.pot:
+	* zh_TW.po:
+	Add Chinese Traditional translation by Wei-Lun Chao.
+
 2011-06-18  kitone  <kitone@gna.org>
 
 	* POTFILES.in:
