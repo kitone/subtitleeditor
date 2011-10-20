@@ -1,5 +1,10 @@
 2011-10-20  kitone  <kitone@gna.org>
 
+	* plugins/actions/documentsnavigation/documentsnavigation.cc:
+	Failed to compile.
+
+2011-10-20  kitone  <kitone@gna.org>
+
 	* plugins/actions/movesubtitles/dialog-move-subtitles.ui:
 	* plugins/actions/textcorrection/assistant-text-correction.ui:
 	* plugins/actions/textcorrection/patternspage.h:
