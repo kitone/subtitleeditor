@@ -17,7 +17,6 @@
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -121,7 +120,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text">If the option is activated, only the selected subtitles are moved. Without this option, it starts from the first selected subtitle until the last subtitle of the document without taking into account the selection.</property>
+                            <property name="tooltip_text" translatable="yes">If the option is activated, only the selected subtitles are moved. Without this option, it starts from the first selected subtitle until the last subtitle of the document without taking into account the selection.</property>
                             <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
