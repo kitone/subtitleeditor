@@ -62,7 +62,7 @@
       </object>
       <packing>
         <property name="page_type">intro</property>
-        <property name="title">Select Task</property>
+        <property name="title" translatable="yes">Select Task</property>
       </packing>
     </child>
     <child>

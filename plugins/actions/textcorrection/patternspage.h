@@ -384,7 +384,7 @@ public:
 			Gtk::TreeIter iter = m_liststore->append();
 			(*iter)[m_column.name] = (*it)->get_name();
 			(*iter)[m_column.enabled] = (*it)->is_enable();
-			(*iter)[m_column.label] = Glib::ustring::compose("<b>%1</b>\n%2", (*it)->get_label(), (*it)->get_description());
+			(*iter)[m_column.label] = build_message("<b>%s</b>\n%s", _((*it)->get_label().c_str()), _((*it)->get_description().c_str()));
 		}
 	}
 

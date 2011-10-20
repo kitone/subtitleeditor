@@ -1,3 +1,10 @@
+2011-10-20  kitone  <kitone@gna.org>
+
+	* plugins/actions/movesubtitles/dialog-move-subtitles.ui:
+	* plugins/actions/textcorrection/assistant-text-correction.ui:
+	* plugins/actions/textcorrection/patternspage.h:
+	Fix untranslated text.
+
 2011-10-04  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/sami/Makefile.am:
