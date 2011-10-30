@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2010, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -178,8 +178,9 @@ public:
 
 	/*
 	 * Return the framerate of the video.
+	 * Update numerator and denominator if the values are not null.
 	 */
-	virtual float get_framerate() = 0;
+	virtual float get_framerate(int *numerator = NULL, int *denominator = NULL) = 0;
 
 	/*
 	 */

@@ -1,3 +1,13 @@
+2011-10-30  kitone  <kitone@gna.org>
+
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	Add the ability to skip frame by frame. (Lilian request)
+
+	* src/player.h:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	Return framerate (fraction) in separate values.
+
 2011-10-20  kitone  <kitone@gna.org>
 
 	* plugins/actions/documentsnavigation/documentsnavigation.cc:

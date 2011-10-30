@@ -1191,8 +1191,9 @@ gint GstPlayer::get_current_audio()
 
 /*
  * Return the framerate of the video or zero (0).
+ * Update numerator and denominator if the values are not null.
  */
-float GstPlayer::get_framerate()
+float GstPlayer::get_framerate(int *numerator, int *denominator)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -1218,7 +1219,12 @@ float GstPlayer::get_framerate()
 	Gst::Fraction fps(gst_value);
 	float framerate = (float)fps.num / (float)fps.denom;
 
-	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "framerate: %f", framerate);
+	if(numerator != NULL)
+		*numerator = fps.num;
+	if(denominator != NULL)
+		*denominator = fps.denom;
+
+	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "framerate: %f (num: %i, denom: %i)", framerate, fps.num, fps.denom);
 
 	return framerate;
 }
