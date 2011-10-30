@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -108,6 +108,14 @@ public:
 
 		action_group->add(
 				Gtk::Action::create(
+					"video-player/skip-backwards-frame", 
+					Gtk::Stock::MEDIA_REWIND,
+					_("Frame"), 
+					_("Frame skip backwards")),
+					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), FRAME));
+
+		action_group->add(
+				Gtk::Action::create(
 					"video-player/skip-backwards-very-short", 
 					Gtk::Stock::MEDIA_REWIND,
 					_("Very Short"), 
@@ -144,6 +152,14 @@ public:
 					"video-player/menu-skip-forward", 
 					Gtk::Stock::MEDIA_FORWARD,
 					_("Skip _Forward")));
+
+		action_group->add(
+				Gtk::Action::create(
+					"video-player/skip-forward-frame", 
+					Gtk::Stock::MEDIA_FORWARD,
+					_("Frame"), 
+					_("Frame skip forward")), 
+					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), FRAME));
 
 		action_group->add(
 				Gtk::Action::create(
@@ -316,12 +332,14 @@ public:
 			"					<menuitem action='video-player/play-pause'/>"
 			"					<separator/>"
 			"					<menu action='video-player/menu-skip-forward'>"
+			"						<menuitem action='video-player/skip-forward-frame'/>"
 			"						<menuitem action='video-player/skip-forward-very-short'/>"
 			"						<menuitem action='video-player/skip-forward-short'/>"
 			"						<menuitem action='video-player/skip-forward-medium'/>"
 			"						<menuitem action='video-player/skip-forward-long'/>"
 			"					</menu>"
 			"					<menu action='video-player/menu-skip-backwards'>"
+			"						<menuitem action='video-player/skip-backwards-frame'/>"
 			"						<menuitem action='video-player/skip-backwards-very-short'/>"
 			"						<menuitem action='video-player/skip-backwards-short'/>"
 			"						<menuitem action='video-player/skip-backwards-medium'/>"
@@ -400,11 +418,13 @@ public:
 		SET_SENSITIVE("video-player/rate-faster", has_media);
 		SET_SENSITIVE("video-player/rate-normal", has_media);
 
+		SET_SENSITIVE("video-player/skip-forward-frame", has_media);
 		SET_SENSITIVE("video-player/skip-forward-very-short", has_media);
 		SET_SENSITIVE("video-player/skip-forward-short", has_media);
 		SET_SENSITIVE("video-player/skip-forward-medium", has_media);
 		SET_SENSITIVE("video-player/skip-forward-long", has_media);
 
+		SET_SENSITIVE("video-player/skip-backwards-frame", has_media);
 		SET_SENSITIVE("video-player/skip-backwards-very-short", has_media);
 		SET_SENSITIVE("video-player/skip-backwards-short", has_media);
 		SET_SENSITIVE("video-player/skip-backwards-medium", has_media);
@@ -691,6 +711,7 @@ protected:
 	 */
 	enum SkipType
 	{
+		FRAME,
 		VERY_SHORT,
 		SHORT,
 		MEDIUM,
@@ -698,28 +719,34 @@ protected:
 	};
 
 	/*
+	 */
+	long get_skip_as_msec(SkipType skip)
+	{
+		if(skip == FRAME)
+		{
+			int numerator = 0, denominator = 0;
+			if(player()->get_framerate(&numerator, &denominator) > 0)
+				return denominator * 1000 / numerator;
+		}
+		else if(skip == VERY_SHORT)
+			return get_config().get_value_int("video-player", "skip-very-short") * 1000;
+		else if(skip == SHORT)
+			return get_config().get_value_int("video-player", "skip-short") * 1000;
+		else if(skip == MEDIUM)
+			return get_config().get_value_int("video-player", "skip-medium") * 1000;
+		else if(skip == LONG)
+			return get_config().get_value_int("video-player", "skip-long") * 1000;
+		return 0;
+	}
+
+	/*
 	 * Make a skip backwards depending on the type.
 	 */
 	void on_skip_backwards(SkipType skip)
 	{
-		int value = 0;
+		long newpos = player()->get_position() - get_skip_as_msec(skip);
 
-		Glib::ustring key;
-
-		if(skip == VERY_SHORT)
-			key = "skip-very-short";
-		else if(skip == SHORT)
-			key = "skip-short";
-		else if(skip == MEDIUM)
-			key = "skip-medium";
-		else if(skip == LONG)
-			key = "skip-long";
-
-		value = get_config().get_value_int("video-player", key);
-
-		long newpos = player()->get_position() - SubtitleTime(0, 0, value, 0).totalmsecs;
-
-		player()->seek(newpos); // FIXME faster = true
+		player()->seek(newpos);
 	}
 
 	/*
@@ -727,24 +754,9 @@ protected:
 	 */
 	void on_skip_forward(SkipType skip)
 	{
-		int value = 0;
+		long newpos = player()->get_position() + get_skip_as_msec(skip);
 
-		Glib::ustring key;
-
-		if(skip == VERY_SHORT)
-			key = "skip-very-short";
-		else if(skip == SHORT)
-			key = "skip-short";
-		else if(skip == MEDIUM)
-			key = "skip-medium";
-		else if(skip == LONG)
-			key = "skip-long";
-
-		value = get_config().get_value_int("video-player", key);
-
-		long newpos = player()->get_position() + SubtitleTime(0, 0, value, 0).totalmsecs;
-
-		player()->seek(newpos); // FIXME faster = true
+		player()->seek(newpos);
 	}
 
 	/*
