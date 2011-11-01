@@ -2,6 +2,7 @@ FILES = \
 	adobeencoredvd \
 	advancedsubstationalpha \
 	bitc \
+	dcsubtitle \
 	microdvd \
 	mpl2 \
 	mpsub \

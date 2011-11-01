@@ -1,3 +1,12 @@
+2011-11-01  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/dcsubtitle/Makefile.am:
+	* plugins/subtitleformats/dcsubtitle/dcsubtitle.cc:
+	* plugins/subtitleformats/dcsubtitle/dcsubtitle.se-plugin.in:
+	Introduce new subtitleformat 'dcsubtitle' - DLP Cinema Subtitle.
+
 2011-10-30  kitone  <kitone@gna.org>
 
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
