@@ -320,7 +320,17 @@ public:
 		else if(value < mincps)
 			property_foreground() = "blue";
 		else
-			property_foreground() = "black";
+		{
+			if(flags & Gtk::CELL_RENDERER_SELECTED)
+				property_foreground() = "white";
+			else
+				property_foreground() = "black";
+		}
+
+		// Remove the flag to avoid conflict with selected color
+		// FIXME do this with a better way...
+		if(flags & Gtk::CELL_RENDERER_SELECTED)
+			flags &= ~Gtk::CELL_RENDERER_SELECTED;
 
 		Gtk::CellRendererText::render_vfunc(window, widget, bg_area, cell_area, expose_area, flags);
 	}
