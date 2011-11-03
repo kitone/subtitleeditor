@@ -165,7 +165,7 @@ protected:
 	 */
 	double get_value(ComboBoxEntryText *combo)
 	{
-		Glib::ustring text = combo->get_active_text();
+		Glib::ustring text = combo->get_entry()->get_text();
 		
 		double value = 0;
 
