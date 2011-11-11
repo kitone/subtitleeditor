@@ -788,11 +788,13 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev)
 	// the time of the mouse in the area
 	SubtitleTime time(renderer()->get_mouse_time((gint)ev->x));
 
+	// If the button 2 is pressed without other keys, we only move to the current position
+	// With CONTROL, we move and play
 	if(ev->button == 2 && !(ev->state & Gdk::CONTROL_MASK) && player())
 	{
 		player()->seek(time.totalmsecs);
 
-		if(player()->is_playing() == false)
+		if(player()->is_playing() == false && (ev->state & Gdk::SHIFT_MASK))
 			player()->play();
 		return true;
 	}
@@ -800,6 +802,7 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev)
 	if(!has_document())
 		return true;
 
+	// button 2 with CONTROL select subtitle
 	// try to select subtitle
 	if(ev->button == 2 && ev->state & Gdk::CONTROL_MASK)
 	{
