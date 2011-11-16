@@ -6,17 +6,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: subtitleeditor\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-08 14:06+0200\n"
-"PO-Revision-Date: 2009-08-08 06:19+0000\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-07-03 09:22+0200\n"
+"PO-Revision-Date: 2011-11-14 22:08+0000\n"
 "Last-Translator: Patrick (Petriko) Oudejans <Unknown>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-08-08 10:08+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-11-14 22:16+0000\n"
+"X-Generator: Launchpad (build 14277)\n"
 
 #. comments
 #: ../plugins/actions/about/about.cc:97
@@ -28,6 +28,8 @@ msgstr "ilo por modifi subtekstojn"
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
+"  Kristjan SCHMIDT https://launchpad.net/~kristjan-eo\n"
+"  Michael Moroni https://launchpad.net/~airon90\n"
 "  Patrick (Petriko) Oudejans https://launchpad.net/~patrickoudejans"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:57
@@ -55,7 +57,7 @@ msgstr "Adoni 100 milisekundojn al la daŭro por ĉiuj elektitaj subtekstoj"
 #: ../plugins/actions/adjusttime/adjusttime.cc:68
 #: ../plugins/actions/adjusttime/adjusttime.cc:84
 msgid "To Start And Duration"
-msgstr "Al starto kaj daŭro"
+msgstr "Al starto kaj fino"
 
 #: ../plugins/actions/adjusttime/adjusttime.cc:68
 msgid "Add 100 Milliseconds to all subtitles selected"
@@ -117,7 +119,7 @@ msgid "Convert framerate"
 msgstr "Konverti la filmerrapidon"
 
 #: ../plugins/actions/changeframerate/changeframerate.cc:305
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:4
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:4
 #: ../plugins/actions/changeframerate/changeframerate.se-plugin.in.h:1
 msgid "Change Framerate"
 msgstr "Ŝanĝi la filmerrapidon"
@@ -127,30 +129,31 @@ msgstr "Ŝanĝi la filmerrapidon"
 msgid "The new framerate was applied. (%s to %s)"
 msgstr "La nova filmerrapido aplikiĝis. (%s al %s)"
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:1
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:1
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:1
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:1
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:1
 msgid "<b>Apply to</b>"
 msgstr "<b>Apliki al</b>"
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:2
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:2
 msgid "<b>Framerate</b>"
 msgstr "<b>Filmerrapido</b>"
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:3
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:3
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:3
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:3
 msgid "All documents"
 msgstr "Ĉiuj dokumentoj"
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:5
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:5
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:5
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:5
 msgid "Current document"
 msgstr "Aktuala dokumento"
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:6
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:6
 msgid "Current:"
 msgstr "Nuna:"
 
-#: ../plugins/actions/changeframerate/dialog-change-framerate.glade.h:7
+#: ../plugins/actions/changeframerate/dialog-change-framerate.ui.h:7
 msgid "New:"
 msgstr "Nova:"
 
@@ -162,12 +165,11 @@ msgstr "_Kombini"
 msgid "Merge the selected subtitles"
 msgstr "Kunfandi la elektitajn subtekstojn"
 
-#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:168
-#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:105
+#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:160
 msgid "Please select at least two subtitles."
 msgstr "Elektu almenaŭ du subtekstojn."
 
-#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:172
+#: ../plugins/actions/combinesubtitles/combinesubtitles.cc:164
 msgid "Combine subtitles"
 msgstr "Kombini subtekstojn"
 
@@ -185,9 +187,9 @@ msgid "Undo: %s"
 msgstr "Malfari: %s"
 
 #: ../plugins/actions/command/command.cc:175
-#, fuzzy, c-format
+#, c-format
 msgid "Redo: %s"
-msgstr "refari: %s"
+msgstr "Refari: %s"
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:93
 msgid "Actions"
@@ -195,15 +197,15 @@ msgstr "Agoj"
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:115
 msgid "Shortcut"
-msgstr "Fulmoklavo"
+msgstr "Klavkombino"
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:322
 msgid "Invalid shortcut."
-msgstr "Nevalida fulmoklavo"
+msgstr "Nevalida klavkombino."
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:339
 msgid "Shortcut \"%1\" is already taken by \"%2\"."
-msgstr "Fulmoklavo \"%1\" jam okupiĝis de \"%2\"."
+msgstr "Klavkombino \"%1\" jam estas okupita de \"%2\"."
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:343
 msgid "Reassigning the shortcut will cause it to be removed from \"%1\"."
@@ -223,14 +225,14 @@ msgstr "Fiaskis forigi la fulmoklavon."
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:437
 msgid "Configure _Keyboard Shortcuts"
-msgstr "Agordi _klavarajn fulmoklavojn"
+msgstr "Agordi _fulmoklavojn"
 
 #: ../plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:437
-#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.glade.h:1
+#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui.h:1
 msgid "Configure Keyboard Shortcuts"
 msgstr "Agordi klavarajn fulmoklavojn"
 
-#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.glade.h:2
+#: ../plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui.h:2
 msgid ""
 "To edit a shortcut key, click on the corresponding row and type a new "
 "accelerator, or press backspace to clear."
@@ -273,90 +275,106 @@ msgid "Open a file"
 msgstr "Malfermi dosieron"
 
 #: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+msgid "Open Project"
+msgstr "Malfermi projekton"
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:97
+msgid "Open a Subtitle Editor Project"
+msgstr "Malfermi Subtekstredaktilan projekton"
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:104
 msgid "Save the current file"
-msgstr "Konservi aktualan dosieron"
+msgstr "Konservi la aktualan dosieron"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:101
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
+msgid "Save Project"
+msgstr "Konservi la projekton"
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:108
+msgid "Save the current file as Subtitle Editor Project"
+msgstr "Konservi la nunan dosieron kiel Subtekstredaktilan projekton"
+
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:115
 msgid "Save the current file with a different name"
-msgstr "Konservi aktualan dosieron kun malsama nomo"
+msgstr "Konservi la aktualan dosieron kun alia nomo"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:105
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
 msgid "Save _All"
 msgstr "Konservi _ĉiujn"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:105
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:119
 msgid "Save all open files"
 msgstr "Konservi ĉiujn malfermitajn dosierojn"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:110
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Open _Translation"
 msgstr "Malfermi _tradukon"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:110
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:124
 msgid "Open translation from file"
 msgstr "Malfermi tradukon el dosiero"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:114
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
 msgid "Save Trans_lation"
 msgstr "Konservi trad_ukon"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:114
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:128
 msgid "Save translation to file"
 msgstr "Savi tradukon al dosiero"
 
 #. recent files
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:118
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:132
 msgid "Open _Recent"
-msgstr "Malfermi _Lastatempan"
+msgstr "Malfermi _lastatempan"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:137
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:151
 msgid "Close the current file"
 msgstr "Fermi la aktualan dosieron"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:142
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
 msgid "E_xit"
-msgstr "_Eliri"
+msgstr "E_liri"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:142
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:156
 msgid "Quit the program"
-msgstr "Forlasi la programon"
+msgstr "Ĉesi la programon"
 
 #. DocumentSystem::getInstance().setCurrentDocument(already);
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:288
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:324
 msgid "I am already open"
 msgstr "Ĝi jam malfermas"
 
 #. "Saving file FILENAME (FORMAT, CHARSET, NEWLINE)."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:322
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:380
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:359
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:418
 #, c-format
 msgid "Saving file %s (%s, %s, %s)."
 msgstr "Konservas dosieron %s (%s, %s, %s)"
 
 #. "The file FILENAME (FORMAT, CHARSET, NEWLINE) has not been saved."
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:330
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:388
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:367
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:426
 #, c-format
 msgid "The file %s (%s, %s, %s) has not been saved."
 msgstr "La dosiero %s (%s, %s, %s) ne konserviĝis."
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:471
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:523
 msgid "Open translation"
 msgstr "Malfermi tradukon"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:499
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:551
 #, c-format
 msgid "1 subtitle was added with the translation"
 msgid_plural "%d subtitles were added with the translation"
 msgstr[0] "1 subteksto aldoniĝis al la traduko"
 msgstr[1] "%d subtekstoj aldoniĝis al la traduko"
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:560
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:617
 #, c-format
 msgid "Saving translation file %s (%s, %s, %s)."
 msgstr "Konservas tradukdosieron %s (%s, %s, %s)."
 
-#: ../plugins/actions/documentmanagement/documentmanagement.cc:563
+#: ../plugins/actions/documentmanagement/documentmanagement.cc:620
 #, c-format
 msgid "The translation file %s (%s, %s, %s) has not been saved."
 msgstr "La tradukdosiero %s (%s, %s, %s) ne konserviĝis."
@@ -389,62 +407,62 @@ msgstr "Redakti _sekvan ĉelon"
 msgid "Start the editing of the next cell"
 msgstr "Ekredakti la sekvan ĉelon"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking.glade.h:1
-#: ../plugins/actions/errorchecking/errorchecking.se-plugin.in.h:2
-msgid "Error Checking"
-msgstr "Kontroli por eraroj"
-
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:1
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:1
 msgid "<b>Error Checking</b>"
 msgstr "<b>Kontroli al eraroj</b>"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:2
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:8
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:2
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:8
 msgid "<b>Timing Preferences</b>"
 msgstr "<b>Tempomezuradaj agordoj</b>"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:3
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:3
 msgid "Checking"
-msgstr "Kontrolas"
+msgstr "Kontrolante"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:4
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:4
 msgid "Error Checking Preferences"
 msgstr "Agordoj por kontroli al eraroj"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:5
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:26
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:5
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:26
 msgid "Maximum characters per line:"
 msgstr "Maksimumaj signoj por linio:"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:6
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:27
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:6
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:27
 msgid "Maximum characters per second:"
 msgstr "Maksimumaj signoj por sekundo:"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:7
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:7
 msgid "Maximum number of lines per subtitle:"
 msgstr "Maksimuma nombro da linioj por subteksto:"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:8
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:29
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:8
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:29
 msgid "Minimum characters per second:"
 msgstr "Minimumaj signoj por sekundo:"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:9
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:30
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:9
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:30
 msgid "Minimum display of the subtitle in mseconds:"
 msgstr "Minimuma montro de la subteksto en milisekundoj:"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:10
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:31
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:10
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:31
 msgid "Minimum gap between subtitles in mseconds:"
 msgstr "Minimuma breĉo inter subtekstoj en milisekundoj:"
 
-#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.glade.h:11
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:40
+#: ../plugins/actions/errorchecking/dialog-error-checking-preferences.ui.h:11
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:40
 #: ../plugins/actions/viewmanager/viewmanager.cc:407
 msgid "Timing"
 msgstr "Tempomezurado"
+
+#: ../plugins/actions/errorchecking/dialog-error-checking.ui.h:1
+#: ../plugins/actions/errorchecking/errorchecking.se-plugin.in.h:2
+msgid "Error Checking"
+msgstr "Kontroli por eraroj"
 
 #. File
 #: ../plugins/actions/errorchecking/errorcheckingplugin.cc:221
@@ -666,34 +684,34 @@ msgstr ""
 msgid "Extend lenght"
 msgstr "Etendi daŭrojn"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:1
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:1
 msgid "<b>Command</b>"
 msgstr "<b>Komando</b>"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:2
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:2
 msgid "<span size=\"small\">the path to the subtitle file</span>"
 msgstr "<span size=\"small\">la vojo al la subtekstdosiero</span>"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:3
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:3
 msgid "<span size=\"small\">the path to the video file</span>"
 msgstr "<span size=\"small\">la vojo al la videodosiero</span>"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:4
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:4
 msgid ""
 "<span size=\"small\">the time in seconds to the current selected line</span>"
 msgstr ""
 "<span size=\"small\">la tempo en sekundoj al la aktuale elektita linio</span>"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:5
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:5
 msgid "<span size=\"small\">the uri to the subtitle file</span>"
 msgstr "<span size=\"small\">la uri al la subtekstdosiero</span>"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:6
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:6
 msgid "<span size=\"small\">the uri to the video file</span>"
 msgstr "<span size=\"small\">la uri al la videodosiero</span>"
 
 #. TRANSLATORS: Do not translate replaceable tokens #xxx.
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:8
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:8
 msgid ""
 "Example with mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
@@ -701,12 +719,12 @@ msgstr ""
 "Ekzemplo kun mplayer:\n"
 "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:10
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:10
 #: ../plugins/actions/externalvideoplayer/externalvideoplayer.se-plugin.in.h:1
 msgid "External Video Player"
 msgstr "Ekstera videoludilo"
 
-#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.glade.h:11
+#: ../plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui.h:11
 msgid ""
 "The following command parameters will be substituted when launching the "
 "action :"
@@ -755,108 +773,107 @@ msgstr ""
 "\n"
 "Komando: <i>%s</i>"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:2
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:1
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:2
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:1
 msgid "<b>Columns</b>"
 msgstr "<b>Kolumnoj</b>"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:4
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:4
 msgid "Column:"
-msgstr ""
+msgstr "Kolumno:"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:6
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:6
 #: ../plugins/actions/findandreplace/findandreplace.se-plugin.in.h:1
 msgid "Find And Replace"
 msgstr "Trovi kaj anstataŭigi"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:7
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:7
 msgid "Pattern:"
 msgstr "Ŝablono:"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:8
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:8
 msgid "Replace _All"
 msgstr "Anstataŭigi _ĉiujn"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:9
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:3
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:9
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:3
 msgid "Replace with:"
 msgstr "Anstataŭigi per:"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:10
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:10
 msgid "Search"
-msgstr ""
+msgstr "Serĉi"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:11
-#, fuzzy
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:11
 msgid "Target"
-msgstr "Teksto"
+msgstr "Celo"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:12
-#: ../plugins/actions/findandreplace/findandreplace.cc:611
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:12
+#: ../plugins/actions/findandreplace/findandreplace.cc:622
 #: ../src/subtitleview.cc:1464
 msgid "Text"
 msgstr "Teksto"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:13
-#: ../plugins/actions/findandreplace/findandreplace.cc:613
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:13
+#: ../plugins/actions/findandreplace/findandreplace.cc:624
 #: ../plugins/actions/viewmanager/viewmanager.cc:406
 #: ../src/subtitleview.cc:1465
 msgid "Translation"
 msgstr "Traduko"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:14
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:14
 msgid "_Ignore case"
 msgstr "_Malatenti usklecon"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:15
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:7
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:15
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:7
 msgid "_Replace"
 msgstr "_Anstataŭigi"
 
-#: ../plugins/actions/findandreplace/dialog-find-and-replace.glade.h:16
+#: ../plugins/actions/findandreplace/dialog-find-and-replace.ui.h:16
 msgid "_Use regular expression"
 msgstr "_Uzi regulan esprimon"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:207
+#: ../plugins/actions/findandreplace/findandreplace.cc:215
 msgid "Replace text"
 msgstr "Anstataŭigi tekston"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:579
-#: ../plugins/actions/findandreplace/findandreplace.cc:995
+#: ../plugins/actions/findandreplace/findandreplace.cc:590
+#: ../plugins/actions/findandreplace/findandreplace.cc:1007
 msgid "The document is empty"
 msgstr "La dokumento estas malplena"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:879
+#: ../plugins/actions/findandreplace/findandreplace.cc:891
 msgid "_Find And Replace"
 msgstr "_Serĉi kaj anstataŭigi"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:879
+#: ../plugins/actions/findandreplace/findandreplace.cc:891
 msgid "Search and replace text"
 msgstr "Teksto por trovi kaj anstataŭigi"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:883
+#: ../plugins/actions/findandreplace/findandreplace.cc:895
 msgid "Find Ne_xt"
 msgstr "Serĉi se_kvan"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:883
+#: ../plugins/actions/findandreplace/findandreplace.cc:895
 msgid "Search forwards for the same text"
 msgstr "Serĉi antaŭen la saman tekston"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:886
+#: ../plugins/actions/findandreplace/findandreplace.cc:898
 msgid "Find Pre_vious"
 msgstr "Serĉi _malantaŭen"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:886
+#: ../plugins/actions/findandreplace/findandreplace.cc:898
 msgid "Search backwards for the same text"
 msgstr "Serĉi malantaŭen la saman tekston"
 
-#: ../plugins/actions/findandreplace/findandreplace.cc:1043
+#: ../plugins/actions/findandreplace/findandreplace.cc:1055
 msgid "Not found"
 msgstr "Netrovita"
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:53
 msgid "Insert _Before"
-msgstr "Enmeti _Antaŭe"
+msgstr "Enmeti _antaŭe"
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:53
 msgid "Insert blank subtitle before the selected subtitle"
@@ -864,7 +881,7 @@ msgstr "Enmeti malplenan subtekston antaŭ la elektita subteksto"
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:57
 msgid "Insert _After"
-msgstr "Enmeti _Poste"
+msgstr "Enmeti _poste"
 
 #: ../plugins/actions/insertsubtitle/insertsubtitle.cc:57
 msgid "Insert blank subtitle after the selected subtitle"
@@ -903,6 +920,122 @@ msgid_plural "%d subtitles have been added at this document."
 msgstr[0] "1 subteksto aldoniĝis al ĉi tiu dokumento."
 msgstr[1] "%d subtekstoj aldoniĝis al ĉi tiu dokumento."
 
+#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:40
+msgid "Generate Keyframes"
+msgstr "Generi ĉefkadrojn"
+
+#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:46
+#: ../plugins/actions/keyframesmanagement/keyframesgenerator.cc:140
+#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:48
+msgid "Waiting..."
+msgstr "Atendas..."
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:71
+msgid "Open Keyframes"
+msgstr "Malfermi ĉefkadrojn"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:72
+msgid "Open keyframes from a file"
+msgstr "Malfermi ĉefkadrojn el dosiero"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:80
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:269
+msgid "Save Keyframes"
+msgstr "Konservi ĉefkadrojn"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:81
+msgid "Save keyframes to the file"
+msgstr "Konservi ĉefkadrojn al la dosiero"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:89
+msgid "Generate Keyframes From Video"
+msgstr "Generi ĉefkadrojn el video"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:90
+msgid "Generate keyframes from the current video"
+msgstr "Generi ĉefkadrojn el la nuna video"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:97
+msgid "Close the keyframes"
+msgstr "Fermi la ĉefkadrojn"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:98
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:107
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:115
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:123
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:131
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:139
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:147
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:56
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:60
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:67
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:70
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:74
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:78
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:82
+#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:86
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:94
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:98
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:102
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:106
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:111
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:118
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:125
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.se-plugin.in.h:1
+#: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:1
+msgid "FIXME"
+msgstr "RIPARUMIN"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:106
+msgid "Seek To Previous Keyframe"
+msgstr "Iri al antaŭa ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:114
+msgid "Seek To Next Keyframe"
+msgstr "Iri al sekva ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:122
+msgid "Snap Start To Previous Keyframe"
+msgstr "Ligi starton al antaŭa ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:130
+msgid "Snap Start To Next Keyframe"
+msgstr "Ligi starton al sekva ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:138
+msgid "Snap End To Previous Keyframe"
+msgstr "Ligi finon al antaŭa ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:146
+msgid "Snap End To Next Keyframe"
+msgstr "Ligi finon al sekva ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:426
+msgid "Snap Start to Keyframe"
+msgstr "Ligi starton al ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.cc:448
+msgid "Snap End to Keyframe"
+msgstr "Ligi finon al ĉefkadro"
+
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:214
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:227
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:214
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:227
+msgid "Media file could not be played.\n"
+msgstr "Aŭdvida dosiero ne povis ludiĝi.\n"
+
+#: ../plugins/actions/keyframesmanagement/mediadecoder.h:383
+#: ../plugins/actions/wavefrommanagement/mediadecoder.h:383
+#: ../src/gstreamer_utility.cc:63
+msgid ""
+"GStreamer plugins missing.\n"
+"The playback of this movie requires the following decoders which are not "
+"installed:"
+msgstr ""
+"Mankas kromprogramoj por GStreamer.\n"
+"Por reprodukti la filmon, ĝi bezonas la sekvajn neinstalitajn malkodilojn:"
+
 #: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc:56
 msgid "_Move After Preceding"
 msgstr "_Movi ĝis tuj post antaŭa"
@@ -919,38 +1052,37 @@ msgstr ""
 msgid "Move After Preceding"
 msgstr "Movi ĝis tuj post antaŭa"
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:1
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:1
 msgid "<b>Position</b>"
 msgstr "<b>Pozicio</b>"
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:2
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:2
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:198
 #: ../plugins/actions/movesubtitles/movesubtitles.se-plugin.in.h:1
 msgid "Move Subtitles"
 msgstr "Movi subtekstojn"
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:3
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:6
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:3
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:8
 msgid "_New Start:"
 msgstr "_Nova starto:"
 
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:4
-#, fuzzy
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:4
 msgid "_Only selected subtitles"
-msgstr "Ludas la elektitan subtekston"
+msgstr "_Nur elektitaj subtekstoj"
 
 #. init label
-#: ../plugins/actions/movesubtitles/dialog-move-subtitles.glade.h:5
+#: ../plugins/actions/movesubtitles/dialog-move-subtitles.ui.h:5
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:7
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:10
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:155
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:156
 msgid "_Start Time:"
 msgstr "_Starttempo:"
 
 #: ../plugins/actions/movesubtitles/movesubtitles.cc:53
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:136
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:137
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:155
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:156
 msgid "_Start Frame:"
 msgstr "_Starta filmero:"
 
@@ -962,192 +1094,192 @@ msgstr "_Movi subtekstojn"
 msgid "All subtitles will be also moved after the first selected subtitle"
 msgstr "Ĉiuj postaj subtekstoj ankaŭ moviĝos"
 
-#: ../plugins/actions/plaintext/plaintext.cc:58
+#: ../plugins/actions/plaintext/plaintext.cc:57
 msgid "_Import Plain Text"
 msgstr "_Importi platan tekston"
 
-#: ../plugins/actions/plaintext/plaintext.cc:58
+#: ../plugins/actions/plaintext/plaintext.cc:57
 msgid "Create a new document with any text file"
 msgstr "Krei novan dokumenton per ĉia tekstdosiero"
 
-#: ../plugins/actions/plaintext/plaintext.cc:62
+#: ../plugins/actions/plaintext/plaintext.cc:61
 msgid "_Export Plain Text"
 msgstr "_Eksporti platan tekston"
 
-#: ../plugins/actions/plaintext/plaintext.cc:62
+#: ../plugins/actions/plaintext/plaintext.cc:61
 msgid "Export just a text in a file"
 msgstr "Eksporti nur tekston en dosiero"
 
-#: ../plugins/actions/plaintext/plaintext.cc:142
+#: ../plugins/actions/plaintext/plaintext.cc:138
 #, c-format
 msgid "Could not import from the file \"%s\"."
 msgstr "Ne povis importi el la dosiero \"%s\"."
 
-#: ../plugins/actions/plaintext/plaintext.cc:180
+#: ../plugins/actions/plaintext/plaintext.cc:174
 #, c-format
 msgid "Could not export to the file \"%s\"."
 msgstr "Ne povis eksporti al la dosiero \"%s\"."
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:1
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:1
 msgid "<b>Activate plugins</b>"
 msgstr "<b>Aktivigi kromprogramojn</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:2
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:2
 msgid "<b>File Saving</b>"
 msgstr "<b>Dokumenta konservado</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:3
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:3
 msgid "<b>General</b>"
 msgstr "<b>Ĝenerale</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:4
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:4
 msgid "<b>New Document</b>"
 msgstr "<b>Nova dokumento</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:5
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:5
 msgid "<b>Output</b>"
 msgstr "<b>Eligo</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:6
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:6
 msgid "<b>Subtitle View</b>"
 msgstr "<b>Subteksta montraĵo</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:7
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:7
 msgid "<b>Text Subtitle</b>"
 msgstr "<b>Teksta subteksto</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:9
-#: ../share/glade/dialog-script-properties.glade.h:6
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:9
+#: ../share/ui/dialog-script-properties.ui.h:5
 msgid "<b>Video</b>"
 msgstr "<b>Video</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:10
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:10
 msgid "<b>Waveform Color</b>"
 msgstr "<b>Koloro de ondoformo</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:11
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:11
 msgid "<b>Waveform Generator</b>"
 msgstr "<b>Ondoforma generilo</b>"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:12
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:12
 msgid "Ask to save on _exit"
 msgstr "Demandi ĉu konservi antaŭ _eliro"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:13
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:13
 msgid "Automatically _choose video to open"
 msgstr "Aŭtomate e_lekti malfermotan videon"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:14
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:14
 msgid "Background:"
 msgstr "Fono:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:15
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:15
 msgid "Create a _backup copy of files before saving"
 msgstr "Krei _restaŭran kopion de dosieroj antaŭ konservo"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:16
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:16
 msgid "Display _translated subtitle"
 msgstr "Montri _tradukitan subtekston"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:17
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:17
 msgid "Display background"
 msgstr "Montri fonon"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:18
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:18
 msgid "Display subtitle text"
 msgstr "Montri subtekstan tekston"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:19
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:19
 msgid "Display the translated subtitle instead of the original one."
 msgstr "Montri la tradukitan subtekston anstataŭ la originalan."
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:20
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:20
 msgid "Display waveform fill"
 msgstr "Montri ondoforman plenigon"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:21
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:21
 msgid "Document"
 msgstr "Dokumento"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:22
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:22
 msgid "Enable _rubberband selection"
 msgstr "Ebligi elektadon per ĉ_irkaŭiro"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:23
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:23
 msgid "Force aspect _ratio"
 msgstr "Devigi _proporcion"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:24
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:24
 msgid "Interface"
 msgstr "Interfaco"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:25
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:25
 msgid "Interval in seconds:"
 msgstr "Intervalo en sekundoj:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:28
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:28
 msgid "Maximum number of line per subtitle:"
 msgstr "Maksimuma nombro da linioj por subteksto:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:32
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:32
 msgid "Player Position:"
 msgstr "Ludila pozicio:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:33
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:33
 msgid "Plugins"
 msgstr "Kromprogramoj"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:34
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:34
 #: ../plugins/actions/preferences/preferences.se-plugin.in.h:2
 msgid "Preferences"
 msgstr "Agordoj"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:35
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:35
 msgid "Reset To _Defaults"
 msgstr "Remeti al _defaŭlto"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:36
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:36
 msgid "Subtitle Invalid:"
 msgstr "Subteksto nevalida:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:37
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:37
 msgid "Subtitle Selected:"
 msgstr "Subteksto elektita:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:38
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:38
 msgid "Subtitle:"
 msgstr "Subteksto:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:39
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:5
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:39
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:6
 msgid "Text:"
 msgstr "Teksto:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:41
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:41
 msgid "Use _dynamic keyboard shortcuts"
 msgstr "Uzi _dinamikajn fulmklavojn"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:42
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:42
 msgid "Use shaded _background"
 msgstr "Uzi ombrumitan _fonon"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:43
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:43
 msgid "Video Player"
 msgstr "Videoludilo"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:44
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:44
 msgid "Wave fill:"
 msgstr "Onda plenigo:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:45
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:45
 msgid "Wave:"
 msgstr "Ondo:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:46
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:46
 msgid "Waveform"
 msgstr "Ondoformo"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:47
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:47
 msgid ""
 "When enabled, you can change keyboard shortcuts for menu items by hitting a "
 "key combination while the menu item is highlighted."
@@ -1155,68 +1287,68 @@ msgstr ""
 "Se ĝi estas ebligita, vi povas ŝanĝi fulmklavojn de menueroj premante "
 "klavkombinaĵon dum menuero estas markita."
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:48
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:48
 msgid "_Audio:"
 msgstr "_Sono:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:49
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:49
 msgid "_Autosave files every"
 msgstr "_Aŭtomate konservi dosierojn je ĉiu"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:50
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:50
 msgid "_Center the text of the subtitle in the column"
 msgstr "_Centrigi la tekston de la subteksto en la kolumno"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:51
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:51
 msgid "_Do not disable the actions during editing"
-msgstr ""
+msgstr "Ne _malebligi la agojn dum redaktado"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:52
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:52
 msgid "_Font:"
 msgstr "_Tiparo:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:53
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:53
 msgid "_Format:"
 msgstr "_Formato:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:54
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:54
 msgid "_Maximize window"
 msgstr "_Maksimumigi fenestron"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:55
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:55
 msgid "_Newline:"
 msgstr "_Novlinio:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:56
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:56
 msgid "_Show the number of characters per line"
 msgstr "_Montri la nombron da signoj por linio"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:57
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:57
 msgid "_Use Ctrl+Enter keys to confirm the change"
 msgstr "_Uzi Strk+Enigi por konfirmi la ŝanĝon"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:58
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:58
 msgid "_Video:"
 msgstr "_Video:"
 
-#: ../plugins/actions/preferences/dialog-preferences.glade.h:59
+#: ../plugins/actions/preferences/dialog-preferences.ui.h:59
 msgid "minutes"
 msgstr "minutoj"
 
 #: ../plugins/actions/preferences/preferencesplugin.cc:109
 msgid "Configure Subtitle Editor"
-msgstr "Agordi Subtitle Editor"
+msgstr "Agordi Subtekstredaktilon"
 
 #. audio output
 #. video output
 #: ../plugins/actions/preferences/videoplayerpage.h:123
-#: ../plugins/actions/preferences/videoplayerpage.h:132
+#: ../plugins/actions/preferences/videoplayerpage.h:135
 msgid "Autodetect"
 msgstr "Aŭtomate rekoni"
 
 #: ../plugins/actions/preferences/videoplayerpage.h:124
 msgid "Pulse - PulseAudio Sound Server"
-msgstr ""
+msgstr "Pulse - Sonservilo de PulseAudio"
 
 #: ../plugins/actions/preferences/videoplayerpage.h:125
 msgid "ALSA - Advanced Linux Sound Architecture"
@@ -1231,24 +1363,29 @@ msgid "OSS - Open Sound System"
 msgstr "OSS - Malferma Sonsistemo"
 
 #: ../plugins/actions/preferences/videoplayerpage.h:128
-#: ../plugins/actions/preferences/videoplayerpage.h:135
+#: ../plugins/actions/preferences/videoplayerpage.h:138
 msgid "SDL - Simple DirectMedia Layer"
 msgstr "SDL - Simpla DirectMedia-tavolo"
 
 #: ../plugins/actions/preferences/videoplayerpage.h:129
-#: ../plugins/actions/preferences/videoplayerpage.h:136
+#: ../plugins/actions/preferences/videoplayerpage.h:139
 msgid "GConf"
 msgstr "GConf"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:133
+#: ../plugins/actions/preferences/videoplayerpage.h:131
+#: ../plugins/actions/preferences/videoplayerpage.h:142
+msgid "OSX"
+msgstr "OSX"
+
+#: ../plugins/actions/preferences/videoplayerpage.h:136
 msgid "X Window System (X11/XShm/Xv)"
 msgstr "X Window-sistemo (X11/XShm/Xv)"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:134
+#: ../plugins/actions/preferences/videoplayerpage.h:137
 msgid "X Window System (No Xv)"
 msgstr "X Window-sistemo (Sen Xv)"
 
-#: ../plugins/actions/preferences/videoplayerpage.h:137
+#: ../plugins/actions/preferences/videoplayerpage.h:140
 msgid "OpenGL"
 msgstr "OpenGL"
 
@@ -1284,54 +1421,61 @@ msgstr "Inversigi tekston kaj tradukon"
 msgid "Reverse the text and the translation was applied."
 msgstr "Aplikiĝis la inversigo de la teksto kaj la traduko."
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:1
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:2
 msgid "<b>First Point</b>"
 msgstr "<b>Unua punkto</b>"
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:2
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:3
 msgid "<b>Last Point</b>"
 msgstr "<b>Lasta punkto</b>"
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:3
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:4
 msgid "Number:"
 msgstr "Numero:"
 
-#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.glade.h:4
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:5
 msgid "Scale"
 msgstr "Skalo"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:79
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:85
-#, fuzzy
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:7
+msgid "_All Subtitles"
+msgstr "Ĉi_uj subtekstoj"
+
+#: ../plugins/actions/scalesubtitles/dialog-scale-subtitles.ui.h:9
+msgid "_Selected Range"
+msgstr "_Elektita amplekso"
+
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:82
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:88
 msgid "You can't use <i>scale</i> with this values."
-msgstr "Ne eblas uzi <i>skalo</i>n por tiu ĉi dokumento"
+msgstr "Vi ne povas uzi <i>skali</i> per tiuj valoroj."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:80
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:83
 msgid "The first point is superior to the last point."
-msgstr ""
+msgstr "La unua punkto superas la lastan."
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:86
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:89
 msgid "The first point is equal to the last point."
-msgstr ""
+msgstr "La unua punto egalas al la lasta."
 
 #. apply change
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:97
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:100
 msgid "Scale subtitles"
 msgstr "Skali subtekstojn"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:103
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:122
 msgid "The scale was applied"
 msgstr "La skalo aplikiĝis"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:124
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:143
 msgid "You can't use <i>scale</i> with this document."
 msgstr "Ne eblas uzi <i>skalo</i>n por tiu ĉi dokumento"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:331
 msgid "_Scale"
 msgstr "_Skali"
 
-#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:313
+#: ../plugins/actions/scalesubtitles/scalesubtitles.cc:331
 msgid "Scale by two points"
 msgstr "Skali per du punktoj"
 
@@ -1377,36 +1521,54 @@ msgstr "Elektas ĉiujn subtekstojn"
 
 #: ../plugins/actions/selection/selection.cc:73
 msgid "In_vert Selection"
-msgstr "In_versigi Elekton"
+msgstr "In_versigi elekton"
 
 #: ../plugins/actions/selection/selection.cc:73
 msgid "Invert subtitles selection"
 msgstr "Inversigas elekton de la subtekstoj"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:1
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:55
+msgid "S_ort Subtitles"
+msgstr "_Ordigi subtekstojn"
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:55
+msgid "Sort subtitles based on their start time"
+msgstr "Ordigi subtekstojn surbaze de ilia starttempo"
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:157
+#, c-format
+msgid "1 subtitle has been reordered."
+msgid_plural "%d subtitles have been reordered."
+msgstr[0] "1 subteksto reordiĝis."
+msgstr[1] "%d subtekstoj reordiĝis."
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.cc:162
+msgid "No need to sort subtitles."
+msgstr "Ne necesas ordigi subtekstojn."
+
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:1
 msgid "A_dd Word"
 msgstr "A_ldoni vorton"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:2
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:2
 msgid "Ignore _All"
 msgstr "Malatenti ĉiu_jn"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:4
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:4
 #: ../plugins/actions/spellchecking/spellchecking.cc:162
 #: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:2
 msgid "Spell Checking"
 msgstr "Literumada kontrolo"
 
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:5
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:5
 msgid "_Ignore"
 msgstr "_Malatenti"
 
 #. Language
-#: ../plugins/actions/spellchecking/dialog-spell-checking.glade.h:6
+#: ../plugins/actions/spellchecking/dialog-spell-checking.ui.h:6
 #: ../plugins/actions/textcorrection/patternspage.h:237
-#, fuzzy
 msgid "_Language:"
-msgstr "<b>Lingvo:</b>"
+msgstr "_Lingvo:"
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:181
 msgid ""
@@ -1414,20 +1576,21 @@ msgid ""
 "the column \"translation\" by setting the focus to this column before "
 "starting the spell check."
 msgstr ""
+"La literumada kontrolo estas normale aplikata al la kolumno \"teksto\". Vi "
+"povas kontroli la kolumnon \"traduko\" enfokusigante tiun kolumnon antaŭ "
+"starti la literumadan kontrolon."
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:187
 msgid "_Do not show this message again"
-msgstr ""
+msgstr "Ne _plu montri ĉi tiun mesaĝon"
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:274
-#, fuzzy
 msgid "Suggestions"
-msgstr "Elekto"
+msgstr "Sugestoj"
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:650
-#, fuzzy
 msgid "Completed spell checking."
-msgstr "<b>Kompletigis literumadan kontrolon.</b>"
+msgstr "Literumada kontrolo finis."
 
 #: ../plugins/actions/spellchecking/spellchecking.cc:712
 msgid "_Spell Check"
@@ -1437,12 +1600,12 @@ msgstr "Literumada kontrolo"
 msgid "Launch the spell checking"
 msgstr "Lanĉas la literumadan kontrolon"
 
-#: ../plugins/actions/splitdocument/dialog-split-document.glade.h:1
+#: ../plugins/actions/splitdocument/dialog-split-document.ui.h:1
 #: ../plugins/actions/splitdocument/splitdocument.se-plugin.in.h:1
 msgid "Split Document"
 msgstr "Dividi dokumenton"
 
-#: ../plugins/actions/splitdocument/dialog-split-document.glade.h:2
+#: ../plugins/actions/splitdocument/dialog-split-document.ui.h:2
 msgid "The beginning for the new document:"
 msgstr "La komenco por la nova dokumento:"
 
@@ -1471,127 +1634,133 @@ msgstr "_Dividi"
 msgid "Split the selected subtitles"
 msgstr "Dividas la elektitajn subtekstojn"
 
+#: ../plugins/actions/splitsubtitle/splitsubtitle.cc:105
+#: ../plugins/actions/typewriter/typewriter.cc:156
+msgid "Please select at least one subtitle."
+msgstr "Bonvolu elekti almenaŭ unu subtekston."
+
 #: ../plugins/actions/splitsubtitle/splitsubtitle.cc:109
+#: ../plugins/actions/typewriter/typewriter.cc:160
 msgid "Split subtitles"
 msgstr "Dividi subtekstojn"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:1
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:1
 msgid "<b>Alignment</b>"
 msgstr "<b>ĝisrandigo</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:2
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:2
 msgid "<b>Appearance</b>"
 msgstr "<b>Apero</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:3
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:3
 msgid "<b>Border</b>"
 msgstr "<b>Bordero</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:4
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:4
 msgid "<b>Colors</b>"
 msgstr "<b>Koloroj</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:5
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:5
 msgid "<b>Font</b>"
 msgstr "<b>Tiparo</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:6
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:6
 msgid "<b>Fonts</b>"
 msgstr "<b>Tiparoj</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:7
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:7
 msgid "<b>Margins</b>"
 msgstr "<b>Margenoj</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:8
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:8
 msgid "<b>Preview</b>"
 msgstr "<b>Antaŭrigardo</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:9
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:9
 msgid "<b>Transformation</b>"
 msgstr "<b>Transformo</b>"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:10
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:10
 msgid "Angle:"
 msgstr "Angulo:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:11
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:11
 msgid "Copy Style"
 msgstr "Kopii stilon"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:12
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:12
 msgid "Create New Style"
 msgstr "Krei novan stilon"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:13
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:13
 msgid "Delete Style"
 msgstr "Forigi stilon"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:14
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:14
 msgid "Distance:"
 msgstr "Distanco:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:15
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:15
 msgid "Left:"
 msgstr "Maldekstre:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:16
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:16
 msgid "Manage Styles"
 msgstr "Administri stilojn"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:17
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:17
 msgid "Opaque Box"
 msgstr "Maldiafana dialogujo"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:18
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:18
 msgid "Outline"
 msgstr "Konturo"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:19
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:19
 msgid "Outline:"
 msgstr "Konturo:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:20
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:20
 msgid "Primary:"
 msgstr "Ĉefa:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:21
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:21
 msgid "Right:"
 msgstr "Dekstra:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:22
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:22
 msgid "Scale X:"
 msgstr "X-skalo:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:23
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:23
 msgid "Scale Y:"
-msgstr "Y-skalo"
+msgstr "Y-skalo:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:24
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:24
 msgid "Secondary:"
 msgstr "Duaranga:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:25
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:25
 msgid "Shadow:"
 msgstr "Ombro:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:26
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:26
 msgid "Size:"
 msgstr "Grando:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:27
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:27
 msgid "Spacing:"
 msgstr "Interspaco:"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:28
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:28
 msgid "Subtitle Editor - Style Editor"
-msgstr "Subtitle Editor - Stil-administrilo"
+msgstr "Subtekstredaktilo - Stilredaktilo"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:29
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:29
 msgid "TODO"
 msgstr "Farende"
 
-#: ../plugins/actions/styleeditor/dialog-style-editor.glade.h:30
+#: ../plugins/actions/styleeditor/dialog-style-editor.ui.h:30
 msgid "Vertical:"
 msgstr "Vertikala:"
 
@@ -1607,116 +1776,110 @@ msgstr "_Stil-administrilo"
 msgid "Launch the style editor"
 msgstr "Lanĉas la stiladministrilo"
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:1
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:1
 msgid "Acc_ept, discard or edit changes:"
-msgstr ""
+msgstr "Akc_epti, forĵeti aŭ modifi ŝanĝojn:"
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:2
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:2
 #: ../plugins/actions/textcorrection/confirmationpage.h:185
 #: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:2
 msgid "Text Correction"
-msgstr ""
+msgstr "Tekstkorektado"
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:3
-#, fuzzy
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:3
 msgid "_Mark All"
-msgstr "_Etendi ĉiujn"
+msgstr "_Marki ĉion"
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:4
-#, fuzzy
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:4
 msgid "_Remove all blank subtitles"
-msgstr "Forigi subtekstojn"
+msgstr "Fo_rigi ĉiujn malplenajn subtekstojn"
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:5
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:5
 msgid "_Select correction to performed text:"
-msgstr ""
+msgstr "Elekti korektigon al farita teksto:"
 
-#: ../plugins/actions/textcorrection/assistant-text-correction.glade.h:6
+#: ../plugins/actions/textcorrection/assistant-text-correction.ui.h:6
 msgid "_Unmark All"
-msgstr ""
+msgstr "M_almarki ĉion"
 
 #: ../plugins/actions/textcorrection/capitalizationpage.h:34
 msgid "Select Capitalization Patterns"
-msgstr ""
+msgstr "Elekti ŝablonojn por majuskligo"
 
 #: ../plugins/actions/textcorrection/capitalizationpage.h:35
 msgid "Capitalize texts"
-msgstr ""
+msgstr "Majuskligi tekstojn"
 
 #: ../plugins/actions/textcorrection/capitalizationpage.h:36
 msgid "Capitalize texts written in lower case"
-msgstr ""
+msgstr "Majuskligi tesktojn skibitajn per minuskloj"
 
 #: ../plugins/actions/textcorrection/commonerrorpage.h:34
 msgid "Select Common Error Pattern"
-msgstr ""
+msgstr "Elekti ŝablonon por kutimaj eraroj"
 
 #: ../plugins/actions/textcorrection/commonerrorpage.h:35
 msgid "Correct common errors"
-msgstr ""
+msgstr "Korekti kutimajn erarojn"
 
 #: ../plugins/actions/textcorrection/commonerrorpage.h:36
 msgid "Correct common errors made by humans or image recognition software"
-msgstr ""
+msgstr "Korekti kutimajn erarojn faritajn de homoj aŭ bildrekona programaro"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:78
 #: ../src/subtitleview.cc:1461
 msgid "Num"
-msgstr "Nom"
+msgstr "N-ro"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:87
 msgid "Accept"
-msgstr ""
+msgstr "Akcepti"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:98
-#, fuzzy
 msgid "Original Text"
-msgstr "Origina skripto"
+msgstr "Origina teksto"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:107
-#, fuzzy
 msgid "Corrected Text"
-msgstr "Eksporti tekston"
+msgstr "Korektita teksto"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:168
 msgid "There Is No Change"
-msgstr ""
+msgstr "Ne okazis ŝanĝo"
 
 #: ../plugins/actions/textcorrection/confirmationpage.h:171
 msgid "Confirm %1 Change"
 msgid_plural "Confirm %1 Changes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Konfirmi %1 ŝanĝon"
+msgstr[1] "Konfirmi %1 ŝanĝojn"
 
 #: ../plugins/actions/textcorrection/hearingimpairedpage.h:34
 msgid "Select Hearing Impaired Patterns"
-msgstr ""
+msgstr "Elekti ŝablonojn por aŭdhandikapuloj"
 
 #: ../plugins/actions/textcorrection/hearingimpairedpage.h:35
 msgid "Remove hearing impaired texts"
-msgstr ""
+msgstr "Forigi tekstojn por aŭdhandikapuloj"
 
 #: ../plugins/actions/textcorrection/hearingimpairedpage.h:36
 msgid "Remove explanatory texts meant for the hearing impaired"
-msgstr ""
+msgstr "Forigi klarigajn tekstojn celatajn al aŭdhandikapuloj"
 
 #. Script
 #: ../plugins/actions/textcorrection/patternspage.h:230
-#, fuzzy
 msgid "_Script:"
-msgstr "Skripttipo:"
+msgstr "_Skripto:"
 
 #. Country
 #: ../plugins/actions/textcorrection/patternspage.h:244
-#, fuzzy
 msgid "_Country:"
-msgstr "_Tiparo:"
+msgstr "Lando:"
 
 #: ../plugins/actions/textcorrection/patternspage.h:437
 #: ../plugins/actions/textcorrection/patternspage.h:465
 #: ../plugins/actions/textcorrection/patternspage.h:493
 msgid "Other"
-msgstr ""
+msgstr "Aliaj"
 
 #: ../plugins/actions/textcorrection/taskspage.h:66
 #: ../plugins/actions/viewmanager/viewmanager.cc:129
@@ -1730,32 +1893,13 @@ msgstr "Vidigi"
 msgid "Name"
 msgstr "Nomo"
 
-#: ../plugins/actions/textcorrection/textcorrection.cc:188
+#: ../plugins/actions/textcorrection/textcorrection.cc:222
 msgid "Text _Correction"
-msgstr ""
+msgstr "Tekst_korektado"
 
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:56
 msgid "_Times"
 msgstr "_Tempoj"
-
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:56
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:60
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:67
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:70
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:74
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:78
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:82
-#: ../plugins/actions/timemodemanagement/timemodemanagement.cc:86
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:94
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:98
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:102
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:106
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:111
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:118
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:125
-#: ../plugins/actions/textcorrection/textcorrection.se-plugin.in.h:1
-msgid "FIXME"
-msgstr "RIPARUMIN"
 
 #: ../plugins/actions/timemodemanagement/timemodemanagement.cc:60
 msgid "_Frames"
@@ -1767,14 +1911,12 @@ msgstr "_Filmer-rapido"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:59
 #: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:1
-#, fuzzy
 msgid "Timing From Player"
-msgstr "Redakti tavolon"
+msgstr "Tempo el ludilo"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:60
-#, fuzzy
 msgid "Use the current player position to set subtitle time"
-msgstr "Uzas la aktualan ludpozicion por difini la finon de la subteksto"
+msgstr "Uzu la tempan pozicion de la nuna ludilo kiel subtekstan tempon"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:65
 msgid "Set Subtitle _Start"
@@ -1793,15 +1935,16 @@ msgid "Use the current player position to set the subtitle end"
 msgstr "Uzas la aktualan ludpozicion por difini la finon de la subteksto"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:79
-#, fuzzy
 msgid "Set Subtitle Start _And End"
-msgstr "Difini _starton de subteksto"
+msgstr "Agordi starton k_aj finon de subteksto"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:80
 msgid ""
 "Use only one key to set beginning of the subtitle when the key is pressed "
 "and the end when the key is released."
 msgstr ""
+"Uzu nur unu klavon por agordi la komencon de subteksto kiam la klavo estas "
+"premata kaj la finon kiam ĝi estas lasata."
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:170
 msgid "Set subtitle start"
@@ -1810,6 +1953,26 @@ msgstr "Difini starton de subteksto"
 #: ../plugins/actions/timingfromplayer/timingfromplayer.cc:195
 msgid "Set subtitle end"
 msgstr "Difini finon de subteksto"
+
+#: ../plugins/actions/typewriter/typewriter.cc:54
+msgid "_Typewriter"
+msgstr "_Tajpilo"
+
+#: ../plugins/actions/typewriter/typewriter.cc:57
+msgid "Characters - Linear"
+msgstr "Signoj - linearaj"
+
+#: ../plugins/actions/typewriter/typewriter.cc:62
+msgid "Characters - Random"
+msgstr "Signoj - hazardaj"
+
+#: ../plugins/actions/typewriter/typewriter.cc:67
+msgid "Words - Linear"
+msgstr "Vortoj - linearaj"
+
+#: ../plugins/actions/typewriter/typewriter.cc:72
+msgid "Words - Random"
+msgstr "Vortoj - Hazardaj"
 
 #. _("_Open Media"),
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:70
@@ -1833,174 +1996,187 @@ msgstr "Ludas aŭ paŭzigas"
 msgid "Skip _Backwards"
 msgstr "Transsalti _malantaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:112
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:147
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:113
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:152
 msgid "Very Short"
 msgstr "Tre mallonge"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:113
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:114
 msgid "Very short skip backwards"
 msgstr "Tre mallonge transsalti malantaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:119
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:154
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:121
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:160
 msgid "Short"
 msgstr "Mallonge"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:120
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:122
 msgid "Short skip backwards"
 msgstr "Mallonge transsalti malantaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:126
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:161
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:129
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:168
 msgid "Medium"
 msgstr "Mezlonge"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:127
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:130
 msgid "Medium skip backwards"
 msgstr "Mezlonge transsalti malantaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:133
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:168
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:137
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:176
 msgid "Long"
 msgstr "Longe"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:134
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:138
 msgid "Long skip backwards"
 msgstr "Longe transsalti malantaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:142
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:146
 msgid "Skip _Forward"
 msgstr "Transsalti _antaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:148
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:153
 msgid "Very short skip forward"
 msgstr "Tre mallonge transsalti antaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:155
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:161
 msgid "Short skip forward"
 msgstr "Mallonge transsalti antaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:162
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:169
 msgid "Medium skip forward"
 msgstr "Mezlonge transsalti antaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:169
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:177
 msgid "Long skip forward"
 msgstr "Longe transsalti antaŭen"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:176
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:184
 msgid "Rate"
-msgstr "Rapido\\"
+msgstr "Rapido"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:177
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:183
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:190
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:197
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:185
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:191
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:198
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:205
 msgid "Define the playback rate"
 msgstr "Difinas la reproduktan rapidon"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:182
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:190
 msgid "_Slower"
 msgstr "_Malpli rapide"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:189
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:197
 msgid "_Faster"
 msgstr "_Pli rapide"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:196
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:204
 msgid "_Normal"
 msgstr "_Normale"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:204
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:212
 msgid "_Seek To Selection"
 msgstr "_Transsalti ĝis elekto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:205
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:213
 msgid "Seek to the first selected subtitle"
 msgstr "Transsaltas al la unue elektita subteksto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:214
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:222
 msgid "_Repeat"
 msgstr "_Ripeti"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:215
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:223
 msgid "Enable or disable the repeat mode"
 msgstr "Ebligas aŭ malebligas la ripetreĝimon"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:224
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:232
 msgid "Play _Previous Subtitle"
 msgstr "Ludi _antaŭan subtekston"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:225
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:233
 msgid "Play previous subtitle from the first selected subtitle"
 msgstr "Ludas la subtekston antaŭ la unue elektita subteksto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:232
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:240
 msgid "Play _Selection"
 msgstr "Ludi _elekton"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:233
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:241
 msgid "Play the selected subtitle"
 msgstr "Ludas la elektitan subtekston"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:240
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:248
 msgid "Play _Next Subtitle"
 msgstr "Ludi _sekvan subtekston"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:241
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:249
 msgid "Play next subtitle from the first selected subtitle"
 msgstr "Ludas la subtekston post la unue elektita subteksto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:248
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:256
 msgid "Play Previous Second"
 msgstr "Ludi antaŭan sekundon"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:249
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:257
 msgid "Play the second preceding the first selected subtitle"
 msgstr "Ludas la sekundon antaŭ la unue elektita subteksto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:255
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:263
 msgid "Play First Second"
 msgstr "Ludi unuan sekundon"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:256
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:264
 msgid "Play the first second of the subtitle currently selected"
 msgstr "Ludas la unuan sekundon de la aktuale elektita subteksto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:262
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:270
 msgid "Play Last Second"
 msgstr "Ludi lastan sekundon"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:263
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:271
 msgid "Play the last second of the subtitle currently selected"
 msgstr "Ludas la lastan sekundon de la aktuale elektita subteksto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:269
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:277
 msgid "Play Next Second"
 msgstr "Ludi sekvan sekundon"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:270
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:278
 msgid "Play the second following the subtitle currently selected"
 msgstr "Ludas la sekundon post la aktuale elektita subteksto"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:279
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:287
 msgid "_Video Player"
 msgstr "Videoludilo"
 
-#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:280
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:288
 msgid "Show or hide the video player in the current window"
 msgstr "Montri aŭ kaŝi la videoludilon en la aktuala fenestro"
 
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:2
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:294
+msgid "Audio Track"
+msgstr "Sontrako"
+
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:295
+msgid "Choice of an audio track"
+msgstr "Elektado de sontrako"
+
+#. A default track "Auto"
+#: ../plugins/actions/videoplayermanagement/videoplayermanagement.cc:546
+msgid "Auto"
+msgstr "Aŭtomate"
+
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:2
 msgid "<b>View</b>"
 msgstr "<b>Vidi</b>"
 
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:3
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:3
 msgid "View Editing"
 msgstr "Montri redaktaĵon"
 
-#: ../plugins/actions/viewmanager/dialog-view-manager.glade.h:4
+#: ../plugins/actions/viewmanager/dialog-view-manager.ui.h:4
 #: ../plugins/actions/viewmanager/viewmanager.se-plugin.in.h:2
 msgid "View Manager"
 msgstr "Montradministrilo"
@@ -2029,6 +2205,14 @@ msgstr "Vid-ad_ministrilo"
 msgid "Manage the views"
 msgstr "Administras la vidojn"
 
+#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:40
+msgid "Generate Waveform"
+msgstr "Generi ondoformon"
+
+#: ../plugins/actions/wavefrommanagement/waveformgenerator.cc:211
+msgid "Could not determinate the duration of the stream."
+msgstr "Ne eblis determini la daŭron de la fluo."
+
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:75
 msgid "_Open Waveform From File"
 msgstr "_Malfermi ondoformon el dosiero"
@@ -2046,14 +2230,12 @@ msgid "Generate the waveform from the current video file"
 msgstr "Generas la ondoformon el la aktuala videodosiero"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:84
-#, fuzzy
 msgid "_Generate Dummy Waveform"
-msgstr "Generi ondoformon"
+msgstr "_Generi lokokupan ondoformon"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:85
-#, fuzzy
 msgid "Generate an dummy waveform (sine)"
-msgstr "Generi ondoformon"
+msgstr "Generi lokokupan ondoformon (sinuso)"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:89
 msgid "_Save Waveform"
@@ -2100,30 +2282,17 @@ msgid "Try to respect the timing preferences"
 msgstr "Provas respekti la tempomezuradajn agordojn"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:139
-msgid "_Wavform"
+#: ../src/gui/menubar.cc:70
+msgid "_Waveform"
 msgstr "_Ondoformo"
 
 #: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:139
 msgid "Show or hide the waveform in the current window"
 msgstr "Montri aŭ kaŝi la ondoformon en la aktuala fenestro"
 
-#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:336
+#: ../plugins/actions/wavefrommanagement/waveformmanagement.cc:354
 msgid "Save Waveform"
 msgstr "Savi ondoformon"
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:1
-msgid "<b>What framerate do you want used to import or export?</b>"
-msgstr ""
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:2
-#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
-msgid "BITC (Burnt-in timecode)"
-msgstr ""
-
-#: ../plugins/subtitleformats/bitc/dialog-bitc.glade.h:3
-#, fuzzy
-msgid "_Framerate:"
-msgstr "_Filmer-rapido"
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:58
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:70
@@ -2137,178 +2306,24 @@ msgstr "Fiaskis malfermi la dosieron por legi."
 msgid "Failed to write to the file."
 msgstr "Fiaskis skribi al la dosiero"
 
-#: ../share/glade/dialog-character-codings.glade.h:1
-msgid "A_vailable encodings:"
-msgstr "_Disponeblaj kodoprezentoj:"
-
-#: ../share/glade/dialog-character-codings.glade.h:2
-msgid "Character Codings"
-msgstr "Signaraj kodoj"
-
-#: ../share/glade/dialog-character-codings.glade.h:3
-msgid "E_ncodings shown in menu:"
-msgstr "K_odoprezentoj montritaj en menuo:"
-
-#: ../share/glade/dialog-encodings-chooser.glade.h:1
-msgid "<b>Please choose encodings</b>"
-msgstr "<b>Bonvolu elekti kodoprezenton</b>"
-
-#: ../share/glade/dialog-encodings-chooser.glade.h:2
-msgid "Encodings Chooser"
-msgstr "Kodoprezenta elektilo"
-
-#: ../share/glade/dialog-export-text.glade.h:1
-#: ../share/glade/dialog-import-text.glade.h:1
-#: ../share/glade/dialog-open-document.glade.h:1
-#: ../share/glade/dialog-save-document.glade.h:1 ../src/document.cc:669
-#: ../src/gui/application.cc:307
-msgid "Character Coding:"
-msgstr "Signara kodo:"
-
-#: ../share/glade/dialog-export-text.glade.h:2
-msgid "Export Text"
-msgstr "Eksporti tekston"
-
-#: ../share/glade/dialog-export-text.glade.h:3
-#: ../share/glade/dialog-save-document.glade.h:3
-msgid "NewLine:"
-msgstr "NovaLinio:"
-
-#: ../share/glade/dialog-import-text.glade.h:2
-msgid "Import Text"
-msgstr "Importi tekston"
-
-#: ../share/glade/dialog-open-document.glade.h:2
-msgid "Open Document"
-msgstr "Malfermi dokumenton"
-
-#: ../share/glade/dialog-open-document.glade.h:3
-msgid "Video File:"
-msgstr "Videodosiero:"
-
-#: ../share/glade/dialog-save-document.glade.h:2 ../src/gui/application.cc:308
-msgid "Format:"
-msgstr "Formato:"
-
-#: ../share/glade/dialog-save-document.glade.h:4
-msgid "Save Document"
-msgstr "Konservi dokumenton"
-
-#: ../share/glade/dialog-script-properties.glade.h:1
-msgid "*"
-msgstr "*"
-
-#: ../share/glade/dialog-script-properties.glade.h:2
-msgid "<b>Basic</b>"
-msgstr "<b>Baze</b>"
-
-#: ../share/glade/dialog-script-properties.glade.h:3
-msgid "<b>Behaviour</b>"
-msgstr "<b>Konduto</b>"
-
-#: ../share/glade/dialog-script-properties.glade.h:4
-msgid "<b>Miscellaneous</b>"
-msgstr "<b>Diverse</b>"
-
-#: ../share/glade/dialog-script-properties.glade.h:5
-msgid "<b>Read-only info</b>"
-msgstr "<b>Nurlegaj informoj</b>"
-
-#: ../share/glade/dialog-script-properties.glade.h:7
-msgid "Collisions:"
-msgstr "Kolizioj:"
-
-#: ../share/glade/dialog-script-properties.glade.h:8
-msgid ""
-"Normal\n"
-"Reverse"
-msgstr ""
-"Normale\n"
-"Inverse"
-
-#: ../share/glade/dialog-script-properties.glade.h:10
-msgid "Original Editing:"
-msgstr "Origina redaktado:"
-
-#: ../share/glade/dialog-script-properties.glade.h:11
-msgid "Original Script:"
-msgstr "Origina skripto"
-
-#: ../share/glade/dialog-script-properties.glade.h:12
-msgid "Original Timing:"
-msgstr "Origina tempomezurado:"
-
-#: ../share/glade/dialog-script-properties.glade.h:13
-msgid "Original Translation:"
-msgstr "Origina traduko:"
-
-#: ../share/glade/dialog-script-properties.glade.h:14
-msgid "PlayDepth:"
-msgstr "LudProfundo:"
-
-#: ../share/glade/dialog-script-properties.glade.h:15
-msgid "PlayResX:"
-msgstr "LudDistX:"
-
-#: ../share/glade/dialog-script-properties.glade.h:16
-msgid "PlayResY:"
-msgstr "LudDistY:"
-
-#: ../share/glade/dialog-script-properties.glade.h:17
-msgid "Point Time: "
-msgstr "Indiktempo: "
-
-#: ../share/glade/dialog-script-properties.glade.h:18
-msgid "Script Properties"
-msgstr "Skriptagordoj"
-
-#: ../share/glade/dialog-script-properties.glade.h:19
-msgid "Script Type:"
-msgstr "Skripttipo:"
-
-#: ../share/glade/dialog-script-properties.glade.h:20
-msgid "Script Updated By:"
-msgstr "Skripton ĝisdatigis:"
-
-#: ../share/glade/dialog-script-properties.glade.h:21
-msgid "Sync Point:"
-msgstr "Sinkronpunkto:"
-
-#: ../share/glade/dialog-script-properties.glade.h:22
-msgid "Timer:"
-msgstr "Tempomezurado:"
-
-#: ../share/glade/dialog-script-properties.glade.h:23
-msgid "Title:"
-msgstr "Titolo:"
-
-#: ../share/glade/dialog-script-properties.glade.h:24
-msgid "Update Details:"
-msgstr "Detaloj pri ĝisdatigo:"
-
-#: ../share/glade/dialog-script-properties.glade.h:25
-msgid "Wrap Style:"
-msgstr "Ĉirkaŭflua stilo:"
-
-#: ../share/glade/subtitleeditor.glade.h:1
-#: ../share/subtitleeditor.desktop.in.h:2
-msgid "Subtitle Editor"
-msgstr "Sukteksta Redaktilo"
-
 #: ../share/subtitleeditor.desktop.in.h:1
 msgid "A subtitle editor based on GStreamer and Gtk+"
-msgstr "Subteksta redaktilo bazita je GStreamer kaj Gtk+"
+msgstr "Redaktilo por subtekstoj bazita je GStreamer kaj Gtk+"
+
+#: ../share/subtitleeditor.desktop.in.h:2 ../share/ui/subtitleeditor.ui.h:1
+msgid "Subtitle Editor"
+msgstr "Subtekstredaktilo"
 
 #: ../src/commandsystem.cc:37
 msgid "Subtitle Selection"
 msgstr "Subtekstelekto"
 
-#: ../src/document.cc:295
+#: ../src/document.cc:261
 #, c-format
 msgid "Could not save the file \"%s\" using the character coding %s."
 msgstr "Ne povis konservi dosieron \"%s\" uzante la kodprezenton %s."
 
-#: ../src/document.cc:297
+#: ../src/document.cc:263
 msgid ""
 "The document contains one or more characters that cannot be encoded using "
 "the specified character coding."
@@ -2316,48 +2331,55 @@ msgstr ""
 "La dokumento enhavas almenaŭ unu signon nekodeblan uzante la specifitan "
 "kodprezenton."
 
-#: ../src/document.cc:306
+#: ../src/document.cc:272
 msgid "Save Document Failed."
 msgstr "Fiaskis konservi dokumenton"
 
-#: ../src/document.cc:639
+#: ../src/document.cc:560
 #, c-format
 msgid "Could not recognize the subtitle format for the file \"%s\"."
 msgstr "Ne povis rekoni la subtekstformaton por la dosiero \"%s\"."
 
-#: ../src/document.cc:641
+#: ../src/document.cc:562
 msgid "Please check that the file contains subtitles in a supported format."
 msgstr ""
 "Bonvolu kontroli ĉu la dosiero enhavas subtekstojn en subtenata formato."
 
-#: ../src/document.cc:653
+#: ../src/document.cc:574
 #, c-format
 msgid "Could not open automatically the file \"%s\"."
 msgstr "Ne povis aŭtomate malfermi dosieron \"%s\"."
 
-#: ../src/document.cc:654
+#: ../src/document.cc:575
 msgid ""
 "Subtitle Editor was not able to automatically determine the file encoding. "
 "Select a different character coding from the menu and try again."
 msgstr ""
-"Subtitle Editor ne povis aŭtomate determini la kodprezenton de la dosiero. "
+"Subtekstredaktilo ne povis aŭtomate determini la kodprezenton de la dosiero. "
 "Elektu malsaman kodprezenton el la menuo kaj reprovu."
 
-#: ../src/document.cc:660
+#: ../src/document.cc:581
 #, c-format
 msgid "Could not open the file \"%s\" using the character coding %s."
 msgstr "Ne povis malfermi dosieron \"%s\" uzante kodprezenton %s."
 
-#: ../src/document.cc:662
+#: ../src/document.cc:583
 msgid "Select a different character coding from the menu and try again."
 msgstr "Elektu alian kodprezenton el la menuo kaj reprovu."
 
-#: ../src/document.cc:687 ../src/document.cc:696
+#: ../src/document.cc:590 ../src/gui/application.cc:307
+#: ../share/ui/dialog-export-text.ui.h:1 ../share/ui/dialog-import-text.ui.h:1
+#: ../share/ui/dialog-open-document.ui.h:1
+#: ../share/ui/dialog-save-document.ui.h:1
+msgid "Character Coding:"
+msgstr "Signara kodo:"
+
+#: ../src/document.cc:608 ../src/document.cc:617
 #, c-format
 msgid "Could not open the file \"%s\""
 msgstr "Ne povis malfermi dosieron \"%s\""
 
-#: ../src/document.cc:697
+#: ../src/document.cc:618
 msgid "An unknown error occurred while opening the file."
 msgstr "Okazis nekonata eraro malfermante la dosieron."
 
@@ -2489,18 +2511,13 @@ msgstr "Vjetnama"
 msgid "Thai"
 msgstr "Taja"
 
-#: ../src/filewriter.cc:52
+#: ../src/filereader.cc:22 ../src/filewriter.cc:56
 msgid "Couldn't open the file."
 msgstr "Ne povis malfermi la dosieron."
 
-#: ../src/gstreamer_utility.cc:63
-msgid ""
-"GStreamer plugins missing.\n"
-"The playback of this movie requires the following decoders which are not "
-"installed:"
-msgstr ""
-"Mankas kromprogramoj por GStreamer.\n"
-"Por reprodukti la filmon, ĝi bezonas la sekvajn neinstalitajn malkodilojn:"
+#: ../src/filereader.cc:29
+msgid "Couldn't read the contents of the file."
+msgstr "Ne eblis legi la dosierenhavon."
 
 #: ../src/gstreamer_utility.cc:82
 #, c-format
@@ -2527,35 +2544,37 @@ msgstr "Nomo:"
 msgid "Path:"
 msgstr "Vojo:"
 
+#: ../src/gui/application.cc:308 ../share/ui/dialog-save-document.ui.h:2
+msgid "Format:"
+msgstr "Formato:"
+
 #: ../src/gui/application.cc:309
 msgid "Newline:"
-msgstr "Novalinio:"
+msgstr "Novlinio:"
 
 #: ../src/gui/application.cc:310
 msgid "Timing Mode:"
 msgstr "Tempomezurada reĝimo:"
 
 #: ../src/gui/automaticspellchecker.cc:406
-#, fuzzy
 msgid "_Languages"
-msgstr "<b>Lingvo:</b>"
+msgstr "_Lingvoj"
 
 #: ../src/gui/automaticspellchecker.cc:471
-#, fuzzy
 msgid "_Ignore all"
-msgstr "Malatenti ĉiu_jn"
+msgstr "_Ignori ĉion"
 
 #: ../src/gui/automaticspellchecker.cc:480
 msgid "_Add \"%1\" to Dictionary"
-msgstr ""
+msgstr "_Aldoni “%1” al vortaro"
 
 #: ../src/gui/automaticspellchecker.cc:493
 msgid "(no suggested words)"
-msgstr ""
+msgstr "(neniu proponita vorto)"
 
 #: ../src/gui/automaticspellchecker.cc:520
 msgid "_More..."
-msgstr ""
+msgstr "_Pli..."
 
 #: ../src/gui/comboboxencoding.cc:142
 msgid "Auto Detected"
@@ -2591,50 +2610,61 @@ msgstr "Ĉiuj dosieroj (*.*)"
 msgid "All supported formats (*.ass, *.ssa, *.srt, ...)"
 msgstr "Ĉiuj subtenataj formatoj (*.ass, *.ssa, *.srt, ...)"
 
-#: ../src/gui/dialogfilechooser.cc:403
+#: ../src/gui/dialogfilechooser.cc:451
 msgid "Open Video"
 msgstr "Malfermi videon"
 
-#: ../src/gui/dialogfilechooser.cc:409 ../src/gui/dialogfilechooser.cc:487
-#: ../src/gui/dialogfilechooser.cc:563
+#: ../src/gui/dialogfilechooser.cc:457 ../src/gui/dialogfilechooser.cc:535
+#: ../src/gui/dialogfilechooser.cc:611
 msgid "Video"
 msgstr "Video"
 
-#: ../src/gui/dialogfilechooser.cc:420 ../src/gui/dialogfilechooser.cc:498
+#: ../src/gui/dialogfilechooser.cc:468 ../src/gui/dialogfilechooser.cc:546
 msgid "Audio"
 msgstr "Sono"
 
-#: ../src/gui/dialogfilechooser.cc:428 ../src/gui/dialogfilechooser.cc:507
-#: ../src/gui/dialogfilechooser.cc:574
+#: ../src/gui/dialogfilechooser.cc:476 ../src/gui/dialogfilechooser.cc:555
+#: ../src/gui/dialogfilechooser.cc:622
 msgid "ALL"
 msgstr "ĈIO"
 
-#: ../src/gui/dialogfilechooser.cc:459
+#: ../src/gui/dialogfilechooser.cc:507
 msgid "Open Waveform"
 msgstr "Malfermi ondoformon"
 
-#: ../src/gui/dialogfilechooser.cc:465
+#: ../src/gui/dialogfilechooser.cc:513
 msgid "Waveform & Media"
 msgstr "Ondoformo & Aŭdvidaĵoj"
 
-#: ../src/gui/dialogfilechooser.cc:481
+#: ../src/gui/dialogfilechooser.cc:529
 msgid "Waveform (*.wf)"
 msgstr "Ondoformo (*.wf)"
 
-#: ../src/gui/dialogfilechooser.cc:539
-#, fuzzy
+#: ../src/gui/dialogfilechooser.cc:587
 msgid "Open Keyframe"
-msgstr "Malfermi ondoformon"
+msgstr "Malfermi ĉefkadron"
 
-#: ../src/gui/dialogfilechooser.cc:545
-#, fuzzy
+#: ../src/gui/dialogfilechooser.cc:593
 msgid "Keyframe & Media"
-msgstr "Ondoformo & Aŭdvidaĵoj"
+msgstr "Ĉefkadro & aŭdvidaĵo"
 
-#: ../src/gui/dialogfilechooser.cc:557
-#, fuzzy
+#: ../src/gui/dialogfilechooser.cc:605
 msgid "Keyframe (*.kf)"
-msgstr "Ondoformo (*.wf)"
+msgstr "Ĉefkadro (*.kf)"
+
+#: ../src/gui/dialogutility.cc:87
+msgid "At what frame rate do you want to import?"
+msgstr "Kiun filmer-rapidon vi volas uzi dum importado?"
+
+#. == EXPORT
+#: ../src/gui/dialogutility.cc:89
+msgid "At what frame rate do you want to export?"
+msgstr "Kiun filmer-rapidon vi volas uzi dum eksportado?"
+
+#. label2 (framerate:)
+#: ../src/gui/dialogutility.cc:113
+msgid "_Framerate:"
+msgstr "_Filmer-rapido:"
 
 #. create all menu
 #: ../src/gui/menubar.cc:63
@@ -2662,53 +2692,70 @@ msgid "_Video"
 msgstr "_Video"
 
 #: ../src/gui/menubar.cc:69
-#, fuzzy
 msgid "_Keyframes"
-msgstr "_Filmeroj"
-
-#: ../src/gui/menubar.cc:70
-msgid "_Waveform"
-msgstr "_Ondoformo"
+msgstr "Ĉef_kadroj"
 
 #: ../src/gui/menubar.cc:71
 msgid "V_iew"
 msgstr "V_ido"
 
 #: ../src/gui/menubar.cc:73
-msgid "_Extensions"
-msgstr "_Kromprogramoj"
+msgid "E_xtensions"
+msgstr "K_romprogramoj"
 
 #: ../src/gui/menubar.cc:74
 msgid "_Help"
 msgstr "_Helpo"
 
-#: ../src/main.cc:118
+#. file submenu
+#: ../src/gui/menubar.cc:76
+msgid "_Open"
+msgstr "_Malfermi"
+
+#: ../src/gui/menubar.cc:77
+msgid "_Save"
+msgstr "Kon_servi"
+
+#: ../src/gui/menubar.cc:78
+msgid "_Import"
+msgstr "_Importi"
+
+#: ../src/gui/menubar.cc:79
+msgid "_Export"
+msgstr "_Elporti"
+
+#: ../src/keyframes.cc:102 ../src/keyframes.cc:109
+#: ../src/subtitleformatsystem.cc:70
+msgid "Couldn't recognize format of the file."
+msgstr "Ne povis rekoni formaton de la dosiero."
+
+#: ../src/keyframes.cc:127
+msgid "Couldn't get the keyframe size on the file."
+msgstr "Ne eblis akiri ĉefkadran grandon per la dosiero."
+
+#: ../src/main.cc:65
 msgid " - edit subtitles files"
 msgstr " - redakti subtekstdosierojn"
 
-#: ../src/options.cc:41
+#: ../src/options.cc:40
 msgid "[FILE...]"
 msgstr "[DOSIERO...]"
 
-#: ../src/options.cc:49 ../src/options.cc:74 ../src/options.cc:82
+#: ../src/options.cc:48 ../src/options.cc:72 ../src/options.cc:80
 msgid "FILE"
 msgstr "DOSIERO"
 
-#: ../src/options.cc:58
+#: ../src/options.cc:56
 msgid "NAME"
 msgstr "NOMO"
 
-#: ../src/options.cc:66
+#: ../src/options.cc:64
 msgid "ENCODING"
 msgstr "KODPREZENTO"
 
 #: ../src/subtitleformatio.cc:63 ../src/subtitleformatio.cc:71
 msgid "This function is not implemented for this format."
 msgstr "Ĉi tiu funkcio ne realiĝis por ĉi tiu formato."
-
-#: ../src/subtitleformatsystem.cc:70
-msgid "Couldn't recognize format of the file."
-msgstr "Ne povis rekoni formaton de la dosiero."
 
 #: ../src/subtitleformatsystem.cc:89
 #, c-format
@@ -2888,16 +2935,16 @@ msgstr "30 fps"
 msgid "Invalid fps"
 msgstr "Nevalida fps"
 
-#: ../src/vp/gstreamerplayer.cc:583
+#: ../src/vp/gstplayer.cc:617
 #, c-format
 msgid ""
-"Failed to create a GStreamer pipeline (%s). Please check your GStreamer "
+"Failed to create a GStreamer audio output (%s). Please check your GStreamer "
 "installation."
 msgstr ""
-"Fiaskis krei GStreamer-ĉenstablon (%s). Bonvolu kontroli vian GStreamer-"
-"instalon."
+"Fiaskis krei soneligon (%s) de GStreamer. Bonvolu kontroli vian instalon de "
+"GStreamer."
 
-#: ../src/vp/gstreamerplayer.cc:637
+#: ../src/vp/gstplayer.cc:655
 #, c-format
 msgid ""
 "Failed to create a GStreamer converts video (%s). Please check your "
@@ -2906,16 +2953,25 @@ msgstr ""
 "Fiaskis krei GStreamer-konvertvideon (%s). Bonvolu kontroli vian GStreamer-"
 "instalon."
 
-#: ../src/vp/gstreamerplayer.cc:641
+#: ../src/vp/gstplayer.cc:664
 #, c-format
 msgid ""
-"Failed to create a GStreamer text overlay (%s). Please check your GStreamer "
+"Failed to create a GStreamer textoverlay (%s). Please check your GStreamer "
 "installation."
 msgstr ""
-"Fiaskis krei GStreamer-tekstsurmeton (%s). Bonvolu kontroli vian GStreamer-"
-"instalon."
+"Fiaskis krei tekstsurmetaĵon (%s) de GStreamer. Bonvolu kontroli vian "
+"instalon de GStreamer."
 
-#: ../src/vp/gstreamerplayer.cc:835
+#: ../src/vp/gstplayer.cc:677
+#, c-format
+msgid ""
+"Failed to create a GStreamer sink (%s). Please check your GStreamer "
+"installation."
+msgstr ""
+"Fiaskis krei malfonton (%s) de GStreamer. Bonvolu kontroli vian instalon de "
+"GStreamer."
+
+#: ../src/vp/gstplayer.cc:929
 #, c-format
 msgid ""
 "Media file could not be played.\n"
@@ -2924,17 +2980,9 @@ msgstr ""
 "Aŭdvida dosiero ne povis ludiĝi.\n"
 "%s"
 
-#: ../src/we/waveformeditor.cc:792 ../src/we/waveformeditor.cc:797
+#: ../src/we/waveformeditor.cc:817 ../src/we/waveformeditor.cc:822
 msgid "Editing position"
 msgstr "Redakti pozicion"
-
-#: ../src/we/waveformgenerator.cc:72
-msgid "Generate Waveform"
-msgstr "Generi ondoformon"
-
-#: ../src/we/waveformgenerator.cc:318
-msgid "Media file could not be played.\n"
-msgstr "Aŭdvida dosiero ne povis ludiĝi.\n"
 
 #: ../src/we/waveformrenderergl.cc:392
 msgid ""
@@ -2943,6 +2991,143 @@ msgid ""
 msgstr ""
 "Fenestra sistemo de subtenas OpenGL.\n"
 "Bonvolu provi per alia bildigilo."
+
+#: ../share/ui/dialog-character-codings.ui.h:1
+msgid "A_vailable encodings:"
+msgstr "_Disponeblaj kodoprezentoj:"
+
+#: ../share/ui/dialog-character-codings.ui.h:2
+msgid "Character Codings"
+msgstr "Signaraj kodoj"
+
+#: ../share/ui/dialog-character-codings.ui.h:3
+msgid "E_ncodings shown in menu:"
+msgstr "K_odoprezentoj montritaj en menuo:"
+
+#: ../share/ui/dialog-encodings-chooser.ui.h:1
+msgid "<b>Please choose encodings</b>"
+msgstr "<b>Bonvolu elekti kodoprezenton</b>"
+
+#: ../share/ui/dialog-encodings-chooser.ui.h:2
+msgid "Encodings Chooser"
+msgstr "Kodoprezenta elektilo"
+
+#: ../share/ui/dialog-export-text.ui.h:2
+msgid "Export Text"
+msgstr "Eksporti tekston"
+
+#: ../share/ui/dialog-export-text.ui.h:3
+#: ../share/ui/dialog-save-document.ui.h:3
+msgid "NewLine:"
+msgstr "Novlinio:"
+
+#: ../share/ui/dialog-import-text.ui.h:2
+msgid "Import Text"
+msgstr "Importi tekston"
+
+#: ../share/ui/dialog-open-document.ui.h:2
+msgid "Open Document"
+msgstr "Malfermi dokumenton"
+
+#: ../share/ui/dialog-open-document.ui.h:3
+msgid "Video File:"
+msgstr "Videodosiero:"
+
+#: ../share/ui/dialog-save-document.ui.h:4
+msgid "Save Document"
+msgstr "Konservi dokumenton"
+
+#: ../share/ui/dialog-script-properties.ui.h:1
+msgid "<b>Basic</b>"
+msgstr "<b>Baze</b>"
+
+#: ../share/ui/dialog-script-properties.ui.h:2
+msgid "<b>Behaviour</b>"
+msgstr "<b>Konduto</b>"
+
+#: ../share/ui/dialog-script-properties.ui.h:3
+msgid "<b>Miscellaneous</b>"
+msgstr "<b>Diverse</b>"
+
+#: ../share/ui/dialog-script-properties.ui.h:4
+msgid "<b>Read-only info</b>"
+msgstr "<b>Nurlegaj informoj</b>"
+
+#: ../share/ui/dialog-script-properties.ui.h:6
+msgid "Collisions:"
+msgstr "Kolizioj:"
+
+#: ../share/ui/dialog-script-properties.ui.h:7
+msgid "Normal"
+msgstr "Normala"
+
+#: ../share/ui/dialog-script-properties.ui.h:8
+msgid "Original Editing:"
+msgstr "Origina redaktado:"
+
+#: ../share/ui/dialog-script-properties.ui.h:9
+msgid "Original Script:"
+msgstr "Origina skripto"
+
+#: ../share/ui/dialog-script-properties.ui.h:10
+msgid "Original Timing:"
+msgstr "Origina tempomezurado:"
+
+#: ../share/ui/dialog-script-properties.ui.h:11
+msgid "Original Translation:"
+msgstr "Origina traduko:"
+
+#: ../share/ui/dialog-script-properties.ui.h:12
+msgid "PlayDepth:"
+msgstr "LudProfundo:"
+
+#: ../share/ui/dialog-script-properties.ui.h:13
+msgid "PlayResX:"
+msgstr "LudDistX:"
+
+#: ../share/ui/dialog-script-properties.ui.h:14
+msgid "PlayResY:"
+msgstr "LudDistY:"
+
+#: ../share/ui/dialog-script-properties.ui.h:15
+msgid "Point Time: "
+msgstr "Indiktempo: "
+
+#: ../share/ui/dialog-script-properties.ui.h:16
+msgid "Reverse"
+msgstr "Retroiri"
+
+#: ../share/ui/dialog-script-properties.ui.h:17
+msgid "Script Properties"
+msgstr "Skriptagordoj"
+
+#: ../share/ui/dialog-script-properties.ui.h:18
+msgid "Script Type:"
+msgstr "Skripttipo:"
+
+#: ../share/ui/dialog-script-properties.ui.h:19
+msgid "Script Updated By:"
+msgstr "Skripton ĝisdatigis:"
+
+#: ../share/ui/dialog-script-properties.ui.h:20
+msgid "Sync Point:"
+msgstr "Sinkronpunkto:"
+
+#: ../share/ui/dialog-script-properties.ui.h:21
+msgid "Timer:"
+msgstr "Tempomezurado:"
+
+#: ../share/ui/dialog-script-properties.ui.h:22
+msgid "Title:"
+msgstr "Titolo:"
+
+#: ../share/ui/dialog-script-properties.ui.h:23
+msgid "Update Details:"
+msgstr "Detaloj pri ĝisdatigo:"
+
+#: ../share/ui/dialog-script-properties.ui.h:24
+msgid "Wrap Style:"
+msgstr "Ĉirkaŭflua stilo:"
 
 #: ../plugins/actions/about/about.se-plugin.in.h:1
 msgid "About"
@@ -3068,6 +3253,10 @@ msgstr "Algluas subtekstojn el alia dosiero."
 msgid "Join Document"
 msgstr "Alglui dokumenton"
 
+#: ../plugins/actions/keyframesmanagement/keyframesmanagement.se-plugin.in.h:2
+msgid "Keyframes Management"
+msgstr "Mastrumado de ĉefkadroj"
+
 #: ../plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.se-plugin.in.h:1
 msgid "Move After Preceding Subtitle"
 msgstr "Movi ĝis post antaŭa subteksto"
@@ -3094,7 +3283,7 @@ msgstr "Plata teksto"
 
 #: ../plugins/actions/preferences/preferences.se-plugin.in.h:1
 msgid "Manages Subtitle Editor's preferences."
-msgstr "Administras agordojn de Subtitle Editor."
+msgstr "Administras agordojn de Subtekstredaktilo."
 
 #: ../plugins/actions/removesubtitle/removesubtitle.se-plugin.in.h:1
 msgid "Deletes the selected subtitles."
@@ -3119,6 +3308,14 @@ msgstr "Administras elekton de subtekstoj."
 #: ../plugins/actions/selection/selection.se-plugin.in.h:2
 msgid "Selection"
 msgstr "Elekto"
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.se-plugin.in.h:1
+msgid "Sort Subtitles"
+msgstr "Ordigi subtekstojn"
+
+#: ../plugins/actions/sortsubtitles/sortsubtitles.se-plugin.in.h:2
+msgid "Sort subtitles based on their start time."
+msgstr "Ordigi subtekstojn surbaze de ilia starttempo."
 
 #: ../plugins/actions/spellchecking/spellchecking.se-plugin.in.h:1
 msgid "Checks the spelling of the current document."
@@ -3153,9 +3350,16 @@ msgid "Time Mode Management"
 msgstr "Administrado de tempo-reĝimo"
 
 #: ../plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in.h:2
-#, fuzzy
 msgid "Use the current player position to set the subtitle time."
-msgstr "Uzas la aktualan ludpozicion por difini la finon de la subteksto"
+msgstr "Uzu la nunan ludilan pozicion por agordi la tempon de la subteksto."
+
+#: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:1
+msgid "FIXME."
+msgstr "RIPARUMIN"
+
+#: ../plugins/actions/typewriter/typewriter.se-plugin.in.h:2
+msgid "Type Writer"
+msgstr "Tajpilo"
 
 #: ../plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in.h:1
 msgid "Controls the video player."
@@ -3198,10 +3402,14 @@ msgstr "Advanced Sub Station Alpha"
 msgid "Advanced Sub Station Alpha subtitles support."
 msgstr "Advanced Sub Station Alpha-subtekstsubteno"
 
+#: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:1
+msgid "BITC (Burnt-in timecode)"
+msgstr "BITC (Burnt-in timecode, enbruligita tempokodo)"
+
 #: ../plugins/subtitleformats/bitc/bitc.se-plugin.in.h:2
-#, fuzzy
 msgid "BITC (Burnt-in timecode) subtitles support."
-msgstr "SubViewer2-subtekstsubteno."
+msgstr ""
+"Subtenoj de subtekstoj per BITC (Burnt-in timecode, enbruligita tempokodo)."
 
 #: ../plugins/subtitleformats/microdvd/microdvd.se-plugin.in.h:1
 msgid "MicroDVD"
@@ -3227,6 +3435,22 @@ msgstr "MPsub"
 msgid "MPsub subtitles support."
 msgstr "MPsub-subtekstsubteno."
 
+#: ../plugins/subtitleformats/sbv/sbv.se-plugin.in.h:1
+msgid "SBV"
+msgstr "SBV"
+
+#: ../plugins/subtitleformats/sbv/sbv.se-plugin.in.h:2
+msgid "SBV subtitles support."
+msgstr "Subteno de SBV-subtekstoj."
+
+#: ../plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in.h:1
+msgid "Spruce STL"
+msgstr "Spruce STL"
+
+#: ../plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in.h:2
+msgid "Spruce subtitles support."
+msgstr "Subteno de ‘Spruce’-subtekstoj"
+
 #: ../plugins/subtitleformats/subrip/subrip.se-plugin.in.h:1
 msgid "SubRip"
 msgstr "SubRip"
@@ -3245,11 +3469,11 @@ msgstr "Sub Station Alpha-subtekstsubteno."
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in.h:1
 msgid "Subtitle Editor Project"
-msgstr "Subtitle Editor-projekto"
+msgstr "Subtekstredaktila projekto"
 
 #: ../plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.se-plugin.in.h:2
 msgid "Subtitle Editor Project subtitles support."
-msgstr "Subtitle Editor-projekto-subtekstsubteno."
+msgstr "Subteksta subteno de Subtekstredaktila projekto."
 
 #: ../plugins/subtitleformats/subviewer2/subviewer2.se-plugin.in.h:1
 msgid "SubViewer2"
@@ -3267,280 +3491,273 @@ msgstr "Timed Text Authoring Format 1.0"
 msgid "Timed Text Authoring Format 1.0 subtitles support."
 msgstr "Timed Text Authoring Format 1.0-subtekstsubteno"
 
-#.
+#. 
 #. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'.
 #. 'previousmatch' is also not supported by gaupol.
-#.
+#. 
 #: ../plugins/actions/textcorrection/Latn.capitalization.se-pattern.in.h:5
 msgid "Capitalize the first word of a sentence"
-msgstr ""
+msgstr "Majuskligi la unuan vorton de frazo"
 
-#.
+#. 
 #. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'.
 #. 'previousmatch' is also not supported by gaupol.
-#.
+#. 
 #: ../plugins/actions/textcorrection/Latn.capitalization.se-pattern.in.h:10
 msgid "Sentence"
-msgstr ""
+msgstr "Frazo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:1
 msgid "Add or remove spaces around parantheses and square brackets"
-msgstr ""
+msgstr "Aldoni aŭ forigi spacojn ĉirkaŭ normalaj kaj rektaj krampoj"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:2
-#, fuzzy
 msgid "Add space after a dialogue dash"
-msgstr "Aldonas aŭ forigas la dialog-streketon."
+msgstr "Aldoni spacon post dialoga streketo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:3
 msgid "Add space after an ellipsis"
-msgstr ""
+msgstr "Aldoni spacon post ellaso"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:4
 #: ../plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in.h:1
 msgid "Add space after various punctuation marks"
-msgstr ""
+msgstr "Aldoni spacon post plurspecaj interpunkciaj signoj"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:5
 msgid "Double apostrophe"
-msgstr ""
+msgstr "Duobla apostrofo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:6
 msgid "Letter \"O\" in a number"
-msgstr ""
+msgstr "Litero “O” en numero"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:7
 msgid "Multiple question- and exclamation marks"
-msgstr ""
+msgstr "Pluraj demando- kaj krisignoj"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:8
 msgid "Periods around a punctuation mark"
-msgstr ""
+msgstr "Punktoj ĉirkaŭ interpunkcia signo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:9
 msgid "Remove period before or after various punctuation marks"
-msgstr ""
+msgstr "Forigi spacon antaŭ aŭ post plurspecaj interpunkciaj signoj"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:10
 msgid "Remove space after a starting- and before an ending quotation mark"
-msgstr ""
+msgstr "Forigi spacon post starta kaj antaŭ komenca citaĵa signo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:11
 msgid "Remove space after an ellipsis that starts a line"
-msgstr ""
+msgstr "Forigi spacon post ellaso kiu startas linion"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:12
 msgid "Remove space before various punctuation marks"
-msgstr ""
+msgstr "Forigi spacon antaŭ plurspecaj interpunkciaj signoj"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:13
 msgid "Replace a double apostrophe with a quotation mark"
-msgstr ""
+msgstr "Anstataŭigi duoblan apostrofon per citaĵa signo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:14
 msgid "Replace letter \"O\" with a zero in a number"
-msgstr ""
+msgstr "Anstataŭigi literon “O” per nulo en numero"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:15
 msgid ""
 "Replace multiple consequtive question- and exclamation marks with only one"
-msgstr ""
+msgstr "Anstataŭigi plurajn sinsekvajn demand- kaj krisignojn per nur unu"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:16
 msgid "Space after a dialogue dash"
-msgstr ""
+msgstr "Spaco post dialoga streketo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:17
 msgid "Space after a starting ellipsis"
-msgstr ""
+msgstr "Spaco post starta ellaso"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:18
 msgid "Space after an ellipsis"
-msgstr ""
+msgstr "Spaco post ellaso"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:19
 #: ../plugins/actions/textcorrection/Latn-fi.common-error.se-pattern.in.h:2
 msgid "Space after punctuation marks"
-msgstr ""
+msgstr "Spaco post interpunkciaj signoj"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:20
 #: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:3
 msgid "Space before punctuation marks"
-msgstr ""
+msgstr "Spaco antaŭ interpunkciaj signoj"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:21
 msgid "Spaces around a quotation mark"
-msgstr ""
+msgstr "Spacoj ĉirkaŭ citaĵa signo"
 
 #: ../plugins/actions/textcorrection/Latn.common-error.se-pattern.in.h:22
 msgid "Spaces around brackets"
-msgstr ""
+msgstr "Spacoj ĉirkaŭ krampoj"
 
 #. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'
 #: ../plugins/actions/textcorrection/Latn-en.capitalization.se-pattern.in.h:2
 msgid "Capitalize the first person pronoun \"I\""
-msgstr ""
+msgstr "Majuskligi la anglan pronomon “I”"
 
 #. \u is not supported by gaupol, gaupol used a special pattern 'capitalization'
 #: ../plugins/actions/textcorrection/Latn-en.capitalization.se-pattern.in.h:4
 msgid "First person pronoun"
-msgstr ""
+msgstr "Unupersona pronomo"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:1
 msgid "Convert various two-letter spellings of okay to \"OK\""
 msgstr ""
+"Konverti plurspecajn duliterajn anglajn literumadojn de ‘okay’ al ‘OK’"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:2
 msgid "Letter \"I\" in a lower case word"
-msgstr ""
+msgstr "Litero “I” en minuskla vorto"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:3
 msgid "Letter \"l\" in an upper case word"
-msgstr ""
+msgstr "Litero “l” en majuskla vorto"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:4
 msgid "Okay"
-msgstr ""
+msgstr "‘Okay’"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:5
 msgid "Remove spaces around an apostrophe"
-msgstr ""
+msgstr "Forigi spacojn ĉirkaŭ apostrofo"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:6
 msgid "Replace letter \"I\" with letter \"l\" in a lower case word"
-msgstr ""
+msgstr "Anstataŭigi literon “I” per litero “l” en minuskla vorto"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:7
 msgid "Replace letter \"l\" with letter \"I\" in an upper case word"
-msgstr ""
+msgstr "Anstataŭigi literon “l” per litero “I” en majuskla vorto"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:8
 msgid "Replace zero with letter \"O\" in an upper case word"
-msgstr ""
+msgstr "Anstataŭigi nulon per litero “O” en majuskla vorto"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:9
 msgid "Spaces around an apostrophe"
-msgstr ""
+msgstr "Spacoj ĉirkaŭ apostrofo"
 
 #: ../plugins/actions/textcorrection/Latn-en.common-error.se-pattern.in.h:10
 msgid "Zero in an upper case word"
-msgstr ""
+msgstr "Nulo en majuskla vorto"
 
 #: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:1
 msgid ""
 "Replace the uppercase name of the speaker before a colon with a dialogue dash"
 msgstr ""
+"Anstataŭigi la majusklan nomon de parolanto antaŭ dupunkto per dialoga streko"
 
 #: ../plugins/actions/textcorrection/Latn-en.hearing-impaired.se-pattern.in.h:2
 msgid "Uppercase speaker before a colon"
-msgstr ""
+msgstr "Majuskla parolanto antaŭ dupunkto"
 
 #: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:1
 msgid "Add period after a shortened title, such as \"Mr\" and \"Dr\""
 msgstr ""
+"Aldoni punklon post mallongigita angla titolo, kiel ekz. “Mr” kaj “Dr”"
 
 #: ../plugins/actions/textcorrection/Latn-en-US.common-error.se-pattern.in.h:2
-#, fuzzy
 msgid "Period after title"
-msgstr "Reordigita subteksto"
+msgstr "Punkto post titolo"
 
 #: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:1
 msgid "Add or remove space before various punctuation marks"
-msgstr ""
+msgstr "Aldoni aŭ forigi spacon antaŭ plurspecaj interpunkciaj signoj"
 
 #: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:2
 msgid "Add spaces around guillemets"
-msgstr ""
+msgstr "Aldoni spacojn ĉirkaŭ citiloj ‘«’ kaj ‘»’"
 
 #: ../plugins/actions/textcorrection/Latn-fr.common-error.se-pattern.in.h:4
 msgid "Spaces around guillemets"
-msgstr ""
+msgstr "Spacoj ĉirkaŭ citiloj ‘«’ kaj ‘»’"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:1
 msgid "One-line song lyrics between asterisks"
-msgstr ""
+msgstr "Unuliniaj kanttekstoj inter asteriskoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:2
 msgid "One-line song lyrics between number signs"
-msgstr ""
+msgstr "Unuliniaj kanttekstoj inter numersignoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:3
 msgid "Remove description of a sound between parantheses"
-msgstr ""
+msgstr "Forigi interkrampan sonpriskribon"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:4
 msgid "Remove description of a sound between square brackets"
-msgstr ""
+msgstr "Forigi sonpriskribojn troveblajn inter rektaj krampoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:5
 msgid "Remove one-line song lyrics starting with or between asterisks"
-msgstr ""
+msgstr "Forigi unu-liniajn kanttekstojn komencantajn per aŭ inter asteriskoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:6
 msgid "Remove one-line song lyrics starting with or between number signs"
-msgstr ""
+msgstr "Forigi unu-liniajn kantekstojn komencantajn per aŭ inter numersignoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:7
 msgid "Remove song lyrics starting with or between asterisks"
-msgstr ""
+msgstr "Forigi kanttekstojn komencantajn per aŭ inter asteriskoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:8
 msgid "Remove song lyrics starting with or between number signs"
-msgstr ""
+msgstr "Forigi kantekstojn komencantajn per aŭ inter numersignoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:9
 msgid "Replace the name of the speaker before a colon with a dialogue dash"
 msgstr ""
+"Anstataŭigi la nomon de parolanto antaŭ dupunkto per dialoga streketo"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:10
 msgid "Song lyrics between asterisks"
-msgstr ""
+msgstr "Kanttekstoj inter asteriskoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:11
 msgid "Song lyrics between number signs"
-msgstr ""
+msgstr "Kanttekstoj inter numersignoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:12
 msgid "Sound in brackets"
-msgstr ""
+msgstr "Sonoj en krampoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:13
 msgid "Sound in parantheses"
-msgstr ""
+msgstr "Sonoj inter krampoj"
 
 #: ../plugins/actions/textcorrection/Latn.hearing-impaired.se-pattern.in.h:14
 msgid "Speaker before a colon"
-msgstr ""
+msgstr "Parolanto antaŭ dupunkto"
 
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:1
 msgid "Leading and trailing spaces"
-msgstr ""
+msgstr "Antaŭaj aŭ postaj spacoj"
 
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:2
 msgid "Multiple consecutive spaces"
-msgstr ""
+msgstr "Pluraj sinsekvaj spacoj"
 
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:3
 msgid "Remove space between digits of a number"
-msgstr ""
+msgstr "Forigi spacon el inter ciferoj de numero"
 
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:4
 msgid "Remove spaces from the beginning and end of lines"
-msgstr ""
+msgstr "Forigi spacojn de komenco kaj fino de linioj"
 
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:5
 msgid "Replace multiple consecutive spaces with only one"
-msgstr ""
+msgstr "Anstataŭigi plurajn sinsekvajn spacojn per nur unu"
 
 #: ../plugins/actions/textcorrection/Zyyy.common-error.se-pattern.in.h:6
 msgid "Space between digits"
-msgstr ""
-
-#~ msgid "Replace"
-#~ msgstr "Anstataŭigi"
-
-#~ msgid "Check _Word"
-#~ msgstr "Kontroli _vorton"
-
-#~ msgid "User dictionary:"
-#~ msgstr "Vortaro por uzantoj:"
+msgstr "Spaco inter ciferoj"
