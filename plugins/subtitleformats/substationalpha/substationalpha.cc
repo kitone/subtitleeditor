@@ -383,8 +383,18 @@ public:
 		// Default style if it's empty
 		if(document()->styles().size() == 0)
 		{
+			Glib::ustring default_style;
+
+			if(Config::getInstance().has_key("SubStationAlpha", "default-style") == false)
+			{
+				// Write the default ASS style
+				default_style = "Default,Sans,18,16777215,65535,30900,0,0,0,1,0,0,2,20,20,20,0,0";
+				Config::getInstance().set_value_string("SubStationAlpha", "default-style", default_style, "Without style, this one will be used during save");
+			}
+			else
+				default_style = Config::getInstance().get_value_string("SubStationAlpha", "default-style");
+
 			// write without changing the document
-			Glib::ustring default_style = "Default,Sans,18,16777215,65535,30900,0,0,0,1,0,0,2,20,20,20,0,0";
 			file.write("Style: " + default_style + "\n");
 			
 			//Style style = document()->styles().append();
