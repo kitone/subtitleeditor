@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -139,6 +139,23 @@ public:
 				Gtk::ToggleAction::create("waveform/display", _("_Waveform"), _("Show or hide the waveform in the current window"), waveform_display_state),
 					sigc::mem_fun(*this, &WaveformManagement::on_waveform_display));
 
+		// Recent files
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Gtk::RecentAction::create("waveform/recent-files", _("_Recent Files"));
+
+		Gtk::RecentFilter filter;
+		filter.set_name("subtitleeditor");
+		filter.add_group("subtitleeditor-waveform");
+		recentAction->set_filter(filter);
+		recentAction->set_show_icons(false);
+		recentAction->set_show_numbers(true);
+		recentAction->set_show_tips(true);
+		//recentAction->set_show_not_found(false);
+		recentAction->set_sort_type(Gtk::RECENT_SORT_MRU);
+
+		recentAction->signal_item_activated().connect(
+				sigc::mem_fun(*this, &WaveformManagement::on_recent_item_activated));
+		action_group->add(recentAction);
+
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -150,6 +167,7 @@ public:
 			"		<menu name='menu-waveform' action='menu-waveform'>"
 			"			<placeholder name='waveform-management'>"
 			"				<menuitem action='waveform/open'/>"
+			"				<menuitem action='waveform/recent-files'/>"
 			"				<menuitem action='waveform/generate-from-player-file'/>"
 			"				<menuitem action='waveform/generate-dummy'/>"
 			"				<menuitem action='waveform/save'/>"
@@ -277,7 +295,10 @@ protected:
 			Glib::ustring uri = dialog.get_uri();
 			Glib::RefPtr<Waveform> wf = Waveform::create_from_file(uri);
 			if(wf)
+			{
 				get_waveform_manager()->set_waveform(wf);
+				add_in_recent_manager(wf->get_uri());
+			}
 			else
 			{
 				wf = generate_waveform_from_file(uri);
@@ -363,6 +384,7 @@ protected:
 				Glib::ustring uri = ui.get_uri();
 
 				wf->save(uri);
+				add_in_recent_manager(uri);
 			}
 		}
 	}
@@ -531,6 +553,42 @@ protected:
 				if(action->get_active() != state)
 					action->set_active(state);
 			}
+		}
+	}
+
+	/*
+	 */
+	void add_in_recent_manager(const Glib::ustring &uri)
+	{
+		se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+
+		Gtk::RecentManager::Data data;
+		data.app_name = Glib::get_application_name();
+		data.app_exec = Glib::get_prgname();
+		data.groups.push_back("subtitleeditor-waveform");
+		data.is_private = false;
+		Gtk::RecentManager::get_default()->add_item(uri, data);
+	}
+
+	/*
+	 * Open a recent video
+	 */
+	void on_recent_item_activated()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Glib::RefPtr<Gtk::Action> action = action_group->get_action("waveform/recent-files");
+
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Glib::RefPtr<Gtk::RecentAction>::cast_static(action);
+
+		Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
+		if(cur)
+		{
+			se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
+
+			Glib::RefPtr<Waveform> wf = Waveform::create_from_file(cur->get_uri());
+			if(wf)
+				get_waveform_manager()->set_waveform(wf);
 		}
 	}
 

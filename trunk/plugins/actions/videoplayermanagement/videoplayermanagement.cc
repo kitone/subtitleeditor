@@ -310,6 +310,23 @@ public:
 					_("Audio Track"),
 					_("Choice of an audio track")));
 
+		// Recent files
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Gtk::RecentAction::create("video-player/recent-files", _("_Recent Files"));
+
+		Gtk::RecentFilter filter;
+		filter.set_name("subtitleeditor");
+		filter.add_group("subtitleeditor-video-player");
+		recentAction->set_filter(filter);
+		recentAction->set_show_icons(false);
+		recentAction->set_show_numbers(true);
+		recentAction->set_show_tips(true);
+		//recentAction->set_show_not_found(false);
+		recentAction->set_sort_type(Gtk::RECENT_SORT_MRU);
+
+		recentAction->signal_item_activated().connect(
+				sigc::mem_fun(*this, &VideoPlayerManagement::on_recent_item_activated));
+		action_group->add(recentAction);
+
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -321,6 +338,7 @@ public:
 			"		<menu name='menu-video' action='menu-video'>"
 			"			<placeholder name='video-player-management'>"
 			"					<menuitem action='video-player/open'/>"
+			"					<menuitem action='video-player/recent-files'/>"
 			"					<menuitem action='video-player/close'/>"
 			"					<separator/>"
 			"					<menu action='menu-audio-track'>"
@@ -662,6 +680,8 @@ protected:
 			Glib::ustring uri = ui.get_uri();
 
 			player()->open(uri);
+
+			add_in_recent_manager(uri);
 		}
 	}
 
@@ -934,6 +954,41 @@ protected:
 			SubtitleTime end = selected.get_end() + SubtitleTime(0,0,1,0);
 
 			player()->play_segment(start, end);
+		}
+	}
+
+	/*
+	 */
+	void add_in_recent_manager(const Glib::ustring &uri)
+	{
+		se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+
+		Gtk::RecentManager::Data data;
+		//data.mime_type = "subtitle/";
+		data.app_name = Glib::get_application_name();
+		data.app_exec = Glib::get_prgname();
+		data.groups.push_back("subtitleeditor-video-player");
+		data.is_private = false;
+		Gtk::RecentManager::get_default()->add_item(uri, data);
+	}
+
+	/*
+	 * Open a recent video
+	 */
+	void on_recent_item_activated()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Glib::RefPtr<Gtk::Action> action = action_group->get_action("video-player/recent-files");
+
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Glib::RefPtr<Gtk::RecentAction>::cast_static(action);
+
+		Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
+		if(cur)
+		{
+			se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
+
+			player()->open(cur->get_uri());
 		}
 	}
 

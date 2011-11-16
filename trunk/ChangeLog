@@ -1,5 +1,11 @@
 2011-11-16  kitone  <kitone@gna.org>
 
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Add Video and Waveform recent files.
+
+2011-11-16  kitone  <kitone@gna.org>
+
 	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
 	* plugins/subtitleformats/substationalpha/substationalpha.cc:
 	Add the default ASS/SSA style in the config file.
