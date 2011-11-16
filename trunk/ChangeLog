@@ -1,3 +1,9 @@
+2011-11-16  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	Add the default ASS/SSA style in the config file.
+
 2011-11-11  kitone  <kitone@gna.org>
 
 	* src/we/waveformeditor.cc:
