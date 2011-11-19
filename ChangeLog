@@ -1,3 +1,8 @@
+2011-11-19  kitone  <kitone@gna.org>
+
+	* plugins/actions/errorchecking/maxcharactersperline.h:
+	Fix bug #14663 : Feature Request: Cut Line.
+
 2011-11-16  kitone  <kitone@gna.org>
 
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
