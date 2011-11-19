@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2011, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -65,20 +65,41 @@ public:
 			{
 				if(info.tryToFix)
 				{
-					// not implemented
-					return false;
+					info.currentSub.set_text(word_wrap(info.currentSub.get_text(), m_maxCPL));
+					return true;
 				}
 				
 				info.error = build_message(ngettext(
 						"Subtitle has a too long line: <b>1 character</b>",
 						"Subtitle has a too long line: <b>%i characters</b>", number), number);
-				info.solution = _("<b>Automatic correction:</b> unavailable, correct the error manually.");
-				
+				info.solution = build_message(
+						_("<b>Automatic correction:</b>\n%s"),
+						word_wrap(info.currentSub.get_text(), m_maxCPL).c_str());
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	/*
+	 */
+	Glib::ustring word_wrap(Glib::ustring str, Glib::ustring::size_type width)
+	{
+		Glib::ustring::size_type curWidth = width;
+		Glib::ustring::size_type spacePos;
+		while( curWidth < str.length() )
+		{
+			spacePos = str.rfind( ' ', curWidth );
+			if( spacePos == Glib::ustring::npos )
+				spacePos = str.find( ' ', curWidth );
+			if( spacePos != Glib::ustring::npos )
+			{
+				str.replace(spacePos, 1, "\n");
+				curWidth = spacePos + width + 1;
+			}
+		}
+		return str;
 	}
 
 protected:
