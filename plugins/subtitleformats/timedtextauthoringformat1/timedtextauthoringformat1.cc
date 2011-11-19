@@ -145,9 +145,18 @@ public:
 		// text
 		if(p->has_child_text())
 		{
-			Glib::ustring text = p->get_child_text()->get_content();
+			Glib::ustring text;
 
-			utility::replace(text, "<br/>", "\n");
+			xmlpp::Node::NodeList children = p->get_children();
+			for(xmlpp::Node::NodeList::const_iterator it = children.begin(); it != children.end(); ++it)
+			{
+				xmlpp::ContentNode *cn = dynamic_cast<xmlpp::ContentNode*>(*it);
+				if(cn == NULL)
+					continue;
+				if(!text.empty())
+					text += "\n";
+				text += cn->get_content();
+			}
 
 			subtitle.set_text(text);
 		}

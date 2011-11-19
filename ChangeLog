@@ -1,5 +1,10 @@
 2011-11-19  kitone  <kitone@gna.org>
 
+	* plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:
+	Fix bug #646371 (Debian) : broken handling of '<br />' tags.
+
+2011-11-19  kitone  <kitone@gna.org>
+
 	* plugins/actions/errorchecking/maxcharactersperline.h:
 	Fix bug #14663 : Feature Request: Cut Line.
 
