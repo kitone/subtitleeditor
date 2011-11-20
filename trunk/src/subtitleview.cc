@@ -1260,7 +1260,12 @@ void SubtitleView::select_and_set_cursor(const Gtk::TreeIter &iter, bool start_e
 		column = m_columns["text"];
 
 	get_selection()->select(iter);
-	set_cursor(m_subtitleModel->get_path(iter), *column, start_editing);
+
+	const Gtk::TreeModel::Path path_from_iter = m_subtitleModel->get_path(iter);
+	// Select the row and the column (cell)
+	set_cursor(path_from_iter, *column, start_editing);
+	// Scroll to center the current selection in the view
+	scroll_to_row(path_from_iter, 0.5);
 }
 
 
