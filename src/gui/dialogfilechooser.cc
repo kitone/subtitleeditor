@@ -54,6 +54,7 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 		for(it = infos.begin(); it != infos.end(); ++it)
 		{
 			supported->add_pattern("*." + (*it).extension);
+			supported->add_pattern("*." + (*it).extension.uppercase());
 		}
 
 		dialog->add_filter(*supported);
@@ -65,10 +66,11 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 		{
 			Glib::ustring name = (*it).name;
 			Glib::ustring ext = (*it).extension;
-	
+
 			Gtk::FileFilter *filter = manage(new Gtk::FileFilter);
 			filter->set_name(name + " (" + ext + ")");
 			filter->add_pattern("*." + ext);
+			filter->add_pattern("*." + ext.uppercase());
 			dialog->add_filter(*filter);
 		}
 	}

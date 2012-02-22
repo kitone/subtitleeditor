@@ -1,5 +1,10 @@
 2012-02-22  kitone  <kitone@gna.org>
 
+	* src/gui/dialogfilechooser.cc:
+	Fix bug #19268 : File Open: display uppercase extensions in file open dialog.
+
+2012-02-22  kitone  <kitone@gna.org>
+
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
 	* src/defaultcfg.cc:
 	Ability to seek tiny. Pach by Sebastián Ventura <lomegor at gmail dot com>.
