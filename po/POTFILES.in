@@ -92,6 +92,7 @@ plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.cc
 plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc
 plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui
 plugins/subtitleformats/bitc/bitc.cc
+plugins/subtitleformats/dcsubtitle/dcsubtitle.cc
 plugins/subtitleformats/microdvd/microdvd.cc
 plugins/subtitleformats/mpl2/mpl2.cc
 plugins/subtitleformats/mpsub/mpsub.cc
@@ -297,6 +298,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/bitc/bitc.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/dcsubtitle/dcsubtitle.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/microdvd/microdvd.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpl2/mpl2.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpsub/mpsub.se-plugin.in
