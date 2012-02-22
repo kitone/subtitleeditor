@@ -43,6 +43,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["video-player"]["contrast"] = "0";
 	config["video-player"]["saturation"] = "0";
 	config["video-player"]["hue"] = "0";
+	config["video-player"]["skip-tiny"] = "500";
 	config["video-player"]["skip-very-short"] = "3";
 	config["video-player"]["skip-short"] = "10";
 	config["video-player"]["skip-medium"] = "60";

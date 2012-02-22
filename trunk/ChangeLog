@@ -1,3 +1,9 @@
+2012-02-22  kitone  <kitone@gna.org>
+
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* src/defaultcfg.cc:
+	Ability to seek tiny. Pach by Sebastián Ventura <lomegor at gmail dot com>.
+
 2011-11-20  kitone  <kitone@gna.org>
 
 	* src/subtitleview.cc:
