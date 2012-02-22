@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -116,6 +116,14 @@ public:
 
 		action_group->add(
 				Gtk::Action::create(
+					"video-player/skip-backwards-tiny", 
+					Gtk::Stock::MEDIA_REWIND,
+					_("Tiny"), 
+					_("Tiny skip backwards")),
+					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_backwards), TINY));
+
+		action_group->add(
+				Gtk::Action::create(
 					"video-player/skip-backwards-very-short", 
 					Gtk::Stock::MEDIA_REWIND,
 					_("Very Short"), 
@@ -160,6 +168,14 @@ public:
 					_("Frame"), 
 					_("Frame skip forward")), 
 					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), FRAME));
+
+		action_group->add(
+				Gtk::Action::create(
+					"video-player/skip-forward-tiny", 
+					Gtk::Stock::MEDIA_FORWARD,
+					_("Tiny"), 
+					_("Tiny skip forward")), 
+					sigc::bind( sigc::mem_fun(*this, &VideoPlayerManagement::on_skip_forward), TINY));
 
 		action_group->add(
 				Gtk::Action::create(
@@ -351,6 +367,7 @@ public:
 			"					<separator/>"
 			"					<menu action='video-player/menu-skip-forward'>"
 			"						<menuitem action='video-player/skip-forward-frame'/>"
+			"						<menuitem action='video-player/skip-forward-tiny'/>"
 			"						<menuitem action='video-player/skip-forward-very-short'/>"
 			"						<menuitem action='video-player/skip-forward-short'/>"
 			"						<menuitem action='video-player/skip-forward-medium'/>"
@@ -358,6 +375,7 @@ public:
 			"					</menu>"
 			"					<menu action='video-player/menu-skip-backwards'>"
 			"						<menuitem action='video-player/skip-backwards-frame'/>"
+			"						<menuitem action='video-player/skip-backwards-tiny'/>"
 			"						<menuitem action='video-player/skip-backwards-very-short'/>"
 			"						<menuitem action='video-player/skip-backwards-short'/>"
 			"						<menuitem action='video-player/skip-backwards-medium'/>"
@@ -437,12 +455,14 @@ public:
 		SET_SENSITIVE("video-player/rate-normal", has_media);
 
 		SET_SENSITIVE("video-player/skip-forward-frame", has_media);
+		SET_SENSITIVE("video-player/skip-forward-tiny", has_media);
 		SET_SENSITIVE("video-player/skip-forward-very-short", has_media);
 		SET_SENSITIVE("video-player/skip-forward-short", has_media);
 		SET_SENSITIVE("video-player/skip-forward-medium", has_media);
 		SET_SENSITIVE("video-player/skip-forward-long", has_media);
 
 		SET_SENSITIVE("video-player/skip-backwards-frame", has_media);
+		SET_SENSITIVE("video-player/skip-backwards-tiny", has_media);
 		SET_SENSITIVE("video-player/skip-backwards-very-short", has_media);
 		SET_SENSITIVE("video-player/skip-backwards-short", has_media);
 		SET_SENSITIVE("video-player/skip-backwards-medium", has_media);
@@ -732,6 +752,7 @@ protected:
 	enum SkipType
 	{
 		FRAME,
+		TINY,
 		VERY_SHORT,
 		SHORT,
 		MEDIUM,
@@ -748,6 +769,8 @@ protected:
 			if(player()->get_framerate(&numerator, &denominator) > 0)
 				return denominator * 1000 / numerator;
 		}
+		else if(skip == TINY)
+			return get_config().get_value_int("video-player", "skip-tiny");
 		else if(skip == VERY_SHORT)
 			return get_config().get_value_int("video-player", "skip-very-short") * 1000;
 		else if(skip == SHORT)
