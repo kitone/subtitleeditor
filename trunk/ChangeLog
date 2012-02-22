@@ -1,5 +1,11 @@
 2012-02-22  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.in:
+	Preparing 0.40.0 release.
+
+2012-02-22  kitone  <kitone@gna.org>
+
 	* src/gui/dialogfilechooser.cc:
 	Fix bug #19268 : File Open: display uppercase extensions in file open dialog.
 

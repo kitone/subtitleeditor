@@ -1,3 +1,25 @@
+2012-02-22 - 0.40.0
+
+	* Add Video and Waveform recent files.
+	* Add the default ASS/SSA style in the config file.
+	* Introduce new subtitleformat 'dcsubtitle' - DLP Cinema Subtitle.
+	* Add the ability to seek tiny. Pach by Sebastián Ventura <lomegor at gmail dot com>.
+	* Add the ability to skip frame by frame. (Lilian request)
+	* Fix bug #18905 : Clic molette. Button2 only move the cursor, play with Shift.
+	* Fix bug #19268 : File Open: display uppercase extensions in file open dialog.
+	* Fix bug #19023 : Assenseur / ligne active. Center in the view the current selection.
+	* Fix bug #14663 : Feature Request: Cut Line.
+	* Fix bug #18903 : Durée du sous-titre incorrecte.
+	* Fix bug #18904 : Change framerate.
+	* Fix bug #18697 : Cannot parse <font> tags in sami subtitles. Patch by Dongsu Park <advance38 at gmail dot com>
+	* Fix bug #18381 : Fails to open srt file with co-ordinates in the first subtitle.
+	* Fix bug #18449 : Encoding key is deprecated in share/subtitleeditor.desktop.in
+	* Fix bug #18448 : Subtitleeditor should not handle MIME-Type "text/plain".
+	* Fix bug #646371 (Debian) : broken handling of '<br />' tags.
+	* Fix Failed to compile documentsnavigation.cc.
+	* Fix Failed to compile sami.cc. No need ptr for Subtitle
+	* Fix untranslated text.
+
 2011-06-18 - 0.39.0
 
 	* New subtitle format SAMI (Patch by Dongsu Park)
