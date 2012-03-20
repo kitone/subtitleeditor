@@ -706,8 +706,13 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element()
 		Glib::RefPtr<Gst::Element> videosink = bin->get_element("videosink");
 		if(videosink)
 		{
-			g_object_set(G_OBJECT(videosink->gobj()),
-					"force-aspect-ratio", cfg_force_aspect_ratio, NULL);
+#if defined(GDK_WINDOWING_QUARTZ)
+	// FIXME ?
+#else
+			videosink->set_property("force-aspect-ratio", cfg_force_aspect_ratio);
+			//g_object_set(G_OBJECT(videosink->gobj()),
+			//		"force-aspect-ratio", cfg_force_aspect_ratio, NULL);
+#endif
 		}
 		return bin;
 	}
@@ -905,8 +910,11 @@ bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &bus, const Glib::Re
 void GstPlayer::on_bus_message_element(const Glib::RefPtr<Gst::MessageElement> &msg)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
+#if defined(GDK_WINDOWING_QUARTZ)
+	// FIXME ?
+#else
 	is_missing_plugin_message(msg);
+#endif
 }
 
 /*
@@ -1046,9 +1054,14 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key, const G
 	{
 		if(key == "force-aspect-ratio" && m_xoverlay)
 		{
-			g_object_set(
-					G_OBJECT(m_xoverlay->gobj()), "force-aspect-ratio", utility::string_to_bool(value),
-					NULL);
+#if defined(GDK_WINDOWING_QUARTZ)
+	// FIXME ?
+#else
+			m_xoverlay->set_property("force-aspect-ratio", utility::string_to_bool(value));
+#endif			
+			//g_object_set(
+			//		G_OBJECT(m_xoverlay->gobj()), "force-aspect-ratio", utility::string_to_bool(value),
+			//		NULL);
 			queue_draw();
 		}
 		else if(key == "shaded-background" && m_textoverlay)
