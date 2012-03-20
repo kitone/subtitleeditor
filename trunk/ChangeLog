@@ -1,3 +1,9 @@
+2012-03-20  kitone  <kitone@gna.org>
+
+	* TODO:
+	* src/vp/gstplayer.cc:
+	using set_property insted of g_object_set. Small MacOS X fixes.
+
 2012-02-23  kitone  <kitone@gna.org>
 
 	* configure.in:

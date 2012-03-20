@@ -1,5 +1,6 @@
 SubtitleEditor stable + 1
 -------------------
+	* Apply "style" (position, alignement ...) to selected subtitles
 
 	* Fix pattern
 		- Spaces around guillemets replace with ([^\s])([«»])
