@@ -245,6 +245,14 @@ public:
 					_("Seek to the first selected subtitle")),
 					sigc::mem_fun(*this, &VideoPlayerManagement::on_seek_to_selection));
 
+		//Seek to Selection End
+		action_group->add(
+				Gtk::Action::create(
+					"video-player/seek-to-selection-end", 
+					_("_Seek To Selection End"), 
+					_("Seek to the end of the last selected subtitle")),
+					sigc::mem_fun(*this, &VideoPlayerManagement::on_seek_to_selection_end));
+
 		// Repeat
 		bool video_repeat_state = get_config().get_value_bool("video-player", "repeat");
 		
@@ -388,6 +396,7 @@ public:
 			"					</menu>"
 			"					<separator/>"
 			"					<menuitem action='video-player/seek-to-selection'/>"
+			"					<menuitem action='video-player/seek-to-selection-end'/>"
 			"					<separator/>"
 			"					<menuitem action='video-player/play-current-subtitle'/>"
 			"					<menuitem action='video-player/play-next-subtitle'/>"
@@ -471,6 +480,7 @@ public:
 		SET_SENSITIVE("video-player/repeat", has_media);
 
 		SET_SENSITIVE("video-player/seek-to-selection", has_media && has_doc);
+		SET_SENSITIVE("video-player/seek-to-selection-end", has_media && has_doc);
 		
 		SET_SENSITIVE("video-player/play-previous-subtitle", has_media && has_doc);
 		SET_SENSITIVE("video-player/play-current-subtitle", has_media && has_doc);
@@ -846,6 +856,21 @@ protected:
 		if(selected)
 		{
 			player()->seek(selected.get_start().totalmsecs);
+		}
+	}
+
+	/*
+	 * Seek to the last selected subtitle. 
+	 * The state of the player isn't modified.
+	 */
+	void on_seek_to_selection_end()
+	{
+		Document *doc = get_current_document();
+		
+		Subtitle selected = doc->subtitles().get_last_selected();
+		if(selected)
+		{
+			player()->seek(selected.get_end().totalmsecs);
 		}
 	}
 
