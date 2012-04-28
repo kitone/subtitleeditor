@@ -1,3 +1,10 @@
+2012-04-28  kitone  <kitone@gna.org>
+
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* src/subtitles.cc:
+	* src/subtitles.h:
+	Add seek to the selection end. Patch by Tomas Partl <eltomito>.
+
 2012-03-20  kitone  <kitone@gna.org>
 
 	* TODO:

@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -443,7 +443,20 @@ Subtitle Subtitles::get_first_selected()
 	if(selection.empty())
 		return Subtitle();
 
-	return selection[0];
+	return selection.front();
+}
+
+/*
+ *
+ */
+Subtitle Subtitles::get_last_selected()
+{
+	std::vector<Subtitle> selection = get_selection();
+	
+	if(selection.empty())
+		return Subtitle();
+
+	return selection.back();
 }
 
 /*
