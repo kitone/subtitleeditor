@@ -2,6 +2,7 @@ FILES = \
 		about \
 		adjusttime \
 		applytranslation \
+		bestfit \
 		changeframerate \
 		combinesubtitles \
 		command \
