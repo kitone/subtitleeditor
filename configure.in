@@ -323,6 +323,7 @@ plugins/actions/Makefile
 plugins/actions/about/Makefile
 plugins/actions/adjusttime/Makefile
 plugins/actions/applytranslation/Makefile
+plugins/actions/bestfit/Makefile
 plugins/actions/changeframerate/Makefile
 plugins/actions/combinesubtitles/Makefile
 plugins/actions/command/Makefile
