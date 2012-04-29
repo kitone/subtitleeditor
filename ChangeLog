@@ -1,3 +1,9 @@
+2012-04-29  kitone  <kitone@gna.org>
+
+	* src/utility.cc:
+	* src/utility.h:
+	Add get_text_length_for_timing, refactoring little code. Patch by Tomas Partl <eltomito>.
+
 2012-04-28  kitone  <kitone@gna.org>
 
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:

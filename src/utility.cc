@@ -304,6 +304,22 @@ namespace utility
 		if(msecs == 0)
 			return 0;
 
+		unsigned int len = get_text_length_for_timing( text );
+
+		if(len == 0)
+			return 0;
+
+		double cps = static_cast<double>(len * 1000) / msecs;
+
+		return cps;
+	}
+	
+	/*
+	 * Count characters in a subtitle the way they need to be counted
+	 * for subtitle timing.
+	 */
+	unsigned int get_text_length_for_timing( const Glib::ustring &text )	
+	{
 		std::vector<int> num_characters = utility::get_characters_per_line(text);
 		
 		if (num_characters.size() == 0)
@@ -315,15 +331,28 @@ namespace utility
 			len += *it;
 		
 		len += 2 * (num_characters.size() - 1);	// a newline counts as 2 characters
-
-		if(len == 0)
-			return 0;
-
-		double cps = static_cast<double>(len * 1000) / msecs;
-
-		return cps;
+		return len;
 	}
-	
+
+	/*
+	 * Calculate the minimum acceptable duration for a string of this length. 
+	 */
+	unsigned long get_min_duration_msecs( unsigned long textlen, unsigned long maxcps)
+	{
+		if( maxcps > 0 )
+			return ( (1000 * textlen) / maxcps );
+		else
+			return 0;
+	}
+
+	/*
+	 * Calculate the minimum acceptable duration for a string of this length. 
+	 */
+	unsigned long get_min_duration_msecs( const Glib::ustring &text, unsigned long maxcps)
+	{
+		return utility::get_min_duration_msecs( (unsigned long)get_text_length_for_timing( text ), maxcps );
+	}
+
 	/*
 	 *	get number of characters for each line in the text
 	 */

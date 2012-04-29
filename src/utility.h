@@ -199,6 +199,18 @@ namespace utility
 	double get_characters_per_second(const Glib::ustring &text, const long msecs);
 
 	/*
+	 * Count characters in a subtitle the way they need to be counted
+	 * for subtitle timing.
+	 */
+	unsigned int get_text_length_for_timing( const Glib::ustring &text );
+
+	/*
+	 * Calculate the minimum acceptable duration for a string of this length. 
+	 */
+	unsigned long get_min_duration_msecs( unsigned long textlen, unsigned long maxcps);
+	unsigned long get_min_duration_msecs( const Glib::ustring &text, unsigned long maxcps);
+
+	/*
 	 *	get number of characters for each line in the text
 	 */
 	std::vector<int> get_characters_per_line(const Glib::ustring &text);
