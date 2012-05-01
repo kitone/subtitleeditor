@@ -2,6 +2,16 @@
 
 	* configure.in:
 	* plugins/actions/Makefile.am:
+	* plugins/actions/stacksubtitles/Makefile.am:
+	* plugins/actions/stacksubtitles/stacksubtitles.cc:
+	* plugins/actions/stacksubtitles/stacksubtitles.se-plugin.in:
+	* share/menubar.xml:
+	Introduce new plugin stacksubtitles. Patch by Tomas Partl <eltomito>.
+
+2012-05-01  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/actions/Makefile.am:
 	* plugins/actions/minimizeduration/Makefile.am:
 	* plugins/actions/minimizeduration/minimizeduration.cc:
 	* plugins/actions/minimizeduration/minimizeduration.se-plugin.in:

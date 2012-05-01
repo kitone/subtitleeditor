@@ -35,6 +35,7 @@ FILES = \
 		splitdocument \
 		splitsubtitle \
 		styleeditor \
+		stacksubtitles \
 		textcorrection \
 		timemodemanagement \
 		timingfromplayer \
