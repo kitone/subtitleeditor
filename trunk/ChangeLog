@@ -1,3 +1,13 @@
+2012-05-01  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/actions/Makefile.am:
+	* plugins/actions/minimizeduration/Makefile.am:
+	* plugins/actions/minimizeduration/minimizeduration.cc:
+	* plugins/actions/minimizeduration/minimizeduration.se-plugin.in:
+	* share/menubar.xml:
+	Introduce new plugin minimizeduration. Patch by Tomas Partl <eltomito>.
+
 2012-04-29  kitone  <kitone@gna.org>
 
 	* configure.in:

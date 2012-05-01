@@ -67,6 +67,7 @@
 			<placeholder name="extend-length"/>
 			<!--separator/-->
 			<placeholder name="move-after-preceding-subtitle"/>
+			<placeholder name="minimize-duration"/>
 			<placeholder name="best-fit"/>
 			<separator/>
 			<placeholder name="placeholder"/>
