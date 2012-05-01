@@ -21,6 +21,7 @@ FILES = \
 		italicize \
 		joindocument \
 		keyframesmanagement \
+		minimizeduration \
 		moveafterprecedingsubtitle \
 		movesubtitles \
 		plaintext \
