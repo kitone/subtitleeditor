@@ -1,5 +1,10 @@
 2012-05-27  kitone  <kitone@gna.org>
 
+	* plugins/actions/findandreplace/findandreplace.cc:
+	Fix bug #19709 : In glib-2.32, glib/gregex.h cannot be included directly.	Patch by Andre Reinke <andre.reinke>
+
+2012-05-27  kitone  <kitone@gna.org>
+
 	* plugins/actions/plaintext/plaintext.cc:
 	* share/ui/dialog-export-text.ui:
 	* share/ui/dialog-import-text.ui:

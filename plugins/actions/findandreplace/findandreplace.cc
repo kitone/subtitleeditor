@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #include <gui/dialogutility.h>
 #include <gtkmm_utility.h>
 #include <widget_config_utility.h>
-#include <glib/gregex.h>
+#include <glib.h>
 
 /*
  * FIXME:
