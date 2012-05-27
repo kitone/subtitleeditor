@@ -1,5 +1,17 @@
 2012-05-27  kitone  <kitone@gna.org>
 
+	* plugins/actions/plaintext/plaintext.cc:
+	* share/ui/dialog-export-text.ui:
+	* share/ui/dialog-import-text.ui:
+	* src/Makefile.am:
+	* src/gui/checkbuttonwithmemory.cc:
+	* src/gui/checkbuttonwithmemory.h:
+	* src/gui/dialogfilechooser.cc:
+	* src/gui/dialogfilechooser.h:
+	Add the ability to use blank line during import/export text. Patch by Tomas Partl <eltomito>.
+
+2012-05-27  kitone  <kitone@gna.org>
+
 	* plugins/actions/dialoguize/Makefile.am:
 	* plugins/actions/dialoguize/dialog-dialoguize-preferences.ui:
 	* plugins/actions/dialoguize/dialoguize.cc:
