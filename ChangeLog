@@ -1,5 +1,10 @@
 2012-05-27  kitone  <kitone@gna.org>
 
+	* configure.in:
+	Fix bug #19629 : Requirements have changed. gstreamermm >= 0.10.6.
+
+2012-05-27  kitone  <kitone@gna.org>
+
 	* plugins/actions/selection/selection.cc:
 	Fix bug #19700 : Add "select none" to Selection menu.
 
