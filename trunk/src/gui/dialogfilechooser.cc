@@ -348,7 +348,7 @@ DialogSaveDocument::auto_ptr DialogSaveDocument::create()
 }
 
 /*
- * DialogExportText
+ * DialogImportText
  * Dialog open file chooser with Encoding option.
  */
 
@@ -359,10 +359,13 @@ DialogImportText::DialogImportText(BaseObjectType* cobject, const Glib::RefPtr<G
 :DialogFileChooser(cobject, "dialog-import-text")
 {
 	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
+	builder->get_widget_derived("checkbutton-blank-lines", m_checkBlankLines);
+	m_checkBlankLines->link_to_cfg("plain-text","import-bl-between-subtitles");
+	m_checkBlankLines->init_state();
 
 	add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
 	add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
-	
+
 	set_default_response(Gtk::RESPONSE_OK);
 }
 
@@ -373,6 +376,14 @@ DialogImportText::DialogImportText(BaseObjectType* cobject, const Glib::RefPtr<G
 Glib::ustring DialogImportText::get_encoding() const
 {
 	return m_comboEncodings->get_value();
+}
+
+/*
+ * Returns whether blank lines separate subtitles
+ */
+bool DialogImportText::get_blank_line_mode() const
+{
+	return m_checkBlankLines->get_active();
 }
 
 /*
@@ -404,6 +415,9 @@ DialogExportText::DialogExportText(BaseObjectType* cobject, const Glib::RefPtr<G
 {
 	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
 	builder->get_widget_derived("combobox-newline", m_comboNewLine);
+	builder->get_widget_derived("checkbutton-blank-lines", m_checkBlankLines );
+	m_checkBlankLines->link_to_cfg("plain-text","export-bl-between-subtitles");
+	m_checkBlankLines->init_state();
 
 	m_comboEncodings->show_auto_detected(false);
 
@@ -428,6 +442,14 @@ Glib::ustring DialogExportText::get_encoding() const
 Glib::ustring DialogExportText::get_newline() const
 {
 	return m_comboNewLine->get_value();
+}
+
+/*
+ * Returns whether subtitles should be separated by blank lines
+ */
+bool DialogExportText::get_blank_line_mode() const
+{
+	return m_checkBlankLines->get_active();
 }
 
 /*

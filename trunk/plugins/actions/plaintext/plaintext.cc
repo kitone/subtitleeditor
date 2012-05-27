@@ -54,7 +54,8 @@ public:
 		action_group = Gtk::ActionGroup::create("PlainTextPlugin");
 
 		action_group->add(
-				Gtk::Action::create("plain-text-import", _("_Import Plain Text"), _("Create a new document with any text file")),
+				Gtk::Action::create("plain-text-import", _("_Import Plain Text"),
+						_("Create a new document from any text file.")),
 					sigc::mem_fun(*this, &PlainTextPlugin::on_import_transcript));
 
 		action_group->add(
@@ -110,6 +111,7 @@ protected:
 			Glib::ustring uri = ui->get_uri();
 			Glib::ustring filename = ui->get_filename();
 			Glib::ustring charset = ui->get_encoding();
+			bool usebl = ui->get_blank_line_mode();
 
 			try
 			{
@@ -122,12 +124,51 @@ protected:
 				Subtitles subtitles = doc->subtitles();
 
 				Glib::ustring line;
-				while(file.getline(line))
-				{
-					Subtitle sub = subtitles.append();
-					sub.set_text(line);
-				}
 
+				if( !usebl )
+
+				// import while ignoring blank lines
+
+				{
+					while(file.getline(line))
+					{
+						Subtitle sub = subtitles.append();
+						sub.set_text(line);
+					};
+
+				}
+				else // import while splitting text into subtitles at blank lines only
+				{
+					Glib::ustring subtext;
+					subtext.clear();
+					int textlines = 0;
+					while(file.getline(line))
+					{
+						if( line.empty() )
+						{
+							if( textlines > 0 )
+							{
+								Subtitle sub = subtitles.append();
+								sub.set_text(subtext);
+								subtext.clear();
+								textlines = 0;
+							}
+						}
+						else
+						{
+							if( textlines > 0 )
+								subtext += "\n";
+							subtext += line;
+							textlines++;
+						}
+					}
+					if( textlines > 0 )
+					{
+						Subtitle sub = subtitles.append();
+						sub.set_text(subtext);
+						subtext.clear();
+					}
+				}
 				doc->setCharset(file.get_charset());
 				doc->setName(untitled);
 				DocumentSystem::getInstance().append(doc);
@@ -154,6 +195,7 @@ protected:
 			Glib::ustring uri = ui->get_uri();
 			Glib::ustring charset = ui->get_encoding();
 			Glib::ustring newline = ui->get_newline();
+			bool usebl = ui->get_blank_line_mode();
 
 			try
 			{
@@ -164,6 +206,7 @@ protected:
 				for(Subtitle sub = doc->subtitles().get_first(); sub; ++sub)
 				{
 					file.write(sub.get_text() + "\n");
+					if( usebl ) file.write( "\n" );
 				}
 
 				file.to_file();

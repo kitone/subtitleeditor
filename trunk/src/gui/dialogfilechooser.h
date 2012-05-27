@@ -24,6 +24,7 @@
  */
 
 #include "dialogutility.h"
+#include "checkbuttonwithmemory.h"
 
 #include <gtkmm.h>
 #include <gtkmm/builder.h>
@@ -213,12 +214,18 @@ public:
 	Glib::ustring get_encoding() const;
 
 	/*
+	 * Returns whether blank lines separate subtitles
+	 */
+	bool get_blank_line_mode() const;
+
+	/*
 	 * Create a instance of the dialog.
 	 */
 	static auto_ptr create();
 
 protected:
 	ComboBoxEncoding* m_comboEncodings;
+	CheckButtonWithMemory* m_checkBlankLines;
 };
 
 
@@ -251,6 +258,11 @@ public:
 	Glib::ustring get_newline() const;
 
 	/*
+	 * Returns whether subtitles should be separated with blank lines
+	 */
+	bool get_blank_line_mode() const;
+
+	/*
 	 * Create a instance of the dialog.
 	 */
 	static auto_ptr create();
@@ -259,6 +271,7 @@ public:
 protected:
 	ComboBoxEncoding* m_comboEncodings;
 	ComboBoxNewLine* m_comboNewLine;
+	CheckButtonWithMemory* m_checkBlankLines;
 };
 
 
