@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -70,9 +70,12 @@ public:
 					sigc::mem_fun(*this, &SelectionPlugin::on_select_all_subtitles));
 
 		action_group->add(
+				Gtk::Action::create("unselect-all-subtitles", _("_Unselect All Subtitles"), _("Unselect all the subtitles")), Gtk::AccelKey("<Shift><Control>A"),
+					sigc::mem_fun(*this, &SelectionPlugin::on_unselect_all_subtitles));
+
+		action_group->add(
 				Gtk::Action::create("invert-subtitles-selection", _("In_vert Selection"), _("Invert subtitles selection")), Gtk::AccelKey("<Control>I"),
 					sigc::mem_fun(*this, &SelectionPlugin::on_invert_selection));
-
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -90,6 +93,7 @@ public:
 			"				<menuitem action='select-next-subtitle'/>"
 			"				<separator/>"
 			"				<menuitem action='select-all-subtitles'/>"
+			"				<menuitem action='unselect-all-subtitles'/>"
 			"				<menuitem action='invert-subtitles-selection'/>"
 			"			</placeholder>"
 			"		</menu>"
@@ -126,6 +130,7 @@ public:
 		action_group->get_action("select-previous-subtitle")->set_sensitive(visible);
 		action_group->get_action("select-next-subtitle")->set_sensitive(visible);
 		action_group->get_action("select-all-subtitles")->set_sensitive(visible);
+		action_group->get_action("unselect-all-subtitles")->set_sensitive(visible);
 		action_group->get_action("invert-subtitles-selection")->set_sensitive(visible);
 	}
 
@@ -166,6 +171,13 @@ protected:
 		execute(ALL);
 	}
 
+	void on_unselect_all_subtitles()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		execute(UNSELECT);
+	}
+
 	void on_invert_selection()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
@@ -185,7 +197,8 @@ protected:
 		PREVIOUS,
 		NEXT,
 		ALL,
-		INVERT
+		INVERT,
+		UNSELECT
 	};
 
 	/*
@@ -207,6 +220,11 @@ protected:
 		if(type == ALL)
 		{
 			subtitles.select_all();
+			return true;
+		}
+		else if(type == UNSELECT)
+		{
+			subtitles.unselect_all();
 			return true;
 		}
 		else if(type == INVERT)
