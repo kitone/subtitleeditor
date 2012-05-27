@@ -1,3 +1,10 @@
+2012-05-27  kitone  <kitone@gna.org>
+
+	* plugins/actions/dialoguize/Makefile.am:
+	* plugins/actions/dialoguize/dialog-dialoguize-preferences.ui:
+	* plugins/actions/dialoguize/dialoguize.cc:
+	Add the ability to define the prefix of dialoguize plugin. Patch by Tomas Partl <eltomito>.
+
 2012-05-01  kitone  <kitone@gna.org>
 
 	* configure.in:
