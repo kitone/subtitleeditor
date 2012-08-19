@@ -1,3 +1,10 @@
+2012-08-20  kitone  <kitone@gna.org>
+
+	* plugins/actions/keyframesmanagement/Makefile.am:
+	* plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc:
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	Fix bug #20074 : Scene cut based keyframe detection. Patch by Martin Doucha.
+
 2012-05-27  kitone  <kitone@gna.org>
 
 	* configure.in:

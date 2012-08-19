@@ -13,6 +13,7 @@ pluginlib_LTLIBRARIES = \
 
 libkeyframesmanagement_la_SOURCES = \
 	keyframesgenerator.cc \
+	keyframesgeneratorusingframe.cc \
 	keyframesmanagement.cc \
 	mediadecoder.h
 

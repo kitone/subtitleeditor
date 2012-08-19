@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
  * declared in keyframesgenerator.cc
  */
 Glib::RefPtr<KeyFrames> generate_keyframes_from_file(const Glib::ustring &uri);
+Glib::RefPtr<KeyFrames> generate_keyframes_from_file_using_frame(const Glib::ustring &uri);
 
 /*
  */
@@ -89,6 +90,13 @@ public:
 					_("Generate Keyframes From Video"), 
 					_("Generate keyframes from the current video")),
 					sigc::mem_fun(*this, &KeyframesManagementPlugin::on_generate));
+		action_group->add(
+				Gtk::Action::create(
+					"keyframes/generate-using-frame", 
+					Gtk::Stock::EXECUTE,
+					_("Generate Keyframes From Video (Using Frame)"), 
+					_("Generate keyframes from the current video")),
+					sigc::mem_fun(*this, &KeyframesManagementPlugin::on_generate_using_frame));
 		// Close
 		action_group->add(
 				Gtk::Action::create(
@@ -162,6 +170,7 @@ public:
 			"					<menuitem action='keyframes/open'/>"
 			"					<menuitem action='keyframes/save'/>"
 			"					<menuitem action='keyframes/generate'/>"
+			"					<menuitem action='keyframes/generate-using-frame'/>"
 			"					<menuitem action='keyframes/close'/>"
 			"					<separator/>"
 			"					<menuitem action='keyframes/seek-to-previous'/>"
@@ -222,6 +231,7 @@ public:
 		SET_SENSITIVE("keyframes/save", has_kf);
 		SET_SENSITIVE("keyframes/close", has_kf);
 		SET_SENSITIVE("keyframes/generate", has_media);
+		SET_SENSITIVE("keyframes/generate-using-frame", has_media);
 		// Update state from keyframes and player
 		SET_SENSITIVE("keyframes/seek-to-previous", has_kf && has_media);
 		SET_SENSITIVE("keyframes/seek-to-next", has_kf && has_media);
@@ -317,6 +327,22 @@ protected:
 			return;
 
 		Glib::RefPtr<KeyFrames> kf = generate_keyframes_from_file(uri);
+		if(kf)
+		{
+			player()->set_keyframes(kf);
+			on_save();
+		}
+	}
+
+	/*
+	 */
+	void on_generate_using_frame()
+	{
+		Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
+		if(uri.empty())
+			return;
+
+		Glib::RefPtr<KeyFrames> kf = generate_keyframes_from_file_using_frame(uri);
 		if(kf)
 		{
 			player()->set_keyframes(kf);
