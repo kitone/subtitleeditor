@@ -1,5 +1,10 @@
 2012-09-08  kitone  <kitone@gna.org>
 
+	* plugins/actions/adjusttime/adjusttime.cc:
+	Adds functions to move subtitle start and end by 1 frame. Patch by Tomas Partl <eltomito>.
+
+2012-09-08  kitone  <kitone@gna.org>
+
 	* plugins/actions/dialoguize/dialog-dialoguize-preferences.ui:
 	Changes the preference dialog source file so that it doesn't need gtk+ 3.0 and settles for version 2.16.
 	Patch by Tomas Partl <eltomito>.

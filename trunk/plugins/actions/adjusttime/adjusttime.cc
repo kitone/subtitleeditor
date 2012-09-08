@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2010, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <extension/action.h>
 #include <i18n.h>
 #include <debug.h>
+#include "timeutility.h"
 
 /*
  *
@@ -51,6 +52,8 @@ public:
 
 		// actions
 		action_group = Gtk::ActionGroup::create("AdjustTimePlugin");
+
+		// -- 100 ms --
 
 		// menu add
 		action_group->add(
@@ -84,6 +87,40 @@ public:
 				Gtk::Action::create("remove-from-start-and-from-duration", _("From Start And From Duration"), _("Remove 100 Milliseconds from all subtitles selected")),
 					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_from_start_and_from_duration));
 
+		// -- 1 frame --
+
+		// menu add
+		action_group->add(
+				Gtk::Action::create("menu-adjust-time-add-frame", Gtk::Stock::ADD, _("Add 1 Frame")));
+
+		action_group->add(
+				Gtk::Action::create("add-frame-to-start", _("To Start"), _("Add 1 Frame to start for all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_add_frame_to_start));
+		
+		action_group->add(
+				Gtk::Action::create("add-frame-to-duration", _("To Duration"), _("Add 1 Frame to duration for all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_add_frame_to_duration));
+
+		action_group->add(
+				Gtk::Action::create("add-frame-to-start-and-to-duration", _("To Start And To Duration"), _("Add 1 Frame to all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_add_frame_to_start_and_to_duration));
+
+		// menu remove
+		action_group->add(
+				Gtk::Action::create("menu-adjust-time-remove-frame", Gtk::Stock::REMOVE, _("Remove 1 Frame")));
+
+		action_group->add(
+				Gtk::Action::create("remove-frame-from-start", _("From Start"), _("Remove 1 Frame from start for all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_frame_from_start));
+		
+		action_group->add(
+				Gtk::Action::create("remove-frame-from-duration", _("From Duration"), _("Remove 1 Frame from duration for all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_frame_from_duration));
+
+		action_group->add(
+				Gtk::Action::create("remove-frame-from-start-and-from-duration", _("From Start And From Duration"), _("Remove 1 Frame from all subtitles selected")),
+					sigc::mem_fun(*this, &AdjustTimePlugin::on_remove_frame_from_start_and_from_duration));
+
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -103,6 +140,16 @@ public:
 			"					<menuitem action='remove-from-start'/>"
 			"					<menuitem action='remove-from-duration'/>"
 			"					<menuitem action='remove-from-start-and-from-duration'/>"
+			"				</menu>"
+			"				<menu action='menu-adjust-time-add-frame'>"
+			"					<menuitem action='add-frame-to-start'/>"
+			"					<menuitem action='add-frame-to-duration'/>"
+			"					<menuitem action='add-frame-to-start-and-to-duration'/>"
+			"				</menu>"
+			"				<menu action='menu-adjust-time-remove-frame'>"
+			"					<menuitem action='remove-frame-from-start'/>"
+			"					<menuitem action='remove-frame-from-duration'/>"
+			"					<menuitem action='remove-frame-from-start-and-from-duration'/>"
 			"				</menu>"
 			"			</placeholder>"
 			"		</menu>"
@@ -136,9 +183,24 @@ public:
 
 		action_group->get_action("menu-adjust-time-add")->set_sensitive(visible);
 		action_group->get_action("menu-adjust-time-remove")->set_sensitive(visible);
+		action_group->get_action("menu-adjust-time-add-frame")->set_sensitive(visible);
+		action_group->get_action("menu-adjust-time-remove-frame")->set_sensitive(visible);
 	}
 
 protected:
+
+	enum TYPE
+	{
+		START,
+		END,
+		START_AND_END
+	};
+
+	enum UNITS
+	{
+		MSEC,
+		FRAMES
+	};
 
 	/*
 	 *
@@ -200,19 +262,76 @@ protected:
 		adjust(START_AND_END, -100);
 	}
 
-
-	enum TYPE
-	{
-		START,
-		END,
-		START_AND_END
-	};
+	// --- FRAME VERSIONS ---
 
 	/*
 	 *
 	 */
-	bool adjust(TYPE type, const long &time_msecs = 100)
+	void on_add_frame_to_start()
 	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		adjust(START, 1, FRAMES);
+	}
+
+	/*
+	 *
+	 */
+	void on_add_frame_to_duration()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		adjust(END, 1, FRAMES);
+	}
+
+	/*
+	 *
+	 */
+	void on_add_frame_to_start_and_to_duration()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		adjust(START_AND_END, 1, FRAMES);
+	}
+
+	/*
+	 *
+	 */
+	void on_remove_frame_from_start()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		adjust(START, -1, FRAMES);
+	}
+
+	/*
+	 *
+	 */
+	void on_remove_frame_from_duration()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		adjust(END, -1, FRAMES);
+	}
+
+	/*
+	 *
+	 */
+	void on_remove_frame_from_start_and_from_duration()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		adjust(START_AND_END, -100);
+	}
+
+	
+	/*
+	 *
+	 */
+	bool adjust(TYPE type, const long &time_msecs = 100, UNITS units = MSEC )
+	{
+		long timeshift = time_msecs;
+		
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
@@ -231,6 +350,14 @@ protected:
 
 		doc->start_command(_("Adjust time"));
 
+		if(units==FRAMES)
+		{
+			float framerate =	get_framerate_value( doc->get_framerate() );
+			float msecperframe = (float)1000 / framerate;
+			float floatshift = (float)timeshift * msecperframe;
+			timeshift = (long)floatshift;
+		}
+
 		if(type == START)
 		{
 			for(unsigned int i=0; i<selection.size(); ++i)
@@ -238,7 +365,7 @@ protected:
 				Subtitle subtitle = selection[i];
 
 				subtitle.set_start( 
-						SubtitleTime( subtitle.get_start().totalmsecs + time_msecs));
+						SubtitleTime( subtitle.get_start().totalmsecs + timeshift));
 			}
 		}
 		else if(type == END)
@@ -248,7 +375,7 @@ protected:
 				Subtitle subtitle = selection[i];
 
 				subtitle.set_end( 
-						SubtitleTime( subtitle.get_end().totalmsecs + time_msecs));
+						SubtitleTime( subtitle.get_end().totalmsecs + timeshift));
 			}
 		}	
 		else if(type == START_AND_END)
@@ -258,8 +385,8 @@ protected:
 				Subtitle subtitle = selection[i];
 
 				subtitle.set_start_and_end( 
-						SubtitleTime( subtitle.get_start().totalmsecs + time_msecs),
-						SubtitleTime( subtitle.get_end().totalmsecs + time_msecs));
+						SubtitleTime( subtitle.get_start().totalmsecs + timeshift),
+						SubtitleTime( subtitle.get_end().totalmsecs + timeshift));
 			}
 		}
 
