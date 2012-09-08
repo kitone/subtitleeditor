@@ -359,9 +359,8 @@ DialogImportText::DialogImportText(BaseObjectType* cobject, const Glib::RefPtr<G
 :DialogFileChooser(cobject, "dialog-import-text")
 {
 	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
-	builder->get_widget_derived("checkbutton-blank-lines", m_checkBlankLines);
-	m_checkBlankLines->link_to_cfg("plain-text","import-bl-between-subtitles");
-	m_checkBlankLines->init_state();
+	builder->get_widget("checkbutton-blank-lines", m_checkBlankLines);
+	widget_config::read_config_and_connect(m_checkBlankLines, "plain-text", "import-bl-between-subtitles");
 
 	add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
 	add_button(Gtk::Stock::OPEN, Gtk::RESPONSE_OK);
@@ -415,9 +414,8 @@ DialogExportText::DialogExportText(BaseObjectType* cobject, const Glib::RefPtr<G
 {
 	builder->get_widget_derived("combobox-encodings", m_comboEncodings);
 	builder->get_widget_derived("combobox-newline", m_comboNewLine);
-	builder->get_widget_derived("checkbutton-blank-lines", m_checkBlankLines );
-	m_checkBlankLines->link_to_cfg("plain-text","export-bl-between-subtitles");
-	m_checkBlankLines->init_state();
+	builder->get_widget("checkbutton-blank-lines", m_checkBlankLines);
+	widget_config::read_config_and_connect(m_checkBlankLines, "plain-text", "export-bl-between-subtitles");
 
 	m_comboEncodings->show_auto_detected(false);
 
