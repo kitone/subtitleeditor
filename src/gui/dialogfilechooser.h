@@ -24,7 +24,7 @@
  */
 
 #include "dialogutility.h"
-#include "checkbuttonwithmemory.h"
+#include "widget_config_utility.h"
 
 #include <gtkmm.h>
 #include <gtkmm/builder.h>
@@ -225,7 +225,7 @@ public:
 
 protected:
 	ComboBoxEncoding* m_comboEncodings;
-	CheckButtonWithMemory* m_checkBlankLines;
+	Gtk::CheckButton* m_checkBlankLines;
 };
 
 
@@ -271,7 +271,7 @@ public:
 protected:
 	ComboBoxEncoding* m_comboEncodings;
 	ComboBoxNewLine* m_comboNewLine;
-	CheckButtonWithMemory* m_checkBlankLines;
+	Gtk::CheckButton* m_checkBlankLines;
 };
 
 

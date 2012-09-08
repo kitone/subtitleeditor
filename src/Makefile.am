@@ -95,8 +95,6 @@ LIB_GUI_FILES = \
 	gui/automaticspellchecker.h \
 	gui/cellrenderercustom.cc \
 	gui/cellrenderercustom.h \
-	gui/checkbuttonwithmemory.cc \
-	gui/checkbuttonwithmemory.h \
 	gui/comboboxencoding.cc \
 	gui/comboboxencoding.h \
 	gui/comboboxframerate.cc \
