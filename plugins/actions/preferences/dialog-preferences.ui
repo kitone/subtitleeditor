@@ -50,7 +50,7 @@
   </object>
   <object class="GtkDialog" id="dialog-preferences">
     <property name="title" translatable="yes">Preferences</property>
-    <property name="resizable">False</property>
+    <property name="resizable">True</property>
     <property name="type_hint">dialog</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
