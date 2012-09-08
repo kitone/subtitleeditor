@@ -59,6 +59,7 @@ public:
 		long duration = info.currentSub.get_duration().totalmsecs;
 
 		double cps = utility::get_characters_per_second(text, duration);
+		cps = floor( ( cps + 0.05 )*10 ) / 10;	//to make CPS errors consistent with those in the subtitle view CPS column 
 
 		if(cps <= m_maxCPS || m_maxCPS == 0)
 			return false;
