@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -50,9 +50,12 @@ public:
 		action_group = Gtk::ActionGroup::create("ExtendLengthPlugin");
 
 		action_group->add(
-				Gtk::Action::create("extend-length", _("_Extend Length"), _("Extend the length of selected subtitles to the start time of the next")),
-					sigc::mem_fun(*this, &ExtendLengthPlugin::on_extend_length));
+				Gtk::Action::create("extend-length", _("_Extend Length Forward"), _("Extend the length of selected subtitles to the start time of the next")),
+					sigc::mem_fun(*this, &ExtendLengthPlugin::on_extend_length_fwd));
 
+		action_group->add(
+				Gtk::Action::create("extend-length-bwd", _("E_xtend Length Backwards"), _("Extend the length of selected subtitles backwards to the end time of the previous")),
+					sigc::mem_fun(*this, &ExtendLengthPlugin::on_extend_length_bwd));
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -61,6 +64,7 @@ public:
 		ui->insert_action_group(action_group);
 
 		ui->add_ui(ui_id, "/menubar/menu-timings/extend-length", "extend-length", "extend-length");
+		ui->add_ui(ui_id, "/menubar/menu-timings/extend-length-bwd", "extend-length-bwd", "extend-length-bwd");
 	}
 
 	/*
@@ -86,6 +90,7 @@ public:
 		bool visible = (get_current_document() != NULL);
 
 		action_group->get_action("extend-length")->set_sensitive(visible);
+		action_group->get_action("extend-length-bwd")->set_sensitive(visible);
 	}
 
 protected:
@@ -93,17 +98,27 @@ protected:
 	/*
 	 *
 	 */
-	void on_extend_length()
+	void on_extend_length_fwd()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
+		execute(true);
 	}
 
 	/*
 	 *
 	 */
-	bool execute()
+	void on_extend_length_bwd()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		execute(false);
+	}
+
+	/*
+	 *
+	 */
+	bool execute(bool forward)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -117,7 +132,7 @@ protected:
 
 		if(selection.empty())
 		{
-			doc->flash_message(_("Please select at least a subtitle."));
+			doc->flash_message(_("Please select at least 1 subtitle."));
 			return false;
 		}
 
@@ -125,20 +140,34 @@ protected:
 
 		doc->start_command(_("Extend lenght"));
 
-		for(unsigned int i=0; i< selection.size(); ++i)
+		if( forward )	// extend length forward, i.e. keep start and move end
 		{
-			Subtitle &sub = selection[i];
-
-			Subtitle next = subtitles.get_next(sub);
-
-			if(next)
+			for(unsigned int i=0; i< selection.size(); ++i)
 			{
-				SubtitleTime time = next.get_start() - gap;
-
-				sub.set_end(time);
+				Subtitle &sub = selection[i];
+				Subtitle next = subtitles.get_next(sub);
+				if(next)
+				{
+					SubtitleTime time = next.get_start() - gap;
+					sub.set_end(time);
+				}
 			}
 		}
-
+		else // extend length backwards, i.e. keep end and move start
+		{
+			for( int i = selection.size() - 1; i >= 0 ; --i)
+			{
+				Subtitle &sub = selection[i];
+				Subtitle prev = subtitles.get_previous(sub);
+				if(prev)
+				{
+					SubtitleTime endtime = sub.get_end();
+					SubtitleTime starttime = prev.get_end() + gap;
+					//NOTE: we cannot just call sub.set_start() because it automatically shifts the end to preserve duration
+					sub.set_start_and_end( starttime, endtime );
+				}
+			}
+		}
 		doc->emit_signal("subtitle-time-changed");
 		doc->finish_command();
 

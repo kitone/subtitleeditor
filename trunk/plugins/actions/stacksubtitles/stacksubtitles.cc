@@ -55,9 +55,14 @@ public:
 		action_group = Gtk::ActionGroup::create("StackSubtitlesPlugin");
 
 		action_group->add(
-				Gtk::Action::create("stack-subtitles", _("Stack Subtitles"),
-				_("Stack selected subtitles as close together as possible.")),
-					sigc::mem_fun(*this, &StackSubtitlesPlugin::on_stack_subtitles));
+				Gtk::Action::create("stack-subtitles", _("Stack Subtitles From Start"),
+				_("Stack selected subtitles after the first one as close together as possible.")),
+					sigc::mem_fun(*this, &StackSubtitlesPlugin::on_stack_subtitles_from_start));
+
+		action_group->add(
+				Gtk::Action::create("stack-subtitles-from-end", _("Stack Subtitles From End"),
+				_("Stack selected subtitles before the last one as close together as possible.")),
+					sigc::mem_fun(*this, &StackSubtitlesPlugin::on_stack_subtitles_from_end));
 
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -67,6 +72,7 @@ public:
 		ui->insert_action_group(action_group);
 
 		ui->add_ui(ui_id, "/menubar/menu-timings/stack-subtitles", "stack-subtitles", "stack-subtitles");
+		ui->add_ui(ui_id, "/menubar/menu-timings/stack-subtitles-from-end", "stack-subtitles-from-end", "stack-subtitles-from-end");
 	}
 
 	/*
@@ -90,64 +96,108 @@ public:
 		bool visible = (get_current_document() != NULL);
 
 		action_group->get_action("stack-subtitles")->set_sensitive(visible);
+		action_group->get_action("stack-subtitles-from-end")->set_sensitive(visible);
 	}
 
 protected:
 
 	/*
 	 */
-	void on_stack_subtitles()
+	void on_stack_subtitles_from_start()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
+		execute( true );
+	}
+
+	/*
+	 */
+	void on_stack_subtitles_from_end()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		execute( false );
+	}
+
+	/*
+	 */
+	bool execute(bool from_start)
+	{
 		se_debug(SE_DEBUG_PLUGINS);
 
 		Document *doc = get_current_document();
-		g_return_if_fail(doc);
+		g_return_val_if_fail(doc, false);
 
-		// Check if the selection is contiguous and complain if it isn't.
-		// Can work on multiple contiguous subtitles
+		Subtitles subtitles = doc->subtitles();
+
+		// We can work on multiple contiguous subtitles
 		std::list< std::vector<Subtitle> > contiguous_selection;
 		if(get_contiguous_selection(contiguous_selection) == false)
-			return;
+			return false;
 
 		doc->start_command(_("Stack Subtitles"));
 
 		for(std::list< std::vector<Subtitle> >::iterator it = contiguous_selection.begin(); it != contiguous_selection.end(); ++it)
 		{
-			stacksubtitles(*it);
+			stacksubtitles(*it, from_start);
 		}
 
 		doc->emit_signal("subtitle-time-changed");
 		doc->finish_command();
+		return true;
 	}
 
 	/*
 	 */
-	void stacksubtitles(std::vector<Subtitle> &subtitles)
+	void stacksubtitles( std::vector<Subtitle> &subtitles, bool from_start )
 	{
-		if(subtitles.size() < 2)
+		int subcnt = subtitles.size();
+
+		if(subcnt < 2)
 			return;
 
-		// Get relevant preferences
+		// get relevant preferences
 		Config &cfg = get_config();
 
 		SubtitleTime gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
-		SubtitleTime endtime;
+		//SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
+		//long maxcps = cfg.get_value_int("timing", "max-characters-per-second");
 
-		// Take each subtitle and snap it after the one before.
-		for(guint i=1; i< subtitles.size(); ++i)
+		if( from_start )
 		{
-			Subtitle &sub = subtitles[i];
+			//take each subtitle and snap it after the one before.
+			Subtitle *sub = &subtitles[0];
+			SubtitleTime endtime = sub->get_end();
+			SubtitleTime dur, starttime;
 
-			endtime = subtitles[i-1].get_end() + gap;
-
-			sub.set_start_and_end(
-					endtime,
-					endtime + sub.get_duration());
+			for(int i=1; i < subcnt; ++i)
+			{
+				sub = &subtitles[i];
+				dur = sub->get_duration();
+				starttime = endtime + gap;
+				endtime = starttime + dur;
+				sub->set_start_and_end( starttime, endtime );
+			}
 		}
-	}
+		else //from_start == false
+		{
+			//take each subtitle from last to first and snap it before the one after it
+			Subtitle *sub = &subtitles[subcnt-1];
+			SubtitleTime starttime = sub->get_start();
+			SubtitleTime dur, endtime;
 
+			for( int i=subcnt-2; i >= 0; --i )
+			{
+				sub = &subtitles[i];
+				dur = sub->get_duration();
+				endtime = starttime - gap;
+				starttime = endtime - dur;
+				sub->set_start_and_end( starttime, endtime );
+			}
+		}
+		return;
+	}
+	
 	/*
 	 */
 	bool get_contiguous_selection(std::list< std::vector<Subtitle> > &contiguous_selection)
@@ -194,8 +244,8 @@ protected:
 		}
 		doc->flash_message(_("Stack Subtitles only works on a continuous selection."));
 		return false;
-	}
-
+	}	
+	
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;

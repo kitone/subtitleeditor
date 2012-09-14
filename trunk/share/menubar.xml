@@ -65,11 +65,15 @@
 			<separator/>
 			<!-- placeholder name="try-to-extend-to-perfect"/-->
 			<placeholder name="extend-length"/>
+			<placeholder name="extend-length-bwd"/>
 			<!--separator/-->
 			<placeholder name="move-after-preceding-subtitle"/>
-			<placeholder name="stack-subtitles"/>
-			<placeholder name="minimize-duration"/>
+			<placeholder name="move-before-next-subtitle"/>
 			<placeholder name="best-fit"/>
+			<placeholder name="minimize-duration"/>
+			<placeholder name="minimize-duration-from-end"/>
+			<placeholder name="stack-subtitles"/>
+			<placeholder name="stack-subtitles-from-end"/>
 			<separator/>
 			<placeholder name="placeholder"/>
 		</menu>
