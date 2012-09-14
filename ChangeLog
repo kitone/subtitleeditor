@@ -1,3 +1,13 @@
+2012-09-14  kitone  <kitone@gna.org>
+
+	* plugins/actions/extendlength/extendlength.cc:
+	* plugins/actions/minimizeduration/minimizeduration.cc:
+	* plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc:
+	* plugins/actions/stacksubtitles/stacksubtitles.cc:
+	* share/menubar.xml:
+	Reverse command for extendlength, minimizeduration,
+	moveafterprecedingsubtitle, stacksubtitles. Patch by Tomas Partl <eltomito>.
+
 2012-09-08  kitone  <kitone@gna.org>
 
 	* plugins/actions/adjusttime/adjusttime.cc:
