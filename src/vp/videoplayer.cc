@@ -373,7 +373,7 @@ void VideoPlayer::clear_subtitle()
 bool VideoPlayer::is_good_subtitle(const Subtitle &sub, long time)
 {
 	if(sub)
-		if(time >= sub.get_start().totalmsecs && time <= sub.get_end().totalmsecs)
+		if(time >= sub.get_start().totalmsecs && time < sub.get_end().totalmsecs)
 			return true;
 		
 	return false;
@@ -414,7 +414,7 @@ bool VideoPlayer::find_subtitle()
 		{
 			show_subtitle_null();
 		}
-		else if(time > m_subtitle.get_end()) // it's the old, try with the next subtitle
+		else if(time >= m_subtitle.get_end()) // it's the old, try with the next subtitle
 		{
 			show_subtitle_null();
 

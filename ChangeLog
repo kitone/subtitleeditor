@@ -1,3 +1,8 @@
+2012-11-01  kitone  <kitone@gna.org>
+
+	* src/vp/videoplayer.cc:
+	Fix bug #20074 : Scene cut based keyframe detection. Subtitle should disappears at end time.
+
 2012-09-14  kitone  <kitone@gna.org>
 
 	* plugins/actions/extendlength/extendlength.cc:
