@@ -152,7 +152,7 @@ protected:
 		Config &cfg = get_config();
 
 		SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
-		unsigned long maxcps = cfg.get_value_int("timing", "max-characters-per-second");
+		double maxcps = cfg.get_value_double("timing", "max-characters-per-second");
 
 		doc->start_command(_("Minimize Durations"));
 

@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2010, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -230,10 +230,6 @@ void SubtitleModel::init(Gtk::TreeIter &iter)
 	
 	Glib::ustring default_view_value = (m_document->get_edit_timing_mode() == TIME) ? SubtitleTime::null() : "0";
 
-	(*iter)[m_column.start]			= default_view_value;
-	(*iter)[m_column.end]				= default_view_value;
-	(*iter)[m_column.duration]	= default_view_value;
-
 	// The real value of time
 	(*iter)[m_column.start_value]= 0;
 	(*iter)[m_column.end_value]= 0;
@@ -440,10 +436,6 @@ void SubtitleModel::copy(Glib::RefPtr<SubtitleModel> src)
 		SET(start_value, long);
 		SET(end_value, long);
 		SET(duration_value, long);
-
-		SET(start, Glib::ustring);
-		SET(end, Glib::ustring);
-		SET(duration, Glib::ustring);
 
 		SET(style, Glib::ustring);
 		SET(name, Glib::ustring);

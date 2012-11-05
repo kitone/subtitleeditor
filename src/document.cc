@@ -498,11 +498,6 @@ TIMING_MODE Document::get_timing_mode()
 void Document::set_edit_timing_mode(TIMING_MODE mode)
 {
 	m_edit_timing_mode = mode;
-
-	for(Subtitle sub = subtitles().get_first(); sub; ++sub)
-	{
-		sub.update_view_mode_timing();
-	}
 	emit_signal("edit-timing-mode-changed");
 }
 	
@@ -518,16 +513,12 @@ TIMING_MODE Document::get_edit_timing_mode()
  * Define the framerate of the document.
  * A signal "framerate-changed" is emited.
  */
-void Document::set_framerate(FRAMERATE framerate)
+ void Document::set_framerate(FRAMERATE framerate)
 {
 	m_framerate = framerate;
-
-	for(Subtitle sub = subtitles().get_first(); sub; ++sub)
-	{
-		sub.update_view_mode_timing();
-	}
 	emit_signal("framerate-changed");
 }
+
 
 /*
  * Return the framerate of the document.

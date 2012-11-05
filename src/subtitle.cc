@@ -25,6 +25,7 @@
 #include "utility.h"
 #include "document.h"
 #include <iomanip>
+#include <math.h>
 
 /*
  *
@@ -221,8 +222,6 @@ void Subtitle::set_start_and_end(const SubtitleTime &start, const SubtitleTime &
 	set_end_value(convert_to_value_mode(end));
 	// update the duration
 	set_duration_value(get_end_value() - get_start_value());
-
-	update_characters_per_sec();
 }
 
 /*
@@ -234,8 +233,6 @@ void Subtitle::set_start(const SubtitleTime &time)
 
 	// update the duration
 	set_duration_value(get_end_value() - get_start_value());
-
-	update_characters_per_sec();
 }
 
 /*
@@ -247,8 +244,6 @@ void Subtitle::set_start_frame(const long &frame)
 
 	// update the duration
 	set_duration_value(get_end_value() - get_start_value());
-
-	update_characters_per_sec();
 }
 
 /*
@@ -276,8 +271,6 @@ void Subtitle::set_end(const SubtitleTime &time)
 
 	// update the duration
 	set_duration_value(get_end_value() - get_start_value());
-
-	update_characters_per_sec();
 }
 
 /*
@@ -289,8 +282,6 @@ void Subtitle::set_end_frame(const long &frame)
 
 	// update the duration
 	set_duration_value(get_end_value() - get_start_value());
-
-	update_characters_per_sec();
 }
 
 /*
@@ -319,8 +310,6 @@ void Subtitle::set_duration(const SubtitleTime &time)
 
 	// update the end
 	set_end_value(get_start_value() + get_duration_value());
-
-	update_characters_per_sec();
 }
 
 /*
@@ -332,8 +321,6 @@ void Subtitle::set_duration_frame(const long &frame)
 
 	// update the end
 	set_end_value(get_start_value() + get_duration_value());
-
-	update_characters_per_sec();
 }
 
 /*
@@ -352,6 +339,69 @@ long Subtitle::get_duration_frame() const
 	return convert_value_to_mode(get_duration_value(), FRAME);
 }
 
+/*
+ * Calculate the gap_before value from the start of this and the end of the previous subtitle.
+ * The gap is written into the appropriate column.
+ * The return value is false if this is the first subtitle (no gap before),
+ * true otherwise.
+ */
+bool Subtitle::update_gap_before()
+{
+	Subtitle prev_sub = m_document->subtitles().get_previous( *this );
+	if( prev_sub == 0 )
+		return false;
+
+	long gap = get_start().totalmsecs - prev_sub.get_end().totalmsecs;	//gap is in miliseconds
+	(*m_iter)[column.gap_before] = gap;
+	(*prev_sub.m_iter)[column.gap_after] = gap;
+	return true;
+}
+
+/*
+ * Calculate the gap_before value from the start of the next and the end of this subtitle.
+ * The gap is written into the appropriate column.
+ * The return value is false if this is the last subtitle (no gap after),
+ * true otherwise.
+ */
+bool Subtitle::update_gap_after()
+{
+	Subtitle next_sub = m_document->subtitles().get_next( *this );
+	if( next_sub == 0 )
+		return false;
+	
+	long gap = next_sub.get_start().totalmsecs - get_end().totalmsecs;	//gap is in miliseconds
+	(*m_iter)[column.gap_after] = gap;
+	(*next_sub.m_iter)[column.gap_before] = gap;
+	return true;
+}
+
+/*
+ * Check if the gab between this and the previous subtitle is long enough.
+ * Mingap is the minimum gap in miliseconds.
+ */
+bool Subtitle::check_gap_before( long mingap )
+{
+	//const long mingap = convert_to_value_mode( SubtitleTime( Config::getInstance().get_value_int("timing", "min-gap-between-subtitles") ) );
+	if(( (*m_iter)[column.gap_before] >= mingap ) || ( get_num() <= 1 ))
+		return true;
+
+	return false;
+}
+
+/*
+ * Check if the gab between this and the next subtitle is long enough
+ * Mingap is the minimum gap in miliseconds.
+ */
+bool Subtitle::check_gap_after( long mingap )
+{
+	//const long mingap = convert_to_value_mode( SubtitleTime( Config::getInstance().get_value_int("timing", "min-gap-between-subtitles") ) );
+	Subtitle next_sub = m_document->subtitles().get_next( *this );
+
+	if(( (*m_iter)[column.gap_after] >= mingap ) || ( next_sub == 0 ) )
+		return true;
+
+	return false;
+}
 
 /*
  * Set the start value in the subtitle time mode. (FRAME or TIME)
@@ -359,17 +409,8 @@ long Subtitle::get_duration_frame() const
 void Subtitle::set_start_value(const long &value)
 {
 	push_command("start", to_string(value));
-
 	(*m_iter)[column.start_value] = value;
-	(*m_iter)[column.start] = convert_value_to_view_mode(value);
-}
-
-/*
- * Get the start value in the subtitle time mode. (FRAME or TIME)
- */
-long Subtitle::get_start_value() const
-{
-	return (*m_iter)[column.start_value];
+	update_gap_before();
 }
 
 /*
@@ -378,9 +419,25 @@ long Subtitle::get_start_value() const
 void Subtitle::set_end_value(const long &value)
 {
 	push_command("end", to_string(value));
-
 	(*m_iter)[column.end_value] = value;
-	(*m_iter)[column.end] = convert_value_to_view_mode(value);
+	update_gap_after();
+}
+
+/*
+ */
+Glib::ustring Subtitle::convert_value_to_time_string( long value, const Glib::ustring &color_name )
+{
+	if( color_name.empty() )
+		return convert_value_to_view_mode(value);
+	return Glib::ustring::compose("<span foreground=\"%1\">%2</span>", color_name, convert_value_to_view_mode(value));
+}
+
+/*
+ * Get the start value in the subtitle time mode. (FRAME or TIME)
+ */
+long Subtitle::get_start_value() const
+{
+	return (*m_iter)[column.start_value];
 }
 
 /*
@@ -399,7 +456,7 @@ void Subtitle::set_duration_value(const long &value)
 	push_command("duration", to_string(value));
 
 	(*m_iter)[column.duration_value] = value;
-	(*m_iter)[column.duration] = convert_value_to_view_mode(value);
+	update_characters_per_sec();
 }
 
 /*
@@ -698,15 +755,55 @@ Glib::ustring Subtitle::get_characters_per_line_translation() const
 }
 
 /*
- *
  */
-void Subtitle::set_characters_per_second_text(const Glib::ustring &cps)
+void Subtitle::set_characters_per_second_text(double cps)
 {
-	push_command("characters-per-second-text", cps);
-	
+	push_command("characters-per-second-text", Glib::ustring::format(std::fixed, std::setprecision(1), cps ) );
+
 	(*m_iter)[column.characters_per_second_text] = cps;
 }
 
+/*
+ */
+double Subtitle::get_characters_per_second_text() const
+{
+	return (double)( (*m_iter)[column.characters_per_second_text] );
+}
+
+/*
+ */
+Glib::ustring Subtitle::get_characters_per_second_text_string() const
+{
+	return Glib::ustring::format(std::fixed, std::setprecision(1), get_characters_per_second_text() );
+}
+
+/*
+ * Checks if the cps of this subtitle is within the specified bounds
+ * result: 0 - okay, <0 - too low, >0 - too high 
+ */
+ int Subtitle::check_cps_text( double mincps, double maxcps )
+ {
+	int retval = 0;
+
+	//round cps to 1/10 precision
+ 	double cps = round( (double)10 * get_characters_per_second_text() ) / (double)10;
+
+	//FIXME tomas-kitone, before fixing this strange comparing code,
+	//try uncommenting the printf below, compiling subtitleeditor, setting max cps to a non-integer value (e.g. 16.7)
+	//and minimizing the duration of a subtitle. Then look at maxcps-cps that is printed out for the minimized subtitle.
+	//It was always greater than zero when I tested this. I think it's because the rounding code actually
+	//leaves some binary residue that looks like a value of the order of 10^-15.
+
+	//compare cps to min and max values while ignoring the fuzz left after the floating-point division
+	if( (mincps - cps) > (double)0.0001 )
+		retval = -1 ;
+	else	if( (cps - maxcps) > (double)0.0001 )
+			retval = 1;
+
+	//printf("sub # : %i, cps: %e, maxcps: %e, cps-maxcps=%e, retval: %i\n", get_num(), cps, maxcps, (maxcps-cps), retval );
+
+	return( retval );
+ }
 
 /*
  *
@@ -780,7 +877,7 @@ void Subtitle::set(const Glib::ustring &name, const Glib::ustring &value)
 	else if(name == "note")
 		set_note(value);
 	else if(name == "characters-per-second-text")
-		set_characters_per_second_text(value);
+		set_characters_per_second_text(utility::string_to_double( value ));
 	else
 	{
 		std::cerr << "Subtitle::set UNKNOW " << name << " " << value << std::endl;
@@ -821,7 +918,7 @@ Glib::ustring Subtitle::get(const Glib::ustring &name) const
 	else if(name == "note")
 		return get_note();
 	else if(name == "characters-per-second-text")
-		return (*m_iter)[column.characters_per_second_text];
+		return get_characters_per_second_text_string();
 	else
 	{
 		std::cerr << "Subtitle::get UNKNOW " << name << std::endl;
@@ -870,21 +967,5 @@ void Subtitle::update_characters_per_sec()
 {
 	SubtitleTime duration = get_duration();
 	double cps = utility::get_characters_per_second(get_text(), duration.totalmsecs);
-
-	set_characters_per_second_text(
-			Glib::ustring::format(std::fixed, std::setprecision(1), cps)); 
-}
-
-/*
- * Update the visual values. 
- * Like when the framerate document has changed.
- */
-void Subtitle::update_view_mode_timing()
-{
-	(*m_iter)[column.start] = convert_value_to_view_mode(get_start_value());
-	(*m_iter)[column.end] = convert_value_to_view_mode(get_end_value());
-	(*m_iter)[column.duration] = convert_value_to_view_mode(get_duration_value());
-
-	// FIXME Only if frame mode
-	// update_characters_per_sec();
+	(*m_iter)[column.characters_per_second_text]	= cps;
 }

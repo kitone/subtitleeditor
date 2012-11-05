@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -292,61 +292,7 @@ public:
 		//property_weight() = Pango::WEIGHT_ULTRALIGHT;
 		property_xalign() = 1.0;
 		property_alignment() = Pango::ALIGN_RIGHT;
-
-		Config &cfg = Config::getInstance();
-
-		mincps = cfg.get_value_int("timing", "min-characters-per-second");
-		maxcps = cfg.get_value_int("timing", "max-characters-per-second");
-		// We want to keep trace of new min and max values
-		cfg.signal_changed("timing").connect(
-				sigc::mem_fun(*this, &CellRendererCPS::on_config_timing_changed));
 	}
-
-	/*
-	 */
-	virtual void render_vfunc (
-			const Glib::RefPtr< Gdk::Drawable >& window,
-			Gtk::Widget& widget,
-			const Gdk::Rectangle& bg_area,
-			const Gdk::Rectangle& cell_area,
-			const Gdk::Rectangle& expose_area,
-			Gtk::CellRendererState flags)
-	{
-
-		double value = utility::string_to_double(Glib::ustring(property_text()));
-
-		if(value > maxcps)
-			property_foreground() = "red";
-		else if(value < mincps)
-			property_foreground() = "blue";
-		else
-		{
-			if(flags & Gtk::CELL_RENDERER_SELECTED)
-				property_foreground() = "white";
-			else
-				property_foreground() = "black";
-		}
-
-		// Remove the flag to avoid conflict with selected color
-		// FIXME do this with a better way...
-		if(flags & Gtk::CELL_RENDERER_SELECTED)
-			flags &= ~Gtk::CELL_RENDERER_SELECTED;
-
-		Gtk::CellRendererText::render_vfunc(window, widget, bg_area, cell_area, expose_area, flags);
-	}
-
-	/*
-	 */
-	void on_config_timing_changed(const Glib::ustring &key, const Glib::ustring &value)
-	{
-		if(key == "min-characters-per-second")
-			mincps = utility::string_to_double(value);
-		else if(key == "max-characters-per-second")
-			maxcps = utility::string_to_double(value);
-	}
-protected:
-	double mincps;
-	double maxcps;
 };
 
 /*
@@ -424,9 +370,63 @@ SubtitleView::SubtitleView(Document &doc)
 	// DnD
 	set_reorderable(true);
 
+	// We need to update the view if the framerate of the document changed
+	m_refDocument->get_signal("framerate-changed").connect(
+			sigc::mem_fun(*this, &SubtitleView::update_visible_range));
+
 	// Update the columns size
 	m_refDocument->get_signal("edit-timing-mode-changed").connect(
 			sigc::mem_fun(*this, &Gtk::TreeView::columns_autosize));
+
+	
+	// Setup my own copy of needed timing variables
+	Config &cfg = Config::getInstance(); 		
+	min_duration = cfg.get_value_int("timing", "min-display");	
+	min_gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
+	min_cps = cfg.get_value_double("timing", "min-characters-per-second");
+	max_cps = cfg.get_value_double("timing", "max-characters-per-second");
+
+	check_timing = cfg.get_value_bool("timing", "do-auto-timing-check");
+
+	// keep trace of timing settings
+	cfg.signal_changed("timing").connect(
+			sigc::mem_fun(*this, &SubtitleView::on_config_timing_changed));
+}
+
+/*
+ */
+void SubtitleView::on_config_timing_changed(const Glib::ustring &key, const Glib::ustring &value)
+{
+	if(key == "min-gap-between-subtitles")
+		min_gap = utility::string_to_long(value);
+	else if(key == "do-auto-timing-check")
+		check_timing = utility::string_to_bool(value);
+	else if( key == "min-display" )
+		min_duration = Config::getInstance().get_value_int("timing", "min-display");
+	else if( key == "min-characters-per-second" )
+		min_cps = utility::string_to_double(value);
+	else if( key == "max-characters-per-second" )
+		max_cps = utility::string_to_double(value);
+
+	update_visible_range();
+}
+
+/*
+ * Update the visible range
+ * We need to update after timing change or framerate change
+ */
+void SubtitleView::update_visible_range()
+{
+	//tell Gtk it should update all visible rows in the subtitle list
+	Gtk::TreePath cur_path, end_path;
+	if( get_visible_range( cur_path, end_path) )
+	{
+		while(cur_path <= end_path)
+		{
+			m_subtitleModel->row_changed( cur_path, m_subtitleModel->get_iter( cur_path ) );
+			cur_path.next();
+		}
+	}
 }
 
 /*
@@ -559,12 +559,94 @@ void SubtitleView::createColumnLayer()
 }
 
 /*
- *
+ */
+void SubtitleView::cps_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter )
+{
+	CellRendererTime *trenderer = (CellRendererTime*)renderer;
+	Subtitle cur_sub( m_refDocument, iter );
+		
+	Glib::ustring color("black"); // default
+
+	if(check_timing)
+	{
+		const int cmp = cur_sub.check_cps_text( min_cps, max_cps );
+		if( cmp > 0 )
+			color = "red";
+		else if( cmp < 0 )
+			color = "blue";
+	}
+	trenderer->property_markup() = Glib::ustring::compose("<span foreground=\"%1\">%2</span>", color, cur_sub.get_characters_per_second_text_string());
+}
+
+
+/*
+ */
+void SubtitleView::duration_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter )
+{
+	CellRendererTime *trenderer = (CellRendererTime*)renderer;
+	Subtitle cur_sub( m_refDocument, iter );
+
+	Glib::ustring color;
+
+	// Display text in red if the check timing option is enabled and 
+	// if the current subtitle don't respect the minimun duration
+	if(check_timing)
+	{
+		if(cur_sub.get_duration().totalmsecs < min_duration )		//duration in msec
+			color = "red";
+	}
+
+	trenderer->property_markup() = cur_sub.convert_value_to_time_string( (*iter)[m_column.duration_value], color );
+}
+
+/*
+ */
+void SubtitleView::start_time_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter )
+{
+	CellRendererTime *trenderer = (CellRendererTime*)renderer;
+	Subtitle cur_sub( m_refDocument, iter );
+
+	Glib::ustring color;
+
+	// Display text in red if the check timing option is enabled and 
+	// if the current subtitle don't respect gap before subtitle
+	if(check_timing)
+	{
+		if(cur_sub.check_gap_before( min_gap ) == false)
+			color = "red";
+	}
+
+	trenderer->property_markup() = cur_sub.convert_value_to_time_string( (*iter)[m_column.start_value], color );
+}
+
+/*
+ */
+void SubtitleView::end_time_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter )
+{
+	CellRendererTime *trenderer = (CellRendererTime*)renderer;
+	Subtitle cur_sub( m_refDocument, iter );
+
+	Glib::ustring color;
+
+	// Display text in red if the check timing option is enabled and 
+	// if the current subtitle don't respect gap before subtitle
+	if(check_timing)
+	{
+		if(cur_sub.check_gap_after( min_gap ) == false)
+			color = "red";
+	}
+
+	trenderer->property_markup() = cur_sub.convert_value_to_time_string( (*iter)[m_column.end_value], color );
+
+}
+
+/*
  */
 void SubtitleView::create_column_time(
 		const Glib::ustring &name, 
 		const Gtk::TreeModelColumnBase& column_attribute,
-		const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot, 
+		const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot_edited, 
+		const sigc::slot<void, const Gtk::CellRenderer*, const Gtk::TreeModel::iterator&> &slot_cell_data_func,
 		const Glib::ustring &tooltips)
 {
 	se_debug_message(SE_DEBUG_VIEW, "name=%s tooltips=%s", 
@@ -574,11 +656,11 @@ void SubtitleView::create_column_time(
 	CellRendererTime* renderer = manage(new CellRendererTime(m_refDocument));
 	
 	Gtk::TreeViewColumn* column = create_treeview_column(name);
-
 	column->pack_start(*renderer);
-	column->add_attribute(renderer->property_text(), column_attribute);
-	
-	renderer->signal_edited().connect(slot);
+
+	column->set_cell_data_func( *renderer, slot_cell_data_func);
+
+	renderer->signal_edited().connect(slot_edited);
 
 	append_column(*column);
 
@@ -592,8 +674,9 @@ void SubtitleView::createColumnStart()
 {
 	create_column_time(
 			"start", 
-			m_column.start, 
+			m_column.start_value, 
 			sigc::mem_fun(*this, &SubtitleView::on_edited_start),
+			sigc::mem_fun(*this, &SubtitleView::start_time_data_func),
 			_("When a subtitle appears on the screen."));
 }
 
@@ -604,8 +687,9 @@ void SubtitleView::createColumnEnd()
 {
 	create_column_time(
 			"end", 
-			m_column.end, 
+			m_column.end_value, 
 			sigc::mem_fun(*this, &SubtitleView::on_edited_end),
+			sigc::mem_fun(*this, &SubtitleView::end_time_data_func),
 			_("When a subtitle disappears from the screen."));
 
 }
@@ -617,8 +701,9 @@ void SubtitleView::createColumnDuration()
 {
 	create_column_time(
 			"duration", 
-			m_column.duration, 
+			m_column.duration_value, 
 			sigc::mem_fun(*this, &SubtitleView::on_edited_duration),
+			sigc::mem_fun(*this, &SubtitleView::duration_data_func),
 			 _("The duration of the subtitle."));
 }
 
@@ -685,7 +770,8 @@ void SubtitleView::createColumnCPS()
 	CellRendererCPS* renderer = manage(new CellRendererCPS);
 	
 	column->pack_start(*renderer);
-	column->add_attribute(renderer->property_text(), m_column.characters_per_second_text);
+
+	column->set_cell_data_func( *renderer, sigc::mem_fun( *this, &SubtitleView::cps_data_func ) );
 
 	append_column(*column);
 

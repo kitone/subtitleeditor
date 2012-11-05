@@ -1,3 +1,26 @@
+2012-11-05  kitone  <kitone@gna.org>
+
+	* plugins/actions/bestfit/bestfit.cc:
+	* plugins/actions/errorchecking/dialog-error-checking-preferences.ui:
+	* plugins/actions/errorchecking/toolongdisplaytime.h:
+	* plugins/actions/errorchecking/tooshortdisplaytime.h:
+	* plugins/actions/minimizeduration/minimizeduration.cc:
+	* plugins/actions/preferences/dialog-preferences.ui:
+	* plugins/actions/preferences/timingpage.h:
+	* src/defaultcfg.cc:
+	* src/document.cc:
+	* src/subtitle.cc:
+	* src/subtitle.h:
+	* src/subtitlemodel.cc:
+	* src/subtitlemodel.h:
+	* src/subtitles.cc:
+	* src/subtitles.h:
+	* src/subtitleview.cc:
+	* src/subtitleview.h:
+	* src/utility.cc:
+	* src/utility.h:
+	Automatic highlighting for all timing errors. Patch by Tomas Partl <eltomito>.
+
 2012-11-01  kitone  <kitone@gna.org>
 
 	* src/vp/videoplayer.cc:

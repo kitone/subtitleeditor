@@ -85,6 +85,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["interface"]["create-backup-copy"] = "false";
 	config["interface"]["autosave-minutes"] = "10";
 	config["interface"]["max-undo"] = "20";
+	config["interface"]["do-auto-timing-check"] = "true";
 
 	//[encodings]
 	config["encodings"]["encodings"] = "ISO-8859-15;UTF-8";

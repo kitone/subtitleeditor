@@ -162,12 +162,12 @@ protected:
 	Gtk::TreeViewColumn* create_treeview_column(const Glib::ustring &name);
 
 	/*
-	 *
 	 */
 	void create_column_time( 
 					const Glib::ustring &name, 
 					const Gtk::TreeModelColumnBase& column_attribute,
-					const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot, 
+					const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot_edited, 
+					const sigc::slot<void, const Gtk::CellRenderer*, const Gtk::TreeModel::iterator&> &slot_cell_data_func,
 					const Glib::ustring &tooltips=Glib::ustring());
 
 	/*
@@ -218,6 +218,33 @@ protected:
 	 */
 	void set_tooltips(Gtk::TreeViewColumn *column, const Glib::ustring &text);
 
+	/*
+	 */
+	void cps_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter );
+
+	/*
+	 */
+	void duration_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter );
+
+	/*
+	 */
+	void start_time_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter );
+
+	/*
+	 */
+	void end_time_data_func( const Gtk::CellRenderer *renderer, const Gtk::TreeModel::iterator &iter );
+
+	/*
+	 */
+	void on_config_timing_changed(const Glib::ustring &key, const Glib::ustring &value);
+
+	/*
+	 * Update the visible range
+	 * We need to update after timing change or framerate change
+	 */
+	void update_visible_range();
+
+
 protected:
 	Document* m_refDocument;
 	
@@ -231,6 +258,13 @@ protected:
 	std::map<Glib::ustring, Gtk::TreeViewColumn*>	m_columns;
 
 	Gtk::Menu m_menu_popup;
+	
+protected:
+	bool check_timing;
+	long min_gap;
+	long min_duration;
+	double min_cps;
+	double max_cps;
 };
 
 
