@@ -153,7 +153,6 @@ public:
 	 */
 	void invert_selection();
 
-
 	/*
 	 */
 	guint sort_by_time();

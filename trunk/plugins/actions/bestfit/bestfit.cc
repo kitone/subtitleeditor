@@ -179,7 +179,7 @@ protected:
 		Config &cfg = get_config();
 
 		SubtitleTime gap		= cfg.get_value_int("timing", "min-gap-between-subtitles");
-		long mincps					= cfg.get_value_int("timing", "min-characters-per-second");
+		double mincps					= cfg.get_value_double("timing", "min-characters-per-second");
 		//SubtitleTime minlen	= cfg.get_value_int("timing", "min-display");
 		//long maxcpl					= cfg.get_value_int("timing", "max-characters-per-line");
 		//long maxcps					= cfg.get_value_int("timing", "max-characters-per-second");
@@ -216,7 +216,7 @@ protected:
 			intime = startime + ( (grosstime * prevchars ) / totalchars );	// calculate proportionate start time
 
 			// make sure we're not under the minimum cps
-			maxdur.totalmsecs = (1000 * subchars) / mincps;
+			maxdur.totalmsecs = (long)floor( ( (double)1000 * (double)subchars) / mincps );
 			if( dur > maxdur )
 				dur = maxdur;
 

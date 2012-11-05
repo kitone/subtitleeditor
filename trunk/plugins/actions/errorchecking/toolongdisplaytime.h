@@ -47,7 +47,7 @@ public:
 	 */
 	virtual void init()
 	{
-		m_minCPS = Config::getInstance().get_value_int("timing", "min-characters-per-second");
+		m_minCPS = Config::getInstance().get_value_double("timing", "min-characters-per-second");
 	}
 
 	/*
@@ -55,36 +55,29 @@ public:
 	 */
 	bool execute(Info &info)	
 	{
-		Glib::ustring text = info.currentSub.get_text();
-		long duration = info.currentSub.get_duration().totalmsecs;
-		
-		double cps = utility::get_characters_per_second(text, duration);
-
-		if(cps >= m_minCPS || m_minCPS == 0)
+		if( ( info.currentSub.check_cps_text( m_minCPS, (m_minCPS + 1) ) >= 0 ) || m_minCPS == 0 )
 			return false;
 
-		SubtitleTime value( (long)(text.size() * 1000 / m_minCPS) );
-		
-		SubtitleTime new_end = info.currentSub.get_start() + value;
+		SubtitleTime duration( utility::get_min_duration_msecs( info.currentSub.get_text(), m_minCPS ) );
 
 		if(info.tryToFix)
 		{
-			info.currentSub.set_duration(value);
+			info.currentSub.set_duration( duration );
 			return true;
 		}
-		
+
 		info.error = build_message(
-				_("Subtitle display time is too long: <b>%.1f chars/s</b>"), cps);
-		
+				_("Subtitle display time is too long: <b>%.1f chars/s</b>"), info.currentSub.get_characters_per_second_text() );
+
 		info.solution = build_message(
-				_("<b>Automatic correction:</b> to change current subtitle end to %s."),
-				new_end.str().c_str());
+				_("<b>Automatic correction:</b> change current subtitle duration to %s."),
+				duration.str().c_str() );
 
 		return true;
 	}
 
 protected:
-	int m_minCPS;
+	double m_minCPS;
 };
 
 #endif//_TooLongDisplayTime_h

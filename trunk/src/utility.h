@@ -207,8 +207,8 @@ namespace utility
 	/*
 	 * Calculate the minimum acceptable duration for a string of this length. 
 	 */
-	unsigned long get_min_duration_msecs( unsigned long textlen, unsigned long maxcps);
-	unsigned long get_min_duration_msecs( const Glib::ustring &text, unsigned long maxcps);
+	unsigned long get_min_duration_msecs( unsigned long textlen, double maxcps);
+	unsigned long get_min_duration_msecs( const Glib::ustring &text, double maxcps);
 
 	/*
 	 *	get number of characters for each line in the text

@@ -107,12 +107,6 @@ public:
 	Glib::ustring get_layer() const;
 
 	/*
-	 * Update the visual values. 
-	 * Like when the framerate document has changed.
-	 */
-	void update_view_mode_timing();
-
-	/*
 	 * Optimize the calculation by calculating the duration only once.
 	 */
 	void set_start_and_end(const SubtitleTime &start, const SubtitleTime &end);
@@ -297,17 +291,60 @@ public:
 	 */
 	void get(std::map<Glib::ustring, Glib::ustring> &values);
 
+	/*
+	 * Check if the gab between this and the previous subtitle is long enough
+	 */
+	bool check_gap_before( long mingap );
+
+	/*
+	 * Check if the gab between this and the next subtitle is long enough
+	 */
+	bool check_gap_after( long mingap );
+
+	/*
+	 * Calculate the gap_before value from the start of this and the end of the previous subtitle.
+	 * The gap is written into the appropriate column.
+	 * The return value is false if this is the first subtitle (no gap before),
+	 * true otherwise.
+	 */
+	bool update_gap_before();
+
+	/*
+ 	* Calculate the gap_before value from the start of the next and the end of this subtitle.
+ 	* The gap is written into the appropriate column.
+ 	* The return value is false if this is the last subtitle (no gap after),
+	* true otherwise.
+	*/
+	bool update_gap_after();
+
+	/*
+	 */
+	Glib::ustring convert_value_to_time_string( long value, const Glib::ustring &color_name ="" );
+
+	/*
+	 */
+	void set_characters_per_second_text(double cps);
+
+	/*
+	 */
+	double get_characters_per_second_text() const;
+
+	/*
+	 */
+	Glib::ustring get_characters_per_second_text_string() const;
+
+	/*
+	 * Checks if the cps of this subtitle is within the specified bounds
+	 * result: 0 - okay, <0 - too low, >0 - too high 
+	 */
+	 int check_cps_text( double mincps, double maxcps );
+
 protected:
 
 	/*
 	 *
 	 */
 	void push_command(const Glib::ustring &name, const Glib::ustring &value);
-
-	/*
-	 *
-	 */
-	void set_characters_per_second_text(const Glib::ustring &cps);
 
 	/*
 	 *
@@ -369,7 +406,6 @@ protected:
 	Document *m_document;
 	Gtk::TreeIter m_iter;
 	Glib::ustring m_path;
-	
 };
 
 

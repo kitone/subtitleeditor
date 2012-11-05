@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2010, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -70,11 +70,10 @@ public:
 		add(num);
 		add(layer);
 		add(start_value);
-		add(start);
 		add(end_value);
-		add(end);
 		add(duration_value);
-		add(duration);
+		add(gap_before);
+		add(gap_after);
 		add(style);
 		add(name);
 		add(marginL);
@@ -86,7 +85,6 @@ public:
 		add(characters_per_line_text);
 		add(characters_per_second_text);
 		add(characters_per_line_translation);
-		add(characters_per_second_translation);
 		add(note);
 	}
 
@@ -98,10 +96,9 @@ public:
 	Gtk::TreeModelColumn<long>						end_value;
 	Gtk::TreeModelColumn<long>						duration_value;
 
-	Gtk::TreeModelColumn<Glib::ustring>		start;
-	Gtk::TreeModelColumn<Glib::ustring>		end;
-	Gtk::TreeModelColumn<Glib::ustring>		duration;
-	
+	Gtk::TreeModelColumn<long>						gap_before;
+	Gtk::TreeModelColumn<long>						gap_after;
+
 	Gtk::TreeModelColumn<Glib::ustring>		style;
 	Gtk::TreeModelColumn<Glib::ustring>		name;
 
@@ -118,8 +115,7 @@ public:
 	Gtk::TreeModelColumn<Glib::ustring>		characters_per_line_translation;
 	Gtk::TreeModelColumn<Glib::ustring>		note;
 
-	Gtk::TreeModelColumn<Glib::ustring>		characters_per_second_text;
-	Gtk::TreeModelColumn<Glib::ustring>		characters_per_second_translation;
+	Gtk::TreeModelColumn<double>		characters_per_second_text;
 };
 
 class Document;

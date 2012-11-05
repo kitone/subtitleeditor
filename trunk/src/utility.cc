@@ -309,7 +309,7 @@ namespace utility
 		if(len == 0)
 			return 0;
 
-		double cps = static_cast<double>(len * 1000) / msecs;
+		double cps = static_cast<double>(( (double)len * (double)1000) / (double)msecs);
 
 		return cps;
 	}
@@ -337,10 +337,10 @@ namespace utility
 	/*
 	 * Calculate the minimum acceptable duration for a string of this length. 
 	 */
-	unsigned long get_min_duration_msecs( unsigned long textlen, unsigned long maxcps)
+	unsigned long get_min_duration_msecs( unsigned long textlen, double maxcps)
 	{
 		if( maxcps > 0 )
-			return ( (1000 * textlen) / maxcps );
+			return ( (long) ceil ( (1000 * (double) textlen) / maxcps ) );
 		else
 			return 0;
 	}
@@ -348,7 +348,7 @@ namespace utility
 	/*
 	 * Calculate the minimum acceptable duration for a string of this length. 
 	 */
-	unsigned long get_min_duration_msecs( const Glib::ustring &text, unsigned long maxcps)
+	unsigned long get_min_duration_msecs( const Glib::ustring &text, double maxcps)
 	{
 		return utility::get_min_duration_msecs( (unsigned long)get_text_length_for_timing( text ), maxcps );
 	}

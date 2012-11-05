@@ -351,7 +351,15 @@ void Subtitles::remove(std::vector<Subtitle> &subs)
 	std::vector<Subtitle>::reverse_iterator it;
 	for(it = subs.rbegin(); it != subs.rend(); ++it)
 	{
+		Subtitle prev_sub = get_previous( *it );
+		Subtitle next_sub = get_next( *it );
+
 		m_document.get_subtitle_model()->erase((*it).m_iter);
+
+		if( prev_sub )
+			prev_sub.update_gap_after();
+		if( next_sub )
+			next_sub.update_gap_before();
 	}
 
 	m_document.get_subtitle_model()->rebuild_column_num();
