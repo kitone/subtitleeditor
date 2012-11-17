@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2012, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -97,6 +97,16 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builde
 		m_notebook_documents->signal_drag_data_received().connect(
 				sigc::mem_fun(*this, &Application::notebook_drag_data_received));
 		m_notebook_documents->drag_dest_set(targets, Gtk::DEST_DEFAULT_ALL, Gdk::DragAction(GDK_ACTION_COPY | GDK_ACTION_MOVE));
+	}
+	// open video files with drag-and-drop in Player
+	{
+		std::list<Gtk::TargetEntry> targets;
+
+		targets.push_back(Gtk::TargetEntry("text/uri-list", Gtk::TargetFlags(0), 0));
+		
+		m_video_player->signal_drag_data_received().connect(
+				sigc::mem_fun(*this, &Application::player_drag_data_received));
+		m_video_player->drag_dest_set(targets, Gtk::DEST_DEFAULT_ALL, Gdk::DragAction(GDK_ACTION_COPY | GDK_ACTION_MOVE));
 	}
 }
 
@@ -669,6 +679,17 @@ void Application::notebook_drag_data_received(const Glib::RefPtr<Gdk::DragContex
 		Document *doc = Document::create_from_file(uris[i]);
 		if(doc)
 			DocumentSystem::getInstance().append(doc);
+	}
+}
+
+/*
+ */
+void Application::player_drag_data_received (const Glib::RefPtr<Gdk::DragContext>& context, int x, int y, const Gtk::SelectionData& selection_data, guint info, guint time)
+{
+	std::vector<Glib::ustring> uris = selection_data.get_uris();
+	if(uris.size() >= 1)
+	{
+		m_video_player->player()->open(uris[0]);
 	}
 }
 
