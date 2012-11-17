@@ -1,3 +1,9 @@
+2012-11-17  kitone  <kitone@gna.org>
+
+	* src/gui/application.cc:
+	* src/gui/application.h:
+	Fix bug #19590 : Allow drag and drop of video files.
+
 2012-11-05  kitone  <kitone@gna.org>
 
 	* plugins/actions/bestfit/bestfit.cc:
