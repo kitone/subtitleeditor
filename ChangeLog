@@ -1,3 +1,8 @@
+2012-11-25  kitone  <kitone@gna.org>
+
+	* src/subtitles.cc:
+	Fix bug when we add one subtitle to the empty document and undo.
+
 2012-11-17  kitone  <kitone@gna.org>
 
 	* src/gui/application.cc:

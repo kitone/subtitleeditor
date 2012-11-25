@@ -35,7 +35,7 @@ public:
 	{
 		unsigned int path = utility::string_to_int(document()->subtitles().get_last().get("path"));
 
-		m_path = to_string(path + 1);
+		m_path = to_string(path); // + 1);
 	}
 	
 	void execute()
