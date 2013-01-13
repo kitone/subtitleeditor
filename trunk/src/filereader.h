@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2013, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 #include <glibmm.h>
 
 /*
- * Helper to read file.
+ * Helper to read file in disk or memory.
  * Can automatically detect the character coding and convert to UTF-8.
  * Detect the newline type.
  * Return lines without character of newline (CR,LF or CRLF)
@@ -45,7 +45,19 @@ public:
 	 *
 	 * Error: throw an IOFileError exception if failed.
 	 */
-	FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size = -1);
+	FileReader(const Glib::ustring &uri, const Glib::ustring &charset, guint max_data_size = 0);
+
+	/*
+	 * Constructor
+	 *
+	 * Opens src from string directly from memory (UTF-8).
+	 */
+	FileReader( const Glib::ustring &ustring, guint max_data_size = 0 );
+
+	/*
+	 * Is this a ustring file?
+	 */
+	bool is_ustring();
 
 	/*
 	 * Return the uri of the file.
