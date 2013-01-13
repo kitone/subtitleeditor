@@ -8,7 +8,7 @@
  * Reads an entire file into a string, with good error checking.
  * If charset is empty, auto detection is try.
  */
-bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &charset, Glib::ustring &utf8_contents, Glib::ustring &charset_contents, int max_data_size)
+bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &charset, Glib::ustring &utf8_contents, Glib::ustring &charset_contents, guint max_data_size)
 {
 	se_debug_message(SE_DEBUG_IO, "Try to get contents from file uri=%s with charset=%s", uri.c_str(), charset.c_str());
 
@@ -77,7 +77,7 @@ bool get_contents_from_file(const Glib::ustring &uri, const Glib::ustring &chars
  * 
  * Error: throw an IOFileError exception if failed.
  */
-FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size)
+FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset, guint max_data_size)
 {
 	m_lines_init = false;
 
@@ -85,6 +85,34 @@ FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset, i
 		return;
 
 	m_uri = uri;
+}
+
+/*
+ * Constructor
+ *
+ * Opens src from string directly from memory.
+ */
+FileReader::FileReader( const Glib::ustring &src, guint max_data_size )
+{
+	m_lines_init = false;
+
+	if( (max_data_size > 0) && (src.size() > max_data_size) )
+		m_data = src.substr( 0, max_data_size );
+	else
+		m_data = src;
+
+	m_charset = "UTF-8";
+	m_uri = "ustring";
+}
+
+/*
+ * Is this a ustring file?
+ */
+bool FileReader::is_ustring()
+{
+	if( m_uri == "ustring" )
+		return true;
+	return false;
 }
 
 /*

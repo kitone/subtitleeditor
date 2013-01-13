@@ -1,3 +1,9 @@
+2013-01-13  kitone  <kitone@gna.org>
+
+	* src/filereader.cc:
+	* src/filereader.h:
+	Add the ability to create FileReader from memory.
+
 2012-11-25  kitone  <kitone@gna.org>
 
 	* src/subtitles.cc:
