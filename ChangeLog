@@ -1,5 +1,10 @@
 2013-02-25  kitone  <kitone@gna.org>
 
+	* plugins/actions/findandreplace/dialog-find-and-replace.ui:
+	Fix bug #20532 : Make find and replace dialog big enough by default. Patch by Tomáš Hnyk.
+
+2013-02-25  kitone  <kitone@gna.org>
+
 	* src/subtitleview.cc:
 	Fix bug #19610 : CPS column too wide, translation column too narrow. Patch by Tomáš Hnyk <sup>.
 

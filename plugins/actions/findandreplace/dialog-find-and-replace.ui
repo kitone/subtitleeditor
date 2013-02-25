@@ -5,6 +5,7 @@
   <object class="GtkDialog" id="dialog-find-and-replace">
     <property name="title" translatable="yes">Find And Replace</property>
     <property name="type_hint">dialog</property>
+    <property name="default_height">300</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
@@ -53,6 +54,7 @@
                         </child>
                       </object>
                       <packing>
+                        <property name="expand">False</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -68,6 +70,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="editable">False</property>
+                            <property name="wrap_mode">word-char</property>
                           </object>
                         </child>
                       </object>
