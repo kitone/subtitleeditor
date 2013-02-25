@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2013, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -89,6 +89,10 @@ public:
 				Gtk::Action::create("waveform/save", Gtk::Stock::SAVE, _("_Save Waveform"), _("Save wavefrom to file")), Gtk::AccelKey("<Control><Alt>S"),
 					sigc::mem_fun(*this, &WaveformManagement::on_save_waveform));
 
+		action_group->add(
+				Gtk::Action::create("waveform/close", Gtk::Stock::CLOSE, _("_Close Waveform"), _("Close wavefrom")), 
+					sigc::mem_fun(*this, &WaveformManagement::on_close_waveform));
+
 		// zoom
 		action_group->add(
 				Gtk::Action::create("waveform/zoom-in", Gtk::Stock::ZOOM_IN, _("Zoom _In"), _("FIXME")),
@@ -171,6 +175,7 @@ public:
 			"				<menuitem action='waveform/generate-from-player-file'/>"
 			"				<menuitem action='waveform/generate-dummy'/>"
 			"				<menuitem action='waveform/save'/>"
+			"				<menuitem action='waveform/close'/>"
 			"				<separator/>"
 			"				<menuitem action='waveform/zoom-in'/>"
 			"				<menuitem action='waveform/zoom-out'/>"
@@ -235,6 +240,7 @@ public:
 		bool has_document = (get_current_document() != NULL);
 
 		action_group->get_action("waveform/save")->set_sensitive(has_waveform);
+		action_group->get_action("waveform/close")->set_sensitive(has_waveform);
 		action_group->get_action("waveform/zoom-in")->set_sensitive(has_waveform);
 		action_group->get_action("waveform/zoom-out")->set_sensitive(has_waveform);
 		action_group->get_action("waveform/zoom-selection")->set_sensitive(has_waveform);
@@ -387,6 +393,17 @@ protected:
 				add_in_recent_manager(uri);
 			}
 		}
+	}
+
+	/*
+	 */
+	void on_close_waveform()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Glib::RefPtr<Waveform> wf(NULL);
+
+		get_waveform_manager()->set_waveform(wf);
 	}
 
 	/*
