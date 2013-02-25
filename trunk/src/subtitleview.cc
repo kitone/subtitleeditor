@@ -795,7 +795,9 @@ void SubtitleView::createColumnText()
 
 		column->pack_start(*renderer, true);
 		column->add_attribute(renderer->property_text(), m_column.text);
+		column->property_expand() = true;
 	
+		renderer->property_ellipsize() = Pango::ELLIPSIZE_END;
 		renderer->signal_edited().connect(
 				sigc::mem_fun(*this, &SubtitleView::on_edited_text));
 	}
@@ -836,7 +838,9 @@ void SubtitleView::createColumnTranslation()
 
 		column->pack_start(*renderer, true);
 		column->add_attribute(renderer->property_text(), m_column.translation);
+		column->property_expand() = true;
 	
+		renderer->property_ellipsize() = Pango::ELLIPSIZE_END;
 		append_column(*column);
 
 		renderer->signal_edited().connect(
