@@ -1,5 +1,10 @@
 2013-02-25  kitone  <kitone@gna.org>
 
+	* docs/subtitleeditor.1:
+	Fix bug #20441 : Spelling errors in manpage. Patch by Philip Rinn.
+
+2013-02-25  kitone  <kitone@gna.org>
+
 	* plugins/actions/findandreplace/dialog-find-and-replace.ui:
 	Fix bug #20532 : Make find and replace dialog big enough by default. Patch by Tomáš Hnyk.
 
