@@ -372,6 +372,7 @@ plugins/subtitleformats/dcsubtitle/Makefile
 plugins/subtitleformats/microdvd/Makefile
 plugins/subtitleformats/mpl2/Makefile
 plugins/subtitleformats/mpsub/Makefile
+plugins/subtitleformats/plaintextformat/Makefile
 plugins/subtitleformats/sami/Makefile
 plugins/subtitleformats/sbv/Makefile
 plugins/subtitleformats/sprucestl/Makefile

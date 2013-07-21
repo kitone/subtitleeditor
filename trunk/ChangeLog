@@ -1,3 +1,46 @@
+2013-07-21  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h:
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/bitc/bitc.cc:
+	* plugins/subtitleformats/dcsubtitle/dcsubtitle.cc:
+	* plugins/subtitleformats/microdvd/microdvd.cc:
+	* plugins/subtitleformats/mpl2/mpl2.cc:
+	* plugins/subtitleformats/mpsub/mpsub.cc:
+	* plugins/subtitleformats/sami/sami.cc:
+	* plugins/subtitleformats/sbv/sbv.cc:
+	* plugins/subtitleformats/sprucestl/sprucestl.cc:
+	* plugins/subtitleformats/subrip/subrip.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
+	* plugins/subtitleformats/subviewer2/subviewer2.cc:
+	* plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc:
+	Use the Reader and Writer instead of FileReader and FileWriter.
+
+	* configure.in:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/plaintextformat/Makefile.am:
+	* plugins/subtitleformats/plaintextformat/plaintextformat.cc:
+	* plugins/subtitleformats/plaintextformat/plaintextformat.se-plugin.in:
+	Introduce the plaintext format as subtitleformat plugin.
+
+	* src/Makefile.am:
+	* src/document.cc:
+	* src/document.h:
+	* src/filereader.cc:
+	* src/filereader.h:
+	* src/filewriter.cc:
+	* src/filewriter.h:
+	* src/reader.cc:
+	* src/reader.h:
+	* src/subtitleformatio.cc:
+	* src/subtitleformatio.h:
+	* src/subtitleformatsystem.cc:
+	* src/subtitleformatsystem.h:
+	* src/writer.cc:
+	* src/writer.h:
+	Refactoring code to read subtitle from memory.
+
 2013-02-25  kitone  <kitone@gna.org>
 
 	* plugins/actions/wavefrommanagement/waveformmanagement.cc:

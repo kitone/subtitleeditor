@@ -54,6 +54,8 @@ LIB_SUBTITLEEDITOR_FILES = \
 	keyframes.h \
 	player.cc \
 	player.h \
+	reader.cc \
+	reader.h \
 	scriptinfo.cc \
 	scriptinfo.h \
 	spellchecker.cc \
@@ -88,7 +90,9 @@ LIB_SUBTITLEEDITOR_FILES = \
 	waveform.h \
 	waveformmanager.h \
 	widget_config_utility.cc \
-	widget_config_utility.h
+	widget_config_utility.h \
+	writer.cc \
+	writer.h
 
 LIB_GUI_FILES = \
 	gui/automaticspellchecker.cc \

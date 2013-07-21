@@ -177,7 +177,7 @@ public:
 	/*
 	 *
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		std::vector<Glib::ustring> lines = file.get_lines();
 
@@ -189,7 +189,7 @@ public:
 	/*
 	 *
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		write_script_info(file);
 		write_styles(file);
@@ -354,7 +354,7 @@ public:
 	/*
 	 * Write the block [Script Info]
 	 */
-	void write_script_info(FileWriter &file)
+	void write_script_info(Writer &file)
 	{
 		file.write(
 			Glib::ustring::compose(
@@ -381,7 +381,7 @@ public:
 	/*
 	 * Write the block [V4+ Styles]
 	 */
-	void write_styles(FileWriter &file)
+	void write_styles(Writer &file)
 	{
 		file.write("[V4+ Styles]\n");
 		file.write(
@@ -458,7 +458,7 @@ public:
 	/*
 	 * Write the block [Events]
 	 */
-	void write_events(FileWriter &file)
+	void write_events(Writer &file)
 	{
 		file.write("[Events]\n");
 		// format:

@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2013, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -23,7 +23,8 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <glibmm.h>
+#include "writer.h"
+
 
 /*
  * Helper to write a file.
@@ -31,7 +32,7 @@
  * Convert from UTF-8 to the character coding.
  * Convert Unix newline to Windows or Macintosh if need.
  */
-class FileWriter
+class FileWriter : public Writer
 {
 public:
 	
@@ -47,16 +48,10 @@ public:
 	 */
 	void to_file();
 
-	/*
-	 *
-	 */
-	void write(const Glib::ustring &buf);
-
 protected:
 	Glib::ustring m_uri;
 	Glib::ustring m_charset;
 	Glib::ustring m_newline;
-	Glib::ustring m_data;
 };
 
 #endif//_FileWriter_h

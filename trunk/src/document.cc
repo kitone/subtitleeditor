@@ -78,7 +78,7 @@ Document::Document()
 /*
  * Constructor by copy
  */
-Document::Document(Document &src)
+Document::Document(Document &src, int copy_subtitles = true )
 :CommandSystem(*this), m_subtitles(*this), m_styles(*this), m_subtitleView(NULL)
 {
 	m_timing_mode = src.m_timing_mode;
@@ -103,9 +103,11 @@ Document::Document(Document &src)
 	m_filename = src.m_filename;
 
 	// model
-	m_subtitleModel->copy(src.get_subtitle_model());
-
-	m_styleModel->copy(src.get_style_model());
+	if( copy_subtitles )
+	{
+		m_subtitleModel->copy(src.get_subtitle_model());
+		m_styleModel->copy(src.get_style_model());
+	}
 
 	CommandSystem::signal_changed().connect(
 			sigc::mem_fun(*this, &Document::make_document_changed));
@@ -230,10 +232,11 @@ Glib::ustring Document::getNewLine()
  * 
  * Launch an Exception if it fails.
  * Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError, Glib::Error...
+ * FIXME: Remove this function
  */
 void Document::open(const Glib::ustring &uri)
 {
-	SubtitleFormatSystem::instance().open(this, uri, getCharset());
+	SubtitleFormatSystem::instance().open_from_uri(this, uri, getCharset());
 }
 
 /*
@@ -252,7 +255,7 @@ bool Document::save(const Glib::ustring &uri)
 
 	try
 	{
-		SubtitleFormatSystem::instance().save(this, uri, format, charset, newline);
+		SubtitleFormatSystem::instance().save_to_uri(this, uri, format, charset, newline);
 		return true;
 	}
 	catch(const EncodingConvertError &ex)
