@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2013, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@
  */
 
 #include "document.h"
-#include "filereader.h"
-#include "filewriter.h"
+#include "reader.h"
+#include "writer.h"
 
 /*
  *
@@ -68,12 +68,12 @@ public:
 	/*
 	 *
 	 */
-	virtual void open(FileReader &file);
+	virtual void open(Reader &);
 
 	/*
 	 *
 	 */
-	virtual void save(FileWriter &file);
+	virtual void save(Writer &);
 
 private:
 	Document *m_document;

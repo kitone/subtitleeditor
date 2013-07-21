@@ -37,7 +37,7 @@ public:
 	/*
 	 *
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
@@ -94,7 +94,7 @@ public:
 	/*
 	 *
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create("<(b|i|u)>(.*?)</\\1>");
 

@@ -32,7 +32,7 @@ public:
 
 	/*
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		try
 		{
@@ -58,7 +58,7 @@ public:
 
 	/*
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		try
 		{

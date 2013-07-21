@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2013, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -27,7 +27,6 @@
 #include "encodings.h"
 
 /*
- *
  */
 FileWriter::FileWriter(const Glib::ustring &uri, const Glib::ustring &charset, const Glib::ustring &newline)
 {
@@ -50,7 +49,6 @@ void FileWriter::to_file()
 	try
 	{
 		std::string content = Encoding::convert_from_utf8_to_charset(m_data, m_charset); 
-
 		Glib::RefPtr<Gio::File> file = Gio::File::create_for_uri(m_uri);
 		if(!file)
 			throw IOFileError(_("Couldn't open the file."));
@@ -73,15 +71,7 @@ void FileWriter::to_file()
 		se_debug_message(SE_DEBUG_IO, 
 					"Failed to write the contents on the file '%s' with '%s' charset", 
 					m_uri.c_str(), m_charset.c_str());
-		
 		throw IOFileError(ex.what());
 	}
 }
 
-/*
- *
- */
-void FileWriter::write(const Glib::ustring &buf)
-{
-	m_data += buf;
-}

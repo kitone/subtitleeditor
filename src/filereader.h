@@ -26,14 +26,15 @@
 #include <sstream>
 #include <string>
 #include <glibmm.h>
+#include "reader.h"
 
 /*
- * Helper to read file in disk or memory.
+ * Helper to read file.
  * Can automatically detect the character coding and convert to UTF-8.
  * Detect the newline type.
  * Return lines without character of newline (CR,LF or CRLF)
  */
-class FileReader
+class FileReader : public Reader
 {
 public:
 
@@ -45,64 +46,31 @@ public:
 	 *
 	 * Error: throw an IOFileError exception if failed.
 	 */
-	FileReader(const Glib::ustring &uri, const Glib::ustring &charset, guint max_data_size = 0);
-
-	/*
-	 * Constructor
-	 *
-	 * Opens src from string directly from memory (UTF-8).
-	 */
-	FileReader( const Glib::ustring &ustring, guint max_data_size = 0 );
-
-	/*
-	 * Is this a ustring file?
-	 */
-	bool is_ustring();
+	FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size = -1);
 
 	/*
 	 * Return the uri of the file.
 	 */
 	Glib::ustring get_uri() const;
-	
-	/*
-	 * Return the contents of the file.
-	 */
-	const Glib::ustring& get_data() const;
-	
+
 	/*
 	 * Return the charset of the file.
 	 */
 	Glib::ustring get_charset() const;
 
-	/*
-	 * Return the newline detected of the file.
-	 */
-	Glib::ustring get_newline();
-
-	/*
-	 * Get the next line of the file without newline character (CR, LF or CRLF).
-	 */
-	bool getline(Glib::ustring &line);
-
-	/*
-	 * Return all lines detected of the file, without newline character (CR, LF or CRLF).
-	 */
-	std::vector<Glib::ustring> get_lines();
-
-private:
-
-	/*
-	 * Split the data to separate lines.
-	 */
-	void initialize_lines();
 
 protected:
+/*
+	bool get_contents_from_file(
+					const Glib::ustring &uri, 
+					const Glib::ustring &charset, 
+					Glib::ustring &utf8_contents, 
+					Glib::ustring &charset_contents, 
+					int max_data_size);
+*/
 	Glib::ustring m_uri;
-	Glib::ustring m_data;
 	Glib::ustring m_charset;
-	bool m_lines_init;
-	std::vector<Glib::ustring>::const_iterator m_iter;
-	std::vector<Glib::ustring> m_lines;
+
 };
 
 #endif//_FileReader_h

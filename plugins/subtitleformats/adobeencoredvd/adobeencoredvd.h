@@ -51,7 +51,7 @@ public:
 	/*
 	 *
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"\\d+\\s(\\d+)[:;](\\d+)[:;](\\d+)[:;](\\d+)\\s(\\d+)[:;](\\d+)[:;](\\d+)[:;](\\d+)\\s(.*?)$");
@@ -105,7 +105,7 @@ public:
 	/*
 	 *
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{

@@ -6,6 +6,7 @@ FILES = \
 	microdvd \
 	mpl2 \
 	mpsub \
+	plaintextformat \
 	sami \
 	sbv \
 	sprucestl \

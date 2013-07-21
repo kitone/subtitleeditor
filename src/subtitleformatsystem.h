@@ -45,21 +45,33 @@ public:
 	/*
 	 * Try to open a subtitle file from the uri.
 	 * If charset is empty, the automatically detection is used.
+	 * If format is empty, the automatically detection is used.
 	 *
 	 * Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError, Glib::Error... 
 	 */
-	void open(Document *document, const Glib::ustring &uri, const Glib::ustring &charset);
+	void open_from_uri(Document *document, const Glib::ustring &uri, const Glib::ustring &charset, const Glib::ustring &format = Glib::ustring());
+
+	/*
+	 * Try to open a ustring as a subtitle file
+	 * Charset is assumed to be UTF-8.
+	 *
+	 * Exceptions: UnrecognizeFormatError, Glib::Error... 
+	 */
+	void open_from_data(Document *document, const Glib::ustring &data, const Glib::ustring &format = Glib::ustring() );
 
 	/*
 	 * Save the document in a file.
 	 *
 	 * Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError, Glib::Error... 
 	 */
-	void save(	Document *document, 
-							const Glib::ustring &uri, 
-							const Glib::ustring &charset, 
-							const Glib::ustring &format,
-							const Glib::ustring &newline);
+	void save_to_uri(Document *document, const Glib::ustring &uri, const Glib::ustring &format, const Glib::ustring &charset, const Glib::ustring &newline);
+
+	/*
+	 * Save the document to a ustring. Charset is UTF-8, newline is Unix.
+	 *
+	 * Exceptions: UnrecognizeFormatError, Glib::Error... 
+	 */
+	void save_to_data(Document *document, Glib::ustring &dst, const Glib::ustring &format );
 
 	/*
 	 * Returns all information about supported subtitles.
@@ -97,6 +109,20 @@ protected:
 	Glib::ustring get_subtitle_format_from_small_contents(const Glib::ustring &uri, const Glib::ustring &charset);
 
 	/*
+	 * Try to determine the format of the subtitles in the submitted ustring
+	 * Exceptions:
+	 *	UnrecognizeFormatError.
+	 */
+	Glib::ustring get_subtitle_format_from_small_contents(const Glib::ustring &data);
+
+	/*
+	 * Try to determine the format of the subtitles in the submitted FileReader
+	 * Exceptions:
+	 *	UnrecognizeFormatError.
+	 */
+	Glib::ustring get_subtitle_format_from_small_contents(Reader *reader);
+
+	/*
 	 * Create a SubtitleFormat from a name.
 	 * Throw UnrecognizeFormatError if failed.
 	 */
@@ -106,6 +132,14 @@ protected:
 	 * Return a list of SubtitleFormat from ExtensionManager.
 	 */
 	SubtitleFormatList get_subtitle_format_list();
+
+	/*
+	 * Abstract way to read content from file or data (ustring)
+	 *
+	 * Exceptions: UnrecognizeFormatError, Glib::Error...
+	 */
+	void open_from_reader(Document *document, Reader* reader, const Glib::ustring &format=Glib::ustring());
+
 };
 
 #endif//_SubtitleFormatSystem_h

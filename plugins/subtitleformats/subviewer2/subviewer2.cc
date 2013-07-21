@@ -30,7 +30,7 @@ public:
 	/*
 	 *
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		Glib::RefPtr<Glib::Regex> re_time = Glib::Regex::create(
 				"^(\\d+):(\\d+):(\\d+)\\.(\\d+),(\\d+):(\\d+):(\\d+)\\.(\\d+)");
@@ -78,7 +78,7 @@ public:
 	/*
 	 *
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		ScriptInfo& script = document()->get_script_info();
 

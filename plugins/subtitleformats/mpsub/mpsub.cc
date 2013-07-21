@@ -34,7 +34,7 @@ public:
 	/*
 	 *
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"^(-?\\d+(?:\\.\\d+)?) (-?\\d+(?:\\.\\d+)?)\\s*$");
@@ -112,7 +112,7 @@ public:
 	/*
 	 *
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		// TODO: FRAME support
 		// header

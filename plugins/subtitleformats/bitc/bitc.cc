@@ -45,7 +45,7 @@ public:
 
 	/*
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		// Ask for the framerate value
 		FramerateChooserDialog fcd(FramerateChooserDialog::IMPORT);
@@ -111,7 +111,7 @@ public:
 
 	/*
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		// Ask for the framerate value
 		FramerateChooserDialog fcd(FramerateChooserDialog::EXPORT);

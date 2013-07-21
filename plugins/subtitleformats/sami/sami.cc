@@ -62,7 +62,7 @@ public:
 	 *  : reads sami subtitle data from the handler 'file', parse each line,
 	 *    and store it to the internal data structure 'subtitles'.
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		read_subtitle(file);
 	}
@@ -72,7 +72,7 @@ public:
 	 * save()
 	 *  : store each line from the internal data structure, in according to the SAMI format.
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		Subtitle sub_first = document()->subtitles().get_first();
 		Glib::ustring sub_name = sub_first.get_name();
@@ -148,7 +148,7 @@ public:
 	 * read_subtitle
 	 *  : read each line of subtitle
 	 */
-	void read_subtitle(FileReader &file)
+	void read_subtitle(Reader &file)
 	{
 		Subtitles subtitles = document()->subtitles();
 
@@ -313,7 +313,7 @@ public:
 	 * write_subtitle
 	 *  : write each line of subtitle
 	 */
-	void write_subtitle(FileWriter &file)
+	void write_subtitle(Writer &file)
 	{
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{

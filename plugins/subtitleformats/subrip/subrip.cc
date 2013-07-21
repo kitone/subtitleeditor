@@ -38,7 +38,7 @@ public:
 	/*
 	 *
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		Glib::RefPtr<Glib::Regex> re_num = Glib::Regex::create(
 				"^\\d+$");
@@ -103,7 +103,7 @@ public:
 	/*
 	 *
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		unsigned int count = 1;
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub, ++count)

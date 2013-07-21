@@ -65,7 +65,7 @@ public:
 	/*
 	 * Constructor by copy
 	 */
-	Document(Document &copy);
+	Document(Document &copy, int copy_subtitles );
 
 	/*
 	 * Destructor

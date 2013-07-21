@@ -33,7 +33,7 @@ public:
 	/*
 	 *
 	 */
-	void open(FileReader &file)
+	void open(Reader &file)
 	{
 		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
 				"^\\[(\\d+)\\]\\[(\\d+)\\](.*?)$");
@@ -72,7 +72,7 @@ public:
 	/*
 	 *
 	 */
-	void save(FileWriter &file)
+	void save(Writer &file)
 	{
 		Glib::ustring text;
 		double ds = 100;
