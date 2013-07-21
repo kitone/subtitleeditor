@@ -24,7 +24,7 @@
 #include <utility.h>
 #include <gui/dialogfilechooser.h>
 #include <filereader.h>
-#include <filewriter.h>
+#include <subtitleformatsystem.h>
 
 /*
  *
@@ -111,72 +111,20 @@ protected:
 			Glib::ustring uri = ui->get_uri();
 			Glib::ustring filename = ui->get_filename();
 			Glib::ustring charset = ui->get_encoding();
-			bool usebl = ui->get_blank_line_mode();
 
 			try
 			{
 				Glib::ustring untitled = DocumentSystem::getInstance().create_untitled_name();
-
 				Document *doc = new Document();
-				
-				FileReader file(uri, charset);
-
-				Subtitles subtitles = doc->subtitles();
-
-				Glib::ustring line;
-
-				if( !usebl )
-
-				// import while ignoring blank lines
-
-				{
-					while(file.getline(line))
-					{
-						Subtitle sub = subtitles.append();
-						sub.set_text(line);
-					};
-
-				}
-				else // import while splitting text into subtitles at blank lines only
-				{
-					Glib::ustring subtext;
-					subtext.clear();
-					int textlines = 0;
-					while(file.getline(line))
-					{
-						if( line.empty() )
-						{
-							if( textlines > 0 )
-							{
-								Subtitle sub = subtitles.append();
-								sub.set_text(subtext);
-								subtext.clear();
-								textlines = 0;
-							}
-						}
-						else
-						{
-							if( textlines > 0 )
-								subtext += "\n";
-							subtext += line;
-							textlines++;
-						}
-					}
-					if( textlines > 0 )
-					{
-						Subtitle sub = subtitles.append();
-						sub.set_text(subtext);
-						subtext.clear();
-					}
-				}
-				doc->setCharset(file.get_charset());
+				SubtitleFormatSystem::instance().open_from_uri(doc, uri, charset, "Plain Text Format");
 				doc->setName(untitled);
 				DocumentSystem::getInstance().append(doc);
+				
 			}
 			catch(const std::exception &ex)
 			{
 				dialog_error(
-						build_message(_("Could not import from the file \"%s\"."), uri.c_str()), 
+						build_message(_("Could not import from file \"%s\"."), uri.c_str()), 
 						ex.what());
 			}
 		}
@@ -195,21 +143,11 @@ protected:
 			Glib::ustring uri = ui->get_uri();
 			Glib::ustring charset = ui->get_encoding();
 			Glib::ustring newline = ui->get_newline();
-			bool usebl = ui->get_blank_line_mode();
 
 			try
 			{
-				FileWriter file(uri, charset, newline);
-
 				Document *doc = get_current_document();
-
-				for(Subtitle sub = doc->subtitles().get_first(); sub; ++sub)
-				{
-					file.write(sub.get_text() + "\n");
-					if( usebl ) file.write( "\n" );
-				}
-
-				file.to_file();
+				SubtitleFormatSystem::instance().save_to_uri( doc, uri, "Plain Text Format", charset, newline );
 			}
 			catch(const std::exception &ex)
 			{
