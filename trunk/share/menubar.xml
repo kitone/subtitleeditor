@@ -35,9 +35,7 @@
 			<separator/>
 			<placeholder name="edit-cell"/>
 			<separator/>
-			<!-- placeholder name="cut"/ -->
-			<!-- placeholder name="copy"/-->
-			<!-- placeholder name="paste"/-->
+			<placeholder name="clipboard"/>
 			<separator/>
 			<placeholder name="insert-subtitle"/>
 			<placeholder name="delete-selected-subtitles"/>

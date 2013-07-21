@@ -1,5 +1,15 @@
 2013-07-21  kitone  <kitone@gna.org>
 
+	* configure.in:
+	* plugins/actions/Makefile.am:
+	* plugins/actions/clipboard/Makefile.am:
+	* plugins/actions/clipboard/clipboard.cc:
+	* plugins/actions/clipboard/clipboard.se-plugin.in:
+	* share/menubar.xml:
+	Introduce the clipboard plugin. The 3 pillars of modern civilization. Patch by Tomas Partl <eltomito>.
+
+2013-07-21  kitone  <kitone@gna.org>
+
 	* plugins/actions/plaintext/plaintext.cc:
 	Use the subtitleformat plaintext plugin.
 

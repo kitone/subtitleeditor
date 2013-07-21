@@ -4,6 +4,7 @@ FILES = \
 		applytranslation \
 		bestfit \
 		changeframerate \
+		clipboard \
 		combinesubtitles \
 		command \
 		configurekeyboardshortcuts \
