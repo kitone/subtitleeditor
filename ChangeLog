@@ -1,5 +1,10 @@
 2013-07-21  kitone  <kitone@gna.org>
 
+	* plugins/actions/plaintext/plaintext.cc:
+	Use the subtitleformat plaintext plugin.
+
+2013-07-21  kitone  <kitone@gna.org>
+
 	* plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h:
 	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
 	* plugins/subtitleformats/bitc/bitc.cc:
