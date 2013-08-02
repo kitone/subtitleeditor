@@ -2,12 +2,15 @@
 plugins/actions/about/about.cc
 plugins/actions/adjusttime/adjusttime.cc
 plugins/actions/applytranslation/applytranslation.cc
+plugins/actions/bestfit/bestfit.cc
 plugins/actions/changeframerate/changeframerate.cc
 plugins/actions/changeframerate/dialog-change-framerate.ui
+plugins/actions/clipboard/clipboard.cc
 plugins/actions/combinesubtitles/combinesubtitles.cc
 plugins/actions/command/command.cc
 plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc
 plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui
+plugins/actions/dialoguize/dialog-dialoguize-preferences.ui
 plugins/actions/dialoguize/dialoguize.cc
 plugins/actions/documentmanagement/documentmanagement.cc
 plugins/actions/documentsnavigation/documentsnavigation.cc
@@ -35,8 +38,10 @@ plugins/actions/insertsubtitle/insertsubtitle.cc
 plugins/actions/italicize/italicize.cc
 plugins/actions/joindocument/joindocument.cc
 plugins/actions/keyframesmanagement/keyframesgenerator.cc
+plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc
 plugins/actions/keyframesmanagement/keyframesmanagement.cc
 plugins/actions/keyframesmanagement/mediadecoder.h
+plugins/actions/minimizeduration/minimizeduration.cc
 plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.cc
 plugins/actions/movesubtitles/dialog-move-subtitles.ui
 plugins/actions/movesubtitles/movesubtitles.cc
@@ -61,6 +66,7 @@ plugins/actions/spellchecking/spellchecking.cc
 plugins/actions/splitdocument/dialog-split-document.ui
 plugins/actions/splitdocument/splitdocument.cc
 plugins/actions/splitsubtitle/splitsubtitle.cc
+plugins/actions/stacksubtitles/stacksubtitles.cc
 plugins/actions/styleeditor/dialog-style-editor.ui
 plugins/actions/styleeditor/styleeditor.cc
 plugins/actions/styleeditor/styleeditor.h
@@ -96,6 +102,7 @@ plugins/subtitleformats/dcsubtitle/dcsubtitle.cc
 plugins/subtitleformats/microdvd/microdvd.cc
 plugins/subtitleformats/mpl2/mpl2.cc
 plugins/subtitleformats/mpsub/mpsub.cc
+plugins/subtitleformats/plaintextformat/plaintextformat.cc
 plugins/subtitleformats/sami/sami.cc
 plugins/subtitleformats/sbv/sbv.cc
 plugins/subtitleformats/sprucestl/sprucestl.cc
@@ -184,6 +191,8 @@ src/options.cc
 src/options.h
 src/player.cc
 src/player.h
+src/reader.cc
+src/reader.h
 src/scriptinfo.cc
 src/scriptinfo.h
 src/spellchecker.cc
@@ -229,8 +238,11 @@ src/we/waveformrenderergl.cc
 src/we/waveformrenderer.h
 src/widget_config_utility.cc
 src/widget_config_utility.h
+src/writer.cc
+src/writer.h
 [type: gettext/glade] plugins/actions/changeframerate/dialog-change-framerate.ui
 [type: gettext/glade] plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui
+[type: gettext/glade] plugins/actions/dialoguize/dialog-dialoguize-preferences.ui
 [type: gettext/glade] plugins/actions/errorchecking/dialog-error-checking-preferences.ui
 [type: gettext/glade] plugins/actions/errorchecking/dialog-error-checking.ui
 [type: gettext/glade] plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui
@@ -256,7 +268,9 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/about/about.se-plugin.in
 [type: gettext/ini] plugins/actions/adjusttime/adjusttime.se-plugin.in
 [type: gettext/ini] plugins/actions/applytranslation/applytranslation.se-plugin.in
+[type: gettext/ini] plugins/actions/bestfit/bestfit.se-plugin.in
 [type: gettext/ini] plugins/actions/changeframerate/changeframerate.se-plugin.in
+[type: gettext/ini] plugins/actions/clipboard/clipboard.se-plugin.in
 [type: gettext/ini] plugins/actions/combinesubtitles/combinesubtitles.se-plugin.in
 [type: gettext/ini] plugins/actions/command/command.se-plugin.in
 [type: gettext/ini] plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.se-plugin.in
@@ -274,6 +288,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/italicize/italicize.se-plugin.in
 [type: gettext/ini] plugins/actions/joindocument/joindocument.se-plugin.in
 [type: gettext/ini] plugins/actions/keyframesmanagement/keyframesmanagement.se-plugin.in
+[type: gettext/ini] plugins/actions/minimizeduration/minimizeduration.se-plugin.in
 [type: gettext/ini] plugins/actions/moveafterprecedingsubtitle/moveafterprecedingsubtitle.se-plugin.in
 [type: gettext/ini] plugins/actions/movesubtitles/movesubtitles.se-plugin.in
 [type: gettext/ini] plugins/actions/plaintext/plaintext.se-plugin.in
@@ -286,6 +301,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/actions/spellchecking/spellchecking.se-plugin.in
 [type: gettext/ini] plugins/actions/splitdocument/splitdocument.se-plugin.in
 [type: gettext/ini] plugins/actions/splitsubtitle/splitsubtitle.se-plugin.in
+[type: gettext/ini] plugins/actions/stacksubtitles/stacksubtitles.se-plugin.in
 [type: gettext/ini] plugins/actions/styleeditor/styleeditor.se-plugin.in
 [type: gettext/ini] plugins/actions/textcorrection/textcorrection.se-plugin.in
 [type: gettext/ini] plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in
@@ -302,6 +318,7 @@ src/widget_config_utility.h
 [type: gettext/ini] plugins/subtitleformats/microdvd/microdvd.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpl2/mpl2.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/mpsub/mpsub.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/plaintextformat/plaintextformat.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/sami/sami.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/sbv/sbv.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/sprucestl/sprucestl.se-plugin.in
