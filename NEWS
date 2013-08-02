@@ -1,3 +1,29 @@
+2013-08-02 - 0.41.0
+
+	* Fix bug #19700 : Add "select none" to Selection menu.
+	* Fix bug #19629 : Requirements have changed. gstreamermm >= 0.10.6.
+	* Fix bug #20529 : No way to close a waveform.
+	* Fix bug #19590 : Allow drag and drop of video files.
+	* Fix bug #20074 : Scene cut based keyframe detection. Patch by Martin Doucha.
+	* Fix bug #19709 : In glib-2.32, glib/gregex.h cannot be included directly. Patch by Andre Reinke <andre.reinke>
+	* Fix bug #19610 : CPS column too wide, translation column too narrow. Patch by Tomáš Hnyk.
+	* Fix bug #20532 : Make find and replace dialog big enough by default. Patch by Tomáš Hnyk.
+	* Fix bug #20441 : Spelling errors in manpage. Patch by Philip Rinn.
+
+	Patch: Tomas Partl <eltomito>
+	* Introduce new plugin clipboard. The 3 pillars of modern civilization.
+	* Introduce new plugin bestfit.
+	* Introduce new plugin minimizeduration.
+	* Introduce new plugin stacksubtitles.
+	* Automatic highlighting for all timing errors.
+	* Reverse command for extendlength, minimizeduration, moveafterprecedingsubtitle, stacksubtitles.
+	* Add seek to the selection end.
+	* Add the ability to define the prefix of dialoguize plugin.
+	* Add the ability to use blank line during import/export text.
+	* Adds functions to move subtitle start and end by 1 frame.
+	* Fix bug #19728 : Preferences window cannot be resized and decription of plugins do not fit in it.
+	* Fix bug #20154 : CPS checking inconsistencyt.
+
 2012-02-22 - 0.40.0
 
 	* Add Video and Waveform recent files.
