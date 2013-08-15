@@ -28,8 +28,7 @@
 #include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <glibmm/ustring.h>
-#include <gtkmm/window.h>
+#include <gtkmm.h>
 #include <sstream>
 #include <iostream>
 #include "i18n.h"

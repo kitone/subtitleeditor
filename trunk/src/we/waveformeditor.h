@@ -24,8 +24,6 @@
  */
 
 #include <gtkmm.h>
-#include <gtkmm/scalebutton.h>
-#include <gtkmm/builder.h>
 #include "waveformrenderer.h"
 #include "player.h"
 #include "waveformmanager.h"

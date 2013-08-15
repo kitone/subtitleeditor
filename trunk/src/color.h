@@ -24,8 +24,7 @@
  */
  
 
-#include <gdkmm/color.h>
-#include <gtkmm/colorbutton.h>
+#include <gtkmm.h>
 
 
 

@@ -24,7 +24,6 @@
  */
 
 #include <gtkmm.h>
-#include <gtkmm/builder.h>
 #include <memory>
 
 /*

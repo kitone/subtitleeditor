@@ -1,3 +1,49 @@
+2013-08-15  kitone  <kitone@kitone.org>
+
+
+	* plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:
+	* plugins/actions/errorchecking/errorchecking.h:
+	* plugins/actions/preferences/preferencepage.h:
+	* plugins/actions/styleeditor/styleeditor.h:
+	* src/cfg.h:
+	* src/color.h:
+	* src/defaultcfg.h:
+	* src/encodings.h:
+	* src/extension.h:
+	* src/extensioninfo.h:
+	* src/extensionmanager.cc:
+	* src/gstreamer_utility.cc:
+	* src/gstreamer_utility.h:
+	* src/gtkmm_utility.h:
+	* src/gui/application.cc:
+	* src/gui/application.h:
+	* src/gui/automaticspellchecker.h:
+	* src/gui/cellrenderercustom.h:
+	* src/gui/comboboxencoding.h:
+	* src/gui/comboboxframerate.h:
+	* src/gui/comboboxnewline.h:
+	* src/gui/comboboxsubtitleformat.h:
+	* src/gui/comboboxvideo.h:
+	* src/gui/dialogcharactercodings.h:
+	* src/gui/dialogfilechooser.h:
+	* src/gui/dialogutility.h:
+	* src/gui/spinbuttontime.h:
+	* src/gui/statusbar.h:
+	* src/gui/textviewcell.h:
+	* src/gui/treeviewextensionmanager.h:
+	* src/isocodes.h:
+	* src/scriptinfo.h:
+	* src/stylemodel.h:
+	* src/subtitlemodel.h:
+	* src/subtitletime.h:
+	* src/subtitleview.h:
+	* src/timeutility.h:
+	* src/utility.h:
+	* src/vp/gstplayer.h:
+	* src/we/waveformeditor.h:
+	* src/widget_config_utility.h:
+	Only include gtkmm.h, glibmm.h headers.
+
 2013-08-02  kitone  <kitone@gna.org>
 
 	* configure.in:

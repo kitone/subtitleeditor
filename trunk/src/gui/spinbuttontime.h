@@ -23,8 +23,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/spinbutton.h>
-#include <gtkmm/builder.h>
+#include <gtkmm.h>
 #include "subtitletime.h"
 #include "timeutility.h"
 

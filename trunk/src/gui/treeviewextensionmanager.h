@@ -23,10 +23,8 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/treeview.h>
-#include <gtkmm/liststore.h>
+#include <gtkmm.h>
 #include "extensionmanager.h"
-#include <gtkmm/builder.h>
 
 /*
  * Help to create a view to manage the extension.

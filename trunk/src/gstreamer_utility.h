@@ -24,7 +24,7 @@
  */
 
 #include <list>
-#include <glibmm/ustring.h>
+#include <glibmm.h>
 
 #define GSTREAMERMM_CHECK_VERSION(major,minor,micro) \
 	(GSTREAMERMM_MAJOR_VERSION > (major) || \

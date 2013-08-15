@@ -25,8 +25,7 @@
  
 
 #include <gtkmm.h>
-#include <gtkmm/builder.h>
-#include "documentsystem.h"
+#include <documentsystem.h>
 #include <gui/comboboxframerate.h>
 
 /*

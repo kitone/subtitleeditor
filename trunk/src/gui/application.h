@@ -24,10 +24,7 @@
  */
  
 
-#include <gtkmm/window.h>
-#include <gtkmm/notebook.h>
-#include <gtkmm/box.h>
-
+#include <gtkmm.h>
 #include "document.h"
 #include "menubar.h"
 #include "statusbar.h"

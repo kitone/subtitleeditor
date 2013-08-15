@@ -20,9 +20,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gst/gst.h>
 #include "gstreamer_utility.h"
 #include "utility.h"
+#include <gst/gst.h>
 
 namespace gstreamer_utility {
 

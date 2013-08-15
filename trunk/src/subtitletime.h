@@ -25,7 +25,7 @@
  
 #include <math.h>
 #include <string>
-#include <glibmm/ustring.h>
+#include <glibmm.h>
 
 /**
  *

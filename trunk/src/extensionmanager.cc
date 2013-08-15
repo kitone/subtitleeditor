@@ -21,9 +21,7 @@
  */
 
 #include "extensionmanager.h"
-#include <glibmm/keyfile.h>
-#include <glibmm/fileutils.h>
-#include <glibmm/miscutils.h>
+#include <glibmm.h>
 #include <iostream>
 #include <vector>
 #include "error.h"

@@ -24,7 +24,7 @@
  */
 
 #include "document.h"
-#include <gtkmm/dialog.h>
+#include <gtkmm.h>
 
 /*
  *

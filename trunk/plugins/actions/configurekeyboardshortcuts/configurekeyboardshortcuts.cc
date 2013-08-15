@@ -20,9 +20,8 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
+#include <gtkmm.h>
 #include <gtkmm/accelmap.h>
-#include <gtkmm/builder.h>
-#include <gtk/gtk.h>
 #include <extension/action.h>
 #include <utility.h>
 #include <gtkmm_utility.h>

@@ -23,8 +23,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/textview.h>
-#include <gtkmm/celleditable.h>
+#include <gtkmm.h>
 
 /*
  * Cell text editable with multiline support.
