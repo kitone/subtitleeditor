@@ -25,7 +25,7 @@
 
 
 #include "i18n.h"
-#include <glibmm/ustring.h>
+#include <glibmm.h>
 
 struct EncodingInfo
 {

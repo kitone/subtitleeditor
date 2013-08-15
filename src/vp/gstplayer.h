@@ -23,10 +23,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gstreamermm.h>
-#include <gstreamermm/playbin2.h>
-#include <player.h>
 #include <gtkmm.h>
+#include <gstreamermm.h>
+#include <player.h>
 
 class GstPlayer : public Gtk::EventBox, public Player
 {

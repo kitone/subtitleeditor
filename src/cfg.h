@@ -24,7 +24,7 @@
  */
  
 
-#include <glibmm/ustring.h>
+#include <glibmm.h>
 #include <glib.h>
 #include <list>
 #include <map>

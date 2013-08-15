@@ -27,7 +27,7 @@
 #include "widget_config_utility.h"
 
 #include <gtkmm.h>
-#include <gtkmm/builder.h>
+#include <gtkmm.h>
 #include <memory>
 
 /*

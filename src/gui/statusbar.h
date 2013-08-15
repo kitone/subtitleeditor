@@ -24,8 +24,7 @@
  */
  
 
-#include <gtkmm/statusbar.h>
-#include <gtkmm/builder.h>
+#include <gtkmm.h>
 
 class Statusbar : public Gtk::Statusbar
 {

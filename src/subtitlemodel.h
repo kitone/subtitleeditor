@@ -24,7 +24,7 @@
  */
  
 
-#include <gtkmm/liststore.h>
+#include <gtkmm.h>
 #include "subtitletime.h"
 
 class NameModel : public Gtk::ListStore

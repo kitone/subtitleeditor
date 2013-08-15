@@ -23,9 +23,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/comboboxtext.h>
-#include <gtkmm/liststore.h>
-#include <gtkmm/builder.h>
+#include <gtkmm.h>
 #include <timeutility.h>
 
 class ComboBoxFramerate : public Gtk::ComboBox

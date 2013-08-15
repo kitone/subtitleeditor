@@ -24,7 +24,7 @@
  */
  
 
-#include <gtkmm/liststore.h>
+#include <gtkmm.h>
 #include "color.h"
 
 /*

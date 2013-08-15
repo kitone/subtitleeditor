@@ -23,8 +23,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/cellrenderertext.h>
-#include <gtkmm/entry.h>
+#include <gtkmm.h>
 #include <debug.h>
 #include "cellrenderercustom.h"
 

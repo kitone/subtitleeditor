@@ -25,7 +25,7 @@
  *	This class is inspired from gtkspell (gtkspell.sf.net), thanks!
  */
 
-#include <gtkmm/textview.h>
+#include <gtkmm.h>
 
 /*
  *

@@ -21,7 +21,6 @@
  */
 
 #include <config.h>
-#include <gtkmm/scrolledwindow.h>
 #include <gtkmm/accelmap.h>
 #include "utility.h"
 #include "application.h"

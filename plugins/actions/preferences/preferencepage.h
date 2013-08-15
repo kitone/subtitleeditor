@@ -25,7 +25,6 @@
 
 #include "utility.h"
 #include <gtkmm.h>
-#include <gtkmm/builder.h>
 #include <widget_config_utility.h>
 
 class PreferencePage : public Gtk::VBox
