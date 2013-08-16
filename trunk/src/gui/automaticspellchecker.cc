@@ -142,7 +142,7 @@ Glib::RefPtr<Gtk::TextBuffer> AutomaticSpellChecker::get_buffer()
  *	- after the text is inserted, we see where our mark is and use that and
  *		the current position to check the entire range of inserted text.
  */
-void AutomaticSpellChecker::on_insert_text_before(const Gtk::TextBuffer::iterator &pos, const Glib::ustring &text, int bytes)
+void AutomaticSpellChecker::on_insert_text_before(const Gtk::TextBuffer::iterator &pos, const Glib::ustring &/*text*/, int /*bytes*/)
 {
 	Glib::RefPtr<Gtk::TextBuffer> m_buffer = get_buffer();
 	m_buffer->move_mark(m_mark_insert_start, pos);
@@ -154,7 +154,7 @@ void AutomaticSpellChecker::on_insert_text_before(const Gtk::TextBuffer::iterato
  *	- after the text is inserted, we see where our mark is and use that and
  *		the current position to check the entire range of inserted text.
  */
-void AutomaticSpellChecker::on_insert_text_after(const Gtk::TextBuffer::iterator &pos, const Glib::ustring &text, int bytes)
+void AutomaticSpellChecker::on_insert_text_after(const Gtk::TextBuffer::iterator &pos, const Glib::ustring &/*text*/, int /*bytes*/)
 {
 	Glib::RefPtr<Gtk::TextBuffer> m_buffer = get_buffer();
 
@@ -181,7 +181,7 @@ void AutomaticSpellChecker::on_erase(const Gtk::TextBuffer::iterator &start, con
 /*
  *
  */
-void AutomaticSpellChecker::on_mark_set(const Gtk::TextBuffer::iterator &location, const Glib::RefPtr<Gtk::TextBuffer::Mark> &mark)
+void AutomaticSpellChecker::on_mark_set(const Gtk::TextBuffer::iterator &/*location*/, const Glib::RefPtr<Gtk::TextBuffer::Mark> &mark)
 {
 	Glib::RefPtr<Gtk::TextBuffer> m_buffer = get_buffer();
 
@@ -204,7 +204,7 @@ void AutomaticSpellChecker::tag_table_changed()
 /*
  * Update the tag 'highlight' priority.
  */
-void AutomaticSpellChecker::on_tag_changed(const Glib::RefPtr<Gtk::TextTag> &tag, bool size_changed)
+void AutomaticSpellChecker::on_tag_changed(const Glib::RefPtr<Gtk::TextTag> &/*tag*/, bool /*size_changed*/)
 {
 	tag_table_changed();
 }
@@ -212,7 +212,7 @@ void AutomaticSpellChecker::on_tag_changed(const Glib::RefPtr<Gtk::TextTag> &tag
 /*
  * Update the tag 'highlight' priority.
  */
-void AutomaticSpellChecker::on_tag_added_or_removed(const Glib::RefPtr<Gtk::TextTag> &tag)
+void AutomaticSpellChecker::on_tag_added_or_removed(const Glib::RefPtr<Gtk::TextTag> &/*tag*/)
 {
 	tag_table_changed();
 }

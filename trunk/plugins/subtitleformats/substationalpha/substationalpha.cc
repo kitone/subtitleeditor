@@ -43,7 +43,7 @@ protected:
 
 		/*
 		 */
-		ComboBoxLineBreakPolicy(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+		ComboBoxLineBreakPolicy(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& )
 		:Gtk::ComboBoxText(cobject)
 		{
 			append_text(_("Soft"));

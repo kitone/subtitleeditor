@@ -360,7 +360,7 @@ protected:
 class ComboBoxEntryHistory : public Gtk::ComboBoxEntryText
 {
 public:
-	ComboBoxEntryHistory(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+	ComboBoxEntryHistory(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>&)
 	:Gtk::ComboBoxEntryText(cobject)
 	{
 	}

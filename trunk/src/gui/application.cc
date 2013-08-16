@@ -406,7 +406,7 @@ void Application::on_close_document(Document *doc)
  *	Changement dans le notebook de la page editer
  *	On recupere la page pusi on init DocumentManager avec le document
  */
-void Application::on_signal_switch_page(GtkNotebookPage* page, guint page_num)
+void Application::on_signal_switch_page(GtkNotebookPage* /*page*/, guint page_num)
 {
 	se_debug(SE_DEBUG_APP);
 
@@ -664,7 +664,7 @@ bool Application::on_key_press_event(GdkEventKey *ev)
 /*
  *
  */
-void Application::notebook_drag_data_received(const Glib::RefPtr<Gdk::DragContext>& context, int x, int y, const Gtk::SelectionData& selection_data, guint info, guint time)
+void Application::notebook_drag_data_received(const Glib::RefPtr<Gdk::DragContext>& /*context*/, int /*x*/, int /*y*/, const Gtk::SelectionData& selection_data, guint /*info*/, guint /*time*/)
 {
 	std::vector<Glib::ustring> uris = selection_data.get_uris();
 	for(unsigned int i=0; i<uris.size(); ++i)
@@ -683,7 +683,7 @@ void Application::notebook_drag_data_received(const Glib::RefPtr<Gdk::DragContex
 
 /*
  */
-void Application::player_drag_data_received (const Glib::RefPtr<Gdk::DragContext>& context, int x, int y, const Gtk::SelectionData& selection_data, guint info, guint time)
+void Application::player_drag_data_received (const Glib::RefPtr<Gdk::DragContext>& /*context*/, int /*x*/, int /*y*/, const Gtk::SelectionData& selection_data, guint /*info*/, guint /*time*/)
 {
 	std::vector<Glib::ustring> uris = selection_data.get_uris();
 	if(uris.size() >= 1)

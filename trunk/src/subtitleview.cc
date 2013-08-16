@@ -635,7 +635,7 @@ void SubtitleView::end_time_data_func( const Gtk::CellRenderer *renderer, const 
  */
 void SubtitleView::create_column_time(
 		const Glib::ustring &name, 
-		const Gtk::TreeModelColumnBase& column_attribute,
+		const Gtk::TreeModelColumnBase& /*column_attribute*/,
 		const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot_edited, 
 		const sigc::slot<void, const Gtk::CellRenderer*, const Gtk::TreeModel::iterator&> &slot_cell_data_func,
 		const Glib::ustring &tooltips)

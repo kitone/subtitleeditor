@@ -79,7 +79,7 @@ public:
 			// element SubtitleID
 			//xmlpp::Element* xml_subtitleid = xml_dcsubtitle->add_child("SubtitleID");
 			// element MovieTitle
-			xmlpp::Element* xml_movietitle = xml_dcsubtitle->add_child("MovieTitle");
+			/*xmlpp::Element* xml_movietitle = */xml_dcsubtitle->add_child("MovieTitle");
 			// element ReelNumber
 			xmlpp::Element* xml_reelnumber = xml_dcsubtitle->add_child("ReelNumber");
 			xml_reelnumber->set_child_text("1");

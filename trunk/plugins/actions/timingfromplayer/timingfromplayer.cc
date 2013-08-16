@@ -341,7 +341,7 @@ public:
 	 * Update the end of the subtitle and disconnect
 	 * the callback.
 	 */
-	bool on_key_release_event(GdkEventKey *ev)
+	bool on_key_release_event(GdkEventKey *)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 

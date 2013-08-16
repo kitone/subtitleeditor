@@ -239,7 +239,7 @@ protected:
 
 	/*
 	 */
-	void on_player_message(Player::Message msg)
+	void on_player_message(Player::Message)
 	{
 		update_paste_visibility();
 	}
@@ -275,7 +275,7 @@ protected:
 
 	/*
 	 */
-	void on_clipboard_owner_change( GdkEventOwnerChange *ev )
+	void on_clipboard_owner_change( GdkEventOwnerChange *)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -326,7 +326,7 @@ protected:
 	/*
 	 * Somebody is asking for data we've copied to the clipboard. Let's give it to them.
 	 */
-	void on_clipboard_get(Gtk::SelectionData& selection_data, guint info)
+	void on_clipboard_get(Gtk::SelectionData& selection_data, guint /*info*/)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 

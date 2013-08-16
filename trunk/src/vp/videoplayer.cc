@@ -155,7 +155,7 @@ public:
 
 	/*
 	 */
-	void on_player_tick(long current_time, long stream_length, double current_position)
+	void on_player_tick(long /*current_time*/, long /*stream_length*/, double current_position)
 	{
 		m_connection_scale_changed.block();
 		set_seek_position(current_position);
@@ -352,7 +352,7 @@ void VideoPlayer::on_current_document_changed(Document *doc)
 /*
  * Check or search the good subtitle (find_subtitle).
  */
-void VideoPlayer::on_player_tick(long current_time, long stream_length, double current_position)
+void VideoPlayer::on_player_tick(long /*current_time*/, long /*stream_length*/, double /*current_position*/)
 {
 	find_subtitle();
 }

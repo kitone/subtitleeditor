@@ -320,7 +320,7 @@ void WaveformEditor::on_unmap()
 /*
  *
  */
-void WaveformEditor::on_player_tick(long current_time, long stream_length, double current_position)
+void WaveformEditor::on_player_tick(long /*current_time*/, long /*stream_length*/, double /*current_position*/)
 {
 	if(has_renderer() && player() && has_waveform())
 	{
@@ -386,7 +386,7 @@ int WaveformEditor::get_zoom()
  * This callback is connected to the signal "configure" of the waveform.
  * Every time this size changed, the scrollbar need to be recalculate.
  */
-bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure *ev)
+bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure * /*ev*/)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -842,7 +842,7 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev)
  * Finish the editing of the current subtitle. 
  * Stop the recorder command.
  */
-bool WaveformEditor::on_button_release_event_renderer(GdkEventButton *ev)
+bool WaveformEditor::on_button_release_event_renderer(GdkEventButton * /*ev*/)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 

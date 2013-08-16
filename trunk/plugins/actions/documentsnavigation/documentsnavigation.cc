@@ -236,7 +236,7 @@ public:
 	 * We want to rebuild the documents menu each time the document property change,
 	 * like name of the document
 	 */
-	void on_document_signals(Document* doc, const std::string &signal)
+	void on_document_signals(Document*, const std::string &signal)
 	{
 		if(signal == "document-property-changed")
 			rebuild_documents_menu();

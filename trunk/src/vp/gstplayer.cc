@@ -493,7 +493,7 @@ bool GstPlayer::on_configure_event(GdkEventConfigure *ev)
 /*
  * The parent changed, we need to re-expose the overlay.
  */
-void GstPlayer::toplevel_win_configure_event(GdkEventConfigure *ev)
+void GstPlayer::toplevel_win_configure_event(GdkEventConfigure * /*ev*/)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -861,7 +861,7 @@ void GstPlayer::on_bus_message_sync( const Glib::RefPtr<Gst::Message> &msg)
 /*
  * Dispatch the gstreamer message.
  */
-bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &bus, const Glib::RefPtr<Gst::Message> &msg)
+bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &/*bus*/, const Glib::RefPtr<Gst::Message> &msg)
 {
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, 
 			"type='%s' name='%s'", 
@@ -1010,7 +1010,7 @@ void GstPlayer::on_bus_message_state_changed(const Glib::RefPtr<Gst::MessageStat
  * update the pipeline state to PAUSED.
  * Seek to the begining if it's the end of the stream.
  */
-void GstPlayer::on_bus_message_eos(const Glib::RefPtr<Gst::MessageEos> &msg)
+void GstPlayer::on_bus_message_eos(const Glib::RefPtr<Gst::MessageEos> &/*msg*/)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -1026,7 +1026,7 @@ void GstPlayer::on_bus_message_eos(const Glib::RefPtr<Gst::MessageEos> &msg)
  * If the looping is activated send new seek event.
  * Works only with play_subtitle.
  */
-void GstPlayer::on_bus_message_segment_done(const Glib::RefPtr<Gst::MessageSegmentDone> &msg)
+void GstPlayer::on_bus_message_segment_done(const Glib::RefPtr<Gst::MessageSegmentDone> &/*msg*/)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 

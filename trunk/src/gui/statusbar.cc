@@ -27,7 +27,7 @@
 /*
  *
  */
-Statusbar::Statusbar(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder)
+Statusbar::Statusbar(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& /*builder*/)
 :Gtk::Statusbar(cobject)
 {
 }

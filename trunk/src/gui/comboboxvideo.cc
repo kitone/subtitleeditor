@@ -27,7 +27,7 @@
 /*
  * Constructor
  */
-ComboBoxVideo::ComboBoxVideo(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
+ComboBoxVideo::ComboBoxVideo(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& /*builder*/)
 :Gtk::ComboBoxText(cobject)
 {
 	// separator function
@@ -131,7 +131,7 @@ Glib::ustring ComboBoxVideo::get_value() const
  * Used to define the separator.
  * label = "<separator>"
  */
-bool ComboBoxVideo::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &model, const Gtk::TreeModel::iterator &it)
+bool ComboBoxVideo::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &/*model*/, const Gtk::TreeModel::iterator &it)
 {
 	Glib::ustring text = (*it)[m_text_columns.m_column];
 	if(text == "<separator>")

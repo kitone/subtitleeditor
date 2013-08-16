@@ -140,7 +140,7 @@ public:
 	/*
 	 *
 	 */
-	virtual bool execute(Info &info) // = 0;
+	virtual bool execute(Info &) // = 0;
 	{
 		return false;
 	}

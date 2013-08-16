@@ -46,7 +46,7 @@ ComboBoxEncoding::ComboBoxEncoding(bool auto_detected)
 /*
  * Constructor
  */
-ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
+ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& /*builder*/)
 :Gtk::ComboBoxText(cobject), m_with_auto_detected(true)
 {
 	init_encodings();
@@ -220,7 +220,7 @@ void ComboBoxEncoding::on_combo_changed()
  * Used to define the separator.
  * label = "<separator>"
  */
-bool ComboBoxEncoding::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &model, const Gtk::TreeModel::iterator &it)
+bool ComboBoxEncoding::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &/*model*/, const Gtk::TreeModel::iterator &it)
 {
 	Glib::ustring text = (*it)[m_text_columns.m_column];
 	if(text == "<separator>")

@@ -90,7 +90,7 @@ public:
 	/*
 	 * Check buffer and try to catch keyframes.
 	 */
-	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>& pad)
+	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>&)
 	{
 		// ignore preroll
 		if(buf->flag_is_set(Gst::BUFFER_FLAG_PREROLL))
