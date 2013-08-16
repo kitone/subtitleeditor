@@ -22,15 +22,7 @@
  
 
 #include <iostream>
-#include <gtkmm/cellrenderercombo.h>
-#include <gtkmm/tooltips.h>
-#include <gtkmm/label.h>
-#include <gtkmm/eventbox.h>
 #include <gdk/gdkkeysyms.h>
-
-#include <gtkmm/textview.h>
-#include <gtkmm/celleditable.h>
-#include <gtkmm/spinbutton.h>
 
 #include "cfg.h"
 #include "subtitlemodel.h"
@@ -38,7 +30,6 @@
 #include "document.h"
 #include "subtitleview.h"
 #include "utility.h"
-#include <gdkmm/window.h>
 #include "subtitleeditorwindow.h"
 
 #include "gui/textviewcell.h"
