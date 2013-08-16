@@ -168,7 +168,7 @@ void DialogStyleEditor::on_style_name_edited(const Glib::ustring &path, const Gl
 /*
  *
  */
-void DialogStyleEditor::callback_button_clicked(Gtk::Button *w, const Glib::ustring &action)
+void DialogStyleEditor::callback_button_clicked(Gtk::Button *, const Glib::ustring &action)
 {
 	if(action == "new-style")
 	{
@@ -214,7 +214,7 @@ void DialogStyleEditor::callback_button_clicked(Gtk::Button *w, const Glib::ustr
 /*
  *
  */
-void DialogStyleEditor::callback_font_button_changed(Gtk::FontButton *w, const Glib::ustring &key)
+void DialogStyleEditor::callback_font_button_changed(Gtk::FontButton *w, const Glib::ustring &)
 {
 	if(!m_current_style)
 		return;

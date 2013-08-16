@@ -58,7 +58,7 @@ Document* SubtitleFormatIO::document()
 /*
  *
  */
-void SubtitleFormatIO::open(Reader &reader)
+void SubtitleFormatIO::open(Reader &/*reader*/)
 {
 	throw IOFileError(_("This function is not implemented for this format."));
 }
@@ -68,7 +68,7 @@ void SubtitleFormatIO::open(Reader &reader)
 /*
  *
  */
-void SubtitleFormatIO::save(Writer &writer)
+void SubtitleFormatIO::save(Writer &/*writer*/)
 {
 	throw IOFileError(_("This function is not implemented for this format."));
 }

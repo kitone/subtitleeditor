@@ -115,7 +115,7 @@ public:
 
 	/*
 	 */
-	virtual void on_new_decoded_pad(const Glib::RefPtr<Gst::Pad> &newpad, bool last)
+	virtual void on_new_decoded_pad(const Glib::RefPtr<Gst::Pad> &newpad, bool /*last*/)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
@@ -179,7 +179,7 @@ public:
 	/*
 	 * BUS MESSAGE
 	 */
-	virtual bool on_bus_message(const Glib::RefPtr<Gst::Bus> &bus, const Glib::RefPtr<Gst::Message> &msg)
+	virtual bool on_bus_message(const Glib::RefPtr<Gst::Bus> &/*bus*/, const Glib::RefPtr<Gst::Message> &msg)
 	{
 		se_debug_message(SE_DEBUG_PLUGINS, 
 				"type='%s' name='%s'", 
@@ -240,7 +240,7 @@ public:
 
 	/*
 	 */
-	virtual bool on_bus_message_eos(Glib::RefPtr<Gst::MessageEos> msg)
+	virtual bool on_bus_message_eos(Glib::RefPtr<Gst::MessageEos> /*msg*/)
 	{
 		m_pipeline->set_state(Gst::STATE_PAUSED);
 		on_work_finished();
@@ -272,7 +272,7 @@ public:
 
 	/*
 	 */
-	virtual Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &str)
+	virtual Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &/*str*/)
 	{
 		return Glib::RefPtr<Gst::Element>();
 	}

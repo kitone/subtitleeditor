@@ -48,7 +48,7 @@ class DialogSpellChecking : public Gtk::Dialog
 		};
 
 	public:
-		ComboBoxLanguages(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+		ComboBoxLanguages(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& )
 		:Gtk::ComboBox(cobject)
 		{
 			liststore = Gtk::ListStore::create(column);

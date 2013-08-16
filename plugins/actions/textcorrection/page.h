@@ -32,7 +32,7 @@
 class AssistantPage : public Gtk::VBox
 {
 public:
-	AssistantPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
+	AssistantPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& )
 	:Gtk::VBox(cobject)
 	{
 	}
@@ -47,7 +47,7 @@ public:
 	{
 	}
 
-	virtual void apply(Document *doc)
+	virtual void apply(Document *)
 	{
 	}
 

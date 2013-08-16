@@ -241,7 +241,7 @@ void WaveformRendererCairo::force_redraw_all()
 /*
  *
  */
-bool WaveformRendererCairo::on_configure_event(GdkEventConfigure *ev)
+bool WaveformRendererCairo::on_configure_event(GdkEventConfigure * /*ev*/)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -444,7 +444,7 @@ void WaveformRendererCairo::draw_timeline_msecs(Cairo::RefPtr<Cairo::Context> &c
 /*
  * Display the time text every X seconds (msec)
  */
-void WaveformRendererCairo::draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec)
+void WaveformRendererCairo::draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle & /*area*/, long msec)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -747,7 +747,7 @@ void WaveformRendererCairo::draw_player_position(Cairo::RefPtr<Cairo::Context> &
  * Display the time of the mouse
  * and the duration of the selected subtitle
  */
-void WaveformRendererCairo::display_time_info(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+void WaveformRendererCairo::display_time_info(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle & /*area*/)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 

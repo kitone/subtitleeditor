@@ -29,7 +29,7 @@
 
 /*
  */
-static gboolean accel_find_func (GtkAccelKey *key, GClosure *closure, gpointer data)
+static gboolean accel_find_func (GtkAccelKey * /*key*/, GClosure *closure, gpointer data)
 {
   return (GClosure *) data == closure;
 }
@@ -209,7 +209,7 @@ public:
 	/*
 	 *
 	 */
-	bool foreach_callback_label(const Gtk::TreePath &path, const Gtk::TreeIter &iter, const Glib::ustring &label, Gtk::TreeIter *result)
+	bool foreach_callback_label(const Gtk::TreePath & /*path*/, const Gtk::TreeIter &iter, const Glib::ustring &label, Gtk::TreeIter *result)
 	{
 		Glib::ustring ak = (*iter)[m_columns.shortcut];
 
@@ -223,7 +223,7 @@ public:
 	/*
 	 *
 	 */
-	bool foreach_callback_closure(const Gtk::TreePath &path, const Gtk::TreeIter &iter, const GClosure *closure, Gtk::TreeIter *result)
+	bool foreach_callback_closure(const Gtk::TreePath & /*path*/, const Gtk::TreeIter &iter, const GClosure *closure, Gtk::TreeIter *result)
 	{
 		GClosure *c = (*iter)[m_columns.closure];
 
@@ -265,7 +265,7 @@ public:
 	/*
 	 *
 	 */
-	bool on_accel_changed_foreach(const Gtk::TreePath &path, const Gtk::TreeIter &iter, GClosure* accel_closure)
+	bool on_accel_changed_foreach(const Gtk::TreePath &/*path*/, const Gtk::TreeIter &iter, GClosure* accel_closure)
 	{
 		GClosure *closure = (*iter)[m_columns.closure];
 
@@ -292,7 +292,7 @@ public:
 	/*
 	 *
 	 */
-	void on_accel_changed(guint keyval, Gdk::ModifierType modifier, GClosure* accel_closure)
+	void on_accel_changed(guint /*keyval*/, Gdk::ModifierType /*modifier*/, GClosure* accel_closure)
 	{
 		m_store->foreach(sigc::bind(sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_accel_changed_foreach), accel_closure));
 	}
@@ -300,7 +300,7 @@ public:
 	/*
 	 * Try to changed the shortcut with conflict support.
 	 */
-	void on_accel_edited(const Glib::ustring& path, guint key, Gdk::ModifierType mods, guint keycode)
+	void on_accel_edited(const Glib::ustring& path, guint key, Gdk::ModifierType mods, guint /*keycode*/)
 	{
 		Gtk::TreeIter iter = m_store->get_iter(path);
 

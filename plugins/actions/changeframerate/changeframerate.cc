@@ -40,7 +40,7 @@ class DialogChangeFramerate : public DialogActionMultiDoc
 	class ComboBoxEntryText : public Gtk::ComboBoxEntryText
 	{
 	public:
-		ComboBoxEntryText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+		ComboBoxEntryText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& /*xml*/)
 		:Gtk::ComboBoxEntryText(cobject)
 		{
 			get_entry()->signal_focus_out_event().connect(
@@ -65,7 +65,7 @@ class DialogChangeFramerate : public DialogActionMultiDoc
 			Gtk::ComboBoxEntryText::append_text(text);
 		}
 
-		bool on_focus_out(GdkEventFocus* ev)
+		bool on_focus_out(GdkEventFocus*)
 		{
 			bool state = true;//get_entry()->on_focus_out_event(ev);
 

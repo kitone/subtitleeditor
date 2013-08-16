@@ -90,12 +90,12 @@ CellRendererCustom<T>::CellRendererCustom()
  */
 template<class T>
 Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
-			GdkEvent* event, 
-			Gtk::Widget &widget, 
+			GdkEvent* /*event*/, 
+			Gtk::Widget &/*widget*/, 
 			const Glib::ustring &path, 
-			const Gdk::Rectangle& background_area,
+			const Gdk::Rectangle& /*background_area*/,
 			const Gdk::Rectangle& cell_area,
-			Gtk::CellRendererState flags)
+			Gtk::CellRendererState /*flags*/)
 {
 	se_debug(SE_DEBUG_VIEW);
 

@@ -44,7 +44,7 @@ class ComboBoxText : public Gtk::ComboBox
 	};
 
 public:
-	ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
+	ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& )
 	:Gtk::ComboBox(cobject)
 	{
 		init();
@@ -82,7 +82,7 @@ public:
 
 	/*
 	 */
-	bool on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &model, const Gtk::TreeModel::iterator &it)
+	bool on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &, const Gtk::TreeModel::iterator &it)
 	{
 		Glib::ustring text = (*it)[m_column.label];
 		if(text == "---")

@@ -132,9 +132,11 @@ void DialogCharacterCodings::init_encodings_available()
 
 	m_storeAvailable = Gtk::ListStore::create(m_column);
 
-	for(unsigned int i=0; encodings_info[i].charset != NULL; ++i)
+	EncodingInfo* ei = Encodings::get_encodings_info();
+
+	for(unsigned int i=0; ei[i].charset != NULL; ++i)
 	{
-		append_encoding(m_storeAvailable, encodings_info[i].charset);
+		append_encoding(m_storeAvailable, ei[i].charset);
 	}
 	
 	m_storeAvailable->set_sort_column(m_column.description, Gtk::SORT_ASCENDING);
@@ -270,7 +272,7 @@ void DialogCharacterCodings::on_response(int id)
 /*
  * Add the selected charset.
  */
-void DialogCharacterCodings::on_row_available_activated(const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn *column)
+void DialogCharacterCodings::on_row_available_activated(const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn * /*column*/)
 {
 	Gtk::TreeIter it = m_storeAvailable->get_iter(path);
 	if(it)
@@ -284,7 +286,7 @@ void DialogCharacterCodings::on_row_available_activated(const Gtk::TreeModel::Pa
 /*
  * Remove the selected charset.
  */
-void DialogCharacterCodings::on_row_displayed_activated(const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn *column)
+void DialogCharacterCodings::on_row_displayed_activated(const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn * /*column*/)
 {
 	Gtk::TreeIter it = m_storeDisplayed->get_iter(path);
 	if(it)

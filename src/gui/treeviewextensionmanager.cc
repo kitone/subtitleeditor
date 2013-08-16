@@ -223,7 +223,7 @@ ExtensionInfo* TreeViewExtensionManager::get_selected_extension()
  * Used to define the separator
  * "---"
  */
-bool TreeViewExtensionManager::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &model, const Gtk::TreeModel::iterator &it)
+bool TreeViewExtensionManager::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &/*model*/, const Gtk::TreeModel::iterator &it)
 {
 	static ColumnExtension column;
 

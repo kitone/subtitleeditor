@@ -1,5 +1,49 @@
 2013-08-15  kitone  <kitone@gna.org>
 
+	* plugins/actions/changeframerate/changeframerate.cc:
+	* plugins/actions/clipboard/clipboard.cc:
+	* plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:
+	* plugins/actions/documentsnavigation/documentsnavigation.cc:
+	* plugins/actions/errorchecking/errorchecking.h:
+	* plugins/actions/errorchecking/errorcheckingplugin.cc:
+	* plugins/actions/findandreplace/findandreplace.cc:
+	* plugins/actions/keyframesmanagement/keyframesgenerator.cc:
+	* plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc:
+	* plugins/actions/keyframesmanagement/mediadecoder.h:
+	* plugins/actions/preferences/videoplayerpage.h:
+	* plugins/actions/spellchecking/spellchecking.cc:
+	* plugins/actions/styleeditor/styleeditor.cc:
+	* plugins/actions/textcorrection/page.h:
+	* plugins/actions/textcorrection/patternspage.h:
+	* plugins/actions/timingfromplayer/timingfromplayer.cc:
+	* plugins/actions/wavefrommanagement/mediadecoder.h:
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/dcsubtitle/dcsubtitle.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	* src/encodings.cc:
+	* src/encodings.h:
+	* src/gui/application.cc:
+	* src/gui/automaticspellchecker.cc:
+	* src/gui/cellrenderercustom.h:
+	* src/gui/comboboxencoding.cc:
+	* src/gui/comboboxnewline.cc:
+	* src/gui/comboboxsubtitleformat.cc:
+	* src/gui/comboboxvideo.cc:
+	* src/gui/dialogcharactercodings.cc:
+	* src/gui/spinbuttontime.cc:
+	* src/gui/statusbar.cc:
+	* src/gui/treeviewextensionmanager.cc:
+	* src/spellchecker.cc:
+	* src/subtitleformatio.cc:
+	* src/subtitleview.cc:
+	* src/vp/gstplayer.cc:
+	* src/vp/videoplayer.cc:
+	* src/we/waveformeditor.cc:
+	* src/we/waveformrenderercairo.cc:
+	Fix warning on unused-variable, unused-value, unused-parameter.
+
+2013-08-15  kitone  <kitone@gna.org>
+
 	* src/subtitleview.cc:
 	Fix missing header.
 

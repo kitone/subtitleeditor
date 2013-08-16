@@ -66,7 +66,7 @@ public:
 	/*
 	 * Check buffer and try to catch keyframes.
 	 */
-	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>& pad)
+	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>&)
 	{
 		// FIXME: http://bugzilla.gnome.org/show_bug.cgi?id=590923
 		if(!buf->flag_is_set(GST_BUFFER_FLAG_DELTA_UNIT))//Gst::BUFFER_FLAG_DELTA_UNIT))

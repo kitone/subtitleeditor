@@ -45,7 +45,7 @@ class ComboBoxOutput : public Gtk::ComboBox
 public:
 	/*
 	 */
-	ComboBoxOutput(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+	ComboBoxOutput(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& )
 	:Gtk::ComboBox(cobject)
 	{
 		m_model = Gtk::ListStore::create(m_column);
@@ -69,8 +69,7 @@ public:
 	 */
 	void set_active_name(const Glib::ustring &name)
 	{
-		Gtk::TreeIter it = m_model->children().begin();
-		for(it; it; ++it)
+		for(Gtk::TreeIter it = m_model->children().begin(); it; ++it)
 		{
 			if((*it)[m_column.name] == name)
 			{

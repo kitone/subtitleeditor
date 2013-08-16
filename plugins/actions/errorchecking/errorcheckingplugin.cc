@@ -670,7 +670,7 @@ public:
 	/*
 	 * FIXME
 	 */
-	void on_row_activated(const Gtk::TreePath &path, Gtk::TreeViewColumn *column)
+	void on_row_activated(const Gtk::TreePath &path, Gtk::TreeViewColumn *)
 	{
 		Gtk::TreeIter it = m_model->get_iter(path);
 

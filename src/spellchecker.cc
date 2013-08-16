@@ -155,9 +155,9 @@ protected:
 
 	static void callback_list_dicts(
 			const char *const lang_tag, 
-			const char *const provider_name, 
-			const char *const provider_desc, 
-			const char *const provider_file, 
+			const char *const /*provider_name*/, 
+			const char *const /*provider_desc*/, 
+			const char *const /*provider_file*/, 
 			void *user_data)
 	{
 		reinterpret_cast<std::list<std::string>*>(user_data)->push_back(lang_tag);
