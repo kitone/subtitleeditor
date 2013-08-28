@@ -1,4 +1,5 @@
 FILES = \
+	avidds \
 	adobeencoredvd \
 	advancedsubstationalpha \
 	bitc \
