@@ -1,3 +1,12 @@
+2013-08-28  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/subtitleformats/Makefile.am:
+	* plugins/subtitleformats/avidds/Makefile.am:
+	* plugins/subtitleformats/avidds/avidds.cc:
+	* plugins/subtitleformats/avidds/avidds.se-plugin.in:
+	Introduce new subtitle format Avid DS. Patch by Tomas Partl <eltomito>.
+
 2013-08-15  kitone  <kitone@gna.org>
 
 	* plugins/actions/changeframerate/changeframerate.cc:
