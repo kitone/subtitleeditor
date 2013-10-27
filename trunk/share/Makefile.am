@@ -1,4 +1,4 @@
-SUBDIRS = icons ui 
+SUBDIRS = appdata icons ui 
 
 pixmapdir = $(datadir)/pixmaps
 pixmap_DATA = subtitleeditor.svg
