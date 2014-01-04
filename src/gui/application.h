@@ -116,7 +116,7 @@ protected:
 	 *	Changement dans le notebook de la page editer
 	 *	On recupere la page pusi on init DocumentSystem avec le document
 	 */
-	void on_signal_switch_page(GtkNotebookPage* page, guint page_num);
+	void on_signal_switch_page(Gtk::Widget* page, guint page_num);
 
 	/*
 	 *

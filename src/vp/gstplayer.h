@@ -176,7 +176,7 @@ protected:
 	/*
 	 * Display an black rectangle or expose the xoverlay.
 	 */
-	bool on_expose_event(GdkEventExpose *ev);
+	virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 
 	/*
 	 */

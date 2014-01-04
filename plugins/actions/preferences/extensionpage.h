@@ -94,7 +94,7 @@ public:
 		dialog.set_program_name(info->get_label());
 		dialog.set_comments(info->get_description());
 
-		std::list<Glib::ustring> authors;
+		std::vector<Glib::ustring> authors;
 		authors.push_back(info->get_authors());
 		dialog.set_authors(authors);
 

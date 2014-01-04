@@ -46,9 +46,9 @@ protected:
 		ComboBoxLineBreakPolicy(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>&)
 		:Gtk::ComboBoxText(cobject)
 		{
-			append_text(_("Soft"));
-			append_text(_("Hard"));
-			append_text(_("Intelligent"));
+			append(_("Soft"));
+			append(_("Hard"));
+			append(_("Intelligent"));
 		}
 		
 		/*

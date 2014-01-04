@@ -98,7 +98,7 @@ protected:
 		// logo
 		dialog.set_logo_icon_name("subtitleeditor");
 		// authors
-		std::list<Glib::ustring>	authors;
+		std::vector<Glib::ustring> authors;
 		authors.push_back("kitone (IDJAAD djamel)");
 		
 		dialog.set_authors(authors);

@@ -157,17 +157,14 @@ bool SpinButtonTime::on_output()
 }
 
 /*
- *
  */
-void SpinButtonTime::on_size_request(Gtk::Requisition *req)
+void SpinButtonTime::get_preferred_width_vfunc(int &minimum_width, int &natural_width) const
 {
-	Gtk::Widget::on_size_request(req);
+	Gtk::SpinButton::get_preferred_width_vfunc(minimum_width, natural_width);
 	if(m_timing_mode == TIME)
 	{
-		int width, height;
-		create_pango_layout("-0:00:00.000")->get_pixel_size(width, height);
-
-		req->width = width + 30;//25;
+		minimum_width += 30;
+		natural_width += 30;
 	}
 }
 

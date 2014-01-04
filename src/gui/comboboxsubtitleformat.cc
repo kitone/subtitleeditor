@@ -34,7 +34,7 @@ ComboBoxSubtitleFormat::ComboBoxSubtitleFormat(BaseObjectType* cobject, const Gl
 	std::list<SubtitleFormatInfo>::const_iterator it;
 
 	for(it = infos.begin(); it != infos.end(); ++it)
-		append_text((*it).name);
+		append((*it).name);
 
 	set_active(0);
 }

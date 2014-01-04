@@ -87,10 +87,9 @@ protected:
 	bool on_output();
 
 	/*
-	 *
 	 */
-	void on_size_request(Gtk::Requisition *req);
-
+	void get_preferred_width_vfunc(int &minimum_width, int &natural_width) const;
+	
 	/*
 	 *
 	 */

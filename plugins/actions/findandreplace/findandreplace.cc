@@ -27,7 +27,9 @@
 #include <gtkmm_utility.h>
 #include <widget_config_utility.h>
 #include <glib.h>
+#include <gui/comboboxtextcolumns.h>
 
+// FIXME: gtkmm3
 /*
  * FIXME:
  *	Subtitle selected changed caused by no modal window (find)
@@ -357,11 +359,11 @@ protected:
 
 /*
  */
-class ComboBoxEntryHistory : public Gtk::ComboBoxEntryText
+class ComboBoxEntryHistory : public Gtk::ComboBoxText
 {
 public:
 	ComboBoxEntryHistory(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>&)
-	:Gtk::ComboBoxEntryText(cobject)
+	:Gtk::ComboBoxText(cobject)
 	{
 	}
 
@@ -386,7 +388,7 @@ public:
 		if(!text.empty())
 		{
 			remove_item(text);
-			prepend_text(text);
+			prepend(text);
 			clamp_items();
 		}
 	}
@@ -407,7 +409,7 @@ public:
 		for(it = keys.begin(); it != keys.end(); ++it)
 		{
 			if(re->match(*it))
-				append_text(cfg.get_value_string(m_group, *it));
+				append(cfg.get_value_string(m_group, *it));
 		}
 		get_entry()->set_text(cfg.get_value_string(m_group, m_key));
 	}
@@ -427,10 +429,9 @@ public:
 	 */
 	bool save_iter(const Gtk::TreePath &path, const Gtk::TreeIter &it)
 	{
-		TextModelColumns cols;
 		Config::getInstance().set_value_string(	m_group,
 				Glib::ustring::compose("%1-%2", m_key, path.to_string()), // key-id
-				(*it)[cols.m_column]); // text
+				(*it)[m_cols.m_col_name]); // text
 		return false;
 	}
 
@@ -439,13 +440,12 @@ public:
 	 */
 	void remove_item(const Glib::ustring &text)
 	{
-		TextModelColumns cols;
 		Glib::RefPtr<Gtk::ListStore> model = Glib::RefPtr<Gtk::ListStore>::cast_dynamic(get_model());
 
 		Gtk::TreeIter it = model->children().begin();
 		while(it)
 		{
-			if((*it)[cols.m_column] == text)
+			if((*it)[m_cols.m_col_name] == text)
 				it = model->erase(it);
 			else
 				++it;
@@ -469,6 +469,7 @@ public:
 protected:
 	Glib::ustring m_group;
 	Glib::ustring m_key;
+	ComboBoxTextColumns m_cols;
 };
 
 /*
@@ -520,7 +521,7 @@ public:
 		widget_config::read_config_and_connect(m_checkColumnText, "find-and-replace", "column-text");
 		widget_config::read_config_and_connect(m_checkColumnTranslation, "find-and-replace", "column-translation");
 
-		m_comboboxPattern->grab_focus();
+		//m_comboboxPattern->grab_focus();
 		m_comboboxPattern->get_entry()->signal_activate().connect(
 				sigc::bind(sigc::mem_fun(*this, &DialogFindAndReplace::on_response), FIND));
 

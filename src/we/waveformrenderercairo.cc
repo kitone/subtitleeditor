@@ -54,7 +54,7 @@ public:
 	/*
 	 * Set the current color at the context.
 	 */
-	void set_color(Cairo::RefPtr<Cairo::Context> &cr, float color[4]);
+	void set_color(const Cairo::RefPtr<Cairo::Context> &cr, float color[4]);
 
 	/*
 	 * The waveform is changed. 
@@ -90,32 +90,32 @@ public:
 	 *	- subtitle (draw_subtitles)
 	 *	- time info (display_time_info)
 	 */
-	bool on_expose_event(GdkEventExpose *ev);
+	bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 
 	/*
 	 * Display all of timeline: Time, seconds
 	 */
-	void draw_timeline(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+	void draw_timeline(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 
 	/*
 	 * Display the time every X seconds ("msec") with "upper" height
  	 */
-	void draw_timeline_msecs(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec, int upper);
+	void draw_timeline_msecs(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec, int upper);
 
 	/*
 	 * Display the time text every X seconds (msec)
 	 */
-	void draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec);
+	void draw_timeline_time(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec);
 
 	/*
 	 * Draw the waveform by the call of draw_channel.
 	 */
-	void draw_waveform(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+	void draw_waveform(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 
 	/*
 	 *
 	 */
-	void draw_channel(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, unsigned int channel);
+	void draw_channel(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, unsigned int channel);
 
 	/*
 	 * Display the text of the subtitle.
@@ -124,32 +124,32 @@ public:
 	 * end:
 	 *	position of the end in the area : get_pos_by_time(subtitle.get_end)
 	 */
-	void draw_subtitle_text(Cairo::RefPtr<Cairo::Context> &cr, const Subtitle &sub, int start, int end);
+	void draw_subtitle_text(const Cairo::RefPtr<Cairo::Context> &cr, const Subtitle &sub, int start, int end);
 
 	/*
 	 * Draw subtitles visible
 	 */
-	void draw_subtitles(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+	void draw_subtitles(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 
 	/*
 	 * Draw the left and the right marker of the subtitle selected. 
 	 */
-	void draw_marker(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+	void draw_marker(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 	
 	/*
 	 * Draw the current position of the player.
 	 */
-	void draw_player_position(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+	void draw_player_position(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 
 	/*
 	 * Display the time of the mouse
 	 * and the duration of the selected subtitle
 	 */
-	void display_time_info(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+	void display_time_info(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 
 	/*
 	 */
-	void draw_keyframes(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
+	void draw_keyframes(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area);
 
 protected:
 
@@ -187,7 +187,7 @@ Gtk::Widget* WaveformRendererCairo::widget()
 /*
  * Set the current color at the context.
  */
-void WaveformRendererCairo::set_color(Cairo::RefPtr<Cairo::Context> &cr, float color[4])
+void WaveformRendererCairo::set_color(const Cairo::RefPtr<Cairo::Context> &cr, float color[4])
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -260,7 +260,7 @@ bool WaveformRendererCairo::on_configure_event(GdkEventConfigure * /*ev*/)
  *	- subtitle (draw_subtitles)
  *	- time info (display_time_info)
  */
-bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
+bool WaveformRendererCairo::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -272,18 +272,6 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 
 	if(se_debug_check_flags(SE_DEBUG_WAVEFORM))
 		m_timer.start();
-
-	Glib::RefPtr<Gdk::Window> window = get_window();
-	if(!window)
-		return false;
-
-	Cairo::RefPtr<Cairo::Context> cr = window->create_cairo_context();
-
-	if(ev)
-	{
-		cr->rectangle(ev->area.x, ev->area.y, ev->area.width, ev->area.height);
-		cr->clip();
-	}
 
 	//background
 	set_color(cr, m_color_background);
@@ -359,17 +347,16 @@ bool WaveformRendererCairo::on_expose_event(GdkEventExpose *ev)
 		set_color(cr, m_color_text);
 		cr->move_to(10,get_height() - 10);
 		cr->show_text(fps);
-
-	  m_timer.reset();
+		m_timer.reset();
 	}
-
 	return true;
 }
+
 
 /*
  * Display all of timeline: Time, seconds
  */
-void WaveformRendererCairo::draw_timeline(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+void WaveformRendererCairo::draw_timeline(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -416,7 +403,7 @@ void WaveformRendererCairo::draw_timeline(Cairo::RefPtr<Cairo::Context> &cr, con
 /*
  * Display the time every X seconds ("msec") with "upper" height
  */
-void WaveformRendererCairo::draw_timeline_msecs(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec, int upper)
+void WaveformRendererCairo::draw_timeline_msecs(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, long msec, int upper)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -444,7 +431,7 @@ void WaveformRendererCairo::draw_timeline_msecs(Cairo::RefPtr<Cairo::Context> &c
 /*
  * Display the time text every X seconds (msec)
  */
-void WaveformRendererCairo::draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle & /*area*/, long msec)
+void WaveformRendererCairo::draw_timeline_time(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle & /*area*/, long msec)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -481,7 +468,7 @@ void WaveformRendererCairo::draw_timeline_time(Cairo::RefPtr<Cairo::Context> &cr
 /*
  * Draw the waveform by the call of draw_channel.
  */
-void WaveformRendererCairo::draw_waveform(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+void WaveformRendererCairo::draw_waveform(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -504,7 +491,7 @@ void WaveformRendererCairo::draw_waveform(Cairo::RefPtr<Cairo::Context> &cr, con
 /*
  *
  */
-void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, unsigned int channel)
+void WaveformRendererCairo::draw_channel(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area, unsigned int channel)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -564,7 +551,7 @@ void WaveformRendererCairo::draw_channel(Cairo::RefPtr<Cairo::Context> &cr, cons
  * end:
  *	position of the end in the area : get_pos_by_time(subtitle.get_end)
  */
-void WaveformRendererCairo::draw_subtitle_text(Cairo::RefPtr<Cairo::Context> &cr, const Subtitle &sub, int start, int end)
+void WaveformRendererCairo::draw_subtitle_text(const Cairo::RefPtr<Cairo::Context> &cr, const Subtitle &sub, int start, int end)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -592,7 +579,7 @@ void WaveformRendererCairo::draw_subtitle_text(Cairo::RefPtr<Cairo::Context> &cr
 /*
  * Draw subtitles visible
  */
-void WaveformRendererCairo::draw_subtitles(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+void WaveformRendererCairo::draw_subtitles(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -670,7 +657,7 @@ void WaveformRendererCairo::draw_subtitles(Cairo::RefPtr<Cairo::Context> &cr, co
 /*
  * Draw the left and the right marker of the subtitle selected. 
  */
-void WaveformRendererCairo::draw_marker(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+void WaveformRendererCairo::draw_marker(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -730,7 +717,7 @@ void WaveformRendererCairo::draw_marker(Cairo::RefPtr<Cairo::Context> &cr, const
 /*
  * Draw the current position of the player.
  */
-void WaveformRendererCairo::draw_player_position(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+void WaveformRendererCairo::draw_player_position(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -747,7 +734,7 @@ void WaveformRendererCairo::draw_player_position(Cairo::RefPtr<Cairo::Context> &
  * Display the time of the mouse
  * and the duration of the selected subtitle
  */
-void WaveformRendererCairo::display_time_info(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle & /*area*/)
+void WaveformRendererCairo::display_time_info(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle & /*area*/)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
@@ -788,7 +775,7 @@ void WaveformRendererCairo::display_time_info(Cairo::RefPtr<Cairo::Context> &cr,
 
 /*
  */
-void WaveformRendererCairo::draw_keyframes(Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
+void WaveformRendererCairo::draw_keyframes(const Cairo::RefPtr<Cairo::Context> &cr, const Gdk::Rectangle &area)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 

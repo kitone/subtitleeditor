@@ -24,7 +24,7 @@
 #include "encodings.h"
 #include "dialogcharactercodings.h"
 #include "cfg.h"
-
+#include "comboboxtextcolumns.h"
 
 /*
  * Constructor
@@ -46,7 +46,7 @@ ComboBoxEncoding::ComboBoxEncoding(bool auto_detected)
 /*
  * Constructor
  */
-ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& /*builder*/)
+ComboBoxEncoding::ComboBoxEncoding(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>&)
 :Gtk::ComboBoxText(cobject), m_with_auto_detected(true)
 {
 	init_encodings();
@@ -69,19 +69,7 @@ void ComboBoxEncoding::set_value(const Glib::ustring &value)
 
 	if(label.empty())
 		return;
-	// check only with encoding available
-	Gtk::TreeIter it = get_model()->children().begin();
-	while(it)
-	{
-		Glib::ustring name = (*it)[m_text_columns.m_column];
-		if(name == label)
-		{
-			set_active(it);
-			return;
-		}
-		++it;
-	}
-	//set_active_text(label);
+	set_active_text(label);
 }
 
 /*
@@ -91,23 +79,12 @@ void ComboBoxEncoding::set_value(const Glib::ustring &value)
  */
 Glib::ustring ComboBoxEncoding::get_value() const
 {
-	if(m_with_auto_detected)
-	{
-		if(get_active_row_number() == 0)
-			return Glib::ustring(); // "None"
-	}
-	// extract the charset 
-	// ex:
-	// "Unicode (UTF-8)"
-	Glib::ustring text = get_active_text();
-
-	Glib::ustring::size_type a = text.find('(');
-	Glib::ustring::size_type b = text.find(')', a);
-
-	if(a != Glib::ustring::npos && b != Glib::ustring::npos)
-		return text.substr(a+1, b-a-1);
-
-	return Glib::ustring();
+	//if(m_with_auto_detected)
+	//{
+	//	if(get_active_row_number() == 0)
+	//		return Glib::ustring(); // "None"
+	//}
+	return get_active_id();
 }
 
 /*
@@ -133,47 +110,44 @@ void ComboBoxEncoding::init_encodings()
 {
 	m_connection_changed.block();
 
-	clear();
+	remove_all();
 
+	// Setup auto_detected
 	bool used_auto_detected = Config::getInstance().get_value_bool("encodings", "used-auto-detected");
 
 	if(m_with_auto_detected)
 	{
-		append_text(_("Auto Detected"));
-		append_text("<separator>");
+		append(_("Auto Detected"));
+		append("<separator>", "");
 	}
 
-	std::list<Glib::ustring> encodings = 
-		Config::getInstance().get_value_string_list("encodings", "encodings");
-
-	if(encodings.empty())
+	// Setup charsets
+	std::list<Glib::ustring> encodings = Config::getInstance().get_value_string_list("encodings", "encodings");
+	if(!encodings.empty())
+	{
+		std::list<Glib::ustring>::const_iterator it;
+		for(it = encodings.begin(); it != encodings.end(); ++it)
+		{
+			append(*it, Encodings::get_label_from_charset(*it));
+		}
+	}
+	else
 	{
 		std::string charset;
 		Glib::get_charset(charset);
 
 		Glib::ustring item;
 		item += _("Current Locale");
-		item += " (";
-		item += charset;
-		item += ")";
+		item += " (" + charset + ")";
 
-		append_text(item);
+		Glib::ustring id = charset;
+		append(id, item);
+
 	}
-	else
-	{
-		std::list<Glib::ustring>::const_iterator it;
-		for(it = encodings.begin(); it != encodings.end(); ++it)
-		{
-			Glib::ustring label = Encodings::get_label_from_charset(*it);
-			if(!label.empty())
-			{
-				append_text(label);
-			}
-		}
-	}
-	// configure
-	append_text("<separator>");
-	append_text(_("Add or Remove..."));
+
+	// Setup configure
+	append("<separator>", "");
+	append(_("Add or Remove..."));
 
 	if(m_with_auto_detected)
 	{
@@ -220,10 +194,11 @@ void ComboBoxEncoding::on_combo_changed()
  * Used to define the separator.
  * label = "<separator>"
  */
+
 bool ComboBoxEncoding::on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &/*model*/, const Gtk::TreeModel::iterator &it)
 {
-	Glib::ustring text = (*it)[m_text_columns.m_column];
-	if(text == "<separator>")
+	ComboBoxTextColumns cols;
+	if( (*it)[cols.m_col_id] == "<separator>")
 		return true;
 	return false;
 }

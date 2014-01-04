@@ -40,12 +40,13 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 	std::list<SubtitleFormatInfo>::const_iterator it;
 	std::list<SubtitleFormatInfo> infos = SubtitleFormatSystem::instance().get_infos();
 
-	Gtk::FileFilter *all=manage(new Gtk::FileFilter), *supported = manage(new Gtk::FileFilter);
+	Glib::RefPtr<Gtk::FileFilter> all= Gtk::FileFilter::create();
+	Glib::RefPtr<Gtk::FileFilter> supported= Gtk::FileFilter::create();
 	// all files
 	{
 		all->set_name(_("All files (*.*)"));
 		all->add_pattern("*");
-		dialog->add_filter(*all);
+		dialog->add_filter(all);
 	}
 
 	// all supported formats
@@ -57,7 +58,7 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 			supported->add_pattern("*." + (*it).extension.uppercase());
 		}
 
-		dialog->add_filter(*supported);
+		dialog->add_filter(supported);
 	}
 
 	// by format
@@ -67,16 +68,16 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog)
 			Glib::ustring name = (*it).name;
 			Glib::ustring ext = (*it).extension;
 
-			Gtk::FileFilter *filter = manage(new Gtk::FileFilter);
+			Glib::RefPtr<Gtk::FileFilter> filter= Gtk::FileFilter::create();
 			filter->set_name(name + " (" + ext + ")");
 			filter->add_pattern("*." + ext);
 			filter->add_pattern("*." + ext.uppercase());
-			dialog->add_filter(*filter);
+			dialog->add_filter(filter);
 		}
 	}
 
 	// select by default
-	dialog->set_filter(*supported);
+	dialog->set_filter(supported);
 }
 
 /*
@@ -111,13 +112,13 @@ DialogFileChooser::~DialogFileChooser()
  */
 void DialogFileChooser::set_current_filter(const Glib::ustring &subtitleformat_name)
 {
-	std::list<Gtk::FileFilter*> filters = list_filters();
-	for(std::list<Gtk::FileFilter*>::const_iterator it = filters.begin(); it != filters.end(); ++it)
+	std::vector< Glib::RefPtr<Gtk::FileFilter> > filters = list_filters();
+	for(std::vector< Glib::RefPtr<Gtk::FileFilter> >::const_iterator it = filters.begin(); it != filters.end(); ++it)
 	{
 		if((*it)->get_name().find(subtitleformat_name) == Glib::ustring::npos)
 			continue;
 		
-		set_filter(*(*it));
+		set_filter(*it);
 		return;
 	}
 }
@@ -217,7 +218,7 @@ void DialogOpenDocument::on_current_folder_changed()
  */
 void DialogOpenDocument::on_selection_changed()
 {
-	std::list<Glib::ustring> selected = get_filenames();
+	std::vector<std::string> selected = get_filenames();
 
 	if(selected.size() == 1)
 		m_comboVideo->auto_select_video(selected.front());
@@ -475,28 +476,28 @@ DialogOpenVideo::DialogOpenVideo()
 	utility::set_transient_parent(*this);
 
 	// video filter
-	Gtk::FileFilter m_filterVideo;
-	m_filterVideo.set_name(_("Video"));
-	m_filterVideo.add_pattern("*.avi");
-	m_filterVideo.add_pattern("*.wma");
-	m_filterVideo.add_pattern("*.mkv");
-	m_filterVideo.add_pattern("*.mpg");
-	m_filterVideo.add_pattern("*.mpeg");
-	m_filterVideo.add_mime_type("video/*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterVideo= Gtk::FileFilter::create();
+	m_filterVideo->set_name(_("Video"));
+	m_filterVideo->add_pattern("*.avi");
+	m_filterVideo->add_pattern("*.wma");
+	m_filterVideo->add_pattern("*.mkv");
+	m_filterVideo->add_pattern("*.mpg");
+	m_filterVideo->add_pattern("*.mpeg");
+	m_filterVideo->add_mime_type("video/*");
 	add_filter(m_filterVideo);
 
 	// audio filter
-	Gtk::FileFilter m_filterAudio;
-	m_filterAudio.set_name(_("Audio"));
-	m_filterAudio.add_pattern("*.mp3");
-	m_filterAudio.add_pattern("*.ogg");
-	m_filterAudio.add_pattern("*.wav");
-	m_filterAudio.add_mime_type("audio/*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterAudio= Gtk::FileFilter::create();
+	m_filterAudio->set_name(_("Audio"));
+	m_filterAudio->add_pattern("*.mp3");
+	m_filterAudio->add_pattern("*.ogg");
+	m_filterAudio->add_pattern("*.wav");
+	m_filterAudio->add_mime_type("audio/*");
 	add_filter(m_filterAudio);
 
-	Gtk::FileFilter m_filterAll;
-	m_filterAll.set_name(_("ALL"));
-	m_filterAll.add_pattern("*.*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterAll= Gtk::FileFilter::create();
+	m_filterAll->set_name(_("ALL"));
+	m_filterAll->add_pattern("*.*");
 	add_filter(m_filterAll);
 	
 	
@@ -531,51 +532,51 @@ DialogOpenWaveform::DialogOpenWaveform()
 	utility::set_transient_parent(*this);
 
 	// waveform, video and audio filter
-	Gtk::FileFilter m_filterSupported;
-	m_filterSupported.set_name(_("Waveform & Media"));
-	m_filterSupported.add_pattern("*.wf");
-	m_filterSupported.add_mime_type("video/*");
-	m_filterSupported.add_pattern("*.avi");
-	m_filterSupported.add_pattern("*.wma");
-	m_filterSupported.add_pattern("*.mkv");
-	m_filterSupported.add_pattern("*.mpg");
-	m_filterSupported.add_pattern("*.mpeg");
-	m_filterSupported.add_mime_type("audio/*");
-	m_filterSupported.add_pattern("*.mp3");
-	m_filterSupported.add_pattern("*.ogg");
-	m_filterSupported.add_pattern("*.wav");
+	Glib::RefPtr<Gtk::FileFilter> m_filterSupported= Gtk::FileFilter::create();
+	m_filterSupported->set_name(_("Waveform & Media"));
+	m_filterSupported->add_pattern("*.wf");
+	m_filterSupported->add_mime_type("video/*");
+	m_filterSupported->add_pattern("*.avi");
+	m_filterSupported->add_pattern("*.wma");
+	m_filterSupported->add_pattern("*.mkv");
+	m_filterSupported->add_pattern("*.mpg");
+	m_filterSupported->add_pattern("*.mpeg");
+	m_filterSupported->add_mime_type("audio/*");
+	m_filterSupported->add_pattern("*.mp3");
+	m_filterSupported->add_pattern("*.ogg");
+	m_filterSupported->add_pattern("*.wav");
 	add_filter(m_filterSupported);
 
 	// waveform filter
-	Gtk::FileFilter m_filterWaveform;
-	m_filterWaveform.set_name(_("Waveform (*.wf)"));
-	m_filterWaveform.add_pattern("*.wf");
+	Glib::RefPtr<Gtk::FileFilter> m_filterWaveform= Gtk::FileFilter::create();
+	m_filterWaveform->set_name(_("Waveform (*.wf)"));
+	m_filterWaveform->add_pattern("*.wf");
 	add_filter(m_filterWaveform);
 
 	// movies filter
-	Gtk::FileFilter m_filterMovie;
-	m_filterMovie.set_name(_("Video"));
-	m_filterMovie.add_pattern("*.avi");
-	m_filterMovie.add_pattern("*.wma");
-	m_filterMovie.add_pattern("*.mkv");
-	m_filterMovie.add_pattern("*.mpg");
-	m_filterMovie.add_pattern("*.mpeg");
-	m_filterMovie.add_mime_type("video/*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterMovie= Gtk::FileFilter::create();
+	m_filterMovie->set_name(_("Video"));
+	m_filterMovie->add_pattern("*.avi");
+	m_filterMovie->add_pattern("*.wma");
+	m_filterMovie->add_pattern("*.mkv");
+	m_filterMovie->add_pattern("*.mpg");
+	m_filterMovie->add_pattern("*.mpeg");
+	m_filterMovie->add_mime_type("video/*");
 	add_filter(m_filterMovie);
 
 	// audio filter
-	Gtk::FileFilter m_filterAudio;
-	m_filterAudio.set_name(_("Audio"));
-	m_filterAudio.add_pattern("*.mp3");
-	m_filterAudio.add_pattern("*.ogg");
-	m_filterAudio.add_pattern("*.wav");
-	m_filterAudio.add_mime_type("audio/*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterAudio= Gtk::FileFilter::create();
+	m_filterAudio->set_name(_("Audio"));
+	m_filterAudio->add_pattern("*.mp3");
+	m_filterAudio->add_pattern("*.ogg");
+	m_filterAudio->add_pattern("*.wav");
+	m_filterAudio->add_mime_type("audio/*");
 	add_filter(m_filterAudio);
 
 	// all filter
-	Gtk::FileFilter m_filterAll;
-	m_filterAll.set_name(_("ALL"));
-	m_filterAll.add_pattern("*.*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterAll= Gtk::FileFilter::create();
+	m_filterAll->set_name(_("ALL"));
+	m_filterAll->add_pattern("*.*");
 	add_filter(m_filterAll);
 	
 	
@@ -611,38 +612,38 @@ DialogOpenKeyframe::DialogOpenKeyframe()
 	utility::set_transient_parent(*this);
 
 	// keyframes and video filter
-	Gtk::FileFilter m_filterSupported;
-	m_filterSupported.set_name(_("Keyframe & Media"));
-	m_filterSupported.add_pattern("*.kf");
-	m_filterSupported.add_mime_type("video/*");
-	m_filterSupported.add_pattern("*.avi");
-	m_filterSupported.add_pattern("*.wma");
-	m_filterSupported.add_pattern("*.mkv");
-	m_filterSupported.add_pattern("*.mpg");
-	m_filterSupported.add_pattern("*.mpeg");
+	Glib::RefPtr<Gtk::FileFilter> m_filterSupported= Gtk::FileFilter::create();
+	m_filterSupported->set_name(_("Keyframe & Media"));
+	m_filterSupported->add_pattern("*.kf");
+	m_filterSupported->add_mime_type("video/*");
+	m_filterSupported->add_pattern("*.avi");
+	m_filterSupported->add_pattern("*.wma");
+	m_filterSupported->add_pattern("*.mkv");
+	m_filterSupported->add_pattern("*.mpg");
+	m_filterSupported->add_pattern("*.mpeg");
 	add_filter(m_filterSupported);
 
 	// keyframe filter
-	Gtk::FileFilter m_filterKeyframe;
-	m_filterKeyframe.set_name(_("Keyframe (*.kf)"));
-	m_filterKeyframe.add_pattern("*.kf");
+	Glib::RefPtr<Gtk::FileFilter> m_filterKeyframe= Gtk::FileFilter::create();
+	m_filterKeyframe->set_name(_("Keyframe (*.kf)"));
+	m_filterKeyframe->add_pattern("*.kf");
 	add_filter(m_filterKeyframe);
 
 	// movies filter
-	Gtk::FileFilter m_filterMovie;
-	m_filterMovie.set_name(_("Video"));
-	m_filterMovie.add_pattern("*.avi");
-	m_filterMovie.add_pattern("*.wma");
-	m_filterMovie.add_pattern("*.mkv");
-	m_filterMovie.add_pattern("*.mpg");
-	m_filterMovie.add_pattern("*.mpeg");
-	m_filterMovie.add_mime_type("video/*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterMovie= Gtk::FileFilter::create();
+	m_filterMovie->set_name(_("Video"));
+	m_filterMovie->add_pattern("*.avi");
+	m_filterMovie->add_pattern("*.wma");
+	m_filterMovie->add_pattern("*.mkv");
+	m_filterMovie->add_pattern("*.mpg");
+	m_filterMovie->add_pattern("*.mpeg");
+	m_filterMovie->add_mime_type("video/*");
 	add_filter(m_filterMovie);
 
 	// all filter
-	Gtk::FileFilter m_filterAll;
-	m_filterAll.set_name(_("ALL"));
-	m_filterAll.add_pattern("*.*");
+	Glib::RefPtr<Gtk::FileFilter> m_filterAll= Gtk::FileFilter::create();
+	m_filterAll->set_name(_("ALL"));
+	m_filterAll->add_pattern("*.*");
 	add_filter(m_filterAll);
 	
 	

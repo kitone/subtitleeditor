@@ -1,3 +1,59 @@
+2014-01-04  kitone  <kitone@gna.org>
+
+	* configure.in:
+	* plugins/actions/about/about.cc:
+	* plugins/actions/changeframerate/changeframerate.cc:
+	* plugins/actions/changeframerate/dialog-change-framerate.ui:
+	* plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui:
+	* plugins/actions/dialoguize/dialog-dialoguize-preferences.ui:
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	* plugins/actions/errorchecking/dialog-error-checking-preferences.ui:
+	* plugins/actions/errorchecking/dialog-error-checking.ui:
+	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:
+	* plugins/actions/findandreplace/dialog-find-and-replace.ui:
+	* plugins/actions/findandreplace/findandreplace.cc:
+	* plugins/actions/movesubtitles/dialog-move-subtitles.ui:
+	* plugins/actions/preferences/dialog-preferences.ui:
+	* plugins/actions/preferences/extensionpage.h:
+	* plugins/actions/scalesubtitles/dialog-scale-subtitles.ui:
+	* plugins/actions/scalesubtitles/scalesubtitles.cc:
+	* plugins/actions/spellchecking/dialog-spell-checking.ui:
+	* plugins/actions/splitdocument/dialog-split-document.ui:
+	* plugins/actions/styleeditor/dialog-style-editor.ui:
+	* plugins/actions/textcorrection/assistant-text-correction.ui:
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* plugins/actions/viewmanager/dialog-view-manager.ui:
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	* share/ui/dialog-character-codings.ui:
+	* share/ui/dialog-encodings-chooser.ui:
+	* share/ui/dialog-export-text.ui:
+	* share/ui/dialog-import-text.ui:
+	* share/ui/dialog-open-document.ui:
+	* share/ui/dialog-save-document.ui:
+	* share/ui/subtitleeditor.ui:
+	* src/gui/application.cc:
+	* src/gui/application.h:
+	* src/gui/automaticspellchecker.cc:
+	* src/gui/comboboxencoding.cc:
+	* src/gui/comboboxnewline.cc:
+	* src/gui/comboboxsubtitleformat.cc:
+	* src/gui/comboboxtextcolumns.h:
+	* src/gui/comboboxvideo.cc:
+	* src/gui/dialogfilechooser.cc:
+	* src/gui/dialogutility.cc:
+	* src/gui/spinbuttontime.cc:
+	* src/gui/spinbuttontime.h:
+	* src/gui/textviewcell.cc:
+	* src/subtitleview.cc:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	* src/vp/videoplayer.cc:
+	* src/we/waveformeditor.cc:
+	* src/we/waveformrenderercairo.cc:
+	Start the port to gtkmm3.
+
 2013-09-28  kitone  <kitone@gna.org>
 
 	* configure.in:

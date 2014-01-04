@@ -47,7 +47,7 @@ public:
 		m_hscale_seek->set_range(0, 1);
 		m_hscale_seek->set_value(0);
 		m_hscale_seek->set_increments(0.05, 0.05);//get_adjustment()->set_step_increment(0.05);
-		m_hscale_seek->set_update_policy(Gtk::UPDATE_CONTINUOUS);
+		//m_hscale_seek->set_update_policy(Gtk::UPDATE_CONTINUOUS);
 		m_hscale_seek->set_value_pos(Gtk::POS_RIGHT);
 		
 		m_hscale_seek->signal_format_value().connect(

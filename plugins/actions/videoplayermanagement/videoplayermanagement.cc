@@ -337,9 +337,9 @@ public:
 		// Recent files
 		Glib::RefPtr<Gtk::RecentAction> recentAction = Gtk::RecentAction::create("video-player/recent-files", _("_Recent Files"));
 
-		Gtk::RecentFilter filter;
-		filter.set_name("subtitleeditor");
-		filter.add_group("subtitleeditor-video-player");
+		Glib::RefPtr<Gtk::RecentFilter> filter = Gtk::RecentFilter::create();
+		filter->set_name("subtitleeditor");
+		filter->add_group("subtitleeditor-video-player");
 		recentAction->set_filter(filter);
 		recentAction->set_show_icons(false);
 		recentAction->set_show_numbers(true);

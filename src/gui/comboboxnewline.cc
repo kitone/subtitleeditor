@@ -28,9 +28,9 @@
 ComboBoxNewLine::ComboBoxNewLine(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& /*builder*/)
 :Gtk::ComboBoxText(cobject)
 {
-	append_text("Macintosh");
-	append_text("Unix");
-	append_text("Windows");
+	append("Macintosh");
+	append("Unix");
+	append("Windows");
 
 	set_active_text("Unix");
 }
