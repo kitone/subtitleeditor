@@ -5,7 +5,7 @@ patterndir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 actionplugindevdir = $(abs_srcdir)
 uidir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src \
 	$(SUBTITLEEDITOR_CFLAGS) \

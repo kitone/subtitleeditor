@@ -4,7 +4,7 @@ plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/actions
 actionplugindevdir = $(abs_srcdir)
 uidir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src \
 	$(SUBTITLEEDITOR_CFLAGS) $(ENCHANT_CFLAGS) \

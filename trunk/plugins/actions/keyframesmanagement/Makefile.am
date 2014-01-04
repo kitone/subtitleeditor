@@ -2,7 +2,7 @@ pluginlibdir = $(PACKAGE_PLUGIN_LIB_DIR)/actions
 plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/actions
 actionsharedir = $(PACKAGE_PLUGIN_SHARE_DIR)/actions
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	 -I$(top_srcdir) \
 	 -I$(top_srcdir)/src \
 	 $(SUBTITLEEDITOR_CFLAGS) \
