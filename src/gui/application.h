@@ -161,9 +161,9 @@ protected:
 	void update_title(Document *doc);
 
 protected:
-	Gtk::VBox*			m_vboxMain;
+	Gtk::Box*				m_vboxMain;
 	MenuBar					m_menubar;
-	Gtk::HPaned*		m_paned_multimedia;
+	Gtk::Paned*			m_paned_multimedia;
 	VideoPlayer*		m_video_player;
 	WaveformEditor*	m_waveform_editor;
 	Gtk::Notebook*	m_notebook_documents;

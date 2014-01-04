@@ -768,6 +768,8 @@ void Application::init_panel_multimedia()
  */
 void Application::on_paned_multimedia_visibility_child_changed()
 {
+	// FIXME: gtkmm3
+	return;
 	Gtk::Widget *child1 = m_paned_multimedia->get_child1();
 	Gtk::Widget *child2 = m_paned_multimedia->get_child2();
 

@@ -29,29 +29,26 @@
     <property name="default_width">800</property>
     <property name="default_height">600</property>
     <child>
-      <object class="GtkVBox" id="vbox-main">
+      <object class="GtkBox" id="vbox-main">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <object class="GtkVPaned" id="vpaned1">
+          <object class="GtkPaned" id="vpaned1">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="border_width">3</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkHPaned" id="paned-multimedia">
+              <object class="GtkPaned" id="paned-multimedia">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="border_width">3</property>
                 <child>
-                  <object class="GtkVBox" id="video-player">
+                  <object class="GtkBox" id="video-player">
                     <property name="width_request">360</property>
                     <property name="height_request">240</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkFrame" id="frame-player">
                         <property name="visible">True</property>
@@ -74,33 +71,9 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="player-controls">
+                      <object class="GtkBox" id="player-controls">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <child>
-                          <object class="GtkButton" id="button-play">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="relief">none</property>
-                            <child>
-                              <object class="GtkImage" id="image1">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="stock">gtk-media-play</property>
-                                <property name="icon-size">1</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
                         <child>
                           <object class="GtkButton" id="button-pause">
                             <property name="visible">True</property>
@@ -123,6 +96,29 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="button-play">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="relief">none</property>
+                            <child>
+                              <object class="GtkImage" id="image1">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="stock">gtk-media-play</property>
+                                <property name="icon-size">1</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
@@ -132,6 +128,7 @@
                             <property name="can_focus">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <property name="adjustment">adjustment1</property>
+                            <property name="round_digits">2</property>
                             <property name="digits">2</property>
                             <property name="value_pos">right</property>
                           </object>
@@ -155,17 +152,16 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="waveform-editor">
+                  <object class="GtkBox" id="waveform-editor">
                     <property name="width_request">240</property>
                     <property name="height_request">240</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <child>
-                      <object class="GtkVBox" id="vbox-waveform-renderer">
+                      <object class="GtkBox" id="vbox-waveform-renderer">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkFrame" id="frame-waveform-renderer">
                             <property name="visible">True</property>
@@ -175,9 +171,6 @@
                             <property name="label_yalign">0</property>
                             <property name="shadow_type">in</property>
                             <child>
-                              <placeholder/>
-                            </child>
-                            <child type="label_item">
                               <placeholder/>
                             </child>
                           </object>
@@ -208,12 +201,12 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkVScale" id="vscale-zoom">
+                      <object class="GtkScale" id="vscale-zoom">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="orientation">vertical</property>
                         <property name="adjustment">adjustment3</property>
-                        <property name="inverted">True</property>
+                        <property name="round_digits">1</property>
                         <property name="draw_value">False</property>
                       </object>
                       <packing>
@@ -223,12 +216,13 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkVScale" id="vscale-scale">
+                      <object class="GtkScale" id="vscale-scale">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="orientation">vertical</property>
                         <property name="adjustment">adjustment4</property>
                         <property name="inverted">True</property>
+                        <property name="round_digits">1</property>
                         <property name="draw_value">False</property>
                       </object>
                       <packing>
@@ -264,23 +258,21 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkStatusbar" id="statusbar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="spacing">2</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="pack_type">end</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
     </child>

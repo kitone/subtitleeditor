@@ -418,6 +418,9 @@ Glib::RefPtr<Gdk::Window> GstPlayer::create_video_window()
 	//m_video_window->set_background(color);
 
 	//set_flags(Gtk::REALIZED);
+	Gdk::RGBA black;
+	black.set("#000");
+	m_video_window->set_background(black);
 
 	// Connect to configure event on the top level window
 	get_toplevel()->signal_configure_event().connect_notify(
@@ -538,8 +541,8 @@ void GstPlayer::on_size_allocate(Gtk::Allocation& rect)
 
 	Gtk::EventBox::on_size_allocate(rect);
 
-	if(!get_realized())
-		return;
+	//if(!get_realized())
+	//	return;
 
 	Glib::RefPtr<Gdk::Window> videowindow = get_video_window();
 	if(!videowindow)
@@ -547,7 +550,7 @@ void GstPlayer::on_size_allocate(Gtk::Allocation& rect)
 
 	videowindow->move_resize(0,0, rect.get_width(), rect.get_height());
 	// FIXME: gtkmm3
-	//videowindow->clear();
+	videowindow->invalidate(false);
 }
 
 /*
@@ -560,10 +563,13 @@ bool GstPlayer::on_visibility_notify_event(GdkEventVisibility* ev)
 	Gtk::EventBox::on_visibility_notify_event(ev);
 
 	Glib::RefPtr<Gdk::Window> videowindow = get_video_window();
+	if(videowindow)
+		videowindow->invalidate(false);
+
 	//if(videowindow && !m_xoverlay)
 		// FIXME: gtkmm3
 		//videowindow->clear();
-	
+
 	queue_draw();
 	return false;
 }

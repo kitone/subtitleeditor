@@ -31,7 +31,7 @@
 /*
  *
  */
-class WaveformEditor : public WaveformManager, public Gtk::HBox
+class WaveformEditor : public WaveformManager, public Gtk::Box
 {
 public:
 
@@ -343,8 +343,8 @@ protected:
 protected:
 	Gtk::Frame*				m_frameWaveformRenderer;
 	Gtk::HScrollbar*	m_hscrollbarWaveformRenderer;
-	Gtk::VScale*			m_sliderZoom;
-	Gtk::VScale*			m_sliderScale;
+	Gtk::Scale*				m_sliderZoom;
+	Gtk::Scale*				m_sliderScale;
 
 	Glib::RefPtr<Waveform> m_waveform;
 	WaveformRenderer*	m_waveformRenderer;	// widget Gtk::DrawingArea
