@@ -62,8 +62,9 @@ GstPlayer::GstPlayer()
 			Gdk::POINTER_MOTION_MASK | 
 			Gdk::KEY_PRESS_MASK);
 	*/
-	set_flags(Gtk::CAN_FOCUS);
-	unset_flags(Gtk::DOUBLE_BUFFERED);
+	// FIXME: gtkmm3
+	//set_flags(Gtk::CAN_FOCUS);
+	//unset_flags(Gtk::DOUBLE_BUFFERED);
 
 	show();
 
@@ -351,8 +352,8 @@ void GstPlayer::on_realize()
 	Gtk::EventBox::on_realize();
 
 	create_video_window();
-
-	set_flags(Gtk::REALIZED);
+	// FIXME: gtkmm3
+	//set_flags(Gtk::REALIZED);
 
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "get xWindowId...");
 
@@ -392,7 +393,8 @@ Glib::RefPtr<Gdk::Window> GstPlayer::create_video_window()
 	attributes.height = get_height();
 	attributes.wclass = GDK_INPUT_OUTPUT;
 	attributes.visual = get_visual()->gobj();
-	attributes.colormap = get_colormap()->gobj();
+	// FIXME: gtkmm3
+	//attributes.colormap = get_colormap()->gobj();
 	attributes.event_mask = get_events() | GDK_EXPOSURE_MASK | GDK_POINTER_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_KEY_PRESS_MASK;
 
 	gint attributes_mask = GDK_WA_X | GDK_WA_Y;
@@ -405,21 +407,23 @@ Glib::RefPtr<Gdk::Window> GstPlayer::create_video_window()
 		return Glib::RefPtr<Gdk::Window>(NULL);
 	}
 
-	get_style()->attach(m_video_window);
-	get_style()->set_background(m_video_window, Gtk::STATE_NORMAL);
+	// FIXME: gtkmm3
+	//get_style()->attach(m_video_window);
+	//get_style()->set_background(m_video_window, Gtk::STATE_NORMAL);
 
 	// Set up background to black
-	Gdk::Color color("black");
-	get_colormap()->alloc_color(color, true, true);
-	m_video_window->set_background(color);
+	// FIXME: gtkmm3
+	//Gdk::Color color("black");
+	//get_colormap()->alloc_color(color, true, true);
+	//m_video_window->set_background(color);
 
-	set_flags(Gtk::REALIZED);
+	//set_flags(Gtk::REALIZED);
 
 	// Connect to configure event on the top level window
 	get_toplevel()->signal_configure_event().connect_notify(
 			sigc::mem_fun(*this, &GstPlayer::toplevel_win_configure_event));
 
-	show_all_children();
+	//show_all_children();
 	show();
 	return m_video_window;
 }
@@ -504,17 +508,18 @@ void GstPlayer::toplevel_win_configure_event(GdkEventConfigure * /*ev*/)
 /*
  * Display an black rectangle or expose the xoverlay.
  */
-bool GstPlayer::on_expose_event(GdkEventExpose *ev)
+bool GstPlayer::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
-	if(ev && ev->count > 0)
-		return true;
-	if(!m_video_window)
-		return true;
-	
+	//if(!m_video_window)
+	//	return true;
 	if(!m_xoverlay)
-		m_video_window->draw_rectangle(get_style()->get_black_gc(), true, 0, 0, get_width(), get_height());
+	{
+		// FIXME: gtkmm3
+		cr->set_source_rgba(0, 0, 0, 1);
+		cr->paint();
+	}
 	else
 	{
 		set_xoverlay_window_id();
@@ -533,7 +538,7 @@ void GstPlayer::on_size_allocate(Gtk::Allocation& rect)
 
 	Gtk::EventBox::on_size_allocate(rect);
 
-	if(!is_realized())
+	if(!get_realized())
 		return;
 
 	Glib::RefPtr<Gdk::Window> videowindow = get_video_window();
@@ -541,7 +546,8 @@ void GstPlayer::on_size_allocate(Gtk::Allocation& rect)
 		return;
 
 	videowindow->move_resize(0,0, rect.get_width(), rect.get_height());
-	videowindow->clear();
+	// FIXME: gtkmm3
+	//videowindow->clear();
 }
 
 /*
@@ -554,8 +560,10 @@ bool GstPlayer::on_visibility_notify_event(GdkEventVisibility* ev)
 	Gtk::EventBox::on_visibility_notify_event(ev);
 
 	Glib::RefPtr<Gdk::Window> videowindow = get_video_window();
-	if(videowindow && !m_xoverlay)
-		videowindow->clear();
+	//if(videowindow && !m_xoverlay)
+		// FIXME: gtkmm3
+		//videowindow->clear();
+	
 	queue_draw();
 	return false;
 }
@@ -1085,7 +1093,7 @@ gulong GstPlayer::get_xwindow_id()
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
 #ifdef GDK_WINDOWING_X11
-	const gulong xWindowId = GDK_WINDOW_XWINDOW(m_video_window->gobj());
+	const gulong xWindowId = GDK_WINDOW_XID(m_video_window->gobj());
 #elif defined(GDK_WINDOWING_WIN32)
 	const gulong xWindowId = gdk_win32_drawable_get_handle(m_video_window->gobj());
 #elif defined(GDK_WINDOWING_QUARTZ)

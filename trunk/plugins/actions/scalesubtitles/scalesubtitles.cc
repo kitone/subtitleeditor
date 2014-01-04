@@ -227,9 +227,7 @@ protected:
 		// text
 		Glib::ustring text = subtitle.get_text();
 
-		Gtk::Tooltips tooltips;
-		tooltips.set_tip(*label, text);
-
+		label->set_tooltip_text(text);
 		label->set_text(text);
 	}
 

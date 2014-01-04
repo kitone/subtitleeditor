@@ -89,7 +89,7 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builde
 
 	// open subtitle files with drag-and-drop in NoteBook
 	{
-		std::list<Gtk::TargetEntry> targets;
+		std::vector<Gtk::TargetEntry> targets;
 
 		targets.push_back(Gtk::TargetEntry("text/uri-list", Gtk::TargetFlags(0), 0));
 		
@@ -99,7 +99,7 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builde
 	}
 	// open video files with drag-and-drop in Player
 	{
-		std::list<Gtk::TargetEntry> targets;
+		std::vector<Gtk::TargetEntry> targets;
 
 		targets.push_back(Gtk::TargetEntry("text/uri-list", Gtk::TargetFlags(0), 0));
 		
@@ -209,10 +209,6 @@ void Application::on_document_create(Document *doc)
 			sigc::bind<Document*>(
 				sigc::mem_fun(*this, &Application::on_close_document), doc));
 
-	// rcstyle for the button
-	close_button->get_modifier_style()->set_xthickness(0);
-	close_button->get_modifier_style()->set_ythickness(0);
-	
 	// close image 
 	image = manage(new Gtk::Image(Gtk::Stock::CLOSE, Gtk::ICON_SIZE_MENU));
 	close_button->add(*image);
@@ -406,7 +402,7 @@ void Application::on_close_document(Document *doc)
  *	Changement dans le notebook de la page editer
  *	On recupere la page pusi on init DocumentManager avec le document
  */
-void Application::on_signal_switch_page(GtkNotebookPage* /*page*/, guint page_num)
+void Application::on_signal_switch_page(Gtk::Widget* /*page*/, guint page_num)
 {
 	se_debug(SE_DEBUG_APP);
 

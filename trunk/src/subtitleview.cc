@@ -81,7 +81,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_VIEW);
 
-		if(event->keyval == GDK_Escape)
+		if(event->keyval == GDK_KEY_Escape)
 		{
 			//m_canceled = true;
 			remove_widget();
@@ -89,10 +89,10 @@ protected:
 		}
 		
 		bool st_enter = (
-				 event->keyval == GDK_Return ||  
-				 event->keyval == GDK_KP_Enter ||  
-				 event->keyval == GDK_ISO_Enter ||  
-				 event->keyval == GDK_3270_Enter );
+				 event->keyval == GDK_KEY_Return ||  
+				 event->keyval == GDK_KEY_KP_Enter ||  
+				 event->keyval == GDK_KEY_ISO_Enter ||  
+				 event->keyval == GDK_KEY_3270_Enter );
 
 		if(st_enter)
 		{
@@ -225,10 +225,10 @@ protected:
 		if(Config::getInstance().get_value_bool("subtitle-view", "do-not-disable-actions-during-editing"))
 			return;
 
-		std::list< Glib::RefPtr<Gtk::ActionGroup> > actions = 
+		std::vector< Glib::RefPtr<Gtk::ActionGroup> > actions = 
 			SubtitleEditorWindow::get_instance()->get_ui_manager()->get_action_groups();
 
-		std::list< Glib::RefPtr<Gtk::ActionGroup> >::iterator it;
+		std::vector< Glib::RefPtr<Gtk::ActionGroup> >::iterator it;
 		for(it = actions.begin(); it != actions.end(); ++it)
 		{
 			(*it)->set_sensitive(state);
@@ -349,15 +349,6 @@ SubtitleView::SubtitleView(Document &doc)
 	Config::getInstance().signal_changed("subtitle-view").connect(
 			sigc::mem_fun(*this, &SubtitleView::on_config_subtitle_view_changed));
 
-	// menu popup
-	{
-		Gtk::Menu::MenuList &list = m_menu_popup.items();
-
-		list.push_back( Gtk::Menu_Helpers::MenuElem("_Text"));
-		list.push_back( Gtk::Menu_Helpers::MenuElem("_Styles"));
-		list.push_back( Gtk::Menu_Helpers::MenuElem("_Names"));
-	}
-
 	// DnD
 	set_reorderable(true);
 
@@ -464,7 +455,7 @@ Gtk::TreeViewColumn* SubtitleView::create_treeview_column(const Glib::ustring &n
 
 	Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn);
 
-	Gtk::Label* label = manage(new Gtk::Label(title, Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER, false));
+	Gtk::Label* label = manage(new Gtk::Label(title)); //, Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER, false));
 	label->show();
 	column->set_widget(*label);
 
@@ -1374,36 +1365,7 @@ bool SubtitleView::on_key_press_event(GdkEventKey *event)
  */
 bool SubtitleView::on_button_press_event(GdkEventButton *ev)
 {
-	if( (ev->type == GDK_BUTTON_PRESS) && (ev->button == 3) )
-	{
-		Gtk::Menu::MenuList &list = m_menu_popup.items();
-
-		// prepare styles menu
-		{
-			list[1].remove_submenu();
-
-			Gtk::Menu* menu = manage(new Gtk::Menu);
-
-			// "Default"
-			menu->items().push_back(Gtk::Menu_Helpers::MenuElem("Default",
-							sigc::bind(sigc::mem_fun(*this, &SubtitleView::on_set_style_to_selection), "Default")));
-			// separator
-			menu->items().push_back(Gtk::Menu_Helpers::SeparatorElem());
-			// styles...
-			for(Style style = m_refDocument->styles().first(); style; ++style)
-			{
-				menu->items().push_back(Gtk::Menu_Helpers::MenuElem(style.get("name"),
-							sigc::bind(sigc::mem_fun(*this, &SubtitleView::on_set_style_to_selection), style.get("name"))));
-			}
-
-			list[1].set_submenu(*menu);
-		}
-
-		m_menu_popup.popup(ev->button, ev->time);
-
-		return true;
-	}
-
+	// FIXME: remove this functions
 	return Gtk::TreeView::on_button_press_event(ev);
 }
 
@@ -1423,11 +1385,11 @@ void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key, con
 		{
 			Gtk::CellRendererText *renderer = NULL;
 			
-			renderer = dynamic_cast<Gtk::CellRendererText*>(m_columns["text"]->get_first_cell_renderer());
+			renderer = dynamic_cast<Gtk::CellRendererText*>(m_columns["text"]->get_first_cell());
 			renderer->property_xalign() = state ? 0.5 : 0.0;
 			renderer->property_alignment() = state ? Pango::ALIGN_CENTER : Pango::ALIGN_LEFT;
 
-			renderer = dynamic_cast<Gtk::CellRendererText*>(m_columns["translation"]->get_first_cell_renderer());
+			renderer = dynamic_cast<Gtk::CellRendererText*>(m_columns["translation"]->get_first_cell());
 			renderer->property_xalign() = state ? 0.5 : 0.0;
 			renderer->property_alignment() = state ? Pango::ALIGN_CENTER : Pango::ALIGN_LEFT;
 		}
@@ -1441,10 +1403,10 @@ void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key, con
 		{
 			std::vector<Gtk::CellRenderer*> cells;
 			
-			cells = m_columns["text"]->get_cell_renderers();
+			cells = m_columns["text"]->get_cells();
 			cells[1]->property_visible() = state;
 
-			cells = m_columns["translation"]->get_cell_renderers();
+			cells = m_columns["translation"]->get_cells();
 			cells[1]->property_visible() = state;
 		}
 		queue_draw();

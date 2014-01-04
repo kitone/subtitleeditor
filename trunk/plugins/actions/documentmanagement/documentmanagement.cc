@@ -130,9 +130,9 @@ public:
 		// recent files
 		Glib::RefPtr<Gtk::RecentAction> recentAction = Gtk::RecentAction::create("menu-recent-open-document", _("Open _Recent"));
 
-		Gtk::RecentFilter filter;
-		filter.set_name("subtitleeditor");
-		filter.add_group("subtitleeditor");
+		Glib::RefPtr<Gtk::RecentFilter> filter = Gtk::RecentFilter::create();
+		filter->set_name("subtitleeditor");
+		filter->add_group("subtitleeditor");
 		recentAction->set_filter(filter);
 
 		recentAction->set_show_icons(false);
@@ -284,9 +284,9 @@ protected:
 
 		Glib::ustring charset = dialog->get_encoding();
 
-		std::list<Glib::ustring> uris = dialog->get_uris();
+		std::vector<Glib::ustring> uris = dialog->get_uris();
 
-		for(std::list<Glib::ustring>::const_iterator it=uris.begin();
+		for(std::vector<Glib::ustring>::const_iterator it=uris.begin();
 				it != uris.end(); ++it)
 		{
 			open_document(*it, charset);

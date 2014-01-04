@@ -87,7 +87,7 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event)
 {
 	se_debug(SE_DEBUG_VIEW);
 
-	if(event->keyval == GDK_Escape)
+	if(event->keyval == GDK_KEY_Escape)
 	{
 		m_editing_canceled = true;
 		remove_widget();
@@ -95,10 +95,10 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event)
 	}
 
 	bool st_enter = (
-			 event->keyval == GDK_Return ||  
-			 event->keyval == GDK_KP_Enter ||  
-			 event->keyval == GDK_ISO_Enter ||  
-			 event->keyval == GDK_3270_Enter );
+			 event->keyval == GDK_KEY_Return ||  
+			 event->keyval == GDK_KEY_KP_Enter ||  
+			 event->keyval == GDK_KEY_ISO_Enter ||  
+			 event->keyval == GDK_KEY_3270_Enter );
 
 	bool st_ctrl = (event->state & GDK_CONTROL_MASK);
 

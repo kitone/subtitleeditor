@@ -491,7 +491,7 @@ void AutomaticSpellChecker::build_suggestion_menu(const Glib::ustring &word, Gtk
 	{
 		Gtk::Label* label = manage(new Gtk::Label);
 		label->set_text(_("(no suggested words)"));
-		label->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER);
+		label->set_alignment(Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
 		mi = manage(new Gtk::MenuItem);
 		mi->set_sensitive(false);
@@ -529,7 +529,7 @@ void AutomaticSpellChecker::build_suggestion_menu(const Glib::ustring &word, Gtk
 
 			Gtk::Label* label = manage(new Gtk::Label);
 			label->set_text(Glib::ustring::compose("<b>%1</b>", suggestions[i]));
-			label->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER);
+			label->set_alignment(Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 			label->set_use_markup(true);
 
 			mi = manage(new Gtk::MenuItem);

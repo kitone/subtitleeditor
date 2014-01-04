@@ -79,7 +79,6 @@ FramerateChooserDialog::FramerateChooserDialog(FramerateChooserDialog::Action ac
 
 	set_title("");
 	set_resizable(false);
-	set_has_separator(false);
 	add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
 
 	Glib::ustring query;

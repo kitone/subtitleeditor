@@ -424,7 +424,7 @@ void WaveformEditor::init_scrollbar()
 	double upper = m_hscrollbarWaveformRenderer->get_adjustment()->get_upper();
 	double old_value = m_hscrollbarWaveformRenderer->get_value();
 
-	Gtk::Adjustment *adj = m_hscrollbarWaveformRenderer->get_adjustment();
+	Glib::RefPtr<Gtk::Adjustment> adj = m_hscrollbarWaveformRenderer->get_adjustment();
 
 	adj->set_page_size((double)width);
 	adj->set_page_increment(width);
