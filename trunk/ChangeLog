@@ -1,5 +1,11 @@
 2014-01-04  kitone  <kitone@gna.org>
 
+	* plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui:
+	* plugins/subtitleformats/substationalpha/dialog-substationalpha-preferences.ui:
+	Fix: port to gtk3.
+
+2014-01-04  kitone  <kitone@gna.org>
+
 	* src/gui/cellrenderercustom.h:
 	Fix: call finish_editing in editing_done.
 
