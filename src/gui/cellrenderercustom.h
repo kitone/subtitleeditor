@@ -134,6 +134,7 @@ Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
 template<class T>
 void CellRendererCustom<T>::begin_editing()
 {
+	se_debug(SE_DEBUG_VIEW);
 }
 
 /*
@@ -142,6 +143,7 @@ void CellRendererCustom<T>::begin_editing()
 template<class T>
 void CellRendererCustom<T>::finish_editing()
 {
+	se_debug(SE_DEBUG_VIEW);
 }
 
 /*
@@ -164,6 +166,8 @@ void CellRendererCustom<T>::cell_editing_done(const Glib::ustring &path)
 	// Define to NULL to avoid a duplicate call
 	m_editable = NULL;
 	edited(path, text);
+
+	finish_editing();
 }
 
 #endif//_cellrenderercustom_h

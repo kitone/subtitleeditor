@@ -1,5 +1,10 @@
 2014-01-04  kitone  <kitone@gna.org>
 
+	* src/gui/cellrenderercustom.h:
+	Fix: call finish_editing in editing_done.
+
+2014-01-04  kitone  <kitone@gna.org>
+
 	* autogen.sh:
 	* configure.ac:
 	* configure.in:
