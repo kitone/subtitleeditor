@@ -38,7 +38,7 @@ WaveformRenderer* create_waveform_renderer_gl();
  *
  */
 WaveformEditor::WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
-:Gtk::HBox(cobject), m_waveformRenderer(NULL), m_document(NULL), m_player(NULL)
+:Gtk::Box(cobject), m_waveformRenderer(NULL), m_document(NULL), m_player(NULL)
 {
 	set_size_request(240, 240);
 
@@ -292,7 +292,7 @@ Player* WaveformEditor::player()
  */
 void WaveformEditor::on_map()
 {
-	Gtk::HBox::on_map();
+	Gtk::Box::on_map();
 
 	if(m_connection_player_tick)
 	{
@@ -308,7 +308,7 @@ void WaveformEditor::on_map()
  */
 void WaveformEditor::on_unmap()
 {
-	Gtk::HBox::on_unmap();
+	Gtk::Box::on_unmap();
 
 	if(m_connection_player_tick)
 	{

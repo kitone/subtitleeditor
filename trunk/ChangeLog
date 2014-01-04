@@ -1,3 +1,13 @@
+2014-01-05  kitone  <kitone@gna.org>
+
+	* share/ui/subtitleeditor.ui:
+	* src/gui/application.cc:
+	* src/gui/application.h:
+	* src/vp/gstplayer.cc:
+	* src/we/waveformeditor.cc:
+	* src/we/waveformeditor.h:
+	Start removing deprecated widgets.
+
 2014-01-04  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui:
