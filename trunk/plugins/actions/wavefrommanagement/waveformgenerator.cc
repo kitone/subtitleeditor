@@ -152,11 +152,12 @@ public:
 		se_debug_message(SE_DEBUG_PLUGINS, 
 				"type='%s' name='%s'", 
 				GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
-		
-		Gst::Structure structure = msg->get_structure();
 
-		const GValue* list = gst_structure_get_value(structure.gobj(), "rms");
-		gint num_channels = gst_value_list_get_size(list);
+		Gst::Structure structure = msg->get_structure();
+		const GValue *array_val = gst_structure_get_value(GST_STRUCTURE(structure.gobj()), "rms");
+		GValueArray *rms_arr = (GValueArray*) g_value_get_boxed(array_val);
+
+		gint num_channels = rms_arr->n_values;
 
 		guint first_channel, last_channel;
 		if(num_channels >= 6)
@@ -184,7 +185,7 @@ public:
 		// get peak from channels
 		for(guint c= first_channel, i=0; c <= last_channel; ++c, ++i)
 		{
-			double peak = pow(10, g_value_get_double(gst_value_list_get_value(list, c)) / 20);
+			double peak = pow(10, g_value_get_double(g_value_array_get_nth(rms_arr, c)) / 20);
 			m_values[i].push_back(peak);
 		}
 		return true;

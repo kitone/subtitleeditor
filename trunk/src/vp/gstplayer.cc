@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2014, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -19,6 +19,15 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+#include <gstreamermm/bus.h>
+#include <gstreamermm/caps.h>
+#include <gstreamermm/clock.h>
+#include <gstreamermm/buffer.h>
+#include <gstreamermm/event.h>
+#include <gstreamermm/message.h>
+#include <gstreamermm/query.h>
+#include <gstreamermm/videooverlay.h>
+#include <gstreamermm/textoverlay.h>
 
 #include "gstplayer.h"
 #include <debug.h>
@@ -51,20 +60,6 @@ GstPlayer::GstPlayer()
 	m_pipeline_rate = 1.0;
 	m_pipeline_async_done = false;
 	m_loop_seek = Config::getInstance().get_value_bool("video-player", "repeat");
-
-	set_events(Gdk::ALL_EVENTS_MASK);
-	/*
-	set_events(
-			get_events() | 
-			Gdk::EXPOSURE_MASK |
-			Gdk::STRUCTURE_MASK |
-			Gdk::VISIBILITY_NOTIFY_MASK |
-			Gdk::POINTER_MOTION_MASK | 
-			Gdk::KEY_PRESS_MASK);
-	*/
-	// FIXME: gtkmm3
-	//set_flags(Gtk::CAN_FOCUS);
-	//unset_flags(Gtk::DOUBLE_BUFFERED);
 
 	show();
 
@@ -299,7 +294,7 @@ void GstPlayer::set_subtitle_text(const Glib::ustring &text)
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "text='%s'", text.c_str());
 
 	if(m_textoverlay)
-		m_textoverlay->property_text() = text;
+		m_textoverlay->set_property("text", text);
 }
 
 /*
@@ -349,229 +344,11 @@ void GstPlayer::on_realize()
 {
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "try to realize...");
 
-	Gtk::EventBox::on_realize();
-
-	create_video_window();
-	// FIXME: gtkmm3
-	//set_flags(Gtk::REALIZED);
-
-	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "get xWindowId...");
+	Gtk::DrawingArea::on_realize();
 
 	m_xWindowId = get_xwindow_id();
 
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "try to realize... ok");
-}
-
-/*
- * Create a Gdk::Window child used by the video player.
- */
-Glib::RefPtr<Gdk::Window> GstPlayer::create_video_window()
-{
-	if(m_video_window)
-		return m_video_window;
-
-	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "setup event_mask");
-	
-	realize_if_needed();
-
-	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "try to create video window");
-
-	Glib::RefPtr<Gdk::Window> m_window = get_window();
-	if(!m_window)
-	{
-		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "get_window return invalid Glib::RefPtr");
-		g_warning("GstPlayer can get window, get_window return invalid Glib::RefPtr");
-
-		return Glib::RefPtr<Gdk::Window>(NULL);
-	}
-
-	GdkWindowAttr attributes;
-	attributes.window_type = GDK_WINDOW_CHILD;
-	attributes.x = 0;
-	attributes.y = 0;
-	attributes.width = get_width();
-	attributes.height = get_height();
-	attributes.wclass = GDK_INPUT_OUTPUT;
-	attributes.visual = get_visual()->gobj();
-	// FIXME: gtkmm3
-	//attributes.colormap = get_colormap()->gobj();
-	attributes.event_mask = get_events() | GDK_EXPOSURE_MASK | GDK_POINTER_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_KEY_PRESS_MASK;
-
-	gint attributes_mask = GDK_WA_X | GDK_WA_Y;
-
-	m_video_window = Gdk::Window::create(m_window, &attributes, attributes_mask);
-	if(!m_video_window)
-	{
-		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "Failed to create Gdk::Window");
-		g_warning("GstPlayer could not create m_video_window");
-		return Glib::RefPtr<Gdk::Window>(NULL);
-	}
-
-	// FIXME: gtkmm3
-	//get_style()->attach(m_video_window);
-	//get_style()->set_background(m_video_window, Gtk::STATE_NORMAL);
-
-	// Set up background to black
-	// FIXME: gtkmm3
-	//Gdk::Color color("black");
-	//get_colormap()->alloc_color(color, true, true);
-	//m_video_window->set_background(color);
-
-	//set_flags(Gtk::REALIZED);
-	Gdk::RGBA black;
-	black.set("#000");
-	m_video_window->set_background(black);
-
-	// Connect to configure event on the top level window
-	get_toplevel()->signal_configure_event().connect_notify(
-			sigc::mem_fun(*this, &GstPlayer::toplevel_win_configure_event));
-
-	//show_all_children();
-	show();
-	return m_video_window;
-}
-
-/*
- * Return the Gdk::Window video.
- */
-Glib::RefPtr<Gdk::Window> GstPlayer::get_video_window()
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	Glib::RefPtr<Gdk::Window> win = create_video_window();
-	if(win)
-		return win;
-
-	g_warning("get_video_window return an NULL RefPtr");
-
-	return Glib::RefPtr<Gdk::Window>();
-}
-
-/*
- * Show the widget and child (video window).
- */
-void GstPlayer::show()
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	if(Glib::RefPtr<Gdk::Window> window = get_window())
-		window->show();
-	if(m_video_window)
-		m_video_window->show();
-
-	Gtk::EventBox::show();
-}
-
-/*
- * Hide the widget and child (video window).
- */
-void GstPlayer::hide()
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	if(Glib::RefPtr<Gdk::Window> window = get_window())
-		window->hide();
-	if(m_video_window)
-		m_video_window->hide();
-
-	Gtk::EventBox::hide();
-}
-
-/*
- * The widget size has changed, need to resize the Gdk::Window.
- */
-bool GstPlayer::on_configure_event(GdkEventConfigure *ev)
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	Gtk::EventBox::on_configure_event(ev);
-
-	if(Glib::RefPtr<Gdk::Window> window = get_window())
-		window->resize(ev->width, ev->height);
-	if(m_video_window)
-		m_video_window->resize(ev->width, ev->height);
-
-	if(m_xoverlay)
-		m_xoverlay->expose();
-
-	return false;
-}
-
-/*
- * The parent changed, we need to re-expose the overlay.
- */
-void GstPlayer::toplevel_win_configure_event(GdkEventConfigure * /*ev*/)
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	if(m_xoverlay)
-		m_xoverlay->expose();
-}
-
-/*
- * Display an black rectangle or expose the xoverlay.
- */
-bool GstPlayer::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	//if(!m_video_window)
-	//	return true;
-	if(!m_xoverlay)
-	{
-		// FIXME: gtkmm3
-		cr->set_source_rgba(0, 0, 0, 1);
-		cr->paint();
-	}
-	else
-	{
-		set_xoverlay_window_id();
-		m_xoverlay->expose();
-	}
-	return true;
-}
-
-/*
- */
-void GstPlayer::on_size_allocate(Gtk::Allocation& rect)
-{
-	se_debug_message(SE_DEBUG_VIDEO_PLAYER, 
-			"move_resize videowindow (%d, %d, %d, %d)", 
-			rect.get_x(), rect.get_y(), rect.get_width(), rect.get_height());
-
-	Gtk::EventBox::on_size_allocate(rect);
-
-	//if(!get_realized())
-	//	return;
-
-	Glib::RefPtr<Gdk::Window> videowindow = get_video_window();
-	if(!videowindow)
-		return;
-
-	videowindow->move_resize(0,0, rect.get_width(), rect.get_height());
-	// FIXME: gtkmm3
-	videowindow->invalidate(false);
-}
-
-/*
- * Refresh the video area.
- */
-bool GstPlayer::on_visibility_notify_event(GdkEventVisibility* ev)
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	Gtk::EventBox::on_visibility_notify_event(ev);
-
-	Glib::RefPtr<Gdk::Window> videowindow = get_video_window();
-	if(videowindow)
-		videowindow->invalidate(false);
-
-	//if(videowindow && !m_xoverlay)
-		// FIXME: gtkmm3
-		//videowindow->clear();
-
-	queue_draw();
-	return false;
 }
 
 /*
@@ -586,7 +363,7 @@ bool GstPlayer::create_pipeline()
 	// Clean or destroy the old pipeline
 	set_pipeline_null();
 
-	m_pipeline = Gst::PlayBin2::create("pipeline");
+	m_pipeline = Gst::PlayBin::create("pipeline");
 
 	m_pipeline->property_audio_sink() = gen_audio_element();
 	m_pipeline->property_video_sink() = gen_video_element();
@@ -658,30 +435,30 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element()
 
 	try
 	{
-		Glib::RefPtr<Gst::Element> conv, textoverlay, sink;
+		Glib::RefPtr<Gst::Element> conv, sink;
 
-		// ffmpegcolorspace
-		conv = Gst::ElementFactory::create_element("ffmpegcolorspace", "conv");
+		// videoconvert
+		conv = Gst::ElementFactory::create_element("videoconvert", "conv");
 		if(!conv)
 		{
 			throw std::runtime_error(
 					build_message(
 						_("Failed to create a GStreamer converts video (%s). "
-							"Please check your GStreamer installation."), "ffmpegcolorspace"));
+							"Please check your GStreamer installation."), "videoconvert"));
 		}
 		// textoverlay
-		textoverlay = Gst::ElementFactory::create_element("textoverlay", "overlay");
-		if(!textoverlay)
+		m_textoverlay = Gst::TextOverlay::create("overlay");
+		if(!m_textoverlay)
 		{
 			throw std::runtime_error(
 					build_message(
-						_("Failed to create a GStreamer textoverlay (%s). "
+						_("Failed to create a GStreamer text overlay (%s). "
 							"Please check your GStreamer installation."), "textoverlay"));
 		}
-		// ffmpegcolorspace ! videoscale ! %s videosink
+		// videoconvert ! videoscale ! %s videosink
 		sink = Gst::Parse::create_bin(
 			Glib::ustring::compose(
-				"ffmpegcolorspace name=videocsp ! "
+				"videoconvert name=videocsp ! "
 				"videoscale name=videoscale ! "
 				"%1 name=videosink", cfg_videosink), true);
 		if(!sink)
@@ -695,37 +472,29 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element()
 		Glib::RefPtr<Gst::Bin> bin = Gst::Bin::create("videobin");
 
 		// Add in the videobin and link
-		bin->add(conv)->add(textoverlay)->add(sink);
+		bin->add(conv)->add(m_textoverlay)->add(sink);
 
-		conv->link_pads("src", textoverlay, "video_sink");
-		textoverlay->link_pads("src", sink, "sink");
+		conv->link_pads("src", m_textoverlay, "video_sink");
+		m_textoverlay->link_pads("src", sink, "sink");
 
 		// Add sink pad to bin element
 		Glib::RefPtr<Gst::Pad> pad = conv->get_static_pad("sink");
 		bin->add_pad(	Gst::GhostPad::create(pad, "sink"));
 
 		// configure text overlay
-		m_textoverlay = Glib::RefPtr<Gst::TextOverlay>::cast_dynamic(textoverlay);
-		if(m_textoverlay)
-		{
-			m_textoverlay->property_halign() = "center";
-			m_textoverlay->property_valign() = "bottom";
-			m_textoverlay->property_shaded_background() = cfg_shaded_background;
-			m_textoverlay->property_font_desc() = cfg_font_desc;
-		}
-		else
-			g_warning("could not get the textoverlay");
+		//m_textoverlay->set_property("halignment", 1); // "center"
+		//m_textoverlay->set_property("valignment", 0); // "bottom"
+		m_textoverlay->set_property("shaded_background", cfg_shaded_background);
+		m_textoverlay->set_property("font_desc", cfg_font_desc);
 
 		// Configure video output
 		Glib::RefPtr<Gst::Element> videosink = bin->get_element("videosink");
 		if(videosink)
 		{
 #if defined(GDK_WINDOWING_QUARTZ)
-	// FIXME ?
+			// FIXME ?
 #else
-			videosink->set_property("force-aspect-ratio", cfg_force_aspect_ratio);
-			//g_object_set(G_OBJECT(videosink->gobj()),
-			//		"force-aspect-ratio", cfg_force_aspect_ratio, NULL);
+			//videosink->set_property("force-aspect-ratio", cfg_force_aspect_ratio);
 #endif
 		}
 		return bin;
@@ -841,32 +610,20 @@ void GstPlayer::on_bus_message_sync( const Glib::RefPtr<Gst::Message> &msg)
 			"type='%s' name='%s'", 
 			GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
 
-	// Ignore anything but 'prepare-xwindow-id' element messages
-	if(msg->get_message_type() != Gst::MESSAGE_ELEMENT)
-		return;
-	if(!msg->get_structure().has_name("prepare-xwindow-id"))
+	// Ignore anything but 'prepare-window-handle' element messages
+	if(!gst_is_video_overlay_prepare_window_handle_message(GST_MESSAGE(msg->gobj())))
 		return;
 
-	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "prepare-xwindow-id");
+	GstVideoOverlay *overlay = GST_VIDEO_OVERLAY(GST_MESSAGE_SRC(msg->gobj()));
+	gst_video_overlay_set_window_handle (overlay, m_xWindowId);
 
+	// FIXME: open bug on gstreamermm 1.0
 	// Get the gstreamer element source
-	Glib::RefPtr<Gst::Element> el_src = 
-		Glib::RefPtr<Gst::Element>::cast_dynamic(msg->get_source());
-
+	//Glib::RefPtr<Gst::Element> el_src = Glib::RefPtr<Gst::Element>::cast_static(msg->get_source());
 	// Has an XOverlay
-	Glib::RefPtr< Gst::ElementInterfaced<Gst::XOverlay> > xoverlay =
-		Gst::Interface::cast<Gst::XOverlay>(el_src);
+	//Glib::RefPtr< Gst::VideoOverlay > xoverlay = Glib::RefPtr<Gst::VideoOverlay>::cast_dynamic(el_src);
+	//xoverlay->set_window_handle(m_xWindowId);
 
-	if(xoverlay)
-	{
-		m_xoverlay = xoverlay;
-		set_xoverlay_window_id();
-	}
-	else
-	{
-		g_warning("Failed to get xoverlay");
-		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "failed to get xoverlay");
-	}
 	// We don't need to keep sync message
 	Glib::RefPtr<Gst::Bus> bus = m_pipeline->get_bus();
 	bus->disable_sync_message_emission();
@@ -884,22 +641,22 @@ bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &/*bus*/, const Glib
 	switch(msg->get_message_type())
 	{
 	case Gst::MESSAGE_ELEMENT: 
-			on_bus_message_element( Glib::RefPtr<Gst::MessageElement>::cast_dynamic(msg) );
+			on_bus_message_element( Glib::RefPtr<Gst::MessageElement>::cast_static(msg) );
 			break;
 	case Gst::MESSAGE_EOS: 
-			on_bus_message_eos( Glib::RefPtr<Gst::MessageEos>::cast_dynamic(msg) );
+			on_bus_message_eos( Glib::RefPtr<Gst::MessageEos>::cast_static(msg) );
 			break;
 	case Gst::MESSAGE_ERROR:
-			on_bus_message_error( Glib::RefPtr<Gst::MessageError>::cast_dynamic(msg) );
+			on_bus_message_error( Glib::RefPtr<Gst::MessageError>::cast_static(msg) );
 			break;
 	case Gst::MESSAGE_WARNING:
-			on_bus_message_warning( Glib::RefPtr<Gst::MessageWarning>::cast_dynamic(msg) );
+			on_bus_message_warning( Glib::RefPtr<Gst::MessageWarning>::cast_static(msg) );
 			break;
 	case Gst::MESSAGE_STATE_CHANGED:
-			on_bus_message_state_changed( Glib::RefPtr<Gst::MessageStateChanged>::cast_dynamic(msg) );
+			on_bus_message_state_changed( Glib::RefPtr<Gst::MessageStateChanged>::cast_static(msg) );
 			break;
 	case Gst::MESSAGE_SEGMENT_DONE:
-			on_bus_message_segment_done( Glib::RefPtr<Gst::MessageSegmentDone>::cast_dynamic(msg) );
+			on_bus_message_segment_done( Glib::RefPtr<Gst::MessageSegmentDone>::cast_static(msg) );
 			break;
 	case Gst::MESSAGE_ASYNC_DONE:
 			if(m_pipeline_async_done == false)
@@ -924,11 +681,7 @@ bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> &/*bus*/, const Glib
 void GstPlayer::on_bus_message_element(const Glib::RefPtr<Gst::MessageElement> &msg)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
-#if defined(GDK_WINDOWING_QUARTZ)
-	// FIXME ?
-#else
 	is_missing_plugin_message(msg);
-#endif
 }
 
 /*
@@ -1071,7 +824,7 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key, const G
 #if defined(GDK_WINDOWING_QUARTZ)
 	// FIXME ?
 #else
-			m_xoverlay->set_property("force-aspect-ratio", utility::string_to_bool(value));
+			//m_xoverlay->set_property("force-aspect-ratio", utility::string_to_bool(value));
 #endif			
 			//g_object_set(
 			//		G_OBJECT(m_xoverlay->gobj()), "force-aspect-ratio", utility::string_to_bool(value),
@@ -1080,11 +833,11 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key, const G
 		}
 		else if(key == "shaded-background" && m_textoverlay)
 		{
-			m_textoverlay->property_shaded_background() = utility::string_to_bool(value);
+			m_textoverlay->set_property("shaded_background", utility::string_to_bool(value));
 		}
 		else if(key == "font-desc" && m_textoverlay)
 		{
-			m_textoverlay->property_font_desc() = value;
+			m_textoverlay->set_property("font_desc", value);
 		}
 	}
 }
@@ -1099,11 +852,11 @@ gulong GstPlayer::get_xwindow_id()
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
 #ifdef GDK_WINDOWING_X11
-	const gulong xWindowId = GDK_WINDOW_XID(m_video_window->gobj());
+	const gulong xWindowId = GDK_WINDOW_XID(get_window()->gobj());
 #elif defined(GDK_WINDOWING_WIN32)
-	const gulong xWindowId = gdk_win32_drawable_get_handle(m_video_window->gobj());
+	const gulong xWindowId = gdk_win32_drawable_get_handle(get_window()->gobj());
 #elif defined(GDK_WINDOWING_QUARTZ)
-	const gulong xWindowId = gdk_quartz_window_get_nswindow(m_video_window->gobj());
+	const gulong xWindowId = gdk_quartz_window_get_nswindow(get_window()->gobj());
 #else
 	#error unimplemented GTK backend
 #endif
@@ -1111,27 +864,6 @@ gulong GstPlayer::get_xwindow_id()
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "xWindowId=%d", xWindowId);
 
 	return xWindowId;
-}
-
-/*
- * Set up the XWindowID to the XOverlay.
- */
-void GstPlayer::set_xoverlay_window_id()
-{
-	se_debug(SE_DEBUG_VIDEO_PLAYER);
-
-	// FIXME
-	if(m_xWindowId == 0)
-		g_warning("m_xWindowId is not initialized");
-	else
-	{
-		//const gulong xWindowId = get_xwindow_id();
-		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "xoverlay->set_xwindow_id...");
-		
-		m_xoverlay->set_xwindow_id(m_xWindowId);
-
-		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "xoverlay->set_xwindow_id... ok");
-	}
 }
 
 /*
@@ -1224,9 +956,10 @@ float GstPlayer::get_framerate(int *numerator, int *denominator)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
-	if(!m_pipeline)
+	//if(!m_pipeline)
 		return 0;
-
+	// FIXME: port to gstreamermm 1.0 
+	/*
 	Glib::RefPtr<Gst::Pad> pad = m_pipeline->get_video_pad(0);
 	g_return_val_if_fail(pad, 0);
 
@@ -1254,5 +987,6 @@ float GstPlayer::get_framerate(int *numerator, int *denominator)
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "framerate: %f (num: %i, denom: %i)", framerate, fps.num, fps.denom);
 
 	return framerate;
+	*/
 }
 

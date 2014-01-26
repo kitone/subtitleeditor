@@ -1,3 +1,16 @@
+2014-01-26  kitone  <kitone@gna.org>
+
+	* configure.ac:
+	* plugins/actions/keyframesmanagement/keyframesgenerator.cc:
+	* plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc:
+	* plugins/actions/keyframesmanagement/mediadecoder.h:
+	* plugins/actions/wavefrommanagement/mediadecoder.h:
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	* src/gstreamer_utility.cc:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	Start port to gstreamer/mm 1.0.
+
 2014-01-05  kitone  <kitone@gna.org>
 
 	* share/ui/subtitleeditor.ui:

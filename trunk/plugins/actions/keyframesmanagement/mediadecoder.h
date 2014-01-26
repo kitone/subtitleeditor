@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2014, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -67,10 +67,8 @@ public:
 
 		Glib::RefPtr<Gst::DecodeBin> decodebin = Gst::DecodeBin::create("decoder");
 
-		decodebin->signal_new_decoded_pad().connect(
-				sigc::mem_fun(*this, &MediaDecoder::on_new_decoded_pad));
-		decodebin->signal_no_more_pads().connect(
-				sigc::mem_fun(*this, &MediaDecoder::on_no_more_pads));
+		decodebin->signal_pad_added().connect(
+				sigc::mem_fun(*this, &MediaDecoder::on_pad_added));
 
 		try
 		{
@@ -91,7 +89,13 @@ public:
 		m_watch_id = bus->add_watch(
 			sigc::mem_fun(*this, &MediaDecoder::on_bus_message));
 
-		m_pipeline->set_state(Gst::STATE_PAUSED);
+		//m_pipeline->set_state(Gst::STATE_PAUSED);
+		if( m_pipeline->set_state(Gst::STATE_PLAYING) == Gst::STATE_CHANGE_FAILURE )
+		{
+			se_debug_message(SE_DEBUG_PLUGINS, 
+					"Failed to change the state of the pipeline to PLAYING");
+		}
+
 	}
 
 	/*
@@ -115,17 +119,18 @@ public:
 
 	/*
 	 */
-	virtual void on_new_decoded_pad(const Glib::RefPtr<Gst::Pad> &newpad, bool /*last*/)
+	virtual void on_pad_added(const Glib::RefPtr<Gst::Pad> &newpad)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		Glib::RefPtr<Gst::Caps> caps = newpad->get_caps();
+		Glib::RefPtr<Gst::Caps> caps_null;
+		Glib::RefPtr<Gst::Caps> caps = newpad->query_caps(caps_null);
 		se_debug_message(SE_DEBUG_PLUGINS, "newpad->caps: %s", caps->to_string().c_str());
 
 		const Gst::Structure structure = caps->get_structure(0);
 		if(!structure)
 			return;
-		
+
 		Glib::RefPtr<Gst::Element> sink = create_element(structure.get_name());;
 		if(sink)
 		{
@@ -163,20 +168,6 @@ public:
 	}
 
 	/*
-	 */
-	virtual void on_no_more_pads()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		Gst::StateChangeReturn retst = m_pipeline->set_state(Gst::STATE_PLAYING);
-		if(retst == Gst::STATE_CHANGE_FAILURE)
-		{
-			se_debug_message(SE_DEBUG_PLUGINS, 
-					"Failed to change the state of the pipeline to PLAYING");
-		}
-	}
-
-	/*
 	 * BUS MESSAGE
 	 */
 	virtual bool on_bus_message(const Glib::RefPtr<Gst::Bus> &/*bus*/, const Glib::RefPtr<Gst::Message> &msg)
@@ -188,15 +179,15 @@ public:
 		switch(msg->get_message_type())
 		{
 		case Gst::MESSAGE_ELEMENT: 
-				return on_bus_message_element( Glib::RefPtr<Gst::MessageElement>::cast_dynamic(msg) );
+			return on_bus_message_element( Glib::RefPtr<Gst::MessageElement>::cast_static(msg) );
 		case Gst::MESSAGE_EOS: 
-				return on_bus_message_eos( Glib::RefPtr<Gst::MessageEos>::cast_dynamic(msg) );
+			return on_bus_message_eos( Glib::RefPtr<Gst::MessageEos>::cast_static(msg) );
 		case Gst::MESSAGE_ERROR:
-				return on_bus_message_error( Glib::RefPtr<Gst::MessageError>::cast_dynamic(msg) );
+			return on_bus_message_error( Glib::RefPtr<Gst::MessageError>::cast_static(msg) );
 		case Gst::MESSAGE_WARNING:
-				return on_bus_message_warning( Glib::RefPtr<Gst::MessageWarning>::cast_dynamic(msg) );
+			return on_bus_message_warning( Glib::RefPtr<Gst::MessageWarning>::cast_static(msg) );
 		case Gst::MESSAGE_STATE_CHANGED:
-				return on_bus_message_state_changed( Glib::RefPtr<Gst::MessageStateChanged>::cast_dynamic(msg) );
+			return on_bus_message_state_changed( Glib::RefPtr<Gst::MessageStateChanged>::cast_static(msg) );
 		default:
 				break;
 		}
@@ -240,7 +231,7 @@ public:
 
 	/*
 	 */
-	virtual bool on_bus_message_eos(Glib::RefPtr<Gst::MessageEos> /*msg*/)
+	virtual bool on_bus_message_eos(Glib::RefPtr<Gst::MessageEos> )
 	{
 		m_pipeline->set_state(Gst::STATE_PAUSED);
 		on_work_finished();
@@ -272,7 +263,7 @@ public:
 
 	/*
 	 */
-	virtual Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &/*str*/)
+	virtual Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &)
 	{
 		return Glib::RefPtr<Gst::Element>();
 	}

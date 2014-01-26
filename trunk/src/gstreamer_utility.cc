@@ -75,7 +75,8 @@ namespace gstreamer_utility {
 	 */
 	bool check_registry(const Glib::ustring &name, int min_major, int min_minor, int min_micro)
 	{
-		if(gst_default_registry_check_feature_version(name.c_str(), min_major, min_minor, min_micro))
+		// FIXME: gstreamer 1.0
+		//if(gst_default_registry_check_feature_version(name.c_str(), min_major, min_minor, min_micro))
 			return true;
 
 		dialog_error(
