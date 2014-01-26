@@ -25,9 +25,12 @@
 
 #include <gtkmm.h>
 #include <gstreamermm.h>
+#include <gstreamermm/playbin.h>
+#include <gstreamermm/videooverlay.h>
+#include <gstreamermm/textoverlay.h>
 #include <player.h>
 
-class GstPlayer : public Gtk::EventBox, public Player
+class GstPlayer : public Gtk::DrawingArea, public Player
 {
 public:
 
@@ -139,53 +142,9 @@ public:
 protected:
 
 	/*
-	 * Create a Gdk::Window child used by the video player.
-	 */
-	Glib::RefPtr<Gdk::Window> create_video_window();
-
-	/*
-	 * Return the Gdk::Window video.
-	 */
-	Glib::RefPtr<Gdk::Window> get_video_window();
-
-	/*
-	 * Show the widget and child (video window).
-	 */
-	void show();
-
-	/*
-	 * Hide the widget and child (video window).
-	 */
-	void hide();
-
-	/*
 	 * Realize the widget and get the the xWindowId.
 	 */
 	void on_realize();
-
-	/*
-	 * The widget size has changed, need to resize the Gdk::Window.
-	 */
-	bool on_configure_event(GdkEventConfigure *ev);
-
-	/*
-	 * The parent changed, we need to re-expose the overlay.
-	 */
-	void toplevel_win_configure_event(GdkEventConfigure *ev);
-
-	/*
-	 * Display an black rectangle or expose the xoverlay.
-	 */
-	virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
-
-	/*
-	 */
-	void on_size_allocate(Gtk::Allocation& rect);
-
-	/*
-	 * Refresh the video area.
-	 */
-	bool on_visibility_notify_event(GdkEventVisibility* ev);
 
 	/*
 	 * Create a gstreamer pipeline (Gst::PlayBin2), initialize the
@@ -288,11 +247,6 @@ protected:
 	gulong get_xwindow_id();
 
 	/*
-	 * Set up the XWindowID to the XOverlay.
-	 */
-	void set_xoverlay_window_id();
-
-	/*
 	 */
 	void update_pipeline_state_and_timeout();
 
@@ -318,13 +272,12 @@ protected:
 
 protected:
 
-	Glib::RefPtr<Gdk::Window> m_video_window;
 	gulong m_xWindowId;
 
 	guint m_watch_id;
 	// Gstreamer Elements
-	Glib::RefPtr<Gst::PlayBin2> m_pipeline;
-	Glib::RefPtr< Gst::ElementInterfaced<Gst::XOverlay> > m_xoverlay;
+	Glib::RefPtr<Gst::PlayBin> m_pipeline;
+	Glib::RefPtr<Gst::VideoOverlay> m_xoverlay;
 	Glib::RefPtr<Gst::TextOverlay> m_textoverlay;
 
 	bool m_pipeline_async_done;

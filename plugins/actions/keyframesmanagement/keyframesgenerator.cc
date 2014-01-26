@@ -69,9 +69,12 @@ public:
 	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>&)
 	{
 		// FIXME: http://bugzilla.gnome.org/show_bug.cgi?id=590923
-		if(!buf->flag_is_set(GST_BUFFER_FLAG_DELTA_UNIT))//Gst::BUFFER_FLAG_DELTA_UNIT))
+		//if(!buf->flag_is_set(GST_BUFFER_FLAG_DELTA_UNIT))//Gst::BUFFER_FLAG_DELTA_UNIT))
+		if(!GST_BUFFER_FLAG_IS_SET(buf->gobj(), GST_BUFFER_FLAG_DELTA_UNIT))
 		{
-			long pos = buf->get_timestamp() / GST_MSECOND;
+			// FIXME: gstreamer 1.0
+			//long pos = buf->get_timestamp() / GST_MSECOND;
+			long pos = buf->get_pts() / GST_MSECOND;
 			m_values.push_back(pos);
 		}
 	}
@@ -87,25 +90,19 @@ public:
 			if(structure_name.find("video") == Glib::ustring::npos)
 				return Glib::RefPtr<Gst::Element>(NULL);
 
-			Glib::RefPtr<Gst::Bin> videobin = Glib::RefPtr<Gst::Bin>::cast_dynamic(
-					Gst::Parse::create_bin(
-						"ffmpegcolorspace ! fakesink name=vsink", true));
-
-			Glib::RefPtr<Gst::FakeSink> vsink = Glib::RefPtr<Gst::FakeSink>::cast_dynamic(
-					videobin->get_element("vsink"));
-
-			vsink->set_sync(false);
-			vsink->property_silent() = true;
-			vsink->property_signal_handoffs() = true;
-			vsink->signal_handoff().connect(
+			Glib::RefPtr<Gst::FakeSink> fakesink = Gst::FakeSink::create("fakesink");
+			fakesink->set_sync(false);
+			fakesink->property_silent() = true;
+			fakesink->property_signal_handoffs() = true;
+			fakesink->signal_handoff().connect(
 					sigc::mem_fun(*this, &KeyframesGenerator::on_video_identity_handoff));
 
 			// Set the new sink tp READY as well
-			Gst::StateChangeReturn retst = videobin->set_state(Gst::STATE_READY);
+			Gst::StateChangeReturn retst = fakesink->set_state(Gst::STATE_READY);
 			if( retst == Gst::STATE_CHANGE_FAILURE )
 				std::cerr << "Could not change state of new sink: " << retst << std::endl;
 
-			return Glib::RefPtr<Gst::Element>::cast_dynamic(videobin);
+			return fakesink;
 		}
 		catch(std::runtime_error &ex)
 		{

@@ -93,10 +93,9 @@ public:
 	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>&)
 	{
 		// ignore preroll
-		if(buf->flag_is_set(Gst::BUFFER_FLAG_PREROLL))
-		{
+		//if(buf->flag_is_set(Gst::BUFFER_FLAG_PREROLL))
+		if(GST_BUFFER_FLAG_IS_SET(buf->gobj(), GST_BUFFER_FLAG_LIVE))
 			return;
-		}
 
 		// first frame or change of buffer size, alloc & push
 		if (!m_prev_frame || buf->get_size() != m_prev_frame_size)
@@ -104,7 +103,7 @@ public:
 			delete[] m_prev_frame;
 			m_prev_frame_size = buf->get_size();
 			m_prev_frame = new guint8[m_prev_frame_size];
-			long pos = buf->get_timestamp() / GST_MSECOND;
+			long pos = buf->get_pts() / GST_MSECOND;
 			m_values.push_back(pos);
 		// continuation frame, compare
 		}
@@ -113,7 +112,7 @@ public:
 			guint64 delta = 0, full = buf->get_size() / 3;
 			unsigned long diff, i, j;
 			long tmp;
-			const guint8 *data = buf->get_data();
+			const guint8 *data = NULL; //buf->get_data();
 
 			// calculate difference between frames
 			for (i = 0; i < full; i++)
@@ -141,12 +140,14 @@ public:
 			// >20% difference => scene cut
 			if ((double)delta / (double)full > m_difference)
 			{
-				long pos = buf->get_timestamp() / GST_MSECOND;
+				// FIXME: gstreamer 1.0
+				//long pos = buf->get_timestamps() / GST_MSECOND;
+				long pos = buf->get_pts() / GST_MSECOND;
 				m_values.push_back(pos);
 			}
 		}
 
-		memcpy(m_prev_frame, buf->get_data(), buf->get_size());
+		//memcpy(m_prev_frame, buf->get_data(), buf->get_size());
 	}
 
 	/*
@@ -160,25 +161,19 @@ public:
 			if(structure_name.find("video") == Glib::ustring::npos)
 				return Glib::RefPtr<Gst::Element>(NULL);
 
-			Glib::RefPtr<Gst::Bin> videobin = Glib::RefPtr<Gst::Bin>::cast_dynamic(
-					Gst::Parse::create_bin(
-						"ffmpegcolorspace ! video/x-raw-rgb,bpp=24,depth=24 ! fakesink name=vsink", true));
-
-			Glib::RefPtr<Gst::FakeSink> vsink = Glib::RefPtr<Gst::FakeSink>::cast_dynamic(
-					videobin->get_element("vsink"));
-
-			vsink->set_sync(false);
-			vsink->property_silent() = true;
-			vsink->property_signal_handoffs() = true;
-			vsink->signal_handoff().connect(
+			Glib::RefPtr<Gst::FakeSink> fakesink = Gst::FakeSink::create("fakesink");
+			fakesink->set_sync(false);
+			fakesink->property_silent() = true;
+			fakesink->property_signal_handoffs() = true;
+			fakesink->signal_handoff().connect(
 					sigc::mem_fun(*this, &KeyframesGeneratorUsingFrame::on_video_identity_handoff));
 
 			// Set the new sink tp READY as well
-			Gst::StateChangeReturn retst = videobin->set_state(Gst::STATE_READY);
+			Gst::StateChangeReturn retst = fakesink->set_state(Gst::STATE_READY);
 			if( retst == Gst::STATE_CHANGE_FAILURE )
 				std::cerr << "Could not change state of new sink: " << retst << std::endl;
 
-			return Glib::RefPtr<Gst::Element>::cast_dynamic(videobin);
+			return fakesink;
 		}
 		catch(std::runtime_error &ex)
 		{
