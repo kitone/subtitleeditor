@@ -25,6 +25,9 @@
 #include "utility.h"
 #include "document.h"
 
+// FIXME: Use xxCommand->execute instead of reimplementing twice the actions
+// FIXME: Subtitles::remove update the gap between subtitle, reimplement this in the Command because it isn't calculated when we undo/redo the action
+
 /*
  */
 class AppendSubtitleCommand : public Command
@@ -78,9 +81,12 @@ public:
 			Gtk::TreeIter iter = get_document_subtitle_model()->get_iter((*it)["path"]);
 			
 			get_document_subtitle_model()->erase(iter);
+
+			// FIXME: updated gap after/before
 		}
 
 		get_document_subtitle_model()->rebuild_column_num();
+		document()->emit_signal("subtitle-deleted");
 	}
 
 	void restore()
@@ -97,9 +103,11 @@ public:
 
 			Subtitle sub(document(), newiter);
 			sub.set((*it));
+			// FIXME: updated gap after/before
 		}
 
 		get_document_subtitle_model()->rebuild_column_num();
+		document()->emit_signal("subtitle-insered");
 	}
 protected:
 	std::vector< std::map<Glib::ustring, Glib::ustring> > m_backup;
@@ -361,8 +369,8 @@ void Subtitles::remove(std::vector<Subtitle> &subs)
 		if( next_sub )
 			next_sub.update_gap_before();
 	}
-
 	m_document.get_subtitle_model()->rebuild_column_num();
+	m_document.emit_signal("subtitle-deleted");
 }
 
 /*

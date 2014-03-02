@@ -575,6 +575,9 @@ public:
 	 */
 	void init_with_document(Document *doc)
 	{
+		if(m_connection_subtitle_deleted)
+			m_connection_subtitle_deleted.disconnect();
+
 		m_document = doc;
 		bool has_doc = (doc != NULL);
 		// Update the sensitivity of widgets
@@ -605,6 +608,9 @@ public:
 				m_subtitle = subtitles.get_first();
 			update_search_ui();
 		}
+
+		m_connection_subtitle_deleted = doc->get_signal("subtitle-deleted").connect(
+			sigc::mem_fun(*this, &DialogFindAndReplace::on_subtitle_deleted));
 	}
 
 	/*
@@ -621,6 +627,23 @@ public:
 		}
 	}
 
+	/*
+	 */
+	void on_subtitle_deleted()
+	{
+		// Reset values
+		m_subtitle = Subtitle();
+		m_info.reset();
+
+		Subtitles subtitles = m_document->subtitles();
+		if(subtitles.size() > 0)
+		{
+			m_subtitle = subtitles.get_first_selected();
+			if(!m_subtitle)
+				m_subtitle = subtitles.get_first();
+		}
+		update_search_ui();
+	}
 	/*
 	 * Update the label of the current column and sets the sensitivity.
 	 */
@@ -710,6 +733,7 @@ public:
 		{
 			m_comboboxPattern->save_history();
 			m_comboboxReplacement->save_history();
+			m_connection_subtitle_deleted.disconnect();
 
 			delete m_instance;
 			m_instance = NULL;
@@ -861,6 +885,8 @@ protected:
 
 	Gtk::CheckButton* m_checkColumnText;
 	Gtk::CheckButton* m_checkColumnTranslation;
+
+	sigc::connection m_connection_subtitle_deleted;
 
 	static DialogFindAndReplace* m_instance;
 };
