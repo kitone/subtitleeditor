@@ -1,5 +1,13 @@
 2014-03-01	kitone	<kitone@gna.org>
 
+	* src/document.h
+	* src/subtitles.cc
+	* plugins/actions/findandreplace/findandreplace.cc
+	Add document signal 'subtitle-deleted'.
+	Fix segfault when we delete subtitle using find and replace (Original patch by Pete Beardmore)
+
+2014-03-01	kitone	<kitone@gna.org>
+
 	* plugins/actions/findandreplace/findandreplace.cc
 	Extend regex remplacement using submatches. Patch by Pete Beardmore.
 
