@@ -138,7 +138,7 @@ public:
 	}
 
 	/*
-	 * Return the current remplacement text.
+	 * Return the current replacement text.
 	 */
 	Glib::ustring get_replacement()
 	{
@@ -184,7 +184,7 @@ public:
 	}
 
 	/*
-	 * Replace the current search (MatchInfo) by the remplacement text.
+	 * Replace the current search (MatchInfo) by the replacement text.
 	 */
 	bool replace(Document &doc, Subtitle &sub, MatchInfo &info)
 	{
