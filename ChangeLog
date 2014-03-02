@@ -1,3 +1,9 @@
+2014-03-01	kitone	<kitone@gna.org>
+
+	* plugins/actions/findandreplace/findandreplace.cc
+	* src/document.h
+	Fix typo. Patch by Pete Beardmore.
+
 2014-01-26  kitone  <kitone@gna.org>
 
 	* configure.ac:

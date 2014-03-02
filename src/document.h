@@ -271,7 +271,7 @@ public:
 	FRAMERATE get_framerate();
 
 	/*
-	 * Return a signal connector from his name.
+	 * Return a signal connector from its name.
 	 *
 	 * The list of signals available:
 	 *
@@ -293,7 +293,7 @@ public:
 	sigc::signal<void>& get_signal(const std::string &name);
 
 	/*
- 	 * Emit a signal from his name.
+ 	 * Emit a signal from its name.
 	 */
 	void emit_signal(const std::string &name);
 
