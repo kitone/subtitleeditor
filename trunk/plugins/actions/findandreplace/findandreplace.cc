@@ -50,6 +50,7 @@ public:
 	void reset()
 	{
 		text = Glib::ustring();
+		replacement = Glib::ustring();
 		column = 0;
 		found = false;
 		start = len = Glib::ustring::npos;
@@ -58,6 +59,7 @@ public:
 public:
 	int column;
 	Glib::ustring text;
+	Glib::ustring replacement;
 	bool found;
 	Glib::ustring::size_type start;
 	Glib::ustring::size_type len;
@@ -195,12 +197,11 @@ public:
 				(info.start == Glib::ustring::npos && info.len == Glib::ustring::npos))
 			return false;
 
-		Glib::ustring text = info.text;
-
-		if(text.empty())
+		if(info.text.empty())
 			return false;
 
-		Glib::ustring replacement = get_replacement();
+		Glib::ustring text = info.text;
+		Glib::ustring replacement = info.replacement;
 
 		try
 		{
@@ -250,6 +251,7 @@ protected:
 			if(beginning != Glib::ustring::npos)
 				text = text.substr(beginning, text.size());
 
+			info->replacement = get_replacement();
 			if(!find(get_pattern(), get_pattern_options(), text, info))
 				return false;
 
@@ -280,7 +282,7 @@ protected:
 
 		if(pattern_options & USE_REGEX) // Search with regular expression
 		{
-			found = regex_exec(pattern, text, (pattern_options & IGNORE_CASE), start, len);
+			found = regex_exec(pattern, text, (pattern_options & IGNORE_CASE), start, len, info->replacement);
 		}
 		else // Without regular expression
 		{
@@ -309,12 +311,13 @@ protected:
 	 * FIXME: Remove Me
 	 * Waiting the Glib::MatchInfo API in glibmm.
 	 */
-	bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string, bool caseless, Glib::ustring::size_type &start, Glib::ustring::size_type &len)
+	bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string, bool caseless, Glib::ustring::size_type &start, Glib::ustring::size_type &len, Glib::ustring &replacement)
 	{
 		bool found = false;
 		GRegex *regex = NULL;
 		GMatchInfo *match_info = NULL;
 		GError *error = NULL;
+		gboolean references = FALSE;
 
 		int compile_flags = (GRegexMatchFlags)0;
 		if(caseless)
@@ -347,6 +350,12 @@ protected:
 					len = end_pos - start_pos;
 					found = true;
 				}
+
+				// Expand any references in the replacement string
+				references = TRUE;
+				g_regex_check_replacement(replacement.c_str(), &references, &error);
+				if(error == NULL && references)
+					replacement = g_match_info_expand_references(match_info, replacement.c_str(), &error);
 			}
 		}
 		g_match_info_free(match_info);
