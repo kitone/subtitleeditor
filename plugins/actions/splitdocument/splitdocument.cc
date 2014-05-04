@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2014, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -81,20 +81,18 @@ public:
 	}
 
 	/*
-	 *	coupe le doc en 2 et retourne le nouveau
+	 * Split the document in two and return the new one
 	 */
 	Document *split_doc(Document *doc, unsigned int number)
 	{
-		// creation du nouveau document par copy
-		Document *newdoc = new Document(*doc);
-		// même nom plus -part2
+		// Create new document based on the first one and rename it
+		Document *newdoc = new Document(*doc, true);
 		newdoc->setFilename(newdoc->getFilename() + "-par2");
-		// on supprime les sous-titres précédant
 		newdoc->subtitles().remove(1, number-1);
 
 		DocumentSystem::getInstance().append(newdoc);
 
-		// on supprime ensuite les sous-titres utiliser par le nouveau document
+		// Remove subtitles used by the new one
 		doc->start_command(_("Split document"));
 		doc->subtitles().remove(number, doc->subtitles().size());
 		doc->finish_command();

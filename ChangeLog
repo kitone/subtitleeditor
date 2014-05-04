@@ -1,3 +1,8 @@
+2014-05-04	kitone	<kitone@gna.org>
+
+	*  plugins/actions/splitdocument/splitdocument.cc
+	Fix bug #22009 : Split subtitle file.
+
 2014-03-01	kitone	<kitone@gna.org>
 
 	* src/document.h
