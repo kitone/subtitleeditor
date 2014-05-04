@@ -78,7 +78,7 @@ Document::Document()
 /*
  * Constructor by copy
  */
-Document::Document(Document &src, int copy_subtitles = true )
+Document::Document(Document &src, bool copy_subtitles = true )
 :CommandSystem(*this), m_subtitles(*this), m_styles(*this), m_subtitleView(NULL)
 {
 	m_timing_mode = src.m_timing_mode;
