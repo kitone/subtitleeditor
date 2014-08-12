@@ -123,7 +123,7 @@ Glib::ustring GstPlayer::get_uri()
 
 	if(!m_pipeline)
 		return Glib::ustring();
-	return m_pipeline->property_uri();
+	return m_pipeline->property_current_uri();
 }
 
 /*

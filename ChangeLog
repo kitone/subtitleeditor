@@ -1,6 +1,12 @@
 2014-08-12	kitone	<kitone@gna.org>
 
 	*  src/vp/gstplayer.cc
+	Fix bug #22406 : Bugs with GTk3 port (Generating waveform does not work).
+	Use property current_uri instead of uri.
+
+2014-08-12	kitone	<kitone@gna.org>
+
+	*  src/vp/gstplayer.cc
 	Fix bug #22406 : Bugs with GTk3 port (seeking by single frame).
 	Port the get_framerate method to gstreamer 1.0.
 
