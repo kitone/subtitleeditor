@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2012, kitone
+ *	Copyright @ 2005-2014, kitone
  *	2012, Martin Doucha
  *
  *	This program is free software; you can redistribute it and/or modify
@@ -92,64 +92,58 @@ public:
 	 */
 	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>&)
 	{
-		// ignore preroll
-		//if(buf->flag_is_set(Gst::BUFFER_FLAG_PREROLL))
-		if(GST_BUFFER_FLAG_IS_SET(buf->gobj(), GST_BUFFER_FLAG_LIVE))
-			return;
+		GstMapInfo map;
+		gst_buffer_map (GST_BUFFER(buf->gobj()), &map, GST_MAP_READ);
 
 		// first frame or change of buffer size, alloc & push
-		if (!m_prev_frame || buf->get_size() != m_prev_frame_size)
+		if (!m_prev_frame || map.size != m_prev_frame_size)
 		{
 			delete[] m_prev_frame;
-			m_prev_frame_size = buf->get_size();
+			m_prev_frame_size = map.size;
 			m_prev_frame = new guint8[m_prev_frame_size];
-			long pos = buf->get_pts() / GST_MSECOND;
-			m_values.push_back(pos);
-		// continuation frame, compare
+			
+			m_values.push_back(  buf->get_pts() / GST_MSECOND );
 		}
-		else
+		else if(compare_frame(m_prev_frame, map.data, map.size))
 		{
-			guint64 delta = 0, full = buf->get_size() / 3;
-			unsigned long diff, i, j;
-			long tmp;
-			const guint8 *data = NULL; //buf->get_data();
-
-			// calculate difference between frames
-			for (i = 0; i < full; i++)
-			{
-				diff = 0;
-
-				// get max difference in individual color channels
-				for (j = 0; j < 3; j++)
-				{
-					tmp = (int)data[3 * i + j] - (int)m_prev_frame[3 * i + j];
-					if (tmp < 0)
-					{
-						tmp = -tmp;
-					}
-
-					diff = tmp > diff ? tmp : diff;
-				}
-
-				// add max color diff to total delta
-				delta += diff;
-			}
-
-			full *= 255;
-
-			// >20% difference => scene cut
-			if ((double)delta / (double)full > m_difference)
-			{
-				// FIXME: gstreamer 1.0
-				//long pos = buf->get_timestamps() / GST_MSECOND;
-				long pos = buf->get_pts() / GST_MSECOND;
-				m_values.push_back(pos);
-			}
+			m_values.push_back( buf->get_pts() / GST_MSECOND );
 		}
+		// update the previous frame with this one
+		memcpy(m_prev_frame, map.data, map.size);
 
-		//memcpy(m_prev_frame, buf->get_data(), buf->get_size());
+		gst_buffer_unmap (GST_BUFFER(buf->gobj()),&map);
 	}
 
+	/*
+	 */
+	bool compare_frame(const guint8 *old_frame, const guint8 *new_frame, gsize size)
+	{
+		guint64 delta = 0;
+		guint64 full = size / 3;
+
+		gulong diff, i, j;
+		long tmp;
+		// calculate difference between frames
+		for (i = 0; i < full; ++i)
+		{
+			diff = 0;
+			// get max difference in individual color channels
+			for (j = 0; j < 3; ++j)
+			{
+				tmp = (int)new_frame[3 * i + j] - (int)old_frame[3 * i + j];
+				if (tmp < 0)
+					tmp = -tmp;
+				diff = tmp > diff ? tmp : diff;
+			}
+			// add max color diff to total delta
+			delta += diff;
+		}
+		full *= 255;
+
+		// >20% difference => scene cut
+		return ((double)delta / (double)full > m_difference);
+	}
+ 
 	/*
 	 * Create video bin
 	 */

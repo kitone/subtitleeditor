@@ -1,5 +1,10 @@
 2014-08-12	kitone	<kitone@gna.org>
 
+	*  plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc
+	Port the keyframes generator using frame to gstreamer 1.0.
+
+2014-08-12	kitone	<kitone@gna.org>
+
 	*  plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui
 	*  plugins/actions/externalvideoplayer/externalvideoplayer.cc
 	Fix bug #20557 : When working with subtitleeditor project, external player does not load it
