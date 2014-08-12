@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2014, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -25,9 +25,9 @@
 #include <gtkmm_utility.h>
 #include <widget_config_utility.h>
 #include <gui/dialogfilechooser.h>
+#include <gui/comboboxsubtitleformat.h>
 
 /*
- *
  */
 class DialogExternalVideoPreferences : public Gtk::Dialog
 {
@@ -38,6 +38,12 @@ public:
 		Gtk::Entry* entry = NULL;
 		xml->get_widget("entry-video-player-command", entry);
 		widget_config::read_config_and_connect(entry, "external-video-player", "command");
+
+		xml->get_widget("check-use-format", m_checkUseFormat);
+		widget_config::read_config_and_connect(m_checkUseFormat, "external-video-player", "use-format");
+
+		xml->get_widget_derived("combo-format", m_comboFormat);
+		widget_config::read_config_and_connect(m_comboFormat, "external-video-player", "format");
 	}
 
 	static void create()
@@ -50,10 +56,13 @@ public:
 
 		dialog->run();
 	}
+
+protected:
+	Gtk::CheckButton* m_checkUseFormat;
+	ComboBoxSubtitleFormat* m_comboFormat;
 };
 
 /*
- *
  */
 class ExternalVideoPlayer : public Action
 {
@@ -71,7 +80,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void activate()
 	{
@@ -118,7 +126,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void deactivate()
 	{
@@ -129,7 +136,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	bool is_configurable()
 	{
@@ -137,7 +143,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void create_configure_dialog()
 	{
@@ -145,7 +150,6 @@ public:
 	}
 	
 	/*
-	 *
 	 */
 	void on_open_movie()
 	{
@@ -156,7 +160,6 @@ public:
 
 
 	/*
-	 *
 	 */
 	void on_play_movie()
 	{
@@ -164,87 +167,130 @@ public:
 
 		g_return_if_fail(doc);
 
+		// If the user call directly the action 'play movie' without video
+		// we propose to choose one
 		if(m_movie_uri.empty())
-		{
 			on_open_movie();
-		}
 
-
+		// Check again if we have now a movie
 		if(m_movie_uri.empty())
 		{
 			doc->flash_message(_("Please select a movie."));
 			return;
 		}
 
-		Glib::ustring tmp_subtitle_name = "subtitle_preview";
+		// Save the document in a temporary directory
+		save_to_temporary_file(doc, get_tmp_file_as_uri() ); 
 
-		// tmp dir + subtitle name
-		Glib::ustring subtitle_file = Glib::build_filename(Glib::get_tmp_dir(), tmp_subtitle_name);
-
-		// save now tmp subtitle
-		Glib::ustring old_filename = doc->getFilename();
-
-		doc->save(Glib::filename_to_uri(subtitle_file));
-		doc->setFilename(old_filename);
-	
-		long start_position = 0;
-
-		std::vector<Subtitle> selection = doc->subtitles().get_selection();
-
-		if(!selection.empty())
-		{
-			Subtitle sub = selection[0];
-			if(sub)
-			{
-				SubtitleTime time = sub.get_start() - SubtitleTime(0,0,4,0);
-
-				start_position = time.hours()*3600 + time.minutes()*60 + time.seconds();
-
-				if(start_position < 0)
-					start_position = 0;
-			}
-		}
-
-		// command pipe...
-		Glib::ustring cmd;
-
-		// load the config or use the default command
-		if(!Config::getInstance().get_value_string("external-video-player", "command", cmd))
-		{
-			Glib::ustring default_cmd = "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds -osdlevel 2";
-			Config::getInstance().set_value_string("external-video-player", "command", default_cmd);
-			cmd = default_cmd;
-		}
 		// create the command
-		{
-			Glib::ustring video_uri = m_movie_uri;
-			Glib::ustring video_file = Glib::filename_from_uri(video_uri);
+		Glib::ustring command = get_command();
 
-			Glib::ustring seconds = to_string(start_position);
-			
-			Glib::ustring subtitle_uri = Glib::filename_to_uri(subtitle_file);
-			
-			utility::replace(cmd, "#video_file", video_file);
-			utility::replace(cmd, "#video_uri", video_uri);
-			utility::replace(cmd, "#subtitle_file", subtitle_file);
-			utility::replace(cmd, "#subtitle_uri", subtitle_uri);
-			utility::replace(cmd, "#seconds", seconds);
-		}
+		utility::replace(command, "#video_file", Glib::filename_from_uri(m_movie_uri));
+		utility::replace(command, "#video_uri", m_movie_uri);
+		utility::replace(command, "#subtitle_file", get_tmp_file());
+		utility::replace(command, "#subtitle_uri",get_tmp_file_as_uri());
+		utility::replace(command, "#seconds", to_string(get_start_position(doc)));
 
-		std::cout << "COMMAND: " << cmd << std::endl;
+		std::cout << "COMMAND: " << command << std::endl;
 
 		try
 		{
-			Glib::spawn_command_line_async(cmd);
+			Glib::spawn_command_line_async(command);
 		}
 		catch(const Glib::Error &ex)
 		{
 			dialog_error(
-					_("Failed to launch the external player."), 
-					build_message(
-						_("%s\n\nCommand: <i>%s</i>"),ex.what().c_str(), cmd.c_str())
-					);
+					_("Failed to launch the external player."), build_message(
+						_("%s\n\nCommand: <i>%s</i>"),ex.what().c_str(), command.c_str())	);
 		}
+	}
+
+protected:
+
+	/*
+	 * Return the command pipe from the config (or default)
+	 */
+	Glib::ustring get_command()
+	{
+		Glib::ustring command;
+		// load the config or use the default command
+		if(get_config().get_value_string("external-video-player", "command", command))
+			return command;
+
+		// write the default command in the config
+		Glib::ustring default_cmd = "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds -osdlevel 2";
+
+		get_config().set_value_string("external-video-player", "command", default_cmd);
+
+		return default_cmd;
+	}
+
+	/*
+	 * If the user has specified a subtitle format use it
+	 */
+	Glib::ustring get_prefered_subtitle_format()
+	{
+		if(get_config().get_value_bool("external-video-player", "use-format"))
+		{
+			Glib::ustring format;
+			if(get_config().get_value_string("external-video-player", "format", format))
+				return format;
+		}
+		return Glib::ustring();
+	}
+
+	/*
+	 */
+	Glib::ustring get_tmp_file()
+	{
+		return Glib::build_filename(Glib::get_tmp_dir(), "subtitle_preview");
+	}
+
+	/*
+	 */
+	Glib::ustring get_tmp_file_as_uri()
+	{
+		return Glib::filename_to_uri( get_tmp_file() );
+	}
+
+	/*
+	 */
+	long get_start_position(Document *document)
+	{
+		std::vector<Subtitle> selection = document->subtitles().get_selection();
+
+		if(selection.empty())
+			return 0;
+	
+		Subtitle sub = selection[0];
+		
+		SubtitleTime time = sub.get_start() - SubtitleTime(0,0,4,0);
+		
+		long p = time.hours()*3600 + time.minutes()*60 + time.seconds();
+
+		return (p < 0) ? 0 : p;
+	}
+
+	/*
+	 */
+	void save_to_temporary_file(Document *document, const Glib::ustring &uri)
+	{
+		Glib::ustring prefered_format = get_prefered_subtitle_format();
+		
+		// FIXME: fixes this shit after the new subtitle format system
+
+		// Old values
+		Glib::ustring old_format = document->getFormat();
+		Glib::ustring old_filename = document->getFilename();
+
+		if(!prefered_format.empty())
+			document->setFormat(prefered_format);
+
+		document->save(uri);
+
+		// Restore default values
+		document->setFormat(old_format);
+		document->setFilename(old_filename);
 	}
 
 protected:
