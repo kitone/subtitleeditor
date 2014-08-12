@@ -1,3 +1,9 @@
+2014-08-12	kitone	<kitone@gna.org>
+
+	*  src/vp/gstplayer.cc
+	Fix bug #22406 : Bugs with GTk3 port (seeking by single frame).
+	Port the get_framerate method to gstreamer 1.0.
+
 2014-05-04	kitone	<kitone@gna.org>
 
 	*  plugins/actions/splitdocument/splitdocument.cc

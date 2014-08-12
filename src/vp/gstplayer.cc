@@ -956,14 +956,12 @@ float GstPlayer::get_framerate(int *numerator, int *denominator)
 {
 	se_debug(SE_DEBUG_VIDEO_PLAYER);
 
-	//if(!m_pipeline)
+	if(!m_pipeline)
 		return 0;
-	// FIXME: port to gstreamermm 1.0 
-	/*
 	Glib::RefPtr<Gst::Pad> pad = m_pipeline->get_video_pad(0);
 	g_return_val_if_fail(pad, 0);
 
-	Glib::RefPtr<Gst::Caps> caps = pad->get_negotiated_caps();
+	Glib::RefPtr<Gst::Caps> caps = pad->get_current_caps();
 	g_return_val_if_fail(caps, 0);
 
 	const Gst::Structure structure = caps->get_structure(0);
@@ -987,6 +985,5 @@ float GstPlayer::get_framerate(int *numerator, int *denominator)
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "framerate: %f (num: %i, denom: %i)", framerate, fps.num, fps.denom);
 
 	return framerate;
-	*/
 }
 
