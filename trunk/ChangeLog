@@ -1,5 +1,11 @@
 2014-08-12	kitone	<kitone@gna.org>
 
+	*  plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui
+	*  plugins/actions/externalvideoplayer/externalvideoplayer.cc
+	Fix bug #20557 : When working with subtitleeditor project, external player does not load it
+
+2014-08-12	kitone	<kitone@gna.org>
+
 	*  src/vp/gstplayer.cc
 	Fix bug #22406 : Bugs with GTk3 port (Generating waveform does not work).
 	Use property current_uri instead of uri.
