@@ -1,3 +1,8 @@
+2014-08-14	kitone	<kitone@gna.org>
+
+	*  plugins/actions/keyframesmanagement/keyframesmanagement.cc
+	Fix bug #22472 : Recent keyfroms files.
+
 2014-08-12	kitone	<kitone@gna.org>
 
 	*  plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc
