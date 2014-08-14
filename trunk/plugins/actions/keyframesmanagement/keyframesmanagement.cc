@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2012, kitone
+ *	Copyright @ 2005-2014, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -155,6 +155,22 @@ public:
 					_("FIXME")),
 					sigc::mem_fun(*this, &KeyframesManagementPlugin::on_snap_end_to_next));
 
+		// Recent files
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Gtk::RecentAction::create("keyframes/recent-files", _("_Recent Files"));
+
+		Glib::RefPtr<Gtk::RecentFilter> filter = Gtk::RecentFilter::create();
+		filter->set_name("subtitleeditor");
+		filter->add_group("subtitleeditor-keyframes");
+		recentAction->set_filter(filter);
+		recentAction->set_show_icons(false);
+		recentAction->set_show_numbers(true);
+		recentAction->set_show_tips(true);
+		//recentAction->set_show_not_found(false);
+		recentAction->set_sort_type(Gtk::RECENT_SORT_MRU);
+		recentAction->signal_item_activated().connect(
+				sigc::mem_fun(*this, &KeyframesManagementPlugin::on_recent_item_activated));
+		action_group->add(recentAction);
+
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -168,6 +184,7 @@ public:
 			"		<menu name='menu-keyframes' action='menu-keyframes'>"
 			"			<placeholder name='placeholder'>"
 			"					<menuitem action='keyframes/open'/>"
+			"					<menuitem action='keyframes/recent-files'/>"
 			"					<menuitem action='keyframes/save'/>"
 			"					<menuitem action='keyframes/generate'/>"
 			"					<menuitem action='keyframes/generate-using-frame'/>"
@@ -262,10 +279,14 @@ protected:
 			ui.hide();
 			Glib::RefPtr<KeyFrames> kf = KeyFrames::create_from_file(ui.get_uri());
 			if(!kf)
-				kf = generate_keyframes_from_file(ui.get_uri());
+				// FIXME: until old code is FIXED, use by default the frame method
+				kf = generate_keyframes_from_file_using_frame(ui.get_uri());
 
 			if(kf)
+			{
 				player()->set_keyframes(kf);
+				add_in_recent_manager(kf->get_uri());
+			}
 		}
 	}
 
@@ -289,7 +310,45 @@ protected:
 
 				// FIXME check return value
 				kf->save(uri);
+				add_in_recent_manager(kf->get_uri());
 			}
+		}
+	}
+
+	/*
+	 */
+	void add_in_recent_manager(const Glib::ustring &uri)
+	{
+		se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+
+		Gtk::RecentManager::Data data;
+		data.app_name = Glib::get_application_name();
+		data.app_exec = Glib::get_prgname();
+		data.groups.push_back("subtitleeditor-keyframes");
+		data.is_private = false;
+		Gtk::RecentManager::get_default()->add_item(uri, data);
+	}
+
+
+	/*
+	 * Open a recent keyframes
+	 */
+	void on_recent_item_activated()
+	{
+		se_debug(SE_DEBUG_PLUGINS);
+
+		Glib::RefPtr<Gtk::Action> action = action_group->get_action("keyframes/recent-files");
+
+		Glib::RefPtr<Gtk::RecentAction> recentAction = Glib::RefPtr<Gtk::RecentAction>::cast_static(action);
+
+		Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
+		if(cur)
+		{
+			se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
+
+			Glib::RefPtr<KeyFrames> kf = KeyFrames::create_from_file(cur->get_uri());
+			if(kf)
+				player()->set_keyframes(kf);
 		}
 	}
 
