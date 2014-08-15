@@ -104,7 +104,7 @@ AC_SUBST(GSTREAMER_LIBS)
 
 GSTREAMER_LIBS="$GSTREAMER_LIBS -lgstvideo-1.0 -lgstaudio-1.0 -lgstpbutils-1.0"
 
-SE_GST_ELEMENT_CHECK_REQUIRED([0.10], [level], [gstreamer0.10-plugins-good])
+#SE_GST_ELEMENT_CHECK_REQUIRED([0.10], [level], [gstreamer0.10-plugins-good])
 
 # check gstreamermm
 PKG_CHECK_MODULES(GSTREAMERMM, gstreamermm-1.0 >= 1.0);
