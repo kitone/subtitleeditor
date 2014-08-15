@@ -107,6 +107,16 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builde
 				sigc::mem_fun(*this, &Application::player_drag_data_received));
 		m_video_player->drag_dest_set(targets, Gtk::DEST_DEFAULT_ALL, Gdk::DragAction(GDK_ACTION_COPY | GDK_ACTION_MOVE));
 	}
+	// open waveform or keyframes files with drag-and-drop in waveform view
+	{
+		std::vector<Gtk::TargetEntry> targets;
+
+		targets.push_back(Gtk::TargetEntry("text/uri-list", Gtk::TargetFlags(0), 0));
+		
+		m_waveform_editor->signal_drag_data_received().connect(
+				sigc::mem_fun(*this, &Application::waveform_drag_data_received));
+		m_waveform_editor->drag_dest_set(targets, Gtk::DEST_DEFAULT_ALL, Gdk::DragAction(GDK_ACTION_COPY | GDK_ACTION_MOVE));
+	}
 }
 
 /*
@@ -687,6 +697,23 @@ void Application::player_drag_data_received (const Glib::RefPtr<Gdk::DragContext
 		m_video_player->player()->open(uris[0]);
 	}
 }
+
+/*
+ */
+void Application::waveform_drag_data_received (const Glib::RefPtr<Gdk::DragContext>& /*context*/, int /*x*/, int /*y*/, const Gtk::SelectionData& selection_data, guint /*info*/, guint /*time*/)
+{
+	std::vector<Glib::ustring> uris = selection_data.get_uris();
+	for(guint i=0; i< uris.size(); ++i)
+	{
+		Glib::ustring uri = uris[i];
+		Glib::RefPtr<KeyFrames> kf = KeyFrames::create_from_file(uri);
+		if(kf)
+			m_video_player->player()->set_keyframes(kf);
+		else if(Glib::RefPtr<Waveform> wf = Waveform::create_from_file(uri))
+			m_waveform_editor->set_waveform(wf);
+	}
+}
+
 
 
 /*
