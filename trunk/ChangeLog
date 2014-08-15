@@ -1,3 +1,8 @@
+2014-08-15  kitone  <kitone@gna.org>
+
+	* configure.ac:
+	Fix gstreamer level test on old version.
+
 2014-08-14	kitone	<kitone@gna.org>
 
 	*  plugins/actions/keyframesmanagement/keyframesmanagement.cc
