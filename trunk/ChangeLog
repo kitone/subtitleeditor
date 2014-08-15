@@ -1,5 +1,11 @@
 2014-08-15  kitone  <kitone@gna.org>
 
+	* src/gui/application.cc:
+	* src/gui/application.h:
+	Fix bug #22471 : Drag and drop of keyframe and waveform files.
+
+2014-08-15  kitone  <kitone@gna.org>
+
 	* src/we/waveformeditor.cc:
 	* src/we/waveformeditor.h:
 	Only set sensitive to false on child.
