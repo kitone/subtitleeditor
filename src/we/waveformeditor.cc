@@ -80,7 +80,7 @@ WaveformEditor::WaveformEditor(BaseObjectType* cobject, const Glib::RefPtr<Gtk::
 	Config::getInstance().signal_changed("waveform").connect(
 			sigc::mem_fun(*this, &WaveformEditor::on_config_waveform_changed));
 	
-	set_sensitive(false);
+	set_child_sensitive(false);
 }
 
 /*
@@ -531,7 +531,7 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf)
 	else
 		std::cerr << "You need a WaveformRenderer!!" << std::endl;
 
-	set_sensitive((bool)wf && has_renderer());
+	set_child_sensitive((bool)wf && has_renderer());
 
 	m_signal_waveform_changed.emit();
 
@@ -782,7 +782,7 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev)
 {
 	se_debug(SE_DEBUG_WAVEFORM);
 
-	if(!has_renderer())
+	if(!has_renderer() || !has_waveform())
 		return true;
 
 	// the time of the mouse in the area
@@ -929,6 +929,15 @@ bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev)
 	}
 
 	return true;
+}
+
+/*
+ */
+void WaveformEditor::set_child_sensitive(bool status)
+{
+	m_hscrollbarWaveformRenderer->set_sensitive(status);
+	m_sliderZoom->set_sensitive(status);
+	m_sliderScale->set_sensitive(status);
 }
 
 /*

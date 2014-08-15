@@ -1,5 +1,11 @@
 2014-08-15  kitone  <kitone@gna.org>
 
+	* src/we/waveformeditor.cc:
+	* src/we/waveformeditor.h:
+	Only set sensitive to false on child.
+
+2014-08-15  kitone  <kitone@gna.org>
+
 	* configure.ac:
 	Fix gstreamer level test on old version.
 
