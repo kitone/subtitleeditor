@@ -166,6 +166,9 @@ protected:
 	 */
 	bool on_scroll_event_renderer(GdkEventScroll *ev);
 
+	/*
+	 */
+	void set_child_sensitive(bool status);
 protected:
 
 	/*
