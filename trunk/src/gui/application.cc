@@ -795,8 +795,6 @@ void Application::init_panel_multimedia()
  */
 void Application::on_paned_multimedia_visibility_child_changed()
 {
-	// FIXME: gtkmm3
-	return;
 	Gtk::Widget *child1 = m_paned_multimedia->get_child1();
 	Gtk::Widget *child2 = m_paned_multimedia->get_child2();
 
@@ -804,9 +802,9 @@ void Application::on_paned_multimedia_visibility_child_changed()
 	bool state2 = false;
 
 	if(child1 != NULL)
-		state1 = child1->is_visible();
+		state1 = child1->get_visible();
 	if(child2 != NULL)
-		state2 = child2->is_visible();
+		state2 = child2->get_visible();
 
 	if(state1 || state2)
 		m_paned_multimedia->show();
