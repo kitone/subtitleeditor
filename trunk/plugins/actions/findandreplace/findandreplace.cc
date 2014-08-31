@@ -530,7 +530,7 @@ public:
 		widget_config::read_config_and_connect(m_checkColumnText, "find-and-replace", "column-text");
 		widget_config::read_config_and_connect(m_checkColumnTranslation, "find-and-replace", "column-translation");
 
-		//m_comboboxPattern->grab_focus();
+		m_comboboxPattern->grab_focus();
 		m_comboboxPattern->get_entry()->signal_activate().connect(
 				sigc::bind(sigc::mem_fun(*this, &DialogFindAndReplace::on_response), FIND));
 

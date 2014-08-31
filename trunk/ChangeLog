@@ -1,5 +1,10 @@
 2014-08-31  kitone  <kitone@gna.org>
 
+	* plugins/actions/findandreplace/findandreplace.cc:
+	Fix bug #22494 : Find and replace sohuld focus the "Pattern" filed when launche.
+
+2014-08-31  kitone  <kitone@gna.org>
+
 	* plugins/actions/viewmanager/dialog-view-manager.ui:
 	Fix bug #22490 : GTK3: view manager is useless.
 
