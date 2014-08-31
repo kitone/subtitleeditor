@@ -251,7 +251,8 @@ protected:
 			if(beginning != Glib::ustring::npos)
 				text = text.substr(beginning, text.size());
 
-			info->replacement = get_replacement();
+      if(info)
+			  info->replacement = get_replacement();
 			if(!find(get_pattern(), get_pattern_options(), text, info))
 				return false;
 
@@ -1044,53 +1045,65 @@ protected:
 			return;
 		}
 
-		// try to start the search from the subtitle selected
-		Subtitle sub = subtitles.get_first_selected();
-
-		if(sub)
-		{
-			// Start from the previous/next subtitle
-			sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
-			while(sub)
-			{
-				if(FaR::instance().find_in_subtitle(sub, NULL))
-					break;	// found
-				sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
-			}
-
-			// if not found search again from the last
-			if(!sub)
-			{
-				sub = (backwards) ? subtitles.get_last() : subtitles.get_first();
-				while(sub)
-				{
-					if(FaR::instance().find_in_subtitle(sub, NULL))
-						break;
-					sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
-				}
-			}
-		}
-		else // start the search from the beginning/last
-		{
-			sub = (backwards) ? subtitles.get_last() : subtitles.get_first();
-			while(sub)
-			{
-				if(FaR::instance().find_in_subtitle(sub, NULL))
-					break;
-				sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
-			}
-		}
-
-		if(sub)	// found
-		{
-			doc->subtitles().select(sub);
-		}
-		else	// not found
-		{
-			doc->subtitles().unselect_all();
-			doc->flash_message(_("Not found"));
-		}
+    Subtitle sub;
+    if(search_from_current_position(sub, backwards) || search_from_beginning(sub, backwards))
+    {
+      subtitles.select(sub);
+    }
+    else
+    {
+      subtitles.unselect_all();
+      doc->flash_message(_("Not found"));
+    }
 	}
+
+  /*
+   * Start the search from the previous/next subtitle
+   */
+  bool search_from_current_position(Subtitle &res, bool backwards)
+  {
+    se_debug(SE_DEBUG_PLUGINS);
+
+    Subtitles subtitles = get_current_document()->subtitles();
+
+    Subtitle sub = subtitles.get_first_selected();
+    // selection empty? return invalid subtitle
+    if(!sub)
+      return false;
+ 
+    // Start from the previous/next subtitle
+    sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
+    while(sub)
+    {
+      if(FaR::instance().find_in_subtitle(sub, NULL))
+      {
+        res = sub;
+        return true;
+      }
+      sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
+    }
+    return false;
+  }
+
+  /*
+   */
+  bool search_from_beginning(Subtitle &res, bool backwards)
+  {
+    se_debug(SE_DEBUG_PLUGINS);
+ 
+    Subtitles subtitles = get_current_document()->subtitles();
+    Subtitle sub = (backwards) ? subtitles.get_last() : subtitles.get_first();
+    while(sub)
+    {
+      if(FaR::instance().find_in_subtitle(sub, NULL))
+      {
+        res = sub;
+        return true;
+      }
+      sub = (backwards) ? subtitles.get_previous(sub) : subtitles.get_next(sub);
+    }
+    return false;
+  }
 
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
