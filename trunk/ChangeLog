@@ -1,6 +1,11 @@
 2014-08-31  kitone  <kitone@gna.org>
 
 	* plugins/actions/findandreplace/findandreplace.cc:
+	Fix segfault and refactoring search function.
+
+2014-08-31  kitone  <kitone@gna.org>
+
+	* plugins/actions/findandreplace/findandreplace.cc:
 	Fix bug #22494 : Find and replace sohuld focus the "Pattern" filed when launche.
 
 2014-08-31  kitone  <kitone@gna.org>
