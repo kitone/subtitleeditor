@@ -1,3 +1,8 @@
+2014-08-31  kitone  <kitone@gna.org>
+
+	* plugins/actions/viewmanager/dialog-view-manager.ui:
+	Fix bug #22490 : GTK3: view manager is useless.
+
 2014-08-15  kitone  <kitone@gna.org>
 
 	* src/gui/application.cc:
