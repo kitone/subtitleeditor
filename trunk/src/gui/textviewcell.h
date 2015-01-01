@@ -28,7 +28,7 @@
 /*
  * Cell text editable with multiline support.
  */
-class TextViewCell : public Gtk::TextView, public Gtk::CellEditable
+class TextViewCell : public Gtk::CellEditable, public Gtk::TextView
 {
 public:
 

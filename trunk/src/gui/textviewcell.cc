@@ -30,10 +30,10 @@
  * Initialize the widget with the AutomaticSpellChecker.
  */
 TextViewCell::TextViewCell()
-:	Glib::ObjectBase(typeid(TextViewCell)),
-	Gtk::CellEditable(), 
+:	Gtk::CellEditable(),
 	m_editing_canceled(false), 
-	m_used_ctrl_enter_to_confirm_change(false)
+	m_used_ctrl_enter_to_confirm_change(false),
+    Glib::ObjectBase(typeid(TextViewCell))
 {
 	se_debug(SE_DEBUG_VIEW);
 
