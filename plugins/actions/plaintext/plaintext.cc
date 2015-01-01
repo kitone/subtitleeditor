@@ -115,9 +115,14 @@ protected:
 			try
 			{
 				Glib::ustring untitled = DocumentSystem::getInstance().create_untitled_name();
+				Glib::ustring	format = get_config().get_value_string("document", "format");
+				Glib::ustring untitled_fullname = Glib::build_filename(ui->get_current_folder(), untitled);
+
 				Document *doc = new Document();
 				SubtitleFormatSystem::instance().open_from_uri(doc, uri, charset, "Plain Text Format");
 				doc->setName(untitled);
+				doc->setFilename(untitled_fullname);
+				doc->setFormat(format); // override the plain text format with the prefered format setting
 				DocumentSystem::getInstance().append(doc);
 				
 			}
