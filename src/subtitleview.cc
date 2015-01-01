@@ -38,12 +38,12 @@
 /*
  *
  */
-class TimeCell : public Gtk::TextView, public Gtk::CellEditable
+class TimeCell : public Gtk::CellEditable, public Gtk::TextView
 {
 public:
 
 	TimeCell()
-	:Glib::ObjectBase(typeid(TimeCell)), Gtk::CellEditable()
+	:Gtk::CellEditable(), Glib::ObjectBase(typeid(TimeCell))
 	{
 		se_debug(SE_DEBUG_VIEW);
 	}
