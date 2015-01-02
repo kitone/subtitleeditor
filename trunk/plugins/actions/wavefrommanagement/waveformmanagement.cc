@@ -204,9 +204,6 @@ public:
 		wm->signal_waveform_changed().connect(
 				sigc::mem_fun(*this, &WaveformManagement::update_ui));
 
-		wm->signal_waveform_changed().connect(
-				sigc::mem_fun(*this, &WaveformManagement::on_waveform_changed));
-
 		get_config().signal_changed("waveform").connect(
 				sigc::mem_fun(*this, &WaveformManagement::on_config_waveform_changed));
 
@@ -304,6 +301,7 @@ protected:
 			{
 				get_waveform_manager()->set_waveform(wf);
 				add_in_recent_manager(wf->get_uri());
+				update_player_from_waveform();
 			}
 			else
 			{
@@ -312,6 +310,7 @@ protected:
 				{
 					get_waveform_manager()->set_waveform(wf);
 					on_save_waveform();
+					update_player_from_waveform();
 				}
 			}
 		}
@@ -435,7 +434,7 @@ protected:
 	 * Update the video player with the new Waveform
 	 * only if it's different.
 	 */
-	void on_waveform_changed()
+	void update_player_from_waveform()
 	{
 		Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
 		if(wf && get_subtitleeditor_window()->get_player()->get_uri() != wf->m_video_uri)
