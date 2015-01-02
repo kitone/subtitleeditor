@@ -21,6 +21,7 @@
  */
 
 #include <extension/subtitleformat.h>
+#include <filereader.h>
 #include <utility.h>
 #include <waveformmanager.h>
 #include <player.h>
@@ -49,6 +50,8 @@ public:
 	{
 		try
 		{
+			initalize_dirname(file);
+
 			xmlpp::DomParser parser;
 			//parser.set_validate();
 			parser.set_substitute_entities();
@@ -102,6 +105,39 @@ private:
 
 	/*
 	 */
+	void initalize_dirname(Reader &reader)
+	{
+		FileReader *fr = dynamic_cast<FileReader*>(&reader);
+		if(fr != NULL)
+		{
+			Glib::ustring filename = Glib::filename_from_uri(fr->get_uri());
+			m_project_dirname = Glib::path_get_dirname(filename);
+		}
+	}
+
+	/*
+	 */
+	bool test_uri(const Glib::ustring &uri)
+	{
+		return test_filename( Glib::filename_from_uri(uri) );
+	}
+
+	bool test_filename(const Glib::ustring &filename)
+	{
+		return Glib::file_test(filename, Glib::FILE_TEST_EXISTS);
+	}
+
+	/*
+	 */
+	Glib::ustring uri_to_project_relative_filename(const Glib::ustring &uri)
+	{
+		Glib::ustring basename = Glib::path_get_basename( Glib::filename_from_uri(uri) );
+		Glib::ustring relative = Glib::build_filename(m_project_dirname, basename);
+		return Glib::filename_to_uri(relative);
+	}
+
+	/*
+	 */
 	const xmlpp::Element* get_unique_children(const xmlpp::Node *root, const Glib::ustring &name)
 	{
 		const xmlpp::Node::NodeList children = root->get_children(name);
@@ -122,8 +158,13 @@ private:
 
 		Player *pl = SubtitleEditorWindow::get_instance()->get_player();
 
-		if(pl->get_uri() != uri)
-			pl->open(uri);
+		if(pl->get_uri() == uri)
+			return;
+
+		if(!test_uri(uri) &&  test_uri(uri_to_project_relative_filename(uri)) )
+			uri =  uri_to_project_relative_filename(uri);
+
+		pl->open(uri);
 	}
 
 	/*
@@ -151,8 +192,13 @@ private:
 			return;
 
 		Glib::ustring uri = xml_wf->get_attribute_value("uri");
-		if(!uri.empty())
-			SubtitleEditorWindow::get_instance()->get_waveform_manager()->open_waveform(uri);
+		if(uri.empty())
+			return;
+
+		if(!test_uri(uri) &&  test_uri(uri_to_project_relative_filename(uri)) )
+			uri =  uri_to_project_relative_filename(uri);
+
+		SubtitleEditorWindow::get_instance()->get_waveform_manager()->open_waveform(uri);
 	}
 
 	/*
@@ -183,10 +229,13 @@ private:
 		Glib::ustring uri = xml_kf->get_attribute_value("uri");
 		if(uri.empty())
 			return;
+
+		if(!test_uri(uri) &&  test_uri(uri_to_project_relative_filename(uri)) )
+			uri =  uri_to_project_relative_filename(uri);
+
 		Glib::RefPtr<KeyFrames> kf = KeyFrames::create_from_file(uri);
-		if(!kf)
-			return;
-		SubtitleEditorWindow::get_instance()->get_player()->set_keyframes(kf);
+		if(kf)
+			SubtitleEditorWindow::get_instance()->get_player()->set_keyframes(kf);
 	}
 
 	/*
@@ -369,6 +418,9 @@ private:
 			xmlsub->set_attribute("path", selection[i].get("path"));
 		}
 	}
+
+protected:
+	Glib::ustring m_project_dirname;
 };
 
 class SubtitleEditorProjectPlugin : public SubtitleFormat
