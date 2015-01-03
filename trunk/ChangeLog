@@ -1,5 +1,11 @@
 2015-01-03  kitone  <kitone@gna.org>
 
+	* plugins/actions/spellchecking/dialog-spell-checking.ui:
+	* plugins/actions/spellchecking/spellchecking.cc:
+	Fix bug #22488 : Regression in spellchecker.
+
+2015-01-03  kitone  <kitone@gna.org>
+
 	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:
 	Fix bug #22492 : Crash when trying to open external player preferences.
 
