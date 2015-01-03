@@ -237,6 +237,9 @@ protected:
 		// 
 		m_entryReplaceWith->signal_changed().connect(
 				sigc::mem_fun(*this, &DialogSpellChecking::update_status_from_replace_word));
+
+		m_entryReplaceWith->signal_activate().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_replace));
 	}
 
 	/*
@@ -280,6 +283,9 @@ protected:
 
 		m_treeviewSuggestions->get_selection()->signal_changed().connect(
 				sigc::mem_fun(*this, &DialogSpellChecking::on_suggestions_selection_changed));
+
+		m_treeviewSuggestions->signal_row_activated().connect(
+				sigc::mem_fun(*this, &DialogSpellChecking::on_suggestions_row_activated));
 	}
 
 	/*
@@ -603,6 +609,23 @@ protected:
 			Glib::ustring word = (*it)[col.string];
 
 			m_entryReplaceWith->set_text(word);
+		}
+	}
+
+	/*
+	 * Double click on the suggestion replace with the word activated
+	 */
+	void on_suggestions_row_activated(const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn *)
+	{
+		Gtk::TreeIter it = m_listSuggestions->get_iter(path);
+		if(it)
+		{
+			SuggestionColumn col;
+			Glib::ustring word = (*it)[col.string];
+
+			m_entryReplaceWith->set_text(word);
+
+			on_replace();
 		}
 	}
 
