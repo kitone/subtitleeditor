@@ -1,5 +1,10 @@
 2015-01-05  kitone  <kitone@gna.org>
 
+	* src/we/waveformeditor.cc:
+	Fix bug #22482 : Another regression of gtk3 port (waveform issue).
+
+2015-01-05  kitone  <kitone@gna.org>
+
 	* src/gui/spinbuttontime.cc:
 	Fix bug #22493 : Move subtitles disallows moves by not multiplies of 0,100s.
 
