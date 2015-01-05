@@ -524,7 +524,12 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf)
 
 	m_waveform = wf;
 
-	Config::getInstance().set_value_bool("waveform", "display", (bool)wf);
+	// Only show the wf view if it's not already visible
+	// Don't show or hide using the wf status
+	// bug #22482 : Another regression of gtk3 port
+	Config &cfg = Config::getInstance();
+	if(cfg.get_value_bool("waveform", "display") == false && wf)
+		cfg.set_value_bool("waveform", "display", true);
 
 	if(has_renderer())
 		renderer()->set_waveform(wf);
@@ -1168,12 +1173,7 @@ void WaveformEditor::on_config_waveform_changed(const Glib::ustring &key, const 
 	//	m_cfg_respect_gab_between_subtitles = utility::string_to_bool(value);
 	else if(key == "display")
 	{
-		bool state = utility::string_to_bool(value);
-		
-		if(state)
-			show();
-		else
-			hide();
+		utility::string_to_bool(value) ? show() : hide();
 	}
 	else if(key == "renderer")
 	{
