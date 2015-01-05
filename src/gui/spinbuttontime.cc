@@ -114,11 +114,9 @@ int SpinButtonTime::on_input(double *new_value)
 		Glib::ustring text = get_text();
 
 		if(SubtitleTime::validate(text))
-		{
 			*new_value = (double) SubtitleTime(text).totalmsecs;
-		}
 		else
-			g_warning("Invalid value");
+			*new_value = get_value();
 
 		return true;
 	}
@@ -149,9 +147,7 @@ bool SpinButtonTime::on_output()
 		
 	std::string text = build_message("%s%01d:%02d:%02d.%03d", sign.c_str(), time.hours(), time.minutes(), time.seconds(), time.mseconds());
 
-	set_numeric(false);
 	set_text(text);
-	set_numeric(true);
 
 	return true;
 }

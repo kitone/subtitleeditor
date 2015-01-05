@@ -1,3 +1,8 @@
+2015-01-05  kitone  <kitone@gna.org>
+
+	* src/gui/spinbuttontime.cc:
+	Fix bug #22493 : Move subtitles disallows moves by not multiplies of 0,100s.
+
 2015-01-03  kitone  <kitone@gna.org>
 
 	* plugins/actions/spellchecking/dialog-spell-checking.ui:
