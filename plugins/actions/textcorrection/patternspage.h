@@ -308,7 +308,7 @@ public:
 	 */
 	bool is_enable()
 	{
-		return is_visible();
+		return Config::getInstance().get_value_bool(m_page_name, "enabled");
 	}
 
 	/*
