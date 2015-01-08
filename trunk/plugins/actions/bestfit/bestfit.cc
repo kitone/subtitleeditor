@@ -198,6 +198,11 @@ protected:
 			totalchars += utility::get_text_length_for_timing( subtitles[i].get_text() );
 		}
 
+		// Avoid divide by zero
+		// Fix bug #23151 : Using best fit subtitles on zero-length subtitles crashes subtitleeditor
+		if(totalchars == 0)
+			return;
+
 		// Distribute available time between selected subtitles in proportion to the length of their text
 		long subchars = 0;
 		long prevchars = 0;
