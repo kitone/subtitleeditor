@@ -349,6 +349,8 @@ public:
 			column->pack_start(*renderer);
 			column->add_attribute(renderer->property_markup(), m_column.label);
 		}
+		m_treeview->signal_row_activated().connect(
+			sigc::mem_fun(*this, &PatternsPage::on_row_activated));
 	}
 
 	/*
@@ -365,6 +367,13 @@ public:
 			(*it)[m_column.enabled] = value;
 			m_patternManager.set_active(name, value);
 		}
+	}
+
+	/*
+	 */
+	void on_row_activated(const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn *)
+	{
+		on_enabled_toggled(path.to_string());
 	}
 
 	/*
