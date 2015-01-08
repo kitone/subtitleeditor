@@ -104,16 +104,18 @@ public:
 		}
 		// column Corrected
 		{
-			Gtk::TreeViewColumn* column = manage(new Gtk::TreeViewColumn(_("Corrected Text")));
-			m_treeview->append_column(*column);
+			m_column_corrected_text = manage(new Gtk::TreeViewColumn(_("Corrected Text")));
+			m_treeview->append_column(*m_column_corrected_text);
 
 			CellRendererCustom<TextViewCell>* renderer = manage(new CellRendererCustom<TextViewCell>);
-			column->pack_start(*renderer);
-			column->add_attribute(renderer->property_text(), m_column.corrected);
+			m_column_corrected_text->pack_start(*renderer);
+			m_column_corrected_text->add_attribute(renderer->property_text(), m_column.corrected);
 			renderer->property_editable() = true;
 			renderer->signal_edited().connect(
 					sigc::mem_fun(*this, &ComfirmationPage::on_corrected_edited));
 		}
+		m_treeview->signal_row_activated().connect(
+			sigc::mem_fun(*this, &ComfirmationPage::on_row_activated));
 	}
 
 	/*
@@ -254,6 +256,15 @@ protected:
 	}
 
 	/*
+	 */
+	void on_row_activated(const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn *column)
+	{
+		if(column == m_column_corrected_text)
+			return;
+		on_accept_toggled(path.to_string());
+	}
+
+	/*
 	 * Update the item text.
 	 */
 	void on_corrected_edited(const Glib::ustring &path, const Glib::ustring &text)
@@ -268,6 +279,7 @@ protected:
 	Column m_column;
 	Glib::RefPtr<Gtk::ListStore> m_liststore;
 	Gtk::TreeView* m_treeview;
+	Gtk::TreeViewColumn* m_column_corrected_text;
 	Gtk::Button* m_buttonMarkAll;
 	Gtk::Button* m_buttonUnmarkAll;
 	Gtk::CheckButton* m_checkRemoveBlank;
