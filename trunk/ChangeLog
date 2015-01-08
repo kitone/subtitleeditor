@@ -2,6 +2,12 @@
 
 	* plugins/actions/textcorrection/patternspage.h:
 	* plugins/actions/textcorrection/taskspage.h:
+	Fix bug #22489 : Text correction - ability to double click to swith enable status.
+
+2015-01-08  kitone  <kitone@gna.org>
+
+	* plugins/actions/textcorrection/patternspage.h:
+	* plugins/actions/textcorrection/taskspage.h:
 	Fix bug #22489 : Text correction does not remember which corrections to apply.
 
 2015-01-08  kitone  <kitone@gna.org>
