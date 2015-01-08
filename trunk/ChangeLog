@@ -1,5 +1,11 @@
 2015-01-08  kitone  <kitone@gna.org>
 
+	* plugins/actions/textcorrection/patternspage.h:
+	* plugins/actions/textcorrection/taskspage.h:
+	Fix bug #22489 : Text correction does not remember which corrections to apply.
+
+2015-01-08  kitone  <kitone@gna.org>
+
 	* plugins/actions/bestfit/bestfit.cc:
 	Fix bug #23151 : Using best fit subtitles on zero-length subtitles crashes subtitleeditor
 

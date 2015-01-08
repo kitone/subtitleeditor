@@ -106,7 +106,7 @@ public:
 	{
 		Gtk::TreeIter it;
 		it = m_liststore->append();
-		(*it)[m_column.enabled] = page->is_visible();
+		(*it)[m_column.enabled] = page->is_enable();
 		(*it)[m_column.label] = Glib::ustring::compose("<b>%1</b>\n%2", page->get_page_label(), page->get_page_description());
 		(*it)[m_column.page] = page;
 	}
