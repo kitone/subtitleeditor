@@ -1,3 +1,10 @@
+2015-01-09  kitone  <kitone@localhost.localdomain>
+
+	* plugins/actions/textcorrection/patternspage.h:
+	* plugins/actions/textcorrection/textcorrection.cc:
+	Fix bug #22489 : Text correction - Fix error introduce with the previous
+	commit and only display close button without errors.
+
 2015-01-08  kitone  <kitone@gna.org>
 
 	* plugins/actions/textcorrection/confirmationpage.h:

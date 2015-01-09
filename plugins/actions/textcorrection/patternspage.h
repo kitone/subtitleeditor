@@ -297,10 +297,9 @@ public:
 	 */
 	void set_enable(bool state)
 	{
-		if(state)
-			show();
-		else
-			hide();
+		Config::getInstance().set_value_bool(m_page_name, "enabled", state);
+
+		(state) ? show() : hide();
 	}
 
 	/*
@@ -541,7 +540,7 @@ public:
 		cfg.set_value_string(m_page_name, "script", get_script());
 		cfg.set_value_string(m_page_name, "language", get_language());
 		cfg.set_value_string(m_page_name, "country", get_country());
-		cfg.set_value_bool(m_page_name, "enabled", is_visible());
+		cfg.set_value_bool(m_page_name, "enabled", is_enable());
 	}
 
 
