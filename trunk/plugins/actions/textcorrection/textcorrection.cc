@@ -58,6 +58,9 @@ public:
 			if(page)
 				m_tasksPage->add_task(page);
 		}
+
+		set_page_type(*get_nth_page(0), Gtk::ASSISTANT_PAGE_INTRO);
+		set_page_type(*get_nth_page(get_n_pages()-1), Gtk::ASSISTANT_PAGE_CONFIRM);
 	}
 
 	/*
@@ -86,6 +89,7 @@ public:
 
 		insert_page(*page, pos);
 		set_page_title(*page, page->get_page_title());
+		set_page_type(*page, Gtk::ASSISTANT_PAGE_CONTENT);
 	}
 
 	/*
@@ -100,8 +104,11 @@ public:
 		if(ap && ap == m_comfirmationPage)
 		{
 			bool res = m_comfirmationPage->comfirme(doc, get_patterns());
-			set_page_complete(*page, res);
+			set_page_complete(*page, true);
 			set_page_title(*page, m_comfirmationPage->get_page_title());
+			// No change, only display the close button
+			if(!res)
+				set_page_type(*m_comfirmationPage, Gtk::ASSISTANT_PAGE_SUMMARY);
 		}
 		else
 			set_page_complete(*page, true);
