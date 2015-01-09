@@ -1,4 +1,9 @@
-2015-01-09  kitone  <kitone@localhost.localdomain>
+2015-01-09  kitone  <kitone@gna.org>
+
+	* plugins/actions/textcorrection/textcorrection.cc:
+	Fix bug #22489 : Text correction - save the config, on close, save and cancel.
+
+2015-01-09  kitone  <kitone@gna.org>
 
 	* plugins/actions/textcorrection/patternspage.h:
 	* plugins/actions/textcorrection/textcorrection.cc:

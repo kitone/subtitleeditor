@@ -145,8 +145,6 @@ public:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		m_comfirmationPage->apply(doc);
-		
-		se_debug_message(SE_DEBUG_PLUGINS, "save config...");
 
 		save_cfg();
 	}
@@ -157,6 +155,9 @@ public:
 	void on_cancel()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
+
+		save_cfg();
+
 		//destroy_();
 		delete this;
 	}
@@ -167,6 +168,9 @@ public:
 	void on_close()
 	{
 		se_debug(SE_DEBUG_PLUGINS);
+
+		save_cfg();
+
 		//destroy_();
 		delete this;
 	}
