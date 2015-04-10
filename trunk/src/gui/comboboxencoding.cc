@@ -173,7 +173,7 @@ void ComboBoxEncoding::on_combo_changed()
 
 	if(activated == size-1)
 	{
-		std::auto_ptr<DialogCharacterCodings> dialog = DialogCharacterCodings::create();
+		std::auto_ptr<DialogCharacterCodings> dialog = DialogCharacterCodings::create(*dynamic_cast<Gtk::Window*>(get_toplevel()));
 		if(dialog->run() == Gtk::RESPONSE_OK)
 		{
 			init_encodings();

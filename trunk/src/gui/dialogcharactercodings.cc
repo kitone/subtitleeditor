@@ -32,8 +32,6 @@
 DialogCharacterCodings::DialogCharacterCodings(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
 :Gtk::Dialog(cobject)
 {
-	utility::set_transient_parent(*this);
-
 	builder->get_widget("treeview-available", treeviewAvailable);
 	builder->get_widget("treeview-displayed", m_treeviewDisplayed);
 	builder->get_widget("button-add", m_buttonAdd);
@@ -213,11 +211,11 @@ void DialogCharacterCodings::on_button_remove()
 {
 	std::vector<Gtk::TreeModel::Path> rows;
 
-	Glib::RefPtr<Gtk::TreeSelection> selection =  m_treeviewDisplayed->get_selection();
+	rows = m_treeviewDisplayed->get_selection()->get_selected_rows();
 
-	while(!(rows = selection->get_selected_rows()).empty())
+	for(std::vector<Gtk::TreeModel::Path>::reverse_iterator iter = rows.rbegin(); iter!= rows.rend(); ++iter)
 	{
-		Gtk::TreeIter it = m_storeDisplayed->get_iter(rows[0]);
+		Gtk::TreeIter it = m_storeDisplayed->get_iter(*iter);
 		m_storeDisplayed->erase(it);
 	}
 }
@@ -298,13 +296,13 @@ void DialogCharacterCodings::on_row_displayed_activated(const Gtk::TreeModel::Pa
  * Create an instance of the dialog .ui file)
  * If the response is OK the config is saved.
  */
-std::auto_ptr<DialogCharacterCodings> DialogCharacterCodings::create()
+std::auto_ptr<DialogCharacterCodings> DialogCharacterCodings::create(Gtk::Window &parent)
 {
 	std::auto_ptr<DialogCharacterCodings> ptr(
 			gtkmm_utility::get_widget_derived<DialogCharacterCodings>(
 				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
 				"dialog-character-codings.ui", 
 				"dialog-character-codings") );
-
+	ptr->set_transient_for(parent);
 	return ptr;
 }
