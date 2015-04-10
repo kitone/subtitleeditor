@@ -1,3 +1,8 @@
+2015-04-11  kitone  <kitone@gna.org>
+
+	* share/ui/dialog-character-codings.ui:
+	Restore dependency to gtk+ 3.10.
+
 2015-04-10  kitone  <kitone@gna.org>
 
 	* share/ui/dialog-character-codings.ui:
