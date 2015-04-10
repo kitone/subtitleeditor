@@ -1,3 +1,11 @@
+2015-04-10  kitone  <kitone@gna.org>
+
+	* share/ui/dialog-character-codings.ui:
+	* src/gui/comboboxencoding.cc:
+	* src/gui/dialogcharactercodings.cc:
+	* src/gui/dialogcharactercodings.h:
+	Fix bug #23456 : GTK3 regression: add or remove encoding dialog is broken.
+
 2015-01-10  kitone  <kitone@gna.org>
 
 	* plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui:
