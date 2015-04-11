@@ -219,7 +219,7 @@ protected:
 	// controls
 	Gtk::Button* m_button_play;
 	Gtk::Button* m_button_pause;
-	Gtk::HScale* m_hscale_seek;
+	Gtk::Scale* m_hscale_seek;
 	bool m_current_seek;
 	sigc::connection m_connection_scale_changed;
 	Player* m_player;

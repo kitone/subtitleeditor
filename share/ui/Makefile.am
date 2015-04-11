@@ -1,7 +1,6 @@
 uidir = $(PACKAGE_SHARE_DIR)/ui/
 
 ui_DATA = \
-					dialog-encodings-chooser.ui \
 					dialog-script-properties.ui \
 					dialog-open-document.ui \
 					dialog-save-document.ui \

@@ -345,7 +345,7 @@ protected:
 
 protected:
 	Gtk::Frame*				m_frameWaveformRenderer;
-	Gtk::HScrollbar*	m_hscrollbarWaveformRenderer;
+	Gtk::Scrollbar*		m_hscrollbarWaveformRenderer;
 	Gtk::Scale*				m_sliderZoom;
 	Gtk::Scale*				m_sliderScale;
 
