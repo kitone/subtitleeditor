@@ -1,5 +1,10 @@
 2015-04-11  kitone  <kitone@gna.org>
 
+	* POTFILES.in:
+	remove delete file.
+
+2015-04-11  kitone  <kitone@gna.org>
+
 	* es.po:
 	Update es.po translation by Bas <basiliscoazu>
 
