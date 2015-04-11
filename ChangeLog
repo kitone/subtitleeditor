@@ -1,5 +1,25 @@
 2015-04-11  kitone  <kitone@gna.org>
 
+	* NEWS:
+	* configure.ac:
+	Preparing 0.50.0 release.
+
+2015-04-11  kitone  <kitone@gna.org>
+
+	* share/ui/Makefile.am:
+	* share/ui/dialog-character-codings.ui:
+	* share/ui/dialog-encodings-chooser.ui:
+	* share/ui/dialog-export-text.ui:
+	* share/ui/dialog-import-text.ui:
+	* share/ui/dialog-open-document.ui:
+	* share/ui/dialog-save-document.ui:
+	* share/ui/subtitleeditor.ui:
+	* src/vp/videoplayer.cc:
+	* src/we/waveformeditor.h:
+	Remove deprecated widget.
+
+2015-04-11  kitone  <kitone@gna.org>
+
 	* share/ui/dialog-character-codings.ui:
 	Restore dependency to gtk+ 3.10.
 

@@ -1,3 +1,36 @@
+2015-04-11 - 0.50.0
+
+	* Port to gtk3 (gtkmm-3.0 >= 3.0)
+	* Port to gstreamer 1.0 (gstreamermm-1.0 >= 1.0)
+	* Introduce new subtitle format Avid DS. Patch by Tomas Partl <eltomito>.
+	* Introduce appdata file from Ankur Sinha (Fedora Maintainer).
+	* Fix typo. Patch by Pete Beardmore.
+	* Re-enable focus on entries. Patch by Pete Beardmore.
+	* Extend regex remplacement using submatches. Patch by Pete Beardmore.
+	* Fix segfault when we delete subtitle using find and replace (Original patch by Pete Beardmore)
+	* Fix bug #22009 : Split subtitle file.
+	* Fix bug #22406 : Bugs with GTk3 port (seeking by single frame).
+	* Fix bug #22406 : Bugs with GTk3 port (Generating waveform does not work).
+	* Fix bug #20557 : When working with subtitleeditor project, external player does not load it
+	* Fix bug #22472 : Recent keyfroms files.
+	* Fix bug #22471 : Drag and drop of keyframe and waveform files.
+	* Fix bug #22490 : GTK3: view manager is useless.
+	* Fix bug #22494 : Find and replace sohuld focus the "Pattern" filed when launche.
+	* Fix bug #22857, bug #23018 patch from Philip Rinn and oi_wtf.
+	* Fix bug #22550 : Default saving mode defaults to plain text after importing a .txt script
+	* Fix bug #22508 : Use (at least optionaly) relative paths in subtitle editor xml files (and optionally ass and ssa?).
+	* Fix bug #22492 : Crash when trying to open external player preferences.
+	* Fix bug #22488 : Regression in spellchecker.
+	* Fix bug #22493 : Move subtitles disallows moves by not multiplies of 0,100s.
+	* Fix bug #22482 : Another regression of gtk3 port (waveform issue).
+	* Fix bug #23151 : Using best fit subtitles on zero-length subtitles crashes subtitleeditor
+	* Fix bug #22489 : Text correction does not remember which corrections to apply.
+	* Fix bug #22489 : Text correction - ability to double click to swith enable status.
+	* Fix bug #22489 : Text correction - save the config, on close, save and cancel.
+	* Fix bug #23160 : Configure keyboard shortcuts does not fit hte window well.
+	* Fix bug #23456 : GTK3 regression: add or remove encoding dialog is broken.
+	* Update es.po translation by Bas <basiliscoazu>
+
 2013-08-02 - 0.41.0
 
 	* Fix bug #19700 : Add "select none" to Selection menu.
