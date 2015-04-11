@@ -1,5 +1,10 @@
 2015-04-11  kitone  <kitone@gna.org>
 
+	* subtitleeditor.pot:
+	Update with last string.
+
+2015-04-11  kitone  <kitone@gna.org>
+
 	* POTFILES.in:
 	remove delete file.
 
