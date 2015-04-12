@@ -98,6 +98,18 @@ DialogFileChooser::DialogFileChooser(BaseObjectType* cobject, const Glib::ustrin
 }
 
 /*
+ */
+DialogFileChooser::DialogFileChooser(const Glib::ustring &title, Gtk::FileChooserAction action, const Glib::ustring &name)
+:Gtk::FileChooserDialog(title, action), m_name(name)
+{
+	Glib::ustring last;
+	if(Config::getInstance().get_value_string("dialog-last-folder", m_name, last))
+		set_current_folder_uri(last);
+
+	utility::set_transient_parent(*this);
+}
+
+/*
  *
  */
 DialogFileChooser::~DialogFileChooser()
@@ -122,6 +134,29 @@ void DialogFileChooser::set_current_filter(const Glib::ustring &subtitleformat_n
 		return;
 	}
 }
+
+/*
+ * This can be use to setup the document name based on video uri
+ */
+void DialogFileChooser::set_filename_from_another_uri(const Glib::ustring &another_uri, const Glib::ustring &ext)
+{
+	try
+	{
+		Glib::ustring filename = Glib::filename_from_uri(another_uri);
+		Glib::ustring pathname = Glib::path_get_dirname(filename);
+		Glib::ustring basename = Glib::path_get_basename(filename);
+
+		basename = utility::add_or_replace_extension(basename, ext);
+
+		set_current_folder(pathname); // set_current_folder_uri ?
+		set_current_name(basename);
+	}
+	catch(const Glib::Exception &ex)
+	{
+		std::cerr << "set_filename_from_another_uri failed : " << ex.what() << std::endl;
+	}
+}
+
 
 
 /*
