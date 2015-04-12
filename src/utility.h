@@ -223,7 +223,10 @@ namespace utility
 	 *
 	 */
 	void set_transient_parent(Gtk::Window &window);
-	
+
+	/*
+	 */
+	Glib::ustring add_or_replace_extension(const Glib::ustring &filename, const Glib::ustring &extension);
 }
 
 #endif//_utility_h

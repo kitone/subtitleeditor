@@ -1,5 +1,12 @@
 2015-04-12  kitone  <kitone@gna.org>
 
+	* src/gui/dialogfilechooser.cc:
+	* src/utility.cc:
+	* src/utility.h:
+	Refactoring code to change extension of filename (dialog save document).
+
+2015-04-12  kitone  <kitone@gna.org>
+
 	* configure.ac:
 	Switching back to development version.
 
