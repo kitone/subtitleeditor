@@ -25,6 +25,7 @@
 #include <utility.h>
 #include <gui/dialogfilechooser.h>
 #include <vector>
+#include <subtitleformatsystem.h>
 
 /*
  *
@@ -366,15 +367,22 @@ protected:
 
 		g_return_val_if_fail(doc, false);
 
+		Glib::ustring format = default_format.empty() ? doc->getFormat() : default_format;
+
 		DialogSaveDocument::auto_ptr dialog = DialogSaveDocument::create();
 
 		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS))
 			dialog->set_filename(doc->getFilename());
+		else if(SubtitleEditorWindow::get_instance()->get_player()->get_state() != Player::NONE)
+		{
+			dialog->set_filename_from_another_uri(
+				SubtitleEditorWindow::get_instance()->get_player()->get_uri(),
+				SubtitleFormatSystem::instance().get_extension_of_format(format));
+		}
 		else
 			dialog->set_current_name(doc->getName());
 
-		dialog->set_format(
-				default_format.empty() ? doc->getFormat() : default_format);
+		dialog->set_format(format);
 		dialog->set_encoding(doc->getCharset());
 		dialog->set_newline(doc->getNewLine());
 		dialog->set_do_overwrite_confirmation(true);
@@ -388,7 +396,7 @@ protected:
 
 		Glib::ustring filename = dialog->get_filename();
 		Glib::ustring uri = dialog->get_uri();
-		Glib::ustring format = dialog->get_format();
+		format = dialog->get_format();
 		Glib::ustring encoding = dialog->get_encoding();
 		Glib::ustring newline = dialog->get_newline();
 
