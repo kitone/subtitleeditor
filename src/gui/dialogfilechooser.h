@@ -72,6 +72,11 @@ public:
 	 */
 	void set_filename_from_another_uri(const Glib::ustring &another_uri, const Glib::ustring &ext);
 
+	/*
+	 * Internally call set_current_folder and set_current_name with dirname and basename
+	 */
+	void set_current_folder_and_name(const Glib::ustring &filename);
+
 protected:
 	Glib::ustring m_name;
 };

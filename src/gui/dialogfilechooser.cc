@@ -157,6 +157,14 @@ void DialogFileChooser::set_filename_from_another_uri(const Glib::ustring &anoth
 	}
 }
 
+/*
+ * Internally call set_current_folder and set_current_name with dirname and basename
+ */
+void DialogFileChooser::set_current_folder_and_name(const Glib::ustring &filename)
+{
+	set_current_folder( Glib::path_get_dirname(filename) );
+	set_current_name( Glib::path_get_basename(filename) );
+}
 
 
 /*
@@ -345,12 +353,10 @@ Glib::ustring DialogSaveDocument::get_newline() const
  */
 void DialogSaveDocument::on_combo_format_changed()
 {
-	Glib::ustring filename = get_filename();
-	if(filename.empty())
-		return;
+	Glib::ustring basename = get_current_name();
 
-	// Only work with the name of the file
-	Glib::ustring basename = Glib::path_get_basename(filename);
+	if(basename.empty())
+		return;
 
 	// Try to get the extension from the format
 	SubtitleFormatInfo sfinfo;

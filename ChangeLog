@@ -1,6 +1,13 @@
 2015-04-12  kitone  <kitone@gna.org>
 
 	* plugins/actions/documentmanagement/documentmanagement.cc:
+	* src/gui/dialogfilechooser.cc:
+	* src/gui/dialogfilechooser.h:
+	Fix bug #20672 : Automatically put the extension when saving a project file
+
+2015-04-12  kitone  <kitone@gna.org>
+
+	* plugins/actions/documentmanagement/documentmanagement.cc:
 	* src/documentsystem.cc:
 	* src/documentsystem.h:
 	Fix bug #23148 : Create new untilted name with extension.

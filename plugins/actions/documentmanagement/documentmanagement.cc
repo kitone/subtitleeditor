@@ -373,7 +373,9 @@ protected:
 		DialogSaveDocument::auto_ptr dialog = DialogSaveDocument::create();
 
 		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS))
-			dialog->set_filename(doc->getFilename());
+		{
+			dialog->set_current_folder_and_name(doc->getFilename());
+		}
 		else if(SubtitleEditorWindow::get_instance()->get_player()->get_state() != Player::NONE)
 		{
 			dialog->set_filename_from_another_uri(
@@ -381,7 +383,9 @@ protected:
 				SubtitleFormatSystem::instance().get_extension_of_format(format));
 		}
 		else
+		{
 			dialog->set_current_name(doc->getName());
+		}
 
 		dialog->set_format(format);
 		dialog->set_encoding(doc->getCharset());
