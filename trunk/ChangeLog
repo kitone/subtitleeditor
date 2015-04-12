@@ -1,5 +1,12 @@
 2015-04-12  kitone  <kitone@gna.org>
 
+	* share/ui/subtitleeditor.ui:
+	* src/gui/application.cc:
+	* src/gui/application.h:
+	Fix bug #22476 : Remember video and waveform window size
+
+2015-04-12  kitone  <kitone@gna.org>
+
 	* plugins/actions/documentmanagement/documentmanagement.cc:
 	* src/gui/dialogfilechooser.cc:
 	* src/gui/dialogfilechooser.h:

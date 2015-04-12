@@ -161,9 +161,12 @@ protected:
 
 	void update_title(Document *doc);
 
+	void load_window_state();
+	void save_window_sate();
 protected:
 	Gtk::Box*				m_vboxMain;
 	MenuBar					m_menubar;
+	Gtk::Paned*			m_paned_main;
 	Gtk::Paned*			m_paned_multimedia;
 	VideoPlayer*		m_video_player;
 	WaveformEditor*	m_waveform_editor;
