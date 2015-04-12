@@ -52,6 +52,11 @@ public:
 	DialogFileChooser(BaseObjectType* cobject, const Glib::ustring &name);
 
 	/*
+	 */
+	DialogFileChooser(const Glib::ustring &title, Gtk::FileChooserAction action, const Glib::ustring &name);
+
+
+	/*
 	 *
 	 */
 	virtual ~DialogFileChooser();
@@ -61,6 +66,11 @@ public:
 	 * ex: 'Subtitle Editor Project', 'SubRip', 'MicroDVD' ...
 	 */
 	void set_current_filter(const Glib::ustring &subtitleformat_name);
+
+	/*
+	 * This can be use to setup the document name based on video uri
+	 */
+	void set_filename_from_another_uri(const Glib::ustring &another_uri, const Glib::ustring &ext);
 
 protected:
 	Glib::ustring m_name;
