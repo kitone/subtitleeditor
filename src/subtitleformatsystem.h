@@ -88,6 +88,11 @@ public:
 	 */
 	bool is_supported(const Glib::ustring &format);
 
+	/*
+	 * Return quickly the extension used by the format or an empty string
+	 */
+	Glib::ustring get_extension_of_format(const Glib::ustring &format);
+
 protected:
 
 	/*

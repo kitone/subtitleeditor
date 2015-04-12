@@ -335,3 +335,14 @@ SubtitleFormatList SubtitleFormatSystem::get_subtitle_format_list()
 	return list;
 }
 
+/*
+ * Return quickly the extension used by the format or an empty string
+ */
+Glib::ustring SubtitleFormatSystem::get_extension_of_format(const Glib::ustring &format)
+{
+	SubtitleFormatInfo info;
+	if(SubtitleFormatSystem::instance().get_info(format, info))
+		return info.extension;
+	return Glib::ustring();
+}
+

@@ -1,5 +1,11 @@
 2015-04-12  kitone  <kitone@gna.org>
 
+	* src/subtitleformatsystem.cc:
+	* src/subtitleformatsystem.h:
+	Add method get_extension_of_format.
+
+2015-04-12  kitone  <kitone@gna.org>
+
 	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
 	Refactoring, using the set_filename_from_another_uri introduce in the previous commit.
 
