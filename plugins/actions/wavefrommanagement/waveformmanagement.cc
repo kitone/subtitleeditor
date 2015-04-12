@@ -377,12 +377,11 @@ protected:
 		Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
 		if(wf)
 		{
-			Gtk::FileChooserDialog ui(_("Save Waveform"), Gtk::FILE_CHOOSER_ACTION_SAVE);
+			DialogFileChooser ui(_("Save Waveform"), Gtk::FILE_CHOOSER_ACTION_SAVE, "dialog-save-waveform");
 			ui.add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
 			ui.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
 			ui.set_default_response(Gtk::RESPONSE_OK);
-
-			set_default_filename_from_video(&ui, wf->get_video_uri(), "wf");
+			ui.set_filename_from_another_uri(wf->get_video_uri(), "wf");
 
 			if(ui.run() == Gtk::RESPONSE_OK)
 			{
@@ -403,31 +402,6 @@ protected:
 		Glib::RefPtr<Waveform> wf(NULL);
 
 		get_waveform_manager()->set_waveform(wf);
-	}
-
-	/*
-	 */
-	void set_default_filename_from_video(Gtk::FileChooser *fc, const Glib::ustring &video_uri, const Glib::ustring &ext)
-	{
-		try
-		{
-			Glib::ustring videofn = Glib::filename_from_uri(video_uri);
-			Glib::ustring pathname = Glib::path_get_dirname(videofn);
-			Glib::ustring basename = Glib::path_get_basename(videofn);
-
-			Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*)(\\.)(.*)$");
-			if(re->match(basename))
-				basename = re->replace(basename, 0, "\\1." + ext, Glib::RegexMatchFlags(0));
-			else
-				basename = Glib::ustring::compose("%1.%2", basename, ext);
-		
-			fc->set_current_folder(pathname); // set_current_folder_uri ?
-			fc->set_current_name(basename);
-		}
-		catch(const Glib::Exception &ex)
-		{
-			std::cerr << "set_default_filename_from_video failed : " << ex.what() << std::endl;
-		}
 	}
 
 	/*
