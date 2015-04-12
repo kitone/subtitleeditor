@@ -41,6 +41,7 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builde
 	builder->get_widget_derived("statusbar", m_statusbar);
 
 	builder->get_widget("vbox-main", m_vboxMain);
+	builder->get_widget("paned-main", m_paned_main);
 	builder->get_widget("paned-multimedia", m_paned_multimedia);
 	builder->get_widget_derived("video-player", m_video_player);
 	builder->get_widget_derived("waveform-editor", m_waveform_editor);
@@ -158,6 +159,8 @@ void Application::load_config()
 		cfg.set_value_string("encodings", "encodings", "ISO-8859-15;UTF-8");
 		cfg.set_value_bool("encodings", "used-auto-detected", true);
 	}
+
+	load_window_state();
 }
 
 /*
@@ -171,6 +174,8 @@ bool Application::on_delete_event(GdkEventAny *ev)
 
 	Glib::ustring path_se_accelmap = get_config_dir("accelmap");
 	Gtk::AccelMap::save(path_se_accelmap);
+
+	save_window_sate();
 
 	return res;
 }
@@ -812,3 +817,27 @@ void Application::on_paned_multimedia_visibility_child_changed()
 		m_paned_multimedia->hide();
 }
 
+/*
+ */
+void Application::load_window_state()
+{
+	Config &cfg = Config::getInstance();
+
+	int panel_main_position = cfg.get_value_int("interface", "paned-main-position");
+	if(panel_main_position > 0)
+		m_paned_main->set_position(panel_main_position);
+
+	int panel_multimedia_position = cfg.get_value_int("interface", "paned-multimedia-position");
+	if(panel_multimedia_position > 0)
+		m_paned_multimedia->set_position(panel_multimedia_position);
+}
+
+/*
+ */
+void Application::save_window_sate()
+{
+	Config &cfg = Config::getInstance();
+
+	cfg.set_value_int("interface", "paned-main-position", m_paned_main->get_position());
+	cfg.set_value_int("interface", "paned-multimedia-position", m_paned_multimedia->get_position());
+}
