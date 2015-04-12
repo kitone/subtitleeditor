@@ -190,19 +190,21 @@ Document* DocumentSystem::getDocument(const Glib::ustring &filename)
 /*
  *	find a unique name (like "Untitled-5") for a new document
  */
-Glib::ustring DocumentSystem::create_untitled_name()
+Glib::ustring DocumentSystem::create_untitled_name(const Glib::ustring &extension)
 {
 	se_debug(SE_DEBUG_PLUGINS);
+
+	Glib::ustring ext = extension.empty() ? "" : "." + extension;
 
 	const gchar *untitled = _("Untitled %d");
 
 	unsigned int i=1;
 		
-	while(check_if_document_name_exist(build_message(untitled, i)))
+	while(check_if_document_name_exist(build_message(untitled, i) + ext))
 	{
 		++i;
 	}
-	return build_message(untitled, i);
+	return build_message(untitled, i) + ext;
 }
 
 /*
