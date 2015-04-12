@@ -1,5 +1,10 @@
 2015-04-12  kitone  <kitone@gna.org>
 
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	Fix bug #23148 : Default to video file name when saving new subtitles.
+
+2015-04-12  kitone  <kitone@gna.org>
+
 	* src/subtitleformatsystem.cc:
 	* src/subtitleformatsystem.h:
 	Add method get_extension_of_format.
