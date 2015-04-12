@@ -321,15 +321,8 @@ void DialogSaveDocument::on_combo_format_changed()
 	SubtitleFormatInfo sfinfo;
 	if(SubtitleFormatSystem::instance().get_info(get_format(), sfinfo) == false)
 		return;
-	
-	// Test if the name already have an extension then replace the 
-	// previous extension by the new one or simply add the extension to the name.
-	Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*)(\\.)(.*)$");
-	if(re->match(basename))
-		basename = re->replace(basename, 0, "\\1." + sfinfo.extension, Glib::RegexMatchFlags(0));
-	else
-		basename = basename + "." + sfinfo.extension;
-
+	// Change the extension according to the format selected
+	basename = utility::add_or_replace_extension(basename, sfinfo.extension);
 	// Update only the current name
 	set_current_name(basename);
 }

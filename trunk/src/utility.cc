@@ -392,5 +392,18 @@ namespace utility
 			window.set_transient_for(*root);
 	}
 
+	/*
+	 */
+	Glib::ustring add_or_replace_extension(const Glib::ustring &filename, const Glib::ustring &extension)
+	{
+		Glib::ustring renamed;
+		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*)(\\.)(.*)$");
+		if(re->match(filename))
+			renamed = re->replace(filename, 0, "\\1." + extension, Glib::RegexMatchFlags(0));
+		else
+			renamed = filename + "." + extension;
+		return renamed;
+	}
+
 }//namespace utility
 
