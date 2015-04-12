@@ -246,7 +246,8 @@ protected:
 
 		g_return_if_fail(doc);
 
-		doc->setFilename(DocumentSystem::getInstance().create_untitled_name());
+		Glib::ustring ext = SubtitleFormatSystem::instance().get_extension_of_format(doc->getFormat());
+		doc->setFilename(DocumentSystem::getInstance().create_untitled_name(ext));
 
 		DocumentSystem::getInstance().append(doc);
 	}

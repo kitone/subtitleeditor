@@ -87,7 +87,7 @@ public:
 	/*
 	 * Find a unique name (like "Untitled-5") for a new document
 	 */
-	Glib::ustring create_untitled_name();
+	Glib::ustring create_untitled_name(const Glib::ustring &extension = "");
 
 	/*
 	 * Check with other document if this name exist

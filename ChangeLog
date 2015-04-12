@@ -1,6 +1,13 @@
 2015-04-12  kitone  <kitone@gna.org>
 
 	* plugins/actions/documentmanagement/documentmanagement.cc:
+	* src/documentsystem.cc:
+	* src/documentsystem.h:
+	Fix bug #23148 : Create new untilted name with extension.
+
+2015-04-12  kitone  <kitone@gna.org>
+
+	* plugins/actions/documentmanagement/documentmanagement.cc:
 	Fix bug #23148 : Default to video file name when saving new subtitles.
 
 2015-04-12  kitone  <kitone@gna.org>
