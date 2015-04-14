@@ -23,6 +23,7 @@
 #include <extension/action.h>
 #include <utility.h>
 #include <gtkmm_utility.h>
+#include <player.h>
 #include <widget_config_utility.h>
 #include <gui/dialogfilechooser.h>
 #include <gui/comboboxsubtitleformat.h>
@@ -42,8 +43,16 @@ public:
 		xml->get_widget("check-use-format", m_checkUseFormat);
 		widget_config::read_config_and_connect(m_checkUseFormat, "external-video-player", "use-format");
 
+		xml->get_widget("check-use-video-player-file", m_checkUseVideoPlayerFile);
+		widget_config::read_config_and_connect(m_checkUseVideoPlayerFile, "external-video-player", "use-video-player-file");
+
 		xml->get_widget_derived("combo-format", m_comboFormat);
 		widget_config::read_config_and_connect(m_comboFormat, "external-video-player", "format");
+
+		xml->get_widget("spin-offset", m_spinOffset);
+		widget_config::read_config_and_connect(m_spinOffset, "external-video-player", "offset");
+
+		utility::set_transient_parent(*this);
 	}
 
 	static void create()
@@ -59,7 +68,9 @@ public:
 
 protected:
 	Gtk::CheckButton* m_checkUseFormat;
+	Gtk::CheckButton* m_checkUseVideoPlayerFile;
 	ComboBoxSubtitleFormat* m_comboFormat;
+	Gtk::SpinButton* m_spinOffset;
 };
 
 /*
@@ -167,6 +178,13 @@ public:
 
 		g_return_if_fail(doc);
 
+		if(get_config().get_value_bool("external-video-player", "use-video-player-file"))
+		{
+			Player* player = get_subtitleeditor_window()->get_player();
+			if(player->get_state() != Player::NONE)
+				m_movie_uri = player->get_uri();
+		}
+
 		// If the user call directly the action 'play movie' without video
 		// we propose to choose one
 		if(m_movie_uri.empty())
@@ -241,6 +259,15 @@ protected:
 
 	/*
 	 */
+	SubtitleTime get_prefered_offset()
+	{
+		int offset = 4000;
+		get_config().get_value_int("external-video-player", "offset", offset);
+		return SubtitleTime(offset);
+	}
+
+	/*
+	 */
 	Glib::ustring get_tmp_file()
 	{
 		return Glib::build_filename(Glib::get_tmp_dir(), "subtitle_preview");
@@ -264,7 +291,7 @@ protected:
 	
 		Subtitle sub = selection[0];
 		
-		SubtitleTime time = sub.get_start() - SubtitleTime(0,0,4,0);
+		SubtitleTime time = sub.get_start() - get_prefered_offset();
 		
 		long p = time.hours()*3600 + time.minutes()*60 + time.seconds();
 
