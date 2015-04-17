@@ -858,7 +858,11 @@ void Application::save_window_sate()
 	cfg.set_value_int("interface", "window-y", window_y);
 
 	// size of window
+#if GTKMM_CHECK_VERSION(3,12,0)
 	if(is_maximized())
+#else
+	if(get_window()->get_state() & (Gdk::WINDOW_STATE_MAXIMIZED | Gdk::WINDOW_STATE_FULLSCREEN) == 0)
+#endif
 		cfg.set_value_bool("interface", "maximize-window", true);
 	else
 	{
