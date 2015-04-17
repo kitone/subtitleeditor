@@ -210,6 +210,7 @@ public:
 		utility::replace(command, "#subtitle_file", get_tmp_file());
 		utility::replace(command, "#subtitle_uri",get_tmp_file_as_uri());
 		utility::replace(command, "#seconds", convert_to_second_string(time));
+		utility::replace(command, "#mseconds", convert_to_msecond_string(time));
 		utility::replace(command, "#time", convert_to_time_string(time));
 
 		std::cout << "COMMAND: " << command << std::endl;
@@ -314,6 +315,13 @@ protected:
 	{
 		long p = time.hours()*3600 + time.minutes()*60 + time.seconds();
 		return to_string(p);
+	}
+
+	/*
+	 */
+	Glib::ustring convert_to_msecond_string(const SubtitleTime &time)
+	{
+		return to_string(time.totalmsecs);
 	}
 
 	/*
