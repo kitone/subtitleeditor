@@ -285,9 +285,12 @@ public:
 		if(!sub)
 			return false;
 
-		SubtitleTime pos = get_subtitleeditor_window()->get_player()->get_position();
-		// Apply offset coorection
-		pos = pos - get_prefered_offset();
+		Player *player = get_subtitleeditor_window()->get_player();
+		SubtitleTime pos = player->get_position();
+		// Apply offset correction only if playing
+		if(player->get_state() == Player::PLAYING)
+			pos = pos - get_prefered_offset();
+		
 		SubtitleTime dur = sub.get_duration();
 
 		// Start recording
