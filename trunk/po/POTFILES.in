@@ -84,6 +84,7 @@ plugins/actions/textcorrection/patternspage.h
 plugins/actions/textcorrection/taskspage.h
 plugins/actions/textcorrection/textcorrection.cc
 plugins/actions/timemodemanagement/timemodemanagement.cc
+plugins/actions/timingfromplayer/dialog-timing-from-player-preferences.ui
 plugins/actions/timingfromplayer/timingfromplayer.cc
 plugins/actions/typewriter/typewriter.cc
 plugins/actions/videoplayermanagement/videoplayermanagement.cc

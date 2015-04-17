@@ -1,5 +1,11 @@
 2015-04-17  kitone  <kitone@gna.org>
 
+	* plugins/actions/timingfromplayer/Makefile.am:
+	* plugins/actions/timingfromplayer/timingfromplayer.cc:
+	Fix bug #20170 : "Video"/"Timing from player" with an offset
+
+2015-04-17  kitone  <kitone@gna.org>
+
 	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:
 	* plugins/actions/externalvideoplayer/externalvideoplayer.cc:
 	Add the ability to use option #mseconds.

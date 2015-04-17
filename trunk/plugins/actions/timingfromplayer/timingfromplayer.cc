@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -24,6 +24,38 @@
 #include <i18n.h>
 #include <debug.h>
 #include <player.h>
+#include <utility.h>
+#include <gtkmm_utility.h>
+#include <widget_config_utility.h>
+
+/*
+ */
+class DialogTimingFromPlayerPreferences : public Gtk::Dialog
+{
+public:
+	DialogTimingFromPlayerPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+	:Gtk::Dialog(cobject)
+	{
+		xml->get_widget("spin-offset", m_spinOffset);
+		widget_config::read_config_and_connect(m_spinOffset, "timing-from-player", "offset");
+
+		utility::set_transient_parent(*this);
+	}
+
+	static void create()
+	{
+		std::auto_ptr<DialogTimingFromPlayerPreferences> dialog(
+				gtkmm_utility::get_widget_derived<DialogTimingFromPlayerPreferences>(
+						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+						"dialog-timing-from-player-preferences.ui", 
+						"dialog-timing-from-player-preferences"));
+
+		dialog->run();
+	}
+
+protected:
+	Gtk::SpinButton* m_spinOffset;
+};
 
 /*
  * Actions to set time from the current player position.
@@ -112,6 +144,13 @@ public:
 						"is pressed and the end when the key is released.")), 
 					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_start_and_end_with_one_key));
 
+		// preferences
+		action_group->add(
+				Gtk::Action::create(
+					"timing-from-player/preferences", 
+					Gtk::Stock::PREFERENCES), 
+					sigc::mem_fun(*this, &TimingFromPlayer::create_configure_dialog));
+
 		// ui
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -133,6 +172,8 @@ public:
 			"					<menuitem action='timing-from-player/set-subtitle-end-and-next'/>"
 			"					<separator />"
 			"					<menuitem action='timing-from-player/set-subtitle-start-and-end-with-one-key'/>"
+			"					<separator />"
+			"					<menuitem action='timing-from-player/preferences'/>"
 			"				</menu>"
 			"			</placeholder>"
 			"		</menu>"
@@ -185,6 +226,20 @@ public:
 	}
 
 	/*
+	 */
+	bool is_configurable()
+	{
+		return true;
+	}
+
+	/*
+	 */
+	void create_configure_dialog()
+	{
+		DialogTimingFromPlayerPreferences::create();
+	}
+
+	/*
 	 * Check the state of the player. 
 	 * Update the menu from the current state of the player.
 	 */
@@ -231,6 +286,8 @@ public:
 			return false;
 
 		SubtitleTime pos = get_subtitleeditor_window()->get_player()->get_position();
+		// Apply offset coorection
+		pos = pos - get_prefered_offset();
 		SubtitleTime dur = sub.get_duration();
 
 		// Start recording
@@ -350,6 +407,14 @@ public:
 		return true;
 	}
 
+	/*
+	 */
+	SubtitleTime get_prefered_offset()
+	{
+		int offset = 0;
+		get_config().get_value_int("timing-from-player", "offset", offset);
+		return SubtitleTime(offset);
+	}
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;
