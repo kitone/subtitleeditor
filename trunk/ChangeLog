@@ -1,3 +1,9 @@
+2015-04-17  kitone  <kitone@gna.org>
+
+	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:
+	* plugins/actions/externalvideoplayer/externalvideoplayer.cc:
+	Fix bug #23476 : Add preference close button
+
 2015-04-14  kitone  <kitone@gna.org>
 
 	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:

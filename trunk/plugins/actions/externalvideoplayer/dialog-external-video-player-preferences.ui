@@ -10,7 +10,7 @@
   </object>
   <object class="GtkDialog" id="dialog-external-video-player-preferences">
     <property name="can_focus">False</property>
-    <property name="border_width">5</property>
+    <property name="border_width">12</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="vbox-dialog">
@@ -22,10 +22,18 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -388,5 +396,8 @@ be substituted when launching the action :</property>
         </child>
       </object>
     </child>
+    <action-widgets>
+      <action-widget response="-7">button1</action-widget>
+    </action-widgets>
   </object>
 </interface>
