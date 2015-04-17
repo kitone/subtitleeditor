@@ -80,6 +80,7 @@ Application::Application(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builde
 	Config::getInstance().signal_changed("interface").connect(
 			sigc::mem_fun(*this, &Application::on_config_interface_changed));
 
+	load_window_state();
 	show();
 
 	m_menubar.create(*this, *m_statusbar);
@@ -159,8 +160,6 @@ void Application::load_config()
 		cfg.set_value_string("encodings", "encodings", "ISO-8859-15;UTF-8");
 		cfg.set_value_bool("encodings", "used-auto-detected", true);
 	}
-
-	load_window_state();
 }
 
 /*
@@ -823,6 +822,20 @@ void Application::load_window_state()
 {
 	Config &cfg = Config::getInstance();
 
+	// window size,position
+	if(cfg.get_value_bool("interface", "window-maximized"))
+		maximize();
+	else
+	{
+		int window_x, window_y;
+		if(cfg.get_value_int("interface", "window-x", window_x) && cfg.get_value_int("interface", "window-y", window_y))
+			move(window_x, window_y);
+
+		int window_width, window_height;
+		if(cfg.get_value_int("interface", "window-width", window_width) && cfg.get_value_int("interface", "window-height", window_height))
+			resize(window_width, window_height);
+	}
+	// paned position
 	int panel_main_position = cfg.get_value_int("interface", "paned-main-position");
 	if(panel_main_position > 0)
 		m_paned_main->set_position(panel_main_position);
@@ -838,6 +851,23 @@ void Application::save_window_sate()
 {
 	Config &cfg = Config::getInstance();
 
+	// position of window
+	int window_x = 0, window_y = 0;
+	get_position(window_x, window_y);
+	cfg.set_value_int("interface", "window-x", window_x);
+	cfg.set_value_int("interface", "window-y", window_y);
+
+	// size of window
+	if(is_maximized())
+		cfg.set_value_bool("interface", "maximize-window", true);
+	else
+	{
+		Gtk::Allocation allocation = get_allocation();
+		cfg.set_value_int("interface", "window-width", allocation.get_width());
+		cfg.set_value_int("interface", "window-height", allocation.get_height());
+	}
+
+	// paned position
 	cfg.set_value_int("interface", "paned-main-position", m_paned_main->get_position());
 	cfg.set_value_int("interface", "paned-multimedia-position", m_paned_multimedia->get_position());
 }

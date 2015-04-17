@@ -1,5 +1,10 @@
 2015-04-17  kitone  <kitone@gna.org>
 
+	* src/gui/application.cc:
+	Fix bug #23486 : Remember window size.
+
+2015-04-17  kitone  <kitone@gna.org>
+
 	* plugins/actions/timingfromplayer/Makefile.am:
 	* plugins/actions/timingfromplayer/timingfromplayer.cc:
 	Fix bug #20170 : "Video"/"Timing from player" with an offset
