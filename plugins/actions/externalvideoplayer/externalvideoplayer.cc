@@ -213,6 +213,7 @@ public:
 
 		try
 		{
+			se_debug_message(SE_DEBUG_PLUGINS, command.c_str());
 			Glib::spawn_command_line_async(command);
 		}
 		catch(const Glib::Error &ex)
