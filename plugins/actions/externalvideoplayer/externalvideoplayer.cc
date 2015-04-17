@@ -201,13 +201,16 @@ public:
 		save_to_temporary_file(doc, get_tmp_file_as_uri() ); 
 
 		// create the command
+		SubtitleTime time = get_start_position(doc);
+
 		Glib::ustring command = get_command();
 
 		utility::replace(command, "#video_file", Glib::filename_from_uri(m_movie_uri));
 		utility::replace(command, "#video_uri", m_movie_uri);
 		utility::replace(command, "#subtitle_file", get_tmp_file());
 		utility::replace(command, "#subtitle_uri",get_tmp_file_as_uri());
-		utility::replace(command, "#seconds", to_string(get_start_position(doc)));
+		utility::replace(command, "#seconds", convert_to_second_string(time));
+		utility::replace(command, "#time", convert_to_time_string(time));
 
 		std::cout << "COMMAND: " << command << std::endl;
 
@@ -283,20 +286,34 @@ protected:
 
 	/*
 	 */
-	long get_start_position(Document *document)
+	SubtitleTime get_start_position(Document *document)
 	{
 		std::vector<Subtitle> selection = document->subtitles().get_selection();
 
 		if(selection.empty())
-			return 0;
+			return SubtitleTime(0);
 	
 		Subtitle sub = selection[0];
 		
 		SubtitleTime time = sub.get_start() - get_prefered_offset();
-		
-		long p = time.hours()*3600 + time.minutes()*60 + time.seconds();
+		if(time.totalmsecs < 0)
+			return SubtitleTime(0);
+		return time;
+	}
 
-		return (p < 0) ? 0 : p;
+	/*
+	 */
+	Glib::ustring convert_to_time_string(const SubtitleTime &time)
+	{
+		return time.str();
+	}
+
+	/*
+	 */
+	Glib::ustring convert_to_second_string(const SubtitleTime &time)
+	{
+		long p = time.hours()*3600 + time.minutes()*60 + time.seconds();
+		return to_string(p);
 	}
 
 	/*
