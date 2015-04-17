@@ -2,6 +2,12 @@
 
 	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:
 	* plugins/actions/externalvideoplayer/externalvideoplayer.cc:
+	Add the ability to use option #mseconds.
+
+2015-04-17  kitone  <kitone@gna.org>
+
+	* plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui:
+	* plugins/actions/externalvideoplayer/externalvideoplayer.cc:
 	Add the ability to use option #time.
 
 2015-04-17  kitone  <kitone@gna.org>
