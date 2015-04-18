@@ -1,3 +1,20 @@
+2015-04-18 - 0.51.0
+
+	* Fix bug #23148 : Default to video file name when saving new subtitles.
+	* Fix bug #23148 : Create new untilted name with extension.
+	* Fix bug #20672 : Automatically put the extension when saving a project file
+	* Fix bug #22476 : Remember video and waveform window size
+	* Fix bug #23476 : Allow configuring the delay for external player, add #time and #mseconds
+	* Fix bug #23476 : Add preference close button
+	* Fix bug #20170 : "Video"/"Timing from player" with an offset
+	* Fix bug #23486 : Remember window size.
+	* Fix bug #23486 : Remember window size, work with gtkmm 3.10 and 3.12
+	* Fix bug #20170 : "Video"/"Timing from player" with an offset - only if playing
+	* Fix bug #23317 : Character & messes up subtitle preview
+	* Fix bug #23471 : Problems when saving into ASS - rename Actor with Name
+	* Fix bug #23471 : Problems when saving into ASS - Save PlayResX/Y from screen resolution.
+	* Fix missing comboboxtextcolumns.h file
+
 2015-04-11 - 0.50.0
 
 	* Port to gtk3 (gtkmm-3.0 >= 3.0)
