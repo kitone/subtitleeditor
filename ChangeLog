@@ -1,3 +1,8 @@
+2015-04-18  kitone  <kitone@gna.org>
+
+	* src/vp/gstplayer.cc:
+	Fix bug #23317 : Character & messes up subtitle preview
+
 2015-04-17  kitone  <kitone@gna.org>
 
 	* plugins/actions/timingfromplayer/timingfromplayer.cc:
