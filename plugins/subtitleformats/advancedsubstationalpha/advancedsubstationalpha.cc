@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -374,6 +374,17 @@ public:
 			file.write(it->first + ": " + it->second + "\n");
 		}
 
+		// Only if one of PlayRes is missing
+		guint width, height;
+		if(get_screen_resolution(width, height) && has_play_res(scriptInfo)==false)
+		{
+			file.write(
+				Glib::ustring::compose(
+					"PlayResX: %1\n"
+					"PlayResY: %2\n",
+					width, height));
+		}
+
 		// End of block, empty line
 		file.write("\n");
 	}
@@ -611,6 +622,29 @@ public:
 		return build_message(
 							"%01i:%02i:%02i.%02i",
 							t.hours(), t.minutes(), t.seconds(), (t.mseconds()+5)/10);
+	}
+
+	/*
+	 */
+	bool get_screen_resolution(guint &width, guint &height)
+	{
+		Glib::RefPtr<Gdk::Screen> screen = Gdk::Display::get_default()->get_default_screen();
+		if(!screen)
+			return false;
+
+		width = screen->get_width();
+		height = screen->get_height();
+
+		return true;
+	}
+
+	/*
+	 */
+	bool has_play_res(const ScriptInfo &script)
+	{
+		if(script.data.find("PlayResX") != script.data.end() || script.data.find("PlayResY") != script.data.end())
+			return true;
+		return false;
 	}
 };
 
