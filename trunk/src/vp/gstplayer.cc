@@ -293,8 +293,13 @@ void GstPlayer::set_subtitle_text(const Glib::ustring &text)
 {
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "text='%s'", text.c_str());
 
-	if(m_textoverlay)
-		m_textoverlay->set_property("text", text);
+	if(!m_textoverlay)
+		return;
+
+	Glib::ustring corrected = text;
+	utility::replace(corrected, "&", "&amp;");
+
+	m_textoverlay->set_property("text", corrected);
 }
 
 /*
