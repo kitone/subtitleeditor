@@ -107,6 +107,7 @@ LIB_GUI_FILES = \
 	gui/comboboxnewline.h \
 	gui/comboboxsubtitleformat.cc \
 	gui/comboboxsubtitleformat.h \
+	gui/comboboxtextcolumns.h \
 	gui/comboboxvideo.cc \
 	gui/comboboxvideo.h \
 	gui/dialogcharactercodings.cc \
