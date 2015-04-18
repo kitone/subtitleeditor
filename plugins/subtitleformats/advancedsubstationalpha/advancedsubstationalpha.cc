@@ -462,7 +462,7 @@ public:
 	{
 		file.write("[Events]\n");
 		// format:
-		file.write("Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text\n");
+		file.write("Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n");
 
 		Glib::RefPtr<Glib::Regex> re_intelligent_linebreak = Glib::Regex::create(
 				"\n(?=-\\s.*)", Glib::REGEX_MULTILINE);
