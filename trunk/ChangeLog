@@ -1,6 +1,11 @@
 2015-04-18  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	Fix bug #23471 : Problems when saving into ASS - Save PlayResX/Y from screen resolution.
+
+2015-04-18  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
 	Fix bug #23471 : Problems when saving into ASS - rename Actor with Name
 
 2015-04-18  kitone  <kitone@gna.org>
