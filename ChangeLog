@@ -1,5 +1,10 @@
 2015-04-25  kitone  <kitone@gna.org>
 
+	* plugins/actions/spellchecking/dialog-spell-checking.ui:
+	Remove deprecated widget.
+
+2015-04-25  kitone  <kitone@gna.org>
+
 	* plugins/actions/preferences/dialog-preferences.ui:
 	* plugins/actions/preferences/preferencepage.h:
 	* plugins/actions/preferences/preferencesplugin.cc:
