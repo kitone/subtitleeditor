@@ -114,6 +114,8 @@ public:
 		init_widget(xml, "check-force-aspect-ratio", "video-player", "force-aspect-ratio");
 		init_widget(xml, "check-automatically-open-video", "video-player", "automatically-open-video");
 
+		init_widget(xml, "combo-text-valignment", "video-player", "text-valignment");
+
 		// outputs
 		xml->get_widget_derived("combo-audio-output", m_comboAudioOutput);
 		xml->get_widget_derived("combo-video-output", m_comboVideoOutput);
@@ -154,7 +156,7 @@ public:
 	}
 	
 protected:
-
+	
 	void on_audio_output_changed()
 	{
 		Glib::ustring name = m_comboAudioOutput->get_active_name();

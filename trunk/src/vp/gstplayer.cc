@@ -437,6 +437,7 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element()
 	Glib::ustring cfg_font_desc = cfg.get_value_string("video-player", "font-desc");
 	bool cfg_shaded_background = cfg.get_value_bool("video-player", "shaded-background");
 	bool cfg_force_aspect_ratio = cfg.get_value_bool("video-player", "force-aspect-ratio");
+	guint cfg_text_valignment = get_text_valignment_based_on_config();
 
 	try
 	{
@@ -488,7 +489,7 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element()
 
 		// configure text overlay
 		//m_textoverlay->set_property("halignment", 1); // "center"
-		//m_textoverlay->set_property("valignment", 0); // "bottom"
+		m_textoverlay->set_property("valignment", cfg_text_valignment);
 		m_textoverlay->set_property("shaded_background", cfg_shaded_background);
 		m_textoverlay->set_property("font_desc", cfg_font_desc);
 
@@ -990,5 +991,29 @@ float GstPlayer::get_framerate(int *numerator, int *denominator)
 	se_debug_message(SE_DEBUG_VIDEO_PLAYER, "framerate: %f (num: %i, denom: %i)", framerate, fps.num, fps.denom);
 
 	return framerate;
+}
+
+guint GstPlayer::get_text_valignment_based_on_config()
+{
+	guint alignment = 0;
+
+	Glib::ustring cfg_text_valignment;
+	if(Config::getInstance().get_value_string("video-player", "text-valignment", cfg_text_valignment))
+	{
+		if(cfg_text_valignment == "baseline")
+			alignment = 0;
+		else if(cfg_text_valignment == "bottom")
+			alignment = 1;
+		else if(cfg_text_valignment == "top")
+			alignment = 2;
+		else if(cfg_text_valignment == "position")
+			alignment = 3;
+		else if(cfg_text_valignment == "center")
+			alignment = 4;
+	}
+	else
+		Config::getInstance().set_value_string("video-player", "text-valignment", "baseline");
+
+	return alignment;
 }
 
