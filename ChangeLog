@@ -1,5 +1,12 @@
 2015-04-25  kitone  <kitone@gna.org>
 
+	* plugins/actions/preferences/dialog-preferences.ui:
+	* plugins/actions/preferences/preferencepage.h:
+	* plugins/actions/preferences/preferencesplugin.cc:
+	Fix bug #23508 : Make the preference dialog a bit wider. Remove deprecated widgets.
+
+2015-04-25  kitone  <kitone@gna.org>
+
 	* configure.ac:
 	Switching back to development version.
 

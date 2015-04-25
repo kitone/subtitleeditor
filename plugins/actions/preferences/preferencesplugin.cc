@@ -54,12 +54,12 @@ public:
 		TimingPage *timing = NULL;
 		ExtensionPage* extension = NULL;
 
-		xml->get_widget_derived("vbox-interface", interface);
-		xml->get_widget_derived("vbox-document", document);
-		xml->get_widget_derived("vbox-waveform", waveform);
-		xml->get_widget_derived("vbox-video-player", videoplayer);
-		xml->get_widget_derived("vbox-timing", timing);
-		xml->get_widget_derived("vbox-extension", extension);
+		xml->get_widget_derived("box-interface", interface);
+		xml->get_widget_derived("box-document", document);
+		xml->get_widget_derived("box-waveform", waveform);
+		xml->get_widget_derived("box-video-player", videoplayer);
+		xml->get_widget_derived("box-timing", timing);
+		xml->get_widget_derived("box-extension", extension);
 	}
 
 	/*

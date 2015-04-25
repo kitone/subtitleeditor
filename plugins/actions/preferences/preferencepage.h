@@ -27,7 +27,7 @@
 #include <gtkmm.h>
 #include <widget_config_utility.h>
 
-class PreferencePage : public Gtk::VBox
+class PreferencePage : public Gtk::Box
 {
 public:
 	
@@ -35,7 +35,7 @@ public:
 	 *
 	 */
 	PreferencePage(BaseObjectType *cobject)
-	:Gtk::VBox(cobject)
+	:Gtk::Box(cobject)
 	{
 	}
 
