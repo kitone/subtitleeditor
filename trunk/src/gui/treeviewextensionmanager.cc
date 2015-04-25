@@ -115,6 +115,8 @@ void TreeViewExtensionManager::create_view()
 	append_column(*column);
 
 	cell_text = manage(new Gtk::CellRendererText);
+	cell_text->property_wrap_mode() = Pango::WRAP_WORD;
+	cell_text->property_wrap_width() = 300;
 	column->pack_start(*cell_text, true);
 	column->add_attribute(cell_text->property_markup(), m_column.label);
 
