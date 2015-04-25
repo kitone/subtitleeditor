@@ -1,5 +1,13 @@
 2015-04-25  kitone  <kitone@gna.org>
 
+	* plugins/actions/preferences/dialog-preferences.ui:
+	* plugins/actions/preferences/videoplayerpage.h:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	Fix bug #23502 : Allow display of subtitles elsewhere but at the bottom.
+
+2015-04-25  kitone  <kitone@gna.org>
+
 	* src/gui/treeviewextensionmanager.cc:
 	Fix bug #23508 : Make the preference dialog a bit wider, wrap text.
 

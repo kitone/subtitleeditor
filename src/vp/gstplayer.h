@@ -270,6 +270,9 @@ protected:
 	 */
 	gint get_current_audio();
 
+	/*
+	 */
+	guint get_text_valignment_based_on_config();
 protected:
 
 	gulong m_xWindowId;
