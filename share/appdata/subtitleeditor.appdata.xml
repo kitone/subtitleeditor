@@ -3,12 +3,13 @@
     <id type="desktop">subtitleeditor.desktop</id>
     <licence>CC0</licence>
     <name>Subtitle Editor</name>
-    <summary>GTK+2 tool to edit subtitles for GNU/Linux/*BSD</summary>
+    <summary>GTK+3 tool to edit subtitles for GNU/Linux/*BSD</summary>
     <description>
         <p>
-            Subtitle Editor is a GTK+2 tool to edit subtitles for GNU/Linux/*BSD. It can be
+            Subtitle Editor is a GTK+3 tool to edit subtitles for GNU/Linux/*BSD. It can be
             used for new subtitles or as a tool to transform, edit, correct and refine
-            existing subtitle. This program also shows sound waves, which makes it easier
+            existing subtitle. It can play the corresponding video alongside the subtitles
+            using GStreamer. This program also shows sound waves, which makes it easier
             to synchronize subtitles to voices.
         </p>
     </description>

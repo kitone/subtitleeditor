@@ -1,5 +1,10 @@
 2015-04-25  kitone  <kitone@gna.org>
 
+	* share/appdata/subtitleeditor.appdata.xml:
+	Fix bug #22657 : Please install the supplied AppData file.
+
+2015-04-25  kitone  <kitone@gna.org>
+
 	* plugins/actions/preferences/dialog-preferences.ui:
 	* plugins/actions/preferences/videoplayerpage.h:
 	* src/vp/gstplayer.cc:
