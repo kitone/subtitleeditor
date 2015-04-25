@@ -1,5 +1,10 @@
 2015-04-25  kitone  <kitone@gna.org>
 
+	* src/gui/treeviewextensionmanager.cc:
+	Fix bug #23508 : Make the preference dialog a bit wider, wrap text.
+
+2015-04-25  kitone  <kitone@gna.org>
+
 	* plugins/actions/spellchecking/dialog-spell-checking.ui:
 	Remove deprecated widget.
 
