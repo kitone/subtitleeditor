@@ -1,5 +1,5 @@
-#ifndef _TooLongDisplayTime_h
-#define _TooLongDisplayTime_h
+#ifndef _MinCharactersPerSecond_h
+#define _MinCharactersPerSecond_h
 
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -29,14 +29,14 @@
 /*
  *
  */
-class TooLongDisplayTime : public ErrorChecking
+class MinCharactersPerSecond : public ErrorChecking
 {
 public:
 
-	TooLongDisplayTime()
+	MinCharactersPerSecond()
 	:ErrorChecking(
-			"too-long-display-time",
-			_("Too Long Display Time"),
+			"minimum-characters-per-second",
+			_("Minimum Characters per Second"),
 			_("Detects and fixes subtitles when the number of characters per second is inferior to the specified value."))
 	{
 		m_minCPS = 5;
@@ -67,7 +67,7 @@ public:
 		}
 
 		info.error = build_message(
-				_("Subtitle display time is too long: <b>%.1f chars/s</b>"), info.currentSub.get_characters_per_second_text() );
+				_("There are too few characters per second: <b>%.1f chars/s</b>"), info.currentSub.get_characters_per_second_text() );
 
 		info.solution = build_message(
 				_("<b>Automatic correction:</b> change current subtitle duration to %s."),
@@ -80,4 +80,4 @@ protected:
 	double m_minCPS;
 };
 
-#endif//_TooLongDisplayTime_h
+#endif//_MinCharactersPerSecond_h

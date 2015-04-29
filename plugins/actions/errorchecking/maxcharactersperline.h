@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2011, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public:
 	MaxCharactersPerLine()
 	:ErrorChecking(
 			"max-characters-per-line",
-			_("Max Characters Per Line"),
+			_("Maximum Characters per Line"),
 			_("An error is detected if a line is too long."))
 	{
 		m_maxCPL = 40;

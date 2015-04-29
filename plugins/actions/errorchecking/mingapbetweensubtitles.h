@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public:
 	MinGapBetweenSubtitles()
 	:ErrorChecking(
 			"min-gap-between-subtitles",
-			_("Minimum Gap Between Subtitles"),
+			_("Minimum Gap between Subtitles"),
 			_("Detects and fixes subtitles when the minimum gap between subtitles is too short."))
 	{
 		m_minGBS = 100;

@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public:
 	MaxLinePerSubtitle()
 	:ErrorChecking(
 			"max-line-per-subtitle",
-			_("Max Line Per Subtitle"),
+			_("Maximum Lines per Subtitle"),
 			_("An error is detected if a subtitle has too many lines."))
 	{
 		m_maxLPS = 2;

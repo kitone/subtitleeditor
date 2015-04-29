@@ -23,8 +23,8 @@ liberrorchecking_la_SOURCES = \
 	mingapbetweensubtitles.h \
 	overlapping.h \
 	mindisplaytime.h \
-	toolongdisplaytime.h \
-	tooshortdisplaytime.h
+	maxcharacterspersecond.h \
+	maxcharacterspersecond.h
 
 liberrorchecking_la_LDFLAGS = $(PLUGIN_LIBTOOL_FLAGS)
 liberrorchecking_la_LIBADD = $(SUBTITLEEDITOR_LIBS) -L$(top_srcdir)/src -lsubtitleeditor
