@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public:
 	MinDisplayTime()
 	:ErrorChecking(
 			"min-display-time",
-			_("Min Display Time"),
+			_("Minimum Display Time"),
 			_("Detects and fixes subtitles when the duration is inferior to the specified value."))
 	{
 		m_min_display = 1000; // a second

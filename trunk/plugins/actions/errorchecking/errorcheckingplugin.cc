@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -27,10 +27,10 @@
 
 #include "errorchecking.h"
 #include "overlapping.h"
-#include "tooshortdisplaytime.h"
-#include "toolongdisplaytime.h"
 #include "mingapbetweensubtitles.h"
 #include "maxcharactersperline.h"
+#include "mincharacterspersecond.h"
+#include "maxcharacterspersecond.h"
 #include "maxlinepersubtitle.h"
 #include "mindisplaytime.h"
 #include "errorcheckingpreferences.h"
@@ -45,8 +45,8 @@ public:
 	{
 		push_back(new Overlapping);
 		push_back(new MinGapBetweenSubtitles);
-		push_back(new TooShortDisplayTime);
-		push_back(new TooLongDisplayTime);
+		push_back(new MaxCharactersPerSecond);
+		push_back(new MinCharactersPerSecond);
 		push_back(new MinDisplayTime);
 		push_back(new MaxCharactersPerLine);
 		push_back(new MaxLinePerSubtitle);
@@ -188,8 +188,8 @@ public:
 	 */
 	void create_menubar(const Glib::RefPtr<Gtk::Builder>& builder)
 	{
-		Gtk::VBox* vbox;
-		builder->get_widget("vbox", vbox);
+		Gtk::Box* vbox;
+		builder->get_widget("box", vbox);
 
 		// ui
 		Glib::ustring ui_info =
@@ -317,6 +317,8 @@ public:
 
 		// add error msg renderer
 		renderer = manage(new Gtk::CellRendererText);
+		//renderer->property_wrap_mode() = Pango::WRAP_WORD; 
+		//renderer->property_wrap_width() = 300;
 		column->pack_start(*renderer, false);
 		column->add_attribute(renderer->property_markup(), m_column.text);
 

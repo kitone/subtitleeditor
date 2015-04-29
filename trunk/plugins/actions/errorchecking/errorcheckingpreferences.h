@@ -7,7 +7,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -56,8 +56,6 @@ public:
 		utility::set_transient_parent(*this);
 
 		builder->get_widget("treeview-plugins", m_treeviewPlugins);
-		builder->get_widget("button-about", m_buttonAbout);
-		builder->get_widget("button-preferences", m_buttonPreferences);
 
 		get_and_init_widget(builder, "spin-min-characters-per-second", "timing", "min-characters-per-second");
 		get_and_init_widget(builder, "spin-max-characters-per-second", "timing", "max-characters-per-second");
@@ -67,13 +65,6 @@ public:
 		get_and_init_widget(builder, "spin-max-line-per-subtitle", "timing", "max-line-per-subtitle");
 
 		create_treeview();
-
-		m_buttonPreferences->signal_clicked().connect(
-				sigc::mem_fun(*this, &DialogErrorCheckingPreferences::on_checker_preferences));
-
-		// set default sensitive
-		m_buttonAbout->set_sensitive(false);
-		m_buttonPreferences->set_sensitive(false);
 	}
 
 	/*
@@ -136,13 +127,14 @@ public:
 		m_treeviewPlugins->append_column(*column);
 		// 
 		renderer = manage(new Gtk::CellRendererText);
+		renderer->property_wrap_mode() = Pango::WRAP_WORD;
+		renderer->property_wrap_width() = 300;
+
 		column->pack_start(*renderer, true);
 		column->add_attribute(renderer->property_markup(), m_column.label);
 
 		// set treeview property
 		m_treeviewPlugins->set_rules_hint(true);
-		m_treeviewPlugins->get_selection()->signal_changed().connect(
-				sigc::mem_fun(*this, &DialogErrorCheckingPreferences::on_checker_selection_changed));
 		m_treeviewPlugins->show_all();
 	}
 
@@ -183,51 +175,9 @@ public:
 	/*
 	 *
 	 */
-	void on_checker_selection_changed()
-	{
-		Gtk::TreeIter it = m_treeviewPlugins->get_selection()->get_selected();
-
-		if(it)
-		{
-			ErrorChecking* checker = (*it)[m_column.checker];
-			
-			if(checker == NULL)
-				return;
-
-			bool has_config = checker->has_configuration();
-
-			m_buttonPreferences->set_sensitive(has_config);
-			m_buttonAbout->set_sensitive(false);
-		}
-		else
-		{
-			m_buttonPreferences->set_sensitive(false);
-			m_buttonAbout->set_sensitive(false);
-		}
-	}
-
-	/*
-	 *
-	 */
-	void on_checker_preferences()
-	{
-		Gtk::TreeIter it = m_treeviewPlugins->get_selection()->get_selected();
-
-		if(!it)
-			return;
-
-		ErrorChecking* checker = (*it)[m_column.checker];
-			
-		if(checker == NULL)
-			return;
-
-		checker->create_configuration();
-	}
 protected:
 
 	Gtk::TreeView* m_treeviewPlugins;
-	Gtk::Button* m_buttonPreferences;
-	Gtk::Button* m_buttonAbout;
 	Glib::RefPtr<Gtk::ListStore> m_model;
 	Column m_column;
 };

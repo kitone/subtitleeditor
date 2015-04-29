@@ -1,3 +1,22 @@
+2015-04-29  kitone  <kitone@gna.org>
+
+	* plugins/actions/errorchecking/Makefile.am:
+	* plugins/actions/errorchecking/dialog-error-checking-preferences.ui:
+	* plugins/actions/errorchecking/dialog-error-checking.ui:
+	* plugins/actions/errorchecking/errorchecking.h:
+	* plugins/actions/errorchecking/errorcheckingplugin.cc:
+	* plugins/actions/errorchecking/errorcheckingpreferences.h:
+	* plugins/actions/errorchecking/maxcharactersperline.h:
+	* plugins/actions/errorchecking/maxcharacterspersecond.h:
+	* plugins/actions/errorchecking/maxlinepersubtitle.h:
+	* plugins/actions/errorchecking/mincharacterspersecond.h:
+	* plugins/actions/errorchecking/mindisplaytime.h:
+	* plugins/actions/errorchecking/mingapbetweensubtitles.h:
+	* plugins/actions/errorchecking/overlapping.h:
+	* plugins/actions/errorchecking/toolongdisplaytime.h:
+	* plugins/actions/errorchecking/tooshortdisplaytime.h:
+	Fix bug #20214 : Checking CPS is named "Display time" (Patch by Tomáš Hnyk)
+
 2015-04-25  kitone  <kitone@gna.org>
 
 	* share/appdata/subtitleeditor.appdata.xml:
