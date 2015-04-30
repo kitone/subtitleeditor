@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2014, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -230,7 +230,17 @@ public:
 		if(msg == Player::STREAM_READY || msg == Player::STATE_NONE)
 			update_ui();
 		else if(msg == Player::KEYFRAME_CHANGED)
-			update_ui();
+			on_keyframes_changed();
+	}
+
+	/*
+	 */
+	void on_keyframes_changed()
+	{
+		Glib::RefPtr<KeyFrames> kf = player()->get_keyframes();
+		if(kf)
+			add_in_recent_manager(kf->get_uri());
+		update_ui();
 	}
 
 	/*

@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2012, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -508,7 +508,10 @@ public:
 			if(msg == Player::STATE_NONE)
 				remove_menu_audio_track();
 			else if(msg == Player::STREAM_READY)
+			{
 				build_menu_audio_track();
+				add_in_recent_manager(player()->get_uri());
+			}
 			update_ui();
 			// If need, ask to display the video player
 			if(msg == Player::STREAM_READY)

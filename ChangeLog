@@ -1,5 +1,12 @@
 2015-04-30  kitone  <kitone@gna.org>
 
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Fix bug #23521 : Videos, waveform and keyframe files drag'n'dropped do not show up in recently opened
+
+2015-04-30  kitone  <kitone@gna.org>
+
 	* plugins/actions/dialoguize/dialog-dialoguize-preferences.ui:
 	* plugins/actions/dialoguize/dialoguize.cc:
 	* plugins/actions/styleeditor/dialog-style-editor.ui:
