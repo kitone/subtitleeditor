@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2013, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -202,7 +202,7 @@ public:
 		WaveformManager* wm = get_waveform_manager();
 		
 		wm->signal_waveform_changed().connect(
-				sigc::mem_fun(*this, &WaveformManagement::update_ui));
+				sigc::mem_fun(*this, &WaveformManagement::on_waveform_changed));
 
 		get_config().signal_changed("waveform").connect(
 				sigc::mem_fun(*this, &WaveformManagement::on_config_waveform_changed));
@@ -248,6 +248,16 @@ public:
 		action_group->get_action("waveform/respect-timing")->set_sensitive(has_waveform);
 
 		action_group->get_action("waveform/center-with-selected-subtitle")->set_sensitive(has_waveform && has_document);
+	}
+
+	/*
+	 */
+	void on_waveform_changed()
+	{
+		Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
+		if(wf)
+			add_in_recent_manager(wf->get_uri());
+		update_ui();
 	}
 
 	/*
