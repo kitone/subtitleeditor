@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -58,7 +58,6 @@ DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject, const Glib::RefPtr
 	init_widget(Gtk::Button, "button-new-style", signal_clicked, callback_button_clicked, "new-style");
 	init_widget(Gtk::Button, "button-delete-style", signal_clicked, callback_button_clicked, "delete-style");
 	init_widget(Gtk::Button, "button-copy-style", signal_clicked, callback_button_clicked, "copy-style");
-	init_widget(Gtk::Button, "button-manage-styles", signal_clicked, callback_button_clicked, "manage-styles");
 
 	init_widget(Gtk::FontButton, "button-font", signal_font_set, callback_font_button_changed, "font");
 	init_widget(Gtk::ToggleButton, "button-bold", signal_toggled, callback_button_toggled, "bold");
@@ -205,9 +204,6 @@ void DialogStyleEditor::callback_button_clicked(Gtk::Button *, const Glib::ustri
 
 			m_treeview->get_selection()->select(iter);
 		}
-	}
-	else if(action == "manage-styles")
-	{
 	}
 }
 
