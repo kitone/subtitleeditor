@@ -1,3 +1,11 @@
+2015-04-30  kitone  <kitone@gna.org>
+
+	* plugins/actions/dialoguize/dialog-dialoguize-preferences.ui:
+	* plugins/actions/dialoguize/dialoguize.cc:
+	* plugins/actions/styleeditor/dialog-style-editor.ui:
+	* plugins/actions/styleeditor/styleeditor.cc:
+	Fix bug #23470 : Style editor does not permit margins to go over 100 and other problems
+
 2015-04-29  kitone  <kitone@gna.org>
 
 	* plugins/actions/errorchecking/Makefile.am:
