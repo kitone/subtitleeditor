@@ -62,6 +62,11 @@ protected:
 	bool on_key_press_event(GdkEventKey* event);
 
 	/*
+	 * bug #23569 : Cursor cannot be moved with mouse when editing subtitles
+	 */
+	bool on_button_press_event (GdkEventButton*event);
+
+	/*
 	 * Before removing the widget we call editing_done 
 	 * if there's no canceled signal.
 	 */

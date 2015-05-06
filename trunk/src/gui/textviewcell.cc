@@ -124,3 +124,15 @@ void TextViewCell::on_remove_widget()
 		editing_done();
 	Gtk::CellEditable::on_remove_widget();
 }
+
+/*
+ * bug #23569 : Cursor cannot be moved with mouse when editing subtitles
+ */
+bool TextViewCell::on_button_press_event (GdkEventButton*event)
+{
+	se_debug(SE_DEBUG_VIEW);
+
+	Gtk::TextView::on_button_press_event(event);
+	return true;
+}
+

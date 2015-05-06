@@ -73,6 +73,17 @@ public:
 		get_buffer()->set_text(text);
 	}
 
+	/*
+	 * bug #23569 : Cursor cannot be moved with mouse when editing subtitles
+	 */
+	bool on_button_press_event (GdkEventButton*event)
+	{
+		se_debug(SE_DEBUG_VIEW);
+
+		Gtk::TextView::on_button_press_event(event);
+		return true;
+	}
+
 protected:
 	/*
 	 *
