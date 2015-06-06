@@ -1,5 +1,10 @@
 2015-06-06  kitone  <kitone@gna.org>
 
+	* plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui:
+	Remove deprecated widget.
+
+2015-06-06  kitone  <kitone@gna.org>
+
 	* plugins/actions/documentmanagement/documentmanagement.cc:
 	* plugins/actions/preferences/dialog-preferences.ui:
 	Fix bug #23622 : Make autosave setting in preferences work and other improvements. (Patch by Tomáš Hnyk)
