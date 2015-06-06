@@ -746,9 +746,9 @@ protected:
 
 		m_autosave_timeout.disconnect();
 
-		bool used_autosave = Config::getInstance().get_value_bool("interface", "used-autosave");
-		if(used_autosave == false)
+		if(Config::getInstance().get_value_bool("interface", "used-autosave") == false)
 			return;
+
 		int autosave_minutes = Config::getInstance().get_value_int("interface", "autosave-minutes");
 
 		long mseconds = SubtitleTime(0, autosave_minutes, 0, 0).totalmsecs;

@@ -1,3 +1,9 @@
+2015-06-06  kitone  <kitone@gna.org>
+
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	* plugins/actions/preferences/dialog-preferences.ui:
+	Fix bug #23622 : Make autosave setting in preferences work and other improvements.
+
 2015-05-06  kitone  <kitone@gna.org>
 
 	* src/gui/textviewcell.cc:
