@@ -2,42 +2,52 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
+  <object class="GtkAdjustment" id="adjustment-autosave">
+    <property name="upper">999</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkAdjustment" id="adjustment-max-cpl">
     <property name="lower">1</property>
-    <property name="upper">100</property>
+    <property name="upper">999</property>
     <property name="value">1</property>
     <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustment-max-cps">
     <property name="lower">1</property>
-    <property name="upper">100</property>
+    <property name="upper">999</property>
     <property name="value">1</property>
-    <property name="step_increment">0.10000000000000001</property>
+    <property name="step_increment">0.1</property>
+    <property name="page_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="adjustment-max-line-per-subtitle">
     <property name="lower">1</property>
-    <property name="upper">100</property>
+    <property name="upper">999</property>
     <property name="value">1</property>
     <property name="step_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="adjustment-min-cps">
     <property name="lower">1</property>
-    <property name="upper">100</property>
+    <property name="upper">999</property>
     <property name="value">1</property>
-    <property name="step_increment">0.10000000000000001</property>
+    <property name="step_increment">0.1</property>
+    <property name="page_increment">1</property>
   </object>
   <object class="GtkAdjustment" id="adjustment-min-display-sub">
-    <property name="upper">10000</property>
+    <property name="upper">9999</property>
     <property name="value">1</property>
-    <property name="step_increment">1</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">100</property>
   </object>
   <object class="GtkAdjustment" id="adjustment-min-gap-between-subs">
-    <property name="upper">10000</property>
+    <property name="upper">9999</property>
     <property name="value">1</property>
-    <property name="step_increment">1</property>
+    <property name="step_increment">10</property>
+    <property name="page_increment">100</property>
   </object>
-  <object class="GtkAdjustment" id="adjustment1">
-    <property name="upper">100</property>
+  <object class="GtkAdjustment" id="adjustment-waveform-generator">
+    <property name="upper">999</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
@@ -386,6 +396,7 @@
                                     <property name="text" translatable="yes">1</property>
                                     <property name="primary_icon_activatable">False</property>
                                     <property name="secondary_icon_activatable">False</property>
+                                    <property name="adjustment">adjustment-autosave</property>
                                     <property name="climb_rate">1</property>
                                     <property name="value">1</property>
                                   </object>
@@ -1053,6 +1064,8 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="text" translatable="yes">1.0</property>
+                                <property name="shadow_type">out</property>
+                                <property name="progress_fraction">0.0099999997764825821</property>
                                 <property name="primary_icon_activatable">False</property>
                                 <property name="secondary_icon_activatable">False</property>
                                 <property name="adjustment">adjustment-max-cps</property>
@@ -1610,7 +1623,7 @@
                                 <property name="text" translatable="yes">1000</property>
                                 <property name="primary_icon_activatable">False</property>
                                 <property name="secondary_icon_activatable">False</property>
-                                <property name="adjustment">adjustment1</property>
+                                <property name="adjustment">adjustment-waveform-generator</property>
                                 <property name="climb_rate">1</property>
                                 <property name="value">1000</property>
                               </object>
