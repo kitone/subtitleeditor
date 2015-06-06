@@ -2,7 +2,7 @@
 
 	* plugins/actions/documentmanagement/documentmanagement.cc:
 	* plugins/actions/preferences/dialog-preferences.ui:
-	Fix bug #23622 : Make autosave setting in preferences work and other improvements.
+	Fix bug #23622 : Make autosave setting in preferences work and other improvements. (Patch by Tomáš Hnyk)
 
 2015-05-06  kitone  <kitone@gna.org>
 
