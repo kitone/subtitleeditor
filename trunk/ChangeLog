@@ -1,5 +1,10 @@
 2015-06-07  kitone  <kitone@gna.org>
 
+	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
+	Fix bug #23588 : Name Subtitle Editor project files something else but name.xml.
+
+2015-06-07  kitone  <kitone@gna.org>
+
 	* configure.ac:
 	* plugins/actions/Makefile.am:
 	* plugins/actions/stylize/Makefile.am:
