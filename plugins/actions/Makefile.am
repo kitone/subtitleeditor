@@ -36,6 +36,7 @@ FILES = \
 		splitdocument \
 		splitsubtitle \
 		styleeditor \
+		stylize \
 		stacksubtitles \
 		textcorrection \
 		timemodemanagement \
