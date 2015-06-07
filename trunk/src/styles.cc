@@ -84,7 +84,9 @@ Style Styles::last()
  */
 Style Styles::append()
 {
-	return Style(&m_document, m_document.get_style_model()->append());
+	Style style(&m_document, m_document.get_style_model()->append());
+	m_document.emit_signal("style-insered");
+	return style;
 }
 
 /*
@@ -93,5 +95,6 @@ Style Styles::append()
 void Styles::remove(const Style &style)
 {
 	m_document.get_style_model()->erase(style.m_iter);
+	m_document.emit_signal("style-removed");
 }
 
