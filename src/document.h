@@ -293,6 +293,12 @@ public:
 	 *		the (external) timing mode of the document editing changed.
 	 * "document-changed"
 	 *		the document has changed after the editing of something like subtitle, metadata ...	
+	 * "style-changed"
+	 * 		one or more styles have been changed.
+	 * "style-deleted"
+	 *		one or more styles have been removed.
+	 * "style-insered"
+	 *		one or more styles have been created. 
 	 */
 	sigc::signal<void>& get_signal(const std::string &name);
 

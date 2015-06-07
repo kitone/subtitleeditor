@@ -23,6 +23,7 @@
 
 #include "style.h"
 #include "utility.h"
+#include "document.h"
 #include <iostream>
 
 /*
@@ -144,6 +145,8 @@ void Style::set(const Glib::ustring &name, const Glib::ustring &value)
 		(*m_iter)[column.encoding] = utility::string_to_int(value);
 	else
 		std::cerr << "Style::set " << name << " UNKNOW" << std::endl;
+
+	m_document->emit_signal("style-changed");
 }
 
 /*
