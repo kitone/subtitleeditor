@@ -22,12 +22,12 @@ plugins/actions/errorchecking/errorchecking.h
 plugins/actions/errorchecking/errorcheckingplugin.cc
 plugins/actions/errorchecking/errorcheckingpreferences.h
 plugins/actions/errorchecking/maxcharactersperline.h
+plugins/actions/errorchecking/maxcharacterspersecond.h
 plugins/actions/errorchecking/maxlinepersubtitle.h
+plugins/actions/errorchecking/mincharacterspersecond.h
 plugins/actions/errorchecking/mindisplaytime.h
 plugins/actions/errorchecking/mingapbetweensubtitles.h
 plugins/actions/errorchecking/overlapping.h
-plugins/actions/errorchecking/toolongdisplaytime.h
-plugins/actions/errorchecking/tooshortdisplaytime.h
 plugins/actions/extendlength/extendlength.cc
 plugins/actions/externalvideoplayer/dialog-external-video-player-preferences.ui
 plugins/actions/externalvideoplayer/externalvideoplayer.cc
@@ -70,6 +70,7 @@ plugins/actions/stacksubtitles/stacksubtitles.cc
 plugins/actions/styleeditor/dialog-style-editor.ui
 plugins/actions/styleeditor/styleeditor.cc
 plugins/actions/styleeditor/styleeditor.h
+plugins/actions/stylize/stylize.cc
 plugins/actions/textcorrection/assistant-text-correction.ui
 plugins/actions/textcorrection/capitalizationpage.h
 plugins/actions/textcorrection/commonerrorpage.h
@@ -98,6 +99,7 @@ plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.cc
 plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.cc
 plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc
 plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui
+plugins/subtitleformats/avidds/avidds.cc
 plugins/subtitleformats/bitc/bitc.cc
 plugins/subtitleformats/dcsubtitle/dcsubtitle.cc
 plugins/subtitleformats/microdvd/microdvd.cc
@@ -164,6 +166,9 @@ src/gui/comboboxnewline.cc
 src/gui/comboboxnewline.h
 src/gui/comboboxsubtitleformat.cc
 src/gui/comboboxsubtitleformat.h
+src/gui/comboboxtextcolumns.h
+src/gui/comboboxtextvalign.cc
+src/gui/comboboxtextvalign.h
 src/gui/comboboxvideo.cc
 src/gui/comboboxvideo.h
 src/gui/dialogcharactercodings.cc
@@ -255,6 +260,7 @@ src/writer.h
 [type: gettext/glade] plugins/actions/splitdocument/dialog-split-document.ui
 [type: gettext/glade] plugins/actions/styleeditor/dialog-style-editor.ui
 [type: gettext/glade] plugins/actions/textcorrection/assistant-text-correction.ui
+[type: gettext/glade] plugins/actions/timingfromplayer/dialog-timing-from-player-preferences.ui
 [type: gettext/glade] plugins/actions/viewmanager/dialog-view-manager.ui
 [type: gettext/glade] plugins/subtitleformats/advancedsubstationalpha/dialog-advancedsubstationalpha-preferences.ui
 [type: gettext/glade] plugins/subtitleformats/substationalpha/dialog-substationalpha-preferences.ui
@@ -303,6 +309,7 @@ src/writer.h
 [type: gettext/ini] plugins/actions/splitsubtitle/splitsubtitle.se-plugin.in
 [type: gettext/ini] plugins/actions/stacksubtitles/stacksubtitles.se-plugin.in
 [type: gettext/ini] plugins/actions/styleeditor/styleeditor.se-plugin.in
+[type: gettext/ini] plugins/actions/stylize/stylize.se-plugin.in
 [type: gettext/ini] plugins/actions/textcorrection/textcorrection.se-plugin.in
 [type: gettext/ini] plugins/actions/timemodemanagement/timemodemanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in
@@ -313,6 +320,7 @@ src/writer.h
 [type: gettext/ini] plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.se-plugin.in
+[type: gettext/ini] plugins/subtitleformats/avidds/avidds.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/bitc/bitc.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/dcsubtitle/dcsubtitle.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/microdvd/microdvd.se-plugin.in
