@@ -1,5 +1,10 @@
 2015-06-21  kitone  <kitone@gna.org>
 
+	* pt_BR.po:
+	Fix bug #23657 : Updated pt_BR translation. Felipe Braga <fbobraga>.
+
+2015-06-21  kitone  <kitone@gna.org>
+
 	* POTFILES.in:
 	Fix bug #23656 : String "wavefrom" (inted of "waveform") in some locations.
 
