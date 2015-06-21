@@ -1,3 +1,8 @@
+2015-06-21  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	Fix bug #23655 : Non existent files listed on po/POTFILES.in.
+
 2015-04-11  kitone  <kitone@gna.org>
 
 	* subtitleeditor.pot:
