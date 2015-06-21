@@ -1,3 +1,8 @@
+2015-06-21  kitone  <kitone@gna.org>
+
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	Fix bug #23656 : String "wavefrom" (inted of "waveform") in some locations
+
 2015-06-07  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:

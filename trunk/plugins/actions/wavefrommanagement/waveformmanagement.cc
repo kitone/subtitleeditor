@@ -72,7 +72,7 @@ public:
 
 		// open & save
 		action_group->add(
-				Gtk::Action::create("waveform/open", Gtk::Stock::OPEN, _("_Open Waveform From File"), _("Open wavefrom from a file or create from a video")), Gtk::AccelKey("<Control><Alt>O"),
+				Gtk::Action::create("waveform/open", Gtk::Stock::OPEN, _("_Open Waveform From File"), _("Open waveform from a file or create from a video")), Gtk::AccelKey("<Control><Alt>O"),
 					sigc::mem_fun(*this, &WaveformManagement::on_open_waveform));
 
 		action_group->add(
@@ -86,11 +86,11 @@ public:
 					sigc::mem_fun(*this, &WaveformManagement::on_generate_dummy));
 
 		action_group->add(
-				Gtk::Action::create("waveform/save", Gtk::Stock::SAVE, _("_Save Waveform"), _("Save wavefrom to file")), Gtk::AccelKey("<Control><Alt>S"),
+				Gtk::Action::create("waveform/save", Gtk::Stock::SAVE, _("_Save Waveform"), _("Save waveform to file")), Gtk::AccelKey("<Control><Alt>S"),
 					sigc::mem_fun(*this, &WaveformManagement::on_save_waveform));
 
 		action_group->add(
-				Gtk::Action::create("waveform/close", Gtk::Stock::CLOSE, _("_Close Waveform"), _("Close wavefrom")), 
+				Gtk::Action::create("waveform/close", Gtk::Stock::CLOSE, _("_Close Waveform"), _("Close waveform")), 
 					sigc::mem_fun(*this, &WaveformManagement::on_close_waveform));
 
 		// zoom
