@@ -44,7 +44,7 @@ FILES = \
 		typewriter \
 		videoplayermanagement \
 		viewmanager \
-		wavefrommanagement
+		waveformmanagement
 
 DIST_SUBDIRS = $(FILES)
 

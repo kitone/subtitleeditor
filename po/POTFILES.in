@@ -91,9 +91,9 @@ plugins/actions/typewriter/typewriter.cc
 plugins/actions/videoplayermanagement/videoplayermanagement.cc
 plugins/actions/viewmanager/dialog-view-manager.ui
 plugins/actions/viewmanager/viewmanager.cc
-plugins/actions/wavefrommanagement/mediadecoder.h
-plugins/actions/wavefrommanagement/waveformgenerator.cc
-plugins/actions/wavefrommanagement/waveformmanagement.cc
+plugins/actions/waveformmanagement/mediadecoder.h
+plugins/actions/waveformmanagement/waveformgenerator.cc
+plugins/actions/waveformmanagement/waveformmanagement.cc
 plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h
 plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.cc
 plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.cc
@@ -167,8 +167,6 @@ src/gui/comboboxnewline.h
 src/gui/comboboxsubtitleformat.cc
 src/gui/comboboxsubtitleformat.h
 src/gui/comboboxtextcolumns.h
-src/gui/comboboxtextvalign.cc
-src/gui/comboboxtextvalign.h
 src/gui/comboboxvideo.cc
 src/gui/comboboxvideo.h
 src/gui/dialogcharactercodings.cc
@@ -316,7 +314,7 @@ src/writer.h
 [type: gettext/ini] plugins/actions/typewriter/typewriter.se-plugin.in
 [type: gettext/ini] plugins/actions/videoplayermanagement/videoplayermanagement.se-plugin.in
 [type: gettext/ini] plugins/actions/viewmanager/viewmanager.se-plugin.in
-[type: gettext/ini] plugins/actions/wavefrommanagement/waveformmanagement.se-plugin.in
+[type: gettext/ini] plugins/actions/waveformmanagement/waveformmanagement.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/adobeencoredvd/adobeencoredvdntsc.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/adobeencoredvd/adobeencoredvdpal.se-plugin.in
 [type: gettext/ini] plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.se-plugin.in

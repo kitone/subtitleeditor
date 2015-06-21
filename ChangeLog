@@ -1,5 +1,16 @@
 2015-06-21  kitone  <kitone@gna.org>
 
+	* configure.ac:
+	* plugins/actions/Makefile.am:
+	* plugins/actions/wavefrommanagement/Makefile.am:
+	* plugins/actions/wavefrommanagement/mediadecoder.h:
+	* plugins/actions/wavefrommanagement/waveformgenerator.cc:
+	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
+	* plugins/actions/wavefrommanagement/waveformmanagement.se-plugin.in:
+	Fix bug #23656 : String "wavefrom" (inted of "waveform") in some locations.
+
+2015-06-21  kitone  <kitone@gna.org>
+
 	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
 	Fix bug #23656 : String "wavefrom" (inted of "waveform") in some locations
 

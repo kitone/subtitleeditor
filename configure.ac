@@ -366,7 +366,7 @@ plugins/actions/timingfromplayer/Makefile
 plugins/actions/typewriter/Makefile
 plugins/actions/videoplayermanagement/Makefile
 plugins/actions/viewmanager/Makefile
-plugins/actions/wavefrommanagement/Makefile
+plugins/actions/waveformmanagement/Makefile
 plugins/subtitleformats/Makefile
 plugins/subtitleformats/adobeencoredvd/Makefile
 plugins/subtitleformats/advancedsubstationalpha/Makefile
