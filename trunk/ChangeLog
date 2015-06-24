@@ -1,5 +1,10 @@
 2015-06-24  kitone  <kitone@gna.org>
 
+	* plugins/actions/styleeditor/dialog-style-editor.ui:
+	Fix bug #23470 : Style editor does not permit margins to go over 100 and other problems. (Patch by Tomáš Hnyk)
+
+2015-06-24  kitone  <kitone@gna.org>
+
 	* plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui:
 	Fix bug #23660 : Keyboard shortcuts window is to small by default. (Patch by Tomáš Hnyk)
 
