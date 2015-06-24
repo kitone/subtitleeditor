@@ -1,3 +1,20 @@
+2015-06-24 - 0.52.0
+
+	* Fix bug #23508 : Make the preference dialog a bit wider. Remove deprecated widgets.
+	* Fix bug #23508 : Make the preference dialog a bit wider, wrap text.
+	* Fix bug #23502 : Allow display of subtitles elsewhere but at the bottom.
+	* Fix bug #22657 : Please install the supplied AppData file.
+	* Fix bug #20214 : Checking CPS is named "Display time" (Patch by Tomáš Hnyk)
+	* Fix bug #23470 : Style editor does not permit margins to go over 100 and other problems
+	* Fix bug #23521 : Videos, waveform and keyframe files drag'n'dropped do not show up in recently opened
+	* Fix bug #23569 : Cursor cannot be moved with mouse when editing subtitles.
+	* Fix bug #23622 : Make autosave setting in preferences work and other improvements. (Patch by Tomáš Hnyk)
+	* Fix bug #23529 : Impossible to change styles of several subtitles at once.
+	* Fix bug #23588 : Name Subtitle Editor project files something else but name.xml.
+	* Fix bug #23656 : String "wavefrom" (inted of "waveform") in some locations
+	* Fix bug #23660 : Keyboard shortcuts window is to small by default. (Patch by Tomáš Hnyk)
+	* Fix bug #23470 : Style editor does not permit margins to go over 100 and other problems. (Patch by Tomáš Hnyk)
+
 2015-04-18 - 0.51.0
 
 	* Fix bug #23148 : Default to video file name when saving new subtitles.
