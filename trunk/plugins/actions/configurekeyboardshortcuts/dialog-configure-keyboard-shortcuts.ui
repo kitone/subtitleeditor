@@ -7,6 +7,7 @@
     <property name="title" translatable="yes">Configure Keyboard Shortcuts</property>
     <property name="window_position">center-on-parent</property>
     <property name="default_width">600</property>
+    <property name="default_height">600</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">

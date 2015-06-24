@@ -1,3 +1,8 @@
+2015-06-24  kitone  <kitone@gna.org>
+
+	* plugins/actions/configurekeyboardshortcuts/dialog-configure-keyboard-shortcuts.ui:
+	Fix bug #23660 : Keyboard shortcuts window is to small by default. (Patch by Tomáš Hnyk)
+
 2015-06-21  kitone  <kitone@gna.org>
 
 	* configure.ac:
