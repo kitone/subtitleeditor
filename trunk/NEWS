@@ -1,3 +1,7 @@
+2015-06-25 - 0.52.1
+
+	* Fix bug #23662 : Subtitleeditor 0.52.0 "errorcheckingplugin.cc:32:36: fatal error: mincharacterspersecond.h: No such file or directory".
+
 2015-06-24 - 0.52.0
 
 	* Fix bug #23508 : Make the preference dialog a bit wider. Remove deprecated widgets.
