@@ -4,7 +4,7 @@
  *	http://home.gna.org/subtitleeditor/
  *	https://gna.org/projects/subtitleeditor/
  *
- *	Copyright @ 2005-2009, kitone
+ *	Copyright @ 2005-2015, kitone
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <extension/action.h>
 #include <utility.h>
 #include <gtkmm_utility.h>
+#include <widget_config_utility.h>
 #include <gui/spinbuttontime.h>
 #include <memory>
 
@@ -41,6 +42,8 @@ public:
 		builder->get_widget_derived("spin-start-value", m_spinStartValue);
 		builder->get_widget_derived("spin-new-start", m_spinNewStart);
 		builder->get_widget("check-only-selected-subtitles", m_checkOnlySelectedSubtitles);
+
+		widget_config::read_config_and_connect(m_checkOnlySelectedSubtitles, "move-subtitles", "only-selected-subtitles");
 	}
 
 	/*
