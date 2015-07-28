@@ -1,5 +1,10 @@
 2015-07-28  kitone  <kitone@gna.org>
 
+	* plugins/actions/errorchecking/dialog-error-checking-preferences.ui:
+	Fix bug #23706 : Error checking preferences should be the same in preferences and error checking.. (Patch by Tomáš Hnyk)
+
+2015-07-28  kitone  <kitone@gna.org>
+
 	* configure.ac:
 	Switching back to development version.
 
