@@ -81,7 +81,7 @@ public:
 /*
  *
  */
-class DialogErrorChecking : public Gtk::Window
+class DialogErrorChecking : public Gtk::Dialog
 {
 	/*
 	 *
@@ -147,7 +147,7 @@ public:
 	 *
 	 */
 	DialogErrorChecking(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
-	:Gtk::Window(cobject)
+	:Gtk::Dialog(cobject)
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 

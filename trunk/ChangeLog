@@ -1,3 +1,9 @@
+2015-07-29  kitone  <kitone@gna.org>
+
+	* plugins/actions/errorchecking/dialog-error-checking.ui:
+	* plugins/actions/errorchecking/errorcheckingplugin.cc:
+	Fix bug #23727 : Error Checking should close on pressing Escape.
+
 2015-07-28  kitone  <kitone@gna.org>
 
 	* plugins/actions/movesubtitles/movesubtitles.cc:
