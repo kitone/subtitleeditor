@@ -1,3 +1,9 @@
+2016-02-03  kitone  <kitone@gna.org>
+
+	* plugins/actions/changeframerate/changeframerate.cc:
+	* plugins/actions/changeframerate/dialog-change-framerate.ui:
+	Fix bug #24302 : FPS Field in change Framerate dialog not editable anymore. Port to gtk3 and fix regression.
+
 2015-07-29  kitone  <kitone@gna.org>
 
 	* plugins/actions/errorchecking/dialog-error-checking.ui:
