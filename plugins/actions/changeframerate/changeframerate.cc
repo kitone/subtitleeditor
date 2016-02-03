@@ -47,12 +47,6 @@ class DialogChangeFramerate : public DialogActionMultiDoc
 					sigc::mem_fun(*this, &ComboBoxEntryText::on_focus_out));
 		}
 
-		ComboBoxEntryText()
-		:Gtk::ComboBoxText(true)
-		{
-
-		}
-
 		/*
 		 * Add new value to the combobox, only if it doesn't already there
 		 */
