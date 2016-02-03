@@ -27,8 +27,6 @@
 #include <memory>
 #include <gui/comboboxtextcolumns.h>
 
-// FIXME: gtkmm3
-//
 /*
  * TODO Add FPS finder
  *
@@ -45,15 +43,21 @@ class DialogChangeFramerate : public DialogActionMultiDoc
 		ComboBoxEntryText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& )
 		:Gtk::ComboBoxText(cobject)
 		{
-			//get_entry()->signal_focus_out_event().connect(
-			//		sigc::mem_fun(*this, &ComboBoxEntryText::on_focus_out));
+			get_entry()->signal_focus_out_event().connect(
+					sigc::mem_fun(*this, &ComboBoxEntryText::on_focus_out));
 		}
 
+		ComboBoxEntryText()
+		:Gtk::ComboBoxText(true)
+		{
+
+		}
+
+		/*
+		 * Add new value to the combobox, only if it doesn't already there
+		 */
 		void append_text(const Glib::ustring &text)
 		{
-			append(text);
-			return;
-
 			Gtk::TreeNodeChildren rows = get_model()->children();
 			
 			ComboBoxTextColumns m_columns;
@@ -66,28 +70,28 @@ class DialogChangeFramerate : public DialogActionMultiDoc
 					return;
 				}
 			}
-
 			Gtk::ComboBoxText::append(text);
 		}
 
+		/*
+		 * Add the value if it's a number when the focus out
+		 */
 		bool on_focus_out(GdkEventFocus*)
 		{
-			bool state = true;//get_entry()->on_focus_out_event(ev);
-
 			Glib::ustring text = get_entry()->get_text();
 
 			double value = 0;
 			if(from_string(text, value))
 			{
 				if(value > 0)
-					append(to_string(value));
+					append_text(to_string(value));
 				else
 					set_active(0);
 			}
 			else
 				set_active(0);
 
-			return state;
+			return true;
 		}
 	};
 public:
@@ -102,19 +106,21 @@ public:
 
 		xml->get_widget_derived("combo-src", m_comboSrc);
 		xml->get_widget_derived("combo-dest", m_comboDest);
-/*
+
 		m_comboSrc->get_entry()->signal_activate().connect(
 				sigc::bind<ComboBoxEntryText*>(
 					sigc::mem_fun(*this, &DialogChangeFramerate::combo_activate), m_comboSrc));
 		m_comboDest->get_entry()->signal_activate().connect(
 				sigc::bind<ComboBoxEntryText*>(
 					sigc::mem_fun(*this, &DialogChangeFramerate::combo_activate), m_comboDest));
-*/
+
 		m_comboSrc->append_text(to_string(23.976));
+		m_comboSrc->append_text(to_string(24.000));
 		m_comboSrc->append_text(to_string(25.000));
 		m_comboSrc->append_text(to_string(29.970));
 
 		m_comboDest->append_text(to_string(23.976));
+		m_comboDest->append_text(to_string(24.000));
 		m_comboDest->append_text(to_string(25.000));
 		m_comboDest->append_text(to_string(29.970));
 
@@ -125,7 +131,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	void execute()
 	{
@@ -159,7 +164,6 @@ public:
 	}
 
 	/*
-	 *
 	 */
 	sigc::signal<void, Document*, double, double> signal_change_framerate;
 protected:
@@ -168,14 +172,12 @@ protected:
 	 */
 	double get_value(ComboBoxEntryText *combo)
 	{
-		/*
 		Glib::ustring text = combo->get_entry()->get_text();
 		
 		double value = 0;
 
 		if(from_string(text, value))
 			return value;
-		*/
 		return 0;
 	}
 
