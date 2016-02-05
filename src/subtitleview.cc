@@ -1363,7 +1363,7 @@ bool SubtitleView::on_key_press_event(GdkEventKey *event)
 	{
 		int num;
 		std::istringstream ss(event->string);
-		bool is_num = ss >> num != 0; 
+		bool is_num = static_cast<bool>(ss >> num) != 0; 
 		// Update only if it's different
 		if(is_num != get_enable_search())
 			set_enable_search(is_num);
