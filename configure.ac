@@ -66,7 +66,7 @@ IT_SE_PATTERN_INTLTOOL
 # =========================================================================
 # check gtkmm
 
-PKG_CHECK_MODULES(GTKMM, gtkmm-3.0 >= 3.0) # glibmm-2.4 >= 2.16.3)
+PKG_CHECK_MODULES(GTKMM, gtkmm-3.0 >= 3.10.0) # glibmm-2.4 >= 2.16.3)
 
 AC_SUBST(GTKMM_CFLAGS)
 AC_SUBST(GTKMM_LIBS)
