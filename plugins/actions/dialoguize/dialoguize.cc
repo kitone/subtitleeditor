@@ -23,7 +23,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
  
-#include <auto_ptr.h>
+#include <memory.h>
 #include "extension/action.h"
 #include "i18n.h"
 #include "debug.h"

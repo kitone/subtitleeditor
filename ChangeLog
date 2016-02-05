@@ -1,5 +1,11 @@
 2016-02-05  kitone  <kitone@gna.org>
 
+	* plugins/actions/dialoguize/dialoguize.cc:
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	Fix bug #23714 : include memory and build string using compose.
+
+2016-02-05  kitone  <kitone@gna.org>
+
 	* src/subtitleview.cc:
 	* src/utility.h:
 	Fix bug #23714 : Explicit cast. patch by Philip Rinn <rinni>
