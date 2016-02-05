@@ -9,3 +9,5 @@ Icon=subtitleeditor
 Categories=Video;AudioVideo;AudioVideoEditing;
 StartupNotify=true
 MimeType=application/x-microdvd;application/x-subrip;application/x-subviewer;text/x-mpsub;text/x-ssa;
+# TRANSLATORS: Please, don't translate or localize the semicolons
+_Keywords=subtitles;subtitle;captions;video;
