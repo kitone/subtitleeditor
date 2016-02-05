@@ -1,5 +1,10 @@
 2016-02-05  kitone  <kitone@gna.org>
 
+	* configure.ac:
+	Fix bug #23714 : glibmm 2.45.40 requires C++11 -- please build with C++11 support
+
+2016-02-05  kitone  <kitone@gna.org>
+
 	* plugins/actions/dialoguize/dialoguize.cc:
 	* plugins/actions/documentmanagement/documentmanagement.cc:
 	Fix bug #23714 : include memory and build string using compose.

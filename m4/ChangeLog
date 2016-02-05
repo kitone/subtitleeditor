@@ -1,3 +1,8 @@
+2016-02-05  kitone  <kitone@gna.org>
+
+	* ax_cxx_compile_stdcxx_11.m4:
+	Introduce new file to support c++11.
+
 2014-01-04  kitone  <kitone@gna.org>
 
 	* intltool.m4:

@@ -18,8 +18,9 @@ AC_C_CONST
 AC_C_INLINE
 
 # Checks for programs.
+AC_LANG([C++])
 AC_PROG_CXX
-#AC_PROG_CC
+AX_CXX_COMPILE_STDCXX_11([noext], [mandatory])
 
 # Checks for library functions.
 AC_FUNC_SELECT_ARGTYPES
@@ -253,7 +254,7 @@ AC_ARG_ENABLE(debug,
 
 if test "$enable_debug" = "yes"; then
   CXXFLAGS="$CXXFLAGS -DDEBUG -g"
-  LDFLAGS="$LDFLAGS -g -ansi -Wall"
+  LDFLAGS="$LDFLAGS -g -Wall"
 fi
 
 # =========================================================================
@@ -265,13 +266,13 @@ AC_ARG_ENABLE(profile,
 
 if test "$enable_profile" = "yes"; then
   CXXFLAGS="$CXXFLAGS -pg"
-  LDFLAGS="$LDFLAGS -pg -ansi -Wall"
+  LDFLAGS="$LDFLAGS -pg -Wall"
 fi
 
 # =========================================================================
 # gcc flags
 
-CXXFLAGS="$CXXFLAGS -ansi -Wall -Wextra -Wconversion" #-Werror
+CXXFLAGS="$CXXFLAGS -Wall -Wextra -Wconversion" #-Werror
 
 # =========================================================================
 # make use of ccache
