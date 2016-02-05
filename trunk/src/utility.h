@@ -91,7 +91,7 @@ bool from_string(const Glib::ustring &src, T& dest)
 	std::istringstream s(src);
 	// return s >> dest != 0;
 
-	bool state = s >> dest != 0;
+	bool state = static_cast<bool>(s >> dest) != 0;
 
 	if(!state)
 		se_debug_message(SE_DEBUG_UTILITY, "string:'%s'failed.", src.c_str());

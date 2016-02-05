@@ -1,3 +1,9 @@
+2016-02-05  kitone  <kitone@gna.org>
+
+	* src/subtitleview.cc:
+	* src/utility.h:
+	Fix bug #23714 : Explicit cast. patch by Philip Rinn <rinni>
+
 2016-02-03  kitone  <kitone@gna.org>
 
 	* plugins/actions/changeframerate/changeframerate.cc:
