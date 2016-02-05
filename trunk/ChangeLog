@@ -1,5 +1,11 @@
 2016-02-05  kitone  <kitone@gna.org>
 
+	* share/subtitleeditor.desktop.in:
+	* share/appdata/subtitleeditor.appdata.xml:
+	Add keywords.
+
+2016-02-05  kitone  <kitone@gna.org>
+
 	* configure.ac:
 	Bump dependence of gtkmm from 3.0 to 3.10
 
