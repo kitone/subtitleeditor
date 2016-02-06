@@ -1,3 +1,12 @@
+2016-02-06  kitone  <kitone@gna.org>
+
+	* configure.ac:
+	* plugins/actions/Makefile.am:
+	* plugins/actions/template/Makefile.am:
+	* plugins/actions/template/template.cc:
+	* plugins/actions/template/template.se-plugin.in:
+	Fix bug #19010 : subtitleeditor needs a style template system for all formats.
+
 2016-02-05  kitone  <kitone@gna.org>
 
 	* share/subtitleeditor.desktop.in:

@@ -38,6 +38,7 @@ FILES = \
 		styleeditor \
 		stylize \
 		stacksubtitles \
+		template \
 		textcorrection \
 		timemodemanagement \
 		timingfromplayer \

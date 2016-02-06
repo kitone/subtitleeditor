@@ -361,6 +361,7 @@ plugins/actions/splitsubtitle/Makefile
 plugins/actions/stacksubtitles/Makefile
 plugins/actions/styleeditor/Makefile
 plugins/actions/stylize/Makefile
+plugins/actions/template/Makefile
 plugins/actions/textcorrection/Makefile
 plugins/actions/timemodemanagement/Makefile
 plugins/actions/timingfromplayer/Makefile
