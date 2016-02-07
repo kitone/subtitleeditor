@@ -1,3 +1,11 @@
+2016-02-07  kitone  <kitone@gna.org>
+
+	* plugins/actions/preferences/dialog-preferences.ui:
+	* plugins/actions/preferences/timingpage.h:
+	* src/defaultcfg.cc:
+	* src/utility.cc:
+	Fix bug #24066 : Trailing spaces count for cps calculation.
+
 2016-02-06  kitone  <kitone@gna.org>
 
 	* configure.ac:

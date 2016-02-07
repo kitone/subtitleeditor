@@ -108,6 +108,7 @@ void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::us
 	config["timing"]["min-display"] = "1000";
 	config["timing"]["max-characters-per-line"] = "40";
 	config["timing"]["max-line-per-subtitle"] = "2";
+	config["timing"]["ignore-space"] = "false";
 
 	//[external-video-player]
 	config["external-video-player"]["command"] = "mplayer \"#video_file\" -noautosub -sub \"#subtitle_file\" -ss #seconds -osdlevel 2";
