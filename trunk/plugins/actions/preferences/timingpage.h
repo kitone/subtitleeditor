@@ -41,6 +41,7 @@ public:
 		init_widget(xml, "spin-min-display", "timing", "min-display");
 		init_widget(xml, "spin-max-characters-per-line", "timing", "max-characters-per-line");
 		init_widget(xml, "spin-max-line-per-subtitle", "timing", "max-line-per-subtitle");
+		init_widget(xml, "check-ignore-space", "timing", "ignore-space");
 		init_widget(xml, "check-do-auto-timing-check", "timing", "do-auto-timing-check");
 	}
 };
