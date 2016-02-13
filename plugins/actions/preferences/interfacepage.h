@@ -38,6 +38,7 @@ public:
 		init_widget(xml, "check-use-dynamic-keyboard-shortcuts", "interface", "use-dynamic-keyboard-shortcuts");
 		init_widget(xml, "check-maximize-window", "interface", "maximize-window");
 		init_widget(xml, "check-ask-to-save-on-exit", "interface", "ask-to-save-on-exit");
+		init_widget(xml, "spin-max-undo", "interface", "max-undo");
 
 		init_widget(xml, "check-center-subtitle", "subtitle-view", "property-alignment-center");
 		init_widget(xml, "check-show-character-per-line", "subtitle-view", "show-character-per-line");
