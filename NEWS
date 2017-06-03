@@ -1,3 +1,17 @@
+2016-07-30 - 0.53.0
+
+	* Fix bug #24407 : Undo/redo should be unlimited/have configurable limit/ higher limit
+	* Fix bug #24066 : Trailing spaces count for cps calculation.
+	* Fix bug #19010 : subtitleeditor needs a style template system for all formats.
+	* Fix bug #23714 : glibmm 2.45.40 requires C++11 -- please build with C++11 support
+	* Fix bug #23714 : include memory and build string using compose.
+	* Fix bug #23714 : Explicit cast. patch by Philip Rinn
+	* Fix bug #24302 : FPS Field in change Framerate dialog not editable anymore. Port to gtk3 and fix regression.
+	* Fix bug #23727 : Error Checking should close on pressing Escape.
+	* Fix bug #23718 : Move plugin should remember the checkbox to only move selected.
+	* Fix bug #23706 : Error checking preferences should be the same in preferences and error checking. Patch by Tomáš Hnyk
+	* Bump dependence of gtkmm from 3.0 to 3.10
+
 2015-06-25 - 0.52.1
 
 	* Fix bug #23662 : Subtitleeditor 0.52.0 "errorcheckingplugin.cc:32:36: fatal error: mincharacterspersecond.h: No such file or directory".
