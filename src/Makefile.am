@@ -1,3 +1,5 @@
+AUTOMAKE_OPTIONS = subdir-objects
+
 PACKAGE_DIRECTORY = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SHARE_DIR=\""$(PACKAGE_SHARE_DIR)"\" \

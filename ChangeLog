@@ -1,3 +1,24 @@
+2016-07-30  kitone  <kitone@gna.org>
+
+	* configure.ac:
+	Preparing 0.53.0 release.
+
+2016-07-30  kitone  <kitone@gna.org>
+
+	* src/Makefile.am:
+	Fix warning with the automake options subdir-objects.
+
+2016-07-30  kitone  <kitone@gna.org>
+
+	* plugins/actions/template/Makefile.am:
+	Use AM_CPPFLAGS instead of INCLUDES.
+
+2016-07-30  kitone  <kitone@gna.org>
+
+	* plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:
+	* plugins/actions/keyframesmanagement/keyframesmanagement.cc:
+	Fix cast error.
+
 2016-02-13  kitone  <kitone@gna.org>
 
 	* plugins/actions/preferences/dialog-preferences.ui:

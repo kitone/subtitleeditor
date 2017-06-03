@@ -103,7 +103,7 @@ public:
 		se_debug(SE_DEBUG_PLUGINS);
 
 		bool has_doc = (get_current_document() != NULL);
-		bool has_kf = (player()->get_keyframes());
+		bool has_kf =  (bool)player()->get_keyframes();
 		bool has_media = player()->get_state() != Player::NONE;
 
 		action_group->get_action("insert-subtitle-between-keyframes")->set_sensitive(has_doc && has_kf && has_media);
