@@ -112,6 +112,11 @@
 	* src/subtitle.cc:
 	Fix sr #3373: Compiling subtitleeditor-0.52.1 '--disable-nls' fails with '/usr/include/libintl.h' errors : Peter Levine <nsane457>
 
+2016-08-14  kitone  <kitone@gna.org>
+
+	* configure.ac:
+	Switching back to development version.
+
 2016-07-30  kitone  <kitone@gna.org>
 
 	* configure.ac:
@@ -585,7 +590,7 @@
 
 	* plugins/actions/wavefrommanagement/waveformmanagement.cc:
 	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
-	Fix bug #22508 : Use (at least optionaly) relative paths in subtitle editor xml files (and optionally ass and ssa?).
+	Fix bug #22508 : Use (at least optionally) relative paths in subtitle editor xml files (and optionally ass and ssa?).
 
 2015-01-01  kitone  <kitone@gna.org>
 
@@ -1120,7 +1125,7 @@
 2012-09-08  kitone  <kitone@gna.org>
 
 	* plugins/actions/preferences/dialog-preferences.ui:
-	Fix bug #19728 : Preferences window cannot be resized and decription of
+	Fix bug #19728 : Preferences window cannot be resized and description of
 	plugins do not fit in it. Tomas Partl <eltomito>.
 
 2012-08-20  kitone  <kitone@gna.org>
@@ -1233,7 +1238,7 @@
 
 	* plugins/actions/videoplayermanagement/videoplayermanagement.cc:
 	* src/defaultcfg.cc:
-	Ability to seek tiny. Pach by Sebastián Ventura <lomegor at gmail dot com>.
+	Ability to seek tiny. Patch by Sebastián Ventura <lomegor at gmail dot com>.
 
 2011-11-20  kitone  <kitone@gna.org>
 
@@ -1435,7 +1440,7 @@
 2010-12-06  kitone  <kitone@gna.org>
 
 	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
-	Fix bug #17231 : Opening SEP project wont open a Keyframes file automatically.
+	Fix bug #17231 : Opening SEP project won't open a Keyframes file automatically.
 
 2010-11-10  kitone  <kitone@gna.org>
 
@@ -2167,7 +2172,7 @@
 2009-11-01  kitone  <kitone@gna.org>
 
 	* src/keyframes.cc:
-	Fix sr #2449 : keyframe does'nt save - 0.34.0.
+	Fix sr #2449 : keyframe doesn't save - 0.34.0.
 
 2009-11-01  kitone  <kitone@gna.org>
 
@@ -5415,7 +5420,7 @@
 
 	* src/gui/DialogCharacterCodings.h:
 	* src/gui/DialogFileChooser.h:
-	Fix: Issue with gcc-4.3 and unique_ptr. Patch by Luboš Staněk.
+	Fix: Issue with gcc-4.3 and auto_ptr. Patch by Luboš Staněk.
 
 2008-08-07  kitone  <kitone@gna.org>
 
@@ -6257,7 +6262,7 @@
 
 	* src/gui/Application.cc:
 	* src/gui/Application.h:
-	Delete unsued function.
+	Delete unused function.
 
 2008-02-07  kitone  <kitone@gna.org>
 
