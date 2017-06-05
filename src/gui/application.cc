@@ -823,7 +823,7 @@ void Application::load_window_state()
 	Config &cfg = Config::getInstance();
 
 	// window size,position
-	if(cfg.get_value_bool("interface", "window-maximized"))
+	if(cfg.get_value_bool("interface", "maximize-window"))
 		maximize();
 	else
 	{
