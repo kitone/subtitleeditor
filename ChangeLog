@@ -1274,7 +1274,7 @@
 	* configure.in:
 	* plugins/actions/Makefile.am:
 	New plugin insertsubtitlefromkeyframe.
-	
+
 	* plugins/actions/insertsubtitlefromkeyframe/Makefile.am:
 	* plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.cc:
 	* plugins/actions/insertsubtitlefromkeyframe/insertsubtitlefromkeyframe.se-plugin.in:
@@ -1336,7 +1336,7 @@
 	* src/subtitles.h:
 	Fix bug #17000 : Subtitles in MicroDVD format don't display correct.
 	SubtitleModel::find doesn't work if the document is frame based.
-	Remove unused function find_in_or_after. 
+	Remove unused function find_in_or_after.
 	Clean code.
 
 2010-11-01  kitone  <kitone@gna.org>
@@ -1491,7 +1491,7 @@
 
 	* plugins/subtitleformats/bitc/bitc.cc:
 	* plugins/subtitleformats/sprucestl/sprucestl.cc:
-	Sets the framerate of the document after the user have chosen and sets 
+	Sets the framerate of the document after the user have chosen and sets
 	the default value from the document during saving.
 
 2010-05-25  kitone  <kitone@gna.org>
@@ -1632,7 +1632,7 @@
 2010-03-12  kitone  <kitone@gna.org>
 
 	* src/we/waveformrenderercairo.cc:
-	Fix bug #15464 : segfault on waveform generation. 
+	Fix bug #15464 : segfault on waveform generation.
 	Avoid segfault in waveformrenderercairo.
 
 2010-03-12  kitone  <kitone@gna.org>
@@ -1675,7 +1675,7 @@
 	* plugins/actions/plaintext/plaintext.cc:
 	* share/menubar.xml:
 	* src/gui/menubar.cc:
-	Reorganize the menu file with a sub-menu import and export. 
+	Reorganize the menu file with a sub-menu import and export.
 
 2010-02-10  kitone  <kitone@gna.org>
 
@@ -1698,7 +1698,7 @@
 	* plugins/actions/sortsubtitles/sortsubtitles.cc:
 	* plugins/actions/sortsubtitles/sortsubtitles.se-plugin.in:
 	Introduce new plugin sortsubtitles.
-	
+
 	* share/menubar.xml:
 	Add placeholder in the menu Timing.
 
@@ -1748,7 +1748,7 @@
 2010-01-26  kitone  <kitone@gna.org>
 
 	* plugins/actions/textcorrection/textcorrection.cc:
-	Fix crash caused by the text correction tool. 
+	Fix crash caused by the text correction tool.
 	Improve dbg msg.
 
 2010-01-26  kitone  <kitone@gna.org>
@@ -1788,7 +1788,7 @@
 
 	* src/gui/textviewcell.cc:
 	* src/gui/textviewcell.h:
-	Fixes the cell editing. 
+	Fixes the cell editing.
 	Undesirable behavior with focus out/in.
 
 2010-01-19  kitone  <kitone@gna.org>
@@ -1864,7 +1864,7 @@
 
 2010-01-11  kitone  <kitone@gna.org>
 
-	* src/main.cc: 
+	* src/main.cc:
 	Fix bug #15095 : gracefully exit if e.g. subtitleeditor.ui is missing.
 	(patch by Philip Jägenstedt <foolip>)
 
@@ -2001,7 +2001,7 @@
 2009-12-21  kitone  <kitone@gna.org>
 
 	* share/subtitleeditor.desktop.in:
-	Fix bug #14974 : More appropriate Video category for subtitleeditor.desktop 
+	Fix bug #14974 : More appropriate Video category for subtitleeditor.desktop
 	(patch by Dan S <danstowell>)
 
 2009-12-09  kitone  <kitone@gna.org>
@@ -2431,7 +2431,7 @@
 	* plugins/actions/timingfromplayer/timingfromplayer.cc:
 	* plugins/actions/timingfromplayer/timingfromplayer.se-plugin.in:
 	New plugin to define the subtitle time from the player position. This
-	plugin is extract from videoplayermanagement (see previous commit) with a 
+	plugin is extract from videoplayermanagement (see previous commit) with a
 	new action 'Set Subtitle Start and End'. Fix bug #12570.
 
 2009-06-09  kitone  <kitone@gna.org>
@@ -2480,8 +2480,8 @@
 
 	* plugins/actions/spellchecking/dialog-spell-checking.glade:
 	* plugins/actions/spellchecking/spellchecking.cc:
-	Complete rewrite of the spellchecking plugin. 
-	Use the SpellChecker, can check the translation. 
+	Complete rewrite of the spellchecking plugin.
+	Use the SpellChecker, can check the translation.
 
 2009-06-01  kitone  <kitone@gna.org>
 
@@ -2595,7 +2595,7 @@
 
 	* plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc:
 	Fix: bug #10439 : Better project file.
-	Improve open/save with framerate, timing mode, edit timing mode, 
+	Improve open/save with framerate, timing mode, edit timing mode,
 	subtitle selection, video and waveform uri...
 
 2009-05-06  kitone  <kitone@gna.org>
@@ -2646,7 +2646,7 @@
 2009-04-26  kitone  <kitone@gna.org>
 
 	* configure.in:
-	Change dependence of libxml++ >= 2.20. 
+	Change dependence of libxml++ >= 2.20.
 	Fix: bug #13428.
 
 2009-04-26  kitone  <kitone@gna.org>
@@ -3333,7 +3333,7 @@
 	* src/extension/SubtitleFormat.h:
 	Move REGISTER_EXTENSION macro from Action to Extension.
 	New file SubtitleFormat.
-	
+
 	* src/Makefile.am:
 	* src/SubtitleFormatFactory.h:
 	* src/SubtitleFormat.cc:
@@ -3377,7 +3377,7 @@
 	* src/gui/Application.h:
 	* src/we/WaveformEditor.cc:
 	* src/we/WaveformEditor.h:
-	Move the WaveformEditor, gstreamer_utility from the libsubtitleeditor 
+	Move the WaveformEditor, gstreamer_utility from the libsubtitleeditor
 	to subtitleeditor. Remove gstreamer dependence in libsubtitleeditor.
 
 2008-11-14  kitone  <kitone@gna.org>
@@ -4281,7 +4281,7 @@
 
 	* src/formats/AdvancedSubStationAlpha.h:
 	* src/formats/SubStationAlpha.h:
-	Add a default style if the document doesn't 
+	Add a default style if the document doesn't
 	at least one when the file is saved.
 
 2008-10-28  kitone  <kitone@gna.org>
@@ -4315,7 +4315,7 @@
 
 	* src/Makefile.am:
 	Remove RegEx* and testRegEx.cc files.
-	
+
 	* src/RegEx.cc:
 	* src/RegEx.h:
 	* src/unittest/testRegEx.cc:
@@ -4587,7 +4587,7 @@
 	* src/FileWriter.h:
 	* src/Makefile.am:
 	Help to Read or write file.
-	New files. 
+	New files.
 
 2008-10-04  kitone  <kitone@gna.org>
 
@@ -4710,7 +4710,7 @@
 
 	* src/formats/SubtitleSubRip.cc:
 	Fix: newline at opening (Unix) patch by spirit.
-	
+
 	* src/utility.cc:
 	* src/utility.h:
 	Remove trim_right function patch by spirit.
@@ -4730,7 +4730,7 @@
 	* src/Subtitle.cc:
 	* src/utility.cc:
 	* src/utility.h:
-	Fix #12347 : Wrong line length and characters per second. 
+	Fix #12347 : Wrong line length and characters per second.
 	patch by John D. (spirit)
 
 2008-09-23  kitone  <kitone@gna.org>
@@ -4741,7 +4741,7 @@
 	* src/gui/SpinButtonTime.h:
 	* src/Makefile.am:
 	Move GtkUtility code to gui/SpinButtonTime.
-	
+
 	* src/actions/MoveSubtitles.cc:
 	* src/actions/ScaleSubtitles.cc:
 	Update include SpinButtonTime.
@@ -4771,7 +4771,7 @@
 	* src/gui/MenuBar.cc:
 	* src/gui/MenuBar.h:
 	Move dialog Preferences code to src/actions/preferences/* as plugin.
-	Remove deprecated code. 
+	Remove deprecated code.
 
 	* src/gui/PreferencesUI.cc:
 	* src/gui/PreferencesUI.h:
@@ -4927,7 +4927,7 @@
 2008-09-11  kitone  <kitone@gna.org>
 
 	* src/actions/DocumentManagement.cc:
-	Do not call directly create_menu_recent_files. 
+	Do not call directly create_menu_recent_files.
 	Because it freeze a moment the interface.
 
 2008-09-06  kitone  <kitone@gna.org>
@@ -5036,7 +5036,7 @@
 
 	* src/SubtitleFormat.cc:
 	* src/SubtitleFormat.h:
-	Remove the class SubtitleException. 
+	Remove the class SubtitleException.
 	Used the news errors (Error.h).
 
 	* src/actions/Transcript.cc:
@@ -5061,7 +5061,7 @@
 	* src/gui/DialogUtility.cc:
 	* src/gui/DialogUtility.h:
 	Add new class ErrorDialog.
-	
+
 	* src/Makefile.am:
 	* src/unittest/adobe.encore.dvd.ntsc.format:
 	* src/unittest/adobe.encore.dvd.ntsc.format.euc-jp:
@@ -5096,13 +5096,13 @@
 
 2008-08-25  kitone  <kitone@gna.org>
 
-	Add possibility to select the encoding when opening 
+	Add possibility to select the encoding when opening
 	the subtitle if it failed.
 
 	* src/Document.cc:
 	* src/Document.h:
 	New function Document::create_from_file.
-	
+
 	* src/SubtitleFormat.cc:
 	Improve error.
 
@@ -5127,8 +5127,8 @@
 	* src/gui/ComboBoxEncoding.h:
 	* src/gui/DialogFileChooser.cc:
 	* src/Makefile.am:
-	Add files ComboBoxEncoding. 
-	Remove code from DialogFileChooser.cc	
+	Add files ComboBoxEncoding.
+	Remove code from DialogFileChooser.cc
 
 2008-08-20  kitone  <kitone@gna.org>
 
@@ -5174,7 +5174,7 @@
 
 	* src/Subtitles.cc:
 	* src/Subtitles.h:
-	Add the option "start_editing" to function "select". 
+	Add the option "start_editing" to function "select".
 
 2008-08-18  kitone  <kitone@gna.org>
 
@@ -5353,8 +5353,8 @@
 
 	* src/SubtitleTime.cc:
 	* src/SubtitleTime.h:
-	Clean Code. 
-	Remove internal value for hours, minutes, seconds and msecond.  
+	Clean Code.
+	Remove internal value for hours, minutes, seconds and msecond.
 	Add function hours(), minutes(), seconds() and mseconds().
 
 	* src/actions/ExternalVideoPlayer.cc:
@@ -5406,13 +5406,13 @@
 	* share/glade/dialog-character-codings.glade:
 	* src/Makefile.am:
 	Add new files. (DialogCharacterCodings & glade)
-	
+
 	* src/gui/DialogCharacterCodings.cc:
 	* src/gui/DialogCharacterCodings.h:
 	Add a new dialog for managing the character codings.
 
 	* src/gui/DialogFileChooser.cc:
-	Used the new dialog for managing the character codings directly 
+	Used the new dialog for managing the character codings directly
 	from the dialog file chooser.
 
 2008-07-22  kitone  <kitone@gna.org>
@@ -5431,7 +5431,7 @@
 	* src/DocumentSystem.cc:
 	* src/DocumentSystem.h:
 	Add function create_untitled_name. (from DocumentManagement.cc)
-	
+
 	* src/actions/DocumentManagement.cc:
 	Remove function create_untitled_name.
 
@@ -5450,7 +5450,7 @@
 
 	* src/Encodings.h:
 	Fix: gcc warning.
-	
+
 	* share/glade/Makefile.am:
 	* share/glade/dialog-export-text.glade:
 	* share/glade/dialog-import-text.glade:
@@ -5493,7 +5493,7 @@
 	* share/glade/dialog-preferences.glade:
 	* src/gui/PreferencesUI.cc:
 	Add option "Used Ctrl+Enter to confirm the change"
-	
+
 	* src/main.cc:
 	Fix: add default renderer "cairo".
 	Add default value to "used-ctrl-enter-to-confirm-changed".
@@ -5523,14 +5523,14 @@
 	* src/Document.h:
 	* src/Subtitle.cc:
 	* src/Subtitle.h:
-	Introduce frame support. 
+	Introduce frame support.
 	Method for time and frame.
 
 2008-07-01  kitone  <kitone@gna.org>
 
 	* src/SubtitleModel.cc:
 	* src/SubtitleModel.h:
-	Introduce new real values for the time. 
+	Introduce new real values for the time.
 	start_value, end_value, duration_value.
 
 2008-07-01  kitone  <kitone@gna.org>
@@ -5578,7 +5578,7 @@
 2008-06-17  kitone  <kitone@gna.org>
 
 	* src/SubtitleView.cc:
-	Fix #10494 (https://gna.org/bugs/?10494). 
+	Fix #10494 (https://gna.org/bugs/?10494).
 	Disable actions during editing. Enable at the exit.
 
 2008-06-17  kitone  <kitone@gna.org>
@@ -5677,7 +5677,7 @@
 	* share/glade/dialog-preferences.glade:
 	* share/glade/dialog-view-manager.glade:
 	Fix: Don't translate gtk-*.
-	
+
 	* src/actions/ExternalVideoPlayer.cc:
 	Display a message if the  launch of the external player failed.
 
@@ -5743,7 +5743,7 @@
 	* src/Makefile.am:
 	* src/we/WaveformGenerator.cc:
 	* src/we/WaveformGenerator.h:
-	Add new files for WaveformGenerator. 
+	Add new files for WaveformGenerator.
 	Removes old files (src/gui/WaveformGeneratorUI.h/cc).
 
 	* src/actions/WaveformManagement.cc:
@@ -6028,7 +6028,7 @@
 	* src/SubtitleEditorWindow.h:
 	* src/gui/Application.cc:
 	* src/gui/Application.h:
-	Preparing the new multimedia system for the 
+	Preparing the new multimedia system for the
 	futur player and the waveform editor.
 
 2008-03-13  kitone  <kitone@gna.org>
@@ -6101,8 +6101,8 @@
 
 	* src/SubtitleView.cc:
 	* src/SubtitleView.h:
-	Removes the managing of the view modes (simple, advanced...) and 
-	the columns (show-columns-*) of the code. The columns displayed are 
+	Removes the managing of the view modes (simple, advanced...) and
+	the columns (show-columns-*) of the code. The columns displayed are
 	updated simply by listing the configuration.
 	The drag-and-drop of the columns has been disable.
 
@@ -6201,4 +6201,3 @@
 
 	* src/actions/About.cc:
 	Fix new website url.
-
