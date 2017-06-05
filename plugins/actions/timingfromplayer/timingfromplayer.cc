@@ -135,7 +135,7 @@ public:
 					_("Use the current player position to set the end of the current selected subtitle and the position of the next")), 
 					sigc::mem_fun(*this, &TimingFromPlayer::set_subtitle_end_and_next));
 
-		// set current subtile start and and with one key
+		// set current subtile start and with one key
 		action_group->add(
 				Gtk::Action::create(
 					"timing-from-player/set-subtitle-start-and-end-with-one-key", 

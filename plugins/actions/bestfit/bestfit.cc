@@ -235,7 +235,7 @@ protected:
 
 			prevend = intime + dur;
 		}
-		//reset the end time of the last subtitle to make sure rouding errors didn't move it
+		//reset the end time of the last subtitle to make sure rounding errors didn't move it
 		subtitles.back().set_end( endtime );
 	}
 

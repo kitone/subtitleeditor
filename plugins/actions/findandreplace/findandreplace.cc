@@ -212,7 +212,7 @@ public:
 			std::cerr << "FindAndReplacePlugin::Exception : " << ex.what() << std::endl;
 			return false;
 		}
-		// update lenght of info
+		// update length of info
 		info.len = replacement.size();
 
 		doc.start_command(_("Replace text"));

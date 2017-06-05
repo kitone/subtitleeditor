@@ -148,7 +148,7 @@ public:
 
 		Subtitle subtitle = document()->subtitles().append();
 
-		// attribute SpotNumber ignored, not usefull
+		// attribute SpotNumber ignored, not useful
 		// attribute FadeUpTime, ignored
 		// attribute FadeDownTime, ignored
 

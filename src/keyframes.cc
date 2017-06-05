@@ -154,7 +154,7 @@ bool KeyFrames::save(const Glib::ustring &uri)
 		Glib::RefPtr<Gio::FileOutputStream> stream = (file->query_exists()) ? file->replace() : file->create_file();
 
 		if(!stream)
-			throw SubtitleError(Glib::ustring::compose("Gio::File::create_file returned an emptry ptr from the uri '%1'.", uri));
+			throw SubtitleError(Glib::ustring::compose("Gio::File::create_file returned an empty ptr from the uri '%1'.", uri));
 
 		// Write header (version + video uri + num of kf)
 		stream->write("#subtitleeditor keyframes v2\n");

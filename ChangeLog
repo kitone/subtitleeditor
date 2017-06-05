@@ -1,3 +1,30 @@
+2016-10-30  kitone  <kitone@gna.org>
+
+	* NEWS:
+	* README:
+	* plugins/actions/bestfit/bestfit.cc:
+	* plugins/actions/findandreplace/findandreplace.cc:
+	* plugins/actions/plaintext/plaintext.cc:
+	* plugins/actions/textcorrection/Latn.common-error.se-pattern.in:
+	* plugins/actions/textcorrection/patternspage.h:
+	* plugins/actions/timingfromplayer/timingfromplayer.cc:
+	* plugins/actions/typewriter/typewriter.cc:
+	* plugins/subtitleformats/dcsubtitle/dcsubtitle.cc:
+	* src/document.cc:
+	* src/document.h:
+	* src/extensionmanager.cc:
+	* src/gui/automaticspellchecker.cc:
+	* src/gui/textviewcell.cc:
+	* src/gui/textviewcell.h:
+	* src/keyframes.cc:
+	* src/spellchecker.cc:
+	* src/subtitle.cc:
+	* src/subtitleformatsystem.cc:
+	* src/subtitleview.cc:
+	* src/vp/gstplayer.cc:
+	* src/vp/gstplayer.h:
+	Fix bug #25243 : Fix some spelling errors. Philip Rinn <rinni>
+
 2016-10-16  kitone  <kitone@gna.org>
 
 	* configure.ac:

@@ -343,7 +343,7 @@ void GstPlayer::set_repeat(bool state)
 }
 
 /*
- * Realize the widget and get the the xWindowId.
+ * Realize the widget and get the xWindowId.
  */
 void GstPlayer::on_realize()
 {
@@ -692,7 +692,7 @@ void GstPlayer::on_bus_message_element(const Glib::RefPtr<Gst::MessageElement> &
 
 /*
  * An error is detected. 
- * Detroy the pipeline and show the error message in a dialog.
+ * Destroy the pipeline and show the error message in a dialog.
  */
 void GstPlayer::on_bus_message_error(const Glib::RefPtr<Gst::MessageError> &msg)
 {
@@ -781,7 +781,7 @@ void GstPlayer::on_bus_message_state_changed(const Glib::RefPtr<Gst::MessageStat
 /*
  * End-of-stream (segment or stream) has been detected, 
  * update the pipeline state to PAUSED.
- * Seek to the begining if it's the end of the stream.
+ * Seek to the beginning if it's the end of the stream.
  */
 void GstPlayer::on_bus_message_eos(const Glib::RefPtr<Gst::MessageEos> &/*msg*/)
 {

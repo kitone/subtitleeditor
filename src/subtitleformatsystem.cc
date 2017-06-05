@@ -182,7 +182,7 @@ void SubtitleFormatSystem::open_from_data(Document *document, const Glib::ustrin
 	
 	Reader reader(data);
 	open_from_reader(document, &reader, format);	
-	se_debug_message(SE_DEBUG_APP, "The ustring was succesfully read in as a subtitle file." );
+	se_debug_message(SE_DEBUG_APP, "The ustring was successfully read in as a subtitle file." );
 
 }
 

@@ -274,7 +274,7 @@ void SpellChecker::add_word_to_session(const Glib::ustring &word)
  */
 void SpellChecker::add_word_to_personal(const Glib::ustring &word)
 {
-	se_debug_message(SE_DEBUG_SPELL_CHECKING, "add word '%s' to personnal dictionary", word.c_str());
+	se_debug_message(SE_DEBUG_SPELL_CHECKING, "add word '%s' to personal dictionary", word.c_str());
 
 	m_spellcheckerDict->add_word_to_personal(word);
 }

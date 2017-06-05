@@ -128,7 +128,7 @@ public:
 	 * Define the full filename of the document.
 	 * ex: /home/toto/subtitle05.ass
 	 *
-	 * A signal "document-property-changed" is emited.
+	 * A signal "document-property-changed" is emitted.
 	 */
 	void setFilename(const Glib::ustring &filename);
 
@@ -140,7 +140,7 @@ public:
 	/*
 	 * Define the name of the document.
 	 *
-	 * A signal "document-property-changed" is emited.
+	 * A signal "document-property-changed" is emitted.
 	 */
 	void setName(const Glib::ustring &name);
 
@@ -237,7 +237,7 @@ public:
 	 * This is the internal timing mode (frame or time) used
 	 * to represent subtitle.
 	 *
-	 * A signal "timing-mode-changed" is emited.
+	 * A signal "timing-mode-changed" is emitted.
 	 */
 	void set_timing_mode(TIMING_MODE mode);
 	
@@ -250,7 +250,7 @@ public:
 
 	/*
 	 * Define the editing timing mode of the document.
-	 * A signal "edit-timing-mode-changed" is emited.
+	 * A signal "edit-timing-mode-changed" is emitted.
 	 */
 	void set_edit_timing_mode(TIMING_MODE mode);
 
@@ -261,7 +261,7 @@ public:
 
 	/*
 	 * Define the framerate of the document.
-	 * A signal "framerate-changed" is emited.
+	 * A signal "framerate-changed" is emitted.
 	 */
 	void set_framerate(FRAMERATE framerate);
 

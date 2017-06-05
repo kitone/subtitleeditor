@@ -219,7 +219,7 @@ public:
 		m_treeview = manage(new Gtk::TreeView);
 		scrolled->add(*m_treeview);
 
-		// Box for Script, Language and Contry combobox
+		// Box for Script, Language and Country combobox
 		Gtk::Label* wlabel = NULL;
 
 		Gtk::Table* table = manage(new Gtk::Table(3,2, false));

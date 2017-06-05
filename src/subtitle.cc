@@ -351,7 +351,7 @@ bool Subtitle::update_gap_before()
 	if( prev_sub == 0 )
 		return false;
 
-	long gap = get_start().totalmsecs - prev_sub.get_end().totalmsecs;	//gap is in miliseconds
+	long gap = get_start().totalmsecs - prev_sub.get_end().totalmsecs;	//gap is in milliseconds
 	(*m_iter)[column.gap_before] = gap;
 	(*prev_sub.m_iter)[column.gap_after] = gap;
 	return true;
@@ -369,7 +369,7 @@ bool Subtitle::update_gap_after()
 	if( next_sub == 0 )
 		return false;
 	
-	long gap = next_sub.get_start().totalmsecs - get_end().totalmsecs;	//gap is in miliseconds
+	long gap = next_sub.get_start().totalmsecs - get_end().totalmsecs;	//gap is in milliseconds
 	(*m_iter)[column.gap_after] = gap;
 	(*next_sub.m_iter)[column.gap_before] = gap;
 	return true;
@@ -377,7 +377,7 @@ bool Subtitle::update_gap_after()
 
 /*
  * Check if the gab between this and the previous subtitle is long enough.
- * Mingap is the minimum gap in miliseconds.
+ * Mingap is the minimum gap in milliseconds.
  */
 bool Subtitle::check_gap_before( long mingap )
 {
@@ -390,7 +390,7 @@ bool Subtitle::check_gap_before( long mingap )
 
 /*
  * Check if the gab between this and the next subtitle is long enough
- * Mingap is the minimum gap in miliseconds.
+ * Mingap is the minimum gap in milliseconds.
  */
 bool Subtitle::check_gap_after( long mingap )
 {
@@ -880,7 +880,7 @@ void Subtitle::set(const Glib::ustring &name, const Glib::ustring &value)
 		set_characters_per_second_text(utility::string_to_double( value ));
 	else
 	{
-		std::cerr << "Subtitle::set UNKNOW " << name << " " << value << std::endl;
+		std::cerr << "Subtitle::set UNKNOWN " << name << " " << value << std::endl;
 	}
 }
 
@@ -921,7 +921,7 @@ Glib::ustring Subtitle::get(const Glib::ustring &name) const
 		return get_characters_per_second_text_string();
 	else
 	{
-		std::cerr << "Subtitle::get UNKNOW " << name << std::endl;
+		std::cerr << "Subtitle::get UNKNOWN " << name << std::endl;
 	}
 
 	return Glib::ustring();

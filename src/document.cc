@@ -132,7 +132,7 @@ Gtk::Widget* Document::widget()
  * Define the full filename of the document.
  * ex: /home/toto/subtitle05.ass
  *
- * A signal "document-property-changed" is emited.
+ * A signal "document-property-changed" is emitted.
  */
 void Document::setFilename(const Glib::ustring &filename)
 {
@@ -154,7 +154,7 @@ Glib::ustring Document::getFilename()
 /*
  * Define the name of the document.
  *
- * A signal "document-property-changed" is emited.
+ * A signal "document-property-changed" is emitted.
  */
 void Document::setName(const Glib::ustring &name)
 {
@@ -475,7 +475,7 @@ void Document::make_document_unchanged()
  * This is the internal timing mode (frame or time) used
  * to represent subtitle.
  *
- * A signal "timing-mode-changed" is emited.
+ * A signal "timing-mode-changed" is emitted.
  */
 void Document::set_timing_mode(TIMING_MODE mode)
 {
@@ -496,7 +496,7 @@ TIMING_MODE Document::get_timing_mode()
 
 /*
  * Define the editing timing mode of the document.
- * A signal "edit-timing-mode-changed" is emited.
+ * A signal "edit-timing-mode-changed" is emitted.
  */
 void Document::set_edit_timing_mode(TIMING_MODE mode)
 {
@@ -514,7 +514,7 @@ TIMING_MODE Document::get_edit_timing_mode()
 
 /*
  * Define the framerate of the document.
- * A signal "framerate-changed" is emited.
+ * A signal "framerate-changed" is emitted.
  */
  void Document::set_framerate(FRAMERATE framerate)
 {

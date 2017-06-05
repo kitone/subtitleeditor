@@ -122,7 +122,7 @@ protected:
 				SubtitleFormatSystem::instance().open_from_uri(doc, uri, charset, "Plain Text Format");
 				doc->setName(untitled);
 				doc->setFilename(untitled_fullname);
-				doc->setFormat(format); // override the plain text format with the prefered format setting
+				doc->setFormat(format); // override the plain text format with the preferred format setting
 				DocumentSystem::getInstance().append(doc);
 				
 			}

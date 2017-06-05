@@ -33,7 +33,7 @@ class TextViewCell : public Gtk::CellEditable, public Gtk::TextView
 public:
 
 	/*
-	 * Contructor
+	 * Constructor
 	 * Initialize the widget with the AutomaticSpellChecker.
 	 */
 	TextViewCell();

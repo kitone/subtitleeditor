@@ -70,7 +70,7 @@
 	* Fix bug #22494 : Find and replace sohuld focus the "Pattern" filed when launche.
 	* Fix bug #22857, bug #23018 patch from Philip Rinn and oi_wtf.
 	* Fix bug #22550 : Default saving mode defaults to plain text after importing a .txt script
-	* Fix bug #22508 : Use (at least optionaly) relative paths in subtitle editor xml files (and optionally ass and ssa?).
+	* Fix bug #22508 : Use (at least optionally) relative paths in subtitle editor xml files (and optionally ass and ssa?).
 	* Fix bug #22492 : Crash when trying to open external player preferences.
 	* Fix bug #22488 : Regression in spellchecker.
 	* Fix bug #22493 : Move subtitles disallows moves by not multiplies of 0,100s.
@@ -106,7 +106,7 @@
 	* Add the ability to define the prefix of dialoguize plugin.
 	* Add the ability to use blank line during import/export text.
 	* Adds functions to move subtitle start and end by 1 frame.
-	* Fix bug #19728 : Preferences window cannot be resized and decription of plugins do not fit in it.
+	* Fix bug #19728 : Preferences window cannot be resized and description of plugins do not fit in it.
 	* Fix bug #20154 : CPS checking inconsistencyt.
 
 2012-02-22 - 0.40.0
@@ -114,7 +114,7 @@
 	* Add Video and Waveform recent files.
 	* Add the default ASS/SSA style in the config file.
 	* Introduce new subtitleformat 'dcsubtitle' - DLP Cinema Subtitle.
-	* Add the ability to seek tiny. Pach by Sebastián Ventura <lomegor at gmail dot com>.
+	* Add the ability to seek tiny. Patch by Sebastián Ventura <lomegor at gmail dot com>.
 	* Add the ability to skip frame by frame. (Lilian request)
 	* Fix bug #18905 : Clic molette. Button2 only move the cursor, play with Shift.
 	* Fix bug #19268 : File Open: display uppercase extensions in file open dialog.
@@ -144,7 +144,7 @@
 2011-01-10 - 0.38.0
 
 	* Fix sort subtitles, speed improvements.
-	* Fix bug #17231 : Opening SEP project wont open a Keyframes file automatically
+	* Fix bug #17231 : Opening SEP project won't open a Keyframes file automatically
 	* Fix bug #17000 : Subtitles in MicroDVD format don't display correct
 	* Fix bug #16898 : Feature request - movie fps detecting
 	* Fix bug #16917 : scale option doesn't work correctly with frame-based subtitles
@@ -213,7 +213,7 @@
 
 2009-12-30 - 0.35.0
 
-	* Player completly rewrite
+	* Player completely rewrite
 		* Switch to gstreamermm
 		* Fix bug #14386 : Subtitle Editor Fails to Load any Video File (crash with XError)
 	* Improve Waveform Editor
@@ -224,7 +224,7 @@
 		* OSX video output added in the preferences
 		* Add support of OSX in the player
 	* Switch file reader/writer to gio(mm)
-	* Fix sr #2449 : keyframe does'nt save - 0.34.0
+	* Fix sr #2449 : keyframe doesn't save - 0.34.0
 	* Fix sr #2128 : Fix build with old gcc
 	* Fix bug #14974 : More appropriate Video category for subtitleeditor.desktop (patch by Dan S <danstowell>)
 
@@ -233,7 +233,7 @@
 	* New plugin 'keyframesmanagement'
 		* Keyframe generator
 		* Snap to keyframe
-	* Find And Replace Plugin completly rewrite with many improvements:
+	* Find And Replace Plugin completely rewrite with many improvements:
 		* Can search in text and translation columns
 		* Support multiple documents
 		* Select modified subtitles
@@ -687,8 +687,8 @@
 	* HIG: add tooltips (treeview column)
 	* fix: #7020
 	* fix: "warp" to "wrap" patch by Luboš Staněk
-	* cs.po: add czech translation by Luboš Staněk
-	* es.po: update spanish translation by Amaya Rodrigo
+	* cs.po: add Czech translation by Luboš Staněk
+	* es.po: update Spanish translation by Amaya Rodrigo
 	* move code ChangeFPS SubtitleModel->DialogChangeFPS
 	* move code Scale SubtitleModel->DialogScale
 
@@ -708,10 +708,10 @@
 	* fix: SubRip time saving (0:00:00,000 -> 00:00:00,000)
 	* debug message
 	* big clean code
-	* es.po: update spanish translation by Amaya Rodrigo
+	* es.po: update Spanish translation by Amaya Rodrigo
 
 2006-08-29 - 0.10.1
-	+ es.po: spanish translation by Amaya Rodrigo
+	+ es.po: Spanish translation by Amaya Rodrigo
 	+ update README
 	* fix: StyleEditor: button font work now
 	* fix: DialogScale: validate entry
@@ -804,7 +804,7 @@
 2006-02-20 - 0.7.1
 	+ add bindtextdomain, textdomain and g_set_application_name
 	+ ca.po : catalan translation by Gil Forcada <gilforcada at guifi dor net>
-	+ fr.po : french translation by Guillaume de Rugy <guillaume.derugy at free	dot fr>
+	+ fr.po : French translation by Guillaume de Rugy <guillaume.derugy at free	dot fr>
 	+ add dialog preferences
 	+ add Alpha for color (now use RGBA)
 	+ add support save cfg

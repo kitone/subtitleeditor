@@ -142,7 +142,7 @@ public:
 protected:
 
 	/*
-	 * Realize the widget and get the the xWindowId.
+	 * Realize the widget and get the xWindowId.
 	 */
 	void on_realize();
 
@@ -200,7 +200,7 @@ protected:
 
 	/*
 	 * An error is detected. 
-	 * Detroy the pipeline and show the error message in a dialog.
+	 * Destroy the pipeline and show the error message in a dialog.
 	 */
 	void on_bus_message_error(const Glib::RefPtr<Gst::MessageError> &msg);
 
@@ -212,7 +212,7 @@ protected:
 	/*
 	 * End-of-stream (segment or stream) has been detected, 
 	 * update the pipeline state to PAUSED.
-	 * Seek to the begining if it's the end of the stream.
+	 * Seek to the beginning if it's the end of the stream.
 	 */
 	void on_bus_message_eos(const Glib::RefPtr<Gst::MessageEos> &msg);
 	

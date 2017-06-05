@@ -7,7 +7,7 @@
   <pattern _name="Double apostrophe" _description="Replace a double apostrophe with a quotation mark" classes="OCR;">
     <rule regex="''" flags="DOTALL;MULTILINE;UNICODE;" replacement="&quot;" repeat="False"/>
   </pattern>
-  <pattern _name="Spaces around brackets" _description="Add or remove spaces around parantheses and square brackets" classes="Human;OCR;">
+  <pattern _name="Spaces around brackets" _description="Add or remove spaces around parentheses and square brackets" classes="Human;OCR;">
     <rule regex="(\S)(\(|\[)" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/>
     <rule regex="(\)|\])(\w)" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1 \2" repeat="False"/>
     <rule regex="(\(|\[)( )" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1" repeat="False"/>
@@ -34,7 +34,7 @@
     <rule regex="^(\W*?[&quot;'])( +)" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1" repeat="False"/>
     <rule regex="( +)([&quot;']\W*?)$" flags="DOTALL;MULTILINE;UNICODE;" replacement="\2" repeat="False"/>
   </pattern>
-  <pattern _name="Multiple question- and exclamation marks" _description="Replace multiple consequtive question- and exclamation marks with only one" classes="Human;">
+  <pattern _name="Multiple question- and exclamation marks" _description="Replace multiple consecutive question- and exclamation marks with only one" classes="Human;">
     <rule regex="(\w\W*)(?&lt;!^)(?&lt;!\?)\?{2,}" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1?" repeat="False"/>
     <rule regex="(\w\W*)(?&lt;!^)(?&lt;!\!)\!{2,}" flags="DOTALL;MULTILINE;UNICODE;" replacement="\1!" repeat="False"/>
   </pattern>

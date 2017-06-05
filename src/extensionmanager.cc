@@ -84,7 +84,7 @@ void ExtensionManager::create_extensions()
 		}
 		else
 		{
-			// Unknow extension, enable by default
+			// Unknown extension, enable by default
 			se_debug_message(SE_DEBUG_APP, "First time for the plugin '%s', enable by default", (*it)->get_name().c_str());
 
 			set_extension_active((*it)->get_name(), true);
@@ -394,7 +394,7 @@ bool ExtensionManager::deactivate(ExtensionInfo *info)
 	}
 	catch(...)
 	{
-		se_debug_message(SE_DEBUG_APP, "Error unknow exception!");
+		se_debug_message(SE_DEBUG_APP, "Error unknown exception!");
 	}
 
 	info->active = false;
