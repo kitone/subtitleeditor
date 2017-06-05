@@ -39,7 +39,7 @@ public:
 	/*
 	 */
 	KeyframesGeneratorUsingFrame(const Glib::ustring &uri, Glib::RefPtr<KeyFrames> &keyframes)
-	:Gtk::Dialog(_("Generate Keyframes"), true), MediaDecoder(1000), m_prev_frame(NULL), m_prev_frame_size(0), m_difference(0.2)
+	:Gtk::Dialog(_("Generate Keyframes"), true), MediaDecoder(1000), m_duration(0), m_prev_frame_size(0), m_prev_frame(NULL), m_difference(0.2f)
 	{
 		set_border_width(12);
 		set_default_size(300, -1);

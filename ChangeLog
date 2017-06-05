@@ -1,5 +1,10 @@
 2016-10-16  kitone  <kitone@gna.org>
 
+	* plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc:
+	Fix constructor order.
+
+2016-10-16  kitone  <kitone@gna.org>
+
 	* plugins/actions/keyframesmanagement/mediadecoder.h:
 	* plugins/actions/waveformmanagement/mediadecoder.h:
 	Fix bug #25184 : Fix build with gstreamermm-1.0 1.8.0. Philip Rinn <rinni>
