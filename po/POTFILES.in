@@ -71,6 +71,8 @@ plugins/actions/styleeditor/dialog-style-editor.ui
 plugins/actions/styleeditor/styleeditor.cc
 plugins/actions/styleeditor/styleeditor.h
 plugins/actions/stylize/stylize.cc
+plugins/actions/template/dialog-template-save-as.ui
+plugins/actions/template/template.cc
 plugins/actions/textcorrection/assistant-text-correction.ui
 plugins/actions/textcorrection/capitalizationpage.h
 plugins/actions/textcorrection/commonerrorpage.h

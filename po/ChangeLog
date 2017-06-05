@@ -1,3 +1,13 @@
+2016-09-26  kitone  <kitone<@gna.org>
+
+	* es.po:
+	Update es.po translation by Bas <basiliscoazu>
+
+2016-08-14  kitone  <kitone@gna.org>
+
+	* POTFILES.in:
+	Fix bug #24950: Source files missing in po/POTFILES.in. Philip Rinn <rinni>
+
 2016-03-30  kitone  <kitone@gna.org>
 
 	* de.po:
@@ -398,7 +408,7 @@
 	* POTFILES.in:
 	Update with last files and messages.
 	Add [encoding: UTF-8].
-	
+
 	* subtitleeditor.pot:
 	Update with last files and messages.
 
@@ -660,6 +670,6 @@
 2006-08-14
 	* es.po: spanish translation by Amaya Rodrigo <amaya@debian.org>
 
-2006-02-18 
+2006-02-18
 	* ca.po : catalan translation by Gil Forcada <gilforcada@guifi.net>
 	* fr.po : french translation by Guillaume de Rugy <guillaume.derugy@free.fr>
