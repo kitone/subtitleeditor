@@ -50,15 +50,15 @@ void WaveformRenderer::init_default_config()
 {
 #define SET_COLOR(x, r,g,b,a) x[0]=r; x[1]=g; x[2]=b; x[3]=a;
 
-	SET_COLOR(m_color_player_position, 1, 1, 1, 1);
-	SET_COLOR(m_color_background, 0.3, 0.3, 0.3, 1);
-	SET_COLOR(m_color_wave, 0.6, 0.8, 0.3, 1);
-	SET_COLOR(m_color_wave_fill, 1, 1, 1, 1);
-	SET_COLOR(m_color_subtitle, .6, 0.3, 0.1, 0.6);
-	SET_COLOR(m_color_subtitle_selected, 0.9, 0.5, 0.3, 0.6);
-	SET_COLOR(m_color_subtitle_invalid, 1, 1, 0.0, 0.8); // invalid time start > end
-	SET_COLOR(m_color_text, 1, 1, 1, 1);
-	SET_COLOR(m_color_keyframe, 0.3, 0.6, 1.0, 1.0);
+	SET_COLOR(m_color_player_position,	1.0f, 1.0f, 1.0f, 1.0f);
+	SET_COLOR(m_color_background,		0.3f, 0.3f, 0.3f, 1.0f);
+	SET_COLOR(m_color_wave,			0.6f, 0.8f, 0.3f, 1.0f);
+	SET_COLOR(m_color_wave_fill,		1.0f, 1.0f, 1.0f, 1.0f);
+	SET_COLOR(m_color_subtitle,		0.6f, 0.3f, 0.1f, 0.6f);
+	SET_COLOR(m_color_subtitle_selected,	0.9f, 0.5f, 0.3f, 0.6f);
+	SET_COLOR(m_color_subtitle_invalid,	1.0f, 1.0f, 0.0f, 0.8f); // invalid time start > end
+	SET_COLOR(m_color_text,			1.0f, 1.0f, 1.0f, 1.0f);
+	SET_COLOR(m_color_keyframe,		0.3f, 0.6f, 1.0f, 1.0f);
 
 #undef SET_COLOR
 

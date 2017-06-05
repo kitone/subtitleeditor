@@ -75,8 +75,8 @@ public:
 				end[3] = utility::string_to_int(group[8]);
 
 				// last value are frame, not time
-				start[3] = start[3] * 1000 / m_framerate_value;
-				end[3] = end[3] * 1000 / m_framerate_value;
+				start[3] = static_cast<int>(start[3] * 1000 / m_framerate_value);
+				end[3] = static_cast<int>(end[3] * 1000 / m_framerate_value);
 
 				text = group[9];
 				utility::replace(text, "|", "\n");

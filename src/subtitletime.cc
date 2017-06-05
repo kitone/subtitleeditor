@@ -189,6 +189,22 @@ double SubtitleTime::operator/(const SubtitleTime &b) const
 
 /*
  */
+SubtitleTime SubtitleTime::operator/(const double &div) const
+{
+	double total = static_cast<double>(totalmsecs) / div;
+	return SubtitleTime(static_cast<long>(total));
+}
+
+/*
+ */
+SubtitleTime SubtitleTime::operator/(const long &div) const
+{
+	double total = static_cast<double>(totalmsecs) / static_cast<double>(div);
+	return SubtitleTime(static_cast<long>(total));
+}
+
+/*
+ */
 SubtitleTime SubtitleTime::operator*(const double &mult) const
 {
 	double total = (double)(totalmsecs * mult);

@@ -181,7 +181,7 @@ protected:
 		// Array for new subtitles
 		std::vector<Subtitle> newsubs;
 
-		// Array for the splitted text (characters, word ...)
+		// Array for the split text (characters, word ...)
 		std::vector<Glib::ustring> vtext;
 
 		if(type == CHARACTERS)
@@ -272,7 +272,7 @@ protected:
 	{
 		// We update the time of each subtitles (linear)
 		SubtitleTime s = start;
-		SubtitleTime d = duration / subs.size();
+		SubtitleTime d = duration / static_cast<long>(subs.size());
 
 		for(guint i=0; i < subs.size(); ++i)
 		{

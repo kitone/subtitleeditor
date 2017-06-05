@@ -79,13 +79,13 @@ public:
 			if(firstNumber > lastNumber)
 			{
 				dialog_warning(
-						_("You can't use <i>scale</i> with this values."), 
+						_("You can't use <i>scale</i> with this values."),
 						_("The first point is superior to the last point."));
 			}
 			else if(firstNumber == lastNumber)
 			{
 				dialog_warning(
-						_("You can't use <i>scale</i> with this values."), 
+						_("You can't use <i>scale</i> with this values."),
 						_("The first point is equal to the last point."));
 			}
 			else
@@ -105,7 +105,7 @@ public:
 
 				// Apply to all subs or selected subs
 				Subtitle subbegin, subend;
-				
+
 				if(apply_to_all_subtitles())
 				{
 					Subtitles subs = doc->subtitles();
@@ -144,7 +144,7 @@ protected:
 		if(subtitle_size == 0)
 		{
 			dialog_warning(
-					_("You can't use <i>scale</i> with this document."), 
+					_("You can't use <i>scale</i> with this document."),
 					build_message("The document <b>%s</b> has not subtitle, it's empty.", doc->getName().c_str()));
 			return false;
 		}
@@ -172,7 +172,7 @@ protected:
 		{
 			unsigned int first = selection.front().get_num();
 			unsigned int last = selection.back().get_num();
-			
+
 			m_spinFirstNumber->set_value(first);
 			m_spinLastNumber->set_value(last);
 		}
@@ -196,7 +196,7 @@ protected:
 		unsigned int i = (unsigned int)m_spinFirstNumber->get_value();
 
 		Subtitle sub = m_document->subtitles().get(i);
-	
+
 		if(sub)
 			init_spin(sub, m_spinFirstStartValue, m_spinFirstNewStart, m_labelFirstText);
 	}
@@ -208,11 +208,11 @@ protected:
 		unsigned int i = (unsigned int)m_spinLastNumber->get_value();
 
 		Subtitle sub = m_document->subtitles().get(i);
-			
+
 		if(sub)
 			init_spin(sub, m_spinLastStartValue, m_spinLastNewStart, m_labelLastText);
 	}
-	
+
 	/*
 	 */
 	void init_spin(const Subtitle &subtitle, SpinButtonTime *current, SpinButtonTime *newtime, Gtk::Label *label)
@@ -272,14 +272,24 @@ protected:
 			const long &source, double scale,
 			const long &sourcedisp, const long &destdisp)
 	{
-		return (source + (((source - sourcedisp) * scale) + (destdisp - sourcedisp)));
+		double src       = static_cast<double>(source);
+		double src_disp  = static_cast<double>(sourcedisp);
+		double dest_disp = static_cast<double>(destdisp);
+
+		return static_cast<long>(src + (((src - src_disp) * scale) + (dest_disp - src_disp)));
+		//return (source + (((source - sourcedisp) * scale) + (destdisp - sourcedisp)));
 	}
 
 	/*
 	 */
 	double calcul_scale(long source1, long dest1, long source2, long dest2)
 	{
-		return (double)(((dest2 - source2) - (dest1 - source1)) / (double)(source2 - source1));
+		double src_1 = static_cast<double>(source1);
+		double src_2 = static_cast<double>(source2);
+		double dst_1 = static_cast<double>(dest1);
+		double dst_2 = static_cast<double>(dest2);
+		return ((dst_2 - src_2) - (dst_1 - src_1)) / (src_2 - src_1);
+		//return (double)(((dest2 - source2) - (dest1 - source1)) / (double)(source2 - source1));
 	}
 
 	/*
@@ -394,12 +404,12 @@ protected:
 		std::unique_ptr<DialogScaleSubtitles> dialog(
 				gtkmm_utility::get_widget_derived<DialogScaleSubtitles>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
-						"dialog-scale-subtitles.ui", 
+						"dialog-scale-subtitles.ui",
 						"dialog-scale-subtitles"));
 
 		dialog->execute(doc);
 	}
-	
+
 protected:
 	Gtk::UIManager::ui_merge_id ui_id;
 	Glib::RefPtr<Gtk::ActionGroup> action_group;

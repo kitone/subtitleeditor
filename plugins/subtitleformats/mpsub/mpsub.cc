@@ -84,8 +84,8 @@ public:
 				sub.set_text(text);
 				if(mode == TIME)
 				{
-					sub.set_start(SubtitleTime(start_value * 1000));
-					sub.set_end(SubtitleTime(end_value * 1000));
+					sub.set_start(static_cast<long>(start_value * 1000));
+					sub.set_end(static_cast<long>(end_value * 1000.0));
 				}
 				else //FRAME
 				{

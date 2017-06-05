@@ -1,5 +1,25 @@
 2016-10-16  kitone  <kitone@gna.org>
 
+	* configure.ac:
+	* plugins/actions/scalesubtitles/scalesubtitles.cc:
+	* plugins/actions/splitsubtitle/splitsubtitle.cc:
+	* plugins/actions/typewriter/typewriter.cc:
+	* plugins/subtitleformats/adobeencoredvd/adobeencoredvd.h:
+	* plugins/subtitleformats/avidds/avidds.cc:
+	* plugins/subtitleformats/bitc/bitc.cc:
+	* plugins/subtitleformats/mpsub/mpsub.cc:
+	* plugins/subtitleformats/sprucestl/sprucestl.cc:
+	* src/gui/automaticspellchecker.cc:
+	* src/subtitletime.cc:
+	* src/subtitletime.h:
+	* src/timeutility.cc:
+	* src/we/waveformeditor.cc:
+	* src/we/waveformrenderer.cc:
+	* src/we/waveformrenderercairo.cc:
+	Build with the flags -Werror=reorder -Werror=float-conversion.
+
+2016-10-16  kitone  <kitone@gna.org>
+
 	* plugins/actions/keyframesmanagement/keyframesgeneratorusingframe.cc:
 	Fix constructor order.
 

@@ -65,22 +65,22 @@ float get_framerate_value(FRAMERATE framerate)
 	switch(framerate)
 	{
 	case FRAMERATE_23_976:	
-		ret = 23.976; // 24 / 1.001
+		ret = 23.976f; // 24 / 1.001
 		break;
 	case FRAMERATE_24:	
-		ret = 24;
+		ret = 24.0f;
 		break;
 	case FRAMERATE_25:	
-		ret = 25;
+		ret = 25.0f;
 		break;
 	case FRAMERATE_29_97:	
-		ret = 29.97; // 30 / 1.001
+		ret = 29.97f; // 30 / 1.001
 		break;
 	case FRAMERATE_30:	
-		ret = 30;
+		ret = 30.0f;
 		break;
 	default:
-		ret = 0;
+		ret = 0.0f;
 		break;
 	}
 

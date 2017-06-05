@@ -91,6 +91,8 @@ public:
 	SubtitleTime operator+(const SubtitleTime &b) const;
 	SubtitleTime operator*(const double &mult) const;
 	double operator/(const SubtitleTime &b) const;
+	SubtitleTime operator/(const double &div) const;
+	SubtitleTime operator/(const long &div) const;
 
 	bool operator==(const SubtitleTime &time) const;
 	bool operator!=(const SubtitleTime &time) const;

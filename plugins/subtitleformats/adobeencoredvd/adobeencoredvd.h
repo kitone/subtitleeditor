@@ -83,8 +83,8 @@ public:
 				text = group[9];
 
 				// last 00 are frame, not time!
-				start[3] = start[3] * 1000 / m_framerate_value;
-				end[3] = end[3] * 1000 / m_framerate_value;
+				start[3] = static_cast<int>(start[3] * 1000 / m_framerate_value);
+				end[3] = static_cast<int>(end[3] * 1000 / m_framerate_value);
 
 				// Append a subtitle
 				sub = subtitles.append();

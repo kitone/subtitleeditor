@@ -178,7 +178,7 @@ public:
 			if(total_chars > 0)
 				dur = oduration * ((double)lines[i].size() / (double)total_chars);
 			else
-				dur = oduration / newsubs.size();
+				dur = oduration / static_cast<long>(newsubs.size());
 
 			newsubs[i].set_start_and_end(start, start + dur);
 

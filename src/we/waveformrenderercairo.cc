@@ -381,7 +381,7 @@ void WaveformRendererCairo::draw_timeline(const Cairo::RefPtr<Cairo::Context> &c
 	Cairo::TextExtents extents;
 	cr->get_text_extents("0:00:00", extents);
 
-	float margin = extents.width + extents.width * 0.5;
+	float margin = static_cast<float>(extents.width + extents.width * 0.5);
 	while(get_pos_by_time(sec_1) < margin)
 	{
 		// for a sufficiently long duration sec_* will overflow before
@@ -510,7 +510,7 @@ void WaveformRendererCairo::draw_channel(const Cairo::RefPtr<Cairo::Context> &cr
 
 	se_debug_message(SE_DEBUG_WAVEFORM, "init drawing values");
 
-	double skip = 4;
+	int skip = 4;
 	int z = zoom();
 
 	double begin = peaks.size() * ((double)get_start_area() / (width * z));
@@ -673,8 +673,8 @@ void WaveformRendererCairo::draw_marker(const Cairo::RefPtr<Cairo::Context> &cr,
 	int start = get_pos_by_time(selected.get_start().totalmsecs);
 	int end = get_pos_by_time(selected.get_end().totalmsecs);
 
-	float m_color_marker_left[]={1,0,0,1};
-	float m_color_marker_right[]={1,.6,0,1};
+	float m_color_marker_left[] ={1.0f, 0.0f, 0.0f, 1.0f};
+	float m_color_marker_right[]={1.0f, 0.6f, 0.0f, 1.0f};
 
 	// left
 	set_color(cr, m_color_marker_left);

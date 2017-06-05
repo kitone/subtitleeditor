@@ -476,9 +476,9 @@ void WaveformEditor::on_zoom_changed()
  */
 void WaveformEditor::on_scale_changed()
 {
-	double value = m_sliderScale->get_value();
+	int value = static_cast<int>(m_sliderScale->get_value());
 
-	se_debug_message(SE_DEBUG_WAVEFORM, "scale=%f", value);
+	se_debug_message(SE_DEBUG_WAVEFORM, "scale=%d", value);
 
 	if(Config::getInstance().get_value_int("waveform", "scale") != value)
 		Config::getInstance().set_value_int("waveform", "scale", value);

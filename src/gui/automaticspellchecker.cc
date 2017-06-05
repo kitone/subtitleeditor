@@ -327,7 +327,7 @@ void AutomaticSpellChecker::check_range(Gtk::TextIter start, Gtk::TextIter end, 
 		if(inword && !force_all)
 		{
 			// this word is being actively edited,
-			// only check if it's already highligted,
+			// only check if it's already highlighted,
 			// otherwise defer this check until later.
 			if(highlight)
 				check_word(wstart, wend);
@@ -441,7 +441,12 @@ bool AutomaticSpellChecker::on_button_press_event(GdkEventButton *ev)
 		if(m_deferred_check)
 			check_deferred_range(true);
 
-		m_textview->window_to_buffer_coords(Gtk::TEXT_WINDOW_TEXT, ev->x, ev->y, x, y);
+		m_textview->window_to_buffer_coords(
+			Gtk::TEXT_WINDOW_TEXT,
+			static_cast<int>(ev->x),
+			static_cast<int>(ev->y),
+			x,
+			y);
 		m_textview->get_iter_at_location(iter, x, y);
 
 		m_buffer->move_mark(m_mark_click, iter);
@@ -624,7 +629,7 @@ Gtk::Menu* AutomaticSpellChecker::build_languages_menu()
 
 	menu = manage(new Gtk::Menu);
 
-	// Get dictionaries avaible
+	// Get dictionaries available
 	std::vector<Glib::ustring> dictionaries = SpellChecker::instance()->get_dictionaries();
 
 	// Transform isocode to human label ex: 'fr_fr' to 'French (France)'

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 # AC_PREREQ(2.59)
-AC_INIT(subtitleeditor, 0.53.0)
+AC_INIT(subtitleeditor, trunk)
 AM_INIT_AUTOMAKE([tar-ustar])
 
 AC_CONFIG_SRCDIR([Makefile.am])
@@ -272,7 +272,7 @@ fi
 # =========================================================================
 # gcc flags
 
-CXXFLAGS="$CXXFLAGS -Wall -Wextra -Wconversion" #-Werror
+CXXFLAGS="$CXXFLAGS -Wall -Wextra -Wconversion -Wreorder -Werror=reorder -Werror=float-conversion" #-Werror
 
 # =========================================================================
 # make use of ccache
