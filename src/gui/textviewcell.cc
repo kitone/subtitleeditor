@@ -26,14 +26,14 @@
 #include "automaticspellchecker.h"
 
 /*
- * Contructor
+ * Constructor
  * Initialize the widget with the AutomaticSpellChecker.
  */
 TextViewCell::TextViewCell()
-:	Gtk::CellEditable(),
-	m_editing_canceled(false), 
-	m_used_ctrl_enter_to_confirm_change(false),
-    Glib::ObjectBase(typeid(TextViewCell))
+:	Glib::ObjectBase(typeid(TextViewCell)),
+	Gtk::CellEditable(),
+	m_editing_canceled(false),
+	m_used_ctrl_enter_to_confirm_change(false)
 {
 	se_debug(SE_DEBUG_VIEW);
 
@@ -67,7 +67,7 @@ void TextViewCell::set_text(const Glib::ustring &text)
 /*
  * Return the current text.
  */
-Glib::ustring TextViewCell::get_text() 
+Glib::ustring TextViewCell::get_text()
 {
 	se_debug(SE_DEBUG_VIEW);
 
@@ -95,9 +95,9 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event)
 	}
 
 	bool st_enter = (
-			 event->keyval == GDK_KEY_Return ||  
-			 event->keyval == GDK_KEY_KP_Enter ||  
-			 event->keyval == GDK_KEY_ISO_Enter ||  
+			 event->keyval == GDK_KEY_Return ||
+			 event->keyval == GDK_KEY_KP_Enter ||
+			 event->keyval == GDK_KEY_ISO_Enter ||
 			 event->keyval == GDK_KEY_3270_Enter );
 
 	bool st_ctrl = (event->state & GDK_CONTROL_MASK);
@@ -113,13 +113,13 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event)
 }
 
 /*
- * Before removing the widget we call editing_done 
+ * Before removing the widget we call editing_done
  * if there's no canceled signal.
  */
 void TextViewCell::on_remove_widget()
 {
 	se_debug(SE_DEBUG_VIEW);
-	// We apply the editing if there's not a canceled signal. 
+	// We apply the editing if there's not a canceled signal.
 	if(m_editing_canceled == false)
 		editing_done();
 	Gtk::CellEditable::on_remove_widget();
@@ -135,4 +135,3 @@ bool TextViewCell::on_button_press_event (GdkEventButton*event)
 	Gtk::TextView::on_button_press_event(event);
 	return true;
 }
-

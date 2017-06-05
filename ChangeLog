@@ -1,5 +1,11 @@
 2016-09-26  kitone  <kitone@gna.org>
 
+	* src/gui/textviewcell.cc:
+	* src/subtitleview.cc:
+	Fix constructor order.
+
+2016-09-26  kitone  <kitone@gna.org>
+
 	* plugins/actions/changeframerate/changeframerate.cc:
 	* plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:
 	* plugins/actions/dialoguize/dialoguize.cc:

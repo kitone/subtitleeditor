@@ -19,7 +19,7 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 
 #include <iostream>
 #include <gdk/gdkkeysyms.h>
@@ -43,7 +43,7 @@ class TimeCell : public Gtk::CellEditable, public Gtk::TextView
 public:
 
 	TimeCell()
-	:Gtk::CellEditable(), Glib::ObjectBase(typeid(TimeCell))
+	:Glib::ObjectBase(typeid(TimeCell)), Gtk::CellEditable()
 	{
 		se_debug(SE_DEBUG_VIEW);
 	}
@@ -51,7 +51,7 @@ public:
 	/*
 	 *
 	 */
-	Glib::ustring get_text() 
+	Glib::ustring get_text()
 	{
 		se_debug(SE_DEBUG_VIEW);
 
@@ -98,11 +98,11 @@ protected:
 			remove_widget();
 			return true;
 		}
-		
+
 		bool st_enter = (
-				 event->keyval == GDK_KEY_Return ||  
-				 event->keyval == GDK_KEY_KP_Enter ||  
-				 event->keyval == GDK_KEY_ISO_Enter ||  
+				 event->keyval == GDK_KEY_Return ||
+				 event->keyval == GDK_KEY_KP_Enter ||
+				 event->keyval == GDK_KEY_ISO_Enter ||
 				 event->keyval == GDK_KEY_3270_Enter );
 
 		if(st_enter)
@@ -111,7 +111,7 @@ protected:
 			remove_widget();
 			return true;
 		}
-		
+
 		Gtk::TextView::on_key_press_event(event);
 		return true;
 	}
@@ -136,7 +136,7 @@ protected:
 				step *= 100;
 			else if(ev->state & GDK_CONTROL_MASK)
 				step *= 10;
-			
+
 			SubtitleTime val(step);
 
 			if(ev->direction == GDK_SCROLL_UP)
@@ -167,7 +167,7 @@ protected:
 				frame -= step;
 
 			set_text(to_string(frame));
-			
+
 			return true;
 		}
 		return false;
@@ -178,7 +178,7 @@ protected:
 /*
  * Basic cell renderer template
  *
- * Disable all actions at the begining of the editing and 
+ * Disable all actions at the beginning of the editing and
  * enable the actions when it's finished.
  *
  * Support also the flash message.
@@ -197,14 +197,14 @@ public:
 	{
 		se_debug(SE_DEBUG_VIEW);
 	}
-	
+
 	/*
 	 *
 	 */
 	virtual Gtk::CellEditable* start_editing_vfunc(
-			GdkEvent* event, 
-			Gtk::Widget &widget, 
-			const Glib::ustring &path, 
+			GdkEvent* event,
+			Gtk::Widget &widget,
+			const Glib::ustring &path,
 			const Gdk::Rectangle& background_area,
 			const Gdk::Rectangle& cell_area,
 			Gtk::CellRendererState flags)
@@ -228,7 +228,7 @@ public:
 protected:
 
 	/*
-	 * Enable or disable all actions so as not to interfere with editing. 
+	 * Enable or disable all actions so as not to interfere with editing.
 	 * As a simple shorcuts.
 	 */
 	void set_action_groups_sensitives(bool state)
@@ -236,7 +236,7 @@ protected:
 		if(Config::getInstance().get_value_bool("subtitle-view", "do-not-disable-actions-during-editing"))
 			return;
 
-		std::vector< Glib::RefPtr<Gtk::ActionGroup> > actions = 
+		std::vector< Glib::RefPtr<Gtk::ActionGroup> > actions =
 			SubtitleEditorWindow::get_instance()->get_ui_manager()->get_action_groups();
 
 		std::vector< Glib::RefPtr<Gtk::ActionGroup> >::iterator it;
@@ -339,7 +339,7 @@ SubtitleView::SubtitleView(Document &doc)
 
 	m_subtitleModel = m_refDocument->get_subtitle_model();
 	m_styleModel = m_refDocument->m_styleModel;
-	
+
 	set_model(m_subtitleModel);
 
 	createColumns();
@@ -347,7 +347,7 @@ SubtitleView::SubtitleView(Document &doc)
 	set_rules_hint(true);
 	set_enable_search(false);
 	set_search_column(m_column.num);
-	
+
 	// config
 	loadCfg();
 
@@ -371,10 +371,10 @@ SubtitleView::SubtitleView(Document &doc)
 	m_refDocument->get_signal("edit-timing-mode-changed").connect(
 			sigc::mem_fun(*this, &Gtk::TreeView::columns_autosize));
 
-	
+
 	// Setup my own copy of needed timing variables
-	Config &cfg = Config::getInstance(); 		
-	min_duration = cfg.get_value_int("timing", "min-display");	
+	Config &cfg = Config::getInstance();
+	min_duration = cfg.get_value_int("timing", "min-display");
 	min_gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
 	min_cps = cfg.get_value_double("timing", "min-characters-per-second");
 	max_cps = cfg.get_value_double("timing", "max-characters-per-second");
@@ -437,7 +437,7 @@ void SubtitleView::loadCfg()
 	se_debug(SE_DEBUG_VIEW);
 
 	bool state = false;
-	
+
 	Config &cfg = Config::getInstance();
 
 	cfg.get_value_bool("subtitle-view", "enable-rubberband-selection", state);
@@ -508,14 +508,14 @@ void SubtitleView::createColumnNum()
 
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
-	
+
 	column = create_treeview_column("number");
 	renderer = manage(new Gtk::CellRendererText);
 	renderer->property_editable() = false;
 	renderer->property_yalign() = 0;
 	renderer->property_xalign() = 1.0;
 	renderer->property_alignment() = Pango::ALIGN_RIGHT;
-	
+
 	column->pack_start(*renderer);
 	column->add_attribute(renderer->property_text(), m_column.num);
 
@@ -533,10 +533,10 @@ void SubtitleView::createColumnLayer()
 
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
-	
+
 	column = create_treeview_column("layer");
 	renderer = manage(new Gtk::CellRendererText);
-	
+
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.layer);
 
@@ -557,7 +557,7 @@ void SubtitleView::cps_data_func( const Gtk::CellRenderer *renderer, const Gtk::
 {
 	CellRendererTime *trenderer = (CellRendererTime*)renderer;
 	Subtitle cur_sub( m_refDocument, iter );
-		
+
 	Glib::ustring color("black"); // default
 
 	if(check_timing)
@@ -581,8 +581,8 @@ void SubtitleView::duration_data_func( const Gtk::CellRenderer *renderer, const 
 
 	Glib::ustring color;
 
-	// Display text in red if the check timing option is enabled and 
-	// if the current subtitle don't respect the minimun duration
+	// Display text in red if the check timing option is enabled and
+	// if the current subtitle don't respect the minimum duration
 	if(check_timing)
 	{
 		if(cur_sub.get_duration().totalmsecs < min_duration )		//duration in msec
@@ -601,7 +601,7 @@ void SubtitleView::start_time_data_func( const Gtk::CellRenderer *renderer, cons
 
 	Glib::ustring color;
 
-	// Display text in red if the check timing option is enabled and 
+	// Display text in red if the check timing option is enabled and
 	// if the current subtitle don't respect gap before subtitle
 	if(check_timing)
 	{
@@ -621,7 +621,7 @@ void SubtitleView::end_time_data_func( const Gtk::CellRenderer *renderer, const 
 
 	Glib::ustring color;
 
-	// Display text in red if the check timing option is enabled and 
+	// Display text in red if the check timing option is enabled and
 	// if the current subtitle don't respect gap before subtitle
 	if(check_timing)
 	{
@@ -636,18 +636,18 @@ void SubtitleView::end_time_data_func( const Gtk::CellRenderer *renderer, const 
 /*
  */
 void SubtitleView::create_column_time(
-		const Glib::ustring &name, 
+		const Glib::ustring &name,
 		const Gtk::TreeModelColumnBase& /*column_attribute*/,
-		const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot_edited, 
+		const sigc::slot<void, const Glib::ustring&, const Glib::ustring&> &slot_edited,
 		const sigc::slot<void, const Gtk::CellRenderer*, const Gtk::TreeModel::iterator&> &slot_cell_data_func,
 		const Glib::ustring &tooltips)
 {
-	se_debug_message(SE_DEBUG_VIEW, "name=%s tooltips=%s", 
+	se_debug_message(SE_DEBUG_VIEW, "name=%s tooltips=%s",
 			name.c_str(), tooltips.c_str());
 
 
 	CellRendererTime* renderer = manage(new CellRendererTime(m_refDocument));
-	
+
 	Gtk::TreeViewColumn* column = create_treeview_column(name);
 	column->pack_start(*renderer);
 
@@ -666,8 +666,8 @@ void SubtitleView::create_column_time(
 void SubtitleView::createColumnStart()
 {
 	create_column_time(
-			"start", 
-			m_column.start_value, 
+			"start",
+			m_column.start_value,
 			sigc::mem_fun(*this, &SubtitleView::on_edited_start),
 			sigc::mem_fun(*this, &SubtitleView::start_time_data_func),
 			_("When a subtitle appears on the screen."));
@@ -679,8 +679,8 @@ void SubtitleView::createColumnStart()
 void SubtitleView::createColumnEnd()
 {
 	create_column_time(
-			"end", 
-			m_column.end_value, 
+			"end",
+			m_column.end_value,
 			sigc::mem_fun(*this, &SubtitleView::on_edited_end),
 			sigc::mem_fun(*this, &SubtitleView::end_time_data_func),
 			_("When a subtitle disappears from the screen."));
@@ -693,8 +693,8 @@ void SubtitleView::createColumnEnd()
 void SubtitleView::createColumnDuration()
 {
 	create_column_time(
-			"duration", 
-			m_column.duration_value, 
+			"duration",
+			m_column.duration_value,
 			sigc::mem_fun(*this, &SubtitleView::on_edited_duration),
 			sigc::mem_fun(*this, &SubtitleView::duration_data_func),
 			 _("The duration of the subtitle."));
@@ -709,19 +709,19 @@ void SubtitleView::createColumnStyle()
 
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererCombo* renderer = NULL;
-	
+
 	column = create_treeview_column("style");
 	renderer = manage(new Gtk::CellRendererCombo);
-	
+
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.style);
-	
+
 	renderer->property_model() =	m_styleModel;
 	renderer->property_text_column() = 0;
 	renderer->property_editable() = true;
 	renderer->property_has_entry() = false;
 	renderer->property_yalign() = 0;
-	
+
 	renderer->signal_edited().connect(
 		sigc::mem_fun(*this, &SubtitleView::on_edited_style));
 
@@ -741,13 +741,13 @@ void SubtitleView::createColumnName()
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.name);
-	
+
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
 
 	renderer->signal_edited().connect(
 		sigc::mem_fun(*this, &SubtitleView::on_edited_name));
-	
+
 	append_column(*column);
 }
 
@@ -761,7 +761,7 @@ void SubtitleView::createColumnCPS()
 	Gtk::TreeViewColumn* column = create_treeview_column("cps");
 
 	CellRendererCPS* renderer = manage(new CellRendererCPS);
-	
+
 	column->pack_start(*renderer);
 
 	column->set_cell_data_func( *renderer, sigc::mem_fun( *this, &SubtitleView::cps_data_func ) );
@@ -789,7 +789,7 @@ void SubtitleView::createColumnText()
 		column->pack_start(*renderer, true);
 		column->add_attribute(renderer->property_text(), m_column.text);
 		column->property_expand() = true;
-	
+
 		renderer->property_ellipsize() = Pango::ELLIPSIZE_END;
 		renderer->signal_edited().connect(
 				sigc::mem_fun(*this, &SubtitleView::on_edited_text));
@@ -798,7 +798,7 @@ void SubtitleView::createColumnText()
 	{
 		Gtk::CellRendererText* renderer = NULL;
 		renderer = manage(new Gtk::CellRendererText);
-	
+
 		column->pack_start(*renderer, false);
 		column->add_attribute(renderer->property_text(), m_column.characters_per_line_text);
 		renderer->property_yalign() = 0;
@@ -807,7 +807,7 @@ void SubtitleView::createColumnText()
 		renderer->property_alignment() = Pango::ALIGN_RIGHT;
 
 		bool show=true;
-		
+
 		Config::getInstance().get_value_bool("subtitle-view", "show-character-per-line", show);
 
 		renderer->property_visible() = show;
@@ -832,7 +832,7 @@ void SubtitleView::createColumnTranslation()
 		column->pack_start(*renderer, true);
 		column->add_attribute(renderer->property_text(), m_column.translation);
 		column->property_expand() = true;
-	
+
 		renderer->property_ellipsize() = Pango::ELLIPSIZE_END;
 		append_column(*column);
 
@@ -843,7 +843,7 @@ void SubtitleView::createColumnTranslation()
 	{
 		Gtk::CellRendererText* renderer = NULL;
 		renderer = manage(new Gtk::CellRendererText);
-	
+
 		column->pack_end(*renderer, false);
 		column->add_attribute(renderer->property_text(), m_column.characters_per_line_translation);
 		renderer->property_yalign() = 0;
@@ -870,9 +870,9 @@ void SubtitleView::createColumnNote()
 
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.note);
-	
+
 	append_column(*column);
-	
+
 	renderer->signal_edited().connect(
 		sigc::mem_fun(*this, &SubtitleView::on_edited_note));
 
@@ -888,15 +888,15 @@ void SubtitleView::createColumnEffect()
 
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
-	
+
 	column = create_treeview_column("effect");
 	renderer = manage(new Gtk::CellRendererText);
-	
+
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.effect);
-	
+
 	append_column(*column);
-	
+
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
 
@@ -915,13 +915,13 @@ void SubtitleView::createColumnMarginR()
 
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
-	
+
 	column = create_treeview_column("margin-r");
 	renderer = manage(new Gtk::CellRendererText);
-	
+
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginR);
-	
+
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
 
@@ -940,13 +940,13 @@ void SubtitleView::createColumnMarginL()
 
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
-	
+
 	column = create_treeview_column("margin-l");
 	renderer = manage(new Gtk::CellRendererText);
-	
+
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginL);
-	
+
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
 
@@ -965,13 +965,13 @@ void SubtitleView::createColumnMarginV()
 
 	Gtk::TreeViewColumn* column = NULL;
 	Gtk::CellRendererText* renderer = NULL;
-	
+
 	column = create_treeview_column("margin-v");
 	renderer = manage(new Gtk::CellRendererText);
-	
+
 	column->pack_start(*renderer, false);
 	column->add_attribute(renderer->property_text(), m_column.marginV);
-	
+
 	renderer->property_editable() = true;
 	renderer->property_yalign() = 0;
 
@@ -987,9 +987,9 @@ void SubtitleView::createColumnMarginV()
 Gtk::TreeIter SubtitleView::getSelected()
 {
 	se_debug(SE_DEBUG_VIEW);
-	
+
 	Glib::RefPtr<Gtk::TreeSelection> selection = get_selection();
-	
+
 	std::vector<Gtk::TreeModel::Path> rows = selection->get_selected_rows();
 
 	if(rows.size() > 0)
@@ -1012,7 +1012,7 @@ void SubtitleView::on_selection_changed()
 }
 
 /*
- * 
+ *
  */
 void SubtitleView::on_edited_layer( const Glib::ustring &path, const Glib::ustring &value)
 {
@@ -1035,7 +1035,7 @@ void SubtitleView::on_edited_layer( const Glib::ustring &path, const Glib::ustri
 /*
  *	callback utiliser pour modifier le temps directement depuis la list (treeview)
  */
-void SubtitleView::on_edited_start( const Glib::ustring &path, 
+void SubtitleView::on_edited_start( const Glib::ustring &path,
 																		const Glib::ustring &newtext)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
@@ -1073,7 +1073,7 @@ void SubtitleView::on_edited_start( const Glib::ustring &path,
 /*
  *	callback utiliser pour modifier le temps directement depuis la list (treeview)
  */
-void SubtitleView::on_edited_end( const Glib::ustring &path, 
+void SubtitleView::on_edited_end( const Glib::ustring &path,
 																	const Glib::ustring &newtext)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
@@ -1111,7 +1111,7 @@ void SubtitleView::on_edited_end( const Glib::ustring &path,
 /*
  *	callback utiliser pour modifier le temps directement depuis la list (treeview)
  */
-void SubtitleView::on_edited_duration( const Glib::ustring &path, 
+void SubtitleView::on_edited_duration( const Glib::ustring &path,
 																	const Glib::ustring &newtext)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
@@ -1149,7 +1149,7 @@ void SubtitleView::on_edited_duration( const Glib::ustring &path,
 /*
  *	callback utiliser pour modifier le texte
  */
-void SubtitleView::on_edited_text( const Glib::ustring &path, 
+void SubtitleView::on_edited_text( const Glib::ustring &path,
 																		const Glib::ustring &newtext)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
@@ -1160,7 +1160,7 @@ void SubtitleView::on_edited_text( const Glib::ustring &path,
 		if(subtitle.get("text") != newtext)
 		{
 			m_refDocument->start_command(_("Editing text"));
-		
+
 			subtitle.set_text(newtext);
 
 			m_refDocument->finish_command();
@@ -1171,7 +1171,7 @@ void SubtitleView::on_edited_text( const Glib::ustring &path,
 /*
  *	callback utiliser pour modifier le texte
  */
-void SubtitleView::on_edited_translation( const Glib::ustring &path, 
+void SubtitleView::on_edited_translation( const Glib::ustring &path,
 																		const Glib::ustring &newtext)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
@@ -1191,7 +1191,7 @@ void SubtitleView::on_edited_translation( const Glib::ustring &path,
 /*
  *	callback utiliser pour modifier le texte
  */
-void SubtitleView::on_edited_note( const Glib::ustring &path, 
+void SubtitleView::on_edited_note( const Glib::ustring &path,
 																		const Glib::ustring &newtext)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
@@ -1210,7 +1210,7 @@ void SubtitleView::on_edited_note( const Glib::ustring &path,
 
 /*
  */
-void SubtitleView::on_edited_effect( const Glib::ustring &path, 
+void SubtitleView::on_edited_effect( const Glib::ustring &path,
 																		const Glib::ustring &newtext)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
@@ -1231,7 +1231,7 @@ void SubtitleView::on_edited_effect( const Glib::ustring &path,
 /*
  *	callback utiliser pour modifier le style a partir d'un menu
  */
-void SubtitleView::on_edited_style( const Glib::ustring &path, 
+void SubtitleView::on_edited_style( const Glib::ustring &path,
 																		const Glib::ustring &newstyle)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newstyle.c_str());
@@ -1251,7 +1251,7 @@ void SubtitleView::on_edited_style( const Glib::ustring &path,
 /*
  *	callback utiliser pour modifier le nom
  */
-void SubtitleView::on_edited_name( const Glib::ustring &path, 
+void SubtitleView::on_edited_name( const Glib::ustring &path,
 																		const Glib::ustring &newname)
 {
 	se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newname.c_str());
@@ -1269,7 +1269,7 @@ void SubtitleView::on_edited_name( const Glib::ustring &path,
 }
 
 /*
- * 
+ *
  */
 void SubtitleView::on_edited_margin_l( const Glib::ustring &path, const Glib::ustring &value)
 {
@@ -1289,7 +1289,7 @@ void SubtitleView::on_edited_margin_l( const Glib::ustring &path, const Glib::us
 }
 
 /*
- * 
+ *
  */
 void SubtitleView::on_edited_margin_r( const Glib::ustring &path, const Glib::ustring &value)
 {
@@ -1309,7 +1309,7 @@ void SubtitleView::on_edited_margin_r( const Glib::ustring &path, const Glib::us
 }
 
 /*
- * 
+ *
  */
 void SubtitleView::on_edited_margin_v( const Glib::ustring &path, const Glib::ustring &value)
 {
@@ -1363,7 +1363,7 @@ bool SubtitleView::on_key_press_event(GdkEventKey *event)
 	{
 		int num;
 		std::istringstream ss(event->string);
-		bool is_num = static_cast<bool>(ss >> num) != 0; 
+		bool is_num = static_cast<bool>(ss >> num) != 0;
 		// Update only if it's different
 		if(is_num != get_enable_search())
 			set_enable_search(is_num);
@@ -1395,7 +1395,7 @@ void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key, con
 		if(from_string(value, state))
 		{
 			Gtk::CellRendererText *renderer = NULL;
-			
+
 			renderer = dynamic_cast<Gtk::CellRendererText*>(m_columns["text"]->get_first_cell());
 			renderer->property_xalign() = state ? 0.5 : 0.0;
 			renderer->property_alignment() = state ? Pango::ALIGN_CENTER : Pango::ALIGN_LEFT;
@@ -1413,7 +1413,7 @@ void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key, con
 		if(from_string(value, state))
 		{
 			std::vector<Gtk::CellRenderer*> cells;
-			
+
 			cells = m_columns["text"]->get_cells();
 			cells[1]->property_visible() = state;
 
@@ -1476,7 +1476,7 @@ Glib::ustring SubtitleView::get_name_of_column(Gtk::TreeViewColumn *column)
 		if(it->second == column)
 			return it->first;
 	}
-	
+
 	return Glib::ustring();
 }
 
@@ -1525,7 +1525,7 @@ void SubtitleView::update_columns_displayed_from_config()
 
 	// get columns order
 	std::vector<std::string> cols;
-		
+
 	utility::split(columns, ';', cols);
 
 	// hide all columns
@@ -1560,11 +1560,11 @@ void SubtitleView::update_columns_displayed_from_config()
 		if(current_column)
 			current_column->set_visible(true);
 	}
-	
+
 }
 
 /*
- * This is a static function. 
+ * This is a static function.
  * Return the humain label by the internal name of the column.
  */
 Glib::ustring SubtitleView::get_column_label_by_name(const Glib::ustring &name)
@@ -1605,7 +1605,7 @@ void SubtitleView::on_cursor_changed()
 	Pango::AttrList normal;
 	Pango::AttrInt att_normal = Pango::Attribute::create_attr_weight(Pango::WEIGHT_NORMAL);
 	normal.insert(att_normal);
-	
+
 	Pango::AttrList active;
 	Pango::AttrInt att_active = Pango::Attribute::create_attr_weight(Pango::WEIGHT_BOLD);
 	active.insert(att_active);
@@ -1638,7 +1638,7 @@ void SubtitleView::on_cursor_changed()
 }
 
 /*
- * Return the name of the current column focus. 
+ * Return the name of the current column focus.
  * (start, end, duration, text, translation ...)
  */
 Glib::ustring SubtitleView::get_current_column_name()
@@ -1647,4 +1647,3 @@ Glib::ustring SubtitleView::get_current_column_name()
 		return get_name_of_column(m_currentColumn);
 	return Glib::ustring();
 }
-
