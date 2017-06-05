@@ -1,3 +1,10 @@
+2016-09-26  kitone  <kitone@gna.org>
+
+	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
+	* plugins/subtitleformats/substationalpha/substationalpha.cc:
+	* src/subtitle.cc:
+	Fix sr #3373: Compiling subtitleeditor-0.52.1 '--disable-nls' fails with '/usr/include/libintl.h' errors : Peter Levine <nsane457>
+
 2016-07-30  kitone  <kitone@gna.org>
 
 	* configure.ac:
