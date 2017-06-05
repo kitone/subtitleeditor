@@ -200,7 +200,7 @@ public:
 	{
 		check_missing_plugins();
 		
-		Glib::ustring error = (msg) ? msg->parse().what() : Glib::ustring();
+		Glib::ustring error = (msg) ? Glib::ustring(msg->parse_debug()) : Glib::ustring();
 		
 		dialog_error(_("Media file could not be played.\n"), error);
 		// Critical error, cancel the work.
@@ -214,7 +214,7 @@ public:
 	{
 		check_missing_plugins();
 		
-		Glib::ustring error = (msg) ? msg->parse().what() : Glib::ustring();
+		Glib::ustring error = (msg) ? Glib::ustring(msg->parse_debug()) : Glib::ustring();
 		dialog_error(_("Media file could not be played.\n"), error);
 
 		return true;
