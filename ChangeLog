@@ -1,5 +1,10 @@
 2016-10-31  kitone  <kitone@gna.org>
 
+	* autogen.sh:
+	Fix bug #24949 : Remove deprecated gnome-common variable GNOME2_DIR.
+
+2016-10-31  kitone  <kitone@gna.org>
+
 	* src/defaultcfg.cc:
 	Fix: setup the default value of do-auto-timing-check in the timing group.
 
