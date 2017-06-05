@@ -126,7 +126,7 @@ void SubtitleFormatSystem::open_from_reader(Document *document, Reader *reader, 
 	se_debug_message(SE_DEBUG_APP, "Trying to read from reader ...");
 
 	// init the reader
-	std::auto_ptr<SubtitleFormatIO> sfio( create_subtitle_format_io(format) );
+	std::unique_ptr<SubtitleFormatIO> sfio( create_subtitle_format_io(format) );
 	sfio->set_document(document);	
 	sfio->open(*reader);
 
@@ -197,7 +197,7 @@ void SubtitleFormatSystem::save_to_uri(Document *document, const Glib::ustring &
 			"Trying to save to the file '%s' as format '%s' with charset '%s' and newline '%s'", 
 			uri.c_str(), format.c_str(), charset.c_str(), newline.c_str());
 
-	std::auto_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
+	std::unique_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
 	// init the reader
 	sfio->set_document(document);
 
@@ -231,7 +231,7 @@ void SubtitleFormatSystem::save_to_data( Document *document, Glib::ustring &dst,
 {
 	se_debug_message(SE_DEBUG_APP, "Trying to save to ustring as subtitles in the '%s' format.", format.c_str() );
 
-	std::auto_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
+	std::unique_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
 	// init the reader
 	sfio->set_document(document);
 

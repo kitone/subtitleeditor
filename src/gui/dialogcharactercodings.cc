@@ -296,9 +296,9 @@ void DialogCharacterCodings::on_row_displayed_activated(const Gtk::TreeModel::Pa
  * Create an instance of the dialog .ui file)
  * If the response is OK the config is saved.
  */
-std::auto_ptr<DialogCharacterCodings> DialogCharacterCodings::create(Gtk::Window &parent)
+std::unique_ptr<DialogCharacterCodings> DialogCharacterCodings::create(Gtk::Window &parent)
 {
-	std::auto_ptr<DialogCharacterCodings> ptr(
+	std::unique_ptr<DialogCharacterCodings> ptr(
 			gtkmm_utility::get_widget_derived<DialogCharacterCodings>(
 				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
 				"dialog-character-codings.ui", 

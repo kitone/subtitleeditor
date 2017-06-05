@@ -273,7 +273,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		DialogOpenDocument::auto_ptr dialog = DialogOpenDocument::create();
+		DialogOpenDocument::unique_ptr dialog = DialogOpenDocument::create();
 
 		if(!filterformat.empty())
 			dialog->set_current_filter(filterformat);
@@ -370,7 +370,7 @@ protected:
 
 		Glib::ustring format = default_format.empty() ? doc->getFormat() : default_format;
 
-		DialogSaveDocument::auto_ptr dialog = DialogSaveDocument::create();
+		DialogSaveDocument::unique_ptr dialog = DialogSaveDocument::create();
 
 		if(Glib::file_test(doc->getFilename(), Glib::FILE_TEST_EXISTS))
 		{
@@ -488,7 +488,7 @@ protected:
 		Document *current = get_current_document();
 		g_return_if_fail(current);
 
-		DialogOpenDocument::auto_ptr ui = DialogOpenDocument::create();
+		DialogOpenDocument::unique_ptr ui = DialogOpenDocument::create();
 
 		ui->show_video(false);
 		ui->set_select_multiple(false);
@@ -554,7 +554,7 @@ protected:
 		Document *current = get_current_document();
 		g_return_if_fail(current);
 
-		DialogSaveDocument::auto_ptr dialog = DialogSaveDocument::create();
+		DialogSaveDocument::unique_ptr dialog = DialogSaveDocument::create();
 
 		// default to the format of the original document
 		dialog->set_format(current->getFormat());

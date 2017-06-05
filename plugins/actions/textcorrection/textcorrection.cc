@@ -273,7 +273,7 @@ public:
 	{
 		// create dialog
 		/*
-		std::auto_ptr<AssistantTextCorrection> assistant(
+		std::unique_ptr<AssistantTextCorrection> assistant(
 				gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"assistant-text-correction.ui", 

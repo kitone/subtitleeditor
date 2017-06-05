@@ -180,7 +180,7 @@ protected:
 		g_return_val_if_fail(doc, false);
 
 		// create dialog
-		std::auto_ptr<DialogMoveSubtitles> dialog(
+		std::unique_ptr<DialogMoveSubtitles> dialog(
 				gtkmm_utility::get_widget_derived<DialogMoveSubtitles>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-move-subtitles.ui", 

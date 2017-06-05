@@ -327,7 +327,7 @@ protected:
 		Gtk::TreeIter selected = m_treeview->get_selection()->get_selected();
 		if(selected)
 		{
-			std::auto_ptr<DialogViewEdit> dialog(
+			std::unique_ptr<DialogViewEdit> dialog(
 					gtkmm_utility::get_widget_derived<DialogViewEdit>(
 							SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 							"dialog-view-manager.ui", 
@@ -489,7 +489,7 @@ public:
 	 */
 	void on_view_manager()
 	{
-		std::auto_ptr<DialogViewManager> dialog(
+		std::unique_ptr<DialogViewManager> dialog(
 				gtkmm_utility::get_widget_derived<DialogViewManager>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-view-manager.ui", 

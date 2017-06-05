@@ -184,7 +184,7 @@ protected:
 		g_return_if_fail(doc);
 
 		// create dialog
-		std::auto_ptr<DialogSplitDocument> dialog(
+		std::unique_ptr<DialogSplitDocument> dialog(
 				gtkmm_utility::get_widget_derived<DialogSplitDocument>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-split-document.ui", 

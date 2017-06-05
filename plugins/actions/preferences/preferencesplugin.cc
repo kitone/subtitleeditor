@@ -67,7 +67,7 @@ public:
 	 */
 	static void create()
 	{
-		std::auto_ptr<DialogPreferences> dialog(
+		std::unique_ptr<DialogPreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogPreferences>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-preferences.ui", 

@@ -58,7 +58,7 @@ public:
 	 * Create an instance of the dialog .ui file)
 	 * If the response is OK the config is saved.
 	 */
-	static std::auto_ptr<DialogCharacterCodings> create(Gtk::Window &parent);
+	static std::unique_ptr<DialogCharacterCodings> create(Gtk::Window &parent);
 
 protected:
 

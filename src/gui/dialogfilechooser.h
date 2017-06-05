@@ -92,7 +92,7 @@ public:
 	/*
 	 *
 	 */
-	typedef std::auto_ptr<DialogOpenDocument> auto_ptr;
+	typedef std::unique_ptr<DialogOpenDocument> unique_ptr;
 	
 	/*
 	 * Constructor
@@ -118,7 +118,7 @@ public:
 	/*
 	 * Create a instance of the dialog.
 	 */
-	static auto_ptr create();
+	static unique_ptr create();
 
 protected:
 
@@ -150,7 +150,7 @@ public:
 	/*
 	 *
 	 */
-	typedef std::auto_ptr<DialogSaveDocument> auto_ptr;
+	typedef std::unique_ptr<DialogSaveDocument> unique_ptr;
 	
 	/*
 	 * Constructor
@@ -196,7 +196,7 @@ public:
 	/*
 	 * Create a instance of the dialog.
 	 */
-	static auto_ptr create();
+	static unique_ptr create();
 
 
 protected:
@@ -215,7 +215,7 @@ public:
 	/*
 	 *
 	 */
-	typedef std::auto_ptr<DialogImportText> auto_ptr;
+	typedef std::unique_ptr<DialogImportText> unique_ptr;
 	
 	/*
 	 * Constructor
@@ -236,7 +236,7 @@ public:
 	/*
 	 * Create a instance of the dialog.
 	 */
-	static auto_ptr create();
+	static unique_ptr create();
 
 protected:
 	ComboBoxEncoding* m_comboEncodings;
@@ -254,7 +254,7 @@ public:
 	/*
 	 *
 	 */
-	typedef std::auto_ptr<DialogExportText> auto_ptr;
+	typedef std::unique_ptr<DialogExportText> unique_ptr;
 	
 	/*
 	 * Constructor
@@ -280,7 +280,7 @@ public:
 	/*
 	 * Create a instance of the dialog.
 	 */
-	static auto_ptr create();
+	static unique_ptr create();
 
 
 protected:

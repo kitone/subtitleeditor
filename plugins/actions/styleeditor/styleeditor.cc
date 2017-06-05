@@ -488,7 +488,7 @@ protected:
 		g_return_if_fail(doc);
 
 		// create dialog
-		std::auto_ptr<DialogStyleEditor> dialog(
+		std::unique_ptr<DialogStyleEditor> dialog(
 				gtkmm_utility::get_widget_derived<DialogStyleEditor>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-style-editor.ui", 

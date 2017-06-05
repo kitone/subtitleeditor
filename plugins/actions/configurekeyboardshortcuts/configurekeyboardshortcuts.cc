@@ -464,7 +464,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		std::auto_ptr<DialogConfigureKeyboardShortcuts> dialog(
+		std::unique_ptr<DialogConfigureKeyboardShortcuts> dialog(
 				gtkmm_utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-configure-keyboard-shortcuts.ui", 

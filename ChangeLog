@@ -1,5 +1,33 @@
 2016-09-26  kitone  <kitone@gna.org>
 
+	* plugins/actions/changeframerate/changeframerate.cc:
+	* plugins/actions/configurekeyboardshortcuts/configurekeyboardshortcuts.cc:
+	* plugins/actions/dialoguize/dialoguize.cc:
+	* plugins/actions/documentmanagement/documentmanagement.cc:
+	* plugins/actions/errorchecking/errorcheckingpreferences.h:
+	* plugins/actions/externalvideoplayer/externalvideoplayer.cc:
+	* plugins/actions/joindocument/joindocument.cc:
+	* plugins/actions/movesubtitles/movesubtitles.cc:
+	* plugins/actions/plaintext/plaintext.cc:
+	* plugins/actions/preferences/preferencesplugin.cc:
+	* plugins/actions/scalesubtitles/scalesubtitles.cc:
+	* plugins/actions/spellchecking/spellchecking.cc:
+	* plugins/actions/splitdocument/splitdocument.cc:
+	* plugins/actions/styleeditor/styleeditor.cc:
+	* plugins/actions/template/template.cc:
+	* plugins/actions/timingfromplayer/timingfromplayer.cc:
+	* plugins/actions/viewmanager/viewmanager.cc:
+	* src/gui/comboboxencoding.cc:
+	* src/gui/dialogcharactercodings.cc:
+	* src/gui/dialogcharactercodings.h:
+	* src/gui/dialogfilechooser.cc:
+	* src/gui/dialogfilechooser.h:
+	* src/spellchecker.h:
+	* src/subtitleformatsystem.cc:
+	Replace std::auto_ptr with std::unique_ptr.
+
+2016-09-26  kitone  <kitone@gna.org>
+
 	* plugins/subtitleformats/advancedsubstationalpha/advancedsubstationalpha.cc:
 	* plugins/subtitleformats/substationalpha/substationalpha.cc:
 	* src/subtitle.cc:
@@ -5308,7 +5336,7 @@
 
 	* src/gui/DialogCharacterCodings.h:
 	* src/gui/DialogFileChooser.h:
-	Fix: Issue with gcc-4.3 and auto_ptr. Patch by Luboš Staněk.
+	Fix: Issue with gcc-4.3 and unique_ptr. Patch by Luboš Staněk.
 
 2008-08-07  kitone  <kitone@gna.org>
 

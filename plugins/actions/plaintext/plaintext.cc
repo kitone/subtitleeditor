@@ -104,7 +104,7 @@ protected:
 	{
 		se_debug(SE_DEBUG_PLUGINS);
 
-		DialogImportText::auto_ptr ui = DialogImportText::create();
+		DialogImportText::unique_ptr ui = DialogImportText::create();
 
 		if(ui->run() == Gtk::RESPONSE_OK)
 		{
@@ -141,7 +141,7 @@ protected:
 	{
 	 se_debug(SE_DEBUG_PLUGINS);
 
-		DialogExportText::auto_ptr ui = DialogExportText::create();
+		DialogExportText::unique_ptr ui = DialogExportText::create();
 
 		if(ui->run() == Gtk::RESPONSE_OK)
 		{

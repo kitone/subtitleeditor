@@ -106,7 +106,7 @@ protected:
 	bool init_dictionary();
 
 protected:
-	std::auto_ptr<SEEnchantDict> m_spellcheckerDict;
+	std::unique_ptr<SEEnchantDict> m_spellcheckerDict;
 	sigc::signal<void> m_signal_dictionary_changed;
 };
 

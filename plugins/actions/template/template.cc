@@ -291,7 +291,7 @@ public:
 		g_return_if_fail(current);
 
 		// create dialog
-		std::auto_ptr<DialogTemplate> dialog(
+		std::unique_ptr<DialogTemplate> dialog(
 				gtkmm_utility::get_widget_derived<DialogTemplate>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV), 
 						"dialog-template-save-as.ui", 
@@ -305,7 +305,7 @@ public:
 		if(dialog->run() != Gtk::RESPONSE_OK)
 			return;
 
-		std::auto_ptr<Document> newdoc(new Document(*current));
+		std::unique_ptr<Document> newdoc(new Document(*current));
 		newdoc->setName(dialog->get_name());
 		newdoc->setFormat(dialog->get_format());
 		newdoc->setNewLine(dialog->get_newline());

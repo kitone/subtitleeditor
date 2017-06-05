@@ -115,7 +115,7 @@ protected:
 
 		g_return_val_if_fail(doc, false);
 
-		DialogOpenDocument::auto_ptr ui = DialogOpenDocument::create();
+		DialogOpenDocument::unique_ptr ui = DialogOpenDocument::create();
 
 		ui->show_video(false);
 		ui->set_select_multiple(false);

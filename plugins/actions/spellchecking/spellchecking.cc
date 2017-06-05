@@ -781,7 +781,7 @@ protected:
 		g_return_if_fail(doc);
 
 		// create dialog
-		std::auto_ptr<DialogSpellChecking> dialog(
+		std::unique_ptr<DialogSpellChecking> dialog(
 				gtkmm_utility::get_widget_derived<DialogSpellChecking>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-spell-checking.ui", 

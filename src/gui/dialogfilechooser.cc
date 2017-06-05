@@ -237,9 +237,9 @@ void DialogOpenDocument::show_video(bool state)
 /*
  * Create a instance of the dialog.
  */
-DialogOpenDocument::auto_ptr DialogOpenDocument::create()
+DialogOpenDocument::unique_ptr DialogOpenDocument::create()
 {
-	auto_ptr ptr( 
+	unique_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogOpenDocument>(
 				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
 				"dialog-open-document.ui", 
@@ -371,9 +371,9 @@ void DialogSaveDocument::on_combo_format_changed()
 /*
  * Create a instance of the dialog.
  */
-DialogSaveDocument::auto_ptr DialogSaveDocument::create()
+DialogSaveDocument::unique_ptr DialogSaveDocument::create()
 {
-	auto_ptr ptr( 
+	unique_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogSaveDocument>(
 				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), 
 				"dialog-save-document.ui", 
@@ -423,9 +423,9 @@ bool DialogImportText::get_blank_line_mode() const
 /*
  * Create a instance of the dialog.
  */
-DialogImportText::auto_ptr DialogImportText::create()
+DialogImportText::unique_ptr DialogImportText::create()
 {
-	auto_ptr ptr( 
+	unique_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogImportText>(
 				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), 
 				"dialog-import-text.ui", 
@@ -488,9 +488,9 @@ bool DialogExportText::get_blank_line_mode() const
 /*
  * Create a instance of the dialog.
  */
-DialogExportText::auto_ptr DialogExportText::create()
+DialogExportText::unique_ptr DialogExportText::create()
 {
-	auto_ptr ptr( 
+	unique_ptr ptr( 
 			gtkmm_utility::get_widget_derived<DialogExportText>(
 				SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
 				"dialog-export-text.ui", 

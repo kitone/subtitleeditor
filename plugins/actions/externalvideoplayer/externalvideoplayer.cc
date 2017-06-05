@@ -57,7 +57,7 @@ public:
 
 	static void create()
 	{
-		std::auto_ptr<DialogExternalVideoPreferences> dialog(
+		std::unique_ptr<DialogExternalVideoPreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogExternalVideoPreferences>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-external-video-player-preferences.ui", 

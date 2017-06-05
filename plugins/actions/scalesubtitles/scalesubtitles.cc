@@ -391,7 +391,7 @@ protected:
 		g_return_if_fail(doc);
 
 		// create dialog
-		std::auto_ptr<DialogScaleSubtitles> dialog(
+		std::unique_ptr<DialogScaleSubtitles> dialog(
 				gtkmm_utility::get_widget_derived<DialogScaleSubtitles>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-scale-subtitles.ui", 

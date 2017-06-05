@@ -101,7 +101,7 @@ public:
 	 */
 	static void create()
 	{
-		std::auto_ptr<DialogAdvancedSubStationAlphaPreferences> dialog(
+		std::unique_ptr<DialogAdvancedSubStationAlphaPreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogAdvancedSubStationAlphaPreferences>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-advancedsubstationalpha-preferences.ui", 

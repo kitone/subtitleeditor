@@ -168,7 +168,7 @@ public:
 
 	static void create()
 	{
-		std::auto_ptr<DialogDialoguizePreferences> dialog(
+		std::unique_ptr<DialogDialoguizePreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogDialoguizePreferences>(
 						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 						"dialog-dialoguize-preferences.ui", 

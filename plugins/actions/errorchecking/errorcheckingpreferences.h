@@ -72,7 +72,7 @@ public:
 	 */
 	static void create(Gtk::Window &parent, std::vector<ErrorChecking*> &list)
 	{
-		std::auto_ptr<DialogErrorCheckingPreferences> dialog(
+		std::unique_ptr<DialogErrorCheckingPreferences> dialog(
 				gtkmm_utility::get_widget_derived<DialogErrorCheckingPreferences>(
 					SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
 					"dialog-error-checking-preferences.ui", 
