@@ -76,3 +76,12 @@ Makefile.in
 *.exe
 *.out
 *.app
+
+*.deps
+Makefile
+config.h
+config.log
+config.status
+libtool
+po/POTFILES
+po/stamp-it
