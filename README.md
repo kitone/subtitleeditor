@@ -1,13 +1,6 @@
 Subtitle Editor
 ===============
 
-Graphical subtitle editor with sound waves representation
-Author: IDJAAD djamel - kitone <kitone at free dot fr>
-Homepage: https://github.com/kitone/subtitleeditor/
-
-What is it?
-===========
-
 Subtitle Editor is a GTK+3 tool to edit subtitles for GNU/Linux/*BSD.
 
 It can be used for new subtitles or as a tool to transform, edit,
@@ -17,8 +10,7 @@ waves, which makes it easier to synchronise subtitles to voices.
 Subtitle Editor is free software released under the GNU General Public
 License (GPL3).
 
-Features
-========
+## Features
 
 * Really easy to use
 * Multiple document interface
@@ -33,8 +25,7 @@ Features
 * Can be used for translating
 * Shows subtitles over the video
 
-Editing
-=======
+## Editing
 
 * Style Editor
 * Spell checking
@@ -52,8 +43,7 @@ Editing
 * Type writer effect
 * Lots of timing and editing tools
 
-Supported Formats
-=================
+## Supported Formats
 
 * Adobe Encore DVD
 * Advanced Sub Station Alpha
@@ -68,13 +58,22 @@ Supported Formats
 * Timed Text Authoring Format (TTAF)
 * Plain-Text
 
-News
-====
+## Installation
 
-See NEWS and ChangeLog
+Source tarballs, installing from a source tarball:
 
-Installation
-============
+```bash
+./autogen.sh
+make
+sudo make install
+```
 
-See INSTALL
+Required dependencies:
 
+* gtk+ version >=3.0
+* gtkmm version >=3.10
+* glibmm version >= 2.18.0
+* gstreamer 1.0 (gstreamer1.0-x, gst-plugins-base, gst-plugins-good ...)
+* gstreamermm version >= 1.0
+* enchant version >=1.4.0 (spell check)
+* libxml++ >=2.20
