@@ -417,8 +417,11 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_audio_element()
 	}
 	catch(std::runtime_error &ex)
 	{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
 		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "failed to gen_audio_element '%s'", ex.what());
 		GST_ELEMENT_WARNING(m_pipeline->gobj(), RESOURCE, NOT_FOUND, (ex.what()), (NULL));
+#pragma GCC diagnostic pop
 	}
 	// Return an NULL ptr
 	return Glib::RefPtr<Gst::Element>();
@@ -507,8 +510,11 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element()
 	}
 	catch(std::runtime_error &ex)
 	{
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
 		se_debug_message(SE_DEBUG_VIDEO_PLAYER, "failed to gen_video_element '%s'", ex.what());
 		GST_ELEMENT_ERROR(m_pipeline->gobj(), RESOURCE, NOT_FOUND, (ex.what()), (NULL));
+#pragma GCC diagnostic pop
 	}
 	// Return an NULL ptr
 	return Glib::RefPtr<Gst::Element>();
