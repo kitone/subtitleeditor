@@ -1,8 +1,8 @@
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
- *	http://home.gna.org/subtitleeditor/
- *	https://gna.org/projects/subtitleeditor/
+ *	https://kitone.github.io/subtitleeditor/
+ *	https://github.com/kitone/subtitleeditor/
  *
  *	Copyright @ 2005-2014, kitone
  *	2012, Martin Doucha

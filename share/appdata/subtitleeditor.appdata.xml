@@ -16,8 +16,8 @@
     <screenshots>
         <screenshot type="default">http://home.gna.org/subtitleeditor/screenshots/se-0.34-01.png</screenshot>
     </screenshots>
-    <url type="homepage">http://home.gna.org/subtitleeditor/</url>
-		<updatecontact>kitone@gna.org</updatecontact>
+    <url type="homepage">https://kitone.github.io/subtitleeditor/</url>
+		<updatecontact>kitone at free dot fr</updatecontact>
 		<keywords>
 			<keyword>subtitles</keyword>
 			<keyword>subtitle</keyword>
