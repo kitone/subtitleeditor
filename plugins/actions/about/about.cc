@@ -1,8 +1,8 @@
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
- *	http://home.gna.org/subtitleeditor/
- *	https://gna.org/projects/subtitleeditor/
+ *	https://kitone.github.io/subtitleeditor/
+ *	https://github.com/kitone/subtitleeditor/
  *
  *	Copyright @ 2005-2009, kitone
  *
@@ -107,7 +107,7 @@ protected:
 		dialog.set_translator_credits(_("translator-credits"));
 
 		// website
-		dialog.set_website("http://home.gna.org/subtitleeditor/");
+		dialog.set_website("https://kitone.github.io/subtitleeditor/");
 
 		// license
 		Glib::ustring license=

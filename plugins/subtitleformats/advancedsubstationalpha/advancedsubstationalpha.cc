@@ -1,8 +1,8 @@
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
- *	http://home.gna.org/subtitleeditor/
- *	https://gna.org/projects/subtitleeditor/
+ *	https://kitone.github.io/subtitleeditor/
+ *	https://github.com/kitone/subtitleeditor/
  *
  *	Copyright @ 2005-2015, kitone
  *
@@ -360,7 +360,7 @@ public:
 			Glib::ustring::compose(
 				"[Script Info]\n"
 				"; This script was created by subtitleeditor (%1)\n"
-				"; http://home.gna.org/subtitleeditor/\n",
+				"; https://kitone.github.io/subtitleeditor/\n",
 				Glib::ustring(VERSION)));
 
 		ScriptInfo& scriptInfo = document()->get_script_info();

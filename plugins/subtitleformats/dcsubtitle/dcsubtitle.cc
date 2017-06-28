@@ -1,8 +1,8 @@
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
- *	http://home.gna.org/subtitleeditor/
- *	https://gna.org/projects/subtitleeditor/
+ *	https://kitone.github.io/subtitleeditor/
+ *	https://github.com/kitone/subtitleeditor/
  *
  *	Copyright @ 2011, kitone
  *
@@ -70,7 +70,7 @@ public:
 				date.set_time_current();
 				doc.add_comment(date.format_string(" %Y-%m-%d "));
 				doc.add_comment(Glib::ustring::compose(" Created by subtitleeditor version %1 ", VERSION));
-				doc.add_comment(" http://home.gna.org/subtitleeditor/ ");
+				doc.add_comment(" https://kitone.github.io/subtitleeditor/ ");
 			}
 			xmlpp::Element* xml_dcsubtitle = doc.create_root_node("DCSubtitle");
 			

@@ -1,8 +1,8 @@
 /*
  *	subtitleeditor -- a tool to create or edit subtitle
  *
- *	http://home.gna.org/subtitleeditor/
- *	https://gna.org/projects/subtitleeditor/
+ *	https://kitone.github.io/subtitleeditor/
+ *	https://github.com/kitone/subtitleeditor/
  *
  *	Copyright @ 2005-2013, kitone
  *	Authors: eltomito <tomaspartl at centrum dot cz>
@@ -131,7 +131,7 @@ public:
 		m_framerate_value = get_framerate_value(fcd.execute());
 
 		//write header
-		file.write( "@ File created by SubtitleEditor (home.gna.org/subtitleeditor)\n\n<begin subtitles>\n" );
+		file.write( "@ File created by SubtitleEditor (https://kitone.github.io/subtitleeditor/)\n\n<begin subtitles>\n" );
 
 		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
 		{
