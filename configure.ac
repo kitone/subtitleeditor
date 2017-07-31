@@ -310,7 +310,7 @@ Makefile
 src/Makefile 
 m4/Makefile 
 share/Makefile 
-share/appdata/Makefile
+share/metainfo/Makefile
 share/icons/Makefile 
 share/icons/16x16/Makefile
 share/icons/22x22/Makefile
