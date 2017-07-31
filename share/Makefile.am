@@ -7,7 +7,7 @@ uidir = $(PACKAGE_SHARE_DIR)
 ui_DATA = menubar.xml
 
 desktopdir = $(datadir)/applications
-desktop_in_files = subtitleeditor.desktop.in
+desktop_in_files = org.kitone.subtitleeditor.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DESKTOP_RULE@
