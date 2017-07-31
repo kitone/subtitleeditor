@@ -1,4 +1,4 @@
-appdatadir = $(datadir)/appdata
+appdatadir = $(datadir)/metainfo
 
 appdata_DATA = subtitleeditor.appdata.xml
 
