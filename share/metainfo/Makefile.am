@@ -1,6 +1,6 @@
 appdatadir = $(datadir)/metainfo
 
-appdata_DATA = subtitleeditor.appdata.xml
+appdata_DATA = org.kitone.subtitleeditor.appdata.xml
 
 EXTRA_DIST = $(appdata_DATA)
 
