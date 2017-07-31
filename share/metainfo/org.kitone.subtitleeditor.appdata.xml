@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-    <id type="desktop">subtitleeditor.desktop</id>
-    <licence>CC0</licence>
+<component>
+    <id>org.kitone.subtitleeditor.desktop</id>
+    <metadata_license>CC0</metadata_license>
+    <project_license>GPL-3.0</project_license>
     <name>Subtitle Editor</name>
     <summary>GTK+3 tool to edit subtitles for GNU/Linux/*BSD</summary>
     <description>
@@ -13,16 +14,18 @@
             to synchronize subtitles to voices.
         </p>
     </description>
-    <screenshots>
-        <screenshot type="default">https://kitone.github.io/subtitleeditor/docs/screenshoot.png</screenshot>
-    </screenshots>
-    <url type="homepage">https://kitone.github.io/subtitleeditor/</url>
-		<updatecontact>kitone at free dot fr</updatecontact>
-		<keywords>
-			<keyword>subtitles</keyword>
-			<keyword>subtitle</keyword>
-			<keyword>captions</keyword>
-			<keyword>video</keyword>
-		</keywords>
-</application>
+	<screenshots>
+		<screenshot type="default">
+			<image>https://kitone.github.io/subtitleeditor/docs/screenshoot.png</image>
+		</screenshot>
+	</screenshots>
+	<url type="homepage">https://kitone.github.io/subtitleeditor/</url>
+	<update_contact>kitone@free.fr</update_contact>
+	<keywords>
+		<keyword>subtitles</keyword>
+		<keyword>subtitle</keyword>
+		<keyword>captions</keyword>
+		<keyword>video</keyword>
+	</keywords>
+</component>
 
