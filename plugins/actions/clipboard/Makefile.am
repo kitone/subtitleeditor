@@ -5,9 +5,7 @@ plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/actions
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src \
-	$(SUBTITLEEDITOR_CFLAGS) \
-	-DSE_PLUGIN_PATH_DEV=\"$(actionplugindevdir)\" \
-	-DSE_PLUGIN_PATH_UI=\"$(uidir)\"
+	$(SUBTITLEEDITOR_CFLAGS)
 
 
 pluginlib_LTLIBRARIES = \

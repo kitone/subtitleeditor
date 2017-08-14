@@ -1,7 +1,7 @@
 plugin_name = styleeditor
 pluginlibdir = $(PACKAGE_PLUGIN_LIB_DIR)/actions
 plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/actions
-actionplugindevdir = $(abs_srcdir)
+actionplugindevdir = $(srcdir)
 uidir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 
 AM_CPPFLAGS = \
