@@ -117,7 +117,7 @@ plugins/subtitleformats/substationalpha/substationalpha.cc
 plugins/subtitleformats/subtitleeditorproject/subtitleeditorproject.cc
 plugins/subtitleformats/subviewer2/subviewer2.cc
 plugins/subtitleformats/timedtextauthoringformat1/timedtextauthoringformat1.cc
-share/subtitleeditor.desktop.in
+share/org.kitone.subtitleeditor.desktop.in
 src/cfg.cc
 src/cfg.h
 src/color.cc
