@@ -2,7 +2,7 @@ plugin_name = textcorrection
 pluginlibdir = $(PACKAGE_PLUGIN_LIB_DIR)/actions
 plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/actions
 patterndir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
-actionplugindevdir = $(abs_srcdir)
+actionplugindevdir = plugins/actions/$(plugin_name)
 uidir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 
 AM_CPPFLAGS = \

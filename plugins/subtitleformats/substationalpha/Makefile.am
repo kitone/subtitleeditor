@@ -1,7 +1,7 @@
 plugin_name = substationalpha
 pluginlibdir = $(PACKAGE_PLUGIN_LIB_DIR)/subtitleformats
 plugindescriptiondir = $(PACKAGE_PLUGIN_DESCRIPTION_DIR)/subtitleformats
-subtitleformatplugindevdir = $(abs_srcdir)
+subtitleformatplugindevdir = plugins/subtitleformats/$(plugin_name)
 uidir = $(PACKAGE_PLUGIN_SHARE_DIR)/$(plugin_name)
 
 pluginlib_LTLIBRARIES = \
