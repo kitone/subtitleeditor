@@ -792,14 +792,13 @@ void WaveformRendererCairo::draw_keyframes(const Cairo::RefPtr<Cairo::Context> &
 	long start_clip = get_time_by_pos(get_start_area());
 	long end_clip = get_time_by_pos(get_end_area());
 
-	for(KeyFrames::const_iterator it = keyframes->begin(); it != keyframes->end(); ++it)
-	{
-		// display only if it's in the area
-		if(*it < start_clip && *it < end_clip)
-			continue;
-		if(*it > end_clip)
-			break; // the next keyframes are out of the area
+	KeyFrames::iterator it =
+			std::lower_bound(keyframes->begin(), keyframes->end(), start_clip);
+	KeyFrames::iterator end_it =
+			std::lower_bound(it, keyframes->end(), end_clip);
 
+	for(; it != end_it; ++it)
+	{
 		long pos = get_pos_by_time(*it);
 		cr->move_to(pos, 0);
 		cr->line_to(pos, area.get_height());
