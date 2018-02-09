@@ -594,63 +594,33 @@ void WaveformRendererCairo::draw_subtitles(const Cairo::RefPtr<Cairo::Context> &
 	Subtitles subs = document()->subtitles();
 	Subtitle selected = subs.get_first_selected();
 	
-	if(selected)
+	for(Subtitle sub = subs.get_first(); sub; ++sub)
 	{
-		for(Subtitle sub = subs.get_first(); sub; ++sub)
+		SubtitleTime start = sub.get_start();
+		SubtitleTime end = sub.get_end();
+	
+		if(start < start_clip && end < start_clip)
+			continue;
+		if(start > end_clip && end > end_clip)
+			break;
+
+		int s = get_pos_by_time(start.totalmsecs);
+		int e = get_pos_by_time(end.totalmsecs);
+
+		if(s > e)
+			set_color(cr, m_color_subtitle_invalid);
+		else if(selected == sub)
 		{
-			SubtitleTime start = sub.get_start();
-			SubtitleTime end = sub.get_end();
-		
-			if(start < start_clip && end < start_clip)
-				continue;
-			if(start > end_clip && end > end_clip)
-				break;
-
-			int s = get_pos_by_time(start.totalmsecs);
-			int e = get_pos_by_time(end.totalmsecs);
-
-			if(s > e)
-				set_color(cr, m_color_subtitle_invalid);
-			else if(selected == sub)
-			{
-				set_color(cr, m_color_subtitle_selected);
-			}
-			else
-				set_color(cr, m_color_subtitle);
-
-			cr->rectangle(s, 0, e-s, h);
-			cr->fill();
-
-			if(m_display_subtitle_text)
-				draw_subtitle_text(cr, sub, s, e);
+			set_color(cr, m_color_subtitle_selected);
 		}
-	}
-	else
-	{
-		for(Subtitle sub = subs.get_first(); sub; ++sub)
-		{
-			SubtitleTime start = sub.get_start();
-			SubtitleTime end = sub.get_end();
-		
-			if(start < start_clip && end < start_clip)
-				continue;
-			if(start > end_clip && end > end_clip)
-				break;
+		else
+			set_color(cr, m_color_subtitle);
 
-			int s = get_pos_by_time(start.totalmsecs);
-			int e = get_pos_by_time(end.totalmsecs);
+		cr->rectangle(s, 0, e-s, h);
+		cr->fill();
 
-			if(s > e)
-				set_color(cr, m_color_subtitle_invalid);
-			else
-				set_color(cr, m_color_subtitle);
-
-			cr->rectangle(s, 0, e-s, h);
-			cr->fill();
-
-			if(m_display_subtitle_text)
-				draw_subtitle_text(cr, sub, s, e);
-		}
+		if(m_display_subtitle_text)
+			draw_subtitle_text(cr, sub, s, e);
 	}
 }
 
