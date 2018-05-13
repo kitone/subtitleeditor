@@ -141,41 +141,30 @@ class KeyframesManagementPlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-keyframes' action='menu-keyframes'>"
-        "			<placeholder name='placeholder'>"
-        "					<menuitem "
-        "action='keyframes/open'/>"
-        "					<menuitem "
-        "action='keyframes/recent-files'/>"
-        "					<menuitem "
-        "action='keyframes/save'/>"
-        "					<menuitem "
-        "action='keyframes/generate'/>"
-        "					<menuitem "
-        "action='keyframes/generate-using-frame'/>"
-        "					<menuitem "
-        "action='keyframes/close'/>"
-        "					<separator/>"
-        "					<menuitem "
-        "action='keyframes/seek-to-previous'/>"
-        "					<menuitem "
-        "action='keyframes/seek-to-next'/>"
-        "					<separator/>"
-        "					<menuitem "
-        "action='keyframes/snap-start-to-previous'/>"
-        "					<menuitem "
-        "action='keyframes/snap-start-to-next'/>"
-        "					<menuitem "
-        "action='keyframes/snap-end-to-previous'/>"
-        "					<menuitem "
-        "action='keyframes/snap-end-to-next'/>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-keyframes' action='menu-keyframes'>
+            <placeholder name='placeholder'>
+              <menuitem action='keyframes/open'/>
+              <menuitem action='keyframes/recent-files'/>
+              <menuitem action='keyframes/save'/>
+              <menuitem action='keyframes/generate'/>
+              <menuitem action='keyframes/generate-using-frame'/>
+              <menuitem action='keyframes/close'/>
+              <separator/>
+              <menuitem action='keyframes/seek-to-previous'/>
+              <menuitem action='keyframes/seek-to-next'/>
+              <separator/>
+              <menuitem action='keyframes/snap-start-to-previous'/>
+              <menuitem action='keyframes/snap-start-to-next'/>
+              <menuitem action='keyframes/snap-end-to-previous'/>
+              <menuitem action='keyframes/snap-end-to-next'/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
 

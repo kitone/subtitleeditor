@@ -115,23 +115,21 @@ class TemplatePlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-extensions' action='menu-extensions'>"
-        "			<placeholder name='placeholder'>"
-        "					<menu name='template' "
-        "action='template'>"
-        "						<menuitem "
-        "action='save-as-template'/>"
-        "						<separator/>"
-        "						<placeholder "
-        "name='template-files'/>"
-        "					</menu>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-extensions' action='menu-extensions'>
+            <placeholder name='placeholder'>
+              <menu name='template' action='template'>
+                <menuitem action='save-as-template'/>
+                <separator/>
+                <placeholder name='template-files'/>
+              </menu>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
 

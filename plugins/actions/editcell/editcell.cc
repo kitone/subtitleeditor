@@ -55,17 +55,18 @@ class EditCellPlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-edit' action='menu-edit'>"
-        "			<placeholder name='edit-cell'>"
-        "				<menuitem action='edit-cell'/>"
-        "				<menuitem action='edit-next-cell'/>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-edit' action='menu-edit'>
+            <placeholder name='edit-cell'>
+              <menuitem action='edit-cell'/>
+              <menuitem action='edit-next-cell'/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
   }

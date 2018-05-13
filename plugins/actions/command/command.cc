@@ -54,17 +54,18 @@ class CommandPlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-edit' action='menu-edit'>"
-        "			<placeholder name='command'>"
-        "				<menuitem action='undo-command'/>"
-        "				<menuitem action='redo-command'/>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-edit' action='menu-edit'>
+            <placeholder name='command'>
+              <menuitem action='undo-command'/>
+              <menuitem action='redo-command'/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
   }

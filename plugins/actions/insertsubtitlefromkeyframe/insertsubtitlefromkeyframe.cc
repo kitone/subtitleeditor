@@ -63,21 +63,20 @@ class InsertSubtitleFromKeyframePlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-keyframes' action='menu-keyframes'>"
-        "			<placeholder name='placeholder-2'>"
-        "				<separator />"
-        "				<menuitem "
-        "action='insert-subtitle-between-keyframes'/>"
-        "				<menuitem "
-        "action='insert-subtitle-between-each-keyframes'/>"
-        "				<separator />"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-keyframes' action='menu-keyframes'>
+            <placeholder name='placeholder-2'>
+              <separator/>
+              <menuitem action='insert-subtitle-between-keyframes'/>
+              <menuitem action='insert-subtitle-between-each-keyframes'/>
+              <separator/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
 

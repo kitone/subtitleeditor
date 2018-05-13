@@ -99,30 +99,26 @@ class TimeModeManagement : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-timings' action='menu-timings'>"
-        "			<placeholder name='time-mode-management'>"
-        "				<menuitem action='times'/>"
-        "				<menuitem action='frames'/>"
-        "				<separator/>"
-        "				<menu action='menu-framerate'>"
-        "					<menuitem "
-        "action='set-framerate-23.976'/>"
-        "					<menuitem "
-        "action='set-framerate-24'/>"
-        "					<menuitem "
-        "action='set-framerate-25'/>"
-        "					<menuitem "
-        "action='set-framerate-29.97'/>"
-        "					<menuitem "
-        "action='set-framerate-30'/>"
-        "				</menu>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-timings' action='menu-timings'>
+            <placeholder name='time-mode-management'>
+              <menuitem action='times'/>
+              <menuitem action='frames'/>
+              <separator/>
+              <menu action='menu-framerate'>
+                <menuitem action='set-framerate-23.976'/>
+                <menuitem action='set-framerate-24'/>
+                <menuitem action='set-framerate-25'/>
+                <menuitem action='set-framerate-29.97'/>
+                <menuitem action='set-framerate-30'/>
+              </menu>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
   }

@@ -305,97 +305,62 @@ class VideoPlayerManagement : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-video' action='menu-video'>"
-        "			<placeholder name='video-player-management'>"
-        "					<menuitem "
-        "action='video-player/open'/>"
-        "					<menuitem "
-        "action='video-player/recent-files'/>"
-        "					<menuitem "
-        "action='video-player/close'/>"
-        "					<separator/>"
-        "					<menu "
-        "action='menu-audio-track'>"
-        "						<placeholder "
-        "name='audio-track-placeholder'/>"
-        "					</menu>"
-        "					<separator/>"
-        "					<menuitem "
-        "action='video-player/play'/>"
-        "					<menuitem "
-        "action='video-player/pause'/>"
-        "					<menuitem "
-        "action='video-player/play-pause'/>"
-        "					<separator/>"
-        "					<menu "
-        "action='video-player/menu-skip-forward'>"
-        "						<menuitem "
-        "action='video-player/skip-forward-frame'/>"
-        "						<menuitem "
-        "action='video-player/skip-forward-tiny'/>"
-        "						<menuitem "
-        "action='video-player/skip-forward-very-short'/>"
-        "						<menuitem "
-        "action='video-player/skip-forward-short'/>"
-        "						<menuitem "
-        "action='video-player/skip-forward-medium'/>"
-        "						<menuitem "
-        "action='video-player/skip-forward-long'/>"
-        "					</menu>"
-        "					<menu "
-        "action='video-player/menu-skip-backwards'>"
-        "						<menuitem "
-        "action='video-player/skip-backwards-frame'/>"
-        "						<menuitem "
-        "action='video-player/skip-backwards-tiny'/>"
-        "						<menuitem "
-        "action='video-player/skip-backwards-very-short'/>"
-        "						<menuitem "
-        "action='video-player/skip-backwards-short'/>"
-        "						<menuitem "
-        "action='video-player/skip-backwards-medium'/>"
-        "						<menuitem "
-        "action='video-player/skip-backwards-long'/>"
-        "					</menu>"
-        "					<menu "
-        "action='video-player/menu-rate'>"
-        "						<menuitem "
-        "action='video-player/rate-slower'/>"
-        "						<menuitem "
-        "action='video-player/rate-faster'/>"
-        "						<menuitem "
-        "action='video-player/rate-normal'/>"
-        "					</menu>"
-        "					<separator/>"
-        "					<menuitem "
-        "action='video-player/seek-to-selection'/>"
-        "					<menuitem "
-        "action='video-player/seek-to-selection-end'/>"
-        "					<separator/>"
-        "					<menuitem "
-        "action='video-player/play-current-subtitle'/>"
-        "					<menuitem "
-        "action='video-player/play-next-subtitle'/>"
-        "					<menuitem "
-        "action='video-player/play-previous-subtitle'/>"
-        "					<menuitem "
-        "action='video-player/repeat'/>"
-        "					<separator/>"
-        "					<menuitem "
-        "action='video-player/play-previous-second'/>"
-        "					<menuitem "
-        "action='video-player/play-first-second'/>"
-        "					<menuitem "
-        "action='video-player/play-last-second'/>"
-        "					<menuitem "
-        "action='video-player/play-next-second'/>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-video' action='menu-video'>
+            <placeholder name='video-player-management'>
+              <menuitem action='video-player/open'/>
+              <menuitem action='video-player/recent-files'/>
+              <menuitem action='video-player/close'/>
+              <separator/>
+              <menu action='menu-audio-track'>
+                <placeholder name='audio-track-placeholder'/>
+              </menu>
+              <separator/>
+              <menuitem action='video-player/play'/>
+              <menuitem action='video-player/pause'/>
+              <menuitem action='video-player/play-pause'/>
+              <separator/>
+              <menu action='video-player/menu-skip-forward'>
+                <menuitem action='video-player/skip-forward-frame'/>
+                <menuitem action='video-player/skip-forward-tiny'/>
+                <menuitem action='video-player/skip-forward-very-short'/>
+                <menuitem action='video-player/skip-forward-short'/>
+                <menuitem action='video-player/skip-forward-medium'/>
+                <menuitem action='video-player/skip-forward-long'/>
+              </menu>
+              <menu action='video-player/menu-skip-backwards'>
+                <menuitem action='video-player/skip-backwards-frame'/>
+                <menuitem action='video-player/skip-backwards-tiny'/>
+                <menuitem action='video-player/skip-backwards-very-short'/>
+                <menuitem action='video-player/skip-backwards-short'/>
+                <menuitem action='video-player/skip-backwards-medium'/>
+                <menuitem action='video-player/skip-backwards-long'/>
+              </menu>
+              <menu action='video-player/menu-rate'>
+                <menuitem action='video-player/rate-slower'/>
+                <menuitem action='video-player/rate-faster'/>
+                <menuitem action='video-player/rate-normal'/>
+              </menu>
+              <separator/>
+              <menuitem action='video-player/seek-to-selection'/>
+              <menuitem action='video-player/seek-to-selection-end'/>
+              <separator/>
+              <menuitem action='video-player/play-current-subtitle'/>
+              <menuitem action='video-player/play-next-subtitle'/>
+              <menuitem action='video-player/play-previous-subtitle'/>
+              <menuitem action='video-player/repeat'/>
+              <separator/>
+              <menuitem action='video-player/play-previous-second'/>
+              <menuitem action='video-player/play-first-second'/>
+              <menuitem action='video-player/play-last-second'/>
+              <menuitem action='video-player/play-next-second'/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
     ui_id_audio = ui->new_merge_id();

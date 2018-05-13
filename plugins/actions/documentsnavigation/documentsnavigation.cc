@@ -80,30 +80,25 @@ class DocumentsNavigationPlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-extensions' action='menu-extensions'>"
-        "			<placeholder name='placeholder'>"
-        "					<menu "
-        "name='documentsnavigation' action='documentsnavigation'>"
-        "						<menuitem "
-        "action='documentsnavigation-first-document'/>"
-        "						<menuitem "
-        "action='documentsnavigation-last-document'/>"
-        "						<separator/>"
-        "						<menuitem "
-        "action='documentsnavigation-previous-document'/>"
-        "						<menuitem "
-        "action='documentsnavigation-next-document'/>"
-        "						<separator/>"
-        "						<placeholder "
-        "name='documentsnavigation-documents'/>"
-        "					</menu>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-extensions' action='menu-extensions'>
+            <placeholder name='placeholder'>
+              <menu name='documentsnavigation' action='documentsnavigation'>
+                <menuitem action='documentsnavigation-first-document'/>
+                <menuitem action='documentsnavigation-last-document'/>
+                <separator/>
+                <menuitem action='documentsnavigation-previous-document'/>
+                <menuitem action='documentsnavigation-next-document'/>
+                <separator/>
+                <placeholder name='documentsnavigation-documents'/>
+              </menu>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
 

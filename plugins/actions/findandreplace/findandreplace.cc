@@ -786,18 +786,19 @@ class FindAndReplacePlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-tools' action='menu-tools'>"
-        "			<placeholder name='find-and-replace'>"
-        "				<menuitem action='find-and-replace'/>"
-        "				<menuitem action='find-next'/>"
-        "				<menuitem action='find-previous'/>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-tools' action='menu-tools'>
+            <placeholder name='find-and-replace'>
+              <menuitem action='find-and-replace'/>
+              <menuitem action='find-next'/>
+              <menuitem action='find-previous'/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
 

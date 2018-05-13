@@ -142,37 +142,30 @@ class TimingFromPlayer : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-video' action='menu-video'>"
-        "			<placeholder name='placeholder'>"
-        "				<menu action='menu-timing-from-player'>"
-        "					<menuitem "
-        "action='timing-from-player/set-subtitle-start'/>"
-        "					<menuitem "
-        "action='timing-from-player/set-subtitle-end'/>"
-        "					<separator />"
-        "					<menuitem "
-        "action='timing-from-player/set-subtitle-start-and-go-next'/>"
-        "					<menuitem "
-        "action='timing-from-player/set-subtitle-end-and-go-next'/>"
-        "					<separator />"
-        "					<menuitem "
-        "action='timing-from-player/set-subtitle-start-and-next'/>"
-        "					<menuitem "
-        "action='timing-from-player/set-subtitle-end-and-next'/>"
-        "					<separator />"
-        "					<menuitem "
-        "action='timing-from-player/set-subtitle-start-and-end-with-one-key'/>"
-        "					<separator />"
-        "					<menuitem "
-        "action='timing-from-player/preferences'/>"
-        "				</menu>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-video' action='menu-video'>
+            <placeholder name='placeholder'>
+              <menu action='menu-timing-from-player'>
+                <menuitem action='timing-from-player/set-subtitle-start'/>
+                <menuitem action='timing-from-player/set-subtitle-end'/>
+                <separator/>
+                <menuitem action='timing-from-player/set-subtitle-start-and-go-next'/>
+                <menuitem action='timing-from-player/set-subtitle-end-and-go-next'/>
+                <separator/>
+                <menuitem action='timing-from-player/set-subtitle-start-and-next'/>
+                <menuitem action='timing-from-player/set-subtitle-end-and-next'/>
+                <separator/>
+                <menuitem action='timing-from-player/set-subtitle-start-and-end-with-one-key'/>
+                <separator/>
+                <menuitem action='timing-from-player/preferences'/>
+              </menu>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
 

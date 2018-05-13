@@ -365,18 +365,18 @@ class ViewManagerPlugin : public Action {
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-view' action='menu-view'>"
-        "			<placeholder name='view-manager'>"
-        "				<placeholder name='placeholder'/>"
-        "				<menuitem "
-        "action='view-manager-preferences'/>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-view' action='menu-view'>
+            <placeholder name='view-manager'>
+              <placeholder name='placeholder'/>
+              <menuitem action='view-manager-preferences'/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = get_ui_manager()->add_ui_from_string(submenu);
 

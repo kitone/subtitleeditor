@@ -89,30 +89,24 @@ class SelectionPlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-selection' action='menu-selection'>"
-        "			<placeholder name='selection'>"
-        "				<menuitem "
-        "action='select-first-subtitle'/>"
-        "				<menuitem "
-        "action='select-last-subtitle'/>"
-        "				<menuitem "
-        "action='select-previous-subtitle'/>"
-        "				<menuitem "
-        "action='select-next-subtitle'/>"
-        "				<separator/>"
-        "				<menuitem "
-        "action='select-all-subtitles'/>"
-        "				<menuitem "
-        "action='unselect-all-subtitles'/>"
-        "				<menuitem "
-        "action='invert-subtitles-selection'/>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-selection' action='menu-selection'>
+            <placeholder name='selection'>
+              <menuitem action='select-first-subtitle'/>
+              <menuitem action='select-last-subtitle'/>
+              <menuitem action='select-previous-subtitle'/>
+              <menuitem action='select-next-subtitle'/>
+              <separator/>
+              <menuitem action='select-all-subtitles'/>
+              <menuitem action='unselect-all-subtitles'/>
+              <menuitem action='invert-subtitles-selection'/>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
   }

@@ -143,27 +143,28 @@ class DialogErrorChecking : public Gtk::Dialog {
     builder->get_widget("box", vbox);
 
     // ui
-    Glib::ustring ui_info =
-        "<ui>"
-        "  <menubar name='MenuBar'>"
-        "    <menu action='MenuError'>"
-        "      <menuitem action='Refresh'/>"
-        "      <menuitem action='TryToFixAll'/>"
-        "      <separator/>"
-        "      <menuitem action='Quit'/>"
-        "    </menu>"
-        "    <menu action='MenuView'>"
-        "      <menuitem action='SortByCategories'/>"
-        "      <menuitem action='SortBySubtitles'/>"
-        "      <separator/>"
-        "      <menuitem action='CollapseAll'/>"
-        "      <menuitem action='ExpandAll'/>"
-        "    </menu>"
-        "    <menu action='MenuOptions'>"
-        "      <menuitem action='Preferences'/>"
-        "    </menu>"
-        "  </menubar>"
-        "</ui>";
+    Glib::ustring ui_info = R"(
+      <ui>
+        <menubar name='MenuBar'>
+          <menu action='MenuError'>
+            <menuitem action='Refresh'/>
+            <menuitem action='TryToFixAll'/>
+            <separator/>
+            <menuitem action='Quit'/>
+          </menu>
+          <menu action='MenuView'>
+            <menuitem action='SortByCategories'/>
+            <menuitem action='SortBySubtitles'/>
+            <separator/>
+            <menuitem action='CollapseAll'/>
+            <menuitem action='ExpandAll'/>
+          </menu>
+          <menu action='MenuOptions'>
+            <menuitem action='Preferences'/>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     // actions
     m_action_group = Gtk::ActionGroup::create();

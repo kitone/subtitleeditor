@@ -145,49 +145,36 @@ class AdjustTimePlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    Glib::ustring submenu =
-        "<ui>"
-        "	<menubar name='menubar'>"
-        "		<menu name='menu-timings' action='menu-timings'>"
-        "			<placeholder name='adjust-time'>"
-        "				<menu action='menu-adjust-time-add'>"
-        "					<menuitem "
-        "action='add-to-start'/>"
-        "					<menuitem "
-        "action='add-to-duration'/>"
-        "					<menuitem "
-        "action='add-to-start-and-to-duration'/>"
-        "				</menu>"
-        "				<menu action='menu-adjust-time-remove'>"
-        "					<menuitem "
-        "action='remove-from-start'/>"
-        "					<menuitem "
-        "action='remove-from-duration'/>"
-        "					<menuitem "
-        "action='remove-from-start-and-from-duration'/>"
-        "				</menu>"
-        "				<menu "
-        "action='menu-adjust-time-add-frame'>"
-        "					<menuitem "
-        "action='add-frame-to-start'/>"
-        "					<menuitem "
-        "action='add-frame-to-duration'/>"
-        "					<menuitem "
-        "action='add-frame-to-start-and-to-duration'/>"
-        "				</menu>"
-        "				<menu "
-        "action='menu-adjust-time-remove-frame'>"
-        "					<menuitem "
-        "action='remove-frame-from-start'/>"
-        "					<menuitem "
-        "action='remove-frame-from-duration'/>"
-        "					<menuitem "
-        "action='remove-frame-from-start-and-from-duration'/>"
-        "				</menu>"
-        "			</placeholder>"
-        "		</menu>"
-        "	</menubar>"
-        "</ui>";
+    Glib::ustring submenu = R"(
+      <ui>
+        <menubar name='menubar'>
+          <menu name='menu-timings' action='menu-timings'>
+            <placeholder name='adjust-time'>
+              <menu action='menu-adjust-time-add'>
+                <menuitem action='add-to-start'/>
+                <menuitem action='add-to-duration'/>
+                <menuitem action='add-to-start-and-to-duration'/>
+              </menu>
+              <menu action='menu-adjust-time-remove'>
+                <menuitem action='remove-from-start'/>
+                <menuitem action='remove-from-duration'/>
+                <menuitem action='remove-from-start-and-from-duration'/>
+              </menu>
+              <menu action='menu-adjust-time-add-frame'>
+                <menuitem action='add-frame-to-start'/>
+                <menuitem action='add-frame-to-duration'/>
+                <menuitem action='add-frame-to-start-and-to-duration'/>
+              </menu>
+              <menu action='menu-adjust-time-remove-frame'>
+                <menuitem action='remove-frame-from-start'/>
+                <menuitem action='remove-frame-from-duration'/>
+                <menuitem action='remove-frame-from-start-and-from-duration'/>
+              </menu>
+            </placeholder>
+          </menu>
+        </menubar>
+      </ui>
+    )";
 
     ui_id = ui->add_ui_from_string(submenu);
   }
