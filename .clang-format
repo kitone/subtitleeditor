@@ -1,0 +1,7 @@
+---
+BasedOnStyle: Google
+AlignTrailingComments: true
+ReflowComments: true
+ColumnLimit: 80
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false
