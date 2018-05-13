@@ -30,85 +30,82 @@
 /*
  *
  */
-class SpinButtonTime : public Gtk::SpinButton
-{
-public:
-	
-	/*
-	 *
-	 */
-	SpinButtonTime();
+class SpinButtonTime : public Gtk::SpinButton {
+ public:
+  /*
+   *
+   */
+  SpinButtonTime();
 
-	/*
-	 *
-	 */
-	SpinButtonTime(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
-	
-	/*
-	 *
-	 */
-	void set_timing_mode(TIMING_MODE mode);
+  /*
+   *
+   */
+  SpinButtonTime(BaseObjectType *cobject,
+                 const Glib::RefPtr<Gtk::Builder> &builder);
 
-	/*
-	 *
-	 */
-	TIMING_MODE get_timing_mode();
+  /*
+   *
+   */
+  void set_timing_mode(TIMING_MODE mode);
 
-	/*
-	 *
-	 */
-	void set_negative(bool state);
+  /*
+   *
+   */
+  TIMING_MODE get_timing_mode();
 
-protected:
+  /*
+   *
+   */
+  void set_negative(bool state);
 
-	/*
-	 *
-	 */
-	void default_init();
+ protected:
+  /*
+   *
+   */
+  void default_init();
 
-	/*
-	 *
-	 */
-	void init_frame_mode();
+  /*
+   *
+   */
+  void init_frame_mode();
 
-	/*
-	 *
-	 */
-	void init_time_mode();
+  /*
+   *
+   */
+  void init_time_mode();
 
-	/*
-	 *
-	 */
-	int on_input(double *new_value);
+  /*
+   *
+   */
+  int on_input(double *new_value);
 
-	/*
-	 *
-	 */
-	bool on_output();
+  /*
+   *
+   */
+  bool on_output();
 
-	/*
-	 */
-	void get_preferred_width_vfunc(int &minimum_width, int &natural_width) const;
-	
-	/*
-	 *
-	 */
-	bool on_scroll_event(GdkEventScroll *ev);
+  /*
+   */
+  void get_preferred_width_vfunc(int &minimum_width, int &natural_width) const;
 
-	/*
-	 *
-	 */
-	void on_insert_text(const Glib::ustring &str, int *pos);
-	
-	/*
-	 *
-	 */
-	void init_range();
+  /*
+   *
+   */
+  bool on_scroll_event(GdkEventScroll *ev);
 
-protected:
-	TIMING_MODE m_timing_mode;
-	bool m_negative;
+  /*
+   *
+   */
+  void on_insert_text(const Glib::ustring &str, int *pos);
+
+  /*
+   *
+   */
+  void init_range();
+
+ protected:
+  TIMING_MODE m_timing_mode;
+  bool m_negative;
 };
 
-#endif//_SpinButtonTime_h
-
+#endif  //_SpinButtonTime_h

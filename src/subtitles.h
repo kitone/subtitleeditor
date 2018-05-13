@@ -22,145 +22,142 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
-#include "subtitle.h"
 #include <vector>
+#include "subtitle.h"
 
 class Document;
 
-class Subtitles
-{
-public:
-	Subtitles(Document &doc);
-	~Subtitles();
+class Subtitles {
+ public:
+  Subtitles(Document &doc);
+  ~Subtitles();
 
-	/*
-	 *
-	 */
-	unsigned int size();
-	
-	/*
-	 *
-	 */
-	Subtitle get(unsigned int num);
+  /*
+   *
+   */
+  unsigned int size();
 
-	/*
-	 *
-	 */
-	Subtitle get_first();
+  /*
+   *
+   */
+  Subtitle get(unsigned int num);
 
-	/*
-	 *
-	 */
-	Subtitle get_last();
+  /*
+   *
+   */
+  Subtitle get_first();
 
-	/*
-	 *
-	 */
-	Subtitle get_previous(const Subtitle &sub);
+  /*
+   *
+   */
+  Subtitle get_last();
 
-	/*
-	 *
-	 */
-	Subtitle get_next(const Subtitle &sub);
+  /*
+   *
+   */
+  Subtitle get_previous(const Subtitle &sub);
 
-	/*
-	 *
-	 */
-	Subtitle append();
+  /*
+   *
+   */
+  Subtitle get_next(const Subtitle &sub);
 
-	/*
-	 *
-	 */
-	Subtitle insert_before(const Subtitle &sub);
+  /*
+   *
+   */
+  Subtitle append();
 
-	/*
-	 *
-	 */
-	Subtitle insert_after(const Subtitle &sub);
+  /*
+   *
+   */
+  Subtitle insert_before(const Subtitle &sub);
 
-	/*
-	 *
-	 */
-	void remove(std::vector<Subtitle> &subs);
+  /*
+   *
+   */
+  Subtitle insert_after(const Subtitle &sub);
 
-	/*
-	 *
-	 */
-	void remove(unsigned int start, unsigned int end);
+  /*
+   *
+   */
+  void remove(std::vector<Subtitle> &subs);
 
-	/*
-	 * Prefer the function using an array if there is a need to remove several subtitles.
-	 */
-	void remove(const Subtitle &sub);
+  /*
+   *
+   */
+  void remove(unsigned int start, unsigned int end);
 
-	/*
-	 *
-	 */
-	Subtitle find(const SubtitleTime &time);
+  /*
+   * Prefer the function using an array if there is a need to remove several
+   * subtitles.
+   */
+  void remove(const Subtitle &sub);
 
-	/*
-	 * Selection
-	 */
+  /*
+   *
+   */
+  Subtitle find(const SubtitleTime &time);
 
-	/*
-	 *
-	 */
-	std::vector<Subtitle> get_selection();
+  /*
+   * Selection
+   */
 
-	/*
-	 */
-	Subtitle get_first_selected();
+  /*
+   *
+   */
+  std::vector<Subtitle> get_selection();
 
-	/*
-	 */
-	Subtitle get_last_selected();
+  /*
+   */
+  Subtitle get_first_selected();
 
-	/*
-	 *
-	 */
-	void select(const std::vector<Subtitle> &sub);
-	void select(const std::list<Subtitle> &sub);
+  /*
+   */
+  Subtitle get_last_selected();
 
-	/*
-	 *
-	 */
-	void select(const Subtitle &sub, bool start_editing=false);
+  /*
+   *
+   */
+  void select(const std::vector<Subtitle> &sub);
+  void select(const std::list<Subtitle> &sub);
 
-	/*
-	 *
-	 */
-	bool is_selected(const Subtitle &sub);
+  /*
+   *
+   */
+  void select(const Subtitle &sub, bool start_editing = false);
 
-	/*
-	 *
-	 */
-	void unselect(const Subtitle &sub);
+  /*
+   *
+   */
+  bool is_selected(const Subtitle &sub);
 
-	/*
-	 *
-	 */
-	void select_all();
+  /*
+   *
+   */
+  void unselect(const Subtitle &sub);
 
-	/*
-	 *
-	 */
-	void unselect_all();
+  /*
+   *
+   */
+  void select_all();
 
-	/*
-	 *
-	 */
-	void invert_selection();
+  /*
+   *
+   */
+  void unselect_all();
 
-	/*
-	 */
-	guint sort_by_time();
+  /*
+   *
+   */
+  void invert_selection();
 
-protected:
-	Document& m_document;
+  /*
+   */
+  guint sort_by_time();
+
+ protected:
+  Document &m_document;
 };
 
-
-#endif//_Subtitles_h
-
+#endif  //_Subtitles_h

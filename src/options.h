@@ -22,7 +22,6 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include <config.h>
 #include <glibmm.h>
@@ -30,39 +29,36 @@
 /*
  *
  */
-class OptionGroup : public Glib::OptionGroup
-{
-public:
-	OptionGroup();
+class OptionGroup : public Glib::OptionGroup {
+ public:
+  OptionGroup();
 
-	int get_debug_flags();
+  int get_debug_flags();
 
-public:
-	std::vector<Glib::ustring> files;
-	std::vector<Glib::ustring> files_list; // simple file (glibmm Bug #526831)
+ public:
+  std::vector<Glib::ustring> files;
+  std::vector<Glib::ustring> files_list;  // simple file (glibmm Bug #526831)
 
-	Glib::ustring profile;	// profile name
-	Glib::ustring	encoding;	//
-	Glib::ustring video;		// video location
-	Glib::ustring waveform;	// waveform location
+  Glib::ustring profile;   // profile name
+  Glib::ustring encoding;  //
+  Glib::ustring video;     // video location
+  Glib::ustring waveform;  // waveform location
 
 #ifdef DEBUG
-	bool debug_all;
-	bool debug_app;
-	bool debug_view;
-	bool debug_io;
-	bool debug_search;
-	bool debug_regex;
-	bool debug_video_player;
-	bool debug_spell_checking;
-	bool debug_waveform;
-	bool debug_utility;
-	bool debug_command;
-	bool debug_plugins;
-	bool debug_profiling;
-#endif//DEBUG
-
+  bool debug_all;
+  bool debug_app;
+  bool debug_view;
+  bool debug_io;
+  bool debug_search;
+  bool debug_regex;
+  bool debug_video_player;
+  bool debug_spell_checking;
+  bool debug_waveform;
+  bool debug_utility;
+  bool debug_command;
+  bool debug_plugins;
+  bool debug_profiling;
+#endif  // DEBUG
 };
 
-#endif//_Options_h
-
+#endif  //_Options_h

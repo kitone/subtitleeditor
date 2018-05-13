@@ -23,72 +23,67 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include "i18n.h"
 #include <glibmm.h>
+#include "i18n.h"
 
-struct EncodingInfo
-{
-	const gchar *charset;
-	const gchar *name;
+struct EncodingInfo {
+  const gchar *charset;
+  const gchar *name;
 };
 
+class Encodings {
+ public:
+  /*
+   */
+  static EncodingInfo *get_encodings_info();
 
+  /*
+   *
+   */
+  static EncodingInfo *get_from_charset(const Glib::ustring &charset);
 
-class Encodings
-{
-public:
+  /*
+   * Return a human readable string or empty string, ex:
+   * "name (charset)"
+   * "Unicode (UTF-8)"
+   */
+  static Glib::ustring get_label_from_charset(const Glib::ustring &charset);
 
-	/*
-	 */
-	static EncodingInfo* get_encodings_info();
+ protected:
+  static bool is_initialized;
 
-	/*
-	 *
-	 */
-	static EncodingInfo* get_from_charset(const Glib::ustring &charset);
-
-	/*
-	 * Return a human readable string or empty string, ex:
-	 * "name (charset)"
-	 * "Unicode (UTF-8)"
-	 */
-	static Glib::ustring get_label_from_charset(const Glib::ustring &charset);
-
-protected:
-	static bool is_initialized;
-
-	static bool initialize();
+  static bool initialize();
 };
 
-namespace Encoding
-{
+namespace Encoding {
 
-	/*
-	 * Trying to convert from charset to UTF-8.
-	 * Return utf8 string or throw EncodingConvertError exception.
-	 */
-	Glib::ustring convert_to_utf8_from_charset(const std::string &content, const Glib::ustring &charset);
-	
-	/*
-	 * Trying to autodetect the charset and convert to UTF-8.
-	 * 3 steps:
-	 *	- Try UTF-8
-	 *	- Try with user encoding preferences
-	 *	- Try with all encodings
-	 *
-	 * Return utf8 string and sets charset found 
-	 * or throw EncodingConvertError exception.
-	 */
-	Glib::ustring convert_to_utf8(const std::string &content, Glib::ustring &charset);
+/*
+ * Trying to convert from charset to UTF-8.
+ * Return utf8 string or throw EncodingConvertError exception.
+ */
+Glib::ustring convert_to_utf8_from_charset(const std::string &content,
+                                           const Glib::ustring &charset);
 
-	/*
-	 * Convert the UTF-8 text to the charset.
-	 * Throw EncodingConvertError exception.
-	 */
-	std::string convert_from_utf8_to_charset(const Glib::ustring &utf8_content, const Glib::ustring &charset);
+/*
+ * Trying to autodetect the charset and convert to UTF-8.
+ * 3 steps:
+ *	- Try UTF-8
+ *	- Try with user encoding preferences
+ *	- Try with all encodings
+ *
+ * Return utf8 string and sets charset found
+ * or throw EncodingConvertError exception.
+ */
+Glib::ustring convert_to_utf8(const std::string &content,
+                              Glib::ustring &charset);
 
-}//namespace Encoding
+/*
+ * Convert the UTF-8 text to the charset.
+ * Throw EncodingConvertError exception.
+ */
+std::string convert_from_utf8_to_charset(const Glib::ustring &utf8_content,
+                                         const Glib::ustring &charset);
 
-#endif//_Encodings_h
+}  // namespace Encoding
 
+#endif  //_Encodings_h

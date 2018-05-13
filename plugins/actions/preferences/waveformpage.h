@@ -26,76 +26,80 @@
 #include <map>
 #include "preferencepage.h"
 
-class WaveformPage : public PreferencePage
-{
-public:
+class WaveformPage : public PreferencePage {
+ public:
+  /*
+   *
+   */
+  WaveformPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &xml)
+      : PreferencePage(cobject) {
+    init_color_button(xml, "colorbutton-background", "waveform-renderer",
+                      "color-background");
+    init_color_button(xml, "colorbutton-text", "waveform-renderer",
+                      "color-text");
+    init_color_button(xml, "colorbutton-wave", "waveform-renderer",
+                      "color-wave");
+    init_color_button(xml, "colorbutton-wave-fill", "waveform-renderer",
+                      "color-wave-fill");
+    init_color_button(xml, "colorbutton-subtitle", "waveform-renderer",
+                      "color-subtitle");
+    init_color_button(xml, "colorbutton-subtitle-selected", "waveform-renderer",
+                      "color-subtitle-selected");
+    init_color_button(xml, "colorbutton-subtitle-invalid", "waveform-renderer",
+                      "color-subtitle-invalid");
+    init_color_button(xml, "colorbutton-player-position", "waveform-renderer",
+                      "color-player-position");
 
-	/*
-	 *
-	 */
-	WaveformPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
-	:PreferencePage(cobject)
-	{
-		init_color_button(xml, "colorbutton-background", "waveform-renderer", "color-background");
-		init_color_button(xml, "colorbutton-text", "waveform-renderer", "color-text");
-		init_color_button(xml, "colorbutton-wave", "waveform-renderer", "color-wave");
-		init_color_button(xml, "colorbutton-wave-fill", "waveform-renderer", "color-wave-fill");
-		init_color_button(xml, "colorbutton-subtitle", "waveform-renderer", "color-subtitle");
-		init_color_button(xml, "colorbutton-subtitle-selected", "waveform-renderer", "color-subtitle-selected");
-		init_color_button(xml, "colorbutton-subtitle-invalid", "waveform-renderer", "color-subtitle-invalid");
-		init_color_button(xml, "colorbutton-player-position", "waveform-renderer", "color-player-position");
+    init_widget(xml, "check-display-background", "waveform",
+                "display-background");
+    init_widget(xml, "check-display-waveform-fill", "waveform",
+                "display-waveform-fill");
+    init_widget(xml, "check-display-subtitle-text", "waveform-renderer",
+                "display-subtitle-text");
 
-		init_widget(xml, "check-display-background", "waveform", "display-background");
-		init_widget(xml, "check-display-waveform-fill", "waveform", "display-waveform-fill");
-		init_widget(xml, "check-display-subtitle-text", "waveform-renderer", "display-subtitle-text");
-		
-		Gtk::Button *reset;
-		xml->get_widget("button-reset-to-defaults-waveform-color", reset);
+    Gtk::Button *reset;
+    xml->get_widget("button-reset-to-defaults-waveform-color", reset);
 
-		reset->signal_clicked().connect(
-				sigc::mem_fun(*this, &WaveformPage::on_reset));
-	}
-protected:
+    reset->signal_clicked().connect(
+        sigc::mem_fun(*this, &WaveformPage::on_reset));
+  }
 
-	/*
-	 *
-	 */
-	void on_reset()
-	{
-		Config &cfg = Config::getInstance();
+ protected:
+  /*
+   *
+   */
+  void on_reset() {
+    Config &cfg = Config::getInstance();
 
-		std::map<std::string, Gtk::ColorButton*>::iterator it;
+    std::map<std::string, Gtk::ColorButton *>::iterator it;
 
-		for(it = m_colorButtons.begin(); it != m_colorButtons.end(); ++it)
-		{
-			Glib::ustring value;
+    for (it = m_colorButtons.begin(); it != m_colorButtons.end(); ++it) {
+      Glib::ustring value;
 
-			std::string key = it->first;
-			Gtk::ColorButton* button = it->second;
+      std::string key = it->first;
+      Gtk::ColorButton *button = it->second;
 
-			if(button && cfg.set_default_value("waveform-renderer", key))
-			{
-				cfg.get_default_value("waveform-renderer", key, value);
-				Color color(value);
-				color.initColorButton(*button);
-			}
-		}
-	}
+      if (button && cfg.set_default_value("waveform-renderer", key)) {
+        cfg.get_default_value("waveform-renderer", key, value);
+        Color color(value);
+        color.initColorButton(*button);
+      }
+    }
+  }
 
-	/*
-	 *
-	 */
-	void init_color_button(
-				const Glib::RefPtr<Gtk::Builder>& xml, 
-				const Glib::ustring &widget_name, 
-				const Glib::ustring &config_group,
-				const Glib::ustring &config_key)
-	{
-		m_colorButtons[config_key] = dynamic_cast<Gtk::ColorButton*>(
-				init_widget(xml, widget_name, config_group, config_key));
-	}
-protected:
-	std::map<std::string, Gtk::ColorButton*> m_colorButtons;
+  /*
+   *
+   */
+  void init_color_button(const Glib::RefPtr<Gtk::Builder> &xml,
+                         const Glib::ustring &widget_name,
+                         const Glib::ustring &config_group,
+                         const Glib::ustring &config_key) {
+    m_colorButtons[config_key] = dynamic_cast<Gtk::ColorButton *>(
+        init_widget(xml, widget_name, config_group, config_key));
+  }
+
+ protected:
+  std::map<std::string, Gtk::ColorButton *> m_colorButtons;
 };
 
-#endif//_WaveformPage_h
+#endif  //_WaveformPage_h

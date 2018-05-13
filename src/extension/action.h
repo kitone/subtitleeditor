@@ -24,65 +24,61 @@
  */
 
 #include <gtkmm.h>
-#include "subtitleeditorwindow.h"
-#include "document.h"
 #include "cfg.h"
+#include "document.h"
 #include "extension.h"
+#include "subtitleeditorwindow.h"
 
+class Action : public Extension, public sigc::trackable {
+ public:
+  /*
+   *
+   */
+  Action();
 
-class Action : public Extension, public sigc::trackable
-{
-public:
+  /*
+   *
+   */
+  virtual ~Action();
 
-	/*
-	 *
-	 */
-	Action();
+  /*
+   *
+   */
+  virtual void activate();
 
-	/*
-	 *
-	 */
-	virtual ~Action();
+  /*
+   *
+   */
+  virtual void deactivate();
 
-	/*
-	 *
-	 */
-	virtual void activate();
+  /*
+   *
+   */
+  virtual void update_ui();
 
-	/*
-	 *
-	 */
-	virtual void deactivate();
+  /*
+   *	static method
+   */
 
-	/*
-	 *
-	 */
-	virtual void update_ui();
+  /*
+   *
+   */
+  static SubtitleEditorWindow* get_subtitleeditor_window();
 
-	/*
-	 *	static method
-	 */
+  /*
+   *
+   */
+  static Config& get_config();
 
-	/*
-	 *
-	 */
-	static SubtitleEditorWindow* get_subtitleeditor_window();
+  /*
+   *
+   */
+  static Document* get_current_document();
 
-	/*
-	 *
-	 */
-	static Config& get_config();
-
-	/*
-	 *
-	 */
-	static Document* get_current_document();
-
-	/*
-	 *
-	 */
-	static Glib::RefPtr<Gtk::UIManager> get_ui_manager();
-
+  /*
+   *
+   */
+  static Glib::RefPtr<Gtk::UIManager> get_ui_manager();
 };
 
-#endif//_Action_h
+#endif  //_Action_h

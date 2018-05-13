@@ -28,62 +28,47 @@
 /*
  * Base class
  */
-class SubtitleError : public std::exception
-{
-public:
-	SubtitleError(const std::string &msg)
-	:m_msg(msg)
-	{
-	}
+class SubtitleError : public std::exception {
+ public:
+  SubtitleError(const std::string &msg) : m_msg(msg) {
+  }
 
-	virtual ~SubtitleError() throw()
-	{
-	}
+  virtual ~SubtitleError() throw() {
+  }
 
-	virtual const char* what() const throw()
-	{
-		return m_msg.c_str();
-	}
+  virtual const char *what() const throw() {
+    return m_msg.c_str();
+  }
 
-private:
-	std::string m_msg;
+ private:
+  std::string m_msg;
 };
 
 /*
  *
  */
-class UnrecognizeFormatError : public SubtitleError
-{
-public:
-	UnrecognizeFormatError(const std::string &msg)
-	:SubtitleError(msg)
-	{
-	}
+class UnrecognizeFormatError : public SubtitleError {
+ public:
+  UnrecognizeFormatError(const std::string &msg) : SubtitleError(msg) {
+  }
 };
 
 /*
  *
  */
-class IOFileError : public SubtitleError
-{
-public:
-	IOFileError(const std::string &msg)
-	:SubtitleError(msg)
-	{
-	}
+class IOFileError : public SubtitleError {
+ public:
+  IOFileError(const std::string &msg) : SubtitleError(msg) {
+  }
 };
 
 /*
  *
  */
-class EncodingConvertError : public SubtitleError
-{
-public:
-	EncodingConvertError(const std::string &msg)
-	:SubtitleError(msg)
-	{
-	}
+class EncodingConvertError : public SubtitleError {
+ public:
+  EncodingConvertError(const std::string &msg) : SubtitleError(msg) {
+  }
 };
 
-#endif//_Error_h
-
+#endif  //_Error_h

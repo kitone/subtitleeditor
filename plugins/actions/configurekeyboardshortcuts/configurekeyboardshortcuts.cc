@@ -19,463 +19,458 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
+#include <extension/action.h>
 #include <gtkmm.h>
 #include <gtkmm/accelmap.h>
-#include <extension/action.h>
-#include <utility.h>
 #include <gtkmm_utility.h>
+#include <utility.h>
 #include <memory>
 
 /*
  */
-static gboolean accel_find_func (GtkAccelKey * /*key*/, GClosure *closure, gpointer data)
-{
-  return (GClosure *) data == closure;
+static gboolean accel_find_func(GtkAccelKey * /*key*/, GClosure *closure,
+                                gpointer data) {
+  return (GClosure *)data == closure;
 }
 
 /*
  */
-class DialogConfigureKeyboardShortcuts : public Gtk::Dialog
-{
-	class Columns : public Gtk::TreeModel::ColumnRecord
-	{
-	public:
-		Columns()
-		{
-			add(label);
-			add(action);
-			add(stock_id);
-			add(shortcut);
-			add(closure);
-		}
+class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
+  class Columns : public Gtk::TreeModel::ColumnRecord {
+   public:
+    Columns() {
+      add(label);
+      add(action);
+      add(stock_id);
+      add(shortcut);
+      add(closure);
+    }
 
-		Gtk::TreeModelColumn< Glib::RefPtr<Gtk::Action> > action;
-		Gtk::TreeModelColumn<Glib::ustring> stock_id;
-		Gtk::TreeModelColumn<Glib::ustring> label;
-		Gtk::TreeModelColumn<Glib::ustring> shortcut;
-		Gtk::TreeModelColumn<GClosure*> closure;
-	};
+    Gtk::TreeModelColumn<Glib::RefPtr<Gtk::Action> > action;
+    Gtk::TreeModelColumn<Glib::ustring> stock_id;
+    Gtk::TreeModelColumn<Glib::ustring> label;
+    Gtk::TreeModelColumn<Glib::ustring> shortcut;
+    Gtk::TreeModelColumn<GClosure *> closure;
+  };
 
-public:
+ public:
+  /*
+   *
+   */
+  DialogConfigureKeyboardShortcuts(BaseObjectType *cobject,
+                                   const Glib::RefPtr<Gtk::Builder> &builder)
+      : Gtk::Dialog(cobject) {
+    utility::set_transient_parent(*this);
 
-	/*
-	 *
-	 */
-	DialogConfigureKeyboardShortcuts(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder)
-	:Gtk::Dialog(cobject)
-	{
-		utility::set_transient_parent(*this);
+    builder->get_widget("treeview", m_treeview);
 
-		builder->get_widget("treeview", m_treeview);
+    create_treeview();
+  }
 
-		create_treeview();
-	}
-	
-	/*
-	 * Create columns Actions and Shortcut.
-	 */
-	void create_treeview()
-	{
-		m_store = Gtk::ListStore::create(m_columns);
+  /*
+   * Create columns Actions and Shortcut.
+   */
+  void create_treeview() {
+    m_store = Gtk::ListStore::create(m_columns);
 
-		m_treeview->set_model(m_store);
+    m_treeview->set_model(m_store);
 
-		// actions
-		{
-			Gtk::TreeViewColumn* column = NULL;
-			Gtk::CellRendererPixbuf* pixbuf = NULL;
-			Gtk::CellRendererText* text = NULL;
+    // actions
+    {
+      Gtk::TreeViewColumn *column = NULL;
+      Gtk::CellRendererPixbuf *pixbuf = NULL;
+      Gtk::CellRendererText *text = NULL;
 
-			column = manage(new Gtk::TreeViewColumn(_("Actions")));
+      column = manage(new Gtk::TreeViewColumn(_("Actions")));
 
-			// pixbuf
-			pixbuf = manage(new Gtk::CellRendererPixbuf);
-			column->pack_start(*pixbuf, false);
-			column->add_attribute(pixbuf->property_stock_id(), m_columns.stock_id);
+      // pixbuf
+      pixbuf = manage(new Gtk::CellRendererPixbuf);
+      column->pack_start(*pixbuf, false);
+      column->add_attribute(pixbuf->property_stock_id(), m_columns.stock_id);
 
-			// label
-			text = manage(new Gtk::CellRendererText);
-			column->pack_start(*text, true);
-			column->add_attribute(text->property_text(), m_columns.label);
-			
-			column->set_expand(true);
+      // label
+      text = manage(new Gtk::CellRendererText);
+      column->pack_start(*text, true);
+      column->add_attribute(text->property_text(), m_columns.label);
 
-			m_treeview->append_column(*column);
-		}
+      column->set_expand(true);
 
-		// shortcut
-		{
-			Gtk::TreeViewColumn* column = NULL;
-			Gtk::CellRendererAccel* accel = NULL;
+      m_treeview->append_column(*column);
+    }
 
-			column = manage(new Gtk::TreeViewColumn(_("Shortcut")));
+    // shortcut
+    {
+      Gtk::TreeViewColumn *column = NULL;
+      Gtk::CellRendererAccel *accel = NULL;
 
-			// shortcut
-			accel = manage(new Gtk::CellRendererAccel);
-			accel->property_editable() = true;
-			accel->signal_accel_edited().connect(
-					sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_accel_edited));
-			accel->signal_accel_cleared().connect(
-					sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_accel_cleared));
+      column = manage(new Gtk::TreeViewColumn(_("Shortcut")));
 
-			column->pack_start(*accel, false);
-			column->add_attribute(accel->property_text(), m_columns.shortcut);
+      // shortcut
+      accel = manage(new Gtk::CellRendererAccel);
+      accel->property_editable() = true;
+      accel->signal_accel_edited().connect(sigc::mem_fun(
+          *this, &DialogConfigureKeyboardShortcuts::on_accel_edited));
+      accel->signal_accel_cleared().connect(sigc::mem_fun(
+          *this, &DialogConfigureKeyboardShortcuts::on_accel_cleared));
 
-			m_treeview->append_column(*column);
-		}
+      column->pack_start(*accel, false);
+      column->add_attribute(accel->property_text(), m_columns.shortcut);
 
-		// tooltip
-		m_treeview->set_has_tooltip(true);
-		m_treeview->signal_query_tooltip().connect(
-				sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_query_tooltip));
-	}
+      m_treeview->append_column(*column);
+    }
 
-	/*
-	 * Create all items (action) from the action_group.
-	 * The action with menu in the name are ignored.
-	 */
-	void create_items()
-	{
-		std::vector< Glib::RefPtr<Gtk::ActionGroup> > group = m_refUIManager->get_action_groups();
-		for(unsigned int i=0; i < group.size(); ++i)
-		{
-			std::vector<Glib::RefPtr<Gtk::Action> > actions = group[i]->get_actions();
+    // tooltip
+    m_treeview->set_has_tooltip(true);
+    m_treeview->signal_query_tooltip().connect(sigc::mem_fun(
+        *this, &DialogConfigureKeyboardShortcuts::on_query_tooltip));
+  }
 
-			for(unsigned int j=0; j < actions.size(); ++j)
-			{
-				if(actions[j]->get_name().find("menu") != Glib::ustring::npos)
-					continue;
+  /*
+   * Create all items (action) from the action_group.
+   * The action with menu in the name are ignored.
+   */
+  void create_items() {
+    std::vector<Glib::RefPtr<Gtk::ActionGroup> > group =
+        m_refUIManager->get_action_groups();
+    for (unsigned int i = 0; i < group.size(); ++i) {
+      std::vector<Glib::RefPtr<Gtk::Action> > actions = group[i]->get_actions();
 
-				add_action(actions[j]);
-			}
-		}
-	}
+      for (unsigned int j = 0; j < actions.size(); ++j) {
+        if (actions[j]->get_name().find("menu") != Glib::ustring::npos)
+          continue;
 
-	/*
-	 * Add an action in the model.
-	 */
-	void add_action(Glib::RefPtr<Gtk::Action> action)
-	{
-		Gtk::TreeModel::Row row = *m_store->append();
+        add_action(actions[j]);
+      }
+    }
+  }
 
-		// action
-		row[m_columns.action] = action;
-		// stock id
-		row[m_columns.stock_id] = Gtk::StockID(action->property_stock_id()).get_string();
-		// label
-		Glib::ustring label = Glib::ustring(action->property_label());
-		utility::replace(label, "_", "");
-		row[m_columns.label] = label;
-		
-		// shortcut
-		GClosure *accel_closure = gtk_action_get_accel_closure (action->gobj());
-		if(accel_closure)
-		{
-			// closure
-			row[m_columns.closure] = accel_closure;
+  /*
+   * Add an action in the model.
+   */
+  void add_action(Glib::RefPtr<Gtk::Action> action) {
+    Gtk::TreeModel::Row row = *m_store->append();
 
-			GtkAccelKey *key = gtk_accel_group_find(m_refUIManager->get_accel_group()->gobj(), accel_find_func, accel_closure);
-			if(key && key->accel_key)
-			{
-				row[m_columns.shortcut] = Gtk::AccelGroup::get_label(key->accel_key, (Gdk::ModifierType)key->accel_mods);
-			}
-		}
-	}
+    // action
+    row[m_columns.action] = action;
+    // stock id
+    row[m_columns.stock_id] =
+        Gtk::StockID(action->property_stock_id()).get_string();
+    // label
+    Glib::ustring label = Glib::ustring(action->property_label());
+    utility::replace(label, "_", "");
+    row[m_columns.label] = label;
 
-	/*
-	 * Show tooltip.
-	 */
-	bool on_query_tooltip(int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Gtk::Tooltip>& tooltip)
-	{
-		Gtk::TreeIter iter;
-		if(m_treeview->get_tooltip_context_iter(x,y, keyboard_tooltip, iter) == false)
-			return false;
+    // shortcut
+    GClosure *accel_closure = gtk_action_get_accel_closure(action->gobj());
+    if (accel_closure) {
+      // closure
+      row[m_columns.closure] = accel_closure;
 
-		Glib::RefPtr<Gtk::Action> ptr = (*iter)[m_columns.action];
-		if(!ptr)
-			return false;
+      GtkAccelKey *key =
+          gtk_accel_group_find(m_refUIManager->get_accel_group()->gobj(),
+                               accel_find_func, accel_closure);
+      if (key && key->accel_key) {
+        row[m_columns.shortcut] = Gtk::AccelGroup::get_label(
+            key->accel_key, (Gdk::ModifierType)key->accel_mods);
+      }
+    }
+  }
 
-		Glib::ustring tip = ptr->property_tooltip();
-	
-		tooltip->set_markup(tip);
-		
-		Gtk::TreePath path = m_store->get_path(iter);
+  /*
+   * Show tooltip.
+   */
+  bool on_query_tooltip(int x, int y, bool keyboard_tooltip,
+                        const Glib::RefPtr<Gtk::Tooltip> &tooltip) {
+    Gtk::TreeIter iter;
+    if (m_treeview->get_tooltip_context_iter(x, y, keyboard_tooltip, iter) ==
+        false)
+      return false;
 
-		m_treeview->set_tooltip_row(tooltip, path);
-		return true;
-	}
+    Glib::RefPtr<Gtk::Action> ptr = (*iter)[m_columns.action];
+    if (!ptr)
+      return false;
 
-	/*
-	 *
-	 */
-	bool foreach_callback_label(const Gtk::TreePath & /*path*/, const Gtk::TreeIter &iter, const Glib::ustring &label, Gtk::TreeIter *result)
-	{
-		Glib::ustring ak = (*iter)[m_columns.shortcut];
+    Glib::ustring tip = ptr->property_tooltip();
 
-		if(label != ak)
-			return false;
+    tooltip->set_markup(tip);
 
-		*result = iter;
-		return true;
-	}
+    Gtk::TreePath path = m_store->get_path(iter);
 
-	/*
-	 *
-	 */
-	bool foreach_callback_closure(const Gtk::TreePath & /*path*/, const Gtk::TreeIter &iter, const GClosure *closure, Gtk::TreeIter *result)
-	{
-		GClosure *c = (*iter)[m_columns.closure];
+    m_treeview->set_tooltip_row(tooltip, path);
+    return true;
+  }
 
-		if(closure != c)
-			return false;
+  /*
+   *
+   */
+  bool foreach_callback_label(const Gtk::TreePath & /*path*/,
+                              const Gtk::TreeIter &iter,
+                              const Glib::ustring &label,
+                              Gtk::TreeIter *result) {
+    Glib::ustring ak = (*iter)[m_columns.shortcut];
 
-		*result = iter;
-		return true;
-	}
+    if (label != ak)
+      return false;
 
-	/*
-	 *	search iterator by accelerator
-	 */
-	Gtk::TreeIter get_iter_by_accel(guint keyval, Gdk::ModifierType mods)
-	{
-		Glib::ustring label = Gtk::AccelGroup::get_label(keyval, mods);
+    *result = iter;
+    return true;
+  }
 
-		Gtk::TreeIter result;
-		m_store->foreach(sigc::bind(sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::foreach_callback_label), label, &result));
+  /*
+   *
+   */
+  bool foreach_callback_closure(const Gtk::TreePath & /*path*/,
+                                const Gtk::TreeIter &iter,
+                                const GClosure *closure,
+                                Gtk::TreeIter *result) {
+    GClosure *c = (*iter)[m_columns.closure];
 
-		return result;
-	}
+    if (closure != c)
+      return false;
 
-	/*
-	 *	search action by an accelerator
-	 */
-	Glib::RefPtr<Gtk::Action> get_action_by_accel(guint keyval, Gdk::ModifierType mods)
-	{
-		Gtk::TreeIter result = get_iter_by_accel(keyval, mods);
+    *result = iter;
+    return true;
+  }
 
-		Glib::RefPtr<Gtk::Action> res;
+  /*
+   *	search iterator by accelerator
+   */
+  Gtk::TreeIter get_iter_by_accel(guint keyval, Gdk::ModifierType mods) {
+    Glib::ustring label = Gtk::AccelGroup::get_label(keyval, mods);
 
-		if(result)
-			res = (*result)[m_columns.action];
+    Gtk::TreeIter result;
+    m_store->foreach (sigc::bind(
+        sigc::mem_fun(
+            *this, &DialogConfigureKeyboardShortcuts::foreach_callback_label),
+        label, &result));
 
-		return res;
-	}
+    return result;
+  }
 
-	/*
-	 *
-	 */
-	bool on_accel_changed_foreach(const Gtk::TreePath &/*path*/, const Gtk::TreeIter &iter, GClosure* accel_closure)
-	{
-		GClosure *closure = (*iter)[m_columns.closure];
+  /*
+   *	search action by an accelerator
+   */
+  Glib::RefPtr<Gtk::Action> get_action_by_accel(guint keyval,
+                                                Gdk::ModifierType mods) {
+    Gtk::TreeIter result = get_iter_by_accel(keyval, mods);
 
-		if(accel_closure == closure)
-		{
-			guint key = 0;
-			Gdk::ModifierType mods = (Gdk::ModifierType)0;
-				
-			GtkAccelKey *ak = gtk_accel_group_find(m_refUIManager->get_accel_group()->gobj(), accel_find_func, accel_closure);
-				
-			if(ak && ak->accel_key)
-			{
-				key = ak->accel_key;
-				mods = (Gdk::ModifierType)ak->accel_mods;
-			}
+    Glib::RefPtr<Gtk::Action> res;
 
-			(*iter)[m_columns.shortcut] = Gtk::AccelGroup::get_label(key, mods);
+    if (result)
+      res = (*result)[m_columns.action];
 
-			return true;
-		}
-		return false;
-	}
+    return res;
+  }
 
-	/*
-	 *
-	 */
-	void on_accel_changed(guint /*keyval*/, Gdk::ModifierType /*modifier*/, GClosure* accel_closure)
-	{
-		m_store->foreach(sigc::bind(sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_accel_changed_foreach), accel_closure));
-	}
+  /*
+   *
+   */
+  bool on_accel_changed_foreach(const Gtk::TreePath & /*path*/,
+                                const Gtk::TreeIter &iter,
+                                GClosure *accel_closure) {
+    GClosure *closure = (*iter)[m_columns.closure];
 
-	/*
-	 * Try to changed the shortcut with conflict support.
-	 */
-	void on_accel_edited(const Glib::ustring& path, guint key, Gdk::ModifierType mods, guint /*keycode*/)
-	{
-		Gtk::TreeIter iter = m_store->get_iter(path);
+    if (accel_closure == closure) {
+      guint key = 0;
+      Gdk::ModifierType mods = (Gdk::ModifierType)0;
 
-		Glib::RefPtr<Gtk::Action> action = (*iter)[m_columns.action];
+      GtkAccelKey *ak =
+          gtk_accel_group_find(m_refUIManager->get_accel_group()->gobj(),
+                               accel_find_func, accel_closure);
 
-		if(!action)
-			return;
+      if (ak && ak->accel_key) {
+        key = ak->accel_key;
+        mods = (Gdk::ModifierType)ak->accel_mods;
+      }
 
-		if(!key)
-		{
-			dialog_error(_("Invalid shortcut."), "");
-			return;
-		}
+      (*iter)[m_columns.shortcut] = Gtk::AccelGroup::get_label(key, mods);
 
-		if(Gtk::AccelMap::change_entry(action->get_accel_path(), key, mods, false) == false)
-		{
-			// We try to find if there's already an another action with the same shortcut
-			Glib::RefPtr<Gtk::Action> conflict_action = get_action_by_accel(key, mods);
-			
-			if(conflict_action == action)
-				return;
+      return true;
+    }
+    return false;
+  }
 
-			if(conflict_action)
-			{
-				Glib::ustring shortcut = Gtk::AccelGroup::get_label(key, mods);
-				Glib::ustring label_conflict_action = conflict_action->property_label();
+  /*
+   *
+   */
+  void on_accel_changed(guint /*keyval*/, Gdk::ModifierType /*modifier*/,
+                        GClosure *accel_closure) {
+    m_store->foreach (sigc::bind(
+        sigc::mem_fun(
+            *this, &DialogConfigureKeyboardShortcuts::on_accel_changed_foreach),
+        accel_closure));
+  }
 
-				utility::replace(label_conflict_action, "_", "");
+  /*
+   * Try to changed the shortcut with conflict support.
+   */
+  void on_accel_edited(const Glib::ustring &path, guint key,
+                       Gdk::ModifierType mods, guint /*keycode*/) {
+    Gtk::TreeIter iter = m_store->get_iter(path);
 
-				Glib::ustring message = Glib::ustring::compose(
-						Glib::ustring(_("Shortcut \"%1\" is already taken by \"%2\".")), 
-						shortcut, label_conflict_action);
-				
-				Glib::ustring secondary = Glib::ustring::compose(	
-						Glib::ustring(_("Reassigning the shortcut will cause it to be removed from \"%1\".")), 
-							label_conflict_action);
+    Glib::RefPtr<Gtk::Action> action = (*iter)[m_columns.action];
 
-				Gtk::MessageDialog dialog(*this, message, false, Gtk::MESSAGE_QUESTION, Gtk::BUTTONS_OK_CANCEL, true);
-				dialog.set_title(_("Conflicting Shortcuts"));
-				dialog.set_secondary_text(secondary);
-						
-				if( dialog.run() == Gtk::RESPONSE_OK)
-				{
-					if(!Gtk::AccelMap::change_entry(action->get_accel_path(), key, mods, true))
-					{
-						dialog_error(_("Changing shortcut failed."), "");
-					}
-				}
-			}
-			else
-			{
-				dialog_error("Changing shortcut failed.", "");
-			}
-		}
-	}
+    if (!action)
+      return;
 
-	/*
-	 * Remove the shortcut.
-	 */
-	void on_accel_cleared(const Glib::ustring &path)
-	{
-		Gtk::TreeIter iter = m_store->get_iter(path);
+    if (!key) {
+      dialog_error(_("Invalid shortcut."), "");
+      return;
+    }
 
-		Glib::RefPtr<Gtk::Action> action = (*iter)[m_columns.action];
+    if (Gtk::AccelMap::change_entry(action->get_accel_path(), key, mods,
+                                    false) == false) {
+      // We try to find if there's already an another action with the same
+      // shortcut
+      Glib::RefPtr<Gtk::Action> conflict_action =
+          get_action_by_accel(key, mods);
 
-		if(!action)
-			return;
+      if (conflict_action == action)
+        return;
 
-		if(Gtk::AccelMap::change_entry(action->get_accel_path(), 0, (Gdk::ModifierType)0, false))
-		{
-			(*iter)[m_columns.shortcut] = Glib::ustring();
-		}
-		else
-			dialog_error(_("Removing shortcut failed."), "");
-	}
+      if (conflict_action) {
+        Glib::ustring shortcut = Gtk::AccelGroup::get_label(key, mods);
+        Glib::ustring label_conflict_action = conflict_action->property_label();
 
-	/*
-	 *
-	 */
-	void execute(Glib::RefPtr<Gtk::UIManager> ui)
-	{
-		m_refUIManager = ui;
+        utility::replace(label_conflict_action, "_", "");
 
-		ui->get_accel_group()->signal_accel_changed().connect(
-				sigc::mem_fun(*this, &DialogConfigureKeyboardShortcuts::on_accel_changed));
+        Glib::ustring message = Glib::ustring::compose(
+            Glib::ustring(_("Shortcut \"%1\" is already taken by \"%2\".")),
+            shortcut, label_conflict_action);
 
-		create_items();
+        Glib::ustring secondary = Glib::ustring::compose(
+            Glib::ustring(_("Reassigning the shortcut will cause it to be "
+                            "removed from \"%1\".")),
+            label_conflict_action);
 
-		run();
-	}
+        Gtk::MessageDialog dialog(*this, message, false, Gtk::MESSAGE_QUESTION,
+                                  Gtk::BUTTONS_OK_CANCEL, true);
+        dialog.set_title(_("Conflicting Shortcuts"));
+        dialog.set_secondary_text(secondary);
 
-protected:
-	Columns			m_columns;
-	Gtk::TreeView* m_treeview;
-	Glib::RefPtr<Gtk::ListStore> m_store;
-	Glib::RefPtr<Gtk::UIManager> m_refUIManager;
+        if (dialog.run() == Gtk::RESPONSE_OK) {
+          if (!Gtk::AccelMap::change_entry(action->get_accel_path(), key, mods,
+                                           true)) {
+            dialog_error(_("Changing shortcut failed."), "");
+          }
+        }
+      } else {
+        dialog_error("Changing shortcut failed.", "");
+      }
+    }
+  }
+
+  /*
+   * Remove the shortcut.
+   */
+  void on_accel_cleared(const Glib::ustring &path) {
+    Gtk::TreeIter iter = m_store->get_iter(path);
+
+    Glib::RefPtr<Gtk::Action> action = (*iter)[m_columns.action];
+
+    if (!action)
+      return;
+
+    if (Gtk::AccelMap::change_entry(action->get_accel_path(), 0,
+                                    (Gdk::ModifierType)0, false)) {
+      (*iter)[m_columns.shortcut] = Glib::ustring();
+    } else
+      dialog_error(_("Removing shortcut failed."), "");
+  }
+
+  /*
+   *
+   */
+  void execute(Glib::RefPtr<Gtk::UIManager> ui) {
+    m_refUIManager = ui;
+
+    ui->get_accel_group()->signal_accel_changed().connect(sigc::mem_fun(
+        *this, &DialogConfigureKeyboardShortcuts::on_accel_changed));
+
+    create_items();
+
+    run();
+  }
+
+ protected:
+  Columns m_columns;
+  Gtk::TreeView *m_treeview;
+  Glib::RefPtr<Gtk::ListStore> m_store;
+  Glib::RefPtr<Gtk::UIManager> m_refUIManager;
 };
-
 
 /*
  *
  */
-class ConfigureKeyboardShortcuts : public Action
-{
-public:
+class ConfigureKeyboardShortcuts : public Action {
+ public:
+  ConfigureKeyboardShortcuts() {
+    activate();
+    update_ui();
+  }
 
-	ConfigureKeyboardShortcuts()
-	{
-		activate();
-		update_ui();
-	}
+  ~ConfigureKeyboardShortcuts() {
+    deactivate();
+  }
 
-	~ConfigureKeyboardShortcuts()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("ConfigureKeyboardShortcuts");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("ConfigureKeyboardShortcuts");
+    action_group->add(
+        Gtk::Action::create("configure-keyboard-shortcuts",
+                            _("Configure _Keyboard Shortcuts"),
+                            _("Configure Keyboard Shortcuts")),
+        sigc::mem_fun(*this, &ConfigureKeyboardShortcuts::on_configure));
 
-		action_group->add(
-				Gtk::Action::create("configure-keyboard-shortcuts", _("Configure _Keyboard Shortcuts"), _("Configure Keyboard Shortcuts")), 
-					sigc::mem_fun(*this, &ConfigureKeyboardShortcuts::on_configure));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-options/configure-keyboard-shortcuts",
+               "configure-keyboard-shortcuts", "configure-keyboard-shortcuts");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-options/configure-keyboard-shortcuts", "configure-keyboard-shortcuts", "configure-keyboard-shortcuts");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+ protected:
+  /*
+   *
+   */
+  void on_configure() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    std::unique_ptr<DialogConfigureKeyboardShortcuts> dialog(
+        gtkmm_utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(
+            SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+            "dialog-configure-keyboard-shortcuts.ui",
+            "dialog-configure-keyboard-shortcuts"));
 
-	/*
-	 *
-	 */
-	void on_configure()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    dialog->execute(get_ui_manager());
+  }
 
-		std::unique_ptr<DialogConfigureKeyboardShortcuts> dialog(
-				gtkmm_utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
-						"dialog-configure-keyboard-shortcuts.ui", 
-						"dialog-configure-keyboard-shortcuts"));
-
-		dialog->execute(get_ui_manager());
-	}
-
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(ConfigureKeyboardShortcuts)

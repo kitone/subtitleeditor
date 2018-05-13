@@ -19,126 +19,117 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
 
 /*
  *
  */
-class DuplicateSelectedSubtitlesPlugin : public Action
-{
-public:
+class DuplicateSelectedSubtitlesPlugin : public Action {
+ public:
+  DuplicateSelectedSubtitlesPlugin() {
+    activate();
+    update_ui();
+  }
 
-	DuplicateSelectedSubtitlesPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~DuplicateSelectedSubtitlesPlugin() {
+    deactivate();
+  }
 
-	~DuplicateSelectedSubtitlesPlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("DuplicateSelectedSubtitlesPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("DuplicateSelectedSubtitlesPlugin");
+    action_group->add(
+        Gtk::Action::create("duplicate-selected-subtitles", _("_Duplicate"),
+                            _("Duplicate the selected subtitles")),
+        sigc::mem_fun(*this, &DuplicateSelectedSubtitlesPlugin::on_execute));
 
-		action_group->add(
-				Gtk::Action::create("duplicate-selected-subtitles", _("_Duplicate"), _("Duplicate the selected subtitles")),
-					sigc::mem_fun(*this, &DuplicateSelectedSubtitlesPlugin::on_execute));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-edit/duplicate-selected-subtitles",
+               "duplicate-selected-subtitles", "duplicate-selected-subtitles");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-edit/duplicate-selected-subtitles", "duplicate-selected-subtitles", "duplicate-selected-subtitles");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("duplicate-selected-subtitles")
+        ->set_sensitive(visible);
+  }
 
-		action_group->get_action("duplicate-selected-subtitles")->set_sensitive(visible);
-	}
+ protected:
+  void on_execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    execute();
+  }
 
-	void on_execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  bool execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
-	}
+    Document *doc = get_current_document();
 
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    g_return_val_if_fail(doc, false);
 
-		Document *doc = get_current_document();
+    Subtitles subtitles = doc->subtitles();
 
-		g_return_val_if_fail(doc, false);
+    std::vector<Subtitle> selection = subtitles.get_selection();
 
-		Subtitles subtitles = doc->subtitles();
+    if (selection.empty()) {
+      doc->flash_message(_("Please select at least a subtitle."));
+      return false;
+    }
 
-		std::vector<Subtitle> selection = subtitles.get_selection();
+    doc->start_command(_("Duplicate selected subtitles"));
 
-		if(selection.empty())
-		{
-			doc->flash_message(_("Please select at least a subtitle."));
-			return false;
-		}
+    std::vector<Subtitle>::reverse_iterator it;
+    for (it = selection.rbegin(); it != selection.rend(); ++it) {
+      Subtitle next = subtitles.insert_after(*it);
+      (*it).copy_to(next);
+    }
 
-		doc->start_command(_("Duplicate selected subtitles"));
-	
-		std::vector<Subtitle>::reverse_iterator it;
-		for(it = selection.rbegin(); it != selection.rend(); ++it) 
-		{
-			Subtitle next = subtitles.insert_after(*it);
-			(*it).copy_to(next);
-		}
+    doc->emit_signal("subtitle-time-changed");
+    doc->finish_command();
 
-		doc->emit_signal("subtitle-time-changed");
-		doc->finish_command();
+    return true;
+  }
 
-		return true;
-	}
-	
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(DuplicateSelectedSubtitlesPlugin)

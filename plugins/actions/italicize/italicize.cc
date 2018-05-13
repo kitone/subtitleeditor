@@ -19,172 +19,165 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
 
 /*
  *
  */
-class ItalicizeSelectedSubtitlesPlugin : public Action
-{
-public:
-	
-	ItalicizeSelectedSubtitlesPlugin()
-	{
-		activate();
-		update_ui();
-	}
+class ItalicizeSelectedSubtitlesPlugin : public Action {
+ public:
+  ItalicizeSelectedSubtitlesPlugin() {
+    activate();
+    update_ui();
+  }
 
-	~ItalicizeSelectedSubtitlesPlugin()
-	{
-		deactivate();
-	}
+  ~ItalicizeSelectedSubtitlesPlugin() {
+    deactivate();
+  }
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		// actions
-		action_group = Gtk::ActionGroup::create("ItalicizeSelectedSubtitlesPlugin");
+    // actions
+    action_group = Gtk::ActionGroup::create("ItalicizeSelectedSubtitlesPlugin");
 
-		action_group->add(
-				Gtk::Action::create("italicize-selected-subtitles", Gtk::Stock::ITALIC, _("_Italic"), _("Italicize the selected subtitles text")), Gtk::AccelKey("I"),
-					sigc::mem_fun(*this, &ItalicizeSelectedSubtitlesPlugin::on_execute));
+    action_group->add(
+        Gtk::Action::create("italicize-selected-subtitles", Gtk::Stock::ITALIC,
+                            _("_Italic"),
+                            _("Italicize the selected subtitles text")),
+        Gtk::AccelKey("I"),
+        sigc::mem_fun(*this, &ItalicizeSelectedSubtitlesPlugin::on_execute));
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui->insert_action_group(action_group);
+    ui->insert_action_group(action_group);
 
-		Glib::ustring submenu = 
-			"<ui>"
-			"	<menubar name='menubar'>"
-			"		<menu name='menu-edit' action='menu-edit'>"
-			"			<placeholder name='text-formatting'>"
-			"				<menuitem action='italicize-selected-subtitles'/>"
-			"			</placeholder>"
-			"		</menu>"
-			"	</menubar>"
-			"</ui>";
+    Glib::ustring submenu =
+        "<ui>"
+        "	<menubar name='menubar'>"
+        "		<menu name='menu-edit' action='menu-edit'>"
+        "			<placeholder name='text-formatting'>"
+        "				<menuitem "
+        "action='italicize-selected-subtitles'/>"
+        "			</placeholder>"
+        "		</menu>"
+        "	</menubar>"
+        "</ui>";
 
-		ui_id = ui->add_ui_from_string(submenu);
-	}
+    ui_id = ui->add_ui_from_string(submenu);
+  }
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		bool visible = (get_current_document() != NULL);
+    bool visible = (get_current_document() != NULL);
 
-		action_group->get_action("italicize-selected-subtitles")->set_sensitive(visible);
-	}
+    action_group->get_action("italicize-selected-subtitles")
+        ->set_sensitive(visible);
+  }
 
-protected:
+ protected:
+  void on_execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	void on_execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    execute();
+  }
 
-		execute();
-	}
+  /*
+   *
+   */
+  bool execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Document *doc = get_current_document();
 
-		Document *doc = get_current_document();
+    g_return_val_if_fail(doc, false);
 
-		g_return_val_if_fail(doc, false);
+    Subtitles subtitles = doc->subtitles();
 
-		Subtitles subtitles = doc->subtitles();
+    std::vector<Subtitle> selection = subtitles.get_selection();
 
-		std::vector<Subtitle> selection = subtitles.get_selection();
+    if (selection.empty()) {
+      doc->flash_message(_("Please select at least a subtitle."));
+      return false;
+    }
 
-		if(selection.empty())
-		{
-			doc->flash_message(_("Please select at least a subtitle."));
-			return false;
-		}
+    doc->start_command(_("Italic"));
 
-		doc->start_command(_("Italic"));
-	
-		bool state = !parial_match(selection, "<(i)>(.*?)</\\1>");
+    bool state = !parial_match(selection, "<(i)>(.*?)</\\1>");
 
-		global_replace(selection, "<(i)>(.*)</\\1>", "\\2");
+    global_replace(selection, "<(i)>(.*)</\\1>", "\\2");
 
-		if(state)
-			global_replace(selection, "^(.*)$", "<i>\\1</i>");
-		
-		doc->finish_command();
+    if (state)
+      global_replace(selection, "^(.*)$", "<i>\\1</i>");
 
-		return true;
-	}
-	
-	/*
-	 *
-	 */
-	bool parial_match(std::vector<Subtitle> &subs, const std::string &pattern)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    doc->finish_command();
 
-		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(pattern);
+    return true;
+  }
 
-		for(unsigned int i=0; i<subs.size(); ++i)
-		{
-			if(re->match(subs[i].get_text()))
-				return true;
-		}
-		
-		return false;
-	}
+  /*
+   *
+   */
+  bool parial_match(std::vector<Subtitle> &subs, const std::string &pattern) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void global_replace(std::vector<Subtitle> &subs, const std::string &pattern, const std::string &replace)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(pattern);
 
-		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(pattern, Glib::REGEX_MULTILINE);
+    for (unsigned int i = 0; i < subs.size(); ++i) {
+      if (re->match(subs[i].get_text()))
+        return true;
+    }
 
-		for(unsigned int i=0; i<subs.size(); ++i)
-		{
-			Subtitle sub = subs[i];
+    return false;
+  }
 
-			Glib::ustring text = sub.get_text();
+  /*
+   *
+   */
+  void global_replace(std::vector<Subtitle> &subs, const std::string &pattern,
+                      const std::string &replace) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-			text = re->replace(text, 0, replace, (Glib::RegexMatchFlags)0);
+    Glib::RefPtr<Glib::Regex> re =
+        Glib::Regex::create(pattern, Glib::REGEX_MULTILINE);
 
-			sub.set_text(text);
-		}
-	}
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+    for (unsigned int i = 0; i < subs.size(); ++i) {
+      Subtitle sub = subs[i];
+
+      Glib::ustring text = sub.get_text();
+
+      text = re->replace(text, 0, replace, (Glib::RegexMatchFlags)0);
+
+      sub.set_text(text);
+    }
+  }
+
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(ItalicizeSelectedSubtitlesPlugin)

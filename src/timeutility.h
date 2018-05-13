@@ -28,22 +28,17 @@
 /*
  *
  */
-enum TIMING_MODE
-{
-	TIME,
-	FRAME
-};
+enum TIMING_MODE { TIME, FRAME };
 
 /*
  *
  */
-enum FRAMERATE
-{
-	FRAMERATE_23_976,
-	FRAMERATE_24,
-	FRAMERATE_25,    // PAL
-	FRAMERATE_29_97, // NTSC
-	FRAMERATE_30
+enum FRAMERATE {
+  FRAMERATE_23_976,
+  FRAMERATE_24,
+  FRAMERATE_25,     // PAL
+  FRAMERATE_29_97,  // NTSC
+  FRAMERATE_30
 };
 
 /*
@@ -61,5 +56,4 @@ float get_framerate_value(FRAMERATE framerate);
  */
 FRAMERATE get_framerate_from_value(float value);
 
-
-#endif//_TimeUility_h
+#endif  //_TimeUility_h

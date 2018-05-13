@@ -24,23 +24,23 @@
  */
 
 #ifdef HAVE_CONFIG_H
-	#include <config.h>
+#include <config.h>
 #endif /* HAVE_CONFIG_H */
 
 #ifdef ENABLE_NLS
-	#include <libintl.h>
-	#include <glib/gi18n.h>
+#include <libintl.h>
+#include <glib/gi18n.h>
 #else /* NLS is disabled */
-	#define _(String) (String)
-	#define N_(String) (String)
-	#define textdomain(String) (String)
-	#define gettext(String) (String)
-	#define ngettext(String,StringPlural,Number) \
-		(((Number)==1)?(String):(StringPlural))
-	#define dgettext(Domain,String) (String)
-	#define dcgettext(Domain,String,Type) (String)
-	#define bindtextdomain(Domain,Directory) (Domain) 
-	#define bind_textdomain_codeset(Domain,Codeset) (Codeset) 
+#define _(String) (String)
+#define N_(String) (String)
+#define textdomain(String) (String)
+#define gettext(String) (String)
+#define ngettext(String, StringPlural, Number) \
+  (((Number) == 1) ? (String) : (StringPlural))
+#define dgettext(Domain, String) (String)
+#define dcgettext(Domain, String, Type) (String)
+#define bindtextdomain(Domain, Directory) (Domain)
+#define bind_textdomain_codeset(Domain, Codeset) (Codeset)
 #endif /* ENABLE_NLS */
 
-#endif//_i18n_h
+#endif  //_i18n_h

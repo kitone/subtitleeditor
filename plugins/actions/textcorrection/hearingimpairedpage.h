@@ -25,17 +25,14 @@
 
 #include "patternspage.h"
 
-class HearingImpairedPage : public PatternsPage
-{
-public:
-	HearingImpairedPage()
-	:PatternsPage(
-			"hearing-impaired",
-			_("Select Hearing Impaired Patterns"),
-			_("Remove hearing impaired texts"), 
-			_("Remove explanatory texts meant for the hearing impaired"))
-	{
-	}
+class HearingImpairedPage : public PatternsPage {
+ public:
+  HearingImpairedPage()
+      : PatternsPage(
+            "hearing-impaired", _("Select Hearing Impaired Patterns"),
+            _("Remove hearing impaired texts"),
+            _("Remove explanatory texts meant for the hearing impaired")) {
+  }
 };
 
-#endif//_HearingImpairedPage_h
+#endif  //_HearingImpairedPage_h

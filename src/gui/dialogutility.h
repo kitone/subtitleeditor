@@ -22,78 +22,67 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
-#include <gtkmm.h>
 #include <documentsystem.h>
+#include <gtkmm.h>
 #include <gui/comboboxframerate.h>
 
 /*
  */
-class DialogActionMultiDoc : public Gtk::Dialog
-{
-public:
+class DialogActionMultiDoc : public Gtk::Dialog {
+ public:
+  /*
+   * Constructor
+   */
+  DialogActionMultiDoc(BaseObjectType* cobject,
+                       const Glib::RefPtr<Gtk::Builder>& builder);
 
-	/*
-	 * Constructor
-	 */
-	DialogActionMultiDoc(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
+  /*
+   * Return true if the user choose to apply the action on all documents.
+   */
+  bool apply_to_all_documents();
 
-	/*
-	 * Return true if the user choose to apply the action on all documents.
-	 */
-	bool apply_to_all_documents();
+  /*
+   * Return a list of documents that the user wants to change.
+   */
+  DocumentList get_documents_to_apply();
 
-	/*
-	 * Return a list of documents that the user wants to change.
-	 */
-	DocumentList get_documents_to_apply();
-
-protected:
-	Gtk::RadioButton*	m_radioCurrentDocument;
-	Gtk::RadioButton* m_radioAllDocuments;
-};
-
-
-/*
- */
-class ErrorDialog : public Gtk::MessageDialog
-{
-public:
-
-	/*
-	 */
-	ErrorDialog(const Glib::ustring &primary, const Glib::ustring &secondary=Glib::ustring());
+ protected:
+  Gtk::RadioButton* m_radioCurrentDocument;
+  Gtk::RadioButton* m_radioAllDocuments;
 };
 
 /*
  */
-class FramerateChooserDialog : public Gtk::Dialog
-{
-public:
-
-	enum Action
-	{
-		IMPORT,
-		EXPORT
-	};
-
-	/*
-	 */
-	FramerateChooserDialog(Action action = IMPORT);
-
-	/*
-	 * Launch the dialog and return the framerate value.
-	 */
-	FRAMERATE execute();
-
-	/*
-	 */
-	void set_default_framerate(FRAMERATE framerate);
-
-protected:
-	Gtk::ComboBox* m_comboFramerate;
+class ErrorDialog : public Gtk::MessageDialog {
+ public:
+  /*
+   */
+  ErrorDialog(const Glib::ustring& primary,
+              const Glib::ustring& secondary = Glib::ustring());
 };
 
-#endif//_DialogUtility_h
+/*
+ */
+class FramerateChooserDialog : public Gtk::Dialog {
+ public:
+  enum Action { IMPORT, EXPORT };
 
+  /*
+   */
+  FramerateChooserDialog(Action action = IMPORT);
+
+  /*
+   * Launch the dialog and return the framerate value.
+   */
+  FRAMERATE execute();
+
+  /*
+   */
+  void set_default_framerate(FRAMERATE framerate);
+
+ protected:
+  Gtk::ComboBox* m_comboFramerate;
+};
+
+#endif  //_DialogUtility_h

@@ -22,7 +22,6 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include <glibmm.h>
 #include <map>
@@ -31,15 +30,12 @@
  *	principalement utiliser par SSA/ASS
  *	FIXME: deprecated me
  */
-class ScriptInfo
-{
-public:
-	ScriptInfo();
+class ScriptInfo {
+ public:
+  ScriptInfo();
 
-public:
-
-	std::map<Glib::ustring, Glib::ustring> data;
+ public:
+  std::map<Glib::ustring, Glib::ustring> data;
 };
 
-#endif//_ScriptInfo_h
-
+#endif  //_ScriptInfo_h

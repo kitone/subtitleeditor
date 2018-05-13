@@ -23,24 +23,22 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "preferencepage.h"
-#include "gui/comboboxsubtitleformat.h"
 #include "gui/comboboxnewline.h"
+#include "gui/comboboxsubtitleformat.h"
+#include "preferencepage.h"
 
-
-class DocumentPage : public PreferencePage
-{
-public:
-
-	/*
-	 *
-	 */
-	DocumentPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
-	:PreferencePage(cobject)
-	{
-		init_widget_derived<ComboBoxSubtitleFormat>(xml, "combo-format", "document", "format");
-		init_widget_derived<ComboBoxNewLine>(xml, "combo-newline", "document", "newline");
-	}
+class DocumentPage : public PreferencePage {
+ public:
+  /*
+   *
+   */
+  DocumentPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
+      : PreferencePage(cobject) {
+    init_widget_derived<ComboBoxSubtitleFormat>(xml, "combo-format", "document",
+                                                "format");
+    init_widget_derived<ComboBoxNewLine>(xml, "combo-newline", "document",
+                                         "newline");
+  }
 };
 
-#endif//_DocumentPage_h
+#endif  //_DocumentPage_h

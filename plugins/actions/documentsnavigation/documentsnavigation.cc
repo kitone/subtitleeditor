@@ -19,286 +19,294 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#include <extension/action.h>
-#include <i18n.h>
+
 #include <debug.h>
 #include <documentsystem.h>
+#include <extension/action.h>
+#include <i18n.h>
 
-class DocumentsNavigationPlugin : public Action
-{
-public:
-	
-	DocumentsNavigationPlugin()
-	{
-		activate();
-		update_ui();
-	}
+class DocumentsNavigationPlugin : public Action {
+ public:
+  DocumentsNavigationPlugin() {
+    activate();
+    update_ui();
+  }
 
-	~DocumentsNavigationPlugin()
-	{
-		deactivate();
-	}
+  ~DocumentsNavigationPlugin() {
+    deactivate();
+  }
 
-	/*
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		// actions
-		action_group = Gtk::ActionGroup::create("DocumentsNavigationPlugin");
+    // actions
+    action_group = Gtk::ActionGroup::create("DocumentsNavigationPlugin");
 
-		action_group->add(
-				Gtk::Action::create("documentsnavigation", _("_Documents")));
+    action_group->add(
+        Gtk::Action::create("documentsnavigation", _("_Documents")));
 
-		action_group->add(
-				Gtk::Action::create("documentsnavigation-first-document", Gtk::Stock::GOTO_FIRST, _("_First Document")),
-					sigc::bind<int>(
-						sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_select_document), FIRST));
+    action_group->add(
+        Gtk::Action::create("documentsnavigation-first-document",
+                            Gtk::Stock::GOTO_FIRST, _("_First Document")),
+        sigc::bind<int>(
+            sigc::mem_fun(*this,
+                          &DocumentsNavigationPlugin::on_select_document),
+            FIRST));
 
-		action_group->add(
-				Gtk::Action::create("documentsnavigation-last-document", Gtk::Stock::GOTO_LAST,  _("_Last Document")),
-					sigc::bind<int>(
-						sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_select_document), LAST));
+    action_group->add(
+        Gtk::Action::create("documentsnavigation-last-document",
+                            Gtk::Stock::GOTO_LAST, _("_Last Document")),
+        sigc::bind<int>(
+            sigc::mem_fun(*this,
+                          &DocumentsNavigationPlugin::on_select_document),
+            LAST));
 
-		action_group->add(
-				Gtk::Action::create("documentsnavigation-previous-document", Gtk::Stock::GO_BACK, _("_Previous Document")),
-					sigc::bind<int>(
-						sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_select_document), PREVIOUS));
+    action_group->add(
+        Gtk::Action::create("documentsnavigation-previous-document",
+                            Gtk::Stock::GO_BACK, _("_Previous Document")),
+        sigc::bind<int>(
+            sigc::mem_fun(*this,
+                          &DocumentsNavigationPlugin::on_select_document),
+            PREVIOUS));
 
-		action_group->add(
-				Gtk::Action::create("documentsnavigation-next-document", Gtk::Stock::GO_FORWARD, _("_Next Document")),
-					sigc::bind<int>(
-						sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_select_document), NEXT));
+    action_group->add(
+        Gtk::Action::create("documentsnavigation-next-document",
+                            Gtk::Stock::GO_FORWARD, _("_Next Document")),
+        sigc::bind<int>(
+            sigc::mem_fun(*this,
+                          &DocumentsNavigationPlugin::on_select_document),
+            NEXT));
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui->insert_action_group(action_group);
+    ui->insert_action_group(action_group);
 
-		Glib::ustring submenu = 
-			"<ui>"
-			"	<menubar name='menubar'>"
-			"		<menu name='menu-extensions' action='menu-extensions'>"
-			"			<placeholder name='placeholder'>"
-			"					<menu name='documentsnavigation' action='documentsnavigation'>"
-			"						<menuitem action='documentsnavigation-first-document'/>"
-			"						<menuitem action='documentsnavigation-last-document'/>"
-			"						<separator/>"
-			"						<menuitem action='documentsnavigation-previous-document'/>"
-			"						<menuitem action='documentsnavigation-next-document'/>"
-			"						<separator/>"
-			"						<placeholder name='documentsnavigation-documents'/>"
-			"					</menu>"
-			"			</placeholder>"
-			"		</menu>"
-			"	</menubar>"
-			"</ui>";
+    Glib::ustring submenu =
+        "<ui>"
+        "	<menubar name='menubar'>"
+        "		<menu name='menu-extensions' action='menu-extensions'>"
+        "			<placeholder name='placeholder'>"
+        "					<menu "
+        "name='documentsnavigation' action='documentsnavigation'>"
+        "						<menuitem "
+        "action='documentsnavigation-first-document'/>"
+        "						<menuitem "
+        "action='documentsnavigation-last-document'/>"
+        "						<separator/>"
+        "						<menuitem "
+        "action='documentsnavigation-previous-document'/>"
+        "						<menuitem "
+        "action='documentsnavigation-next-document'/>"
+        "						<separator/>"
+        "						<placeholder "
+        "name='documentsnavigation-documents'/>"
+        "					</menu>"
+        "			</placeholder>"
+        "		</menu>"
+        "	</menubar>"
+        "</ui>";
 
-		ui_id = ui->add_ui_from_string(submenu);
+    ui_id = ui->add_ui_from_string(submenu);
 
-		// Update the documents menu when a document is created, deleted or changed
-		DocumentSystem &ds = DocumentSystem::getInstance();
+    // Update the documents menu when a document is created, deleted or changed
+    DocumentSystem &ds = DocumentSystem::getInstance();
 
-		m_create_document_connection = ds.signal_document_create().connect(
-				sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_document_create_or_delete));
-		
-		m_delete_document_connection = ds.signal_document_delete().connect(
-				sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_document_create_or_delete));
-		
-		m_document_signals_connection = ds.signals_document().connect(
-				sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_document_signals));
+    m_create_document_connection =
+        ds.signal_document_create().connect(sigc::mem_fun(
+            *this, &DocumentsNavigationPlugin::on_document_create_or_delete));
 
-		rebuild_documents_menu();
-	}
+    m_delete_document_connection =
+        ds.signal_document_delete().connect(sigc::mem_fun(
+            *this, &DocumentsNavigationPlugin::on_document_create_or_delete));
 
-	/*
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    m_document_signals_connection = ds.signals_document().connect(
+        sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_document_signals));
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    rebuild_documents_menu();
+  }
 
-		m_create_document_connection.disconnect();
-		m_delete_document_connection.disconnect();
-		m_document_signals_connection.disconnect();
+  /*
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		if(action_group_documents)
-		{
-			get_ui_manager()->remove_ui(ui_id_documents);
-			get_ui_manager()->remove_action_group(action_group_documents);
-		}
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-	/*
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    m_create_document_connection.disconnect();
+    m_delete_document_connection.disconnect();
+    m_document_signals_connection.disconnect();
 
-		bool state = (get_current_document() != NULL);
+    if (action_group_documents) {
+      get_ui_manager()->remove_ui(ui_id_documents);
+      get_ui_manager()->remove_action_group(action_group_documents);
+    }
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		action_group->get_action("documentsnavigation-first-document")->set_sensitive(state);
-		action_group->get_action("documentsnavigation-last-document")->set_sensitive(state);
-		action_group->get_action("documentsnavigation-previous-document")->set_sensitive(state);
-		action_group->get_action("documentsnavigation-next-document")->set_sensitive(state);
-	}
+  /*
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 * Remove old ui_id and action_group and regenerate menu items.
-	 */
-	void rebuild_documents_menu()
-	{
-		if(action_group_documents)
-		{
-			get_ui_manager()->remove_ui(ui_id_documents);
-			get_ui_manager()->remove_action_group(action_group_documents);
-		}
+    bool state = (get_current_document() != NULL);
 
-		action_group_documents = Gtk::ActionGroup::create("DocumentsNavigationPluginDocuments");
-		get_ui_manager()->insert_action_group(action_group_documents);
+    action_group->get_action("documentsnavigation-first-document")
+        ->set_sensitive(state);
+    action_group->get_action("documentsnavigation-last-document")
+        ->set_sensitive(state);
+    action_group->get_action("documentsnavigation-previous-document")
+        ->set_sensitive(state);
+    action_group->get_action("documentsnavigation-next-document")
+        ->set_sensitive(state);
+  }
 
-		ui_id_documents = get_ui_manager()->new_merge_id();
+  /*
+   * Remove old ui_id and action_group and regenerate menu items.
+   */
+  void rebuild_documents_menu() {
+    if (action_group_documents) {
+      get_ui_manager()->remove_ui(ui_id_documents);
+      get_ui_manager()->remove_action_group(action_group_documents);
+    }
 
-		guint count = 0;
-	
-		DocumentList documents = DocumentSystem::getInstance().getAllDocuments();
-		
-		for(DocumentList::iterator it=documents.begin(); it != documents.end(); ++it, ++count)
-		{
-			Glib::ustring action_name = Glib::ustring::compose("documentsnavigation-document-%1", count);
-			Glib::ustring action_accel = (count < 10) ? Glib::ustring::compose("<alt>%1", (count+1) % 10) : "";
+    action_group_documents =
+        Gtk::ActionGroup::create("DocumentsNavigationPluginDocuments");
+    get_ui_manager()->insert_action_group(action_group_documents);
 
-			action_group_documents->add(
-					Gtk::Action::create(action_name, (*it)->getName()), Gtk::AccelKey(action_accel),
-					sigc::bind(
-						sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_documents_menu_activate), count));
+    ui_id_documents = get_ui_manager()->new_merge_id();
 
-			get_ui_manager()->add_ui(
-					ui_id_documents, 
-					"/menubar/menu-extensions/placeholder/documentsnavigation/documentsnavigation-documents", 
-					action_name,
-					action_name, 
-					Gtk::UI_MANAGER_MENUITEM, 
-					false);
-		}
-		get_ui_manager()->ensure_update();
-	}
+    guint count = 0;
 
-	/*
-	 */
-	enum {
-		FIRST = 0,
-		LAST = 1,
-		PREVIOUS = 2,
-		NEXT = 3
-	};
+    DocumentList documents = DocumentSystem::getInstance().getAllDocuments();
 
-	/*
-	 */
-	void on_select_document(int value)
-	{
-		se_debug_message(SE_DEBUG_PLUGINS, "select %d", value);
+    for (DocumentList::iterator it = documents.begin(); it != documents.end();
+         ++it, ++count) {
+      Glib::ustring action_name =
+          Glib::ustring::compose("documentsnavigation-document-%1", count);
+      Glib::ustring action_accel =
+          (count < 10) ? Glib::ustring::compose("<alt>%1", (count + 1) % 10)
+                       : "";
 
-		DocumentSystem &ds = DocumentSystem::getInstance();
-		g_return_if_fail(!ds.getAllDocuments().empty());
+      action_group_documents->add(
+          Gtk::Action::create(action_name, (*it)->getName()),
+          Gtk::AccelKey(action_accel),
+          sigc::bind(
+              sigc::mem_fun(
+                  *this,
+                  &DocumentsNavigationPlugin::on_documents_menu_activate),
+              count));
 
-		Document* doc = NULL;
+      get_ui_manager()->add_ui(
+          ui_id_documents,
+          "/menubar/menu-extensions/placeholder/documentsnavigation/"
+          "documentsnavigation-documents",
+          action_name, action_name, Gtk::UI_MANAGER_MENUITEM, false);
+    }
+    get_ui_manager()->ensure_update();
+  }
 
-		if(value == FIRST)
-			doc = ds.getAllDocuments().front();
-		else if(value == LAST)
-			doc = ds.getAllDocuments().back();
-		else if(value == PREVIOUS)
-			doc = get_document(PREVIOUS);
-		else
-			doc = get_document(NEXT);
+  /*
+   */
+  enum { FIRST = 0, LAST = 1, PREVIOUS = 2, NEXT = 3 };
 
-		g_return_if_fail(doc);
-		ds.setCurrentDocument(doc);
-	}
+  /*
+   */
+  void on_select_document(int value) {
+    se_debug_message(SE_DEBUG_PLUGINS, "select %d", value);
 
-	/*
-	 * We want to rebuild the documents menu each time a document is created or delete
-	 */
-	void on_document_create_or_delete(Document* doc)
-	{
-		g_return_if_fail(doc);
+    DocumentSystem &ds = DocumentSystem::getInstance();
+    g_return_if_fail(!ds.getAllDocuments().empty());
 
-		rebuild_documents_menu();
-	}
+    Document *doc = NULL;
 
-	/*
-	 * We want to rebuild the documents menu each time the document property change,
-	 * like name of the document
-	 */
-	void on_document_signals(Document*, const std::string &signal)
-	{
-		if(signal == "document-property-changed")
-			rebuild_documents_menu();
-	}
+    if (value == FIRST)
+      doc = ds.getAllDocuments().front();
+    else if (value == LAST)
+      doc = ds.getAllDocuments().back();
+    else if (value == PREVIOUS)
+      doc = get_document(PREVIOUS);
+    else
+      doc = get_document(NEXT);
 
-	/*
-	 * PREVIOUS or NEXT
-	 */
-	Document* get_document(int value)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    g_return_if_fail(doc);
+    ds.setCurrentDocument(doc);
+  }
 
-		Document *current = get_current_document();
-		g_return_val_if_fail(current, NULL);
+  /*
+   * We want to rebuild the documents menu each time a document is created or
+   * delete
+   */
+  void on_document_create_or_delete(Document *doc) {
+    g_return_if_fail(doc);
 
-		DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
-		
-		if(value == PREVIOUS)
-			docs.reverse();
+    rebuild_documents_menu();
+  }
 
-		for(DocumentList::iterator it = docs.begin(); it != docs.end(); ++it)
-		{
-			if(*it == current)
-			{
-				++it;
-				if(it == docs.end())
-					return docs.front();
-				else
-					return *it;
-			}
-		}
-		return NULL;
-	}
+  /*
+   * We want to rebuild the documents menu each time the document property
+   * change, like name of the document
+   */
+  void on_document_signals(Document *, const std::string &signal) {
+    if (signal == "document-property-changed")
+      rebuild_documents_menu();
+  }
 
-	/*
-	 */
-	void on_documents_menu_activate(gint count)
-	{
-		se_debug_message(SE_DEBUG_PLUGINS, "activate document %d", count);
+  /*
+   * PREVIOUS or NEXT
+   */
+  Document *get_document(int value) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
-		g_return_if_fail(!docs.empty());
+    Document *current = get_current_document();
+    g_return_val_if_fail(current, NULL);
 
-		DocumentList::iterator it = docs.begin();
+    DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
 
-		std::advance(it, count);
-		g_return_if_fail(it != docs.end());
-		
-		DocumentSystem::getInstance().setCurrentDocument(*it);
-	}
+    if (value == PREVIOUS)
+      docs.reverse();
 
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+    for (DocumentList::iterator it = docs.begin(); it != docs.end(); ++it) {
+      if (*it == current) {
+        ++it;
+        if (it == docs.end())
+          return docs.front();
+        else
+          return *it;
+      }
+    }
+    return NULL;
+  }
 
-	Gtk::UIManager::ui_merge_id ui_id_documents;
-	Glib::RefPtr<Gtk::ActionGroup> action_group_documents;
+  /*
+   */
+  void on_documents_menu_activate(gint count) {
+    se_debug_message(SE_DEBUG_PLUGINS, "activate document %d", count);
 
-	sigc::connection m_create_document_connection;
-	sigc::connection m_delete_document_connection;
-	sigc::connection m_document_signals_connection;
+    DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
+    g_return_if_fail(!docs.empty());
+
+    DocumentList::iterator it = docs.begin();
+
+    std::advance(it, count);
+    g_return_if_fail(it != docs.end());
+
+    DocumentSystem::getInstance().setCurrentDocument(*it);
+  }
+
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
+
+  Gtk::UIManager::ui_merge_id ui_id_documents;
+  Glib::RefPtr<Gtk::ActionGroup> action_group_documents;
+
+  sigc::connection m_create_document_connection;
+  sigc::connection m_delete_document_connection;
+  sigc::connection m_document_signals_connection;
 };
 
 REGISTER_EXTENSION(DocumentsNavigationPlugin)
-

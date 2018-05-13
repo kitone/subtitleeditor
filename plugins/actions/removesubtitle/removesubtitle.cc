@@ -20,135 +20,126 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
 
-class DeleteSelectedSubtitlePlugin : public Action
-{
-public:
+class DeleteSelectedSubtitlePlugin : public Action {
+ public:
+  DeleteSelectedSubtitlePlugin() {
+    activate();
+    update_ui();
+  }
 
-	DeleteSelectedSubtitlePlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~DeleteSelectedSubtitlePlugin() {
+    deactivate();
+  }
 
-	~DeleteSelectedSubtitlePlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("DeleteSelectedSubtitlePlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("DeleteSelectedSubtitlePlugin");
+    action_group->add(
+        Gtk::Action::create("delete-selected-subtitles", Gtk::Stock::DELETE, "",
+                            _("Delete the selected subtitles")),
+        Gtk::AccelKey("<Control>Delete"),
+        sigc::mem_fun(
+            *this,
+            &DeleteSelectedSubtitlePlugin::on_delete_selected_subtitles));
 
-		action_group->add(
-				Gtk::Action::create("delete-selected-subtitles", Gtk::Stock::DELETE, "", _("Delete the selected subtitles")), Gtk::AccelKey("<Control>Delete"),
-					sigc::mem_fun(*this, &DeleteSelectedSubtitlePlugin::on_delete_selected_subtitles));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-edit/delete-selected-subtitles",
+               "delete-selected-subtitles", "delete-selected-subtitles");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-edit/delete-selected-subtitles", "delete-selected-subtitles", "delete-selected-subtitles");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("delete-selected-subtitles")
+        ->set_sensitive(visible);
+  }
 
-		action_group->get_action("delete-selected-subtitles")->set_sensitive(visible);
-	}
+ protected:
+  /*
+   *
+   */
+  void on_delete_selected_subtitles() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    execute();
+  }
 
-	/*
-	 *
-	 */
-	void on_delete_selected_subtitles()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  bool execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
-	}
+    Document *doc = get_current_document();
 
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    g_return_val_if_fail(doc, false);
 
-		Document *doc = get_current_document();
+    Subtitles subtitles = doc->subtitles();
 
-		g_return_val_if_fail(doc, false);
+    std::vector<Subtitle> selection = subtitles.get_selection();
 
-		Subtitles subtitles = doc->subtitles();
+    if (selection.empty()) {
+      doc->flash_message(_("Please select at least a subtitle."));
+      return false;
+    }
 
-		std::vector<Subtitle> selection = subtitles.get_selection();
+    Subtitle previous_subtitle = subtitles.get_previous(selection[0]);
 
-		if(selection.empty())
-		{
-			doc->flash_message(_("Please select at least a subtitle."));
-			return false;
-		}
+    doc->start_command(_("Delete Subtitles"));
 
-		Subtitle previous_subtitle = subtitles.get_previous(selection[0]);
+    subtitles.remove(selection);
 
-		doc->start_command(_("Delete Subtitles"));
+    if (!previous_subtitle)
+      previous_subtitle = subtitles.get_first();
+    if (previous_subtitle)
+      subtitles.select(previous_subtitle);
 
-		subtitles.remove(selection);
+    doc->finish_command();
 
-		if(!previous_subtitle)
-			previous_subtitle = subtitles.get_first();
-		if(previous_subtitle)
-			subtitles.select(previous_subtitle);
+    doc->flash_message(
+        ngettext("1 subtitle has been deleted.",
+                 "%d subtitles have been deleted.", selection.size()),
+        selection.size());
 
-		doc->finish_command();
+    return true;
+  }
 
-		doc->flash_message(ngettext(
-					"1 subtitle has been deleted.",
-					"%d subtitles have been deleted.", 
-					selection.size()), selection.size());
-
-		return true;
-	}
-
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
-
 REGISTER_EXTENSION(DeleteSelectedSubtitlePlugin)
-
-
-

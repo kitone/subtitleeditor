@@ -25,177 +25,171 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
 #include <utility.h>
 
-class MinimizeDurationPlugin : public Action
-{
-public:
+class MinimizeDurationPlugin : public Action {
+ public:
+  MinimizeDurationPlugin() {
+    activate();
+    update_ui();
+  }
 
-	MinimizeDurationPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~MinimizeDurationPlugin() {
+    deactivate();
+  }
 
-	~MinimizeDurationPlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("MinimizeDurationPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("MinimizeDurationPlugin");
+    action_group->add(
+        Gtk::Action::create(
+            "minimize-duration", _("_Minimize Duration From Start"),
+            _("Compact each selected subtitle to its minimum permissible "
+              "duration, start time is unchanged.")),
+        sigc::mem_fun(
+            *this, &MinimizeDurationPlugin::on_minimize_duration_from_start));
+    action_group->add(
+        Gtk::Action::create("minimize-duration-from-end",
+                            _("M_inimize Duration From End"),
+                            _("Compact each selected subtitle to its minimum "
+                              "permissible duration, end time is unchanged.")),
+        sigc::mem_fun(*this,
+                      &MinimizeDurationPlugin::on_minimize_duration_from_end));
 
-		action_group->add(
-				Gtk::Action::create("minimize-duration", _("_Minimize Duration From Start"),
-				_("Compact each selected subtitle to its minimum permissible duration, start time is unchanged.")),
-					sigc::mem_fun(*this, &MinimizeDurationPlugin::on_minimize_duration_from_start));
-		action_group->add(
-				Gtk::Action::create("minimize-duration-from-end", _("M_inimize Duration From End"),
-				_("Compact each selected subtitle to its minimum permissible duration, end time is unchanged.")),
-					sigc::mem_fun(*this, &MinimizeDurationPlugin::on_minimize_duration_from_end));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-timings/minimize-duration",
+               "minimize-duration", "minimize-duration");
+    ui->add_ui(ui_id, "/menubar/menu-timings/minimize-duration-from-end",
+               "minimize-duration-from-end", "minimize-duration-from-end");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-timings/minimize-duration", "minimize-duration", "minimize-duration");
-		ui->add_ui(ui_id, "/menubar/menu-timings/minimize-duration-from-end", "minimize-duration-from-end", "minimize-duration-from-end");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("minimize-duration")->set_sensitive(visible);
+    action_group->get_action("minimize-duration-from-end")
+        ->set_sensitive(visible);
+  }
 
-		action_group->get_action("minimize-duration")->set_sensitive(visible);
-		action_group->get_action("minimize-duration-from-end")->set_sensitive(visible);
-	}
+ protected:
+  /*
+   *
+   */
+  void on_minimize_duration_from_start() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    execute(true);
+  }
 
-	/*
-	 *
-	 */
-	void on_minimize_duration_from_start()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  void on_minimize_duration_from_end() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(true);
-	}
+    execute(false);
+  }
 
-	/*
-	 *
-	 */
-	void on_minimize_duration_from_end()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  bool execute(bool from_start) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(false);
-	}
+    Document *doc = get_current_document();
 
-	/*
-	 *
-	 */
-	bool execute(bool from_start)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    g_return_val_if_fail(doc, false);
 
-		Document *doc = get_current_document();
+    Subtitles subtitles = doc->subtitles();
 
-		g_return_val_if_fail(doc, false);
+    // NOTE:	the selection returned is always sorted regardless of the order the
+    // user clicked on the subtitles in 	or at least it was when I tried it.
+    std::vector<Subtitle> selection = subtitles.get_selection();
 
-		Subtitles subtitles = doc->subtitles();
+    unsigned int subcnt = selection.size();
 
-		//NOTE:	the selection returned is always sorted regardless of the order the user clicked on the subtitles in
-		//	or at least it was when I tried it.
-		std::vector<Subtitle> selection = subtitles.get_selection();
+    if (subcnt < 1) {
+      doc->flash_message(
+          _("Minimize Duration needs at least 1 subtitle to work on."));
+      return false;
+    }
 
-		unsigned int subcnt = selection.size();
+    // get relevant preferences
+    Config &cfg = get_config();
 
-		if( subcnt < 1 )
-		{
-			doc->flash_message(_("Minimize Duration needs at least 1 subtitle to work on."));
-			return false;
-		}
+    SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
+    double maxcps = cfg.get_value_double("timing", "max-characters-per-second");
 
-		// get relevant preferences
-		Config &cfg = get_config();
+    doc->start_command(_("Minimize Durations"));
 
-		SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
-		double maxcps = cfg.get_value_double("timing", "max-characters-per-second");
+    Glib::ustring subtext = "";
+    Subtitle *sub = (Subtitle *)NULL;
 
-		doc->start_command(_("Minimize Durations"));
+    // take each subtitle and set its duration to the permissible minimum
+    unsigned long subchars = 0;
+    SubtitleTime dur;
 
-		Glib::ustring subtext = "";
-		Subtitle *sub = (Subtitle *)NULL;
+    for (unsigned int i = 0; i < subcnt; ++i) {
+      sub = &selection[i];
+      subtext = sub->get_text();
+      subchars = utility::get_text_length_for_timing(subtext);
+      dur.totalmsecs = utility::get_min_duration_msecs(subchars, maxcps);
+      // doc->flash_message ( _("duration calculated is 1000 * %i / %i = %i"),
+      // (int)subchars, (int)maxcps, (int)dur.totalmsecs ); make sure we have at
+      // least the minimum duration
+      if (dur < mindur)
+        dur = mindur;
 
-		//take each subtitle and set its duration to the permissible minimum
-		unsigned long subchars = 0;
-		SubtitleTime dur;
+      if (from_start) {
+        // the start time is fixed, we are changind the end time
+        sub->set_duration(dur);
+      } else {
+        // the end time is fixed, we are changing the start time
+        SubtitleTime endtime = sub->get_end();
+        sub->set_start_and_end(endtime - dur, endtime);
+      }
+    }
 
-		for(unsigned int i=0; i < subcnt; ++i)
-		{
-			sub = &selection[i];
-			subtext = sub->get_text();
-			subchars = utility::get_text_length_for_timing( subtext );
-			dur.totalmsecs = utility::get_min_duration_msecs( subchars, maxcps );
-			//doc->flash_message ( _("duration calculated is 1000 * %i / %i = %i"), (int)subchars, (int)maxcps, (int)dur.totalmsecs );
-			//make sure we have at least the minimum duration
-			if( dur < mindur )
-				dur = mindur;
+    doc->emit_signal("subtitle-time-changed");
+    doc->finish_command();
+    return true;
+  }
 
-			if( from_start )
-			{
-				//the start time is fixed, we are changind the end time
-				sub->set_duration( dur );
-			}
-			else
-			{
-				//the end time is fixed, we are changing the start time
-				SubtitleTime endtime = sub->get_end();
-				sub->set_start_and_end( endtime-dur, endtime );
-			}
-		}
-
-		doc->emit_signal("subtitle-time-changed");
-		doc->finish_command();
-		return true;
-	}
-	
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(MinimizeDurationPlugin)
-

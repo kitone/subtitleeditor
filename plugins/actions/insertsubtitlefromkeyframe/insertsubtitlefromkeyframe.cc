@@ -19,229 +19,222 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
-#include <player.h>
 #include <keyframes.h>
+#include <player.h>
 
-class InsertSubtitleFromKeyframePlugin : public Action
-{
-public:
+class InsertSubtitleFromKeyframePlugin : public Action {
+ public:
+  InsertSubtitleFromKeyframePlugin() {
+    activate();
+    update_ui();
+  }
 
-	InsertSubtitleFromKeyframePlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~InsertSubtitleFromKeyframePlugin() {
+    deactivate();
+  }
 
-	~InsertSubtitleFromKeyframePlugin()
-	{
-		deactivate();
-	}
+  /*
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("InsertSubtitleFromKeyframePlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("InsertSubtitleFromKeyframePlugin");
+    action_group->add(
+        Gtk::Action::create("insert-subtitle-between-keyframes",
+                            Gtk::Stock::ADD,
+                            _("Create Subtitle From Player And Keyframes"),
+                            _("Create subtitle automatically according to "
+                              "keyframes around the position of the player.")),
+        sigc::mem_fun(*this, &InsertSubtitleFromKeyframePlugin::
+                                 on_insert_subtitle_between_keyframes));
 
-		action_group->add(
-				Gtk::Action::create("insert-subtitle-between-keyframes", Gtk::Stock::ADD, _("Create Subtitle From Player And Keyframes"), _("Create subtitle automatically according to keyframes around the position of the player.")), 
-					sigc::mem_fun(*this, &InsertSubtitleFromKeyframePlugin::on_insert_subtitle_between_keyframes));
-		
-		action_group->add(
-				Gtk::Action::create("insert-subtitle-between-each-keyframes", Gtk::Stock::ADD, _("Create Subtitles According Keyframes"), _("Create subtitles automatically according to keyframes")), 
-					sigc::mem_fun(*this, &InsertSubtitleFromKeyframePlugin::on_insert_subtitle_between_each_keyframes));
+    action_group->add(
+        Gtk::Action::create(
+            "insert-subtitle-between-each-keyframes", Gtk::Stock::ADD,
+            _("Create Subtitles According Keyframes"),
+            _("Create subtitles automatically according to keyframes")),
+        sigc::mem_fun(*this, &InsertSubtitleFromKeyframePlugin::
+                                 on_insert_subtitle_between_each_keyframes));
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui->insert_action_group(action_group);
+    ui->insert_action_group(action_group);
 
-		Glib::ustring submenu = 
-			"<ui>"
-			"	<menubar name='menubar'>"
-			"		<menu name='menu-keyframes' action='menu-keyframes'>"
-			"			<placeholder name='placeholder-2'>"
-			"				<separator />"
-			"				<menuitem action='insert-subtitle-between-keyframes'/>"
-			"				<menuitem action='insert-subtitle-between-each-keyframes'/>"
-			"				<separator />"
-			"			</placeholder>"
-			"		</menu>"
-			"	</menubar>"
-			"</ui>";
+    Glib::ustring submenu =
+        "<ui>"
+        "	<menubar name='menubar'>"
+        "		<menu name='menu-keyframes' action='menu-keyframes'>"
+        "			<placeholder name='placeholder-2'>"
+        "				<separator />"
+        "				<menuitem "
+        "action='insert-subtitle-between-keyframes'/>"
+        "				<menuitem "
+        "action='insert-subtitle-between-each-keyframes'/>"
+        "				<separator />"
+        "			</placeholder>"
+        "		</menu>"
+        "	</menubar>"
+        "</ui>";
 
-		ui_id = ui->add_ui_from_string(submenu);
+    ui_id = ui->add_ui_from_string(submenu);
 
-		// connect the player state signals
-		player()->signal_message().connect(
-				sigc::mem_fun(*this, &InsertSubtitleFromKeyframePlugin::on_player_message));
-	}
+    // connect the player state signals
+    player()->signal_message().connect(sigc::mem_fun(
+        *this, &InsertSubtitleFromKeyframePlugin::on_player_message));
+  }
 
-	/*
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-	/*
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		bool has_doc = (get_current_document() != NULL);
-		bool has_kf =  (bool)player()->get_keyframes();
-		bool has_media = player()->get_state() != Player::NONE;
+    bool has_doc = (get_current_document() != NULL);
+    bool has_kf = (bool)player()->get_keyframes();
+    bool has_media = player()->get_state() != Player::NONE;
 
-		action_group->get_action("insert-subtitle-between-keyframes")->set_sensitive(has_doc && has_kf && has_media);
-		action_group->get_action("insert-subtitle-between-each-keyframes")->set_sensitive(has_doc && has_kf);
-	}
+    action_group->get_action("insert-subtitle-between-keyframes")
+        ->set_sensitive(has_doc && has_kf && has_media);
+    action_group->get_action("insert-subtitle-between-each-keyframes")
+        ->set_sensitive(has_doc && has_kf);
+  }
 
-	/*
-	 */
-	void on_player_message(Player::Message msg)
-	{
-		// only if the player is enable or disable
-		// don't update if is playing or paused
-		if(msg == Player::STREAM_READY || msg == Player::STATE_NONE)
-			update_ui();
-		else if(msg == Player::KEYFRAME_CHANGED)
-			update_ui();
-	}
+  /*
+   */
+  void on_player_message(Player::Message msg) {
+    // only if the player is enable or disable
+    // don't update if is playing or paused
+    if (msg == Player::STREAM_READY || msg == Player::STATE_NONE)
+      update_ui();
+    else if (msg == Player::KEYFRAME_CHANGED)
+      update_ui();
+  }
 
-protected:
+ protected:
+  /*
+   */
+  Player *player() {
+    return get_subtitleeditor_window()->get_player();
+  }
 
-	/*
-	 */
-	Player* player()
-	{
-		return get_subtitleeditor_window()->get_player();
-	}
+  /*
+   */
+  void on_insert_subtitle_between_keyframes() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void on_insert_subtitle_between_keyframes()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    long start = 0, end = 0;
 
-		long start = 0, end = 0;
+    if (!get_keyframes_from_player(start, end))
+      return;
 
-		if(!get_keyframes_from_player(start, end))
-			return;
+    Document *doc = get_current_document();
+    g_return_if_fail(doc);
 
-		Document *doc = get_current_document();
-		g_return_if_fail(doc);
+    doc->start_command(_("Insert Subtitle Between Keyframes"));
 
-		doc->start_command(_("Insert Subtitle Between Keyframes"));
+    Subtitles subtitles = doc->subtitles();
 
-		Subtitles subtitles = doc->subtitles();
+    Subtitle sub = subtitles.append();
 
-		Subtitle sub = subtitles.append();
+    sub.set_start_and_end(start, end);
 
-		sub.set_start_and_end(start, end);
- 
-		doc->subtitles().select(sub);
-		doc->subtitles().sort_by_time();
+    doc->subtitles().select(sub);
+    doc->subtitles().sort_by_time();
 
-		doc->finish_command();
-		doc->emit_signal("subtitle-time-changed");
-	}
+    doc->finish_command();
+    doc->emit_signal("subtitle-time-changed");
+  }
 
-	/*
-	 * Sets the value of the keyframes positions around the player position and return true.
-	 */
-	bool get_keyframes_from_player(long &start, long &end)
-	{
-		Glib::RefPtr<KeyFrames> keyframes = player()->get_keyframes();
-		g_return_val_if_fail(keyframes, false);
+  /*
+   * Sets the value of the keyframes positions around the player position and
+   * return true.
+   */
+  bool get_keyframes_from_player(long &start, long &end) {
+    Glib::RefPtr<KeyFrames> keyframes = player()->get_keyframes();
+    g_return_val_if_fail(keyframes, false);
 
-		long pos = player()->get_position();
+    long pos = player()->get_position();
 
-		KeyFrames::const_iterator prev = keyframes->begin();
-		for(KeyFrames::const_iterator it = keyframes->begin(); it != keyframes->end(); ++it)
-		{
-			if(*it > pos)
-			{
-				if(*it != *prev)
-				{
-					start = *prev;
-					end = *it;
-					return true;
-				}
-			}
-			prev = it;
-		}
-		return false;
-	}
+    KeyFrames::const_iterator prev = keyframes->begin();
+    for (KeyFrames::const_iterator it = keyframes->begin();
+         it != keyframes->end(); ++it) {
+      if (*it > pos) {
+        if (*it != *prev) {
+          start = *prev;
+          end = *it;
+          return true;
+        }
+      }
+      prev = it;
+    }
+    return false;
+  }
 
+  /*
+   */
+  void on_insert_subtitle_between_each_keyframes() {
+    Document *doc = get_current_document();
+    g_return_if_fail(doc);
 
-	/*
-	 */
-	void on_insert_subtitle_between_each_keyframes()
-	{
-		Document *doc = get_current_document();
-		g_return_if_fail(doc);
+    Player *player = get_subtitleeditor_window()->get_player();
 
-		Player* player = get_subtitleeditor_window()->get_player();
+    Glib::RefPtr<KeyFrames> keyframes = player->get_keyframes();
+    g_return_if_fail(keyframes);
 
-		Glib::RefPtr<KeyFrames> keyframes = player->get_keyframes();
-		g_return_if_fail(keyframes);
+    if (keyframes->size() < 2) {
+      doc->flash_message(
+          _("Can't insert subtitle between keyframes, not enough keyframes."));
+      return;
+    }
 
-		if(keyframes->size() < 2)
-		{
-			doc->flash_message(_("Can't insert subtitle between keyframes, not enough keyframes."));
-			return;
-		}
-		
-		int min_display = get_config().get_value_int("timing", "min-display");
-		int count = 0;
+    int min_display = get_config().get_value_int("timing", "min-display");
+    int count = 0;
 
-		doc->start_command(_("Insert Subtitle Between Each Keyframes"));
+    doc->start_command(_("Insert Subtitle Between Each Keyframes"));
 
-		Subtitles subtitles = doc->subtitles();
+    Subtitles subtitles = doc->subtitles();
 
-		KeyFrames::const_iterator it = keyframes->begin();
-		KeyFrames::const_iterator prev = it;
+    KeyFrames::const_iterator it = keyframes->begin();
+    KeyFrames::const_iterator prev = it;
 
-		for(++it; it != keyframes->end(); ++it)
-		{
-			// Only if the min display is respected
-			if((*it-*prev) >= min_display)
-			{
-				Subtitle sub = subtitles.append();
-				sub.set_start_and_end(*prev, *it);
-				++count;
-			}
-			prev = it;
-		}
-		doc->subtitles().sort_by_time();
-		doc->finish_command();
-		doc->emit_signal("subtitle-time-changed");
+    for (++it; it != keyframes->end(); ++it) {
+      // Only if the min display is respected
+      if ((*it - *prev) >= min_display) {
+        Subtitle sub = subtitles.append();
+        sub.set_start_and_end(*prev, *it);
+        ++count;
+      }
+      prev = it;
+    }
+    doc->subtitles().sort_by_time();
+    doc->finish_command();
+    doc->emit_signal("subtitle-time-changed");
 
-		doc->flash_message(ngettext(
-					"1 subtitle has been inserted.",
-					"%d subtitles have been inserted.", 
-					count), count);
-	}
+    doc->flash_message(ngettext("1 subtitle has been inserted.",
+                                "%d subtitles have been inserted.", count),
+                       count);
+  }
 
-
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
-
 
 REGISTER_EXTENSION(InsertSubtitleFromKeyframePlugin)

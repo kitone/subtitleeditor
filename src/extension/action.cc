@@ -27,92 +27,83 @@
 /*
  *
  */
-Action::Action()
-{
+Action::Action() {
 }
 
 /*
  *
  */
-Action::~Action()
-{
+Action::~Action() {
 }
 
 /*
  *
  */
-SubtitleEditorWindow* Action::get_subtitleeditor_window()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+SubtitleEditorWindow *Action::get_subtitleeditor_window() {
+  se_debug(SE_DEBUG_PLUGINS);
 
-	SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
+  SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
 
-	return window;
+  return window;
 }
 
 /*
  *
  */
-Config& Action::get_config()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+Config &Action::get_config() {
+  se_debug(SE_DEBUG_PLUGINS);
 
-	return Config::getInstance();
+  return Config::getInstance();
 }
 
 /*
  *
  */
-Document* Action::get_current_document()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+Document *Action::get_current_document() {
+  se_debug(SE_DEBUG_PLUGINS);
 
-	SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
+  SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
 
-	g_return_val_if_fail(window, NULL);
+  g_return_val_if_fail(window, NULL);
 
-	Document *doc = window->get_current_document();
+  Document *doc = window->get_current_document();
 
-	se_debug_message(SE_DEBUG_PLUGINS, "document=%s", ((doc == NULL) ? "NULL" : doc->getFilename().c_str()));
+  se_debug_message(SE_DEBUG_PLUGINS, "document=%s",
+                   ((doc == NULL) ? "NULL" : doc->getFilename().c_str()));
 
-	return doc;
+  return doc;
 }
 
 /*
  *
  */
-Glib::RefPtr<Gtk::UIManager> Action::get_ui_manager()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+Glib::RefPtr<Gtk::UIManager> Action::get_ui_manager() {
+  se_debug(SE_DEBUG_PLUGINS);
 
-	SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
+  SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
 
-	g_return_val_if_fail(window, Glib::RefPtr<Gtk::UIManager>());
+  g_return_val_if_fail(window, Glib::RefPtr<Gtk::UIManager>());
 
-	return window->get_ui_manager();
+  return window->get_ui_manager();
 }
 
 /*
  *
  */
-void Action::activate()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+void Action::activate() {
+  se_debug(SE_DEBUG_PLUGINS);
 }
 
 /*
  *
  */
-void Action::deactivate()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+void Action::deactivate() {
+  se_debug(SE_DEBUG_PLUGINS);
 }
 
 /*
  *
  */
-void Action::update_ui()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+void Action::update_ui() {
+  se_debug(SE_DEBUG_PLUGINS);
 }
-

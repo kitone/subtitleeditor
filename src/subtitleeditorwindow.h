@@ -28,54 +28,50 @@ class Document;
 class Player;
 class WaveformManager;
 
-class SubtitleEditorWindow
-{
-public:
+class SubtitleEditorWindow {
+ public:
+  /*
+   *	init static window pointer with this instance
+   */
+  SubtitleEditorWindow();
 
-	/*
-	 *	init static window pointer with this instance
-	 */
-	SubtitleEditorWindow();
+  /*
+   *
+   */
+  virtual ~SubtitleEditorWindow();
 
-	/*
-	 *
-	 */
-	virtual ~SubtitleEditorWindow();
+  /*
+   *
+   */
+  virtual Glib::RefPtr<Gtk::UIManager> get_ui_manager() = 0;
 
-	/*
-	 *
-	 */
-	virtual Glib::RefPtr<Gtk::UIManager> get_ui_manager() = 0;
+  /*
+   *
+   */
+  virtual Document* get_current_document() = 0;
 
-	/*
-	 *
-	 */
-	virtual Document* get_current_document() = 0;
+  /*
+   *
+   */
+  virtual std::list<Document*> get_documents() = 0;
 
-	/*
-	 *
-	 */
-	virtual std::list<Document*> get_documents() = 0;
+  /*
+   *
+   */
+  virtual Player* get_player() = 0;
 
-	/*
-	 *
-	 */
-	virtual Player* get_player() = 0;
+  /*
+   *
+   */
+  virtual WaveformManager* get_waveform_manager() = 0;
 
-	/*
-	 *
-	 */
-	virtual WaveformManager* get_waveform_manager() = 0;
+  /*
+   *
+   */
+  static SubtitleEditorWindow* get_instance();
 
-	/*
-	 *
-	 */
-	static SubtitleEditorWindow* get_instance();
-
-protected:
-	static SubtitleEditorWindow* m_static_window;
+ protected:
+  static SubtitleEditorWindow* m_static_window;
 };
 
-
-#endif//_SubtitleEditorWindow_h
-
+#endif  //_SubtitleEditorWindow_h

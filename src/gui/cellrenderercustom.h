@@ -23,151 +23,133 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm.h>
 #include <debug.h>
+#include <gtkmm.h>
 #include "cellrenderercustom.h"
 
 /*
  *
  */
-template<class T>
-class CellRendererCustom : public Gtk::CellRendererText
-{
-public:
+template <class T>
+class CellRendererCustom : public Gtk::CellRendererText {
+ public:
+  /*
+   *
+   */
+  CellRendererCustom();
 
-	/*
-	 *
-	 */
-	CellRendererCustom();
-	
-	/*
-	 *
-	 */
-	virtual Gtk::CellEditable* start_editing_vfunc(
-			GdkEvent* event, 
-			Gtk::Widget &widget, 
-			const Glib::ustring &path, 
-			const Gdk::Rectangle& background_area,
-			const Gdk::Rectangle& cell_area,
-			Gtk::CellRendererState flags);
+  /*
+   *
+   */
+  virtual Gtk::CellEditable* start_editing_vfunc(
+      GdkEvent* event, Gtk::Widget& widget, const Glib::ustring& path,
+      const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area,
+      Gtk::CellRendererState flags);
 
-protected:
+ protected:
+  /*
+   * Disable all actions.
+   */
+  virtual void begin_editing();
 
-	/*
-	 * Disable all actions.
-	 */
-	virtual void begin_editing();
+  /*
+   * Enable all actions.
+   */
+  virtual void finish_editing();
 
-	/*
-	 * Enable all actions.
-	 */
-	virtual void finish_editing();
+  /*
+   *
+   */
+  void cell_editing_done(const Glib::ustring& path);
 
-	/*
-	 *
-	 */
-	void cell_editing_done(const Glib::ustring &path);
-
-protected:
-	T* m_editable;
+ protected:
+  T* m_editable;
 };
 
-
 /*
  *
  */
-template<class T>
+template <class T>
 CellRendererCustom<T>::CellRendererCustom()
-:	Glib::ObjectBase(typeid(CellRendererCustom)),
-	Gtk::CellRendererText(),
-	m_editable(NULL)
-{
-	se_debug(SE_DEBUG_VIEW);
+    : Glib::ObjectBase(typeid(CellRendererCustom)),
+      Gtk::CellRendererText(),
+      m_editable(NULL) {
+  se_debug(SE_DEBUG_VIEW);
 }
-	
+
 /*
  *
  */
-template<class T>
+template <class T>
 Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
-			GdkEvent* /*event*/, 
-			Gtk::Widget &/*widget*/, 
-			const Glib::ustring &path, 
-			const Gdk::Rectangle& /*background_area*/,
-			const Gdk::Rectangle& cell_area,
-			Gtk::CellRendererState /*flags*/)
-{
-	se_debug(SE_DEBUG_VIEW);
+    GdkEvent* /*event*/, Gtk::Widget& /*widget*/, const Glib::ustring& path,
+    const Gdk::Rectangle& /*background_area*/, const Gdk::Rectangle& cell_area,
+    Gtk::CellRendererState /*flags*/) {
+  se_debug(SE_DEBUG_VIEW);
 
-	if(!property_editable())
-		return NULL;
+  if (!property_editable())
+    return NULL;
 
-	m_editable = manage(new T);
-	m_editable->set_size_request(cell_area.get_width(), cell_area.get_height());
+  m_editable = manage(new T);
+  m_editable->set_size_request(cell_area.get_width(), cell_area.get_height());
 
-	m_editable->signal_editing_done().connect(
-			sigc::bind(sigc::mem_fun(*this, &CellRendererCustom<T>::cell_editing_done), path));
+  m_editable->signal_editing_done().connect(sigc::bind(
+      sigc::mem_fun(*this, &CellRendererCustom<T>::cell_editing_done), path));
 
-	// prepare widget
-	if(Gtk::Entry *entry = dynamic_cast<Gtk::Entry*>(m_editable))
-	{
-		entry->set_has_frame(false);
-		entry->set_alignment(property_xalign());
-	}
-	m_editable->set_text(property_text());
+  // prepare widget
+  if (Gtk::Entry* entry = dynamic_cast<Gtk::Entry*>(m_editable)) {
+    entry->set_has_frame(false);
+    entry->set_alignment(property_xalign());
+  }
+  m_editable->set_text(property_text());
 
+  // Begin/Finish editing (Fix #10494)
+  // Disable actions during editing. Enable at the exit.
+  begin_editing();
 
-	// Begin/Finish editing (Fix #10494)
-	// Disable actions during editing. Enable at the exit. 
-	begin_editing();
+  m_editable->signal_remove_widget().connect(
+      sigc::mem_fun(*this, &CellRendererCustom<T>::finish_editing));
 
-	m_editable->signal_remove_widget().connect(
-			sigc::mem_fun(*this, &CellRendererCustom<T>::finish_editing));
-
-	m_editable->show();
-	return m_editable;
+  m_editable->show();
+  return m_editable;
 }
 
 /*
  * Disable all actions.
  */
-template<class T>
-void CellRendererCustom<T>::begin_editing()
-{
-	se_debug(SE_DEBUG_VIEW);
+template <class T>
+void CellRendererCustom<T>::begin_editing() {
+  se_debug(SE_DEBUG_VIEW);
 }
 
 /*
  * Enable all actions.
  */
-template<class T>
-void CellRendererCustom<T>::finish_editing()
-{
-	se_debug(SE_DEBUG_VIEW);
+template <class T>
+void CellRendererCustom<T>::finish_editing() {
+  se_debug(SE_DEBUG_VIEW);
 }
 
 /*
  *
  */
-template<class T>
-void CellRendererCustom<T>::cell_editing_done(const Glib::ustring &path)
-{
-	se_debug(SE_DEBUG_VIEW);
+template <class T>
+void CellRendererCustom<T>::cell_editing_done(const Glib::ustring& path) {
+  se_debug(SE_DEBUG_VIEW);
 
-	if(m_editable == NULL)
-	{
-		se_debug_message(SE_DEBUG_VIEW, "m_editable is NULL");
-		return;
-	}
+  if (m_editable == NULL) {
+    se_debug_message(SE_DEBUG_VIEW, "m_editable is NULL");
+    return;
+  }
 
-	Glib::ustring text = m_editable->get_text();
-	se_debug_message(SE_DEBUG_VIEW, "text from editable='%s'", text.c_str());
+  Glib::ustring text = m_editable->get_text();
+  se_debug_message(SE_DEBUG_VIEW, "text from editable='%s'", text.c_str());
 
-	// Define to NULL to avoid a duplicate call
-	m_editable = NULL;
-	edited(path, text);
+  // Define to NULL to avoid a duplicate call
+  m_editable = NULL;
+  edited(path, text);
 
-	finish_editing();
+  finish_editing();
 }
 
-#endif//_cellrenderercustom_h
+#endif  //_cellrenderercustom_h

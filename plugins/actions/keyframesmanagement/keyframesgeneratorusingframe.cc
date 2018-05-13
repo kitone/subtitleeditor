@@ -21,218 +21,200 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <cfg.h>
 #include <gstreamermm.h>
 #include <gtkmm.h>
-#include <iostream>
-#include <iomanip>
 #include <keyframes.h>
 #include <utility.h>
+#include <iomanip>
+#include <iostream>
 #include "mediadecoder.h"
-#include <cfg.h>
 
 /*
  */
-class KeyframesGeneratorUsingFrame : public Gtk::Dialog, public MediaDecoder
-{
-public:
+class KeyframesGeneratorUsingFrame : public Gtk::Dialog, public MediaDecoder {
+ public:
+  /*
+   */
+  KeyframesGeneratorUsingFrame(const Glib::ustring &uri,
+                               Glib::RefPtr<KeyFrames> &keyframes)
+      : Gtk::Dialog(_("Generate Keyframes"), true),
+        MediaDecoder(1000),
+        m_duration(0),
+        m_prev_frame_size(0),
+        m_prev_frame(NULL),
+        m_difference(0.2f) {
+    set_border_width(12);
+    set_default_size(300, -1);
+    get_vbox()->pack_start(m_progressbar, false, false);
+    add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+    m_progressbar.set_text(_("Waiting..."));
+    show_all();
 
-	/*
-	 */
-	KeyframesGeneratorUsingFrame(const Glib::ustring &uri, Glib::RefPtr<KeyFrames> &keyframes)
-	:Gtk::Dialog(_("Generate Keyframes"), true), MediaDecoder(1000), m_duration(0), m_prev_frame_size(0), m_prev_frame(NULL), m_difference(0.2f)
-	{
-		set_border_width(12);
-		set_default_size(300, -1);
-		get_vbox()->pack_start(m_progressbar, false, false);
-		add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
-		m_progressbar.set_text(_("Waiting..."));
-		show_all();
+    try {
+      read_config();
+      create_pipeline(uri);
 
-		try
-		{
-			read_config();
-			create_pipeline(uri);
+      if (run() == Gtk::RESPONSE_OK) {
+        keyframes = Glib::RefPtr<KeyFrames>(new KeyFrames);
+        keyframes->insert(keyframes->end(), m_values.begin(), m_values.end());
+        keyframes->set_video_uri(uri);
+      }
+    } catch (const std::runtime_error &ex) {
+      std::cerr << ex.what() << std::endl;
+    }
+  }
 
-			if(run() == Gtk::RESPONSE_OK)
-			{
-				keyframes = Glib::RefPtr<KeyFrames>(new KeyFrames);
-				keyframes->insert(keyframes->end(), m_values.begin(), m_values.end());
-				keyframes->set_video_uri(uri);
-			}
-		}
-		catch(const std::runtime_error &ex)
-		{
-			std::cerr << ex.what() << std::endl;
-		}
-	}
+  ~KeyframesGeneratorUsingFrame(void) {
+    delete[] m_prev_frame;
+  }
 
-	~KeyframesGeneratorUsingFrame(void) {
-		delete[] m_prev_frame;
-	}
+  /*
+   */
+  void read_config() {
+    Config &cfg = Config::getInstance();
+    if (cfg.has_key("KeyframesGeneratorUsingFrame", "difference") == false) {
+      cfg.set_value_string("KeyframesGeneratorUsingFrame", "difference", "0.2",
+                           "difference between frames as percent");
+    } else
+      cfg.get_value_float("KeyframesGeneratorUsingFrame", "difference",
+                          m_difference);
+  }
 
-	/*
-	 */
-	void read_config()
-	{
-		Config &cfg = Config::getInstance();
-		if(cfg.has_key("KeyframesGeneratorUsingFrame", "difference") == false)
-		{
-			cfg.set_value_string(
-				"KeyframesGeneratorUsingFrame", 
-				"difference",
-				"0.2",
-				"difference between frames as percent");
-		}
-		else
-			cfg.get_value_float("KeyframesGeneratorUsingFrame", "difference", m_difference);
-	}
+  /*
+   * Check buffer and try to catch keyframes.
+   */
+  void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer> &buf,
+                                 const Glib::RefPtr<Gst::Pad> &) {
+    GstMapInfo map;
+    gst_buffer_map(GST_BUFFER(buf->gobj()), &map, GST_MAP_READ);
 
-	/*
-	 * Check buffer and try to catch keyframes.
-	 */
-	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>&)
-	{
-		GstMapInfo map;
-		gst_buffer_map (GST_BUFFER(buf->gobj()), &map, GST_MAP_READ);
+    // first frame or change of buffer size, alloc & push
+    if (!m_prev_frame || map.size != m_prev_frame_size) {
+      delete[] m_prev_frame;
+      m_prev_frame_size = map.size;
+      m_prev_frame = new guint8[m_prev_frame_size];
 
-		// first frame or change of buffer size, alloc & push
-		if (!m_prev_frame || map.size != m_prev_frame_size)
-		{
-			delete[] m_prev_frame;
-			m_prev_frame_size = map.size;
-			m_prev_frame = new guint8[m_prev_frame_size];
-			
-			m_values.push_back(  buf->get_pts() / GST_MSECOND );
-		}
-		else if(compare_frame(m_prev_frame, map.data, map.size))
-		{
-			m_values.push_back( buf->get_pts() / GST_MSECOND );
-		}
-		// update the previous frame with this one
-		memcpy(m_prev_frame, map.data, map.size);
+      m_values.push_back(buf->get_pts() / GST_MSECOND);
+    } else if (compare_frame(m_prev_frame, map.data, map.size)) {
+      m_values.push_back(buf->get_pts() / GST_MSECOND);
+    }
+    // update the previous frame with this one
+    memcpy(m_prev_frame, map.data, map.size);
 
-		gst_buffer_unmap (GST_BUFFER(buf->gobj()),&map);
-	}
+    gst_buffer_unmap(GST_BUFFER(buf->gobj()), &map);
+  }
 
-	/*
-	 */
-	bool compare_frame(const guint8 *old_frame, const guint8 *new_frame, gsize size)
-	{
-		guint64 delta = 0;
-		guint64 full = size / 3;
+  /*
+   */
+  bool compare_frame(const guint8 *old_frame, const guint8 *new_frame,
+                     gsize size) {
+    guint64 delta = 0;
+    guint64 full = size / 3;
 
-		gulong diff, i, j;
-		long tmp;
-		// calculate difference between frames
-		for (i = 0; i < full; ++i)
-		{
-			diff = 0;
-			// get max difference in individual color channels
-			for (j = 0; j < 3; ++j)
-			{
-				tmp = (int)new_frame[3 * i + j] - (int)old_frame[3 * i + j];
-				if (tmp < 0)
-					tmp = -tmp;
-				diff = tmp > diff ? tmp : diff;
-			}
-			// add max color diff to total delta
-			delta += diff;
-		}
-		full *= 255;
+    gulong diff, i, j;
+    long tmp;
+    // calculate difference between frames
+    for (i = 0; i < full; ++i) {
+      diff = 0;
+      // get max difference in individual color channels
+      for (j = 0; j < 3; ++j) {
+        tmp = (int)new_frame[3 * i + j] - (int)old_frame[3 * i + j];
+        if (tmp < 0)
+          tmp = -tmp;
+        diff = tmp > diff ? tmp : diff;
+      }
+      // add max color diff to total delta
+      delta += diff;
+    }
+    full *= 255;
 
-		// >20% difference => scene cut
-		return ((double)delta / (double)full > m_difference);
-	}
- 
-	/*
-	 * Create video bin
-	 */
-	Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &structure_name)
-	{
-		try
-		{
-			// We only need and want create the video sink
-			if(structure_name.find("video") == Glib::ustring::npos)
-				return Glib::RefPtr<Gst::Element>(NULL);
+    // >20% difference => scene cut
+    return ((double)delta / (double)full > m_difference);
+  }
 
-			Glib::RefPtr<Gst::FakeSink> fakesink = Gst::FakeSink::create("fakesink");
-			fakesink->set_sync(false);
-			fakesink->property_silent() = true;
-			fakesink->property_signal_handoffs() = true;
-			fakesink->signal_handoff().connect(
-					sigc::mem_fun(*this, &KeyframesGeneratorUsingFrame::on_video_identity_handoff));
+  /*
+   * Create video bin
+   */
+  Glib::RefPtr<Gst::Element> create_element(
+      const Glib::ustring &structure_name) {
+    try {
+      // We only need and want create the video sink
+      if (structure_name.find("video") == Glib::ustring::npos)
+        return Glib::RefPtr<Gst::Element>(NULL);
 
-			// Set the new sink tp READY as well
-			Gst::StateChangeReturn retst = fakesink->set_state(Gst::STATE_READY);
-			if( retst == Gst::STATE_CHANGE_FAILURE )
-				std::cerr << "Could not change state of new sink: " << retst << std::endl;
+      Glib::RefPtr<Gst::FakeSink> fakesink = Gst::FakeSink::create("fakesink");
+      fakesink->set_sync(false);
+      fakesink->property_silent() = true;
+      fakesink->property_signal_handoffs() = true;
+      fakesink->signal_handoff().connect(sigc::mem_fun(
+          *this, &KeyframesGeneratorUsingFrame::on_video_identity_handoff));
 
-			return fakesink;
-		}
-		catch(std::runtime_error &ex)
-		{
-			std::cerr << "create_element runtime_error: " << ex.what() << std::endl;
-		}
-		return Glib::RefPtr<Gst::Element>(NULL);
-	}
+      // Set the new sink tp READY as well
+      Gst::StateChangeReturn retst = fakesink->set_state(Gst::STATE_READY);
+      if (retst == Gst::STATE_CHANGE_FAILURE)
+        std::cerr << "Could not change state of new sink: " << retst
+                  << std::endl;
 
-	/*
-	 * Update the progress bar
-	 */
-	bool on_timeout()
-	{
-		if(!m_pipeline)
-			return false;
+      return fakesink;
+    } catch (std::runtime_error &ex) {
+      std::cerr << "create_element runtime_error: " << ex.what() << std::endl;
+    }
+    return Glib::RefPtr<Gst::Element>(NULL);
+  }
 
-		Gst::Format fmt = Gst::FORMAT_TIME;
-		gint64 pos = 0, len = 0;
-		if(m_pipeline->query_position(fmt, pos) && m_pipeline->query_duration(fmt, len))
-		{
-			double percent = (double)pos / (double)len;
+  /*
+   * Update the progress bar
+   */
+  bool on_timeout() {
+    if (!m_pipeline)
+      return false;
 
-			percent = CLAMP(percent, 0.0, 1.0);
-	
-			m_progressbar.set_fraction(percent);
-			m_progressbar.set_text(time_to_string(pos) + " / " + time_to_string(len));
-			m_duration = len;
+    Gst::Format fmt = Gst::FORMAT_TIME;
+    gint64 pos = 0, len = 0;
+    if (m_pipeline->query_position(fmt, pos) &&
+        m_pipeline->query_duration(fmt, len)) {
+      double percent = (double)pos / (double)len;
 
-			return pos != len;
-		}
-		else
-			m_progressbar.set_text(_("Waiting..."));
-		return true;
-	}
+      percent = CLAMP(percent, 0.0, 1.0);
 
-	/*
-	 */
-	void on_work_finished()
-	{
-		response(Gtk::RESPONSE_OK);
-	}
+      m_progressbar.set_fraction(percent);
+      m_progressbar.set_text(time_to_string(pos) + " / " + time_to_string(len));
+      m_duration = len;
 
-	/*
-	 */
-	void on_work_cancel()
-	{
-		response(Gtk::RESPONSE_CANCEL);
-	}
+      return pos != len;
+    } else
+      m_progressbar.set_text(_("Waiting..."));
+    return true;
+  }
 
-protected:
-	Gtk::ProgressBar m_progressbar;
+  /*
+   */
+  void on_work_finished() {
+    response(Gtk::RESPONSE_OK);
+  }
 
-	std::list<long> m_values;
-	guint64 m_duration;
-	guint64 m_prev_frame_size;
-	guint8 *m_prev_frame;
-	gfloat m_difference;
+  /*
+   */
+  void on_work_cancel() {
+    response(Gtk::RESPONSE_CANCEL);
+  }
+
+ protected:
+  Gtk::ProgressBar m_progressbar;
+
+  std::list<long> m_values;
+  guint64 m_duration;
+  guint64 m_prev_frame_size;
+  guint8 *m_prev_frame;
+  gfloat m_difference;
 };
 
 /*
  */
-Glib::RefPtr<KeyFrames> generate_keyframes_from_file_using_frame(const Glib::ustring &uri)
-{
-	Glib::RefPtr<KeyFrames> kf;
-	KeyframesGeneratorUsingFrame ui(uri, kf);
-	return kf;
-
+Glib::RefPtr<KeyFrames> generate_keyframes_from_file_using_frame(
+    const Glib::ustring &uri) {
+  Glib::RefPtr<KeyFrames> kf;
+  KeyframesGeneratorUsingFrame ui(uri, kf);
+  return kf;
 }

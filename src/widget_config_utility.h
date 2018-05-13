@@ -28,27 +28,26 @@
 /*
  *
  */
-namespace widget_config
-{
+namespace widget_config {
 
-	/*
-	 *
-	 */
-	void connect(Gtk::Widget *widget, const Glib::ustring &group, const Glib::ustring &key);
+/*
+ *
+ */
+void connect(Gtk::Widget *widget, const Glib::ustring &group,
+             const Glib::ustring &key);
 
-	/*
-	 *
-	 */
-	void read_config(Gtk::Widget *widget, const Glib::ustring &group, const Glib::ustring &key);
+/*
+ *
+ */
+void read_config(Gtk::Widget *widget, const Glib::ustring &group,
+                 const Glib::ustring &key);
 
-	/*
-	 *
-	 */
-	void read_config_and_connect(
-													Gtk::Widget *widget, 
-													const Glib::ustring &group, 
-													const Glib::ustring &key);
+/*
+ *
+ */
+void read_config_and_connect(Gtk::Widget *widget, const Glib::ustring &group,
+                             const Glib::ustring &key);
 
-}//namespace widget_config
+}  // namespace widget_config
 
-#endif//_widget_config_utility_h
+#endif  //_widget_config_utility_h

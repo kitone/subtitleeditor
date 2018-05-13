@@ -22,7 +22,4 @@
 
 #include "gtkmm_utility.h"
 
-namespace gtkmm_utility {
-
-
-}//namespace gtkmm_utility
+namespace gtkmm_utility {}  // namespace gtkmm_utility

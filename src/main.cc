@@ -20,93 +20,88 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream>
 #include <config.h>
 #include <gtkmm/main.h>
-#include "gui/application.h"
-#include "utility.h"
+#include <iostream>
 #include "gtkmm_utility.h"
+#include "gui/application.h"
 #include "options.h"
+#include "utility.h"
 
-#include <ctime>
-#include <gstreamermm.h>
 #include <gdk/gdkx.h>
 #include <glib.h>
+#include <gstreamermm.h>
+#include <ctime>
 
 #ifdef ENABLE_GL
-	#include <gtkglmm.h>
-#endif//ENABLE_GL
+#include <gtkglmm.h>
+#endif  // ENABLE_GL
 
 /*
  */
-int main(int argc, char *argv[])
-{
-	if(!g_thread_supported())
-		g_thread_init (NULL);
+int main(int argc, char *argv[]) {
+  if (!g_thread_supported())
+    g_thread_init(NULL);
 
-	bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-	textdomain(GETTEXT_PACKAGE);
+  bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+  textdomain(GETTEXT_PACKAGE);
 
-	// init Gtk+
-	Gtk::Main kit(argc, argv);
+  // init Gtk+
+  Gtk::Main kit(argc, argv);
 
 #ifdef ENABLE_GL
-	// init OpenGL
-	Gtk::GL::init_check(argc, argv);
-#endif//ENABLE_GL
+  // init OpenGL
+  Gtk::GL::init_check(argc, argv);
+#endif  // ENABLE_GL
 
-	Glib::set_application_name("subtitleeditor");
+  Glib::set_application_name("subtitleeditor");
 
-	// SubtitleEditor Options
-	OptionGroup options;
-	try
-	{
-		Glib::OptionContext context(_(" - edit subtitles files"));
-		context.set_main_group(options);
-		
-		Glib::OptionGroup gst_group(gst_init_get_option_group());
-		context.add_group(gst_group);
-		
-		Glib::OptionGroup gtk_group(gtk_get_option_group(TRUE));
-		context.add_group(gtk_group);
+  // SubtitleEditor Options
+  OptionGroup options;
+  try {
+    Glib::OptionContext context(_(" - edit subtitles files"));
+    context.set_main_group(options);
 
-		context.parse(argc, argv);
-	}
-	catch(const Glib::Error &ex)
-	{
-		std::cerr << "Error loading options : " << ex.what() << std::endl;
-	}
+    Glib::OptionGroup gst_group(gst_init_get_option_group());
+    context.add_group(gst_group);
 
-	// Init the debug options
-	se_debug_init(options.get_debug_flags());
-	se_debug_message(SE_DEBUG_APP, "Startup subtitle version %s", VERSION);
+    Glib::OptionGroup gtk_group(gtk_get_option_group(TRUE));
+    context.add_group(gtk_group);
 
-	// If the user want to use a other profile 
-	// this is the last time we can do that.
-	if(!options.profile.empty())
-		set_profile_name(options.profile);
+    context.parse(argc, argv);
+  } catch (const Glib::Error &ex) {
+    std::cerr << "Error loading options : " << ex.what() << std::endl;
+  }
 
-	se_debug_message(SE_DEBUG_APP, "Init GStreamer");
+  // Init the debug options
+  se_debug_init(options.get_debug_flags());
+  se_debug_message(SE_DEBUG_APP, "Startup subtitle version %s", VERSION);
 
-	Gst::init(argc, argv);
+  // If the user want to use a other profile
+  // this is the last time we can do that.
+  if (!options.profile.empty())
+    set_profile_name(options.profile);
 
-	// Run Application
-	Application*	application = gtkmm_utility::get_widget_derived<Application>(
-			SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
-			"subtitleeditor.ui", 
-			"window-main");
-	if(!application)
-		return EXIT_FAILURE;
+  se_debug_message(SE_DEBUG_APP, "Init GStreamer");
 
-	application->init(options);
-	application->show();
+  Gst::init(argc, argv);
 
-	se_debug_message(SE_DEBUG_APP, "Run the main loop");
+  // Run Application
+  Application *application = gtkmm_utility::get_widget_derived<Application>(
+      SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), "subtitleeditor.ui",
+      "window-main");
+  if (!application)
+    return EXIT_FAILURE;
 
-	kit.run(*application);
+  application->init(options);
+  application->show();
 
-	delete application;
+  se_debug_message(SE_DEBUG_APP, "Run the main loop");
 
-	return EXIT_SUCCESS;
+  kit.run(*application);
+
+  delete application;
+
+  return EXIT_SUCCESS;
 }

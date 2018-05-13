@@ -20,9 +20,7 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #include "scriptinfo.h"
 
-ScriptInfo::ScriptInfo()
-{
+ScriptInfo::ScriptInfo() {
 }

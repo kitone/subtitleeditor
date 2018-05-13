@@ -23,9 +23,9 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <glibmm.h>
 #include <sstream>
 #include <string>
-#include <glibmm.h>
 #include "reader.h"
 
 /*
@@ -34,44 +34,40 @@
  * Detect the newline type.
  * Return lines without character of newline (CR,LF or CRLF)
  */
-class FileReader : public Reader
-{
-public:
+class FileReader : public Reader {
+ public:
+  /*
+   * Constructor.
+   *
+   * Open the file from an uri and convert the contents from charset to UTF-8.
+   * If charset is empty, try to autodetect the character coding.
+   *
+   * Error: throw an IOFileError exception if failed.
+   */
+  FileReader(const Glib::ustring &uri, const Glib::ustring &charset,
+             int max_data_size = -1);
 
-	/*
-	 * Constructor.
-	 *
-	 * Open the file from an uri and convert the contents from charset to UTF-8.
-	 * If charset is empty, try to autodetect the character coding.
-	 *
-	 * Error: throw an IOFileError exception if failed.
-	 */
-	FileReader(const Glib::ustring &uri, const Glib::ustring &charset, int max_data_size = -1);
+  /*
+   * Return the uri of the file.
+   */
+  Glib::ustring get_uri() const;
 
-	/*
-	 * Return the uri of the file.
-	 */
-	Glib::ustring get_uri() const;
+  /*
+   * Return the charset of the file.
+   */
+  Glib::ustring get_charset() const;
 
-	/*
-	 * Return the charset of the file.
-	 */
-	Glib::ustring get_charset() const;
-
-
-protected:
-/*
-	bool get_contents_from_file(
-					const Glib::ustring &uri, 
-					const Glib::ustring &charset, 
-					Glib::ustring &utf8_contents, 
-					Glib::ustring &charset_contents, 
-					int max_data_size);
-*/
-	Glib::ustring m_uri;
-	Glib::ustring m_charset;
-
+ protected:
+  /*
+          bool get_contents_from_file(
+                                          const Glib::ustring &uri,
+                                          const Glib::ustring &charset,
+                                          Glib::ustring &utf8_contents,
+                                          Glib::ustring &charset_contents,
+                                          int max_data_size);
+  */
+  Glib::ustring m_uri;
+  Glib::ustring m_charset;
 };
 
-#endif//_FileReader_h
-
+#endif  //_FileReader_h

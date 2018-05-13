@@ -21,31 +21,27 @@
  */
 
 #include "writer.h"
-#include "error.h"
 #include "debug.h"
 #include "encodings.h"
+#include "error.h"
 
 /*
  *
  */
-Writer::Writer()
-{
+Writer::Writer() {
 }
 
-Writer::~Writer()
-{
-}
-
-/*
- */
-const Glib::ustring& Writer::get_data() const
-{
-	return m_data;
+Writer::~Writer() {
 }
 
 /*
  */
-void Writer::write(const Glib::ustring &buf)
-{
-	m_data += buf;
+const Glib::ustring& Writer::get_data() const {
+  return m_data;
+}
+
+/*
+ */
+void Writer::write(const Glib::ustring& buf) {
+  m_data += buf;
 }

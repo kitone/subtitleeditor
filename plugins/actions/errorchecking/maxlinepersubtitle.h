@@ -28,60 +28,55 @@
 /*
  *
  */
-class MaxLinePerSubtitle : public ErrorChecking
-{
-public:
+class MaxLinePerSubtitle : public ErrorChecking {
+ public:
+  MaxLinePerSubtitle()
+      : ErrorChecking(
+            "max-line-per-subtitle", _("Maximum Lines per Subtitle"),
+            _("An error is detected if a subtitle has too many lines.")) {
+    m_maxLPS = 2;
+  }
 
-	MaxLinePerSubtitle()
-	:ErrorChecking(
-			"max-line-per-subtitle",
-			_("Maximum Lines per Subtitle"),
-			_("An error is detected if a subtitle has too many lines."))
-	{
-		m_maxLPS = 2;
-	}
-	
-	/*
-	 *
-	 */
-	virtual void init()
-	{
-		m_maxLPS = Config::getInstance().get_value_int("timing", "max-line-per-subtitle");
-	}
+  /*
+   *
+   */
+  virtual void init() {
+    m_maxLPS =
+        Config::getInstance().get_value_int("timing", "max-line-per-subtitle");
+  }
 
+  /*
+   *
+   */
+  virtual bool execute(Info &info) {
+    std::istringstream iss(info.currentSub.get_characters_per_line_text());
+    std::string line;
 
-	/*
-	 *
-	 */
-	virtual bool execute(Info &info)	
-	{
-		std::istringstream iss(info.currentSub.get_characters_per_line_text());
-		std::string line;
+    int count = 0;
+    while (std::getline(iss, line)) {
+      ++count;
+    }
 
-		int count = 0;
-		while(std::getline(iss, line))
-		{
-			++count;
-		}
-		
-		if(count <= m_maxLPS)
-			return false;
-	
-		if(info.tryToFix)
-		{
-			// not implemented
-			return false;
-		}
-		
-		info.error = build_message(ngettext(
-				"Subtitle has too many lines: <b>1 line</b>",
-				"Subtitle has too many lines: <b>%i lines</b>", count), count);
-		info.solution = _("<b>Automatic correction:</b> unavailable, correct the error manually.");
-		return true;
-	}
+    if (count <= m_maxLPS)
+      return false;
 
-protected:
-	int m_maxLPS;
+    if (info.tryToFix) {
+      // not implemented
+      return false;
+    }
+
+    info.error = build_message(
+        ngettext("Subtitle has too many lines: <b>1 line</b>",
+                 "Subtitle has too many lines: <b>%i lines</b>", count),
+        count);
+    info.solution =
+        _("<b>Automatic correction:</b> unavailable, correct the error "
+          "manually.");
+    return true;
+  }
+
+ protected:
+  int m_maxLPS;
 };
 
-#endif//_MaxLinePerSubtitle_h
+#endif  //_MaxLinePerSubtitle_h

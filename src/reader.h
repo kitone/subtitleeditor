@@ -29,53 +29,50 @@
  * Helper to read data (UTF-8) from memory.
  * Return lines without character of newline (CR,LF or CRLF)
  */
-class Reader
-{
-public:
+class Reader {
+ public:
+  /*
+   * Constructor.
+   */
+  Reader(const Glib::ustring &data = Glib::ustring());
 
-	/*
-	 * Constructor.
-	 */
-	Reader(const Glib::ustring &data = Glib::ustring());
+  /*
+   * Destructor
+   */
+  virtual ~Reader();
 
-	/*
-	 * Destructor
-	 */
-	virtual ~Reader();
+  /*
+   * Return the contents of the file.
+   */
+  const Glib::ustring &get_data() const;
 
-	/*
-	 * Return the contents of the file.
-	 */
-	const Glib::ustring& get_data() const;
-	
-	/*
-	 * Return the newline detected of the file.
-	 */
-	Glib::ustring get_newline();
+  /*
+   * Return the newline detected of the file.
+   */
+  Glib::ustring get_newline();
 
-	/*
-	 * Get the next line of the file without newline character (CR, LF or CRLF).
-	 */
-	bool getline(Glib::ustring &line);
+  /*
+   * Get the next line of the file without newline character (CR, LF or CRLF).
+   */
+  bool getline(Glib::ustring &line);
 
-	/*
-	 * Return all lines detected of the file, without newline character (CR, LF or CRLF).
-	 */
-	std::vector<Glib::ustring> get_lines();
+  /*
+   * Return all lines detected of the file, without newline character (CR, LF or
+   * CRLF).
+   */
+  std::vector<Glib::ustring> get_lines();
 
-private:
+ private:
+  /*
+   * Split the data to separate lines.
+   */
+  void initialize_lines();
 
-	/*
-	 * Split the data to separate lines.
-	 */
-	void initialize_lines();
-
-protected:
-	Glib::ustring m_data;
-	bool m_lines_init;
-	std::vector<Glib::ustring>::const_iterator m_iter;
-	std::vector<Glib::ustring> m_lines;
+ protected:
+  Glib::ustring m_data;
+  bool m_lines_init;
+  std::vector<Glib::ustring>::const_iterator m_iter;
+  std::vector<Glib::ustring> m_lines;
 };
 
-#endif//_Reader_h
-
+#endif  //_Reader_h

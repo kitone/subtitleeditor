@@ -26,31 +26,26 @@
 /*
  *
  */
-Extension::Extension()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+Extension::Extension() {
+  se_debug(SE_DEBUG_PLUGINS);
 }
 
 /*
  *
  */
-Extension::~Extension()
-{
-	se_debug(SE_DEBUG_PLUGINS);
+Extension::~Extension() {
+  se_debug(SE_DEBUG_PLUGINS);
 }
 
 /*
  *
  */
-bool Extension::is_configurable()
-{
-	return false;
+bool Extension::is_configurable() {
+  return false;
 }
 
 /*
  *
  */
-void Extension::create_configure_dialog()
-{
+void Extension::create_configure_dialog() {
 }
-

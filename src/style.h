@@ -22,78 +22,73 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include "stylemodel.h"
 
 class Document;
 
-class Style
-{
-	friend class Styles;
-public:
+class Style {
+  friend class Styles;
 
-	Style();
-	Style(Document *doc, const Gtk::TreeIter &iter);
-	~Style();
+ public:
+  Style();
+  Style(Document *doc, const Gtk::TreeIter &iter);
+  ~Style();
 
-	/*
-	 *
-	 */
-	operator bool() const;
+  /*
+   *
+   */
+  operator bool() const;
 
-	/*
-	 *
-	 */
-	Style& operator++();
+  /*
+   *
+   */
+  Style &operator++();
 
-	/*
-	 *
-	 */
-	Style& operator--();
+  /*
+   *
+   */
+  Style &operator--();
 
-	/*
-	 *
-	 */
-	bool operator==(const Style &style) const;
+  /*
+   *
+   */
+  bool operator==(const Style &style) const;
 
-	/*
-	 *
-	 */
-	bool operator!=(const Style &style) const;
+  /*
+   *
+   */
+  bool operator!=(const Style &style) const;
 
-	/*
-	 *
-	 */
-	void set(const Glib::ustring &name, const Glib::ustring &value);
+  /*
+   *
+   */
+  void set(const Glib::ustring &name, const Glib::ustring &value);
 
-	/*
-	 *
-	 */
-	Glib::ustring get(const Glib::ustring &name) const;
+  /*
+   *
+   */
+  Glib::ustring get(const Glib::ustring &name) const;
 
-	/*
-	 *
-	 */
-	void set(const std::map<Glib::ustring, Glib::ustring> &values);
+  /*
+   *
+   */
+  void set(const std::map<Glib::ustring, Glib::ustring> &values);
 
-	/*
-	 *
-	 */
-	void get(std::map<Glib::ustring, Glib::ustring> &values);
+  /*
+   *
+   */
+  void get(std::map<Glib::ustring, Glib::ustring> &values);
 
+  /*
+   *
+   */
+  void copy_to(Style &style);
 
-	/*
-	 *
-	 */
-	void copy_to(Style &style);
-
-protected:
-	static StyleColumnRecorder column;
-	Document* m_document;
-	Gtk::TreeIter m_iter;
+ protected:
+  static StyleColumnRecorder column;
+  Document *m_document;
+  Gtk::TreeIter m_iter;
 };
 
-
-#endif//_Style_h
-
+#endif  //_Style_h

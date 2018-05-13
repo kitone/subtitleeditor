@@ -21,122 +21,108 @@
  */
 
 #include <extension/subtitleformat.h>
-#include <utility.h>
-#include <subtitleeditorwindow.h>
 #include <player.h>
+#include <subtitleeditorwindow.h>
+#include <utility.h>
 
 /*
  * format:
  *
  * {start_frame}{end_frame}text
  */
-class MicroDVD : public SubtitleFormatIO
-{
-public:
+class MicroDVD : public SubtitleFormatIO {
+ public:
+  /*
+   *
+   */
+  void open(Reader &file) {
+    Glib::RefPtr<Glib::Regex> re =
+        Glib::Regex::create("^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
 
-	/*
-	 *
-	 */
-	void open(Reader &file)
-	{
-		Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
-				"^\\{(\\d+)\\}\\{(\\d+)\\}(.*?)$");
-		
-		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create(
-				"\\{[yY]:(b|i|u)\\}(.*?)$", Glib::REGEX_MULTILINE);
-		
-		// init to frame mode
-		document()->set_timing_mode(FRAME);
-		document()->set_edit_timing_mode(FRAME);
+    Glib::RefPtr<Glib::Regex> tags =
+        Glib::Regex::create("\\{[yY]:(b|i|u)\\}(.*?)$", Glib::REGEX_MULTILINE);
 
-		// Try to define the default value of the framerate from the player
-		Player* player = SubtitleEditorWindow::get_instance()->get_player();
-		if(player->get_state() != Player::NONE)
-		{
-			float player_framerate = player->get_framerate();
-			if(player_framerate > 0)
-				document()->set_framerate(get_framerate_from_value(player_framerate));
-		}
+    // init to frame mode
+    document()->set_timing_mode(FRAME);
+    document()->set_edit_timing_mode(FRAME);
 
-		// Read subtitles
-		Subtitles subtitles = document()->subtitles();
+    // Try to define the default value of the framerate from the player
+    Player *player = SubtitleEditorWindow::get_instance()->get_player();
+    if (player->get_state() != Player::NONE) {
+      float player_framerate = player->get_framerate();
+      if (player_framerate > 0)
+        document()->set_framerate(get_framerate_from_value(player_framerate));
+    }
 
-		int frame_start, frame_end;
-		Glib::ustring line;
-		Glib::ustring text;
+    // Read subtitles
+    Subtitles subtitles = document()->subtitles();
 
-		while(file.getline(line))
-		{
-			if(!re->match(line))
-				continue;
+    int frame_start, frame_end;
+    Glib::ustring line;
+    Glib::ustring text;
 
-			std::vector<Glib::ustring> group = re->split(line);
-			//if(group.size() == 1)
-			//	continue;
+    while (file.getline(line)) {
+      if (!re->match(line))
+        continue;
 
-			frame_start = utility::string_to_int(group[1]);
-			frame_end = utility::string_to_int(group[2]);
-			text = group[3];
+      std::vector<Glib::ustring> group = re->split(line);
+      // if(group.size() == 1)
+      //	continue;
 
-			utility::replace(text, "|", "\n");
+      frame_start = utility::string_to_int(group[1]);
+      frame_end = utility::string_to_int(group[2]);
+      text = group[3];
 
-			text = tags->replace(text, 0, "<\\1>\\2</\\1>", (Glib::RegexMatchFlags)0);
+      utility::replace(text, "|", "\n");
 
-			// Append a subtitle
-			Subtitle sub = subtitles.append();
+      text = tags->replace(text, 0, "<\\1>\\2</\\1>", (Glib::RegexMatchFlags)0);
 
-			sub.set_text(text);
-			sub.set_start_frame(frame_start);
-			sub.set_end_frame(frame_end);
-		}
-	}
+      // Append a subtitle
+      Subtitle sub = subtitles.append();
 
-	/*
-	 *
-	 */
-	void save(Writer &file)
-	{
-		Glib::RefPtr<Glib::Regex> tags = Glib::Regex::create("<(b|i|u)>(.*?)</\\1>");
+      sub.set_text(text);
+      sub.set_start_frame(frame_start);
+      sub.set_end_frame(frame_end);
+    }
+  }
 
-		for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
-		{
-			Glib::ustring text =sub.get_text();
+  /*
+   *
+   */
+  void save(Writer &file) {
+    Glib::RefPtr<Glib::Regex> tags =
+        Glib::Regex::create("<(b|i|u)>(.*?)</\\1>");
 
-			utility::replace(text, "\n", "|");
+    for (Subtitle sub = document()->subtitles().get_first(); sub; ++sub) {
+      Glib::ustring text = sub.get_text();
 
-			text = tags->replace(text, 0, "{y:\\1}\\2", (Glib::RegexMatchFlags)0);
+      utility::replace(text, "\n", "|");
 
-			// {start_frame}{end_frame}text
-			file.write(
-				Glib::ustring::compose(
-					"{%1}{%2}%3\n",
-					sub.get_start_frame(),
-					sub.get_end_frame(),
-					text));
-		}
-	}
+      text = tags->replace(text, 0, "{y:\\1}\\2", (Glib::RegexMatchFlags)0);
+
+      // {start_frame}{end_frame}text
+      file.write(Glib::ustring::compose("{%1}{%2}%3\n", sub.get_start_frame(),
+                                        sub.get_end_frame(), text));
+    }
+  }
 };
 
-class MicroDVDPlugin : public SubtitleFormat
-{
-public:
+class MicroDVDPlugin : public SubtitleFormat {
+ public:
+  SubtitleFormatInfo get_info() {
+    SubtitleFormatInfo info;
 
-	SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
+    info.name = "MicroDVD";
+    info.extension = "sub";
+    info.pattern = "^\\{\\d+\\}\\{\\d+\\}.*?\\R";
 
-		info.name = "MicroDVD";
-		info.extension = "sub";
-		info.pattern = "^\\{\\d+\\}\\{\\d+\\}.*?\\R";
-		
-		return info;
-	}
+    return info;
+  }
 
-	SubtitleFormatIO* create()
-	{
-		MicroDVD *sf = new MicroDVD();
-		return sf;
-	}
+  SubtitleFormatIO *create() {
+    MicroDVD *sf = new MicroDVD();
+    return sf;
+  }
 };
 
 REGISTER_EXTENSION(MicroDVDPlugin)

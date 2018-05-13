@@ -29,73 +29,69 @@
 /*
  *
  */
-class Pattern
-{
-	friend class PatternManager;
+class Pattern {
+  friend class PatternManager;
 
-	/*
-	 * Private class for Rule
-	 * Pattern can be have multiple rule
-	 */
-	class Rule
-	{
-	public:
-		Glib::RefPtr<Glib::Regex> m_regex;
-		Glib::ustring m_replacement;
-		bool m_repeat;
+  /*
+   * Private class for Rule
+   * Pattern can be have multiple rule
+   */
+  class Rule {
+   public:
+    Glib::RefPtr<Glib::Regex> m_regex;
+    Glib::ustring m_replacement;
+    bool m_repeat;
 
-		Glib::RefPtr<Glib::Regex> m_previous_match;
-	};
+    Glib::RefPtr<Glib::Regex> m_previous_match;
+  };
 
-public:
+ public:
+  /*
+   * Constructor
+   */
+  Pattern();
 
-	/*
-	 * Constructor
-	 */
-	Pattern();
+  /*
+   * Destructor
+   * Delete rules.
+   */
+  ~Pattern();
 
-	/*
-	 * Destructor
-	 * Delete rules.
-	 */
-	~Pattern();
+  /*
+   * Return the name of the pattern.
+   */
+  Glib::ustring get_name() const;
 
-	/*
-	 * Return the name of the pattern.
-	 */
-	Glib::ustring get_name() const;
+  /*
+   * Return the name of the pattern.
+   */
+  Glib::ustring get_label() const;
 
-	/*
-	 * Return the name of the pattern.
-	 */
-	Glib::ustring get_label() const;
+  /*
+   * Return the name of the pattern.
+   */
+  Glib::ustring get_description() const;
 
-	/*
-	 * Return the name of the pattern.
-	 */
-	Glib::ustring get_description() const;
+  /*
+   * Return the active state of the pattern. (Enable by default)
+   */
+  bool is_enable() const;
 
-	/*
-	 * Return the active state of the pattern. (Enable by default)
-	 */
-	bool is_enable() const;
+  /*
+   * Apply the pattern if it is enabled.
+   * With the repeat support.
+   */
+  void execute(Glib::ustring &text, const Glib::ustring &previous);
 
-	/*
-	 * Apply the pattern if it is enabled.
-	 * With the repeat support.
-	 */
-	void execute(Glib::ustring &text, const Glib::ustring &previous);
-
-protected:
-	bool m_enabled;
-	Glib::ustring m_codes;
-	Glib::ustring m_name;
-	Glib::ustring m_label;
-	Glib::ustring m_description;
-	Glib::ustring m_classes;
-	Glib::ustring m_policy;
-	std::list<Rule*> m_rules;
+ protected:
+  bool m_enabled;
+  Glib::ustring m_codes;
+  Glib::ustring m_name;
+  Glib::ustring m_label;
+  Glib::ustring m_description;
+  Glib::ustring m_classes;
+  Glib::ustring m_policy;
+  std::list<Rule *> m_rules;
 };
 
-
-#endif//_pattern_h
+#endif  //_pattern_h

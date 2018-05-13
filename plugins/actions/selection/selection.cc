@@ -19,252 +19,241 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
 
-class SelectionPlugin : public Action
-{
-public:
+class SelectionPlugin : public Action {
+ public:
+  SelectionPlugin() {
+    activate();
+    update_ui();
+  }
 
-	SelectionPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~SelectionPlugin() {
+    deactivate();
+  }
 
-	~SelectionPlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("SelectionPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("SelectionPlugin");
+    action_group->add(
+        Gtk::Action::create("select-first-subtitle", Gtk::Stock::GO_UP,
+                            _("Select _First Subtitle"),
+                            _("Select the first subtitle")),
+        sigc::mem_fun(*this, &SelectionPlugin::on_select_first_subtitle));
 
-		action_group->add(
-				Gtk::Action::create("select-first-subtitle", Gtk::Stock::GO_UP, _("Select _First Subtitle"), _("Select the first subtitle")),
-					sigc::mem_fun(*this, &SelectionPlugin::on_select_first_subtitle));
+    action_group->add(
+        Gtk::Action::create("select-last-subtitle", Gtk::Stock::GO_DOWN,
+                            _("Select _Last Subtitle"),
+                            _("Select the last subtitle")),
+        sigc::mem_fun(*this, &SelectionPlugin::on_select_last_subtitle));
 
-		action_group->add(
-				Gtk::Action::create("select-last-subtitle", Gtk::Stock::GO_DOWN, _("Select _Last Subtitle"), _("Select the last subtitle")),
-					sigc::mem_fun(*this, &SelectionPlugin::on_select_last_subtitle));
+    action_group->add(
+        Gtk::Action::create("select-previous-subtitle", Gtk::Stock::GO_BACK,
+                            _("Select _Previous Subtitle"),
+                            _("Select the previous subtitle")),
+        sigc::mem_fun(*this, &SelectionPlugin::on_select_previous_subtitle));
 
-		action_group->add(
-				Gtk::Action::create("select-previous-subtitle", Gtk::Stock::GO_BACK, _("Select _Previous Subtitle"), _("Select the previous subtitle")),
-					sigc::mem_fun(*this, &SelectionPlugin::on_select_previous_subtitle));
+    action_group->add(
+        Gtk::Action::create("select-next-subtitle", Gtk::Stock::GO_FORWARD,
+                            _("Select _Next Subtitle"),
+                            _("Select the next subtitle")),
+        sigc::mem_fun(*this, &SelectionPlugin::on_select_next_subtitle));
 
-		action_group->add(
-				Gtk::Action::create("select-next-subtitle", Gtk::Stock::GO_FORWARD, _("Select _Next Subtitle"), _("Select the next subtitle")),
-					sigc::mem_fun(*this, &SelectionPlugin::on_select_next_subtitle));
+    action_group->add(
+        Gtk::Action::create(
+            "select-all-subtitles", Gtk::StockID("gtk-select-all"),
+            _("Select _All Subtitles"), _("Select all subtitles")),
+        Gtk::AccelKey("<Control>A"),
+        sigc::mem_fun(*this, &SelectionPlugin::on_select_all_subtitles));
 
-		action_group->add(
-				Gtk::Action::create("select-all-subtitles", Gtk::StockID("gtk-select-all"), _("Select _All Subtitles"), _("Select all subtitles")), Gtk::AccelKey("<Control>A"),
-					sigc::mem_fun(*this, &SelectionPlugin::on_select_all_subtitles));
+    action_group->add(
+        Gtk::Action::create("unselect-all-subtitles",
+                            _("_Unselect All Subtitles"),
+                            _("Unselect all the subtitles")),
+        Gtk::AccelKey("<Shift><Control>A"),
+        sigc::mem_fun(*this, &SelectionPlugin::on_unselect_all_subtitles));
 
-		action_group->add(
-				Gtk::Action::create("unselect-all-subtitles", _("_Unselect All Subtitles"), _("Unselect all the subtitles")), Gtk::AccelKey("<Shift><Control>A"),
-					sigc::mem_fun(*this, &SelectionPlugin::on_unselect_all_subtitles));
+    action_group->add(
+        Gtk::Action::create("invert-subtitles-selection",
+                            _("In_vert Selection"),
+                            _("Invert subtitles selection")),
+        Gtk::AccelKey("<Control>I"),
+        sigc::mem_fun(*this, &SelectionPlugin::on_invert_selection));
 
-		action_group->add(
-				Gtk::Action::create("invert-subtitles-selection", _("In_vert Selection"), _("Invert subtitles selection")), Gtk::AccelKey("<Control>I"),
-					sigc::mem_fun(*this, &SelectionPlugin::on_invert_selection));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    Glib::ustring submenu =
+        "<ui>"
+        "	<menubar name='menubar'>"
+        "		<menu name='menu-selection' action='menu-selection'>"
+        "			<placeholder name='selection'>"
+        "				<menuitem "
+        "action='select-first-subtitle'/>"
+        "				<menuitem "
+        "action='select-last-subtitle'/>"
+        "				<menuitem "
+        "action='select-previous-subtitle'/>"
+        "				<menuitem "
+        "action='select-next-subtitle'/>"
+        "				<separator/>"
+        "				<menuitem "
+        "action='select-all-subtitles'/>"
+        "				<menuitem "
+        "action='unselect-all-subtitles'/>"
+        "				<menuitem "
+        "action='invert-subtitles-selection'/>"
+        "			</placeholder>"
+        "		</menu>"
+        "	</menubar>"
+        "</ui>";
 
-		Glib::ustring submenu = 
-			"<ui>"
-			"	<menubar name='menubar'>"
-			"		<menu name='menu-selection' action='menu-selection'>"
-			"			<placeholder name='selection'>"
-			"				<menuitem action='select-first-subtitle'/>"
-			"				<menuitem action='select-last-subtitle'/>"
-			"				<menuitem action='select-previous-subtitle'/>"
-			"				<menuitem action='select-next-subtitle'/>"
-			"				<separator/>"
-			"				<menuitem action='select-all-subtitles'/>"
-			"				<menuitem action='unselect-all-subtitles'/>"
-			"				<menuitem action='invert-subtitles-selection'/>"
-			"			</placeholder>"
-			"		</menu>"
-			"	</menubar>"
-			"</ui>";
+    ui_id = ui->add_ui_from_string(submenu);
+  }
 
-		ui_id = ui->add_ui_from_string(submenu);
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("select-first-subtitle")->set_sensitive(visible);
+    action_group->get_action("select-last-subtitle")->set_sensitive(visible);
+    action_group->get_action("select-previous-subtitle")
+        ->set_sensitive(visible);
+    action_group->get_action("select-next-subtitle")->set_sensitive(visible);
+    action_group->get_action("select-all-subtitles")->set_sensitive(visible);
+    action_group->get_action("unselect-all-subtitles")->set_sensitive(visible);
+    action_group->get_action("invert-subtitles-selection")
+        ->set_sensitive(visible);
+  }
 
-		action_group->get_action("select-first-subtitle")->set_sensitive(visible);
-		action_group->get_action("select-last-subtitle")->set_sensitive(visible);
-		action_group->get_action("select-previous-subtitle")->set_sensitive(visible);
-		action_group->get_action("select-next-subtitle")->set_sensitive(visible);
-		action_group->get_action("select-all-subtitles")->set_sensitive(visible);
-		action_group->get_action("unselect-all-subtitles")->set_sensitive(visible);
-		action_group->get_action("invert-subtitles-selection")->set_sensitive(visible);
-	}
+ protected:
+  void on_select_first_subtitle() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    execute(FIRST);
+  }
 
-	void on_select_first_subtitle()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  void on_select_last_subtitle() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(FIRST);
-	}
+    execute(LAST);
+  }
 
-	void on_select_last_subtitle()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  void on_select_previous_subtitle() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(LAST);
-	}
+    execute(PREVIOUS);
+  }
 
-	void on_select_previous_subtitle()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  void on_select_next_subtitle() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(PREVIOUS);
-	}
+    execute(NEXT);
+  }
 
-	void on_select_next_subtitle()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  void on_select_all_subtitles() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(NEXT);
-	}
+    execute(ALL);
+  }
 
-	void on_select_all_subtitles()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  void on_unselect_all_subtitles() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(ALL);
-	}
+    execute(UNSELECT);
+  }
 
-	void on_unselect_all_subtitles()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  void on_invert_selection() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute(UNSELECT);
-	}
+    execute(INVERT);
+  }
 
-	void on_invert_selection()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+ protected:
+  /*
+   *
+   */
+  enum TYPE { FIRST, LAST, PREVIOUS, NEXT, ALL, INVERT, UNSELECT };
 
-		execute(INVERT);
-	}
+  /*
+   *
+   */
+  bool execute(TYPE type) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    Document *doc = get_current_document();
 
-	/*
-	 *
-	 */
-	enum TYPE 
-	{
-		FIRST,
-		LAST,
-		PREVIOUS,
-		NEXT,
-		ALL,
-		INVERT,
-		UNSELECT
-	};
+    g_return_val_if_fail(doc, false);
 
-	/*
-	 *
-	 */
-	bool execute(TYPE type)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Subtitles subtitles = doc->subtitles();
 
-		Document *doc = get_current_document();
+    if (subtitles.size() == 0)
+      return false;
 
-		g_return_val_if_fail(doc, false);
+    if (type == ALL) {
+      subtitles.select_all();
+      return true;
+    } else if (type == UNSELECT) {
+      subtitles.unselect_all();
+      return true;
+    } else if (type == INVERT) {
+      subtitles.invert_selection();
+      return true;
+    } else if (type == PREVIOUS || type == NEXT) {
+      std::vector<Subtitle> selection = subtitles.get_selection();
 
-		Subtitles subtitles =doc->subtitles();
-	
-		if(subtitles.size() == 0)
-			return false;
+      if (selection.empty()) {
+        Subtitle sub = subtitles.get_first();
+        if (sub)
+          subtitles.select(sub);
+      } else {
+        Subtitle first = selection[0];
 
-		if(type == ALL)
-		{
-			subtitles.select_all();
-			return true;
-		}
-		else if(type == UNSELECT)
-		{
-			subtitles.unselect_all();
-			return true;
-		}
-		else if(type == INVERT)
-		{
-			subtitles.invert_selection();
-			return true;
-		}
-		else if(type == PREVIOUS || type == NEXT)
-		{
-			std::vector<Subtitle> selection = subtitles.get_selection();
-		
-			if(selection.empty())
-			{
-				Subtitle sub = subtitles.get_first();
-				if(sub)
-					subtitles.select(sub);
-			}
-			else
-			{
-				Subtitle first = selection[0];
+        Subtitle sub = (type == PREVIOUS) ? subtitles.get_previous(first)
+                                          : subtitles.get_next(first);
 
-				Subtitle sub = (type == PREVIOUS) ? subtitles.get_previous(first) : subtitles.get_next(first);
+        if (sub)
+          subtitles.select(sub);
+      }
+    } else if (type == FIRST || type == LAST) {
+      Subtitle sub =
+          (type == FIRST) ? subtitles.get_first() : subtitles.get_last();
+      if (sub)
+        subtitles.select(sub);
+    }
+    return false;
+  }
 
-				if(sub)
-					subtitles.select(sub);
-			}
-		}
-		else if(type == FIRST || type == LAST)
-		{
-			Subtitle sub = (type == FIRST) ? subtitles.get_first() : subtitles.get_last();
-			if(sub)
-				subtitles.select(sub);
-		}
-		return false;
-	}
-
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
-
 
 REGISTER_EXTENSION(SelectionPlugin)

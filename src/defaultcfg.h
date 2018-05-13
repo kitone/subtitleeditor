@@ -29,6 +29,7 @@
 /*
  *
  */
-void get_default_config(std::map<Glib::ustring, std::map<Glib::ustring, Glib::ustring> > &config);
+void get_default_config(
+    std::map<Glib::ustring, std::map<Glib::ustring, Glib::ustring> > &config);
 
-#endif//_defaultcfg_h
+#endif  //_defaultcfg_h

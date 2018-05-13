@@ -19,123 +19,114 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
 
 /*
  *
  */
-class ApplyTranslationPlugin : public Action
-{
-public:
+class ApplyTranslationPlugin : public Action {
+ public:
+  ApplyTranslationPlugin() {
+    activate();
+    update_ui();
+  }
 
-	ApplyTranslationPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~ApplyTranslationPlugin() {
+    deactivate();
+  }
 
-	~ApplyTranslationPlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("ApplyTranslationPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("ApplyTranslationPlugin");
+    action_group->add(
+        Gtk::Action::create(
+            "apply-translation", Gtk::Stock::APPLY, _("Apply _Translation"),
+            _("Replace the text of the subtitle by the translation")),
+        sigc::mem_fun(*this, &ApplyTranslationPlugin::on_execute));
 
-		action_group->add(
-				Gtk::Action::create("apply-translation", Gtk::Stock::APPLY, _("Apply _Translation"), _("Replace the text of the subtitle by the translation")),
-					sigc::mem_fun(*this, &ApplyTranslationPlugin::on_execute));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-tools/apply-translation",
+               "apply-translation", "apply-translation");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-tools/apply-translation", "apply-translation", "apply-translation");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("apply-translation")->set_sensitive(visible);
+  }
 
-		action_group->get_action("apply-translation")->set_sensitive(visible);
-	}
+ protected:
+  void on_execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    execute();
+  }
 
-	void on_execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  bool execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute();
-	}
+    Document *doc = get_current_document();
 
-	/*
-	 *
-	 */
-	bool execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    g_return_val_if_fail(doc, false);
 
-		Document *doc = get_current_document();
+    Subtitles subtitles = doc->subtitles();
 
-		g_return_val_if_fail(doc, false);
+    Glib::ustring translation;
 
-		Subtitles subtitles = doc->subtitles();
+    doc->start_command(_("Apply translation"));
 
-		Glib::ustring translation;
+    for (Subtitle sub = subtitles.get_first(); sub; ++sub) {
+      translation = sub.get_translation();
 
-		doc->start_command(_("Apply translation"));
+      if (!translation.empty()) {
+        sub.set_text(translation);
+      }
+    }
 
-		for(Subtitle sub = subtitles.get_first(); sub; ++sub)
-		{
-			translation = sub.get_translation();
+    doc->finish_command();
+    doc->flash_message(_("The translation was applied."));
 
-			if(!translation.empty())
-			{
-				sub.set_text(translation);
-			}
-		}
-	
-		doc->finish_command();
-		doc->flash_message(_("The translation was applied."));
+    return true;
+  }
 
-		return true;
-	}
-	
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(ApplyTranslationPlugin)

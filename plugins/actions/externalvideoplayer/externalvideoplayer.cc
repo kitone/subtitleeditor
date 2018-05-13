@@ -21,336 +21,332 @@
  */
 
 #include <extension/action.h>
-#include <utility.h>
 #include <gtkmm_utility.h>
-#include <player.h>
-#include <widget_config_utility.h>
-#include <gui/dialogfilechooser.h>
 #include <gui/comboboxsubtitleformat.h>
+#include <gui/dialogfilechooser.h>
+#include <player.h>
+#include <utility.h>
+#include <widget_config_utility.h>
 
 /*
  */
-class DialogExternalVideoPreferences : public Gtk::Dialog
-{
-public:
-	DialogExternalVideoPreferences(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& xml)
-	:Gtk::Dialog(cobject)
-	{
-		Gtk::Entry* entry = NULL;
-		xml->get_widget("entry-video-player-command", entry);
-		widget_config::read_config_and_connect(entry, "external-video-player", "command");
+class DialogExternalVideoPreferences : public Gtk::Dialog {
+ public:
+  DialogExternalVideoPreferences(BaseObjectType *cobject,
+                                 const Glib::RefPtr<Gtk::Builder> &xml)
+      : Gtk::Dialog(cobject) {
+    Gtk::Entry *entry = NULL;
+    xml->get_widget("entry-video-player-command", entry);
+    widget_config::read_config_and_connect(entry, "external-video-player",
+                                           "command");
 
-		xml->get_widget("check-use-format", m_checkUseFormat);
-		widget_config::read_config_and_connect(m_checkUseFormat, "external-video-player", "use-format");
+    xml->get_widget("check-use-format", m_checkUseFormat);
+    widget_config::read_config_and_connect(
+        m_checkUseFormat, "external-video-player", "use-format");
 
-		xml->get_widget("check-use-video-player-file", m_checkUseVideoPlayerFile);
-		widget_config::read_config_and_connect(m_checkUseVideoPlayerFile, "external-video-player", "use-video-player-file");
+    xml->get_widget("check-use-video-player-file", m_checkUseVideoPlayerFile);
+    widget_config::read_config_and_connect(m_checkUseVideoPlayerFile,
+                                           "external-video-player",
+                                           "use-video-player-file");
 
-		xml->get_widget_derived("combo-format", m_comboFormat);
-		widget_config::read_config_and_connect(m_comboFormat, "external-video-player", "format");
+    xml->get_widget_derived("combo-format", m_comboFormat);
+    widget_config::read_config_and_connect(m_comboFormat,
+                                           "external-video-player", "format");
 
-		xml->get_widget("spin-offset", m_spinOffset);
-		widget_config::read_config_and_connect(m_spinOffset, "external-video-player", "offset");
+    xml->get_widget("spin-offset", m_spinOffset);
+    widget_config::read_config_and_connect(m_spinOffset,
+                                           "external-video-player", "offset");
 
-		utility::set_transient_parent(*this);
-	}
+    utility::set_transient_parent(*this);
+  }
 
-	static void create()
-	{
-		std::unique_ptr<DialogExternalVideoPreferences> dialog(
-				gtkmm_utility::get_widget_derived<DialogExternalVideoPreferences>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
-						"dialog-external-video-player-preferences.ui", 
-						"dialog-external-video-player-preferences"));
+  static void create() {
+    std::unique_ptr<DialogExternalVideoPreferences> dialog(
+        gtkmm_utility::get_widget_derived<DialogExternalVideoPreferences>(
+            SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+            "dialog-external-video-player-preferences.ui",
+            "dialog-external-video-player-preferences"));
 
-		dialog->run();
-	}
+    dialog->run();
+  }
 
-protected:
-	Gtk::CheckButton* m_checkUseFormat;
-	Gtk::CheckButton* m_checkUseVideoPlayerFile;
-	ComboBoxSubtitleFormat* m_comboFormat;
-	Gtk::SpinButton* m_spinOffset;
+ protected:
+  Gtk::CheckButton *m_checkUseFormat;
+  Gtk::CheckButton *m_checkUseVideoPlayerFile;
+  ComboBoxSubtitleFormat *m_comboFormat;
+  Gtk::SpinButton *m_spinOffset;
 };
 
 /*
  */
-class ExternalVideoPlayer : public Action
-{
-public:
+class ExternalVideoPlayer : public Action {
+ public:
+  ExternalVideoPlayer() {
+    activate();
+    update_ui();
+  }
 
-	ExternalVideoPlayer()
-	{
-		activate();
-		update_ui();
-	}
+  ~ExternalVideoPlayer() {
+    deactivate();
+  }
 
-	~ExternalVideoPlayer()
-	{
-		deactivate();
-	}
+  /*
+   */
+  void activate() {
+    // actions
+    action_group = Gtk::ActionGroup::create("ExternalVideoPlayer");
 
-	/*
-	 */
-	void activate()
-	{
-		// actions
-		action_group = Gtk::ActionGroup::create("ExternalVideoPlayer");
+    action_group->add(Gtk::Action::create("menu-external-video-player",
+                                          Gtk::Stock::MEDIA_PLAY,
+                                          _("_External Video Player")));
 
-		action_group->add(
-				Gtk::Action::create("menu-external-video-player", Gtk::Stock::MEDIA_PLAY, _("_External Video Player")));
+    action_group->add(
+        Gtk::Action::create("external-video-player/open", Gtk::Stock::OPEN,
+                            _("_Open Movie"),
+                            _("Open movie with external video player")),
+        Gtk::AccelKey("<Shift><Control>P"),
+        sigc::mem_fun(*this, &ExternalVideoPlayer::on_open_movie));
 
-		action_group->add(
-				Gtk::Action::create("external-video-player/open", Gtk::Stock::OPEN, _("_Open Movie"), _("Open movie with external video player")), Gtk::AccelKey("<Shift><Control>P"),
-					sigc::mem_fun(*this, &ExternalVideoPlayer::on_open_movie));
+    action_group->add(
+        Gtk::Action::create("external-video-player/play",
+                            Gtk::Stock::MEDIA_PLAY, _("_Play Movie"),
+                            _("Play movie with external video player")),
+        Gtk::AccelKey("<Control>space"),
+        sigc::mem_fun(*this, &ExternalVideoPlayer::on_play_movie));
 
-		action_group->add(
-				Gtk::Action::create("external-video-player/play", Gtk::Stock::MEDIA_PLAY, _("_Play Movie"), _("Play movie with external video player")), Gtk::AccelKey("<Control>space"),
-					sigc::mem_fun(*this, &ExternalVideoPlayer::on_play_movie));
+    action_group->add(
+        Gtk::Action::create("external-video-player/preferences",
+                            Gtk::Stock::PREFERENCES, "",
+                            _("External video player preferences")),
+        sigc::mem_fun(*this, &ExternalVideoPlayer::create_configure_dialog));
 
-		action_group->add(
-				Gtk::Action::create("external-video-player/preferences", Gtk::Stock::PREFERENCES, "", _("External video player preferences")),
-					sigc::mem_fun(*this, &ExternalVideoPlayer::create_configure_dialog));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    Glib::ustring submenu =
+        "<ui>"
+        "	<menubar name='menubar'>"
+        "		<menu name='menu-extensions' action='menu-extensions'>"
+        "			<placeholder name='placeholder'>"
+        "				<menu "
+        "action='menu-external-video-player'>"
+        "					<menuitem "
+        "action='external-video-player/open'/>"
+        "					<menuitem "
+        "action='external-video-player/play'/>"
+        "					<separator/>"
+        "					<menuitem "
+        "action='external-video-player/preferences'/>"
+        "				</menu>"
+        "			</placeholder>"
+        "		</menu>"
+        "	</menubar>"
+        "</ui>";
 
-		Glib::ustring submenu = 
-			"<ui>"
-			"	<menubar name='menubar'>"
-			"		<menu name='menu-extensions' action='menu-extensions'>"
-			"			<placeholder name='placeholder'>"
-			"				<menu action='menu-external-video-player'>"
-			"					<menuitem action='external-video-player/open'/>"
-			"					<menuitem action='external-video-player/play'/>"
-			"					<separator/>"
-			"					<menuitem action='external-video-player/preferences'/>"
-			"				</menu>"
-			"			</placeholder>"
-			"		</menu>"
-			"	</menubar>"
-			"</ui>";
+    ui_id = ui->add_ui_from_string(submenu);
+  }
 
-		ui_id = ui->add_ui_from_string(submenu);
-	}
+  /*
+   */
+  void deactivate() {
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-	/*
-	 */
-	void deactivate()
-	{
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   */
+  bool is_configurable() {
+    return true;
+  }
 
-	/*
-	 */
-	bool is_configurable()
-	{
-		return true;
-	}
+  /*
+   */
+  void create_configure_dialog() {
+    DialogExternalVideoPreferences::create();
+  }
 
-	/*
-	 */
-	void create_configure_dialog()
-	{
-		DialogExternalVideoPreferences::create();
-	}
-	
-	/*
-	 */
-	void on_open_movie()
-	{
-		DialogOpenVideo ui;
-		if(ui.run() == Gtk::RESPONSE_OK)
-			m_movie_uri = ui.get_uri();
-	}
+  /*
+   */
+  void on_open_movie() {
+    DialogOpenVideo ui;
+    if (ui.run() == Gtk::RESPONSE_OK)
+      m_movie_uri = ui.get_uri();
+  }
 
+  /*
+   */
+  void on_play_movie() {
+    Document *doc = get_current_document();
 
-	/*
-	 */
-	void on_play_movie()
-	{
-		Document *doc = get_current_document();
+    g_return_if_fail(doc);
 
-		g_return_if_fail(doc);
+    if (get_config().get_value_bool("external-video-player",
+                                    "use-video-player-file")) {
+      Player *player = get_subtitleeditor_window()->get_player();
+      if (player->get_state() != Player::NONE)
+        m_movie_uri = player->get_uri();
+    }
 
-		if(get_config().get_value_bool("external-video-player", "use-video-player-file"))
-		{
-			Player* player = get_subtitleeditor_window()->get_player();
-			if(player->get_state() != Player::NONE)
-				m_movie_uri = player->get_uri();
-		}
+    // If the user call directly the action 'play movie' without video
+    // we propose to choose one
+    if (m_movie_uri.empty())
+      on_open_movie();
 
-		// If the user call directly the action 'play movie' without video
-		// we propose to choose one
-		if(m_movie_uri.empty())
-			on_open_movie();
+    // Check again if we have now a movie
+    if (m_movie_uri.empty()) {
+      doc->flash_message(_("Please select a movie."));
+      return;
+    }
 
-		// Check again if we have now a movie
-		if(m_movie_uri.empty())
-		{
-			doc->flash_message(_("Please select a movie."));
-			return;
-		}
+    // Save the document in a temporary directory
+    save_to_temporary_file(doc, get_tmp_file_as_uri());
 
-		// Save the document in a temporary directory
-		save_to_temporary_file(doc, get_tmp_file_as_uri() ); 
+    // create the command
+    SubtitleTime time = get_start_position(doc);
 
-		// create the command
-		SubtitleTime time = get_start_position(doc);
+    Glib::ustring command = get_command();
 
-		Glib::ustring command = get_command();
+    utility::replace(command, "#video_file",
+                     Glib::filename_from_uri(m_movie_uri));
+    utility::replace(command, "#video_uri", m_movie_uri);
+    utility::replace(command, "#subtitle_file", get_tmp_file());
+    utility::replace(command, "#subtitle_uri", get_tmp_file_as_uri());
+    utility::replace(command, "#seconds", convert_to_second_string(time));
+    utility::replace(command, "#mseconds", convert_to_msecond_string(time));
+    utility::replace(command, "#time", convert_to_time_string(time));
 
-		utility::replace(command, "#video_file", Glib::filename_from_uri(m_movie_uri));
-		utility::replace(command, "#video_uri", m_movie_uri);
-		utility::replace(command, "#subtitle_file", get_tmp_file());
-		utility::replace(command, "#subtitle_uri",get_tmp_file_as_uri());
-		utility::replace(command, "#seconds", convert_to_second_string(time));
-		utility::replace(command, "#mseconds", convert_to_msecond_string(time));
-		utility::replace(command, "#time", convert_to_time_string(time));
+    std::cout << "COMMAND: " << command << std::endl;
 
-		std::cout << "COMMAND: " << command << std::endl;
+    try {
+      se_debug_message(SE_DEBUG_PLUGINS, command.c_str());
+      Glib::spawn_command_line_async(command);
+    } catch (const Glib::Error &ex) {
+      dialog_error(_("Failed to launch the external player."),
+                   build_message(_("%s\n\nCommand: <i>%s</i>"),
+                                 ex.what().c_str(), command.c_str()));
+    }
+  }
 
-		try
-		{
-			se_debug_message(SE_DEBUG_PLUGINS, command.c_str());
-			Glib::spawn_command_line_async(command);
-		}
-		catch(const Glib::Error &ex)
-		{
-			dialog_error(
-					_("Failed to launch the external player."), build_message(
-						_("%s\n\nCommand: <i>%s</i>"),ex.what().c_str(), command.c_str())	);
-		}
-	}
+ protected:
+  /*
+   * Return the command pipe from the config (or default)
+   */
+  Glib::ustring get_command() {
+    Glib::ustring command;
+    // load the config or use the default command
+    if (get_config().get_value_string("external-video-player", "command",
+                                      command))
+      return command;
 
-protected:
+    // write the default command in the config
+    Glib::ustring default_cmd =
+        "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds "
+        "-osdlevel 2";
 
-	/*
-	 * Return the command pipe from the config (or default)
-	 */
-	Glib::ustring get_command()
-	{
-		Glib::ustring command;
-		// load the config or use the default command
-		if(get_config().get_value_string("external-video-player", "command", command))
-			return command;
+    get_config().set_value_string("external-video-player", "command",
+                                  default_cmd);
 
-		// write the default command in the config
-		Glib::ustring default_cmd = "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds -osdlevel 2";
+    return default_cmd;
+  }
 
-		get_config().set_value_string("external-video-player", "command", default_cmd);
+  /*
+   * If the user has specified a subtitle format use it
+   */
+  Glib::ustring get_prefered_subtitle_format() {
+    if (get_config().get_value_bool("external-video-player", "use-format")) {
+      Glib::ustring format;
+      if (get_config().get_value_string("external-video-player", "format",
+                                        format))
+        return format;
+    }
+    return Glib::ustring();
+  }
 
-		return default_cmd;
-	}
+  /*
+   */
+  SubtitleTime get_prefered_offset() {
+    int offset = 4000;
+    get_config().get_value_int("external-video-player", "offset", offset);
+    return SubtitleTime(offset);
+  }
 
-	/*
-	 * If the user has specified a subtitle format use it
-	 */
-	Glib::ustring get_prefered_subtitle_format()
-	{
-		if(get_config().get_value_bool("external-video-player", "use-format"))
-		{
-			Glib::ustring format;
-			if(get_config().get_value_string("external-video-player", "format", format))
-				return format;
-		}
-		return Glib::ustring();
-	}
+  /*
+   */
+  Glib::ustring get_tmp_file() {
+    return Glib::build_filename(Glib::get_tmp_dir(), "subtitle_preview");
+  }
 
-	/*
-	 */
-	SubtitleTime get_prefered_offset()
-	{
-		int offset = 4000;
-		get_config().get_value_int("external-video-player", "offset", offset);
-		return SubtitleTime(offset);
-	}
+  /*
+   */
+  Glib::ustring get_tmp_file_as_uri() {
+    return Glib::filename_to_uri(get_tmp_file());
+  }
 
-	/*
-	 */
-	Glib::ustring get_tmp_file()
-	{
-		return Glib::build_filename(Glib::get_tmp_dir(), "subtitle_preview");
-	}
+  /*
+   */
+  SubtitleTime get_start_position(Document *document) {
+    std::vector<Subtitle> selection = document->subtitles().get_selection();
 
-	/*
-	 */
-	Glib::ustring get_tmp_file_as_uri()
-	{
-		return Glib::filename_to_uri( get_tmp_file() );
-	}
+    if (selection.empty())
+      return SubtitleTime(0);
 
-	/*
-	 */
-	SubtitleTime get_start_position(Document *document)
-	{
-		std::vector<Subtitle> selection = document->subtitles().get_selection();
+    Subtitle sub = selection[0];
 
-		if(selection.empty())
-			return SubtitleTime(0);
-	
-		Subtitle sub = selection[0];
-		
-		SubtitleTime time = sub.get_start() - get_prefered_offset();
-		if(time.totalmsecs < 0)
-			return SubtitleTime(0);
-		return time;
-	}
+    SubtitleTime time = sub.get_start() - get_prefered_offset();
+    if (time.totalmsecs < 0)
+      return SubtitleTime(0);
+    return time;
+  }
 
-	/*
-	 */
-	Glib::ustring convert_to_time_string(const SubtitleTime &time)
-	{
-		return time.str();
-	}
+  /*
+   */
+  Glib::ustring convert_to_time_string(const SubtitleTime &time) {
+    return time.str();
+  }
 
-	/*
-	 */
-	Glib::ustring convert_to_second_string(const SubtitleTime &time)
-	{
-		long p = time.hours()*3600 + time.minutes()*60 + time.seconds();
-		return to_string(p);
-	}
+  /*
+   */
+  Glib::ustring convert_to_second_string(const SubtitleTime &time) {
+    long p = time.hours() * 3600 + time.minutes() * 60 + time.seconds();
+    return to_string(p);
+  }
 
-	/*
-	 */
-	Glib::ustring convert_to_msecond_string(const SubtitleTime &time)
-	{
-		return to_string(time.totalmsecs);
-	}
+  /*
+   */
+  Glib::ustring convert_to_msecond_string(const SubtitleTime &time) {
+    return to_string(time.totalmsecs);
+  }
 
-	/*
-	 */
-	void save_to_temporary_file(Document *document, const Glib::ustring &uri)
-	{
-		Glib::ustring prefered_format = get_prefered_subtitle_format();
-		
-		// FIXME: fixes this shit after the new subtitle format system
+  /*
+   */
+  void save_to_temporary_file(Document *document, const Glib::ustring &uri) {
+    Glib::ustring prefered_format = get_prefered_subtitle_format();
 
-		// Old values
-		Glib::ustring old_format = document->getFormat();
-		Glib::ustring old_filename = document->getFilename();
+    // FIXME: fixes this shit after the new subtitle format system
 
-		if(!prefered_format.empty())
-			document->setFormat(prefered_format);
+    // Old values
+    Glib::ustring old_format = document->getFormat();
+    Glib::ustring old_filename = document->getFilename();
 
-		document->save(uri);
+    if (!prefered_format.empty())
+      document->setFormat(prefered_format);
 
-		// Restore default values
-		document->setFormat(old_format);
-		document->setFilename(old_filename);
-	}
+    document->save(uri);
 
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+    // Restore default values
+    document->setFormat(old_format);
+    document->setFilename(old_filename);
+  }
 
-	Glib::ustring m_movie_uri;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
+
+  Glib::ustring m_movie_uri;
 };
 
 REGISTER_EXTENSION(ExternalVideoPlayer)

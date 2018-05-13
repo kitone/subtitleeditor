@@ -22,29 +22,27 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include <gtkmm.h>
 
-class Statusbar : public Gtk::Statusbar
-{
-public:
-	Statusbar(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder>& builder);
-	~Statusbar();
+class Statusbar : public Gtk::Statusbar {
+ public:
+  Statusbar(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &builder);
+  ~Statusbar();
 
-	void push_text(const Glib::ustring &text);
-	void pop_text();
+  void push_text(const Glib::ustring &text);
+  void pop_text();
 
-	/*
-	 *	affiche un message pendant 3 sec
-	 */
-	void flash_message(const Glib::ustring &text);
-protected:
-	bool on_timeout();
+  /*
+   *	affiche un message pendant 3 sec
+   */
+  void flash_message(const Glib::ustring &text);
 
-protected:
-	sigc::connection m_connection_timeout;
+ protected:
+  bool on_timeout();
+
+ protected:
+  sigc::connection m_connection_timeout;
 };
 
-#endif//_Statusbar_h
-
+#endif  //_Statusbar_h

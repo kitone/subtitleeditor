@@ -19,7 +19,6 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include "styles.h"
 #include "document.h"
@@ -28,73 +27,62 @@
 /*
  *
  */
-Styles::Styles(Document &doc)
-:m_document(doc)
-{
+Styles::Styles(Document &doc) : m_document(doc) {
 }
 
 /*
  *
  */
-Styles::~Styles()
-{
+Styles::~Styles() {
 }
 
 /*
  *
  */
-unsigned int Styles::size()
-{
-	return m_document.get_style_model()->children().size();
+unsigned int Styles::size() {
+  return m_document.get_style_model()->children().size();
 }
 
 /*
  *
  */
-Style Styles::get(unsigned int num)
-{
-	Gtk::TreeIter iter = m_document.get_style_model()->get_iter(to_string(num));
-	return Style(&m_document, iter);
+Style Styles::get(unsigned int num) {
+  Gtk::TreeIter iter = m_document.get_style_model()->get_iter(to_string(num));
+  return Style(&m_document, iter);
 }
 
 /*
  *
  */
-Style Styles::first()
-{
-	return Style(&m_document, m_document.get_style_model()->children().begin());
+Style Styles::first() {
+  return Style(&m_document, m_document.get_style_model()->children().begin());
 }
 
 /*
  *
  */
-Style Styles::last()
-{
-	Gtk::TreeNodeChildren rows = m_document.get_style_model()->children();
-	if(!rows.empty())
-	{
+Style Styles::last() {
+  Gtk::TreeNodeChildren rows = m_document.get_style_model()->children();
+  if (!rows.empty()) {
 #warning "VERIFIER ça -1"
-		return Style(&m_document, rows[rows.size() - 1]);
-	}
-	return Style();
+    return Style(&m_document, rows[rows.size() - 1]);
+  }
+  return Style();
 }
 
 /*
  *
  */
-Style Styles::append()
-{
-	Style style(&m_document, m_document.get_style_model()->append());
-	m_document.emit_signal("style-insered");
-	return style;
+Style Styles::append() {
+  Style style(&m_document, m_document.get_style_model()->append());
+  m_document.emit_signal("style-insered");
+  return style;
 }
 
 /*
  *
  */
-void Styles::remove(const Style &style)
-{
-	m_document.get_style_model()->erase(style.m_iter);
-	m_document.emit_signal("style-removed");
+void Styles::remove(const Style &style) {
+  m_document.get_style_model()->erase(style.m_iter);
+  m_document.emit_signal("style-removed");
 }
-

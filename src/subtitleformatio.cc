@@ -27,48 +27,40 @@
 /*
  *
  */
-SubtitleFormatIO::SubtitleFormatIO()
-{
-	m_document = NULL;
+SubtitleFormatIO::SubtitleFormatIO() {
+  m_document = NULL;
 }
 
 /*
  *
  */
-SubtitleFormatIO::~SubtitleFormatIO()
-{
+SubtitleFormatIO::~SubtitleFormatIO() {
 }
 
 /*
  *
  */
-void SubtitleFormatIO::set_document(Document *document)
-{
-	m_document = document;
+void SubtitleFormatIO::set_document(Document *document) {
+  m_document = document;
 }
 
 /*
  *
  */
-Document* SubtitleFormatIO::document()
-{
-	return m_document;
+Document *SubtitleFormatIO::document() {
+  return m_document;
 }
 
 /*
  *
  */
-void SubtitleFormatIO::open(Reader &/*reader*/)
-{
-	throw IOFileError(_("This function is not implemented for this format."));
+void SubtitleFormatIO::open(Reader & /*reader*/) {
+  throw IOFileError(_("This function is not implemented for this format."));
 }
-
-
 
 /*
  *
  */
-void SubtitleFormatIO::save(Writer &/*writer*/)
-{
-	throw IOFileError(_("This function is not implemented for this format."));
+void SubtitleFormatIO::save(Writer & /*writer*/) {
+  throw IOFileError(_("This function is not implemented for this format."));
 }

@@ -19,206 +19,218 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#include <gtkmm.h>
-#include <extension/action.h>
-#include <i18n.h>
+
 #include <debug.h>
+#include <extension/action.h>
+#include <gtkmm.h>
+#include <i18n.h>
 
-class TimeModeManagement : public Action
-{
-public:
+class TimeModeManagement : public Action {
+ public:
+  TimeModeManagement() {
+    activate();
+    update_ui();
+  }
 
-	TimeModeManagement()
-	{
-		activate();
-		update_ui();
-	}
+  ~TimeModeManagement() {
+    deactivate();
+  }
 
-	~TimeModeManagement()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("TimeModeManagement");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("TimeModeManagement");
+    Gtk::RadioAction::Group group_timing_mode;
 
-		Gtk::RadioAction::Group group_timing_mode;
+    action_group->add(
+        Gtk::RadioAction::create(group_timing_mode, "times", _("_Times"),
+                                 _("FIXME")),
+        sigc::bind(
+            sigc::mem_fun(*this, &TimeModeManagement::on_set_edit_timing_mode),
+            TIME));
 
-		action_group->add(
-				Gtk::RadioAction::create(group_timing_mode, "times", _("_Times"), _("FIXME")), 
-					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_edit_timing_mode), TIME));
+    action_group->add(
+        Gtk::RadioAction::create(group_timing_mode, "frames", _("_Frames"),
+                                 _("FIXME")),
+        sigc::bind(
+            sigc::mem_fun(*this, &TimeModeManagement::on_set_edit_timing_mode),
+            FRAME));
 
-		action_group->add(
-				Gtk::RadioAction::create(group_timing_mode, "frames", _("_Frames"), _("FIXME")), 
-					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_edit_timing_mode), FRAME));
+    // Framerate
+    Gtk::RadioAction::Group group_framerate;
 
-		// Framerate
-		Gtk::RadioAction::Group group_framerate;
+    action_group->add(
+        Gtk::Action::create("menu-framerate", _("_Framerate"), _("FIXME")));
 
-		action_group->add(
-				Gtk::Action::create("menu-framerate", _("_Framerate"), _("FIXME")));
+    action_group->add(
+        Gtk::RadioAction::create(group_framerate, "set-framerate-23.976",
+                                 get_framerate_label(FRAMERATE_23_976),
+                                 _("FIXME")),
+        sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate),
+                   FRAMERATE_23_976));
 
-		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-23.976", get_framerate_label(FRAMERATE_23_976), _("FIXME")), 
-					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_23_976));
+    action_group->add(
+        Gtk::RadioAction::create(group_framerate, "set-framerate-24",
+                                 get_framerate_label(FRAMERATE_24), _("FIXME")),
+        sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate),
+                   FRAMERATE_24));
 
-		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-24", get_framerate_label(FRAMERATE_24), _("FIXME")), 
-					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_24));
+    action_group->add(
+        Gtk::RadioAction::create(group_framerate, "set-framerate-25",
+                                 get_framerate_label(FRAMERATE_25), _("FIXME")),
+        sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate),
+                   FRAMERATE_25));
 
-		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-25", get_framerate_label(FRAMERATE_25), _("FIXME")), 
-					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_25));
+    action_group->add(
+        Gtk::RadioAction::create(group_framerate, "set-framerate-29.97",
+                                 get_framerate_label(FRAMERATE_29_97),
+                                 _("FIXME")),
+        sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate),
+                   FRAMERATE_29_97));
 
-		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-29.97", get_framerate_label(FRAMERATE_29_97), _("FIXME")), 
-					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_29_97));
+    action_group->add(
+        Gtk::RadioAction::create(group_framerate, "set-framerate-30",
+                                 get_framerate_label(FRAMERATE_30), _("FIXME")),
+        sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate),
+                   FRAMERATE_30));
 
-		action_group->add(
-				Gtk::RadioAction::create(group_framerate, "set-framerate-30", get_framerate_label(FRAMERATE_30), _("FIXME")), 
-					sigc::bind(sigc::mem_fun(*this, &TimeModeManagement::on_set_framerate), FRAMERATE_30));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
+    ui->insert_action_group(action_group);
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    Glib::ustring submenu =
+        "<ui>"
+        "	<menubar name='menubar'>"
+        "		<menu name='menu-timings' action='menu-timings'>"
+        "			<placeholder name='time-mode-management'>"
+        "				<menuitem action='times'/>"
+        "				<menuitem action='frames'/>"
+        "				<separator/>"
+        "				<menu action='menu-framerate'>"
+        "					<menuitem "
+        "action='set-framerate-23.976'/>"
+        "					<menuitem "
+        "action='set-framerate-24'/>"
+        "					<menuitem "
+        "action='set-framerate-25'/>"
+        "					<menuitem "
+        "action='set-framerate-29.97'/>"
+        "					<menuitem "
+        "action='set-framerate-30'/>"
+        "				</menu>"
+        "			</placeholder>"
+        "		</menu>"
+        "	</menubar>"
+        "</ui>";
 
-		ui->insert_action_group(action_group);
+    ui_id = ui->add_ui_from_string(submenu);
+  }
 
-		Glib::ustring submenu = 
-			"<ui>"
-			"	<menubar name='menubar'>"
-			"		<menu name='menu-timings' action='menu-timings'>"
-			"			<placeholder name='time-mode-management'>"
-			"				<menuitem action='times'/>"
-			"				<menuitem action='frames'/>"
-			"				<separator/>"
-			"				<menu action='menu-framerate'>"
-			"					<menuitem action='set-framerate-23.976'/>"
-			"					<menuitem action='set-framerate-24'/>"
-			"					<menuitem action='set-framerate-25'/>"
-			"					<menuitem action='set-framerate-29.97'/>"
-			"					<menuitem action='set-framerate-30'/>"
-			"				</menu>"
-			"			</placeholder>"
-			"		</menu>"
-			"	</menubar>"
-			"</ui>";
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		ui_id = ui->add_ui_from_string(submenu);
-	}
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+    Document* doc = get_current_document();
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (doc != NULL);
 
-		Document* doc = get_current_document();
+    action_group->get_action("times")->set_sensitive(visible);
+    action_group->get_action("frames")->set_sensitive(visible);
 
-		bool visible = (doc != NULL);
+    action_group->get_action("set-framerate-23.976")->set_sensitive(visible);
+    action_group->get_action("set-framerate-24")->set_sensitive(visible);
+    action_group->get_action("set-framerate-25")->set_sensitive(visible);
+    action_group->get_action("set-framerate-29.97")->set_sensitive(visible);
+    action_group->get_action("set-framerate-30")->set_sensitive(visible);
 
-		action_group->get_action("times")->set_sensitive(visible);
-		action_group->get_action("frames")->set_sensitive(visible);
+    if (doc != NULL) {
+      // update the timing mode radio
+      TIMING_MODE mode = doc->get_edit_timing_mode();
 
-		action_group->get_action("set-framerate-23.976")->set_sensitive(visible);
-		action_group->get_action("set-framerate-24")->set_sensitive(visible);
-		action_group->get_action("set-framerate-25")->set_sensitive(visible);
-		action_group->get_action("set-framerate-29.97")->set_sensitive(visible);
-		action_group->get_action("set-framerate-30")->set_sensitive(visible);
+      Glib::RefPtr<Gtk::Action> edit_mode_action =
+          action_group->get_action((mode == FRAME) ? "frames" : "times");
+      if (edit_mode_action) {
+        Glib::RefPtr<Gtk::RadioAction> radio =
+            Glib::RefPtr<Gtk::RadioAction>::cast_static(edit_mode_action);
+        if (radio)
+          radio->set_active(true);
+      }
 
-		if(doc != NULL)
-		{
-			// update the timing mode radio
-			TIMING_MODE mode = doc->get_edit_timing_mode();
+      // update the framerate radio
+      FRAMERATE framerate = doc->get_framerate();
 
-			Glib::RefPtr<Gtk::Action> edit_mode_action = action_group->get_action((mode == FRAME) ? "frames" : "times");
-			if(edit_mode_action)
-			{
-				Glib::RefPtr<Gtk::RadioAction> radio = Glib::RefPtr<Gtk::RadioAction>::cast_static(edit_mode_action);
-				if(radio)
-					radio->set_active(true);
-			}
+      Glib::ustring action_name;
 
-			// update the framerate radio
-			FRAMERATE framerate = doc->get_framerate();
+      if (framerate == FRAMERATE_23_976)
+        action_name = "set-framerate-23.976";
+      else if (framerate == FRAMERATE_24)
+        action_name = "set-framerate-24";
+      else if (framerate == FRAMERATE_25)
+        action_name = "set-framerate-25";
+      else if (framerate == FRAMERATE_29_97)
+        action_name = "set-framerate-29.97";
+      else if (framerate == FRAMERATE_30)
+        action_name = "set-framerate-30";
 
-			Glib::ustring action_name;
+      Glib::RefPtr<Gtk::Action> action = action_group->get_action(action_name);
+      if (!action)
+        return;
 
-			if(framerate == FRAMERATE_23_976)
-				action_name = "set-framerate-23.976";	
-			else if(framerate == FRAMERATE_24)
-				action_name = "set-framerate-24";	
-			else if(framerate == FRAMERATE_25)
-				action_name = "set-framerate-25";	
-			else if(framerate == FRAMERATE_29_97)
-				action_name = "set-framerate-29.97";	
-			else if(framerate == FRAMERATE_30)
-				action_name = "set-framerate-30";
+      Glib::RefPtr<Gtk::RadioAction> radio_action =
+          Glib::RefPtr<Gtk::RadioAction>::cast_static(action);
+      if (radio_action)
+        radio_action->set_active(true);
+    }
+  }
 
-			Glib::RefPtr<Gtk::Action> action = action_group->get_action(action_name);
-			if(!action)
-				return;
+ protected:
+  /*
+   *
+   */
+  void on_set_edit_timing_mode(TIMING_MODE mode) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-			Glib::RefPtr<Gtk::RadioAction> radio_action = Glib::RefPtr<Gtk::RadioAction>::cast_static(action);
-			if(radio_action)
-				radio_action->set_active(true);
-		}
-	}
+    Document* doc = get_current_document();
 
-protected:
+    if (doc->get_edit_timing_mode() != mode)
+      doc->set_edit_timing_mode(mode);
+  }
 
-	/*
-	 *
-	 */
-	void on_set_edit_timing_mode(TIMING_MODE mode)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   *
+   */
+  void on_set_framerate(FRAMERATE framerate) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		Document* doc = get_current_document();
+    Document* doc = get_current_document();
 
-		if(doc->get_edit_timing_mode() != mode)
-			doc->set_edit_timing_mode(mode);
-	}
+    if (doc->get_framerate() != framerate)
+      doc->set_framerate(framerate);
+  }
 
-	/*
-	 *
-	 */
-	void on_set_framerate(FRAMERATE framerate)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-
-		Document* doc = get_current_document();
-
-		if(doc->get_framerate() != framerate)
-			doc->set_framerate(framerate);
-	}
-
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
-
 
 REGISTER_EXTENSION(TimeModeManagement)

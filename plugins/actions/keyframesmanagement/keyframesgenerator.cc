@@ -22,149 +22,134 @@
 
 #include <gstreamermm.h>
 #include <gtkmm.h>
-#include <iostream>
-#include <iomanip>
 #include <keyframes.h>
 #include <utility.h>
+#include <iomanip>
+#include <iostream>
 #include "mediadecoder.h"
 
 /*
  */
-class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder
-{
-public:
+class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
+ public:
+  /*
+   */
+  KeyframesGenerator(const Glib::ustring &uri,
+                     Glib::RefPtr<KeyFrames> &keyframes)
+      : Gtk::Dialog(_("Generate Keyframes"), true), MediaDecoder(1000) {
+    set_border_width(12);
+    set_default_size(300, -1);
+    get_vbox()->pack_start(m_progressbar, false, false);
+    add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
+    m_progressbar.set_text(_("Waiting..."));
+    show_all();
 
-	/*
-	 */
-	KeyframesGenerator(const Glib::ustring &uri, Glib::RefPtr<KeyFrames> &keyframes)
-	:Gtk::Dialog(_("Generate Keyframes"), true), MediaDecoder(1000)
-	{
-		set_border_width(12);
-		set_default_size(300, -1);
-		get_vbox()->pack_start(m_progressbar, false, false);
-		add_button(Gtk::Stock::CANCEL, Gtk::RESPONSE_CANCEL);
-		m_progressbar.set_text(_("Waiting..."));
-		show_all();
+    try {
+      create_pipeline(uri);
 
-		try
-		{
-			create_pipeline(uri);
+      if (run() == Gtk::RESPONSE_OK) {
+        keyframes = Glib::RefPtr<KeyFrames>(new KeyFrames);
+        keyframes->insert(keyframes->end(), m_values.begin(), m_values.end());
+        keyframes->set_video_uri(uri);
+      }
+    } catch (const std::runtime_error &ex) {
+      std::cerr << ex.what() << std::endl;
+    }
+  }
 
-			if(run() == Gtk::RESPONSE_OK)
-			{
-				keyframes = Glib::RefPtr<KeyFrames>(new KeyFrames);
-				keyframes->insert(keyframes->end(), m_values.begin(), m_values.end());
-				keyframes->set_video_uri(uri);
-			}
-		}
-		catch(const std::runtime_error &ex)
-		{
-			std::cerr << ex.what() << std::endl;
-		}
-	}
+  /*
+   * Check buffer and try to catch keyframes.
+   */
+  void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer> &buf,
+                                 const Glib::RefPtr<Gst::Pad> &) {
+    // FIXME: http://bugzilla.gnome.org/show_bug.cgi?id=590923
+    // if(!buf->flag_is_set(GST_BUFFER_FLAG_DELTA_UNIT))//Gst::BUFFER_FLAG_DELTA_UNIT))
+    if (!GST_BUFFER_FLAG_IS_SET(buf->gobj(), GST_BUFFER_FLAG_DELTA_UNIT)) {
+      // FIXME: gstreamer 1.0
+      // long pos = buf->get_timestamp() / GST_MSECOND;
+      long pos = buf->get_pts() / GST_MSECOND;
+      m_values.push_back(pos);
+    }
+  }
 
-	/*
-	 * Check buffer and try to catch keyframes.
-	 */
-	void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer>& buf, const Glib::RefPtr<Gst::Pad>&)
-	{
-		// FIXME: http://bugzilla.gnome.org/show_bug.cgi?id=590923
-		//if(!buf->flag_is_set(GST_BUFFER_FLAG_DELTA_UNIT))//Gst::BUFFER_FLAG_DELTA_UNIT))
-		if(!GST_BUFFER_FLAG_IS_SET(buf->gobj(), GST_BUFFER_FLAG_DELTA_UNIT))
-		{
-			// FIXME: gstreamer 1.0
-			//long pos = buf->get_timestamp() / GST_MSECOND;
-			long pos = buf->get_pts() / GST_MSECOND;
-			m_values.push_back(pos);
-		}
-	}
+  /*
+   * Create video bin
+   */
+  Glib::RefPtr<Gst::Element> create_element(
+      const Glib::ustring &structure_name) {
+    try {
+      // We only need and want create the video sink
+      if (structure_name.find("video") == Glib::ustring::npos)
+        return Glib::RefPtr<Gst::Element>(NULL);
 
-	/*
-	 * Create video bin
-	 */
-	Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &structure_name)
-	{
-		try
-		{
-			// We only need and want create the video sink
-			if(structure_name.find("video") == Glib::ustring::npos)
-				return Glib::RefPtr<Gst::Element>(NULL);
+      Glib::RefPtr<Gst::FakeSink> fakesink = Gst::FakeSink::create("fakesink");
+      fakesink->set_sync(false);
+      fakesink->property_silent() = true;
+      fakesink->property_signal_handoffs() = true;
+      fakesink->signal_handoff().connect(
+          sigc::mem_fun(*this, &KeyframesGenerator::on_video_identity_handoff));
 
-			Glib::RefPtr<Gst::FakeSink> fakesink = Gst::FakeSink::create("fakesink");
-			fakesink->set_sync(false);
-			fakesink->property_silent() = true;
-			fakesink->property_signal_handoffs() = true;
-			fakesink->signal_handoff().connect(
-					sigc::mem_fun(*this, &KeyframesGenerator::on_video_identity_handoff));
+      // Set the new sink tp READY as well
+      Gst::StateChangeReturn retst = fakesink->set_state(Gst::STATE_READY);
+      if (retst == Gst::STATE_CHANGE_FAILURE)
+        std::cerr << "Could not change state of new sink: " << retst
+                  << std::endl;
 
-			// Set the new sink tp READY as well
-			Gst::StateChangeReturn retst = fakesink->set_state(Gst::STATE_READY);
-			if( retst == Gst::STATE_CHANGE_FAILURE )
-				std::cerr << "Could not change state of new sink: " << retst << std::endl;
+      return fakesink;
+    } catch (std::runtime_error &ex) {
+      std::cerr << "create_element runtime_error: " << ex.what() << std::endl;
+    }
+    return Glib::RefPtr<Gst::Element>(NULL);
+  }
 
-			return fakesink;
-		}
-		catch(std::runtime_error &ex)
-		{
-			std::cerr << "create_element runtime_error: " << ex.what() << std::endl;
-		}
-		return Glib::RefPtr<Gst::Element>(NULL);
-	}
+  /*
+   * Update the progress bar
+   */
+  bool on_timeout() {
+    if (!m_pipeline)
+      return false;
 
-	/*
-	 * Update the progress bar
-	 */
-	bool on_timeout()
-	{
-		if(!m_pipeline)
-			return false;
+    Gst::Format fmt = Gst::FORMAT_TIME;
+    gint64 pos = 0, len = 0;
+    if (m_pipeline->query_position(fmt, pos) &&
+        m_pipeline->query_duration(fmt, len)) {
+      double percent = (double)pos / (double)len;
 
-		Gst::Format fmt = Gst::FORMAT_TIME;
-		gint64 pos = 0, len = 0;
-		if(m_pipeline->query_position(fmt, pos) && m_pipeline->query_duration(fmt, len))
-		{
-			double percent = (double)pos / (double)len;
+      percent = CLAMP(percent, 0.0, 1.0);
 
-			percent = CLAMP(percent, 0.0, 1.0);
-	
-			m_progressbar.set_fraction(percent);
-			m_progressbar.set_text(time_to_string(pos) + " / " + time_to_string(len));
-			m_duration = len;
+      m_progressbar.set_fraction(percent);
+      m_progressbar.set_text(time_to_string(pos) + " / " + time_to_string(len));
+      m_duration = len;
 
-			return pos != len;
-		}
-		else
-			m_progressbar.set_text(_("Waiting..."));
-		return true;
-	}
+      return pos != len;
+    } else
+      m_progressbar.set_text(_("Waiting..."));
+    return true;
+  }
 
-	/*
-	 */
-	void on_work_finished()
-	{
-		response(Gtk::RESPONSE_OK);
-	}
+  /*
+   */
+  void on_work_finished() {
+    response(Gtk::RESPONSE_OK);
+  }
 
-	/*
-	 */
-	void on_work_cancel()
-	{
-		response(Gtk::RESPONSE_CANCEL);
-	}
+  /*
+   */
+  void on_work_cancel() {
+    response(Gtk::RESPONSE_CANCEL);
+  }
 
-protected:
-	Gtk::ProgressBar m_progressbar;
+ protected:
+  Gtk::ProgressBar m_progressbar;
 
-	std::list<long> m_values;
-	guint64 m_duration;
+  std::list<long> m_values;
+  guint64 m_duration;
 };
 
 /*
  */
-Glib::RefPtr<KeyFrames> generate_keyframes_from_file(const Glib::ustring &uri)
-{
-	Glib::RefPtr<KeyFrames> kf;
-	KeyframesGenerator ui(uri, kf);
-	return kf;
-
+Glib::RefPtr<KeyFrames> generate_keyframes_from_file(const Glib::ustring &uri) {
+  Glib::RefPtr<KeyFrames> kf;
+  KeyframesGenerator ui(uri, kf);
+  return kf;
 }

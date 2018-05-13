@@ -19,183 +19,171 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#include <extension/action.h>
-#include <utility.h>
+
 #include <documentsystem.h>
+#include <extension/action.h>
 #include <gtkmm_utility.h>
+#include <utility.h>
 #include <memory>
 
 /*
  *
  */
-class DialogSplitDocument : public Gtk::Dialog
-{
-public:
-	DialogSplitDocument(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
-	:Gtk::Dialog(cobject)
-	{
-		utility::set_transient_parent(*this);
-		
-		builder->get_widget("spin-number", m_spinNumber);
+class DialogSplitDocument : public Gtk::Dialog {
+ public:
+  DialogSplitDocument(BaseObjectType *cobject,
+                      const Glib::RefPtr<Gtk::Builder> &builder)
+      : Gtk::Dialog(cobject) {
+    utility::set_transient_parent(*this);
 
-		set_default_response(Gtk::RESPONSE_OK);
-	}
+    builder->get_widget("spin-number", m_spinNumber);
 
-	/*
-	 *
-	 */
-	void execute(Document *doc)
-	{
-		g_return_if_fail(doc);
+    set_default_response(Gtk::RESPONSE_OK);
+  }
 
-		unsigned int size = doc->subtitles().size();
+  /*
+   *
+   */
+  void execute(Document *doc) {
+    g_return_if_fail(doc);
 
-		if(size == 0)
-		{
-			dialog_warning(
-					_("You can't use <i>split</i> with this document."), 
-					build_message("The document <b>%s</b> has not subtitle, it's empty.", doc->getName().c_str()));
-			return;
-		}
+    unsigned int size = doc->subtitles().size();
 
-		m_spinNumber->set_range(1,size);
+    if (size == 0) {
+      dialog_warning(
+          _("You can't use <i>split</i> with this document."),
+          build_message("The document <b>%s</b> has not subtitle, it's empty.",
+                        doc->getName().c_str()));
+      return;
+    }
 
-		// set by default the first selected subtitle
-		{
-			Subtitle selected = doc->subtitles().get_first_selected();
-			if(selected)
-				m_spinNumber->set_value(selected.get_num());
+    m_spinNumber->set_range(1, size);
 
-		}
-		show();
+    // set by default the first selected subtitle
+    {
+      Subtitle selected = doc->subtitles().get_first_selected();
+      if (selected)
+        m_spinNumber->set_value(selected.get_num());
+    }
+    show();
 
-		if(run() == Gtk::RESPONSE_OK)
-		{
-			unsigned int number = (unsigned int)m_spinNumber->get_value();
+    if (run() == Gtk::RESPONSE_OK) {
+      unsigned int number = (unsigned int)m_spinNumber->get_value();
 
-			split_doc(doc, number);
-		}
-		
-		hide();
-	}
+      split_doc(doc, number);
+    }
 
-	/*
-	 * Split the document in two and return the new one
-	 */
-	Document *split_doc(Document *doc, unsigned int number)
-	{
-		// Create new document based on the first one and rename it
-		Document *newdoc = new Document(*doc, true);
-		newdoc->setFilename(newdoc->getFilename() + "-par2");
-		newdoc->subtitles().remove(1, number-1);
+    hide();
+  }
 
-		DocumentSystem::getInstance().append(newdoc);
+  /*
+   * Split the document in two and return the new one
+   */
+  Document *split_doc(Document *doc, unsigned int number) {
+    // Create new document based on the first one and rename it
+    Document *newdoc = new Document(*doc, true);
+    newdoc->setFilename(newdoc->getFilename() + "-par2");
+    newdoc->subtitles().remove(1, number - 1);
 
-		// Remove subtitles used by the new one
-		doc->start_command(_("Split document"));
-		doc->subtitles().remove(number, doc->subtitles().size());
-		doc->finish_command();
+    DocumentSystem::getInstance().append(newdoc);
 
-		return newdoc;
-	}
+    // Remove subtitles used by the new one
+    doc->start_command(_("Split document"));
+    doc->subtitles().remove(number, doc->subtitles().size());
+    doc->finish_command();
 
-protected:
-	Gtk::SpinButton* m_spinNumber;
+    return newdoc;
+  }
+
+ protected:
+  Gtk::SpinButton *m_spinNumber;
 };
 
 /*
  *
  */
-class SplitDocumentPlugin : public Action
-{
-public:
+class SplitDocumentPlugin : public Action {
+ public:
+  SplitDocumentPlugin() {
+    activate();
+    update_ui();
+  }
 
-	SplitDocumentPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~SplitDocumentPlugin() {
+    deactivate();
+  }
 
-	~SplitDocumentPlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("SplitDocumentPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("SplitDocumentPlugin");
+    action_group->add(
+        Gtk::Action::create("split-document", Gtk::Stock::CUT,
+                            _("Spl_it Document"),
+                            _("Split the current document in two")),
+        sigc::mem_fun(*this, &SplitDocumentPlugin::on_execute));
 
-		action_group->add(
-				Gtk::Action::create("split-document", Gtk::Stock::CUT, _("Spl_it Document"), _("Split the current document in two")), 
-					sigc::mem_fun(*this, &SplitDocumentPlugin::on_execute));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-tools/split-document", "split-document",
+               "split-document");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-tools/split-document", "split-document", "split-document");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("split-document")->set_sensitive(visible);
+  }
 
-		action_group->get_action("split-document")->set_sensitive(visible);
-	}
+ protected:
+  /*
+   *
+   */
+  void on_execute() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    Document *doc = get_current_document();
+    g_return_if_fail(doc);
 
-	/*
-	 *
-	 */
-	void on_execute()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // create dialog
+    std::unique_ptr<DialogSplitDocument> dialog(
+        gtkmm_utility::get_widget_derived<DialogSplitDocument>(
+            SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+            "dialog-split-document.ui", "dialog-split-document"));
 
-		Document *doc = get_current_document();
-		g_return_if_fail(doc);
+    dialog->execute(doc);
+  }
 
-		// create dialog
-		std::unique_ptr<DialogSplitDocument> dialog(
-				gtkmm_utility::get_widget_derived<DialogSplitDocument>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
-						"dialog-split-document.ui", 
-						"dialog-split-document"));
-
-		dialog->execute(doc);
-	}
-	
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(SplitDocumentPlugin)

@@ -27,28 +27,24 @@
  */
 SubtitleEditorWindow* SubtitleEditorWindow::m_static_window = NULL;
 
-
 /*
  *
  */
-SubtitleEditorWindow::SubtitleEditorWindow()
-{
-	m_static_window = this;
+SubtitleEditorWindow::SubtitleEditorWindow() {
+  m_static_window = this;
 }
 
 /*
  *
  */
-SubtitleEditorWindow::~SubtitleEditorWindow()
-{
+SubtitleEditorWindow::~SubtitleEditorWindow() {
 }
 
 /*
  *
  */
-SubtitleEditorWindow* SubtitleEditorWindow::get_instance()
-{
-	g_return_val_if_fail(m_static_window, NULL);
+SubtitleEditorWindow* SubtitleEditorWindow::get_instance() {
+  g_return_val_if_fail(m_static_window, NULL);
 
-	return m_static_window;
+  return m_static_window;
 }

@@ -25,17 +25,13 @@
 
 #include "patternspage.h"
 
-class CapitalizationPage : public PatternsPage
-{
-public:
-	CapitalizationPage()
-	:PatternsPage(
-			"capitalization",
-			_("Select Capitalization Patterns"),
-			_("Capitalize texts"), 
-			_("Capitalize texts written in lower case"))
-	{
-	}
+class CapitalizationPage : public PatternsPage {
+ public:
+  CapitalizationPage()
+      : PatternsPage("capitalization", _("Select Capitalization Patterns"),
+                     _("Capitalize texts"),
+                     _("Capitalize texts written in lower case")) {
+  }
 };
 
-#endif//_CapitalizationPage_h
+#endif  //_CapitalizationPage_h

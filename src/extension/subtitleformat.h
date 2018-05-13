@@ -29,19 +29,17 @@
 /*
  *
  */
-class SubtitleFormat : public Extension
-{
-public:
+class SubtitleFormat : public Extension {
+ public:
+  /*
+   *
+   */
+  virtual SubtitleFormatInfo get_info() = 0;
 
-	/*
-	 *
-	 */
-	virtual SubtitleFormatInfo get_info() = 0;
-
-	/*
-	 *
-	 */
-	virtual SubtitleFormatIO* create() = 0;
+  /*
+   *
+   */
+  virtual SubtitleFormatIO* create() = 0;
 };
 
-#endif//_SubtitleFormat_h
+#endif  //_SubtitleFormat_h

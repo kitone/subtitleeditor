@@ -22,7 +22,6 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include <glibmm.h>
 
@@ -30,46 +29,44 @@ class Document;
 class SubtitleModel;
 class SubtitleView;
 
-class Command
-{
-public:
-	Command(Document *doc, const Glib::ustring &description);
-	virtual ~Command();
+class Command {
+ public:
+  Command(Document* doc, const Glib::ustring& description);
+  virtual ~Command();
 
-	/*
-	 *
-	 */
-	virtual void restore() = 0;
+  /*
+   *
+   */
+  virtual void restore() = 0;
 
-	/*
-	 *
-	 */
-	virtual void execute() = 0;
+  /*
+   *
+   */
+  virtual void execute() = 0;
 
-	/*
-	 *
-	 */
-	Document* document();
+  /*
+   *
+   */
+  Document* document();
 
-	/*
-	 *
-	 */
-	Glib::RefPtr<SubtitleModel> get_document_subtitle_model();
+  /*
+   *
+   */
+  Glib::RefPtr<SubtitleModel> get_document_subtitle_model();
 
-	/*
-	 *
-	 */
-	SubtitleView* get_document_subtitle_view();
+  /*
+   *
+   */
+  SubtitleView* get_document_subtitle_view();
 
-	/*
-	 *
-	 */
-	Glib::ustring description() const;
-protected:
-	Document* m_document;
-	Glib::ustring m_description;
+  /*
+   *
+   */
+  Glib::ustring description() const;
+
+ protected:
+  Document* m_document;
+  Glib::ustring m_description;
 };
 
-
-#endif//_Command_h
-
+#endif  //_Command_h

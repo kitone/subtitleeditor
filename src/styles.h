@@ -22,51 +22,47 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include "style.h"
 
 class Document;
 
-class Styles
-{
-public:
-	Styles(Document &doc);
-	~Styles();
+class Styles {
+ public:
+  Styles(Document &doc);
+  ~Styles();
 
-	/*
-	 *
-	 */
-	unsigned int size();
+  /*
+   *
+   */
+  unsigned int size();
 
-	/*
-	 *
-	 */
-	Style get(unsigned int num);
+  /*
+   *
+   */
+  Style get(unsigned int num);
 
-	/*
-	 */
-	Style first();
+  /*
+   */
+  Style first();
 
-	/*
-	 *
-	 */
-	Style last();
+  /*
+   *
+   */
+  Style last();
 
-	/*
-	 *
-	 */
-	Style append();
+  /*
+   *
+   */
+  Style append();
 
-	/*
-	 *
-	 */
-	void remove(const Style &style);
+  /*
+   *
+   */
+  void remove(const Style &style);
 
-protected:
-	Document &m_document;
+ protected:
+  Document &m_document;
 };
 
-
-#endif//_Styles_h
-
+#endif  //_Styles_h

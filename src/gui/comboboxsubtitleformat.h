@@ -23,29 +23,27 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 #include <gtkmm.h>
-#include <gtkmm.h>
 
 /*
  * ComboBox for choosing the format of subtitle.
  */
-class ComboBoxSubtitleFormat : public Gtk::ComboBoxText
-{
-public:
+class ComboBoxSubtitleFormat : public Gtk::ComboBoxText {
+ public:
+  /*
+   * Constructor
+   */
+  ComboBoxSubtitleFormat(BaseObjectType* cobject,
+                         const Glib::RefPtr<Gtk::Builder>& builder);
 
-	/*
-	 * Constructor
-	 */
-	ComboBoxSubtitleFormat(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder);
+  /*
+   *
+   */
+  void set_value(const Glib::ustring& value);
 
-	/*
-	 *
-	 */
-	void set_value(const Glib::ustring &value);
-
-	/*
-	 * Returns the subtitle format selected.
-	 */
-	Glib::ustring get_value() const;
+  /*
+   * Returns the subtitle format selected.
+   */
+  Glib::ustring get_value() const;
 };
 
-#endif//_ComboBoxSubtitleFormat_h
+#endif  //_ComboBoxSubtitleFormat_h

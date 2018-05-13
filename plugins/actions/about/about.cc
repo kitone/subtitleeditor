@@ -23,114 +23,112 @@
 #include <extension/action.h>
 #include <utility.h>
 
-class AboutPlugin : public Action
-{
-public:
+class AboutPlugin : public Action {
+ public:
+  AboutPlugin() {
+    activate();
+    // update_ui();
+  }
 
-	AboutPlugin()
-	{
-		activate();
-		//update_ui();
-	}
+  ~AboutPlugin() {
+    deactivate();
+  }
 
-	~AboutPlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("AboutPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("AboutPlugin");
+    action_group->add(Gtk::Action::create("about", Gtk::Stock::ABOUT),
+                      sigc::mem_fun(*this, &AboutPlugin::on_about));
 
-		action_group->add(
-				Gtk::Action::create("about", Gtk::Stock::ABOUT),
-					sigc::mem_fun(*this, &AboutPlugin::on_about));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-help/about", "about", "about");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-help/about", "about", "about");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+ protected:
+  /*
+   *
+   */
+  void on_about() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    Gtk::AboutDialog dialog;
+    utility::set_transient_parent(dialog);
 
-	/*
-	 *
-	 */
-	void on_about()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // name
+    dialog.set_name("Subtitle Editor");
+    // version
+    dialog.set_version(VERSION);
+    // copyright
+    dialog.set_copyright("kitone (IDJAAD djamel)");
+    // comments
+    dialog.set_comments(_("a tool for subtitles edition"));
+    // logo
+    dialog.set_logo_icon_name("subtitleeditor");
+    // authors
+    std::vector<Glib::ustring> authors;
+    authors.push_back("kitone (IDJAAD djamel)");
 
-		Gtk::AboutDialog dialog;
-		utility::set_transient_parent(dialog);
+    dialog.set_authors(authors);
 
-		// name
-		dialog.set_name("Subtitle Editor");
-		// version
-		dialog.set_version(VERSION);
-		// copyright
-		dialog.set_copyright("kitone (IDJAAD djamel)");
-		// comments
-		dialog.set_comments(_("a tool for subtitles edition"));
-		// logo
-		dialog.set_logo_icon_name("subtitleeditor");
-		// authors
-		std::vector<Glib::ustring> authors;
-		authors.push_back("kitone (IDJAAD djamel)");
-		
-		dialog.set_authors(authors);
+    // translator-credits
+    dialog.set_translator_credits(_("translator-credits"));
 
-		// translator-credits
-		dialog.set_translator_credits(_("translator-credits"));
+    // website
+    dialog.set_website("https://kitone.github.io/subtitleeditor/");
 
-		// website
-		dialog.set_website("https://kitone.github.io/subtitleeditor/");
+    // license
+    Glib::ustring license =
+        "This program is free software; you can redistribute it and/or modify  "
+        "\n"
+        "it under the terms of the GNU General Public License as published by  "
+        "\n"
+        "the Free Software Foundation; either version 3 of the License, "
+        "or	\n"
+        "(at your option) any later version.	\n\n"
+        "This program is distributed in the hope that it will be "
+        "useful,	\n"
+        "but WITHOUT ANY WARRANTY; without even the implied warranty of  \n"
+        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the	\n"
+        "GNU General Public License for more details.  \n\n"
+        "You should have received a copy of the GNU General Public "
+        "License	\n"
+        "along with this program; if not, write to the Free Software	\n"
+        "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111 "
+        "USA	\n\n"
+        "See gpl.txt for more information regarding the GNU General Public "
+        "License. \n";
+    dialog.set_license(license);
 
-		// license
-		Glib::ustring license=
-			"This program is free software; you can redistribute it and/or modify  \n"
-			"it under the terms of the GNU General Public License as published by  \n"
-			"the Free Software Foundation; either version 3 of the License, or	\n"
-			"(at your option) any later version.	\n\n"
-			"This program is distributed in the hope that it will be useful,	\n"
-			"but WITHOUT ANY WARRANTY; without even the implied warranty of  \n"
-			"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the	\n"
-			"GNU General Public License for more details.  \n\n"
-			"You should have received a copy of the GNU General Public License	\n"
-			"along with this program; if not, write to the Free Software	\n"
-			"Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111 USA	\n\n"
-			"See gpl.txt for more information regarding the GNU General Public License. \n";
-		dialog.set_license(license);
+    dialog.run();
+  }
 
-		dialog.run();
-	}
-
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(AboutPlugin)

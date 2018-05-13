@@ -51,6 +51,6 @@ Glib::ustring to_script(const Glib::ustring &code);
  */
 Glib::ustring to_name(const Glib::ustring &code);
 
-}//namespace isocodes
+}  // namespace isocodes
 
-#endif//_isocodes_h
+#endif  //_isocodes_h

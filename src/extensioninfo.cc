@@ -26,101 +26,89 @@
 /*
  * Constructor.
  */
-ExtensionInfo::ExtensionInfo()
-{
-	se_debug(SE_DEBUG_APP);
+ExtensionInfo::ExtensionInfo() {
+  se_debug(SE_DEBUG_APP);
 
-	module = NULL;
-	active = false;
-	hidden = false;
-	fhs_directory = false;
-	extension = NULL;
+  module = NULL;
+  active = false;
+  hidden = false;
+  fhs_directory = false;
+  extension = NULL;
 }
 
 /*
  * Destructor.
  * Delete the extension and delete the module.
  */
-ExtensionInfo::~ExtensionInfo()
-{
-	se_debug(SE_DEBUG_APP);
+ExtensionInfo::~ExtensionInfo() {
+  se_debug(SE_DEBUG_APP);
 
-	delete extension;
-	delete module;
+  delete extension;
+  delete module;
 }
-	
+
 /*
  * Return the name of the extension.
  */
-Glib::ustring ExtensionInfo::get_name() const
-{
-	return name;
+Glib::ustring ExtensionInfo::get_name() const {
+  return name;
 }
 
 /*
  * Return the label of the extension.
  * The label is just the name translated.
  */
-Glib::ustring ExtensionInfo::get_label() const
-{
-	return label;
+Glib::ustring ExtensionInfo::get_label() const {
+  return label;
 }
 
 /*
  * Return a description of the extension.
  */
-Glib::ustring ExtensionInfo::get_description() const
-{
-	return description;
+Glib::ustring ExtensionInfo::get_description() const {
+  return description;
 }
 
 /*
  * Return the authors of the extension.
  */
-Glib::ustring ExtensionInfo::get_authors() const
-{
-	return authors;
+Glib::ustring ExtensionInfo::get_authors() const {
+  return authors;
 }
 
 /*
  * Return a categorie of the extension.
  */
-Glib::ustring ExtensionInfo::get_categorie() const
-{
-	return categorie;
+Glib::ustring ExtensionInfo::get_categorie() const {
+  return categorie;
 }
 
 /*
  * Return the type of the extension.
  * Most often it's "module"
  */
-Glib::ustring ExtensionInfo::get_type() const
-{
-	return type;
+Glib::ustring ExtensionInfo::get_type() const {
+  return type;
 }
 
 /*
- * Return the Extension instance only if the type 
+ * Return the Extension instance only if the type
  * is a module or NULL;
  */
-Extension* ExtensionInfo::get_extension() const
-{
-	return extension;
+Extension* ExtensionInfo::get_extension() const {
+  return extension;
 }
 
 /*
  * Return the state of the extension, activated or not.
  */
-bool ExtensionInfo::get_active() const
-{
-	return active;
+bool ExtensionInfo::get_active() const {
+  return active;
 }
 
 /*
  * Return the state of the extension, activated or not.
  */
-bool ExtensionInfo::get_hidden() const
-{
-	return hidden;
+bool ExtensionInfo::get_hidden() const {
+  return hidden;
 }
-

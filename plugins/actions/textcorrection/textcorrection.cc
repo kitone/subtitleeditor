@@ -21,277 +21,256 @@
  */
 
 #include <extension/action.h>
-#include <utility.h>
-#include <gtkmm_utility.h>
-#include <gtkmm.h>
 #include <filereader.h>
+#include <gtkmm.h>
+#include <gtkmm_utility.h>
+#include <utility.h>
+#include "capitalizationpage.h"
+#include "commonerrorpage.h"
+#include "confirmationpage.h"
+#include "hearingimpairedpage.h"
 #include "patternmanager.h"
 #include "taskspage.h"
-#include "hearingimpairedpage.h"
-#include "commonerrorpage.h"
-#include "capitalizationpage.h"
-#include "confirmationpage.h"
 
 /*
  *
  */
-class AssistantTextCorrection : public Gtk::Assistant
-{
-public:
-	AssistantTextCorrection(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
-	:Gtk::Assistant(cobject)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+class AssistantTextCorrection : public Gtk::Assistant {
+ public:
+  AssistantTextCorrection(BaseObjectType* cobject,
+                          const Glib::RefPtr<Gtk::Builder>& builder)
+      : Gtk::Assistant(cobject) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		doc = SubtitleEditorWindow::get_instance()->get_current_document();
+    doc = SubtitleEditorWindow::get_instance()->get_current_document();
 
-		builder->get_widget_derived("vbox-tasks", m_tasksPage);
-		builder->get_widget_derived("vbox-comfirmation", m_comfirmationPage);
+    builder->get_widget_derived("vbox-tasks", m_tasksPage);
+    builder->get_widget_derived("vbox-comfirmation", m_comfirmationPage);
 
-		add_tasks();
+    add_tasks();
 
-		se_debug_message(SE_DEBUG_PLUGINS, "Init tasks pages");
-		// Init tasks pages
-		for(int i=0; i< get_n_pages(); ++i)
-		{
-			PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
-			if(page)
-				m_tasksPage->add_task(page);
-		}
+    se_debug_message(SE_DEBUG_PLUGINS, "Init tasks pages");
+    // Init tasks pages
+    for (int i = 0; i < get_n_pages(); ++i) {
+      PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
+      if (page)
+        m_tasksPage->add_task(page);
+    }
 
-		set_page_type(*get_nth_page(0), Gtk::ASSISTANT_PAGE_INTRO);
-		set_page_type(*get_nth_page(get_n_pages()-1), Gtk::ASSISTANT_PAGE_CONFIRM);
-	}
+    set_page_type(*get_nth_page(0), Gtk::ASSISTANT_PAGE_INTRO);
+    set_page_type(*get_nth_page(get_n_pages() - 1),
+                  Gtk::ASSISTANT_PAGE_CONFIRM);
+  }
 
-	/*
-	 */
-	~AssistantTextCorrection()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
-	}
+  /*
+   */
+  ~AssistantTextCorrection() {
+    se_debug(SE_DEBUG_PLUGINS);
+  }
 
-	/*
-	 */
-	void add_tasks()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   */
+  void add_tasks() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		add_page(manage(new HearingImpairedPage), 1);
-		add_page(manage(new CommonErrorPage), 2);
-		add_page(manage(new CapitalizationPage), 3);
-	}
+    add_page(manage(new HearingImpairedPage), 1);
+    add_page(manage(new CommonErrorPage), 2);
+    add_page(manage(new CapitalizationPage), 3);
+  }
 
-	/*
-	 */
-	void add_page(PatternsPage *page, unsigned int pos)
-	{
-		se_debug_message(SE_DEBUG_PLUGINS, "new task page '%s' to the position '%d'", page->get_page_title().c_str(), pos);
+  /*
+   */
+  void add_page(PatternsPage* page, unsigned int pos) {
+    se_debug_message(SE_DEBUG_PLUGINS,
+                     "new task page '%s' to the position '%d'",
+                     page->get_page_title().c_str(), pos);
 
-		insert_page(*page, pos);
-		set_page_title(*page, page->get_page_title());
-		set_page_type(*page, Gtk::ASSISTANT_PAGE_CONTENT);
-	}
+    insert_page(*page, pos);
+    set_page_title(*page, page->get_page_title());
+    set_page_type(*page, Gtk::ASSISTANT_PAGE_CONTENT);
+  }
 
-	/*
-	 * Catch the comfirmation page and initialize with the current document
-	 * and patterns available.
-	 */
-	void on_prepare(Gtk::Widget* page)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   * Catch the comfirmation page and initialize with the current document
+   * and patterns available.
+   */
+  void on_prepare(Gtk::Widget* page) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		AssistantPage* ap = dynamic_cast<AssistantPage*>(page);
-		if(ap && ap == m_comfirmationPage)
-		{
-			bool res = m_comfirmationPage->comfirme(doc, get_patterns());
-			set_page_complete(*page, true);
-			set_page_title(*page, m_comfirmationPage->get_page_title());
-			// No change, only display the close button
-			if(!res)
-				set_page_type(*m_comfirmationPage, Gtk::ASSISTANT_PAGE_SUMMARY);
-		}
-		else
-			set_page_complete(*page, true);
-	}
+    AssistantPage* ap = dynamic_cast<AssistantPage*>(page);
+    if (ap && ap == m_comfirmationPage) {
+      bool res = m_comfirmationPage->comfirme(doc, get_patterns());
+      set_page_complete(*page, true);
+      set_page_title(*page, m_comfirmationPage->get_page_title());
+      // No change, only display the close button
+      if (!res)
+        set_page_type(*m_comfirmationPage, Gtk::ASSISTANT_PAGE_SUMMARY);
+    } else
+      set_page_complete(*page, true);
+  }
 
-	/*
-	 * Return all patterns activated.
-	 */
-	std::list<Pattern*> get_patterns()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   * Return all patterns activated.
+   */
+  std::list<Pattern*> get_patterns() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		std::list<Pattern*> patterns;
+    std::list<Pattern*> patterns;
 
-		for(int i=0; i< get_n_pages(); ++i)
-		{
-			PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
-			if(page == NULL)
-				continue;
-			if(page->is_enable() == false)
-				continue;
+    for (int i = 0; i < get_n_pages(); ++i) {
+      PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
+      if (page == NULL)
+        continue;
+      if (page->is_enable() == false)
+        continue;
 
-			std::list<Pattern*> p = page->get_patterns();
-			patterns.merge(p);
-		}
-		return patterns;
-	}
+      std::list<Pattern*> p = page->get_patterns();
+      patterns.merge(p);
+    }
+    return patterns;
+  }
 
-	/*
-	 * Apply the change and destroy the window.
-	 */
-	void on_apply()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   * Apply the change and destroy the window.
+   */
+  void on_apply() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		m_comfirmationPage->apply(doc);
+    m_comfirmationPage->apply(doc);
 
-		save_cfg();
-	}
+    save_cfg();
+  }
 
-	/*
-	 * Destroy the window.
-	 */
-	void on_cancel()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   * Destroy the window.
+   */
+  void on_cancel() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		save_cfg();
+    save_cfg();
 
-		//destroy_();
-		delete this;
-	}
+    // destroy_();
+    delete this;
+  }
 
-	/*
-	 * Close signal, destroy the window.
-	 */
-	void on_close()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   * Close signal, destroy the window.
+   */
+  void on_close() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		save_cfg();
+    save_cfg();
 
-		//destroy_();
-		delete this;
-	}
+    // destroy_();
+    delete this;
+  }
 
-	/*
-	 * Save the configuration for each pages.
-	 */
-	void save_cfg()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   * Save the configuration for each pages.
+   */
+  void save_cfg() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		for(int i=0; i< get_n_pages(); ++i)
-		{
-			PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
-			if(page != NULL)
-				page->save_cfg();
-		}
-	}
+    for (int i = 0; i < get_n_pages(); ++i) {
+      PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
+      if (page != NULL)
+        page->save_cfg();
+    }
+  }
 
-protected:
-	TasksPage* m_tasksPage;
-	ComfirmationPage* m_comfirmationPage;
-	Document* doc;
+ protected:
+  TasksPage* m_tasksPage;
+  ComfirmationPage* m_comfirmationPage;
+  Document* doc;
 };
 
 /*
  *
  */
-class TextCorrectionPlugin : public Action
-{
-public:
+class TextCorrectionPlugin : public Action {
+ public:
+  /*
+   *
+   */
+  TextCorrectionPlugin() {
+    activate();
+    update_ui();
+  }
 
-	/*
-	 *
-	 */
-	TextCorrectionPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  /*
+   *
+   */
+  ~TextCorrectionPlugin() {
+    deactivate();
+  }
 
-	/*
-	 *
-	 */
-	~TextCorrectionPlugin()
-	{
-		deactivate();
-	}
+  /*
+   *
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("TextCorrectionPlugin");
+    action_group->add(
+        Gtk::Action::create("text-correction", _("Text _Correction")),
+        sigc::mem_fun(*this, &TextCorrectionPlugin::on_execute));
 
-		// actions
-		action_group = Gtk::ActionGroup::create("TextCorrectionPlugin");
-		action_group->add(
-				Gtk::Action::create("text-correction", _("Text _Correction")),
-					sigc::mem_fun(*this, &TextCorrectionPlugin::on_execute));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-tools/checking", "text-correction",
+               "text-correction");
+  }
 
-		ui_id = ui->new_merge_id();
-		ui->insert_action_group(action_group);
-		ui->add_ui(ui_id, "/menubar/menu-tools/checking", "text-correction", "text-correction");
-	}
+  /*
+   *
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   *
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 *
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("text-correction")->set_sensitive(visible);
+  }
 
-		action_group->get_action("text-correction")->set_sensitive(visible);
-	}
+  /*
+   *
+   */
+  void on_execute() {
+    // create dialog
+    /*
+    std::unique_ptr<AssistantTextCorrection> assistant(
+                    gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
+                                    SE_DEV_VALUE(SE_PLUGIN_PATH_UI,
+    SE_PLUGIN_PATH_DEV), "assistant-text-correction.ui", "assistant"));
+    */
+    AssistantTextCorrection* assistant =
+        gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
+            SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
+            "assistant-text-correction.ui", "assistant");
+    // assistant->set_document(document());
+    assistant->show();
+    // Gtk::Main::run(*assistant);
+  }
 
-	/*
-	 *
-	 */
-	void on_execute()
-	{
-		// create dialog
-		/*
-		std::unique_ptr<AssistantTextCorrection> assistant(
-				gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
-						"assistant-text-correction.ui", 
-						"assistant"));
-		*/
-		AssistantTextCorrection *assistant = 
-			gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
-						SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
-						"assistant-text-correction.ui", 
-						"assistant");
-		//assistant->set_document(document());
-		assistant->show();
-		//Gtk::Main::run(*assistant);
-	}
-
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(TextCorrectionPlugin)

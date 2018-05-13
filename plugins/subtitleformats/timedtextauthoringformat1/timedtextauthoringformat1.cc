@@ -20,212 +20,186 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <extension/subtitleformat.h>
-#include <utility.h>
 #include <error.h>
+#include <extension/subtitleformat.h>
 #include <libxml++/libxml++.h>
+#include <utility.h>
 
+class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
+ public:
+  /*
+   *
+   */
+  void open(Reader &file) {
+    try {
+      xmlpp::DomParser parser;
+      // parser.set_validate();
+      parser.set_substitute_entities();
+      parser.parse_memory(file.get_data());
 
-class TimedTextAuthoringFormat1 : public SubtitleFormatIO
-{
-public:
+      if (!parser)
+        throw IOFileError(_("Failed to open the file for reading."));
 
-	/*
-	 *
-	 */
-	void open(Reader &file)
-	{
-		try
-		{
-			xmlpp::DomParser parser;
-			//parser.set_validate();
-			parser.set_substitute_entities();
-			parser.parse_memory(file.get_data());
+      // <tt> (root)
+      const xmlpp::Node *root = parser.get_document()->get_root_node();
 
-			if(!parser)
-				throw IOFileError(_("Failed to open the file for reading."));
+      // <body>
+      const xmlpp::Element *body = dynamic_cast<const xmlpp::Element *>(
+          root->get_children("body").front());
+      if (body) {
+        // <div>
+        const xmlpp::Element *div = dynamic_cast<const xmlpp::Element *>(
+            body->get_children("div").front());
 
-			// <tt> (root)
-			const xmlpp::Node* root = parser.get_document()->get_root_node();
+        if (div) {
+          xmlpp::Node::NodeList list = div->get_children();
+          for (xmlpp::Node::NodeList::const_iterator it = list.begin();
+               it != list.end(); ++it) {
+            read_subtitle(dynamic_cast<const xmlpp::Element *>(*it));
+          }
+        }
+      }
+    } catch (const std::exception &ex) {
+      throw IOFileError(_("Failed to open the file for reading."));
+    }
+  }
 
-			// <body>
-			const xmlpp::Element *body = dynamic_cast<const xmlpp::Element*>(root->get_children("body").front());
-			if(body)
-			{
-				// <div>
-				const xmlpp::Element *div = dynamic_cast<const xmlpp::Element*>(body->get_children("div").front());
+  /*
+   *
+   */
+  void save(Writer &file) {
+    try {
+      xmlpp::Document doc;
 
-				if(div)
-				{
-					xmlpp::Node::NodeList list = div->get_children();
-					for(xmlpp::Node::NodeList::const_iterator it = list.begin(); it!=list.end(); ++it)
-					{
-						read_subtitle(dynamic_cast<const xmlpp::Element*>(*it));
-					}
-				}
-			}
-		}
-		catch(const std::exception &ex)
-		{
-			throw IOFileError(_("Failed to open the file for reading."));
-		}
-	}
+      xmlpp::Element *tt = doc.create_root_node("tt");
+      tt->set_attribute("xml:lang", "");
+      tt->set_attribute("xmlns", "http://www.w3.org/2006/10/ttaf1");
 
-	/*
-	 *
-	 */
-	void save(Writer &file)
-	{
-		try
-		{
-			xmlpp::Document doc;
+      xmlpp::Element *body = tt->add_child("body");
 
-			xmlpp::Element* tt = doc.create_root_node("tt");
-			tt->set_attribute("xml:lang", "");
-			tt->set_attribute("xmlns", "http://www.w3.org/2006/10/ttaf1");
+      // div subtitles
+      xmlpp::Element *div = body->add_child("div");
 
-			xmlpp::Element* body = tt->add_child("body");
+      div->set_attribute("xml:lang", "en");
 
-			// div subtitles
-			xmlpp::Element* div = body->add_child("div");
-		
-			div->set_attribute("xml:lang", "en");
+      for (Subtitle sub = document()->subtitles().get_first(); sub; ++sub) {
+        write_subtitle(div, sub);
+      }
 
-			for(Subtitle sub = document()->subtitles().get_first(); sub; ++sub)
-			{
-				write_subtitle(div, sub);
-			}
+      file.write(doc.write_to_string_formatted());
+    } catch (const std::exception &ex) {
+      throw IOFileError(_("Failed to write to the file."));
+    }
+  }
 
-			file.write(doc.write_to_string_formatted());
-		}
-		catch(const std::exception &ex)
-		{
-			throw IOFileError(_("Failed to write to the file."));
-		}
-	}
+  /*
+   *
+   */
+  void read_subtitle(const xmlpp::Element *p) {
+    if (p == NULL || p->get_name() != "p")
+      return;
 
-	/*
-	 *
-	 */
-	void read_subtitle(const xmlpp::Element *p)
-	{
-		if(p == NULL || p->get_name() != "p")
-			return;
+    Subtitle subtitle = document()->subtitles().append();
 
-		Subtitle subtitle = document()->subtitles().append();
+    // begin
+    const xmlpp::Attribute *att_begin = p->get_attribute("begin");
+    if (att_begin) {
+      Glib::ustring begin = att_begin->get_value();
 
-		// begin
-		const xmlpp::Attribute *att_begin = p->get_attribute("begin");
-		if(att_begin)
-		{
-			Glib::ustring begin = att_begin->get_value(); 
+      subtitle.set_start(time_to_se(begin));
+    }
 
-			subtitle.set_start(time_to_se(begin));
-		}
+    // end
+    const xmlpp::Attribute *att_end = p->get_attribute("end");
+    if (att_end) {
+      Glib::ustring end = att_end->get_value();
 
-		// end
-		const xmlpp::Attribute *att_end = p->get_attribute("end");
-		if(att_end)
-		{
-			Glib::ustring end = att_end->get_value(); 
+      subtitle.set_end(time_to_se(end));
+    } else  // dur only if end failed
+    {
+      const xmlpp::Attribute *att_dur = p->get_attribute("dur");
+      if (att_dur) {
+        Glib::ustring dur = att_dur->get_value();
 
-			subtitle.set_end(time_to_se(end));
-		}
-		else //dur only if end failed
-		{
-			const xmlpp::Attribute *att_dur = p->get_attribute("dur");
-			if(att_dur)
-			{
-				Glib::ustring dur = att_dur->get_value(); 
+        subtitle.set_duration(time_to_se(dur));
+      }
+    }
 
-				subtitle.set_duration(time_to_se(dur));
-			}
-		}
+    // text
+    if (p->has_child_text()) {
+      Glib::ustring text;
 
-		// text
-		if(p->has_child_text())
-		{
-			Glib::ustring text;
+      xmlpp::Node::NodeList children = p->get_children();
+      for (xmlpp::Node::NodeList::const_iterator it = children.begin();
+           it != children.end(); ++it) {
+        xmlpp::ContentNode *cn = dynamic_cast<xmlpp::ContentNode *>(*it);
+        if (cn == NULL)
+          continue;
+        if (!text.empty())
+          text += "\n";
+        text += cn->get_content();
+      }
 
-			xmlpp::Node::NodeList children = p->get_children();
-			for(xmlpp::Node::NodeList::const_iterator it = children.begin(); it != children.end(); ++it)
-			{
-				xmlpp::ContentNode *cn = dynamic_cast<xmlpp::ContentNode*>(*it);
-				if(cn == NULL)
-					continue;
-				if(!text.empty())
-					text += "\n";
-				text += cn->get_content();
-			}
+      subtitle.set_text(text);
+    }
+  }
 
-			subtitle.set_text(text);
-		}
-	}
+  /*
+   *
+   */
+  void write_subtitle(xmlpp::Element *root, const Subtitle &sub) {
+    Glib::ustring text = sub.get_text();
 
-	/*
-	 *
-	 */
-	void write_subtitle(xmlpp::Element* root, const Subtitle &sub)
-	{
-		Glib::ustring text = sub.get_text();
-	
-		utility::replace(text, "\n", "<br/>");
+    utility::replace(text, "\n", "<br/>");
 
-		xmlpp::Element* p = root->add_child("p");
+    xmlpp::Element *p = root->add_child("p");
 
-		p->set_attribute("begin", time_to_ttaf1(sub.get_start()));
-		p->set_attribute("end", time_to_ttaf1(sub.get_end()));
-		p->set_attribute("dur", time_to_ttaf1(sub.get_duration()));
-		p->set_child_text(text);
-	}
+    p->set_attribute("begin", time_to_ttaf1(sub.get_start()));
+    p->set_attribute("end", time_to_ttaf1(sub.get_end()));
+    p->set_attribute("dur", time_to_ttaf1(sub.get_duration()));
+    p->set_child_text(text);
+  }
 
-	/*
-	 * Convert SE time to TT time.
-	 */
-	Glib::ustring time_to_ttaf1(const SubtitleTime &time)
-	{
-		return build_message("%.2i:%.2i:%.2i.%.3i",
-				time.hours(), time.minutes(), time.seconds(), time.mseconds());
-	}
+  /*
+   * Convert SE time to TT time.
+   */
+  Glib::ustring time_to_ttaf1(const SubtitleTime &time) {
+    return build_message("%.2i:%.2i:%.2i.%.3i", time.hours(), time.minutes(),
+                         time.seconds(), time.mseconds());
+  }
 
-	/*
-	 * Convert TT time to SE time.
-	 */
-	SubtitleTime time_to_se(const Glib::ustring &value)
-	{
-		if(SubtitleTime::validate(value))
-			return SubtitleTime(value);
+  /*
+   * Convert TT time to SE time.
+   */
+  SubtitleTime time_to_se(const Glib::ustring &value) {
+    if (SubtitleTime::validate(value))
+      return SubtitleTime(value);
 
-		return SubtitleTime();
-	}
-
+    return SubtitleTime();
+  }
 };
 
-class TimedTextAuthoringFormat1Plugin : public SubtitleFormat
-{
-public:
+class TimedTextAuthoringFormat1Plugin : public SubtitleFormat {
+ public:
+  /*
+   *
+   */
+  SubtitleFormatInfo get_info() {
+    SubtitleFormatInfo info;
+    info.name = "Timed Text Authoring Format 1.0";
+    info.extension = "xml";
+    info.pattern = "^<tt";
 
-	/*
-	 *
-	 */
-	SubtitleFormatInfo get_info()
-	{
-		SubtitleFormatInfo info;
-		info.name = "Timed Text Authoring Format 1.0";
-		info.extension = "xml";
-		info.pattern = "^<tt";
-		
-		return info;
-	}
+    return info;
+  }
 
-	/*
-	 *
-	 */
-	SubtitleFormatIO* create()
-	{
-		TimedTextAuthoringFormat1 *sf = new TimedTextAuthoringFormat1();
-		return sf;
-	}
+  /*
+   *
+   */
+  SubtitleFormatIO *create() {
+    TimedTextAuthoringFormat1 *sf = new TimedTextAuthoringFormat1();
+    return sf;
+  }
 };
 
 REGISTER_EXTENSION(TimedTextAuthoringFormat1Plugin)

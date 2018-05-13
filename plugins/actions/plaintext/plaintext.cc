@@ -21,152 +21,142 @@
  */
 
 #include <extension/action.h>
-#include <utility.h>
-#include <gui/dialogfilechooser.h>
 #include <filereader.h>
+#include <gui/dialogfilechooser.h>
 #include <subtitleformatsystem.h>
+#include <utility.h>
 
 /*
  *
  */
-class PlainTextPlugin : public Action
-{
-public:
+class PlainTextPlugin : public Action {
+ public:
+  PlainTextPlugin() {
+    activate();
+    update_ui();
+  }
 
-	PlainTextPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~PlainTextPlugin() {
+    deactivate();
+  }
 
-	~PlainTextPlugin()
-	{
-		deactivate();
-	}
+  /*
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("PlainTextPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("PlainTextPlugin");
+    action_group->add(
+        Gtk::Action::create("plain-text-import", _("_Import Plain Text"),
+                            _("Create a new document from any text file.")),
+        sigc::mem_fun(*this, &PlainTextPlugin::on_import_transcript));
 
-		action_group->add(
-				Gtk::Action::create("plain-text-import", _("_Import Plain Text"),
-						_("Create a new document from any text file.")),
-					sigc::mem_fun(*this, &PlainTextPlugin::on_import_transcript));
+    action_group->add(
+        Gtk::Action::create("plain-text-export", _("_Export Plain Text"),
+                            _("Export just a text in a file")),
+        sigc::mem_fun(*this, &PlainTextPlugin::on_export_transcript));
 
-		action_group->add(
-				Gtk::Action::create("plain-text-export", _("_Export Plain Text"), _("Export just a text in a file")),
-					sigc::mem_fun(*this, &PlainTextPlugin::on_export_transcript));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-file/menu-import/placeholder",
+               "plain-text-import", "plain-text-import");
+    ui->add_ui(ui_id, "/menubar/menu-file/menu-export/placeholder",
+               "plain-text-export", "plain-text-export");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-file/menu-import/placeholder", "plain-text-import", "plain-text-import");
-		ui->add_ui(ui_id, "/menubar/menu-file/menu-export/placeholder", "plain-text-export", "plain-text-export");
-	}
+  /*
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("plain-text-export")->set_sensitive(visible);
+  }
 
-		action_group->get_action("plain-text-export")->set_sensitive(visible);
-	}
+ protected:
+  /*
+   */
+  void on_import_transcript() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    DialogImportText::unique_ptr ui = DialogImportText::create();
 
-	/*
-	 */
-	void on_import_transcript()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    if (ui->run() == Gtk::RESPONSE_OK) {
+      Glib::ustring uri = ui->get_uri();
+      Glib::ustring filename = ui->get_filename();
+      Glib::ustring charset = ui->get_encoding();
 
-		DialogImportText::unique_ptr ui = DialogImportText::create();
+      try {
+        Glib::ustring untitled =
+            DocumentSystem::getInstance().create_untitled_name();
+        Glib::ustring format =
+            get_config().get_value_string("document", "format");
+        Glib::ustring untitled_fullname =
+            Glib::build_filename(ui->get_current_folder(), untitled);
 
-		if(ui->run() == Gtk::RESPONSE_OK)
-		{
-			Glib::ustring uri = ui->get_uri();
-			Glib::ustring filename = ui->get_filename();
-			Glib::ustring charset = ui->get_encoding();
+        Document *doc = new Document();
+        SubtitleFormatSystem::instance().open_from_uri(doc, uri, charset,
+                                                       "Plain Text Format");
+        doc->setName(untitled);
+        doc->setFilename(untitled_fullname);
+        doc->setFormat(format);  // override the plain text format with the
+                                 // preferred format setting
+        DocumentSystem::getInstance().append(doc);
 
-			try
-			{
-				Glib::ustring untitled = DocumentSystem::getInstance().create_untitled_name();
-				Glib::ustring	format = get_config().get_value_string("document", "format");
-				Glib::ustring untitled_fullname = Glib::build_filename(ui->get_current_folder(), untitled);
+      } catch (const std::exception &ex) {
+        dialog_error(
+            build_message(_("Could not import from file \"%s\"."), uri.c_str()),
+            ex.what());
+      }
+    }
+  }
 
-				Document *doc = new Document();
-				SubtitleFormatSystem::instance().open_from_uri(doc, uri, charset, "Plain Text Format");
-				doc->setName(untitled);
-				doc->setFilename(untitled_fullname);
-				doc->setFormat(format); // override the plain text format with the preferred format setting
-				DocumentSystem::getInstance().append(doc);
-				
-			}
-			catch(const std::exception &ex)
-			{
-				dialog_error(
-						build_message(_("Could not import from file \"%s\"."), uri.c_str()), 
-						ex.what());
-			}
-		}
-	}
+  /*
+   */
+  void on_export_transcript() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void on_export_transcript()
-	{
-	 se_debug(SE_DEBUG_PLUGINS);
+    DialogExportText::unique_ptr ui = DialogExportText::create();
 
-		DialogExportText::unique_ptr ui = DialogExportText::create();
+    if (ui->run() == Gtk::RESPONSE_OK) {
+      Glib::ustring uri = ui->get_uri();
+      Glib::ustring charset = ui->get_encoding();
+      Glib::ustring newline = ui->get_newline();
 
-		if(ui->run() == Gtk::RESPONSE_OK)
-		{
-			Glib::ustring uri = ui->get_uri();
-			Glib::ustring charset = ui->get_encoding();
-			Glib::ustring newline = ui->get_newline();
+      try {
+        Document *doc = get_current_document();
+        SubtitleFormatSystem::instance().save_to_uri(
+            doc, uri, "Plain Text Format", charset, newline);
+      } catch (const std::exception &ex) {
+        dialog_error(build_message(_("Could not export to the file \"%s\"."),
+                                   uri.c_str()),
+                     ex.what());
+      }
+    }
+  }
 
-			try
-			{
-				Document *doc = get_current_document();
-				SubtitleFormatSystem::instance().save_to_uri( doc, uri, "Plain Text Format", charset, newline );
-			}
-			catch(const std::exception &ex)
-			{
-				dialog_error(
-						build_message(_("Could not export to the file \"%s\"."), uri.c_str()), 
-						ex.what());
-			}
-		}
-	}
-
-	
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(PlainTextPlugin)

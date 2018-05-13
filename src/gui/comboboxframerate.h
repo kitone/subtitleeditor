@@ -26,48 +26,42 @@
 #include <gtkmm.h>
 #include <timeutility.h>
 
-class ComboBoxFramerate : public Gtk::ComboBox
-{
+class ComboBoxFramerate : public Gtk::ComboBox {
+  class Column : public Gtk::TreeModel::ColumnRecord {
+   public:
+    Column() {
+      add(label);
+      add(value);
+    }
+    Gtk::TreeModelColumn<Glib::ustring> label;
+    Gtk::TreeModelColumn<FRAMERATE> value;
+  };
 
-	class Column : public Gtk::TreeModel::ColumnRecord
-	{
-	public:
-		Column()
-		{
-			add(label);
-			add(value);
-		}
-		Gtk::TreeModelColumn<Glib::ustring> label;
-		Gtk::TreeModelColumn<FRAMERATE> value;
-	};
+ public:
+  /*
+   * Constructor
+   */
+  ComboBoxFramerate();
 
-public:
+  /*
+   * Return the current framerate value
+   */
+  FRAMERATE get_value();
 
-	/*
-	 * Constructor
-	 */
-	ComboBoxFramerate();
+  /*
+   * Set the current framerate value
+   */
+  void set_value(FRAMERATE value);
 
-	/*
-	 * Return the current framerate value
-	 */
-	FRAMERATE get_value();
+ protected:
+  /*
+   * Add a new item
+   */
+  void append(FRAMERATE framerate, const Glib::ustring &text = Glib::ustring());
 
-	/*
-	 * Set the current framerate value
-	 */
-	void set_value(FRAMERATE value);
-
-protected:
-
-	/*
-	 * Add a new item
-	 */
-	void append(FRAMERATE framerate, const Glib::ustring &text = Glib::ustring());
-
-protected:
-	Column column;
-	Glib::RefPtr<Gtk::ListStore> liststore;
+ protected:
+  Column column;
+  Glib::RefPtr<Gtk::ListStore> liststore;
 };
 
-#endif//_ComboBoxFramerate_h
+#endif  //_ComboBoxFramerate_h

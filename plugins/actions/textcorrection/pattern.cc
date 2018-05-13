@@ -25,81 +25,70 @@
 /*
  * Constructor
  */
-Pattern::Pattern()
-{
-	m_enabled = true;
+Pattern::Pattern() {
+  m_enabled = true;
 }
 
 /*
  * Destructor
  * Delete rules.
  */
-Pattern::~Pattern()
-{
-	for(std::list<Rule*>::iterator it = m_rules.begin(); it != m_rules.end(); ++it)
-	{
-		delete *it;
-	}
-	m_rules.clear();
+Pattern::~Pattern() {
+  for (std::list<Rule *>::iterator it = m_rules.begin(); it != m_rules.end();
+       ++it) {
+    delete *it;
+  }
+  m_rules.clear();
 }
 
 /*
  * Return the name of the pattern.
  */
-Glib::ustring Pattern::get_name() const
-{
-	return m_name;
+Glib::ustring Pattern::get_name() const {
+  return m_name;
 }
 
 /*
  * Return the name of the pattern.
  */
-Glib::ustring Pattern::get_label() const
-{
-	return m_label;
+Glib::ustring Pattern::get_label() const {
+  return m_label;
 }
 
 /*
  * Return the name of the pattern.
  */
-Glib::ustring Pattern::get_description() const
-{
-	return m_description;
+Glib::ustring Pattern::get_description() const {
+  return m_description;
 }
 
 /*
  * Return the active state of the pattern. (Enable by default)
  */
-bool Pattern::is_enable() const
-{
-	return m_enabled;
+bool Pattern::is_enable() const {
+  return m_enabled;
 }
 
 /*
  * Apply the pattern if it is enabled.
  * With the repeat support.
  */
-void Pattern::execute(Glib::ustring &text, const Glib::ustring &previous)
-{
-	if(!m_enabled)
-		return;
+void Pattern::execute(Glib::ustring &text, const Glib::ustring &previous) {
+  if (!m_enabled)
+    return;
 
-	Glib::RegexMatchFlags flag = (Glib::RegexMatchFlags)0;
-	for(std::list<Rule*>::iterator it = m_rules.begin(); it != m_rules.end(); ++it)
-	{
-		bool previous_match = true;
-		if((*it)->m_previous_match)
-			previous_match = (*it)->m_previous_match->match(previous);
+  Glib::RegexMatchFlags flag = (Glib::RegexMatchFlags)0;
+  for (std::list<Rule *>::iterator it = m_rules.begin(); it != m_rules.end();
+       ++it) {
+    bool previous_match = true;
+    if ((*it)->m_previous_match)
+      previous_match = (*it)->m_previous_match->match(previous);
 
-		if((*it)->m_repeat)
-		{
-			while((*it)->m_regex->match(text) && previous_match)
-			{
-				text = (*it)->m_regex->replace(text, 0, (*it)->m_replacement, flag);
-			}
-		}
-		else if(previous_match)
-			text = (*it)->m_regex->replace(text, 0, (*it)->m_replacement, flag);
-	}
+    if ((*it)->m_repeat) {
+      while ((*it)->m_regex->match(text) && previous_match) {
+        text = (*it)->m_regex->replace(text, 0, (*it)->m_replacement, flag);
+      }
+    } else if (previous_match)
+      text = (*it)->m_regex->replace(text, 0, (*it)->m_replacement, flag);
+  }
 }
-

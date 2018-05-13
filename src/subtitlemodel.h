@@ -22,100 +22,91 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include <gtkmm.h>
 #include "subtitletime.h"
 
-class NameModel : public Gtk::ListStore
-{
-public:
-	
-	/*
-	 *
-	 */
-	class Column : public Gtk::TreeModel::ColumnRecord
-	{
-	public:
-		Column()
-		{
-			add(name);
-		}
+class NameModel : public Gtk::ListStore {
+ public:
+  /*
+   *
+   */
+  class Column : public Gtk::TreeModel::ColumnRecord {
+   public:
+    Column() {
+      add(name);
+    }
 
-		Gtk::TreeModelColumn<Glib::ustring> name;
-	};
+    Gtk::TreeModelColumn<Glib::ustring> name;
+  };
 
-public:
-	
-	/*
-	 *	constructor
-	 */
-	NameModel()
-	{
-		set_column_types(m_column);
-	}
-	
-public:
-	Column	m_column;
+ public:
+  /*
+   *	constructor
+   */
+  NameModel() {
+    set_column_types(m_column);
+  }
+
+ public:
+  Column m_column;
 };
 
 /*
  *
  */
-class SubtitleColumnRecorder : public Gtk::TreeModel::ColumnRecord
-{
-public:
-	SubtitleColumnRecorder()
-	{
-		add(num);
-		add(layer);
-		add(start_value);
-		add(end_value);
-		add(duration_value);
-		add(gap_before);
-		add(gap_after);
-		add(style);
-		add(name);
-		add(marginL);
-		add(marginR);
-		add(marginV);
-		add(effect);
-		add(text);
-		add(translation);
-		add(characters_per_line_text);
-		add(characters_per_second_text);
-		add(characters_per_line_translation);
-		add(note);
-	}
+class SubtitleColumnRecorder : public Gtk::TreeModel::ColumnRecord {
+ public:
+  SubtitleColumnRecorder() {
+    add(num);
+    add(layer);
+    add(start_value);
+    add(end_value);
+    add(duration_value);
+    add(gap_before);
+    add(gap_after);
+    add(style);
+    add(name);
+    add(marginL);
+    add(marginR);
+    add(marginV);
+    add(effect);
+    add(text);
+    add(translation);
+    add(characters_per_line_text);
+    add(characters_per_second_text);
+    add(characters_per_line_translation);
+    add(note);
+  }
 
-	Gtk::TreeModelColumn<unsigned int>		num;
-	
-	Gtk::TreeModelColumn<Glib::ustring>		layer;
-	
-	Gtk::TreeModelColumn<long>						start_value;
-	Gtk::TreeModelColumn<long>						end_value;
-	Gtk::TreeModelColumn<long>						duration_value;
+  Gtk::TreeModelColumn<unsigned int> num;
 
-	Gtk::TreeModelColumn<long>						gap_before;
-	Gtk::TreeModelColumn<long>						gap_after;
+  Gtk::TreeModelColumn<Glib::ustring> layer;
 
-	Gtk::TreeModelColumn<Glib::ustring>		style;
-	Gtk::TreeModelColumn<Glib::ustring>		name;
+  Gtk::TreeModelColumn<long> start_value;
+  Gtk::TreeModelColumn<long> end_value;
+  Gtk::TreeModelColumn<long> duration_value;
 
-	Gtk::TreeModelColumn<Glib::ustring>		marginL;
-	Gtk::TreeModelColumn<Glib::ustring>		marginR;
-	Gtk::TreeModelColumn<Glib::ustring>		marginV;
+  Gtk::TreeModelColumn<long> gap_before;
+  Gtk::TreeModelColumn<long> gap_after;
 
-	Gtk::TreeModelColumn<Glib::ustring>		effect;
+  Gtk::TreeModelColumn<Glib::ustring> style;
+  Gtk::TreeModelColumn<Glib::ustring> name;
 
-	Gtk::TreeModelColumn<Glib::ustring>		text;
+  Gtk::TreeModelColumn<Glib::ustring> marginL;
+  Gtk::TreeModelColumn<Glib::ustring> marginR;
+  Gtk::TreeModelColumn<Glib::ustring> marginV;
 
-	Gtk::TreeModelColumn<Glib::ustring>		translation;
-	Gtk::TreeModelColumn<Glib::ustring>		characters_per_line_text;
-	Gtk::TreeModelColumn<Glib::ustring>		characters_per_line_translation;
-	Gtk::TreeModelColumn<Glib::ustring>		note;
+  Gtk::TreeModelColumn<Glib::ustring> effect;
 
-	Gtk::TreeModelColumn<double>		characters_per_second_text;
+  Gtk::TreeModelColumn<Glib::ustring> text;
+
+  Gtk::TreeModelColumn<Glib::ustring> translation;
+  Gtk::TreeModelColumn<Glib::ustring> characters_per_line_text;
+  Gtk::TreeModelColumn<Glib::ustring> characters_per_line_translation;
+  Gtk::TreeModelColumn<Glib::ustring> note;
+
+  Gtk::TreeModelColumn<double> characters_per_second_text;
 };
 
 class Document;
@@ -123,134 +114,135 @@ class Document;
 /*
  *
  */
-class SubtitleModel : public Gtk::ListStore
-{
-public:
-	SubtitleModel(Document *doc);
+class SubtitleModel : public Gtk::ListStore {
+ public:
+  SubtitleModel(Document *doc);
 
-	/*
-	 * num = 0, start=end=0, ...
-	 */
-	void init(Gtk::TreeIter &iter);
-	
-	/*
-	 *
-	 */
-	Gtk::TreeIter append();
+  /*
+   * num = 0, start=end=0, ...
+   */
+  void init(Gtk::TreeIter &iter);
 
-	/*
-	 *	retourne le premier element de la list
-	 *	ou un iterator invalide
-	 */
-	Gtk::TreeIter getFirst();
+  /*
+   *
+   */
+  Gtk::TreeIter append();
 
-	/*
-	 *	retourne le dernier element de la list
-	 *	ou un iterator invalide
-	 */
-	Gtk::TreeIter getLast();
+  /*
+   *	retourne le premier element de la list
+   *	ou un iterator invalide
+   */
+  Gtk::TreeIter getFirst();
 
-	/*
-	 *	retourne le nombre d'element dans la list
-	 */
-	unsigned int	getSize();
+  /*
+   *	retourne le dernier element de la list
+   *	ou un iterator invalide
+   */
+  Gtk::TreeIter getLast();
 
-	/*
-	 *	FONCTION DE RECHERCHE ****************************************************
-	 */
+  /*
+   *	retourne le nombre d'element dans la list
+   */
+  unsigned int getSize();
 
-	/*
-	 *	recherche un subtitle grace a son numero
-	 */
-	Gtk::TreeIter find(unsigned int num);
+  /*
+   *	FONCTION DE RECHERCHE
+   *****************************************************
+   */
 
-	/*
-	 *	recherche un subtitle grace a son temps
-	 *	si time est compris entre start et end
-	 */
-	Gtk::TreeIter find(const SubtitleTime &time);
+  /*
+   *	recherche un subtitle grace a son numero
+   */
+  Gtk::TreeIter find(unsigned int num);
 
-	/*
-	 *	recherche a partir de start (+1) dans le text des subtitles
-	 */
-	Gtk::TreeIter find_text(Gtk::TreeIter &start, const Glib::ustring &text);
-	
-	/*
-	 *	recherche l'iterator precedant iter
-	 */
-	Gtk::TreeIter find_previous(const Gtk::TreeIter &iter);
+  /*
+   *	recherche un subtitle grace a son temps
+   *	si time est compris entre start et end
+   */
+  Gtk::TreeIter find(const SubtitleTime &time);
 
-	/*
-	 *	recherche l'iterator suivant iter
-	 *	(c'est pour la forme dans notre cas un simple ++iter donne la solution)
-	 */
-	Gtk::TreeIter find_next(const Gtk::TreeIter &iter);
+  /*
+   *	recherche a partir de start (+1) dans le text des subtitles
+   */
+  Gtk::TreeIter find_text(Gtk::TreeIter &start, const Glib::ustring &text);
 
-	/*
-	 *	FONCTION D'EDITION	******************************************************
-	 */
-	
-	/*
-	 *	deplace tous les sous titres entre start et end de msecs.
-	 */
-	//void move_in(unsigned int start, unsigned int end, unsigned int msecs);
+  /*
+   *	recherche l'iterator precedant iter
+   */
+  Gtk::TreeIter find_previous(const Gtk::TreeIter &iter);
 
-	/*
-	 *	deplace tous les sous titres a partir de start de msecs.
-	 */
-	//void move_all(unsigned int start, unsigned int msecs);
-	
-	/*
-	 *	insert sub avant iter et retourne l'iter de sub
-	 *	et declale tout les autres (num)
-	 */
-	Gtk::TreeIter insertBefore(Gtk::TreeIter &iter);
+  /*
+   *	recherche l'iterator suivant iter
+   *	(c'est pour la forme dans notre cas un simple ++iter donne la solution)
+   */
+  Gtk::TreeIter find_next(const Gtk::TreeIter &iter);
 
-	/*
-	 *	insert sub apres iter et retourne l'iter de sub
-	 *	et declale tout les autres (num)
-	 */
-	Gtk::TreeIter insertAfter(Gtk::TreeIter &iter);
-	
-	/*
-	 *	efface un subtitle, on init les suivants avec le bon num
-	 */
-	void remove(Gtk::TreeIter &iter);
-	
-	/*
-	 *	efface des elements de start a end
-	 *	[start,end]
-	 */
-	void remove(unsigned int start, unsigned int end);
+  /*
+   *	FONCTION D'EDITION
+   *******************************************************
+   */
 
-	/*
-	 *	fait une copy de src dans this
-	 */
-	void copy(Glib::RefPtr<SubtitleModel> src);
+  /*
+   *	deplace tous les sous titres entre start et end de msecs.
+   */
+  // void move_in(unsigned int start, unsigned int end, unsigned int msecs);
 
-	/*
-	 *	check la colonne num pour init de [1,size]
-	 */
-	void rebuild_column_num();
+  /*
+   *	deplace tous les sous titres a partir de start de msecs.
+   */
+  // void move_all(unsigned int start, unsigned int msecs);
 
-protected:
+  /*
+   *	insert sub avant iter et retourne l'iter de sub
+   *	et declale tout les autres (num)
+   */
+  Gtk::TreeIter insertBefore(Gtk::TreeIter &iter);
 
-	/*
-	 *
-	 */
-	virtual bool drag_data_delete_vfunc(const TreeModel::Path& path);
+  /*
+   *	insert sub apres iter et retourne l'iter de sub
+   *	et declale tout les autres (num)
+   */
+  Gtk::TreeIter insertAfter(Gtk::TreeIter &iter);
 
-	/*
-	 *
-	 */
-	virtual bool drag_data_received_vfunc(const TreeModel::Path& dest, const Gtk::SelectionData& selection_data);
+  /*
+   *	efface un subtitle, on init les suivants avec le bon num
+   */
+  void remove(Gtk::TreeIter &iter);
 
-protected:
-	Document* m_document;
-	SubtitleColumnRecorder	m_column;
+  /*
+   *	efface des elements de start a end
+   *	[start,end]
+   */
+  void remove(unsigned int start, unsigned int end);
 
-	sigc::signal<void, const Gtk::TreePath&, const Gtk::TreePath&> m_my_signal_row_reorderer;
+  /*
+   *	fait une copy de src dans this
+   */
+  void copy(Glib::RefPtr<SubtitleModel> src);
+
+  /*
+   *	check la colonne num pour init de [1,size]
+   */
+  void rebuild_column_num();
+
+ protected:
+  /*
+   *
+   */
+  virtual bool drag_data_delete_vfunc(const TreeModel::Path &path);
+
+  /*
+   *
+   */
+  virtual bool drag_data_received_vfunc(
+      const TreeModel::Path &dest, const Gtk::SelectionData &selection_data);
+
+ protected:
+  Document *m_document;
+  SubtitleColumnRecorder m_column;
+
+  sigc::signal<void, const Gtk::TreePath &, const Gtk::TreePath &>
+      m_my_signal_row_reorderer;
 };
 
-
-#endif//_SubtitleModel_h
+#endif  //_SubtitleModel_h

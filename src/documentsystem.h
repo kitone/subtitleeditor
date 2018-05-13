@@ -22,89 +22,85 @@
  *	You should have received a copy of the GNU General Public License
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
 
 #include "document.h"
 
+class DocumentSystem {
+ public:
+  DocumentSystem();
+  ~DocumentSystem();
 
-class DocumentSystem
-{
-public:
-	DocumentSystem();
-	~DocumentSystem();
+  static DocumentSystem& getInstance();
 
-	static DocumentSystem& getInstance();
+  /*
+   *
+   */
+  void append(Document* doc);
 
-	/*
-	 *
-	 */
-	void append(Document *doc);
+  /*
+   *	emit signal_document_delete and	delete the document
+   */
+  void remove(Document* doc);
 
-	/*
-	 *	emit signal_document_delete and	delete the document
-	 */
-	void remove(Document *doc);
+  /*
+   *
+   */
+  sigc::signal<void, Document*>& signal_document_create();
 
-	/*
-	 *
-	 */
-	sigc::signal<void, Document*>& signal_document_create();
+  /*
+   *
+   */
+  sigc::signal<void, Document*>& signal_document_delete();
 
-	/*
-	 *
-	 */
-	sigc::signal<void, Document*>& signal_document_delete();
+  /*
+   *
+   */
+  sigc::signal<void, Document*>& signal_current_document_changed();
 
-	/*
-	 *
-	 */
-	sigc::signal<void, Document*>& signal_current_document_changed();
+  /*
+   */
+  sigc::signal<void, Document*, const std::string&>& signals_document();
 
-	/*
-	 */
-	sigc::signal<void, Document*, const std::string&>& signals_document();
+  /*
+   *
+   */
+  void setCurrentDocument(Document* doc);
 
-	/*
-	 *
-	 */
-	void setCurrentDocument(Document *doc);
+  /*
+   *
+   */
+  Document* getCurrentDocument();
 
-	/*
-	 *
-	 */
-	Document* getCurrentDocument();
+  /*
+   *
+   */
+  DocumentList getAllDocuments();
 
-	/*
-	 *
-	 */
-	DocumentList getAllDocuments();
+  /*
+   *	filename (getFilename) is used not name (getName)!
+   */
+  Document* getDocument(const Glib::ustring& filename);
 
-	/*
-	 *	filename (getFilename) is used not name (getName)!
-	 */
-	Document* getDocument(const Glib::ustring &filename);
+  /*
+   * Find a unique name (like "Untitled-5") for a new document
+   */
+  Glib::ustring create_untitled_name(const Glib::ustring& extension = "");
 
-	/*
-	 * Find a unique name (like "Untitled-5") for a new document
-	 */
-	Glib::ustring create_untitled_name(const Glib::ustring &extension = "");
+  /*
+   * Check with other document if this name exist
+   * Return true if it is
+   */
+  bool check_if_document_name_exist(const Glib::ustring& name);
 
-	/*
-	 * Check with other document if this name exist
-	 * Return true if it is
-	 */
-	bool check_if_document_name_exist(const Glib::ustring &name);
+ protected:
+  DocumentList m_listDocuments;
 
-protected:
-	DocumentList	m_listDocuments;
-	
-	Document*	m_currentDocument;
+  Document* m_currentDocument;
 
-	sigc::signal<void, Document*>	m_signal_document_create;
-	sigc::signal<void, Document*>	m_signal_document_delete;
-	sigc::signal<void, Document*> m_signal_current_document_changed;
-	sigc::signal<void, Document*, const std::string&> m_signal_document;
+  sigc::signal<void, Document*> m_signal_document_create;
+  sigc::signal<void, Document*> m_signal_document_delete;
+  sigc::signal<void, Document*> m_signal_current_document_changed;
+  sigc::signal<void, Document*, const std::string&> m_signal_document;
 };
 
-#endif//_DocumentSystem_h
-
+#endif  //_DocumentSystem_h

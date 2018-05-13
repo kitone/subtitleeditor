@@ -25,231 +25,222 @@
  *	along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
-#include <debug.h>
 #include <utility.h>
 
-class StackSubtitlesPlugin : public Action
-{
-public:
+class StackSubtitlesPlugin : public Action {
+ public:
+  StackSubtitlesPlugin() {
+    activate();
+    update_ui();
+  }
 
-	StackSubtitlesPlugin()
-	{
-		activate();
-		update_ui();
-	}
+  ~StackSubtitlesPlugin() {
+    deactivate();
+  }
 
-	~StackSubtitlesPlugin()
-	{
-		deactivate();
-	}
+  /*
+   */
+  void activate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void activate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    // actions
+    action_group = Gtk::ActionGroup::create("StackSubtitlesPlugin");
 
-		// actions
-		action_group = Gtk::ActionGroup::create("StackSubtitlesPlugin");
+    action_group->add(
+        Gtk::Action::create("stack-subtitles", _("Stack Subtitles From Start"),
+                            _("Stack selected subtitles after the first one as "
+                              "close together as possible.")),
+        sigc::mem_fun(*this,
+                      &StackSubtitlesPlugin::on_stack_subtitles_from_start));
 
-		action_group->add(
-				Gtk::Action::create("stack-subtitles", _("Stack Subtitles From Start"),
-				_("Stack selected subtitles after the first one as close together as possible.")),
-					sigc::mem_fun(*this, &StackSubtitlesPlugin::on_stack_subtitles_from_start));
+    action_group->add(
+        Gtk::Action::create("stack-subtitles-from-end",
+                            _("Stack Subtitles From End"),
+                            _("Stack selected subtitles before the last one as "
+                              "close together as possible.")),
+        sigc::mem_fun(*this,
+                      &StackSubtitlesPlugin::on_stack_subtitles_from_end));
 
-		action_group->add(
-				Gtk::Action::create("stack-subtitles-from-end", _("Stack Subtitles From End"),
-				_("Stack selected subtitles before the last one as close together as possible.")),
-					sigc::mem_fun(*this, &StackSubtitlesPlugin::on_stack_subtitles_from_end));
+    // ui
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		// ui
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui_id = ui->new_merge_id();
 
-		ui_id = ui->new_merge_id();
+    ui->insert_action_group(action_group);
 
-		ui->insert_action_group(action_group);
+    ui->add_ui(ui_id, "/menubar/menu-timings/stack-subtitles",
+               "stack-subtitles", "stack-subtitles");
+    ui->add_ui(ui_id, "/menubar/menu-timings/stack-subtitles-from-end",
+               "stack-subtitles-from-end", "stack-subtitles-from-end");
+  }
 
-		ui->add_ui(ui_id, "/menubar/menu-timings/stack-subtitles", "stack-subtitles", "stack-subtitles");
-		ui->add_ui(ui_id, "/menubar/menu-timings/stack-subtitles-from-end", "stack-subtitles-from-end", "stack-subtitles-from-end");
-	}
+  /*
+   */
+  void deactivate() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void deactivate()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
-		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
+    ui->remove_ui(ui_id);
+    ui->remove_action_group(action_group);
+  }
 
-		ui->remove_ui(ui_id);
-		ui->remove_action_group(action_group);
-	}
+  /*
+   */
+  void update_ui() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-	/*
-	 */
-	void update_ui()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    bool visible = (get_current_document() != NULL);
 
-		bool visible = (get_current_document() != NULL);
+    action_group->get_action("stack-subtitles")->set_sensitive(visible);
+    action_group->get_action("stack-subtitles-from-end")
+        ->set_sensitive(visible);
+  }
 
-		action_group->get_action("stack-subtitles")->set_sensitive(visible);
-		action_group->get_action("stack-subtitles-from-end")->set_sensitive(visible);
-	}
+ protected:
+  /*
+   */
+  void on_stack_subtitles_from_start() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-protected:
+    execute(true);
+  }
 
-	/*
-	 */
-	void on_stack_subtitles_from_start()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   */
+  void on_stack_subtitles_from_end() {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute( true );
-	}
+    execute(false);
+  }
 
-	/*
-	 */
-	void on_stack_subtitles_from_end()
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+  /*
+   */
+  bool execute(bool from_start) {
+    se_debug(SE_DEBUG_PLUGINS);
 
-		execute( false );
-	}
+    Document *doc = get_current_document();
+    g_return_val_if_fail(doc, false);
 
-	/*
-	 */
-	bool execute(bool from_start)
-	{
-		se_debug(SE_DEBUG_PLUGINS);
+    Subtitles subtitles = doc->subtitles();
 
-		Document *doc = get_current_document();
-		g_return_val_if_fail(doc, false);
+    // We can work on multiple contiguous subtitles
+    std::list<std::vector<Subtitle> > contiguous_selection;
+    if (get_contiguous_selection(contiguous_selection) == false)
+      return false;
 
-		Subtitles subtitles = doc->subtitles();
+    doc->start_command(_("Stack Subtitles"));
 
-		// We can work on multiple contiguous subtitles
-		std::list< std::vector<Subtitle> > contiguous_selection;
-		if(get_contiguous_selection(contiguous_selection) == false)
-			return false;
+    for (std::list<std::vector<Subtitle> >::iterator it =
+             contiguous_selection.begin();
+         it != contiguous_selection.end(); ++it) {
+      stacksubtitles(*it, from_start);
+    }
 
-		doc->start_command(_("Stack Subtitles"));
+    doc->emit_signal("subtitle-time-changed");
+    doc->finish_command();
+    return true;
+  }
 
-		for(std::list< std::vector<Subtitle> >::iterator it = contiguous_selection.begin(); it != contiguous_selection.end(); ++it)
-		{
-			stacksubtitles(*it, from_start);
-		}
+  /*
+   */
+  void stacksubtitles(std::vector<Subtitle> &subtitles, bool from_start) {
+    int subcnt = subtitles.size();
 
-		doc->emit_signal("subtitle-time-changed");
-		doc->finish_command();
-		return true;
-	}
+    if (subcnt < 2)
+      return;
 
-	/*
-	 */
-	void stacksubtitles( std::vector<Subtitle> &subtitles, bool from_start )
-	{
-		int subcnt = subtitles.size();
+    // get relevant preferences
+    Config &cfg = get_config();
 
-		if(subcnt < 2)
-			return;
+    SubtitleTime gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
+    // SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
+    // long maxcps = cfg.get_value_int("timing", "max-characters-per-second");
 
-		// get relevant preferences
-		Config &cfg = get_config();
+    if (from_start) {
+      // take each subtitle and snap it after the one before.
+      Subtitle *sub = &subtitles[0];
+      SubtitleTime endtime = sub->get_end();
+      SubtitleTime dur, starttime;
 
-		SubtitleTime gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
-		//SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
-		//long maxcps = cfg.get_value_int("timing", "max-characters-per-second");
+      for (int i = 1; i < subcnt; ++i) {
+        sub = &subtitles[i];
+        dur = sub->get_duration();
+        starttime = endtime + gap;
+        endtime = starttime + dur;
+        sub->set_start_and_end(starttime, endtime);
+      }
+    } else  // from_start == false
+    {
+      // take each subtitle from last to first and snap it before the one after
+      // it
+      Subtitle *sub = &subtitles[subcnt - 1];
+      SubtitleTime starttime = sub->get_start();
+      SubtitleTime dur, endtime;
 
-		if( from_start )
-		{
-			//take each subtitle and snap it after the one before.
-			Subtitle *sub = &subtitles[0];
-			SubtitleTime endtime = sub->get_end();
-			SubtitleTime dur, starttime;
+      for (int i = subcnt - 2; i >= 0; --i) {
+        sub = &subtitles[i];
+        dur = sub->get_duration();
+        endtime = starttime - gap;
+        starttime = endtime - dur;
+        sub->set_start_and_end(starttime, endtime);
+      }
+    }
+    return;
+  }
 
-			for(int i=1; i < subcnt; ++i)
-			{
-				sub = &subtitles[i];
-				dur = sub->get_duration();
-				starttime = endtime + gap;
-				endtime = starttime + dur;
-				sub->set_start_and_end( starttime, endtime );
-			}
-		}
-		else //from_start == false
-		{
-			//take each subtitle from last to first and snap it before the one after it
-			Subtitle *sub = &subtitles[subcnt-1];
-			SubtitleTime starttime = sub->get_start();
-			SubtitleTime dur, endtime;
+  /*
+   */
+  bool get_contiguous_selection(
+      std::list<std::vector<Subtitle> > &contiguous_selection) {
+    Document *doc = get_current_document();
 
-			for( int i=subcnt-2; i >= 0; --i )
-			{
-				sub = &subtitles[i];
-				dur = sub->get_duration();
-				endtime = starttime - gap;
-				starttime = endtime - dur;
-				sub->set_start_and_end( starttime, endtime );
-			}
-		}
-		return;
-	}
-	
-	/*
-	 */
-	bool get_contiguous_selection(std::list< std::vector<Subtitle> > &contiguous_selection)
-	{
-		Document* doc = get_current_document();
+    std::vector<Subtitle> selection = doc->subtitles().get_selection();
+    if (selection.size() < 2) {
+      doc->flash_message(
+          _("Stack Subtitles needs at least 2 subtitles to work on."));
+      return false;
+    }
 
-		std::vector<Subtitle> selection = doc->subtitles().get_selection();
-		if(selection.size() < 2)
-		{
-			doc->flash_message(_("Stack Subtitles needs at least 2 subtitles to work on."));
-			return false;
-		}
+    contiguous_selection.push_back(std::vector<Subtitle>());
 
-		contiguous_selection.push_back( std::vector<Subtitle> () );
+    guint last_id = 0;
 
-		guint last_id = 0;
+    for (guint i = 0; i < selection.size(); ++i) {
+      Subtitle &sub = selection[i];
+      // Is the next subtitle?
+      if (sub.get_num() == last_id + 1) {
+        contiguous_selection.back().push_back(sub);
+        ++last_id;
+      } else {
+        // Create new list only if the previous is empty.
+        if (!contiguous_selection.back().empty())
+          contiguous_selection.push_back(std::vector<Subtitle>());
 
-		for(guint i=0; i<selection.size(); ++i)
-		{
-			Subtitle &sub = selection[i];
-			// Is the next subtitle?
-			if(sub.get_num() == last_id + 1)
-			{
-				contiguous_selection.back().push_back( sub );
-				++last_id;
-			}
-			else
-			{
-				// Create new list only if the previous is empty.
-				if(!contiguous_selection.back().empty())
-					contiguous_selection.push_back( std::vector<Subtitle> () );
+        contiguous_selection.back().push_back(sub);
 
-				contiguous_selection.back().push_back( sub );
+        last_id = sub.get_num();
+      }
+    }
 
-				last_id = sub.get_num();
-			}
-		}
+    // We check if we have at least one contiguous subtitles.
+    for (std::list<std::vector<Subtitle> >::iterator it =
+             contiguous_selection.begin();
+         it != contiguous_selection.end(); ++it) {
+      if ((*it).size() >= 2)
+        return true;
+    }
+    doc->flash_message(
+        _("Stack Subtitles only works on a continuous selection."));
+    return false;
+  }
 
-		// We check if we have at least one contiguous subtitles.
-		for(std::list< std::vector<Subtitle> >::iterator it = contiguous_selection.begin(); it != contiguous_selection.end(); ++it)
-		{
-			if((*it).size() >= 2)
-				return true;
-		}
-		doc->flash_message(_("Stack Subtitles only works on a continuous selection."));
-		return false;
-	}	
-	
-protected:
-	Gtk::UIManager::ui_merge_id ui_id;
-	Glib::RefPtr<Gtk::ActionGroup> action_group;
+ protected:
+  Gtk::UIManager::ui_merge_id ui_id;
+  Glib::RefPtr<Gtk::ActionGroup> action_group;
 };
 
 REGISTER_EXTENSION(StackSubtitlesPlugin)
-
