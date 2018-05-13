@@ -145,9 +145,8 @@ void DialogCharacterCodings::init_encodings_displayed() {
   Config::getInstance().get_value_string_list("encodings", "encodings",
                                               encodings);
 
-  std::list<Glib::ustring>::const_iterator it;
-  for (it = encodings.begin(); it != encodings.end(); ++it) {
-    append_encoding(m_storeDisplayed, *it);
+  for (const auto &encoding : encodings) {
+    append_encoding(m_storeDisplayed, encoding);
   }
 
   m_treeviewDisplayed->set_model(m_storeDisplayed);
@@ -165,14 +164,13 @@ void DialogCharacterCodings::init_encodings_displayed() {
 
 // Add character codings selected from Available to the Displayed.
 void DialogCharacterCodings::on_button_add() {
-  std::vector<Gtk::TreeModel::Path> selection =
-      treeviewAvailable->get_selection()->get_selected_rows();
+  auto selected_rows = treeviewAvailable->get_selection()->get_selected_rows();
 
-  if (selection.empty())
+  if (selected_rows.empty())
     return;
 
-  for (unsigned int i = 0; i < selection.size(); ++i) {
-    Gtk::TreeIter it = treeviewAvailable->get_model()->get_iter(selection[i]);
+  for (const auto &row : selected_rows) {
+    Gtk::TreeIter it = treeviewAvailable->get_model()->get_iter(row);
     if (it) {
       // only once
       if (check_if_already_display((*it)[m_column.charset]) == false)
@@ -183,12 +181,9 @@ void DialogCharacterCodings::on_button_add() {
 
 // Remove selected items to the displayed treeview.
 void DialogCharacterCodings::on_button_remove() {
-  std::vector<Gtk::TreeModel::Path> rows;
+  auto rows = m_treeviewDisplayed->get_selection()->get_selected_rows();
 
-  rows = m_treeviewDisplayed->get_selection()->get_selected_rows();
-
-  for (std::vector<Gtk::TreeModel::Path>::reverse_iterator iter = rows.rbegin();
-       iter != rows.rend(); ++iter) {
+  for (auto iter = rows.rbegin(); iter != rows.rend(); ++iter) {
     Gtk::TreeIter it = m_storeDisplayed->get_iter(*iter);
     m_storeDisplayed->erase(it);
   }

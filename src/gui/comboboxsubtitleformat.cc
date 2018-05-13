@@ -25,13 +25,9 @@
 ComboBoxSubtitleFormat::ComboBoxSubtitleFormat(
     BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& /*builder*/)
     : Gtk::ComboBoxText(cobject) {
-  std::list<SubtitleFormatInfo> infos =
-      SubtitleFormatSystem::instance().get_infos();
-
-  std::list<SubtitleFormatInfo>::const_iterator it;
-
-  for (it = infos.begin(); it != infos.end(); ++it) append((*it).name);
-
+  for (const auto& sf_info : SubtitleFormatSystem::instance().get_infos()) {
+    append(sf_info.name);
+  }
   set_active(0);
 }
 

@@ -30,11 +30,9 @@ DocumentSystem::~DocumentSystem() {
 
   m_currentDocument = NULL;
 
-  for (DocumentList::const_iterator it = m_listDocuments.begin();
-       it != m_listDocuments.end(); ++it) {
-    delete *it;
+  for (const auto& doc : m_listDocuments) {
+    delete doc;
   }
-
   m_listDocuments.clear();
 }
 
@@ -119,10 +117,9 @@ DocumentList DocumentSystem::getAllDocuments() {
 Document* DocumentSystem::getDocument(const Glib::ustring& filename) {
   se_debug_message(SE_DEBUG_APP, "filename = %s", filename.c_str());
 
-  DocumentList::const_iterator it;
-  for (it = m_listDocuments.begin(); it != m_listDocuments.end(); ++it) {
-    if ((*it)->getFilename() == filename)
-      return *it;
+  for (const auto& doc : m_listDocuments) {
+    if (doc->getFilename() == filename)
+      return doc;
   }
   se_debug_message(SE_DEBUG_APP, "return NULL: FAILED");
 
@@ -151,9 +148,8 @@ Glib::ustring DocumentSystem::create_untitled_name(
 bool DocumentSystem::check_if_document_name_exist(const Glib::ustring& name) {
   se_debug(SE_DEBUG_PLUGINS);
 
-  for (DocumentList::const_iterator it = m_listDocuments.begin();
-       it != m_listDocuments.end(); ++it) {
-    if (name == (*it)->getName())
+  for (const auto& doc : m_listDocuments) {
+    if (name == doc->getName())
       return true;
   }
   return false;

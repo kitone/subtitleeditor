@@ -118,10 +118,8 @@ class StackSubtitlesPlugin : public Action {
 
     doc->start_command(_("Stack Subtitles"));
 
-    for (std::list<std::vector<Subtitle> >::iterator it =
-             contiguous_selection.begin();
-         it != contiguous_selection.end(); ++it) {
-      stacksubtitles(*it, from_start);
+    for (auto &subtitle : contiguous_selection) {
+      stacksubtitles(subtitle, from_start);
     }
 
     doc->emit_signal("subtitle-time-changed");
@@ -188,17 +186,16 @@ class StackSubtitlesPlugin : public Action {
 
     guint last_id = 0;
 
-    for (guint i = 0; i < selection.size(); ++i) {
-      Subtitle &sub = selection[i];
+    for (const auto &sub : selection) {
       // Is the next subtitle?
       if (sub.get_num() == last_id + 1) {
         contiguous_selection.back().push_back(sub);
         ++last_id;
       } else {
         // Create new list only if the previous is empty.
-        if (!contiguous_selection.back().empty())
+        if (!contiguous_selection.back().empty()) {
           contiguous_selection.push_back(std::vector<Subtitle>());
-
+        }
         contiguous_selection.back().push_back(sub);
 
         last_id = sub.get_num();
@@ -206,11 +203,10 @@ class StackSubtitlesPlugin : public Action {
     }
 
     // We check if we have at least one contiguous subtitles.
-    for (std::list<std::vector<Subtitle> >::iterator it =
-             contiguous_selection.begin();
-         it != contiguous_selection.end(); ++it) {
-      if ((*it).size() >= 2)
+    for (const auto &subs : contiguous_selection) {
+      if (subs.size() >= 2) {
         return true;
+      }
     }
     doc->flash_message(
         _("Stack Subtitles only works on a continuous selection."));

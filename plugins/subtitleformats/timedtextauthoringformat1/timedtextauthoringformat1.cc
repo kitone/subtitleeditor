@@ -43,14 +43,13 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
           root->get_children("body").front());
       if (body) {
         // <div>
-        const xmlpp::Element *div = dynamic_cast<const xmlpp::Element *>(
+        auto div = dynamic_cast<const xmlpp::Element *>(
             body->get_children("div").front());
 
         if (div) {
           xmlpp::Node::NodeList list = div->get_children();
-          for (xmlpp::Node::NodeList::const_iterator it = list.begin();
-               it != list.end(); ++it) {
-            read_subtitle(dynamic_cast<const xmlpp::Element *>(*it));
+          for (const auto &node : list) {
+            read_subtitle(dynamic_cast<const xmlpp::Element *>(node));
           }
         }
       }
@@ -118,9 +117,8 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
       Glib::ustring text;
 
       xmlpp::Node::NodeList children = p->get_children();
-      for (xmlpp::Node::NodeList::const_iterator it = children.begin();
-           it != children.end(); ++it) {
-        xmlpp::ContentNode *cn = dynamic_cast<xmlpp::ContentNode *>(*it);
+      for (const auto &node : children) {
+        xmlpp::ContentNode *cn = dynamic_cast<xmlpp::ContentNode *>(node);
         if (cn == NULL)
           continue;
         if (!text.empty())

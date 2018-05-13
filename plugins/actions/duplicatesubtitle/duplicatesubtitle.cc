@@ -98,8 +98,7 @@ class DuplicateSelectedSubtitlesPlugin : public Action {
 
     doc->start_command(_("Duplicate selected subtitles"));
 
-    std::vector<Subtitle>::reverse_iterator it;
-    for (it = selection.rbegin(); it != selection.rend(); ++it) {
+    for (auto it = selection.rbegin(); it != selection.rend(); ++it) {
       Subtitle next = subtitles.insert_after(*it);
       (*it).copy_to(next);
     }

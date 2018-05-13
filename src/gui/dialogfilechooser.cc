@@ -32,9 +32,7 @@
 void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog) {
   g_return_if_fail(dialog);
 
-  std::list<SubtitleFormatInfo>::const_iterator it;
-  std::list<SubtitleFormatInfo> infos =
-      SubtitleFormatSystem::instance().get_infos();
+  auto subtitle_format_infos = SubtitleFormatSystem::instance().get_infos();
 
   Glib::RefPtr<Gtk::FileFilter> all = Gtk::FileFilter::create();
   Glib::RefPtr<Gtk::FileFilter> supported = Gtk::FileFilter::create();
@@ -46,28 +44,23 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog) {
   }
 
   // all supported formats
-  {
-    supported->set_name(_("All supported formats (*.ass, *.ssa, *.srt, ...)"));
-    for (it = infos.begin(); it != infos.end(); ++it) {
-      supported->add_pattern("*." + (*it).extension);
-      supported->add_pattern("*." + (*it).extension.uppercase());
-    }
-
-    dialog->add_filter(supported);
+  supported->set_name(_("All supported formats (*.ass, *.ssa, *.srt, ...)"));
+  for (const auto &sf_info : subtitle_format_infos) {
+    supported->add_pattern("*." + sf_info.extension);
+    supported->add_pattern("*." + sf_info.extension.uppercase());
   }
+  dialog->add_filter(supported);
 
   // by format
-  {
-    for (it = infos.begin(); it != infos.end(); ++it) {
-      Glib::ustring name = (*it).name;
-      Glib::ustring ext = (*it).extension;
+  for (const auto &sf_info : subtitle_format_infos) {
+    Glib::ustring name = sf_info.name;
+    Glib::ustring ext = sf_info.extension;
 
-      Glib::RefPtr<Gtk::FileFilter> filter = Gtk::FileFilter::create();
-      filter->set_name(name + " (" + ext + ")");
-      filter->add_pattern("*." + ext);
-      filter->add_pattern("*." + ext.uppercase());
-      dialog->add_filter(filter);
-    }
+    Glib::RefPtr<Gtk::FileFilter> filter = Gtk::FileFilter::create();
+    filter->set_name(name + " (" + ext + ")");
+    filter->add_pattern("*." + ext);
+    filter->add_pattern("*." + ext.uppercase());
+    dialog->add_filter(filter);
   }
 
   // select by default
@@ -106,16 +99,11 @@ DialogFileChooser::~DialogFileChooser() {
 
 // Define the current file filter.
 // ex: 'Subtitle Editor Project', 'SubRip', 'MicroDVD' ...
-void DialogFileChooser::set_current_filter(
-    const Glib::ustring &subtitleformat_name) {
-  std::vector<Glib::RefPtr<Gtk::FileFilter> > filters = list_filters();
-  for (std::vector<Glib::RefPtr<Gtk::FileFilter> >::const_iterator it =
-           filters.begin();
-       it != filters.end(); ++it) {
-    if ((*it)->get_name().find(subtitleformat_name) == Glib::ustring::npos)
+void DialogFileChooser::set_current_filter(const Glib::ustring &sf_name) {
+  for (const auto &filter : list_filters()) {
+    if (filter->get_name().find(sf_name) == Glib::ustring::npos)
       continue;
-
-    set_filter(*it);
+    set_filter(filter);
     return;
   }
 }

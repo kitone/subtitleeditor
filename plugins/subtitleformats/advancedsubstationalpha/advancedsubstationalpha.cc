@@ -162,23 +162,23 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     Glib::RefPtr<Glib::Regex> re_block = Glib::Regex::create("^\\[.*\\]$");
 
     bool read = false;
-    for (std::vector<Glib::ustring>::const_iterator it = lines.begin();
-         it != lines.end(); ++it) {
+
+    for (const auto &line : lines) {
       // We want to only read the scrip info block
       if (read) {
-        if (re_block->match(*it))
+        if (re_block->match(line))
           return;  // new block, stop reading
-      } else if ((*it).find("[Script Info]") != Glib::ustring::npos) {
+      } else if (line.find("[Script Info]") != Glib::ustring::npos) {
         // This is the beginning of the script info block, start reading
         read = true;
       }
 
       if (!read)
         continue;
-      if (!re->match(*it))
+      if (!re->match(line))
         continue;
 
-      std::vector<Glib::ustring> group = re->split(*it);
+      std::vector<Glib::ustring> group = re->split(line);
 
       if (group.size() == 1)
         continue;
@@ -206,12 +206,11 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
         "),([^,]*),"
         "([^,]*),([^,]*),([^,]*)$");
 
-    for (std::vector<Glib::ustring>::const_iterator it = lines.begin();
-         it != lines.end(); ++it) {
-      if (!re->match(*it))
+    for (const auto &line : lines) {
+      if (!re->match(line))
         continue;
 
-      std::vector<Glib::ustring> group = re->split(*it);
+      std::vector<Glib::ustring> group = re->split(line);
       if (group.size() == 1)
         continue;
 
@@ -263,12 +262,11 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
         "^,"
         "]*),([^,]*),([^,]*),(.*)$");
 
-    for (std::vector<Glib::ustring>::const_iterator it = lines.begin();
-         it != lines.end(); ++it) {
-      if (!re->match(*it))
+    for (const auto &line : lines) {
+      if (!re->match(line))
         continue;
 
-      std::vector<Glib::ustring> group = re->split(*it);
+      std::vector<Glib::ustring> group = re->split(line);
       if (group.size() == 1)
         continue;
 
@@ -311,10 +309,8 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
 
     scriptInfo.data["ScriptType"] = "V4.00+";  // Set ASS format
 
-    for (std::map<Glib::ustring, Glib::ustring>::const_iterator it =
-             scriptInfo.data.begin();
-         it != scriptInfo.data.end(); ++it) {
-      file.write(it->first + ": " + it->second + "\n");
+    for (const auto &i : scriptInfo.data) {
+      file.write(i.first + ": " + i.second + "\n");
     }
 
     // Only if one of PlayRes is missing

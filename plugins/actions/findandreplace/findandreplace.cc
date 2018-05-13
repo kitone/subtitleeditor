@@ -338,10 +338,10 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
 
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(m_key + "-(\\d+)");
 
-    std::list<Glib::ustring>::iterator it;
-    for (it = keys.begin(); it != keys.end(); ++it) {
-      if (re->match(*it))
-        append(cfg.get_value_string(m_group, *it));
+    for (const auto &k : keys) {
+      if (re->match(k)) {
+        append(cfg.get_value_string(m_group, k));
+      }
     }
     get_entry()->set_text(cfg.get_value_string(m_group, m_key));
   }
@@ -648,8 +648,8 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     else
       docs.push_back(m_document);
 
-    for (DocumentList::iterator it = docs.begin(); it != docs.end(); ++it) {
-      set_current_document(*it);
+    for (const auto &doc : docs) {
+      set_current_document(doc);
       // List of the modified subtitles
       std::list<Subtitle> selection;
 
@@ -699,7 +699,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     DocumentList list = get_documents_to_apply();
 
     Document *cur = m_document;
-    for (DocumentList::iterator it = list.begin(); it != list.end(); ++it) {
+    for (auto it = list.begin(); it != list.end(); ++it) {
       if (*it == cur) {
         ++it;
         if (it != list.end())

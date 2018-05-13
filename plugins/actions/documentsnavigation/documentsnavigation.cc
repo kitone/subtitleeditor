@@ -168,8 +168,7 @@ class DocumentsNavigationPlugin : public Action {
 
     DocumentList documents = DocumentSystem::getInstance().getAllDocuments();
 
-    for (DocumentList::iterator it = documents.begin(); it != documents.end();
-         ++it, ++count) {
+    for (auto it = documents.begin(); it != documents.end(); ++it, ++count) {
       Glib::ustring action_name =
           Glib::ustring::compose("documentsnavigation-document-%1", count);
       Glib::ustring action_accel =

@@ -55,10 +55,9 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
 
   se_debug_message(SE_DEBUG_APP, "Trying to determinate the file format...");
 
-  SubtitleFormatList sfe_list = get_subtitle_format_list();
-  for (SubtitleFormatList::const_iterator it = sfe_list.begin();
-       it != sfe_list.end(); ++it) {
-    SubtitleFormatInfo sfi = (*it)->get_info();
+  auto list_of_sf = get_subtitle_format_list();
+  for (const auto &sf : list_of_sf) {
+    SubtitleFormatInfo sfi = sf->get_info();
 
     se_debug_message(SE_DEBUG_APP, "Try with '%s' format", sfi.name.c_str());
 
@@ -105,16 +104,13 @@ SubtitleFormatIO *SubtitleFormatSystem::create_subtitle_format_io(
   se_debug_message(SE_DEBUG_APP, "Trying to create the subtitle format '%s'",
                    name.c_str());
 
-  SubtitleFormatList sfe_list = get_subtitle_format_list();
-  for (SubtitleFormatList::const_iterator it = sfe_list.begin();
-       it != sfe_list.end(); ++it) {
-    SubtitleFormat *sfe = *it;
-
+  auto list_of_sf = get_subtitle_format_list();
+  for (const auto &sf : list_of_sf) {
     se_debug_message(SE_DEBUG_APP, "considering subtitle format'%s'...",
-                     sfe->get_info().name.c_str());
+                     sf->get_info().name.c_str());
 
-    if (sfe->get_info().name == name)
-      return sfe->create();
+    if (sf->get_info().name == name)
+      return sf->create();
   }
   throw UnrecognizeFormatError(build_message(
       _("Couldn't create the subtitle format '%s'."), name.c_str()));
@@ -271,23 +267,20 @@ void SubtitleFormatSystem::save_to_data(Document *document, Glib::ustring &dst,
 std::list<SubtitleFormatInfo> SubtitleFormatSystem::get_infos() {
   std::list<SubtitleFormatInfo> infos;
 
-  SubtitleFormatList sfe_list = get_subtitle_format_list();
-
-  SubtitleFormatList::const_iterator it;
-  for (it = sfe_list.begin(); it != sfe_list.end(); ++it)
-    infos.push_back((*it)->get_info());
-
+  auto list_of_sf = get_subtitle_format_list();
+  for (const auto &sf : list_of_sf) {
+    infos.push_back(sf->get_info());
+  }
   return infos;
 }
 
 // Return information about the subtitle format.
 bool SubtitleFormatSystem::get_info(const Glib::ustring &subtitle_format,
                                     SubtitleFormatInfo &info) {
-  std::list<SubtitleFormatInfo> infos = get_infos();
-  for (std::list<SubtitleFormatInfo>::const_iterator it = infos.begin();
-       it != infos.end(); ++it) {
-    if ((*it).name == subtitle_format) {
-      info = *it;
+  auto infos = get_infos();
+  for (const auto &i : infos) {
+    if (i.name == subtitle_format) {
+      info = i;
       return true;
     }
   }
@@ -296,14 +289,11 @@ bool SubtitleFormatSystem::get_info(const Glib::ustring &subtitle_format,
 
 // Check if the subtitle format is supported.
 bool SubtitleFormatSystem::is_supported(const Glib::ustring &format) {
-  SubtitleFormatList sfe_list = get_subtitle_format_list();
-
-  SubtitleFormatList::const_iterator it;
-  for (it = sfe_list.begin(); it != sfe_list.end(); ++it) {
-    if ((*it)->get_info().name == format)
+  auto list_of_sf = get_subtitle_format_list();
+  for (const auto &sf : list_of_sf) {
+    if (sf->get_info().name == format)
       return true;
   }
-
   return false;
 }
 
@@ -316,15 +306,13 @@ bool on_sort_sf(SubtitleFormat *a, SubtitleFormat *b) {
 SubtitleFormatList SubtitleFormatSystem::get_subtitle_format_list() {
   std::list<SubtitleFormat *> list;
   // Get from ExtensionManager
-  std::list<ExtensionInfo *> sf_list =
-      ExtensionManager::instance().get_info_list_from_categorie(
-          "subtitleformat");
-  for (std::list<ExtensionInfo *>::iterator it = sf_list.begin();
-       it != sf_list.end(); ++it) {
-    if ((*it)->get_active() == false)
+  auto sf_list = ExtensionManager::instance().get_info_list_from_categorie(
+      "subtitleformat");
+  for (const auto &ext_info : sf_list) {
+    if (ext_info->get_active() == false)
       continue;
 
-    SubtitleFormat *sf = dynamic_cast<SubtitleFormat *>((*it)->get_extension());
+    auto sf = dynamic_cast<SubtitleFormat *>(ext_info->get_extension());
     if (sf)
       list.push_back(sf);
   }

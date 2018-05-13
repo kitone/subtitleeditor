@@ -492,10 +492,8 @@ bool Config::set_value_string_list(const Glib::ustring &group,
   g_return_val_if_fail(m_keyFile, false);
 
   Glib::ustring text;
-  std::list<Glib::ustring>::const_iterator it;
-  for (it = list.begin(); it != list.end(); ++it) {
-    text += *it;
-    text += ";";
+  for (const auto &value : list) {
+    text += value + ";";
   }
 
   se_debug_message(SE_DEBUG_APP, "[%s] %s=%s", group.c_str(), key.c_str(),

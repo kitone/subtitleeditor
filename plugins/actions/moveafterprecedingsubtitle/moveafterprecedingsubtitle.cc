@@ -122,9 +122,8 @@ class MoveAfterPrecedingSubtitlePlugin : public Action {
 
     if (after_preceding) {  // move after preceding
       doc->start_command(_("Move After Preceding"));
-      for (unsigned int i = 0; i < selection.size(); ++i) {
-        Subtitle sub = selection[i];
 
+      for (auto &sub : selection) {
         Subtitle previous = subtitles.get_previous(sub);
 
         if (previous) {

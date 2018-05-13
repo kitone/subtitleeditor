@@ -58,21 +58,19 @@ ExtensionManager::~ExtensionManager() {
 void ExtensionManager::create_extensions() {
   se_debug(SE_DEBUG_APP);
 
-  std::list<ExtensionInfo *> list = get_extension_info_list();
-  for (std::list<ExtensionInfo *>::iterator it = list.begin(); it != list.end();
-       ++it) {
+  for (const auto &ext_info : get_extension_info_list()) {
     Glib::ustring state;
     if (Config::getInstance().get_value_string("extension-manager",
-                                               (*it)->get_name(), state)) {
+                                               ext_info->get_name(), state)) {
       if (state == "enable")
-        activate(*it);
+        activate(ext_info);
     } else {
       // Unknown extension, enable by default
       se_debug_message(SE_DEBUG_APP,
                        "First time for the plugin '%s', enable by default",
-                       (*it)->get_name().c_str());
+                       ext_info->get_name().c_str());
 
-      set_extension_active((*it)->get_name(), true);
+      set_extension_active(ext_info->get_name(), true);
     }
   }
 }
@@ -81,14 +79,11 @@ void ExtensionManager::create_extensions() {
 void ExtensionManager::destroy_extensions() {
   se_debug(SE_DEBUG_APP);
 
-  std::list<ExtensionInfo *> list = get_extension_info_list();
-  for (std::list<ExtensionInfo *>::iterator it = list.begin(); it != list.end();
-       ++it) {
+  for (const auto &ext_info : get_extension_info_list()) {
     se_debug_message(SE_DEBUG_APP, "delete extension '%s'",
-                     (*it)->get_name().c_str());
-    delete *it;
+                     ext_info->get_name().c_str());
+    delete ext_info;
   }
-
   m_extension_info_map.clear();
 }
 
@@ -239,12 +234,9 @@ std::list<ExtensionInfo *> ExtensionManager::get_extension_info_list() {
   se_debug(SE_DEBUG_APP);
   std::list<ExtensionInfo *> list;
 
-  ExtensionInfoMap::iterator it_map;
-  for (it_map = m_extension_info_map.begin();
-       it_map != m_extension_info_map.end(); ++it_map) {
-    list.insert(list.end(), (*it_map).second.begin(), (*it_map).second.end());
+  for (const auto &ext_map : m_extension_info_map) {
+    list.insert(list.end(), ext_map.second.begin(), ext_map.second.end());
   }
-
   return list;
 }
 
@@ -263,14 +255,11 @@ std::list<ExtensionInfo *> ExtensionManager::get_info_list_from_categorie(
 ExtensionInfo *ExtensionManager::get_extension_info(const Glib::ustring &name) {
   se_debug_message(SE_DEBUG_APP, "name='%s'", name.c_str());
 
-  ExtensionInfoMap::iterator it_map;
-  for (it_map = m_extension_info_map.begin();
-       it_map != m_extension_info_map.end(); ++it_map) {
-    std::list<ExtensionInfo *>::iterator it_list;
-    for (it_list = (*it_map).second.begin(); it_list != (*it_map).second.end();
-         ++it_list)
-      if ((*it_list)->name == name)
-        return *it_list;
+  for (const auto &ext_map : m_extension_info_map) {
+    for (const auto &ext_info : ext_map.second) {
+      if (ext_info->name == name)
+        return ext_info;
+    }
   }
   return NULL;
 }

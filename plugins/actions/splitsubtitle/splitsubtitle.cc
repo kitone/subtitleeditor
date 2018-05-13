@@ -93,8 +93,7 @@ class SplitSelectedSubtitlesPlugin : public Action {
 
     doc->start_command(_("Split subtitles"));
 
-    for (std::vector<Subtitle>::reverse_iterator it = selection.rbegin();
-         it != selection.rend(); ++it) {
+    for (auto it = selection.rbegin(); it != selection.rend(); ++it) {
       split(subtitles, *it);
     }
 
@@ -155,11 +154,11 @@ class SplitSelectedSubtitlesPlugin : public Action {
     SubtitleTime dur;
 
     for (i = 0; i < newsubs.size(); ++i) {
-      if (total_chars > 0)
+      if (total_chars > 0) {
         dur = oduration * ((double)lines[i].size() / (double)total_chars);
-      else
+      } else {
         dur = oduration / static_cast<long>(newsubs.size());
-
+      }
       newsubs[i].set_start_and_end(start, start + dur);
 
       start = start + dur;  // Update the beginning of the next subtitle
@@ -199,8 +198,7 @@ class SplitSelectedSubtitlesPlugin : public Action {
   void fix_multiline_tag(std::vector<Glib::ustring> &lines) {
     Glib::RefPtr<Glib::Regex> re_tag_open = Glib::Regex::create("<(\\w+)>");
 
-    for (std::vector<Glib::ustring>::iterator it = lines.begin();
-         it != lines.end(); ++it) {
+    for (auto it = lines.begin(); it != lines.end(); ++it) {
       // Is there a tag open ?
       if (re_tag_open->match(*it)) {
         std::vector<Glib::ustring> matches = re_tag_open->split(*it);

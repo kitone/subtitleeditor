@@ -44,7 +44,7 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
 
       ComboBoxTextColumns m_columns;
 
-      for (Gtk::TreeIter it = rows.begin(); it; ++it) {
+      for (auto it = rows.begin(); it; ++it) {
         if ((*it)[m_columns.m_col_name] == text) {
           set_active(it);
           return;
@@ -122,9 +122,8 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
       double dest = get_value(m_comboDest);
 
       if (src != 0 && dest != 0) {
-        for (DocumentList::const_iterator it = docs.begin(); it != docs.end();
-             ++it) {
-          signal_change_framerate(*it, src, dest);
+        for (const auto &d : docs) {
+          signal_change_framerate(d, src, dest);
         }
       }
     }

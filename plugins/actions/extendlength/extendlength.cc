@@ -116,8 +116,7 @@ class ExtendLengthPlugin : public Action {
     doc->start_command(_("Extend lenght"));
 
     if (forward) {  // extend length forward, i.e. keep start and move end
-      for (unsigned int i = 0; i < selection.size(); ++i) {
-        Subtitle &sub = selection[i];
+      for (auto &sub : selection) {
         Subtitle next = subtitles.get_next(sub);
         if (next) {
           SubtitleTime time = next.get_start() - gap;

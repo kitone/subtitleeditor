@@ -306,14 +306,13 @@ class PatternsPage : public AssistantPage {
     patterns.sort(sort_pattern);
     patterns.unique(unique_pattern);
 
-    for (std::list<Pattern *>::iterator it = patterns.begin();
-         it != patterns.end(); ++it) {
+    for (const auto &p : patterns) {
       Gtk::TreeIter iter = m_liststore->append();
-      (*iter)[m_column.name] = (*it)->get_name();
-      (*iter)[m_column.enabled] = (*it)->is_enable();
+      (*iter)[m_column.name] = p->get_name();
+      (*iter)[m_column.enabled] = p->is_enable();
       (*iter)[m_column.label] =
-          build_message("<b>%s</b>\n%s", _((*it)->get_label().c_str()),
-                        _((*it)->get_description().c_str()));
+          build_message("<b>%s</b>\n%s", _(p->get_label().c_str()),
+                        _(p->get_description().c_str()));
     }
   }
 
@@ -340,20 +339,18 @@ class PatternsPage : public AssistantPage {
 
   // Initialize the combo script from with the pattern available.
   void init_script() {
-    std::vector<Glib::ustring> scripts = m_patternManager.get_scripts();
+    auto scripts = m_patternManager.get_scripts();
 
     m_comboScript->clear_model();
 
     std::map<Glib::ustring, Glib::ustring> sort_map;
 
-    for (unsigned int i = 0; i < scripts.size(); ++i)
-      sort_map[isocodes::to_script(scripts[i])] = scripts[i];
-
-    for (std::map<Glib::ustring, Glib::ustring>::const_iterator it =
-             sort_map.begin();
-         it != sort_map.end(); ++it)
-      m_comboScript->append(it->first, it->second);
-
+    for (const auto &s : scripts) {
+      sort_map[isocodes::to_script(s)] = s;
+    }
+    for (const auto &i : sort_map) {
+      m_comboScript->append(i.first, i.second);
+    }
     m_comboScript->append("---", "");
     m_comboScript->append(_("Other"), "");
 
@@ -365,21 +362,19 @@ class PatternsPage : public AssistantPage {
   void init_language() {
     Glib::ustring script = get_script();
 
-    std::vector<Glib::ustring> languages =
-        m_patternManager.get_languages(script);
+    auto languages = m_patternManager.get_languages(script);
 
     m_comboLanguage->clear_model();
 
     std::map<Glib::ustring, Glib::ustring> sort_map;
 
-    for (unsigned int i = 0; i < languages.size(); ++i)
-      sort_map[isocodes::to_language(languages[i])] = languages[i];
+    for (const auto &l : languages) {
+      sort_map[isocodes::to_language(l)] = l;
+    }
 
-    for (std::map<Glib::ustring, Glib::ustring>::const_iterator it =
-             sort_map.begin();
-         it != sort_map.end(); ++it)
-      m_comboLanguage->append(it->first, it->second);
-
+    for (const auto &i : sort_map) {
+      m_comboLanguage->append(i.first, i.second);
+    }
     if (!languages.empty()) {
       m_comboLanguage->append("---", "");
       m_comboLanguage->append(_("Other"), "");
@@ -394,19 +389,17 @@ class PatternsPage : public AssistantPage {
     Glib::ustring script = get_script();
     Glib::ustring language = get_language();
 
-    std::vector<Glib::ustring> countries =
-        m_patternManager.get_countries(script, language);
+    auto countries = m_patternManager.get_countries(script, language);
 
     m_comboCountry->clear_model();
 
     std::map<Glib::ustring, Glib::ustring> sort_map;
-    for (unsigned int i = 0; i < countries.size(); ++i)
-      sort_map[isocodes::to_country(countries[i])] = countries[i];
-
-    for (std::map<Glib::ustring, Glib::ustring>::const_iterator it =
-             sort_map.begin();
-         it != sort_map.end(); ++it)
-      m_comboCountry->append(it->first, it->second);
+    for (const auto &c : countries) {
+      sort_map[isocodes::to_country(c)] = c;
+    }
+    for (const auto &i : sort_map) {
+      m_comboCountry->append(i.first, i.second);
+    }
 
     if (!countries.empty()) {
       m_comboCountry->append("---", "");

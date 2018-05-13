@@ -214,20 +214,15 @@ class MoveSubtitlesPlugin : public Action {
     if (doc->get_edit_timing_mode() == TIME) {
       SubtitleTime time(diff);
 
-      std::vector<Subtitle>::iterator it;
-      for (it = selection.begin(); it != selection.end(); ++it) {
-        Subtitle sub = (*it);
+      for (auto &sub : selection) {
         sub.set_start_and_end(sub.get_start() + time, sub.get_end() + time);
       }
     } else {
-      std::vector<Subtitle>::iterator it;
-      for (it = selection.begin(); it != selection.end(); ++it) {
-        Subtitle sub = (*it);
+      for (auto &sub : selection) {
         sub.set_start_frame(sub.get_start_frame() + diff);
         sub.set_end_frame(sub.get_end_frame() + diff);
       }
     }
-
     return true;
   }
 

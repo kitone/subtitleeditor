@@ -48,18 +48,20 @@ class ErrorCheckingGroup : public std::vector<ErrorChecking *> {
   }
 
   ~ErrorCheckingGroup() {
-    for (ErrorCheckingGroup::iterator it = begin(); it != end(); ++it)
+    for (auto it = begin(); it != end(); ++it) {
       delete *it;
+    }
     clear();
   }
 
   void init_settings() {
-    for (ErrorCheckingGroup::iterator it = begin(); it != end(); ++it)
+    for (auto it = begin(); it != end(); ++it) {
       (*it)->init();
+    }
   }
 
   ErrorChecking *get_by_name(const Glib::ustring &name) {
-    for (ErrorCheckingGroup::iterator it = begin(); it != end(); ++it) {
+    for (auto it = begin(); it != end(); ++it) {
       if ((*it)->get_name() == name)
         return *it;
     }
@@ -380,11 +382,8 @@ class DialogErrorChecking : public Gtk::Dialog {
 
     Subtitles subtitles = doc->subtitles();
 
-    std::vector<ErrorChecking *>::const_iterator checker_it;
-
-    for (checker_it = checkers.begin(); checker_it != checkers.end();
-         ++checker_it) {
-      if ((*checker_it)->get_active() == false)
+    for (const auto &checker : checkers) {
+      if (checker->get_active() == false)
         continue;
 
       // Check all subtitles with the current checker
@@ -404,9 +403,8 @@ class DialogErrorChecking : public Gtk::Dialog {
         info.previousSub = previous;
         info.tryToFix = false;
 
-        if ((*checker_it)->execute(info)) {
-          add_error(row, info, *checker_it);
-
+        if (checker->execute(info)) {
+          add_error(row, info, checker);
           ++count_error;
         }
 
@@ -417,7 +415,7 @@ class DialogErrorChecking : public Gtk::Dialog {
       if (row.children().empty()) {
         m_model->erase(row);
       } else {
-        row[m_column.checker] = (*checker_it);
+        row[m_column.checker] = checker;
 
         update_node_label(row);
       }
@@ -442,9 +440,8 @@ class DialogErrorChecking : public Gtk::Dialog {
 
       Gtk::TreeModel::Row row = *(m_model->append());
 
-      for (checker_it = checkers.begin(); checker_it != checkers.end();
-           ++checker_it) {
-        if ((*checker_it)->get_active() == false)
+      for (const auto &checker : checkers) {
+        if (checker->get_active() == false)
           continue;
 
         // info
@@ -455,10 +452,10 @@ class DialogErrorChecking : public Gtk::Dialog {
         info.previousSub = previous;
         info.tryToFix = false;
 
-        if ((*checker_it)->execute(info) == false)
+        if (checker->execute(info) == false)
           continue;
 
-        add_error(row, info, *checker_it);
+        add_error(row, info, checker);
 
         ++count_error;
       }
@@ -487,10 +484,9 @@ class DialogErrorChecking : public Gtk::Dialog {
       return;
 
     ErrorCheckingGroup group;
-    ErrorCheckingGroup::iterator it;
-    for (it = group.begin(); it != group.end(); ++it) {
-      if ((*it)->get_active())
-        fix_error(*it, doc);
+    for (const auto &c : group) {
+      if (c->get_active())
+        fix_error(c, doc);
     }
     refresh();
   }

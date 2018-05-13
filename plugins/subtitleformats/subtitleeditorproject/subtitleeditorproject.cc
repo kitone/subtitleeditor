@@ -215,17 +215,15 @@ class SubtitleEditorProject : public SubtitleFormatIO {
 
     const xmlpp::Node::NodeList list_styles = xmlstyles->get_children("style");
 
-    for (xmlpp::Node::NodeList::const_iterator it = list_styles.begin();
-         it != list_styles.end(); ++it) {
-      const xmlpp::Element *el = dynamic_cast<const xmlpp::Element *>(*it);
+    for (const auto &node : list_styles) {
+      auto el = dynamic_cast<const xmlpp::Element *>(node);
 
       Style style = styles.append();
 
-      const xmlpp::Element::AttributeList list = el->get_attributes();
+      auto attr_list = el->get_attributes();
 
-      for (xmlpp::Element::AttributeList::const_iterator at = list.begin();
-           at != list.end(); ++at) {
-        style.set((*at)->get_name(), (*at)->get_value());
+      for (const auto &att : attr_list) {
+        style.set(att->get_name(), att->get_value());
       }
     }
   }
@@ -241,9 +239,9 @@ class SubtitleEditorProject : public SubtitleFormatIO {
       std::map<Glib::ustring, Glib::ustring> values;
       style.get(values);
 
-      std::map<Glib::ustring, Glib::ustring>::const_iterator it;
-      for (it = values.begin(); it != values.end(); ++it)
-        xml->set_attribute(it->first, it->second);
+      for (const auto &i : values) {
+        xml->set_attribute(i.first, i.second);
+      }
     }
   }
 
@@ -277,22 +275,19 @@ class SubtitleEditorProject : public SubtitleFormatIO {
         document()->set_framerate(get_framerate_from_value(value));
     }
 
-    const xmlpp::Node::NodeList list_subtitles =
-        xmlsubtitles->get_children("subtitle");
+    auto list_subtitles = xmlsubtitles->get_children("subtitle");
 
     Subtitles subtitles = document()->subtitles();
 
-    for (xmlpp::Node::NodeList::const_iterator it = list_subtitles.begin();
-         it != list_subtitles.end(); ++it) {
-      const xmlpp::Element *el = dynamic_cast<const xmlpp::Element *>(*it);
+    for (const auto &node : list_subtitles) {
+      auto el = dynamic_cast<const xmlpp::Element *>(node);
 
       Subtitle sub = subtitles.append();
 
-      const xmlpp::Element::AttributeList list = el->get_attributes();
+      auto attr_list = el->get_attributes();
 
-      for (xmlpp::Element::AttributeList::const_iterator at = list.begin();
-           at != list.end(); ++at) {
-        sub.set((*at)->get_name(), (*at)->get_value());
+      for (const auto &att : attr_list) {
+        sub.set(att->get_name(), att->get_value());
       }
     }
   }
@@ -320,9 +315,9 @@ class SubtitleEditorProject : public SubtitleFormatIO {
       std::map<Glib::ustring, Glib::ustring> values;
       sub.get(values);
 
-      std::map<Glib::ustring, Glib::ustring>::const_iterator it;
-      for (it = values.begin(); it != values.end(); ++it)
-        xmlsub->set_attribute(it->first, it->second);
+      for (const auto &i : values) {
+        xmlsub->set_attribute(i.first, i.second);
+      }
     }
   }
 
@@ -332,16 +327,15 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     if (xmlsubtitles == NULL)
       return;
 
-    const xmlpp::Node::NodeList list_subtitles =
-        xmlsubtitles->get_children("subtitle");
+    auto list_subtitles = xmlsubtitles->get_children("subtitle");
 
     std::vector<Subtitle> selection(list_subtitles.size());
 
     Subtitles subtitles = document()->subtitles();
 
     unsigned int i = 0;
-    for (xmlpp::Node::NodeList::const_iterator it = list_subtitles.begin();
-         it != list_subtitles.end(); ++it, ++i) {
+    for (auto it = list_subtitles.begin(); it != list_subtitles.end();
+         ++it, ++i) {
       const xmlpp::Element *el = dynamic_cast<const xmlpp::Element *>(*it);
       long path = utility::string_to_long(el->get_attribute_value("path"));
 
@@ -355,9 +349,9 @@ class SubtitleEditorProject : public SubtitleFormatIO {
 
     std::vector<Subtitle> selection = document()->subtitles().get_selection();
 
-    for (unsigned int i = 0; i < selection.size(); ++i) {
+    for (const auto &subtitle : selection) {
       xmlpp::Element *xmlsub = xml->add_child("subtitle");
-      xmlsub->set_attribute("path", selection[i].get("path"));
+      xmlsub->set_attribute("path", subtitle.get("path"));
     }
   }
 

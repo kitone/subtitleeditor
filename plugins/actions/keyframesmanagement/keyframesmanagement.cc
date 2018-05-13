@@ -360,8 +360,7 @@ class KeyframesManagementPlugin : public Action {
 
     long pos = player()->get_position();
 
-    for (KeyFrames::const_iterator it = keyframes->begin();
-         it != keyframes->end(); ++it) {
+    for (auto it = keyframes->begin(); it != keyframes->end(); ++it) {
       if (*it > pos) {
         player()->seek(*it);
         return;
@@ -375,8 +374,7 @@ class KeyframesManagementPlugin : public Action {
 
     long pos = player()->get_position();
 
-    for (KeyFrames::reverse_iterator it = keyframes->rbegin();
-         it != keyframes->rend(); ++it) {
+    for (auto it = keyframes->rbegin(); it != keyframes->rend(); ++it) {
       if (*it < pos) {
         player()->seek(*it);
         return;
@@ -389,8 +387,7 @@ class KeyframesManagementPlugin : public Action {
     if (!keyframes)
       return false;
 
-    for (KeyFrames::reverse_iterator it = keyframes->rbegin();
-         it != keyframes->rend(); ++it) {
+    for (auto it = keyframes->rbegin(); it != keyframes->rend(); ++it) {
       if (*it < pos) {
         prev = *it;
         return true;
@@ -404,8 +401,7 @@ class KeyframesManagementPlugin : public Action {
     if (!keyframes)
       return false;
 
-    for (KeyFrames::const_iterator it = keyframes->begin();
-         it != keyframes->end(); ++it) {
+    for (auto it = keyframes->begin(); it != keyframes->end(); ++it) {
       if (*it > pos) {
         next = *it;
         return true;

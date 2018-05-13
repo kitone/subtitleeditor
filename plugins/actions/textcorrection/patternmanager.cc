@@ -39,8 +39,9 @@ PatternManager::PatternManager(const Glib::ustring &type) {
 PatternManager::~PatternManager() {
   se_debug(SE_DEBUG_PLUGINS);
 
-  std::list<Pattern *>::iterator it;
-  for (it = m_patterns.begin(); it != m_patterns.end(); ++it) delete *it;
+  for (auto p : m_patterns) {
+    delete p;
+  }
   m_patterns.clear();
 }
 
@@ -61,9 +62,9 @@ void PatternManager::load_path(const Glib::ustring &path) {
 
     Glib::Dir dir(path);
     std::vector<Glib::ustring> files(dir.begin(), dir.end());
-    for (unsigned int i = 0; i < files.size(); ++i) {
-      if (re->match(files[i])) {
-        load_pattern(path, files[i]);
+    for (const auto &file : files) {
+      if (re->match(file)) {
+        load_pattern(path, file);
       }
     }
   } catch (const Glib::Error &ex) {
@@ -104,12 +105,9 @@ void PatternManager::load_pattern(const Glib::ustring &path,
       return;
     }
     // read patterns
-    xmlpp::Node::NodeList xml_pattern_list =
-        xml_patterns->get_children("pattern");
-    for (xmlpp::Node::NodeList::const_iterator it = xml_pattern_list.begin();
-         it != xml_pattern_list.end(); ++it) {
-      const xmlpp::Element *xml_pattern =
-          dynamic_cast<const xmlpp::Element *>(*it);
+    auto xml_pattern_list = xml_patterns->get_children("pattern");
+    for (const auto &node : xml_pattern_list) {
+      const auto xml_pattern = dynamic_cast<const xmlpp::Element *>(node);
       // read and add the patterns to the list
       Pattern *pattern = read_pattern(xml_pattern);
       if (pattern) {
@@ -149,10 +147,10 @@ Pattern *PatternManager::read_pattern(const xmlpp::Element *xml_pattern) {
   pattern->m_policy = xml_pattern->get_attribute_value("policy");
   pattern->m_enabled = get_active(pattern->m_name);
   // get rules
-  xmlpp::Node::NodeList xml_rule_list = xml_pattern->get_children("rule");
-  for (xmlpp::Node::NodeList::const_iterator it = xml_rule_list.begin();
-       it != xml_rule_list.end(); ++it) {
-    const xmlpp::Element *xml_rule = dynamic_cast<const xmlpp::Element *>(*it);
+  auto xml_rule_list = xml_pattern->get_children("rule");
+
+  for (const auto &node : xml_rule_list) {
+    auto xml_rule = dynamic_cast<const xmlpp::Element *>(node);
 
     Glib::ustring regex = xml_rule->get_attribute_value("regex");
     Glib::ustring flags = xml_rule->get_attribute_value("flags");
@@ -166,10 +164,9 @@ Pattern *PatternManager::read_pattern(const xmlpp::Element *xml_pattern) {
       rule->m_repeat = (repeat == "True") ? true : false;
 
       // Previous match rule
-      xmlpp::Node::NodeList xml_previous_match =
-          xml_rule->get_children("previousmatch");
+      auto xml_previous_match = xml_rule->get_children("previousmatch");
       if (!xml_previous_match.empty()) {
-        const xmlpp::Element *pre =
+        auto pre =
             dynamic_cast<const xmlpp::Element *>(*xml_previous_match.begin());
 
         Glib::ustring preregex = pre->get_attribute_value("regex");
@@ -223,30 +220,29 @@ std::list<Pattern *> PatternManager::get_patterns(
 
   std::list<Pattern *> patterns;
 
-  for (unsigned int i = 0; i < codes.size(); ++i) {
-    for (std::list<Pattern *>::const_iterator it = m_patterns.begin();
-         it != m_patterns.end(); ++it) {
-      if ((*it)->m_codes == codes[i])
-        patterns.push_back(*it);
+  for (auto const &code : codes) {
+    for (auto const &pattern : m_patterns) {
+      if (pattern->m_codes == code)
+        patterns.push_back(pattern);
     }
   }
   // the patterns need to be filtered to respect the Replace policy
   std::list<Pattern *> filtered = filter_patterns(patterns);
 
   if (se_debug_check_flags(SE_DEBUG_PLUGINS)) {
-    std::list<Pattern *>::iterator it;
-
     se_debug_message(SE_DEBUG_PLUGINS, "pattern list before filter (%d)",
                      patterns.size());
-    for (it = patterns.begin(); it != patterns.end(); ++it)
-      se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", (*it)->m_codes.c_str(),
-                       (*it)->m_name.c_str());
+    for (const auto &p : patterns) {
+      se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", p->m_codes.c_str(),
+                       p->m_name.c_str());
+    }
 
     se_debug_message(SE_DEBUG_PLUGINS, "pattern list after filter (%d)",
                      filtered.size());
-    for (it = filtered.begin(); it != filtered.end(); ++it)
-      se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", (*it)->m_codes.c_str(),
-                       (*it)->m_name.c_str());
+    for (const auto &p : filtered) {
+      se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", p->m_codes.c_str(),
+                       p->m_name.c_str());
+    }
   }
 
   return filtered;
@@ -257,12 +253,11 @@ std::vector<Glib::ustring> PatternManager::get_scripts() {
   std::list<Glib::ustring> codes;
 
   Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^([A-Za-z]{4}).*$");
-  std::list<Pattern *>::const_iterator it;
-  for (it = m_patterns.begin(); it != m_patterns.end(); ++it) {
-    if (!re->match((*it)->m_codes))
+  for (const auto &p : m_patterns) {
+    if (!re->match(p->m_codes))
       continue;
 
-    std::vector<Glib::ustring> group = re->split((*it)->m_codes);
+    std::vector<Glib::ustring> group = re->split(p->m_codes);
     if (group[1] == "Zyyy")
       continue;
 
@@ -280,12 +275,11 @@ std::vector<Glib::ustring> PatternManager::get_languages(
   Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
       Glib::ustring::compose("^%1-([A-Za-z]{2}).*$", script));
 
-  std::list<Pattern *>::const_iterator it;
-  for (it = m_patterns.begin(); it != m_patterns.end(); ++it) {
-    if (!re->match((*it)->m_codes))
+  for (const auto &p : m_patterns) {
+    if (!re->match(p->m_codes))
       continue;
 
-    std::vector<Glib::ustring> group = re->split((*it)->m_codes);
+    std::vector<Glib::ustring> group = re->split(p->m_codes);
 
     codes.push_back(group[1]);
   }
@@ -301,12 +295,11 @@ std::vector<Glib::ustring> PatternManager::get_countries(
   Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
       Glib::ustring::compose("^%1-%2-([A-Za-z]{2})$", script, language));
 
-  std::list<Pattern *>::const_iterator it;
-  for (it = m_patterns.begin(); it != m_patterns.end(); ++it) {
-    if (!re->match((*it)->m_codes))
+  for (const auto &p : m_patterns) {
+    if (!re->match(p->m_codes))
       continue;
 
-    std::vector<Glib::ustring> group = re->split((*it)->m_codes);
+    std::vector<Glib::ustring> group = re->split(p->m_codes);
 
     codes.push_back(group[1]);
   }
@@ -363,10 +356,9 @@ void PatternManager::set_active(const Glib::ustring &name, bool state) {
   Config::getInstance().set_value_string("patterns", name,
                                          state ? "enable" : "disable");
 
-  for (std::list<Pattern *>::iterator it = m_patterns.begin();
-       it != m_patterns.end(); ++it) {
-    if ((*it)->m_name == name)
-      (*it)->m_enabled = state;
+  for (auto p : m_patterns) {
+    if (p->m_name == name)
+      p->m_enabled = state;
   }
 }
 

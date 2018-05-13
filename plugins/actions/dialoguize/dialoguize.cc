@@ -282,11 +282,10 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
 
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(pattern);
 
-    for (unsigned int i = 0; i < subs.size(); ++i) {
-      if (re->match(subs[i].get_text()))
+    for (const auto& subtitle : subs) {
+      if (re->match(subtitle.get_text()))
         return true;
     }
-
     return false;
   }
 
@@ -297,14 +296,12 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     Glib::RefPtr<Glib::Regex> re =
         Glib::Regex::create(pattern, Glib::REGEX_MULTILINE);
 
-    for (unsigned int i = 0; i < subs.size(); ++i) {
-      Subtitle sub = subs[i];
-
-      Glib::ustring text = sub.get_text();
+    for (auto& subtitle : subs) {
+      Glib::ustring text = subtitle.get_text();
 
       text = re->replace_literal(text, 0, replace, (Glib::RegexMatchFlags)0);
 
-      sub.set_text(text);
+      subtitle.set_text(text);
     }
   }
 

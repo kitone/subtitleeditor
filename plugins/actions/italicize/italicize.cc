@@ -126,8 +126,8 @@ class ItalicizeSelectedSubtitlesPlugin : public Action {
 
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(pattern);
 
-    for (unsigned int i = 0; i < subs.size(); ++i) {
-      if (re->match(subs[i].get_text()))
+    for (const auto &sub : subs) {
+      if (re->match(sub.get_text()))
         return true;
     }
 
@@ -141,9 +141,7 @@ class ItalicizeSelectedSubtitlesPlugin : public Action {
     Glib::RefPtr<Glib::Regex> re =
         Glib::Regex::create(pattern, Glib::REGEX_MULTILINE);
 
-    for (unsigned int i = 0; i < subs.size(); ++i) {
-      Subtitle sub = subs[i];
-
+    for (auto &sub : subs) {
       Glib::ustring text = sub.get_text();
 
       text = re->replace(text, 0, replace, (Glib::RegexMatchFlags)0);

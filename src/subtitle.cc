@@ -462,17 +462,14 @@ void Subtitle::set_text(const Glib::ustring &text) {
     std::string cpl;
 
     unsigned int count = 0;
-
-    for (std::vector<int>::const_iterator it = num_characters.begin();
-         it != num_characters.end(); ++it) {
-      if (count == 0)
-        cpl += to_string(*it);
-      else
-        cpl += "\n" + to_string(*it);
-
+    for (const auto &number : num_characters) {
+      if (count == 0) {
+        cpl += to_string(number);
+      } else {
+        cpl += "\n" + to_string(number);
+      }
       ++count;
     }
-
     (*m_iter)[column.characters_per_line_text] = cpl;
   }
 
@@ -496,14 +493,12 @@ void Subtitle::set_translation(const Glib::ustring &text) {
     std::string cpl;
 
     unsigned int count = 0;
-
-    for (std::vector<int>::const_iterator it = num_characters.begin();
-         it != num_characters.end(); ++it) {
-      if (count == 0)
-        cpl += to_string(*it);
-      else
-        cpl += "\n" + to_string(*it);
-
+    for (const auto &number : num_characters) {
+      if (count == 0) {
+        cpl += to_string(number);
+      } else {
+        cpl += "\n" + to_string(number);
+      }
       ++count;
     }
 
@@ -672,9 +667,8 @@ Glib::ustring Subtitle::get(const Glib::ustring &name) const {
 }
 
 void Subtitle::set(const std::map<Glib::ustring, Glib::ustring> &values) {
-  std::map<Glib::ustring, Glib::ustring>::const_iterator value;
-  for (value = values.begin(); value != values.end(); ++value) {
-    set(value->first, value->second);
+  for (const auto &m_v : values) {
+    set(m_v.first, m_v.second);
   }
 }
 

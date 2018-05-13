@@ -183,9 +183,8 @@ void Style::copy_to(Style &style) {
 void Style::set(const std::map<Glib::ustring, Glib::ustring> &values) {
   g_return_if_fail(m_iter);
 
-  std::map<Glib::ustring, Glib::ustring>::const_iterator value;
-  for (value = values.begin(); value != values.end(); ++value) {
-    set(value->first, value->second);
+  for (const auto &value : values) {
+    set(value.first, value.second);
   }
 }
 

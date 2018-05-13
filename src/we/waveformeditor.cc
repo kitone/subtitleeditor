@@ -145,8 +145,9 @@ void WaveformEditor::init_document(Document *doc) {
   se_debug(SE_DEBUG_WAVEFORM);
 
   m_document = NULL;
-  for (unsigned int i = 0; i < m_document_connection.size(); ++i)
-    m_document_connection[i].disconnect();
+  for (auto &doc_connection : m_document_connection) {
+    doc_connection.disconnect();
+  }
   m_document_connection.clear();
 
   if (doc != NULL) {

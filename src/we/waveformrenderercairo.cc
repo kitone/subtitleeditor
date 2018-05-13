@@ -685,8 +685,7 @@ void WaveformRendererCairo::draw_keyframes(
   long start_clip = get_time_by_pos(get_start_area());
   long end_clip = get_time_by_pos(get_end_area());
 
-  for (KeyFrames::const_iterator it = keyframes->begin();
-       it != keyframes->end(); ++it) {
+  for (auto it = keyframes->begin(); it != keyframes->end(); ++it) {
     // display only if it's in the area
     if (*it < start_clip && *it < end_clip)
       continue;

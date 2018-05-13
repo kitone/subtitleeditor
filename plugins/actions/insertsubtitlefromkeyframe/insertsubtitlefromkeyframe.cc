@@ -155,9 +155,8 @@ class InsertSubtitleFromKeyframePlugin : public Action {
 
     long pos = player()->get_position();
 
-    KeyFrames::const_iterator prev = keyframes->begin();
-    for (KeyFrames::const_iterator it = keyframes->begin();
-         it != keyframes->end(); ++it) {
+    auto prev = keyframes->begin();
+    for (auto it = keyframes->begin(); it != keyframes->end(); ++it) {
       if (*it > pos) {
         if (*it != *prev) {
           start = *prev;

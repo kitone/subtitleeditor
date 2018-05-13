@@ -122,16 +122,14 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
   }
 
   void init_treeview(std::vector<ErrorChecking*>& list) {
-    std::vector<ErrorChecking*>::iterator checker;
-
-    for (checker = list.begin(); checker != list.end(); ++checker) {
+    for (const auto& checker : list) {
       Gtk::TreeIter it = m_model->append();
-      (*it)[m_column.enabled] = (*checker)->get_active();
-      (*it)[m_column.name] = (*checker)->get_name();
+      (*it)[m_column.enabled] = checker->get_active();
+      (*it)[m_column.name] = checker->get_name();
       (*it)[m_column.label] =
-          build_message("<b>%s</b>\n%s", (*checker)->get_label().c_str(),
-                        (*checker)->get_description().c_str());
-      (*it)[m_column.checker] = (*checker);
+          build_message("<b>%s</b>\n%s", checker->get_label().c_str(),
+                        checker->get_description().c_str());
+      (*it)[m_column.checker] = checker;
     }
   }
 

@@ -174,14 +174,12 @@ class SubtitleViewCellRendererCustom : public CellRendererCustom<T> {
             "subtitle-view", "do-not-disable-actions-during-editing"))
       return;
 
-    std::vector<Glib::RefPtr<Gtk::ActionGroup> > actions =
-        SubtitleEditorWindow::get_instance()
-            ->get_ui_manager()
-            ->get_action_groups();
+    auto actions = SubtitleEditorWindow::get_instance()
+                       ->get_ui_manager()
+                       ->get_action_groups();
 
-    std::vector<Glib::RefPtr<Gtk::ActionGroup> >::iterator it;
-    for (it = actions.begin(); it != actions.end(); ++it) {
-      (*it)->set_sensitive(state);
+    for (const auto &action : actions) {
+      action->set_sensitive(state);
     }
   }
 
@@ -1160,14 +1158,13 @@ void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key,
 }
 
 void SubtitleView::on_set_style_to_selection(const Glib::ustring &name) {
-  std::vector<Subtitle> selection = m_refDocument->subtitles().get_selection();
-
+  auto selection = m_refDocument->subtitles().get_selection();
   if (selection.empty())
     return;
 
   m_refDocument->start_command(_("Set style to selection"));
-  for (unsigned int i = 0; i < selection.size(); ++i) {
-    selection[i].set("style", name);
+  for (auto &select : selection) {
+    select.set("style", name);
   }
   m_refDocument->finish_command();
 }
@@ -1177,8 +1174,7 @@ void SubtitleView::on_set_style_to_selection(const Glib::ustring &name) {
 // retourne la colonne par rapport a son nom (interne)
 Gtk::TreeViewColumn *SubtitleView::get_column_by_name(
     const Glib::ustring &name) {
-  std::map<Glib::ustring, Gtk::TreeViewColumn *>::iterator it =
-      m_columns.find(name);
+  auto it = m_columns.find(name);
 
   if (it != m_columns.end())
     return it->second;
@@ -1190,10 +1186,9 @@ Gtk::TreeViewColumn *SubtitleView::get_column_by_name(
 
 // retourne le nom utiliser en interne de la column
 Glib::ustring SubtitleView::get_name_of_column(Gtk::TreeViewColumn *column) {
-  std::map<Glib::ustring, Gtk::TreeViewColumn *>::iterator it;
-  for (it = m_columns.begin(); it != m_columns.end(); ++it) {
-    if (it->second == column)
-      return it->first;
+  for (const auto &col : m_columns) {
+    if (col.second == column)
+      return col.first;
   }
 
   return Glib::ustring();
@@ -1239,26 +1234,27 @@ void SubtitleView::update_columns_displayed_from_config() {
   utility::split(columns, ';', cols);
 
   // hide all columns
-  std::map<Glib::ustring, Gtk::TreeViewColumn *>::iterator it;
-  for (it = m_columns.begin(); it != m_columns.end(); ++it) {
-    it->second->set_visible(false);
+  for (const auto &col_map : m_columns) {
+    col_map.second->set_visible(false);
   }
 
   // reorder columns
   Gtk::TreeViewColumn *current_column = NULL;
 
-  for (unsigned int i = 0; i < cols.size(); ++i) {
-    Glib::ustring name = cols[i];
+  for (const auto &col : cols) {
+    Glib::ustring name = col;
 
     if (current_column) {
       Gtk::TreeViewColumn *tmp = get_column_by_name(name);
-      if (tmp)
+      if (tmp) {
         move_column_after(*tmp, *current_column);
+      }
       current_column = tmp;
     } else {  // it's the first, put at start
       current_column = get_column_by_name(name);
-      if (current_column)
+      if (current_column) {
         move_column_to_start(*current_column);
+      }
     }
 
     // display column
@@ -1289,8 +1285,7 @@ Glib::ustring SubtitleView::get_column_label_by_name(
   columns_labels["text"] = _("Text");
   columns_labels["translation"] = _("Translation");
 
-  std::map<Glib::ustring, Glib::ustring>::iterator it =
-      columns_labels.find(name);
+  auto it = columns_labels.find(name);
   if (it != columns_labels.end())
     return it->second;
 

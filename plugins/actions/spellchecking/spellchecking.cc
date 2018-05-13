@@ -173,11 +173,9 @@ class DialogSpellChecking : public Gtk::Dialog {
     se_debug_message(SE_DEBUG_SPELL_CHECKING, "setup languages dictionaries");
 
     // Add dictionaries
-    std::vector<Glib::ustring> dicts =
-        SpellChecker::instance()->get_dictionaries();
-    for (std::vector<Glib::ustring>::const_iterator it = dicts.begin();
-         it != dicts.end(); ++it) {
-      m_comboLanguages->append_lang(*it);
+    auto dicts = SpellChecker::instance()->get_dictionaries();
+    for (const auto& dictionary : dicts) {
+      m_comboLanguages->append_lang(dictionary);
     }
     // Set the current dictionary
     m_comboLanguages->set_active_lang(
@@ -315,17 +313,16 @@ class DialogSpellChecking : public Gtk::Dialog {
     if (word.empty())
       return;
 
-    std::vector<Glib::ustring> suggs =
-        SpellChecker::instance()->get_suggest(word);
+    auto suggs = SpellChecker::instance()->get_suggest(word);
 
     SuggestionColumn column;
 
-    for (unsigned int i = 0; i < suggs.size(); ++i) {
+    for (const auto& suggesion : suggs) {
       Gtk::TreeIter it = m_listSuggestions->append();
-      (*it)[column.string] = suggs[i];
+      (*it)[column.string] = suggesion;
 
       se_debug_message(SE_DEBUG_SPELL_CHECKING, "suggested word: '%s'",
-                       suggs[i].c_str());
+                       suggesion.c_str());
     }
   }
 

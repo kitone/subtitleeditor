@@ -285,15 +285,13 @@ class DocumentManagementPlugin : public Action {
 
     std::vector<Glib::ustring> uris = dialog->get_uris();
 
-    for (std::vector<Glib::ustring>::const_iterator it = uris.begin();
-         it != uris.end(); ++it) {
-      open_document(*it, charset);
+    for (const auto &uri : uris) {
+      open_document(uri, charset);
     }
 
     Glib::ustring video_uri = dialog->get_video_uri();
     if (video_uri.empty() == false) {
-      // TODO
-      // check and ask if already exist ?
+      // TODO : check and ask if already exist ?
       SubtitleEditorWindow::get_instance()->get_player()->open(video_uri);
     }
   }
@@ -440,11 +438,10 @@ class DocumentManagementPlugin : public Action {
   void on_save_all_documents() {
     se_debug(SE_DEBUG_PLUGINS);
 
-    DocumentList list = get_subtitleeditor_window()->get_documents();
+    auto documents = get_subtitleeditor_window()->get_documents();
 
-    for (DocumentList::const_iterator it = list.begin(); it != list.end();
-         ++it) {
-      save_document(*it);
+    for (const auto &doc : documents) {
+      save_document(doc);
     }
   }
 

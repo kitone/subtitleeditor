@@ -47,9 +47,9 @@ bool iso_codes_load_file(const Glib::ustring &iso_id,
 
     xmlpp::Node::NodeList entries =
         root->get_children(Glib::ustring::compose("%1_entry", iso_id));
-    for (xmlpp::Node::NodeList::const_iterator it = entries.begin();
-         it != entries.end(); ++it) {
-      const xmlpp::Element *entry = dynamic_cast<const xmlpp::Element *>(*it);
+
+    for (const auto &node : entries) {
+      auto entry = dynamic_cast<const xmlpp::Element *>(node);
 
       Glib::ustring code = entry->get_attribute_value(id_code);
       Glib::ustring name = entry->get_attribute_value("name");

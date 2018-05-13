@@ -127,9 +127,9 @@ class ComfirmationPage : public AssistantPage {
     Glib::ustring text, previous;
     for (Subtitle sub = subs.get_first(); sub; ++sub) {
       text = sub.get_text();
-      for (std::list<Pattern*>::const_iterator it = patterns.begin();
-           it != patterns.end(); ++it) {
-        (*it)->execute(text, previous);
+
+      for (const auto& pattern : patterns) {
+        pattern->execute(text, previous);
       }
 
       if (sub.get_text() != text) {

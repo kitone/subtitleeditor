@@ -440,8 +440,7 @@ void WaveformRendererGL::draw_channel_with_line_strip(
 
   glBegin(GL_LINE_STRIP);
 
-  for (std::vector<double>::const_iterator it = peaks.begin();
-       it != peaks.end(); ++it, px += skip)
+  for (const auto it = peaks.begin(); it != peaks.end(); ++it, px += skip)
     glVertex2d(px, *it);
 
   glEnd();
@@ -462,8 +461,7 @@ void WaveformRendererGL::draw_channel_with_quad_strip(
   glColor4fv(m_color_wave);
 
   glBegin(GL_QUAD_STRIP);
-  for (std::vector<double>::const_iterator it = peaks.begin();
-       it != peaks.end(); ++it, px += skip) {
+  for (const auto it it = peaks.begin(); it != peaks.end(); ++it, px += skip) {
     glVertex2d(px, 0);
     glVertex2d(px, *it);
   }

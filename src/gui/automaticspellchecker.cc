@@ -556,18 +556,17 @@ Gtk::Menu *AutomaticSpellChecker::build_languages_menu() {
   Glib::ustring current = SpellChecker::instance()->get_dictionary();
 
   // Create menu items
-  for (std::map<Glib::ustring, Glib::ustring>::iterator it = languages.begin();
-       it != languages.end(); ++it) {
-    if (it->second == current) {
+  for (const auto &lang_map : languages) {
+    if (lang_map.second == current) {
       mi = manage(new Gtk::ImageMenuItem(
           *manage(new Gtk::Image(Gtk::Stock::APPLY, Gtk::ICON_SIZE_MENU)),
-          it->first, true));
+          lang_map.first, true));
     } else {
-      mi = manage(new Gtk::MenuItem(it->first));
+      mi = manage(new Gtk::MenuItem(lang_map.first));
     }
     mi->signal_activate().connect(sigc::bind(
         sigc::mem_fun(*this, &AutomaticSpellChecker::on_set_current_language),
-        it->second));
+        lang_map.second));
     menu->append(*mi);
   }
 

@@ -55,49 +55,44 @@ class DialogViewEdit : public Gtk::Dialog {
     std::vector<std::string> array;
     utility::split(columns_displayed, ';', array);
 
-    for (unsigned int i = 0; i < array.size(); ++i) {
+    for (const auto& s : array) {
       Gtk::TreeIter iter = m_liststore->append();
-      (*iter)[m_column_record.name] = array[i];
+      (*iter)[m_column_record.name] = s;
       (*iter)[m_column_record.label] =
-          SubtitleView::get_column_label_by_name(array[i]);
+          SubtitleView::get_column_label_by_name(s);
       (*iter)[m_column_record.display] = true;
     }
 
     // add other columns
-    {
-      std::list<Glib::ustring> all_columns;
+    std::list<Glib::ustring> all_columns;
 
-      Config::getInstance().get_value_string_list("subtitle-view",
-                                                  "columns-list", all_columns);
+    Config::getInstance().get_value_string_list("subtitle-view", "columns-list",
+                                                all_columns);
 
-      for (std::list<Glib::ustring>::const_iterator it = all_columns.begin();
-           it != all_columns.end(); ++it) {
-        if (std::find(array.begin(), array.end(), *it) == array.end()) {
-          Gtk::TreeIter iter = m_liststore->append();
-          (*iter)[m_column_record.name] = *it;
-          (*iter)[m_column_record.label] =
-              SubtitleView::get_column_label_by_name(*it);
-          (*iter)[m_column_record.display] = false;
-        }
+    for (const auto& col : all_columns) {
+      if (std::find(array.begin(), array.end(), col) == array.end()) {
+        Gtk::TreeIter it = m_liststore->append();
+        (*it)[m_column_record.name] = col;
+        (*it)[m_column_record.label] =
+            SubtitleView::get_column_label_by_name(col);
+        (*it)[m_column_record.display] = false;
       }
     }
 
     run();
 
     // get the new columns order
-    {
-      Glib::ustring columns_updated;
+    Glib::ustring columns_updated;
 
-      Gtk::TreeNodeChildren rows = m_liststore->children();
+    Gtk::TreeNodeChildren rows = m_liststore->children();
 
-      if (!rows.empty()) {
-        for (Gtk::TreeIter it = rows.begin(); it; ++it) {
-          if ((*it)[m_column_record.display] == true)
-            columns_updated += (*it)[m_column_record.name] + ";";
-        }
+    if (!rows.empty()) {
+      for (Gtk::TreeIter it = rows.begin(); it; ++it) {
+        if ((*it)[m_column_record.display] == true)
+          columns_updated += (*it)[m_column_record.name] + ";";
       }
-      columns_displayed = columns_updated;
     }
+    columns_displayed = columns_updated;
   }
 
  protected:
@@ -213,15 +208,13 @@ class DialogViewManager : public Gtk::Dialog {
 
     Config::getInstance().get_keys("view-manager", keys);
 
-    std::list<Glib::ustring>::const_iterator it;
-    for (it = keys.begin(); it != keys.end(); ++it) {
-      Glib::ustring columns =
-          Config::getInstance().get_value_string("view-manager", *it);
+    for (const auto& name : keys) {
+      auto cols = Config::getInstance().get_value_string("view-manager", name);
 
       Gtk::TreeIter iter = m_liststore->append();
 
-      (*iter)[m_column_record.name] = *it;
-      (*iter)[m_column_record.columns] = columns;
+      (*iter)[m_column_record.name] = name;
+      (*iter)[m_column_record.columns] = cols;
     }
 
     Gtk::TreeIter iter = m_liststore->get_iter("0");
@@ -345,10 +338,7 @@ class ViewManagerPlugin : public Action {
     // user settings
     get_config().get_keys("view-manager", keys);
 
-    for (std::list<Glib::ustring>::const_iterator it = keys.begin();
-         it != keys.end(); ++it) {
-      Glib::ustring name = *it;
-
+    for (const auto& name : keys) {
       action_group->add(
           Gtk::Action::create(name, name, _("Switches to this view")),
           sigc::bind(sigc::mem_fun(*this, &ViewManagerPlugin::on_set_view),
@@ -381,10 +371,9 @@ class ViewManagerPlugin : public Action {
     ui_id = get_ui_manager()->add_ui_from_string(submenu);
 
     // create items for the user view
-    for (std::list<Glib::ustring>::const_iterator it = keys.begin();
-         it != keys.end(); ++it) {
-      ui->add_ui(ui_id, "/menubar/menu-view/view-manager/placeholder", *it, *it,
-                 Gtk::UI_MANAGER_AUTO, false);
+    for (const auto& name : keys) {
+      ui->add_ui(ui_id, "/menubar/menu-view/view-manager/placeholder", name,
+                 name, Gtk::UI_MANAGER_AUTO, false);
     }
     get_ui_manager()->ensure_update();
   }

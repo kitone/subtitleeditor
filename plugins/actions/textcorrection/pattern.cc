@@ -28,9 +28,8 @@ Pattern::Pattern() {
 // Destructor
 // Delete rules.
 Pattern::~Pattern() {
-  for (std::list<Rule *>::iterator it = m_rules.begin(); it != m_rules.end();
-       ++it) {
-    delete *it;
+  for (auto r : m_rules) {
+    delete r;
   }
   m_rules.clear();
 }
@@ -62,18 +61,18 @@ void Pattern::execute(Glib::ustring &text, const Glib::ustring &previous) {
     return;
 
   Glib::RegexMatchFlags flag = (Glib::RegexMatchFlags)0;
-  for (std::list<Rule *>::iterator it = m_rules.begin(); it != m_rules.end();
-       ++it) {
-    bool previous_match = true;
-    if ((*it)->m_previous_match)
-      previous_match = (*it)->m_previous_match->match(previous);
 
-    if ((*it)->m_repeat) {
-      while ((*it)->m_regex->match(text) && previous_match) {
-        text = (*it)->m_regex->replace(text, 0, (*it)->m_replacement, flag);
+  for (auto pattern : m_rules) {
+    bool previous_match = true;
+    if (pattern->m_previous_match)
+      previous_match = pattern->m_previous_match->match(previous);
+
+    if (pattern->m_repeat) {
+      while (pattern->m_regex->match(text) && previous_match) {
+        text = pattern->m_regex->replace(text, 0, pattern->m_replacement, flag);
       }
     } else if (previous_match) {
-      text = (*it)->m_regex->replace(text, 0, (*it)->m_replacement, flag);
+      text = pattern->m_regex->replace(text, 0, pattern->m_replacement, flag);
     }
   }
 }

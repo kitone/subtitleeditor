@@ -115,10 +115,9 @@ class DCSubtitle : public SubtitleFormatIO {
     // attribute Italic
 
     // Read each Subtitle
-    xmlpp::Node::NodeList list = xml_font->get_children("Subtitle");
-    for (xmlpp::Node::NodeList::const_iterator it = list.begin();
-         it != list.end(); ++it) {
-      read_subtitle(dynamic_cast<const xmlpp::Element *>(*it));
+    auto list = xml_font->get_children("Subtitle");
+    for (const auto &node : list) {
+      read_subtitle(dynamic_cast<const xmlpp::Element *>(node));
     }
   }
 
@@ -146,11 +145,9 @@ class DCSubtitle : public SubtitleFormatIO {
     }
 
     // Text (children)
-    xmlpp::Node::NodeList children = xml_subtitle->get_children("Text");
-    for (xmlpp::Node::NodeList::const_iterator it = children.begin();
-         it != children.end(); ++it) {
-      const xmlpp::Element *xml_text =
-          dynamic_cast<const xmlpp::Element *>(*it);
+    auto children = xml_subtitle->get_children("Text");
+    for (const auto &node : children) {
+      auto xml_text = dynamic_cast<const xmlpp::Element *>(node);
 
       // attribute Direction
       // attribute HAlign
@@ -186,7 +183,7 @@ class DCSubtitle : public SubtitleFormatIO {
     std::vector<Glib::ustring> lines;
     utility::usplit(sub.get_text(), '\n', lines);
 
-    for (guint i = 0; i < lines.size(); ++i) {
+    for (const auto &line : lines) {
       Glib::ustring Direction = "horizontal";
       Glib::ustring HAlign = "center";
       Glib::ustring HPosition = "0.0";
@@ -200,7 +197,7 @@ class DCSubtitle : public SubtitleFormatIO {
       xml_text->set_attribute("HPosition", HPosition);
       xml_text->set_attribute("VAlign", VAlign);
       xml_text->set_attribute("VPosition", VPosition);
-      xml_text->set_child_text(lines[i]);
+      xml_text->set_child_text(line);
     }
   }
 

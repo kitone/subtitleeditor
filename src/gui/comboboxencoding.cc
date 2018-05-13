@@ -102,9 +102,8 @@ void ComboBoxEncoding::init_encodings() {
   std::list<Glib::ustring> encodings =
       Config::getInstance().get_value_string_list("encodings", "encodings");
   if (!encodings.empty()) {
-    std::list<Glib::ustring>::const_iterator it;
-    for (it = encodings.begin(); it != encodings.end(); ++it) {
-      append(*it, Encodings::get_label_from_charset(*it));
+    for (const auto &enc : encodings) {
+      append(enc, Encodings::get_label_from_charset(enc));
     }
   } else {
     std::string charset;
@@ -127,9 +126,9 @@ void ComboBoxEncoding::init_encodings() {
       set_active(0);
     else
       set_active(2);  // auto detected (0), separator (1), first charset (2)
-  } else
+  } else {
     set_active(0);
-
+  }
   m_connection_changed.unblock();
 }
 

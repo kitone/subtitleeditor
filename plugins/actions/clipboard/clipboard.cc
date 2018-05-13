@@ -281,11 +281,10 @@ class ClipboardPlugin : public Action {
     // Then update the paste visiblity
     chosen_clipboard_target = Glib::ustring();
 
-    for (guint i = 0; i < my_targets.size(); ++i) {
+    for (const auto &target : my_targets) {
       if (std::find(avail_targets.begin(), avail_targets.end(),
-                    my_targets[i].get_target().c_str()) !=
-          avail_targets.end()) {
-        chosen_clipboard_target = my_targets[i].get_target();
+                    target.get_target().c_str()) != avail_targets.end()) {
+        chosen_clipboard_target = target.get_target();
         break;
       }
     }
@@ -310,11 +309,12 @@ class ClipboardPlugin : public Action {
       // but avoid using the native format, because it sets the video, waveform,
       // keyframes, etc.
       format = clipdoc->getFormat();
-      if (format == "Subtitle Editor Project")
+      if (format == "Subtitle Editor Project") {
         format = "Advanced Subtitle Station Alpha";
-    } else if (target == target_text)
+      }
+    } else if (target == target_text) {
       format = plaintext_format;
-    else {
+    } else {
       se_debug_message(SE_DEBUG_PLUGINS,
                        "Somebody asked for clipboard data in this strange "
                        "target format: '%s'.",
@@ -697,9 +697,7 @@ class ClipboardPlugin : public Action {
     }
 
     // aply the time shift
-    for (guint i = 0; i < new_subtitles.size(); ++i) {
-      Subtitle &sub = new_subtitles[i];
-
+    for (auto &sub : new_subtitles) {
       sub.set_start_and_end(sub.get_start() + timeshift,
                             sub.get_end() + timeshift);
     }

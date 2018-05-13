@@ -116,9 +116,7 @@ class MinimizeDurationPlugin : public Action {
     // user clicked on the subtitles in or at least it was when I tried it.
     std::vector<Subtitle> selection = subtitles.get_selection();
 
-    unsigned int subcnt = selection.size();
-
-    if (subcnt < 1) {
+    if (selection.size() < 1) {
       doc->flash_message(
           _("Minimize Duration needs at least 1 subtitle to work on."));
       return false;
@@ -139,9 +137,8 @@ class MinimizeDurationPlugin : public Action {
     unsigned long subchars = 0;
     SubtitleTime dur;
 
-    for (unsigned int i = 0; i < subcnt; ++i) {
-      sub = &selection[i];
-      subtext = sub->get_text();
+    for (auto &sub : selection) {
+      subtext = sub.get_text();
       subchars = utility::get_text_length_for_timing(subtext);
       dur.totalmsecs = utility::get_min_duration_msecs(subchars, maxcps);
       // doc->flash_message ( _("duration calculated is 1000 * %i / %i = %i"),
@@ -152,11 +149,11 @@ class MinimizeDurationPlugin : public Action {
 
       if (from_start) {
         // the start time is fixed, we are changind the end time
-        sub->set_duration(dur);
+        sub.set_duration(dur);
       } else {
         // the end time is fixed, we are changing the start time
-        SubtitleTime endtime = sub->get_end();
-        sub->set_start_and_end(endtime - dur, endtime);
+        SubtitleTime endtime = sub.get_end();
+        sub.set_start_and_end(endtime - dur, endtime);
       }
     }
 

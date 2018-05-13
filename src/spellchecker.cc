@@ -108,7 +108,9 @@ class SEEnchantDict {
     suggs = enchant_dict_suggest(m_dict, utf8word.c_str(), utf8word.size(),
                                  &n_suggs);
     if (suggs && n_suggs) {
-      for (size_t i = 0; i < n_suggs; ++i) out_suggestions.push_back(suggs[i]);
+      for (size_t i = 0; i < n_suggs; ++i) {
+        out_suggestions.push_back(suggs[i]);
+      }
       enchant_dict_free_string_list(m_dict, suggs);
     }
   }
@@ -158,9 +160,8 @@ class SEEnchantDict {
 };
 
 bool spell_checker_is_digit(const Glib::ustring &text) {
-  for (Glib::ustring::const_iterator it = text.begin(); it != text.end();
-       ++it) {
-    if (!g_unichar_isdigit(*it) && *it != '.' && *it != ',')
+  for (const auto &c : text) {
+    if (!g_unichar_isdigit(c) && c != '.' && c != ',')
       return false;
   }
   return true;

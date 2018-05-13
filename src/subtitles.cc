@@ -366,8 +366,7 @@ void Subtitles::select(const std::vector<Subtitle> &sub) {
 }
 
 void Subtitles::select(const std::list<Subtitle> &sub) {
-  for (std::list<Subtitle>::const_iterator it = sub.begin(); it != sub.end();
-       ++it) {
+  for (auto it = sub.begin(); it != sub.end(); ++it) {
     m_document.get_subtitle_view()->get_selection()->select((*it).m_iter);
   }
 }

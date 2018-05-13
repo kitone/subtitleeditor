@@ -81,17 +81,15 @@ void CommandGroup::add(Command *cmd) {
 void CommandGroup::execute() {
   se_debug(SE_DEBUG_COMMAND);
 
-  std::list<Command *>::const_iterator it;
-  for (it = m_stack.begin(); it != m_stack.end(); ++it) {
-    (*it)->execute();
+  for (const auto &cmd : m_stack) {
+    cmd->execute();
   }
 }
 
 void CommandGroup::restore() {
   se_debug(SE_DEBUG_COMMAND);
 
-  std::list<Command *>::reverse_iterator it;
-  for (it = m_stack.rbegin(); it != m_stack.rend(); ++it) {
+  for (auto it = m_stack.rbegin(); it != m_stack.rend(); ++it) {
     (*it)->restore();
   }
 }

@@ -343,12 +343,11 @@ void Application::on_current_document_changed(Document *doc) {
   std::list<ExtensionInfo *> actions =
       ExtensionManager::instance().get_info_list_from_categorie("action");
 
-  for (std::list<ExtensionInfo *>::iterator it = actions.begin();
-       it != actions.end(); ++it) {
-    if ((*it)->get_active() == false)
+  for (const auto &ext_info : actions) {
+    if (ext_info->get_active() == false)
       continue;
 
-    Action *action = dynamic_cast<Action *>((*it)->get_extension());
+    Action *action = dynamic_cast<Action *>(ext_info->get_extension());
     if (action)
       action->update_ui();
   }
@@ -414,12 +413,10 @@ void Application::disconnect_document(Document *doc) {
     se_debug_message(SE_DEBUG_APP, "disconnect_document: %s",
                      doc->getName().c_str());
   }
-
   // clear old connection
-  std::list<sigc::connection>::iterator it;
-  for (it = m_document_connections.begin(); it != m_document_connections.end();
-       ++it)
-    (*it).disconnect();
+  for (auto &doc_connection : m_document_connections) {
+    doc_connection.disconnect();
+  }
   m_document_connections.clear();
 }
 

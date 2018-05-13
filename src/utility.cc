@@ -174,15 +174,15 @@ void usplit(const Glib::ustring &str,
 
   for (first = it; it != end; ++it) {
     if (delimiter == *it) {
-      if (first != it)  // || keep_blank)
-      {
+      if (first != it) {  // || keep_blank)
         // extract the current field from the string
         container.push_back(Glib::ustring(first, it));
         // skip the next delimiter
         first = it;
         ++first;
-      } else
+      } else {
         ++first;
+      }
     }
   }
 
@@ -265,9 +265,9 @@ unsigned int get_text_length_for_timing(const Glib::ustring &text) {
 
   unsigned int len = 0;
 
-  for (std::vector<int>::const_iterator it = num_characters.begin();
-       it != num_characters.end(); ++it)
-    len += *it;
+  for (const auto &number : num_characters) {
+    len += number;
+  }
 
   len += 2 * (num_characters.size() - 1);  // a newline counts as 2 characters
   return len;
@@ -327,11 +327,12 @@ Glib::ustring add_or_replace_extension(const Glib::ustring &filename,
                                        const Glib::ustring &extension) {
   Glib::ustring renamed;
   Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("^(.*)(\\.)(.*)$");
-  if (re->match(filename))
+  if (re->match(filename)) {
     renamed =
         re->replace(filename, 0, "\\1." + extension, Glib::RegexMatchFlags(0));
-  else
+  } else {
     renamed = filename + "." + extension;
+  }
   return renamed;
 }
 

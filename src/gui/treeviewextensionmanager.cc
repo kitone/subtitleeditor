@@ -105,20 +105,19 @@ void TreeViewExtensionManager::create_view() {
 
   Glib::ustring categorie;
 
-  std::list<ExtensionInfo *> list =
-      ExtensionManager::instance().get_extension_info_list();
-  // Sort by categorie and by locale name
-  list.sort(on_sort_extension);
-  for (std::list<ExtensionInfo *>::const_iterator it = list.begin();
-       it != list.end(); ++it) {
-    if ((*it)->get_hidden())
+  auto extension_infos = ExtensionManager::instance().get_extension_info_list();
+  // sort by categorie and by locale name
+  extension_infos.sort(on_sort_extension);
+
+  for (const auto &ext_info : extension_infos) {
+    if (ext_info->get_hidden())
       continue;
 
-    if (categorie.empty())
-      categorie = (*it)->get_categorie();
-    else if (categorie != (*it)->get_categorie()) {
+    if (categorie.empty()) {
+      categorie = ext_info->get_categorie();
+    } else if (categorie != ext_info->get_categorie()) {
       // Categorie changed, add separator
-      categorie = (*it)->get_categorie();
+      categorie = ext_info->get_categorie();
 
       Gtk::TreeIter sep = m_model->append();
       (*sep)[m_column.info] = NULL;
@@ -127,21 +126,22 @@ void TreeViewExtensionManager::create_view() {
     }
 
     Gtk::TreeIter iter = m_model->append();
-    (*iter)[m_column.info] = (*it);
-    (*iter)[m_column.active] = (*it)->get_active();
+    (*iter)[m_column.info] = ext_info;
+    (*iter)[m_column.active] = ext_info->get_active();
     (*iter)[m_column.label] = Glib::ustring::compose(
-        "<b>%1</b>\n%2", (*it)->get_label(), (*it)->get_description());
+        "<b>%1</b>\n%2", ext_info->get_label(), ext_info->get_description());
 
-    if ((*it)->get_extension() && (*it)->get_extension()->is_configurable())
+    if (ext_info->get_extension() &&
+        ext_info->get_extension()->is_configurable()) {
       (*iter)[m_column.stock_id] = "gtk-preferences";
+    }
   }
 }
 
 // Filter the model and display only one categorie
 // ExtensionInfo->categorie
 void TreeViewExtensionManager::set_filter(const Glib::ustring &categorie) {
-  Glib::RefPtr<Gtk::TreeModelFilter> filter =
-      Gtk::TreeModelFilter::create(get_model());
+  auto filter = Gtk::TreeModelFilter::create(get_model());
 
   filter->set_visible_func(sigc::bind(
       sigc::mem_fun(*this, &TreeViewExtensionManager::on_filter_visible),

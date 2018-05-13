@@ -92,20 +92,18 @@ class CombineSelectedSubtitlesPlugin : public Action {
 
     Glib::ustring text, translation, note;
 
-    std::vector<Subtitle>::iterator it;
-
-    for (it = subs.begin(); it != subs.end(); ++it) {
+    for (auto &subtitle : subs) {
       if (!text.empty())
         text += "\n";
-      text += (*it).get_text();
+      text += subtitle.get_text();
 
       if (!translation.empty())
         translation += "\n";
-      translation += (*it).get_translation();
+      translation += subtitle.get_translation();
 
       if (!note.empty())
         note += "\n";
-      note += (*it).get_note();
+      note += subtitle.get_note();
     }
 
     Subtitle first = subs.front();
@@ -149,9 +147,7 @@ class CombineSelectedSubtitlesPlugin : public Action {
 
     unsigned int last_id = 0;
 
-    for (unsigned int i = 0; i < selection.size(); ++i) {
-      Subtitle sub = selection[i];
-
+    for (const auto &sub : selection) {
       // Is the next subtitle?
       if (sub.get_num() == last_id + 1) {
         subs.back().push_back(sub);

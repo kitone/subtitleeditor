@@ -212,14 +212,12 @@ Glib::ustring convert_to_utf8(const std::string &content,
   std::list<Glib::ustring> user_encodings =
       Config::getInstance().get_value_string_list("encodings", "encodings");
 
-  for (std::list<Glib::ustring>::const_iterator it = user_encodings.begin();
-       it != user_encodings.end(); ++it) {
+  for (const auto &enc : user_encodings) {
     try {
-      Glib::ustring utf8_content =
-          Encoding::convert_to_utf8_from_charset(content, *it);
+      Glib::ustring utf8_content = convert_to_utf8_from_charset(content, enc);
 
       if (utf8_content.validate() && utf8_content.empty() == false) {
-        charset = *it;
+        charset = enc;
         return utf8_content;
       }
     } catch (const EncodingConvertError &ex) {
