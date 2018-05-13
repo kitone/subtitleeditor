@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gui/dialogfilechooser.h>
@@ -26,15 +24,11 @@
 #include <player.h>
 #include <utility.h>
 
-/*
- * declared in keyframesgenerator.cc
- */
+// declared in keyframesgenerator.cc
 Glib::RefPtr<KeyFrames> generate_keyframes_from_file(const Glib::ustring &uri);
 Glib::RefPtr<KeyFrames> generate_keyframes_from_file_using_frame(
     const Glib::ustring &uri);
 
-/*
- */
 class KeyframesManagementPlugin : public Action {
  public:
   KeyframesManagementPlugin() {
@@ -46,19 +40,11 @@ class KeyframesManagementPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("KeyframesManagementPlugin");
-
-    // already in src/gui/menubar.cc
-    // action_group->add(
-    //		Gtk::Action::create(
-    //			"menu-keyframes",
-    //			_("_KeyFrames")));
 
     // Open
     action_group->add(
@@ -198,8 +184,6 @@ class KeyframesManagementPlugin : public Action {
         sigc::mem_fun(*this, &KeyframesManagementPlugin::on_player_message));
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -209,8 +193,6 @@ class KeyframesManagementPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void on_player_message(Player::Message msg) {
     // only if the player is enable or disable
     // don't update if is playing or paused
@@ -220,8 +202,6 @@ class KeyframesManagementPlugin : public Action {
       on_keyframes_changed();
   }
 
-  /*
-   */
   void on_keyframes_changed() {
     Glib::RefPtr<KeyFrames> kf = player()->get_keyframes();
     if (kf)
@@ -229,8 +209,6 @@ class KeyframesManagementPlugin : public Action {
     update_ui();
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -264,14 +242,10 @@ class KeyframesManagementPlugin : public Action {
   }
 
  protected:
-  /*
-   */
   Player *player() {
     return get_subtitleeditor_window()->get_player();
   }
 
-  /*
-   */
   void on_open() {
     DialogOpenKeyframe ui;
     if (ui.run() == Gtk::RESPONSE_OK) {
@@ -288,8 +262,6 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   void on_save() {
     Glib::RefPtr<KeyFrames> kf = player()->get_keyframes();
     if (kf) {
@@ -311,8 +283,6 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   void add_in_recent_manager(const Glib::ustring &uri) {
     se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
 
@@ -324,9 +294,7 @@ class KeyframesManagementPlugin : public Action {
     Gtk::RecentManager::get_default()->add_item(uri, data);
   }
 
-  /*
-   * Open a recent keyframes
-   */
+  // Open a recent keyframes
   void on_recent_item_activated() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -346,8 +314,6 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   void set_default_filename_from_video(Gtk::FileChooser *fc,
                                        const Glib::ustring &video_uri,
                                        const Glib::ustring &ext) {
@@ -371,8 +337,6 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   void on_generate() {
     Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
     if (uri.empty())
@@ -385,8 +349,6 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   void on_generate_using_frame() {
     Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
     if (uri.empty())
@@ -399,14 +361,10 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   void on_close() {
     player()->set_keyframes(Glib::RefPtr<KeyFrames>(NULL));
   }
 
-  /*
-   */
   void on_seek_next() {
     Glib::RefPtr<KeyFrames> keyframes = player()->get_keyframes();
     g_return_if_fail(keyframes);
@@ -422,8 +380,6 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   void on_seek_previous() {
     Glib::RefPtr<KeyFrames> keyframes = player()->get_keyframes();
     g_return_if_fail(keyframes);
@@ -439,8 +395,6 @@ class KeyframesManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   bool get_previous_keyframe(const long pos, long &prev) {
     Glib::RefPtr<KeyFrames> keyframes = player()->get_keyframes();
     if (!keyframes)
@@ -456,8 +410,6 @@ class KeyframesManagementPlugin : public Action {
     return false;
   }
 
-  /*
-   */
   bool get_next_keyframe(const long pos, long &next) {
     Glib::RefPtr<KeyFrames> keyframes = player()->get_keyframes();
     if (!keyframes)
@@ -473,8 +425,6 @@ class KeyframesManagementPlugin : public Action {
     return false;
   }
 
-  /*
-   */
   bool snap_start_to_keyframe(bool previous) {
     Document *doc = get_current_document();
     g_return_val_if_fail(doc, false);
@@ -496,8 +446,6 @@ class KeyframesManagementPlugin : public Action {
     return true;
   }
 
-  /*
-   */
   bool snap_end_to_keyframe(bool previous) {
     Document *doc = get_current_document();
     g_return_val_if_fail(doc, false);
@@ -518,26 +466,18 @@ class KeyframesManagementPlugin : public Action {
     return true;
   }
 
-  /*
-   */
   void on_snap_start_to_previous() {
     snap_start_to_keyframe(true);
   }
 
-  /*
-   */
   void on_snap_start_to_next() {
     snap_start_to_keyframe(false);
   }
 
-  /*
-   */
   void on_snap_end_to_previous() {
     snap_end_to_keyframe(true);
   }
 
-  /*
-   */
   void on_snap_end_to_next() {
     snap_end_to_keyframe(false);
   }

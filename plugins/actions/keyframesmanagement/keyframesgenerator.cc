@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gstreamermm.h>
 #include <gtkmm.h>
@@ -28,12 +26,8 @@
 #include <iostream>
 #include "mediadecoder.h"
 
-/*
- */
 class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
  public:
-  /*
-   */
   KeyframesGenerator(const Glib::ustring &uri,
                      Glib::RefPtr<KeyFrames> &keyframes)
       : Gtk::Dialog(_("Generate Keyframes"), true), MediaDecoder(1000) {
@@ -57,9 +51,7 @@ class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
     }
   }
 
-  /*
-   * Check buffer and try to catch keyframes.
-   */
+  // Check buffer and try to catch keyframes.
   void on_video_identity_handoff(const Glib::RefPtr<Gst::Buffer> &buf,
                                  const Glib::RefPtr<Gst::Pad> &) {
     // FIXME: http://bugzilla.gnome.org/show_bug.cgi?id=590923
@@ -72,9 +64,7 @@ class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
     }
   }
 
-  /*
-   * Create video bin
-   */
+  // Create video bin
   Glib::RefPtr<Gst::Element> create_element(
       const Glib::ustring &structure_name) {
     try {
@@ -102,9 +92,7 @@ class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
     return Glib::RefPtr<Gst::Element>(NULL);
   }
 
-  /*
-   * Update the progress bar
-   */
+  // Update the progress bar
   bool on_timeout() {
     if (!m_pipeline)
       return false;
@@ -122,19 +110,16 @@ class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
       m_duration = len;
 
       return pos != len;
-    } else
+    } else {
       m_progressbar.set_text(_("Waiting..."));
+    }
     return true;
   }
 
-  /*
-   */
   void on_work_finished() {
     response(Gtk::RESPONSE_OK);
   }
 
-  /*
-   */
   void on_work_cancel() {
     response(Gtk::RESPONSE_CANCEL);
   }
@@ -146,8 +131,6 @@ class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
   guint64 m_duration;
 };
 
-/*
- */
 Glib::RefPtr<KeyFrames> generate_keyframes_from_file(const Glib::ustring &uri) {
   Glib::RefPtr<KeyFrames> kf;
   KeyframesGenerator ui(uri, kf);

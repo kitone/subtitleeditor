@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2010, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/subtitleformat.h>
 #include <gtkmm_utility.h>
@@ -28,19 +26,13 @@
 #include <utility.h>
 #include <memory>
 
-/*
- * BITC (Burnt-in timecode)
- */
+// BITC (Burnt-in timecode)
 class BITC : public SubtitleFormatIO {
  public:
-  /*
-   */
   BITC() : m_framerate(FRAMERATE_23_976) {
     m_framerate_value = get_framerate_value(m_framerate);
   }
 
-  /*
-   */
   void open(Reader &file) {
     // Ask for the framerate value
     FramerateChooserDialog fcd(FramerateChooserDialog::IMPORT);
@@ -101,8 +93,6 @@ class BITC : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void save(Writer &file) {
     // Ask for the framerate value
     FramerateChooserDialog fcd(FramerateChooserDialog::EXPORT);
@@ -121,10 +111,8 @@ class BITC : public SubtitleFormatIO {
     }
   }
 
-  /*
-   * Convert time from SE to BITC
-   * 0:00:00.000 -> 00:00:00:00 (last 00 are frames, not time!)
-   */
+  // Convert time from SE to BITC
+  // 0:00:00.000 -> 00:00:00:00 (last 00 are frames, not time!)
   Glib::ustring to_bitc_time(const SubtitleTime &t) {
     int frame = (int)(t.mseconds() * m_framerate_value * 0.001);
 
@@ -137,13 +125,8 @@ class BITC : public SubtitleFormatIO {
   double m_framerate_value;
 };
 
-/*
- *
- */
 class BITCPlugin : public SubtitleFormat {
  public:
-  /*
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
 
@@ -155,8 +138,6 @@ class BITCPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   */
   SubtitleFormatIO *create() {
     return new BITC;
   }

@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
@@ -28,8 +26,6 @@
 #include <utility.h>
 #include <widget_config_utility.h>
 
-/*
- */
 class DialogTimingFromPlayerPreferences : public Gtk::Dialog {
  public:
   DialogTimingFromPlayerPreferences(BaseObjectType *cobject,
@@ -56,9 +52,7 @@ class DialogTimingFromPlayerPreferences : public Gtk::Dialog {
   Gtk::SpinButton *m_spinOffset;
 };
 
-/*
- * Actions to set time from the current player position.
- */
+// Actions to set time from the current player position.
 class TimingFromPlayer : public Action {
  public:
   TimingFromPlayer() {
@@ -70,8 +64,6 @@ class TimingFromPlayer : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -190,8 +182,6 @@ class TimingFromPlayer : public Action {
         sigc::mem_fun(*this, &TimingFromPlayer::on_player_message));
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -201,8 +191,6 @@ class TimingFromPlayer : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -239,22 +227,16 @@ class TimingFromPlayer : public Action {
 #undef SET_SENSITIVE
   }
 
-  /*
-   */
   bool is_configurable() {
     return true;
   }
 
-  /*
-   */
   void create_configure_dialog() {
     DialogTimingFromPlayerPreferences::create();
   }
 
-  /*
-   * Check the state of the player.
-   * Update the menu from the current state of the player.
-   */
+  // Check the state of the player.
+  // Update the menu from the current state of the player.
   void on_player_message(Player::Message msg) {
     se_debug(SE_DEBUG_PLUGINS);
     // only if the player is enable or disable
@@ -263,8 +245,6 @@ class TimingFromPlayer : public Action {
       update_ui();
   }
 
-  /*
-   */
   enum OPTIONS {
     SET_SUBTITLE_START = 1 << 0,
     SET_SUBTITLE_END = 1 << 1,
@@ -272,8 +252,6 @@ class TimingFromPlayer : public Action {
     SET_NEXT_SUBTITLE_POS = 1 << 3
   };
 
-  /*
-   */
   Glib::ustring get_command_name_from_option(int op) {
     if (op & SET_SUBTITLE_START)
       return _("Set subtitle start");
@@ -282,8 +260,6 @@ class TimingFromPlayer : public Action {
     return _("Set subtitle");  // should not have happened
   }
 
-  /*
-   */
   bool set_subtitle_from_player(int op) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -305,9 +281,9 @@ class TimingFromPlayer : public Action {
     // Start recording
     doc->start_command(get_command_name_from_option(op));
 
-    if (op & SET_SUBTITLE_START)  // Define the start of the subtitle from the
-                                  // video position, we keep the duration
-    {
+    if (op & SET_SUBTITLE_START) {
+      // Define the start of the subtitle from the
+      // video position, we keep the duration
       sub.set_start_and_end(pos, pos + dur);
     } else if (op & SET_SUBTITLE_END) {
       sub.set_end(pos);
@@ -334,49 +310,35 @@ class TimingFromPlayer : public Action {
     return true;
   }
 
-  /*
-   */
   void set_subtitle_start() {
     set_subtitle_from_player(SET_SUBTITLE_START);
   }
 
-  /*
-   */
   void set_subtitle_end() {
     set_subtitle_from_player(SET_SUBTITLE_END);
   }
 
-  /*
-   */
   void set_subtitle_start_and_go_next() {
     set_subtitle_from_player(SET_SUBTITLE_START | SELECT_NEXT_OR_CREATE);
   }
 
-  /*
-   */
   void set_subtitle_end_and_go_next() {
     set_subtitle_from_player(SET_SUBTITLE_END | SELECT_NEXT_OR_CREATE);
   }
 
-  /*
-   */
   void set_subtitle_start_and_next() {
     set_subtitle_from_player(SET_SUBTITLE_START | SELECT_NEXT_OR_CREATE |
                              SET_NEXT_SUBTITLE_POS);
   }
 
-  /*
-   */
   void set_subtitle_end_and_next() {
     set_subtitle_from_player(SET_SUBTITLE_END | SELECT_NEXT_OR_CREATE |
                              SET_NEXT_SUBTITLE_POS);
   }
 
-  /*
-   * Update the subtitle start.
-   * We connect the signal key_release_event to update the
-   * end of the subtitle when the key is released.
-   */
+  // Update the subtitle start.
+  // We connect the signal key_release_event to update the
+  // end of the subtitle when the key is released.
   void set_subtitle_start_and_end_with_one_key() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -397,11 +359,9 @@ class TimingFromPlayer : public Action {
     set_subtitle_start();
   }
 
-  /*
-   * Any key have been released.
-   * Update the end of the subtitle and disconnect
-   * the callback.
-   */
+  // Any key have been released.
+  // Update the end of the subtitle and disconnect
+  // the callback.
   bool on_key_release_event(GdkEventKey *) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -410,8 +370,6 @@ class TimingFromPlayer : public Action {
     return true;
   }
 
-  /*
-   */
   SubtitleTime get_prefered_offset() {
     int offset = 0;
     get_config().get_value_int("timing-from-player", "offset", offset);

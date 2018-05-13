@@ -1,26 +1,24 @@
 #ifdef ENABLE_GL
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "document.h"
 #include "keyframes.h"
@@ -34,161 +32,101 @@
 
 #define FONT_SIZE 256
 
-/*
- * OpenGL Waveform renderer
- */
+// OpenGL Waveform renderer
 class WaveformRendererGL : public Gtk::GL::DrawingArea,
                            public WaveformRenderer {
  public:
-  /*
-   *
-   */
   WaveformRendererGL();
 
-  /*
-   *
-   */
   ~WaveformRendererGL();
 
-  /*
-   * Return the widget attached to the renderer.
-   */
+  // Return the widget attached to the renderer.
   Gtk::Widget *widget();
 
-  /*
-   * Create GdkGLConfig (RGB | DEPTH | DOUBLE | STENCIL)
-   */
+  // Create GdkGLConfig (RGB | DEPTH | DOUBLE | STENCIL)
   Glib::RefPtr<Gdk::GL::Config> create_glconfig();
 
-  /*
-   * Try to create OpenGL font (with support of display list)
-   */
+  // Try to create OpenGL font (with support of display list)
   bool create_gl_font(const Glib::ustring &font_desc);
 
-  /*
-   * Use pango to get the size of the text (pixel)
-   */
+  // Use pango to get the size of the text (pixel)
   int get_text_width(const Glib::ustring &text);
 
-  /*
-   * Use the Raster Position to display text
-   */
+  // Use the Raster Position to display text
   void draw_text(float x, float y, const Glib::ustring &text);
 
-  /*
-   * Generate font
-   */
+  // Generate font
   void on_realize();
 
-  /*
-   * Just redisplay with redraw_all
-   */
+  // Just redisplay with redraw_all
   bool on_configure_event(GdkEventConfigure *ev);
 
-  /*
-   * Expose widget
-   * Clear buffer
-   * Draw timeline, channels and markers
-   * Swap Buffer
-   */
+  // Expose widget
+  // Clear buffer
+  // Draw timeline, channels and markers
+  // Swap Buffer
   bool on_expose_event(GdkEventExpose *ev);
 
-  /*
-   * Display all scene:
-   *	- timeline (draw_timeline)
-   *	- waveform (draw_waveform)
-   *	- subtitle (draw_subtitles)
-   *	- time info (display_time_info)
-   */
+  // Display all scene:
+  // - timeline (draw_timeline)
+  // - waveform (draw_waveform)
+  // - subtitle (draw_subtitles)
+  // - time info (display_time_info)
   void draw(GdkEventExpose *ev);
 
-  /*
-   * Draw the left and the right marker of the subtitle selected.
-   */
+  // Draw the left and the right marker of the subtitle selected.
   void draw_marker(const Gdk::Rectangle &rect);
 
-  /*
-   * Draw subtitles visible
-   */
+  // Draw subtitles visible
   void draw_subtitles(const Gdk::Rectangle &rect);
 
-  /*
-   * Draw the text of the subtitles visible
-   */
+  // Draw the text of the subtitles visible
   void draw_subtitles_text(const Gdk::Rectangle &rect);
 
-  /*
-   * Draw the channel in the area with the lines methods
-   */
+  // Draw the channel in the area with the lines methods
   void draw_channel_with_line_strip(const Gdk::Rectangle &area, int channel);
 
-  /*
-   * Draw the channel in the area with the quad methods
-   */
+  // Draw the channel in the area with the quad methods
   void draw_channel_with_quad_strip(const Gdk::Rectangle &area, int channel);
 
-  /*
-   * Display all of timeline: Time, seconds
-   */
+  // Display all of timeline: Time, seconds
   void draw_timeline(const Gdk::Rectangle &area);
 
-  /*
-   * Display the time every X seconds ("msec") with "upper" height
-   */
+  // Display the time every X seconds ("msec") with "upper" height
   void draw_timeline_msecs(const Gdk::Rectangle &area, long msec, int upper);
 
-  /*
-   * Display the time text every X seconds (msec)
-   */
+  // Display the time text every X seconds (msec)
   void draw_timeline_time(const Gdk::Rectangle &area, long msec);
 
-  /*
-   * Display the time of the mouse
-   * and the duration of the selected subtitle
-   */
+  // Display the time of the mouse
+  // and the duration of the selected subtitle
   void display_time_info(const Gdk::Rectangle &area);
 
-  /*
-   * Draw the keyframes position.
-   */
+  // Draw the keyframes position.
   void draw_keyframes(const Gdk::Rectangle &area);
 
-  /*
-   * Delete the OpenGL Display List (Waveform)
-   */
+  // Delete the OpenGL Display List (Waveform)
   void delete_display_lists();
 
-  /*
-   * The Waveform used a display list for optimize the render.
-   *
-   * If the OpenGL display list (waveform) is not yet create:
-   * - Create the display list and draw the waveform inside.
-   *
-   * Call the display list for drawing the waveform.
-   */
+  // The Waveform used a display list for optimize the render.
+  // If the OpenGL display list (waveform) is not yet create:
+  // - Create the display list and draw the waveform inside.
+  // Call the display list for drawing the waveform.
   void draw_waveform(const Gdk::Rectangle &rect);
 
-  /*
-   * The waveform is changed.
-   * Need to force to redisplay the waveform.
-   * Delete the display list
-   */
+  // The waveform is changed.
+  // Need to force to redisplay the waveform.
+  // Delete the display list
   void waveform_changed();
 
-  /*
-   * The keyframe is changed.
-   * Need to redisplay the waveform.
-   */
+  // The keyframe is changed.
+  // Need to redisplay the waveform.
   void keyframes_changed();
 
-  /*
-   * Call queue_draw
-   */
+  // Call queue_draw
   void redraw_all();
 
-  /*
-   * Delete display list and redraw
-   */
+  // Delete display list and redraw
   void force_redraw_all();
 
  protected:
@@ -202,9 +140,7 @@ class WaveformRendererGL : public Gtk::GL::DrawingArea,
   GLsizei m_displayListSize;
 };
 
-/*
- * Constructor
- */
+// Constructor
 WaveformRendererGL::WaveformRendererGL()
     : WaveformRenderer(),
       m_fontListBase(0),
@@ -216,23 +152,16 @@ WaveformRendererGL::WaveformRendererGL()
     set_gl_capability(glconfig);
 }
 
-/*
- *
- */
 WaveformRendererGL::~WaveformRendererGL() {
   // Display lists are deleted with the opengl context
 }
 
-/*
- * Return the widget attached to the renderer.
- */
+// Return the widget attached to the renderer.
 Gtk::Widget *WaveformRendererGL::widget() {
   return this;
 }
 
-/*
- * Create GdkGLConfig (RGB | DEPTH | DOUBLE | STENCIL)
- */
+// Create GdkGLConfig (RGB | DEPTH | DOUBLE | STENCIL)
 Glib::RefPtr<Gdk::GL::Config> WaveformRendererGL::create_glconfig() {
   Glib::RefPtr<Gdk::GL::Config> glconfig;
 
@@ -257,9 +186,7 @@ Glib::RefPtr<Gdk::GL::Config> WaveformRendererGL::create_glconfig() {
   return glconfig;
 }
 
-/*
- * Try to create OpenGL font (with display list)
- */
+// Try to create OpenGL font (with display list)
 bool WaveformRendererGL::create_gl_font(const Glib::ustring &font_desc_str) {
   if (m_fontListBase > 0) {
     // destroy font list
@@ -293,9 +220,7 @@ bool WaveformRendererGL::create_gl_font(const Glib::ustring &font_desc_str) {
   return true;
 }
 
-/*
- * Use pango to get the size of the text (pixel)
- */
+// Use pango to get the size of the text (pixel)
 int WaveformRendererGL::get_text_width(const Glib::ustring &text) {
   Glib::RefPtr<Pango::Layout> layout = create_pango_layout(text);
   if (layout) {
@@ -309,9 +234,7 @@ int WaveformRendererGL::get_text_width(const Glib::ustring &text) {
   return 0;
 }
 
-/*
- * Use the Raster Position to display text
- */
+// Use the Raster Position to display text
 void WaveformRendererGL::draw_text(float x, float y,
                                    const Glib::ustring &text) {
   glRasterPos2f(x, y);
@@ -320,9 +243,7 @@ void WaveformRendererGL::draw_text(float x, float y,
   glCallLists(text.length(), GL_UNSIGNED_BYTE, text.c_str());
 }
 
-/*
- * Generate OpenGL font
- */
+// Generate OpenGL font
 void WaveformRendererGL::on_realize() {
   Gtk::DrawingArea::on_realize();
 
@@ -345,9 +266,7 @@ void WaveformRendererGL::on_realize() {
   gl->gl_end();
 }
 
-/*
- * Just redisplay with redraw_all
- */
+// Just redisplay with redraw_all
 bool WaveformRendererGL::on_configure_event(GdkEventConfigure *ev) {
   Gtk::DrawingArea::on_configure_event(ev);
 
@@ -357,12 +276,10 @@ bool WaveformRendererGL::on_configure_event(GdkEventConfigure *ev) {
   return false;
 }
 
-/*
- * Expose widget
- * Clear buffer
- * Draw timeline, channels and markers
- * Swap Buffer
- */
+// Expose widget
+// Clear buffer
+// Draw timeline, channels and markers
+// Swap Buffer
 bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev) {
   static Glib::Timer m_timer;
 
@@ -452,13 +369,11 @@ bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev) {
   return true;
 }
 
-/*
- * Display all scene:
- *	- timeline (draw_timeline)
- *	- waveform (draw_waveform)
- *	- subtitle (draw_subtitles)
- *	- time info (display_time_info)
- */
+// Display all scene:
+// - timeline (draw_timeline)
+// - waveform (draw_waveform)
+// - subtitle (draw_subtitles)
+// - time info (display_time_info)
 void WaveformRendererGL::draw(GdkEventExpose *ev) {
   Gdk::Rectangle timeline_area(0, 0, get_width(), 30);
   Gdk::Rectangle waveform_area(0, 0, get_width(), get_height() - 30);
@@ -507,54 +422,9 @@ void WaveformRendererGL::draw(GdkEventExpose *ev) {
 
   if (document() && m_display_time_info)
     display_time_info(waveform_area);
-
-  /*
-          // time line
-          DisplayArea da = get_display_area(30);
-
-          glEnable(GL_STENCIL_TEST);
-
-          glStencilFunc(GL_ALWAYS, 1, 1);
-          glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-
-          Gdk::Rectangle waveform_area(0, 0, get_width(), get_height() - 30);
-
-          // waveform
-          glPushMatrix();
-                  draw_waveform(waveform_area);
-          glPopMatrix();
-
-          // waveform with subtitles are prelight
-          glStencilFunc(GL_EQUAL, 1, 1);
-          glStencilOp(GL_INCR, GL_KEEP, GL_DECR);
-
-          glColor4fv(m_color_subtitle_selected);
-          draw_subtitles(waveform_area);
-
-
-          // rectangle for subtitle
-          glStencilFunc(GL_EQUAL, 1, 1);
-          glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
-
-          glColor3f(0.8,0.8,0.8);
-          draw_subtitles(waveform_area);
-
-
-          glDisable(GL_STENCIL_TEST);
-
-          draw_marker(waveform_area);
-
-          // timeline
-          glPushMatrix();
-                  glTranslatef(-get_start_area(), get_height() - 30, 0);
-                  draw_timeline(da);
-          glPopMatrix();
-  */
 }
 
-/*
- * Draw the channel in the area with the lines methods
- */
+// Draw the channel in the area with the lines methods
 void WaveformRendererGL::draw_channel_with_line_strip(
     const Gdk::Rectangle &area, int channel) {
   if (!m_waveform)
@@ -577,9 +447,7 @@ void WaveformRendererGL::draw_channel_with_line_strip(
   glEnd();
 }
 
-/*
- * Draw the channel in the area with the lines methods
- */
+// Draw the channel in the area with the lines methods
 void WaveformRendererGL::draw_channel_with_quad_strip(
     const Gdk::Rectangle &area, int channel) {
   if (!m_waveform)
@@ -602,9 +470,7 @@ void WaveformRendererGL::draw_channel_with_quad_strip(
   glEnd();
 }
 
-/*
- * Delete the OpenGL Display List (Waveform)
- */
+// Delete the OpenGL Display List (Waveform)
 void WaveformRendererGL::delete_display_lists() {
   if (m_displayListSize > 0) {
     glDeleteLists(m_displayList, m_displayListSize);
@@ -613,14 +479,10 @@ void WaveformRendererGL::delete_display_lists() {
   }
 }
 
-/*
- * The Waveform used a display list for optimize the render.
- *
- * If the OpenGL display list (waveform) is not yet create:
- * - Create the display list and draw the waveform inside.
- *
- * Call the display list for drawing the waveform.
- */
+// The Waveform used a display list for optimize the render.
+// If the OpenGL display list (waveform) is not yet create:
+// - Create the display list and draw the waveform inside.
+// Call the display list for drawing the waveform.
 void WaveformRendererGL::draw_waveform(const Gdk::Rectangle &rect) {
   if (!m_waveform)
     return;
@@ -674,9 +536,7 @@ void WaveformRendererGL::draw_waveform(const Gdk::Rectangle &rect) {
   glDisable(GL_BLEND);
 }
 
-/*
- * Display all of timeline: Time, seconds
- */
+// Display all of timeline: Time, seconds
 void WaveformRendererGL::draw_timeline(const Gdk::Rectangle &area) {
   long start = 0;
   long end = get_width() * zoom();
@@ -717,9 +577,7 @@ void WaveformRendererGL::draw_timeline(const Gdk::Rectangle &area) {
   draw_timeline_time(area, sec_1);
 }
 
-/*
- * Display the time every X seconds ("msec") with "upper" height
- */
+// Display the time every X seconds ("msec") with "upper" height
 void WaveformRendererGL::draw_timeline_msecs(const Gdk::Rectangle &area,
                                              long msec, int upper) {
   long start = 0;
@@ -735,9 +593,7 @@ void WaveformRendererGL::draw_timeline_msecs(const Gdk::Rectangle &area,
   glEnd();
 }
 
-/*
- * Display the time text every X seconds (msec)
- */
+// Display the time text every X seconds (msec)
 void WaveformRendererGL::draw_timeline_time(const Gdk::Rectangle &area,
                                             long msec) {
   int height = area.get_height();
@@ -767,10 +623,8 @@ void WaveformRendererGL::draw_timeline_time(const Gdk::Rectangle &area,
   glPopMatrix();
 }
 
-/*
- * Display the time of the mouse
- * and the duration of the selected subtitle
- */
+// Display the time of the mouse
+// and the duration of the selected subtitle
 void WaveformRendererGL::display_time_info(const Gdk::Rectangle &area) {
   int text_width = get_text_width(SubtitleTime::null());
 
@@ -804,8 +658,6 @@ void WaveformRendererGL::display_time_info(const Gdk::Rectangle &area) {
   }
 }
 
-/*
- */
 void WaveformRendererGL::draw_keyframes(const Gdk::Rectangle &rect) {
   Player *player = SubtitleEditorWindow::get_instance()->get_player();
   if (player == NULL)
@@ -838,9 +690,7 @@ void WaveformRendererGL::draw_keyframes(const Gdk::Rectangle &rect) {
   glEnd();
 }
 
-/*
- * Draw the left and the right marker of the subtitle selected.
- */
+// Draw the left and the right marker of the subtitle selected.
 void WaveformRendererGL::draw_marker(const Gdk::Rectangle &rect) {
   Subtitle selected = document()->subtitles().get_first_selected();
   if (!selected)
@@ -890,9 +740,7 @@ void WaveformRendererGL::draw_marker(const Gdk::Rectangle &rect) {
   glEnd();
 }
 
-/*
- * Draw subtitles visible
- */
+// Draw subtitles visible
 void WaveformRendererGL::draw_subtitles(const Gdk::Rectangle &rect) {
   if (!document())
     return;
@@ -954,9 +802,7 @@ void WaveformRendererGL::draw_subtitles(const Gdk::Rectangle &rect) {
   glPopMatrix();
 }
 
-/*
- * Draw the text of the subtitles visible
- */
+// Draw the text of the subtitles visible
 void WaveformRendererGL::draw_subtitles_text(const Gdk::Rectangle &rect) {
   if (!document())
     return;
@@ -997,42 +843,32 @@ void WaveformRendererGL::draw_subtitles_text(const Gdk::Rectangle &rect) {
   glPopMatrix();
 }
 
-/*
- * The waveform is changed.
- * Need to force to redisplay the waveform.
- * Delete the display list
- */
+// The waveform is changed.
+// Need to force to redisplay the waveform.
+// Delete the display list
 void WaveformRendererGL::waveform_changed() {
   delete_display_lists();
 
   queue_draw();
 }
 
-/*
- */
 void WaveformRendererGL::keyframes_changed() {
   queue_draw();
 }
 
-/*
- * Call queue_draw
- */
+// Call queue_draw
 void WaveformRendererGL::redraw_all() {
   queue_draw();
 }
 
-/*
- * Delete display list and redraw
- */
+// Delete display list and redraw
 void WaveformRendererGL::force_redraw_all() {
   delete_display_lists();
 
   queue_draw();
 }
 
-/*
- *	HACK!
- */
+// HACK!
 WaveformRenderer *create_waveform_renderer_gl() {
   return manage(new WaveformRendererGL());
 }

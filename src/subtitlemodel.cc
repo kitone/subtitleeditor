@@ -1,35 +1,30 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "subtitlemodel.h"
 #include <gtkmm/treemodel.h>
 #include "command.h"
 #include "debug.h"
 #include "document.h"
 #include "i18n.h"
+#include "subtitlemodel.h"
 
-/*
- *
- */
 class AddSubtitleCommand : public Command {
  public:
   AddSubtitleCommand(Document *doc, const Gtk::TreeIter &iter)
@@ -63,9 +58,6 @@ class AddSubtitleCommand : public Command {
   std::map<Glib::ustring, Glib::ustring> m_backup;
 };
 
-/*
- *
- */
 class RemoveSubtitleCommand : public Command {
  public:
   RemoveSubtitleCommand(Document *doc, const Gtk::TreeIter &iter)
@@ -99,16 +91,10 @@ class RemoveSubtitleCommand : public Command {
   std::map<Glib::ustring, Glib::ustring> m_backup;
 };
 
-/*
- *
- */
 SubtitleModel::SubtitleModel(Document *doc) : m_document(doc) {
   set_column_types(m_column);
 }
 
-/*
- *
- */
 Gtk::TreeIter SubtitleModel::append() {
   Gtk::TreeIter it = Gtk::ListStore::append();
   init(it);
@@ -117,14 +103,11 @@ Gtk::TreeIter SubtitleModel::append() {
   return it;
 }
 
-/*
- *	insert sub avant iter et retourne l'iter de sub
- *	et declale tout les autres (sub.num)
- */
+// insert sub avant iter et retourne l'iter de sub
+// et declale tout les autres (sub.num)
 Gtk::TreeIter SubtitleModel::insertBefore(Gtk::TreeIter &iter) {
   Gtk::TreeIter res = insert(iter);
   init(res);
-  // on recupere ça place
   (*res)[m_column.num] = (unsigned int)(*iter)[m_column.num];
 
   for (; iter; ++iter) {
@@ -133,15 +116,12 @@ Gtk::TreeIter SubtitleModel::insertBefore(Gtk::TreeIter &iter) {
   return res;
 }
 
-/*
- *	insert sub apres iter et retourne l'iter de sub
- *	et declale tout les autres (sub.num)
- */
+// insert sub apres iter et retourne l'iter de sub
+// et declale tout les autres (sub.num)
 Gtk::TreeIter SubtitleModel::insertAfter(Gtk::TreeIter &iter) {
   Gtk::TreeIter res = insert_after(iter);
   init(res);
 
-  // on recupere ça place
   (*res)[m_column.num] = (*iter)[m_column.num] + 1;
 
   ++iter;  // le nouveau ajouter
@@ -154,9 +134,7 @@ Gtk::TreeIter SubtitleModel::insertAfter(Gtk::TreeIter &iter) {
   return res;
 }
 
-/*
- *	efface un subtitle, on init les suivants avec le bon num
- */
+// efface un subtitle, on init les suivants avec le bon num
 void SubtitleModel::remove(Gtk::TreeIter &it) {
   Gtk::TreeIter iter = erase(it);
   for (; iter; ++iter) {
@@ -193,9 +171,7 @@ void SubtitleModel::remove(unsigned int start, unsigned int end) {
   }
 }
 
-/*
- *	init l'iter a 0
- */
+// init l'iter a 0
 void SubtitleModel::init(Gtk::TreeIter &iter) {
   (*iter)[m_column.num] = 0;
 
@@ -210,26 +186,24 @@ void SubtitleModel::init(Gtk::TreeIter &iter) {
   (*iter)[m_column.duration_value] = 0;
 
   (*iter)[m_column.text] = "";
-  //
+
   (*iter)[m_column.layer] = "0";
   (*iter)[m_column.style] = "Default";
-  //(*iter)[m_column.name]			= "";
-  //
+  // (*iter)[m_column.name] = "";
+
   (*iter)[m_column.marginL] = "0";
   (*iter)[m_column.marginR] = "0";
   (*iter)[m_column.marginV] = "0";
 
-  //(*iter)[m_column.effect]		= "";
-  //(*iter)[m_column.translation] = "";
-  //
+  // (*iter)[m_column.effect] = "";
+  // (*iter)[m_column.translation] = "";
+
   (*iter)[m_column.characters_per_line_text] = "0";
   (*iter)[m_column.characters_per_line_translation] = "0";
 }
 
-/*
- *	retourne le premier element de la list
- *	ou un iterator invalide
- */
+// retourne le premier element de la list
+// ou un iterator invalide
 Gtk::TreeIter SubtitleModel::getFirst() {
   if (getSize() > 0) {
     Gtk::TreeNodeChildren rows = children();
@@ -239,16 +213,12 @@ Gtk::TreeIter SubtitleModel::getFirst() {
   return nul;
 }
 
-/*
- *	retourne le dernier element de la list
- *	ou un iterator invalide
- */
+// retourne le dernier element de la list
+// ou un iterator invalide
 Gtk::TreeIter SubtitleModel::getLast() {
-#warning "Verifier si ça ne pause pas de probleme..."
   Gtk::TreeNodeChildren rows = children();
 
   if (!rows.empty()) {
-    // return rows.end();
     return rows[rows.size() - 1];
   }
 
@@ -256,22 +226,16 @@ Gtk::TreeIter SubtitleModel::getLast() {
   return nul;
 }
 
-/*
- *	retourne le nombre d'element dans la list
- */
+// retourne le nombre d'element dans la list
 unsigned int SubtitleModel::getSize() {
   // Gtk::TreeNodeChildren rows = children();
   return children().size();
 }
 
-/*
- *	FONCTION DE RECHERCHE
- *****************************************************
- */
+// FONCTION DE RECHERCHE
 
-/*
- *	recherche un subtitle grace a son numero
- */
+// recherche un subtitle
+// grace a son numero
 Gtk::TreeIter SubtitleModel::find(unsigned int num) {
   Gtk::TreeNodeChildren rows = children();
   for (Gtk::TreeIter it = rows.begin(); it; ++it) {
@@ -282,8 +246,6 @@ Gtk::TreeIter SubtitleModel::find(unsigned int num) {
   return nul;
 }
 
-/*
- */
 Gtk::TreeIter SubtitleModel::find(const SubtitleTime &time) {
   // We need to convert time to frame if the current model is frame based.
   long val = 0;
@@ -303,9 +265,7 @@ Gtk::TreeIter SubtitleModel::find(const SubtitleTime &time) {
   return nul;
 }
 
-/*
- *	hack ?
- */
+// hack ?
 bool compare_str(const Glib::ustring &src, const Glib::ustring &txt) {
   unsigned int size = src.size();
   if (txt.size() < size) {
@@ -319,9 +279,7 @@ bool compare_str(const Glib::ustring &src, const Glib::ustring &txt) {
   return false;
 }
 
-/*
- *	recherche a partir de start (+1) dans le text des subtitles
- */
+// recherche a partir de start (+1) dans le text des subtitles
 Gtk::TreeIter SubtitleModel::find_text(Gtk::TreeIter &start,
                                        const Glib::ustring &text) {
   if (start) {
@@ -340,9 +298,7 @@ Gtk::TreeIter SubtitleModel::find_text(Gtk::TreeIter &start,
   return nul;
 }
 
-/*
- *	recherche l'iterator precedant iter
- */
+// recherche l'iterator precedant iter
 Gtk::TreeIter SubtitleModel::find_previous(const Gtk::TreeIter &iter) {
   Gtk::TreeIter res;
   Gtk::TreeNodeChildren rows = children();
@@ -355,24 +311,18 @@ Gtk::TreeIter SubtitleModel::find_previous(const Gtk::TreeIter &iter) {
   return res;
 }
 
-/*
- *	recherche l'iterator suivant iter
- *	(c'est pour la forme dans notre cas un simple ++iter donne la solution)
- */
+// recherche l'iterator suivant iter
+// (c'est pour la forme dans notre cas un simple ++iter donne la solution)
 Gtk::TreeIter SubtitleModel::find_next(const Gtk::TreeIter &iter) {
   Gtk::TreeIter res = iter;
   ++res;
   return res;
 }
 
-/*
- *	FONCTION D'EDITION
- *******************************************************
- */
+// FONCTION D'EDITION
 
-/*
- *	fait une copy de src dans this
- */
+// fait une copy de src
+// dans this
 void SubtitleModel::copy(Glib::RefPtr<SubtitleModel> src) {
   g_return_if_fail(src);
 
@@ -412,9 +362,7 @@ void SubtitleModel::copy(Glib::RefPtr<SubtitleModel> src) {
 #undef SET
 }
 
-/*
- *	check la colonne num pour init de [1,size]
- */
+// check la colonne num pour init de [1,size]
 void SubtitleModel::rebuild_column_num() {
   unsigned int id = 1;
   Gtk::TreeNodeChildren rows = children();
@@ -424,9 +372,6 @@ void SubtitleModel::rebuild_column_num() {
   }
 }
 
-/*
- *
- */
 bool SubtitleModel::drag_data_delete_vfunc(const TreeModel::Path &path) {
   m_document->add_command(
       new RemoveSubtitleCommand(m_document, get_iter(path)));
@@ -439,21 +384,15 @@ bool SubtitleModel::drag_data_delete_vfunc(const TreeModel::Path &path) {
   return res;
 }
 
-/*
- *
- */
 bool SubtitleModel::drag_data_received_vfunc(
     const TreeModel::Path &dest, const Gtk::SelectionData &selection_data) {
   Gtk::TreePath src;
   Gtk::TreePath::get_from_selection_data(selection_data, src);
 
   Gtk::ListStore::drag_data_received_vfunc(dest, selection_data);
-  {
-    m_document->start_command(_("Reordered Subtitle"));
-    m_document->add_command(new AddSubtitleCommand(m_document, get_iter(dest)));
 
-    // m_document->subtitles().select(Subtitle(m_document, get_iter(dest)));
-  }
+  m_document->start_command(_("Reordered Subtitle"));
+  m_document->add_command(new AddSubtitleCommand(m_document, get_iter(dest)));
 
   return true;
 }

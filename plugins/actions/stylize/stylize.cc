@@ -1,32 +1,28 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <documentsystem.h>
 #include <extension/action.h>
 #include <i18n.h>
 
-/*
- */
 class StylizeSelectedSubtitlesPlugin : public Action {
  public:
   StylizeSelectedSubtitlesPlugin() {
@@ -38,8 +34,6 @@ class StylizeSelectedSubtitlesPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -84,8 +78,6 @@ class StylizeSelectedSubtitlesPlugin : public Action {
     rebuild_styles_menu();
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -98,8 +90,6 @@ class StylizeSelectedSubtitlesPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -110,8 +100,6 @@ class StylizeSelectedSubtitlesPlugin : public Action {
   }
 
  protected:
-  /*
-   */
   void on_document_signals(Document *, const std::string &signal) {
     if (signal == "style-changed")
       rebuild_styles_menu();
@@ -121,14 +109,10 @@ class StylizeSelectedSubtitlesPlugin : public Action {
       rebuild_styles_menu();
   }
 
-  /*
-   */
   void on_current_document_changed(Document *doc) {
     rebuild_styles_menu();
   }
 
-  /*
-   */
   void rebuild_styles_menu() {
     if (action_group_styles) {
       get_ui_manager()->remove_ui(ui_id_styles);
@@ -146,8 +130,6 @@ class StylizeSelectedSubtitlesPlugin : public Action {
     get_ui_manager()->ensure_update();
   }
 
-  /*
-   */
   void build_styles_menu() {
     Document *doc = get_current_document();
     if (doc == NULL)
@@ -175,8 +157,6 @@ class StylizeSelectedSubtitlesPlugin : public Action {
     }
   }
 
-  /*
-   */
   void apply_style_to_selection(const Glib::ustring &name) {
     Document *doc = get_current_document();
     std::vector<Subtitle> selection = doc->subtitles().get_selection();

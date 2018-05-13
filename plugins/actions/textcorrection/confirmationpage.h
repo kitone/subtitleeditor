@@ -1,27 +1,24 @@
-#ifndef _ConfirmationPage_h
-#define _ConfirmationPage_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gui/cellrenderercustom.h>
 #include <gui/textviewcell.h>
@@ -29,8 +26,6 @@
 #include "page.h"
 #include "patternmanager.h"
 
-/*
- */
 class ComfirmationPage : public AssistantPage {
   class Column : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -47,8 +42,6 @@ class ComfirmationPage : public AssistantPage {
   };
 
  public:
-  /*
-   */
   ComfirmationPage(BaseObjectType* cobject,
                    const Glib::RefPtr<Gtk::Builder>& builder)
       : AssistantPage(cobject, builder) {
@@ -64,8 +57,6 @@ class ComfirmationPage : public AssistantPage {
                                            "comfirmation-page", "remove-blank");
   }
 
-  /*
-   */
   void create_treeview() {
     m_liststore = Gtk::ListStore::create(m_column);
     m_treeview->set_model(m_liststore);
@@ -121,9 +112,6 @@ class ComfirmationPage : public AssistantPage {
         sigc::mem_fun(*this, &ComfirmationPage::on_row_activated));
   }
 
-  /*
-   *
-   */
   void init_signals() {
     m_buttonMarkAll->signal_clicked().connect(
         sigc::mem_fun(*this, &ComfirmationPage::on_mark_all));
@@ -131,8 +119,6 @@ class ComfirmationPage : public AssistantPage {
         sigc::mem_fun(*this, &ComfirmationPage::on_unmark_all));
   }
 
-  /*
-   */
   bool comfirme(Document* doc, const std::list<Pattern*>& patterns) {
     m_liststore->clear();
 
@@ -159,9 +145,6 @@ class ComfirmationPage : public AssistantPage {
     return !m_liststore->children().empty();
   }
 
-  /*
-   *
-   */
   Glib::ustring get_page_title() {
     unsigned int size = m_liststore->children().size();
     if (size == 0)
@@ -171,9 +154,7 @@ class ComfirmationPage : public AssistantPage {
         ngettext("Confirm %1 Change", "Confirm %1 Changes", size), size);
   }
 
-  /*
-   * Apply the accepted change to the document.
-   */
+  // Apply the accepted change to the document.
   void apply(Document* doc) {
     g_return_if_fail(doc);
 
@@ -210,9 +191,7 @@ class ComfirmationPage : public AssistantPage {
   }
 
  protected:
-  /*
-   * Mark all items.
-   */
+  // Mark all items.
   void on_mark_all() {
     Gtk::TreeIter it = m_liststore->children().begin();
     while (it) {
@@ -221,9 +200,7 @@ class ComfirmationPage : public AssistantPage {
     }
   }
 
-  /*
-   * Unmark all items.
-   */
+  // Unmark all items.
   void on_unmark_all() {
     Gtk::TreeIter it = m_liststore->children().begin();
     while (it) {
@@ -232,9 +209,7 @@ class ComfirmationPage : public AssistantPage {
     }
   }
 
-  /*
-   * Toggle the state of accept value.
-   */
+  // Toggle the state of accept value.
   void on_accept_toggled(const Glib::ustring& path) {
     Gtk::TreeIter it = m_liststore->get_iter(path);
     if (it) {
@@ -242,8 +217,6 @@ class ComfirmationPage : public AssistantPage {
     }
   }
 
-  /*
-   */
   void on_row_activated(const Gtk::TreeModel::Path& path,
                         Gtk::TreeViewColumn* column) {
     if (column == m_column_corrected_text)
@@ -251,9 +224,7 @@ class ComfirmationPage : public AssistantPage {
     on_accept_toggled(path.to_string());
   }
 
-  /*
-   * Update the item text.
-   */
+  // Update the item text.
   void on_corrected_edited(const Glib::ustring& path,
                            const Glib::ustring& text) {
     Gtk::TreeIter it = m_liststore->get_iter(path);
@@ -271,5 +242,3 @@ class ComfirmationPage : public AssistantPage {
   Gtk::Button* m_buttonUnmarkAll;
   Gtk::CheckButton* m_checkRemoveBlank;
 };
-
-#endif  //_ConfirmationPage_h

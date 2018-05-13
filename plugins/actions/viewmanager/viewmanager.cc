@@ -1,33 +1,28 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm_utility.h>
 #include <utility.h>
 #include <memory>
 
-/*
- *
- */
 class DialogViewEdit : public Gtk::Dialog {
   class ColumnRecord : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -53,11 +48,9 @@ class DialogViewEdit : public Gtk::Dialog {
     create_treeview();
   }
 
-  /*
-   * Update the treeview with the columns displayed.
-   * Add remaining columns that are not displayed.
-   * Run the dialog and update columns_displayed.
-   */
+  // Update the treeview with the columns displayed.
+  // Add remaining columns that are not displayed.
+  // Run the dialog and update columns_displayed.
   void execute(Glib::ustring& columns_displayed) {
     std::vector<std::string> array;
     utility::split(columns_displayed, ';', array);
@@ -108,10 +101,8 @@ class DialogViewEdit : public Gtk::Dialog {
   }
 
  protected:
-  /*
-   * Create the treeview with two columns : Display and Name
-   * Support DND .ui).
-   */
+  // Create the treeview with two columns : Display and Name
+  // Support DND .ui).
   void create_treeview() {
     m_liststore = Gtk::ListStore::create(m_column_record);
     m_treeview->set_model(m_liststore);
@@ -140,9 +131,7 @@ class DialogViewEdit : public Gtk::Dialog {
     }
   }
 
-  /*
-   * Toggle the state of the displayed column
-   */
+  // Toggle the state of the displayed column
   void on_display_toggled(const Glib::ustring& path) {
     Gtk::TreeIter iter = m_liststore->get_iter(path);
     if (iter) {
@@ -158,9 +147,6 @@ class DialogViewEdit : public Gtk::Dialog {
   Glib::RefPtr<Gtk::ListStore> m_liststore;
 };
 
-/*
- *
- */
 class DialogViewManager : public Gtk::Dialog {
   class ColumnRecord : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -195,9 +181,6 @@ class DialogViewManager : public Gtk::Dialog {
     init_treeview();
   }
 
-  /*
-   *
-   */
   void execute() {
     run();
 
@@ -206,9 +189,6 @@ class DialogViewManager : public Gtk::Dialog {
   }
 
  protected:
-  /*
-   *
-   */
   void create_treeview() {
     m_liststore = Gtk::ListStore::create(m_column_record);
     m_treeview->set_model(m_liststore);
@@ -228,9 +208,6 @@ class DialogViewManager : public Gtk::Dialog {
         sigc::mem_fun(*this, &DialogViewManager::on_selection_changed));
   }
 
-  /*
-   *
-   */
   void init_treeview() {
     std::list<Glib::ustring> keys;
 
@@ -254,18 +231,12 @@ class DialogViewManager : public Gtk::Dialog {
       on_selection_changed();
   }
 
-  /*
-   *
-   */
   void on_name_edited(const Glib::ustring& path, const Glib::ustring& text) {
     Gtk::TreeIter iter = m_liststore->get_iter(path);
 
     (*iter)[m_column_record.name] = text;
   }
 
-  /*
-   *
-   */
   void on_selection_changed() {
     bool state = m_treeview->get_selection()->get_selected();
 
@@ -273,9 +244,6 @@ class DialogViewManager : public Gtk::Dialog {
     m_buttonEdit->set_sensitive(state);
   }
 
-  /*
-   *
-   */
   void on_add() {
     Gtk::TreeIter iter = m_liststore->append();
 
@@ -285,9 +253,6 @@ class DialogViewManager : public Gtk::Dialog {
                            *m_treeview->get_column(0), true);
   }
 
-  /*
-   *
-   */
   void on_remove() {
     Gtk::TreeIter selected = m_treeview->get_selection()->get_selected();
     if (selected) {
@@ -298,9 +263,7 @@ class DialogViewManager : public Gtk::Dialog {
     }
   }
 
-  /*
-   * Edit the selected item, launch the dialog edit
-   */
+  // Edit the selected item, launch the dialog edit
   void on_edit() {
     Gtk::TreeIter selected = m_treeview->get_selection()->get_selected();
     if (selected) {
@@ -317,9 +280,7 @@ class DialogViewManager : public Gtk::Dialog {
     }
   }
 
-  /*
-   * Delete the group "view-manager" and create with the new values
-   */
+  // Delete the group "view-manager" and create with the new values
   void save_to_config() {
     Config::getInstance().remove_group("view-manager");
 
@@ -344,9 +305,6 @@ class DialogViewManager : public Gtk::Dialog {
   Gtk::Button* m_buttonEdit;
 };
 
-/*
- *
- */
 class ViewManagerPlugin : public Action {
  public:
   ViewManagerPlugin() {
@@ -358,9 +316,7 @@ class ViewManagerPlugin : public Action {
     deactivate();
   }
 
-  /*
-   * First check if the user has any preferences
-   */
+  // First check if the user has any preferences
   void check_config() {
     std::list<Glib::ustring> keys;
 
@@ -379,9 +335,6 @@ class ViewManagerPlugin : public Action {
                          "number;start;end;duration;cps;text");
   }
 
-  /*
-   *
-   */
   void activate() {
     check_config();
 
@@ -436,9 +389,6 @@ class ViewManagerPlugin : public Action {
     get_ui_manager()->ensure_update();
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -448,9 +398,7 @@ class ViewManagerPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   * Updates the configuration with the columns to display.
-   */
+  // Updates the configuration with the columns to display.
   void on_set_view(const Glib::ustring& name) {
     Glib::ustring columns = get_config().get_value_string("view-manager", name);
 
@@ -458,9 +406,6 @@ class ViewManagerPlugin : public Action {
                                   columns);
   }
 
-  /*
-   *
-   */
   void on_view_manager() {
     std::unique_ptr<DialogViewManager> dialog(
         gtkmm_utility::get_widget_derived<DialogViewManager>(

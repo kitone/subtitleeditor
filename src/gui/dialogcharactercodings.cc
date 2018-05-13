@@ -1,34 +1,29 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "dialogcharactercodings.h"
 #include "cfg.h"
+#include "dialogcharactercodings.h"
 #include "encodings.h"
 #include "gtkmm_utility.h"
 #include "utility.h"
 
-/*
- *
- */
 DialogCharacterCodings::DialogCharacterCodings(
     BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &builder)
     : Gtk::Dialog(cobject) {
@@ -52,9 +47,7 @@ DialogCharacterCodings::DialogCharacterCodings(
   set_default_response(Gtk::RESPONSE_OK);
 }
 
-/*
- * Create the columns "Description" and "Encoding".
- */
+// Create the columns "Description" and "Encoding".
 void DialogCharacterCodings::create_columns(Gtk::TreeView *view,
                                             bool clickable) {
   Gtk::TreeViewColumn *column = NULL;
@@ -88,10 +81,8 @@ void DialogCharacterCodings::create_columns(Gtk::TreeView *view,
   }
 }
 
-/*
- * Append encoding to the model.
- * Sets description and charset from Encodings.
- */
+// Append encoding to the model.
+// Sets description and charset from Encodings.
 void DialogCharacterCodings::append_encoding(Glib::RefPtr<Gtk::ListStore> store,
                                              const Glib::ustring &charset) {
   EncodingInfo *info = Encodings::get_from_charset(charset);
@@ -104,9 +95,7 @@ void DialogCharacterCodings::append_encoding(Glib::RefPtr<Gtk::ListStore> store,
   (*it)[m_column.charset] = info->charset;
 }
 
-/*
- * Return true if the charset is already in the Displayed list.
- */
+// Return true if the charset is already in the Displayed list.
 bool DialogCharacterCodings::check_if_already_display(
     const Glib::ustring &charset) {
   Gtk::TreeIter it = m_storeDisplayed->children().begin();
@@ -118,9 +107,7 @@ bool DialogCharacterCodings::check_if_already_display(
   return false;
 }
 
-/*
- * Init the available treeview with all encodings.
- */
+// Init the available treeview with all encodings.
 void DialogCharacterCodings::init_encodings_available() {
   create_columns(treeviewAvailable, true);
 
@@ -147,9 +134,7 @@ void DialogCharacterCodings::init_encodings_available() {
   on_encodings_available_selection_changed();
 }
 
-/*
- * Init the displayed treeview with the config.
- */
+// Init the displayed treeview with the config.
 void DialogCharacterCodings::init_encodings_displayed() {
   create_columns(m_treeviewDisplayed, false);
 
@@ -178,9 +163,7 @@ void DialogCharacterCodings::init_encodings_displayed() {
   on_encodings_displayed_selection_changed();
 }
 
-/*
- * Add character codings selected from Available to the Displayed.
- */
+// Add character codings selected from Available to the Displayed.
 void DialogCharacterCodings::on_button_add() {
   std::vector<Gtk::TreeModel::Path> selection =
       treeviewAvailable->get_selection()->get_selected_rows();
@@ -198,9 +181,7 @@ void DialogCharacterCodings::on_button_add() {
   }
 }
 
-/*
- * Remove selected items to the displayed treeview.
- */
+// Remove selected items to the displayed treeview.
 void DialogCharacterCodings::on_button_remove() {
   std::vector<Gtk::TreeModel::Path> rows;
 
@@ -213,27 +194,21 @@ void DialogCharacterCodings::on_button_remove() {
   }
 }
 
-/*
- * Update the sensitive of the "add" button.
- */
+// Update the sensitive of the "add" button.
 void DialogCharacterCodings::on_encodings_available_selection_changed() {
   int count = treeviewAvailable->get_selection()->count_selected_rows();
 
   m_buttonAdd->set_sensitive(count > 0);
 }
 
-/*
- * Update the sensitive of the "remove" button.
- */
+// Update the sensitive of the "remove" button.
 void DialogCharacterCodings::on_encodings_displayed_selection_changed() {
   int count = m_treeviewDisplayed->get_selection()->count_selected_rows();
 
   m_buttonRemove->set_sensitive(count > 0);
 }
 
-/*
- * Save the values in the config.
- */
+// Save the values in the config.
 void DialogCharacterCodings::save_config() {
   std::list<Glib::ustring> encodings;
 
@@ -248,17 +223,13 @@ void DialogCharacterCodings::save_config() {
                                               encodings);
 }
 
-/*
- * if the response is RESPONSE_OK save the config.
- */
+// if the response is RESPONSE_OK save the config.
 void DialogCharacterCodings::on_response(int id) {
   if (id == Gtk::RESPONSE_OK)
     save_config();
 }
 
-/*
- * Add the selected charset.
- */
+// Add the selected charset.
 void DialogCharacterCodings::on_row_available_activated(
     const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn * /*column*/) {
   Gtk::TreeIter it = m_storeAvailable->get_iter(path);
@@ -269,9 +240,7 @@ void DialogCharacterCodings::on_row_available_activated(
   }
 }
 
-/*
- * Remove the selected charset.
- */
+// Remove the selected charset.
 void DialogCharacterCodings::on_row_displayed_activated(
     const Gtk::TreeModel::Path &path, Gtk::TreeViewColumn * /*column*/) {
   Gtk::TreeIter it = m_storeDisplayed->get_iter(path);
@@ -279,10 +248,8 @@ void DialogCharacterCodings::on_row_displayed_activated(
     m_storeDisplayed->erase(it);
 }
 
-/*
- * Create an instance of the dialog .ui file)
- * If the response is OK the config is saved.
- */
+// Create an instance of the dialog .ui file)
+// If the response is OK the config is saved.
 std::unique_ptr<DialogCharacterCodings> DialogCharacterCodings::create(
     Gtk::Window &parent) {
   std::unique_ptr<DialogCharacterCodings> ptr(

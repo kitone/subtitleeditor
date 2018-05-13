@@ -1,53 +1,39 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "color.h"
 #include <iostream>
+#include "color.h"
 #include "utility.h"
 
-/*
- *
- */
 Color::Color() {
   set(0, 0, 0, 255);
 }
 
-/*
- *
- */
 Color::Color(unsigned int r, unsigned int g, unsigned int b, unsigned int a) {
   set(r, g, b, a);
 }
 
-/*
- *
- */
 Color::Color(const Glib::ustring &color) {
   from_string(color);
 }
 
-/*
- *
- */
 void Color::set(unsigned int r, unsigned int g, unsigned int b, unsigned a) {
   m_rgba[0] = CLAMP(r, 0, 255);
   m_rgba[1] = CLAMP(g, 0, 255);
@@ -55,9 +41,6 @@ void Color::set(unsigned int r, unsigned int g, unsigned int b, unsigned a) {
   m_rgba[3] = CLAMP(a, 0, 255);
 }
 
-/*
- *
- */
 unsigned int Color::getR() const {
   return m_rgba[0];
 }
@@ -74,17 +57,11 @@ unsigned int Color::getA() const {
   return m_rgba[3];
 }
 
-/*
- *
- */
 Glib::ustring Color::to_string() const {
   return build_message("#%02X%02X%02X%02X", m_rgba[0], m_rgba[1], m_rgba[2],
                        m_rgba[3]);
 }
 
-/*
- *
- */
 bool hex(const Glib::ustring &spec, unsigned int *c) {
   *c = 0;
   for (unsigned int i = 0; i < spec.size(); ++i) {
@@ -96,9 +73,6 @@ bool hex(const Glib::ustring &spec, unsigned int *c) {
   return true;
 }
 
-/*
- *
- */
 bool Color::from_string(const Glib::ustring &color) {
   if (color[0] == '#') {
     Glib::ustring value = color.substr(1, color.size());
@@ -127,35 +101,7 @@ bool Color::from_string(const Glib::ustring &color) {
   return false;
 }
 
-/*
- *
- */
-/*
-void Color::setGdkColor(const Gdk::Color& gdkcolor, unsigned int alpha)
-{
-        unsigned int r = gdkcolor.get_red() / 257;
-        unsigned int g = gdkcolor.get_green() / 257;
-        unsigned int b = gdkcolor.get_blue() / 257;
-
-        set(r,g,b,alpha);
-}
-*/
-
-/*
- *
- */
-/*
-Gdk::Color Color::getGdkColor()
-{
-        Gdk::Color gdkcolor;
-        gdkcolor.set_rgb(getR()*257, getG()*257, getB()*257);
-        return gdkcolor;
-}
-*/
-
-/*
- *	init button avec les info de color
- */
+// init button avec les info de color
 void Color::initColorButton(Gtk::ColorButton &button) {
   Gdk::Color gdkcolor;
   gdkcolor.set_rgb(getR() * 257, getG() * 257, getB() * 257);
@@ -164,9 +110,7 @@ void Color::initColorButton(Gtk::ColorButton &button) {
   button.set_color(gdkcolor);
 }
 
-/*
- *	init color a partir de button
- */
+// init color a partir de button
 void Color::getFromColorButton(const Gtk::ColorButton &button) {
   Gdk::Color gdkcolor = button.get_color();
 

@@ -1,30 +1,28 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2010, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
 
 /*
-SBV format:
+// SBV format :
 
 0:00:03.490,0:00:07.430
 >> FISHER: All right. So, let's begin.
@@ -40,13 +38,10 @@ we're presenting today.
 
 0:00:14.009,0:00:15.889
 [pause]
-
 */
 
 class SBV : public SubtitleFormatIO {
  public:
-  /*
-   */
   void open(Reader &file) {
     Glib::RefPtr<Glib::Regex> re_time = Glib::Regex::create(
         "^(\\d):(\\d+):(\\d+)\\.(\\d+),(\\d):(\\d+):(\\d+)\\.(\\d+)");
@@ -93,8 +88,6 @@ class SBV : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void save(Writer &file) {
     for (Subtitle sub = document()->subtitles().get_first(); sub; ++sub) {
       Glib::ustring text = sub.get_text();
@@ -106,8 +99,6 @@ class SBV : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   Glib::ustring time_to_sbv(const SubtitleTime &t) {
     return build_message("%i:%02i:%02i.%03i", t.hours(), t.minutes(),
                          t.seconds(), t.mseconds());
@@ -116,8 +107,6 @@ class SBV : public SubtitleFormatIO {
 
 class SBVPlugin : public SubtitleFormat {
  public:
-  /*
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "SBV";
@@ -127,8 +116,6 @@ class SBVPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   */
   SubtitleFormatIO *create() {
     SBV *sf = new SBV();
     return sf;

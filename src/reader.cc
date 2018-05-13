@@ -1,12 +1,30 @@
-#include "reader.h"
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 #include <giomm.h>
 #include "debug.h"
 #include "encodings.h"
 #include "error.h"
+#include "reader.h"
 
-/*
- * Constructor.
- */
+// Constructor.
 Reader::Reader(const Glib::ustring &data) : m_data(data) {
   m_lines_init = false;
 }
@@ -14,16 +32,12 @@ Reader::Reader(const Glib::ustring &data) : m_data(data) {
 Reader::~Reader() {
 }
 
-/*
- * Return the contents of the file.
- */
+// Return the contents of the file.
 const Glib::ustring &Reader::get_data() const {
   return m_data;
 }
 
-/*
- * Return the newline detected of the file.
- */
+// Return the newline detected of the file.
 Glib::ustring Reader::get_newline() {
   Glib::ustring newline;
 
@@ -42,9 +56,7 @@ Glib::ustring Reader::get_newline() {
   return newline;
 }
 
-/*
- * Get the next line of the file without newline character (CR, LF or CRLF).
- */
+// Get the next line of the file without newline character (CR, LF or CRLF).
 bool Reader::getline(Glib::ustring &line) {
   initialize_lines();
 
@@ -61,19 +73,15 @@ bool Reader::getline(Glib::ustring &line) {
   return true;
 }
 
-/*
- * Return all lines detected of the file, without newline character (CR, LF or
- * CRLF).
- */
+// Return all lines detected of the file, without newline character (CR, LF or
+// CRLF).
 std::vector<Glib::ustring> Reader::get_lines() {
   initialize_lines();
 
   return m_lines;
 }
 
-/*
- * Split the data to separate lines.
- */
+// Split the data to separate lines.
 void Reader::initialize_lines() {
   // init only if needs
   if (m_lines_init)

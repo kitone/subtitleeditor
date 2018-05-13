@@ -1,29 +1,25 @@
-/*
- *
- *	minimizeduration.cc
- *	- "the ultimate subtitle fitness center"
- *	a subtitleeditor plugin by Eltomito <tomaspartl@centrum.cz>
- *
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// - "the ultimate subtitle fitness center"
+// a subtitleeditor plugin by Eltomito <tomaspartl@centrum.cz>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
@@ -41,9 +37,6 @@ class MinimizeDurationPlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -78,9 +71,6 @@ class MinimizeDurationPlugin : public Action {
                "minimize-duration-from-end", "minimize-duration-from-end");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -90,9 +80,6 @@ class MinimizeDurationPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -104,27 +91,18 @@ class MinimizeDurationPlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_minimize_duration_from_start() {
     se_debug(SE_DEBUG_PLUGINS);
 
     execute(true);
   }
 
-  /*
-   *
-   */
   void on_minimize_duration_from_end() {
     se_debug(SE_DEBUG_PLUGINS);
 
     execute(false);
   }
 
-  /*
-   *
-   */
   bool execute(bool from_start) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -134,8 +112,8 @@ class MinimizeDurationPlugin : public Action {
 
     Subtitles subtitles = doc->subtitles();
 
-    // NOTE:	the selection returned is always sorted regardless of the order the
-    // user clicked on the subtitles in 	or at least it was when I tried it.
+    // NOTE: the selection returned is always sorted regardless of the order the
+    // user clicked on the subtitles in or at least it was when I tried it.
     std::vector<Subtitle> selection = subtitles.get_selection();
 
     unsigned int subcnt = selection.size();

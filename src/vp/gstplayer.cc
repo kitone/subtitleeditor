@@ -1,24 +1,23 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2014, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 #include <gstreamermm/buffer.h>
 #include <gstreamermm/bus.h>
 #include <gstreamermm/caps.h>
@@ -41,13 +40,11 @@
 #elif defined(GDK_WINDOWING_WIN32)
 #include <gdk/gdkwin32.h>
 #elif defined(GDK_WINDOWING_QUARTZ)
-#include <gdk/gdkquartz.h>
+// #include <gdk/gdkquartz.h>
 #endif
 
-/*
- * Constructor
- * Init values
- */
+// Constructor
+// Init values
 GstPlayer::GstPlayer() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -67,10 +64,8 @@ GstPlayer::GstPlayer() {
           sigc::mem_fun(*this, &GstPlayer::on_config_video_player_changed));
 }
 
-/*
- * Destructor
- * Set up pipeline to NULL.
- */
+// Destructor
+// Set up pipeline to NULL.
 GstPlayer::~GstPlayer() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -80,9 +75,7 @@ GstPlayer::~GstPlayer() {
   }
 }
 
-/*
- * Create the pipeline and sets the uri.
- */
+// Create the pipeline and sets the uri.
 bool GstPlayer::open(const Glib::ustring &uri) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "try to open uri '%s'", uri.c_str());
   // we need to make sure the widget is realized
@@ -100,18 +93,14 @@ bool GstPlayer::open(const Glib::ustring &uri) {
   return ret;
 }
 
-/*
- * Set up the pipeline to NULL.
- */
+// Set up the pipeline to NULL.
 void GstPlayer::close() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
   set_pipeline_null();
 }
 
-/*
- * Return the uri of the current video.
- */
+// Return the uri of the current video.
 Glib::ustring GstPlayer::get_uri() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -120,20 +109,16 @@ Glib::ustring GstPlayer::get_uri() {
   return m_pipeline->property_current_uri();
 }
 
-/*
- * Sets the pipeline state to playing.
- */
+// Sets the pipeline state to playing.
 void GstPlayer::play() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
   set_pipeline_state(Gst::STATE_PLAYING);
 }
 
-/*
- * Try to play the segment defined by the subtitle (from start to end).
- * This function supports the looping.
- * The state is sets to playing.
- */
+// Try to play the segment defined by the subtitle (from start to end).
+// This function supports the looping.
+// The state is sets to playing.
 void GstPlayer::play_subtitle(const Subtitle &sub) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -152,11 +137,9 @@ void GstPlayer::play_subtitle(const Subtitle &sub) {
   }
 }
 
-/*
- * Try to play the segment defined (start to end).
- * This function don't support the mode looping.
- * The state is sets to playing.
- */
+// Try to play the segment defined (start to end).
+// This function don't support the mode looping.
+// The state is sets to playing.
 void GstPlayer::play_segment(const SubtitleTime &start,
                              const SubtitleTime &end) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
@@ -170,27 +153,21 @@ void GstPlayer::play_segment(const SubtitleTime &start,
     update_pipeline_state_and_timeout();
 }
 
-/*
- * Sets the pipeline state to paused.
- */
+// Sets the pipeline state to paused.
 void GstPlayer::pause() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
   set_pipeline_state(Gst::STATE_PAUSED);
 }
 
-/*
- * Return true if the state of the pipeline is playing.
- */
+// Return true if the state of the pipeline is playing.
 bool GstPlayer::is_playing() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
   return (m_pipeline_state == Gst::STATE_PLAYING);
 }
 
-/*
- * Return the duration of the stream or 0.
- */
+// Return the duration of the stream or 0.
 long GstPlayer::get_duration() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -203,9 +180,7 @@ long GstPlayer::get_duration() {
   return m_pipeline_duration / Gst::MILLI_SECOND;
 }
 
-/*
- * Return the current position in the stream.
- */
+// Return the current position in the stream.
 long GstPlayer::get_position() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -220,8 +195,6 @@ long GstPlayer::get_position() {
   return pos / Gst::MILLI_SECOND;
 }
 
-/*
- */
 bool GstPlayer::seek(long start, long end, const Gst::SeekFlags &flags) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "try to seek %s (%d) - %s (%d)",
                    SubtitleTime(start).str().c_str(), start,
@@ -254,9 +227,7 @@ bool GstPlayer::seek(long start, long end, const Gst::SeekFlags &flags) {
   return ret;
 }
 
-/*
- * Seeking, the state of the pipeline is not modified.
- */
+// Seeking, the state of the pipeline is not modified.
 void GstPlayer::seek(long position) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -268,9 +239,7 @@ void GstPlayer::seek(long position) {
     update_pipeline_state_and_timeout();
 }
 
-/*
- * Update the text overlay with this new text.
- */
+// Update the text overlay with this new text.
 void GstPlayer::set_subtitle_text(const Glib::ustring &text) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "text='%s'", text.c_str());
 
@@ -283,12 +252,10 @@ void GstPlayer::set_subtitle_text(const Glib::ustring &text) {
   m_textoverlay->set_property("text", corrected);
 }
 
-/*
- * Sets the new playback rate. Used for slow or fast motion.
- * Default value : 1.0
- * Min : 0.1
- * Max : 1.5
- */
+// Sets the new playback rate. Used for slow or fast motion.
+// Default value : 1.0
+// Min : 0.1
+// Max : 1.5
 void GstPlayer::set_playback_rate(double value) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "rate=%f", value);
 
@@ -300,19 +267,15 @@ void GstPlayer::set_playback_rate(double value) {
     update_pipeline_state_and_timeout();
 }
 
-/*
- * Return the playback rate.
- */
+// Return the playback rate.
 double GstPlayer::get_playback_rate() {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "pipeline_rate=%f", m_pipeline_rate);
 
   return m_pipeline_rate;
 }
 
-/*
- * Enable/Disable the repeat mode.
- * Works only with play_subtitle.
- */
+// Enable/Disable the repeat mode.
+// Works only with play_subtitle.
 void GstPlayer::set_repeat(bool state) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "state=%s",
                    (state) ? "true" : "false");
@@ -321,9 +284,7 @@ void GstPlayer::set_repeat(bool state) {
   // FIXME flush pipeline ?
 }
 
-/*
- * Realize the widget and get the xWindowId.
- */
+// Realize the widget and get the xWindowId.
 void GstPlayer::on_realize() {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "try to realize...");
 
@@ -334,11 +295,9 @@ void GstPlayer::on_realize() {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "try to realize... ok");
 }
 
-/*
- * Create a gstreamer pipeline (Gst::PlayBin2), initialize the
- * audio and video sink with the configuration.
- * Connect the bug message to the player.
- */
+// Create a gstreamer pipeline (Gst::PlayBin2), initialize the
+// audio and video sink with the configuration.
+// Connect the bug message to the player.
 bool GstPlayer::create_pipeline() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -367,9 +326,7 @@ bool GstPlayer::create_pipeline() {
   return true;
 }
 
-/*
- * Return a gstreamer audio sink from the configuration option.
- */
+// Return a gstreamer audio sink from the configuration option.
 Glib::RefPtr<Gst::Element> GstPlayer::gen_audio_element() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -401,9 +358,7 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_audio_element() {
   return Glib::RefPtr<Gst::Element>();
 }
 
-/*
- * Return a gstreamer video sink from the configuration option.
- */
+// Return a gstreamer video sink from the configuration option.
 Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -493,10 +448,8 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element() {
   return Glib::RefPtr<Gst::Element>();
 }
 
-/*
- * Set the state of the pipeline.
- * The state change can be asynchronously.
- */
+// Set the state of the pipeline.
+// The state change can be asynchronously.
 bool GstPlayer::set_pipeline_state(Gst::State state) {
   if (m_pipeline && m_pipeline_state != state) {
     Gst::StateChangeReturn ret = m_pipeline->set_state(state);
@@ -506,9 +459,7 @@ bool GstPlayer::set_pipeline_state(Gst::State state) {
   return false;
 }
 
-/*
- * Sets the state of the pipeline to NULL.
- */
+// Sets the state of the pipeline to NULL.
 void GstPlayer::set_pipeline_null() {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "set up pipeline to null...");
 
@@ -542,10 +493,8 @@ void GstPlayer::set_pipeline_null() {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "set up pipeline to null... ok");
 }
 
-/*
- * Check if are missing plugin, if it's true display a message.
- * Return true if missing.
- */
+// Check if are missing plugin, if it's true display a message.
+// Return true if missing.
 bool GstPlayer::check_missing_plugins() {
   if (m_missing_plugins.empty())
     return false;
@@ -555,10 +504,8 @@ bool GstPlayer::check_missing_plugins() {
   return true;
 }
 
-/*
- * Check if it's a Missing Plugin Message.
- * Add the description of the missing plugin in the list.
- */
+// Check if it's a Missing Plugin Message.
+// Add the description of the missing plugin in the list.
 bool GstPlayer::is_missing_plugin_message(
     const Glib::RefPtr<Gst::MessageElement> &msg) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
@@ -583,9 +530,7 @@ bool GstPlayer::is_missing_plugin_message(
   return true;
 }
 
-/*
- * Receive synchronous message emission to set up video.
- */
+// Receive synchronous message emission to set up video.
 void GstPlayer::on_bus_message_sync(const Glib::RefPtr<Gst::Message> &msg) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "type='%s' name='%s'",
                    GST_MESSAGE_TYPE_NAME(msg->gobj()),
@@ -613,9 +558,7 @@ void GstPlayer::on_bus_message_sync(const Glib::RefPtr<Gst::Message> &msg) {
   bus->disable_sync_message_emission();
 }
 
-/*
- * Dispatch the gstreamer message.
- */
+// Dispatch the gstreamer message.
 bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> & /*bus*/,
                                const Glib::RefPtr<Gst::Message> &msg) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "type='%s' name='%s'",
@@ -659,21 +602,17 @@ bool GstPlayer::on_bus_message(const Glib::RefPtr<Gst::Bus> & /*bus*/,
   return true;
 }
 
-/*
- * Check the missing plugin.
- * If is missing add in the list of missing plugins.
- * This list should be show later.
- */
+// Check the missing plugin.
+// If is missing add in the list of missing plugins.
+// This list should be show later.
 void GstPlayer::on_bus_message_element(
     const Glib::RefPtr<Gst::MessageElement> &msg) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
   is_missing_plugin_message(msg);
 }
 
-/*
- * An error is detected.
- * Destroy the pipeline and show the error message in a dialog.
- */
+// An error is detected.
+// Destroy the pipeline and show the error message in a dialog.
 void GstPlayer::on_bus_message_error(
     const Glib::RefPtr<Gst::MessageError> &msg) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
@@ -694,9 +633,7 @@ void GstPlayer::on_bus_message_error(
   set_pipeline_null();
 }
 
-/*
- * An warning message is detected.
- */
+// An warning message is detected.
 void GstPlayer::on_bus_message_warning(
     const Glib::RefPtr<Gst::MessageWarning> &msg) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
@@ -713,10 +650,8 @@ void GstPlayer::on_bus_message_warning(
   g_warning("%s [%s]", err.what().c_str(), err_dbg.c_str());
 }
 
-/*
- * The state of the pipeline has changed.
- * Update the player state.
- */
+// The state of the pipeline has changed.
+// Update the player state.
 void GstPlayer::on_bus_message_state_changed(
     const Glib::RefPtr<Gst::MessageStateChanged> &msg) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
@@ -751,11 +686,9 @@ void GstPlayer::on_bus_message_state_changed(
   }
 }
 
-/*
- * End-of-stream (segment or stream) has been detected,
- * update the pipeline state to PAUSED.
- * Seek to the beginning if it's the end of the stream.
- */
+// End-of-stream (segment or stream) has been detected,
+// update the pipeline state to PAUSED.
+// Seek to the beginning if it's the end of the stream.
 void GstPlayer::on_bus_message_eos(
     const Glib::RefPtr<Gst::MessageEos> & /*msg*/) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
@@ -767,11 +700,9 @@ void GstPlayer::on_bus_message_eos(
     seek(0);
 }
 
-/*
- * The pipeline completed playback of a segment.
- * If the looping is activated send new seek event.
- * Works only with play_subtitle.
- */
+// The pipeline completed playback of a segment.
+// If the looping is activated send new seek event.
+// Works only with play_subtitle.
 void GstPlayer::on_bus_message_segment_done(
     const Glib::RefPtr<Gst::MessageSegmentDone> & /*msg*/) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
@@ -786,9 +717,7 @@ void GstPlayer::on_bus_message_segment_done(
        Gst::SEEK_FLAG_ACCURATE | Gst::SEEK_FLAG_SEGMENT);
 }
 
-/*
- * The video-player configuration has changed, update the player.
- */
+// The video-player configuration has changed, update the player.
 void GstPlayer::on_config_video_player_changed(const Glib::ustring &key,
                                                const Glib::ustring &value) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "%s %s", key.c_str(), value.c_str());
@@ -803,9 +732,8 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key,
       // m_xoverlay->set_property("force-aspect-ratio",
       // utility::string_to_bool(value));
 #endif
-      // g_object_set(
-      //		G_OBJECT(m_xoverlay->gobj()), "force-aspect-ratio",
-      //utility::string_to_bool(value), 		NULL);
+      // g_object_set(G_OBJECT(m_xoverlay->gobj()), "force-aspect-ratio",
+      // utility::string_to_bool(value), NULL);
       queue_draw();
     } else if (key == "shaded-background" && m_textoverlay) {
       m_textoverlay->set_property("shaded_background",
@@ -816,11 +744,9 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key,
   }
 }
 
-/*
- * Return the xwindow ID. (Support X11, WIN32 and QUARTZ)
- * Do not call this function in a gstreamer thread, this cause crash/segfault.
- * Caused by the merge of the Client-Side Windows in GTK+.
- */
+// Return the xwindow ID. (Support X11, WIN32 and QUARTZ)
+// Do not call this function in a gstreamer thread, this cause crash/segfault.
+// Caused by the merge of the Client-Side Windows in GTK+.
 gulong GstPlayer::get_xwindow_id() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -829,7 +755,10 @@ gulong GstPlayer::get_xwindow_id() {
 #elif defined(GDK_WINDOWING_WIN32)
   const gulong xWindowId = gdk_win32_drawable_get_handle(get_window()->gobj());
 #elif defined(GDK_WINDOWING_QUARTZ)
-  const gulong xWindowId = gdk_quartz_window_get_nswindow(get_window()->gobj());
+  // const gulong xWindowId =
+  // gdk_quartz_window_get_nswindow(get_window()->gobj());
+  const gulong xWindowId =
+      0;  // gdk_quartz_window_get_nsview(get_window()->gobj());
 #else
 #error unimplemented GTK backend
 #endif
@@ -839,8 +768,6 @@ gulong GstPlayer::get_xwindow_id() {
   return xWindowId;
 }
 
-/*
- */
 void GstPlayer::update_pipeline_state_and_timeout() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -851,9 +778,7 @@ void GstPlayer::update_pipeline_state_and_timeout() {
   got_tick();
 }
 
-/*
- * Set up the duration value of the stream if need.
- */
+// Set up the duration value of the stream if need.
 bool GstPlayer::update_pipeline_duration() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -877,9 +802,7 @@ bool GstPlayer::update_pipeline_duration() {
   return false;
 }
 
-/*
- * Return the number of audio track.
- */
+// Return the number of audio track.
 gint GstPlayer::get_n_audio() {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "n_audio: %d",
                    (m_pipeline) ? m_pipeline->property_n_audio() : 0);
@@ -889,9 +812,7 @@ gint GstPlayer::get_n_audio() {
   return 0;
 }
 
-/*
- * Sets the current audio track. (-1 = auto)
- */
+// Sets the current audio track. (-1 = auto)
 void GstPlayer::set_current_audio(gint track) {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "track=%d", track);
 
@@ -904,9 +825,7 @@ void GstPlayer::set_current_audio(gint track) {
   send_message(Player::STREAM_AUDIO_CHANGED);
 }
 
-/*
- * Return the current audio track.
- */
+// Return the current audio track.
 gint GstPlayer::get_current_audio() {
   se_debug_message(SE_DEBUG_VIDEO_PLAYER, "current_audio: %d",
                    (m_pipeline) ? m_pipeline->property_current_audio() : 0);
@@ -916,10 +835,8 @@ gint GstPlayer::get_current_audio() {
   return -1;
 }
 
-/*
- * Return the framerate of the video or zero (0).
- * Update numerator and denominator if the values are not null.
- */
+// Return the framerate of the video or zero (0).
+// Update numerator and denominator if the values are not null.
 float GstPlayer::get_framerate(int *numerator, int *denominator) {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
@@ -971,9 +888,9 @@ guint GstPlayer::get_text_valignment_based_on_config() {
       alignment = 3;
     else if (cfg_text_valignment == "center")
       alignment = 4;
-  } else
+  } else {
     Config::getInstance().set_value_string("video-player", "text-valignment",
                                            "baseline");
-
+  }
   return alignment;
 }

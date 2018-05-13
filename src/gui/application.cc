@@ -1,29 +1,27 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "application.h"
 #include <config.h>
 #include <gtkmm/accelmap.h>
 #include <algorithm>
+#include "application.h"
 #include "documentsystem.h"
 #include "encodings.h"
 #include "utility.h"
@@ -32,15 +30,10 @@
 #include "extension/action.h"
 #include "extensionmanager.h"
 
-/*
- *
- */
-Application::Application(
-    BaseObjectType *cobject,
-    const Glib::RefPtr<Gtk::Builder> &builder)  // int argc, char *argv[])
+Application::Application(BaseObjectType *cobject,
+                         const Glib::RefPtr<Gtk::Builder> &builder)
     : Gtk::Window(cobject) {
   builder->get_widget_derived("statusbar", m_statusbar);
-
   builder->get_widget("vbox-main", m_vboxMain);
   builder->get_widget("paned-main", m_paned_main);
   builder->get_widget("paned-multimedia", m_paned_multimedia);
@@ -130,9 +123,6 @@ Application::Application(
   }
 }
 
-/*
- *
- */
 Application::~Application() {
   se_debug(SE_DEBUG_APP);
 
@@ -142,13 +132,7 @@ Application::~Application() {
   ExtensionManager::instance().destroy_extensions();
 }
 
-/*
- *
- */
 void Application::load_config() {
-  //
-  // Config
-  //
   Config &cfg = Config::getInstance();
 
   // dynamic keyboar shorcuts
@@ -168,9 +152,6 @@ void Application::load_config() {
   }
 }
 
-/*
- *
- */
 bool Application::on_delete_event(GdkEventAny *ev) {
   se_debug(SE_DEBUG_APP);
 
@@ -184,11 +165,9 @@ bool Application::on_delete_event(GdkEventAny *ev) {
   return res;
 }
 
-/*
- *	il y a la création d'un nouveau document
- *	on l'ajoute dans le notebook
- *	signal emit par DocumentSystem::signal_document_create
- */
+// il y a la création d'un nouveau document
+// on l'ajoute dans le notebook
+// signal emit par DocumentSystem::signal_document_create
 void Application::on_document_create(Document *doc) {
   g_return_if_fail(doc);
 
@@ -271,9 +250,7 @@ void Application::on_document_create(Document *doc) {
   while (Gtk::Main::events_pending()) Gtk::Main::iteration();
 }
 
-/*
- *	retourne le widget (notebook) par rapport au document
- */
+// retourne le widget (notebook) par rapport au document
 Gtk::Widget *Application::get_widget(Document *doc) {
   for (int i = 0; i < m_notebook_documents->get_n_pages(); ++i) {
     Gtk::Widget *w = m_notebook_documents->get_nth_page(i);
@@ -286,9 +263,7 @@ Gtk::Widget *Application::get_widget(Document *doc) {
   return NULL;
 }
 
-/*
- *	mise a jour d'info (filename, tooltip, ...) dans la page
- */
+// mise a jour d'info (filename, tooltip, ...) dans la page
 void Application::update_document_property(Document *doc) {
   Gtk::Widget *widget = get_widget(doc);
   g_return_if_fail(widget);
@@ -326,18 +301,14 @@ void Application::update_document_property(Document *doc) {
   label->set_tooltip_markup(tip);
 }
 
-/*
- *	when the document has changed, update the name (*)name
- *	signal "document-changed"
- */
+// when the document has changed, update the name (*)name
+// signal "document-changed"
 void Application::on_document_changed(Document *doc) {
   update_document_property(doc);
 }
 
-/*
- *	on efface le document du notebook
- *	signal emit par DocumentSystem::signal_document_delete
- */
+// on efface le document du notebook
+// signal emit par DocumentSystem::signal_document_delete
 void Application::on_document_delete(Document *doc) {
   if (doc == NULL)
     return;
@@ -348,10 +319,8 @@ void Application::on_document_delete(Document *doc) {
     m_notebook_documents->remove_page(*widget);
 }
 
-/*
- * The current document has changed.
- * Needs to update the ui.
- */
+// The current document has changed.
+// Needs to update the ui.
 void Application::on_current_document_changed(Document *doc) {
   // Update page
   // First check if it's not already the good page
@@ -385,9 +354,6 @@ void Application::on_current_document_changed(Document *doc) {
   }
 }
 
-/*
- *
- */
 void Application::on_close_document(Document *doc) {
   se_debug(SE_DEBUG_APP);
 
@@ -398,10 +364,8 @@ void Application::on_close_document(Document *doc) {
   DocumentSystem::getInstance().remove(doc);
 }
 
-/*
- *	Changement dans le notebook de la page editer
- *	On recupere la page pusi on init DocumentManager avec le document
- */
+// Changement dans le notebook de la page editer
+// On recupere la page pusi on init DocumentManager avec le document
 void Application::on_signal_switch_page(Gtk::Widget * /*page*/,
                                         guint page_num) {
   se_debug(SE_DEBUG_APP);
@@ -421,9 +385,6 @@ void Application::on_signal_switch_page(Gtk::Widget * /*page*/,
   }
 }
 
-/*
- *
- */
 void Application::connect_document(Document *doc) {
   se_debug(SE_DEBUG_APP);
 
@@ -444,9 +405,6 @@ void Application::connect_document(Document *doc) {
   }
 }
 
-/*
- *
- */
 void Application::disconnect_document(Document *doc) {
   se_debug(SE_DEBUG_APP);
 
@@ -465,9 +423,6 @@ void Application::disconnect_document(Document *doc) {
   m_document_connections.clear();
 }
 
-/*
- *
- */
 void Application::update_title(Document *doc) {
   if (doc != NULL) {
     Glib::ustring name = doc->getName();
@@ -492,9 +447,6 @@ void Application::update_title(Document *doc) {
   }
 }
 
-/*
- *
- */
 void Application::on_config_interface_changed(const Glib::ustring &key,
                                               const Glib::ustring &value) {
   if (key == "use-dynamic-keyboard-shortcuts") {
@@ -513,9 +465,6 @@ void Application::on_config_interface_changed(const Glib::ustring &key,
   }
 }
 
-/*
- *
- */
 void Application::init(OptionGroup &options) {
   se_debug(SE_DEBUG_APP);
 
@@ -614,16 +563,10 @@ void Application::init(OptionGroup &options) {
   }
 }
 
-/*
- *
- */
 bool Application::on_key_press_event(GdkEventKey *ev) {
   return Gtk::Window::on_key_press_event(ev);
 }
 
-/*
- *
- */
 void Application::notebook_drag_data_received(
     const Glib::RefPtr<Gdk::DragContext> & /*context*/, int /*x*/, int /*y*/,
     const Gtk::SelectionData &selection_data, guint /*info*/, guint /*time*/) {
@@ -641,8 +584,6 @@ void Application::notebook_drag_data_received(
   }
 }
 
-/*
- */
 void Application::player_drag_data_received(
     const Glib::RefPtr<Gdk::DragContext> & /*context*/, int /*x*/, int /*y*/,
     const Gtk::SelectionData &selection_data, guint /*info*/, guint /*time*/) {
@@ -652,8 +593,6 @@ void Application::player_drag_data_received(
   }
 }
 
-/*
- */
 void Application::waveform_drag_data_received(
     const Glib::RefPtr<Gdk::DragContext> & /*context*/, int /*x*/, int /*y*/,
     const Gtk::SelectionData &selection_data, guint /*info*/, guint /*time*/) {
@@ -668,46 +607,29 @@ void Application::waveform_drag_data_received(
   }
 }
 
-/*
- *
- */
 Glib::RefPtr<Gtk::UIManager> Application::get_ui_manager() {
   return m_menubar.get_ui_manager();
 }
 
-/*
- *
- */
 Document *Application::get_current_document() {
   return DocumentSystem::getInstance().getCurrentDocument();
 }
 
-/*
- *
- */
 DocumentList Application::get_documents() {
   return DocumentSystem::getInstance().getAllDocuments();
 }
 
-/*
- *
- */
 Player *Application::get_player() {
   return m_video_player->player();
 }
 
-/*
- *
- */
 WaveformManager *Application::get_waveform_manager() {
   return m_waveform_editor;
 }
 
-/*
- * Need to connect the visibility signal of the widgets children
- * (video player and waveform editor) for updating the visibility of
- * the paned multimedia widget.
- */
+// Need to connect the visibility signal of the widgets children
+// (video player and waveform editor) for updating the visibility of
+// the paned multimedia widget.
 void Application::init_panel_multimedia() {
   Gtk::Widget *child1 = m_paned_multimedia->get_child1();
   Gtk::Widget *child2 = m_paned_multimedia->get_child2();
@@ -730,13 +652,11 @@ void Application::init_panel_multimedia() {
   on_paned_multimedia_visibility_child_changed();
 }
 
-/*
- * Check the state visibility of the children.
- * When one child is show the panel is also show.
- * When both chidren are hide, the panel is hide.
- * This callback are connected to signals
- * 'signal_show' and 'signal_hide' of the children.
- */
+// Check the state visibility of the children.
+// When one child is show the panel is also show.
+// When both chidren are hide, the panel is hide.
+// This callback are connected to signals
+// 'signal_show' and 'signal_hide' of the children.
 void Application::on_paned_multimedia_visibility_child_changed() {
   Gtk::Widget *child1 = m_paned_multimedia->get_child1();
   Gtk::Widget *child2 = m_paned_multimedia->get_child2();
@@ -755,8 +675,6 @@ void Application::on_paned_multimedia_visibility_child_changed() {
     m_paned_multimedia->hide();
 }
 
-/*
- */
 void Application::load_window_state() {
   Config &cfg = Config::getInstance();
 
@@ -786,8 +704,6 @@ void Application::load_window_state() {
     m_paned_multimedia->set_position(panel_multimedia_position);
 }
 
-/*
- */
 void Application::save_window_sate() {
   Config &cfg = Config::getInstance();
 

@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gstreamermm.h>
 #include <gtkmm.h>
@@ -28,12 +26,8 @@
 #include <iostream>
 #include "mediadecoder.h"
 
-/*
- */
 class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
  public:
-  /*
-   */
   WaveformGenerator(const Glib::ustring &uri, Glib::RefPtr<Waveform> &wf)
       : Gtk::Dialog(_("Generate Waveform"), true),
         MediaDecoder(1000),
@@ -65,9 +59,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     }
   }
 
-  /*
-   * Create audio bin
-   */
+  // Create audio bin
   Glib::RefPtr<Gst::Element> create_element(
       const Glib::ustring &structure_name) {
     se_debug_message(SE_DEBUG_PLUGINS, "structure_name=%s",
@@ -79,8 +71,8 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
 
       Glib::RefPtr<Gst::Bin> audiobin = Glib::RefPtr<Gst::Bin>::cast_dynamic(
           Gst::Parse::create_bin("audioconvert ! "
-                                 //"audioresample ! "
-                                 //"audio/x-raw-float, channels=1 ! "
+                                 // "audioresample ! "
+                                 // "audio/x-raw-float, channels=1 ! "
                                  "level name=level ! "
                                  "fakesink name=asink",
                                  true));
@@ -98,9 +90,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     return Glib::RefPtr<Gst::Element>(NULL);
   }
 
-  /*
-   * BUS MESSAGE
-   */
+  // BUS MESSAGE
   bool on_bus_message(const Glib::RefPtr<Gst::Bus> &bus,
                       const Glib::RefPtr<Gst::Message> &msg) {
     MediaDecoder::on_bus_message(bus, msg);
@@ -112,9 +102,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     return true;
   }
 
-  /*
-   * Update the progress bar
-   */
+  // Update the progress bar
   bool on_timeout() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -138,8 +126,6 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     return true;
   }
 
-  /*
-   */
   bool on_bus_message_element_level(Glib::RefPtr<Gst::Message> msg) {
     se_debug_message(SE_DEBUG_PLUGINS, "type='%s' name='%s'",
                      GST_MESSAGE_TYPE_NAME(msg->gobj()),
@@ -177,8 +163,6 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     return true;
   }
 
-  /*
-   */
   void on_work_finished() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -196,8 +180,6 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     }
   }
 
-  /*
-   */
   void on_work_cancel() {
     se_debug(SE_DEBUG_PLUGINS);
 

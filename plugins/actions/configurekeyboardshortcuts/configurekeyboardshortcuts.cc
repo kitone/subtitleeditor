@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2010, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm.h>
@@ -27,15 +25,11 @@
 #include <utility.h>
 #include <memory>
 
-/*
- */
 static gboolean accel_find_func(GtkAccelKey * /*key*/, GClosure *closure,
                                 gpointer data) {
   return (GClosure *)data == closure;
 }
 
-/*
- */
 class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
   class Columns : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -55,9 +49,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
   };
 
  public:
-  /*
-   *
-   */
   DialogConfigureKeyboardShortcuts(BaseObjectType *cobject,
                                    const Glib::RefPtr<Gtk::Builder> &builder)
       : Gtk::Dialog(cobject) {
@@ -68,9 +59,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     create_treeview();
   }
 
-  /*
-   * Create columns Actions and Shortcut.
-   */
+  // Create columns Actions and Shortcut.
   void create_treeview() {
     m_store = Gtk::ListStore::create(m_columns);
 
@@ -126,10 +115,8 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
         *this, &DialogConfigureKeyboardShortcuts::on_query_tooltip));
   }
 
-  /*
-   * Create all items (action) from the action_group.
-   * The action with menu in the name are ignored.
-   */
+  // Create all items (action) from the action_group.
+  // The action with menu in the name are ignored.
   void create_items() {
     std::vector<Glib::RefPtr<Gtk::ActionGroup> > group =
         m_refUIManager->get_action_groups();
@@ -145,9 +132,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     }
   }
 
-  /*
-   * Add an action in the model.
-   */
+  // Add an action in the model.
   void add_action(Glib::RefPtr<Gtk::Action> action) {
     Gtk::TreeModel::Row row = *m_store->append();
 
@@ -177,9 +162,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     }
   }
 
-  /*
-   * Show tooltip.
-   */
+  // Show tooltip.
   bool on_query_tooltip(int x, int y, bool keyboard_tooltip,
                         const Glib::RefPtr<Gtk::Tooltip> &tooltip) {
     Gtk::TreeIter iter;
@@ -201,9 +184,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     return true;
   }
 
-  /*
-   *
-   */
   bool foreach_callback_label(const Gtk::TreePath & /*path*/,
                               const Gtk::TreeIter &iter,
                               const Glib::ustring &label,
@@ -217,9 +197,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     return true;
   }
 
-  /*
-   *
-   */
   bool foreach_callback_closure(const Gtk::TreePath & /*path*/,
                                 const Gtk::TreeIter &iter,
                                 const GClosure *closure,
@@ -233,9 +210,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     return true;
   }
 
-  /*
-   *	search iterator by accelerator
-   */
+  // search iterator by accelerator
   Gtk::TreeIter get_iter_by_accel(guint keyval, Gdk::ModifierType mods) {
     Glib::ustring label = Gtk::AccelGroup::get_label(keyval, mods);
 
@@ -248,9 +223,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     return result;
   }
 
-  /*
-   *	search action by an accelerator
-   */
+  // search action by an accelerator
   Glib::RefPtr<Gtk::Action> get_action_by_accel(guint keyval,
                                                 Gdk::ModifierType mods) {
     Gtk::TreeIter result = get_iter_by_accel(keyval, mods);
@@ -263,9 +236,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     return res;
   }
 
-  /*
-   *
-   */
   bool on_accel_changed_foreach(const Gtk::TreePath & /*path*/,
                                 const Gtk::TreeIter &iter,
                                 GClosure *accel_closure) {
@@ -291,9 +261,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     return false;
   }
 
-  /*
-   *
-   */
   void on_accel_changed(guint /*keyval*/, Gdk::ModifierType /*modifier*/,
                         GClosure *accel_closure) {
     m_store->foreach (sigc::bind(
@@ -302,9 +269,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
         accel_closure));
   }
 
-  /*
-   * Try to changed the shortcut with conflict support.
-   */
+  // Try to changed the shortcut with conflict support.
   void on_accel_edited(const Glib::ustring &path, guint key,
                        Gdk::ModifierType mods, guint /*keycode*/) {
     Gtk::TreeIter iter = m_store->get_iter(path);
@@ -361,9 +326,7 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     }
   }
 
-  /*
-   * Remove the shortcut.
-   */
+  // Remove the shortcut.
   void on_accel_cleared(const Glib::ustring &path) {
     Gtk::TreeIter iter = m_store->get_iter(path);
 
@@ -379,9 +342,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
       dialog_error(_("Removing shortcut failed."), "");
   }
 
-  /*
-   *
-   */
   void execute(Glib::RefPtr<Gtk::UIManager> ui) {
     m_refUIManager = ui;
 
@@ -400,9 +360,6 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
   Glib::RefPtr<Gtk::UIManager> m_refUIManager;
 };
 
-/*
- *
- */
 class ConfigureKeyboardShortcuts : public Action {
  public:
   ConfigureKeyboardShortcuts() {
@@ -414,9 +371,6 @@ class ConfigureKeyboardShortcuts : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -440,9 +394,6 @@ class ConfigureKeyboardShortcuts : public Action {
                "configure-keyboard-shortcuts", "configure-keyboard-shortcuts");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -453,9 +404,6 @@ class ConfigureKeyboardShortcuts : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_configure() {
     se_debug(SE_DEBUG_PLUGINS);
 

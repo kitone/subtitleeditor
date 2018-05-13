@@ -1,36 +1,30 @@
-#ifndef _WaveformPage_h
-#define _WaveformPage_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <map>
 #include "preferencepage.h"
 
 class WaveformPage : public PreferencePage {
  public:
-  /*
-   *
-   */
   WaveformPage(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &xml)
       : PreferencePage(cobject) {
     init_color_button(xml, "colorbutton-background", "waveform-renderer",
@@ -65,9 +59,6 @@ class WaveformPage : public PreferencePage {
   }
 
  protected:
-  /*
-   *
-   */
   void on_reset() {
     Config &cfg = Config::getInstance();
 
@@ -87,9 +78,6 @@ class WaveformPage : public PreferencePage {
     }
   }
 
-  /*
-   *
-   */
   void init_color_button(const Glib::RefPtr<Gtk::Builder> &xml,
                          const Glib::ustring &widget_name,
                          const Glib::ustring &config_group,
@@ -101,5 +89,3 @@ class WaveformPage : public PreferencePage {
  protected:
   std::map<std::string, Gtk::ColorButton *> m_colorButtons;
 };
-
-#endif  //_WaveformPage_h

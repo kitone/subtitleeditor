@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm_utility.h>
@@ -35,9 +33,6 @@
 #include "mingapbetweensubtitles.h"
 #include "overlapping.h"
 
-/*
- *
- */
 class ErrorCheckingGroup : public std::vector<ErrorChecking *> {
  public:
   ErrorCheckingGroup() {
@@ -72,18 +67,9 @@ class ErrorCheckingGroup : public std::vector<ErrorChecking *> {
   }
 };
 
-/*
- *
- */
 class DialogErrorChecking : public Gtk::Dialog {
-  /*
-   *
-   */
   enum SortType { BY_CATEGORIES = 0, BY_SUBTITLES = 1 };
 
-  /*
-   *
-   */
   class Column : public Gtk::TreeModel::ColumnRecord {
    public:
     Column() {
@@ -103,9 +89,6 @@ class DialogErrorChecking : public Gtk::Dialog {
   static DialogErrorChecking *m_static_instance;
 
  public:
-  /*
-   *
-   */
   static void create() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -121,16 +104,10 @@ class DialogErrorChecking : public Gtk::Dialog {
     m_static_instance->present();
   }
 
-  /*
-   *
-   */
   static DialogErrorChecking *get_instance() {
     return m_static_instance;
   }
 
-  /*
-   *
-   */
   DialogErrorChecking(BaseObjectType *cobject,
                       const Glib::RefPtr<Gtk::Builder> &builder)
       : Gtk::Dialog(cobject) {
@@ -147,17 +124,11 @@ class DialogErrorChecking : public Gtk::Dialog {
     refresh();
   }
 
-  /*
-   *
-   */
   void on_quit() {
     delete m_static_instance;
     m_static_instance = NULL;
   }
 
-  /*
-   *
-   */
   bool on_delete_event(GdkEventAny *ev) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -166,9 +137,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     return Gtk::Window::on_delete_event(ev);
   }
 
-  /*
-   * Create the menubar and actions
-   */
+  // Create the menubar and actions
   void create_menubar(const Glib::RefPtr<Gtk::Builder> &builder) {
     Gtk::Box *vbox;
     builder->get_widget("box", vbox);
@@ -256,9 +225,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     menubar->show_all();
   }
 
-  /*
-   * Update the state of the ui from the new document (or empty).
-   */
+  // Update the state of the ui from the new document (or empty).
   void on_current_document_changed(Document *doc) {
     bool state = (doc != NULL);
 
@@ -270,32 +237,24 @@ class DialogErrorChecking : public Gtk::Dialog {
     refresh();
   }
 
-  /*
-   * Return the current document.
-   */
+  // Return the current document.
   Document *get_document() {
     return SubtitleEditorWindow::get_instance()->get_current_document();
   }
 
-  /*
-   * Set the sort method.
-   */
+  // Set the sort method.
   void set_sort_type(SortType type) {
     m_sort_type = type;
 
     refresh();
   }
 
-  /*
-   * Return the sort type.
-   */
+  // Return the sort type.
   SortType get_sort_type() {
     return m_sort_type;
   }
 
-  /*
-   * Create the treeview and connect signals.
-   */
+  // Create the treeview and connect signals.
   void create_treeview() {
     // create the model
     m_model = Gtk::TreeStore::create(m_column);
@@ -333,24 +292,16 @@ class DialogErrorChecking : public Gtk::Dialog {
     m_treeview->show_all();
   }
 
-  /*
-   *
-   */
   void on_collapse_all() {
     m_treeview->collapse_all();
   }
 
-  /*
-   *
-   */
   void on_expand_all() {
     m_treeview->expand_all();
   }
 
-  /*
-   * Get the subtitle num of the error and select it
-   * in the subtitle view editor.
-   */
+  // Get the subtitle num of the error and select it
+  // in the subtitle view editor.
   void on_selection_changed() {
     Document *doc = get_document();
     if (doc == NULL)
@@ -368,9 +319,7 @@ class DialogErrorChecking : public Gtk::Dialog {
       doc->subtitles().select(sub);
   }
 
-  /*
-   * Update the statusbar message by the number of error.
-   */
+  // Update the statusbar message by the number of error.
   void set_statusbar_error(unsigned int count) {
     if (count == 0)
       m_statusbar->push(_("No error was found."));
@@ -380,10 +329,8 @@ class DialogErrorChecking : public Gtk::Dialog {
           count));
   }
 
-  /*
-   * Add an error in the node.
-   * The label depend of the sort type.
-   */
+  // Add an error in the node.
+  // The label depend of the sort type.
   void add_error(Gtk::TreeModel::Row &node, ErrorChecking::Info &info,
                  ErrorChecking *checker) {
     Glib::ustring text;
@@ -409,10 +356,8 @@ class DialogErrorChecking : public Gtk::Dialog {
     (*it)[m_column.solution] = info.solution;
   }
 
-  /*
-   * Rebuild the model.
-   * Check errors.
-   */
+  // Rebuild the model.
+  // Check errors.
   void refresh() {
     m_model->clear();
     m_statusbar->push("");
@@ -427,9 +372,7 @@ class DialogErrorChecking : public Gtk::Dialog {
       check_by_subtitle(doc, m_checker_list);
   }
 
-  /*
-   * Check errors by organizing them by type of error.
-   */
+  // Check errors by organizing them by type of error.
   void check_by_categories(Document *doc,
                            const std::vector<ErrorChecking *> &checkers) {
     unsigned int count_error = 0;
@@ -470,9 +413,9 @@ class DialogErrorChecking : public Gtk::Dialog {
       }
 
       // Update the node label or delete if it empty
-      if (row.children().empty())
+      if (row.children().empty()) {
         m_model->erase(row);
-      else {
+      } else {
         row[m_column.checker] = (*checker_it);
 
         update_node_label(row);
@@ -482,9 +425,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     set_statusbar_error(count_error);
   }
 
-  /*
-   * Check errors by organizing them by subtitle.
-   */
+  // Check errors by organizing them by subtitle.
   void check_by_subtitle(Document *doc,
                          const std::vector<ErrorChecking *> &checkers) {
     std::vector<ErrorChecking *>::const_iterator checker_it;
@@ -522,9 +463,9 @@ class DialogErrorChecking : public Gtk::Dialog {
       }
 
       // Update the row label or remove the node if it's empty
-      if (row.children().empty())
+      if (row.children().empty()) {
         m_model->erase(row);
-      else {
+      } else {
         row[m_column.checker] =
             NULL;  // do not needs because is sort by subtitles
         row[m_column.num] = to_string(current.get_num());
@@ -538,9 +479,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     set_statusbar_error(count_error);
   }
 
-  /*
-   * FIXME
-   */
+  // FIXME
   void try_to_fix_all() {
     Document *doc = get_document();
     if (doc == NULL)
@@ -555,9 +494,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     refresh();
   }
 
-  /*
-   * FIXME
-   */
+  // FIXME
   void fix_row(Gtk::TreeModel::Row &row) {
     Gtk::TreeIter it = row.children().begin();
     while (it) {
@@ -572,9 +509,7 @@ class DialogErrorChecking : public Gtk::Dialog {
       m_model->erase(row);
   }
 
-  /*
-   * Fix the error with the support of the Command Recorder.
-   */
+  // Fix the error with the support of the Command Recorder.
   bool error_checking_fix(ErrorChecking *checker, ErrorChecking::Info &info) {
     info.document->start_command(checker->get_label());
 
@@ -585,9 +520,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     return res;
   }
 
-  /*
-   * FIXME
-   */
+  // FIXME
   bool fix_selected(Gtk::TreeIter &iter) {
     ErrorChecking *checker = (*iter)[m_column.checker];
 
@@ -613,9 +546,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     return error_checking_fix(checker, info);
   }
 
-  /*
-   * FIXME
-   */
+  // FIXME
   unsigned int fix_error(ErrorChecking *checker, Document *doc) {
     Subtitles subtitles = doc->subtitles();
 
@@ -643,17 +574,14 @@ class DialogErrorChecking : public Gtk::Dialog {
     return count;
   }
 
-  /*
-   * FIXME
-   */
+  // FIXME
   void on_row_activated(const Gtk::TreePath &path, Gtk::TreeViewColumn *) {
     Gtk::TreeIter it = m_model->get_iter(path);
 
     Gtk::TreeModel::Row row = *it;
 
     // check if it's not a node
-    if (row.children().empty())  // this is an error
-    {
+    if (row.children().empty()) {  // this is an error
       // If the fix succeeds, we need to remove it.
       if (fix_selected(it)) {
         Gtk::TreeModel::Row parent = *row.parent();
@@ -665,15 +593,12 @@ class DialogErrorChecking : public Gtk::Dialog {
         else
           update_node_label(parent);
       }
-    } else  // this is a node
-    {
+    } else {  // this is a node
       fix_row(row);
     }
   }
 
-  /*
-   * Update the label of the node.
-   */
+  // Update the label of the node.
   void update_node_label(const Gtk::TreeModel::Row row) {
     if (!row)
       return;
@@ -701,9 +626,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     }
   }
 
-  /*
-   * Show tooltip solution.
-   */
+  // Show tooltip solution.
   bool on_query_tooltip(int x, int y, bool keyboard_tooltip,
                         const Glib::RefPtr<Gtk::Tooltip> &tooltip) {
     Gtk::TreeIter iter;
@@ -723,9 +646,7 @@ class DialogErrorChecking : public Gtk::Dialog {
     return true;
   }
 
-  /*
-   * Display the dialog preferences.
-   */
+  // Display the dialog preferences.
   void on_preferences() {
     ErrorCheckingGroup group;
     DialogErrorCheckingPreferences::create(*this, group);
@@ -748,14 +669,10 @@ class DialogErrorChecking : public Gtk::Dialog {
   Glib::RefPtr<Gtk::ActionGroup> m_action_group;
 };
 
-/*
- * static instance of the dialog
- */
+// static instance of the dialog
 DialogErrorChecking *DialogErrorChecking::m_static_instance = NULL;
 
-/*
- * Error Checking Plugin
- */
+// Error Checking Plugin
 class ErrorCheckingPlugin : public Action {
  public:
   ErrorCheckingPlugin() {
@@ -767,9 +684,6 @@ class ErrorCheckingPlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -792,9 +706,6 @@ class ErrorCheckingPlugin : public Action {
                "error-checking");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -808,9 +719,6 @@ class ErrorCheckingPlugin : public Action {
       dialog->on_quit();
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -824,9 +732,6 @@ class ErrorCheckingPlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_error_checker() {
     DialogErrorChecking::create();
   }

@@ -1,34 +1,30 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "videoplayer.h"
 #include "documentsystem.h"
 #include "gstplayer.h"
 #include "subtitleeditorwindow.h"
 #include "utility.h"
+#include "videoplayer.h"
 
-/*
- * Player Controls Widgets
- */
+// Player Controls Widgets
 class PlayerControls : public Gtk::HBox {
  public:
   PlayerControls(BaseObjectType* cobject,
@@ -72,8 +68,6 @@ class PlayerControls : public Gtk::HBox {
     set_sensitive(false);
   }
 
-  /*
-   */
   void on_seek_value_changed() {
     if (m_current_seek)
       return;
@@ -82,8 +76,6 @@ class PlayerControls : public Gtk::HBox {
     m_player->seek(long(m_player->get_duration() * pos));
   }
 
-  /*
-   */
   void on_play() {
     if (m_player->is_playing() == false) {
       m_player->seek(m_player->get_position());
@@ -91,14 +83,10 @@ class PlayerControls : public Gtk::HBox {
     }
   }
 
-  /*
-   */
   void on_pause() {
     m_player->pause();
   }
 
-  /*
-   */
   void init_with_player(Player* player) {
     m_player = player;
 
@@ -109,8 +97,6 @@ class PlayerControls : public Gtk::HBox {
         sigc::mem_fun(*this, &PlayerControls::on_player_tick));
   }
 
-  /*
-   */
   void on_player_message(Player::Message msg) {
     switch (msg) {
       case Player::STATE_NONE: {
@@ -141,8 +127,6 @@ class PlayerControls : public Gtk::HBox {
     }
   }
 
-  /*
-   */
   void on_player_tick(long /*current_time*/, long /*stream_length*/,
                       double current_position) {
     m_connection_scale_changed.block();
@@ -150,8 +134,6 @@ class PlayerControls : public Gtk::HBox {
     m_connection_scale_changed.unblock();
   }
 
-  /*
-   */
   void set_seek_position(double position) {
     if (m_current_seek == false && m_hscale_seek->get_value() != position) {
       m_hscale_seek->set_value(position);
@@ -160,8 +142,6 @@ class PlayerControls : public Gtk::HBox {
   }
 
  protected:
-  /*
-   */
   Gtk::Button* create_button(Gtk::StockID stock) {
     Gtk::Button* button = manage(new Gtk::Button);
     button->set_relief(Gtk::RELIEF_NONE);
@@ -172,15 +152,11 @@ class PlayerControls : public Gtk::HBox {
     return button;
   }
 
-  /*
-   */
   Glib::ustring position_to_string(double value) {
     // convert pos (as percentage) to position in the stream
     return SubtitleTime(long(m_player->get_duration() * value)).str();
   }
 
-  /*
-   */
   bool on_seek_event(GdkEvent* ev) {
     if (ev->type == GDK_BUTTON_PRESS) {
       m_current_seek = true;
@@ -204,11 +180,8 @@ class PlayerControls : public Gtk::HBox {
   Player* m_player;
 };
 
-/*
- * Constructor
- *
- * Create the GStreamer Player, the PlayerControls (play/pause + seek)
- */
+// Constructor
+// Create the GStreamer Player, the PlayerControls (play/pause + seek)
 VideoPlayer::VideoPlayer(BaseObjectType* cobject,
                          const Glib::RefPtr<Gtk::Builder>& builder)
     : Gtk::VBox(cobject) {
@@ -242,16 +215,12 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject,
       sigc::mem_fun(*this, &VideoPlayer::on_player_message));
 }
 
-/*
- * Destructor
- */
+// Destructor
 VideoPlayer::~VideoPlayer() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 }
 
-/*
- * Load the video player config.
- */
+// Load the video player config.
 void VideoPlayer::load_config() {
   Config& cfg = Config::getInstance();
 
@@ -266,17 +235,13 @@ void VideoPlayer::load_config() {
       cfg.get_value_bool("video-player", "display-translated-subtitle");
 }
 
-/*
- * Return the gstreamer player.
- */
+// Return the gstreamer player.
 Player* VideoPlayer::player() {
   return m_player;
 }
 
-/*
- * The player state has changed.
- * Clear subtitle.
- */
+// The player state has changed.
+// Clear subtitle.
 void VideoPlayer::on_player_message(Player::Message msg) {
   switch (msg) {
     case Player::STATE_NONE:
@@ -289,9 +254,7 @@ void VideoPlayer::on_player_message(Player::Message msg) {
   }
 }
 
-/*
- * The config of video player has changed.
- */
+// The config of video player has changed.
 void VideoPlayer::on_config_video_player_changed(const Glib::ustring& key,
                                                  const Glib::ustring& value) {
   if (key == "display") {
@@ -306,10 +269,8 @@ void VideoPlayer::on_config_video_player_changed(const Glib::ustring& key,
   }
 }
 
-/*
- * The current document has changed.
- * Clear subtitle (sub and player text) and try to found the good subtitle.
- */
+// The current document has changed.
+// Clear subtitle (sub and player text) and try to found the good subtitle.
 void VideoPlayer::on_current_document_changed(Document* doc) {
   m_connection_document_changed.disconnect();
   if (doc != NULL)
@@ -321,26 +282,20 @@ void VideoPlayer::on_current_document_changed(Document* doc) {
   find_subtitle();
 }
 
-/*
- * Check or search the good subtitle (find_subtitle).
- */
+// Check or search the good subtitle (find_subtitle).
 void VideoPlayer::on_player_tick(long /*current_time*/, long /*stream_length*/,
                                  double /*current_position*/) {
   find_subtitle();
 }
 
-/*
- * Initialize the current subtitle and the player text to NULL.
- */
+// Initialize the current subtitle and the player text to NULL.
 void VideoPlayer::clear_subtitle() {
   m_subtitle = Subtitle();
 
   m_player->set_subtitle_text("");
 }
 
-/*
- * Check if time is in subtitle.
- */
+// Check if time is in subtitle.
 bool VideoPlayer::is_good_subtitle(const Subtitle& sub, long time) {
   if (sub)
     if (time >= sub.get_start().totalmsecs && time < sub.get_end().totalmsecs)
@@ -349,10 +304,8 @@ bool VideoPlayer::is_good_subtitle(const Subtitle& sub, long time) {
   return false;
 }
 
-/*
- * Try to found the good subtitle and init the player (text).
- * FIXME: this's call each time
- */
+// Try to found the good subtitle and init the player (text).
+// FIXME: this's call each time
 bool VideoPlayer::find_subtitle() {
   Document* doc = SubtitleEditorWindow::get_instance()->get_current_document();
   if (doc == NULL) {
@@ -371,16 +324,12 @@ bool VideoPlayer::find_subtitle() {
     else
       show_subtitle_null();
   } else {
-    if (is_good_subtitle(m_subtitle, position))  // is good ?
-    {
+    if (is_good_subtitle(m_subtitle, position)) {  // is good ?
       show_subtitle_text();
-    } else if (time < m_subtitle.get_start())  // is the next ?
-    {
+    } else if (time < m_subtitle.get_start()) {  // is the next ?
       show_subtitle_null();
-    } else if (time >=
-               m_subtitle
-                   .get_end())  // it's the old, try with the next subtitle
-    {
+    } else if (time >= m_subtitle.get_end()) {  // it's the old...
+      // ... try with the next subtitle
       show_subtitle_null();
 
       Subtitle next = doc->subtitles().get_next(m_subtitle);
@@ -388,23 +337,20 @@ bool VideoPlayer::find_subtitle() {
         m_subtitle = next;
         if (is_good_subtitle(m_subtitle, position))
           show_subtitle_text();
-      } else
+      } else {
         m_subtitle = Subtitle();
+      }
     }
   }
   return true;
 }
 
-/*
- * Sets the text of the player to NULL.
- */
+// Sets the text of the player to NULL.
 void VideoPlayer::show_subtitle_null() {
   m_player->set_subtitle_text("");
 }
 
-/*
- * Sets the text of the player with the current subtitle.
- */
+// Sets the text of the player with the current subtitle.
 void VideoPlayer::show_subtitle_text() {
   if (!m_subtitle)
     return;

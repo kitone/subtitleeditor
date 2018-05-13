@@ -1,34 +1,30 @@
-#ifndef _PatternsPage_h
-#define _PatternsPage_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <isocodes.h>
 #include "page.h"
+#include "pattern.h"
+#include "patternmanager.h"
 
-/*
- *
- */
 class ComboBoxText : public Gtk::ComboBox {
   class Column : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -46,14 +42,10 @@ class ComboBoxText : public Gtk::ComboBox {
     init();
   }
 
-  /*
-   */
   ComboBoxText() {
     init();
   }
 
-  /*
-   */
   void init() {
     m_liststore = Gtk::ListStore::create(m_column);
     set_model(m_liststore);
@@ -67,14 +59,10 @@ class ComboBoxText : public Gtk::ComboBox {
         sigc::mem_fun(*this, &ComboBoxText::on_row_separator_func));
   }
 
-  /*
-   */
   void clear_model() {
     m_liststore->clear();
   }
 
-  /*
-   */
   bool on_row_separator_func(const Glib::RefPtr<Gtk::TreeModel> &,
                              const Gtk::TreeModel::iterator &it) {
     Glib::ustring text = (*it)[m_column.label];
@@ -83,16 +71,12 @@ class ComboBoxText : public Gtk::ComboBox {
     return false;
   }
 
-  /*
-   */
   void append(const Glib::ustring &label, const Glib::ustring &code) {
     Gtk::TreeIter it = m_liststore->append();
     (*it)[m_column.label] = label;
     (*it)[m_column.code] = code;
   }
 
-  /*
-   */
   Glib::ustring get_active_label() {
     Gtk::TreeIter it = get_active();
     if (it)
@@ -100,8 +84,6 @@ class ComboBoxText : public Gtk::ComboBox {
     return Glib::ustring();
   }
 
-  /*
-   */
   Glib::ustring get_active_code() {
     Gtk::TreeIter it = get_active();
     if (it)
@@ -109,8 +91,6 @@ class ComboBoxText : public Gtk::ComboBox {
     return Glib::ustring();
   }
 
-  /*
-   */
   void set_active_code(const Glib::ustring &code) {
     for (Gtk::TreeIter it = m_liststore->children().begin(); it; ++it) {
       if ((*it)[m_column.code] == code && (*it)[m_column.label] != "---") {
@@ -125,9 +105,6 @@ class ComboBoxText : public Gtk::ComboBox {
   Glib::RefPtr<Gtk::ListStore> m_liststore;
 };
 
-/*
- *
- */
 class PatternsPage : public AssistantPage {
   class Column : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -141,27 +118,21 @@ class PatternsPage : public AssistantPage {
     Gtk::TreeModelColumn<Glib::ustring> label;
   };
 
-  /*
-   * Sort pattern by locale name
-   */
+  // Sort pattern by locale name
   static bool sort_pattern(Pattern *a, Pattern *b) {
     return a->get_label() < b->get_label();
   }
 
-  /*
-   * Compare pattern name
-   */
+  // Compare pattern name
   static bool unique_pattern(Pattern *a, Pattern *b) {
     return a->get_name() == b->get_name();
   }
 
  public:
-  /*
-   * Constructor for pattern page.
-   * type = "common-error", "hearing-impaired"
-   * label = the label of the page
-   * description = a short description of the page
-   */
+  // Constructor for pattern page.
+  // type = "common-error", "hearing-impaired"
+  // label = the label of the page
+  // description = a short description of the page
   PatternsPage(BaseObjectType *cobject,
                const Glib::RefPtr<Gtk::Builder> &builder,
                const Glib::ustring &type, const Glib::ustring &label,
@@ -179,9 +150,6 @@ class PatternsPage : public AssistantPage {
     initialize();
   }
 
-  /*
-   *
-   */
   PatternsPage(const Glib::ustring &type, const Glib::ustring &title,
                const Glib::ustring &label, const Glib::ustring description)
       : AssistantPage(), m_patternManager(type) {
@@ -234,9 +202,6 @@ class PatternsPage : public AssistantPage {
     initialize();
   }
 
-  /*
-   *
-   */
   void initialize() {
     create_treeview();
 
@@ -250,54 +215,40 @@ class PatternsPage : public AssistantPage {
     load_cfg();
   }
 
-  /*
-   * Return the title of the page.
-   */
+  // Return the title of the page.
   Glib::ustring get_page_title() {
     return m_page_title;
   }
 
-  /*
-   * Return the label of the page.
-   */
+  // Return the label of the page.
   Glib::ustring get_page_label() {
     return m_page_label;
   }
 
-  /*
-   * Return the description of the page.
-   */
+  // Return the description of the page.
   Glib::ustring get_page_description() {
     return m_page_description;
   }
 
-  /*
-   * Update the visibility state of the page. (enable/disable)
-   */
+  // Update the visibility state of the page. (enable/disable)
   void set_enable(bool state) {
     Config::getInstance().set_value_bool(m_page_name, "enabled", state);
 
     (state) ? show() : hide();
   }
 
-  /*
-   * Return the visibility state. (enable/disable)
-   */
+  // Return the visibility state. (enable/disable)
   bool is_enable() {
     return Config::getInstance().get_value_bool(m_page_name, "enabled");
   }
 
-  /*
-   * Return patterns from the script, language and country.
-   */
+  // Return patterns from the script, language and country.
   std::list<Pattern *> get_patterns() {
     return m_patternManager.get_patterns(get_script(), get_language(),
                                          get_country());
   }
 
-  /*
-   * Create the treeview with two columns, active and label (+description)
-   */
+  // Create the treeview with two columns, active and label (+description)
   void create_treeview() {
     m_treeview->set_headers_visible(false);
     m_treeview->set_rules_hint(true);
@@ -328,9 +279,7 @@ class PatternsPage : public AssistantPage {
         sigc::mem_fun(*this, &PatternsPage::on_row_activated));
   }
 
-  /*
-   * Update the state of the pattern and the patternmanager.
-   */
+  // Update the state of the pattern and the patternmanager.
   void on_enabled_toggled(const Glib::ustring &path) {
     Gtk::TreeIter it = m_liststore->get_iter(path);
     if (it) {
@@ -342,17 +291,13 @@ class PatternsPage : public AssistantPage {
     }
   }
 
-  /*
-   */
   void on_row_activated(const Gtk::TreeModel::Path &path,
                         Gtk::TreeViewColumn *) {
     on_enabled_toggled(path.to_string());
   }
 
-  /*
-   * Init the treeview model with all patterns available from the cfg (script,
-   * language, country).
-   */
+  // Init the treeview model with all patterns available from the cfg (script,
+  // language, country).
   void init_model() {
     m_liststore->clear();
 
@@ -372,9 +317,7 @@ class PatternsPage : public AssistantPage {
     }
   }
 
-  /*
-   * Init the signal of widgets.
-   */
+  // Init the signal of widgets.
   void init_signals() {
     m_comboScript->signal_changed().connect(
         sigc::mem_fun(*this, &PatternsPage::init_language));
@@ -384,10 +327,8 @@ class PatternsPage : public AssistantPage {
         sigc::mem_fun(*this, &PatternsPage::init_model));
   }
 
-  /*
-   * Initialize the combobox with the last value "Other"
-   * if there is no active item and if it's not empty.
-   */
+  // Initialize the combobox with the last value "Other"
+  // if there is no active item and if it's not empty.
   void init_combo(ComboBoxText *combo) {
     Gtk::TreeIter it = combo->get_active();
     if (!it) {
@@ -397,9 +338,7 @@ class PatternsPage : public AssistantPage {
     }
   }
 
-  /*
-   * Initialize the combo script from with the pattern available.
-   */
+  // Initialize the combo script from with the pattern available.
   void init_script() {
     std::vector<Glib::ustring> scripts = m_patternManager.get_scripts();
 
@@ -422,9 +361,7 @@ class PatternsPage : public AssistantPage {
     init_model();
   }
 
-  /*
-   * Initialize the combo script from with the pattern available for the script.
-   */
+  // Initialize the combo script from with the pattern available for the script.
   void init_language() {
     Glib::ustring script = get_script();
 
@@ -451,10 +388,8 @@ class PatternsPage : public AssistantPage {
     init_model();
   }
 
-  /*
-   * Initialize the combo script from with the pattern available from the script
-   * and language.
-   */
+  // Initialize the combo script from with the pattern available from the script
+  // and language.
   void init_country() {
     Glib::ustring script = get_script();
     Glib::ustring language = get_language();
@@ -481,10 +416,8 @@ class PatternsPage : public AssistantPage {
     init_model();
   }
 
-  /*
-   * Read the configuration.
-   * script, language, country and enabled (page).
-   */
+  // Read the configuration.
+  // script, language, country and enabled (page).
   void load_cfg() {
     Config &cfg = Config::getInstance();
 
@@ -506,10 +439,8 @@ class PatternsPage : public AssistantPage {
     m_comboCountry->set_active_code(country);
   }
 
-  /*
-   * Save the configuration.
-   * script, language, country and enabled (page).
-   */
+  // Save the configuration.
+  // script, language, country and enabled (page).
   void save_cfg() {
     Config &cfg = Config::getInstance();
     cfg.set_value_string(m_page_name, "script", get_script());
@@ -518,25 +449,19 @@ class PatternsPage : public AssistantPage {
     cfg.set_value_bool(m_page_name, "enabled", is_enable());
   }
 
-  /*
-   * Return the current script code.
-   */
+  // Return the current script code.
   Glib::ustring get_script() {
     Glib::ustring value = m_comboScript->get_active_code();
     return value;
   }
 
-  /*
-   * Return the current language code.
-   */
+  // Return the current language code.
   Glib::ustring get_language() {
     Glib::ustring value = m_comboLanguage->get_active_code();
     return value;
   }
 
-  /*
-   * Return the current country code.
-   */
+  // Return the current country code.
   Glib::ustring get_country() {
     Glib::ustring value = m_comboCountry->get_active_code();
     return value;
@@ -557,5 +482,3 @@ class PatternsPage : public AssistantPage {
   ComboBoxText *m_comboLanguage;
   ComboBoxText *m_comboCountry;
 };
-
-#endif  //_PatternsPage_h

@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2011, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <documentsystem.h>
@@ -36,8 +34,6 @@ class DocumentsNavigationPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -128,8 +124,6 @@ class DocumentsNavigationPlugin : public Action {
     rebuild_documents_menu();
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -147,8 +141,6 @@ class DocumentsNavigationPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -164,9 +156,7 @@ class DocumentsNavigationPlugin : public Action {
         ->set_sensitive(state);
   }
 
-  /*
-   * Remove old ui_id and action_group and regenerate menu items.
-   */
+  // Remove old ui_id and action_group and regenerate menu items.
   void rebuild_documents_menu() {
     if (action_group_documents) {
       get_ui_manager()->remove_ui(ui_id_documents);
@@ -209,12 +199,8 @@ class DocumentsNavigationPlugin : public Action {
     get_ui_manager()->ensure_update();
   }
 
-  /*
-   */
   enum { FIRST = 0, LAST = 1, PREVIOUS = 2, NEXT = 3 };
 
-  /*
-   */
   void on_select_document(int value) {
     se_debug_message(SE_DEBUG_PLUGINS, "select %d", value);
 
@@ -236,28 +222,22 @@ class DocumentsNavigationPlugin : public Action {
     ds.setCurrentDocument(doc);
   }
 
-  /*
-   * We want to rebuild the documents menu each time a document is created or
-   * delete
-   */
+  // We want to rebuild the documents menu each time a document is created or
+  // delete
   void on_document_create_or_delete(Document *doc) {
     g_return_if_fail(doc);
 
     rebuild_documents_menu();
   }
 
-  /*
-   * We want to rebuild the documents menu each time the document property
-   * change, like name of the document
-   */
+  // We want to rebuild the documents menu each time the document property
+  // change, like name of the document
   void on_document_signals(Document *, const std::string &signal) {
     if (signal == "document-property-changed")
       rebuild_documents_menu();
   }
 
-  /*
-   * PREVIOUS or NEXT
-   */
+  // PREVIOUS or NEXT
   Document *get_document(int value) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -281,8 +261,6 @@ class DocumentsNavigationPlugin : public Action {
     return NULL;
   }
 
-  /*
-   */
   void on_documents_menu_activate(gint count) {
     se_debug_message(SE_DEBUG_PLUGINS, "activate document %d", count);
 

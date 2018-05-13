@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <utility.h>
@@ -27,16 +25,12 @@ class AboutPlugin : public Action {
  public:
   AboutPlugin() {
     activate();
-    // update_ui();
   }
 
   ~AboutPlugin() {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -56,9 +50,6 @@ class AboutPlugin : public Action {
     ui->add_ui(ui_id, "/menubar/menu-help/about", "about", "about");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -69,9 +60,6 @@ class AboutPlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_about() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -102,23 +90,22 @@ class AboutPlugin : public Action {
 
     // license
     Glib::ustring license =
-        "This program is free software; you can redistribute it and/or modify  "
+        "This program is free software; you can redistribute it and/or modify "
         "\n"
-        "it under the terms of the GNU General Public License as published by  "
+        "it under the terms of the GNU General Public License as published by "
         "\n"
-        "the Free Software Foundation; either version 3 of the License, "
-        "or	\n"
-        "(at your option) any later version.	\n\n"
+        "the Free Software Foundation; either version 3 of the License, or \n"
+        "(at your option) any later version.\n\n"
         "This program is distributed in the hope that it will be "
-        "useful,	\n"
-        "but WITHOUT ANY WARRANTY; without even the implied warranty of  \n"
-        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the	\n"
-        "GNU General Public License for more details.  \n\n"
+        "useful,\n"
+        "but WITHOUT ANY WARRANTY; without even the implied warranty of \n"
+        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the \n"
+        "GNU General Public License for more details. \n\n"
         "You should have received a copy of the GNU General Public "
-        "License	\n"
-        "along with this program; if not, write to the Free Software	\n"
+        "License \n"
+        "along with this program; if not, write to the Free Software \n"
         "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111 "
-        "USA	\n\n"
+        "USA \n\n"
         "See gpl.txt for more information regarding the GNU General Public "
         "License. \n";
     dialog.set_license(license);

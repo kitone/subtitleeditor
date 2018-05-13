@@ -1,33 +1,29 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gui/dialogfilechooser.h>
 #include <player.h>
 #include <utility.h>
 
-/*
- * Video Player Management
- */
+// Video Player Management
 class VideoPlayerManagement : public Action {
  public:
   VideoPlayerManagement() {
@@ -39,9 +35,6 @@ class VideoPlayerManagement : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -49,22 +42,17 @@ class VideoPlayerManagement : public Action {
     action_group = Gtk::ActionGroup::create("VideoPlayerManagement");
 
     // Already create in MenuBar.cc
-    /*
-    action_group->add(
-                    Gtk::Action::create(
-                            "menu-video",
-                            _("_Video")));
-    */
+    action_group->add(Gtk::Action::create("menu-video", _("_Video")));
 
     action_group->add(Gtk::Action::create("video-player/open", Gtk::Stock::OPEN,
-                                          "",  //_("_Open Media"),
+                                          "",  // _("_Open Media"),
                                           _("Open a multimedia file")),
                       Gtk::AccelKey("<Shift><Control>M"),
                       sigc::mem_fun(*this, &VideoPlayerManagement::on_open));
 
     action_group->add(
         Gtk::Action::create("video-player/close", Gtk::Stock::CLOSE,
-                            "",  //_("_Close Media"),
+                            "",  // _("_Close Media"),
                             _("Close a multimedia file")),
         Gtk::AccelKey("<Shift><Control>C"),
         sigc::mem_fun(*this, &VideoPlayerManagement::on_close));
@@ -426,9 +414,6 @@ class VideoPlayerManagement : public Action {
             *this, &VideoPlayerManagement::on_config_video_player_changed));
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -439,10 +424,8 @@ class VideoPlayerManagement : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   * Update the user interface with the state of subtitle (has document)
-   * and the state of the player (has media)
-   */
+  // Update the user interface with the state of subtitle (has document)
+  // and the state of the player (has media)
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -498,18 +481,16 @@ class VideoPlayerManagement : public Action {
 #undef SET_SENSITIVE
   }
 
-  /*
-   * Check the state of the player.
-   * Display the video player if need and update the menu.
-   */
+  // Check the state of the player.
+  // Display the video player if need and update the menu.
   void on_player_message(Player::Message msg) {
     if (msg == Player::STATE_NONE || msg == Player::STREAM_READY) {
       // only if the player is enable or disable
       // don't update if is playing or paused
 
-      if (msg == Player::STATE_NONE)
+      if (msg == Player::STATE_NONE) {
         remove_menu_audio_track();
-      else if (msg == Player::STREAM_READY) {
+      } else if (msg == Player::STREAM_READY) {
         build_menu_audio_track();
         add_in_recent_manager(player()->get_uri());
       }
@@ -525,9 +506,7 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Show or hide the video player, update hte config.
-   */
+  // Show or hide the video player, update hte config.
   void on_video_player_display_toggled() {
     Glib::RefPtr<Gtk::ToggleAction> action =
         Glib::RefPtr<Gtk::ToggleAction>::cast_static(
@@ -539,9 +518,7 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * The state of reapet has changed, update the config.
-   */
+  // The state of reapet has changed, update the config.
   void on_video_player_repeat_toggled() {
     Glib::RefPtr<Gtk::ToggleAction> action =
         Glib::RefPtr<Gtk::ToggleAction>::cast_static(
@@ -553,10 +530,8 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * The video player config has changed.
-   * Update the menu.
-   */
+  // The video player config has changed.
+  // Update the menu.
   void on_config_video_player_changed(const Glib::ustring &key,
                                       const Glib::ustring &value) {
     if (key == "display") {
@@ -582,10 +557,8 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * We remove the ActionGroup "VideoPlayerManagementAudioTrack"
-   * and the ui.
-   */
+  // We remove the ActionGroup "VideoPlayerManagementAudioTrack"
+  // and the ui.
   void remove_menu_audio_track() {
     se_debug(SE_DEBUG_PLUGINS);
     if (action_group_audio) {
@@ -595,10 +568,8 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Remove old menu items (tracks) and actions
-   * and create a new one.
-   */
+  // Remove old menu items (tracks) and actions
+  // and create a new one.
   void build_menu_audio_track() {
     se_debug(SE_DEBUG_PLUGINS);
     // We clean the old audio menu
@@ -623,10 +594,8 @@ class VideoPlayerManagement : public Action {
     update_audio_track_from_player();
   }
 
-  /*
-   * Update the radio item with the current audio track
-   * from the player.
-   */
+  // Update the radio item with the current audio track
+  // from the player.
   void update_audio_track_from_player() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -649,9 +618,7 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Create a new track entry (action and menu item).
-   */
+  // Create a new track entry (action and menu item).
   void add_audio_track_entry(Gtk::RadioButtonGroup &group,
                              const Glib::ustring &track_action,
                              const Glib::ustring &track_label,
@@ -674,10 +641,8 @@ class VideoPlayerManagement : public Action {
     get_ui_manager()->ensure_update();
   }
 
-  /*
-   * The user choose a new track from the track menu,
-   * we update the player.
-   */
+  // The user choose a new track from the track menu,
+  // we update the player.
   void set_current_audio(gint track, Glib::RefPtr<Gtk::RadioAction> action) {
     se_debug(SE_DEBUG_PLUGINS);
     // Switching a toggle button launch two signal,
@@ -689,16 +654,12 @@ class VideoPlayerManagement : public Action {
   }
 
  protected:
-  /*
-   * Return the GStreamer Player.
-   */
+  // Return the GStreamer Player.
   Player *player() {
     return get_subtitleeditor_window()->get_player();
   }
 
-  /*
-   * Open the dialog "Open Video" and initialize the player with the new uri.
-   */
+  // Open the dialog "Open Video" and initialize the player with the new uri.
   void on_open() {
     DialogOpenVideo ui;
 
@@ -713,89 +674,72 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Close the player
-   */
+  // Close the player
   void on_close() {
     player()->close();
   }
 
-  /*
-   * Reinitialize the current position for disable the repeat method
-   * and sets the player state to playing.
-   */
+  // Reinitialize the current position for disable the repeat method
+  // and sets the player state to playing.
   void on_play() {
     player()->seek(player()->get_position());
     player()->play();
   }
 
-  /*
-   * Sets the player state to paused.
-   */
+  // Sets the player state to paused.
   void on_pause() {
     player()->pause();
   }
 
-  /*
-   * Toggled the player state.
-   * Paused to playing or playing to paused.
-   */
+  // Toggled the player state.
+  // Paused to playing or playing to paused.
   void on_play_pause() {
-    if (player()->is_playing())
+    if (player()->is_playing()) {
       player()->pause();
-    else {
+    } else {
       player()->seek(player()->get_position());
       player()->play();
     }
   }
 
-  /*
-   * Skip type, look the config for the value of the time.
-   */
+  // Skip type, look the config for the value of the time.
   enum SkipType { FRAME, TINY, VERY_SHORT, SHORT, MEDIUM, LONG };
 
-  /*
-   */
   long get_skip_as_msec(SkipType skip) {
     if (skip == FRAME) {
       int numerator = 0, denominator = 0;
       if (player()->get_framerate(&numerator, &denominator) > 0)
         return denominator * 1000 / numerator;
-    } else if (skip == TINY)
+    } else if (skip == TINY) {
       return get_config().get_value_int("video-player", "skip-tiny");
-    else if (skip == VERY_SHORT)
+    } else if (skip == VERY_SHORT) {
       return get_config().get_value_int("video-player", "skip-very-short") *
              1000;
-    else if (skip == SHORT)
+    } else if (skip == SHORT) {
       return get_config().get_value_int("video-player", "skip-short") * 1000;
-    else if (skip == MEDIUM)
+    } else if (skip == MEDIUM) {
       return get_config().get_value_int("video-player", "skip-medium") * 1000;
-    else if (skip == LONG)
+    } else if (skip == LONG) {
       return get_config().get_value_int("video-player", "skip-long") * 1000;
+    }
     return 0;
   }
 
-  /*
-   * Make a skip backwards depending on the type.
-   */
+  // Make a skip backwards depending on the type.
   void on_skip_backwards(SkipType skip) {
     long newpos = player()->get_position() - get_skip_as_msec(skip);
 
     player()->seek(newpos);
   }
 
-  /*
-   * make a skip forward depending on the type.
-   */
+  // make a skip forward depending on the type.
   void on_skip_forward(SkipType skip) {
     long newpos = player()->get_position() + get_skip_as_msec(skip);
 
     player()->seek(newpos);
   }
 
-  /*
-   * Increase the playback rate.
-   */
+  // Increase the playback rate.
   void on_playback_rate_faster() {
     double rate = player()->get_playback_rate();
 
@@ -804,9 +748,7 @@ class VideoPlayerManagement : public Action {
     player()->set_playback_rate(rate);
   }
 
-  /*
-   * Decreases the playback rate.
-   */
+  // Decreases the playback rate.
   void on_playback_rate_slower() {
     double rate = player()->get_playback_rate();
 
@@ -815,17 +757,13 @@ class VideoPlayerManagement : public Action {
     player()->set_playback_rate(rate);
   }
 
-  /*
-   * Sets the playback rate to 1.0 (default).
-   */
+  // Sets the playback rate to 1.0 (default).
   void on_playback_rate_normal() {
     player()->set_playback_rate(1.0);
   }
 
-  /*
-   * Seek to the first selected subtitle.
-   * The state of the player isn't modified.
-   */
+  // Seek to the first selected subtitle.
+  // The state of the player isn't modified.
   void on_seek_to_selection() {
     Document *doc = get_current_document();
 
@@ -835,10 +773,8 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Seek to the last selected subtitle.
-   * The state of the player isn't modified.
-   */
+  // Seek to the last selected subtitle.
+  // The state of the player isn't modified.
   void on_seek_to_selection_end() {
     Document *doc = get_current_document();
 
@@ -848,14 +784,10 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Method for playing subtitle.
-   */
+  // Method for playing subtitle.
 
-  /*
-   * Select and play the previous subtitle.
-   * Repeat is supported.
-   */
+  // Select and play the previous subtitle.
+  // Repeat is supported.
   void on_play_previous_subtitle() {
     Document *doc = get_current_document();
 
@@ -869,10 +801,8 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Play the current subtitle.
-   * Repeat is supported.
-   */
+  // Play the current subtitle.
+  // Repeat is supported.
   void on_play_current_subtitle() {
     Document *doc = get_current_document();
 
@@ -882,10 +812,8 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Select and play the next subtitle.
-   * Repeat is supported.
-   */
+  // Select and play the next subtitle.
+  // Repeat is supported.
   void on_play_next_subtitle() {
     Document *doc = get_current_document();
 
@@ -899,13 +827,9 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Method for playing second.
-   */
+  // Method for playing second.
 
-  /*
-   * Play the second preceding the first selected subtitle.
-   */
+  // Play the second preceding the first selected subtitle.
   void on_play_previous_second() {
     Document *doc = get_current_document();
 
@@ -918,9 +842,7 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Play the first second of the subtitle currently selected.
-   */
+  // Play the first second of the subtitle currently selected.
   void on_play_first_second() {
     Document *doc = get_current_document();
 
@@ -933,9 +855,7 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Play the last second of the subtitle currently selected
-   */
+  // Play the last second of the subtitle currently selected
   void on_play_last_second() {
     Document *doc = get_current_document();
 
@@ -948,9 +868,7 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   * Play the second following the subtitle currently selected
-   */
+  // Play the second following the subtitle currently selected
   void on_play_next_second() {
     Document *doc = get_current_document();
 
@@ -963,8 +881,6 @@ class VideoPlayerManagement : public Action {
     }
   }
 
-  /*
-   */
   void add_in_recent_manager(const Glib::ustring &uri) {
     se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
 
@@ -977,9 +893,7 @@ class VideoPlayerManagement : public Action {
     Gtk::RecentManager::get_default()->add_item(uri, data);
   }
 
-  /*
-   * Open a recent video
-   */
+  // Open a recent video
   void on_recent_item_activated() {
     se_debug(SE_DEBUG_PLUGINS);
 

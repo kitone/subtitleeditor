@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2014, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm_utility.h>
@@ -28,8 +26,6 @@
 #include <utility.h>
 #include <widget_config_utility.h>
 
-/*
- */
 class DialogExternalVideoPreferences : public Gtk::Dialog {
  public:
   DialogExternalVideoPreferences(BaseObjectType *cobject,
@@ -77,8 +73,6 @@ class DialogExternalVideoPreferences : public Gtk::Dialog {
   Gtk::SpinButton *m_spinOffset;
 };
 
-/*
- */
 class ExternalVideoPlayer : public Action {
  public:
   ExternalVideoPlayer() {
@@ -90,8 +84,6 @@ class ExternalVideoPlayer : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     // actions
     action_group = Gtk::ActionGroup::create("ExternalVideoPlayer");
@@ -148,8 +140,6 @@ class ExternalVideoPlayer : public Action {
     ui_id = ui->add_ui_from_string(submenu);
   }
 
-  /*
-   */
   void deactivate() {
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -157,28 +147,20 @@ class ExternalVideoPlayer : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   bool is_configurable() {
     return true;
   }
 
-  /*
-   */
   void create_configure_dialog() {
     DialogExternalVideoPreferences::create();
   }
 
-  /*
-   */
   void on_open_movie() {
     DialogOpenVideo ui;
     if (ui.run() == Gtk::RESPONSE_OK)
       m_movie_uri = ui.get_uri();
   }
 
-  /*
-   */
   void on_play_movie() {
     Document *doc = get_current_document();
 
@@ -232,9 +214,7 @@ class ExternalVideoPlayer : public Action {
   }
 
  protected:
-  /*
-   * Return the command pipe from the config (or default)
-   */
+  // Return the command pipe from the config (or default)
   Glib::ustring get_command() {
     Glib::ustring command;
     // load the config or use the default command
@@ -253,9 +233,7 @@ class ExternalVideoPlayer : public Action {
     return default_cmd;
   }
 
-  /*
-   * If the user has specified a subtitle format use it
-   */
+  // If the user has specified a subtitle format use it
   Glib::ustring get_prefered_subtitle_format() {
     if (get_config().get_value_bool("external-video-player", "use-format")) {
       Glib::ustring format;
@@ -266,28 +244,20 @@ class ExternalVideoPlayer : public Action {
     return Glib::ustring();
   }
 
-  /*
-   */
   SubtitleTime get_prefered_offset() {
     int offset = 4000;
     get_config().get_value_int("external-video-player", "offset", offset);
     return SubtitleTime(offset);
   }
 
-  /*
-   */
   Glib::ustring get_tmp_file() {
     return Glib::build_filename(Glib::get_tmp_dir(), "subtitle_preview");
   }
 
-  /*
-   */
   Glib::ustring get_tmp_file_as_uri() {
     return Glib::filename_to_uri(get_tmp_file());
   }
 
-  /*
-   */
   SubtitleTime get_start_position(Document *document) {
     std::vector<Subtitle> selection = document->subtitles().get_selection();
 
@@ -302,27 +272,19 @@ class ExternalVideoPlayer : public Action {
     return time;
   }
 
-  /*
-   */
   Glib::ustring convert_to_time_string(const SubtitleTime &time) {
     return time.str();
   }
 
-  /*
-   */
   Glib::ustring convert_to_second_string(const SubtitleTime &time) {
     long p = time.hours() * 3600 + time.minutes() * 60 + time.seconds();
     return to_string(p);
   }
 
-  /*
-   */
   Glib::ustring convert_to_msecond_string(const SubtitleTime &time) {
     return to_string(time.totalmsecs);
   }
 
-  /*
-   */
   void save_to_temporary_file(Document *document, const Glib::ustring &uri) {
     Glib::ustring prefered_format = get_prefered_subtitle_format();
 

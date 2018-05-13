@@ -1,31 +1,27 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dialogutility.h"
 #include "utility.h"
 
-/*
- * Constructor
- */
+// Constructor
 DialogActionMultiDoc::DialogActionMultiDoc(
     BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& builder)
     : Gtk::Dialog(cobject) {
@@ -33,16 +29,12 @@ DialogActionMultiDoc::DialogActionMultiDoc(
   builder->get_widget("radio-all-documents", m_radioAllDocuments);
 }
 
-/*
- * Return true if the user choose to apply the action on all documents.
- */
+// Return true if the user choose to apply the action on all documents.
 bool DialogActionMultiDoc::apply_to_all_documents() {
   return m_radioAllDocuments->get_active();
 }
 
-/*
- * Return a list of documents that the user wants to change.
- */
+// Return a list of documents that the user wants to change.
 DocumentList DialogActionMultiDoc::get_documents_to_apply() {
   DocumentList docs;
 
@@ -54,9 +46,6 @@ DocumentList DialogActionMultiDoc::get_documents_to_apply() {
   return docs;
 }
 
-/*
- *
- */
 ErrorDialog::ErrorDialog(const Glib::ustring& primary,
                          const Glib::ustring& secondary)
     : Gtk::MessageDialog(primary, false, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_NONE,
@@ -67,8 +56,6 @@ ErrorDialog::ErrorDialog(const Glib::ustring& primary,
     set_secondary_text(secondary, false);
 }
 
-/*
- */
 FramerateChooserDialog::FramerateChooserDialog(
     FramerateChooserDialog::Action action)
     : Gtk::Dialog() {
@@ -117,16 +104,12 @@ FramerateChooserDialog::FramerateChooserDialog(
   hbox->show_all();
 }
 
-/*
- * Launch the dialog and return the framerate value.
- */
+// Launch the dialog and return the framerate value.
 FRAMERATE FramerateChooserDialog::execute() {
   run();
   return dynamic_cast<ComboBoxFramerate*>(m_comboFramerate)->get_value();
 }
 
-/*
- */
 void FramerateChooserDialog::set_default_framerate(FRAMERATE framerate) {
   ComboBoxFramerate* cbf = dynamic_cast<ComboBoxFramerate*>(m_comboFramerate);
   cbf->set_value(framerate);

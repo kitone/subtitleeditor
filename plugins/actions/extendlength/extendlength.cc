@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
@@ -35,9 +33,6 @@ class ExtendLengthPlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -68,9 +63,6 @@ class ExtendLengthPlugin : public Action {
                "extend-length-bwd", "extend-length-bwd");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -80,9 +72,6 @@ class ExtendLengthPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -93,27 +82,18 @@ class ExtendLengthPlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_extend_length_fwd() {
     se_debug(SE_DEBUG_PLUGINS);
 
     execute(true);
   }
 
-  /*
-   *
-   */
   void on_extend_length_bwd() {
     se_debug(SE_DEBUG_PLUGINS);
 
     execute(false);
   }
 
-  /*
-   *
-   */
   bool execute(bool forward) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -135,8 +115,7 @@ class ExtendLengthPlugin : public Action {
 
     doc->start_command(_("Extend lenght"));
 
-    if (forward)  // extend length forward, i.e. keep start and move end
-    {
+    if (forward) {  // extend length forward, i.e. keep start and move end
       for (unsigned int i = 0; i < selection.size(); ++i) {
         Subtitle &sub = selection[i];
         Subtitle next = subtitles.get_next(sub);
@@ -145,8 +124,7 @@ class ExtendLengthPlugin : public Action {
           sub.set_end(time);
         }
       }
-    } else  // extend length backwards, i.e. keep end and move start
-    {
+    } else {  // extend length backwards, i.e. keep end and move start
       for (int i = selection.size() - 1; i >= 0; --i) {
         Subtitle &sub = selection[i];
         Subtitle prev = subtitles.get_previous(sub);

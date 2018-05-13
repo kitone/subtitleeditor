@@ -1,44 +1,38 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "extensionmanager.h"
 #include <glibmm.h>
 #include <iostream>
 #include <vector>
 #include "cfg.h"
 #include "error.h"
+#include "extensionmanager.h"
 #include "utility.h"
 
-/*
- * Return the ExtensionManager instance.
- */
+// Return the ExtensionManager instance.
 ExtensionManager &ExtensionManager::instance() {
   static ExtensionManager instance;
   return instance;
 }
 
-/*
- * Constructor
- */
+// Constructor
 ExtensionManager::ExtensionManager() {
   se_debug(SE_DEBUG_APP);
 
@@ -53,18 +47,14 @@ ExtensionManager::ExtensionManager() {
   load_path(path, true);
 }
 
-/*
- * Destructor
- */
+// Destructor
 ExtensionManager::~ExtensionManager() {
   se_debug(SE_DEBUG_APP);
 
   destroy_extensions();
 }
 
-/*
- * Active and create extensions
- */
+// Active and create extensions
 void ExtensionManager::create_extensions() {
   se_debug(SE_DEBUG_APP);
 
@@ -87,9 +77,7 @@ void ExtensionManager::create_extensions() {
   }
 }
 
-/*
- * Delete and close all extensions
- */
+// Delete and close all extensions
 void ExtensionManager::destroy_extensions() {
   se_debug(SE_DEBUG_APP);
 
@@ -104,10 +92,8 @@ void ExtensionManager::destroy_extensions() {
   m_extension_info_map.clear();
 }
 
-/*
- * Load the path and sub path to find extension description.
- * se-plugin file.
- */
+// Load the path and sub path to find extension description.
+// se-plugin file.
 void ExtensionManager::load_path(const Glib::ustring &path,
                                  bool fhs_directory) {
   se_debug_message(SE_DEBUG_APP, "path=%s", path.c_str());
@@ -139,9 +125,7 @@ void ExtensionManager::load_path(const Glib::ustring &path,
   }
 }
 
-/*
- * Try to load an ExtensionInfo file.
- */
+// Try to load an ExtensionInfo file.
 bool ExtensionManager::load_extension_info(const Glib::ustring &file,
                                            bool fhs_directory) {
   se_debug_message(SE_DEBUG_APP, "try to read '%s'", file.c_str());
@@ -250,9 +234,7 @@ bool ExtensionManager::load_extension_info(const Glib::ustring &file,
   return false;
 }
 
-/*
- * Return All ExtensionInfo.
- */
+// Return All ExtensionInfo.
 std::list<ExtensionInfo *> ExtensionManager::get_extension_info_list() {
   se_debug(SE_DEBUG_APP);
   std::list<ExtensionInfo *> list;
@@ -266,9 +248,7 @@ std::list<ExtensionInfo *> ExtensionManager::get_extension_info_list() {
   return list;
 }
 
-/*
- * Return all ExtensionInfo in the categorie.
- */
+// Return all ExtensionInfo in the categorie.
 std::list<ExtensionInfo *> ExtensionManager::get_info_list_from_categorie(
     const Glib::ustring &categorie) {
   // FIXME
@@ -279,9 +259,7 @@ std::list<ExtensionInfo *> ExtensionManager::get_info_list_from_categorie(
   return list;
 }
 
-/*
- * Return an ExtensionInfo from this name or NULL if failed.
- */
+// Return an ExtensionInfo from this name or NULL if failed.
 ExtensionInfo *ExtensionManager::get_extension_info(const Glib::ustring &name) {
   se_debug_message(SE_DEBUG_APP, "name='%s'", name.c_str());
 
@@ -297,9 +275,7 @@ ExtensionInfo *ExtensionManager::get_extension_info(const Glib::ustring &name) {
   return NULL;
 }
 
-/*
- * Enable or disable extension.
- */
+// Enable or disable extension.
 bool ExtensionManager::set_extension_active(const Glib::ustring &name,
                                             bool state) {
   se_debug_message(SE_DEBUG_APP, "name='%s' active='%d'", name.c_str(), state);
@@ -322,10 +298,8 @@ bool ExtensionManager::set_extension_active(const Glib::ustring &name,
   return true;
 }
 
-/*
- * Try to activate the extension.
- * Load and create Extension.
- */
+// Try to activate the extension.
+// Load and create Extension.
 bool ExtensionManager::activate(ExtensionInfo *info) {
   se_debug_message(SE_DEBUG_APP, "extension '%s'", info->get_name().c_str());
 
@@ -352,10 +326,8 @@ bool ExtensionManager::activate(ExtensionInfo *info) {
   return false;
 }
 
-/*
- * Deactivate the extension.
- * Delete the extension and the module.
- */
+// Deactivate the extension.
+// Delete the extension and the module.
 bool ExtensionManager::deactivate(ExtensionInfo *info) {
   se_debug_message(SE_DEBUG_APP, "extension '%s'", info->get_name().c_str());
 
@@ -386,10 +358,8 @@ bool ExtensionManager::deactivate(ExtensionInfo *info) {
   return true;
 }
 
-/*
- * Open a module and create the extension.
- * If failed return a SubtitleError.
- */
+// Open a module and create the extension.
+// If failed return a SubtitleError.
 void ExtensionManager::open_module(ExtensionInfo *info) {
   se_debug(SE_DEBUG_APP);
 

@@ -1,33 +1,28 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "commandsystem.h"
 #include "cfg.h"
+#include "commandsystem.h"
 #include "document.h"
 #include "utility.h"
 
-/*
- *
- */
 class SubtitleSelectionCommand : public Command {
  public:
   SubtitleSelectionCommand(Document *doc)
@@ -63,16 +58,11 @@ class SubtitleSelectionCommand : public Command {
   std::vector<Glib::ustring> m_paths;
 };
 
-/*
- *
- */
 CommandGroup::CommandGroup(const Glib::ustring &description)
     : Command(NULL, description) {
   se_debug_message(SE_DEBUG_COMMAND, "description=%s", description.c_str());
 }
 
-/*
- */
 CommandGroup::~CommandGroup() {
   se_debug(SE_DEBUG_COMMAND);
 
@@ -82,18 +72,12 @@ CommandGroup::~CommandGroup() {
   }
 }
 
-/*
- *
- */
 void CommandGroup::add(Command *cmd) {
   se_debug(SE_DEBUG_COMMAND);
 
   m_stack.push_back(cmd);
 }
 
-/*
- *
- */
 void CommandGroup::execute() {
   se_debug(SE_DEBUG_COMMAND);
 
@@ -103,9 +87,6 @@ void CommandGroup::execute() {
   }
 }
 
-/*
- *
- */
 void CommandGroup::restore() {
   se_debug(SE_DEBUG_COMMAND);
 
@@ -115,10 +96,8 @@ void CommandGroup::restore() {
   }
 }
 
-/*
- *	Constructor
- *	get the maximum stack to config
- */
+// Constructor
+// get the maximum stack to config
 CommandSystem::CommandSystem(Document &doc)
     : m_document(doc), m_max_undo_stack(10), m_is_recording(false) {
   Config::getInstance().get_value_int("interface", "max-undo",
@@ -130,16 +109,10 @@ CommandSystem::CommandSystem(Document &doc)
           sigc::mem_fun(*this, &CommandSystem::on_config_interface_changed));
 }
 
-/*
- *
- */
 CommandSystem::~CommandSystem() {
   clear();
 }
 
-/*
- *
- */
 void CommandSystem::on_config_interface_changed(const Glib::ustring &key,
                                                 const Glib::ustring &value) {
   if (key == "max-undo") {
@@ -149,9 +122,7 @@ void CommandSystem::on_config_interface_changed(const Glib::ustring &key,
   }
 }
 
-/*
- *	efface les piles undo/redo
- */
+// efface les piles undo/redo
 void CommandSystem::clear() {
   // on efface la pile undo
   while (!m_undo_stack.empty()) {
@@ -166,9 +137,6 @@ void CommandSystem::clear() {
   clearRedo();
 }
 
-/*
- *
- */
 void CommandSystem::clearRedo() {
   while (!m_redo_stack.empty()) {
     Command *cmd = m_redo_stack.back();
@@ -179,9 +147,6 @@ void CommandSystem::clearRedo() {
   }
 }
 
-/*
- *
- */
 void CommandSystem::add(Command *cmd) {
   g_return_if_fail(cmd);
 
@@ -194,8 +159,9 @@ void CommandSystem::add(Command *cmd) {
     g_return_if_fail(group);
 
     group->add(cmd);
-  } else
+  } else {
     m_undo_stack.push_back(cmd);
+  }
 
   if (m_max_undo_stack != 0) {
     while (m_undo_stack.size() > m_max_undo_stack) {
@@ -206,9 +172,6 @@ void CommandSystem::add(Command *cmd) {
   }
 }
 
-/*
- *
- */
 void CommandSystem::undo() {
   if (m_undo_stack.empty())
     return;
@@ -225,9 +188,6 @@ void CommandSystem::undo() {
   m_signal_changed();
 }
 
-/*
- *
- */
 void CommandSystem::redo() {
   if (m_redo_stack.empty())
     return;
@@ -244,9 +204,6 @@ void CommandSystem::redo() {
   m_signal_changed();
 }
 
-/*
- *
- */
 void CommandSystem::start(const Glib::ustring &description) {
   m_is_recording = true;
 
@@ -257,16 +214,10 @@ void CommandSystem::start(const Glib::ustring &description) {
   m_signal_changed();
 }
 
-/*
- *
- */
 bool CommandSystem::is_recording() {
   return m_is_recording;
 }
 
-/*
- *
- */
 void CommandSystem::finish() {
   if (m_is_recording)
     add(new SubtitleSelectionCommand(&m_document));
@@ -276,9 +227,6 @@ void CommandSystem::finish() {
   m_signal_changed();
 }
 
-/*
- *
- */
 Glib::ustring CommandSystem::get_undo_description() {
   if (!m_undo_stack.empty()) {
     return m_undo_stack.back()->description();
@@ -286,9 +234,6 @@ Glib::ustring CommandSystem::get_undo_description() {
   return Glib::ustring();
 }
 
-/*
- *
- */
 Glib::ustring CommandSystem::get_redo_description() {
   if (!m_redo_stack.empty()) {
     return m_redo_stack.back()->description();
@@ -296,9 +241,6 @@ Glib::ustring CommandSystem::get_redo_description() {
   return Glib::ustring();
 }
 
-/*
- *
- */
 sigc::signal<void> &CommandSystem::signal_changed() {
   return m_signal_changed;
 }

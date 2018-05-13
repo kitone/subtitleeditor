@@ -1,38 +1,31 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
- *	This class is inspired from gtkspell (gtkspell.sf.net), thanks!
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "automaticspellchecker.h"
 #include <gtkmm.h>
 #include <i18n.h>
 #include <isocodes.h>
 #include <algorithm>
 #include <memory>
+#include "automaticspellchecker.h"
 #include "spellchecker.h"
 
-/*
- *
- */
 AutomaticSpellChecker *AutomaticSpellChecker::create_from_textview(
     Gtk::TextView *view) {
   g_return_val_if_fail(view, NULL);
@@ -41,33 +34,24 @@ AutomaticSpellChecker *AutomaticSpellChecker::create_from_textview(
   return asc;
 }
 
-/*
- * Delete the instance of AutomaticSpellChecker attached to the TextView.
- */
+// Delete the instance of AutomaticSpellChecker attached to the TextView.
 void AutomaticSpellChecker::automatic_spell_checker_destroy(gpointer data) {
   AutomaticSpellChecker *i = reinterpret_cast<AutomaticSpellChecker *>(data);
   delete i;
 }
 
-/*
- * The instance is attached to the textview,
- * it will be destroy himself with the textview.
- */
+// The instance is attached to the textview,
+// it will be destroy himself with the textview.
 AutomaticSpellChecker::AutomaticSpellChecker(Gtk::TextView *view)
     : Glib::ObjectBase(typeid(AutomaticSpellChecker)) {
   init(view);
 }
 
-/*
- *
- */
 AutomaticSpellChecker::~AutomaticSpellChecker() {
 }
 
-/*
- * Connect signals with the textview and the textbuffer,
- * create the tag 'asc-misspelled' ...
- */
+// Connect signals with the textview and the textbuffer,
+// create the tag 'asc-misspelled' ...
 void AutomaticSpellChecker::init(Gtk::TextView *view) {
   m_textview = view;
 
@@ -126,19 +110,14 @@ void AutomaticSpellChecker::init(Gtk::TextView *view) {
       sigc::mem_fun(*this, &AutomaticSpellChecker::on_popup_menu));
 }
 
-/*
- *
- */
 Glib::RefPtr<Gtk::TextBuffer> AutomaticSpellChecker::get_buffer() {
   return m_textview->get_buffer();
 }
 
-/*
- * Insertion works like this:
- *	- before the text is inserted, we mark the position in the buffer.
- *	- after the text is inserted, we see where our mark is and use that and
- *		the current position to check the entire range of inserted text.
- */
+// Insertion works like this:
+// - before the text is inserted, we mark the position in the buffer.
+// - after the text is inserted, we see where our mark is and use that and
+//   the current position to check the entire range of inserted text.
 void AutomaticSpellChecker::on_insert_text_before(
     const Gtk::TextBuffer::iterator &pos, const Glib::ustring & /*text*/,
     int /*bytes*/) {
@@ -146,12 +125,10 @@ void AutomaticSpellChecker::on_insert_text_before(
   m_buffer->move_mark(m_mark_insert_start, pos);
 }
 
-/*
- * Insertion works like this:
- *	- before the text is inserted, we mark the position in the buffer.
- *	- after the text is inserted, we see where our mark is and use that and
- *		the current position to check the entire range of inserted text.
- */
+// Insertion works like this:
+// - before the text is inserted, we mark the position in the buffer.
+// - after the text is inserted, we see where our mark is and use that and
+//   the current position to check the entire range of inserted text.
 void AutomaticSpellChecker::on_insert_text_after(
     const Gtk::TextBuffer::iterator &pos, const Glib::ustring & /*text*/,
     int /*bytes*/) {
@@ -166,20 +143,15 @@ void AutomaticSpellChecker::on_insert_text_after(
   m_buffer->move_mark(m_mark_insert_end, pos);
 }
 
-/*
- * Deleting is more simple:  we're given the range of deleted text.
- * After deletion, the start and end iters should be at the same position
- * (because all of the text between them was deleted!).
- * This means we only really check the words immediately bounding the deletion.
- */
+// Deleting is more simple:  we're given the range of deleted text.
+// After deletion, the start and end iters should be at the same position
+// (because all of the text between them was deleted!).
+// This means we only really check the words immediately bounding the deletion.
 void AutomaticSpellChecker::on_erase(const Gtk::TextBuffer::iterator &start,
                                      const Gtk::TextBuffer::iterator &end) {
   check_range(start, end, false);
 }
 
-/*
- *
- */
 void AutomaticSpellChecker::on_mark_set(
     const Gtk::TextBuffer::iterator & /*location*/,
     const Glib::RefPtr<Gtk::TextBuffer::Mark> &mark) {
@@ -190,9 +162,7 @@ void AutomaticSpellChecker::on_mark_set(
     check_deferred_range(false);
 }
 
-/*
- * Set the tag 'highlight' as priority.
- */
+// Set the tag 'highlight' as priority.
 void AutomaticSpellChecker::tag_table_changed() {
   Glib::RefPtr<Gtk::TextBuffer> m_buffer = get_buffer();
 
@@ -200,25 +170,19 @@ void AutomaticSpellChecker::tag_table_changed() {
   m_tag_highlight->set_priority(tag_table->get_size() - 1);
 }
 
-/*
- * Update the tag 'highlight' priority.
- */
+// Update the tag 'highlight' priority.
 void AutomaticSpellChecker::on_tag_changed(
     const Glib::RefPtr<Gtk::TextTag> & /*tag*/, bool /*size_changed*/) {
   tag_table_changed();
 }
 
-/*
- * Update the tag 'highlight' priority.
- */
+// Update the tag 'highlight' priority.
 void AutomaticSpellChecker::on_tag_added_or_removed(
     const Glib::RefPtr<Gtk::TextTag> & /*tag*/) {
   tag_table_changed();
 }
 
-/*
- * Set iterators with the word from mark.
- */
+// Set iterators with the word from mark.
 void AutomaticSpellChecker::get_word_extents_from_mark(
     const Glib::RefPtr<Gtk::TextBuffer::Mark> &mark, Gtk::TextIter &start,
     Gtk::TextIter &end) {
@@ -235,9 +199,7 @@ void AutomaticSpellChecker::get_word_extents_from_mark(
     iter_forward_word_end(end);
 }
 
-/*
- * Check the word delimited by the iterators and if it's misspell tag it.
- */
+// Check the word delimited by the iterators and if it's misspell tag it.
 void AutomaticSpellChecker::check_word(Gtk::TextIter start, Gtk::TextIter end) {
   Glib::RefPtr<Gtk::TextBuffer> m_buffer = get_buffer();
 
@@ -248,9 +210,6 @@ void AutomaticSpellChecker::check_word(Gtk::TextIter start, Gtk::TextIter end) {
   }
 }
 
-/*
- *
- */
 void AutomaticSpellChecker::check_deferred_range(bool force_all) {
   Glib::RefPtr<Gtk::TextBuffer> m_buffer = get_buffer();
 
@@ -261,9 +220,7 @@ void AutomaticSpellChecker::check_deferred_range(bool force_all) {
   check_range(start, end, force_all);
 }
 
-/*
- * Check words delimited by the iterators.
- */
+// Check words delimited by the iterators.
 void AutomaticSpellChecker::check_range(Gtk::TextIter start, Gtk::TextIter end,
                                         bool force_all) {
   // we need to "split" on word boundaries.
@@ -343,9 +300,7 @@ void AutomaticSpellChecker::check_range(Gtk::TextIter start, Gtk::TextIter end,
   }
 }
 
-/*
- * Recheck all the textbuffer.
- */
+// Recheck all the textbuffer.
 void AutomaticSpellChecker::recheck_all() {
   Gtk::TextIter start, end;
 
@@ -354,9 +309,7 @@ void AutomaticSpellChecker::recheck_all() {
   check_range(start, end, true);
 }
 
-/*
- * Update the mark click.
- */
+// Update the mark click.
 bool AutomaticSpellChecker::on_popup_menu() {
   Gtk::TextIter iter;
   Glib::RefPtr<Gtk::TextBuffer> m_buffer = get_buffer();
@@ -370,13 +323,10 @@ bool AutomaticSpellChecker::on_popup_menu() {
   return false;
 }
 
-/*
- * Build spell check menu.
- *
- * The menu 'languages' is always added to allow the user to change the
- * dictionary without misspell word unlike the menu 'suggestions' added only if
- * the word is misspell.
- */
+// Build spell check menu.
+// The menu 'languages' is always added to allow the user to change the
+// dictionary without misspell word unlike the menu 'suggestions' added only if
+// the word is misspell.
 void AutomaticSpellChecker::on_populate_popup(Gtk::Menu *menu) {
   Gtk::Image *img;
   Gtk::MenuItem *mi;
@@ -410,11 +360,9 @@ void AutomaticSpellChecker::on_populate_popup(Gtk::Menu *menu) {
   build_suggestion_menu(word, menu);
 }
 
-/*
- * When the user right-clicks on a word, they want to check that word.
- * Here, we do NOT  move the cursor to the location of the clicked-upon word
- * since that prevents the use of edit functions on the context menu.
- */
+// When the user right-clicks on a word, they want to check that word.
+// Here, we do NOT  move the cursor to the location of the clicked-upon word
+// since that prevents the use of edit functions on the context menu.
 bool AutomaticSpellChecker::on_button_press_event(GdkEventButton *ev) {
   if (ev->button == 3) {
     gint x, y;
@@ -438,14 +386,11 @@ bool AutomaticSpellChecker::on_button_press_event(GdkEventButton *ev) {
   return false;
 }
 
-/*
- * Build a suggestions menu from misspelled word, 'menu' is directly used to add
- * menu items.
- *
- * 'Ignore All' and 'Add "%" to Dictionary" are always created.
- * Create suggestions list, if they are more than ten, create submenu 'More...'
- * for they.
- */
+// Build a suggestions menu from misspelled word, 'menu' is directly used to add
+// menu items.
+// 'Ignore All' and 'Add "%" to Dictionary" are always created.
+// Create suggestions list, if they are more than ten, create submenu 'More...'
+// for they.
 void AutomaticSpellChecker::build_suggestion_menu(const Glib::ustring &word,
                                                   Gtk::Menu *menu) {
   Gtk::MenuItem *mi;
@@ -527,13 +472,10 @@ void AutomaticSpellChecker::build_suggestion_menu(const Glib::ustring &word,
   }
 }
 
-/*
- * We get the word from the 'mark click' and we replace it by the 'newword'.
- * Store the replacement in the SpellChecker, that future occurrences of the
- * word will be replaced with the 'newword'.
- *
- * It's call by the item spell suggestions.
- */
+// We get the word from the 'mark click' and we replace it by the 'newword'.
+// Store the replacement in the SpellChecker, that future occurrences of the
+// word will be replaced with the 'newword'.
+// It's call by the item spell suggestions.
 void AutomaticSpellChecker::on_replace_word(const Glib::ustring &newword) {
   if (newword.empty())
     return;
@@ -554,13 +496,10 @@ void AutomaticSpellChecker::on_replace_word(const Glib::ustring &newword) {
   SpellChecker::instance()->store_replacement(oldword, newword);
 }
 
-/*
- * We get the word from the 'mark click' and we add the word to
- * the session of the spell checker.
- * It will be ignored in the future the time of the session.
- *
- * It's call by the suggestions item "Ignore all".
- */
+// We get the word from the 'mark click' and we add the word to
+// the session of the spell checker.
+// It will be ignored in the future the time of the session.
+// It's call by the suggestions item "Ignore all".
 void AutomaticSpellChecker::on_ignore_all() {
   Gtk::TextIter start, end;
 
@@ -575,13 +514,10 @@ void AutomaticSpellChecker::on_ignore_all() {
   recheck_all();
 }
 
-/*
- * We get the word from the 'mark click' and we add the word to
- * the personal dictionary.
- * It will be ignored in the future.
- *
- * It's call by the suggestions item "Add %s to Dictionary".
- */
+// We get the word from the 'mark click' and we add the word to
+// the personal dictionary.
+// It will be ignored in the future.
+// It's call by the suggestions item "Add %s to Dictionary".
 void AutomaticSpellChecker::on_add_to_dictionary() {
   Gtk::TextIter start, end;
 
@@ -596,9 +532,7 @@ void AutomaticSpellChecker::on_add_to_dictionary() {
   recheck_all();
 }
 
-/*
- * Create and return a languages menu.
- */
+// Create and return a languages menu.
 Gtk::Menu *AutomaticSpellChecker::build_languages_menu() {
   Gtk::Menu *menu;
   Gtk::MenuItem *mi;
@@ -641,9 +575,7 @@ Gtk::Menu *AutomaticSpellChecker::build_languages_menu() {
   return menu;
 }
 
-/*
- * Update the spellchecker with a new dictionary.
- */
+// Update the spellchecker with a new dictionary.
 void AutomaticSpellChecker::on_set_current_language(
     const Glib::ustring &isocode) {
   SpellChecker::instance()->set_dictionary(isocode);
@@ -651,11 +583,9 @@ void AutomaticSpellChecker::on_set_current_language(
   recheck_all();
 }
 
-/*
- * heuristic:
- * if we're on an singlequote/apostrophe and
- * if the next letter is alphanumeric, this is an apostrophe.
- */
+// heuristic:
+// if we're on an singlequote/apostrophe and
+// if the next letter is alphanumeric, this is an apostrophe.
 bool AutomaticSpellChecker::iter_forward_word_end(Gtk::TextIter &i) {
   if (!i.forward_word_end())
     return false;
@@ -669,11 +599,9 @@ bool AutomaticSpellChecker::iter_forward_word_end(Gtk::TextIter &i) {
   return true;
 }
 
-/*
- * heuristic:
- * if we're on an singlequote/apostrophe and
- * if the next letter is alphanumeric, this is an apostrophe.
- */
+// heuristic:
+// if we're on an singlequote/apostrophe and
+// if the next letter is alphanumeric, this is an apostrophe.
 bool AutomaticSpellChecker::iter_backward_word_start(Gtk::TextIter &i) {
   if (!i.backward_word_start())
     return false;

@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <glib.h>
@@ -30,13 +28,9 @@
 #include <memory>
 
 // FIXME: gtkmm3
-/*
- * FIXME:
- *	Subtitle selected changed caused by no modal window (find)
- */
+// FIXME:
+// Subtitle selected changed caused by no modal window (find)
 
-/*
- */
 class MatchInfo {
  public:
   MatchInfo() {
@@ -62,31 +56,21 @@ class MatchInfo {
   Glib::ustring::size_type len;
 };
 
-/*
- */
 enum PatternOptions { USE_REGEX = 1 << 1, IGNORE_CASE = 1 << 2 };
 
-/*
- */
 enum ColumnOptions { TEXT = 1 << 1, TRANSLATION = 1 << 2 };
 
-/*
- * FaR Find and Replace
- */
+// FaR Find and Replace
 class FaR {
  public:
-  /*
-   * Return an instance of the engine.
-   */
+  // Return an instance of the engine.
   static FaR &instance() {
     static FaR engine;
     return engine;
   }
 
-  /*
-   * Returns the search option flag
-   * IGNORE_CASE & USE_REGEX
-   */
+  // Returns the search option flag
+  // IGNORE_CASE & USE_REGEX
   int get_pattern_options() {
     Config &cfg = Config::getInstance();
 
@@ -99,10 +83,8 @@ class FaR {
     return flags;
   }
 
-  /*
-   * Search in which columns?
-   * TEXT & TRANSLATION
-   */
+  // Search in which columns?
+  // TEXT & TRANSLATION
   int get_columns_options() {
     Config &cfg = Config::getInstance();
 
@@ -115,27 +97,21 @@ class FaR {
     return flags;
   }
 
-  /*
-   * Return the current pattern text.
-   */
+  // Return the current pattern text.
   Glib::ustring get_pattern() {
     return Config::getInstance().get_value_string("find-and-replace",
                                                   "pattern");
   }
 
-  /*
-   * Return the current replacement text.
-   */
+  // Return the current replacement text.
   Glib::ustring get_replacement() {
     return Config::getInstance().get_value_string("find-and-replace",
                                                   "replacement");
   }
 
-  /*
-   * Try to find the pattern in the subtitle.
-   * A MatchInfo is used to get information on the match,
-   * is stored in matchinfo if not NULL.
-   */
+  // Try to find the pattern in the subtitle.
+  // A MatchInfo is used to get information on the match,
+  // is stored in matchinfo if not NULL.
   bool find_in_subtitle(const Subtitle &sub, MatchInfo *matchinfo) {
     if (!sub)
       return false;
@@ -164,9 +140,7 @@ class FaR {
     return false;
   }
 
-  /*
-   * Replace the current search (MatchInfo) by the replacement text.
-   */
+  // Replace the current search (MatchInfo) by the replacement text.
   bool replace(Document &doc, Subtitle &sub, MatchInfo &info) {
     if (!sub)
       return false;
@@ -204,8 +178,6 @@ class FaR {
   }
 
  protected:
-  /*
-   */
   bool find_in_text(const Glib::ustring &otext, MatchInfo *info) {
     Glib::ustring text = otext;
     Glib::ustring::size_type beginning = Glib::ustring::npos;
@@ -229,8 +201,7 @@ class FaR {
       if (!find(get_pattern(), get_pattern_options(), text, info))
         return false;
 
-      if (info)  // Found, update matchinfo values
-      {
+      if (info) {  // Found, update matchinfo values
         info->text = otext;
         if (beginning != Glib::ustring::npos)
           info->start += beginning;  // if we used a substring (start != 0)n we
@@ -243,8 +214,6 @@ class FaR {
     return false;
   }
 
-  /*
-   */
   bool find(const Glib::ustring &pattern, int pattern_options,
             const Glib::ustring &text, MatchInfo *info) {
     if (pattern.empty())
@@ -253,12 +222,10 @@ class FaR {
     bool found = false;
     Glib::ustring::size_type start, len;
 
-    if (pattern_options & USE_REGEX)  // Search with regular expression
-    {
+    if (pattern_options & USE_REGEX) {  // Search with regular expression
       found = regex_exec(pattern, text, (pattern_options & IGNORE_CASE), start,
                          len, info->replacement);
-    } else  // Without regular expression
-    {
+    } else {  // Without regular expression
       Glib::ustring pat =
           (pattern_options & IGNORE_CASE) ? pattern.lowercase() : pattern;
       Glib::ustring txt =
@@ -280,10 +247,8 @@ class FaR {
     return found;
   }
 
-  /*
-   * FIXME: Remove Me
-   * Waiting the Glib::MatchInfo API in glibmm.
-   */
+  // FIXME: Remove Me
+  // Waiting the Glib::MatchInfo API in glibmm.
   bool regex_exec(const Glib::ustring &pattern, const Glib::ustring &string,
                   bool caseless, Glib::ustring::size_type &start,
                   Glib::ustring::size_type &len, Glib::ustring &replacement) {
@@ -338,8 +303,6 @@ class FaR {
   }
 };
 
-/*
- */
 class ComboBoxEntryHistory : public Gtk::ComboBoxText {
  public:
   ComboBoxEntryHistory(BaseObjectType *cobject,
@@ -347,10 +310,8 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
       : Gtk::ComboBoxText(cobject) {
   }
 
-  /*
-   * Initialize the widget with the group and the key for the config.
-   * Sets the widget history.
-   */
+  // Initialize the widget with the group and the key for the config.
+  // Sets the widget history.
   void initialize(const Glib::ustring &group, const Glib::ustring &key) {
     m_group = group;
     m_key = key;
@@ -358,9 +319,7 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
     load_history();
   }
 
-  /*
-   * Add the current entry text to the history model.
-   */
+  // Add the current entry text to the history model.
   void push_to_history() {
     Glib::ustring text = get_entry()->get_text();
     if (!text.empty()) {
@@ -370,9 +329,7 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
     }
   }
 
-  /*
-   * Read the history of the widget.
-   */
+  // Read the history of the widget.
   void load_history() {
     Config &cfg = Config::getInstance();
 
@@ -389,9 +346,7 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
     get_entry()->set_text(cfg.get_value_string(m_group, m_key));
   }
 
-  /*
-   * Write the history of the widget to the config.
-   */
+  // Write the history of the widget to the config.
   void save_history() {
     Config::getInstance().set_value_string(m_group, m_key,
                                            get_entry()->get_text());
@@ -400,8 +355,6 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
         sigc::mem_fun(*this, &ComboBoxEntryHistory::save_iter));
   }
 
-  /*
-   */
   bool save_iter(const Gtk::TreePath &path, const Gtk::TreeIter &it) {
     Config::getInstance().set_value_string(
         m_group,
@@ -410,9 +363,7 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
     return false;
   }
 
-  /*
-   * Remove items equal to text.
-   */
+  // Remove items equal to text.
   void remove_item(const Glib::ustring &text) {
     Glib::RefPtr<Gtk::ListStore> model =
         Glib::RefPtr<Gtk::ListStore>::cast_dynamic(get_model());
@@ -426,9 +377,7 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
     }
   }
 
-  /*
-   * Clamp items to maximum
-   */
+  // Clamp items to maximum
   void clamp_items() {
     Glib::RefPtr<Gtk::ListStore> model =
         Glib::RefPtr<Gtk::ListStore>::cast_dynamic(get_model());
@@ -445,17 +394,13 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
   ComboBoxTextColumns m_cols;
 };
 
-/*
- *	Dialog Find And Replace
- */
+// Dialog Find And Replace
 class DialogFindAndReplace : public DialogActionMultiDoc {
  public:
   // like to.ui file
   enum RESPONSE { FIND = 1, REPLACE = 2, REPLACE_ALL = 3 };
 
-  /*
-   * Constructor
-   */
+  // Constructor
   DialogFindAndReplace(BaseObjectType *cobject,
                        const Glib::RefPtr<Gtk::Builder> &xml)
       : DialogActionMultiDoc(cobject, xml), m_document(NULL) {
@@ -513,9 +458,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     hide();
   }
 
-  /*
-   * Create a single instance of the dialog.
-   */
+  // Create a single instance of the dialog.
   static void create() {
     if (m_instance == NULL) {
       m_instance = gtkmm_utility::get_widget_derived<DialogFindAndReplace>(
@@ -526,16 +469,12 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     m_instance->present();
   }
 
-  /*
-   * Return a unique instance of the dialog.
-   */
+  // Return a unique instance of the dialog.
   static DialogFindAndReplace *instance() {
     return m_instance;
   }
 
-  /*
-   * Initialize the ui with this document
-   */
+  // Initialize the ui with this document
   void init_with_document(Document *doc) {
     if (m_connection_subtitle_deleted)
       m_connection_subtitle_deleted.disconnect();
@@ -561,9 +500,9 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
       return;
 
     Subtitles subtitles = doc->subtitles();
-    if (subtitles.size() == 0)
+    if (subtitles.size() == 0) {
       doc->flash_message(_("The document is empty"));
-    else {
+    } else {
       m_subtitle = subtitles.get_first_selected();
       if (!m_subtitle)
         m_subtitle = subtitles.get_first();
@@ -576,9 +515,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
                                    &DialogFindAndReplace::on_subtitle_deleted));
   }
 
-  /*
-   * The current document has changed. We need do update the ui.
-   */
+  // The current document has changed. We need do update the ui.
   void on_current_document_changed(Document *newdoc) {
     if (newdoc != m_document) {
       m_document = newdoc;
@@ -588,8 +525,6 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     }
   }
 
-  /*
-   */
   void on_subtitle_deleted() {
     // Reset values
     m_subtitle = Subtitle();
@@ -603,9 +538,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     }
     update_search_ui();
   }
-  /*
-   * Update the label of the current column and sets the sensitivity.
-   */
+  // Update the label of the current column and sets the sensitivity.
   void update_column_label() {
     m_labelCurrentColumn->set_sensitive(m_info.found);
 
@@ -615,9 +548,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
       m_labelCurrentColumn->set_text(_("Translation"));
   }
 
-  /*
-   * Update some widgets from the current info search.
-   */
+  // Update some widgets from the current info search.
   void update_search_ui() {
     m_textview->set_sensitive(m_info.found);
     m_buttonReplace->set_sensitive(m_info.found);
@@ -636,14 +567,13 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
 
       buffer->apply_tag_by_name("found", ins, bound);
       buffer->select_range(ins, bound);
-    } else
+    } else {
       m_textview->get_buffer()->set_text("");
+    }
   }
 
-  /*
-   * Response handler for signals:
-   * FIND, REPLACE, REPLACE_ALL and (RESPONSE_CLOSE & RESPONSE_DELETE_EVENT)
-   */
+  // Response handler for signals:
+  // FIND, REPLACE, REPLACE_ALL and (RESPONSE_CLOSE & RESPONSE_DELETE_EVENT)
   void on_response(int response) {
     if (response == FIND) {
       if (find_forwards(m_subtitle, &m_info)) {
@@ -686,10 +616,8 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     }
   }
 
-  /*
-   * Find the next pattern from the current subtitle and the current info.
-   * Recrusive function.
-   */
+  // Find the next pattern from the current subtitle and the current info.
+  // Recrusive function.
   bool find_forwards(Subtitle &sub, MatchInfo *info) {
     se_debug(SE_DEBUG_SEARCH);
 
@@ -711,9 +639,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     return find_forwards(sub, info);
   }
 
-  /*
-   * Start with the beginning of all documents and try to replace all.
-   */
+  // Start with the beginning of all documents and try to replace all.
   bool replace_all() {
     DocumentList docs;
 
@@ -743,9 +669,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     return true;
   }
 
-  /*
-   * Return a sorted documents list from the current to the last.
-   */
+  // Return a sorted documents list from the current to the last.
   DocumentList get_sort_documents() {
     DocumentList list = get_documents_to_apply();
 
@@ -766,14 +690,11 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     return list;
   }
 
-  /*
-   * Return the next document. This function make a loop:
-   *
-   *               (m_document)
-   * +-- previous -> current -> next ----+
-   * |                                   |
-   * +---<------------------------<------+
-   */
+  // Return the next document. This function make a loop:
+  //               (m_document)
+  // +-- previous -> current -> next ----+
+  // |                                   |
+  // +---<------------------------<------+
   Document *get_next_document() {
     DocumentList list = get_documents_to_apply();
 
@@ -790,9 +711,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
     return m_document;
   }
 
-  /*
-   * Sets the current document an update ui.
-   */
+  // Sets the current document an update ui.
   void set_current_document(Document *doc) {
     m_document = doc;
     DocumentSystem::getInstance().setCurrentDocument(doc);
@@ -823,14 +742,10 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
   static DialogFindAndReplace *m_instance;
 };
 
-/*
- * Static instance of the dialog
- */
+// Static instance of the dialog
 DialogFindAndReplace *DialogFindAndReplace::m_instance = NULL;
 
-/*
- *	Plugin
- */
+// Plugin
 class FindAndReplacePlugin : public Action {
  public:
   FindAndReplacePlugin() {
@@ -842,8 +757,6 @@ class FindAndReplacePlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -891,8 +804,6 @@ class FindAndReplacePlugin : public Action {
     check_default_values();
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -902,8 +813,6 @@ class FindAndReplacePlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -919,8 +828,6 @@ class FindAndReplacePlugin : public Action {
   }
 
  protected:
-  /*
-   */
   void check_default_values() {
     if (!get_config().has_key("find-and-replace", "column-text"))
       get_config().set_value_bool("find-and-replace", "column-text", true);
@@ -934,8 +841,6 @@ class FindAndReplacePlugin : public Action {
                                   false);
   }
 
-  /*
-   */
   void on_search_and_replace() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -944,22 +849,16 @@ class FindAndReplacePlugin : public Action {
         get_current_document());
   }
 
-  /*
-   */
   void on_find_next() {
     se_debug(SE_DEBUG_PLUGINS);
     find_sub(false);
   }
 
-  /*
-   */
   void on_find_previous() {
     se_debug(SE_DEBUG_PLUGINS);
     find_sub(true);
   }
 
-  /*
-   */
   void find_sub(bool backwards) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -982,9 +881,7 @@ class FindAndReplacePlugin : public Action {
     }
   }
 
-  /*
-   * Start the search from the previous/next subtitle
-   */
+  // Start the search from the previous/next subtitle
   bool search_from_current_position(Subtitle &res, bool backwards) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -1007,8 +904,6 @@ class FindAndReplacePlugin : public Action {
     return false;
   }
 
-  /*
-   */
   bool search_from_beginning(Subtitle &res, bool backwards) {
     se_debug(SE_DEBUG_PLUGINS);
 

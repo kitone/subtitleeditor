@@ -1,38 +1,34 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "dialogfilechooser.h"
 #include "comboboxencoding.h"
 #include "comboboxnewline.h"
 #include "comboboxsubtitleformat.h"
 #include "comboboxvideo.h"
 #include "dialogcharactercodings.h"
+#include "dialogfilechooser.h"
 #include "gtkmm_utility.h"
 #include "subtitleformatsystem.h"
 #include "utility.h"
 
-/*
- * Init dialog filter with from SubtitleFormatSystem.
- */
+// Init dialog filter with from SubtitleFormatSystem.
 void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog) {
   g_return_if_fail(dialog);
 
@@ -78,13 +74,8 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog) {
   dialog->set_filter(supported);
 }
 
-/*
- * DialogFileChooser
- */
+// DialogFileChooser
 
-/*
- *
- */
 DialogFileChooser::DialogFileChooser(BaseObjectType *cobject,
                                      const Glib::ustring &name)
     : Gtk::FileChooserDialog(cobject), m_name(name) {
@@ -96,8 +87,6 @@ DialogFileChooser::DialogFileChooser(BaseObjectType *cobject,
   utility::set_transient_parent(*this);
 }
 
-/*
- */
 DialogFileChooser::DialogFileChooser(const Glib::ustring &title,
                                      Gtk::FileChooserAction action,
                                      const Glib::ustring &name)
@@ -110,18 +99,13 @@ DialogFileChooser::DialogFileChooser(const Glib::ustring &title,
   utility::set_transient_parent(*this);
 }
 
-/*
- *
- */
 DialogFileChooser::~DialogFileChooser() {
   Glib::ustring last = get_current_folder_uri();
   Config::getInstance().set_value_string("dialog-last-folder", m_name, last);
 }
 
-/*
- * Define the current file filter.
- * ex: 'Subtitle Editor Project', 'SubRip', 'MicroDVD' ...
- */
+// Define the current file filter.
+// ex: 'Subtitle Editor Project', 'SubRip', 'MicroDVD' ...
 void DialogFileChooser::set_current_filter(
     const Glib::ustring &subtitleformat_name) {
   std::vector<Glib::RefPtr<Gtk::FileFilter> > filters = list_filters();
@@ -136,9 +120,7 @@ void DialogFileChooser::set_current_filter(
   }
 }
 
-/*
- * This can be use to setup the document name based on video uri
- */
+// This can be use to setup the document name based on video uri
 void DialogFileChooser::set_filename_from_another_uri(
     const Glib::ustring &another_uri, const Glib::ustring &ext) {
   try {
@@ -156,24 +138,18 @@ void DialogFileChooser::set_filename_from_another_uri(
   }
 }
 
-/*
- * Internally call set_current_folder and set_current_name with dirname and
- * basename
- */
+// Internally call set_current_folder and set_current_name with dirname and
+// basename
 void DialogFileChooser::set_current_folder_and_name(
     const Glib::ustring &filename) {
   set_current_folder(Glib::path_get_dirname(filename));
   set_current_name(Glib::path_get_basename(filename));
 }
 
-/*
- * DialogOpenDocument
- * Dialog open file chooser with Encoding and Video options.
- */
+// DialogOpenDocument
+// Dialog open file chooser with Encoding and Video options.
 
-/*
- * Constructor
- */
+// Constructor
 DialogOpenDocument::DialogOpenDocument(
     BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &builder)
     : DialogFileChooser(cobject, "dialog-open-document") {
@@ -195,17 +171,13 @@ DialogOpenDocument::DialogOpenDocument(
   set_default_response(Gtk::RESPONSE_OK);
 }
 
-/*
- * Returns the encoding value.
- * Charset or empty string (Auto Detected)
- */
+// Returns the encoding value.
+// Charset or empty string (Auto Detected)
 Glib::ustring DialogOpenDocument::get_encoding() const {
   return m_comboEncodings->get_value();
 }
 
-/*
- * Returns the video uri or empty string.
- */
+// Returns the video uri or empty string.
 Glib::ustring DialogOpenDocument::get_video_uri() const {
   Glib::ustring video = m_comboVideo->get_value();
   if (video.empty())
@@ -214,9 +186,6 @@ Glib::ustring DialogOpenDocument::get_video_uri() const {
   return Glib::build_filename(get_current_folder_uri(), video);
 }
 
-/*
- *
- */
 void DialogOpenDocument::show_video(bool state) {
   if (state) {
     m_labelVideo->show();
@@ -227,9 +196,7 @@ void DialogOpenDocument::show_video(bool state) {
   }
 }
 
-/*
- * Create a instance of the dialog.
- */
+// Create a instance of the dialog.
 DialogOpenDocument::unique_ptr DialogOpenDocument::create() {
   unique_ptr ptr(gtkmm_utility::get_widget_derived<DialogOpenDocument>(
       SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
@@ -238,16 +205,12 @@ DialogOpenDocument::unique_ptr DialogOpenDocument::create() {
   return ptr;
 }
 
-/*
- * The current folder has changed, need to update the ComboBox Video
- */
+// The current folder has changed, need to update the ComboBox Video
 void DialogOpenDocument::on_current_folder_changed() {
   m_comboVideo->set_current_folder(get_current_folder());
 }
 
-/*
- * The file selection has changed, need to update the ComboBox Video
- */
+// The file selection has changed, need to update the ComboBox Video
 void DialogOpenDocument::on_selection_changed() {
   std::vector<std::string> selected = get_filenames();
 
@@ -257,14 +220,10 @@ void DialogOpenDocument::on_selection_changed() {
     m_comboVideo->auto_select_video("");
 }
 
-/*
- * DialogSaveDocument
- * Dialog save file chooser with Format, Encoding and NewLine options.
- */
+// DialogSaveDocument
+// Dialog save file chooser with Format, Encoding and NewLine options.
 
-/*
- * Constructor
- */
+// Constructor
 DialogSaveDocument::DialogSaveDocument(
     BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &builder)
     : DialogFileChooser(cobject, "dialog-save-document") {
@@ -285,52 +244,35 @@ DialogSaveDocument::DialogSaveDocument(
       sigc::mem_fun(*this, &DialogSaveDocument::on_combo_format_changed));
 }
 
-/*
- *
- */
 void DialogSaveDocument::set_format(const Glib::ustring &format) {
   m_comboFormat->set_value(format);
 }
 
-/*
- * Returns the subtitle format value.
- */
+// Returns the subtitle format value.
 Glib::ustring DialogSaveDocument::get_format() const {
   return m_comboFormat->get_value();
 }
 
-/*
- *
- */
 void DialogSaveDocument::set_encoding(const Glib::ustring &encoding) {
   m_comboEncodings->set_value(encoding);
 }
 
-/*
- * Returns the encoding value or empty string (Auto Detected).
- */
+// Returns the encoding value or empty string (Auto Detected).
 Glib::ustring DialogSaveDocument::get_encoding() const {
   return m_comboEncodings->get_value();
 }
 
-/*
- *
- */
 void DialogSaveDocument::set_newline(const Glib::ustring &newline) {
   m_comboNewLine->set_value(newline);
 }
 
-/*
- * Return the newline value.
- * Windows or Unix.
- */
+// Return the newline value.
+// Windows or Unix.
 Glib::ustring DialogSaveDocument::get_newline() const {
   return m_comboNewLine->get_value();
 }
 
-/*
- * Update the extension of the current filename.
- */
+// Update the extension of the current filename.
 void DialogSaveDocument::on_combo_format_changed() {
   Glib::ustring basename = get_current_name();
 
@@ -347,9 +289,7 @@ void DialogSaveDocument::on_combo_format_changed() {
   set_current_name(basename);
 }
 
-/*
- * Create a instance of the dialog.
- */
+// Create a instance of the dialog.
 DialogSaveDocument::unique_ptr DialogSaveDocument::create() {
   unique_ptr ptr(gtkmm_utility::get_widget_derived<DialogSaveDocument>(
       SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV),
@@ -358,14 +298,10 @@ DialogSaveDocument::unique_ptr DialogSaveDocument::create() {
   return ptr;
 }
 
-/*
- * DialogImportText
- * Dialog open file chooser with Encoding option.
- */
+// DialogImportText
+// Dialog open file chooser with Encoding option.
 
-/*
- * Constructor
- */
+// Constructor
 DialogImportText::DialogImportText(BaseObjectType *cobject,
                                    const Glib::RefPtr<Gtk::Builder> &builder)
     : DialogFileChooser(cobject, "dialog-import-text") {
@@ -380,24 +316,18 @@ DialogImportText::DialogImportText(BaseObjectType *cobject,
   set_default_response(Gtk::RESPONSE_OK);
 }
 
-/*
- * Returns the encoding value.
- * Charset or empty string (Auto Detected)
- */
+// Returns the encoding value.
+// Charset or empty string (Auto Detected)
 Glib::ustring DialogImportText::get_encoding() const {
   return m_comboEncodings->get_value();
 }
 
-/*
- * Returns whether blank lines separate subtitles
- */
+// Returns whether blank lines separate subtitles
 bool DialogImportText::get_blank_line_mode() const {
   return m_checkBlankLines->get_active();
 }
 
-/*
- * Create a instance of the dialog.
- */
+// Create a instance of the dialog.
 DialogImportText::unique_ptr DialogImportText::create() {
   unique_ptr ptr(gtkmm_utility::get_widget_derived<DialogImportText>(
       SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), "dialog-import-text.ui",
@@ -406,14 +336,10 @@ DialogImportText::unique_ptr DialogImportText::create() {
   return ptr;
 }
 
-/*
- * DialogExportText
- * Dialog save file chooser with Encoding and NewLine options.
- */
+// DialogExportText
+// Dialog save file chooser with Encoding and NewLine options.
 
-/*
- * Constructor
- */
+// Constructor
 DialogExportText::DialogExportText(BaseObjectType *cobject,
                                    const Glib::RefPtr<Gtk::Builder> &builder)
     : DialogFileChooser(cobject, "dialog-export-text") {
@@ -431,31 +357,23 @@ DialogExportText::DialogExportText(BaseObjectType *cobject,
   set_default_response(Gtk::RESPONSE_OK);
 }
 
-/*
- * Returns the encoding value or empty string (Auto Detected).
- */
+// Returns the encoding value or empty string (Auto Detected).
 Glib::ustring DialogExportText::get_encoding() const {
   return m_comboEncodings->get_value();
 }
 
-/*
- * Return the newline value.
- * Windows or Unix.
- */
+// Return the newline value.
+// Windows or Unix.
 Glib::ustring DialogExportText::get_newline() const {
   return m_comboNewLine->get_value();
 }
 
-/*
- * Returns whether subtitles should be separated by blank lines
- */
+// Returns whether subtitles should be separated by blank lines
 bool DialogExportText::get_blank_line_mode() const {
   return m_checkBlankLines->get_active();
 }
 
-/*
- * Create a instance of the dialog.
- */
+// Create a instance of the dialog.
 DialogExportText::unique_ptr DialogExportText::create() {
   unique_ptr ptr(gtkmm_utility::get_widget_derived<DialogExportText>(
       SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), "dialog-export-text.ui",
@@ -464,9 +382,7 @@ DialogExportText::unique_ptr DialogExportText::create() {
   return ptr;
 }
 
-/*
- *	Open Movie
- */
+// Open Movie
 DialogOpenVideo::DialogOpenVideo()
     : Gtk::FileChooserDialog(_("Open Video"), Gtk::FILE_CHOOSER_ACTION_OPEN) {
   utility::set_transient_parent(*this);
@@ -507,9 +423,6 @@ DialogOpenVideo::DialogOpenVideo()
     set_current_folder_uri(floder);
 }
 
-/*
- *
- */
 DialogOpenVideo::~DialogOpenVideo() {
   Glib::ustring floder = get_current_folder_uri();
 
@@ -517,9 +430,7 @@ DialogOpenVideo::~DialogOpenVideo() {
                                          "dialog-open-video", floder);
 }
 
-/*
- * Waveform or Audio/Video
- */
+// Waveform or Audio/Video
 DialogOpenWaveform::DialogOpenWaveform()
     : Gtk::FileChooserDialog(_("Open Waveform"),
                              Gtk::FILE_CHOOSER_ACTION_OPEN) {
@@ -585,9 +496,6 @@ DialogOpenWaveform::DialogOpenWaveform()
     set_current_folder_uri(floder);
 }
 
-/*
- *
- */
 DialogOpenWaveform::~DialogOpenWaveform() {
   Glib::ustring floder = get_current_folder_uri();
 
@@ -595,9 +503,7 @@ DialogOpenWaveform::~DialogOpenWaveform() {
                                          "dialog-open-waveform", floder);
 }
 
-/*
- * Keyframes or Video
- */
+// Keyframes or Video
 DialogOpenKeyframe::DialogOpenKeyframe()
     : Gtk::FileChooserDialog(_("Open Keyframe"),
                              Gtk::FILE_CHOOSER_ACTION_OPEN) {
@@ -650,8 +556,6 @@ DialogOpenKeyframe::DialogOpenKeyframe()
     set_current_folder_uri(floder);
 }
 
-/*
- */
 DialogOpenKeyframe::~DialogOpenKeyframe() {
   Glib::ustring floder = get_current_folder_uri();
 

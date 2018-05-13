@@ -1,27 +1,24 @@
-#ifndef _debug_h
-#define _debug_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2010, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -51,20 +48,12 @@ enum SE_DEBUG_MESSAGE_FLAG {
   SE_DEBUG_ALL = 1 << 20
 };
 
-/*
- */
 void __se_debug_init(int flags);
 
-/*
- */
 bool se_debug_check_flags(int flags);
 
-/*
- */
 void __se_debug(int flag, const gchar* file, gint line, const gchar* fonction);
 
-/*
- */
 void __se_debug_message(int flag, const gchar* file, gint line,
                         const gchar* fonction, const char* string, ...);
 
@@ -87,5 +76,3 @@ void __se_debug_message(int flag, const gchar* file, gint line,
 #define se_debug(flag)
 #define se_debug_message(flag, ...)
 #endif  // DEBUG
-
-#endif  //_debug_h

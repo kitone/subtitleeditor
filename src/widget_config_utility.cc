@@ -1,33 +1,28 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "widget_config_utility.h"
 #include <gtkmm.h>
 #include "cfg.h"
 #include "debug.h"
+#include "widget_config_utility.h"
 
-/*
- *
- */
 namespace widget_config {
 
 void on_check_button(Gtk::CheckButton *widget, const Glib::ustring &group,
@@ -68,9 +63,6 @@ void on_combobox_text(Gtk::ComboBoxText *combo, const Glib::ustring &group,
   Config::getInstance().set_value_string(group, key, combo->get_active_text());
 }
 
-/*
- *
- */
 void connect(Gtk::Widget *widget, const Glib::ustring &group,
              const Glib::ustring &key) {
   if (Gtk::CheckButton *check = dynamic_cast<Gtk::CheckButton *>(widget)) {
@@ -107,9 +99,6 @@ void connect(Gtk::Widget *widget, const Glib::ustring &group,
   }
 }
 
-/*
- *
- */
 void read_config(Gtk::Widget *widget, const Glib::ustring &group,
                  const Glib::ustring &key) {
   Config &cfg = Config::getInstance();
@@ -154,9 +143,6 @@ void read_config(Gtk::Widget *widget, const Glib::ustring &group,
   }
 }
 
-/*
- *
- */
 void read_config_and_connect(Gtk::Widget *widget, const Glib::ustring &group,
                              const Glib::ustring &key) {
   g_return_if_fail(widget);

@@ -1,36 +1,30 @@
-#ifndef _SubtitleModel_h
-#define _SubtitleModel_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm.h>
 #include "subtitletime.h"
 
 class NameModel : public Gtk::ListStore {
  public:
-  /*
-   *
-   */
   class Column : public Gtk::TreeModel::ColumnRecord {
    public:
     Column() {
@@ -41,9 +35,7 @@ class NameModel : public Gtk::ListStore {
   };
 
  public:
-  /*
-   *	constructor
-   */
+  // constructor
   NameModel() {
     set_column_types(m_column);
   }
@@ -52,9 +44,6 @@ class NameModel : public Gtk::ListStore {
   Column m_column;
 };
 
-/*
- *
- */
 class SubtitleColumnRecorder : public Gtk::TreeModel::ColumnRecord {
  public:
   SubtitleColumnRecorder() {
@@ -111,129 +100,72 @@ class SubtitleColumnRecorder : public Gtk::TreeModel::ColumnRecord {
 
 class Document;
 
-/*
- *
- */
 class SubtitleModel : public Gtk::ListStore {
  public:
   SubtitleModel(Document *doc);
 
-  /*
-   * num = 0, start=end=0, ...
-   */
+  // num = 0, start=end=0, ...
   void init(Gtk::TreeIter &iter);
 
-  /*
-   *
-   */
   Gtk::TreeIter append();
 
-  /*
-   *	retourne le premier element de la list
-   *	ou un iterator invalide
-   */
+  // retourne le premier element de la list
+  // ou un iterator invalide
   Gtk::TreeIter getFirst();
 
-  /*
-   *	retourne le dernier element de la list
-   *	ou un iterator invalide
-   */
+  // retourne le dernier element de la list
+  // ou un iterator invalide
   Gtk::TreeIter getLast();
 
-  /*
-   *	retourne le nombre d'element dans la list
-   */
+  // retourne le nombre d'element dans la list
   unsigned int getSize();
 
-  /*
-   *	FONCTION DE RECHERCHE
-   *****************************************************
-   */
+  // FONCTION DE RECHERCHE
 
-  /*
-   *	recherche un subtitle grace a son numero
-   */
+  // recherche un subtitle
+  // grace a son numero
   Gtk::TreeIter find(unsigned int num);
 
-  /*
-   *	recherche un subtitle grace a son temps
-   *	si time est compris entre start et end
-   */
+  // recherche un subtitle grace a son temps
+  // si time est compris entre start et end
   Gtk::TreeIter find(const SubtitleTime &time);
 
-  /*
-   *	recherche a partir de start (+1) dans le text des subtitles
-   */
+  // recherche a partir de start (+1) dans le text des subtitles
   Gtk::TreeIter find_text(Gtk::TreeIter &start, const Glib::ustring &text);
 
-  /*
-   *	recherche l'iterator precedant iter
-   */
+  // recherche l'iterator precedant iter
   Gtk::TreeIter find_previous(const Gtk::TreeIter &iter);
 
-  /*
-   *	recherche l'iterator suivant iter
-   *	(c'est pour la forme dans notre cas un simple ++iter donne la solution)
-   */
+  // recherche l'iterator suivant iter
+  // (c'est pour la forme dans notre cas un simple ++iter donne la solution)
   Gtk::TreeIter find_next(const Gtk::TreeIter &iter);
 
-  /*
-   *	FONCTION D'EDITION
-   *******************************************************
-   */
+  // FONCTION D'EDITION
 
-  /*
-   *	deplace tous les sous titres entre start et end de msecs.
-   */
-  // void move_in(unsigned int start, unsigned int end, unsigned int msecs);
-
-  /*
-   *	deplace tous les sous titres a partir de start de msecs.
-   */
-  // void move_all(unsigned int start, unsigned int msecs);
-
-  /*
-   *	insert sub avant iter et retourne l'iter de sub
-   *	et declale tout les autres (num)
-   */
+  // insert sub avant iter et retourne l'iter de sub
+  // puis declale tout les autres (num)
   Gtk::TreeIter insertBefore(Gtk::TreeIter &iter);
 
-  /*
-   *	insert sub apres iter et retourne l'iter de sub
-   *	et declale tout les autres (num)
-   */
+  // insert sub apres iter et retourne l'iter de sub
+  // et declale tout les autres (num)
   Gtk::TreeIter insertAfter(Gtk::TreeIter &iter);
 
-  /*
-   *	efface un subtitle, on init les suivants avec le bon num
-   */
+  // efface un subtitle, on init les suivants avec le bon num
   void remove(Gtk::TreeIter &iter);
 
-  /*
-   *	efface des elements de start a end
-   *	[start,end]
-   */
+  // efface des elements de start a end
+  // [start,end]
   void remove(unsigned int start, unsigned int end);
 
-  /*
-   *	fait une copy de src dans this
-   */
+  // fait une copy de src dans this
   void copy(Glib::RefPtr<SubtitleModel> src);
 
-  /*
-   *	check la colonne num pour init de [1,size]
-   */
+  // check la colonne num pour init de [1,size]
   void rebuild_column_num();
 
  protected:
-  /*
-   *
-   */
   virtual bool drag_data_delete_vfunc(const TreeModel::Path &path);
 
-  /*
-   *
-   */
   virtual bool drag_data_received_vfunc(
       const TreeModel::Path &dest, const Gtk::SelectionData &selection_data);
 
@@ -244,5 +176,3 @@ class SubtitleModel : public Gtk::ListStore {
   sigc::signal<void, const Gtk::TreePath &, const Gtk::TreePath &>
       m_my_signal_row_reorderer;
 };
-
-#endif  //_SubtitleModel_h

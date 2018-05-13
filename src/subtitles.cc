@@ -1,35 +1,31 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "subtitles.h"
 #include "document.h"
+#include "subtitles.h"
 #include "utility.h"
 
 // FIXME: Use xxCommand->execute instead of reimplementing twice the actions
 // FIXME: Subtitles::remove update the gap between subtitle, reimplement this in
 // the Command because it isn't calculated when we undo/redo the action
 
-/*
- */
 class AppendSubtitleCommand : public Command {
  public:
   AppendSubtitleCommand(Document *doc) : Command(doc, _("Append subtitle")) {
@@ -53,8 +49,6 @@ class AppendSubtitleCommand : public Command {
   Glib::ustring m_path;
 };
 
-/*
- */
 class RemoveSubtitlesCommand : public Command {
  public:
   RemoveSubtitlesCommand(Document *doc, std::vector<Subtitle> &subtitles)
@@ -106,8 +100,6 @@ class RemoveSubtitlesCommand : public Command {
   std::vector<std::map<Glib::ustring, Glib::ustring> > m_backup;
 };
 
-/*
- */
 class InsertSubtitleCommand : public Command {
  public:
   enum TYPE { BEFORE, AFTER };
@@ -142,8 +134,6 @@ class InsertSubtitleCommand : public Command {
   Glib::ustring m_path;
 };
 
-/*
- */
 class ReorderSubtitlesCommand : public Command {
  public:
   ReorderSubtitlesCommand(Document *doc, std::vector<gint> &old_order,
@@ -168,26 +158,18 @@ class ReorderSubtitlesCommand : public Command {
   std::vector<gint> m_old_order;
 };
 
-/*
- * This class is used to store subtitle
- * information for sorted function.
- */
+// This class is used to store subtitle
+// information for sorted function.
 class SortedBuffer {
  public:
-  /*
-   */
   static bool compare_num_func(const SortedBuffer &a, const SortedBuffer &b) {
     return (a.num < b.num);
   }
 
-  /*
-   */
   static bool compare_time_func(const SortedBuffer &a, const SortedBuffer &b) {
     return (a.time < b.time);
   }
 
-  /*
-   */
   static void create_buffers(Subtitles &subtitles,
                              std::vector<SortedBuffer> &buf) {
     gint index = 0;
@@ -198,8 +180,6 @@ class SortedBuffer {
     }
   }
 
-  /*
-   */
   static guint count_number_of_subtitle_reorder(
       std::vector<SortedBuffer> &buf) {
     guint count = 0;
@@ -210,8 +190,6 @@ class SortedBuffer {
     return count;
   }
 
-  /*
-   */
   static void to_vector(std::vector<SortedBuffer> &buf,
                         std::vector<gint> &order) {
     for (guint index = 0; index < buf.size(); ++index)
@@ -224,67 +202,40 @@ class SortedBuffer {
   long time;
 };
 
-/*
- *
- */
 Subtitles::Subtitles(Document &doc) : m_document(doc) {
 }
 
-/*
- *
- */
 Subtitles::~Subtitles() {
 }
 
-/*
- *
- */
 unsigned int Subtitles::size() {
   return m_document.get_subtitle_model()->getSize();
 }
 
-/*
- *
- */
 Subtitle Subtitles::get(unsigned int num) {
   Gtk::TreeIter iter =
       m_document.get_subtitle_model()->get_iter(to_string(num - 1));
   return Subtitle(&m_document, iter);
 }
 
-/*
- *
- */
 Subtitle Subtitles::get_first() {
   return Subtitle(&m_document, m_document.get_subtitle_model()->getFirst());
 }
 
-/*
- *
- */
 Subtitle Subtitles::get_last() {
   return Subtitle(&m_document, m_document.get_subtitle_model()->getLast());
 }
 
-/*
- *
- */
 Subtitle Subtitles::get_previous(const Subtitle &sub) {
   return Subtitle(&m_document,
                   m_document.get_subtitle_model()->find_previous(sub.m_iter));
 }
 
-/*
- *
- */
 Subtitle Subtitles::get_next(const Subtitle &sub) {
   return Subtitle(&m_document,
                   m_document.get_subtitle_model()->find_next(sub.m_iter));
 }
 
-/*
- *
- */
 Subtitle Subtitles::append() {
   if (m_document.is_recording())
     m_document.add_command(new AppendSubtitleCommand(&m_document));
@@ -293,9 +244,6 @@ Subtitle Subtitles::append() {
   return Subtitle(&m_document, iter);
 }
 
-/*
- *
- */
 Subtitle Subtitles::insert_before(const Subtitle &sub) {
   if (m_document.is_recording())
     m_document.add_command(new InsertSubtitleCommand(
@@ -306,9 +254,6 @@ Subtitle Subtitles::insert_before(const Subtitle &sub) {
                   m_document.get_subtitle_model()->insertBefore(iter));
 }
 
-/*
- *
- */
 Subtitle Subtitles::insert_after(const Subtitle &sub) {
   if (m_document.is_recording())
     m_document.add_command(new InsertSubtitleCommand(
@@ -319,9 +264,6 @@ Subtitle Subtitles::insert_after(const Subtitle &sub) {
                   m_document.get_subtitle_model()->insertAfter(iter));
 }
 
-/*
- *
- */
 void Subtitles::remove(std::vector<Subtitle> &subs) {
   if (m_document.is_recording())
     m_document.add_command(new RemoveSubtitlesCommand(&m_document, subs));
@@ -342,9 +284,6 @@ void Subtitles::remove(std::vector<Subtitle> &subs) {
   m_document.emit_signal("subtitle-deleted");
 }
 
-/*
- *
- */
 void Subtitles::remove(unsigned int start, unsigned int end) {
   std::vector<Subtitle> subs;
 
@@ -363,41 +302,29 @@ void Subtitles::remove(unsigned int start, unsigned int end) {
   remove(subs);
 }
 
-/*
- * Prefer the function using an array if there is a need to remove several
- * subtitles.
- */
+// Prefer the function using an array if there is a need to remove several
+// subtitles.
 void Subtitles::remove(const Subtitle &sub) {
   std::vector<Subtitle> buf;
   buf.push_back(sub);
   remove(buf);
 }
 
-/*
- */
 Subtitle Subtitles::find(const SubtitleTime &time) {
   // Calling 'SubtitleModel::find' is doing the same thing
   // that the next code, but in an optimized way
-  /*
-  Subtitle sub = get_first();
-  while(sub)
-  {
-          if(time >= sub.get_start() && time <= sub.get_end())
-                  return sub;
-          ++sub;
-  }
-  return Subtitle();
-  */
+  // Subtitle sub = get_first();
+  // while (sub) {
+  //   if (time >= sub.get_start() && time <= sub.get_end())
+  //     return sub;
+  //   ++sub;
+  // }
+  // return Subtitle();
   return Subtitle(&m_document, m_document.get_subtitle_model()->find(time));
 }
 
-/*
- *	Selection
- */
+// Selection
 
-/*
- *
- */
 std::vector<Subtitle> Subtitles::get_selection() {
   std::vector<Subtitle> array;
 
@@ -414,9 +341,6 @@ std::vector<Subtitle> Subtitles::get_selection() {
   return array;
 }
 
-/*
- *
- */
 Subtitle Subtitles::get_first_selected() {
   std::vector<Subtitle> selection = get_selection();
 
@@ -426,9 +350,6 @@ Subtitle Subtitles::get_first_selected() {
   return selection.front();
 }
 
-/*
- *
- */
 Subtitle Subtitles::get_last_selected() {
   std::vector<Subtitle> selection = get_selection();
 
@@ -438,18 +359,12 @@ Subtitle Subtitles::get_last_selected() {
   return selection.back();
 }
 
-/*
- *
- */
 void Subtitles::select(const std::vector<Subtitle> &sub) {
   for (unsigned int i = 0; i < sub.size(); ++i) {
     m_document.get_subtitle_view()->get_selection()->select(sub[i].m_iter);
   }
 }
 
-/*
- *
- */
 void Subtitles::select(const std::list<Subtitle> &sub) {
   for (std::list<Subtitle>::const_iterator it = sub.begin(); it != sub.end();
        ++it) {
@@ -457,39 +372,24 @@ void Subtitles::select(const std::list<Subtitle> &sub) {
   }
 }
 
-/*
- *
- */
 void Subtitles::select(const Subtitle &sub, bool start_editing) {
   m_document.get_subtitle_view()->select_and_set_cursor(sub.m_iter,
                                                         start_editing);
 }
 
-/*
- *
- */
 void Subtitles::unselect(const Subtitle &sub) {
   m_document.get_subtitle_view()->get_selection()->unselect(sub.m_iter);
 }
 
-/*
- *
- */
 bool Subtitles::is_selected(const Subtitle &sub) {
   return m_document.get_subtitle_view()->get_selection()->is_selected(
       sub.m_iter);
 }
 
-/*
- *
- */
 void Subtitles::select_all() {
   m_document.get_subtitle_view()->get_selection()->select_all();
 }
 
-/*
- *
- */
 void Subtitles::invert_selection() {
   Glib::RefPtr<Gtk::TreeSelection> selection =
       m_document.get_subtitle_view()->get_selection();
@@ -502,15 +402,10 @@ void Subtitles::invert_selection() {
   }
 }
 
-/*
- *
- */
 void Subtitles::unselect_all() {
   m_document.get_subtitle_view()->get_selection()->unselect_all();
 }
 
-/*
- */
 guint Subtitles::sort_by_time() {
   guint number_of_subtitles = size();
   guint number_of_sub_reorder = 0;

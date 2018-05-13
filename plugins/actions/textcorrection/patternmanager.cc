@@ -1,35 +1,30 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "patternmanager.h"
 #include <cfg.h>
 #include <utility.h>
+#include "patternmanager.h"
 
-/*
- * Read and create all patterns as type from the install directory
- * and the user profile directory.
- *
- * type: 'common-error', 'hearing-impaired'
- */
+// Read and create all patterns as type from the install directory
+// and the user profile directory.
+// type: 'common-error', 'hearing-impaired'
 PatternManager::PatternManager(const Glib::ustring &type) {
   se_debug_message(SE_DEBUG_PLUGINS, "pattern manager for '%s'", type.c_str());
   m_type = type;
@@ -40,9 +35,7 @@ PatternManager::PatternManager(const Glib::ustring &type) {
   load_path(get_config_dir("plugins/textcorrection"));
 }
 
-/*
- * Delete patterns.
- */
+// Delete patterns.
 PatternManager::~PatternManager() {
   se_debug(SE_DEBUG_PLUGINS);
 
@@ -51,9 +44,7 @@ PatternManager::~PatternManager() {
   m_patterns.clear();
 }
 
-/*
- * Load patterns in the directory.
- */
+// Load patterns in the directory.
 void PatternManager::load_path(const Glib::ustring &path) {
   if (Glib::file_test(path, Glib::FILE_TEST_EXISTS | Glib::FILE_TEST_IS_DIR) ==
       false) {
@@ -82,9 +73,7 @@ void PatternManager::load_path(const Glib::ustring &path) {
   }
 }
 
-/*
- * Load a pattern from a file.
- */
+// Load a pattern from a file.
 void PatternManager::load_pattern(const Glib::ustring &path,
                                   const Glib::ustring &filename) {
   try {
@@ -135,9 +124,7 @@ void PatternManager::load_pattern(const Glib::ustring &path,
   }
 }
 
-/*
- * Convert string flags to Glib::RegexCompileFlags
- */
+// Convert string flags to Glib::RegexCompileFlags
 Glib::RegexCompileFlags parse_flags(const Glib::ustring &string) {
   Glib::RegexCompileFlags flags = static_cast<Glib::RegexCompileFlags>(0);
 
@@ -151,9 +138,7 @@ Glib::RegexCompileFlags parse_flags(const Glib::ustring &string) {
   return flags;
 }
 
-/*
- * Read, create and return a pattern from xml element.
- */
+// Read, create and return a pattern from xml element.
 Pattern *PatternManager::read_pattern(const xmlpp::Element *xml_pattern) {
   Pattern *pattern = new Pattern;
   // get description
@@ -203,12 +188,9 @@ Pattern *PatternManager::read_pattern(const xmlpp::Element *xml_pattern) {
   return pattern;
 }
 
-/*
- * Return all codes needs to be used from args.
- * 'Zyyy', 'script', 'script-language' and 'script-language-country'.
- *
- * Zyyy is the first and it is always added.
- */
+// Return all codes needs to be used from args.
+// 'Zyyy', 'script', 'script-language' and 'script-language-country'.
+// Zyyy is the first and it is always added.
 std::vector<Glib::ustring> PatternManager::get_codes(
     const Glib::ustring &script, const Glib::ustring &language,
     const Glib::ustring &country) {
@@ -230,9 +212,7 @@ std::vector<Glib::ustring> PatternManager::get_codes(
   return codes;
 }
 
-/*
- * Return a list of patterns available from the codes.
- */
+// Return a list of patterns available from the codes.
 std::list<Pattern *> PatternManager::get_patterns(
     const Glib::ustring &script, const Glib::ustring &language,
     const Glib::ustring &country) {
@@ -272,9 +252,7 @@ std::list<Pattern *> PatternManager::get_patterns(
   return filtered;
 }
 
-/*
- * Return all scripts available. (Zyyy is skipped)
- */
+// Return all scripts available. (Zyyy is skipped)
 std::vector<Glib::ustring> PatternManager::get_scripts() {
   std::list<Glib::ustring> codes;
 
@@ -294,9 +272,7 @@ std::vector<Glib::ustring> PatternManager::get_scripts() {
   return std::vector<Glib::ustring>(codes.begin(), codes.end());
 }
 
-/*
- * Return all languages available for the script code.
- */
+// Return all languages available for the script code.
 std::vector<Glib::ustring> PatternManager::get_languages(
     const Glib::ustring &script) {
   std::list<Glib::ustring> codes;
@@ -317,9 +293,7 @@ std::vector<Glib::ustring> PatternManager::get_languages(
   return std::vector<Glib::ustring>(codes.begin(), codes.end());
 }
 
-/*
- * Return all countries available for the script and language codes.
- */
+// Return all countries available for the script and language codes.
 std::vector<Glib::ustring> PatternManager::get_countries(
     const Glib::ustring &script, const Glib::ustring &language) {
   std::list<Glib::ustring> codes;
@@ -340,10 +314,8 @@ std::vector<Glib::ustring> PatternManager::get_countries(
   return std::vector<Glib::ustring>(codes.begin(), codes.end());
 }
 
-/*
- * The patterns need to be filtered to respect the Replace policy
- * Maintain order of patterns with the same name
- */
+// The patterns need to be filtered to respect the Replace policy
+// Maintain order of patterns with the same name
 std::list<Pattern *> PatternManager::filter_patterns(
     std::list<Pattern *> &pattern) {
   std::list<Pattern *> filtered;
@@ -378,13 +350,10 @@ std::list<Pattern *> PatternManager::filter_patterns(
   return filtered;
 }
 
-/*
- * Enable or disable the patterns from his name.
- * The configuration is update with the new state.
- *
- * It's managed in this class because a multiple pattern can be have a same
- * name.
- */
+// Enable or disable the patterns from his name.
+// The configuration is update with the new state.
+// It's managed in this class because a multiple pattern can be have a same
+// name.
 void PatternManager::set_active(const Glib::ustring &name, bool state) {
   if (name.empty()) {
     std::cerr << "* set_active failed. name is empty." << std::endl;
@@ -401,9 +370,7 @@ void PatternManager::set_active(const Glib::ustring &name, bool state) {
   }
 }
 
-/*
- * Return the state of the pattern from his name.
- */
+// Return the state of the pattern from his name.
 bool PatternManager::get_active(const Glib::ustring &name) {
   if (name.empty()) {
     std::cerr << "* get_active failed. name is empty." << std::endl;

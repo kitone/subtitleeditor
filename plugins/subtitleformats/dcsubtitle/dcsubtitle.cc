@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2011, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <error.h>
 #include <extension/subtitleformat.h>
@@ -27,8 +25,6 @@
 
 class DCSubtitle : public SubtitleFormatIO {
  public:
-  /*
-   */
   void open(Reader &file) {
     try {
       xmlpp::DomParser parser;
@@ -50,8 +46,6 @@ class DCSubtitle : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void save(Writer &file) {
     try {
       xmlpp::Document doc;
@@ -73,8 +67,8 @@ class DCSubtitle : public SubtitleFormatIO {
       // xmlpp::Element* xml_subtitleid =
       // xml_dcsubtitle->add_child("SubtitleID");
       // element MovieTitle
-      /*xmlpp::Element* xml_movietitle = */ xml_dcsubtitle->add_child(
-          "MovieTitle");
+      // xmlpp::Element* xml_movietitle =
+      xml_dcsubtitle->add_child("MovieTitle");
       // element ReelNumber
       xmlpp::Element *xml_reelnumber = xml_dcsubtitle->add_child("ReelNumber");
       xml_reelnumber->set_child_text("1");
@@ -107,8 +101,6 @@ class DCSubtitle : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void read_font(const xmlpp::Element *xml_font) {
     if (xml_font == NULL || xml_font->get_name() != "Font")
       return;
@@ -130,8 +122,6 @@ class DCSubtitle : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void read_subtitle(const xmlpp::Element *xml_subtitle) {
     if (xml_subtitle == NULL || xml_subtitle->get_name() != "Subtitle")
       return;
@@ -178,8 +168,6 @@ class DCSubtitle : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void write_subtitle(xmlpp::Element *xml_root, const Subtitle &sub) {
     Glib::ustring SpotNumber = to_string(sub.get_num());
     Glib::ustring TimeIn = time_to_dcsubtitle(sub.get_start());
@@ -216,18 +204,14 @@ class DCSubtitle : public SubtitleFormatIO {
     }
   }
 
-  /*
-   * Convert SE time to DCSubtitle time.
-   */
+  // Convert SE time to DCSubtitle time.
   Glib::ustring time_to_dcsubtitle(const SubtitleTime &time) {
     // FIXME
     return build_message("%.2i:%.2i:%.2i:%.3i", time.hours(), time.minutes(),
                          time.seconds(), time.mseconds() / 4);
   }
 
-  /*
-   * Convert DCSubtitle time to SE time.
-   */
+  // Convert DCSubtitle time to SE time.
   SubtitleTime time_to_se(const Glib::ustring &value) {
     int h, m, s, ms;
     if (sscanf(value.c_str(), "%d:%d:%d:%d", &h, &m, &s, &ms) == 4)
@@ -238,8 +222,6 @@ class DCSubtitle : public SubtitleFormatIO {
 
 class DCSubtitlePlugin : public SubtitleFormat {
  public:
-  /*
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "DCSubtitle";
@@ -249,8 +231,6 @@ class DCSubtitlePlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   */
   SubtitleFormatIO *create() {
     DCSubtitle *sf = new DCSubtitle();
     return sf;

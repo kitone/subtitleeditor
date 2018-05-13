@@ -1,74 +1,52 @@
-#ifndef _cellrenderercustom_h
-#define _cellrenderercustom_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <gtkmm.h>
 #include "cellrenderercustom.h"
 
-/*
- *
- */
 template <class T>
 class CellRendererCustom : public Gtk::CellRendererText {
  public:
-  /*
-   *
-   */
   CellRendererCustom();
 
-  /*
-   *
-   */
   virtual Gtk::CellEditable* start_editing_vfunc(
       GdkEvent* event, Gtk::Widget& widget, const Glib::ustring& path,
       const Gdk::Rectangle& background_area, const Gdk::Rectangle& cell_area,
       Gtk::CellRendererState flags);
 
  protected:
-  /*
-   * Disable all actions.
-   */
+  // Disable all actions.
   virtual void begin_editing();
 
-  /*
-   * Enable all actions.
-   */
+  // Enable all actions.
   virtual void finish_editing();
 
-  /*
-   *
-   */
   void cell_editing_done(const Glib::ustring& path);
 
  protected:
   T* m_editable;
 };
 
-/*
- *
- */
 template <class T>
 CellRendererCustom<T>::CellRendererCustom()
     : Glib::ObjectBase(typeid(CellRendererCustom)),
@@ -77,9 +55,6 @@ CellRendererCustom<T>::CellRendererCustom()
   se_debug(SE_DEBUG_VIEW);
 }
 
-/*
- *
- */
 template <class T>
 Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
     GdkEvent* /*event*/, Gtk::Widget& /*widget*/, const Glib::ustring& path,
@@ -114,25 +89,18 @@ Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
   return m_editable;
 }
 
-/*
- * Disable all actions.
- */
+// Disable all actions.
 template <class T>
 void CellRendererCustom<T>::begin_editing() {
   se_debug(SE_DEBUG_VIEW);
 }
 
-/*
- * Enable all actions.
- */
+// Enable all actions.
 template <class T>
 void CellRendererCustom<T>::finish_editing() {
   se_debug(SE_DEBUG_VIEW);
 }
 
-/*
- *
- */
 template <class T>
 void CellRendererCustom<T>::cell_editing_done(const Glib::ustring& path) {
   se_debug(SE_DEBUG_VIEW);
@@ -151,5 +119,3 @@ void CellRendererCustom<T>::cell_editing_done(const Glib::ustring& path) {
 
   finish_editing();
 }
-
-#endif  //_cellrenderercustom_h

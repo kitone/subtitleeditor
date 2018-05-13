@@ -1,13 +1,31 @@
-#include "filereader.h"
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 #include <giomm.h>
 #include "debug.h"
 #include "encodings.h"
 #include "error.h"
+#include "filereader.h"
 
-/*
- * Reads an entire file into a string, with good error checking.
- * If charset is empty, auto detection is try.
- */
+// Reads an entire file into a string, with good error checking.
+// If charset is empty, auto detection is try.
 bool get_contents_from_file(const Glib::ustring &uri,
                             const Glib::ustring &charset,
                             Glib::ustring &utf8_contents,
@@ -69,14 +87,10 @@ bool get_contents_from_file(const Glib::ustring &uri,
   return false;
 }
 
-/*
- * Constructor.
- *
- * Open the file from an uri and convert the contents from charset to UTF-8.
- * If charset is empty, try to autodetect the character coding.
- *
- * Error: throw an IOFileError exception if failed.
- */
+// Constructor.
+// Open the file from an uri and convert the contents from charset to UTF-8.
+// If charset is empty, try to autodetect the character coding.
+// Error: throw an IOFileError exception if failed.
 FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset,
                        int max_data_size)
     : Reader(), m_charset("UTF-8") {
@@ -87,16 +101,12 @@ FileReader::FileReader(const Glib::ustring &uri, const Glib::ustring &charset,
   m_uri = uri;
 }
 
-/*
- * Return the uri of the file.
- */
+// Return the uri of the file.
 Glib::ustring FileReader::get_uri() const {
   return m_uri;
 }
 
-/*
- * Return the charset of the file.
- */
+// Return the charset of the file.
 Glib::ustring FileReader::get_charset() const {
   return m_charset;
 }

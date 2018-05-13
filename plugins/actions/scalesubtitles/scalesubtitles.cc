@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2010, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm_utility.h>
@@ -26,9 +24,6 @@
 #include <utility.h>
 #include <memory>
 
-/*
- *
- */
 class DialogScaleSubtitles : public Gtk::Dialog {
  public:
   DialogScaleSubtitles(BaseObjectType *cobject,
@@ -175,8 +170,6 @@ class DialogScaleSubtitles : public Gtk::Dialog {
     return true;
   }
 
-  /*
-   */
   void on_spin_first_number_changed() {
     unsigned int i = (unsigned int)m_spinFirstNumber->get_value();
 
@@ -187,8 +180,6 @@ class DialogScaleSubtitles : public Gtk::Dialog {
                 m_labelFirstText);
   }
 
-  /*
-   */
   void on_spin_last_number_changed() {
     unsigned int i = (unsigned int)m_spinLastNumber->get_value();
 
@@ -198,8 +189,6 @@ class DialogScaleSubtitles : public Gtk::Dialog {
       init_spin(sub, m_spinLastStartValue, m_spinLastNewStart, m_labelLastText);
   }
 
-  /*
-   */
   void init_spin(const Subtitle &subtitle, SpinButtonTime *current,
                  SpinButtonTime *newtime, Gtk::Label *label) {
     // time
@@ -218,8 +207,6 @@ class DialogScaleSubtitles : public Gtk::Dialog {
     label->set_text(text);
   }
 
-  /*
-   */
   void scale_range(TIMING_MODE timing_mode, Subtitle &first, Subtitle &last,
                    const long &sub1_value,
                    const long &dest1_value,  // can be time or frame
@@ -239,8 +226,7 @@ class DialogScaleSubtitles : public Gtk::Dialog {
 
         subtitle.set_start_and_end(start, end);
       }
-    } else  // timing_mode == FRAME
-    {
+    } else {   // timing_mode == FRAME
       ++last;  // we need to stop to the next
       for (Subtitle subtitle = first; subtitle != last; ++subtitle) {
         long start =
@@ -254,8 +240,6 @@ class DialogScaleSubtitles : public Gtk::Dialog {
     }
   }
 
-  /*
-   */
   long calcul(const long &source, double scale, const long &sourcedisp,
               const long &destdisp) {
     double src = static_cast<double>(source);
@@ -268,8 +252,6 @@ class DialogScaleSubtitles : public Gtk::Dialog {
     // sourcedisp)));
   }
 
-  /*
-   */
   double calcul_scale(long source1, long dest1, long source2, long dest2) {
     double src_1 = static_cast<double>(source1);
     double src_2 = static_cast<double>(source2);
@@ -280,9 +262,7 @@ class DialogScaleSubtitles : public Gtk::Dialog {
     // (double)(source2 - source1));
   }
 
-  /*
-   * Do we apply this action to all the subtitles?
-   */
+  // Do we apply this action to all the subtitles?
   bool apply_to_all_subtitles() {
     if (m_radioAllSubtitles->get_active())
       return true;
@@ -308,9 +288,6 @@ class DialogScaleSubtitles : public Gtk::Dialog {
   Gtk::RadioButton *m_radioAllSubtitles;
 };
 
-/*
- *
- */
 class ScaleSubtitlesPlugin : public Action {
  public:
   ScaleSubtitlesPlugin() {
@@ -322,9 +299,6 @@ class ScaleSubtitlesPlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -347,9 +321,6 @@ class ScaleSubtitlesPlugin : public Action {
                "scale-subtitles", "scale-subtitles");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -359,9 +330,6 @@ class ScaleSubtitlesPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -371,9 +339,6 @@ class ScaleSubtitlesPlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_scale_subtitles() {
     se_debug(SE_DEBUG_PLUGINS);
 

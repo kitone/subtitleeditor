@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2010, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/subtitleformat.h>
 #include <gui/dialogutility.h>
@@ -30,8 +28,6 @@ class SpruceSTL : public SubtitleFormatIO {
   double m_framerate_value;
 
  public:
-  /*
-   */
   void open(Reader &file) {
     // Ask for the framerate value
     FramerateChooserDialog fcd(FramerateChooserDialog::IMPORT);
@@ -91,8 +87,6 @@ class SpruceSTL : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void save(Writer &file) {
     // Ask for the framerate value
     FramerateChooserDialog fcd(FramerateChooserDialog::EXPORT);
@@ -111,8 +105,6 @@ class SpruceSTL : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   Glib::ustring to_sprucestl_time(const SubtitleTime &t) {
     int frame = (int)(t.mseconds() * m_framerate_value * 0.001);
 
@@ -123,8 +115,6 @@ class SpruceSTL : public SubtitleFormatIO {
 
 class SpruceSTLPlugin : public SubtitleFormat {
  public:
-  /*
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "Spruce STL";
@@ -138,8 +128,6 @@ class SpruceSTLPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   */
   SubtitleFormatIO *create() {
     SpruceSTL *sf = new SpruceSTL();
     return sf;

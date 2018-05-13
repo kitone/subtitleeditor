@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <filereader.h>
@@ -32,9 +30,6 @@
 #include "patternmanager.h"
 #include "taskspage.h"
 
-/*
- *
- */
 class AssistantTextCorrection : public Gtk::Assistant {
  public:
   AssistantTextCorrection(BaseObjectType* cobject,
@@ -62,14 +57,10 @@ class AssistantTextCorrection : public Gtk::Assistant {
                   Gtk::ASSISTANT_PAGE_CONFIRM);
   }
 
-  /*
-   */
   ~AssistantTextCorrection() {
     se_debug(SE_DEBUG_PLUGINS);
   }
 
-  /*
-   */
   void add_tasks() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -78,8 +69,6 @@ class AssistantTextCorrection : public Gtk::Assistant {
     add_page(manage(new CapitalizationPage), 3);
   }
 
-  /*
-   */
   void add_page(PatternsPage* page, unsigned int pos) {
     se_debug_message(SE_DEBUG_PLUGINS,
                      "new task page '%s' to the position '%d'",
@@ -90,10 +79,8 @@ class AssistantTextCorrection : public Gtk::Assistant {
     set_page_type(*page, Gtk::ASSISTANT_PAGE_CONTENT);
   }
 
-  /*
-   * Catch the comfirmation page and initialize with the current document
-   * and patterns available.
-   */
+  // Catch the comfirmation page and initialize with the current document
+  // and patterns available.
   void on_prepare(Gtk::Widget* page) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -105,13 +92,12 @@ class AssistantTextCorrection : public Gtk::Assistant {
       // No change, only display the close button
       if (!res)
         set_page_type(*m_comfirmationPage, Gtk::ASSISTANT_PAGE_SUMMARY);
-    } else
+    } else {
       set_page_complete(*page, true);
+    }
   }
 
-  /*
-   * Return all patterns activated.
-   */
+  // Return all patterns activated.
   std::list<Pattern*> get_patterns() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -130,9 +116,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
     return patterns;
   }
 
-  /*
-   * Apply the change and destroy the window.
-   */
+  // Apply the change and destroy the window.
   void on_apply() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -141,9 +125,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
     save_cfg();
   }
 
-  /*
-   * Destroy the window.
-   */
+  // Destroy the window.
   void on_cancel() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -153,9 +135,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
     delete this;
   }
 
-  /*
-   * Close signal, destroy the window.
-   */
+  // Close signal, destroy the window.
   void on_close() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -165,9 +145,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
     delete this;
   }
 
-  /*
-   * Save the configuration for each pages.
-   */
+  // Save the configuration for each pages.
   void save_cfg() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -184,29 +162,17 @@ class AssistantTextCorrection : public Gtk::Assistant {
   Document* doc;
 };
 
-/*
- *
- */
 class TextCorrectionPlugin : public Action {
  public:
-  /*
-   *
-   */
   TextCorrectionPlugin() {
     activate();
     update_ui();
   }
 
-  /*
-   *
-   */
   ~TextCorrectionPlugin() {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -225,9 +191,6 @@ class TextCorrectionPlugin : public Action {
                "text-correction");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -237,9 +200,6 @@ class TextCorrectionPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -248,24 +208,13 @@ class TextCorrectionPlugin : public Action {
     action_group->get_action("text-correction")->set_sensitive(visible);
   }
 
-  /*
-   *
-   */
   void on_execute() {
     // create dialog
-    /*
-    std::unique_ptr<AssistantTextCorrection> assistant(
-                    gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
-                                    SE_DEV_VALUE(SE_PLUGIN_PATH_UI,
-    SE_PLUGIN_PATH_DEV), "assistant-text-correction.ui", "assistant"));
-    */
     AssistantTextCorrection* assistant =
         gtkmm_utility::get_widget_derived<AssistantTextCorrection>(
             SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
             "assistant-text-correction.ui", "assistant");
-    // assistant->set_document(document());
     assistant->show();
-    // Gtk::Main::run(*assistant);
   }
 
  protected:

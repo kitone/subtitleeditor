@@ -1,29 +1,25 @@
-/*
- *
- *	bestfit.cc
- *	- "justice for selected subtitles"
- *	a subtitleeditor plugin by Eltomito <tomaspartl@centrum.cz>
- *
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// - "justice for selected subtitles"
+// a subtitleeditor plugin by Eltomito <tomaspartl@centrum.cz>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
@@ -41,8 +37,6 @@ class BestFitPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -65,8 +59,6 @@ class BestFitPlugin : public Action {
     ui->add_ui(ui_id, "/menubar/menu-timings/best-fit", "best-fit", "best-fit");
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -76,8 +68,6 @@ class BestFitPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -87,8 +77,6 @@ class BestFitPlugin : public Action {
   }
 
  protected:
-  /*
-   */
   void on_best_fit() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -113,8 +101,6 @@ class BestFitPlugin : public Action {
     doc->finish_command();
   }
 
-  /*
-   */
   bool get_contiguous_selection(
       std::list<std::vector<Subtitle> > &contiguous_selection) {
     Document *doc = get_current_document();
@@ -158,8 +144,6 @@ class BestFitPlugin : public Action {
     return false;
   }
 
-  /*
-   */
   void bestfit(std::vector<Subtitle> &subtitles) {
     if (subtitles.size() < 2)
       return;
@@ -169,13 +153,11 @@ class BestFitPlugin : public Action {
 
     SubtitleTime gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
     double mincps = cfg.get_value_double("timing", "min-characters-per-second");
-    // SubtitleTime minlen	= cfg.get_value_int("timing", "min-display");
-    // long maxcpl					= cfg.get_value_int("timing",
-    // "max-characters-per-line");
-    // long maxcps					= cfg.get_value_int("timing",
-    // "max-characters-per-second");
 
-    //
+    // SubtitleTime minlen = cfg.get_value_int("timing", "min-display");
+    // long maxcpl = cfg.get_value_int("timing", "max-characters-per-line");
+    // long maxcps = cfg.get_value_int("timing", "max-characters-per-second");
+
     SubtitleTime startime = subtitles.front().get_start();
     SubtitleTime endtime = subtitles.back().get_end();
     SubtitleTime grosstime = endtime - startime;
@@ -209,11 +191,10 @@ class BestFitPlugin : public Action {
 
       subchars = utility::get_text_length_for_timing(sub.get_text());
 
-      dur =
-          (nettime * subchars) / totalchars;  // give this subtitle a fair share
-                                              // of the net time available
-      intime = startime + ((grosstime * prevchars) /
-                           totalchars);  // calculate proportionate start time
+      // give this subtitle a fair share of the net time available
+      dur = (nettime * subchars) / totalchars;
+      // calculate proportionate start time
+      intime = startime + ((grosstime * prevchars) / totalchars);
 
       // make sure we're not under the minimum cps
       maxdur.totalmsecs =
@@ -221,8 +202,8 @@ class BestFitPlugin : public Action {
       if (dur > maxdur)
         dur = maxdur;
 
-      // make sure minimum gap is preserved (rounding errors could've shortened
-      // it)
+      // make sure minimum gap is preserved
+      // (rounding errors could've shortened it)
       if (i > 0 && (intime - prevend) < gap) {
         intime = prevend + gap;
       }

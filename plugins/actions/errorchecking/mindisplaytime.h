@@ -1,33 +1,27 @@
-#ifndef _MinDisplayTime_h
-#define _MinDisplayTime_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "errorchecking.h"
 
-/*
- *
- */
 class MinDisplayTime : public ErrorChecking {
  public:
   MinDisplayTime()
@@ -37,17 +31,11 @@ class MinDisplayTime : public ErrorChecking {
     m_min_display = 1000;  // a second
   }
 
-  /*
-   *
-   */
   virtual void init() {
     m_min_display =
         Config::getInstance().get_value_int("timing", "min-display");
   }
 
-  /*
-   *
-   */
   bool execute(Info &info) {
     SubtitleTime duration = info.currentSub.get_duration();
 
@@ -76,5 +64,3 @@ class MinDisplayTime : public ErrorChecking {
  protected:
   int m_min_display;
 };
-
-#endif  //_MinDisplayTime_h

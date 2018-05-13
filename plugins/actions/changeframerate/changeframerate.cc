@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm_utility.h>
@@ -27,15 +25,10 @@
 #include <utility.h>
 #include <memory>
 
-/*
- * TODO Add FPS finder
- *
- * (new_sub_time x fps_video) / old_sub_time = fps_src
- */
+// TODO Add FPS finder
+// (new_sub_time x fps_video) / old_sub_time = fps_src
 
 class DialogChangeFramerate : public DialogActionMultiDoc {
-  /*
-   */
   class ComboBoxEntryText : public Gtk::ComboBoxText {
    public:
     ComboBoxEntryText(BaseObjectType *cobject,
@@ -45,9 +38,7 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
           sigc::mem_fun(*this, &ComboBoxEntryText::on_focus_out));
     }
 
-    /*
-     * Add new value to the combobox, only if it doesn't already there
-     */
+    // Add new value to the combobox, only if it doesn't already there
     void append_text(const Glib::ustring &text) {
       Gtk::TreeNodeChildren rows = get_model()->children();
 
@@ -62,9 +53,7 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
       Gtk::ComboBoxText::append(text);
     }
 
-    /*
-     * Add the value if it's a number when the focus out
-     */
+    // Add the value if it's a number when the focus out
     bool on_focus_out(GdkEventFocus *) {
       Glib::ustring text = get_entry()->get_text();
 
@@ -74,17 +63,14 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
           append_text(to_string(value));
         else
           set_active(0);
-      } else
+      } else {
         set_active(0);
-
+      }
       return true;
     }
   };
 
  public:
-  /*
-   *
-   */
   DialogChangeFramerate(BaseObjectType *cobject,
                         const Glib::RefPtr<Gtk::Builder> &xml)
       : DialogActionMultiDoc(cobject, xml) {
@@ -118,17 +104,15 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
     set_default_response(Gtk::RESPONSE_OK);
   }
 
-  /*
-   */
   void execute() {
     show();
 
     if (run() == Gtk::RESPONSE_OK) {
       DocumentList docs;
 
-      if (apply_to_all_documents())
+      if (apply_to_all_documents()) {
         docs = SubtitleEditorWindow::get_instance()->get_documents();
-      else {
+      } else {
         Document *doc =
             SubtitleEditorWindow::get_instance()->get_current_document();
         docs.push_back(doc);
@@ -148,13 +132,9 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
     hide();
   }
 
-  /*
-   */
   sigc::signal<void, Document *, double, double> signal_change_framerate;
 
  protected:
-  /*
-   */
   double get_value(ComboBoxEntryText *combo) {
     Glib::ustring text = combo->get_entry()->get_text();
 
@@ -165,8 +145,6 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
     return 0;
   }
 
-  /*
-   */
   void combo_activate(ComboBoxEntryText *combo) {
     Glib::ustring text = combo->get_entry()->get_text();
 
@@ -187,9 +165,6 @@ class DialogChangeFramerate : public DialogActionMultiDoc {
   ComboBoxEntryText *m_comboDest;
 };
 
-/*
- *
- */
 class ChangeFrameratePlugin : public Action {
  public:
   ChangeFrameratePlugin() {
@@ -201,9 +176,6 @@ class ChangeFrameratePlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -226,9 +198,6 @@ class ChangeFrameratePlugin : public Action {
                "change-framerate", "change-framerate");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -238,9 +207,6 @@ class ChangeFrameratePlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -250,9 +216,6 @@ class ChangeFrameratePlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_execute() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -271,9 +234,6 @@ class ChangeFrameratePlugin : public Action {
     dialog->execute();
   }
 
-  /*
-   *
-   */
   void change_framerate(Document *doc, double src_fps, double dest_fps) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -301,9 +261,6 @@ class ChangeFrameratePlugin : public Action {
                        to_string(src_fps).c_str(), to_string(dest_fps).c_str());
   }
 
-  /*
-   *
-   */
   SubtitleTime change_fps(const SubtitleTime &time, double src, double dest) {
     se_debug(SE_DEBUG_PLUGINS);
 

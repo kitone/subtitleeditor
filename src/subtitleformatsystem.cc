@@ -1,4 +1,23 @@
-#include "subtitleformatsystem.h"
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 #include <map>
 #include <memory>
 #include "error.h"
@@ -6,33 +25,26 @@
 #include "extensionmanager.h"
 #include "filereader.h"
 #include "filewriter.h"
+#include "subtitleformatsystem.h"
 #include "utility.h"
 
-/*
- * Return the instance.
- */
+// Return the instance.
 SubtitleFormatSystem &SubtitleFormatSystem::instance() {
   static SubtitleFormatSystem instance;
   return instance;
 }
 
-/*
- * Constructor
- */
+// Constructor
 SubtitleFormatSystem::SubtitleFormatSystem() {
 }
 
-/*
- * Destructor
- */
+// Destructor
 SubtitleFormatSystem::~SubtitleFormatSystem() {
 }
 
-/*
- * Try to determine the format of the subtitles in the submitted FileReader
- * Exceptions:
- *	UnrecognizeFormatError.
- */
+// Try to determine the format of the subtitles in the submitted FileReader
+// Exceptions:
+// UnrecognizeFormatError.
 Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
     Reader *reader) {
   const Glib::ustring &contents = reader->get_data();
@@ -64,12 +76,10 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
   throw UnrecognizeFormatError(_("Couldn't recognize format of the file."));
 }
 
-/*
- * Try to determine the format of the file, and return the format name.
- * Exceptions:
- *	UnrecognizeFormatError.
- *	EncodingConvertError.
- */
+// Try to determine the format of the file, and return the format name.
+// Exceptions:
+// UnrecognizeFormatError.
+// EncodingConvertError.
 Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
     const Glib::ustring &uri, const Glib::ustring &charset) {
   // Open the file and read only a small contents (max size: 1000)
@@ -78,11 +88,9 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
   return get_subtitle_format_from_small_contents(&file);
 }
 
-/*
- * Try to determine the format of the subtitles in the submitted ustring
- * Exceptions:
- *	UnrecognizeFormatError.
- */
+// Try to determine the format of the subtitles in the submitted ustring
+// Exceptions:
+// UnrecognizeFormatError.
 Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
     const Glib::ustring &data) {
   // Open the file and read only a small contents (max size: 1000)
@@ -90,10 +98,8 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
   return get_subtitle_format_from_small_contents(&file);
 }
 
-/*
- * Create a SubtitleFormat from a name.
- * Throw UnrecognizeFormatError if failed.
- */
+// Create a SubtitleFormat from a name.
+// Throw UnrecognizeFormatError if failed.
 SubtitleFormatIO *SubtitleFormatSystem::create_subtitle_format_io(
     const Glib::ustring &name) {
   se_debug_message(SE_DEBUG_APP, "Trying to create the subtitle format '%s'",
@@ -114,13 +120,10 @@ SubtitleFormatIO *SubtitleFormatSystem::create_subtitle_format_io(
       _("Couldn't create the subtitle format '%s'."), name.c_str()));
 }
 
-/*
- * Try to open a subtitle file from the uri.
- * If charset is empty, the automatically detection is used.
- *
- * Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError,
- * Glib::Error...
- */
+// Try to open a subtitle file from the uri.
+// If charset is empty, the automatically detection is used.
+// Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError,
+// Glib::Error...
 void SubtitleFormatSystem::open_from_reader(Document *document, Reader *reader,
                                             const Glib::ustring &format) {
   se_debug_message(SE_DEBUG_APP, "Trying to read from reader ...");
@@ -147,13 +150,10 @@ void SubtitleFormatSystem::open_from_reader(Document *document, Reader *reader,
   se_debug_message(SE_DEBUG_APP, "The reader has been read with success.");
 }
 
-/*
- * Try to open a subtitle file from the uri.
- * If charset is empty, the automatically detection is used.
- *
- * Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError,
- * Glib::Error...
- */
+// Try to open a subtitle file from the uri.
+// If charset is empty, the automatically detection is used.
+// Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError,
+// Glib::Error...
 void SubtitleFormatSystem::open_from_uri(Document *document,
                                          const Glib::ustring &uri,
                                          const Glib::ustring &charset,
@@ -175,12 +175,9 @@ void SubtitleFormatSystem::open_from_uri(Document *document,
                    uri.c_str());
 }
 
-/*
- * Try to open a ustring as a subtitle file
- * Charset is assumed to be UTF-8.
- *
- * Exceptions: UnrecognizeFormatError, Glib::Error...
- */
+// Try to open a ustring as a subtitle file
+// Charset is assumed to be UTF-8.
+// Exceptions: UnrecognizeFormatError, Glib::Error...
 void SubtitleFormatSystem::open_from_data(Document *document,
                                           const Glib::ustring &data,
                                           const Glib::ustring &myformat) {
@@ -197,12 +194,9 @@ void SubtitleFormatSystem::open_from_data(Document *document,
                    "The ustring was successfully read in as a subtitle file.");
 }
 
-/*
- * Save the document in a file.
- *
- * Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError,
- * Glib::Error...
- */
+// Save the document in a file.
+// Exceptions: UnrecognizeFormatError, EncodingConvertError, IOFileError,
+// Glib::Error...
 void SubtitleFormatSystem::save_to_uri(Document *document,
                                        const Glib::ustring &uri,
                                        const Glib::ustring &format,
@@ -240,11 +234,8 @@ void SubtitleFormatSystem::save_to_uri(Document *document,
                    uri.c_str());
 }
 
-/*
- * Save the document to a ustring. Charset is UTF-8, newline is Unix.
- *
- * Exceptions: UnrecognizeFormatError, Glib::Error...
- */
+// Save the document to a ustring. Charset is UTF-8, newline is Unix.
+// Exceptions: UnrecognizeFormatError, Glib::Error...
 void SubtitleFormatSystem::save_to_data(Document *document, Glib::ustring &dst,
                                         const Glib::ustring &format) {
   se_debug_message(SE_DEBUG_APP,
@@ -276,9 +267,7 @@ void SubtitleFormatSystem::save_to_data(Document *document, Glib::ustring &dst,
   se_debug_message(SE_DEBUG_APP, "Succesfully saved to ustring.");
 }
 
-/*
- * Returns all information about supported subtitles.
- */
+// Returns all information about supported subtitles.
 std::list<SubtitleFormatInfo> SubtitleFormatSystem::get_infos() {
   std::list<SubtitleFormatInfo> infos;
 
@@ -291,9 +280,7 @@ std::list<SubtitleFormatInfo> SubtitleFormatSystem::get_infos() {
   return infos;
 }
 
-/*
- * Return information about the subtitle format.
- */
+// Return information about the subtitle format.
 bool SubtitleFormatSystem::get_info(const Glib::ustring &subtitle_format,
                                     SubtitleFormatInfo &info) {
   std::list<SubtitleFormatInfo> infos = get_infos();
@@ -307,9 +294,7 @@ bool SubtitleFormatSystem::get_info(const Glib::ustring &subtitle_format,
   return false;
 }
 
-/*
- * Check if the subtitle format is supported.
- */
+// Check if the subtitle format is supported.
 bool SubtitleFormatSystem::is_supported(const Glib::ustring &format) {
   SubtitleFormatList sfe_list = get_subtitle_format_list();
 
@@ -322,16 +307,12 @@ bool SubtitleFormatSystem::is_supported(const Glib::ustring &format) {
   return false;
 }
 
-/*
- * Sort by name (SubtitleInfo.name)
- */
+// Sort by name (SubtitleInfo.name)
 bool on_sort_sf(SubtitleFormat *a, SubtitleFormat *b) {
   return a->get_info().name < b->get_info().name;
 }
 
-/*
- * Return a list of SubtitleFormat from ExtensionManager.
- */
+// Return a list of SubtitleFormat from ExtensionManager.
 SubtitleFormatList SubtitleFormatSystem::get_subtitle_format_list() {
   std::list<SubtitleFormat *> list;
   // Get from ExtensionManager
@@ -351,9 +332,7 @@ SubtitleFormatList SubtitleFormatSystem::get_subtitle_format_list() {
   return list;
 }
 
-/*
- * Return quickly the extension used by the format or an empty string
- */
+// Return quickly the extension used by the format or an empty string
 Glib::ustring SubtitleFormatSystem::get_extension_of_format(
     const Glib::ustring &format) {
   SubtitleFormatInfo info;

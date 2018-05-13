@@ -1,26 +1,23 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "utility.h"
 #include <glibmm.h>
 #include <gtkmm.h>
 #include <iostream>
@@ -29,19 +26,15 @@
 #include "cfg.h"
 #include "subtitleeditorwindow.h"
 #include "subtitletime.h"
+#include "utility.h"
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
-/*
- *	profile name use by config dir
- */
+// profile name use by config dir
 Glib::ustring static_profile_name = "default";
 
-/*
- *
- */
 Glib::ustring build_message(const char *format, ...) {
   Glib::ustring res;
 
@@ -59,10 +52,8 @@ Glib::ustring build_message(const char *format, ...) {
   return res;
 }
 
-/*
- *	the profile name for the config dir
- *	~/config/subtitleeditor/{profile}
- */
+// the profile name for the config dir
+// ~/config/subtitleeditor/{profile}
 void set_profile_name(const Glib::ustring &profile) {
   se_debug_message(SE_DEBUG_UTILITY, "profile=%s", profile.c_str());
 
@@ -70,10 +61,8 @@ void set_profile_name(const Glib::ustring &profile) {
     static_profile_name = profile;
 }
 
-/*
- *	~/.config/subtitleeditor/{profile}/
- *	XDG Base Directory Specification
- */
+// ~/.config/subtitleeditor/{profile}/
+// XDG Base Directory Specification
 Glib::ustring get_config_dir(const Glib::ustring &file) {
   const gchar *configdir = g_get_user_config_dir();
 
@@ -95,9 +84,6 @@ Glib::ustring get_config_dir(const Glib::ustring &file) {
   return Glib::build_filename(path, file);
 }
 
-/*
- *
- */
 void dialog_warning(const Glib::ustring &primary_text,
                     const Glib::ustring &secondary_text) {
   Glib::ustring msg;
@@ -113,9 +99,6 @@ void dialog_warning(const Glib::ustring &primary_text,
   // MessageDialog *dialog = new MessageDialog(msg, Gtk::MESSAGE_WARNING);
 }
 
-/*
- *
- */
 void dialog_error(const Glib::ustring &primary_text,
                   const Glib::ustring &secondary_text) {
   Glib::ustring msg;
@@ -132,6 +115,7 @@ void dialog_error(const Glib::ustring &primary_text,
 }
 
 namespace utility {
+
 bool string_to_bool(const std::string &str) {
   std::istringstream s(str);
   bool val = false;
@@ -139,9 +123,6 @@ bool string_to_bool(const std::string &str) {
   return val;
 }
 
-/*
- *
- */
 int string_to_int(const std::string &str) {
   std::istringstream s(str);
   int val = 0;
@@ -149,9 +130,6 @@ int string_to_int(const std::string &str) {
   return val;
 }
 
-/*
- *
- */
 int string_to_long(const std::string &str) {
   std::istringstream s(str);
   long val = 0;
@@ -159,9 +137,6 @@ int string_to_long(const std::string &str) {
   return val;
 }
 
-/*
- *
- */
 double string_to_double(const std::string &str) {
   std::istringstream s(str);
   double val = 0;
@@ -169,9 +144,6 @@ double string_to_double(const std::string &str) {
   return val;
 }
 
-/*
- *
- */
 void split(const std::string &str, const char &c,
            std::vector<std::string> &array, int max) {
   array.clear();
@@ -214,16 +186,13 @@ void usplit(const Glib::ustring &str,
     }
   }
 
-  if (first != it)  // || keep_blank
-  {
+  if (first != it) {  // || keep_blank
     // extract the last field from the string
     container.push_back(Glib::ustring(first, it));
   }
 }
 
-/*
- * Search and replace function.
- */
+// Search and replace function.
 void replace(Glib::ustring &text, const Glib::ustring &pattern,
              const Glib::ustring &replace_by) {
   Glib::ustring::size_type pos = 0;
@@ -234,9 +203,7 @@ void replace(Glib::ustring &text, const Glib::ustring &pattern,
   }
 }
 
-/*
- * Search and replace function.
- */
+// Search and replace function.
 void replace(std::string &text, const std::string &pattern,
              const std::string &replace_by) {
   std::string::size_type pos = 0;
@@ -247,9 +214,7 @@ void replace(std::string &text, const std::string &pattern,
   }
 }
 
-/*
- *	transforme test/file.srt en /home/toto/test/file.srt
- */
+// transforme test/file.srt en /home/toto/test/file.srt
 Glib::ustring create_full_path(const Glib::ustring &_path) {
   if (_path.empty())
     return Glib::ustring();
@@ -273,10 +238,8 @@ Glib::ustring create_full_path(const Glib::ustring &_path) {
   return newpath;
 }
 
-/*
- * Get the number of characters per second.
- * msec = SubtitleTime::totalmsecs
- */
+// Get the number of characters per second.
+// msec = SubtitleTime::totalmsecs
 double get_characters_per_second(const Glib::ustring &text, const long msecs) {
   if (msecs == 0)
     return 0;
@@ -292,10 +255,8 @@ double get_characters_per_second(const Glib::ustring &text, const long msecs) {
   return cps;
 }
 
-/*
- * Count characters in a subtitle the way they need to be counted
- * for subtitle timing.
- */
+// Count characters in a subtitle the way they need to be counted
+// for subtitle timing.
 unsigned int get_text_length_for_timing(const Glib::ustring &text) {
   std::vector<int> num_characters = utility::get_characters_per_line(text);
 
@@ -312,9 +273,7 @@ unsigned int get_text_length_for_timing(const Glib::ustring &text) {
   return len;
 }
 
-/*
- * Calculate the minimum acceptable duration for a string of this length.
- */
+// Calculate the minimum acceptable duration for a string of this length.
 unsigned long get_min_duration_msecs(unsigned long textlen, double maxcps) {
   if (maxcps > 0)
     return ((long)ceil((1000 * (double)textlen) / maxcps));
@@ -322,17 +281,13 @@ unsigned long get_min_duration_msecs(unsigned long textlen, double maxcps) {
     return 0;
 }
 
-/*
- * Calculate the minimum acceptable duration for a string of this length.
- */
+// Calculate the minimum acceptable duration for a string of this length.
 unsigned long get_min_duration_msecs(const Glib::ustring &text, double maxcps) {
   return utility::get_min_duration_msecs(
       (unsigned long)get_text_length_for_timing(text), maxcps);
 }
 
-/*
- *	get number of characters for each line in the text
- */
+// get number of characters for each line in the text
 std::vector<int> get_characters_per_line(const Glib::ustring &text) {
   std::vector<int> num_characters;
   std::istringstream iss(utility::get_stripped_text(text));
@@ -347,9 +302,7 @@ std::vector<int> get_characters_per_line(const Glib::ustring &text) {
   return num_characters;
 }
 
-/*
- * get a text stripped from tags
- */
+// get a text stripped from tags
 Glib::ustring get_stripped_text(const Glib::ustring &text) {
   // pattern for tags like <i>, </i>, {\comment}, etc.
   // or space
@@ -363,9 +316,6 @@ Glib::ustring get_stripped_text(const Glib::ustring &text) {
                               static_cast<Glib::RegexMatchFlags>(0));
 }
 
-/*
- *
- */
 void set_transient_parent(Gtk::Window &window) {
   Gtk::Window *root =
       dynamic_cast<Gtk::Window *>(SubtitleEditorWindow::get_instance());
@@ -373,8 +323,6 @@ void set_transient_parent(Gtk::Window &window) {
     window.set_transient_for(*root);
 }
 
-/*
- */
 Glib::ustring add_or_replace_extension(const Glib::ustring &filename,
                                        const Glib::ustring &extension) {
   Glib::ustring renamed;

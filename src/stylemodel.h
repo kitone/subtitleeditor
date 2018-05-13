@@ -1,34 +1,28 @@
-#ifndef _StyleModel_h
-#define _StyleModel_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm.h>
 #include "color.h"
 
-/*
- *
- */
 class StyleColumnRecorder : public Gtk::TreeModel::ColumnRecord {
  public:
   StyleColumnRecorder() {
@@ -52,7 +46,7 @@ class StyleColumnRecorder : public Gtk::TreeModel::ColumnRecord {
     add(angle);    // degrees
 
     add(border_style);  // 1=Outline + drop shadow, 3=Opaque box
-    add(outline);       // if border_style is 1,	0,1,2,3 or 4
+    add(outline);       // if border_style is 1, 0,1,2,3 or 4
     add(shadow);        // if border_style is 1
     // TODO : check field 13 style+
     add(alignment);  // 1=left, 2=centered, 3=right, 4=toptitle, 8=midtitle,
@@ -104,27 +98,18 @@ class StyleColumnRecorder : public Gtk::TreeModel::ColumnRecord {
 #undef data
 };
 
-/*
- *
- */
 class StyleModel : public Gtk::ListStore {
  public:
   StyleModel();
 
   Gtk::TreeIter append();
 
-  /*
-   *	retourne une copy de iter
-   */
+  // retourne une copy de iter
   Gtk::TreeIter copy(Gtk::TreeIter iter);
 
-  /*
-   *	copy src dans this
-   */
+  // copy src dans this
   void copy(Glib::RefPtr<StyleModel> src);
 
  public:
   StyleColumnRecorder m_column;
 };
-
-#endif  //_StyleModel_h

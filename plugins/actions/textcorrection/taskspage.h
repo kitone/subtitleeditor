@@ -1,34 +1,28 @@
-#ifndef _TasksPage_h
-#define _TasksPage_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "page.h"
 #include "patternspage.h"
 
-/*
- *
- */
 class TasksPage : public AssistantPage {
   class Column : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -49,9 +43,6 @@ class TasksPage : public AssistantPage {
     create_treeview();
   }
 
-  /*
-   *
-   */
   void create_treeview() {
     m_liststore = Gtk::ListStore::create(m_column);
     m_treeview->set_model(m_liststore);
@@ -81,9 +72,6 @@ class TasksPage : public AssistantPage {
         sigc::mem_fun(*this, &TasksPage::on_row_activated));
   }
 
-  /*
-   *
-   */
   void on_enabled_toggled(const Glib::ustring& path) {
     Gtk::TreeIter it = m_liststore->get_iter(path);
     if (it) {
@@ -95,16 +83,11 @@ class TasksPage : public AssistantPage {
     }
   }
 
-  /*
-   */
   void on_row_activated(const Gtk::TreeModel::Path& path,
                         Gtk::TreeViewColumn*) {
     on_enabled_toggled(path.to_string());
   }
 
-  /*
-   *
-   */
   void add_task(PatternsPage* page) {
     Gtk::TreeIter it;
     it = m_liststore->append();
@@ -119,5 +102,3 @@ class TasksPage : public AssistantPage {
   Column m_column;
   Glib::RefPtr<Gtk::ListStore> m_liststore;
 };
-
-#endif  //_TasksPage_h

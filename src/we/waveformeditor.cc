@@ -1,42 +1,35 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "waveformeditor.h"
 #include "documentsystem.h"
 #include "subtitleeditorwindow.h"
 #include "utility.h"
+#include "waveformeditor.h"
 
-/*
- *	HACK!
- */
+// HACK!
 WaveformRenderer *create_waveform_renderer_cairo();
 
 #ifdef ENABLE_GL
 WaveformRenderer *create_waveform_renderer_gl();
 #endif  // ENABLE_GL
 
-/*
- *
- */
 WaveformEditor::WaveformEditor(BaseObjectType *cobject,
                                const Glib::RefPtr<Gtk::Builder> &builder)
     : Gtk::Box(cobject),
@@ -89,16 +82,10 @@ WaveformEditor::WaveformEditor(BaseObjectType *cobject,
   set_child_sensitive(false);
 }
 
-/*
- *
- */
 WaveformEditor::~WaveformEditor() {
   se_debug(SE_DEBUG_WAVEFORM);
 }
 
-/*
- *
- */
 void WaveformEditor::load_config() {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -126,10 +113,8 @@ void WaveformEditor::load_config() {
     hide();
 }
 
-/*
- * This callback is connected on the realize signal.
- * It's used to create the renderer because some need a realized parent.
- */
+// This callback is connected on the realize signal.
+// It's used to create the renderer because some need a realized parent.
 void WaveformEditor::on_create_renderer() {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -137,29 +122,25 @@ void WaveformEditor::on_create_renderer() {
       Config::getInstance().get_value_string("waveform", "renderer");
 
 #ifdef ENABLE_GL
-  if (renderer_name == "gl")
+  if (renderer_name == "gl") {
     init_renderer(create_waveform_renderer_gl());
-  else if (renderer_name == "cairo")
+  } else if (renderer_name == "cairo") {
     init_renderer(create_waveform_renderer_cairo());
-  else  // cairo by default
-  {
+  } else {  // cairo by default
     init_renderer(create_waveform_renderer_cairo());
   }
 #else   // ENABLE_GL
-  if (renderer_name == "cairo")
+  if (renderer_name == "cairo") {
     init_renderer(create_waveform_renderer_cairo());
-  else  // cairo by default
-  {
+  } else {  // cairo by default
     init_renderer(create_waveform_renderer_cairo());
   }
 #endif  // ENABLE_GL
 }
 
-/*
- * Initialize the editor with the document.
- * This callback is also connected at
- * "DocumentSystem::signal_current_document_changed"
- */
+// Initialize the editor with the document.
+// This callback is also connected at
+// "DocumentSystem::signal_current_document_changed"
 void WaveformEditor::init_document(Document *doc) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -187,10 +168,8 @@ void WaveformEditor::init_document(Document *doc) {
   redraw_renderer();
 }
 
-/*
- * Initializes the signals of the renderer like the button pressed, released ...
- * Add events to the widget.
- */
+// Initializes the signals of the renderer like the button pressed, released ...
+// Add events to the widget.
 void WaveformEditor::init_renderer(WaveformRenderer *renderer) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -254,9 +233,6 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer) {
   }
 }
 
-/*
- *
- */
 void WaveformEditor::set_player(Player *player) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -270,9 +246,6 @@ void WaveformEditor::set_player(Player *player) {
       sigc::mem_fun(*this, &WaveformEditor::on_player_message));
 }
 
-/*
- *
- */
 Player *WaveformEditor::player() {
   if (m_player == NULL) {
     Player *player = SubtitleEditorWindow::get_instance()->get_player();
@@ -283,9 +256,7 @@ Player *WaveformEditor::player() {
   return m_player;
 }
 
-/*
- * Enable the signal tick (Player)
- */
+// Enable the signal tick (Player)
 void WaveformEditor::on_map() {
   Gtk::Box::on_map();
 
@@ -297,9 +268,7 @@ void WaveformEditor::on_map() {
   redraw_renderer();
 }
 
-/*
- * Disable the signal tick (Player)
- */
+// Disable the signal tick (Player)
 void WaveformEditor::on_unmap() {
   Gtk::Box::on_unmap();
 
@@ -309,9 +278,6 @@ void WaveformEditor::on_unmap() {
   }
 }
 
-/*
- *
- */
 void WaveformEditor::on_player_tick(long /*current_time*/,
                                     long /*stream_length*/,
                                     double /*current_position*/) {
@@ -322,9 +288,7 @@ void WaveformEditor::on_player_tick(long /*current_time*/,
   }
 }
 
-/*
- * Return the current time of the player.
- */
+// Return the current time of the player.
 long WaveformEditor::get_player_time() {
   if (player()) {
     return player()->get_position();
@@ -332,34 +296,26 @@ long WaveformEditor::get_player_time() {
   return 0;
 }
 
-/*
- * Set the value of the scale (widget).
- */
+// Set the value of the scale (widget).
 void WaveformEditor::set_scale(float value) {
   se_debug_message(SE_DEBUG_WAVEFORM, "scale=%f", value);
 
   m_sliderScale->set_value(value);
 }
 
-/*
- * Return the value of the scale (widget).
- */
+// Return the value of the scale (widget).
 float WaveformEditor::get_scale() {
   return (float)m_sliderScale->get_value();
 }
 
-/*
- * Set the value of the zoom (widget).
- */
+// Set the value of the zoom (widget).
 void WaveformEditor::set_zoom(int value) {
   se_debug_message(SE_DEBUG_WAVEFORM, "zoom=%d", value);
 
   m_sliderZoom->set_value(value);
 }
 
-/*
- * Return the value of the zoom (widget).
- */
+// Return the value of the zoom (widget).
 int WaveformEditor::get_zoom() {
   int value = (int)m_sliderZoom->get_value();
   if (value < 1)
@@ -367,11 +323,9 @@ int WaveformEditor::get_zoom() {
   return value;
 }
 
-/*
- * The scroll bar depend on the size of the waveform widget.
- * This callback is connected to the signal "configure" of the waveform.
- * Every time this size changed, the scrollbar need to be recalculate.
- */
+// The scroll bar depend on the size of the waveform widget.
+// This callback is connected to the signal "configure" of the waveform.
+// Every time this size changed, the scrollbar need to be recalculate.
 bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure * /*ev*/) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -382,18 +336,14 @@ bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure * /*ev*/) {
   return true;
 }
 
-/*
- * Return the value of the scrolling (scrollbar)
- */
+// Return the value of the scrolling (scrollbar)
 int WaveformEditor::get_scrolling() {
   return (int)m_hscrollbarWaveformRenderer->get_value();
 }
 
-/*
- * Initialize the scrollbar depending
- * on the size of the widget renderer (waveform)
- * and the value of the zoom.
- */
+// Initialize the scrollbar depending
+// on the size of the widget renderer (waveform)
+// and the value of the zoom.
 void WaveformEditor::init_scrollbar() {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -422,21 +372,17 @@ void WaveformEditor::init_scrollbar() {
   se_debug_message(SE_DEBUG_WAVEFORM, "width=%d zoom=%d", width, zoom);
 }
 
-/*
- * The value of the scrollbar has changed.
- * Update the waveform renderer with the new value.
- */
+// The value of the scrollbar has changed.
+// Update the waveform renderer with the new value.
 void WaveformEditor::on_scrollbar_value_changed() {
   se_debug(SE_DEBUG_WAVEFORM);
 
   redraw_renderer();
 }
 
-/*
- * The value of the zoom has changed.
- * Call init_scrollbar and updates the config.
- * Redraw the waveform.
- */
+// The value of the zoom has changed.
+// Call init_scrollbar and updates the config.
+// Redraw the waveform.
 void WaveformEditor::on_zoom_changed() {
   int value = (int)m_sliderZoom->get_value();
 
@@ -452,10 +398,8 @@ void WaveformEditor::on_zoom_changed() {
   redraw_renderer();
 }
 
-/*
- * The value of the scale has changed.
- * Redraw the waveform.
- */
+// The value of the scale has changed.
+// Redraw the waveform.
 void WaveformEditor::on_scale_changed() {
   int value = static_cast<int>(m_sliderScale->get_value());
 
@@ -467,9 +411,7 @@ void WaveformEditor::on_scale_changed() {
   redraw_renderer();
 }
 
-/*
- * Try to open a waveform file and show or hide the editor.
- */
+// Try to open a waveform file and show or hide the editor.
 bool WaveformEditor::open_waveform(const Glib::ustring &uri) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -485,9 +427,6 @@ bool WaveformEditor::open_waveform(const Glib::ustring &uri) {
   return (bool)wf;
 }
 
-/*
- *
- */
 void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf) {
   if (wf) {
     se_debug_message(
@@ -523,67 +462,48 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf) {
   redraw_renderer();
 }
 
-/*
- * Return the state of waveform. Can be NULL.
- */
+// Return the state of waveform. Can be NULL.
 bool WaveformEditor::has_waveform() {
   return (bool)get_waveform();
 }
 
-/*
- * Return a pointer to the waveform. Can be NULL.
- */
+// Return a pointer to the waveform. Can be NULL.
 Glib::RefPtr<Waveform> WaveformEditor::get_waveform() {
   return m_waveform;
 }
 
-/*
- *
- */
 sigc::signal<void> &WaveformEditor::signal_waveform_changed() {
   return m_signal_waveform_changed;
 }
 
-/*
- * The editor has a renderer ?
- */
+// The editor has a renderer ?
 bool WaveformEditor::has_renderer() {
   return renderer() != NULL;
 }
 
-/*
- * Return the renderer. Can be NULL.
- */
+// Return the renderer. Can be NULL.
 WaveformRenderer *WaveformEditor::renderer() {
   return m_waveformRenderer;
 }
 
-/*
- * Redisplay the renderer (call renderer->redraw_all)
- */
+// Redisplay the renderer (call renderer->redraw_all)
 void WaveformEditor::redraw_renderer() {
   if (has_renderer())
     renderer()->redraw_all();
 }
 
-/*
- * Return the state of current document.
- */
+// Return the state of current document.
 bool WaveformEditor::has_document() {
   return document() != NULL;
 }
 
-/*
- * Return a pointer to the current document. Can be NULL.
- */
+// Return a pointer to the current document. Can be NULL.
 Document *WaveformEditor::document() {
   return m_document;
 }
 
-/*
- * This callback is connected at the current document.
- * The document has changed, it's need to redraw the view.
- */
+// This callback is connected at the current document.
+// The document has changed, it's need to redraw the view.
 void WaveformEditor::on_document_changed() {
   if ((has_renderer() && has_waveform()) == false)
     return;
@@ -591,12 +511,10 @@ void WaveformEditor::on_document_changed() {
   redraw_renderer();
 }
 
-/*
- * This callback is connected at the current document.
- * It's call when the selection of the subtitles has changed.
- * The view is centered with the new selection if the option is enable.
- * It's need to redraw the view.
- */
+// This callback is connected at the current document.
+// It's call when the selection of the subtitles has changed.
+// The view is centered with the new selection if the option is enable.
+// It's need to redraw the view.
 void WaveformEditor::on_subtitle_selection_changed() {
   if ((has_renderer() && has_waveform() && has_document()) == false)
     return;
@@ -609,10 +527,8 @@ void WaveformEditor::on_subtitle_selection_changed() {
   redraw_renderer();
 }
 
-/*
- * This callback is connected at the current document.
- * The time of subtitle has changed, it's need to redraw the view.
- */
+// This callback is connected at the current document.
+// The time of subtitle has changed, it's need to redraw the view.
 void WaveformEditor::on_subtitle_time_changed() {
   if ((has_renderer() && has_waveform()) == false)
     return;
@@ -620,10 +536,8 @@ void WaveformEditor::on_subtitle_time_changed() {
   redraw_renderer();
 }
 
-/*
- * This callback is connected at the player.
- * The keyframes has changed, it's need to redraw the view.
- */
+// This callback is connected at the player.
+// The keyframes has changed, it's need to redraw the view.
 void WaveformEditor::on_player_message(Player::Message msg) {
   if (msg != Player::KEYFRAME_CHANGED)
     return;
@@ -634,9 +548,6 @@ void WaveformEditor::on_player_message(Player::Message msg) {
   redraw_renderer();
 }
 
-/*
- *
- */
 void WaveformEditor::scroll_to_position(int position) {
   if (!has_renderer())
     return;
@@ -652,10 +563,8 @@ void WaveformEditor::scroll_to_position(int position) {
     m_hscrollbarWaveformRenderer->set_value(position + margin);
 }
 
-/*
- * Go at the position on the scrollbar and
- * try to place at the center of the view.
- */
+// Go at the position on the scrollbar and
+// try to place at the center of the view.
 void WaveformEditor::scroll_to_position_and_center(int position) {
   if (!has_renderer())
     return;
@@ -670,10 +579,8 @@ void WaveformEditor::scroll_to_position_and_center(int position) {
   m_hscrollbarWaveformRenderer->set_value(start_area + diff);
 }
 
-/*
- * If scrolling with player is enabled,
- * scroll with the current time of the player.
- */
+// If scrolling with player is enabled,
+// scroll with the current time of the player.
 void WaveformEditor::scroll_with_player() {
   if (player() && has_renderer() && m_cfg_scrolling_with_player) {
     int position = renderer()->get_pos_by_time(player()->get_position());
@@ -682,9 +589,7 @@ void WaveformEditor::scroll_with_player() {
   }
 }
 
-/*
- * Try to display the current subtitle at the center of the view.
- */
+// Try to display the current subtitle at the center of the view.
 void WaveformEditor::center_with_selected_subtitle() {
   if (!document())
     return;
@@ -703,40 +608,30 @@ void WaveformEditor::center_with_selected_subtitle() {
   }
 }
 
-/*
- * Increment the zoom
- */
+// Increment the zoom
 void WaveformEditor::zoom_in() {
   set_zoom(get_zoom() + 1);
 }
 
-/*
- * Decrement the zoom
- */
+// Decrement the zoom
 void WaveformEditor::zoom_out() {
   set_zoom(get_zoom() - 1);
 }
 
-/*
- * Décrément completely the zoom
- */
+// Décrément completely the zoom
 void WaveformEditor::zoom_all() {
   set_zoom(1);
 }
 
-/*
- * Zooming on the current subtitle.
- */
+// Zooming on the current subtitle.
 void WaveformEditor::zoom_selection() {
   zoom_in();
 
   center_with_selected_subtitle();
 }
 
-/*
- * Edit the position of the current subtitle.
- * Start the recorder command.
- */
+// Edit the position of the current subtitle.
+// Start the recorder command.
 bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -793,10 +688,8 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev) {
   return false;
 }
 
-/*
- * Finish the editing of the current subtitle.
- * Stop the recorder command.
- */
+// Finish the editing of the current subtitle.
+// Stop the recorder command.
 bool WaveformEditor::on_button_release_event_renderer(GdkEventButton * /*ev*/) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -811,9 +704,7 @@ bool WaveformEditor::on_button_release_event_renderer(GdkEventButton * /*ev*/) {
   return true;
 }
 
-/*
- * Adjust the position of the current subtitle.
- */
+// Adjust the position of the current subtitle.
 bool WaveformEditor::on_motion_notify_event_renderer(GdkEventMotion *ev) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -838,10 +729,8 @@ bool WaveformEditor::on_motion_notify_event_renderer(GdkEventMotion *ev) {
   return true;
 }
 
-/*
- * Manage the scrolling like the current position in the view (like scrollbar),
- * the scale or the zoom.
- */
+// Manage the scrolling like the current position in the view (like scrollbar),
+// the scale or the zoom.
 bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev) {
   se_debug(SE_DEBUG_WAVEFORM);
 
@@ -857,11 +746,9 @@ bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev) {
   else
     return true;
 
-  if (ev->state & Gdk::SHIFT_MASK)  // Scale
-  {
+  if (ev->state & Gdk::SHIFT_MASK) {  // Scale
     set_scale(get_scale() + value);
-  } else if (ev->state & Gdk::CONTROL_MASK)  // Zoom
-  {
+  } else if (ev->state & Gdk::CONTROL_MASK) {  // Zoom
     int center_area =
         renderer()->get_start_area() +
         (int)((renderer()->get_end_area() - renderer()->get_start_area()) *
@@ -872,8 +759,7 @@ bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev) {
     set_zoom(get_zoom() + value);
 
     scroll_to_position_and_center(renderer()->get_pos_by_time(time));
-  } else  // Scrolling like scrollbar
-  {
+  } else {  // Scrolling like scrollbar
     double page_size =
         m_hscrollbarWaveformRenderer->get_adjustment()->get_page_size();
     double delta = pow(page_size, 2.0 / 3.0);
@@ -884,26 +770,20 @@ bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev) {
   return true;
 }
 
-/*
- */
 void WaveformEditor::set_child_sensitive(bool status) {
   m_hscrollbarWaveformRenderer->set_sensitive(status);
   m_sliderZoom->set_sensitive(status);
   m_sliderScale->set_sensitive(status);
 }
 
-/*
- * Try to move the beginning of the current subtitle.
- * If the option 'respect-timing' is enabled,
- * try to respect the timing preferences.
- *
- * disable_respect:
- *	No test is doing if 'disable_respect' is enabled.
- *
- * around:
- *	If is true, the end of the previous subtitle can be moved
- *	if necessary with respect of timing preferences.
- */
+// Try to move the beginning of the current subtitle.
+// If the option 'respect-timing' is enabled,
+// try to respect the timing preferences.
+// disable_respect:
+// No test is doing if 'disable_respect' is enabled.
+// around:
+// If is true, the end of the previous subtitle can be moved
+// if necessary with respect of timing preferences.
 bool WaveformEditor::move_subtitle_start(const SubtitleTime &_time,
                                          bool disable_respect, bool around) {
   if (!(has_renderer() && has_document()))
@@ -967,17 +847,17 @@ bool WaveformEditor::move_subtitle_start(const SubtitleTime &_time,
             // check first if after move is respect the min display
             if (new_previous_end - previous.get_start() > min_display) {
               previous.set_end(new_previous_end);
-            } else  // I can, move with gap respect
-            {
+            } else {  // I can, move with gap respect
               new_previous_end = previous.get_start() + min_display;
 
               previous.set_end(new_previous_end);
 
               subtitle_start = new_previous_end + min_gap;
             }
-          } else  // around is disable, clamp at the end of the previous with
-                  // gap respect
+          } else {  // around is disable
+            // clamp at the end of the previous with gap respect
             subtitle_start = end_of_previous_sub + min_gap;
+          }
         }
       }
     }  // m_cfg_respect_timing && gab between subtitles
@@ -990,18 +870,14 @@ bool WaveformEditor::move_subtitle_start(const SubtitleTime &_time,
   return true;
 }
 
-/*
- * Try to move the end of the current subtitle.
- * If the option 'respect-timing' is enabled,
- * try to respect the timing preferences.
- *
- * disable_respect:
- *	No test is doing if 'disable_respect' is enabled.
- *
- * around:
- *	If is true, the beginning of the next subtitle can be moved
- *	if necessary with respect of timing preferences.
- */
+// Try to move the end of the current subtitle.
+// If the option 'respect-timing' is enabled,
+// try to respect the timing preferences.
+// disable_respect:
+// No test is doing if 'disable_respect' is enabled.
+// around:
+// If is true, the beginning of the next subtitle can be moved
+// if necessary with respect of timing preferences.
 bool WaveformEditor::move_subtitle_end(const SubtitleTime &_time,
                                        bool disable_respect, bool around) {
   if (!(has_renderer() && has_document()))
@@ -1065,8 +941,7 @@ bool WaveformEditor::move_subtitle_end(const SubtitleTime &_time,
             {
               if (next.get_end() - new_next_start > min_display) {
                 next.set_start(new_next_start);
-              } else  // I can, move with gap respect
-              {
+              } else {  // I can, move with gap respect
                 new_next_start = next.get_end() - min_display;
 
                 next.set_start(new_next_start);
@@ -1074,9 +949,10 @@ bool WaveformEditor::move_subtitle_end(const SubtitleTime &_time,
                 subtitle_end = new_next_start - min_gap;
               }
             }
-          } else  // around is disable, clamp at the start of the next with gap
-                  // respect
+          } else {  // around is disable
+            // clamp at the start of the next with gap respect
             subtitle_end = start_of_next_sub - min_gap;
+          }
         }
       }
     }
@@ -1089,24 +965,22 @@ bool WaveformEditor::move_subtitle_end(const SubtitleTime &_time,
   return true;
 }
 
-/*
- *
- */
 void WaveformEditor::on_config_waveform_changed(const Glib::ustring &key,
                                                 const Glib::ustring &value) {
-  if (key == "scrolling-with-player")
+  if (key == "scrolling-with-player") {
     m_cfg_scrolling_with_player = utility::string_to_bool(value);
-  else if (key == "scrolling-with-selection")
+  } else if (key == "scrolling-with-selection") {
     m_cfg_scrolling_with_selection = utility::string_to_bool(value);
-  else if (key == "respect-timing")
+  } else if (key == "respect-timing") {
     m_cfg_respect_timing = utility::string_to_bool(value);
-  // else if(key == "respect-min-display")
-  //	m_cfg_respect_min_display = utility::string_to_bool(value);
-  // else if(key == "respect-gap-between-subtitles")
-  //	m_cfg_respect_gab_between_subtitles = utility::string_to_bool(value);
-  else if (key == "display") {
+  } else if (key == "display") {
     utility::string_to_bool(value) ? show() : hide();
   } else if (key == "renderer") {
     on_create_renderer();
   }
+  // else if(key == "respect-min-display") {
+  //   m_cfg_respect_min_display = utility::string_to_bool(value);
+  // } else if(key == "respect-gap-between-subtitles") {
+  //   m_cfg_respect_gab_between_subtitles = utility::string_to_bool(value);
+  // }
 }

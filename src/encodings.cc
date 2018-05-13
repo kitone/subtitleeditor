@@ -1,32 +1,29 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "encodings.h"
 #include "cfg.h"
+#include "encodings.h"
 #include "error.h"
 #include "utility.h"
 
 static EncodingInfo encodings_info[] = {
-
     {"ISO-8859-1", N_("Western")},
     {"ISO-8859-2", N_("Central European")},
     {"ISO-8859-3", N_("South European")},
@@ -96,14 +93,8 @@ static EncodingInfo encodings_info[] = {
 
     {NULL, NULL}};
 
-/*
- *
- */
 bool Encodings::is_initialized = false;
 
-/*
- *
- */
 bool Encodings::initialize() {
   if (is_initialized)
     return true;
@@ -116,9 +107,6 @@ bool Encodings::initialize() {
   return true;
 }
 
-/*
- *
- */
 EncodingInfo *Encodings::get_from_charset(const Glib::ustring &charset) {
   initialize();
 
@@ -129,11 +117,9 @@ EncodingInfo *Encodings::get_from_charset(const Glib::ustring &charset) {
   return NULL;
 }
 
-/*
- * Return a human readable string or empty string, ex:
- * "name (charset)"
- * "Unicode (UTF-8)"
- */
+// Return a human readable string or empty string, ex:
+// "name (charset)"
+// "Unicode (UTF-8)"
 Glib::ustring Encodings::get_label_from_charset(const Glib::ustring &charset) {
   EncodingInfo *info = get_from_charset(charset);
   if (info == NULL)
@@ -149,18 +135,14 @@ Glib::ustring Encodings::get_label_from_charset(const Glib::ustring &charset) {
   return label;
 }
 
-/*
- */
 EncodingInfo *Encodings::get_encodings_info() {
   return encodings_info;
 }
 
 namespace Encoding {
 
-/*
- * Trying to convert from charset to UTF-8.
- * Return utf8 string or throw EncodingConvertError exception.
- */
+// Trying to convert from charset to UTF-8.
+// Return utf8 string or throw EncodingConvertError exception.
 Glib::ustring convert_to_utf8_from_charset(const std::string &content,
                                            const Glib::ustring &charset) {
   se_debug_message(SE_DEBUG_UTILITY, "Trying to convert from %s to UTF-8",
@@ -194,16 +176,13 @@ Glib::ustring convert_to_utf8_from_charset(const std::string &content,
   }
 }
 
-/*
- * Trying to autodetect the charset and convert to UTF-8.
- * 3 steps:
- *	- Try UTF-8
- *	- Try with user encoding preferences
- *	- Try with all encodings
- *
- * Return utf8 string and sets charset found
- * or throw EncodingConvertError exception.
- */
+// Trying to autodetect the charset and convert to UTF-8.
+// 3 steps:
+// - Try UTF-8
+// - Try with user encoding preferences
+// - Try with all encodings
+// Return utf8 string and sets charset found
+// or throw EncodingConvertError exception.
 Glib::ustring convert_to_utf8(const std::string &content,
                               Glib::ustring &charset) {
   if (content.empty())
@@ -275,10 +254,8 @@ Glib::ustring convert_to_utf8(const std::string &content,
         "of the file you want to open."));
 }
 
-/*
- * Convert the UTF-8 text to the charset.
- * Throw EncodingConvertError exception.
- */
+// Convert the UTF-8 text to the charset.
+// Throw EncodingConvertError exception.
 std::string convert_from_utf8_to_charset(const Glib::ustring &utf8_content,
                                          const Glib::ustring &charset) {
   se_debug_message(SE_DEBUG_UTILITY, "Trying to convert from UTF-8 to %s",

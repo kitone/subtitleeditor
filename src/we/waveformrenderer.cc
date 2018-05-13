@@ -1,32 +1,27 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "waveformrenderer.h"
 #include <gst/gst.h>
 #include "utility.h"
+#include "waveformrenderer.h"
 
-/*
- *
- */
 WaveformRenderer::WaveformRenderer() {
   init_default_config();
   load_config();
@@ -37,15 +32,10 @@ WaveformRenderer::WaveformRenderer() {
           *this, &WaveformRenderer::on_config_waveform_renderer_changed));
 }
 
-/*
- *
- */
 WaveformRenderer::~WaveformRenderer() {
 }
 
-/*
- * Initialize the default value like colors.
- */
+// Initialize the default value like colors.
 void WaveformRenderer::init_default_config() {
 #define SET_COLOR(x, r, g, b, a) \
   x[0] = r;                      \
@@ -98,9 +88,6 @@ void WaveformRenderer::init_default_config() {
 #undef check_bool
 }
 
-/*
- *
- */
 void WaveformRenderer::load_config() {
   Config &cfg = Config::getInstance();
 
@@ -123,66 +110,43 @@ void WaveformRenderer::load_config() {
 #undef get_color
 }
 
-/*
- *
- */
 void WaveformRenderer::set_waveform(const Glib::RefPtr<Waveform> &wf) {
   m_waveform = wf;
 
   waveform_changed();
 }
 
-/*
- * This function is call when the waveform is changed.
- * Like a new Waveform.
- */
+// This function is call when the waveform is changed.
+// Like a new Waveform.
 void WaveformRenderer::waveform_changed() {
 }
 
-/*
- */
 void WaveformRenderer::keyframes_changed() {
 }
 
-/*
- *
- */
 void WaveformRenderer::redraw_all() {
 }
 
-/*
- *
- */
 void WaveformRenderer::force_redraw_all() {
 }
 
-/*
- *
- */
 int WaveformRenderer::get_start_area() {
   return scrolling();
 }
 
-/*
- *
- */
 int WaveformRenderer::get_end_area() {
   return get_start_area() + widget()->get_width();
 }
 
-/*
- * return the time of the position in the area
- * time is in msec (SubtitleTime.totalmsecs)
- */
+// return the time of the position in the area
+// time is in msec (SubtitleTime.totalmsecs)
 long WaveformRenderer::get_time_by_pos(int pos) {
   float width = (float)widget()->get_width() * zoom();
   float percent = ((float)pos / width);
   return (long)(m_waveform->get_duration() * percent);
 }
 
-/*
- * return the position of the time in the area
- */
+// return the position of the time in the area
 int WaveformRenderer::get_pos_by_time(long msec) {
   float duration = (float)m_waveform->get_duration();
   if (duration <= 0)
@@ -194,51 +158,31 @@ int WaveformRenderer::get_pos_by_time(long msec) {
   return (int)pos;
 }
 
-/*
- *	return the position in the area with scrolling support
- */
+// return the position in the area with scrolling support
 int WaveformRenderer::get_mouse_coords(int x) {
   return get_start_area() + x;
 }
 
-/*
- *
- */
 long WaveformRenderer::get_mouse_time(int x) {
   return get_time_by_pos(get_mouse_coords(x));
 }
 
-/*
- *
- */
 sigc::signal<Document *> &WaveformRenderer::signal_document() {
   return document;
 }
 
-/*
- *
- */
 sigc::signal<int> &WaveformRenderer::signal_zoom() {
   return zoom;
 }
 
-/*
- *
- */
 sigc::signal<float> &WaveformRenderer::signal_scale() {
   return scale;
 }
 
-/*
- *
- */
 sigc::signal<int> &WaveformRenderer::signal_scrolling() {
   return scrolling;
 }
 
-/*
- *
- */
 void WaveformRenderer::on_config_waveform_renderer_changed(
     const Glib::ustring &key, const Glib::ustring &value) {
 #define string_to_rgba(string, col) Color(string).get_value(col, 1)

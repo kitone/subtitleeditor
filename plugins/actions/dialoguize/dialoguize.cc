@@ -1,27 +1,25 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	CHANGES:
- *	2012-05-03 - Preference dialog added, eltomito
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// CHANGES:
+//  2012-05-03 - Preference dialog added, eltomito
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <memory.h>
 #include "debug.h"
@@ -31,23 +29,16 @@
 #include "utility.h"
 #include "widget_config_utility.h"
 
-/*
- * =============== PREFERENCES ===============
- */
+// =============== PREFERENCES ===============
 
 #define DIALOGUIZE_PREF_GROUP "dialoguize"
 #define DIALOGUIZE_PREF_KEY_DASH "dash"
 #define DIALOGUIZE_PREF_KEY_DASH_ESCAPED "dash-escaped"
 #define DIALOGUIZE_PREF_KEY_CUSTOM "custom-prefix"
 
-/*
- *
- */
 class DialogDialoguizePreferences : public Gtk::Dialog {
  public:
-  /*
-   * set dash and its escaped version in the preferences
-   */
+  // set dash and its escaped version in the preferences
   static void set_dash(Glib::ustring dash) {
     Config& cfg = Config::getInstance();
     cfg.set_value_string(DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_DASH, dash);
@@ -65,24 +56,18 @@ class DialogDialoguizePreferences : public Gtk::Dialog {
   Gtk::RadioButton* radiobutton_dash;
   Gtk::RadioButton* radiobutton_custom;
 
-  /*
-   */
   void on_button_dash_toggled() {
     if (radiobutton_dash->get_active()) {
       set_dash("-");
     }
   }
 
-  /*
-   */
   void on_button_dash_space_toggled() {
     if (radiobutton_dash_space->get_active()) {
       set_dash("- ");
     }
   }
 
-  /*
-   */
   void on_button_custom_toggled() {
     if (radiobutton_custom->get_active()) {
       Glib::ustring customdash = Config::getInstance().get_value_string(
@@ -91,8 +76,6 @@ class DialogDialoguizePreferences : public Gtk::Dialog {
     }
   }
 
-  /*
-   */
   void on_entry_change() {
     Glib::ustring customdash = Config::getInstance().get_value_string(
         DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_CUSTOM);
@@ -173,13 +156,8 @@ class DialogDialoguizePreferences : public Gtk::Dialog {
   }
 };
 
-/*
- * ==================== ACTION =====================
- */
+// ==================== ACTION =====================
 
-/*
- *
- */
 class DialoguizeSelectedSubtitlesPlugin : public Action {
  public:
   DialoguizeSelectedSubtitlesPlugin() {
@@ -191,9 +169,6 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -227,9 +202,6 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     ui_id = ui->add_ui_from_string(submenu);
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -239,9 +211,6 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -251,16 +220,10 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
         ->set_sensitive(visible);
   }
 
-  /*
-   *
-   */
   bool is_configurable() {
     return true;
   }
 
-  /*
-   *
-   */
   void create_configure_dialog() {
     DialogDialoguizePreferences::create();
   }
@@ -272,9 +235,6 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     execute();
   }
 
-  /*
-   *
-   */
   bool execute() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -317,9 +277,6 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     return true;
   }
 
-  /*
-   *
-   */
   bool parial_match(std::vector<Subtitle>& subs, const std::string& pattern) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -333,9 +290,6 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     return false;
   }
 
-  /*
-   *
-   */
   void global_replace(std::vector<Subtitle>& subs, const std::string& pattern,
                       const std::string& replace) {
     se_debug(SE_DEBUG_PLUGINS);

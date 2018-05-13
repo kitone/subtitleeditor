@@ -1,27 +1,24 @@
-#ifndef _CommandSystem_h
-#define _CommandSystem_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <deque>
 #include <list>
@@ -29,9 +26,6 @@
 
 class Document;
 
-/*
- *
- */
 class CommandGroup : public Command {
  public:
   CommandGroup(const Glib::ustring &description);
@@ -46,69 +40,40 @@ class CommandGroup : public Command {
   std::list<Command *> m_stack;
 };
 
-/*
- *
- */
 class CommandSystem {
  public:
-  /*
-   *
-   */
   CommandSystem(Document &doc);
 
-  /*
-   *
-   */
   virtual ~CommandSystem();
 
-  /*
-   *	return the description of the last undo command or NULL
-   */
+  // return the description of the last undo command or NULL
   Glib::ustring get_undo_description();
 
-  /*
-   *	return the description of the last redo command or NULL
-   */
+  // return the description of the last redo command or NULL
   Glib::ustring get_redo_description();
 
-  /*
-   *	Start recording
-   */
+  // Start recording
   void start(const Glib::ustring &description);
 
-  /*
-   *	Add a new command
-   */
+  // Add a new command
   void add(Command *cmd);
 
-  /*
-   *	return true if it is recording. You can add your command if it's.
-   */
+  // return true if it is recording. You can add your command if it's.
   bool is_recording();
 
-  /*
-   *	Stop recording
-   */
+  // Stop recording
   void finish();
 
-  /*
-   *	Undo the last command
-   */
+  // Undo the last command
   void undo();
 
-  /*
-   *	Redo the last undone commande
-   */
+  // Redo the last undone commande
   void redo();
 
-  /*
-   *	Clear all stack (undo/redo)
-   */
+  // Clear all stack (undo/redo)
   void clear();
 
-  /*
-   *	emit with undo/redo/start/finish
-   */
+  // emit with undo/redo/start/finish
   sigc::signal<void> &signal_changed();
 
  protected:
@@ -126,5 +91,3 @@ class CommandSystem {
 
   sigc::signal<void> m_signal_changed;
 };
-
-#endif  //_CommandSystem_h

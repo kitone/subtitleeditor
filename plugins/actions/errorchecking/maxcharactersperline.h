@@ -1,33 +1,27 @@
-#ifndef _MaxCharactersPerLine_h
-#define _MaxCharactersPerLine_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "errorchecking.h"
 
-/*
- *
- */
 class MaxCharactersPerLine : public ErrorChecking {
  public:
   MaxCharactersPerLine()
@@ -37,17 +31,11 @@ class MaxCharactersPerLine : public ErrorChecking {
     m_maxCPL = 40;
   }
 
-  /*
-   *
-   */
   virtual void init() {
     m_maxCPL = Config::getInstance().get_value_int("timing",
                                                    "max-characters-per-line");
   }
 
-  /*
-   *
-   */
   virtual bool execute(Info &info) {
     std::istringstream iss(info.currentSub.get_characters_per_line_text());
     std::string line;
@@ -77,8 +65,6 @@ class MaxCharactersPerLine : public ErrorChecking {
     return false;
   }
 
-  /*
-   */
   Glib::ustring word_wrap(Glib::ustring str, Glib::ustring::size_type width) {
     Glib::ustring::size_type curWidth = width;
     Glib::ustring::size_type spacePos;
@@ -97,5 +83,3 @@ class MaxCharactersPerLine : public ErrorChecking {
  protected:
   int m_maxCPL;
 };
-
-#endif  //_MaxCharactersPerLine_h

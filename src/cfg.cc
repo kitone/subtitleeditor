@@ -1,29 +1,27 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "cfg.h"
 #include <glibmm.h>
 #include <fstream>
 #include <iostream>
+#include "cfg.h"
 #include "utility.h"
 
 void get_default_config(
@@ -31,9 +29,6 @@ void get_default_config(
 
 Glib::ustring Config::m_config_file;
 
-/*
- *
- */
 Config &Config::getInstance() {
   se_debug(SE_DEBUG_APP);
 
@@ -41,9 +36,6 @@ Config &Config::getInstance() {
   return cfg;
 }
 
-/*
- *
- */
 Config::Config() {
   se_debug(SE_DEBUG_APP);
 
@@ -52,44 +44,31 @@ Config::Config() {
   loadCfg();
 }
 
-/*
- *
- */
 Config::~Config() {
   se_debug(SE_DEBUG_APP);
 
   saveCfg();
 }
 
-/*
- *	by default (XDG) "~/.config/subtitleeditor/config"
- */
+// by default (XDG) "~/.config/subtitleeditor/config"
 void Config::set_file(const Glib::ustring &file) {
   se_debug_message(SE_DEBUG_APP, "file=%s", file.c_str());
 #warning "FIXME: convert to full path"
-  /*
   Glib::ustring dirname = Glib::path_get_dirname(file);
   Glib::ustring filename = Glib::path_get_basename(file);
 
   std::cout << dirname << std::endl;
   std::cout << filename << std::endl;
 
-  if(dirname == "~")
-  {
-          dirname = Glib::get_home_dir();
-  }
-  else if(dirname == ".")
-  {
+  if (dirname == "~") {
+    dirname = Glib::get_home_dir();
+  } else if (dirname == ".") {
   }
 
   m_config_file = Glib::build_filename(dirname, filename);
-  */
   m_config_file = file;
 }
 
-/*
- *
- */
 bool Config::loadCfg() {
   se_debug_message(SE_DEBUG_APP, "load config...");
 
@@ -117,9 +96,6 @@ bool Config::loadCfg() {
   return true;
 }
 
-/*
- *
- */
 bool Config::saveCfg() {
   se_debug_message(SE_DEBUG_APP, "save config...");
 
@@ -149,9 +125,6 @@ bool Config::saveCfg() {
   return true;
 }
 
-/*
- *
- */
 bool Config::set_default_value(const Glib::ustring &group,
                                const Glib::ustring &key) {
   Glib::ustring value;
@@ -166,9 +139,6 @@ bool Config::set_default_value(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::get_default_value(const Glib::ustring &group,
                                const Glib::ustring &key, Glib::ustring &value) {
   g_return_val_if_fail(m_keyFile, false);
@@ -193,9 +163,6 @@ bool Config::get_default_value(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::check_the_key_or_put_default_value(const Glib::ustring &group,
                                                 const Glib::ustring &key) {
   if (has_key(group, key))
@@ -204,9 +171,6 @@ bool Config::check_the_key_or_put_default_value(const Glib::ustring &group,
   return set_default_value(group, key);
 }
 
-/*
- *
- */
 bool Config::set_comment(const Glib::ustring &group, const Glib::ustring &key,
                          const Glib::ustring &comment) {
   g_return_val_if_fail(m_keyFile, false);
@@ -220,9 +184,6 @@ bool Config::set_comment(const Glib::ustring &group, const Glib::ustring &key,
   return true;
 }
 
-/*
- *
- */
 bool Config::has_group(const Glib::ustring &group) {
   g_return_val_if_fail(m_keyFile, false);
 
@@ -232,9 +193,6 @@ bool Config::has_group(const Glib::ustring &group) {
   return value;
 }
 
-/*
- *
- */
 bool Config::has_key(const Glib::ustring &group, const Glib::ustring &key) {
   g_return_val_if_fail(m_keyFile, false);
 
@@ -254,9 +212,6 @@ bool Config::has_key(const Glib::ustring &group, const Glib::ustring &key) {
   return value;
 }
 
-/*
- *
- */
 bool Config::get_keys(const Glib::ustring &group,
                       std::list<Glib::ustring> &list) {
   g_return_val_if_fail(m_keyFile, false);
@@ -286,9 +241,6 @@ bool Config::get_keys(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::set_value_bool(const Glib::ustring &group,
                             const Glib::ustring &key, const bool &value,
                             const Glib::ustring &comment) {
@@ -307,9 +259,6 @@ bool Config::set_value_bool(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::get_value_bool(const Glib::ustring &group,
                             const Glib::ustring &key, bool &value) {
   g_return_val_if_fail(m_keyFile, false);
@@ -335,9 +284,6 @@ bool Config::get_value_bool(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::set_value_int(const Glib::ustring &group, const Glib::ustring &key,
                            const int &value, const Glib::ustring &comment) {
   g_return_val_if_fail(m_keyFile, false);
@@ -355,9 +301,6 @@ bool Config::set_value_int(const Glib::ustring &group, const Glib::ustring &key,
   return true;
 }
 
-/*
- *
- */
 bool Config::get_value_int(const Glib::ustring &group, const Glib::ustring &key,
                            int &value) {
   g_return_val_if_fail(m_keyFile, false);
@@ -385,9 +328,6 @@ bool Config::get_value_int(const Glib::ustring &group, const Glib::ustring &key,
   return true;
 }
 
-/*
- *
- */
 bool Config::set_value_float(const Glib::ustring &group,
                              const Glib::ustring &key, const float &value,
                              const Glib::ustring &comment) {
@@ -406,9 +346,6 @@ bool Config::set_value_float(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::get_value_float(const Glib::ustring &group,
                              const Glib::ustring &key, float &value) {
   g_return_val_if_fail(m_keyFile, false);
@@ -436,9 +373,6 @@ bool Config::get_value_float(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::set_value_double(const Glib::ustring &group,
                               const Glib::ustring &key, const double &value,
                               const Glib::ustring &comment) {
@@ -457,9 +391,6 @@ bool Config::set_value_double(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::get_value_double(const Glib::ustring &group,
                               const Glib::ustring &key, double &value) {
   g_return_val_if_fail(m_keyFile, false);
@@ -487,9 +418,6 @@ bool Config::get_value_double(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::set_value_string(const Glib::ustring &group,
                               const Glib::ustring &key,
                               const Glib::ustring &value,
@@ -508,9 +436,6 @@ bool Config::set_value_string(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::get_value_string(const Glib::ustring &group,
                               const Glib::ustring &key, Glib::ustring &str) {
   g_return_val_if_fail(m_keyFile, false);
@@ -538,9 +463,6 @@ bool Config::get_value_string(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::set_value_color(const Glib::ustring &group,
                              const Glib::ustring &key, const Color &color,
                              const Glib::ustring &comment) {
@@ -549,9 +471,6 @@ bool Config::set_value_color(const Glib::ustring &group,
   return set_value_string(group, key, color.to_string(), comment);
 }
 
-/*
- *
- */
 bool Config::get_value_color(const Glib::ustring &group,
                              const Glib::ustring &key, Color &color) {
   g_return_val_if_fail(m_keyFile, false);
@@ -567,9 +486,6 @@ bool Config::get_value_color(const Glib::ustring &group,
   return false;
 }
 
-/*
- *
- */
 bool Config::set_value_string_list(const Glib::ustring &group,
                                    const Glib::ustring &key,
                                    const std::list<Glib::ustring> &list) {
@@ -588,9 +504,6 @@ bool Config::set_value_string_list(const Glib::ustring &group,
   return set_value_string(group, key, text);
 }
 
-/*
- *
- */
 bool Config::get_value_string_list(const Glib::ustring &group,
                                    const Glib::ustring &key,
                                    std::list<Glib::ustring> &list) {
@@ -621,9 +534,6 @@ bool Config::get_value_string_list(const Glib::ustring &group,
   return true;
 }
 
-/*
- *
- */
 bool Config::remove_group(const Glib::ustring &group) {
   g_return_val_if_fail(m_keyFile, false);
 
@@ -641,9 +551,6 @@ bool Config::remove_group(const Glib::ustring &group) {
   return true;
 }
 
-/*
- *
- */
 bool Config::remove_key(const Glib::ustring &group, const Glib::ustring &key) {
   g_return_val_if_fail(m_keyFile, false);
 
@@ -669,18 +576,13 @@ void Config::emit_signal_changed(const Glib::ustring &g, const Glib::ustring &k,
   m_signals[g](k, v);
 }
 
-/*
- *	permet de surveiller un groupe
- *	fonction(key, value)
- */
+// permet de surveiller un groupe
+// fonction(key, value)
 sigc::signal<void, Glib::ustring, Glib::ustring> &Config::signal_changed(
     const Glib::ustring &group) {
   return m_signals[group];
 }
 
-/*
- *
- */
 bool Config::get_value_bool(const Glib::ustring &group,
                             const Glib::ustring &key) {
   bool value;
@@ -692,9 +594,6 @@ bool Config::get_value_bool(const Glib::ustring &group,
   return value;
 }
 
-/*
- *
- */
 int Config::get_value_int(const Glib::ustring &group,
                           const Glib::ustring &key) {
   int value;
@@ -706,9 +605,6 @@ int Config::get_value_int(const Glib::ustring &group,
   return value;
 }
 
-/*
- *
- */
 float Config::get_value_float(const Glib::ustring &group,
                               const Glib::ustring &key) {
   float value;
@@ -720,9 +616,6 @@ float Config::get_value_float(const Glib::ustring &group,
   return value;
 }
 
-/*
- *
- */
 double Config::get_value_double(const Glib::ustring &group,
                                 const Glib::ustring &key) {
   double value;
@@ -734,9 +627,6 @@ double Config::get_value_double(const Glib::ustring &group,
   return value;
 }
 
-/*
- *
- */
 Glib::ustring Config::get_value_string(const Glib::ustring &group,
                                        const Glib::ustring &key) {
   Glib::ustring value;
@@ -748,9 +638,6 @@ Glib::ustring Config::get_value_string(const Glib::ustring &group,
   return value;
 }
 
-/*
- *
- */
 Color Config::get_value_color(const Glib::ustring &group,
                               const Glib::ustring &key) {
   Color value;
@@ -762,9 +649,6 @@ Color Config::get_value_color(const Glib::ustring &group,
   return value;
 }
 
-/*
- *
- */
 std::list<Glib::ustring> Config::get_value_string_list(
     const Glib::ustring &group, const Glib::ustring &key) {
   std::list<Glib::ustring> value;

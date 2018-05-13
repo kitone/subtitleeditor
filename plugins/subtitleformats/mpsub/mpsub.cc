@@ -1,37 +1,29 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
 #include <cstdio>
 
-/*
- *
- */
 class MPsub : public SubtitleFormatIO {
  public:
-  /*
-   *
-   */
   void open(Reader &file) {
     Glib::RefPtr<Glib::Regex> re =
         Glib::Regex::create("^(-?\\d+(?:\\.\\d+)?) (-?\\d+(?:\\.\\d+)?)\\s*$");
@@ -47,8 +39,6 @@ class MPsub : public SubtitleFormatIO {
     while (file.getline(line)) {
       if (re->match(line)) {
         std::vector<Glib::ustring> group = re->split(line);
-        // if(group.size() == 1)
-        //	continue;
 
         double dstart = utility::string_to_double(group[1]);
         double dduration = utility::string_to_double(group[2]);
@@ -79,8 +69,7 @@ class MPsub : public SubtitleFormatIO {
         if (mode == TIME) {
           sub.set_start(static_cast<long>(start_value * 1000));
           sub.set_end(static_cast<long>(end_value * 1000.0));
-        } else  // FRAME
-        {
+        } else {  // FRAME
           sub.set_start_frame((long)start_value);
           sub.set_end_frame((long)end_value);
         }
@@ -97,9 +86,6 @@ class MPsub : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   void save(Writer &file) {
     // TODO: FRAME support
     // header
@@ -135,9 +121,6 @@ class MPsub : public SubtitleFormatIO {
 
 class MPsubPlugin : public SubtitleFormat {
  public:
-  /*
-   *
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
 
@@ -148,9 +131,6 @@ class MPsubPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   *
-   */
   SubtitleFormatIO *create() {
     MPsub *sf = new MPsub();
     return sf;

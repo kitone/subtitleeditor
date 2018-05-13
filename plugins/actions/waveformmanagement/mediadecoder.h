@@ -1,27 +1,24 @@
-#ifndef _mediadecoder_h
-#define _mediadecoder_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2014, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gstreamermm.h>
 // missing plugins
@@ -31,24 +28,16 @@
 #include <iomanip>
 #include <iostream>
 
-/*
- * Class to help with gstreamer(mm)
- */
+// Class to help with gstreamer(mm)
 class MediaDecoder : virtual public sigc::trackable {
  public:
-  /*
-   */
   MediaDecoder(guint timeout = 0) : m_watch_id(0), m_timeout(timeout) {
   }
 
-  /*
-   */
   virtual ~MediaDecoder() {
     destroy_pipeline();
   }
 
-  /*
-   */
   void create_pipeline(const Glib::ustring &uri) {
     se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
 
@@ -88,8 +77,6 @@ class MediaDecoder : virtual public sigc::trackable {
     }
   }
 
-  /*
-   */
   void destroy_pipeline() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -105,8 +92,6 @@ class MediaDecoder : virtual public sigc::trackable {
     m_pipeline = Glib::RefPtr<Gst::Pipeline>();
   }
 
-  /*
-   */
   virtual void on_pad_added(const Glib::RefPtr<Gst::Pad> &newpad) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -120,7 +105,6 @@ class MediaDecoder : virtual public sigc::trackable {
       return;
 
     Glib::RefPtr<Gst::Element> sink = create_element(structure.get_name());
-    ;
     if (sink) {
       // Add bin to the pipeline
       m_pipeline->add(sink);
@@ -152,9 +136,7 @@ class MediaDecoder : virtual public sigc::trackable {
     }
   }
 
-  /*
-   * BUS MESSAGE
-   */
+  // BUS MESSAGE
   virtual bool on_bus_message(const Glib::RefPtr<Gst::Bus> & /*bus*/,
                               const Glib::RefPtr<Gst::Message> &msg) {
     se_debug_message(SE_DEBUG_PLUGINS, "type='%s' name='%s'",
@@ -183,8 +165,6 @@ class MediaDecoder : virtual public sigc::trackable {
     return true;
   }
 
-  /*
-   */
   virtual bool on_bus_message_error(Glib::RefPtr<Gst::MessageError> msg) {
     check_missing_plugins();
 
@@ -197,8 +177,6 @@ class MediaDecoder : virtual public sigc::trackable {
     return true;
   }
 
-  /*
-   */
   virtual bool on_bus_message_warning(Glib::RefPtr<Gst::MessageWarning> msg) {
     check_missing_plugins();
 
@@ -209,8 +187,6 @@ class MediaDecoder : virtual public sigc::trackable {
     return true;
   }
 
-  /*
-   */
   virtual bool on_bus_message_state_changed(
       Glib::RefPtr<Gst::MessageStateChanged> msg) {
     if (m_timeout > 0)
@@ -218,48 +194,34 @@ class MediaDecoder : virtual public sigc::trackable {
     return true;
   }
 
-  /*
-   */
   virtual bool on_bus_message_eos(Glib::RefPtr<Gst::MessageEos>) {
     m_pipeline->set_state(Gst::STATE_PAUSED);
     on_work_finished();
     return true;
   }
 
-  /*
-   */
   virtual bool on_bus_message_element(Glib::RefPtr<Gst::MessageElement> msg) {
     check_missing_plugin_message(msg);
     return true;
   }
 
-  /*
-   */
   virtual void on_work_finished() {
     // FIXME
   }
 
-  /*
-   */
   virtual void on_work_cancel() {
     // FIXME
   }
 
-  /*
-   */
   virtual Glib::RefPtr<Gst::Element> create_element(const Glib::ustring &) {
     return Glib::RefPtr<Gst::Element>();
   }
 
-  /*
-   */
   virtual bool on_timeout() {
     return false;
   }
 
-  /*
-   * utility
-   */
+  // utility
   Glib::ustring time_to_string(gint64 pos) {
     return Glib::ustring::compose(
         "%1:%2:%3",
@@ -272,8 +234,6 @@ class MediaDecoder : virtual public sigc::trackable {
   }
 
  protected:
-  /*
-   */
   bool on_bus_message_state_changed_timeout(
       Glib::RefPtr<Gst::MessageStateChanged> msg) {
     se_debug(SE_DEBUG_PLUGINS);
@@ -298,8 +258,6 @@ class MediaDecoder : virtual public sigc::trackable {
     return true;
   }
 
-  /*
-   */
   void check_missing_plugin_message(
       const Glib::RefPtr<Gst::MessageElement> &msg) {
     se_debug(SE_DEBUG_PLUGINS);
@@ -323,8 +281,6 @@ class MediaDecoder : virtual public sigc::trackable {
     return;
   }
 
-  /*
-   */
   bool check_missing_plugins() {
     if (m_missing_plugins.empty())
       return false;
@@ -334,9 +290,7 @@ class MediaDecoder : virtual public sigc::trackable {
     return true;
   }
 
-  /*
-   * Display a message for missing plugins.
-   */
+  // Display a message for missing plugins.
   void dialog_missing_plugins(const std::list<Glib::ustring> &list) {
     Glib::ustring plugins;
 
@@ -369,5 +323,3 @@ class MediaDecoder : virtual public sigc::trackable {
 
   std::list<Glib::ustring> m_missing_plugins;
 };
-
-#endif  //_mediadecoder_h

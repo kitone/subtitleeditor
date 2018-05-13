@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
@@ -36,8 +34,6 @@ class TypewriterPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -101,8 +97,6 @@ class TypewriterPlugin : public Action {
     ui_id = ui->add_ui_from_string(submenu);
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -112,8 +106,6 @@ class TypewriterPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -132,8 +124,6 @@ class TypewriterPlugin : public Action {
 
   enum SPLIT_TIME { LINEAR, RANDOM };
 
-  /*
-   */
   void split_selected_subtitles(SPLIT_TYPE split_type, SPLIT_TIME split_time) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -159,8 +149,6 @@ class TypewriterPlugin : public Action {
     doc->finish_command();
   }
 
-  /*
-   */
   void split(Subtitles &subtitles, Subtitle &sub, SPLIT_TYPE type,
              SPLIT_TIME time) {
     Glib::ustring text = sub.get_text();
@@ -194,8 +182,6 @@ class TypewriterPlugin : public Action {
     subtitles.select(newsubs);
   }
 
-  /*
-   */
   std::vector<Subtitle> create_subtitles_from_text_array(
       Subtitles &subtitles, Subtitle &original_subtitle,
       const std::vector<Glib::ustring> &vtext) {
@@ -220,8 +206,6 @@ class TypewriterPlugin : public Action {
     return newsubs;
   }
 
-  /*
-   */
   std::vector<Glib::ustring> split_by_character(const Glib::ustring &text) {
     std::vector<Glib::ustring> characters;
 
@@ -232,8 +216,6 @@ class TypewriterPlugin : public Action {
     return characters;
   }
 
-  /*
-   */
   std::vector<Glib::ustring> split_by_word(const Glib::ustring &text) {
     std::vector<Glib::ustring> splitted, words;
     // If you have a better idea, fell free to send a patch.
@@ -252,8 +234,6 @@ class TypewriterPlugin : public Action {
     return words;
   }
 
-  /*
-   */
   void setup_time_linear(std::vector<Subtitle> &subs, const SubtitleTime &start,
                          const SubtitleTime &duration) {
     // We update the time of each subtitles (linear)
@@ -266,8 +246,6 @@ class TypewriterPlugin : public Action {
     }
   }
 
-  /*
-   */
   void setup_time_random(std::vector<Subtitle> &subs, const SubtitleTime &start,
                          const SubtitleTime &duration) {
     std::vector<long> rand_times;

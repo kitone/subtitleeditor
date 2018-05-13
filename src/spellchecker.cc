@@ -1,36 +1,32 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "spellchecker.h"
 #include <cfg.h>
 #include <debug.h>
 #include <enchant.h>
+#include "spellchecker.h"
 
-/*
- * So why do not using enchant++ ?
- * There are a lots of segfault and memory leaks at the exit
- * of subtitleeditor caused by enchant++
- * (static Broker instance in the header ...)
- */
+// So why do not using enchant++ ?
+// There are a lots of segfault and memory leaks at the exit
+// of subtitleeditor caused by enchant++
+// (static Broker instance in the header ...)
 class SEEnchantDict {
  public:
   class Exception : public std::exception {
@@ -161,8 +157,6 @@ class SEEnchantDict {
   std::string m_active_lang;
 };
 
-/*
- */
 bool spell_checker_is_digit(const Glib::ustring &text) {
   for (Glib::ustring::const_iterator it = text.begin(); it != text.end();
        ++it) {
@@ -172,33 +166,25 @@ bool spell_checker_is_digit(const Glib::ustring &text) {
   return true;
 }
 
-/*
- * Constructor
- */
+// Constructor
 SpellChecker::SpellChecker() : m_spellcheckerDict(new SEEnchantDict) {
   se_debug(SE_DEBUG_SPELL_CHECKING);
 
   init_dictionary();
 }
 
-/*
- * Desctructor
- */
+// Desctructor
 SpellChecker::~SpellChecker() {
   se_debug(SE_DEBUG_SPELL_CHECKING);
 }
 
-/*
- * Return an instance of the SpellChecker.
- */
+// Return an instance of the SpellChecker.
 SpellChecker *SpellChecker::instance() {
   static SpellChecker _instance;
   return &_instance;
 }
 
-/*
- * Setup the default dictionary.
- */
+// Setup the default dictionary.
 bool SpellChecker::init_dictionary() {
   Glib::ustring lang;
 
@@ -237,9 +223,7 @@ bool SpellChecker::init_dictionary() {
   return false;
 }
 
-/*
- * Add this word to the dictionary only the time of the session.
- */
+// Add this word to the dictionary only the time of the session.
 void SpellChecker::add_word_to_session(const Glib::ustring &word) {
   se_debug_message(SE_DEBUG_SPELL_CHECKING, "add word '%s' to session",
                    word.c_str());
@@ -247,9 +231,7 @@ void SpellChecker::add_word_to_session(const Glib::ustring &word) {
   m_spellcheckerDict->add_word_to_session(word);
 }
 
-/*
- * Add this word to the personal dictionary.
- */
+// Add this word to the personal dictionary.
 void SpellChecker::add_word_to_personal(const Glib::ustring &word) {
   se_debug_message(SE_DEBUG_SPELL_CHECKING,
                    "add word '%s' to personal dictionary", word.c_str());
@@ -257,9 +239,7 @@ void SpellChecker::add_word_to_personal(const Glib::ustring &word) {
   m_spellcheckerDict->add_word_to_personal(word);
 }
 
-/*
- * Spell a word.
- */
+// Spell a word.
 bool SpellChecker::check(const Glib::ustring &word) {
   se_debug_message(SE_DEBUG_SPELL_CHECKING, "check the word '%s'",
                    word.c_str());
@@ -277,9 +257,7 @@ bool SpellChecker::check(const Glib::ustring &word) {
   return false;
 }
 
-/*
- * Returns a list of suggestions from the misspelled word.
- */
+// Returns a list of suggestions from the misspelled word.
 std::vector<Glib::ustring> SpellChecker::get_suggest(
     const Glib::ustring &word) {
   se_debug_message(SE_DEBUG_SPELL_CHECKING, "get suggestion from the word '%s'",
@@ -290,9 +268,7 @@ std::vector<Glib::ustring> SpellChecker::get_suggest(
   return std::vector<Glib::ustring>(sugg.begin(), sugg.end());
 }
 
-/*
- * Set the current dictionary. ("en_US", "de", ...)
- */
+// Set the current dictionary. ("en_US", "de", ...)
 bool SpellChecker::set_dictionary(const Glib::ustring &name) {
   se_debug_message(SE_DEBUG_SPELL_CHECKING, "try to set dictionary '%s' ...",
                    name.c_str());
@@ -314,18 +290,14 @@ bool SpellChecker::set_dictionary(const Glib::ustring &name) {
   return false;
 }
 
-/*
- * Returns the current dictionary as isocode. ("en_US", "de", ...)
- */
+// Returns the current dictionary as isocode. ("en_US", "de", ...)
 Glib::ustring SpellChecker::get_dictionary() {
   se_debug(SE_DEBUG_SPELL_CHECKING);
 
   return m_spellcheckerDict->get_lang();
 }
 
-/*
- * Returns a list of the dictionaries available.
- */
+// Returns a list of the dictionaries available.
 std::vector<Glib::ustring> SpellChecker::get_dictionaries() {
   se_debug(SE_DEBUG_SPELL_CHECKING);
 
@@ -336,20 +308,16 @@ std::vector<Glib::ustring> SpellChecker::get_dictionaries() {
   return std::vector<Glib::ustring>(list_dicts.begin(), list_dicts.end());
 }
 
-/*
- * The current dictionary's changed.
- */
+// The current dictionary's changed.
 sigc::signal<void> &SpellChecker::signal_dictionary_changed() {
   se_debug(SE_DEBUG_SPELL_CHECKING);
 
   return m_signal_dictionary_changed;
 }
 
-/*
- * Notes that you replaced 'bad' with 'good', so it's possibly more likely
- * that future occurrences of 'bad' will be replaced with 'good'.
- * So it might bump 'good' up in the suggestion list.
- */
+// Notes that you replaced 'bad' with 'good', so it's possibly more likely
+// that future occurrences of 'bad' will be replaced with 'good'.
+// So it might bump 'good' up in the suggestion list.
 void SpellChecker::store_replacement(const Glib::ustring &utf8bad,
                                      const Glib::ustring &utf8good) {
   se_debug_message(SE_DEBUG_SPELL_CHECKING, "store replacement '%s' to '%s'",

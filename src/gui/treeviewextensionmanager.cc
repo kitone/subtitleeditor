@@ -1,31 +1,26 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2011, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "treeviewextensionmanager.h"
 #include <gtkmm/treemodelfilter.h>
+#include "treeviewextensionmanager.h"
 
-/*
- *
- */
 class ColumnExtension : public Gtk::TreeModel::ColumnRecord {
  public:
   ColumnExtension() {
@@ -41,35 +36,27 @@ class ColumnExtension : public Gtk::TreeModel::ColumnRecord {
   Gtk::TreeModelColumn<ExtensionInfo *> info;
 };
 
-/*
- * Sort extension by categorie and by locale name
- */
+// Sort extension by categorie and by locale name
 bool on_sort_extension(ExtensionInfo *a, ExtensionInfo *b) {
   if (a->get_categorie() != b->get_categorie())
     return a->get_categorie() < b->get_categorie();
   return a->get_label() < b->get_label();
 }
 
-/*
- * Call automatically create_view().
- */
+// Call automatically create_view().
 TreeViewExtensionManager::TreeViewExtensionManager(BaseObjectType *cobject,
                                                    Glib::RefPtr<Gtk::Builder> &)
     : Gtk::TreeView(cobject) {
   create_view();
 }
 
-/*
- * Call automatically create_view().
- */
+// Call automatically create_view().
 TreeViewExtensionManager::TreeViewExtensionManager() {
   create_view();
 }
 
-/*
- * Create column with cell toggle (active state) and text (label and
- * description). All extensions are added to the model.
- */
+// Create column with cell toggle (active state) and text (label and
+// description). All extensions are added to the model.
 void TreeViewExtensionManager::create_view() {
   ColumnExtension m_column;
 
@@ -150,10 +137,8 @@ void TreeViewExtensionManager::create_view() {
   }
 }
 
-/*
- * Filter the model and display only one categorie
- * ExtensionInfo->categorie
- */
+// Filter the model and display only one categorie
+// ExtensionInfo->categorie
 void TreeViewExtensionManager::set_filter(const Glib::ustring &categorie) {
   Glib::RefPtr<Gtk::TreeModelFilter> filter =
       Gtk::TreeModelFilter::create(get_model());
@@ -165,9 +150,7 @@ void TreeViewExtensionManager::set_filter(const Glib::ustring &categorie) {
   set_model(filter);
 }
 
-/*
- * Try to update the active state of the extension.
- */
+// Try to update the active state of the extension.
 void TreeViewExtensionManager::on_active_toggled(const Glib::ustring &path) {
   ColumnExtension m_column;
 
@@ -184,9 +167,7 @@ void TreeViewExtensionManager::on_active_toggled(const Glib::ustring &path) {
   }
 }
 
-/*
- * Used by the filter.
- */
+// Used by the filter.
 bool TreeViewExtensionManager::on_filter_visible(
     const Gtk::TreeModel::const_iterator &iter, Glib::ustring categorie) {
   static ColumnExtension column;
@@ -199,9 +180,7 @@ bool TreeViewExtensionManager::on_filter_visible(
   return false;
 }
 
-/*
- * Return the current extension selected or NULL.
- */
+// Return the current extension selected or NULL.
 ExtensionInfo *TreeViewExtensionManager::get_selected_extension() {
   Gtk::TreeIter it = get_selection()->get_selected();
   if (!it)
@@ -211,10 +190,8 @@ ExtensionInfo *TreeViewExtensionManager::get_selected_extension() {
   return (*it)[column.info];
 }
 
-/*
- * Used to define the separator
- * "---"
- */
+// Used to define the separator
+// "---"
 bool TreeViewExtensionManager::on_row_separator_func(
     const Glib::RefPtr<Gtk::TreeModel> & /*model*/,
     const Gtk::TreeModel::iterator &it) {

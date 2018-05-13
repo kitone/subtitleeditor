@@ -1,38 +1,31 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "menubar.h"
 #include "utility.h"
 
-/*
- *
- */
 MenuBar::MenuBar() : Gtk::VBox(false, 0), m_statusbar(NULL) {
   m_refUIManager = Gtk::UIManager::create();
 }
 
-/*
- * Use to show the tooltip in the statusbar.
- */
+// Use to show the tooltip in the statusbar.
 void MenuBar::connect_proxy(const Glib::RefPtr<Gtk::Action> &action,
                             Gtk::Widget *widget) {
   if (Gtk::MenuItem *item = dynamic_cast<Gtk::MenuItem *>(widget)) {
@@ -45,9 +38,6 @@ void MenuBar::connect_proxy(const Glib::RefPtr<Gtk::Action> &action,
   }
 }
 
-/*
- *
- */
 void MenuBar::create(Gtk::Window &window, Statusbar &statusbar) {
   m_statusbar = &statusbar;
 
@@ -92,9 +82,6 @@ void MenuBar::create(Gtk::Window &window, Statusbar &statusbar) {
   create_ui_from_file();
 }
 
-/*
- *
- */
 void MenuBar::create_ui_from_file() {
   Glib::ustring menubar_xml = Glib::build_filename(
       SE_DEV_VALUE(PACKAGE_SHARE_DIR, PACKAGE_SHARE_DIR_DEV), "menubar.xml");
@@ -106,9 +93,6 @@ void MenuBar::create_ui_from_file() {
   show_all();
 }
 
-/*
- *
- */
 Glib::RefPtr<Gtk::UIManager> MenuBar::get_ui_manager() {
   return m_refUIManager;
 }

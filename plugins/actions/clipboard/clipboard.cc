@@ -1,29 +1,25 @@
-/*
- *
- *	clipboard.cc
- *	- "cut, copy and paste - the 3 pillars of modern civilization"
- *	a subtitleeditor plugin by Eltomito <tomaspartl@centrum.cz>
- *
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2013, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// - "cut, copy and paste - the 3 pillars of modern civilization"
+// a subtitleeditor plugin by Eltomito <tomaspartl@centrum.cz>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
@@ -43,14 +39,10 @@
 
 class ClipboardPlugin : public Action {
  public:
-  /*
-   */
   bool is_configurable() {
     return false;
   }
 
-  /*
-   */
   ClipboardPlugin() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -68,8 +60,6 @@ class ClipboardPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -177,8 +167,6 @@ class ClipboardPlugin : public Action {
     on_document_changed(docsys.getCurrentDocument());
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -196,8 +184,6 @@ class ClipboardPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -206,8 +192,6 @@ class ClipboardPlugin : public Action {
   }
 
  protected:
-  /*
-   */
   void update_copy_and_cut_visibility() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -222,8 +206,6 @@ class ClipboardPlugin : public Action {
         ->set_sensitive(visible);
   }
 
-  /*
-   */
   void update_paste_visibility() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -244,14 +226,10 @@ class ClipboardPlugin : public Action {
         ->set_sensitive(paste_visible);
   }
 
-  /*
-   */
   void on_player_message(Player::Message) {
     update_paste_visibility();
   }
 
-  /*
-   */
   void on_selection_changed() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -259,8 +237,6 @@ class ClipboardPlugin : public Action {
     update_copy_and_cut_visibility();
   }
 
-  /*
-   */
   void on_document_changed(Document *doc) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -278,16 +254,12 @@ class ClipboardPlugin : public Action {
     }
   }
 
-  /*
-   */
   void on_clipboard_owner_change(GdkEventOwnerChange *) {
     se_debug(SE_DEBUG_PLUGINS);
 
     update_paste_targets();
   }
 
-  /*
-   */
   void update_paste_targets() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -298,10 +270,8 @@ class ClipboardPlugin : public Action {
         sigc::mem_fun(*this, &ClipboardPlugin::on_clipboard_received_targets));
   }
 
-  /*
-   * Inspect targets available on the system clipboard
-   * and decide which one, if any, is most useful to us.
-   */
+  // Inspect targets available on the system clipboard
+  // and decide which one, if any, is most useful to us.
   void on_clipboard_received_targets(
       const Glib::StringArrayHandle &targets_array) {
     se_debug(SE_DEBUG_PLUGINS);
@@ -328,10 +298,8 @@ class ClipboardPlugin : public Action {
                      chosen_clipboard_target.c_str());
   }
 
-  /*
-   * Somebody is asking for data we've copied to the clipboard. Let's give it to
-   * them.
-   */
+  // Somebody is asking for data we've copied to the clipboard. Let's give it to
+  // them.
   void on_clipboard_get(Gtk::SelectionData &selection_data, guint /*info*/) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -381,20 +349,16 @@ class ClipboardPlugin : public Action {
     }
   }
 
-  /*
-   */
   void on_clipboard_clear() {
     se_debug(SE_DEBUG_PLUGINS);
 
     clear_clipdoc();
   }
 
-  /*
-   * Tell gtk the system clipboard is mine now.
-   * This must be called before actually storing the data,
-   * because the documentation says Clipboard->set() may trigger a request to
-   * clear the clipboard.
-   */
+  // Tell gtk the system clipboard is mine now.
+  // This must be called before actually storing the data,
+  // because the documentation says Clipboard->set() may trigger a request to
+  // clear the clipboard.
   void grab_system_clipboard() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -406,15 +370,11 @@ class ClipboardPlugin : public Action {
         sigc::mem_fun(*this, &ClipboardPlugin::on_clipboard_clear));
   }
 
-  /*
-   * Was the data that's on the clipboard pasted by this instance of me?
-   */
+  // Was the data that's on the clipboard pasted by this instance of me?
   bool is_clipboard_mine() {
     return (chosen_clipboard_target == target_instance);
   }
 
-  /*
-   */
   void request_clipboard_data() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -425,59 +385,57 @@ class ClipboardPlugin : public Action {
         sigc::mem_fun(*this, &ClipboardPlugin::on_clipboard_received));
   }
 
-  /*
-   * FIXME kitone-tomas: could you explain what going on this function ?
-   * Specialy the last code, why we paste on the current document ?
-   *
-   * FIXME tomas-kitone:
-   * 1) First, we try to recognize and import the data on the clipboard as a
-   *valid subtitle format. If it's the default target, we need to do it because
-   *we don't know what format the subtitles are in. If it's the text target, we
-   *do it in case somebody tried to paste e.g. subrip subtitles from a text
-   *editor. (This is really useful, BTW. I am subtitling MTV Storytellers now
-   *and they've sent me English subtitles as BTC inside a .doc. So since I have
-   *this cool clipboard, all I need to do is copy from libreoffice and paste to
-   *subtitleeditor :) 2) Originally, it pasted into the current document,
-   *    because the only case this would be wrong is if the user managed to
-   *switch documents or close the current document between the time we ask Gtk
-   *for clipboard data and the time we receive it. This might actually happen,
-   *if the clipboard owner is very slow to provide paste data, so I now keep the
-   *document which is current at the time the user selects paste in the pastedoc
-   *variable and watch for the document being deleted using
-   *connection_pastedoc_deleted.
-   */
+  // FIXME kitone-tomas: could you explain what going on this function ?
+  // Specialy the last code, why we paste on the current document ?
+  // FIXME tomas-kitone:
+  // 1) First, we try to recognize and import the data on the clipboard as a
+  // valid subtitle format. If it's the default target, we need to do it because
+  // we don't know what format the subtitles are in. If it's the text target, we
+  // do it in case somebody tried to paste e.g. subrip subtitles from a text
+  // editor. (This is really useful, BTW. I am subtitling MTV Storytellers now
+  // and they've sent me English subtitles as BTC inside a .doc. So since I have
+  // this cool clipboard, all I need to do is copy from libreoffice and paste to
+  // subtitleeditor :) 2) Originally, it pasted into the current document,
+  // because the only case this would be wrong is if the user managed to
+  // switch documents or close the current document between the time we ask Gtk
+  // for clipboard data and the time we receive it. This might actually happen,
+  // if the clipboard owner is very slow to provide paste data, so I now keep
+  // the document which is current at the time the user selects paste in the
+  // pastedoc variable and watch for the document being deleted using
+  // connection_pastedoc_deleted.
   void on_clipboard_received(const Gtk::SelectionData &selection_data) {
     se_debug(SE_DEBUG_PLUGINS);
 
     Document *doc = pastedoc;
-    if (!doc)
-      return;  // the document the user wanted to paste into was deleted before
-               // we received clipboard data.
+    if (!doc) {
+      // the document the user wanted to paste into was deleted before
+      // we received clipboard data.
+      return;
+    }
 
     clear_pastedoc();
     clear_clipdoc(doc);
 
-    // official examples say: info is meant to indicate the target, but it seems
-    // to be always 0, so we use the selection_data's target instead.
+    // official examples say: info is meant to indicate the target, but it
+    // seems to be always 0, so we use the selection_data's target instead.
     const Glib::ustring target = selection_data.get_target();
 
     // this is where we hold the received clipboard data
     Glib::ustring received_string;
 
-    if ((target == target_default) || (target == target_text))
     // try to recognize the clipboard data as a subtitle format
-    {
+    if ((target == target_default) || (target == target_text)) {
       received_string = selection_data.get_data_as_string();
       try {
         se_debug_message(SE_DEBUG_PLUGINS,
                          "Try to automatically recognize its format");
-        // open file, automatically recognize its format and read it into
-        // clipdoc
+        // open file, automatically recognize its format
+        // and read it into clipdoc
         SubtitleFormatSystem::instance().open_from_data(clipdoc,
                                                         received_string);
-      } catch (...)  // const UnrecognizeFormatError &ex)
-      // import the data as plain text, if the target we are receiving is text.
-      {
+      } catch (...) {  // const UnrecognizeFormatError &ex)
+        // import the data as plain text,
+        // if the target we are receiving is text.
         if (target == target_text) {
           se_debug_message(
               SE_DEBUG_PLUGINS,
@@ -487,22 +445,21 @@ class ClipboardPlugin : public Action {
               clipdoc, received_string, "Plain Text Format");
           // FIXME tomas: Now, we should invoke Minimize Duration and Stack
           // Subtitles on the entire clipdoc
-        } else  // target == target_text
-        {
+        } else {  // target == target_text
           se_debug_message(
               SE_DEBUG_PLUGINS,
               "Failed to recognize the default target as a subtitle format!");
           return;
         }
       }
-    } else  //( target == target_default )||( target == target_text )
-    {
+    } else {  //( target == target_default )||( target == target_text )
       se_debug_message(
           SE_DEBUG_PLUGINS,
           "Somebody is sending us data as this strange target: '%s'.",
           target.c_str());
       g_warning(
-          "Subtitleeditor ClipboardPlugin::on_clipboard_received(): Unexpected "
+          "Subtitleeditor ClipboardPlugin::on_clipboard_received(): "
+          "Unexpected "
           "clipboard target format.");
       return;
     }
@@ -514,11 +471,9 @@ class ClipboardPlugin : public Action {
     doc->finish_command();
   }
 
-  /*
-   * Clear clipboard document by first destroying it
-   * and optionally recreating it as en empty copy of the supplied document.
-   * If you don't want a new clipdoc created, supply doc = NULL.
-   */
+  // Clear clipboard document by first destroying it
+  // and optionally recreating it as en empty copy of the supplied document.
+  // If you don't want a new clipdoc created, supply doc = NULL.
   bool clear_clipdoc(Document *doc = NULL) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -538,15 +493,11 @@ class ClipboardPlugin : public Action {
     return true;
   }
 
-  /*
-   */
   enum CopyFlags {
     COPY_IS_CUT = 0x01,      // this copy is actually a cut
     COPY_WITH_TIMING = 0x02  // text target provides timed subtitles
   };
 
-  /*
-   */
   bool copy_to_clipdoc(Document *doc, unsigned long flags = 0) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -583,8 +534,6 @@ class ClipboardPlugin : public Action {
     return true;
   }
 
-  /*
-   */
   void on_copy() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -594,8 +543,6 @@ class ClipboardPlugin : public Action {
     copy_to_clipdoc(doc, 0);
   }
 
-  /*
-   */
   void on_copy_with_timing() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -605,8 +552,6 @@ class ClipboardPlugin : public Action {
     copy_to_clipdoc(doc, COPY_WITH_TIMING);
   }
 
-  /*
-   */
   void on_cut() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -621,10 +566,8 @@ class ClipboardPlugin : public Action {
     doc->finish_command();
   }
 
-  /*
-   * FIXME tomas-kitone: I kept the flags for the new Paste At Player Position
-   * and Paste As New Document commands.
-   */
+  // FIXME tomas-kitone: I kept the flags for the new Paste At Player Position
+  // and Paste As New Document commands.
   void paste(Document *doc, unsigned long flags = 0) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -655,10 +598,9 @@ class ClipboardPlugin : public Action {
     subtitles.select(new_subtitles);
 
     // show the pasted subtitles
-    /*	FIXME tomas-kitone: this is a clumsy implementation.
-     *	I think we should add a show_subtitle( Subtitle &sub ) function to class
-     *SubtitleView or at least get_iter() or get_path() to class Subtitle
-     */
+    // FIXME tomas-kitone: this is a clumsy implementation.
+    // I think we should add a show_subtitle( Subtitle &sub ) function to class
+    // SubtitleView or at least get_iter() or get_path() to class Subtitle
     SubtitleView *view = (SubtitleView *)doc->widget();
     if (view != NULL) {
       int sub_num = new_subtitles[0].get_num() - 1;
@@ -671,8 +613,6 @@ class ClipboardPlugin : public Action {
     doc->flash_message(_("%i subtitle(s) pasted."), new_subtitles.size());
   }
 
-  /*
-   */
   bool is_something_to_paste() {
     if (clipdoc == NULL) {
       se_debug_message(
@@ -688,11 +628,9 @@ class ClipboardPlugin : public Action {
     return true;
   }
 
-  /*
-   * The pasted subtitles will be added after the returned subtitle.
-   * The returned subtitle can be invalid, if the document is empty or if there
-   * are no subtitle selected
-   */
+  // The pasted subtitles will be added after the returned subtitle.
+  // The returned subtitle can be invalid, if the document is empty or if there
+  // are no subtitle selected
   Subtitle where_to_paste(Subtitles &subtitles) {
     Subtitle paste_after;
 
@@ -704,8 +642,6 @@ class ClipboardPlugin : public Action {
       return selection[0];
   }
 
-  /*
-   */
   void create_and_insert_paste_subtitles(Subtitles &subtitles,
                                          Subtitle &paste_after,
                                          std::vector<Subtitle> &new_subtitles) {
@@ -728,8 +664,6 @@ class ClipboardPlugin : public Action {
     }
   }
 
-  /*
-   */
   void calculate_and_apply_timeshift(Subtitles &subtitles,
                                      Subtitle &paste_after,
                                      std::vector<Subtitle> &new_subtitles,
@@ -751,8 +685,7 @@ class ClipboardPlugin : public Action {
             get_config().get_value_int("timing", "min-gap-between-subtitles");
 
         timeshift = paste_after.get_end() + gap - new_subtitles[0].get_start();
-      } else  // selection_size > 1
-      {
+      } else {  // selection_size > 1
         // We will replace the selected subtitles
         // so we need to start at the same time of the first selected subtitle
         timeshift = paste_after.get_start() - new_subtitles[0].get_start();
@@ -761,8 +694,7 @@ class ClipboardPlugin : public Action {
       SubtitleTime player_pos =
           get_subtitleeditor_window()->get_player()->get_position();
       timeshift = player_pos - new_subtitles[0].get_start();
-    } else  // no time shift
-    {
+    } else {  // no time shift
       return;
     }
 
@@ -775,36 +707,26 @@ class ClipboardPlugin : public Action {
     }
   }
 
-  /*
-   * ================= PASTE COMMANDS =====================
-   */
+  // ================= PASTE COMMANDS =====================
 
-  /*
-   */
   void on_paste() {
     se_debug(SE_DEBUG_PLUGINS);
 
     paste_common(PASTE_TIMING_AFTER);
   }
 
-  /*
-   */
   void on_paste_at_player_position() {
     se_debug(SE_DEBUG_PLUGINS);
 
     paste_common(PASTE_TIMING_PLAYER);
   }
 
-  /*
-   */
   void on_paste_as_new_document() {
     se_debug(SE_DEBUG_PLUGINS);
 
     paste_common(PASTE_AS_NEW_DOCUMENT);
   }
 
-  /*
-   */
   void paste_common(unsigned long flags) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -836,8 +758,6 @@ class ClipboardPlugin : public Action {
     }
   }
 
-  /*
-   */
   void set_pastedoc(Document *doc) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -853,8 +773,6 @@ class ClipboardPlugin : public Action {
             sigc::mem_fun(*this, &ClipboardPlugin::on_pastedoc_deleted));
   }
 
-  /*
-   */
   void on_pastedoc_deleted(Document *doc) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -862,8 +780,6 @@ class ClipboardPlugin : public Action {
       clear_pastedoc();
   }
 
-  /*
-   */
   void clear_pastedoc() {
     se_debug(SE_DEBUG_PLUGINS);
 

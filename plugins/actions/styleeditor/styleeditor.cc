@@ -1,32 +1,30 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "styleeditor.h"
 #include <color.h>
 #include <documentsystem.h>
 #include <extension/action.h>
 #include <gtkmm_utility.h>
 #include <utility.h>
 #include <memory>
+#include "styleeditor.h"
 
 class ColumnNameRecorder : public Gtk::TreeModel::ColumnRecord {
  public:
@@ -36,9 +34,6 @@ class ColumnNameRecorder : public Gtk::TreeModel::ColumnRecord {
   Gtk::TreeModelColumn<Glib::ustring> name;
 };
 
-/*
- *
- */
 DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject,
                                      const Glib::RefPtr<Gtk::Builder> &builder)
     : Gtk::Dialog(cobject) {
@@ -143,34 +138,23 @@ DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject,
 
     m_treeview->get_selection()->signal_changed().connect(sigc::mem_fun(
         *this, &DialogStyleEditor::callback_style_selection_changed));
-    /*
-                    // add styles
-                    m_current_document =
-       DocumentSystem::getInstance().getCurrentDocument();
+    // add styles
+    m_current_document = DocumentSystem::getInstance().getCurrentDocument();
 
-                    for(Style style = m_current_document->styles().first();
-       style; ++style)
-                    {
-                            Gtk::TreeIter iter = m_liststore->append();
+    for (Style style = m_current_document->styles().first(); style; ++style) {
+      Gtk::TreeIter iter = m_liststore->append();
 
-                            (*iter)[column_name.name] = style.get("name");
-                    }
+      (*iter)[column_name.name] = style.get("name");
+    }
 
-                    if(m_liststore->children().empty())
-                    {
-                            m_widgets["vbox-style"]->set_sensitive(false);
-                    }
-                    else
-                    {
-                            m_treeview->get_selection()->select(m_liststore->children().begin());
-                    }
-    */
+    if (m_liststore->children().empty()) {
+      m_widgets["vbox-style"]->set_sensitive(false);
+    } else {
+      m_treeview->get_selection()->select(m_liststore->children().begin());
+    }
   }
 }
 
-/*
- *
- */
 void DialogStyleEditor::on_style_name_edited(const Glib::ustring &path,
                                              const Glib::ustring &text) {
   unsigned int num = utility::string_to_int(path);
@@ -186,9 +170,6 @@ void DialogStyleEditor::on_style_name_edited(const Glib::ustring &path,
   }
 }
 
-/*
- *
- */
 void DialogStyleEditor::callback_button_clicked(Gtk::Button *,
                                                 const Glib::ustring &action) {
   if (action == "new-style") {
@@ -222,9 +203,6 @@ void DialogStyleEditor::callback_button_clicked(Gtk::Button *,
   }
 }
 
-/*
- *
- */
 void DialogStyleEditor::callback_font_button_changed(Gtk::FontButton *w,
                                                      const Glib::ustring &) {
   if (!m_current_style)
@@ -239,9 +217,6 @@ void DialogStyleEditor::callback_font_button_changed(Gtk::FontButton *w,
   m_current_style.set("font-size", font_size);
 }
 
-/*
- *
- */
 void DialogStyleEditor::callback_button_toggled(Gtk::ToggleButton *w,
                                                 const Glib::ustring &key) {
   if (!m_current_style)
@@ -250,9 +225,6 @@ void DialogStyleEditor::callback_button_toggled(Gtk::ToggleButton *w,
   m_current_style.set(key, to_string(w->get_active()));
 }
 
-/*
- *
- */
 void DialogStyleEditor::callback_spin_value_changed(Gtk::SpinButton *w,
                                                     const Glib::ustring &key) {
   if (!m_current_style)
@@ -261,9 +233,6 @@ void DialogStyleEditor::callback_spin_value_changed(Gtk::SpinButton *w,
   m_current_style.set(key, to_string(w->get_value()));
 }
 
-/*
- *
- */
 void DialogStyleEditor::callback_radio_toggled(Gtk::RadioButton *w,
                                                const Glib::ustring &key) {
   if (!m_current_style)
@@ -276,9 +245,6 @@ void DialogStyleEditor::callback_radio_toggled(Gtk::RadioButton *w,
       m_current_style.set("border-style", "3");
   }
 }
-/*
- *
- */
 void DialogStyleEditor::callback_color_button(Gtk::ColorButton *w,
                                               const Glib::ustring &key) {
   if (!m_current_style)
@@ -290,9 +256,6 @@ void DialogStyleEditor::callback_color_button(Gtk::ColorButton *w,
   m_current_style.set(key, color.to_string());
 }
 
-/*
- *
- */
 void DialogStyleEditor::callback_style_selection_changed() {
   Gtk::TreeIter iter = m_treeview->get_selection()->get_selected();
   if (iter) {
@@ -302,13 +265,12 @@ void DialogStyleEditor::callback_style_selection_changed() {
     Style style = m_current_document->styles().get(num);
 
     init_style(style);
-  } else  // null
+  } else {
+    // null
     init_style(Style());
+  }
 }
 
-/*
- *
- */
 void DialogStyleEditor::callback_alignment_changed(Gtk::RadioButton *w,
                                                    unsigned int num) {
   if (!m_current_style)
@@ -318,9 +280,6 @@ void DialogStyleEditor::callback_alignment_changed(Gtk::RadioButton *w,
     m_current_style.set("alignment", to_string(num));
 }
 
-/*
- *
- */
 void DialogStyleEditor::init_style(const Style &style) {
   std::cout << "init_style: " << ((style) ? style.get("name") : "null")
             << std::endl;
@@ -393,9 +352,6 @@ void DialogStyleEditor::init_style(const Style &style) {
   }
 }
 
-/*
- *
- */
 void DialogStyleEditor::execute(Document *doc) {
   g_return_if_fail(doc);
 
@@ -423,9 +379,7 @@ void DialogStyleEditor::execute(Document *doc) {
   run();
 }
 
-/*
- *	Register Plugin
- */
+// Register Plugin
 class StyleEditorPlugin : public Action {
  public:
   StyleEditorPlugin() {
@@ -437,9 +391,6 @@ class StyleEditorPlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -462,9 +413,6 @@ class StyleEditorPlugin : public Action {
                "style-editor");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -474,9 +422,6 @@ class StyleEditorPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -486,9 +431,6 @@ class StyleEditorPlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_execute() {
     se_debug(SE_DEBUG_PLUGINS);
 

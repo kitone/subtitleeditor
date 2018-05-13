@@ -1,36 +1,30 @@
-#ifndef _ErrorCheckingPreferences_h
-#define _ErrorCheckingPreferences_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gtkmm_utility.h>
 #include <widget_config_utility.h>
 #include <memory>
 #include "errorchecking.h"
 
-/*
- *
- */
 class DialogErrorCheckingPreferences : public Gtk::Dialog {
   class Column : public Gtk::TreeModel::ColumnRecord {
    public:
@@ -69,9 +63,6 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
     create_treeview();
   }
 
-  /*
-   *
-   */
   static void create(Gtk::Window& parent, std::vector<ErrorChecking*>& list) {
     std::unique_ptr<DialogErrorCheckingPreferences> dialog(
         gtkmm_utility::get_widget_derived<DialogErrorCheckingPreferences>(
@@ -83,9 +74,6 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
     dialog->init_treeview(list);
     dialog->run();
   }
-  /*
-   *
-   */
   void get_and_init_widget(const Glib::RefPtr<Gtk::Builder>& builder,
                            const Glib::ustring& widget_name,
                            const Glib::ustring& config_group,
@@ -97,9 +85,6 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
     widget_config::read_config_and_connect(widget, config_group, config_key);
   }
 
-  /*
-   *
-   */
   void create_treeview() {
     // create the model
     m_model = Gtk::ListStore::create(m_column);
@@ -136,9 +121,6 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
     m_treeviewPlugins->show_all();
   }
 
-  /*
-   *
-   */
   void init_treeview(std::vector<ErrorChecking*>& list) {
     std::vector<ErrorChecking*>::iterator checker;
 
@@ -153,9 +135,6 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
     }
   }
 
-  /*
-   *
-   */
   void on_enabled_toggled(const Glib::ustring& path) {
     Gtk::TreeIter it = m_model->get_iter(path);
     if (it) {
@@ -168,13 +147,8 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
     }
   }
 
-  /*
-   *
-   */
  protected:
   Gtk::TreeView* m_treeviewPlugins;
   Glib::RefPtr<Gtk::ListStore> m_model;
   Column m_column;
 };
-
-#endif  //_ErrorCheckingPreferences_h

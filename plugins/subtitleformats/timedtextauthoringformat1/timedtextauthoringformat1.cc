@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <error.h>
 #include <extension/subtitleformat.h>
@@ -27,9 +25,6 @@
 
 class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
  public:
-  /*
-   *
-   */
   void open(Reader &file) {
     try {
       xmlpp::DomParser parser;
@@ -64,9 +59,6 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   void save(Writer &file) {
     try {
       xmlpp::Document doc;
@@ -92,9 +84,6 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   void read_subtitle(const xmlpp::Element *p) {
     if (p == NULL || p->get_name() != "p")
       return;
@@ -115,8 +104,7 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
       Glib::ustring end = att_end->get_value();
 
       subtitle.set_end(time_to_se(end));
-    } else  // dur only if end failed
-    {
+    } else {  // dur only if end failed
       const xmlpp::Attribute *att_dur = p->get_attribute("dur");
       if (att_dur) {
         Glib::ustring dur = att_dur->get_value();
@@ -144,9 +132,6 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   void write_subtitle(xmlpp::Element *root, const Subtitle &sub) {
     Glib::ustring text = sub.get_text();
 
@@ -160,17 +145,13 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
     p->set_child_text(text);
   }
 
-  /*
-   * Convert SE time to TT time.
-   */
+  // Convert SE time to TT time.
   Glib::ustring time_to_ttaf1(const SubtitleTime &time) {
     return build_message("%.2i:%.2i:%.2i.%.3i", time.hours(), time.minutes(),
                          time.seconds(), time.mseconds());
   }
 
-  /*
-   * Convert TT time to SE time.
-   */
+  // Convert TT time to SE time.
   SubtitleTime time_to_se(const Glib::ustring &value) {
     if (SubtitleTime::validate(value))
       return SubtitleTime(value);
@@ -181,9 +162,6 @@ class TimedTextAuthoringFormat1 : public SubtitleFormatIO {
 
 class TimedTextAuthoringFormat1Plugin : public SubtitleFormat {
  public:
-  /*
-   *
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "Timed Text Authoring Format 1.0";
@@ -193,9 +171,6 @@ class TimedTextAuthoringFormat1Plugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   *
-   */
   SubtitleFormatIO *create() {
     TimedTextAuthoringFormat1 *sf = new TimedTextAuthoringFormat1();
     return sf;

@@ -1,40 +1,35 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <glibmm/ustring.h>
 #include <map>
 
-/*
- *
- */
 void get_default_config(
     std::map<Glib::ustring, std::map<Glib::ustring, Glib::ustring> > &config) {
-  //[general]
+  // [general]
 
-  //[document]
+  // [document]
   config["document"]["format"] = "SubRip";
   config["document"]["newline"] = "Unix";
 
-  //[video-player]
+  // [video-player]
   config["video-player"]["display-translated-subtitle"] = "false";
   config["video-player"]["shaded-background"] = "true";
   config["video-player"]["font-desc"] = "Sans 26";
@@ -55,7 +50,7 @@ void get_default_config(
   config["video-player"]["display"] = "false";
   config["video-player"]["automatically-open-video"] = "true";
 
-  //[waveform]
+  // [waveform]
   config["waveform"]["zoom"] = "1";
   config["waveform"]["scale"] = "1";
   config["waveform"]["display-background"] = "false";
@@ -66,7 +61,7 @@ void get_default_config(
   config["waveform"]["display"] = "false";
   config["waveform"]["renderer"] = "cairo";
 
-  //[waveform-renderer]
+  // [waveform-renderer]
   config["waveform-renderer"]["display-subtitle-text"] = "true";
   config["waveform-renderer"]["color-background"] = "#4C4C4CFF";
   config["waveform-renderer"]["color-wave"] = "#99CC4CFF";
@@ -77,7 +72,7 @@ void get_default_config(
   config["waveform-renderer"]["color-text"] = "#FFFFFFFF";
   config["waveform-renderer"]["color-player-position"] = "#FFFFFFFF";
 
-  //[interface]
+  // [interface]
   config["interface"]["use-dynamic-keyboard-shortcuts"] = "true";
   config["interface"]["maximize-window"] = "false";
   config["interface"]["used-autosave"] = "false";
@@ -86,12 +81,12 @@ void get_default_config(
   config["interface"]["autosave-minutes"] = "10";
   config["interface"]["max-undo"] = "20";
 
-  //[encodings]
+  // [encodings]
   config["encodings"]["encodings"] = "ISO-8859-15;UTF-8";
   config["encodings"]["used-auto-detected"] = "true";
   config["encodings"]["default"] = "UTF-8";
 
-  //[subtitle-view]
+  // [subtitle-view]
   config["subtitle-view"]["property-alignment-center"] = "false";
   config["subtitle-view"]["show-character-per-line"] = "true";
   config["subtitle-view"]["enable-rubberband-selection"] = "false";
@@ -103,7 +98,7 @@ void get_default_config(
   config["subtitle-view"]["used-ctrl-enter-to-confirm-change"] = "false";
   config["subtitle-view"]["do-not-disable-actions-during-editing"] = "false";
 
-  //[timing]
+  // [timing]
   config["timing"]["min-characters-per-second"] = "5";
   config["timing"]["max-characters-per-second"] = "25";
   config["timing"]["min-gap-between-subtitles"] = "100";
@@ -113,12 +108,12 @@ void get_default_config(
   config["timing"]["ignore-space"] = "false";
   config["timing"]["do-auto-timing-check"] = "true";
 
-  //[external-video-player]
+  // [external-video-player]
   config["external-video-player"]["command"] =
       "mplayer \"#video_file\" -noautosub -sub \"#subtitle_file\" -ss #seconds "
       "-osdlevel 2";
 
-  //[dialog-check-errors]
+  // [dialog-check-errors]
   config["dialog-check-errors"]["check-overlapping"] = "true";
   config["dialog-check-errors"]["check-too-short-display-time"] = "true";
   config["dialog-check-errors"]["check-too-long-display-time"] = "true";
@@ -126,7 +121,7 @@ void get_default_config(
   config["dialog-check-errors"]["check-gap-between-subtitles"] = "true";
   config["dialog-check-errors"]["check-max-line-per-subtitle"] = "true";
 
-  //[check-error-plugins]
+  // [check-error-plugins]
   config["check-error-plugins"]["overlapping-color"] = "#FF0000FF";
   config["check-error-plugins"]["too-short-display-time-color"] = "#B6D2FFFF";
   config["check-error-plugins"]["too-long-display-time-color"] = "#0414FFFF";

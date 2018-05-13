@@ -1,25 +1,23 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2011, kitone
- *	Copyright @ 2011, advance38
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+// Copyright @ 2011, advance38 (author)
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <error.h>
 #include <extension/subtitleformat.h>
@@ -32,8 +30,8 @@ const static char SYNCTAG[] = "<Sync";
 const static char BRTAG[] = "<br>";
 const static char CRCHAR = '\r';
 const static char LFCHAR = '\n';
-const static unsigned long SAMISYNC_MAXVAL =
-    43200000UL;  // 12 hours * 60 minutes * 60 seconds * 1000
+// 12 hours * 60 minutes * 60 seconds * 1000
+const static unsigned long SAMISYNC_MAXVAL = 43200000UL;
 
 enum sami_state_t {
   SAMI_STATE_INIT = 0,
@@ -44,31 +42,24 @@ enum sami_state_t {
   SAMI_STATE_FORCE_QUIT = 99
 };
 
-/*
- * format of sami (.smi) subtitles:
- *
- * <SAMI>
- * <BODY>
- * <SYNC Start=starttime>text
- * <SYNC Start=endtime>&nbsp;
- * (empty line)
- */
+// format of sami (.smi) subtitles:
+// <SAMI>
+// <BODY>
+// <SYNC Start=starttime>text
+// <SYNC Start=endtime>&nbsp;
+// (empty line)
 class Sami : public SubtitleFormatIO {
  public:
-  /*
-   * open()
-   *  : reads sami subtitle data from the handler 'file', parse each line,
-   *    and store it to the internal data structure 'subtitles'.
-   */
+  // open()
+  //  : reads sami subtitle data from the handler 'file', parse each line,
+  //    and store it to the internal data structure 'subtitles'.
   void open(Reader &file) {
     read_subtitle(file);
   }
 
-  /*
-   * save()
-   *  : store each line from the internal data structure, in according to the
-   * SAMI format.
-   */
+  // save()
+  //  : store each line from the internal data structure, in according to the
+  // SAMI format.
   void save(Writer &file) {
     Subtitle sub_first = document()->subtitles().get_first();
     Glib::ustring sub_name = sub_first.get_name();
@@ -109,10 +100,8 @@ class Sami : public SubtitleFormatIO {
     file.write(sami_tail);
   }
 
-  /*
-   * trail_space()
-   *  : trim the trailing white space characters in s.
-   */
+  // trail_space()
+  //  : trim the trailing white space characters in s.
   void trail_space(char *s) {
     while (isspace(*s)) {
       char *copy = s;
@@ -125,10 +114,8 @@ class Sami : public SubtitleFormatIO {
     while (i > 0 && isspace(s[i])) s[i--] = '\0';
   }
 
-  /*
-   * time_to_sami
-   *  :
-   */
+  // time_to_sami
+  //  :
   Glib::ustring time_to_sami(const SubtitleTime &t) {
     unsigned int total_sec =
         (t.hours() * 3600) + (t.minutes() * 60) + t.seconds();
@@ -136,10 +123,8 @@ class Sami : public SubtitleFormatIO {
     return build_message("%i%03i", total_sec, t.mseconds());
   }
 
-  /*
-   * read_subtitle
-   *  : read each line of subtitle
-   */
+  // read_subtitle
+  //  : read each line of subtitle
   void read_subtitle(Reader &file) {
     Subtitles subtitles = document()->subtitles();
 
@@ -189,29 +174,29 @@ class Sami : public SubtitleFormatIO {
           break;
 
         case SAMI_STATE_P_CLOSE:  // get all text until '<' appears
-          if (*inptr == '\0')
+          if (*inptr == '\0') {
             break;
-          else if (strncasecmp(inptr, "&nbsp;", 6) == 0) {
+          } else if (strncasecmp(inptr, "&nbsp;", 6) == 0) {
             *p++ = ' ';
             inptr += 6;
           } else if (strncasecmp(inptr, "nbsp;", 5) == 0) {
             *p++ = ' ';
             inptr += 5;
-          } else if (*inptr == CRCHAR)
+          } else if (*inptr == CRCHAR) {
             inptr++;
-          else if (strncasecmp(inptr, BRTAG, sizeof(BRTAG) - 1) == 0 ||
-                   *inptr == LFCHAR) {
+          } else if (strncasecmp(inptr, BRTAG, sizeof(BRTAG) - 1) == 0 ||
+                     *inptr == LFCHAR) {
             *p++ = LFCHAR;
             trail_space(inptr);
             if (*inptr == LFCHAR)
               inptr++;
             else
               inptr += (sizeof(BRTAG) - 1);
-          } else if (strncasecmp(inptr, SYNCTAG, sizeof(SYNCTAG) - 1) == 0)
+          } else if (strncasecmp(inptr, SYNCTAG, sizeof(SYNCTAG) - 1) == 0) {
             state = SAMI_STATE_SYNC_END;
-          else
+          } else {
             *p++ = *inptr++;
-
+          }
           continue;
 
         case SAMI_STATE_SYNC_END:  // get the line for end sync or skip <TAG>
@@ -241,7 +226,8 @@ class Sami : public SubtitleFormatIO {
             if (file.getline(line)) {
               inptr = (char *)(line.c_str());
               p = tmptext;
-              p = '\0';
+              // FIXME: assigning to 'char *' from incompatible type 'char'
+              // p = '\0';
 
               state = SAMI_STATE_INIT;
               continue;
@@ -282,10 +268,8 @@ class Sami : public SubtitleFormatIO {
     } while (state != SAMI_STATE_FORCE_QUIT);
   }
 
-  /*
-   * write_subtitle
-   *  : write each line of subtitle
-   */
+  // write_subtitle
+  //  : write each line of subtitle
   void write_subtitle(Writer &file) {
     for (Subtitle sub = document()->subtitles().get_first(); sub; ++sub) {
       Glib::ustring text = sub.get_text();
@@ -307,8 +291,6 @@ class Sami : public SubtitleFormatIO {
 
 class SamiPlugin : public SubtitleFormat {
  public:
-  /*
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "Sami";
@@ -318,8 +300,6 @@ class SamiPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   */
   SubtitleFormatIO *create() {
     Sami *sf = new Sami();
     return sf;

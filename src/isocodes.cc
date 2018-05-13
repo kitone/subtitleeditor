@@ -1,38 +1,33 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "isocodes.h"
 #include <glibmm.h>
 #include <libxml++/libxml++.h>
 #include <iostream>
 #include <map>
 #include "debug.h"
 #include "i18n.h"
+#include "isocodes.h"
 
 namespace isocodes {
 
-/*
- *
- */
 bool iso_codes_load_file(const Glib::ustring &iso_id,
                          const Glib::ustring &id_code,
                          std::map<Glib::ustring, Glib::ustring> &codes) {
@@ -75,9 +70,7 @@ bool iso_codes_load_file(const Glib::ustring &iso_id,
   return false;
 }
 
-/*
- * Variables
- */
+// Variables
 static bool iso_codes_initialised = false;
 static bool init_639 = false;
 static bool init_3166 = false;
@@ -86,9 +79,6 @@ static std::map<Glib::ustring, Glib::ustring> iso_codes_639;
 static std::map<Glib::ustring, Glib::ustring> iso_codes_3166;
 static std::map<Glib::ustring, Glib::ustring> iso_codes_15924;
 
-/*
- *
- */
 void init_isocodes() {
   if (iso_codes_initialised)
     return;
@@ -100,9 +90,6 @@ void init_isocodes() {
   iso_codes_initialised = true;
 }
 
-/*
- *
- */
 Glib::ustring from_isocodes(const Glib::ustring &domain,
                             std::map<Glib::ustring, Glib::ustring> &isocodes,
                             const Glib::ustring &code) {
@@ -113,10 +100,8 @@ Glib::ustring from_isocodes(const Glib::ustring &domain,
   return dgettext(domain.c_str(), it->second.c_str());
 }
 
-/*
- * Convert ISO 639 code to localized language name.
- * ex: "fr" to "French"
- */
+// Convert ISO 639 code to localized language name.
+// ex: "fr" to "French"
 Glib::ustring to_language(const Glib::ustring &code) {
   init_isocodes();
 
@@ -125,10 +110,8 @@ Glib::ustring to_language(const Glib::ustring &code) {
   return code;
 }
 
-/*
- * Convert ISO 3166 code to localized country name.
- * ex: "FR" to "France"
- */
+// Convert ISO 3166 code to localized country name.
+// ex: "FR" to "France"
 Glib::ustring to_country(const Glib::ustring &code) {
   init_isocodes();
 
@@ -137,10 +120,8 @@ Glib::ustring to_country(const Glib::ustring &code) {
   return code;
 }
 
-/*
- * Convert ISO 15924 code to localized country name.
- * ex: "Latn" to "Latin"
- */
+// Convert ISO 15924 code to localized country name.
+// ex: "Latn" to "Latin"
 Glib::ustring to_script(const Glib::ustring &code) {
   init_isocodes();
 
@@ -149,10 +130,8 @@ Glib::ustring to_script(const Glib::ustring &code) {
   return code;
 }
 
-/*
- * Convert from ISO XXX to good localized name:
- * ex: "fr_FR" to "French (France)", "US" to "United States"...
- */
+// Convert from ISO XXX to good localized name:
+// ex: "fr_FR" to "French (France)", "US" to "United States"...
 Glib::ustring to_name(const Glib::ustring &code) {
   if (Glib::Regex::match_simple("^[a-z][a-z]$", code)) {
     return to_language(code);

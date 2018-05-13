@@ -1,87 +1,65 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2010, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "style.h"
 #include <iostream>
 #include "document.h"
+#include "style.h"
 #include "utility.h"
 
-/*
- *	static
- */
+// static
 StyleColumnRecorder Style::column;
 
-/*
- */
 Style::Style() : m_document(NULL) {
 }
 
-/*
- */
 Style::Style(Document *doc, const Gtk::TreeIter &iter)
     : m_document(doc), m_iter(iter) {
 }
 
-/*
- */
 Style::~Style() {
 }
 
-/*
- */
 Style::operator bool() const {
   return (m_iter) ? true : false;
 }
 
-/*
- */
 Style &Style::operator++() {
   ++m_iter;
   // m_path =
   return *this;
 }
 
-/*
- */
 Style &Style::operator--() {
   --m_iter;
   // m_path =
   return *this;
 }
 
-/*
- */
 bool Style::operator==(const Style &style) const {
   return m_iter == style.m_iter;
 }
 
-/*
- */
 bool Style::operator!=(const Style &style) const {
   return m_iter != style.m_iter;
 }
 
-/*
- */
 void Style::set(const Glib::ustring &name, const Glib::ustring &value) {
   g_return_if_fail(m_iter);
 
@@ -137,8 +115,6 @@ void Style::set(const Glib::ustring &name, const Glib::ustring &value) {
   m_document->emit_signal("style-changed");
 }
 
-/*
- */
 Glib::ustring Style::get(const Glib::ustring &name) const {
   g_return_val_if_fail(m_iter, "");
 
@@ -194,8 +170,6 @@ Glib::ustring Style::get(const Glib::ustring &name) const {
   return Glib::ustring();
 }
 
-/*
- */
 void Style::copy_to(Style &style) {
   g_return_if_fail(m_iter);
 
@@ -206,8 +180,6 @@ void Style::copy_to(Style &style) {
   style.set(values);
 }
 
-/*
- */
 void Style::set(const std::map<Glib::ustring, Glib::ustring> &values) {
   g_return_if_fail(m_iter);
 
@@ -217,8 +189,6 @@ void Style::set(const std::map<Glib::ustring, Glib::ustring> &values) {
   }
 }
 
-/*
- */
 void Style::get(std::map<Glib::ustring, Glib::ustring> &values) {
 #define set_value(name) values[name] = get(name);
 

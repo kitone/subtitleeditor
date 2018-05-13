@@ -1,33 +1,28 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2012, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
 #include <i18n.h>
 #include "timeutility.h"
 
-/*
- *
- */
 class AdjustTimePlugin : public Action {
  public:
   AdjustTimePlugin() {
@@ -39,9 +34,6 @@ class AdjustTimePlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -200,9 +192,6 @@ class AdjustTimePlugin : public Action {
     ui_id = ui->add_ui_from_string(submenu);
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -212,9 +201,6 @@ class AdjustTimePlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -233,54 +219,36 @@ class AdjustTimePlugin : public Action {
 
   enum UNITS { MSEC, FRAMES };
 
-  /*
-   *
-   */
   void on_add_to_start() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(START, 100);
   }
 
-  /*
-   *
-   */
   void on_add_to_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(END, 100);
   }
 
-  /*
-   *
-   */
   void on_add_to_start_and_to_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(START_AND_END, 100);
   }
 
-  /*
-   *
-   */
   void on_remove_from_start() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(START, -100);
   }
 
-  /*
-   *
-   */
   void on_remove_from_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(END, -100);
   }
 
-  /*
-   *
-   */
   void on_remove_from_start_and_from_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -289,63 +257,42 @@ class AdjustTimePlugin : public Action {
 
   // --- FRAME VERSIONS ---
 
-  /*
-   *
-   */
   void on_add_frame_to_start() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(START, 1, FRAMES);
   }
 
-  /*
-   *
-   */
   void on_add_frame_to_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(END, 1, FRAMES);
   }
 
-  /*
-   *
-   */
   void on_add_frame_to_start_and_to_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(START_AND_END, 1, FRAMES);
   }
 
-  /*
-   *
-   */
   void on_remove_frame_from_start() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(START, -1, FRAMES);
   }
 
-  /*
-   *
-   */
   void on_remove_frame_from_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(END, -1, FRAMES);
   }
 
-  /*
-   *
-   */
   void on_remove_frame_from_start_and_from_duration() {
     se_debug(SE_DEBUG_PLUGINS);
 
     adjust(START_AND_END, -100);
   }
 
-  /*
-   *
-   */
   bool adjust(TYPE type, const long &time_msecs = 100, UNITS units = MSEC) {
     long timeshift = time_msecs;
 

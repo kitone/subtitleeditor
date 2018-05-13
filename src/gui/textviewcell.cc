@@ -1,34 +1,31 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-#include "textviewcell.h"
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
+
 #include <cfg.h>
 #include <debug.h>
 #include "automaticspellchecker.h"
+#include "textviewcell.h"
 
-/*
- * Constructor
- * Initialize the widget with the AutomaticSpellChecker.
- */
+// Constructor
+// Initialize the widget with the AutomaticSpellChecker.
 TextViewCell::TextViewCell()
     : Glib::ObjectBase(typeid(TextViewCell)),
       Gtk::CellEditable(),
@@ -48,24 +45,18 @@ TextViewCell::TextViewCell()
   AutomaticSpellChecker::create_from_textview(this);
 }
 
-/*
- * Destructor
- */
+// Destructor
 TextViewCell::~TextViewCell() {
   se_debug(SE_DEBUG_VIEW);
 }
 
-/*
- * Define the current text.
- */
+// Define the current text.
 void TextViewCell::set_text(const Glib::ustring& text) {
   se_debug_message(SE_DEBUG_VIEW, "text=<%s>", text.c_str());
   get_buffer()->set_text(text);
 }
 
-/*
- * Return the current text.
- */
+// Return the current text.
 Glib::ustring TextViewCell::get_text() {
   se_debug(SE_DEBUG_VIEW);
 
@@ -77,10 +68,8 @@ Glib::ustring TextViewCell::get_text() {
   return buffer->get_text(start, end);
 }
 
-/*
- * Check if the user cancel the editing with Escape.
- * Check if the user apply the editing with Enter (depend on user prefs).
- */
+// Check if the user cancel the editing with Escape.
+// Check if the user apply the editing with Enter (depend on user prefs).
 bool TextViewCell::on_key_press_event(GdkEventKey* event) {
   se_debug(SE_DEBUG_VIEW);
 
@@ -108,10 +97,8 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event) {
   return Gtk::TextView::on_key_press_event(event);
 }
 
-/*
- * Before removing the widget we call editing_done
- * if there's no canceled signal.
- */
+// Before removing the widget we call editing_done
+// if there's no canceled signal.
 void TextViewCell::on_remove_widget() {
   se_debug(SE_DEBUG_VIEW);
   // We apply the editing if there's not a canceled signal.
@@ -120,9 +107,7 @@ void TextViewCell::on_remove_widget() {
   Gtk::CellEditable::on_remove_widget();
 }
 
-/*
- * bug #23569 : Cursor cannot be moved with mouse when editing subtitles
- */
+// bug #23569 : Cursor cannot be moved with mouse when editing subtitles
 bool TextViewCell::on_button_press_event(GdkEventButton* event) {
   se_debug(SE_DEBUG_VIEW);
 

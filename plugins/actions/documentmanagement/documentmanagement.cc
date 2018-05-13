@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gui/dialogfilechooser.h>
@@ -27,9 +25,6 @@
 #include <utility.h>
 #include <vector>
 
-/*
- *
- */
 class DialogAskToSaveOnExit : public Gtk::MessageDialog {
  public:
   DialogAskToSaveOnExit()
@@ -56,9 +51,6 @@ class DialogAskToSaveOnExit : public Gtk::MessageDialog {
   }
 };
 
-/*
- *
- */
 class DocumentManagementPlugin : public Action {
  public:
   DocumentManagementPlugin() {
@@ -70,8 +62,6 @@ class DocumentManagementPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -225,8 +215,6 @@ class DocumentManagementPlugin : public Action {
 #undef ADD_SAVE_UI
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -239,9 +227,6 @@ class DocumentManagementPlugin : public Action {
     m_autosave_timeout.disconnect();
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -257,9 +242,7 @@ class DocumentManagementPlugin : public Action {
   }
 
  protected:
-  /*
-   * Create a new document with unique name
-   */
+  // Create a new document with unique name
   void on_new() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -275,21 +258,15 @@ class DocumentManagementPlugin : public Action {
     DocumentSystem::getInstance().append(doc);
   }
 
-  /*
-   */
   void on_open() {
     open_filechooser();
   }
 
-  /*
-   */
   void on_open_project() {
     open_filechooser("Subtitle Editor Project");
   }
 
-  /*
-   * Launch a filechooser dialog and open a document
-   */
+  // Launch a filechooser dialog and open a document
   void open_filechooser(const Glib::ustring &filterformat = Glib::ustring()) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -321,8 +298,6 @@ class DocumentManagementPlugin : public Action {
     }
   }
 
-  /*
-   */
   bool open_document(const Glib::ustring &uri, const Glib::ustring &charset) {
     se_debug_message(SE_DEBUG_PLUGINS, "uri=%s charset=%s", uri.c_str(),
                      charset.c_str());
@@ -346,9 +321,7 @@ class DocumentManagementPlugin : public Action {
     return true;
   }
 
-  /*
-   * Save a document. If file doesn't exist use save_as
-   */
+  // Save a document. If file doesn't exist use save_as
   bool save_document(Document *doc) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -376,8 +349,6 @@ class DocumentManagementPlugin : public Action {
     return true;
   }
 
-  /*
-   */
   bool save_as_document(Document *doc,
                         const Glib::ustring &default_format = Glib::ustring()) {
     se_debug(SE_DEBUG_PLUGINS);
@@ -436,9 +407,7 @@ class DocumentManagementPlugin : public Action {
     return true;
   }
 
-  /*
-   * Save a document. If file doesn't exist use on_save_as
-   */
+  // Save a document. If file doesn't exist use on_save_as
   void on_save() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -448,8 +417,6 @@ class DocumentManagementPlugin : public Action {
     save_document(doc);
   }
 
-  /*
-   */
   void on_save_project() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -459,9 +426,7 @@ class DocumentManagementPlugin : public Action {
     save_as_document(doc, "Subtitle Editor Project");
   }
 
-  /*
-   * Save document with new name
-   */
+  // Save document with new name
   void on_save_as() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -471,9 +436,7 @@ class DocumentManagementPlugin : public Action {
     save_as_document(doc);
   }
 
-  /*
-   * Save all open files
-   */
+  // Save all open files
   void on_save_all_documents() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -485,12 +448,10 @@ class DocumentManagementPlugin : public Action {
     }
   }
 
-  /*
-   * Open translation from file.
-   * Create a new document with a translation
-   * and move the text of this new document (trans) to the current document
-   * at the column "translation". After that delete the new document (trans)
-   */
+  // Open translation from file.
+  // Create a new document with a translation
+  // and move the text of this new document (trans) to the current document
+  // at the column "translation". After that delete the new document (trans)
   void on_open_translation() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -550,9 +511,7 @@ class DocumentManagementPlugin : public Action {
     delete doc;
   }
 
-  /*
-   * Save the current translation in a new document
-   */
+  // Save the current translation in a new document
   void on_save_translation() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -601,8 +560,6 @@ class DocumentManagementPlugin : public Action {
                              newline.c_str());
   }
 
-  /*
-   */
   bool on_subtitleeditor_window_delete_event(GdkEventAny * /*ev*/) {
     while (get_current_document() != NULL) {
       if (close_current_document() == false)
@@ -611,8 +568,6 @@ class DocumentManagementPlugin : public Action {
     return false;
   }
 
-  /*
-   */
   bool close_current_document() {
     Document *doc = get_current_document();
     g_return_val_if_fail(doc, false);
@@ -642,19 +597,15 @@ class DocumentManagementPlugin : public Action {
     return true;
   }
 
-  /*
-   * Remove the current document
-   */
+  // Remove the current document
   void on_close() {
     se_debug(SE_DEBUG_PLUGINS);
 
     close_current_document();
   }
 
-  /*
-   * Quit the program
-   * Close all document with support to ask to save if is enable
-   */
+  // Quit the program
+  // Close all document with support to ask to save if is enable
   void on_exit() {
     while (get_current_document() != NULL) {
       if (!close_current_document())
@@ -663,17 +614,13 @@ class DocumentManagementPlugin : public Action {
     Gtk::Main::quit();
   }
 
-  /*
-   * A new document has been create, update the recent manager
-   */
+  // A new document has been create, update the recent manager
   void on_document_create(Document *doc) {
     se_debug(SE_DEBUG_PLUGINS);
 
     add_document_in_recent_manager(doc);
   }
 
-  /*
-   */
   void add_document_in_recent_manager(Document *doc) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -698,9 +645,7 @@ class DocumentManagementPlugin : public Action {
     Gtk::RecentManager::get_default()->add_item(uri, data);
   }
 
-  /*
-   * Open a recent document
-   */
+  // Open a recent document
   void on_recent_item_activated() {
     Glib::RefPtr<Gtk::Action> action =
         action_group->get_action("menu-recent-open-document");
@@ -717,17 +662,13 @@ class DocumentManagementPlugin : public Action {
     }
   }
 
-  /*
-   * Only for "used-autosave" and "autosave-minutes".
-   */
+  // Only for "used-autosave" and "autosave-minutes".
   void on_config_interface_changed(const Glib::ustring &key,
                                    const Glib::ustring & /*value*/) {
     if (key == "used-autosave" || key == "autosave-minutes")
       init_autosave();
   }
 
-  /*
-   */
   void init_autosave() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -750,9 +691,7 @@ class DocumentManagementPlugin : public Action {
                      autosave_minutes);
   }
 
-  /*
-   * Save files every "auto-save-minutes" value.
-   */
+  // Save files every "auto-save-minutes" value.
   bool on_autosave_files() {
     se_debug(SE_DEBUG_PLUGINS);
 

@@ -1,41 +1,33 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
 
-/*
- * format:
- *
- * number
- * start --> end
- * text
- * (empty line)
- */
+// format:
+// number
+// start --> end
+// text
+// (empty line)
 class SubRip : public SubtitleFormatIO {
  public:
-  /*
-   *
-   */
   void open(Reader &file) {
     Glib::RefPtr<Glib::Regex> re_num = Glib::Regex::create("^\\d+$");
 
@@ -51,8 +43,6 @@ class SubRip : public SubtitleFormatIO {
       // Read the subtitle time "start --> end"
       if (re_time->match(line)) {
         std::vector<Glib::ustring> group = re_time->split(line);
-        // if(group.size() == 1)
-        //	continue;
 
         start[0] = utility::string_to_int(group[1]);
         start[1] = utility::string_to_int(group[2]);
@@ -91,9 +81,6 @@ class SubRip : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   void save(Writer &file) {
     unsigned int count = 1;
     for (Subtitle sub = document()->subtitles().get_first(); sub;
@@ -106,9 +93,6 @@ class SubRip : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   Glib::ustring time_to_subrip(const SubtitleTime &t) {
     return build_message("%02i:%02i:%02i,%03i", t.hours(), t.minutes(),
                          t.seconds(), t.mseconds());
@@ -117,9 +101,6 @@ class SubRip : public SubtitleFormatIO {
 
 class SubRipPlugin : public SubtitleFormat {
  public:
-  /*
-   *
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "SubRip";
@@ -136,9 +117,6 @@ class SubRipPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   *
-   */
   SubtitleFormatIO *create() {
     SubRip *sf = new SubRip();
     return sf;

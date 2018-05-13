@@ -1,51 +1,34 @@
-#ifndef _AdobeEncoreDVD_h
-#define _AdobeEncoreDVD_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
- *
- *	Adobe Encore DVD text script support for subtitle editor
- *      PAL/NTSC version.
- *
- *	Adobe Encore DVD text script support by Laurens Keek
- *      Created using following documentation:
- *	http://www.adobe.com/support/techdocs/329569.html
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/subtitleformat.h>
 #include <utility.h>
 
 class AdobeEncoreDVD : public SubtitleFormatIO {
  public:
-  /*
-   *
-   */
   AdobeEncoreDVD(FRAMERATE framerate) : m_framerate(framerate) {
     m_framerate_value = get_framerate_value(m_framerate);
   }
 
-  /*
-   *
-   */
   void open(Reader &file) {
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
         "\\d+\\s(\\d+)[:;](\\d+)[:;](\\d+)[:;](\\d+)\\s(\\d+)[:;](\\d+)[:;]("
@@ -93,9 +76,6 @@ class AdobeEncoreDVD : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   void save(Writer &file) {
     for (Subtitle sub = document()->subtitles().get_first(); sub; ++sub) {
       Glib::ustring text = sub.get_text();
@@ -106,10 +86,8 @@ class AdobeEncoreDVD : public SubtitleFormatIO {
     }
   }
 
-  /*
-   * Convert time from SE to Encore DVD
-   * 0:00:00.000 -> 00[:;]00[:;]00[:;]00 (last 00 are frames, not time!)
-   */
+  // Convert time from SE to Encore DVD
+  // 0:00:00.000 -> 00[:;]00[:;]00[:;]00 (last 00 are frames, not time!)
   Glib::ustring to_encore_dvd_time(const SubtitleTime &t) {
     int frame = (int)(t.mseconds() * m_framerate_value * 0.001);
 
@@ -122,5 +100,3 @@ class AdobeEncoreDVD : public SubtitleFormatIO {
   FRAMERATE m_framerate;
   double m_framerate_value;
 };
-
-#endif  //_AdobeEncoreDVD_h

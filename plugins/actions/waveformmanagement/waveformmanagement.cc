@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm.h>
@@ -27,19 +25,11 @@
 #include <utility.h>
 #include <waveformmanager.h>
 
-/*
- * Declared in waveformgenerator.cc
- */
+// Declared in waveformgenerator.cc
 Glib::RefPtr<Waveform> generate_waveform_from_file(const Glib::ustring& uri);
 
-/*
- *
- */
 class WaveformManagement : public Action {
  public:
-  /*
-   *
-   */
   WaveformManagement() {
     activate();
     update_ui();
@@ -50,9 +40,6 @@ class WaveformManagement : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -60,10 +47,7 @@ class WaveformManagement : public Action {
     action_group = Gtk::ActionGroup::create("WaveformManagement");
 
     // Already create in MenuBar.cc
-    /*
-    action_group->add(
-                    Gtk::Action::create("menu-waveform", _("_Waveform")));
-    */
+    action_group->add(Gtk::Action::create("menu-waveform", _("_Waveform")));
 
     // open & save
     action_group->add(
@@ -247,9 +231,6 @@ class WaveformManagement : public Action {
         sigc::mem_fun(*this, &WaveformManagement::update_ui_from_player));
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -259,9 +240,6 @@ class WaveformManagement : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -288,8 +266,6 @@ class WaveformManagement : public Action {
         ->set_sensitive(has_waveform && has_document);
   }
 
-  /*
-   */
   void on_waveform_changed() {
     Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
     if (wf)
@@ -297,9 +273,7 @@ class WaveformManagement : public Action {
     update_ui();
   }
 
-  /*
-   * Update the ui state from the player state.
-   */
+  // Update the ui state from the player state.
   void update_ui_from_player(Player::Message msg) {
     switch (msg) {
       case Player::STATE_NONE:
@@ -317,19 +291,14 @@ class WaveformManagement : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   WaveformManager* get_waveform_manager() {
     return get_subtitleeditor_window()->get_waveform_manager();
   }
 
-  /*
-   * Launch the Dialog Open Waveform
-   * and try to open the Waveform.
-   * If is not a Waveform file launch the
-   * Waveform generator.
-   */
+  // Launch the Dialog Open Waveform
+  // and try to open the Waveform.
+  // If is not a Waveform file launch the
+  // Waveform generator.
   void on_open_waveform() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -354,9 +323,7 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   * Generate a waveform from the current file in the player.
-   */
+  // Generate a waveform from the current file in the player.
   void on_generate_from_player_file() {
     Glib::ustring uri = get_subtitleeditor_window()->get_player()->get_uri();
     if (uri.empty() == false) {
@@ -369,9 +336,7 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   * Generate an Sine Waveform
-   */
+  // Generate an Sine Waveform
   void on_generate_dummy() {
     Player* player = get_subtitleeditor_window()->get_player();
     if (player->get_state() == Player::NONE)
@@ -400,9 +365,6 @@ class WaveformManagement : public Action {
     get_waveform_manager()->set_waveform(wf);
   }
 
-  /*
-   *
-   */
   void on_save_waveform() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -424,8 +386,6 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   */
   void on_close_waveform() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -434,10 +394,8 @@ class WaveformManagement : public Action {
     get_waveform_manager()->set_waveform(wf);
   }
 
-  /*
-   * Update the video player with the new Waveform
-   * only if it's different.
-   */
+  // Update the video player with the new Waveform
+  // only if it's different.
   void update_player_from_waveform() {
     Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
     if (wf && get_subtitleeditor_window()->get_player()->get_uri() !=
@@ -446,54 +404,36 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   *
-   */
   void on_center_with_selected_subtitle() {
     se_debug(SE_DEBUG_PLUGINS);
 
     get_waveform_manager()->center_with_selected_subtitle();
   }
 
-  /*
-   *
-   */
   void on_zoom_in() {
     se_debug(SE_DEBUG_PLUGINS);
 
     get_waveform_manager()->zoom_in();
   }
 
-  /*
-   *
-   */
   void on_zoom_out() {
     se_debug(SE_DEBUG_PLUGINS);
 
     get_waveform_manager()->zoom_out();
   }
 
-  /*
-   *
-   */
   void on_zoom_selection() {
     se_debug(SE_DEBUG_PLUGINS);
 
     get_waveform_manager()->zoom_selection();
   }
 
-  /*
-   *
-   */
   void on_zoom_all() {
     se_debug(SE_DEBUG_PLUGINS);
 
     get_waveform_manager()->zoom_all();
   }
 
-  /*
-   *
-   */
   void on_scrolling_with_player() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -506,9 +446,6 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   *
-   */
   void on_scrolling_with_selection() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -522,9 +459,6 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   *
-   */
   void on_respect_timing() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -537,9 +471,6 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   *
-   */
   void on_waveform_display() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -553,9 +484,6 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   *
-   */
   void on_config_waveform_changed(const Glib::ustring& key,
                                   const Glib::ustring& value) {
     if (key == "display") {
@@ -571,8 +499,6 @@ class WaveformManagement : public Action {
     }
   }
 
-  /*
-   */
   void add_in_recent_manager(const Glib::ustring& uri) {
     se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
 
@@ -584,9 +510,7 @@ class WaveformManagement : public Action {
     Gtk::RecentManager::get_default()->add_item(uri, data);
   }
 
-  /*
-   * Open a recent video
-   */
+  // Open a recent video
   void on_recent_item_activated() {
     se_debug(SE_DEBUG_PLUGINS);
 

@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2016, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <documentsystem.h>
 #include <extension/action.h>
@@ -29,8 +27,6 @@
 #include <utility.h>
 #include <memory>
 
-/*
- */
 class DialogTemplate : public Gtk::Dialog {
  public:
   DialogTemplate(BaseObjectType* cobj, const Glib::RefPtr<Gtk::Builder>& xml)
@@ -50,50 +46,34 @@ class DialogTemplate : public Gtk::Dialog {
     set_default_response(Gtk::RESPONSE_OK);
   }
 
-  /*
-   */
   void set_name(const Glib::ustring& name) {
     m_entryName->set_text(name);
   }
 
-  /*
-   */
   Glib::ustring get_name() {
     return m_entryName->get_text();
   }
 
-  /*
-   */
   void set_charset(const Glib::ustring& charset) {
     m_comboEncoding->set_value(charset);
   }
 
-  /*
-   */
   Glib::ustring get_charset() {
     return m_comboEncoding->get_value();
   }
 
-  /*
-   */
   void set_format(const Glib::ustring& format) {
     m_comboFormat->set_value(format);
   }
 
-  /*
-   */
   Glib::ustring get_format() {
     return m_comboFormat->get_value();
   }
 
-  /*
-   */
   void set_newline(const Glib::ustring& newline) {
     m_comboNewLine->set_value(newline);
   }
 
-  /*
-   */
   Glib::ustring get_newline() {
     return m_comboNewLine->get_value();
   }
@@ -105,8 +85,6 @@ class DialogTemplate : public Gtk::Dialog {
   ComboBoxNewLine* m_comboNewLine;
 };
 
-/*
- */
 class TemplatePlugin : public Action {
  public:
   TemplatePlugin() {
@@ -118,8 +96,6 @@ class TemplatePlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -162,8 +138,6 @@ class TemplatePlugin : public Action {
     rebuild_templates_menu();
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -177,8 +151,6 @@ class TemplatePlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -187,8 +159,6 @@ class TemplatePlugin : public Action {
     action_group->get_action("save-as-template")->set_sensitive(visible);
   }
 
-  /*
-   */
   void rebuild_templates_menu() {
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
     // We clean the old ui and action_group
@@ -217,8 +187,6 @@ class TemplatePlugin : public Action {
     ui->ensure_update();
   }
 
-  /*
-   */
   void add_ui_from_file(const guint number, const Glib::ustring& filename) {
     // We extract from the filename the label and the charset
     Glib::RefPtr<Glib::Regex> re =
@@ -236,9 +204,7 @@ class TemplatePlugin : public Action {
 
     Glib::ustring action_name =
         Glib::ustring::compose("template-file-%1", number);
-    Glib::ustring action_accel =
-        "";  //(number < 10) ? Glib::ustring::compose("<alt>%1", (number+1) %
-             //10) : "";
+    Glib::ustring action_accel = "";
 
     action_group_templates->add(
         Gtk::Action::create(action_name, label), Gtk::AccelKey(action_accel),
@@ -251,8 +217,6 @@ class TemplatePlugin : public Action {
         action_name, action_name, Gtk::UI_MANAGER_MENUITEM, false);
   }
 
-  /*
-   */
   void on_template_activate(const Glib::ustring& path,
                             const Glib::ustring& charset) {
     Glib::ustring uri = Glib::filename_to_uri(path);
@@ -266,8 +230,6 @@ class TemplatePlugin : public Action {
     DocumentSystem::getInstance().append(doc);
   }
 
-  /*
-   */
   void on_save_as_template() {
     Document* current = get_current_document();
     g_return_if_fail(current);
@@ -303,10 +265,8 @@ class TemplatePlugin : public Action {
     rebuild_templates_menu();
   }
 
-  /*
-   * Check if the template directory exists
-   * Create if needed
-   */
+  // Check if the template directory exists
+  // Create if needed
   bool initialize_template_directory() {
     se_debug(SE_DEBUG_PLUGINS);
 

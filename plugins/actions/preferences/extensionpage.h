@@ -1,40 +1,32 @@
-#ifndef _ExtensionPage_h
-#define _ExtensionPage_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <gui/treeviewextensionmanager.h>
 #include "preferencepage.h"
 
-/*
- * Manage the extension.
- * Activate, deactivate, about, preferences
- */
+// Manage the extension.
+// Activate, deactivate, about, preferences
 class ExtensionPage : public PreferencePage {
  public:
-  /*
-   *
-   */
   ExtensionPage(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& xml)
       : PreferencePage(cobject) {
     xml->get_widget_derived("treeview-extension", m_treeview);
@@ -52,9 +44,7 @@ class ExtensionPage : public PreferencePage {
     on_selection_changed();
   }
 
-  /*
-   * Update the state sensitvite of the buttons About and Preferences.
-   */
+  // Update the state sensitvite of the buttons About and Preferences.
   void on_selection_changed() {
     ExtensionInfo* info = m_treeview->get_selected_extension();
 
@@ -72,10 +62,8 @@ class ExtensionPage : public PreferencePage {
     m_buttonPreferences->set_sensitive(preference);
   }
 
-  /*
-   * Display imformation about the extension.
-   * Label, Description, Authors...
-   */
+  // Display imformation about the extension.
+  // Label, Description, Authors...
   void on_about() {
     ExtensionInfo* info = m_treeview->get_selected_extension();
     if (info == NULL)
@@ -95,9 +83,7 @@ class ExtensionPage : public PreferencePage {
     dialog.run();
   }
 
-  /*
-   * Display the dialog preferences of the extension.
-   */
+  // Display the dialog preferences of the extension.
   void on_preferences() {
     ExtensionInfo* info = m_treeview->get_selected_extension();
     if (info == NULL)
@@ -115,5 +101,3 @@ class ExtensionPage : public PreferencePage {
   Gtk::Button* m_buttonAbout;
   Gtk::Button* m_buttonPreferences;
 };
-
-#endif  //_ExtensionPage_h

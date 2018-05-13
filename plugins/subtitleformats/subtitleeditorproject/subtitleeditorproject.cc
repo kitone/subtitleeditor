@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <error.h>
@@ -31,19 +29,16 @@
 #include <utility.h>
 #include <waveformmanager.h>
 
-/*
- * TODO:	<subtitleview>
- *					<selection>
- *					<position>
- *				</subtitleview>
- *				<metadata>
- *				video, title, info, comment ...
- *				</metadata>
- */
+// TODO:
+// <subtitleview>
+//  <selection>
+//  <position>
+// </subtitleview>
+// <metadata>
+//  video, title, info, comment ...
+// </metadata>
 class SubtitleEditorProject : public SubtitleFormatIO {
  public:
-  /*
-   */
   void open(Reader &file) {
     try {
       initalize_dirname(file);
@@ -69,8 +64,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void save(Writer &file) {
     try {
       xmlpp::Document xmldoc;
@@ -92,8 +85,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
   }
 
  private:
-  /*
-   */
   void initalize_dirname(Reader &reader) {
     FileReader *fr = dynamic_cast<FileReader *>(&reader);
     if (fr != NULL) {
@@ -102,8 +93,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   bool test_uri(const Glib::ustring &uri) {
     return test_filename(Glib::filename_from_uri(uri));
   }
@@ -112,8 +101,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     return Glib::file_test(filename, Glib::FILE_TEST_EXISTS);
   }
 
-  /*
-   */
   Glib::ustring uri_to_project_relative_filename(const Glib::ustring &uri) {
     Glib::ustring basename =
         Glib::path_get_basename(Glib::filename_from_uri(uri));
@@ -121,8 +108,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     return Glib::filename_to_uri(relative);
   }
 
-  /*
-   */
   const xmlpp::Element *get_unique_children(const xmlpp::Node *root,
                                             const Glib::ustring &name) {
     const xmlpp::Node::NodeList children = root->get_children(name);
@@ -131,8 +116,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     return dynamic_cast<const xmlpp::Element *>(children.front());
   }
 
-  /*
-   */
   void open_player(const xmlpp::Node *root) {
     const xmlpp::Element *xml_pl = get_unique_children(root, "player");
     if (xml_pl == NULL)
@@ -151,8 +134,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     pl->open(uri);
   }
 
-  /*
-   */
   void save_player(xmlpp::Element *root) {
     Player *pl = SubtitleEditorWindow::get_instance()->get_player();
     if (pl == NULL)
@@ -166,8 +147,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     xmlpl->set_attribute("uri", uri);
   }
 
-  /*
-   */
   void open_waveform(const xmlpp::Node *root) {
     const xmlpp::Element *xml_wf = get_unique_children(root, "waveform");
     if (xml_wf == NULL)
@@ -184,8 +163,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
         uri);
   }
 
-  /*
-   */
   void save_waveform(xmlpp::Element *root) {
     WaveformManager *wm =
         SubtitleEditorWindow::get_instance()->get_waveform_manager();
@@ -201,8 +178,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     xmlwf->set_attribute("uri", wf->get_uri());
   }
 
-  /*
-   */
   void open_keyframes(const xmlpp::Node *root) {
     const xmlpp::Element *xml_kf = get_unique_children(root, "keyframes");
     if (xml_kf == NULL)
@@ -220,8 +195,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
       SubtitleEditorWindow::get_instance()->get_player()->set_keyframes(kf);
   }
 
-  /*
-   */
   void save_keyframes(xmlpp::Element *root) {
     Glib::RefPtr<KeyFrames> kf =
         SubtitleEditorWindow::get_instance()->get_player()->get_keyframes();
@@ -233,8 +206,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     xmlwf->set_attribute("uri", kf->get_uri());
   }
 
-  /*
-   */
   void open_styles(const xmlpp::Node *root) {
     const xmlpp::Element *xmlstyles = get_unique_children(root, "styles");
     if (xmlstyles == NULL)
@@ -259,8 +230,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void save_styles(xmlpp::Element *root) {
     xmlpp::Element *xmlstyles = root->add_child("styles");
 
@@ -278,8 +247,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void open_subtitles(const xmlpp::Node *root) {
     const xmlpp::Element *xmlsubtitles = get_unique_children(root, "subtitles");
     if (xmlsubtitles == NULL)
@@ -330,8 +297,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void save_subtitles(xmlpp::Element *root) {
     xmlpp::Element *xmlsubtitles = root->add_child("subtitles");
 
@@ -361,8 +326,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     }
   }
 
-  /*
-   */
   void open_subtitles_selection(const xmlpp::Node *root) {
     const xmlpp::Element *xmlsubtitles =
         get_unique_children(root, "subtitles-selection");
@@ -387,8 +350,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
     subtitles.select(selection);
   }
 
-  /*
-   */
   void save_subtitles_selection(xmlpp::Element *root) {
     xmlpp::Element *xml = root->add_child("subtitles-selection");
 
@@ -406,9 +367,6 @@ class SubtitleEditorProject : public SubtitleFormatIO {
 
 class SubtitleEditorProjectPlugin : public SubtitleFormat {
  public:
-  /*
-   *
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "Subtitle Editor Project";
@@ -418,9 +376,6 @@ class SubtitleEditorProjectPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   *
-   */
   SubtitleFormatIO *create() {
     SubtitleEditorProject *sf = new SubtitleEditorProject();
     return sf;

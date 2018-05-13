@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
 #include <extension/action.h>
@@ -36,8 +34,6 @@ class SplitSelectedSubtitlesPlugin : public Action {
     deactivate();
   }
 
-  /*
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -61,8 +57,6 @@ class SplitSelectedSubtitlesPlugin : public Action {
                "split-selected-subtitles", "split-selected-subtitles");
   }
 
-  /*
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -72,8 +66,6 @@ class SplitSelectedSubtitlesPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -83,8 +75,6 @@ class SplitSelectedSubtitlesPlugin : public Action {
         ->set_sensitive(visible);
   }
 
-  /*
-   */
   void split_selected_subtitles() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -112,8 +102,6 @@ class SplitSelectedSubtitlesPlugin : public Action {
     doc->finish_command();
   }
 
-  /*
-   */
   void split(Subtitles &subtitles, Subtitle &sub) {
     unsigned int i = 0;
 
@@ -184,11 +172,9 @@ class SplitSelectedSubtitlesPlugin : public Action {
     subtitles.select(newsubs);
   }
 
-  /*
-   * Try to apply some timing preferences
-   * - minimum gap between subtitles
-   * - minimum display time (TODO ?)
-   */
+  // Try to apply some timing preferences
+  // - minimum gap between subtitles
+  // - minimum display time (TODO ?)
   void try_to_respect_timing_preferences(std::vector<Subtitle> &subs) {
     // int min_display = get_config().get_value_int("timing", "min-display");
     int min_gap_between_subtitles =
@@ -210,8 +196,6 @@ class SplitSelectedSubtitlesPlugin : public Action {
     }
   }
 
-  /*
-   */
   void fix_multiline_tag(std::vector<Glib::ustring> &lines) {
     Glib::RefPtr<Glib::Regex> re_tag_open = Glib::Regex::create("<(\\w+)>");
 
@@ -234,8 +218,7 @@ class SplitSelectedSubtitlesPlugin : public Action {
 
           std::vector<Glib::ustring>::iterator it_next = it;
           ++it_next;
-          if (it_next != lines.end())  // Only if there is a next line
-          {
+          if (it_next != lines.end()) {  // Only if there is a next line
             *it_next = Glib::ustring::compose("<%1>%2", tag, *it_next);
           }
         }

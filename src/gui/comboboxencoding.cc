@@ -1,34 +1,30 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "comboboxencoding.h"
 #include "cfg.h"
+#include "comboboxencoding.h"
 #include "comboboxtextcolumns.h"
 #include "dialogcharactercodings.h"
 #include "encodings.h"
 
-/*
- * Constructor
- */
+// Constructor
 ComboBoxEncoding::ComboBoxEncoding(bool auto_detected)
     : m_with_auto_detected(auto_detected) {
   init_encodings();
@@ -43,9 +39,7 @@ ComboBoxEncoding::ComboBoxEncoding(bool auto_detected)
       sigc::mem_fun(*this, &ComboBoxEncoding::on_combo_changed));
 }
 
-/*
- * Constructor
- */
+// Constructor
 ComboBoxEncoding::ComboBoxEncoding(BaseObjectType *cobject,
                                    const Glib::RefPtr<Gtk::Builder> &)
     : Gtk::ComboBoxText(cobject), m_with_auto_detected(true) {
@@ -61,9 +55,7 @@ ComboBoxEncoding::ComboBoxEncoding(BaseObjectType *cobject,
       sigc::mem_fun(*this, &ComboBoxEncoding::on_combo_changed));
 }
 
-/*
- * Sets current value.
- */
+// Sets current value.
 void ComboBoxEncoding::set_value(const Glib::ustring &value) {
   Glib::ustring label = Encodings::get_label_from_charset(value);
 
@@ -72,23 +64,14 @@ void ComboBoxEncoding::set_value(const Glib::ustring &value) {
   set_active_text(label);
 }
 
-/*
- * Returns only the charset value.
- * ex: "UTF-8", "ISO-8859-15" ...
- * Return empty charset if it's "Auto Detected".
- */
+// Returns only the charset value.
+// ex: "UTF-8", "ISO-8859-15" ...
+// Return empty charset if it's "Auto Detected".
 Glib::ustring ComboBoxEncoding::get_value() const {
-  // if(m_with_auto_detected)
-  //{
-  //	if(get_active_row_number() == 0)
-  //		return Glib::ustring(); // "None"
-  //}
   return get_active_id();
 }
 
-/*
- * Enable or disable the auto detected mode.
- */
+// Enable or disable the auto detected mode.
 void ComboBoxEncoding::show_auto_detected(bool value) {
   m_with_auto_detected = value;
 
@@ -100,9 +83,7 @@ void ComboBoxEncoding::show_auto_detected(bool value) {
   set_sensitive(state);
 }
 
-/*
- * Rebuild the combobox with encoding user preferences.
- */
+// Rebuild the combobox with encoding user preferences.
 void ComboBoxEncoding::init_encodings() {
   m_connection_changed.block();
 
@@ -152,10 +133,8 @@ void ComboBoxEncoding::init_encodings() {
   m_connection_changed.unblock();
 }
 
-/*
- * Gtk::ComboBox::on_changed
- * Used for intercepte "Add or Remove..."
- */
+// Gtk::ComboBox::on_changed
+// Used for intercepte "Add or Remove..."
 void ComboBoxEncoding::on_combo_changed() {
   unsigned int size = get_model()->children().size();
   unsigned int activated = get_active_row_number();
@@ -177,10 +156,8 @@ void ComboBoxEncoding::on_combo_changed() {
   }
 }
 
-/*
- * Used to define the separator.
- * label = "<separator>"
- */
+// Used to define the separator.
+// label = "<separator>"
 
 bool ComboBoxEncoding::on_row_separator_func(
     const Glib::RefPtr<Gtk::TreeModel> & /*model*/,

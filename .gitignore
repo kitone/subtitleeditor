@@ -85,3 +85,11 @@ config.status
 libtool
 po/POTFILES
 po/stamp-it
+
+*.gmo
+*.se-pattern
+*.se-plugin
+share/org.kitone.subtitleeditor.desktop
+*.libs
+.dirstamp
+.intltool-merge-cache

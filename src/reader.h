@@ -1,71 +1,52 @@
-#ifndef _Reader_h
-#define _Reader_h
+#pragma once
 
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2013, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <glibmm.h>
 
-/*
- * Helper to read data (UTF-8) from memory.
- * Return lines without character of newline (CR,LF or CRLF)
- */
+// Helper to read data (UTF-8) from memory.
+// Return lines without character of newline (CR,LF or CRLF)
 class Reader {
  public:
-  /*
-   * Constructor.
-   */
+  // Constructor.
   Reader(const Glib::ustring &data = Glib::ustring());
 
-  /*
-   * Destructor
-   */
+  // Destructor
   virtual ~Reader();
 
-  /*
-   * Return the contents of the file.
-   */
+  // Return the contents of the file.
   const Glib::ustring &get_data() const;
 
-  /*
-   * Return the newline detected of the file.
-   */
+  // Return the newline detected of the file.
   Glib::ustring get_newline();
 
-  /*
-   * Get the next line of the file without newline character (CR, LF or CRLF).
-   */
+  // Get the next line of the file without newline character (CR, LF or CRLF).
   bool getline(Glib::ustring &line);
 
-  /*
-   * Return all lines detected of the file, without newline character (CR, LF or
-   * CRLF).
-   */
+  // Return all lines detected of the file, without newline character (CR, LF or
+  // CRLF).
   std::vector<Glib::ustring> get_lines();
 
  private:
-  /*
-   * Split the data to separate lines.
-   */
+  // Split the data to separate lines.
   void initialize_lines();
 
  protected:
@@ -74,5 +55,3 @@ class Reader {
   std::vector<Glib::ustring>::const_iterator m_iter;
   std::vector<Glib::ustring> m_lines;
 };
-
-#endif  //_Reader_h

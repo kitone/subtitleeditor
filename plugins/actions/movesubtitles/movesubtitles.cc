@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <extension/action.h>
 #include <gtkmm_utility.h>
@@ -27,9 +25,6 @@
 #include <widget_config_utility.h>
 #include <memory>
 
-/*
- *
- */
 class DialogMoveSubtitles : public Gtk::Dialog {
  public:
   DialogMoveSubtitles(BaseObjectType *cobject,
@@ -48,9 +43,6 @@ class DialogMoveSubtitles : public Gtk::Dialog {
                                            "only-selected-subtitles");
   }
 
-  /*
-   *
-   */
   void init(Document *doc, const Subtitle &subtitle) {
     TIMING_MODE edit_mode = doc->get_edit_timing_mode();
 
@@ -70,16 +62,10 @@ class DialogMoveSubtitles : public Gtk::Dialog {
     m_spinNewStart->grab_focus();
   }
 
-  /*
-   *
-   */
   long get_diff_value() {
     return (long)(m_spinNewStart->get_value() - m_spinStartValue->get_value());
   }
 
-  /*
-   *
-   */
   bool only_selected_subtitles() {
     return m_checkOnlySelectedSubtitles->get_active();
   }
@@ -91,9 +77,6 @@ class DialogMoveSubtitles : public Gtk::Dialog {
   Gtk::CheckButton *m_checkOnlySelectedSubtitles;
 };
 
-/*
- *
- */
 class MoveSubtitlesPlugin : public Action {
  public:
   MoveSubtitlesPlugin() {
@@ -105,9 +88,6 @@ class MoveSubtitlesPlugin : public Action {
     deactivate();
   }
 
-  /*
-   *
-   */
   void activate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -132,9 +112,6 @@ class MoveSubtitlesPlugin : public Action {
                "move-subtitles");
   }
 
-  /*
-   *
-   */
   void deactivate() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -144,9 +121,6 @@ class MoveSubtitlesPlugin : public Action {
     ui->remove_action_group(action_group);
   }
 
-  /*
-   *
-   */
   void update_ui() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -156,18 +130,12 @@ class MoveSubtitlesPlugin : public Action {
   }
 
  protected:
-  /*
-   *
-   */
   void on_move_subtitles() {
     se_debug(SE_DEBUG_PLUGINS);
 
     execute();
   }
 
-  /*
-   *
-   */
   bool execute() {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -208,10 +176,8 @@ class MoveSubtitlesPlugin : public Action {
     return true;
   }
 
-  /*
-   * Used only the first selected subtitles and move all the next
-   * subtitles selected or not.
-   */
+  // Used only the first selected subtitles and move all the next
+  // subtitles selected or not.
   bool move_first_selected_subtitle_and_next(Document *doc, const long &diff) {
     se_debug(SE_DEBUG_PLUGINS);
 
@@ -236,9 +202,7 @@ class MoveSubtitlesPlugin : public Action {
     return true;
   }
 
-  /*
-   * Move only the selected subtitles.
-   */
+  // Move only the selected subtitles.
   bool move_selected_subtitles(Document *doc, const long &diff) {
     se_debug(SE_DEBUG_PLUGINS);
 

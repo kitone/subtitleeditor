@@ -1,24 +1,22 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2015, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <document.h>
 #include <extension/subtitleformat.h>
@@ -29,16 +27,10 @@
 #include <iomanip>
 #include <memory>
 
-/*
- */
 class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
  protected:
-  /*
-   */
   class ComboBoxLineBreakPolicy : public Gtk::ComboBoxText {
    public:
-    /*
-     */
     ComboBoxLineBreakPolicy(BaseObjectType *cobject,
                             const Glib::RefPtr<Gtk::Builder> &)
         : Gtk::ComboBoxText(cobject) {
@@ -47,9 +39,7 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
       append(_("Intelligent"));
     }
 
-    /*
-     * From config value
-     */
+    // From config value
     void set_line_break_policy(const Glib::ustring &value) {
       if (value == "soft")
         set_active(0);
@@ -61,8 +51,6 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
         set_active(2);
     }
 
-    /*
-     */
     Glib::ustring get_line_break_policy() {
       gint active = get_active_row_number();
 
@@ -76,8 +64,6 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
   };
 
  public:
-  /*
-   */
   DialogAdvancedSubStationAlphaPreferences(
       BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &xml)
       : Gtk::Dialog(cobject), m_comboLineBreakPolicy(NULL) {
@@ -92,8 +78,6 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
     m_comboLineBreakPolicy->set_line_break_policy(policy);
   }
 
-  /*
-   */
   static void create() {
     std::unique_ptr<DialogAdvancedSubStationAlphaPreferences> dialog(
         gtkmm_utility::get_widget_derived<
@@ -105,8 +89,6 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
     dialog->run();
   }
 
-  /*
-   */
   void on_combo_line_break_policy_changed() {
     Config::getInstance().set_value_string(
         "AdvancedSubStationAlpha", "line-break-policy",
@@ -117,9 +99,6 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
   ComboBoxLineBreakPolicy *m_comboLineBreakPolicy;
 };
 
-/*
- *
- */
 class AdvancedSubStationAlpha : public SubtitleFormatIO {
   int m_line_break_policy;
 
@@ -128,11 +107,9 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     read_config_line_break_policy();
   }
 
-  /*
-   * soft:1
-   * hard:2
-   * intelligent:3 (default)
-   */
+  // soft:1
+  // hard:2
+  // intelligent:3 (default)
   void read_config_line_break_policy() {
     if (Config::getInstance().has_key("AdvancedSubStationAlpha",
                                       "line-break-policy") == false) {
@@ -145,13 +122,13 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
 
     Glib::ustring policy = Config::getInstance().get_value_string(
         "AdvancedSubStationAlpha", "line-break-policy");
-    if (policy == "soft")
+    if (policy == "soft") {
       m_line_break_policy = 1;
-    else if (policy == "hard")
+    } else if (policy == "hard") {
       m_line_break_policy = 2;
-    else if (policy == "intelligent")
+    } else if (policy == "intelligent") {
       m_line_break_policy = 3;
-    else {
+    } else {
       Config::getInstance().set_value_string(
           "AdvancedSubStationAlpha", "line-break-policy", "intelligent",
           "determine the policy of the line break, 3 options: 'soft', 'hard' "
@@ -161,9 +138,6 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     }
   }
 
-  /*
-   *
-   */
   void open(Reader &file) {
     std::vector<Glib::ustring> lines = file.get_lines();
 
@@ -172,18 +146,13 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     read_events(lines);
   }
 
-  /*
-   *
-   */
   void save(Writer &file) {
     write_script_info(file);
     write_styles(file);
     write_events(file);
   }
 
-  /*
-   * Read the block [Script Info]
-   */
+  // Read the block [Script Info]
   void read_script_info(const std::vector<Glib::ustring> &lines) {
     se_debug_message(SE_DEBUG_IO, "read script info...");
 
@@ -199,9 +168,10 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
       if (read) {
         if (re_block->match(*it))
           return;  // new block, stop reading
-      } else if ((*it).find("[Script Info]") != Glib::ustring::npos)
-        read = true;  // This is the beginning of the script info block, start
-                      // reading
+      } else if ((*it).find("[Script Info]") != Glib::ustring::npos) {
+        // This is the beginning of the script info block, start reading
+        read = true;
+      }
 
       if (!read)
         continue;
@@ -220,9 +190,7 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     }
   }
 
-  /*
-   * Read the block [V4+ Styles]
-   */
+  // Read the block [V4+ Styles]
   void read_styles(const std::vector<Glib::ustring> &lines) {
     se_debug_message(SE_DEBUG_IO, "read style...");
 
@@ -230,9 +198,11 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
 
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
         "^Style:\\s*"
-        "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*"
+        "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,"
+        "]*"
         "),([^,]*),"
-        "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*"
+        "([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,"
+        "]*"
         "),([^,]*),"
         "([^,]*),([^,]*),([^,]*)$");
 
@@ -282,16 +252,15 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     }
   }
 
-  /*
-   * Read the block [Events]
-   */
+  // Read the block [Events]
   void read_events(const std::vector<Glib::ustring> &lines) {
     se_debug_message(SE_DEBUG_IO, "read events...");
 
     Subtitles subtitles = document()->subtitles();
 
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
-        "^Dialogue:\\s*([^,]*),([^,]*),([^,]*),\\**([^,]*),([^,]*),([^,]*),([^,"
+        "^Dialogue:\\s*([^,]*),([^,]*),([^,]*),\\**([^,]*),([^,]*),([^,]*),(["
+        "^,"
         "]*),([^,]*),([^,]*),(.*)$");
 
     for (std::vector<Glib::ustring>::const_iterator it = lines.begin();
@@ -330,9 +299,7 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     }
   }
 
-  /*
-   * Write the block [Script Info]
-   */
+  // Write the block [Script Info]
   void write_script_info(Writer &file) {
     file.write(Glib::ustring::compose(
         "[Script Info]\n"
@@ -364,9 +331,7 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     file.write("\n");
   }
 
-  /*
-   * Write the block [V4+ Styles]
-   */
+  // Write the block [V4+ Styles]
   void write_styles(Writer &file) {
     file.write("[V4+ Styles]\n");
     file.write(
@@ -386,14 +351,16 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
                                         "default-style") == false) {
         // Write the default ASS style
         default_style =
-            "Default,Sans,18,&H00FFFFFF,&H0000FFFF,&H000078B4,&H00000000,0,0,0,"
+            "Default,Sans,18,&H00FFFFFF,&H0000FFFF,&H000078B4,&H00000000,0,0,"
+            "0,"
             "0,100,100,0,0,1,0,0,2,20,20,20,0";
         Config::getInstance().set_value_string(
             "AdvancedSubStationAlpha", "default-style", default_style,
             "Without style, this one will be used during save");
-      } else
+      } else {
         default_style = Config::getInstance().get_value_string(
             "AdvancedSubStationAlpha", "default-style");
+      }
 
       // write without changing the document
       file.write("Style: " + default_style + "\n");
@@ -438,9 +405,7 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     file.write("\n");
   }
 
-  /*
-   * Write the block [Events]
-   */
+  // Write the block [Events]
   void write_events(Writer &file) {
     file.write("[Events]\n");
     // format:
@@ -456,11 +421,11 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     for (Subtitle sub = document()->subtitles().get_first(); sub; ++sub) {
       Glib::ustring text = sub.get_text();
 
-      if (m_line_break_policy == 1)
+      if (m_line_break_policy == 1) {
         utility::replace(text, "\n", "\\n");
-      else if (m_line_break_policy == 2)
+      } else if (m_line_break_policy == 2) {
         utility::replace(text, "\n", "\\N");
-      else if (m_line_break_policy == 3) {
+      } else if (m_line_break_policy == 3) {
         if (re_intelligent_linebreak->match(text))
           utility::replace(text, "\n", "\\N");
         else
@@ -486,17 +451,13 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     // file << std::endl;
   }
 
-  /*
-   * Convert time from SE to ASS
-   */
+  // Convert time from SE to ASS
   Glib::ustring to_ass_time(const SubtitleTime &time) {
     return build_message("%01i:%02i:%02i.%02i", time.hours(), time.minutes(),
                          time.seconds(), (int)((time.mseconds() + 0.5) / 10));
   }
 
-  /*
-   * Convert time from ASS to SE
-   */
+  // Convert time from ASS to SE
   SubtitleTime from_ass_time(const Glib::ustring &t) {
     int h, m, s, ms;
     if (std::sscanf(t.c_str(), "%d:%d:%d.%d", &h, &m, &s, &ms) == 4)
@@ -505,25 +466,19 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     return SubtitleTime::null();
   }
 
-  /*
-   * Convert bool from SE to ASS
-   * ASS: false == 0, true == -1
-   */
+  // Convert bool from SE to ASS
+  // ASS: false == 0, true == -1
   Glib::ustring to_ass_bool(const Glib::ustring &value) {
     return (value == "0") ? "0" : "-1";
   }
 
-  /*
-   * Convert bool from ASS to SE
-   * ASS: 0 == false, -1 == true
-   */
+  // Convert bool from ASS to SE
+  // ASS: 0 == false, -1 == true
   Glib::ustring from_ass_bool(const Glib::ustring &value) {
     return (value == "0") ? "0" : "1";
   }
 
-  /*
-   * Convert color from SE to ASS
-   */
+  // Convert color from SE to ASS
   Glib::ustring to_ass_color(const Color &color) {
     Color c(color);
 
@@ -537,9 +492,7 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     return build_message("&H%08X", abgr);
   }
 
-  /*
-   * Convert color from ASS to SE
-   */
+  // Convert color from ASS to SE
   Glib::ustring from_ass_color(const Glib::ustring &str) {
     try {
       Glib::ustring value = str;
@@ -571,16 +524,12 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     return Color(255, 255, 255, 255).to_string();
   }
 
-  /*
-   * Convert time from SE to SSA
-   */
+  // Convert time from SE to SSA
   Glib::ustring to_ssa_time(const SubtitleTime &t) {
     return build_message("%01i:%02i:%02i.%02i", t.hours(), t.minutes(),
                          t.seconds(), (t.mseconds() + 5) / 10);
   }
 
-  /*
-   */
   bool get_screen_resolution(guint &width, guint &height) {
     Glib::RefPtr<Gdk::Screen> screen =
         Gdk::Display::get_default()->get_default_screen();
@@ -593,8 +542,6 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     return true;
   }
 
-  /*
-   */
   bool has_play_res(const ScriptInfo &script) {
     if (script.data.find("PlayResX") != script.data.end() ||
         script.data.find("PlayResY") != script.data.end())
@@ -605,20 +552,14 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
 
 class AdvancedSubStationAlphaPlugin : public SubtitleFormat {
  public:
-  /*
-   */
   bool is_configurable() {
     return true;
   }
 
-  /*
-   */
   void create_configure_dialog() {
     DialogAdvancedSubStationAlphaPreferences::create();
   }
 
-  /*
-   */
   SubtitleFormatInfo get_info() {
     SubtitleFormatInfo info;
     info.name = "Advanced Sub Station Alpha";
@@ -628,8 +569,6 @@ class AdvancedSubStationAlphaPlugin : public SubtitleFormat {
     return info;
   }
 
-  /*
-   */
   virtual SubtitleFormatIO *create() {
     AdvancedSubStationAlpha *sf = new AdvancedSubStationAlpha();
     return sf;

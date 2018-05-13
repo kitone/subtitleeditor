@@ -1,33 +1,29 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "waveform.h"
 #include <math.h>
 #include <fstream>
 #include <iostream>
+#include "waveform.h"
 
-/*
- * Open Wavefrom from file
- */
+// Open Wavefrom from file
 Glib::RefPtr<Waveform> Waveform::create_from_file(const Glib::ustring &uri) {
   Glib::RefPtr<Waveform> wf = Glib::RefPtr<Waveform>(new Waveform);
   if (!wf->open(uri)) {
@@ -41,44 +37,26 @@ Glib::RefPtr<Waveform> Waveform::create_from_file(const Glib::ustring &uri) {
   return wf;
 }
 
-/*
- *
- */
 Waveform::Waveform() : m_n_channels(0), m_duration(0), ref_count_(0) {
   reference();
 }
 
-/*
- *
- */
 Waveform::~Waveform() {
 }
 
-/*
- *
- */
 void Waveform::reference() const {
   ++ref_count_;
 }
 
-/*
- *
- */
 void Waveform::unreference() const {
   if (!(--ref_count_))
     delete this;
 }
 
-/*
- *
- */
 guint Waveform::get_size() {
   return m_channels[0].size();
 }
 
-/*
- *
- */
 gint64 Waveform::get_duration() {
   return m_duration;
 }
@@ -90,9 +68,6 @@ double Waveform::get_channel(unsigned int ch, guint64 pos) {
   return m_channels[ch][pos];
 }
 
-/*
- *
- */
 unsigned int Waveform::get_n_channels() {
   return m_n_channels;
 }
@@ -115,11 +90,11 @@ bool Waveform::open(const Glib::ustring &file_uri) {
 
   int version = 0;
 
-  if (line == "waveform")
+  if (line == "waveform") {
     version = 1;
-  else if (line == "waveform v2")
+  } else if (line == "waveform v2") {
     version = 2;
-  else {
+  } else {
     file.close();
     return false;
   }
@@ -157,9 +132,6 @@ bool Waveform::open(const Glib::ustring &file_uri) {
   return true;
 }
 
-/*
- *
- */
 bool Waveform::save(const Glib::ustring &file_uri) {
   Glib::ustring filename = Glib::filename_from_uri(file_uri);
 
@@ -192,16 +164,10 @@ bool Waveform::save(const Glib::ustring &file_uri) {
   return true;
 }
 
-/*
- *
- */
 Glib::ustring Waveform::get_uri() {
   return m_waveform_uri;
 }
 
-/*
- *
- */
 Glib::ustring Waveform::get_video_uri() {
   return m_video_uri;
 }

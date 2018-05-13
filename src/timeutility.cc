@@ -1,31 +1,27 @@
-/*
- *	subtitleeditor -- a tool to create or edit subtitle
- *
- *	https://kitone.github.io/subtitleeditor/
- *	https://github.com/kitone/subtitleeditor/
- *
- *	Copyright @ 2005-2009, kitone
- *
- *	This program is free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+// subtitleeditor -- a tool to create or edit subtitle
+//
+// https://kitone.github.io/subtitleeditor/
+// https://github.com/kitone/subtitleeditor/
+//
+// Copyright @ 2005-2018, kitone
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "timeutility.h"
 #include "i18n.h"
+#include "timeutility.h"
 
-/*
- * Return the label of the framerate.
- */
+// Return the label of the framerate.
 Glib::ustring get_framerate_label(FRAMERATE framerate) {
   Glib::ustring ret;
 
@@ -53,9 +49,7 @@ Glib::ustring get_framerate_label(FRAMERATE framerate) {
   return ret;
 }
 
-/*
- * Return the real value of the framerate.
- */
+// Return the real value of the framerate.
 float get_framerate_value(FRAMERATE framerate) {
   float ret = 0;
 
@@ -83,9 +77,7 @@ float get_framerate_value(FRAMERATE framerate) {
   return ret;
 }
 
-/*
- * Return the framerate from the value.
- */
+// Return the framerate from the value.
 FRAMERATE get_framerate_from_value(float fps) {
   FRAMERATE framerate;
 
@@ -101,9 +93,8 @@ FRAMERATE get_framerate_from_value(float fps) {
     framerate = FRAMERATE_29_97;
   else if (value == 30000)
     framerate = FRAMERATE_30;
-  else {
+  else
     framerate = FRAMERATE_23_976;
-    g_warning("FIXME");
-  }
+
   return framerate;
 }
