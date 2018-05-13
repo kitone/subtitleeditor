@@ -20,7 +20,7 @@ AC_C_INLINE
 # Checks for programs.
 AC_LANG([C++])
 AC_PROG_CXX
-AX_CXX_COMPILE_STDCXX_11([noext], [mandatory])
+AX_CXX_COMPILE_STDCXX([14], [noext], [mandatory])
 
 # Checks for library functions.
 AC_FUNC_SELECT_ARGTYPES
@@ -60,7 +60,7 @@ fi
 
 IT_PROG_INTLTOOL
 # extend intltool's macros
-IT_SE_PLUGIN_INTLTOOL 
+IT_SE_PLUGIN_INTLTOOL
 IT_SE_PATTERN_INTLTOOL
 
 # =========================================================================
@@ -90,7 +90,7 @@ AC_SUBST(LIBXML_LIBS)
 # check gstreamer
 
 PKG_CHECK_MODULES(
-					GSTREAMER, 
+					GSTREAMER,
 					gstreamer-1.0 gstreamer-base-1.0 gstreamer-plugins-base-1.0,,
 					[echo "***"
 					 echo "*** Error! you need to have : "
@@ -170,7 +170,7 @@ fi
 # check opengl & gtkglextmm only if the option gl is enabled (default no)
 
 AC_ARG_ENABLE(gl,
-							[AC_HELP_STRING([--enable-gl], 
+							[AC_HELP_STRING([--enable-gl],
 							[OpenGL waveform renderer [default=no]])],,
 							[enable_gl=no])
 
@@ -306,12 +306,12 @@ AC_SUBST(PACKAGE_PLUGIN_DESCRIPTION_DIR)
 # Config Makefile
 
 AC_CONFIG_FILES([
-Makefile 
-src/Makefile 
-m4/Makefile 
-share/Makefile 
+Makefile
+src/Makefile
+m4/Makefile
+share/Makefile
 share/metainfo/Makefile
-share/icons/Makefile 
+share/icons/Makefile
 share/icons/16x16/Makefile
 share/icons/22x22/Makefile
 share/icons/24x24/Makefile
