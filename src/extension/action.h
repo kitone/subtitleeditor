@@ -42,8 +42,6 @@ class Action : public Extension, public sigc::trackable {
 
   static SubtitleEditorWindow* get_subtitleeditor_window();
 
-  static Config& get_config();
-
   static Document* get_current_document();
 
   static Glib::RefPtr<Gtk::UIManager> get_ui_manager();

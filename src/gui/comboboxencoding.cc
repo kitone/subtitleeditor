@@ -90,8 +90,7 @@ void ComboBoxEncoding::init_encodings() {
   remove_all();
 
   // Setup auto_detected
-  bool used_auto_detected =
-      Config::getInstance().get_value_bool("encodings", "used-auto-detected");
+  bool used_auto_detected = cfg::get_boolean("encodings", "used-auto-detected");
 
   if (m_with_auto_detected) {
     append(_("Auto Detected"));
@@ -99,8 +98,7 @@ void ComboBoxEncoding::init_encodings() {
   }
 
   // Setup charsets
-  std::list<Glib::ustring> encodings =
-      Config::getInstance().get_value_string_list("encodings", "encodings");
+  auto encodings = cfg::get_string_list("encodings", "encodings");
   if (!encodings.empty()) {
     for (const auto &enc : encodings) {
       append(enc, Encodings::get_label_from_charset(enc));
@@ -145,11 +143,11 @@ void ComboBoxEncoding::on_combo_changed() {
     if (dialog->run() == Gtk::RESPONSE_OK) {
       init_encodings();
     } else if (m_with_auto_detected) {
-      if (Config::getInstance().get_value_bool("encodings",
-                                               "used-auto-detected"))
+      if (cfg::get_boolean("encodings", "used-auto-detected")) {
         set_active(0);
-      else
+      } else {
         set_active(2);
+      }
     } else
       set_active(0);
   }

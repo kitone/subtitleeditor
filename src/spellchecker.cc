@@ -192,8 +192,8 @@ bool SpellChecker::init_dictionary() {
   // Try with the last config
   se_debug_message(SE_DEBUG_SPELL_CHECKING, "Try with the last config...");
 
-  if (Config::getInstance().has_key("spell-checker", "lang")) {
-    lang = Config::getInstance().get_value_string("spell-checker", "lang");
+  if (cfg::has_key("spell-checker", "lang")) {
+    lang = cfg::get_string("spell-checker", "lang");
     if (set_dictionary(lang))
       return true;
   }
@@ -280,7 +280,7 @@ bool SpellChecker::set_dictionary(const Glib::ustring &name) {
   try {
     m_spellcheckerDict->request_dict(name);
 
-    Config::getInstance().set_value_string("spell-checker", "lang", name);
+    cfg::set_string("spell-checker", "lang", name);
     m_signal_dictionary_changed.emit();
     return true;
   } catch (SEEnchantDict::Exception &ex) {

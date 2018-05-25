@@ -44,23 +44,20 @@ Document::Document()
 
   m_document_changed = false;
 
-  // sets default values
-  Config &cfg = Config::getInstance();
-
   // sets default encoding value
-  Glib::ustring default_encoding = cfg.get_value_string("encodings", "default");
+  Glib::ustring default_encoding = cfg::get_string("encodings", "default");
 
   m_charset = (default_encoding.empty()) ? "UTF-8" : default_encoding;
 
   // sets default document format
-  Glib::ustring default_format = cfg.get_value_string("document", "format");
+  Glib::ustring default_format = cfg::get_string("document", "format");
 
   m_format = (SubtitleFormatSystem::instance().is_supported(default_format))
                  ? default_format
                  : "SubRip";
 
   // sets default newline
-  Glib::ustring default_newline = cfg.get_value_string("document", "newline");
+  Glib::ustring default_newline = cfg::get_string("document", "newline");
 
   m_newline = (default_newline.empty()) ? "Unix" : default_newline;
 

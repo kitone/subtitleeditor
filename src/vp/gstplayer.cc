@@ -54,12 +54,11 @@ GstPlayer::GstPlayer() {
   m_pipeline_duration = Gst::CLOCK_TIME_NONE;
   m_pipeline_rate = 1.0;
   m_pipeline_async_done = false;
-  m_loop_seek = Config::getInstance().get_value_bool("video-player", "repeat");
+  m_loop_seek = cfg::get_boolean("video-player", "repeat");
 
   show();
 
-  Config::getInstance()
-      .signal_changed("video-player")
+  cfg::signal_changed("video-player")
       .connect(
           sigc::mem_fun(*this, &GstPlayer::on_config_video_player_changed));
 }
@@ -330,10 +329,7 @@ bool GstPlayer::create_pipeline() {
 Glib::RefPtr<Gst::Element> GstPlayer::gen_audio_element() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
-  Config &cfg = Config::getInstance();
-
-  Glib::ustring cfg_audiosink =
-      cfg.get_value_string("video-player", "audio-sink");
+  Glib::ustring cfg_audiosink = cfg::get_string("video-player", "audio-sink");
 
   try {
     Glib::RefPtr<Gst::Element> sink =
@@ -362,16 +358,12 @@ Glib::RefPtr<Gst::Element> GstPlayer::gen_audio_element() {
 Glib::RefPtr<Gst::Element> GstPlayer::gen_video_element() {
   se_debug(SE_DEBUG_VIDEO_PLAYER);
 
-  Config &cfg = Config::getInstance();
-
-  Glib::ustring cfg_videosink =
-      cfg.get_value_string("video-player", "video-sink");
-  Glib::ustring cfg_font_desc =
-      cfg.get_value_string("video-player", "font-desc");
+  Glib::ustring cfg_videosink = cfg::get_string("video-player", "video-sink");
+  Glib::ustring cfg_font_desc = cfg::get_string("video-player", "font-desc");
   bool cfg_shaded_background =
-      cfg.get_value_bool("video-player", "shaded-background");
+      cfg::get_boolean("video-player", "shaded-background");
   bool cfg_force_aspect_ratio =
-      cfg.get_value_bool("video-player", "force-aspect-ratio");
+      cfg::get_boolean("video-player", "force-aspect-ratio");
   guint cfg_text_valignment = get_text_valignment_based_on_config();
 
   try {
@@ -873,24 +865,24 @@ float GstPlayer::get_framerate(int *numerator, int *denominator) {
 }
 
 guint GstPlayer::get_text_valignment_based_on_config() {
-  guint alignment = 0;
+  guint alignment = 0;  // baseline by default
 
-  Glib::ustring cfg_text_valignment;
-  if (Config::getInstance().get_value_string("video-player", "text-valignment",
-                                             cfg_text_valignment)) {
-    if (cfg_text_valignment == "baseline")
-      alignment = 0;
-    else if (cfg_text_valignment == "bottom")
-      alignment = 1;
-    else if (cfg_text_valignment == "top")
-      alignment = 2;
-    else if (cfg_text_valignment == "position")
-      alignment = 3;
-    else if (cfg_text_valignment == "center")
-      alignment = 4;
-  } else {
-    Config::getInstance().set_value_string("video-player", "text-valignment",
-                                           "baseline");
+  if (!cfg::has_key("video-player", "text-valignment")) {
+    cfg::set_string("video-player", "text-valignment", "baseline");
+    return alignment;
+  }
+  auto valignment = cfg::get_string("video-player", "text-valignment");
+
+  if (valignment == "baseline") {
+    alignment = 0;
+  } else if (valignment == "bottom") {
+    alignment = 1;
+  } else if (valignment == "top") {
+    alignment = 2;
+  } else if (valignment == "position") {
+    alignment = 3;
+  } else if (valignment == "center") {
+    alignment = 4;
   }
   return alignment;
 }

@@ -170,8 +170,8 @@ class SubtitleViewCellRendererCustom : public CellRendererCustom<T> {
   // Enable or disable all actions so as not to interfere with editing.
   // As a simple shorcuts.
   void set_action_groups_sensitives(bool state) {
-    if (Config::getInstance().get_value_bool(
-            "subtitle-view", "do-not-disable-actions-during-editing"))
+    if (cfg::get_boolean("subtitle-view",
+                         "do-not-disable-actions-during-editing"))
       return;
 
     auto actions = SubtitleEditorWindow::get_instance()
@@ -228,8 +228,7 @@ class CellRendererTextMultiline
     property_editable() = true;
     property_yalign() = 0.0;
 
-    if (Config::getInstance().get_value_bool("subtitle-view",
-                                             "property-alignment-center")) {
+    if (cfg::get_boolean("subtitle-view", "property-alignment-center")) {
       property_xalign() = 0.5;
       property_alignment() = Pango::ALIGN_CENTER;
     }
@@ -237,13 +236,14 @@ class CellRendererTextMultiline
 
   // Need to display a flash message for the behavior of line-break and exit.
   void on_flash_message() {
-    if (Config::getInstance().get_value_bool(
-            "subtitle-view", "used-ctrl-enter-to-confirm-change"))
+    if (cfg::get_boolean("subtitle-view",
+                         "used-ctrl-enter-to-confirm-change")) {
       m_document->flash_message(
           _("Use Ctrl+Return for exit and Return for line-break"));
-    else
+    } else {
       m_document->flash_message(
           _("Use Return for exit and Ctrl+Return for line-break"));
+    }
   }
 };
 
@@ -272,8 +272,7 @@ SubtitleView::SubtitleView(Document &doc) {
 
   get_selection()->set_mode(Gtk::SELECTION_MULTIPLE);
 
-  Config::getInstance()
-      .signal_changed("subtitle-view")
+  cfg::signal_changed("subtitle-view")
       .connect(
           sigc::mem_fun(*this, &SubtitleView::on_config_subtitle_view_changed));
 
@@ -289,16 +288,15 @@ SubtitleView::SubtitleView(Document &doc) {
       .connect(sigc::mem_fun(*this, &Gtk::TreeView::columns_autosize));
 
   // Setup my own copy of needed timing variables
-  Config &cfg = Config::getInstance();
-  min_duration = cfg.get_value_int("timing", "min-display");
-  min_gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
-  min_cps = cfg.get_value_double("timing", "min-characters-per-second");
-  max_cps = cfg.get_value_double("timing", "max-characters-per-second");
+  min_duration = cfg::get_int("timing", "min-display");
+  min_gap = cfg::get_int("timing", "min-gap-between-subtitles");
+  min_cps = cfg::get_double("timing", "min-characters-per-second");
+  max_cps = cfg::get_double("timing", "max-characters-per-second");
 
-  check_timing = cfg.get_value_bool("timing", "do-auto-timing-check");
+  check_timing = cfg::get_boolean("timing", "do-auto-timing-check");
 
   // keep trace of timing settings
-  cfg.signal_changed("timing").connect(
+  cfg::signal_changed("timing").connect(
       sigc::mem_fun(*this, &SubtitleView::on_config_timing_changed));
 }
 
@@ -309,7 +307,7 @@ void SubtitleView::on_config_timing_changed(const Glib::ustring &key,
   else if (key == "do-auto-timing-check")
     check_timing = utility::string_to_bool(value);
   else if (key == "min-display")
-    min_duration = Config::getInstance().get_value_int("timing", "min-display");
+    min_duration = cfg::get_int("timing", "min-display");
   else if (key == "min-characters-per-second")
     min_cps = utility::string_to_double(value);
   else if (key == "max-characters-per-second")
@@ -338,13 +336,8 @@ SubtitleView::~SubtitleView() {
 void SubtitleView::loadCfg() {
   se_debug(SE_DEBUG_VIEW);
 
-  bool state = false;
-
-  Config &cfg = Config::getInstance();
-
-  cfg.get_value_bool("subtitle-view", "enable-rubberband-selection", state);
-
-  set_rubber_banding(state);
+  auto ers = cfg::get_boolean("subtitle-view", "enable-rubberband-selection");
+  set_rubber_banding(ers);
 }
 
 void SubtitleView::set_tooltips(Gtk::TreeViewColumn *column,
@@ -652,12 +645,8 @@ void SubtitleView::createColumnText() {
     renderer->property_xalign() = 1.0;
     renderer->property_alignment() = Pango::ALIGN_RIGHT;
 
-    bool show = true;
-
-    Config::getInstance().get_value_bool("subtitle-view",
-                                         "show-character-per-line", show);
-
-    renderer->property_visible() = show;
+    renderer->property_visible() =
+        cfg::get_boolean("subtitle-view", "show-character-per-line");
   }
 
   column->set_resizable(true);
@@ -693,11 +682,8 @@ void SubtitleView::createColumnTranslation() {
                           m_column.characters_per_line_translation);
     renderer->property_yalign() = 0;
     renderer->property_weight() = Pango::WEIGHT_ULTRALIGHT;
-    bool show = true;
-    Config::getInstance().get_value_bool("subtitle-view",
-                                         "show-character-per-line", show);
-
-    renderer->property_visible() = show;
+    renderer->property_visible() =
+        cfg::get_boolean("subtitle-view", "show-character-per-line");
   }
 
   column->set_resizable(true);
@@ -1220,18 +1206,8 @@ bool SubtitleView::get_column_visible(const Glib::ustring &name) {
 void SubtitleView::update_columns_displayed_from_config() {
   se_debug(SE_DEBUG_VIEW);
 
-  Glib::ustring columns;
-
-  if (!Config::getInstance().get_value_string("subtitle-view",
-                                              "columns-displayed", columns)) {
-    g_warning("update_columns_displayed_from_config FAILED");
+  if (cfg::has_key("subtitle-view", "columns-displayed") == false)
     return;
-  }
-
-  // get columns order
-  std::vector<std::string> cols;
-
-  utility::split(columns, ';', cols);
 
   // hide all columns
   for (const auto &col_map : m_columns) {
@@ -1241,6 +1217,8 @@ void SubtitleView::update_columns_displayed_from_config() {
   // reorder columns
   Gtk::TreeViewColumn *current_column = NULL;
 
+  // get columns order
+  auto cols = cfg::get_string_list("subtitle-view", "columns-displayed");
   for (const auto &col : cols) {
     Glib::ustring name = col;
 

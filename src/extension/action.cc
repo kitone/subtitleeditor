@@ -36,12 +36,6 @@ SubtitleEditorWindow *Action::get_subtitleeditor_window() {
   return window;
 }
 
-Config &Action::get_config() {
-  se_debug(SE_DEBUG_PLUGINS);
-
-  return Config::getInstance();
-}
-
 Document *Action::get_current_document() {
   se_debug(SE_DEBUG_PLUGINS);
 

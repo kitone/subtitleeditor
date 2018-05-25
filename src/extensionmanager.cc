@@ -59,11 +59,11 @@ void ExtensionManager::create_extensions() {
   se_debug(SE_DEBUG_APP);
 
   for (const auto &ext_info : get_extension_info_list()) {
-    Glib::ustring state;
-    if (Config::getInstance().get_value_string("extension-manager",
-                                               ext_info->get_name(), state)) {
-      if (state == "enable")
+    if (cfg::has_key("extension-manager", ext_info->get_name())) {
+      auto state = cfg::get_string("extension-manager", ext_info->get_name());
+      if (state == "enable") {
         activate(ext_info);
+      }
     } else {
       // Unknown extension, enable by default
       se_debug_message(SE_DEBUG_APP,
@@ -280,8 +280,7 @@ bool ExtensionManager::set_extension_active(const Glib::ustring &name,
     return false;
   }
 
-  Config::getInstance().set_value_string("extension-manager", name,
-                                         (state) ? "enable" : "disable");
+  cfg::set_string("extension-manager", name, (state) ? "enable" : "disable");
 
   se_debug_message(SE_DEBUG_APP, "extension state is changed with success");
   return true;

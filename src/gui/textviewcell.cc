@@ -33,12 +33,12 @@ TextViewCell::TextViewCell()
       m_used_ctrl_enter_to_confirm_change(false) {
   se_debug(SE_DEBUG_VIEW);
 
-  m_used_ctrl_enter_to_confirm_change = Config::getInstance().get_value_bool(
-      "subtitle-view", "used-ctrl-enter-to-confirm-change");
+  m_used_ctrl_enter_to_confirm_change =
+      cfg::get_boolean("subtitle-view", "used-ctrl-enter-to-confirm-change");
 
-  if (Config::getInstance().get_value_bool("subtitle-view",
-                                           "property-alignment-center"))
+  if (cfg::get_boolean("subtitle-view", "property-alignment-center")) {
     set_justification(Gtk::JUSTIFY_CENTER);
+  }
 
   set_wrap_mode(Gtk::WRAP_NONE);
 

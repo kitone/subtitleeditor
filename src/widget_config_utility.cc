@@ -20,6 +20,7 @@
 
 #include <gtkmm.h>
 #include "cfg.h"
+#include "color.h"
 #include "debug.h"
 #include "widget_config_utility.h"
 
@@ -27,12 +28,12 @@ namespace widget_config {
 
 void on_check_button(Gtk::CheckButton *widget, const Glib::ustring &group,
                      const Glib::ustring &key) {
-  Config::getInstance().set_value_bool(group, key, widget->get_active());
+  cfg::set_boolean(group, key, widget->get_active());
 }
 
 void on_font_button(Gtk::FontButton *widget, const Glib::ustring &group,
                     const Glib::ustring &key) {
-  Config::getInstance().set_value_string(group, key, widget->get_font_name());
+  cfg::set_string(group, key, widget->get_font_name());
 }
 
 void on_color_button(Gtk::ColorButton *widget, const Glib::ustring &group,
@@ -40,59 +41,56 @@ void on_color_button(Gtk::ColorButton *widget, const Glib::ustring &group,
   Color color;
   color.getFromColorButton(*widget);
 
-  Config::getInstance().set_value_color(group, key, color);
+  cfg::set_string(group, key, color.to_string());
 }
 
 void on_range(Gtk::Range *range, const Glib::ustring &group,
               const Glib::ustring &key) {
-  Config::getInstance().set_value_double(group, key, range->get_value());
+  cfg::set_double(group, key, range->get_value());
 }
 
 void on_entry(Gtk::Entry *spin, const Glib::ustring &group,
               const Glib::ustring &key) {
-  Config::getInstance().set_value_string(group, key, spin->get_text());
+  cfg::set_string(group, key, spin->get_text());
 }
 
 void on_spin_button(Gtk::SpinButton *spin, const Glib::ustring &group,
                     const Glib::ustring &key) {
-  Config::getInstance().set_value_double(group, key, spin->get_value());
+  cfg::set_double(group, key, spin->get_value());
 }
 
 void on_combobox_text(Gtk::ComboBoxText *combo, const Glib::ustring &group,
                       const Glib::ustring &key) {
-  Config::getInstance().set_value_string(group, key, combo->get_active_text());
+  cfg::set_string(group, key, combo->get_active_text());
 }
 
 void connect(Gtk::Widget *widget, const Glib::ustring &group,
              const Glib::ustring &key) {
-  if (Gtk::CheckButton *check = dynamic_cast<Gtk::CheckButton *>(widget)) {
+  if (auto check = dynamic_cast<Gtk::CheckButton *>(widget)) {
     check->signal_toggled().connect(
         sigc::bind<Gtk::CheckButton *, Glib::ustring, Glib::ustring>(
             sigc::ptr_fun(&on_check_button), check, group, key));
-  } else if (Gtk::Range *range = dynamic_cast<Gtk::Range *>(widget)) {
+  } else if (auto range = dynamic_cast<Gtk::Range *>(widget)) {
     range->signal_value_changed().connect(
         sigc::bind<Gtk::Range *, Glib::ustring, Glib::ustring>(
             sigc::ptr_fun(&on_range), range, group, key));
-  } else if (Gtk::SpinButton *spin = dynamic_cast<Gtk::SpinButton *>(widget)) {
+  } else if (auto spin = dynamic_cast<Gtk::SpinButton *>(widget)) {
     spin->signal_value_changed().connect(
         sigc::bind<Gtk::SpinButton *, Glib::ustring, Glib::ustring>(
             sigc::ptr_fun(&on_spin_button), spin, group, key));
-  } else if (Gtk::Entry *entry = dynamic_cast<Gtk::Entry *>(widget)) {
-    // entry->signal_activate().connect(
+  } else if (auto entry = dynamic_cast<Gtk::Entry *>(widget)) {
     entry->signal_changed().connect(
         sigc::bind<Gtk::Entry *, Glib::ustring, Glib::ustring>(
             sigc::ptr_fun(&on_entry), entry, group, key));
-  } else if (Gtk::FontButton *font = dynamic_cast<Gtk::FontButton *>(widget)) {
+  } else if (auto font = dynamic_cast<Gtk::FontButton *>(widget)) {
     font->signal_font_set().connect(
         sigc::bind<Gtk::FontButton *, Glib::ustring, Glib::ustring>(
             sigc::ptr_fun(&on_font_button), font, group, key));
-  } else if (Gtk::ColorButton *color =
-                 dynamic_cast<Gtk::ColorButton *>(widget)) {
+  } else if (auto color = dynamic_cast<Gtk::ColorButton *>(widget)) {
     color->signal_color_set().connect(
         sigc::bind<Gtk::ColorButton *, Glib::ustring, Glib::ustring>(
             sigc::ptr_fun(&on_color_button), color, group, key));
-  } else if (Gtk::ComboBoxText *combobox =
-                 dynamic_cast<Gtk::ComboBoxText *>(widget)) {
+  } else if (auto combobox = dynamic_cast<Gtk::ComboBoxText *>(widget)) {
     combobox->signal_changed().connect(
         sigc::bind<Gtk::ComboBoxText *, Glib::ustring, Glib::ustring>(
             sigc::ptr_fun(&on_combobox_text), combobox, group, key));
@@ -101,44 +99,31 @@ void connect(Gtk::Widget *widget, const Glib::ustring &group,
 
 void read_config(Gtk::Widget *widget, const Glib::ustring &group,
                  const Glib::ustring &key) {
-  Config &cfg = Config::getInstance();
-
-  if (Gtk::CheckButton *check = dynamic_cast<Gtk::CheckButton *>(widget)) {
-    bool value = false;
-    if (cfg.get_value_bool(group, key, value)) {
-      check->set_active(value);
+  if (auto check = dynamic_cast<Gtk::CheckButton *>(widget)) {
+    check->set_active(cfg::get_boolean(group, key));
+  } else if (auto range = dynamic_cast<Gtk::Range *>(widget)) {
+    if (cfg::has_key(group, key)) {
+      range->set_value(cfg::get_double(group, key));
     }
-  } else if (Gtk::Range *range = dynamic_cast<Gtk::Range *>(widget)) {
-    double value = 0;
-    if (cfg.get_value_double(group, key, value)) {
-      range->set_value(value);
+  } else if (auto spin = dynamic_cast<Gtk::SpinButton *>(widget)) {
+    if (cfg::has_key(group, key)) {
+      spin->set_value(cfg::get_double(group, key));
     }
-  } else if (Gtk::SpinButton *spin = dynamic_cast<Gtk::SpinButton *>(widget)) {
-    double value;
-    if (cfg.get_value_double(group, key, value)) {
-      spin->set_value(value);
+  } else if (auto entry = dynamic_cast<Gtk::Entry *>(widget)) {
+    if (cfg::has_key(group, key)) {
+      entry->set_text(cfg::get_string(group, key));
     }
-  } else if (Gtk::Entry *entry = dynamic_cast<Gtk::Entry *>(widget)) {
-    Glib::ustring value;
-    if (cfg.get_value_string(group, key, value)) {
-      entry->set_text(value);
+  } else if (auto font = dynamic_cast<Gtk::FontButton *>(widget)) {
+    if (cfg::has_key(group, key)) {
+      font->set_font_name(cfg::get_string(group, key));
     }
-  } else if (Gtk::FontButton *font = dynamic_cast<Gtk::FontButton *>(widget)) {
-    Glib::ustring value;
-    if (cfg.get_value_string(group, key, value)) {
-      font->set_font_name(value);
-    }
-  } else if (Gtk::ColorButton *colorbutton =
-                 dynamic_cast<Gtk::ColorButton *>(widget)) {
-    Color color;
-    cfg.get_value_color(group, key, color);
+  } else if (auto colorbutton = dynamic_cast<Gtk::ColorButton *>(widget)) {
+    Color color(cfg::get_string(group, key));
 
     color.initColorButton(*colorbutton);
-  } else if (Gtk::ComboBoxText *combobox =
-                 dynamic_cast<Gtk::ComboBoxText *>(widget)) {
-    Glib::ustring value;
-    if (cfg.get_value_string(group, key, value)) {
-      combobox->set_active_text(value);
+  } else if (auto combobox = dynamic_cast<Gtk::ComboBoxText *>(widget)) {
+    if (cfg::has_key(group, key)) {
+      combobox->set_active_text(cfg::get_string(group, key));
     }
   }
 }

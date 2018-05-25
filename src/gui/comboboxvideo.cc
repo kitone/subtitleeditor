@@ -75,8 +75,8 @@ bool ComboBoxVideo::auto_select_video(const Glib::ustring &subtitle) {
 
   bool is_directory_or_empty =
       (Glib::file_test(subtitle, Glib::FILE_TEST_IS_DIR) || subtitle.empty());
-  bool is_automatically_open_video = Config::getInstance().get_value_bool(
-      "video-player", "automatically-open-video");
+  bool is_automatically_open_video =
+      cfg::get_boolean("video-player", "automatically-open-video");
 
   if (is_directory_or_empty || is_automatically_open_video == false) {
     set_active(0);

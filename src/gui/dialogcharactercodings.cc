@@ -140,11 +140,7 @@ void DialogCharacterCodings::init_encodings_displayed() {
 
   m_storeDisplayed = Gtk::ListStore::create(m_column);
 
-  std::list<Glib::ustring> encodings;
-
-  Config::getInstance().get_value_string_list("encodings", "encodings",
-                                              encodings);
-
+  auto encodings = cfg::get_string_list("encodings", "encodings");
   for (const auto &encoding : encodings) {
     append_encoding(m_storeDisplayed, encoding);
   }
@@ -205,17 +201,15 @@ void DialogCharacterCodings::on_encodings_displayed_selection_changed() {
 
 // Save the values in the config.
 void DialogCharacterCodings::save_config() {
-  std::list<Glib::ustring> encodings;
-
   Gtk::TreeIter it = m_storeDisplayed->children().begin();
 
+  std::vector<Glib::ustring> encodings;
   while (it) {
     encodings.push_back((*it)[m_column.charset]);
     ++it;
   }
 
-  Config::getInstance().set_value_string_list("encodings", "encodings",
-                                              encodings);
+  cfg::set_string_list("encodings", "encodings", encodings);
 }
 
 // if the response is RESPONSE_OK save the config.

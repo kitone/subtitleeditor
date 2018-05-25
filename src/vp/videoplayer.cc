@@ -200,8 +200,7 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject,
 
   load_config();
 
-  Config::getInstance()
-      .signal_changed("video-player")
+  cfg::signal_changed("video-player")
       .connect(
           sigc::mem_fun(*this, &VideoPlayer::on_config_video_player_changed));
 
@@ -222,17 +221,15 @@ VideoPlayer::~VideoPlayer() {
 
 // Load the video player config.
 void VideoPlayer::load_config() {
-  Config& cfg = Config::getInstance();
-
-  if (cfg.get_value_bool("video-player", "display"))
+  if (cfg::get_boolean("video-player", "display")) {
     show();
-  else
+  } else {
     hide();
-
-  m_player->set_repeat(cfg.get_value_bool("video-player", "repeat"));
+  }
+  m_player->set_repeat(cfg::get_boolean("video-player", "repeat"));
 
   m_cfg_display_translated_subtitle =
-      cfg.get_value_bool("video-player", "display-translated-subtitle");
+      cfg::get_boolean("video-player", "display-translated-subtitle");
 }
 
 // Return the gstreamer player.

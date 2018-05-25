@@ -306,8 +306,7 @@ std::vector<int> get_characters_per_line(const Glib::ustring &text) {
 Glib::ustring get_stripped_text(const Glib::ustring &text) {
   // pattern for tags like <i>, </i>, {\comment}, etc.
   // or space
-  static bool ignore_space =
-      Config::getInstance().get_value_bool("timing", "ignore-space");
+  static bool ignore_space = cfg::get_boolean("timing", "ignore-space");
   static Glib::RefPtr<Glib::Regex> tag_pattern =
       ignore_space ? Glib::Regex::create("<.*?>|{.*?}| ")
                    : Glib::Regex::create("<.*?>|{.*?}");

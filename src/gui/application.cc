@@ -69,8 +69,7 @@ Application::Application(BaseObjectType *cobject,
   Gtk::AccelMap::load(path_se_accelmap);
 
   //
-  Config::getInstance()
-      .signal_changed("interface")
+  cfg::signal_changed("interface")
       .connect(sigc::mem_fun(*this, &Application::on_config_interface_changed));
 
   load_window_state();
@@ -133,22 +132,22 @@ Application::~Application() {
 }
 
 void Application::load_config() {
-  Config &cfg = Config::getInstance();
-
   // dynamic keyboar shorcuts
   bool value;
-  cfg.get_value_bool("interface", "use-dynamic-keyboard-shortcuts", value);
-  Gtk::Settings::get_default()->property_gtk_can_change_accels() = value;
+
+  auto use_dyn_ks =
+      cfg::get_boolean("interface", "use-dynamic-keyboard-shortcuts");
+  Gtk::Settings::get_default()->property_gtk_can_change_accels() = use_dyn_ks;
 
   // maximize window
-  cfg.get_value_bool("interface", "maximize-window", value);
-  if (value)
+  if (cfg::get_boolean("interface", "maximize-window")) {
     maximize();
+  }
 
   // first launch
-  if (!cfg.has_group("encodings")) {
-    cfg.set_value_string("encodings", "encodings", "ISO-8859-15;UTF-8");
-    cfg.set_value_bool("encodings", "used-auto-detected", true);
+  if (!cfg::has_group("encodings")) {
+    cfg::set_string("encodings", "encodings", "ISO-8859-15;UTF-8");
+    cfg::set_boolean("encodings", "used-auto-detected", true);
   }
 }
 
@@ -495,9 +494,8 @@ void Application::init(OptionGroup &options) {
 
   // s'il n'y a pas de video et s'il n'y a qu'un seule fichier sous-titre
   // recherche une video par rapport au nom du sous-titre
-  bool automatically_open_video;
-  Config::getInstance().get_value_bool(
-      "video-player", "automatically-open-video", automatically_open_video);
+  bool automatically_open_video =
+      cfg::get_boolean("video-player", "automatically-open-video");
 
   if (video.empty() && (options.files.size() == 1) &&
       automatically_open_video) {
@@ -673,42 +671,46 @@ void Application::on_paned_multimedia_visibility_child_changed() {
 }
 
 void Application::load_window_state() {
-  Config &cfg = Config::getInstance();
-
   // window size,position
-  if (cfg.get_value_bool("interface", "maximize-window"))
+  if (cfg::get_boolean("interface", "maximize-window")) {
     maximize();
-  else {
-    int window_x, window_y;
-    if (cfg.get_value_int("interface", "window-x", window_x) &&
-        cfg.get_value_int("interface", "window-y", window_y))
-      move(window_x, window_y);
+  } else {
+    // setup window position
+    bool has_win_x = cfg::has_key("interface", "window-x");
+    bool has_win_y = cfg::has_key("interface", "window-y");
 
-    int window_width, window_height;
-    if (cfg.get_value_int("interface", "window-width", window_width) &&
-        cfg.get_value_int("interface", "window-height", window_height))
-      resize(window_width, window_height);
+    if (has_win_x && has_win_y) {
+      auto win_x = cfg::get_int("interface", "window-x");
+      auto win_y = cfg::get_int("interface", "window-y");
+      move(win_x, win_y);
+    }
+    // setup window size
+    bool has_win_width = cfg::has_key("interface", "window-width");
+    bool has_win_height = cfg::has_key("interface", "window-height");
+
+    if (has_win_width && has_win_height) {
+      auto win_width = cfg::get_int("interface", "window-width");
+      auto win_height = cfg::get_int("interface", "window-height");
+      resize(win_width, win_height);
+    }
   }
   // paned position
-  int panel_main_position =
-      cfg.get_value_int("interface", "paned-main-position");
+  int panel_main_position = cfg::get_int("interface", "paned-main-position");
   if (panel_main_position > 0)
     m_paned_main->set_position(panel_main_position);
 
   int panel_multimedia_position =
-      cfg.get_value_int("interface", "paned-multimedia-position");
+      cfg::get_int("interface", "paned-multimedia-position");
   if (panel_multimedia_position > 0)
     m_paned_multimedia->set_position(panel_multimedia_position);
 }
 
 void Application::save_window_sate() {
-  Config &cfg = Config::getInstance();
-
   // position of window
   int window_x = 0, window_y = 0;
   get_position(window_x, window_y);
-  cfg.set_value_int("interface", "window-x", window_x);
-  cfg.set_value_int("interface", "window-y", window_y);
+  cfg::set_int("interface", "window-x", window_x);
+  cfg::set_int("interface", "window-y", window_y);
 
   // size of window
 #if GTKMM_CHECK_VERSION(3, 12, 0)
@@ -717,16 +719,16 @@ void Application::save_window_sate() {
   if (get_window()->get_state() &
       (Gdk::WINDOW_STATE_MAXIMIZED | Gdk::WINDOW_STATE_FULLSCREEN) == 0)
 #endif
-    cfg.set_value_bool("interface", "maximize-window", true);
+    cfg::set_boolean("interface", "maximize-window", true);
   else {
     Gtk::Allocation allocation = get_allocation();
-    cfg.set_value_int("interface", "window-width", allocation.get_width());
-    cfg.set_value_int("interface", "window-height", allocation.get_height());
+    cfg::set_int("interface", "window-width", allocation.get_width());
+    cfg::set_int("interface", "window-height", allocation.get_height());
   }
 
   // paned position
-  cfg.set_value_int("interface", "paned-main-position",
-                    m_paned_main->get_position());
-  cfg.set_value_int("interface", "paned-multimedia-position",
-                    m_paned_multimedia->get_position());
+  cfg::set_int("interface", "paned-main-position",
+               m_paned_main->get_position());
+  cfg::set_int("interface", "paned-multimedia-position",
+               m_paned_multimedia->get_position());
 }

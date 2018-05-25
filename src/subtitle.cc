@@ -268,7 +268,7 @@ bool Subtitle::update_gap_after() {
 // Mingap is the minimum gap in milliseconds.
 bool Subtitle::check_gap_before(long mingap) {
   // const long mingap =
-  //     convert_to_value_mode(SubtitleTime(Config::getInstance().get_value_int(
+  //     convert_to_value_mode(SubtitleTime(cfg::get_int(
   //         "timing", "min-gap-between-subtitles")));
   if (((*m_iter)[column.gap_before] >= mingap) || (get_num() <= 1))
     return true;
@@ -280,7 +280,7 @@ bool Subtitle::check_gap_before(long mingap) {
 // Mingap is the minimum gap in milliseconds.
 bool Subtitle::check_gap_after(long mingap) {
   // const long mingap =
-  //     convert_to_value_mode(SubtitleTime(Config::getInstance().get_value_int(
+  //     convert_to_value_mode(SubtitleTime(cfg::get_int(
   //         "timing", "min-gap-between-subtitles")));
   Subtitle next_sub = m_document->subtitles().get_next(*this);
 

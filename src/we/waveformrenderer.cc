@@ -26,8 +26,7 @@ WaveformRenderer::WaveformRenderer() {
   init_default_config();
   load_config();
 
-  Config::getInstance()
-      .signal_changed("waveform-renderer")
+  cfg::signal_changed("waveform-renderer")
       .connect(sigc::mem_fun(
           *this, &WaveformRenderer::on_config_waveform_renderer_changed));
 }
@@ -59,18 +58,15 @@ void WaveformRenderer::init_default_config() {
   m_display_time_info = false;
   m_display_subtitle_text = true;
 
-#warning "TODO: FIXME with ConfigChecker"
-  Config &cfg = Config::getInstance();
-
-#define check_color(key, rgba)                                       \
-  if (!cfg.has_key("waveform-renderer", key)) {                      \
-    Color col;                                                       \
-    col.set_value(rgba, 1);                                          \
-    cfg.set_value_string("waveform-renderer", key, col.to_string()); \
+#define check_color(key, rgba)                                  \
+  if (!cfg::has_key("waveform-renderer", key)) {                \
+    Color col;                                                  \
+    col.set_value(rgba, 1);                                     \
+    cfg::set_string("waveform-renderer", key, col.to_string()); \
   }
-#define check_bool(key, value)                \
-  if (!cfg.has_key("waveform-renderer", key)) \
-    cfg.set_value_bool("waveform-renderer", key, value);
+#define check_bool(key, value)                 \
+  if (!cfg::has_key("waveform-renderer", key)) \
+    cfg::set_boolean("waveform-renderer", key, value);
 
   check_bool("display-subtitle-text", m_display_subtitle_text);
 
@@ -89,13 +85,11 @@ void WaveformRenderer::init_default_config() {
 }
 
 void WaveformRenderer::load_config() {
-  Config &cfg = Config::getInstance();
-
   m_display_subtitle_text =
-      cfg.get_value_bool("waveform-renderer", "display-subtitle-text");
+      cfg::get_boolean("waveform-renderer", "display-subtitle-text");
 
 #define get_color(key, col) \
-  cfg.get_value_color("waveform-renderer", key).get_value(col, 1)
+  Color(cfg::get_string("waveform-renderer", key)).get_value(col, 1);
 
   get_color("color-background", m_color_background);
   get_color("color-wave", m_color_wave);

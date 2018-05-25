@@ -74,8 +74,7 @@ WaveformEditor::WaveformEditor(BaseObjectType *cobject,
 
   load_config();
 
-  Config::getInstance()
-      .signal_changed("waveform")
+  cfg::signal_changed("waveform")
       .connect(
           sigc::mem_fun(*this, &WaveformEditor::on_config_waveform_changed));
 
@@ -89,28 +88,29 @@ WaveformEditor::~WaveformEditor() {
 void WaveformEditor::load_config() {
   se_debug(SE_DEBUG_WAVEFORM);
 
-  Config &cfg = Config::getInstance();
-
-  if (cfg.has_key("waveform", "scale"))
-    m_sliderScale->set_value(cfg.get_value_int("waveform", "scale"));
+  if (cfg::has_key("waveform", "scale"))
+    m_sliderScale->set_value(cfg::get_int("waveform", "scale"));
   else
     m_sliderScale->set_value(3);
 
-  if (cfg.has_key("waveform", "zoom"))
-    m_sliderZoom->set_value(cfg.get_value_int("waveform", "zoom"));
+  if (cfg::has_key("waveform", "zoom"))
+    m_sliderZoom->set_value(cfg::get_int("waveform", "zoom"));
   else
     m_sliderZoom->set_value(1);
 
-  cfg.get_value_bool("waveform", "scrolling-with-player",
-                     m_cfg_scrolling_with_player);
-  cfg.get_value_bool("waveform", "scrolling-with-selection",
-                     m_cfg_scrolling_with_selection);
-  cfg.get_value_bool("waveform", "respect-timing", m_cfg_respect_timing);
+  m_cfg_scrolling_with_player =
+      cfg::get_boolean("waveform", "scrolling-with-player");
 
-  if (cfg.get_value_bool("waveform", "display"))
+  m_cfg_scrolling_with_selection =
+      cfg::get_boolean("waveform", "scrolling-with-selection");
+
+  m_cfg_respect_timing = cfg::get_boolean("waveform", "respect-timing");
+
+  if (cfg::get_boolean("waveform", "display")) {
     show();
-  else
+  } else {
     hide();
+  }
 }
 
 // This callback is connected on the realize signal.
@@ -118,8 +118,7 @@ void WaveformEditor::load_config() {
 void WaveformEditor::on_create_renderer() {
   se_debug(SE_DEBUG_WAVEFORM);
 
-  Glib::ustring renderer_name =
-      Config::getInstance().get_value_string("waveform", "renderer");
+  Glib::ustring renderer_name = cfg::get_string("waveform", "renderer");
 
 #ifdef ENABLE_GL
   if (renderer_name == "gl") {
@@ -393,8 +392,8 @@ void WaveformEditor::on_zoom_changed() {
 
   init_scrollbar();
 
-  if (Config::getInstance().get_value_int("waveform", "zoom") != value)
-    Config::getInstance().set_value_int("waveform", "zoom", value);
+  if (cfg::get_int("waveform", "zoom") != value)
+    cfg::set_int("waveform", "zoom", value);
 
   redraw_renderer();
 }
@@ -406,8 +405,8 @@ void WaveformEditor::on_scale_changed() {
 
   se_debug_message(SE_DEBUG_WAVEFORM, "scale=%d", value);
 
-  if (Config::getInstance().get_value_int("waveform", "scale") != value)
-    Config::getInstance().set_value_int("waveform", "scale", value);
+  if (cfg::get_int("waveform", "scale") != value)
+    cfg::set_int("waveform", "scale", value);
 
   redraw_renderer();
 }
@@ -444,9 +443,9 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf) {
   // Only show the wf view if it's not already visible
   // Don't show or hide using the wf status
   // bug #22482 : Another regression of gtk3 port
-  Config &cfg = Config::getInstance();
-  if (cfg.get_value_bool("waveform", "display") == false && wf)
-    cfg.set_value_bool("waveform", "display", true);
+  if (cfg::get_boolean("waveform", "display") == false && wf) {
+    cfg::set_boolean("waveform", "display", true);
+  }
 
   if (has_renderer())
     renderer()->set_waveform(wf);
@@ -795,10 +794,8 @@ bool WaveformEditor::move_subtitle_start(const SubtitleTime &_time,
   if (!subtitle)
     return false;
 
-  SubtitleTime min_gap(Config::getInstance().get_value_int(
-      "timing", "min-gap-between-subtitles"));
-  SubtitleTime min_display(
-      Config::getInstance().get_value_int("timing", "min-display"));
+  SubtitleTime min_gap = cfg::get_int("timing", "min-gap-between-subtitles");
+  SubtitleTime min_display = cfg::get_int("timing", "min-display");
 
   SubtitleTime time = _time;
 
@@ -889,10 +886,8 @@ bool WaveformEditor::move_subtitle_end(const SubtitleTime &_time,
   if (!subtitle)
     return false;
 
-  SubtitleTime min_gap(Config::getInstance().get_value_int(
-      "timing", "min-gap-between-subtitles"));
-  SubtitleTime min_display(
-      Config::getInstance().get_value_int("timing", "min-display"));
+  SubtitleTime min_gap = cfg::get_int("timing", "min-gap-between-subtitles");
+  SubtitleTime min_display = cfg::get_int("timing", "min-display");
 
   SubtitleTime time = _time;
 

@@ -72,11 +72,9 @@ void init_dialog_subtitle_filters(Gtk::FileChooserDialog *dialog) {
 DialogFileChooser::DialogFileChooser(BaseObjectType *cobject,
                                      const Glib::ustring &name)
     : Gtk::FileChooserDialog(cobject), m_name(name) {
-  Glib::ustring last;
-  if (Config::getInstance().get_value_string("dialog-last-folder", m_name,
-                                             last))
-    set_current_folder_uri(last);
-
+  if (cfg::has_key("dialog-last-folder", m_name)) {
+    set_current_folder_uri(cfg::get_string("dialog-last-folder", m_name));
+  }
   utility::set_transient_parent(*this);
 }
 
@@ -84,17 +82,14 @@ DialogFileChooser::DialogFileChooser(const Glib::ustring &title,
                                      Gtk::FileChooserAction action,
                                      const Glib::ustring &name)
     : Gtk::FileChooserDialog(title, action), m_name(name) {
-  Glib::ustring last;
-  if (Config::getInstance().get_value_string("dialog-last-folder", m_name,
-                                             last))
-    set_current_folder_uri(last);
-
+  if (cfg::has_key("dialog-last-folder", m_name)) {
+    set_current_folder_uri(cfg::get_string("dialog-last-folder", m_name));
+  }
   utility::set_transient_parent(*this);
 }
 
 DialogFileChooser::~DialogFileChooser() {
-  Glib::ustring last = get_current_folder_uri();
-  Config::getInstance().set_value_string("dialog-last-folder", m_name, last);
+  cfg::set_string("dialog-last-folder", m_name, get_current_folder_uri());
 }
 
 // Define the current file filter.
@@ -404,18 +399,16 @@ DialogOpenVideo::DialogOpenVideo()
   add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
   set_default_response(Gtk::RESPONSE_OK);
 
-  Config &cfg = Config::getInstance();
-
-  Glib::ustring floder;
-  if (cfg.get_value_string("dialog-last-folder", "dialog-open-video", floder))
-    set_current_folder_uri(floder);
+  if (cfg::has_key("dialog-last-folder", "dialog-open-video")) {
+    set_current_folder_uri(
+        cfg::get_string("dialog-last-folder", "dialog-open-video"));
+  }
 }
 
 DialogOpenVideo::~DialogOpenVideo() {
   Glib::ustring floder = get_current_folder_uri();
 
-  Config::getInstance().set_value_string("dialog-last-folder",
-                                         "dialog-open-video", floder);
+  cfg::set_string("dialog-last-folder", "dialog-open-video", floder);
 }
 
 // Waveform or Audio/Video
@@ -476,19 +469,15 @@ DialogOpenWaveform::DialogOpenWaveform()
   add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
   set_default_response(Gtk::RESPONSE_OK);
 
-  Config &cfg = Config::getInstance();
-
-  Glib::ustring floder;
-  if (cfg.get_value_string("dialog-last-folder", "dialog-open-waveform",
-                           floder))
-    set_current_folder_uri(floder);
+  if (cfg::has_key("dialog-last-folder", "dialog-open-waveform")) {
+    set_current_folder_uri(
+        cfg::get_string("dialog-last-folder", "dialog-open-waveform"));
+  }
 }
 
 DialogOpenWaveform::~DialogOpenWaveform() {
-  Glib::ustring floder = get_current_folder_uri();
-
-  Config::getInstance().set_value_string("dialog-last-folder",
-                                         "dialog-open-waveform", floder);
+  auto floder = get_current_folder_uri();
+  cfg::set_string("dialog-last-folder", "dialog-open-waveform", floder);
 }
 
 // Keyframes or Video
@@ -536,17 +525,13 @@ DialogOpenKeyframe::DialogOpenKeyframe()
   add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
   set_default_response(Gtk::RESPONSE_OK);
 
-  Config &cfg = Config::getInstance();
-
-  Glib::ustring floder;
-  if (cfg.get_value_string("dialog-last-folder", "dialog-open-keyframe",
-                           floder))
-    set_current_folder_uri(floder);
+  if (cfg::has_key("dialog-last-folder", "dialog-open-keyframe")) {
+    set_current_folder_uri(
+        cfg::get_string("dialog-last-folder", "dialog-open-keyframe"));
+  }
 }
 
 DialogOpenKeyframe::~DialogOpenKeyframe() {
-  Glib::ustring floder = get_current_folder_uri();
-
-  Config::getInstance().set_value_string("dialog-last-folder",
-                                         "dialog-open-keyframe", floder);
+  auto floder = get_current_folder_uri();
+  cfg::set_string("dialog-last-folder", "dialog-open-keyframe", floder);
 }

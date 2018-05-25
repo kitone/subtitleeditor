@@ -209,8 +209,7 @@ Glib::ustring convert_to_utf8(const std::string &content,
   se_debug_message(SE_DEBUG_UTILITY,
                    "Trying with user encodings preferences...");
 
-  std::list<Glib::ustring> user_encodings =
-      Config::getInstance().get_value_string_list("encodings", "encodings");
+  auto user_encodings = cfg::get_string_list("encodings", "encodings");
 
   for (const auto &enc : user_encodings) {
     try {
