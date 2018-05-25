@@ -144,14 +144,12 @@ class BestFitPlugin : public Action {
       return;
 
     // Get relevant preferences
-    Config &cfg = get_config();
+    SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
+    double mincps = cfg::get_double("timing", "min-characters-per-second");
 
-    SubtitleTime gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
-    double mincps = cfg.get_value_double("timing", "min-characters-per-second");
-
-    // SubtitleTime minlen = cfg.get_value_int("timing", "min-display");
-    // long maxcpl = cfg.get_value_int("timing", "max-characters-per-line");
-    // long maxcps = cfg.get_value_int("timing", "max-characters-per-second");
+    // SubtitleTime minlen = cfg::get_int("timing", "min-display");
+    // long maxcpl = cfg::get_int("timing", "max-characters-per-line");
+    // long maxcps = cfg::get_int("timing", "max-characters-per-second");
 
     SubtitleTime startime = subtitles.front().get_start();
     SubtitleTime endtime = subtitles.back().get_end();

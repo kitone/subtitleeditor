@@ -60,21 +60,16 @@ class WaveformPage : public PreferencePage {
 
  protected:
   void on_reset() {
-    Config &cfg = Config::getInstance();
-
-    std::map<std::string, Gtk::ColorButton *>::iterator it;
-
-    for (it = m_colorButtons.begin(); it != m_colorButtons.end(); ++it) {
-      Glib::ustring value;
-
-      std::string key = it->first;
-      Gtk::ColorButton *button = it->second;
-
-      if (button && cfg.set_default_value("waveform-renderer", key)) {
-        cfg.get_default_value("waveform-renderer", key, value);
-        Color color(value);
-        color.initColorButton(*button);
-      }
+    for (const auto &it : m_colorButtons) {
+      std::string key = it.first;
+      Gtk::ColorButton *button = it.second;
+      if (!button)
+        continue;
+      auto value = cfg::get_default("waveform-renderer", key);
+      if (value.empty())
+        continue;
+      Color color(value);
+      color.initColorButton(*button);
     }
   }
 

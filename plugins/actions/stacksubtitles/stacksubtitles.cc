@@ -133,12 +133,9 @@ class StackSubtitlesPlugin : public Action {
     if (subcnt < 2)
       return;
 
-    // get relevant preferences
-    Config &cfg = get_config();
-
-    SubtitleTime gap = cfg.get_value_int("timing", "min-gap-between-subtitles");
-    // SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
-    // long maxcps = cfg.get_value_int("timing", "max-characters-per-second");
+    SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
+    // SubtitleTime mindur = cfg::get_int("timing", "min-display");
+    // long maxcps = cfg::get_int("timing", "max-characters-per-second");
 
     if (from_start) {
       // take each subtitle and snap it after the one before.

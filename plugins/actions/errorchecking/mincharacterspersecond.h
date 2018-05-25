@@ -34,8 +34,7 @@ class MinCharactersPerSecond : public ErrorChecking {
   }
 
   virtual void init() {
-    m_minCPS = Config::getInstance().get_value_double(
-        "timing", "min-characters-per-second");
+    m_minCPS = cfg::get_double("timing", "min-characters-per-second");
   }
 
   bool execute(Info &info) {

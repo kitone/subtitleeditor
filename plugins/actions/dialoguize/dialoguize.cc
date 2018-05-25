@@ -31,20 +31,18 @@
 
 // =============== PREFERENCES ===============
 
-#define DIALOGUIZE_PREF_GROUP "dialoguize"
-#define DIALOGUIZE_PREF_KEY_DASH "dash"
-#define DIALOGUIZE_PREF_KEY_DASH_ESCAPED "dash-escaped"
-#define DIALOGUIZE_PREF_KEY_CUSTOM "custom-prefix"
+#define PREF_GROUP "dialoguize"
+#define PREF_KEY_DASH "dash"
+#define PREF_KEY_DASH_ESCAPED "dash-escaped"
+#define PREF_KEY_CUSTOM "custom-prefix"
 
 class DialogDialoguizePreferences : public Gtk::Dialog {
  public:
   // set dash and its escaped version in the preferences
   static void set_dash(Glib::ustring dash) {
-    Config& cfg = Config::getInstance();
-    cfg.set_value_string(DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_DASH, dash);
-    cfg.set_value_string(DIALOGUIZE_PREF_GROUP,
-                         DIALOGUIZE_PREF_KEY_DASH_ESCAPED,
-                         Glib::Regex::escape_string(dash));
+    cfg::set_string(PREF_GROUP, PREF_KEY_DASH, dash);
+    cfg::set_string(PREF_GROUP, PREF_KEY_DASH_ESCAPED,
+                    Glib::Regex::escape_string(dash));
   }
 
  protected:
@@ -70,15 +68,13 @@ class DialogDialoguizePreferences : public Gtk::Dialog {
 
   void on_button_custom_toggled() {
     if (radiobutton_custom->get_active()) {
-      Glib::ustring customdash = Config::getInstance().get_value_string(
-          DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_CUSTOM);
+      auto customdash = cfg::get_string(PREF_GROUP, PREF_KEY_CUSTOM);
       set_dash(customdash);
     }
   }
 
   void on_entry_change() {
-    Glib::ustring customdash = Config::getInstance().get_value_string(
-        DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_CUSTOM);
+    auto customdash = cfg::get_string(PREF_GROUP, PREF_KEY_CUSTOM);
     set_dash(customdash);
     radiobutton_custom->set_active(true);
   }
@@ -87,16 +83,13 @@ class DialogDialoguizePreferences : public Gtk::Dialog {
   DialogDialoguizePreferences(BaseObjectType* cobject,
                               const Glib::RefPtr<Gtk::Builder>& xml)
       : Gtk::Dialog(cobject) {
-    Config* cfg = &Config::getInstance();
-
     // make sure my preferences exist
-    if (!cfg->has_key(DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_DASH))
+    if (!cfg::has_key(PREF_GROUP, PREF_KEY_DASH)) {
       set_dash("- ");
-
-    if (!cfg->has_key(DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_CUSTOM))
-      cfg->set_value_string(DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_CUSTOM,
-                            "");
-
+    }
+    if (!cfg::has_key(PREF_GROUP, PREF_KEY_CUSTOM)) {
+      cfg::set_string(PREF_GROUP, PREF_KEY_CUSTOM, "");
+    }
     Gtk::Entry* entry = NULL;
     xml->get_widget("entry-custom-dialog-prefix", entry);
     widget_config::read_config_and_connect(entry, "dialoguize",
@@ -126,10 +119,8 @@ class DialogDialoguizePreferences : public Gtk::Dialog {
 
     // now I need to guess from the dash setting which one of the radio buttons
     // is actually active
-    Glib::ustring dash = Config::getInstance().get_value_string(
-        DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_DASH);
-    Glib::ustring custom = Config::getInstance().get_value_string(
-        DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_CUSTOM);
+    Glib::ustring dash = cfg::get_string(PREF_GROUP, PREF_KEY_DASH);
+    Glib::ustring custom = cfg::get_string(PREF_GROUP, PREF_KEY_CUSTOM);
 
     if (dash.empty())
       dash = "- ";
@@ -252,17 +243,15 @@ class DialoguizeSelectedSubtitlesPlugin : public Action {
     }
 
     // just in case the preferences haven't been set yet
-    Config* cfg = &Config::getInstance();
-
-    if (!cfg->has_key(DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_DASH))
+    if (!cfg::has_key(PREF_GROUP, PREF_KEY_DASH)) {
       DialogDialoguizePreferences::set_dash("- ");
+    }
 
     doc->start_command(_("Dialoguize"));
 
-    Glib::ustring dash =
-        cfg->get_value_string(DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_DASH);
-    Glib::ustring dash_escaped = cfg->get_value_string(
-        DIALOGUIZE_PREF_GROUP, DIALOGUIZE_PREF_KEY_DASH_ESCAPED);
+    Glib::ustring dash = cfg::get_string(PREF_GROUP, PREF_KEY_DASH);
+    Glib::ustring dash_escaped =
+        cfg::get_string(PREF_GROUP, PREF_KEY_DASH_ESCAPED);
     Glib::ustring dash_regex = "^" + dash_escaped + "\\s*";
 
     bool state = !parial_match(selection, dash_regex);

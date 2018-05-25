@@ -63,13 +63,14 @@ class ErrorChecking {
   }
 
   void set_active(bool state) {
-    Config::getInstance().set_value_bool(get_name(), "enabled", state);
+    cfg::set_boolean(get_name(), "enabled", state);
   }
+
   bool get_active() {
-    if (Config::getInstance().has_key(get_name(), "enabled") == false) {
+    if (cfg::has_key(get_name(), "enabled") == false) {
       set_active(true);
     }
-    return Config::getInstance().get_value_bool(get_name(), "enabled");
+    return cfg::get_boolean(get_name(), "enabled");
   }
 
   bool has_configuration() const {

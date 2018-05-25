@@ -152,12 +152,8 @@ class InsertSubtitlePlugin : public Action {
                                   const Subtitle &after) {
     se_debug(SE_DEBUG_PLUGINS);
 
-    int gap_between_subtitle =
-        get_config().get_value_int("timing", "min-gap-between-subtitles");
-    int min_display = get_config().get_value_int("timing", "min-display");
-
-    SubtitleTime gap(gap_between_subtitle);
-    SubtitleTime min(min_display);
+    SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
+    SubtitleTime min = cfg::get_int("timing", "min-display");
 
     SubtitleTime start, end;
 

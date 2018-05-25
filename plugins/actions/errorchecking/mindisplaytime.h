@@ -32,8 +32,7 @@ class MinDisplayTime : public ErrorChecking {
   }
 
   virtual void init() {
-    m_min_display =
-        Config::getInstance().get_value_int("timing", "min-display");
+    m_min_display = cfg::get_int("timing", "min-display");
   }
 
   bool execute(Info &info) {

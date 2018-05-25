@@ -145,11 +145,11 @@ class DialogSpellChecking : public Gtk::Dialog {
   // the translation column.
   void show_column_warning() {
     // Don't disable this message again option
-    if (Config::getInstance().has_key("spell-checking",
-                                      "disable-column-warning"))
-      if (Config::getInstance().get_value_bool("spell-checking",
-                                               "disable-column-warning"))
+    if (cfg::has_key("spell-checking", "disable-column-warning")) {
+      if (cfg::get_boolean("spell-checking", "disable-column-warning")) {
         return;
+      }
+    }
 
     Glib::ustring msg(
         _("The spell check is applied to the column \"text\" as default. "
@@ -164,9 +164,9 @@ class DialogSpellChecking : public Gtk::Dialog {
 
     dialog.run();
     // Save the status if it's activated
-    if (checkDisable.get_active())
-      Config::getInstance().set_value_bool("spell-checking",
-                                           "disable-column-warning", true);
+    if (checkDisable.get_active()) {
+      cfg::set_boolean("spell-checking", "disable-column-warning", true);
+    }
   }
 
   void setup_languages() {

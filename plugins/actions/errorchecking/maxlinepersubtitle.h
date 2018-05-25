@@ -32,8 +32,7 @@ class MaxLinePerSubtitle : public ErrorChecking {
   }
 
   virtual void init() {
-    m_maxLPS =
-        Config::getInstance().get_value_int("timing", "max-line-per-subtitle");
+    m_maxLPS = cfg::get_int("timing", "max-line-per-subtitle");
   }
 
   virtual bool execute(Info &info) {

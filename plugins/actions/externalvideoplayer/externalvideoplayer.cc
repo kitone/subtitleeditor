@@ -163,8 +163,7 @@ class ExternalVideoPlayer : public Action {
 
     g_return_if_fail(doc);
 
-    if (get_config().get_value_bool("external-video-player",
-                                    "use-video-player-file")) {
+    if (cfg::get_boolean("external-video-player", "use-video-player-file")) {
       Player *player = get_subtitleeditor_window()->get_player();
       if (player->get_state() != Player::NONE)
         m_movie_uri = player->get_uri();
@@ -213,37 +212,35 @@ class ExternalVideoPlayer : public Action {
  protected:
   // Return the command pipe from the config (or default)
   Glib::ustring get_command() {
-    Glib::ustring command;
     // load the config or use the default command
-    if (get_config().get_value_string("external-video-player", "command",
-                                      command))
-      return command;
-
+    if (cfg::has_key("external-video-player", "command")) {
+      return cfg::get_string("external-video-player", "command");
+    }
     // write the default command in the config
-    Glib::ustring default_cmd =
-        "mplayer \"#video_file\" -sub \"#subtitle_file\" -ss #seconds "
-        "-osdlevel 2";
+    auto default_cmd = R"(
+      mplayer "#video_file" -sub "#subtitle_file" -ss #seconds -osdlevel 2
+    )";
 
-    get_config().set_value_string("external-video-player", "command",
-                                  default_cmd);
+    cfg::set_string("external-video-player", "command", default_cmd);
 
     return default_cmd;
   }
 
   // If the user has specified a subtitle format use it
   Glib::ustring get_prefered_subtitle_format() {
-    if (get_config().get_value_bool("external-video-player", "use-format")) {
-      Glib::ustring format;
-      if (get_config().get_value_string("external-video-player", "format",
-                                        format))
-        return format;
+    if (cfg::get_boolean("external-video-player", "use-format")) {
+      if (cfg::has_key("external-video-player", "format")) {
+        return cfg::get_string("external-video-player", "format");
+      }
     }
     return Glib::ustring();
   }
 
   SubtitleTime get_prefered_offset() {
     int offset = 4000;
-    get_config().get_value_int("external-video-player", "offset", offset);
+    if (cfg::has_key("external-video-player", "offset")) {
+      offset = cfg::get_int("external-video-player", "offset");
+    }
     return SubtitleTime(offset);
   }
 

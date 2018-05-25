@@ -33,8 +33,7 @@ class MinGapBetweenSubtitles : public ErrorChecking {
   }
 
   virtual void init() {
-    m_minGBS = Config::getInstance().get_value_int("timing",
-                                                   "min-gap-between-subtitles");
+    m_minGBS = cfg::get_int("timing", "min-gap-between-subtitles");
   }
 
   bool execute(Info &info) {

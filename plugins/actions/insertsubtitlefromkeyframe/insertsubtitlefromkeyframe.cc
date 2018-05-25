@@ -184,7 +184,7 @@ class InsertSubtitleFromKeyframePlugin : public Action {
       return;
     }
 
-    int min_display = get_config().get_value_int("timing", "min-display");
+    int min_display = cfg::get_int("timing", "min-display");
     int count = 0;
 
     doc->start_command(_("Insert Subtitle Between Each Keyframes"));

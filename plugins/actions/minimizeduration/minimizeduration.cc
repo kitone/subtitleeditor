@@ -123,10 +123,8 @@ class MinimizeDurationPlugin : public Action {
     }
 
     // get relevant preferences
-    Config &cfg = get_config();
-
-    SubtitleTime mindur = cfg.get_value_int("timing", "min-display");
-    double maxcps = cfg.get_value_double("timing", "max-characters-per-second");
+    SubtitleTime mindur = cfg::get_int("timing", "min-display");
+    double maxcps = cfg::get_double("timing", "max-characters-per-second");
 
     doc->start_command(_("Minimize Durations"));
 

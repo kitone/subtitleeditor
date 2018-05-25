@@ -34,8 +34,7 @@ class MaxCharactersPerSecond : public ErrorChecking {
   }
 
   virtual void init() {
-    m_maxCPS = Config::getInstance().get_value_double(
-        "timing", "max-characters-per-second");
+    m_maxCPS = cfg::get_double("timing", "max-characters-per-second");
   }
 
   bool execute(Info &info) {

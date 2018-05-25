@@ -112,7 +112,7 @@ class WaveformManagement : public Action {
 
     // scrolling with player
     bool scroll_with_player_state =
-        get_config().get_value_bool("waveform", "scrolling-with-player");
+        cfg::get_boolean("waveform", "scrolling-with-player");
 
     action_group->add(
         Gtk::ToggleAction::create("waveform/scrolling-with-player",
@@ -122,7 +122,7 @@ class WaveformManagement : public Action {
 
     // scrolling with selection
     bool scroll_with_selection_state =
-        get_config().get_value_bool("waveform", "scrolling-with-selection");
+        cfg::get_boolean("waveform", "scrolling-with-selection");
 
     action_group->add(
         Gtk::ToggleAction::create("waveform/scrolling-with-selection",
@@ -131,8 +131,7 @@ class WaveformManagement : public Action {
         sigc::mem_fun(*this, &WaveformManagement::on_scrolling_with_selection));
 
     // Respect the timing
-    bool respect_timing_state =
-        get_config().get_value_bool("waveform", "respect-timing");
+    bool respect_timing_state = cfg::get_boolean("waveform", "respect-timing");
 
     action_group->add(
         Gtk::ToggleAction::create(
@@ -141,8 +140,7 @@ class WaveformManagement : public Action {
         sigc::mem_fun(*this, &WaveformManagement::on_respect_timing));
 
     // Waveform Display
-    bool waveform_display_state =
-        get_config().get_value_bool("waveform", "display");
+    bool waveform_display_state = cfg::get_boolean("waveform", "display");
 
     action_group->add(
         Gtk::ToggleAction::create(
@@ -214,8 +212,7 @@ class WaveformManagement : public Action {
     wm->signal_waveform_changed().connect(
         sigc::mem_fun(*this, &WaveformManagement::on_waveform_changed));
 
-    get_config()
-        .signal_changed("waveform")
+    cfg::signal_changed("waveform")
         .connect(sigc::mem_fun(
             *this, &WaveformManagement::on_config_waveform_changed));
 
@@ -435,7 +432,7 @@ class WaveformManagement : public Action {
             action_group->get_action("waveform/scrolling-with-player"));
     if (action) {
       bool state = action->get_active();
-      get_config().set_value_bool("waveform", "scrolling-with-player", state);
+      cfg::set_boolean("waveform", "scrolling-with-player", state);
     }
   }
 
@@ -447,8 +444,7 @@ class WaveformManagement : public Action {
             action_group->get_action("waveform/scrolling-with-selection"));
     if (action) {
       bool state = action->get_active();
-      get_config().set_value_bool("waveform", "scrolling-with-selection",
-                                  state);
+      cfg::set_boolean("waveform", "scrolling-with-selection", state);
     }
   }
 
@@ -460,7 +456,7 @@ class WaveformManagement : public Action {
             action_group->get_action("waveform/respect-timing"));
     if (action) {
       bool state = action->get_active();
-      get_config().set_value_bool("waveform", "respect-timing", state);
+      cfg::set_boolean("waveform", "respect-timing", state);
     }
   }
 
@@ -472,8 +468,9 @@ class WaveformManagement : public Action {
             action_group->get_action("waveform/display"));
     if (action) {
       bool state = action->get_active();
-      if (get_config().get_value_bool("waveform", "display") != state)
-        get_config().set_value_bool("waveform", "display", state);
+      if (cfg::get_boolean("waveform", "display") != state) {
+        cfg::set_boolean("waveform", "display", state);
+      }
     }
   }
 

@@ -115,10 +115,8 @@ class MoveAfterPrecedingSubtitlePlugin : public Action {
       return false;
     }
 
-    SubtitleTime gap(
-        get_config().get_value_int("timing", "min-gap-between-subtitles"));
-    SubtitleTime min_display(
-        get_config().get_value_int("timing", "min-display"));
+    SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
+    SubtitleTime min_display = cfg::get_int("timing", "min-display");
 
     if (after_preceding) {  // move after preceding
       doc->start_command(_("Move After Preceding"));

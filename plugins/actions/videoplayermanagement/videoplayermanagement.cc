@@ -210,8 +210,7 @@ class VideoPlayerManagement : public Action {
         sigc::mem_fun(*this, &VideoPlayerManagement::on_seek_to_selection_end));
 
     // Repeat
-    bool video_repeat_state =
-        get_config().get_value_bool("video-player", "repeat");
+    bool video_repeat_state = cfg::get_boolean("video-player", "repeat");
 
     action_group->add(
         Gtk::ToggleAction::create("video-player/repeat", _("_Repeat"),
@@ -268,14 +267,13 @@ class VideoPlayerManagement : public Action {
         sigc::mem_fun(*this, &VideoPlayerManagement::on_play_next_second));
 
     // Display Video Player
-    bool video_player_display_state =
-        get_config().get_value_bool("video-player", "display");
+    bool vp_display_state = cfg::get_boolean("video-player", "display");
 
     action_group->add(
         Gtk::ToggleAction::create(
             "video-player/display", _("_Video Player"),
             _("Show or hide the video player in the current window"),
-            video_player_display_state),
+            vp_display_state),
         sigc::mem_fun(*this,
                       &VideoPlayerManagement::on_video_player_display_toggled));
 
@@ -373,8 +371,7 @@ class VideoPlayerManagement : public Action {
     player()->signal_message().connect(
         sigc::mem_fun(*this, &VideoPlayerManagement::on_player_message));
 
-    get_config()
-        .signal_changed("video-player")
+    cfg::signal_changed("video-player")
         .connect(sigc::mem_fun(
             *this, &VideoPlayerManagement::on_config_video_player_changed));
   }
@@ -461,9 +458,11 @@ class VideoPlayerManagement : public Action {
       }
       update_ui();
       // If need, ask to display the video player
-      if (msg == Player::STREAM_READY)
-        if (get_config().get_value_bool("video-player", "display") == false)
-          get_config().set_value_bool("video-player", "display", true);
+      if (msg == Player::STREAM_READY) {
+        if (cfg::get_boolean("video-player", "display") == false) {
+          cfg::set_boolean("video-player", "display", true);
+        }
+      }
     } else if (msg == Player::STREAM_AUDIO_CHANGED) {
       // The player emit the signal audio changed.
       // We update the current audio if need.
@@ -478,8 +477,9 @@ class VideoPlayerManagement : public Action {
             action_group->get_action("video-player/display"));
     if (action) {
       bool state = action->get_active();
-      if (get_config().get_value_bool("video-player", "display") != state)
-        get_config().set_value_bool("video-player", "display", state);
+      if (cfg::get_boolean("video-player", "display") != state) {
+        cfg::set_boolean("video-player", "display", state);
+      }
     }
   }
 
@@ -490,8 +490,9 @@ class VideoPlayerManagement : public Action {
             action_group->get_action("video-player/repeat"));
     if (action) {
       bool state = action->get_active();
-      if (get_config().get_value_bool("video-player", "repeat") != state)
-        get_config().set_value_bool("video-player", "repeat", state);
+      if (cfg::get_boolean("video-player", "repeat") != state) {
+        cfg::set_boolean("video-player", "repeat", state);
+      }
     }
   }
 
@@ -676,16 +677,15 @@ class VideoPlayerManagement : public Action {
       if (player()->get_framerate(&numerator, &denominator) > 0)
         return denominator * 1000 / numerator;
     } else if (skip == TINY) {
-      return get_config().get_value_int("video-player", "skip-tiny");
+      return cfg::get_int("video-player", "skip-tiny");
     } else if (skip == VERY_SHORT) {
-      return get_config().get_value_int("video-player", "skip-very-short") *
-             1000;
+      return cfg::get_int("video-player", "skip-very-short") * 1000;
     } else if (skip == SHORT) {
-      return get_config().get_value_int("video-player", "skip-short") * 1000;
+      return cfg::get_int("video-player", "skip-short") * 1000;
     } else if (skip == MEDIUM) {
-      return get_config().get_value_int("video-player", "skip-medium") * 1000;
+      return cfg::get_int("video-player", "skip-medium") * 1000;
     } else if (skip == LONG) {
-      return get_config().get_value_int("video-player", "skip-long") * 1000;
+      return cfg::get_int("video-player", "skip-long") * 1000;
     }
     return 0;
   }

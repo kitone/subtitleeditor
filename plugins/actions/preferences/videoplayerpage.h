@@ -124,10 +124,8 @@ class VideoPlayerPage : public PreferencePage {
     m_comboVideoOutput->append_output(_("OSX"), "osxvideosink");
 #endif
 
-    Glib::ustring audiosink =
-        Config::getInstance().get_value_string("video-player", "audio-sink");
-    Glib::ustring videosink =
-        Config::getInstance().get_value_string("video-player", "video-sink");
+    Glib::ustring audiosink = cfg::get_string("video-player", "audio-sink");
+    Glib::ustring videosink = cfg::get_string("video-player", "video-sink");
 
     m_comboAudioOutput->set_active_name(audiosink);
     m_comboVideoOutput->set_active_name(videosink);
@@ -141,12 +139,12 @@ class VideoPlayerPage : public PreferencePage {
  protected:
   void on_audio_output_changed() {
     Glib::ustring name = m_comboAudioOutput->get_active_name();
-    Config::getInstance().set_value_string("video-player", "audio-sink", name);
+    cfg::set_string("video-player", "audio-sink", name);
   }
 
   void on_video_output_changed() {
     Glib::ustring name = m_comboVideoOutput->get_active_name();
-    Config::getInstance().set_value_string("video-player", "video-sink", name);
+    cfg::set_string("video-player", "video-sink", name);
   }
 
  protected:

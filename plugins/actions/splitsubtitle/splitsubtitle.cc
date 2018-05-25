@@ -175,11 +175,10 @@ class SplitSelectedSubtitlesPlugin : public Action {
   // - minimum gap between subtitles
   // - minimum display time (TODO ?)
   void try_to_respect_timing_preferences(std::vector<Subtitle> &subs) {
-    // int min_display = get_config().get_value_int("timing", "min-display");
-    int min_gap_between_subtitles =
-        get_config().get_value_int("timing", "min-gap-between-subtitles");
+    // int min_display = cfg::get_int("timing", "min-display");
+    int min_gap = cfg::get_int("timing", "min-gap-between-subtitles");
 
-    SubtitleTime gap = SubtitleTime(min_gap_between_subtitles) * 0.5;
+    SubtitleTime gap = SubtitleTime(min_gap) * 0.5;
     SubtitleTime tmp;
     for (unsigned int i = 0; i < subs.size(); ++i) {
       SubtitleTime start = subs[i].get_start();

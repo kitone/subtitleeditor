@@ -232,14 +232,14 @@ class PatternsPage : public AssistantPage {
 
   // Update the visibility state of the page. (enable/disable)
   void set_enable(bool state) {
-    Config::getInstance().set_value_bool(m_page_name, "enabled", state);
+    cfg::set_boolean(m_page_name, "enabled", state);
 
     (state) ? show() : hide();
   }
 
   // Return the visibility state. (enable/disable)
   bool is_enable() {
-    return Config::getInstance().get_value_bool(m_page_name, "enabled");
+    return cfg::get_boolean(m_page_name, "enabled");
   }
 
   // Return patterns from the script, language and country.
@@ -412,20 +412,19 @@ class PatternsPage : public AssistantPage {
   // Read the configuration.
   // script, language, country and enabled (page).
   void load_cfg() {
-    Config &cfg = Config::getInstance();
-
     // Default enabled value is true
-    if (cfg.has_key(m_page_name, "enabled") == false)
-      cfg.set_value_bool(m_page_name, "enabled", true);
+    if (cfg::has_key(m_page_name, "enabled") == false) {
+      cfg::set_boolean(m_page_name, "enabled", true);
+    }
 
-    if (cfg.get_value_bool(m_page_name, "enabled"))
+    if (cfg::get_boolean(m_page_name, "enabled")) {
       show();
-    else
+    } else {
       hide();
-
-    Glib::ustring script = cfg.get_value_string(m_page_name, "script");
-    Glib::ustring language = cfg.get_value_string(m_page_name, "language");
-    Glib::ustring country = cfg.get_value_string(m_page_name, "country");
+    }
+    Glib::ustring script = cfg::get_string(m_page_name, "script");
+    Glib::ustring language = cfg::get_string(m_page_name, "language");
+    Glib::ustring country = cfg::get_string(m_page_name, "country");
 
     m_comboScript->set_active_code(script);
     m_comboLanguage->set_active_code(language);
@@ -435,11 +434,10 @@ class PatternsPage : public AssistantPage {
   // Save the configuration.
   // script, language, country and enabled (page).
   void save_cfg() {
-    Config &cfg = Config::getInstance();
-    cfg.set_value_string(m_page_name, "script", get_script());
-    cfg.set_value_string(m_page_name, "language", get_language());
-    cfg.set_value_string(m_page_name, "country", get_country());
-    cfg.set_value_bool(m_page_name, "enabled", is_enable());
+    cfg::set_string(m_page_name, "script", get_script());
+    cfg::set_string(m_page_name, "language", get_language());
+    cfg::set_string(m_page_name, "country", get_country());
+    cfg::set_boolean(m_page_name, "enabled", is_enable());
   }
 
   // Return the current script code.

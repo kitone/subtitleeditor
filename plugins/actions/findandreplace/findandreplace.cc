@@ -72,41 +72,37 @@ class FaR {
   // Returns the search option flag
   // IGNORE_CASE & USE_REGEX
   int get_pattern_options() {
-    Config &cfg = Config::getInstance();
-
     int flags = 0;
-    if (cfg.get_value_bool("find-and-replace", "used-regular-expression"))
+    if (cfg::get_boolean("find-and-replace", "used-regular-expression")) {
       flags |= USE_REGEX;
-    if (cfg.get_value_bool("find-and-replace", "ignore-case"))
+    }
+    if (cfg::get_boolean("find-and-replace", "ignore-case")) {
       flags |= IGNORE_CASE;
-
+    }
     return flags;
   }
 
   // Search in which columns?
   // TEXT & TRANSLATION
   int get_columns_options() {
-    Config &cfg = Config::getInstance();
-
     int flags = 0;
-    if (cfg.get_value_bool("find-and-replace", "column-text"))
+    if (cfg::get_boolean("find-and-replace", "column-text")) {
       flags |= TEXT;
-    if (cfg.get_value_bool("find-and-replace", "column-translation"))
+    }
+    if (cfg::get_boolean("find-and-replace", "column-translation")) {
       flags |= TRANSLATION;
-
+    }
     return flags;
   }
 
   // Return the current pattern text.
   Glib::ustring get_pattern() {
-    return Config::getInstance().get_value_string("find-and-replace",
-                                                  "pattern");
+    return cfg::get_string("find-and-replace", "pattern");
   }
 
   // Return the current replacement text.
   Glib::ustring get_replacement() {
-    return Config::getInstance().get_value_string("find-and-replace",
-                                                  "replacement");
+    return cfg::get_string("find-and-replace", "replacement");
   }
 
   // Try to find the pattern in the subtitle.
@@ -331,35 +327,30 @@ class ComboBoxEntryHistory : public Gtk::ComboBoxText {
 
   // Read the history of the widget.
   void load_history() {
-    Config &cfg = Config::getInstance();
-
-    std::list<Glib::ustring> keys;
-    cfg.get_keys(m_group, keys);
+    auto keys = cfg::get_keys(m_group);
 
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(m_key + "-(\\d+)");
 
     for (const auto &k : keys) {
       if (re->match(k)) {
-        append(cfg.get_value_string(m_group, k));
+        append(cfg::get_string(m_group, k));
       }
     }
-    get_entry()->set_text(cfg.get_value_string(m_group, m_key));
+    get_entry()->set_text(cfg::get_string(m_group, m_key));
   }
 
   // Write the history of the widget to the config.
   void save_history() {
-    Config::getInstance().set_value_string(m_group, m_key,
-                                           get_entry()->get_text());
+    cfg::set_string(m_group, m_key, get_entry()->get_text());
 
     get_model()->foreach (
         sigc::mem_fun(*this, &ComboBoxEntryHistory::save_iter));
   }
 
   bool save_iter(const Gtk::TreePath &path, const Gtk::TreeIter &it) {
-    Config::getInstance().set_value_string(
-        m_group,
-        Glib::ustring::compose("%1-%2", m_key, path.to_string()),  // key-id
-        (*it)[m_cols.m_col_name]);                                 // text
+    auto key = Glib::ustring::compose("%1-%2", m_key, path.to_string());
+    auto value = (*it)[m_cols.m_col_name];
+    cfg::set_string(m_group, key, value);
     return false;
   }
 
@@ -830,16 +821,14 @@ class FindAndReplacePlugin : public Action {
 
  protected:
   void check_default_values() {
-    if (!get_config().has_key("find-and-replace", "column-text"))
-      get_config().set_value_bool("find-and-replace", "column-text", true);
-    if (!get_config().has_key("find-and-replace", "column-translation"))
-      get_config().set_value_bool("find-and-replace", "column-translation",
-                                  true);
-    if (!get_config().has_key("find-and-replace", "ignore-case"))
-      get_config().set_value_bool("find-and-replace", "ignore-case", false);
-    if (!get_config().has_key("find-and-replace", "used-regular-expression"))
-      get_config().set_value_bool("find-and-replace", "used-regular-expression",
-                                  false);
+    if (!cfg::has_key("find-and-replace", "column-text"))
+      cfg::set_boolean("find-and-replace", "column-text", true);
+    if (!cfg::has_key("find-and-replace", "column-translation"))
+      cfg::set_boolean("find-and-replace", "column-translation", true);
+    if (!cfg::has_key("find-and-replace", "ignore-case"))
+      cfg::set_boolean("find-and-replace", "ignore-case", false);
+    if (!cfg::has_key("find-and-replace", "used-regular-expression"))
+      cfg::set_boolean("find-and-replace", "used-regular-expression", false);
   }
 
   void on_search_and_replace() {

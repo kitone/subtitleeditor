@@ -30,8 +30,7 @@ class PlainTextFormat : public SubtitleFormatIO {
   void open(Reader &file) {
     Subtitles subtitles = document()->subtitles();
     Glib::ustring line;
-    bool usebl = Config::getInstance().get_value_bool(
-        "plain-text", "import-bl-between-subtitles");
+    bool usebl = cfg::get_boolean("plain-text", "import-bl-between-subtitles");
 
     if (!usebl) {
       // ignore blank lines
@@ -73,8 +72,7 @@ class PlainTextFormat : public SubtitleFormatIO {
 
   void save(Writer &file) {
     Document *doc = document();
-    bool usebl = Config::getInstance().get_value_bool(
-        "plain-text", "export-bl-between-subtitles");
+    bool usebl = cfg::get_boolean("plain-text", "export-bl-between-subtitles");
 
     // how many subtitles does this document have?
     int subcnt = doc->subtitles().size();

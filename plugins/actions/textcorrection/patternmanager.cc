@@ -353,8 +353,7 @@ void PatternManager::set_active(const Glib::ustring &name, bool state) {
     return;
   }
 
-  Config::getInstance().set_value_string("patterns", name,
-                                         state ? "enable" : "disable");
+  cfg::set_string("patterns", name, state ? "enable" : "disable");
 
   for (auto p : m_patterns) {
     if (p->m_name == name)
@@ -369,12 +368,10 @@ bool PatternManager::get_active(const Glib::ustring &name) {
     return false;
   }
 
-  Config &cfg = Config::getInstance();
-
-  if (cfg.has_key("patterns", name) == false) {
-    cfg.set_value_string("patterns", name, "enable");
+  if (cfg::has_key("patterns", name) == false) {
+    cfg::set_string("patterns", name, "enable");
     return true;
   }
-  Glib::ustring value = cfg.get_value_string("patterns", name);
+  Glib::ustring value = cfg::get_string("patterns", name);
   return (value == "enable") ? true : false;
 }

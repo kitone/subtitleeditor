@@ -64,10 +64,7 @@ class DialogViewEdit : public Gtk::Dialog {
     }
 
     // add other columns
-    std::list<Glib::ustring> all_columns;
-
-    Config::getInstance().get_value_string_list("subtitle-view", "columns-list",
-                                                all_columns);
+    auto all_columns = cfg::get_string_list("subtitle-view", "columns-list");
 
     for (const auto& col : all_columns) {
       if (std::find(array.begin(), array.end(), col) == array.end()) {
@@ -204,12 +201,10 @@ class DialogViewManager : public Gtk::Dialog {
   }
 
   void init_treeview() {
-    std::list<Glib::ustring> keys;
-
-    Config::getInstance().get_keys("view-manager", keys);
+    auto keys = cfg::get_keys("view-manager");
 
     for (const auto& name : keys) {
-      auto cols = Config::getInstance().get_value_string("view-manager", name);
+      auto cols = cfg::get_string("view-manager", name);
 
       Gtk::TreeIter iter = m_liststore->append();
 
@@ -275,7 +270,7 @@ class DialogViewManager : public Gtk::Dialog {
 
   // Delete the group "view-manager" and create with the new values
   void save_to_config() {
-    Config::getInstance().remove_group("view-manager");
+    cfg::remove_group("view-manager");
 
     Gtk::TreeNodeChildren rows = m_liststore->children();
 
@@ -284,7 +279,7 @@ class DialogViewManager : public Gtk::Dialog {
         Glib::ustring name = (*it)[m_column_record.name];
         Glib::ustring columns = (*it)[m_column_record.columns];
 
-        Config::getInstance().set_value_string("view-manager", name, columns);
+        cfg::set_string("view-manager", name, columns);
       }
     }
   }
@@ -311,21 +306,16 @@ class ViewManagerPlugin : public Action {
 
   // First check if the user has any preferences
   void check_config() {
-    std::list<Glib::ustring> keys;
+    Glib::ustring group = "view-manager";
 
-    if (get_config().get_keys("view-manager", keys) && !keys.empty())
+    if (!cfg::get_keys(group).empty())
       return;
 
-    Config& cfg = get_config();
-
-    cfg.set_value_string("view-manager", _("Simple"),
-                         "number;start;end;duration;text");
-    cfg.set_value_string("view-manager", _("Advanced"),
-                         "number;start;end;duration;style;name;text");
-    cfg.set_value_string("view-manager", _("Translation"),
-                         "number;text;translation");
-    cfg.set_value_string("view-manager", _("Timing"),
-                         "number;start;end;duration;cps;text");
+    cfg::set_string(group, _("Simple"), "number;start;end;duration;text");
+    cfg::set_string(group, _("Advanced"),
+                    "number;start;end;duration;style;name;text");
+    cfg::set_string(group, _("Translation"), "number;text;translation");
+    cfg::set_string(group, _("Timing"), "number;start;end;duration;cps;text");
   }
 
   void activate() {
@@ -333,11 +323,8 @@ class ViewManagerPlugin : public Action {
 
     action_group = Gtk::ActionGroup::create("ViewManagerPlugin");
 
-    std::list<Glib::ustring> keys;
-
     // user settings
-    get_config().get_keys("view-manager", keys);
-
+    auto keys = cfg::get_keys("view-manager");
     for (const auto& name : keys) {
       action_group->add(
           Gtk::Action::create(name, name, _("Switches to this view")),
@@ -389,10 +376,9 @@ class ViewManagerPlugin : public Action {
 
   // Updates the configuration with the columns to display.
   void on_set_view(const Glib::ustring& name) {
-    Glib::ustring columns = get_config().get_value_string("view-manager", name);
+    Glib::ustring columns = cfg::get_string("view-manager", name);
 
-    get_config().set_value_string("subtitle-view", "columns-displayed",
-                                  columns);
+    cfg::set_string("subtitle-view", "columns-displayed", columns);
   }
 
   void on_view_manager() {

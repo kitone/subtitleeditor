@@ -73,8 +73,8 @@ class DialogSubStationAlphaPreferences : public Gtk::Dialog {
         *this,
         &DialogSubStationAlphaPreferences::on_combo_line_break_policy_changed));
 
-    Glib::ustring policy = Config::getInstance().get_value_string(
-        "SubStationAlpha", "line-break-policy");
+    Glib::ustring policy =
+        cfg::get_string("SubStationAlpha", "line-break-policy");
     m_comboLineBreakPolicy->set_line_break_policy(policy);
   }
 
@@ -89,9 +89,8 @@ class DialogSubStationAlphaPreferences : public Gtk::Dialog {
   }
 
   void on_combo_line_break_policy_changed() {
-    Config::getInstance().set_value_string(
-        "SubStationAlpha", "line-break-policy",
-        m_comboLineBreakPolicy->get_line_break_policy());
+    cfg::set_string("SubStationAlpha", "line-break-policy",
+                    m_comboLineBreakPolicy->get_line_break_policy());
   }
 
  protected:
@@ -110,17 +109,16 @@ class SubStationAlpha : public SubtitleFormatIO {
   // hard:2
   // intelligent:3 (default)
   void read_config_line_break_policy() {
-    if (Config::getInstance().has_key("SubStationAlpha", "line-break-policy") ==
-        false) {
-      Config::getInstance().set_value_string(
-          "SubStationAlpha", "line-break-policy", "intelligent",
-          "determine the policy of the line break, 3 options: 'soft', 'hard' "
-          "or 'intelligent' "
-          "(without quote, the default value is 'intelligent')");
+    if (cfg::has_key("SubStationAlpha", "line-break-policy") == false) {
+      cfg::set_string("SubStationAlpha", "line-break-policy", "intelligent");
+      cfg::set_comment("SubStationAlpha", "line-break-policy",
+                       "determine the policy of the line break, 3 options: "
+                       "'soft', 'hard' or 'intelligent' (without quote, the "
+                       "default value is 'intelligent')");
     }
 
-    Glib::ustring policy = Config::getInstance().get_value_string(
-        "SubStationAlpha", "line-break-policy");
+    Glib::ustring policy =
+        cfg::get_string("SubStationAlpha", "line-break-policy");
     if (policy == "soft") {
       m_line_break_policy = 1;
     } else if (policy == "hard") {
@@ -128,11 +126,11 @@ class SubStationAlpha : public SubtitleFormatIO {
     } else if (policy == "intelligent") {
       m_line_break_policy = 3;
     } else {
-      Config::getInstance().set_value_string(
-          "SubStationAlpha", "line-break-policy", "intelligent",
-          "determine the policy of the line break, 3 options: 'soft', 'hard' "
-          "or 'intelligent' "
-          "(without quote, the default value is 'intelligent')");
+      cfg::set_string("SubStationAlpha", "line-break-policy", "intelligent");
+      cfg::set_comment("SubStationAlpha", "line-break-policy",
+                       "determine the policy of the line break, 3 options: "
+                       "'soft', 'hard' or 'intelligent' (without quote, the "
+                       "default value is 'intelligent')");
       m_line_break_policy = 3;
     }
   }
@@ -317,17 +315,14 @@ class SubStationAlpha : public SubtitleFormatIO {
     if (document()->styles().size() == 0) {
       Glib::ustring default_style;
 
-      if (Config::getInstance().has_key("SubStationAlpha", "default-style") ==
-          false) {
+      if (cfg::has_key("SubStationAlpha", "default-style") == false) {
         // Write the default ASS style
         default_style =
             "Default,Sans,18,16777215,65535,30900,0,0,0,1,0,0,2,20,20,20,0,0";
-        Config::getInstance().set_value_string(
-            "SubStationAlpha", "default-style", default_style,
-            "Without style, this one will be used during save");
+        cfg::set_string("SubStationAlpha", "default-style",
+                        "Without style, this one will be used during save");
       } else {
-        default_style = Config::getInstance().get_value_string(
-            "SubStationAlpha", "default-style");
+        default_style = cfg::get_string("SubStationAlpha", "default-style");
       }
       // write without changing the document
       file.write("Style: " + default_style + "\n");

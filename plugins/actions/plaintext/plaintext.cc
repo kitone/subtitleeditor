@@ -95,8 +95,7 @@ class PlainTextPlugin : public Action {
       try {
         Glib::ustring untitled =
             DocumentSystem::getInstance().create_untitled_name();
-        Glib::ustring format =
-            get_config().get_value_string("document", "format");
+        Glib::ustring format = cfg::get_string("document", "format");
         Glib::ustring untitled_fullname =
             Glib::build_filename(ui->get_current_folder(), untitled);
 

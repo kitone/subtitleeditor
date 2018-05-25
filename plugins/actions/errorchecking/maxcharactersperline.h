@@ -32,8 +32,7 @@ class MaxCharactersPerLine : public ErrorChecking {
   }
 
   virtual void init() {
-    m_maxCPL = Config::getInstance().get_value_int("timing",
-                                                   "max-characters-per-line");
+    m_maxCPL = cfg::get_int("timing", "max-characters-per-line");
   }
 
   virtual bool execute(Info &info) {

@@ -679,8 +679,7 @@ class ClipboardPlugin : public Action {
       } else if (selection_size == 1) {
         // One subtitle select, new subtitles goes just after the selected we
         // gap respect
-        SubtitleTime gap =
-            get_config().get_value_int("timing", "min-gap-between-subtitles");
+        SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
 
         timeshift = paste_after.get_end() + gap - new_subtitles[0].get_start();
       } else {  // selection_size > 1

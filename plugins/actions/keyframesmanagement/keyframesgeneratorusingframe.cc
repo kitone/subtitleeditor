@@ -63,14 +63,12 @@ class KeyframesGeneratorUsingFrame : public Gtk::Dialog, public MediaDecoder {
   }
 
   void read_config() {
-    Config &cfg = Config::getInstance();
-    if (cfg.has_key("KeyframesGeneratorUsingFrame", "difference") == false) {
-      cfg.set_value_string("KeyframesGeneratorUsingFrame", "difference", "0.2",
-                           "difference between frames as percent");
-    } else {
-      cfg.get_value_float("KeyframesGeneratorUsingFrame", "difference",
-                          m_difference);
+    if (cfg::has_key("KeyframesGeneratorUsingFrame", "difference")) {
+      cfg::set_string("KeyframesGeneratorUsingFrame", "difference", "0.2");
+      cfg::set_comment("KeyframesGeneratorUsingFrame", "difference",
+                       "difference between frames as percent");
     }
+    m_difference = cfg::get_float("KeyframesGeneratorUsingFrame", "difference");
   }
 
   // Check buffer and try to catch keyframes.

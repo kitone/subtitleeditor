@@ -73,8 +73,8 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
         sigc::mem_fun(*this, &DialogAdvancedSubStationAlphaPreferences::
                                  on_combo_line_break_policy_changed));
 
-    Glib::ustring policy = Config::getInstance().get_value_string(
-        "AdvancedSubStationAlpha", "line-break-policy");
+    Glib::ustring policy =
+        cfg::get_string("AdvancedSubStationAlpha", "line-break-policy");
     m_comboLineBreakPolicy->set_line_break_policy(policy);
   }
 
@@ -90,9 +90,8 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
   }
 
   void on_combo_line_break_policy_changed() {
-    Config::getInstance().set_value_string(
-        "AdvancedSubStationAlpha", "line-break-policy",
-        m_comboLineBreakPolicy->get_line_break_policy());
+    cfg::set_string("AdvancedSubStationAlpha", "line-break-policy",
+                    m_comboLineBreakPolicy->get_line_break_policy());
   }
 
  protected:
@@ -111,17 +110,17 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
   // hard:2
   // intelligent:3 (default)
   void read_config_line_break_policy() {
-    if (Config::getInstance().has_key("AdvancedSubStationAlpha",
-                                      "line-break-policy") == false) {
-      Config::getInstance().set_value_string(
-          "AdvancedSubStationAlpha", "line-break-policy", "intelligent",
-          "determine the policy of the line break, 3 options: 'soft', 'hard' "
-          "or 'intelligent' "
-          "(without quote, the default value is 'intelligent')");
+    if (cfg::has_key("AdvancedSubStationAlpha", "line-break-policy") == false) {
+      cfg::set_string("AdvancedSubStationAlpha", "line-break-policy",
+                      "intelligent");
+      cfg::set_comment("AdvancedSubStationAlpha", "line-break-policy",
+                       "determine the policy of the line break, 3 options: "
+                       "'soft', 'hard' or 'intelligent' (without quote, the "
+                       "default value is 'intelligent')");
     }
 
-    Glib::ustring policy = Config::getInstance().get_value_string(
-        "AdvancedSubStationAlpha", "line-break-policy");
+    Glib::ustring policy =
+        cfg::get_string("AdvancedSubStationAlpha", "line-break-policy");
     if (policy == "soft") {
       m_line_break_policy = 1;
     } else if (policy == "hard") {
@@ -129,11 +128,12 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     } else if (policy == "intelligent") {
       m_line_break_policy = 3;
     } else {
-      Config::getInstance().set_value_string(
-          "AdvancedSubStationAlpha", "line-break-policy", "intelligent",
-          "determine the policy of the line break, 3 options: 'soft', 'hard' "
-          "or 'intelligent' "
-          "(without quote, the default value is 'intelligent')");
+      cfg::set_string("AdvancedSubStationAlpha", "line-break-policy",
+                      "intelligent");
+      cfg::set_comment("AdvancedSubStationAlpha", "line-break-policy",
+                       "determine the policy of the line break, 3 options: "
+                       "'soft', 'hard' or 'intelligent' (without quote, the "
+                       "default value is 'intelligent')");
       m_line_break_policy = 3;
     }
   }
@@ -343,19 +343,19 @@ class AdvancedSubStationAlpha : public SubtitleFormatIO {
     if (document()->styles().size() == 0) {
       Glib::ustring default_style;
 
-      if (Config::getInstance().has_key("AdvancedSubStationAlpha",
-                                        "default-style") == false) {
+      if (cfg::has_key("AdvancedSubStationAlpha", "default-style") == false) {
         // Write the default ASS style
         default_style =
             "Default,Sans,18,&H00FFFFFF,&H0000FFFF,&H000078B4,&H00000000,0,0,"
             "0,"
             "0,100,100,0,0,1,0,0,2,20,20,20,0";
-        Config::getInstance().set_value_string(
-            "AdvancedSubStationAlpha", "default-style", default_style,
-            "Without style, this one will be used during save");
+        cfg::set_string("AdvancedSubStationAlpha", "default-style",
+                        default_style);
+        cfg::set_comment("AdvancedSubStationAlpha", "default-style",
+                         "Without style, this one will be used during save");
       } else {
-        default_style = Config::getInstance().get_value_string(
-            "AdvancedSubStationAlpha", "default-style");
+        default_style =
+            cfg::get_string("AdvancedSubStationAlpha", "default-style");
       }
 
       // write without changing the document

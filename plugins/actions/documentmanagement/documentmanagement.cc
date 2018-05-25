@@ -173,8 +173,7 @@ class DocumentManagementPlugin : public Action {
 
     // config connection
     m_config_interface_connection =
-        get_config()
-            .signal_changed("interface")
+        cfg::signal_changed("interface")
             .connect(sigc::mem_fun(
                 *this, &DocumentManagementPlugin::on_config_interface_changed));
 
@@ -569,8 +568,7 @@ class DocumentManagementPlugin : public Action {
     Document *doc = get_current_document();
     g_return_val_if_fail(doc, false);
 
-    if (get_config().get_value_bool("interface", "ask-to-save-on-exit") ==
-        false) {
+    if (cfg::get_boolean("interface", "ask-to-save-on-exit") == false) {
       DocumentSystem::getInstance().remove(doc);
     } else if (!doc->get_document_changed()) {
       DocumentSystem::getInstance().remove(doc);
@@ -671,12 +669,10 @@ class DocumentManagementPlugin : public Action {
 
     m_autosave_timeout.disconnect();
 
-    if (Config::getInstance().get_value_bool("interface", "used-autosave") ==
-        false)
+    if (cfg::get_boolean("interface", "used-autosave") == false)
       return;
 
-    int autosave_minutes =
-        Config::getInstance().get_value_int("interface", "autosave-minutes");
+    int autosave_minutes = cfg::get_int("interface", "autosave-minutes");
 
     long mseconds = SubtitleTime(0, autosave_minutes, 0, 0).totalmsecs;
 

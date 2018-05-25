@@ -287,12 +287,11 @@ class TimingFromPlayer : public Action {
       Subtitle next = doc->subtitles().get_next(sub);
       if (!next) {
         next = doc->subtitles().append();
-        next.set_duration(get_config().get_value_int("timing", "min-display"));
+        next.set_duration(cfg::get_int("timing", "min-display"));
       }
       if (op & SET_NEXT_SUBTITLE_POS) {
         SubtitleTime sub_end = sub.get_end();
-        SubtitleTime gap(
-            get_config().get_value_int("timing", "min-gap-between-subtitles"));
+        SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
         next.set_start_and_end(sub_end + gap, sub_end + next.get_duration());
       }
       doc->subtitles().select(next);
@@ -364,9 +363,11 @@ class TimingFromPlayer : public Action {
   }
 
   SubtitleTime get_prefered_offset() {
-    int offset = 0;
-    get_config().get_value_int("timing-from-player", "offset", offset);
-    return SubtitleTime(offset);
+    // FIXME: config offset
+    // int offset = 0;
+    // get_config().get_value_int("timing-from-player", "offset", offset);
+    // return SubtitleTime(offset);
+    return cfg::get_int("timing-from-player", "offset");
   }
 
  protected:
