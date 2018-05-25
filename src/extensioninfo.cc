@@ -23,7 +23,7 @@
 
 // Constructor.
 ExtensionInfo::ExtensionInfo() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   module = NULL;
   active = false;
@@ -35,7 +35,7 @@ ExtensionInfo::ExtensionInfo() {
 // Destructor.
 // Delete the extension and delete the module.
 ExtensionInfo::~ExtensionInfo() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   delete extension;
   delete module;

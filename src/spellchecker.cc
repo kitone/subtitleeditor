@@ -169,14 +169,14 @@ bool spell_checker_is_digit(const Glib::ustring &text) {
 
 // Constructor
 SpellChecker::SpellChecker() : m_spellcheckerDict(new SEEnchantDict) {
-  se_debug(SE_DEBUG_SPELL_CHECKING);
+  se_dbg(SE_DBG_SPELL_CHECKING);
 
   init_dictionary();
 }
 
 // Desctructor
 SpellChecker::~SpellChecker() {
-  se_debug(SE_DEBUG_SPELL_CHECKING);
+  se_dbg(SE_DBG_SPELL_CHECKING);
 }
 
 // Return an instance of the SpellChecker.
@@ -190,7 +190,7 @@ bool SpellChecker::init_dictionary() {
   Glib::ustring lang;
 
   // Try with the last config
-  se_debug_message(SE_DEBUG_SPELL_CHECKING, "Try with the last config...");
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "Try with the last config...");
 
   if (cfg::has_key("spell-checker", "lang")) {
     lang = cfg::get_string("spell-checker", "lang");
@@ -198,8 +198,7 @@ bool SpellChecker::init_dictionary() {
       return true;
   }
   // Second try to get a default language
-  se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                   "Second try to get a default language...");
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "Second try to get a default language...");
 
   lang = Glib::getenv("LANG");
   if (!lang.empty()) {
@@ -211,39 +210,35 @@ bool SpellChecker::init_dictionary() {
       return true;
   }
   // Last try to get a first language
-  se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                   "Last try to get a first language...");
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "Last try to get a first language...");
 
   std::vector<Glib::ustring> dicts = get_dictionaries();
   if (!dicts.empty() && set_dictionary(dicts[0]))
     return true;
 
-  se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                   "cannot select a default language!");
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "cannot select a default language!");
   g_warning("Spell checker: cannot select a default language");
   return false;
 }
 
 // Add this word to the dictionary only the time of the session.
 void SpellChecker::add_word_to_session(const Glib::ustring &word) {
-  se_debug_message(SE_DEBUG_SPELL_CHECKING, "add word '%s' to session",
-                   word.c_str());
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "add word '%s' to session", word.c_str());
 
   m_spellcheckerDict->add_word_to_session(word);
 }
 
 // Add this word to the personal dictionary.
 void SpellChecker::add_word_to_personal(const Glib::ustring &word) {
-  se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                   "add word '%s' to personal dictionary", word.c_str());
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "add word '%s' to personal dictionary",
+             word.c_str());
 
   m_spellcheckerDict->add_word_to_personal(word);
 }
 
 // Spell a word.
 bool SpellChecker::check(const Glib::ustring &word) {
-  se_debug_message(SE_DEBUG_SPELL_CHECKING, "check the word '%s'",
-                   word.c_str());
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "check the word '%s'", word.c_str());
   try {
     // Don't check number
     if (spell_checker_is_digit(word))
@@ -251,9 +246,9 @@ bool SpellChecker::check(const Glib::ustring &word) {
 
     return m_spellcheckerDict->check(word);
   } catch (std::exception &ex) {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "exception '%s'", ex.what());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "exception '%s'", ex.what());
   } catch (...) {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "unknow exception");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "unknow exception");
   }
   return false;
 }
@@ -261,8 +256,8 @@ bool SpellChecker::check(const Glib::ustring &word) {
 // Returns a list of suggestions from the misspelled word.
 std::vector<Glib::ustring> SpellChecker::get_suggest(
     const Glib::ustring &word) {
-  se_debug_message(SE_DEBUG_SPELL_CHECKING, "get suggestion from the word '%s'",
-                   word.c_str());
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "get suggestion from the word '%s'",
+             word.c_str());
 
   std::vector<std::string> sugg;
   m_spellcheckerDict->suggest(word, sugg);
@@ -271,8 +266,8 @@ std::vector<Glib::ustring> SpellChecker::get_suggest(
 
 // Set the current dictionary. ("en_US", "de", ...)
 bool SpellChecker::set_dictionary(const Glib::ustring &name) {
-  se_debug_message(SE_DEBUG_SPELL_CHECKING, "try to set dictionary '%s' ...",
-                   name.c_str());
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "try to set dictionary '%s' ...",
+             name.c_str());
 
   if (name.empty())
     return false;
@@ -284,23 +279,22 @@ bool SpellChecker::set_dictionary(const Glib::ustring &name) {
     m_signal_dictionary_changed.emit();
     return true;
   } catch (SEEnchantDict::Exception &ex) {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "Failed to set the dictionary '%s' : %s'", name.c_str(),
-                     ex.what());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "Failed to set the dictionary '%s' : %s'",
+               name.c_str(), ex.what());
   }
   return false;
 }
 
 // Returns the current dictionary as isocode. ("en_US", "de", ...)
 Glib::ustring SpellChecker::get_dictionary() {
-  se_debug(SE_DEBUG_SPELL_CHECKING);
+  se_dbg(SE_DBG_SPELL_CHECKING);
 
   return m_spellcheckerDict->get_lang();
 }
 
 // Returns a list of the dictionaries available.
 std::vector<Glib::ustring> SpellChecker::get_dictionaries() {
-  se_debug(SE_DEBUG_SPELL_CHECKING);
+  se_dbg(SE_DBG_SPELL_CHECKING);
 
   std::list<std::string> list_dicts;
 
@@ -311,7 +305,7 @@ std::vector<Glib::ustring> SpellChecker::get_dictionaries() {
 
 // The current dictionary's changed.
 sigc::signal<void> &SpellChecker::signal_dictionary_changed() {
-  se_debug(SE_DEBUG_SPELL_CHECKING);
+  se_dbg(SE_DBG_SPELL_CHECKING);
 
   return m_signal_dictionary_changed;
 }
@@ -321,8 +315,8 @@ sigc::signal<void> &SpellChecker::signal_dictionary_changed() {
 // So it might bump 'good' up in the suggestion list.
 void SpellChecker::store_replacement(const Glib::ustring &utf8bad,
                                      const Glib::ustring &utf8good) {
-  se_debug_message(SE_DEBUG_SPELL_CHECKING, "store replacement '%s' to '%s'",
-                   utf8bad.c_str(), utf8good.c_str());
+  se_dbg_msg(SE_DBG_SPELL_CHECKING, "store replacement '%s' to '%s'",
+             utf8bad.c_str(), utf8good.c_str());
 
   m_spellcheckerDict->store_replacement(utf8bad, utf8good);
 }

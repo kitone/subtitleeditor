@@ -44,7 +44,7 @@ class ClipboardPlugin : public Action {
   }
 
   ClipboardPlugin() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     target_default = "text/x-subtitles";
     target_text = "UTF8_STRING";
@@ -55,13 +55,13 @@ class ClipboardPlugin : public Action {
   }
 
   ~ClipboardPlugin() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     deactivate();
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("ClipboardPlugin");
@@ -143,7 +143,7 @@ class ClipboardPlugin : public Action {
     chosen_clipboard_target = "";
 
     // connect clipboard signal
-    se_debug_message(SE_DEBUG_PLUGINS, "Connecting to system clipboard.");
+    se_dbg_msg(SE_DBG_PLUGINS, "Connecting to system clipboard.");
     connection_owner_change =
         Gtk::Clipboard::get()->signal_owner_change().connect(
             sigc::mem_fun(*this, &ClipboardPlugin::on_clipboard_owner_change));
@@ -166,7 +166,7 @@ class ClipboardPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -183,7 +183,7 @@ class ClipboardPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     update_copy_and_cut_visibility();
     update_paste_visibility();
@@ -191,7 +191,7 @@ class ClipboardPlugin : public Action {
 
  protected:
   void update_copy_and_cut_visibility() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
 
@@ -205,7 +205,7 @@ class ClipboardPlugin : public Action {
   }
 
   void update_paste_visibility() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool paste_visible = false;
     bool paste_now_visible = false;
@@ -229,14 +229,14 @@ class ClipboardPlugin : public Action {
   }
 
   void on_selection_changed() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     update_paste_visibility();
     update_copy_and_cut_visibility();
   }
 
   void on_document_changed(Document *doc) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // We need to disconnect the old callback first
     if (connection_selection_changed)
@@ -253,13 +253,13 @@ class ClipboardPlugin : public Action {
   }
 
   void on_clipboard_owner_change(GdkEventOwnerChange *) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     update_paste_targets();
   }
 
   void update_paste_targets() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::Clipboard> refClipboard = Gtk::Clipboard::get();
 
@@ -272,7 +272,7 @@ class ClipboardPlugin : public Action {
   // and decide which one, if any, is most useful to us.
   void on_clipboard_received_targets(
       const Glib::StringArrayHandle &targets_array) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // Get the list of available clipboard targets:
     std::vector<std::string> avail_targets = targets_array;
@@ -291,14 +291,14 @@ class ClipboardPlugin : public Action {
 
     update_paste_visibility();
 
-    se_debug_message(SE_DEBUG_PLUGINS, "The winning target is: '%s'.",
-                     chosen_clipboard_target.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "The winning target is: '%s'.",
+               chosen_clipboard_target.c_str());
   }
 
   // Somebody is asking for data we've copied to the clipboard. Let's give it to
   // them.
   void on_clipboard_get(Gtk::SelectionData &selection_data, guint /*info*/) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     const Glib::ustring target = selection_data.get_target();
     Glib::ustring format;
@@ -315,10 +315,10 @@ class ClipboardPlugin : public Action {
     } else if (target == target_text) {
       format = plaintext_format;
     } else {
-      se_debug_message(SE_DEBUG_PLUGINS,
-                       "Somebody asked for clipboard data in this strange "
-                       "target format: '%s'.",
-                       target.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS,
+                 "Somebody asked for clipboard data in this strange "
+                 "target format: '%s'.",
+                 target.c_str());
       g_warning(
           "Subtitleeditor ClipboardPlugin::on_clipboard_get(): Unexpected "
           "clipboard target format.");
@@ -327,9 +327,8 @@ class ClipboardPlugin : public Action {
 
     // "save" the clipdoc subtitles to the gtk clipboard
     try {
-      se_debug_message(SE_DEBUG_PLUGINS,
-                       "Supplying clipboard data as '%s' format.",
-                       format.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "Supplying clipboard data as '%s' format.",
+                 format.c_str());
 
       Glib::ustring clipboard_data;
       SubtitleFormatSystem::instance().save_to_data(clipdoc, clipboard_data,
@@ -339,16 +338,15 @@ class ClipboardPlugin : public Action {
       // provided, so we can feed it a local variable.
       selection_data.set(target, clipboard_data);
 
-      se_debug_message(SE_DEBUG_PLUGINS, "%s", clipboard_data.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "%s", clipboard_data.c_str());
     } catch (const UnrecognizeFormatError &ex) {
-      se_debug_message(SE_DEBUG_PLUGINS,
-                       "Failed to save clipboard subtitles as '%s'.",
-                       format.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "Failed to save clipboard subtitles as '%s'.",
+                 format.c_str());
     }
   }
 
   void on_clipboard_clear() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     clear_clipdoc();
   }
@@ -358,7 +356,7 @@ class ClipboardPlugin : public Action {
   // because the documentation says Clipboard->set() may trigger a request to
   // clear the clipboard.
   void grab_system_clipboard() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::Clipboard> refClipboard = Gtk::Clipboard::get();
 
@@ -374,7 +372,7 @@ class ClipboardPlugin : public Action {
   }
 
   void request_clipboard_data() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::Clipboard> refClipboard = Gtk::Clipboard::get();
 
@@ -402,7 +400,7 @@ class ClipboardPlugin : public Action {
   // pastedoc variable and watch for the document being deleted using
   // connection_pastedoc_deleted.
   void on_clipboard_received(const Gtk::SelectionData &selection_data) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = pastedoc;
     if (!doc) {
@@ -425,8 +423,7 @@ class ClipboardPlugin : public Action {
     if ((target == target_default) || (target == target_text)) {
       received_string = selection_data.get_data_as_string();
       try {
-        se_debug_message(SE_DEBUG_PLUGINS,
-                         "Try to automatically recognize its format");
+        se_dbg_msg(SE_DBG_PLUGINS, "Try to automatically recognize its format");
         // open file, automatically recognize its format
         // and read it into clipdoc
         SubtitleFormatSystem::instance().open_from_data(clipdoc,
@@ -435,26 +432,24 @@ class ClipboardPlugin : public Action {
         // import the data as plain text,
         // if the target we are receiving is text.
         if (target == target_text) {
-          se_debug_message(
-              SE_DEBUG_PLUGINS,
-              "Read the content of clipboard as Plain Text Format");
+          se_dbg_msg(SE_DBG_PLUGINS,
+                     "Read the content of clipboard as Plain Text Format");
 
           SubtitleFormatSystem::instance().open_from_data(
               clipdoc, received_string, "Plain Text Format");
           // FIXME tomas: Now, we should invoke Minimize Duration and Stack
           // Subtitles on the entire clipdoc
         } else {  // target == target_text
-          se_debug_message(
-              SE_DEBUG_PLUGINS,
+          se_dbg_msg(
+              SE_DBG_PLUGINS,
               "Failed to recognize the default target as a subtitle format!");
           return;
         }
       }
     } else {  //( target == target_default )||( target == target_text )
-      se_debug_message(
-          SE_DEBUG_PLUGINS,
-          "Somebody is sending us data as this strange target: '%s'.",
-          target.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS,
+                 "Somebody is sending us data as this strange target: '%s'.",
+                 target.c_str());
       g_warning(
           "Subtitleeditor ClipboardPlugin::on_clipboard_received(): "
           "Unexpected "
@@ -473,7 +468,7 @@ class ClipboardPlugin : public Action {
   // and optionally recreating it as en empty copy of the supplied document.
   // If you don't want a new clipdoc created, supply doc = NULL.
   bool clear_clipdoc(Document *doc = NULL) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (clipdoc != NULL) {
       delete clipdoc;
@@ -483,8 +478,7 @@ class ClipboardPlugin : public Action {
     if (doc != NULL) {
       clipdoc = new Document(*doc, false);
       if (clipdoc == 0) {
-        se_debug_message(SE_DEBUG_PLUGINS,
-                         "Failed to create the clipboard document.");
+        se_dbg_msg(SE_DBG_PLUGINS, "Failed to create the clipboard document.");
         return false;
       }
     }
@@ -497,7 +491,7 @@ class ClipboardPlugin : public Action {
   };
 
   bool copy_to_clipdoc(Document *doc, unsigned long flags = 0) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // is there anything to copy?
     std::vector<Subtitle> selection = doc->subtitles().get_selection();
@@ -533,7 +527,7 @@ class ClipboardPlugin : public Action {
   }
 
   void on_copy() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);
@@ -542,7 +536,7 @@ class ClipboardPlugin : public Action {
   }
 
   void on_copy_with_timing() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);
@@ -551,7 +545,7 @@ class ClipboardPlugin : public Action {
   }
 
   void on_cut() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);
@@ -567,7 +561,7 @@ class ClipboardPlugin : public Action {
   // FIXME tomas-kitone: I kept the flags for the new Paste At Player Position
   // and Paste As New Document commands.
   void paste(Document *doc, unsigned long flags = 0) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Subtitles subtitles = doc->subtitles();
     std::vector<Subtitle> new_subtitles;
@@ -613,13 +607,13 @@ class ClipboardPlugin : public Action {
 
   bool is_something_to_paste() {
     if (clipdoc == NULL) {
-      se_debug_message(
-          SE_DEBUG_PLUGINS,
+      se_dbg_msg(
+          SE_DBG_PLUGINS,
           "No clipboard document, nothing to paste. How come I was called?");
       return false;
     } else if (clipdoc->subtitles().size() == 0) {
-      se_debug_message(
-          SE_DEBUG_PLUGINS,
+      se_dbg_msg(
+          SE_DBG_PLUGINS,
           "No subtitles in the clipboard document - how come I was called?");
       return false;
     }
@@ -705,25 +699,25 @@ class ClipboardPlugin : public Action {
   // ================= PASTE COMMANDS =====================
 
   void on_paste() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     paste_common(PASTE_TIMING_AFTER);
   }
 
   void on_paste_at_player_position() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     paste_common(PASTE_TIMING_PLAYER);
   }
 
   void on_paste_as_new_document() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     paste_common(PASTE_AS_NEW_DOCUMENT);
   }
 
   void paste_common(unsigned long flags) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // what document are we pasting into?
     Document *doc = get_current_document();
@@ -754,7 +748,7 @@ class ClipboardPlugin : public Action {
   }
 
   void set_pastedoc(Document *doc) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     pastedoc = doc;
 
@@ -769,14 +763,14 @@ class ClipboardPlugin : public Action {
   }
 
   void on_pastedoc_deleted(Document *doc) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (doc == pastedoc)
       clear_pastedoc();
   }
 
   void clear_pastedoc() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     pastedoc = NULL;
 

@@ -26,7 +26,7 @@
 // and the user profile directory.
 // type: 'common-error', 'hearing-impaired'
 PatternManager::PatternManager(const Glib::ustring &type) {
-  se_debug_message(SE_DEBUG_PLUGINS, "pattern manager for '%s'", type.c_str());
+  se_dbg_msg(SE_DBG_PLUGINS, "pattern manager for '%s'", type.c_str());
   m_type = type;
 
   Glib::ustring path = SE_DEV_VALUE(SE_PLUGIN_PATH_PATTERN, SE_PLUGIN_PATH_DEV);
@@ -37,7 +37,7 @@ PatternManager::PatternManager(const Glib::ustring &type) {
 
 // Delete patterns.
 PatternManager::~PatternManager() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 
   for (auto p : m_patterns) {
     delete p;
@@ -49,13 +49,12 @@ PatternManager::~PatternManager() {
 void PatternManager::load_path(const Glib::ustring &path) {
   if (Glib::file_test(path, Glib::FILE_TEST_EXISTS | Glib::FILE_TEST_IS_DIR) ==
       false) {
-    se_debug_message(SE_DEBUG_PLUGINS, "could not open the path %s",
-                     path.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "could not open the path %s", path.c_str());
     return;
   }
 
   try {
-    se_debug_message(SE_DEBUG_PLUGINS, "path '%s'", path.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "path '%s'", path.c_str());
     // Only the pattern type
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create(
         Glib::ustring::compose("^(.*)\\.%1\\.se-pattern$", m_type));
@@ -80,7 +79,7 @@ void PatternManager::load_pattern(const Glib::ustring &path,
   try {
     Glib::ustring fullname = Glib::build_filename(path, filename);
 
-    se_debug_message(SE_DEBUG_PLUGINS, "filename '%s'", fullname.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "filename '%s'", fullname.c_str());
     // name of file :
     // Script[-language-[COUNTRY]].PatternType.pattern
     Glib::RefPtr<Glib::Regex> re =
@@ -99,8 +98,8 @@ void PatternManager::load_pattern(const Glib::ustring &path,
     const xmlpp::Element *xml_patterns = dynamic_cast<const xmlpp::Element *>(
         parser.get_document()->get_root_node());
     if (xml_patterns->get_name() != "patterns") {
-      se_debug_message(SE_DEBUG_PLUGINS, "The file '%s' is not a pattern file",
-                       fullname.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "The file '%s' is not a pattern file",
+                 fullname.c_str());
       // throw InvalidFile
       return;
     }
@@ -116,8 +115,8 @@ void PatternManager::load_pattern(const Glib::ustring &path,
       }
     }
   } catch (const std::exception &ex) {
-    se_debug_message(SE_DEBUG_PLUGINS, "Could not read the pattern '%s' : %s",
-                     filename.c_str(), ex.what());
+    se_dbg_msg(SE_DBG_PLUGINS, "Could not read the pattern '%s' : %s",
+               filename.c_str(), ex.what());
     std::cerr << ex.what() << std::endl;
   }
 }
@@ -213,8 +212,8 @@ std::vector<Glib::ustring> PatternManager::get_codes(
 std::list<Pattern *> PatternManager::get_patterns(
     const Glib::ustring &script, const Glib::ustring &language,
     const Glib::ustring &country) {
-  se_debug_message(SE_DEBUG_PLUGINS, "Codes: %s-%s-%s", script.c_str(),
-                   language.c_str(), country.c_str());
+  se_dbg_msg(SE_DBG_PLUGINS, "Codes: %s-%s-%s", script.c_str(),
+             language.c_str(), country.c_str());
 
   std::vector<Glib::ustring> codes = get_codes(script, language, country);
 
@@ -229,19 +228,19 @@ std::list<Pattern *> PatternManager::get_patterns(
   // the patterns need to be filtered to respect the Replace policy
   std::list<Pattern *> filtered = filter_patterns(patterns);
 
-  if (se_debug_check_flags(SE_DEBUG_PLUGINS)) {
-    se_debug_message(SE_DEBUG_PLUGINS, "pattern list before filter (%d)",
-                     patterns.size());
+  if (se_dbg_check_flags(SE_DBG_PLUGINS)) {
+    se_dbg_msg(SE_DBG_PLUGINS, "pattern list before filter (%d)",
+               patterns.size());
     for (const auto &p : patterns) {
-      se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", p->m_codes.c_str(),
-                       p->m_name.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "[%s] [%s]", p->m_codes.c_str(),
+                 p->m_name.c_str());
     }
 
-    se_debug_message(SE_DEBUG_PLUGINS, "pattern list after filter (%d)",
-                     filtered.size());
+    se_dbg_msg(SE_DBG_PLUGINS, "pattern list after filter (%d)",
+               filtered.size());
     for (const auto &p : filtered) {
-      se_debug_message(SE_DEBUG_PLUGINS, "[%s] [%s]", p->m_codes.c_str(),
-                       p->m_name.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "[%s] [%s]", p->m_codes.c_str(),
+                 p->m_name.c_str());
     }
   }
 

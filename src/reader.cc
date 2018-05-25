@@ -50,7 +50,7 @@ Glib::ustring Reader::get_newline() {
   else
     newline = "Unix";
 
-  se_debug_message(SE_DEBUG_IO, "newline=%s", newline.c_str());
+  se_dbg_msg(SE_DBG_IO, "newline=%s", newline.c_str());
 
   // default
   return newline;
@@ -61,14 +61,14 @@ bool Reader::getline(Glib::ustring &line) {
   initialize_lines();
 
   if (m_iter == m_lines.end()) {
-    se_debug_message(SE_DEBUG_IO, "EOF");
+    se_dbg_msg(SE_DBG_IO, "EOF");
     return false;
   }
 
   line = *m_iter;
   ++m_iter;
 
-  se_debug_message(SE_DEBUG_IO, "\"%s\"", line.c_str());
+  se_dbg_msg(SE_DBG_IO, "\"%s\"", line.c_str());
 
   return true;
 }
@@ -87,7 +87,7 @@ void Reader::initialize_lines() {
   if (m_lines_init)
     return;
 
-  se_debug_message(SE_DEBUG_IO, "split lines...");
+  se_dbg_msg(SE_DBG_IO, "split lines...");
 
   m_lines = Glib::Regex::split_simple("\\R", m_data);
   m_iter = m_lines.begin();

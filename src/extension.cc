@@ -22,11 +22,11 @@
 #include "extension.h"
 
 Extension::Extension() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 }
 
 Extension::~Extension() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 }
 
 bool Extension::is_configurable() {

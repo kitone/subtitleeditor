@@ -63,7 +63,7 @@ class DocumentManagementPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("DocumentManagementPlugin");
@@ -215,7 +215,7 @@ class DocumentManagementPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -227,7 +227,7 @@ class DocumentManagementPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -243,7 +243,7 @@ class DocumentManagementPlugin : public Action {
  protected:
   // Create a new document with unique name
   void on_new() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = new Document();
 
@@ -267,7 +267,7 @@ class DocumentManagementPlugin : public Action {
 
   // Launch a filechooser dialog and open a document
   void open_filechooser(const Glib::ustring &filterformat = Glib::ustring()) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     DialogOpenDocument::unique_ptr dialog = DialogOpenDocument::create();
 
@@ -296,8 +296,8 @@ class DocumentManagementPlugin : public Action {
   }
 
   bool open_document(const Glib::ustring &uri, const Glib::ustring &charset) {
-    se_debug_message(SE_DEBUG_PLUGINS, "uri=%s charset=%s", uri.c_str(),
-                     charset.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "uri=%s charset=%s", uri.c_str(),
+               charset.c_str());
 
     Glib::ustring filename = Glib::filename_from_uri(uri);
 
@@ -320,7 +320,7 @@ class DocumentManagementPlugin : public Action {
 
   // Save a document. If file doesn't exist use save_as
   bool save_document(Document *doc) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     g_return_val_if_fail(doc, false);
 
@@ -348,7 +348,7 @@ class DocumentManagementPlugin : public Action {
 
   bool save_as_document(Document *doc,
                         const Glib::ustring &default_format = Glib::ustring()) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     g_return_val_if_fail(doc, false);
 
@@ -406,7 +406,7 @@ class DocumentManagementPlugin : public Action {
 
   // Save a document. If file doesn't exist use on_save_as
   void on_save() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);
@@ -415,7 +415,7 @@ class DocumentManagementPlugin : public Action {
   }
 
   void on_save_project() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);
@@ -425,7 +425,7 @@ class DocumentManagementPlugin : public Action {
 
   // Save document with new name
   void on_save_as() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);
@@ -435,7 +435,7 @@ class DocumentManagementPlugin : public Action {
 
   // Save all open files
   void on_save_all_documents() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     auto documents = get_subtitleeditor_window()->get_documents();
 
@@ -449,7 +449,7 @@ class DocumentManagementPlugin : public Action {
   // and move the text of this new document (trans) to the current document
   // at the column "translation". After that delete the new document (trans)
   void on_open_translation() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *current = get_current_document();
     g_return_if_fail(current);
@@ -509,7 +509,7 @@ class DocumentManagementPlugin : public Action {
 
   // Save the current translation in a new document
   void on_save_translation() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *current = get_current_document();
     g_return_if_fail(current);
@@ -594,7 +594,7 @@ class DocumentManagementPlugin : public Action {
 
   // Remove the current document
   void on_close() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     close_current_document();
   }
@@ -611,13 +611,13 @@ class DocumentManagementPlugin : public Action {
 
   // A new document has been create, update the recent manager
   void on_document_create(Document *doc) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     add_document_in_recent_manager(doc);
   }
 
   void add_document_in_recent_manager(Document *doc) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (doc == NULL)
       return;
@@ -629,7 +629,7 @@ class DocumentManagementPlugin : public Action {
 
     Glib::ustring uri = Glib::filename_to_uri(filename);
 
-    se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", uri.c_str());
 
     Gtk::RecentManager::Data data;
     // data.mime_type = "subtitle/";
@@ -651,7 +651,7 @@ class DocumentManagementPlugin : public Action {
     Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
 
     if (cur) {
-      se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", cur->get_uri().c_str());
 
       open_document(cur->get_uri(), "");
     }
@@ -665,7 +665,7 @@ class DocumentManagementPlugin : public Action {
   }
 
   void init_autosave() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     m_autosave_timeout.disconnect();
 
@@ -680,13 +680,12 @@ class DocumentManagementPlugin : public Action {
         sigc::mem_fun(*this, &DocumentManagementPlugin::on_autosave_files),
         mseconds);
 
-    se_debug_message(SE_DEBUG_PLUGINS, "save files every %d minutes",
-                     autosave_minutes);
+    se_dbg_msg(SE_DBG_PLUGINS, "save files every %d minutes", autosave_minutes);
   }
 
   // Save files every "auto-save-minutes" value.
   bool on_autosave_files() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     on_save_all_documents();
     return true;

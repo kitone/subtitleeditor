@@ -41,7 +41,7 @@ class WaveformManagement : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("WaveformManagement");
@@ -222,7 +222,7 @@ class WaveformManagement : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -231,7 +231,7 @@ class WaveformManagement : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool has_waveform = get_waveform_manager()->has_waveform();
 
@@ -290,7 +290,7 @@ class WaveformManagement : public Action {
   // If is not a Waveform file launch the
   // Waveform generator.
   void on_open_waveform() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     DialogOpenWaveform dialog;
     if (dialog.run() == Gtk::RESPONSE_OK) {
@@ -356,7 +356,7 @@ class WaveformManagement : public Action {
   }
 
   void on_save_waveform() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Waveform> wf = get_waveform_manager()->get_waveform();
     if (wf) {
@@ -377,7 +377,7 @@ class WaveformManagement : public Action {
   }
 
   void on_close_waveform() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Waveform> wf(NULL);
 
@@ -395,37 +395,37 @@ class WaveformManagement : public Action {
   }
 
   void on_center_with_selected_subtitle() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     get_waveform_manager()->center_with_selected_subtitle();
   }
 
   void on_zoom_in() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     get_waveform_manager()->zoom_in();
   }
 
   void on_zoom_out() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     get_waveform_manager()->zoom_out();
   }
 
   void on_zoom_selection() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     get_waveform_manager()->zoom_selection();
   }
 
   void on_zoom_all() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     get_waveform_manager()->zoom_all();
   }
 
   void on_scrolling_with_player() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::ToggleAction> action =
         Glib::RefPtr<Gtk::ToggleAction>::cast_static(
@@ -437,7 +437,7 @@ class WaveformManagement : public Action {
   }
 
   void on_scrolling_with_selection() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::ToggleAction> action =
         Glib::RefPtr<Gtk::ToggleAction>::cast_static(
@@ -449,7 +449,7 @@ class WaveformManagement : public Action {
   }
 
   void on_respect_timing() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::ToggleAction> action =
         Glib::RefPtr<Gtk::ToggleAction>::cast_static(
@@ -461,7 +461,7 @@ class WaveformManagement : public Action {
   }
 
   void on_waveform_display() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::ToggleAction> action =
         Glib::RefPtr<Gtk::ToggleAction>::cast_static(
@@ -490,7 +490,7 @@ class WaveformManagement : public Action {
   }
 
   void add_in_recent_manager(const Glib::ustring& uri) {
-    se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", uri.c_str());
 
     Gtk::RecentManager::Data data;
     data.app_name = Glib::get_application_name();
@@ -502,7 +502,7 @@ class WaveformManagement : public Action {
 
   // Open a recent video
   void on_recent_item_activated() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::Action> action =
         action_group->get_action("waveform/recent-files");
@@ -512,7 +512,7 @@ class WaveformManagement : public Action {
 
     Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
     if (cur) {
-      se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", cur->get_uri().c_str());
 
       Glib::RefPtr<Waveform> wf = Waveform::create_from_file(cur->get_uri());
       if (wf)

@@ -145,8 +145,8 @@ namespace Encoding {
 // Return utf8 string or throw EncodingConvertError exception.
 Glib::ustring convert_to_utf8_from_charset(const std::string &content,
                                            const Glib::ustring &charset) {
-  se_debug_message(SE_DEBUG_UTILITY, "Trying to convert from %s to UTF-8",
-                   charset.c_str());
+  se_dbg_msg(SE_DBG_UTILITY, "Trying to convert from %s to UTF-8",
+             charset.c_str());
 
   // Only if it's UTF-8 to UTF-8
   if (charset == "UTF-8") {
@@ -164,12 +164,11 @@ Glib::ustring convert_to_utf8_from_charset(const std::string &content,
 
       return utf8_content;
     } catch (const Glib::ConvertError &ex) {
-      se_debug_message(SE_DEBUG_UTILITY, "Glib::ConvertError: %s",
-                       ex.what().c_str());
+      se_dbg_msg(SE_DBG_UTILITY, "Glib::ConvertError: %s", ex.what().c_str());
       throw EncodingConvertError(build_message(
           _("Couldn't convert from %s to UTF-8"), charset.c_str()));
     } catch (...) {
-      se_debug_message(SE_DEBUG_UTILITY, "Unknow error");
+      se_dbg_msg(SE_DBG_UTILITY, "Unknow error");
       throw EncodingConvertError(build_message(
           _("Couldn't convert from %s to UTF-8"), charset.c_str()));
     }
@@ -189,7 +188,7 @@ Glib::ustring convert_to_utf8(const std::string &content,
     return Glib::ustring();
 
   // First check if it's not UTF-8.
-  se_debug_message(SE_DEBUG_UTILITY, "Trying to UTF-8...");
+  se_dbg_msg(SE_DBG_UTILITY, "Trying to UTF-8...");
 
   try {
     Glib::ustring utf8_content =
@@ -200,14 +199,13 @@ Glib::ustring convert_to_utf8(const std::string &content,
       return content;
     }
   } catch (const EncodingConvertError &ex) {
-    se_debug_message(SE_DEBUG_UTILITY, "EncodingConvertError: %s", ex.what());
+    se_dbg_msg(SE_DBG_UTILITY, "EncodingConvertError: %s", ex.what());
   }
 
   // Try to automatically dectect the encoding
 
   // With the user charset preferences...
-  se_debug_message(SE_DEBUG_UTILITY,
-                   "Trying with user encodings preferences...");
+  se_dbg_msg(SE_DBG_UTILITY, "Trying with user encodings preferences...");
 
   auto user_encodings = cfg::get_string_list("encodings", "encodings");
 
@@ -221,12 +219,12 @@ Glib::ustring convert_to_utf8(const std::string &content,
       }
     } catch (const EncodingConvertError &ex) {
       // invalid, try with the next...
-      se_debug_message(SE_DEBUG_UTILITY, "EncodingConvertError: %s", ex.what());
+      se_dbg_msg(SE_DBG_UTILITY, "EncodingConvertError: %s", ex.what());
     }
   }
 
   // With all charset...
-  se_debug_message(SE_DEBUG_UTILITY, "Trying with all encodings...");
+  se_dbg_msg(SE_DBG_UTILITY, "Trying with all encodings...");
 
   for (unsigned int i = 0; encodings_info[i].name != NULL; ++i) {
     Glib::ustring it = encodings_info[i].charset;
@@ -241,7 +239,7 @@ Glib::ustring convert_to_utf8(const std::string &content,
       }
     } catch (const EncodingConvertError &ex) {
       // invalid, try with the next...
-      se_debug_message(SE_DEBUG_UTILITY, "EncodingConvertError: %s", ex.what());
+      se_dbg_msg(SE_DBG_UTILITY, "EncodingConvertError: %s", ex.what());
     }
   }
 
@@ -255,8 +253,8 @@ Glib::ustring convert_to_utf8(const std::string &content,
 // Throw EncodingConvertError exception.
 std::string convert_from_utf8_to_charset(const Glib::ustring &utf8_content,
                                          const Glib::ustring &charset) {
-  se_debug_message(SE_DEBUG_UTILITY, "Trying to convert from UTF-8 to %s",
-                   charset.c_str());
+  se_dbg_msg(SE_DBG_UTILITY, "Trying to convert from UTF-8 to %s",
+             charset.c_str());
 
   try {
     std::string content = Glib::convert(utf8_content, charset, "UTF-8");

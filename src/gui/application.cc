@@ -123,7 +123,7 @@ Application::Application(BaseObjectType *cobject,
 }
 
 Application::~Application() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   Glib::ustring path_se_accelmap = get_config_dir("accelmap");
   Gtk::AccelMap::save(path_se_accelmap);
@@ -152,7 +152,7 @@ void Application::load_config() {
 }
 
 bool Application::on_delete_event(GdkEventAny *ev) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   bool res = Gtk::Window::on_delete_event(ev);
 
@@ -353,7 +353,7 @@ void Application::on_current_document_changed(Document *doc) {
 }
 
 void Application::on_close_document(Document *doc) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   g_return_if_fail(doc);
 
@@ -366,7 +366,7 @@ void Application::on_close_document(Document *doc) {
 // On recupere la page pusi on init DocumentManager avec le document
 void Application::on_signal_switch_page(Gtk::Widget * /*page*/,
                                         guint page_num) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   Gtk::Widget *w = m_notebook_documents->get_nth_page(page_num);
 
@@ -384,13 +384,12 @@ void Application::on_signal_switch_page(Gtk::Widget * /*page*/,
 }
 
 void Application::connect_document(Document *doc) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   disconnect_document(doc);
 
   if (doc) {
-    se_debug_message(SE_DEBUG_APP, "connect_document: %s",
-                     doc->getName().c_str());
+    se_dbg_msg(SE_DBG_APP, "connect_document: %s", doc->getName().c_str());
 
     // connect document message
     m_document_connections.push_back(doc->get_signal_message().connect(
@@ -404,13 +403,12 @@ void Application::connect_document(Document *doc) {
 }
 
 void Application::disconnect_document(Document *doc) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   update_title(NULL);
 
   if (doc) {
-    se_debug_message(SE_DEBUG_APP, "disconnect_document: %s",
-                     doc->getName().c_str());
+    se_dbg_msg(SE_DBG_APP, "disconnect_document: %s", doc->getName().c_str());
   }
   // clear old connection
   for (auto &doc_connection : m_document_connections) {
@@ -462,7 +460,7 @@ void Application::on_config_interface_changed(const Glib::ustring &key,
 }
 
 void Application::init(OptionGroup &options) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   std::vector<Glib::ustring> files(options.files.size() +
                                    options.files_list.size());

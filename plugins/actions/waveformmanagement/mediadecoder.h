@@ -39,7 +39,7 @@ class MediaDecoder : virtual public sigc::trackable {
   }
 
   void create_pipeline(const Glib::ustring &uri) {
-    se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", uri.c_str());
 
     if (m_pipeline)
       destroy_pipeline();
@@ -72,13 +72,13 @@ class MediaDecoder : virtual public sigc::trackable {
     // m_pipeline->set_state(Gst::STATE_PAUSED);
     if (m_pipeline->set_state(Gst::STATE_PLAYING) ==
         Gst::STATE_CHANGE_FAILURE) {
-      se_debug_message(SE_DEBUG_PLUGINS,
-                       "Failed to change the state of the pipeline to PLAYING");
+      se_dbg_msg(SE_DBG_PLUGINS,
+                 "Failed to change the state of the pipeline to PLAYING");
     }
   }
 
   void destroy_pipeline() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (m_connection_timeout)
       m_connection_timeout.disconnect();
@@ -93,12 +93,11 @@ class MediaDecoder : virtual public sigc::trackable {
   }
 
   virtual void on_pad_added(const Glib::RefPtr<Gst::Pad> &newpad) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gst::Caps> caps_null;
     Glib::RefPtr<Gst::Caps> caps = newpad->query_caps(caps_null);
-    se_debug_message(SE_DEBUG_PLUGINS, "newpad->caps: %s",
-                     caps->to_string().c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "newpad->caps: %s", caps->to_string().c_str());
 
     const Gst::Structure structure = caps->get_structure(0);
     if (!structure)
@@ -114,8 +113,7 @@ class MediaDecoder : virtual public sigc::trackable {
       if (retst == Gst::STATE_CHANGE_FAILURE) {
         std::cerr << "Could not change state of new sink: " << retst
                   << std::endl;
-        se_debug_message(SE_DEBUG_PLUGINS,
-                         "Could not change the state of new sink");
+        se_dbg_msg(SE_DBG_PLUGINS, "Could not change the state of new sink");
         m_pipeline->remove(sink);
         return;
       }
@@ -127,21 +125,21 @@ class MediaDecoder : virtual public sigc::trackable {
       if (ret != Gst::PAD_LINK_OK && ret != Gst::PAD_LINK_WAS_LINKED) {
         std::cerr << "Linking of pads " << newpad->get_name() << " and "
                   << sinkpad->get_name() << " failed." << std::endl;
-        se_debug_message(SE_DEBUG_PLUGINS, "Linking of pads failed");
+        se_dbg_msg(SE_DBG_PLUGINS, "Linking of pads failed");
       } else {
-        se_debug_message(SE_DEBUG_PLUGINS, "Pads linking with success");
+        se_dbg_msg(SE_DBG_PLUGINS, "Pads linking with success");
       }
     } else {
-      se_debug_message(SE_DEBUG_PLUGINS, "create_element return an NULL sink");
+      se_dbg_msg(SE_DBG_PLUGINS, "create_element return an NULL sink");
     }
   }
 
   // BUS MESSAGE
   virtual bool on_bus_message(const Glib::RefPtr<Gst::Bus> & /*bus*/,
                               const Glib::RefPtr<Gst::Message> &msg) {
-    se_debug_message(SE_DEBUG_PLUGINS, "type='%s' name='%s'",
-                     GST_MESSAGE_TYPE_NAME(msg->gobj()),
-                     GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
+    se_dbg_msg(SE_DBG_PLUGINS, "type='%s' name='%s'",
+               GST_MESSAGE_TYPE_NAME(msg->gobj()),
+               GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
 
     switch (msg->get_message_type()) {
       case Gst::MESSAGE_ELEMENT:
@@ -169,7 +167,7 @@ class MediaDecoder : virtual public sigc::trackable {
     check_missing_plugins();
 
     Glib::ustring error =
-        (msg) ? Glib::ustring(msg->parse_debug()) : Glib::ustring();
+        (msg) ? Glib::ustring(msg->parse_dbg()) : Glib::ustring();
 
     dialog_error(_("Media file could not be played.\n"), error);
     // Critical error, cancel the work.
@@ -181,7 +179,7 @@ class MediaDecoder : virtual public sigc::trackable {
     check_missing_plugins();
 
     Glib::ustring error =
-        (msg) ? Glib::ustring(msg->parse_debug()) : Glib::ustring();
+        (msg) ? Glib::ustring(msg->parse_dbg()) : Glib::ustring();
     dialog_error(_("Media file could not be played.\n"), error);
 
     return true;
@@ -236,7 +234,7 @@ class MediaDecoder : virtual public sigc::trackable {
  protected:
   bool on_bus_message_state_changed_timeout(
       Glib::RefPtr<Gst::MessageStateChanged> msg) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // We only update when it is the pipeline object
     if (msg->get_source()->get_name() != "pipeline")
@@ -260,7 +258,7 @@ class MediaDecoder : virtual public sigc::trackable {
 
   void check_missing_plugin_message(
       const Glib::RefPtr<Gst::MessageElement> &msg) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (!msg)
       return;
@@ -274,7 +272,7 @@ class MediaDecoder : virtual public sigc::trackable {
     if (!description)
       return;
 
-    se_debug_message(SE_DEBUG_PLUGINS, "missing plugin msg '%s'", description);
+    se_dbg_msg(SE_DBG_PLUGINS, "missing plugin msg '%s'", description);
 
     m_missing_plugins.push_back(description);
     g_free(description);
@@ -310,7 +308,7 @@ class MediaDecoder : virtual public sigc::trackable {
 
     dialog_error(msg, plugins);
 
-    se_debug_message(SE_DEBUG_UTILITY, "%s %s", msg.c_str(), plugins.c_str());
+    se_dbg_msg(SE_DBG_UTILITY, "%s %s", msg.c_str(), plugins.c_str());
   }
 
  protected:

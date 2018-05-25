@@ -57,13 +57,13 @@ void FileWriter::to_file() {
     stream->close();
     stream.reset();
 
-    se_debug_message(
-        SE_DEBUG_IO,
+    se_dbg_msg(
+        SE_DBG_IO,
         "Success to write the contents on the file '%s' with '%s' charset",
         m_uri.c_str(), m_charset.c_str());
   } catch (const std::exception &ex) {
-    se_debug_message(
-        SE_DEBUG_IO,
+    se_dbg_msg(
+        SE_DBG_IO,
         "Failed to write the contents on the file '%s' with '%s' charset",
         m_uri.c_str(), m_charset.c_str());
     throw IOFileError(ex.what());

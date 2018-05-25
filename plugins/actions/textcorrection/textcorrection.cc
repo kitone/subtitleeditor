@@ -35,7 +35,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
   AssistantTextCorrection(BaseObjectType* cobject,
                           const Glib::RefPtr<Gtk::Builder>& builder)
       : Gtk::Assistant(cobject) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     doc = SubtitleEditorWindow::get_instance()->get_current_document();
 
@@ -44,7 +44,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
 
     add_tasks();
 
-    se_debug_message(SE_DEBUG_PLUGINS, "Init tasks pages");
+    se_dbg_msg(SE_DBG_PLUGINS, "Init tasks pages");
     // Init tasks pages
     for (int i = 0; i < get_n_pages(); ++i) {
       PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
@@ -58,11 +58,11 @@ class AssistantTextCorrection : public Gtk::Assistant {
   }
 
   ~AssistantTextCorrection() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
   }
 
   void add_tasks() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     add_page(manage(new HearingImpairedPage), 1);
     add_page(manage(new CommonErrorPage), 2);
@@ -70,9 +70,8 @@ class AssistantTextCorrection : public Gtk::Assistant {
   }
 
   void add_page(PatternsPage* page, unsigned int pos) {
-    se_debug_message(SE_DEBUG_PLUGINS,
-                     "new task page '%s' to the position '%d'",
-                     page->get_page_title().c_str(), pos);
+    se_dbg_msg(SE_DBG_PLUGINS, "new task page '%s' to the position '%d'",
+               page->get_page_title().c_str(), pos);
 
     insert_page(*page, pos);
     set_page_title(*page, page->get_page_title());
@@ -82,7 +81,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
   // Catch the comfirmation page and initialize with the current document
   // and patterns available.
   void on_prepare(Gtk::Widget* page) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     AssistantPage* ap = dynamic_cast<AssistantPage*>(page);
     if (ap && ap == m_comfirmationPage) {
@@ -99,7 +98,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
 
   // Return all patterns activated.
   std::list<Pattern*> get_patterns() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     std::list<Pattern*> patterns;
 
@@ -118,7 +117,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
 
   // Apply the change and destroy the window.
   void on_apply() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     m_comfirmationPage->apply(doc);
 
@@ -127,7 +126,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
 
   // Destroy the window.
   void on_cancel() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     save_cfg();
 
@@ -137,7 +136,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
 
   // Close signal, destroy the window.
   void on_close() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     save_cfg();
 
@@ -147,7 +146,7 @@ class AssistantTextCorrection : public Gtk::Assistant {
 
   // Save the configuration for each pages.
   void save_cfg() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     for (int i = 0; i < get_n_pages(); ++i) {
       PatternsPage* page = dynamic_cast<PatternsPage*>(get_nth_page(i));
@@ -174,7 +173,7 @@ class TextCorrectionPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("TextCorrectionPlugin");
@@ -192,7 +191,7 @@ class TextCorrectionPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -201,7 +200,7 @@ class TextCorrectionPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 

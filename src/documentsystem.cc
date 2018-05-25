@@ -22,11 +22,11 @@
 #include "utility.h"
 
 DocumentSystem::DocumentSystem() : m_currentDocument(NULL) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 }
 
 DocumentSystem::~DocumentSystem() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   m_currentDocument = NULL;
 
@@ -42,7 +42,7 @@ DocumentSystem& DocumentSystem::getInstance() {
 }
 
 void DocumentSystem::append(Document* doc) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   g_return_if_fail(doc);
 
@@ -52,7 +52,7 @@ void DocumentSystem::append(Document* doc) {
 }
 
 void DocumentSystem::remove(Document* doc) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   g_return_if_fail(doc);
 
@@ -68,30 +68,30 @@ void DocumentSystem::remove(Document* doc) {
 }
 
 sigc::signal<void, Document*>& DocumentSystem::signal_document_create() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
   return m_signal_document_create;
 }
 
 sigc::signal<void, Document*>& DocumentSystem::signal_document_delete() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
   return m_signal_document_delete;
 }
 
 sigc::signal<void, Document*>&
 DocumentSystem::signal_current_document_changed() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
   return m_signal_current_document_changed;
 }
 
 sigc::signal<void, Document*, const std::string&>&
 DocumentSystem::signals_document() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
   return m_signal_document;
 }
 
 void DocumentSystem::setCurrentDocument(Document* doc) {
-  se_debug_message(SE_DEBUG_APP, "%s",
-                   ((doc == NULL) ? "NULL" : doc->getFilename().c_str()));
+  se_dbg_msg(SE_DBG_APP, "%s",
+             ((doc == NULL) ? "NULL" : doc->getFilename().c_str()));
 
   // g_return_if_fail(doc);
   if (doc) {
@@ -115,13 +115,13 @@ DocumentList DocumentSystem::getAllDocuments() {
 }
 
 Document* DocumentSystem::getDocument(const Glib::ustring& filename) {
-  se_debug_message(SE_DEBUG_APP, "filename = %s", filename.c_str());
+  se_dbg_msg(SE_DBG_APP, "filename = %s", filename.c_str());
 
   for (const auto& doc : m_listDocuments) {
     if (doc->getFilename() == filename)
       return doc;
   }
-  se_debug_message(SE_DEBUG_APP, "return NULL: FAILED");
+  se_dbg_msg(SE_DBG_APP, "return NULL: FAILED");
 
   return NULL;
 }
@@ -129,7 +129,7 @@ Document* DocumentSystem::getDocument(const Glib::ustring& filename) {
 // find a unique name (like "Untitled-5") for a new document
 Glib::ustring DocumentSystem::create_untitled_name(
     const Glib::ustring& extension) {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 
   Glib::ustring ext = extension.empty() ? "" : "." + extension;
 
@@ -146,7 +146,7 @@ Glib::ustring DocumentSystem::create_untitled_name(
 // check with other document if this name exist
 // return true if it is
 bool DocumentSystem::check_if_document_name_exist(const Glib::ustring& name) {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 
   for (const auto& doc : m_listDocuments) {
     if (name == doc->getName())

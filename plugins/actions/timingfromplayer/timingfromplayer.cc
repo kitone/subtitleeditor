@@ -65,7 +65,7 @@ class TimingFromPlayer : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("TimingFromPlayer");
@@ -176,7 +176,7 @@ class TimingFromPlayer : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -185,7 +185,7 @@ class TimingFromPlayer : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool has_doc = (get_current_document() != NULL);
     bool has_media =
@@ -231,7 +231,7 @@ class TimingFromPlayer : public Action {
   // Check the state of the player.
   // Update the menu from the current state of the player.
   void on_player_message(Player::Message msg) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
     // only if the player is enable or disable
     // don't update if is playing or paused
     if (msg == Player::STATE_NONE || msg == Player::STREAM_READY)
@@ -254,7 +254,7 @@ class TimingFromPlayer : public Action {
   }
 
   bool set_subtitle_from_player(int op) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_val_if_fail(doc, false);
@@ -332,7 +332,7 @@ class TimingFromPlayer : public Action {
   // We connect the signal key_release_event to update the
   // end of the subtitle when the key is released.
   void set_subtitle_start_and_end_with_one_key() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (co)
       return;
@@ -355,7 +355,7 @@ class TimingFromPlayer : public Action {
   // Update the end of the subtitle and disconnect
   // the callback.
   bool on_key_release_event(GdkEventKey *) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     set_subtitle_end_and_go_next();
     co.disconnect();

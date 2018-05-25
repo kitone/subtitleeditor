@@ -30,27 +30,26 @@ static bool profiling_enable = false;
 static Glib::Timer profiling_timer;
 static double profiling_timer_last = 0.0;
 
-void __se_debug_init(int flags) {
+void __se_dbg_init(int flags) {
   debug_flags = flags;
 
-  if (G_UNLIKELY(debug_flags & SE_DEBUG_PROFILING) &&
+  if (G_UNLIKELY(debug_flags & SE_DBG_PROFILING) &&
       debug_flags != SE_NO_DEBUG) {
     profiling_enable = true;
     profiling_timer.start();
   }
 }
 
-bool se_debug_check_flags(int flag) {
-  if (G_UNLIKELY(debug_flags & SE_DEBUG_ALL))
+bool se_dbg_check_flags(int flag) {
+  if (G_UNLIKELY(debug_flags & SE_DBG_ALL))
     return true;
 
   return G_UNLIKELY(debug_flags & flag);
 }
 
-void __se_debug(int flag, const gchar* file, const gint line,
-                const gchar* fonction) {
-  if (G_UNLIKELY(debug_flags & flag) ||
-      G_UNLIKELY(debug_flags & SE_DEBUG_ALL)) {
+void __se_dbg(int flag, const gchar* file, const gint line,
+              const gchar* fonction) {
+  if (G_UNLIKELY(debug_flags & flag) || G_UNLIKELY(debug_flags & SE_DBG_ALL)) {
     if (profiling_enable) {
       double seconds = profiling_timer.elapsed();
 
@@ -65,10 +64,9 @@ void __se_debug(int flag, const gchar* file, const gint line,
   }
 }
 
-void __se_debug_message(int flag, const gchar* file, gint line,
-                        const gchar* fonction, const char* format, ...) {
-  if (G_UNLIKELY(debug_flags & flag) ||
-      G_UNLIKELY(debug_flags & SE_DEBUG_ALL)) {
+void __se_dbg_msg(int flag, const gchar* file, gint line, const gchar* fonction,
+                  const char* format, ...) {
+  if (G_UNLIKELY(debug_flags & flag) || G_UNLIKELY(debug_flags & SE_DBG_ALL)) {
     va_list args;
     gchar* msg = NULL;
 

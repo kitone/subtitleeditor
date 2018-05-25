@@ -216,7 +216,7 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject,
 
 // Destructor
 VideoPlayer::~VideoPlayer() {
-  se_debug(SE_DEBUG_VIDEO_PLAYER);
+  se_dbg(SE_DBG_VIDEO_PLAYER);
 }
 
 // Load the video player config.

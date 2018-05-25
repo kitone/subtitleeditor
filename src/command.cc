@@ -24,11 +24,11 @@
 
 Command::Command(Document *doc, const Glib::ustring &description)
     : m_document(doc), m_description(description) {
-  se_debug_message(SE_DEBUG_COMMAND, "description=%s", description.c_str());
+  se_dbg_msg(SE_DBG_COMMAND, "description=%s", description.c_str());
 }
 
 Command::~Command() {
-  se_debug_message(SE_DEBUG_COMMAND, "description=%s", m_description.c_str());
+  se_dbg_msg(SE_DBG_COMMAND, "description=%s", m_description.c_str());
 }
 
 Document *Command::document() {

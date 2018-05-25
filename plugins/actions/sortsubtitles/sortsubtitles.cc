@@ -34,7 +34,7 @@ class SortSubtitlesPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("SortSubtitlesPlugin");
@@ -53,7 +53,7 @@ class SortSubtitlesPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -62,7 +62,7 @@ class SortSubtitlesPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
     action_group->get_action("sort-subtitles")->set_sensitive(visible);
@@ -70,7 +70,7 @@ class SortSubtitlesPlugin : public Action {
 
  protected:
   void sort_subtitles() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);

@@ -34,7 +34,7 @@ ExtensionManager &ExtensionManager::instance() {
 
 // Constructor
 ExtensionManager::ExtensionManager() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   // Read the user plugins
   load_path(get_config_dir("plugins"), false);
@@ -49,14 +49,14 @@ ExtensionManager::ExtensionManager() {
 
 // Destructor
 ExtensionManager::~ExtensionManager() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   destroy_extensions();
 }
 
 // Active and create extensions
 void ExtensionManager::create_extensions() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   for (const auto &ext_info : get_extension_info_list()) {
     if (cfg::has_key("extension-manager", ext_info->get_name())) {
@@ -66,9 +66,9 @@ void ExtensionManager::create_extensions() {
       }
     } else {
       // Unknown extension, enable by default
-      se_debug_message(SE_DEBUG_APP,
-                       "First time for the plugin '%s', enable by default",
-                       ext_info->get_name().c_str());
+      se_dbg_msg(SE_DBG_APP,
+                 "First time for the plugin '%s', enable by default",
+                 ext_info->get_name().c_str());
 
       set_extension_active(ext_info->get_name(), true);
     }
@@ -77,11 +77,11 @@ void ExtensionManager::create_extensions() {
 
 // Delete and close all extensions
 void ExtensionManager::destroy_extensions() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   for (const auto &ext_info : get_extension_info_list()) {
-    se_debug_message(SE_DEBUG_APP, "delete extension '%s'",
-                     ext_info->get_name().c_str());
+    se_dbg_msg(SE_DBG_APP, "delete extension '%s'",
+               ext_info->get_name().c_str());
     delete ext_info;
   }
   m_extension_info_map.clear();
@@ -91,11 +91,11 @@ void ExtensionManager::destroy_extensions() {
 // se-plugin file.
 void ExtensionManager::load_path(const Glib::ustring &path,
                                  bool fhs_directory) {
-  se_debug_message(SE_DEBUG_APP, "path=%s", path.c_str());
+  se_dbg_msg(SE_DBG_APP, "path=%s", path.c_str());
 
   if (Glib::file_test(path, Glib::FILE_TEST_EXISTS | Glib::FILE_TEST_IS_DIR) ==
       false) {
-    se_debug_message(SE_DEBUG_APP, "could not open the path %s", path.c_str());
+    se_dbg_msg(SE_DBG_APP, "could not open the path %s", path.c_str());
     return;
   }
 
@@ -115,7 +115,7 @@ void ExtensionManager::load_path(const Glib::ustring &path,
         load_extension_info(filename, fhs_directory);
     }
   } catch (const Glib::Error &ex) {
-    se_debug_message(SE_DEBUG_APP, "error: %s", ex.what().c_str());
+    se_dbg_msg(SE_DBG_APP, "error: %s", ex.what().c_str());
     std::cerr << ex.what() << std::endl;
   }
 }
@@ -123,7 +123,7 @@ void ExtensionManager::load_path(const Glib::ustring &path,
 // Try to load an ExtensionInfo file.
 bool ExtensionManager::load_extension_info(const Glib::ustring &file,
                                            bool fhs_directory) {
-  se_debug_message(SE_DEBUG_APP, "try to read '%s'", file.c_str());
+  se_dbg_msg(SE_DBG_APP, "try to read '%s'", file.c_str());
 
   try {
     Glib::KeyFile keyfile;
@@ -210,17 +210,17 @@ bool ExtensionManager::load_extension_info(const Glib::ustring &file,
     m_extension_info_map[categorie].push_back(info);
 
     // Display Debug information
-    se_debug_message(SE_DEBUG_APP, Glib::ustring::compose(
-                                       "New ExtensionInfo: '%1' '%2' '%3' '%4'",
-                                       name, categorie, type, module)
-                                       .c_str());
+    se_dbg_msg(SE_DBG_APP,
+               Glib::ustring::compose("New ExtensionInfo: '%1' '%2' '%3' '%4'",
+                                      name, categorie, type, module)
+                   .c_str());
 
     return true;
   } catch (const Glib::Exception &ex) {
-    se_debug_message(SE_DEBUG_APP, "error: %s", ex.what().c_str());
+    se_dbg_msg(SE_DBG_APP, "error: %s", ex.what().c_str());
     std::cerr << "Error:" << ex.what() << std::endl;
   } catch (const std::exception &ex) {
-    se_debug_message(SE_DEBUG_APP, "error: %s", ex.what());
+    se_dbg_msg(SE_DBG_APP, "error: %s", ex.what());
     std::cerr << "Error:" << ex.what() << std::endl;
   }
 
@@ -231,7 +231,7 @@ bool ExtensionManager::load_extension_info(const Glib::ustring &file,
 
 // Return All ExtensionInfo.
 std::list<ExtensionInfo *> ExtensionManager::get_extension_info_list() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
   std::list<ExtensionInfo *> list;
 
   for (const auto &ext_map : m_extension_info_map) {
@@ -245,15 +245,15 @@ std::list<ExtensionInfo *> ExtensionManager::get_info_list_from_categorie(
     const Glib::ustring &categorie) {
   // FIXME
   std::list<ExtensionInfo *> list = m_extension_info_map[categorie];
-  se_debug_message(SE_DEBUG_APP, "categorie='%s' size='%d'", categorie.c_str(),
-                   list.size());
+  se_dbg_msg(SE_DBG_APP, "categorie='%s' size='%d'", categorie.c_str(),
+             list.size());
 
   return list;
 }
 
 // Return an ExtensionInfo from this name or NULL if failed.
 ExtensionInfo *ExtensionManager::get_extension_info(const Glib::ustring &name) {
-  se_debug_message(SE_DEBUG_APP, "name='%s'", name.c_str());
+  se_dbg_msg(SE_DBG_APP, "name='%s'", name.c_str());
 
   for (const auto &ext_map : m_extension_info_map) {
     for (const auto &ext_info : ext_map.second) {
@@ -267,7 +267,7 @@ ExtensionInfo *ExtensionManager::get_extension_info(const Glib::ustring &name) {
 // Enable or disable extension.
 bool ExtensionManager::set_extension_active(const Glib::ustring &name,
                                             bool state) {
-  se_debug_message(SE_DEBUG_APP, "name='%s' active='%d'", name.c_str(), state);
+  se_dbg_msg(SE_DBG_APP, "name='%s' active='%d'", name.c_str(), state);
 
   ExtensionInfo *info = get_extension_info(name);
 
@@ -276,20 +276,20 @@ bool ExtensionManager::set_extension_active(const Glib::ustring &name,
 
   bool res = (state) ? activate(info) : deactivate(info);
   if (!res) {
-    se_debug_message(SE_DEBUG_APP, "Failed to change the extansion state");
+    se_dbg_msg(SE_DBG_APP, "Failed to change the extansion state");
     return false;
   }
 
   cfg::set_string("extension-manager", name, (state) ? "enable" : "disable");
 
-  se_debug_message(SE_DEBUG_APP, "extension state is changed with success");
+  se_dbg_msg(SE_DBG_APP, "extension state is changed with success");
   return true;
 }
 
 // Try to activate the extension.
 // Load and create Extension.
 bool ExtensionManager::activate(ExtensionInfo *info) {
-  se_debug_message(SE_DEBUG_APP, "extension '%s'", info->get_name().c_str());
+  se_dbg_msg(SE_DBG_APP, "extension '%s'", info->get_name().c_str());
 
   // FIXME: add available value to info.
   try {
@@ -301,14 +301,13 @@ bool ExtensionManager::activate(ExtensionInfo *info) {
 
     return true;
   } catch (const SubtitleError &ex) {
-    se_debug_message(SE_DEBUG_APP, "activate the extension failed: %s",
-                     ex.what());
+    se_dbg_msg(SE_DBG_APP, "activate the extension failed: %s", ex.what());
     std::cerr << ex.what() << std::endl;
   } catch (const Glib::Error &ex) {
-    se_debug_message(SE_DEBUG_APP, "activate the extension failed: %s",
-                     ex.what().c_str());
+    se_dbg_msg(SE_DBG_APP, "activate the extension failed: %s",
+               ex.what().c_str());
   } catch (...) {
-    se_debug_message(SE_DEBUG_APP, "activate the extension failed");
+    se_dbg_msg(SE_DBG_APP, "activate the extension failed");
   }
 
   return false;
@@ -317,39 +316,39 @@ bool ExtensionManager::activate(ExtensionInfo *info) {
 // Deactivate the extension.
 // Delete the extension and the module.
 bool ExtensionManager::deactivate(ExtensionInfo *info) {
-  se_debug_message(SE_DEBUG_APP, "extension '%s'", info->get_name().c_str());
+  se_dbg_msg(SE_DBG_APP, "extension '%s'", info->get_name().c_str());
 
   if (info->module == NULL || info->extension == NULL) {
-    se_debug_message(SE_DEBUG_APP, "The Module or the Extension are NULL");
+    se_dbg_msg(SE_DBG_APP, "The Module or the Extension are NULL");
     return false;
   }
 
   try {
-    se_debug_message(SE_DEBUG_APP, "delete extension...");
+    se_dbg_msg(SE_DBG_APP, "delete extension...");
 
     if (info->extension)
       delete info->extension;
     info->extension = NULL;
 
-    se_debug_message(SE_DEBUG_APP, "delete module...");
+    se_dbg_msg(SE_DBG_APP, "delete module...");
 
     if (info->module)
       delete info->module;
     info->module = NULL;
   } catch (...) {
-    se_debug_message(SE_DEBUG_APP, "Error unknown exception!");
+    se_dbg_msg(SE_DBG_APP, "Error unknown exception!");
   }
 
   info->active = false;
 
-  se_debug_message(SE_DEBUG_APP, "extension deactivate with success");
+  se_dbg_msg(SE_DBG_APP, "extension deactivate with success");
   return true;
 }
 
 // Open a module and create the extension.
 // If failed return a SubtitleError.
 void ExtensionManager::open_module(ExtensionInfo *info) {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   if (info->type != "module")
     throw SubtitleError("The type of the extension is not a 'module'");
@@ -373,7 +372,7 @@ void ExtensionManager::open_module(ExtensionInfo *info) {
   // Build module name (path/libname.so)
   Glib::ustring file = Glib::Module::build_path(dirname, info->module_name);
 
-  se_debug_message(SE_DEBUG_APP, "try to open module '%s'", file.c_str());
+  se_dbg_msg(SE_DBG_APP, "try to open module '%s'", file.c_str());
 
   // Create the module
   Glib::Module *module = new Glib::Module(file);
@@ -410,7 +409,7 @@ void ExtensionManager::open_module(ExtensionInfo *info) {
   info->module = module;
   info->extension = ext;
 
-  se_debug_message(
-      SE_DEBUG_APP,
+  se_dbg_msg(
+      SE_DBG_APP,
       "Opening and the creating the extension from the module is a success");
 }

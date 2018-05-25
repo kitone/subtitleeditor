@@ -92,7 +92,7 @@ class DialogErrorChecking : public Gtk::Dialog {
 
  public:
   static void create() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (m_static_instance == NULL)
       m_static_instance =
@@ -113,7 +113,7 @@ class DialogErrorChecking : public Gtk::Dialog {
   DialogErrorChecking(BaseObjectType *cobject,
                       const Glib::RefPtr<Gtk::Builder> &builder)
       : Gtk::Dialog(cobject) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     m_sort_type = BY_CATEGORIES;
 
@@ -132,7 +132,7 @@ class DialogErrorChecking : public Gtk::Dialog {
   }
 
   bool on_delete_event(GdkEventAny *ev) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     m_static_instance = NULL;
 
@@ -682,7 +682,7 @@ class ErrorCheckingPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("ErrorCheckingPlugin");
@@ -704,7 +704,7 @@ class ErrorCheckingPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -717,7 +717,7 @@ class ErrorCheckingPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 

@@ -75,8 +75,8 @@ class SubRip : public SubtitleFormatIO {
             SubtitleTime(start[0], start[1], start[2], start[3]),
             SubtitleTime(end[0], end[1], end[2], end[3]));
       } else {
-        se_debug_message(SE_DEBUG_PLUGINS, "can not match time line: '%s'",
-                         line.c_str());
+        se_dbg_msg(SE_DBG_PLUGINS, "can not match time line: '%s'",
+                   line.c_str());
       }
     }
   }

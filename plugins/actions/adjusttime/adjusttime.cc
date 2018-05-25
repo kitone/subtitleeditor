@@ -35,7 +35,7 @@ class AdjustTimePlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("AdjustTimePlugin");
@@ -180,7 +180,7 @@ class AdjustTimePlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -189,7 +189,7 @@ class AdjustTimePlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -207,37 +207,37 @@ class AdjustTimePlugin : public Action {
   enum UNITS { MSEC, FRAMES };
 
   void on_add_to_start() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START, 100);
   }
 
   void on_add_to_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(END, 100);
   }
 
   void on_add_to_start_and_to_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START_AND_END, 100);
   }
 
   void on_remove_from_start() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START, -100);
   }
 
   void on_remove_from_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(END, -100);
   }
 
   void on_remove_from_start_and_from_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START_AND_END, -100);
   }
@@ -245,37 +245,37 @@ class AdjustTimePlugin : public Action {
   // --- FRAME VERSIONS ---
 
   void on_add_frame_to_start() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START, 1, FRAMES);
   }
 
   void on_add_frame_to_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(END, 1, FRAMES);
   }
 
   void on_add_frame_to_start_and_to_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START_AND_END, 1, FRAMES);
   }
 
   void on_remove_frame_from_start() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START, -1, FRAMES);
   }
 
   void on_remove_frame_from_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(END, -1, FRAMES);
   }
 
   void on_remove_frame_from_start_and_from_duration() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     adjust(START_AND_END, -100);
   }
@@ -283,7 +283,7 @@ class AdjustTimePlugin : public Action {
   bool adjust(TYPE type, const long &time_msecs = 100, UNITS units = MSEC) {
     long timeshift = time_msecs;
 
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
 

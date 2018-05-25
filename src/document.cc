@@ -255,7 +255,7 @@ SubtitleView *Document::get_subtitle_view() {
 
 // Create an attach the subtitle view of the document.
 void Document::create_subtitle_view() {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   m_subtitleView = manage(new SubtitleView(*this));
   m_subtitleView->show();
@@ -270,7 +270,7 @@ void Document::message(const gchar *format, ...) {
   formatted = g_strdup_vprintf(format, args);
   va_end(args);
 
-  se_debug_message(SE_DEBUG_APP, formatted);
+  se_dbg_msg(SE_DBG_APP, formatted);
 
   m_signal_message(formatted);
 
@@ -291,7 +291,7 @@ void Document::flash_message(const gchar *format, ...) {
   formatted = g_strdup_vprintf(format, args);
   va_end(args);
 
-  se_debug_message(SE_DEBUG_APP, formatted);
+  se_dbg_msg(SE_DBG_APP, formatted);
 
   m_signal_flash_message(formatted);
 
@@ -402,8 +402,7 @@ FRAMERATE Document::get_framerate() {
 // needed. Return a new document or NULL.
 Document *Document::create_from_file(const Glib::ustring &uri,
                                      const Glib::ustring &charset) {
-  se_debug_message(SE_DEBUG_APP, "uri=%s charset=%s", uri.c_str(),
-                   charset.c_str());
+  se_dbg_msg(SE_DBG_APP, "uri=%s charset=%s", uri.c_str(), charset.c_str());
 
   Glib::ustring filename = Glib::filename_from_uri(uri);
   Glib::ustring basename = Glib::path_get_basename(filename);
@@ -495,7 +494,7 @@ sigc::signal<void> &Document::get_signal(const std::string &name) {
 
 // Emit a signal from his name.
 void Document::emit_signal(const std::string &name) {
-  se_debug_message(SE_DEBUG_APP, "signal named '%s'", name.c_str());
+  se_dbg_msg(SE_DBG_APP, "signal named '%s'", name.c_str());
 
   m_signal[name].emit();
 

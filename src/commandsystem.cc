@@ -60,11 +60,11 @@ class SubtitleSelectionCommand : public Command {
 
 CommandGroup::CommandGroup(const Glib::ustring &description)
     : Command(NULL, description) {
-  se_debug_message(SE_DEBUG_COMMAND, "description=%s", description.c_str());
+  se_dbg_msg(SE_DBG_COMMAND, "description=%s", description.c_str());
 }
 
 CommandGroup::~CommandGroup() {
-  se_debug(SE_DEBUG_COMMAND);
+  se_dbg(SE_DBG_COMMAND);
 
   while (!m_stack.empty()) {
     delete m_stack.back();
@@ -73,13 +73,13 @@ CommandGroup::~CommandGroup() {
 }
 
 void CommandGroup::add(Command *cmd) {
-  se_debug(SE_DEBUG_COMMAND);
+  se_dbg(SE_DBG_COMMAND);
 
   m_stack.push_back(cmd);
 }
 
 void CommandGroup::execute() {
-  se_debug(SE_DEBUG_COMMAND);
+  se_dbg(SE_DBG_COMMAND);
 
   for (const auto &cmd : m_stack) {
     cmd->execute();
@@ -87,7 +87,7 @@ void CommandGroup::execute() {
 }
 
 void CommandGroup::restore() {
-  se_debug(SE_DEBUG_COMMAND);
+  se_dbg(SE_DBG_COMMAND);
 
   for (auto it = m_stack.rbegin(); it != m_stack.rend(); ++it) {
     (*it)->restore();

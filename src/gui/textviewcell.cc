@@ -31,7 +31,7 @@ TextViewCell::TextViewCell()
       Gtk::CellEditable(),
       m_editing_canceled(false),
       m_used_ctrl_enter_to_confirm_change(false) {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   m_used_ctrl_enter_to_confirm_change =
       cfg::get_boolean("subtitle-view", "used-ctrl-enter-to-confirm-change");
@@ -47,18 +47,18 @@ TextViewCell::TextViewCell()
 
 // Destructor
 TextViewCell::~TextViewCell() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 }
 
 // Define the current text.
 void TextViewCell::set_text(const Glib::ustring& text) {
-  se_debug_message(SE_DEBUG_VIEW, "text=<%s>", text.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "text=<%s>", text.c_str());
   get_buffer()->set_text(text);
 }
 
 // Return the current text.
 Glib::ustring TextViewCell::get_text() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Glib::RefPtr<Gtk::TextBuffer> buffer = get_buffer();
 
@@ -71,7 +71,7 @@ Glib::ustring TextViewCell::get_text() {
 // Check if the user cancel the editing with Escape.
 // Check if the user apply the editing with Enter (depend on user prefs).
 bool TextViewCell::on_key_press_event(GdkEventKey* event) {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   if (event->keyval == GDK_KEY_Escape) {
     m_editing_canceled = true;
@@ -100,7 +100,7 @@ bool TextViewCell::on_key_press_event(GdkEventKey* event) {
 // Before removing the widget we call editing_done
 // if there's no canceled signal.
 void TextViewCell::on_remove_widget() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
   // We apply the editing if there's not a canceled signal.
   if (m_editing_canceled == false)
     editing_done();
@@ -109,7 +109,7 @@ void TextViewCell::on_remove_widget() {
 
 // bug #23569 : Cursor cannot be moved with mouse when editing subtitles
 bool TextViewCell::on_button_press_event(GdkEventButton* event) {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TextView::on_button_press_event(event);
   return true;

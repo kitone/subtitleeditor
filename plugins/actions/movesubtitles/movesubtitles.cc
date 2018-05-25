@@ -89,7 +89,7 @@ class MoveSubtitlesPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("MoveSubtitlesPlugin");
@@ -113,7 +113,7 @@ class MoveSubtitlesPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -122,7 +122,7 @@ class MoveSubtitlesPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -131,13 +131,13 @@ class MoveSubtitlesPlugin : public Action {
 
  protected:
   void on_move_subtitles() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute();
   }
 
   bool execute() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
 
@@ -179,7 +179,7 @@ class MoveSubtitlesPlugin : public Action {
   // Used only the first selected subtitles and move all the next
   // subtitles selected or not.
   bool move_first_selected_subtitle_and_next(Document *doc, const long &diff) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     std::vector<Subtitle> selection = doc->subtitles().get_selection();
 
@@ -204,7 +204,7 @@ class MoveSubtitlesPlugin : public Action {
 
   // Move only the selected subtitles.
   bool move_selected_subtitles(Document *doc, const long &diff) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     std::vector<Subtitle> selection = doc->subtitles().get_selection();
 

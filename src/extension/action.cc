@@ -29,7 +29,7 @@ Action::~Action() {
 }
 
 SubtitleEditorWindow *Action::get_subtitleeditor_window() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 
   SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
 
@@ -37,7 +37,7 @@ SubtitleEditorWindow *Action::get_subtitleeditor_window() {
 }
 
 Document *Action::get_current_document() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 
   SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
 
@@ -45,14 +45,14 @@ Document *Action::get_current_document() {
 
   Document *doc = window->get_current_document();
 
-  se_debug_message(SE_DEBUG_PLUGINS, "document=%s",
-                   ((doc == NULL) ? "NULL" : doc->getFilename().c_str()));
+  se_dbg_msg(SE_DBG_PLUGINS, "document=%s",
+             ((doc == NULL) ? "NULL" : doc->getFilename().c_str()));
 
   return doc;
 }
 
 Glib::RefPtr<Gtk::UIManager> Action::get_ui_manager() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 
   SubtitleEditorWindow *window = SubtitleEditorWindow::get_instance();
 
@@ -62,13 +62,13 @@ Glib::RefPtr<Gtk::UIManager> Action::get_ui_manager() {
 }
 
 void Action::activate() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 }
 
 void Action::deactivate() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 }
 
 void Action::update_ui() {
-  se_debug(SE_DEBUG_PLUGINS);
+  se_dbg(SE_DBG_PLUGINS);
 }

@@ -137,7 +137,7 @@ class SubStationAlpha : public SubtitleFormatIO {
 
   // Read the block [Script Info]
   void read_script_info(const std::vector<Glib::ustring> &lines) {
-    se_debug_message(SE_DEBUG_IO, "read script info...");
+    se_dbg_msg(SE_DBG_IO, "read script info...");
 
     ScriptInfo &script_info = document()->get_script_info();
 
@@ -175,7 +175,7 @@ class SubStationAlpha : public SubtitleFormatIO {
 
   // Read the bloc [V4 Style]
   void read_styles(const std::vector<Glib::ustring> &lines) {
-    se_debug_message(SE_DEBUG_IO, "read style...");
+    se_dbg_msg(SE_DBG_IO, "read style...");
 
     Styles styles = document()->styles();
 
@@ -225,7 +225,7 @@ class SubStationAlpha : public SubtitleFormatIO {
 
   // Read the bloc [Events]
   void read_events(const std::vector<Glib::ustring> &lines) {
-    se_debug_message(SE_DEBUG_IO, "read events...");
+    se_dbg_msg(SE_DBG_IO, "read events...");
 
     Subtitles subtitles = document()->subtitles();
 

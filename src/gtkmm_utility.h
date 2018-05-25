@@ -30,8 +30,8 @@ namespace gtkmm_utility {
 template <class T>
 T *get_widget_derived(const Glib::ustring &path, const Glib::ustring &ui_file,
                       const Glib::ustring &name) {
-  se_debug_message(SE_DEBUG_UTILITY, "ui_file=<%s> name=<%s>", ui_file.c_str(),
-                   name.c_str());
+  se_dbg_msg(SE_DBG_UTILITY, "ui_file=<%s> name=<%s>", ui_file.c_str(),
+             name.c_str());
 
   T *dialog = NULL;
 

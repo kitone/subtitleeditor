@@ -55,7 +55,7 @@ Glib::ustring build_message(const char *format, ...) {
 // the profile name for the config dir
 // ~/config/subtitleeditor/{profile}
 void set_profile_name(const Glib::ustring &profile) {
-  se_debug_message(SE_DEBUG_UTILITY, "profile=%s", profile.c_str());
+  se_dbg_msg(SE_DBG_UTILITY, "profile=%s", profile.c_str());
 
   if (!profile.empty())
     static_profile_name = profile;

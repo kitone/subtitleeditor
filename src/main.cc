@@ -71,15 +71,15 @@ int main(int argc, char *argv[]) {
   }
 
   // Init the debug options
-  se_debug_init(options.get_debug_flags());
-  se_debug_message(SE_DEBUG_APP, "Startup subtitle version %s", VERSION);
+  se_dbg_init(options.get_debug_flags());
+  se_dbg_msg(SE_DBG_APP, "Startup subtitle version %s", VERSION);
 
   // If the user want to use a other profile
   // this is the last time we can do that.
   if (!options.profile.empty())
     set_profile_name(options.profile);
 
-  se_debug_message(SE_DEBUG_APP, "Init GStreamer");
+  se_dbg_msg(SE_DBG_APP, "Init GStreamer");
 
   Gst::init(argc, argv);
 
@@ -93,7 +93,7 @@ int main(int argc, char *argv[]) {
   application->init(options);
   application->show();
 
-  se_debug_message(SE_DEBUG_APP, "Run the main loop");
+  se_dbg_msg(SE_DBG_APP, "Run the main loop");
 
   kit.run(*application);
 

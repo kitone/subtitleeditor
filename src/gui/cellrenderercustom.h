@@ -52,7 +52,7 @@ CellRendererCustom<T>::CellRendererCustom()
     : Glib::ObjectBase(typeid(CellRendererCustom)),
       Gtk::CellRendererText(),
       m_editable(NULL) {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 }
 
 template <class T>
@@ -60,7 +60,7 @@ Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
     GdkEvent* /*event*/, Gtk::Widget& /*widget*/, const Glib::ustring& path,
     const Gdk::Rectangle& /*background_area*/, const Gdk::Rectangle& cell_area,
     Gtk::CellRendererState /*flags*/) {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   if (!property_editable())
     return NULL;
@@ -92,26 +92,26 @@ Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
 // Disable all actions.
 template <class T>
 void CellRendererCustom<T>::begin_editing() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 }
 
 // Enable all actions.
 template <class T>
 void CellRendererCustom<T>::finish_editing() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 }
 
 template <class T>
 void CellRendererCustom<T>::cell_editing_done(const Glib::ustring& path) {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   if (m_editable == NULL) {
-    se_debug_message(SE_DEBUG_VIEW, "m_editable is NULL");
+    se_dbg_msg(SE_DBG_VIEW, "m_editable is NULL");
     return;
   }
 
   Glib::ustring text = m_editable->get_text();
-  se_debug_message(SE_DEBUG_VIEW, "text from editable='%s'", text.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "text from editable='%s'", text.c_str());
 
   // Define to NULL to avoid a duplicate call
   m_editable = NULL;

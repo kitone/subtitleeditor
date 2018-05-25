@@ -34,7 +34,7 @@ class SelectionPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("SelectionPlugin");
@@ -112,7 +112,7 @@ class SelectionPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -121,7 +121,7 @@ class SelectionPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -138,43 +138,43 @@ class SelectionPlugin : public Action {
 
  protected:
   void on_select_first_subtitle() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(FIRST);
   }
 
   void on_select_last_subtitle() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(LAST);
   }
 
   void on_select_previous_subtitle() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(PREVIOUS);
   }
 
   void on_select_next_subtitle() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(NEXT);
   }
 
   void on_select_all_subtitles() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(ALL);
   }
 
   void on_unselect_all_subtitles() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(UNSELECT);
   }
 
   void on_invert_selection() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(INVERT);
   }
@@ -183,7 +183,7 @@ class SelectionPlugin : public Action {
   enum TYPE { FIRST, LAST, PREVIOUS, NEXT, ALL, INVERT, UNSELECT };
 
   bool execute(TYPE type) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
 

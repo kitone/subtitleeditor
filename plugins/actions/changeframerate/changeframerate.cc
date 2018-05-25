@@ -176,7 +176,7 @@ class ChangeFrameratePlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("ChangeFrameratePlugin");
@@ -198,7 +198,7 @@ class ChangeFrameratePlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -207,7 +207,7 @@ class ChangeFrameratePlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -216,7 +216,7 @@ class ChangeFrameratePlugin : public Action {
 
  protected:
   void on_execute() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
     g_return_if_fail(doc);
@@ -234,7 +234,7 @@ class ChangeFrameratePlugin : public Action {
   }
 
   void change_framerate(Document *doc, double src_fps, double dest_fps) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     g_return_if_fail(doc);
 
@@ -261,7 +261,7 @@ class ChangeFrameratePlugin : public Action {
   }
 
   SubtitleTime change_fps(const SubtitleTime &time, double src, double dest) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     double frame = time.totalmsecs * src;
     double tot_sec = frame / dest;

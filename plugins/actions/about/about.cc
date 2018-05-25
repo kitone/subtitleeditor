@@ -32,7 +32,7 @@ class AboutPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("AboutPlugin");
@@ -51,7 +51,7 @@ class AboutPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -61,7 +61,7 @@ class AboutPlugin : public Action {
 
  protected:
   void on_about() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Gtk::AboutDialog dialog;
     utility::set_transient_parent(dialog);

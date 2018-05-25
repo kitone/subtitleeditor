@@ -610,7 +610,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
   // Find the next pattern from the current subtitle and the current info.
   // Recrusive function.
   bool find_forwards(Subtitle &sub, MatchInfo *info) {
-    se_debug(SE_DEBUG_SEARCH);
+    se_dbg(SE_DBG_SEARCH);
 
     if (!sub)
       return false;
@@ -749,7 +749,7 @@ class FindAndReplacePlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("FindAndReplacePlugin");
@@ -797,7 +797,7 @@ class FindAndReplacePlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -806,7 +806,7 @@ class FindAndReplacePlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -832,7 +832,7 @@ class FindAndReplacePlugin : public Action {
   }
 
   void on_search_and_replace() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     DialogFindAndReplace::create();
     DialogFindAndReplace::instance()->init_with_document(
@@ -840,17 +840,17 @@ class FindAndReplacePlugin : public Action {
   }
 
   void on_find_next() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
     find_sub(false);
   }
 
   void on_find_previous() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
     find_sub(true);
   }
 
   void find_sub(bool backwards) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
 
@@ -873,7 +873,7 @@ class FindAndReplacePlugin : public Action {
 
   // Start the search from the previous/next subtitle
   bool search_from_current_position(Subtitle &res, bool backwards) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Subtitles subtitles = get_current_document()->subtitles();
 
@@ -895,7 +895,7 @@ class FindAndReplacePlugin : public Action {
   }
 
   bool search_from_beginning(Subtitle &res, bool backwards) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Subtitles subtitles = get_current_document()->subtitles();
     Subtitle sub = (backwards) ? subtitles.get_last() : subtitles.get_first();

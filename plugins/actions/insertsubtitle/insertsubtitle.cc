@@ -34,7 +34,7 @@ class InsertSubtitlePlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("InsertSubtitlePlugin");
@@ -75,7 +75,7 @@ class InsertSubtitlePlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -84,7 +84,7 @@ class InsertSubtitlePlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -94,13 +94,13 @@ class InsertSubtitlePlugin : public Action {
 
  protected:
   void on_insert_subtitle_before() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(BEFORE);
   }
 
   void on_insert_subtitle_after() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     execute(AFTER);
   }
@@ -108,7 +108,7 @@ class InsertSubtitlePlugin : public Action {
   enum POSITION { BEFORE, AFTER };
 
   bool execute(POSITION pos) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
 
@@ -150,7 +150,7 @@ class InsertSubtitlePlugin : public Action {
 
   void set_time_between_subtitles(Subtitle &sub, const Subtitle &before,
                                   const Subtitle &after) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
     SubtitleTime min = cfg::get_int("timing", "min-display");

@@ -41,7 +41,7 @@ class KeyframesManagementPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("KeyframesManagementPlugin");
@@ -174,7 +174,7 @@ class KeyframesManagementPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -199,7 +199,7 @@ class KeyframesManagementPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool has_doc = (get_current_document() != NULL);
     bool has_kf = (bool)player()->get_keyframes();
@@ -273,7 +273,7 @@ class KeyframesManagementPlugin : public Action {
   }
 
   void add_in_recent_manager(const Glib::ustring &uri) {
-    se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", uri.c_str());
 
     Gtk::RecentManager::Data data;
     data.app_name = Glib::get_application_name();
@@ -285,7 +285,7 @@ class KeyframesManagementPlugin : public Action {
 
   // Open a recent keyframes
   void on_recent_item_activated() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::Action> action =
         action_group->get_action("keyframes/recent-files");
@@ -295,7 +295,7 @@ class KeyframesManagementPlugin : public Action {
 
     Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
     if (cur) {
-      se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", cur->get_uri().c_str());
 
       Glib::RefPtr<KeyFrames> kf = KeyFrames::create_from_file(cur->get_uri());
       if (kf)

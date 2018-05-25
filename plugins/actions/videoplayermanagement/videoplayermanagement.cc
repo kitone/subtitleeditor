@@ -36,7 +36,7 @@ class VideoPlayerManagement : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("VideoPlayerManagement");
@@ -377,7 +377,7 @@ class VideoPlayerManagement : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -389,7 +389,7 @@ class VideoPlayerManagement : public Action {
   // Update the user interface with the state of subtitle (has document)
   // and the state of the player (has media)
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool has_doc = (get_current_document() != NULL);
     bool has_media = player()->get_state() != Player::NONE;
@@ -526,7 +526,7 @@ class VideoPlayerManagement : public Action {
   // We remove the ActionGroup "VideoPlayerManagementAudioTrack"
   // and the ui.
   void remove_menu_audio_track() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
     if (action_group_audio) {
       get_ui_manager()->remove_ui(ui_id_audio);
       get_ui_manager()->remove_action_group(action_group_audio);
@@ -537,7 +537,7 @@ class VideoPlayerManagement : public Action {
   // Remove old menu items (tracks) and actions
   // and create a new one.
   void build_menu_audio_track() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
     // We clean the old audio menu
     remove_menu_audio_track();
     // Create audio actions
@@ -563,7 +563,7 @@ class VideoPlayerManagement : public Action {
   // Update the radio item with the current audio track
   // from the player.
   void update_audio_track_from_player() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (!action_group_audio)
       return;
@@ -610,7 +610,7 @@ class VideoPlayerManagement : public Action {
   // The user choose a new track from the track menu,
   // we update the player.
   void set_current_audio(gint track, Glib::RefPtr<Gtk::RadioAction> action) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
     // Switching a toggle button launch two signal,
     // one for the button toggle to unactivated and an other to activated.
     // We need to check only for the signal activate.
@@ -847,7 +847,7 @@ class VideoPlayerManagement : public Action {
   }
 
   void add_in_recent_manager(const Glib::ustring &uri) {
-    se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", uri.c_str());
 
     Gtk::RecentManager::Data data;
     // data.mime_type = "subtitle/";
@@ -860,7 +860,7 @@ class VideoPlayerManagement : public Action {
 
   // Open a recent video
   void on_recent_item_activated() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::Action> action =
         action_group->get_action("video-player/recent-files");
@@ -870,7 +870,7 @@ class VideoPlayerManagement : public Action {
 
     Glib::RefPtr<Gtk::RecentInfo> cur = recentAction->get_current_item();
     if (cur) {
-      se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", cur->get_uri().c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", cur->get_uri().c_str());
 
       player()->open(cur->get_uri());
     }

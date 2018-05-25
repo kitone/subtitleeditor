@@ -82,11 +82,11 @@ WaveformEditor::WaveformEditor(BaseObjectType *cobject,
 }
 
 WaveformEditor::~WaveformEditor() {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 }
 
 void WaveformEditor::load_config() {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   if (cfg::has_key("waveform", "scale"))
     m_sliderScale->set_value(cfg::get_int("waveform", "scale"));
@@ -116,7 +116,7 @@ void WaveformEditor::load_config() {
 // This callback is connected on the realize signal.
 // It's used to create the renderer because some need a realized parent.
 void WaveformEditor::on_create_renderer() {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   Glib::ustring renderer_name = cfg::get_string("waveform", "renderer");
 
@@ -141,7 +141,7 @@ void WaveformEditor::on_create_renderer() {
 // This callback is also connected at
 // "DocumentSystem::signal_current_document_changed"
 void WaveformEditor::init_document(Document *doc) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   m_document = NULL;
   for (auto &doc_connection : m_document_connection) {
@@ -171,7 +171,7 @@ void WaveformEditor::init_document(Document *doc) {
 // Initializes the signals of the renderer like the button pressed, released ...
 // Add events to the widget.
 void WaveformEditor::init_renderer(WaveformRenderer *renderer) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   // Remove the old renderer and destroy.
   if (m_waveformRenderer != NULL) {
@@ -234,7 +234,7 @@ void WaveformEditor::init_renderer(WaveformRenderer *renderer) {
 }
 
 void WaveformEditor::set_player(Player *player) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   m_player = player;
 
@@ -298,7 +298,7 @@ long WaveformEditor::get_player_time() {
 
 // Set the value of the scale (widget).
 void WaveformEditor::set_scale(float value) {
-  se_debug_message(SE_DEBUG_WAVEFORM, "scale=%f", value);
+  se_dbg_msg(SE_DBG_WAVEFORM, "scale=%f", value);
 
   m_sliderScale->set_value(value);
 }
@@ -310,7 +310,7 @@ float WaveformEditor::get_scale() {
 
 // Set the value of the zoom (widget).
 void WaveformEditor::set_zoom(int value) {
-  se_debug_message(SE_DEBUG_WAVEFORM, "zoom=%d", value);
+  se_dbg_msg(SE_DBG_WAVEFORM, "zoom=%d", value);
 
   m_sliderZoom->set_value(value);
 }
@@ -327,7 +327,7 @@ int WaveformEditor::get_zoom() {
 // This callback is connected to the signal "configure" of the waveform.
 // Every time this size changed, the scrollbar need to be recalculate.
 bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure * /*ev*/) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   // init scrollbar
   init_scrollbar();
@@ -345,7 +345,7 @@ int WaveformEditor::get_scrolling() {
 // on the size of the widget renderer (waveform)
 // and the value of the zoom.
 void WaveformEditor::init_scrollbar() {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   if (!has_renderer())
     return;
@@ -369,13 +369,13 @@ void WaveformEditor::init_scrollbar() {
   if (upper > 0)
     m_hscrollbarWaveformRenderer->set_value(width * zoom * (old_value / upper));
 
-  se_debug_message(SE_DEBUG_WAVEFORM, "width=%d zoom=%d", width, zoom);
+  se_dbg_msg(SE_DBG_WAVEFORM, "width=%d zoom=%d", width, zoom);
 }
 
 // The value of the scrollbar has changed.
 // Update the waveform renderer with the new value.
 void WaveformEditor::on_scrollbar_value_changed() {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   redraw_renderer();
 }
@@ -388,7 +388,7 @@ void WaveformEditor::on_zoom_changed() {
 
   // utility::clamp(value, 1, 1000);
 
-  se_debug_message(SE_DEBUG_WAVEFORM, "zoom=%d", value);
+  se_dbg_msg(SE_DBG_WAVEFORM, "zoom=%d", value);
 
   init_scrollbar();
 
@@ -403,7 +403,7 @@ void WaveformEditor::on_zoom_changed() {
 void WaveformEditor::on_scale_changed() {
   int value = static_cast<int>(m_sliderScale->get_value());
 
-  se_debug_message(SE_DEBUG_WAVEFORM, "scale=%d", value);
+  se_dbg_msg(SE_DBG_WAVEFORM, "scale=%d", value);
 
   if (cfg::get_int("waveform", "scale") != value)
     cfg::set_int("waveform", "scale", value);
@@ -413,7 +413,7 @@ void WaveformEditor::on_scale_changed() {
 
 // Try to open a waveform file and show or hide the editor.
 bool WaveformEditor::open_waveform(const Glib::ustring &uri) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   if (m_waveform) {
     // FIXME
@@ -429,13 +429,12 @@ bool WaveformEditor::open_waveform(const Glib::ustring &uri) {
 
 void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf) {
   if (wf) {
-    se_debug_message(
-        SE_DEBUG_WAVEFORM,
-        "uri='%s' video_uri='%s' size='%d' channels='%d' duration='%d'",
-        wf->get_uri().c_str(), wf->get_video_uri().c_str(), wf->get_size(),
-        wf->get_n_channels(), wf->get_duration());
+    se_dbg_msg(SE_DBG_WAVEFORM,
+               "uri='%s' video_uri='%s' size='%d' channels='%d' duration='%d'",
+               wf->get_uri().c_str(), wf->get_video_uri().c_str(),
+               wf->get_size(), wf->get_n_channels(), wf->get_duration());
   } else {
-    se_debug_message(SE_DEBUG_WAVEFORM, "the waveform RefPtr is NULL");
+    se_dbg_msg(SE_DBG_WAVEFORM, "the waveform RefPtr is NULL");
   }
 
   m_waveform = wf;
@@ -633,7 +632,7 @@ void WaveformEditor::zoom_selection() {
 // Edit the position of the current subtitle.
 // Start the recorder command.
 bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   if (!has_renderer() || !has_waveform())
     return true;
@@ -691,7 +690,7 @@ bool WaveformEditor::on_button_press_event_renderer(GdkEventButton *ev) {
 // Finish the editing of the current subtitle.
 // Stop the recorder command.
 bool WaveformEditor::on_button_release_event_renderer(GdkEventButton * /*ev*/) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   if (!(has_renderer() && has_document()))
     return true;
@@ -706,7 +705,7 @@ bool WaveformEditor::on_button_release_event_renderer(GdkEventButton * /*ev*/) {
 
 // Adjust the position of the current subtitle.
 bool WaveformEditor::on_motion_notify_event_renderer(GdkEventMotion *ev) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   if (!(has_renderer() && has_document()))
     return true;
@@ -732,7 +731,7 @@ bool WaveformEditor::on_motion_notify_event_renderer(GdkEventMotion *ev) {
 // Manage the scrolling like the current position in the view (like scrollbar),
 // the scale or the zoom.
 bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev) {
-  se_debug(SE_DEBUG_WAVEFORM);
+  se_dbg(SE_DBG_WAVEFORM);
 
   if (!(has_waveform() && has_renderer()))
     return true;

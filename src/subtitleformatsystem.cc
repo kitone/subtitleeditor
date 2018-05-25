@@ -49,25 +49,24 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
     Reader *reader) {
   const Glib::ustring &contents = reader->get_data();
 
-  se_debug_message(SE_DEBUG_APP, "small content:\n%s", contents.c_str());
+  se_dbg_msg(SE_DBG_APP, "small content:\n%s", contents.c_str());
 
   Glib::RegexCompileFlags compile_flags = Glib::REGEX_MULTILINE;
 
-  se_debug_message(SE_DEBUG_APP, "Trying to determinate the file format...");
+  se_dbg_msg(SE_DBG_APP, "Trying to determinate the file format...");
 
   auto list_of_sf = get_subtitle_format_list();
   for (const auto &sf : list_of_sf) {
     SubtitleFormatInfo sfi = sf->get_info();
 
-    se_debug_message(SE_DEBUG_APP, "Try with '%s' format", sfi.name.c_str());
+    se_dbg_msg(SE_DBG_APP, "Try with '%s' format", sfi.name.c_str());
 
     Glib::ustring pattern = sfi.pattern;
 
     if (Glib::Regex::match_simple(pattern, contents, compile_flags)) {
       Glib::ustring name = sfi.name;
 
-      se_debug_message(SE_DEBUG_APP, "Determine the format as '%s'",
-                       name.c_str());
+      se_dbg_msg(SE_DBG_APP, "Determine the format as '%s'", name.c_str());
       return name;
     }
   }
@@ -101,13 +100,13 @@ Glib::ustring SubtitleFormatSystem::get_subtitle_format_from_small_contents(
 // Throw UnrecognizeFormatError if failed.
 SubtitleFormatIO *SubtitleFormatSystem::create_subtitle_format_io(
     const Glib::ustring &name) {
-  se_debug_message(SE_DEBUG_APP, "Trying to create the subtitle format '%s'",
-                   name.c_str());
+  se_dbg_msg(SE_DBG_APP, "Trying to create the subtitle format '%s'",
+             name.c_str());
 
   auto list_of_sf = get_subtitle_format_list();
   for (const auto &sf : list_of_sf) {
-    se_debug_message(SE_DEBUG_APP, "considering subtitle format'%s'...",
-                     sf->get_info().name.c_str());
+    se_dbg_msg(SE_DBG_APP, "considering subtitle format'%s'...",
+               sf->get_info().name.c_str());
 
     if (sf->get_info().name == name)
       return sf->create();
@@ -122,14 +121,14 @@ SubtitleFormatIO *SubtitleFormatSystem::create_subtitle_format_io(
 // Glib::Error...
 void SubtitleFormatSystem::open_from_reader(Document *document, Reader *reader,
                                             const Glib::ustring &format) {
-  se_debug_message(SE_DEBUG_APP, "Trying to read from reader ...");
+  se_dbg_msg(SE_DBG_APP, "Trying to read from reader ...");
 
   // init the reader
   std::unique_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
   sfio->set_document(document);
   sfio->open(*reader);
 
-  se_debug_message(SE_DEBUG_APP, "Sets the document property ...");
+  se_dbg_msg(SE_DBG_APP, "Sets the document property ...");
 
   // We only have an uri and a charset when it's read from a file (FileReader)
   FileReader *filereader = dynamic_cast<FileReader *>(reader);
@@ -143,7 +142,7 @@ void SubtitleFormatSystem::open_from_reader(Document *document, Reader *reader,
   document->emit_signal("document-changed");
   document->emit_signal("document-property-changed");
 
-  se_debug_message(SE_DEBUG_APP, "The reader has been read with success.");
+  se_dbg_msg(SE_DBG_APP, "The reader has been read with success.");
 }
 
 // Try to open a subtitle file from the uri.
@@ -154,10 +153,9 @@ void SubtitleFormatSystem::open_from_uri(Document *document,
                                          const Glib::ustring &uri,
                                          const Glib::ustring &charset,
                                          const Glib::ustring &myformat) {
-  se_debug_message(
-      SE_DEBUG_APP,
-      "Trying to open the file %s with charset '%s' and format '%s",
-      uri.c_str(), charset.c_str(), myformat.c_str());
+  se_dbg_msg(SE_DBG_APP,
+             "Trying to open the file %s with charset '%s' and format '%s",
+             uri.c_str(), charset.c_str(), myformat.c_str());
 
   // First try to find the subtitle file type from the contents
   Glib::ustring format =
@@ -167,8 +165,8 @@ void SubtitleFormatSystem::open_from_uri(Document *document,
   FileReader reader(uri, charset);
   open_from_reader(document, &reader, format);
 
-  se_debug_message(SE_DEBUG_APP, "The file %s has been read with success.",
-                   uri.c_str());
+  se_dbg_msg(SE_DBG_APP, "The file %s has been read with success.",
+             uri.c_str());
 }
 
 // Try to open a ustring as a subtitle file
@@ -177,7 +175,7 @@ void SubtitleFormatSystem::open_from_uri(Document *document,
 void SubtitleFormatSystem::open_from_data(Document *document,
                                           const Glib::ustring &data,
                                           const Glib::ustring &myformat) {
-  se_debug_message(SE_DEBUG_APP, "Trying to load ustring as subtitles.");
+  se_dbg_msg(SE_DBG_APP, "Trying to load ustring as subtitles.");
 
   // First try to find the subtitle file type from the contents
   Glib::ustring format = myformat.empty()
@@ -186,8 +184,8 @@ void SubtitleFormatSystem::open_from_data(Document *document,
 
   Reader reader(data);
   open_from_reader(document, &reader, format);
-  se_debug_message(SE_DEBUG_APP,
-                   "The ustring was successfully read in as a subtitle file.");
+  se_dbg_msg(SE_DBG_APP,
+             "The ustring was successfully read in as a subtitle file.");
 }
 
 // Save the document in a file.
@@ -198,11 +196,10 @@ void SubtitleFormatSystem::save_to_uri(Document *document,
                                        const Glib::ustring &format,
                                        const Glib::ustring &charset,
                                        const Glib::ustring &newline) {
-  se_debug_message(SE_DEBUG_APP,
-                   "Trying to save to the file '%s' as format '%s' with "
-                   "charset '%s' and newline '%s'",
-                   uri.c_str(), format.c_str(), charset.c_str(),
-                   newline.c_str());
+  se_dbg_msg(SE_DBG_APP,
+             "Trying to save to the file '%s' as format '%s' with "
+             "charset '%s' and newline '%s'",
+             uri.c_str(), format.c_str(), charset.c_str(), newline.c_str());
 
   std::unique_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
   // init the reader
@@ -210,15 +207,15 @@ void SubtitleFormatSystem::save_to_uri(Document *document,
 
   FileWriter writer(uri, charset, newline);
 
-  se_debug_message(SE_DEBUG_APP, "Save in the Writer...");
+  se_dbg_msg(SE_DBG_APP, "Save in the Writer...");
 
   sfio->save(writer);
 
-  se_debug_message(SE_DEBUG_APP, "Save to the file...");
+  se_dbg_msg(SE_DBG_APP, "Save to the file...");
 
   writer.to_file();
 
-  se_debug_message(SE_DEBUG_APP, "Update the document property...");
+  se_dbg_msg(SE_DBG_APP, "Update the document property...");
 
   document->setCharset(charset);
   document->setFilename(Glib::filename_from_uri(uri));
@@ -226,17 +223,17 @@ void SubtitleFormatSystem::save_to_uri(Document *document,
   document->make_document_unchanged();
   document->emit_signal("document-property-changed");
 
-  se_debug_message(SE_DEBUG_APP, "The file %s has been save with success.",
-                   uri.c_str());
+  se_dbg_msg(SE_DBG_APP, "The file %s has been save with success.",
+             uri.c_str());
 }
 
 // Save the document to a ustring. Charset is UTF-8, newline is Unix.
 // Exceptions: UnrecognizeFormatError, Glib::Error...
 void SubtitleFormatSystem::save_to_data(Document *document, Glib::ustring &dst,
                                         const Glib::ustring &format) {
-  se_debug_message(SE_DEBUG_APP,
-                   "Trying to save to ustring as subtitles in the '%s' format.",
-                   format.c_str());
+  se_dbg_msg(SE_DBG_APP,
+             "Trying to save to ustring as subtitles in the '%s' format.",
+             format.c_str());
 
   std::unique_ptr<SubtitleFormatIO> sfio(create_subtitle_format_io(format));
   // init the reader
@@ -244,15 +241,15 @@ void SubtitleFormatSystem::save_to_data(Document *document, Glib::ustring &dst,
 
   Writer writer;
 
-  se_debug_message(SE_DEBUG_APP, "Save in the Writer...");
+  se_dbg_msg(SE_DBG_APP, "Save in the Writer...");
 
   sfio->save(writer);
 
-  se_debug_message(SE_DEBUG_APP, "Save to the file...");
+  se_dbg_msg(SE_DBG_APP, "Save to the file...");
 
   dst = writer.get_data();
 
-  se_debug_message(SE_DEBUG_APP, "Update the document property...");
+  se_dbg_msg(SE_DBG_APP, "Update the document property...");
 
   document->setCharset("UTF-8");
   document->setFilename("");
@@ -260,7 +257,7 @@ void SubtitleFormatSystem::save_to_data(Document *document, Glib::ustring &dst,
   document->make_document_unchanged();
   document->emit_signal("document-property-changed");
 
-  se_debug_message(SE_DEBUG_APP, "Succesfully saved to ustring.");
+  se_dbg_msg(SE_DBG_APP, "Succesfully saved to ustring.");
 }
 
 // Returns all information about supported subtitles.

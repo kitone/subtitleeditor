@@ -31,9 +31,8 @@ bool get_contents_from_file(const Glib::ustring &uri,
                             Glib::ustring &utf8_contents,
                             Glib::ustring &charset_contents,
                             int max_data_size) {
-  se_debug_message(SE_DEBUG_IO,
-                   "Try to get contents from file uri=%s with charset=%s",
-                   uri.c_str(), charset.c_str());
+  se_dbg_msg(SE_DBG_IO, "Try to get contents from file uri=%s with charset=%s",
+             uri.c_str(), charset.c_str());
 
   try {
     Glib::ustring content;
@@ -64,20 +63,18 @@ bool get_contents_from_file(const Glib::ustring &uri,
       // Try to autodetect
       utf8_contents = Encoding::convert_to_utf8(content, charset_contents);
 
-      se_debug_message(
-          SE_DEBUG_IO,
-          "Success to get the contents of the file %s with %s charset",
-          uri.c_str(), charset_contents.c_str());
+      se_dbg_msg(SE_DBG_IO,
+                 "Success to get the contents of the file %s with %s charset",
+                 uri.c_str(), charset_contents.c_str());
 
       return true;
     } else {
       // try with charset
       utf8_contents = Encoding::convert_to_utf8_from_charset(content, charset);
 
-      se_debug_message(
-          SE_DEBUG_IO,
-          "Success to get the contents of the file %s with %s charset",
-          uri.c_str(), charset.c_str());
+      se_dbg_msg(SE_DBG_IO,
+                 "Success to get the contents of the file %s with %s charset",
+                 uri.c_str(), charset.c_str());
       return true;
     }
   } catch (const std::exception &ex) {

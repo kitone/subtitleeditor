@@ -35,7 +35,7 @@ class DocumentsNavigationPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("DocumentsNavigationPlugin");
@@ -120,7 +120,7 @@ class DocumentsNavigationPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -137,7 +137,7 @@ class DocumentsNavigationPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool state = (get_current_document() != NULL);
 
@@ -196,7 +196,7 @@ class DocumentsNavigationPlugin : public Action {
   enum { FIRST = 0, LAST = 1, PREVIOUS = 2, NEXT = 3 };
 
   void on_select_document(int value) {
-    se_debug_message(SE_DEBUG_PLUGINS, "select %d", value);
+    se_dbg_msg(SE_DBG_PLUGINS, "select %d", value);
 
     DocumentSystem &ds = DocumentSystem::getInstance();
     g_return_if_fail(!ds.getAllDocuments().empty());
@@ -233,7 +233,7 @@ class DocumentsNavigationPlugin : public Action {
 
   // PREVIOUS or NEXT
   Document *get_document(int value) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document *current = get_current_document();
     g_return_val_if_fail(current, NULL);
@@ -256,7 +256,7 @@ class DocumentsNavigationPlugin : public Action {
   }
 
   void on_documents_menu_activate(gint count) {
-    se_debug_message(SE_DEBUG_PLUGINS, "activate document %d", count);
+    se_dbg_msg(SE_DBG_PLUGINS, "activate document %d", count);
 
     DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
     g_return_if_fail(!docs.empty());

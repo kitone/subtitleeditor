@@ -372,7 +372,7 @@ class ConfigureKeyboardShortcuts : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("ConfigureKeyboardShortcuts");
@@ -395,7 +395,7 @@ class ConfigureKeyboardShortcuts : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -405,7 +405,7 @@ class ConfigureKeyboardShortcuts : public Action {
 
  protected:
   void on_configure() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     std::unique_ptr<DialogConfigureKeyboardShortcuts> dialog(
         gtkmm_utility::get_widget_derived<DialogConfigureKeyboardShortcuts>(

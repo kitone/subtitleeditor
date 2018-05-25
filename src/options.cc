@@ -24,7 +24,7 @@
 
 OptionGroup::OptionGroup()
     : Glib::OptionGroup("subtitleeditor...", "description...", "help...") {
-  se_debug(SE_DEBUG_APP);
+  se_dbg(SE_DBG_APP);
 
   set_translation_domain(GETTEXT_PACKAGE);
 
@@ -109,34 +109,34 @@ int OptionGroup::get_debug_flags() {
 
 #ifdef DEBUG
   if (debug_all) {
-    flags |= SE_DEBUG_ALL;
+    flags |= SE_DBG_ALL;
     return flags;
   }
 
   if (debug_app)
-    flags |= SE_DEBUG_APP;
+    flags |= SE_DBG_APP;
   if (debug_view)
-    flags |= SE_DEBUG_VIEW;
+    flags |= SE_DBG_VIEW;
   if (debug_io)
-    flags |= SE_DEBUG_IO;
+    flags |= SE_DBG_IO;
   if (debug_search)
-    flags |= SE_DEBUG_SEARCH;
+    flags |= SE_DBG_SEARCH;
   if (debug_regex)
-    flags |= SE_DEBUG_REGEX;
+    flags |= SE_DBG_REGEX;
   if (debug_video_player)
-    flags |= SE_DEBUG_VIDEO_PLAYER;
+    flags |= SE_DBG_VIDEO_PLAYER;
   if (debug_spell_checking)
-    flags |= SE_DEBUG_SPELL_CHECKING;
+    flags |= SE_DBG_SPELL_CHECKING;
   if (debug_waveform)
-    flags |= SE_DEBUG_WAVEFORM;
+    flags |= SE_DBG_WAVEFORM;
   if (debug_utility)
-    flags |= SE_DEBUG_UTILITY;
+    flags |= SE_DBG_UTILITY;
   if (debug_command)
-    flags |= SE_DEBUG_COMMAND;
+    flags |= SE_DBG_COMMAND;
   if (debug_plugins)
-    flags |= SE_DEBUG_PLUGINS;
+    flags |= SE_DBG_PLUGINS;
   if (debug_profiling)
-    flags |= SE_DEBUG_PROFILING;
+    flags |= SE_DBG_PROFILING;
 
 #endif  // DEBUG
 

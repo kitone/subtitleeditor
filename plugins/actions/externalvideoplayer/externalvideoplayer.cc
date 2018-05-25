@@ -200,7 +200,7 @@ class ExternalVideoPlayer : public Action {
     std::cout << "COMMAND: " << command << std::endl;
 
     try {
-      se_debug_message(SE_DEBUG_PLUGINS, command.c_str());
+      se_dbg_msg(SE_DBG_PLUGINS, command.c_str());
       Glib::spawn_command_line_async(command);
     } catch (const Glib::Error &ex) {
       dialog_error(_("Failed to launch the external player."),

@@ -57,7 +57,7 @@ void dialog_missing_plugins(const std::list<Glib::ustring> &list) {
 
   dialog_error(msg, plugins);
 
-  se_debug_message(SE_DEBUG_UTILITY, "%s %s", msg.c_str(), plugins.c_str());
+  se_dbg_msg(SE_DBG_UTILITY, "%s %s", msg.c_str(), plugins.c_str());
 }
 
 // Checks if the element exists and whether its version is at least the version

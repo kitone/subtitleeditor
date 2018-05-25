@@ -33,8 +33,8 @@ class SubtitleCommand : public Command {
         m_name_value(name_value),
         m_old(sub.get(name_value)),
         m_new(new_value) {
-    se_debug_message(SE_DEBUG_APP, "name=<%s> old=<%s> new=<%s>",
-                     m_name_value.c_str(), m_old.c_str(), m_new.c_str());
+    se_dbg_msg(SE_DBG_APP, "name=<%s> old=<%s> new=<%s>", m_name_value.c_str(),
+               m_old.c_str(), m_new.c_str());
   }
 
   void execute() {
@@ -592,8 +592,7 @@ void Subtitle::copy_to(Subtitle &sub) {
 }
 
 void Subtitle::set(const Glib::ustring &name, const Glib::ustring &value) {
-  se_debug_message(SE_DEBUG_APP, "name=<%s> value=<%s>", name.c_str(),
-                   value.c_str());
+  se_dbg_msg(SE_DBG_APP, "name=<%s> value=<%s>", name.c_str(), value.c_str());
 
   if (name == "path")
     m_path = value;

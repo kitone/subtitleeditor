@@ -59,7 +59,7 @@ bool from_string(const std::string &src, T &dest) {
   bool state = s >> dest != 0;
 
   if (!state)
-    se_debug_message(SE_DEBUG_UTILITY, "string:'%s'failed.", src.c_str());
+    se_dbg_msg(SE_DBG_UTILITY, "string:'%s'failed.", src.c_str());
 
 #ifdef DEBUG
   g_return_val_if_fail(state, false);
@@ -75,7 +75,7 @@ bool from_string(const Glib::ustring &src, T &dest) {
   bool state = static_cast<bool>(s >> dest) != 0;
 
   if (!state)
-    se_debug_message(SE_DEBUG_UTILITY, "string:'%s'failed.", src.c_str());
+    se_dbg_msg(SE_DBG_UTILITY, "string:'%s'failed.", src.c_str());
 
 #ifdef DEBUG
   g_return_val_if_fail(state, false);

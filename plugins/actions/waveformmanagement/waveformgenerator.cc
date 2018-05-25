@@ -33,7 +33,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
         MediaDecoder(1000),
         m_duration(GST_CLOCK_TIME_NONE),
         m_n_channels(0) {
-    se_debug_message(SE_DEBUG_PLUGINS, "uri=%s", uri.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "uri=%s", uri.c_str());
 
     set_border_width(12);
     set_default_size(300, -1);
@@ -62,8 +62,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
   // Create audio bin
   Glib::RefPtr<Gst::Element> create_element(
       const Glib::ustring &structure_name) {
-    se_debug_message(SE_DEBUG_PLUGINS, "structure_name=%s",
-                     structure_name.c_str());
+    se_dbg_msg(SE_DBG_PLUGINS, "structure_name=%s", structure_name.c_str());
     try {
       // We only need and want create the video sink
       if (structure_name.find("audio") == Glib::ustring::npos)
@@ -84,7 +83,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
 
       return Glib::RefPtr<Gst::Element>::cast_dynamic(audiobin);
     } catch (std::runtime_error &ex) {
-      se_debug_message(SE_DEBUG_PLUGINS, "runtime_error=%s", ex.what());
+      se_dbg_msg(SE_DBG_PLUGINS, "runtime_error=%s", ex.what());
       std::cerr << "create_audio_bin: " << ex.what() << std::endl;
     }
     return Glib::RefPtr<Gst::Element>(NULL);
@@ -104,7 +103,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
 
   // Update the progress bar
   bool on_timeout() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     if (!m_pipeline)
       return false;
@@ -127,9 +126,9 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
   }
 
   bool on_bus_message_element_level(Glib::RefPtr<Gst::Message> msg) {
-    se_debug_message(SE_DEBUG_PLUGINS, "type='%s' name='%s'",
-                     GST_MESSAGE_TYPE_NAME(msg->gobj()),
-                     GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
+    se_dbg_msg(SE_DBG_PLUGINS, "type='%s' name='%s'",
+               GST_MESSAGE_TYPE_NAME(msg->gobj()),
+               GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
 
     Gst::Structure structure = msg->get_structure();
     const GValue *array_val =
@@ -164,7 +163,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
   }
 
   void on_work_finished() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // set duration to position at eos
     Gst::Format fmt = Gst::FORMAT_TIME;
@@ -181,7 +180,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
   }
 
   void on_work_cancel() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     response(Gtk::RESPONSE_CANCEL);
   }

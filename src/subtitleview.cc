@@ -35,11 +35,11 @@
 class TimeCell : public Gtk::CellEditable, public Gtk::TextView {
  public:
   TimeCell() : Glib::ObjectBase(typeid(TimeCell)), Gtk::CellEditable() {
-    se_debug(SE_DEBUG_VIEW);
+    se_dbg(SE_DBG_VIEW);
   }
 
   Glib::ustring get_text() {
-    se_debug(SE_DEBUG_VIEW);
+    se_dbg(SE_DBG_VIEW);
 
     Glib::RefPtr<Gtk::TextBuffer> buffer = get_buffer();
 
@@ -50,14 +50,14 @@ class TimeCell : public Gtk::CellEditable, public Gtk::TextView {
   }
 
   void set_text(const Glib::ustring &text) {
-    se_debug_message(SE_DEBUG_VIEW, "text=<%s>", text.c_str());
+    se_dbg_msg(SE_DBG_VIEW, "text=<%s>", text.c_str());
 
     get_buffer()->set_text(text);
   }
 
   // bug #23569 : Cursor cannot be moved with mouse when editing subtitles
   bool on_button_press_event(GdkEventButton *event) {
-    se_debug(SE_DEBUG_VIEW);
+    se_dbg(SE_DBG_VIEW);
 
     Gtk::TextView::on_button_press_event(event);
     return true;
@@ -65,7 +65,7 @@ class TimeCell : public Gtk::CellEditable, public Gtk::TextView {
 
  protected:
   bool on_key_press_event(GdkEventKey *event) {
-    se_debug(SE_DEBUG_VIEW);
+    se_dbg(SE_DBG_VIEW);
 
     if (event->keyval == GDK_KEY_Escape) {
       // m_canceled = true;
@@ -89,7 +89,7 @@ class TimeCell : public Gtk::CellEditable, public Gtk::TextView {
   }
 
   bool on_scroll_event(GdkEventScroll *ev) {
-    se_debug(SE_DEBUG_VIEW);
+    se_dbg(SE_DBG_VIEW);
 
     Glib::ustring text = get_text();
     long frame;
@@ -145,7 +145,7 @@ class SubtitleViewCellRendererCustom : public CellRendererCustom<T> {
  public:
   SubtitleViewCellRendererCustom(Document *doc)
       : CellRendererCustom<T>(), m_document(doc) {
-    se_debug(SE_DEBUG_VIEW);
+    se_dbg(SE_DBG_VIEW);
   }
 
   virtual Gtk::CellEditable *start_editing_vfunc(
@@ -334,7 +334,7 @@ SubtitleView::~SubtitleView() {
 }
 
 void SubtitleView::loadCfg() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   auto ers = cfg::get_boolean("subtitle-view", "enable-rubberband-selection");
   set_rubber_banding(ers);
@@ -342,8 +342,7 @@ void SubtitleView::loadCfg() {
 
 void SubtitleView::set_tooltips(Gtk::TreeViewColumn *column,
                                 const Glib::ustring &text) {
-  se_debug_message(SE_DEBUG_VIEW, "[%s]=%s", column->get_title().c_str(),
-                   text.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "[%s]=%s", column->get_title().c_str(), text.c_str());
 
   Gtk::Widget *widget = column->get_widget();
   if (widget)
@@ -389,7 +388,7 @@ void SubtitleView::createColumns() {
 
 // create columns
 void SubtitleView::createColumnNum() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::CellRendererText *renderer = NULL;
@@ -410,7 +409,7 @@ void SubtitleView::createColumnNum() {
 }
 
 void SubtitleView::createColumnLayer() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::CellRendererText *renderer = NULL;
@@ -513,8 +512,8 @@ void SubtitleView::create_column_time(
     const sigc::slot<void, const Gtk::CellRenderer *,
                      const Gtk::TreeModel::iterator &> &slot_cell_data_func,
     const Glib::ustring &tooltips) {
-  se_debug_message(SE_DEBUG_VIEW, "name=%s tooltips=%s", name.c_str(),
-                   tooltips.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "name=%s tooltips=%s", name.c_str(),
+             tooltips.c_str());
 
   CellRendererTime *renderer = manage(new CellRendererTime(m_refDocument));
 
@@ -552,7 +551,7 @@ void SubtitleView::createColumnDuration() {
 }
 
 void SubtitleView::createColumnStyle() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::CellRendererCombo *renderer = NULL;
@@ -576,7 +575,7 @@ void SubtitleView::createColumnStyle() {
 }
 
 void SubtitleView::createColumnName() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = create_treeview_column("name");
 
@@ -596,7 +595,7 @@ void SubtitleView::createColumnName() {
 }
 
 void SubtitleView::createColumnCPS() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = create_treeview_column("cps");
 
@@ -613,7 +612,7 @@ void SubtitleView::createColumnCPS() {
 }
 
 void SubtitleView::createColumnText() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = create_treeview_column("text");
 
@@ -653,7 +652,7 @@ void SubtitleView::createColumnText() {
 }
 
 void SubtitleView::createColumnTranslation() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = create_treeview_column("translation");
 
@@ -690,7 +689,7 @@ void SubtitleView::createColumnTranslation() {
 }
 
 void SubtitleView::createColumnNote() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = create_treeview_column("note");
 
@@ -709,7 +708,7 @@ void SubtitleView::createColumnNote() {
 }
 
 void SubtitleView::createColumnEffect() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::CellRendererText *renderer = NULL;
@@ -732,7 +731,7 @@ void SubtitleView::createColumnEffect() {
 }
 
 void SubtitleView::createColumnMarginR() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::CellRendererText *renderer = NULL;
@@ -753,7 +752,7 @@ void SubtitleView::createColumnMarginR() {
 }
 
 void SubtitleView::createColumnMarginL() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::CellRendererText *renderer = NULL;
@@ -774,7 +773,7 @@ void SubtitleView::createColumnMarginL() {
 }
 
 void SubtitleView::createColumnMarginV() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::CellRendererText *renderer = NULL;
@@ -796,7 +795,7 @@ void SubtitleView::createColumnMarginV() {
 
 // retourne l'item select ou NULL
 Gtk::TreeIter SubtitleView::getSelected() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Glib::RefPtr<Gtk::TreeSelection> selection = get_selection();
 
@@ -811,14 +810,14 @@ Gtk::TreeIter SubtitleView::getSelected() {
 }
 
 void SubtitleView::on_selection_changed() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   m_refDocument->emit_signal("subtitle-selection-changed");
 }
 
 void SubtitleView::on_edited_layer(const Glib::ustring &path,
                                    const Glib::ustring &value) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), value.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), value.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -835,7 +834,7 @@ void SubtitleView::on_edited_layer(const Glib::ustring &path,
 // (treeview)
 void SubtitleView::on_edited_start(const Glib::ustring &path,
                                    const Glib::ustring &newtext) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newtext.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (!subtitle)
@@ -868,7 +867,7 @@ void SubtitleView::on_edited_start(const Glib::ustring &path,
 // (treeview)
 void SubtitleView::on_edited_end(const Glib::ustring &path,
                                  const Glib::ustring &newtext) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newtext.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (!subtitle)
@@ -901,7 +900,7 @@ void SubtitleView::on_edited_end(const Glib::ustring &path,
 // (treeview)
 void SubtitleView::on_edited_duration(const Glib::ustring &path,
                                       const Glib::ustring &newtext) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newtext.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (!subtitle)
@@ -933,7 +932,7 @@ void SubtitleView::on_edited_duration(const Glib::ustring &path,
 // callback utiliser pour modifier le texte
 void SubtitleView::on_edited_text(const Glib::ustring &path,
                                   const Glib::ustring &newtext) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newtext.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -950,7 +949,7 @@ void SubtitleView::on_edited_text(const Glib::ustring &path,
 // callback utiliser pour modifier le texte
 void SubtitleView::on_edited_translation(const Glib::ustring &path,
                                          const Glib::ustring &newtext) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newtext.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -965,7 +964,7 @@ void SubtitleView::on_edited_translation(const Glib::ustring &path,
 // callback utiliser pour modifier le texte
 void SubtitleView::on_edited_note(const Glib::ustring &path,
                                   const Glib::ustring &newtext) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newtext.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -979,7 +978,7 @@ void SubtitleView::on_edited_note(const Glib::ustring &path,
 
 void SubtitleView::on_edited_effect(const Glib::ustring &path,
                                     const Glib::ustring &newtext) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newtext.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newtext.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -994,7 +993,7 @@ void SubtitleView::on_edited_effect(const Glib::ustring &path,
 // callback utiliser pour modifier le style a partir d'un menu
 void SubtitleView::on_edited_style(const Glib::ustring &path,
                                    const Glib::ustring &newstyle) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newstyle.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newstyle.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -1009,7 +1008,7 @@ void SubtitleView::on_edited_style(const Glib::ustring &path,
 // callback utiliser pour modifier le nom
 void SubtitleView::on_edited_name(const Glib::ustring &path,
                                   const Glib::ustring &newname) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), newname.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), newname.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -1023,7 +1022,7 @@ void SubtitleView::on_edited_name(const Glib::ustring &path,
 
 void SubtitleView::on_edited_margin_l(const Glib::ustring &path,
                                       const Glib::ustring &value) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), value.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), value.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -1038,7 +1037,7 @@ void SubtitleView::on_edited_margin_l(const Glib::ustring &path,
 
 void SubtitleView::on_edited_margin_r(const Glib::ustring &path,
                                       const Glib::ustring &value) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), value.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), value.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -1053,7 +1052,7 @@ void SubtitleView::on_edited_margin_r(const Glib::ustring &path,
 
 void SubtitleView::on_edited_margin_v(const Glib::ustring &path,
                                       const Glib::ustring &value) {
-  se_debug_message(SE_DEBUG_VIEW, "%s %s", path.c_str(), value.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "%s %s", path.c_str(), value.c_str());
 
   Subtitle subtitle(m_refDocument, path);
   if (subtitle) {
@@ -1068,7 +1067,7 @@ void SubtitleView::on_edited_margin_v(const Glib::ustring &path,
 
 void SubtitleView::select_and_set_cursor(const Gtk::TreeIter &iter,
                                          bool start_editing) {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Gtk::TreeViewColumn *column = NULL;
   Gtk::TreeModel::Path path;
@@ -1165,7 +1164,7 @@ Gtk::TreeViewColumn *SubtitleView::get_column_by_name(
   if (it != m_columns.end())
     return it->second;
 
-  se_debug_message(SE_DEBUG_VIEW, "column: %s return NULL", name.c_str());
+  se_dbg_msg(SE_DBG_VIEW, "column: %s return NULL", name.c_str());
 
   return NULL;
 }
@@ -1181,8 +1180,7 @@ Glib::ustring SubtitleView::get_name_of_column(Gtk::TreeViewColumn *column) {
 }
 
 void SubtitleView::set_column_visible(const Glib::ustring &name, bool state) {
-  se_debug_message(SE_DEBUG_VIEW, "%s=%s", name.c_str(),
-                   state ? "true" : "false");
+  se_dbg_msg(SE_DBG_VIEW, "%s=%s", name.c_str(), state ? "true" : "false");
 
   Gtk::TreeViewColumn *column = get_column_by_name(name);
 
@@ -1196,15 +1194,15 @@ bool SubtitleView::get_column_visible(const Glib::ustring &name) {
 
   g_return_val_if_fail(column, false);
 
-  se_debug_message(SE_DEBUG_VIEW, "<%s> = %s", name.c_str(),
-                   column->get_visible() ? "true" : "false");
+  se_dbg_msg(SE_DBG_VIEW, "<%s> = %s", name.c_str(),
+             column->get_visible() ? "true" : "false");
 
   return column->get_visible();
 }
 
 // Get the columns displayed from the configuration and updates.
 void SubtitleView::update_columns_displayed_from_config() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   if (cfg::has_key("subtitle-view", "columns-displayed") == false)
     return;
@@ -1273,7 +1271,7 @@ Glib::ustring SubtitleView::get_column_label_by_name(
 // The position of the cursor (focused cell) has changed.
 // Update the column title (bold).
 void SubtitleView::on_cursor_changed() {
-  se_debug(SE_DEBUG_VIEW);
+  se_dbg(SE_DBG_VIEW);
 
   Pango::AttrList normal;
   Pango::AttrInt att_normal =

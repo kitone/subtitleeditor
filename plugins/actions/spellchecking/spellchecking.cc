@@ -95,7 +95,7 @@ class DialogSpellChecking : public Gtk::Dialog {
       : Gtk::Dialog(cobject),
         m_current_document(NULL),
         m_current_column("text") {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "create spellchecking dialog...");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "create spellchecking dialog...");
 
     utility::set_transient_parent(*this);
 
@@ -170,7 +170,7 @@ class DialogSpellChecking : public Gtk::Dialog {
   }
 
   void setup_languages() {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "setup languages dictionaries");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "setup languages dictionaries");
 
     // Add dictionaries
     auto dicts = SpellChecker::instance()->get_dictionaries();
@@ -186,7 +186,7 @@ class DialogSpellChecking : public Gtk::Dialog {
   }
 
   void setup_signals() {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "setup signals (buttons ...)");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "setup signals (buttons ...)");
 
     m_buttonCheckWord->signal_clicked().connect(
         sigc::mem_fun(*this, &DialogSpellChecking::on_check_word));
@@ -212,8 +212,8 @@ class DialogSpellChecking : public Gtk::Dialog {
   }
 
   void setup_text_view() {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "setup textview, create highlight tag and marks");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "setup textview, create highlight tag and marks");
 
     m_textview->set_editable(false);
     m_textview->set_sensitive(false);
@@ -232,8 +232,8 @@ class DialogSpellChecking : public Gtk::Dialog {
   // the signal selection-changed to update the text value
   // of the widget m_entryReplaceWith.
   void setup_suggestions_view() {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "create model and view for the suggestions");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "create model and view for the suggestions");
 
     SuggestionColumn column;
     m_listSuggestions = Gtk::ListStore::create(column);
@@ -259,7 +259,7 @@ class DialogSpellChecking : public Gtk::Dialog {
   // translation); update the mark to the beginning.
   bool init_text_view_with_subtitle(const Subtitle& sub) {
     if (!sub) {
-      se_debug_message(SE_DEBUG_SPELL_CHECKING, "Subtitle is not valid");
+      se_dbg_msg(SE_DBG_SPELL_CHECKING, "Subtitle is not valid");
       return false;
     }
     // Check the translation or the text column.
@@ -267,9 +267,9 @@ class DialogSpellChecking : public Gtk::Dialog {
                              ? sub.get_translation()
                              : sub.get_text();
 
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "Update the textview with (%s column): '%s'",
-                     m_current_column.c_str(), text.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "Update the textview with (%s column): '%s'",
+               m_current_column.c_str(), text.c_str());
 
     m_buffer->set_text(text);
     m_textview->set_sensitive(!text.empty());
@@ -288,9 +288,9 @@ class DialogSpellChecking : public Gtk::Dialog {
 
     Glib::ustring text = m_buffer->get_text();
 
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "the subtitle (%s) is update with the text '%s'",
-                     m_current_column.c_str(), text.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "the subtitle (%s) is update with the text '%s'",
+               m_current_column.c_str(), text.c_str());
 
     if (m_current_column == "translation") {
       if (m_current_sub.get_translation() != text)
@@ -303,9 +303,8 @@ class DialogSpellChecking : public Gtk::Dialog {
 
   // Initialize the list with the suggestions array.
   void init_suggestions(const Glib::ustring& word) {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "initialize the suggestion with the word '%s'",
-                     word.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "initialize the suggestion with the word '%s'", word.c_str());
 
     m_entryReplaceWith->set_text("");
     m_listSuggestions->clear();
@@ -321,8 +320,8 @@ class DialogSpellChecking : public Gtk::Dialog {
       Gtk::TreeIter it = m_listSuggestions->append();
       (*it)[column.string] = suggesion;
 
-      se_debug_message(SE_DEBUG_SPELL_CHECKING, "suggested word: '%s'",
-                       suggesion.c_str());
+      se_dbg_msg(SE_DBG_SPELL_CHECKING, "suggested word: '%s'",
+                 suggesion.c_str());
     }
   }
 
@@ -411,16 +410,15 @@ class DialogSpellChecking : public Gtk::Dialog {
   bool is_misspelled(Gtk::TextIter start, Gtk::TextIter end) {
     Glib::ustring word = m_textview->get_buffer()->get_text(start, end, false);
 
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "check the word : '%s'",
-                     word.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "check the word : '%s'", word.c_str());
 
     if (SpellChecker::instance()->check(word)) {
-      se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                       "the word '%s' is not misspelled", word.c_str());
+      se_dbg_msg(SE_DBG_SPELL_CHECKING, "the word '%s' is not misspelled",
+                 word.c_str());
       return false;
     }
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "the word '%s' is misspelled",
-                     word.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "the word '%s' is misspelled",
+               word.c_str());
 
     m_buffer->apply_tag(m_tag_highlight, start, end);
     m_buffer->move_mark(m_mark_start, start);
@@ -441,8 +439,7 @@ class DialogSpellChecking : public Gtk::Dialog {
 
     Glib::ustring word = m_textview->get_buffer()->get_text(start, end, false);
 
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "the current word is '%s'",
-                     word.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "the current word is '%s'", word.c_str());
 
     return word;
   }
@@ -453,7 +450,7 @@ class DialogSpellChecking : public Gtk::Dialog {
   // Check the word from the entry "Replace With:" (m_entryReplaceWith)
   // and display show the suggestions.
   void on_check_word() {
-    se_debug(SE_DEBUG_SPELL_CHECKING);
+    se_dbg(SE_DBG_SPELL_CHECKING);
 
     Glib::ustring newword = m_entryReplaceWith->get_text();
     init_suggestions(newword);
@@ -464,7 +461,7 @@ class DialogSpellChecking : public Gtk::Dialog {
 
   // Replace the word by the selected suggestion (m_entryReplaceWith)
   void on_replace() {
-    se_debug(SE_DEBUG_SPELL_CHECKING);
+    se_dbg(SE_DBG_SPELL_CHECKING);
 
     Glib::ustring newword = m_entryReplaceWith->get_text();
     if (newword.empty())
@@ -475,9 +472,9 @@ class DialogSpellChecking : public Gtk::Dialog {
 
     Glib::ustring oldword = m_buffer->get_text(start, end, false);
 
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "replace the word '%s' by the new word '%s'",
-                     oldword.c_str(), newword.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "replace the word '%s' by the new word '%s'", oldword.c_str(),
+               newword.c_str());
 
     m_buffer->begin_user_action();
     start = m_buffer->erase(start, end);
@@ -497,8 +494,8 @@ class DialogSpellChecking : public Gtk::Dialog {
 
   // Ignore the word and just go to the next word.
   void on_ignore() {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "ignore the word '%s'",
-                     get_current_word().c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "ignore the word '%s'",
+               get_current_word().c_str());
 
     next_check();
   }
@@ -507,10 +504,9 @@ class DialogSpellChecking : public Gtk::Dialog {
   void on_ignore_all() {
     Glib::ustring word = get_current_word();
 
-    se_debug_message(
-        SE_DEBUG_SPELL_CHECKING,
-        "ignore all the word '%s' by adding the word to the session",
-        word.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "ignore all the word '%s' by adding the word to the session",
+               word.c_str());
 
     SpellChecker::instance()->add_word_to_session(word);
     next_check();
@@ -520,9 +516,8 @@ class DialogSpellChecking : public Gtk::Dialog {
   void on_add_word_to_dictionary() {
     Glib::ustring word = get_current_word();
 
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "add the word '%s' to the personal dictionary",
-                     word.c_str());
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "add the word '%s' to the personal dictionary", word.c_str());
 
     SpellChecker::instance()->add_word_to_personal(word);
 
@@ -573,8 +568,8 @@ class DialogSpellChecking : public Gtk::Dialog {
   void update_status_from_replace_word() {
     bool state = !m_entryReplaceWith->get_text().empty();
 
-    se_debug_message(SE_DEBUG_SPELL_CHECKING, "set sensitive to %s",
-                     (state) ? "true" : "false");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING, "set sensitive to %s",
+               (state) ? "true" : "false");
 
     m_buttonCheckWord->set_sensitive(state);
     m_buttonReplace->set_sensitive(state);
@@ -583,8 +578,8 @@ class DialogSpellChecking : public Gtk::Dialog {
   // Disable the interface and display a message:
   // "Completed spell checking."
   void completed_spell_changed() {
-    se_debug_message(SE_DEBUG_SPELL_CHECKING,
-                     "completed spell checking, disable the ui.");
+    se_dbg_msg(SE_DBG_SPELL_CHECKING,
+               "completed spell checking, disable the ui.");
 
     m_comboLanguages->set_sensitive(false);
 
@@ -637,7 +632,7 @@ class SpellCheckingPlugin : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("SpellCheckingPlugin");
@@ -660,7 +655,7 @@ class SpellCheckingPlugin : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -669,7 +664,7 @@ class SpellCheckingPlugin : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     bool visible = (get_current_document() != NULL);
 
@@ -678,7 +673,7 @@ class SpellCheckingPlugin : public Action {
 
  protected:
   void on_execute() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document* doc = get_current_document();
     g_return_if_fail(doc);

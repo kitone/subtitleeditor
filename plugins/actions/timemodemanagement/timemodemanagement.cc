@@ -35,7 +35,7 @@ class TimeModeManagement : public Action {
   }
 
   void activate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     // actions
     action_group = Gtk::ActionGroup::create("TimeModeManagement");
@@ -124,7 +124,7 @@ class TimeModeManagement : public Action {
   }
 
   void deactivate() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -133,7 +133,7 @@ class TimeModeManagement : public Action {
   }
 
   void update_ui() {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document* doc = get_current_document();
 
@@ -190,7 +190,7 @@ class TimeModeManagement : public Action {
 
  protected:
   void on_set_edit_timing_mode(TIMING_MODE mode) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document* doc = get_current_document();
 
@@ -199,7 +199,7 @@ class TimeModeManagement : public Action {
   }
 
   void on_set_framerate(FRAMERATE framerate) {
-    se_debug(SE_DEBUG_PLUGINS);
+    se_dbg(SE_DBG_PLUGINS);
 
     Document* doc = get_current_document();
 
