@@ -20,122 +20,71 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include <glib.h>
 #include <glibmm.h>
 #include <sigc++/sigc++.h>
-#include <list>
 #include <map>
-#include "color.h"
+#include <vector>
 
-class Config {
- public:
-  Config();
+namespace cfg {
 
-  ~Config();
+using Glib::ustring;
+using sigc::signal;
+using std::vector;
 
-  // by default (XDG) "~/.config/subtitleeditor/config"
-  static void set_file(const Glib::ustring &file);
+// connect a signal to the group, notify when a key change
+signal<void, ustring, ustring> &signal_changed(const ustring &group);
 
-  bool loadCfg();
-  bool saveCfg();
+// check if a key exists on the group
+bool has_key(const ustring &group, const ustring &key);
 
-  bool set_comment(const Glib::ustring &group, const Glib::ustring &key,
-                   const Glib::ustring &comment);
+// return the keys of the group
+vector<ustring> get_keys(const ustring &group);
 
-  bool has_group(const Glib::ustring &group);
-  bool has_key(const Glib::ustring &group, const Glib::ustring &key);
+// check if a group exists
+bool has_group(const ustring &group);
 
-  bool get_keys(const Glib::ustring &group, std::list<Glib::ustring> &list);
+// remove the group and associated keys
+void remove_group(const ustring &group);
 
-  bool set_value_bool(const Glib::ustring &group, const Glib::ustring &key,
-                      const bool &value,
-                      const Glib::ustring &comment = Glib::ustring());
-  bool get_value_bool(const Glib::ustring &group, const Glib::ustring &key,
-                      bool &value);
+// set a comment to the key
+void set_comment(const ustring &group, const ustring &key, const ustring &text);
 
-  bool set_value_int(const Glib::ustring &group, const Glib::ustring &key,
-                     const int &value,
-                     const Glib::ustring &comment = Glib::ustring());
-  bool get_value_int(const Glib::ustring &group, const Glib::ustring &key,
-                     int &value);
+// set the string value to the key
+void set_string(const ustring &group, const ustring &key, const ustring &value);
 
-  bool set_value_float(const Glib::ustring &group, const Glib::ustring &key,
-                       const float &value,
-                       const Glib::ustring &comment = Glib::ustring());
-  bool get_value_float(const Glib::ustring &group, const Glib::ustring &key,
-                       float &value);
+// return a string value of the key
+ustring get_string(const ustring &group, const ustring &key);
 
-  bool set_value_double(const Glib::ustring &group, const Glib::ustring &key,
-                        const double &value,
-                        const Glib::ustring &comment = Glib::ustring());
-  bool get_value_double(const Glib::ustring &group, const Glib::ustring &key,
-                        double &value);
+// set the string values to the key
+void set_string_list(const ustring &group, const ustring &key,
+                     const vector<ustring> &values);
 
-  bool set_value_string(const Glib::ustring &group, const Glib::ustring &key,
-                        const Glib::ustring &value,
-                        const Glib::ustring &comment = Glib::ustring());
-  bool get_value_string(const Glib::ustring &group, const Glib::ustring &key,
-                        Glib::ustring &value);
+// return a strings value of the key
+vector<ustring> get_string_list(const ustring &group, const ustring &key);
 
-  bool set_value_color(const Glib::ustring &group, const Glib::ustring &key,
-                       const Color &color,
-                       const Glib::ustring &comment = Glib::ustring());
-  bool get_value_color(const Glib::ustring &group, const Glib::ustring &key,
-                       Color &color);
+// set the boolean value to the key
+void set_boolean(const ustring &group, const ustring &key, const bool &value);
 
-  bool set_value_string_list(const Glib::ustring &group,
-                             const Glib::ustring &key,
-                             const std::list<Glib::ustring> &list);
-  bool get_value_string_list(const Glib::ustring &group,
-                             const Glib::ustring &key,
-                             std::list<Glib::ustring> &list);
+// return a boolean value of the key
+bool get_boolean(const ustring &group, const ustring &key);
 
-  bool remove_group(const Glib::ustring &group);
-  bool remove_key(const Glib::ustring &group, const Glib::ustring &key);
+// set the integer value to the key
+void set_int(const ustring &group, const ustring &key, const int &value);
 
-  static Config &getInstance();
+// return a integer value of the key
+int get_int(const ustring &group, const ustring &key);
 
-  // permet de surveiller un groupe
-  // fonction(key, value)
-  sigc::signal<void, Glib::ustring, Glib::ustring> &signal_changed(
-      const Glib::ustring &group);
+// set the double value to the key
+void set_double(const ustring &group, const ustring &key, const double &value);
 
-  bool set_default_value(const Glib::ustring &group, const Glib::ustring &key);
-  bool get_default_value(const Glib::ustring &group, const Glib::ustring &key,
-                         Glib::ustring &value);
+// return a double value of the key
+double get_double(const ustring &group, const ustring &key);
 
-  bool get_value_bool(const Glib::ustring &gorup, const Glib::ustring &key);
+// FIXME: remove me
+// return a float value of the key
+float get_float(const ustring &group, const ustring &key);
 
-  int get_value_int(const Glib::ustring &group, const Glib::ustring &key);
+// return the default value of the key
+ustring get_default(const ustring &group, const ustring &key);
 
-  float get_value_float(const Glib::ustring &group, const Glib::ustring &key);
-
-  double get_value_double(const Glib::ustring &group, const Glib::ustring &key);
-
-  Glib::ustring get_value_string(const Glib::ustring &group,
-                                 const Glib::ustring &key);
-
-  Color get_value_color(const Glib::ustring &group, const Glib::ustring &key);
-
-  std::list<Glib::ustring> get_value_string_list(const Glib::ustring &group,
-                                                 const Glib::ustring &key);
-
- protected:
-  bool check_the_key_or_put_default_value(const Glib::ustring &group,
-                                          const Glib::ustring &key);
-
-  void emit_signal_changed(const Glib::ustring &g, const Glib::ustring &k,
-                           const Glib::ustring &v);
-
-  static Glib::ustring m_config_file;
-
-  GKeyFile *m_keyFile;
-
-  // connect un group à des signaux
-  std::map<Glib::ustring, sigc::signal<void, Glib::ustring, Glib::ustring> >
-      m_signals;
-
-  // configuration par defaut [group][key][value]
-  std::map<Glib::ustring, std::map<Glib::ustring, Glib::ustring> >
-      m_default_config;
-};
+}  // namespace cfg

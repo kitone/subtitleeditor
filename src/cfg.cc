@@ -19,641 +19,238 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <glibmm.h>
-#include <fstream>
-#include <iostream>
 #include "cfg.h"
+#include "defaultcfg.h"
 #include "utility.h"
 
-void get_default_config(
-    std::map<Glib::ustring, std::map<Glib::ustring, Glib::ustring> > &config);
+namespace cfg {
 
-Glib::ustring Config::m_config_file;
+// FIXME: C++17 variant, optional
 
-Config &Config::getInstance() {
-  se_debug(SE_DEBUG_APP);
+using Glib::Error;
+using Glib::KeyFileError;
+using std::cerr;
+using std::endl;
+using std::map;
 
-  static Config cfg;
-  return cfg;
-}
+class Configuration {
+  typedef signal<void, ustring, ustring> SignalChanged;
+  typedef map<ustring, SignalChanged> SignalGroup;
 
-Config::Config() {
-  se_debug(SE_DEBUG_APP);
-
-  get_default_config(m_default_config);
-
-  loadCfg();
-}
-
-Config::~Config() {
-  se_debug(SE_DEBUG_APP);
-
-  saveCfg();
-}
-
-// by default (XDG) "~/.config/subtitleeditor/config"
-void Config::set_file(const Glib::ustring &file) {
-  se_debug_message(SE_DEBUG_APP, "file=%s", file.c_str());
-#warning "FIXME: convert to full path"
-  Glib::ustring dirname = Glib::path_get_dirname(file);
-  Glib::ustring filename = Glib::path_get_basename(file);
-
-  std::cout << dirname << std::endl;
-  std::cout << filename << std::endl;
-
-  if (dirname == "~") {
-    dirname = Glib::get_home_dir();
-  } else if (dirname == ".") {
+ public:
+  Configuration() : m_keyfile_initialized(false) {
   }
 
-  m_config_file = Glib::build_filename(dirname, filename);
-  m_config_file = file;
-}
-
-bool Config::loadCfg() {
-  se_debug_message(SE_DEBUG_APP, "load config...");
-
-  GError *error = NULL;
-  m_keyFile = NULL;
-
-  m_keyFile = g_key_file_new();
-
-  Glib::ustring filename = get_config_dir("config");
-
-  if (!g_key_file_load_from_file(
-          m_keyFile, filename.c_str(),
-          (GKeyFileFlags)(G_KEY_FILE_NONE | G_KEY_FILE_KEEP_COMMENTS),
-          &error)) {
-    se_debug_message(SE_DEBUG_APP, "open <%s> failed : %s", filename.c_str(),
-                     error->message);
-
-    std::cerr << "Config::Config > " << error->message << std::endl;
-    g_error_free(error);
-    return false;
+  ~Configuration() {
+    save();
   }
 
-  se_debug_message(SE_DEBUG_APP, "load config <%s>", filename.c_str());
+  SignalGroup &signals() {
+    return m_signals;
+  }
 
-  return true;
-}
-
-bool Config::saveCfg() {
-  se_debug_message(SE_DEBUG_APP, "save config...");
-
-  GError *error = NULL;
-  gsize size = 0;
-
-  gchar *data = g_key_file_to_data(m_keyFile, &size, &error);
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "save config failed : %s", error->message);
-
-    std::cerr << "Config::~Config > " << error->message << std::endl;
-    g_error_free(error);
-    return false;
-  } else {
-    Glib::ustring filename = get_config_dir("config");
-
-    std::ofstream file(filename.c_str());
-    if (file) {
-      file << data;
-      file.close();
+  Glib::KeyFile &keyfile() {
+    if (!m_keyfile_initialized) {
+      load();
     }
-    g_free(data);
+    return m_keyfile;
   }
 
-  g_key_file_free(m_keyFile);
-
-  return true;
-}
-
-bool Config::set_default_value(const Glib::ustring &group,
-                               const Glib::ustring &key) {
-  Glib::ustring value;
-
-  if (!get_default_value(group, key, value))
-    return false;
-
-  // g_key_file_set_string(m_keyFile, group.c_str(), key.c_str(),
-  // value.c_str());
-  set_value_string(group, key, value);
-
-  return true;
-}
-
-bool Config::get_default_value(const Glib::ustring &group,
-                               const Glib::ustring &key, Glib::ustring &value) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  std::map<Glib::ustring, std::map<Glib::ustring, Glib::ustring> >::iterator g;
-
-  g = m_default_config.find(group);
-
-  if (g == m_default_config.end())
-    return false;
-
-  std::map<Glib::ustring, Glib::ustring>::iterator k = g->second.find(key);
-
-  if (k == g->second.end())
-    return false;
-
-  value = k->second;
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%s", group.c_str(), key.c_str(),
-                   value.c_str());
-
-  return true;
-}
-
-bool Config::check_the_key_or_put_default_value(const Glib::ustring &group,
-                                                const Glib::ustring &key) {
-  if (has_key(group, key))
-    return true;
-
-  return set_default_value(group, key);
-}
-
-bool Config::set_comment(const Glib::ustring &group, const Glib::ustring &key,
-                         const Glib::ustring &comment) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%s", group.c_str(), key.c_str(),
-                   comment.c_str());
-
-  g_key_file_set_comment(m_keyFile, group.c_str(), key.c_str(), comment.c_str(),
-                         NULL);
-
-  return true;
-}
-
-bool Config::has_group(const Glib::ustring &group) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s]", group.c_str());
-
-  bool value = (bool)g_key_file_has_group(m_keyFile, group.c_str());
-  return value;
-}
-
-bool Config::has_key(const Glib::ustring &group, const Glib::ustring &key) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s", group.c_str(), key.c_str());
-
-  GError *error = NULL;
-  bool value =
-      (bool)g_key_file_has_key(m_keyFile, group.c_str(), key.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "has not key [%s] %s : %s", group.c_str(),
-                     key.c_str(), error->message);
-
-    g_error_free(error);
-    return false;
-  }
-  return value;
-}
-
-bool Config::get_keys(const Glib::ustring &group,
-                      std::list<Glib::ustring> &list) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  GError *error = NULL;
-
-  gsize size = 0;
-
-  gchar **value = g_key_file_get_keys(m_keyFile, group.c_str(), &size, &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] failed : %s", group.c_str(),
-                     error->message);
-
-    g_error_free(error);
-    return false;
+ protected:
+  void load() {
+    auto file = get_config_dir("config");
+    try {
+      m_keyfile.load_from_file(file);
+    } catch (const Error &ex) {
+      cerr << "failed to read config: " << ex.what() << endl;
+    }
+    load_defaults_on_missing_values();
+    m_keyfile_initialized = true;
   }
 
-  for (unsigned int i = 0; i < size; ++i) {
-    list.push_back(Glib::ustring(value[i]));
+  void load_defaults_on_missing_values() {
+    map<ustring, map<ustring, ustring>> defaults;
+    get_default_config(defaults);
+
+    for (const auto &gkv : defaults) {
+      auto group = gkv.first;
+      auto has_group = m_keyfile.has_group(group);
+      // for each key/value of the group
+      for (const auto &kv : gkv.second) {
+        // if the group or the key doesn't exist, create
+        if (!has_group || !m_keyfile.has_key(group, kv.first)) {
+          m_keyfile.set_string(group, kv.first, kv.second);
+        }
+      }
+    }
   }
 
-  g_strfreev(value);
-
-  se_debug_message(SE_DEBUG_APP, "[%s]", group.c_str());
-
-  return true;
-}
-
-bool Config::set_value_bool(const Glib::ustring &group,
-                            const Glib::ustring &key, const bool &value,
-                            const Glib::ustring &comment) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%i", group.c_str(), key.c_str(),
-                   value);
-
-  g_key_file_set_boolean(m_keyFile, group.c_str(), key.c_str(),
-                         (gboolean)value);
-
-  if (!comment.empty())
-    set_comment(group, key, comment);
-
-  emit_signal_changed(group, key, to_string(value));
-  return true;
-}
-
-bool Config::get_value_bool(const Glib::ustring &group,
-                            const Glib::ustring &key, bool &value) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  check_the_key_or_put_default_value(group, key);
-
-  GError *error = NULL;
-  bool tmp =
-      g_key_file_get_boolean(m_keyFile, group.c_str(), key.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] %s failed : %s", group.c_str(),
-                     key.c_str(), error->message);
-    g_error_free(error);
-    return false;
+  void save() {
+    try {
+      auto filename = get_config_dir("config");
+      m_keyfile.save_to_file(filename);
+    } catch (const Error &ex) {
+      cerr << "failed to save the configuration" << ex.what() << endl;
+    }
   }
 
-  value = tmp;
+ protected:
+  bool m_keyfile_initialized;
+  Glib::KeyFile m_keyfile;
+  SignalGroup m_signals;
+};
 
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%i", group.c_str(), key.c_str(),
-                   value);
-
-  return true;
+Configuration &configuration() {
+  static Configuration m_config;
+  return m_config;
 }
 
-bool Config::set_value_int(const Glib::ustring &group, const Glib::ustring &key,
-                           const int &value, const Glib::ustring &comment) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%i", group.c_str(), key.c_str(),
-                   value);
-
-  g_key_file_set_integer(m_keyFile, group.c_str(), key.c_str(), value);
-
-  if (!comment.empty())
-    set_comment(group, key, comment);
-
-  emit_signal_changed(group, key, to_string(value));
-
-  return true;
+Glib::KeyFile &keyfile() {
+  return configuration().keyfile();
 }
 
-bool Config::get_value_int(const Glib::ustring &group, const Glib::ustring &key,
-                           int &value) {
-  g_return_val_if_fail(m_keyFile, false);
+// connect a signal to the group, notify when a key change
+sigc::signal<void, ustring, ustring> &signal_changed(const ustring &group) {
+  return configuration().signals()[group];
+}
 
-  check_the_key_or_put_default_value(group, key);
+// emit a signal on the only to the group
+void emit_signal_changed(const ustring &g, const ustring &k, const ustring &v) {
+  configuration().signals()[g](k, v);
+}
 
-  GError *error = NULL;
-
-  int tmp =
-      g_key_file_get_integer(m_keyFile, group.c_str(), key.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] %s failed : %s", group.c_str(),
-                     key.c_str(), error->message);
-
-    g_error_free(error);
-    return false;
+// check if a key exists on the group
+bool has_key(const ustring &group, const ustring &key) {
+  try {
+    return keyfile().has_key(group, key);
+  } catch (const KeyFileError &ex) {
+    cerr << ex.what() << std::endl;
   }
-
-  value = tmp;
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%i", group.c_str(), key.c_str(),
-                   value);
-
-  return true;
-}
-
-bool Config::set_value_float(const Glib::ustring &group,
-                             const Glib::ustring &key, const float &value,
-                             const Glib::ustring &comment) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%f", group.c_str(), key.c_str(),
-                   value);
-
-  g_key_file_set_double(m_keyFile, group.c_str(), key.c_str(), (double)value);
-
-  if (!comment.empty())
-    set_comment(group, key, comment);
-
-  emit_signal_changed(group, key, to_string(value));
-
-  return true;
-}
-
-bool Config::get_value_float(const Glib::ustring &group,
-                             const Glib::ustring &key, float &value) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  check_the_key_or_put_default_value(group, key);
-
-  GError *error = NULL;
-
-  gdouble tmp =
-      g_key_file_get_double(m_keyFile, group.c_str(), key.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] %s failed : %s", group.c_str(),
-                     key.c_str(), error->message);
-
-    g_error_free(error);
-    return false;
-  }
-
-  value = (float)tmp;
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%f", group.c_str(), key.c_str(),
-                   value);
-
-  return true;
-}
-
-bool Config::set_value_double(const Glib::ustring &group,
-                              const Glib::ustring &key, const double &value,
-                              const Glib::ustring &comment) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%f", group.c_str(), key.c_str(),
-                   value);
-
-  g_key_file_set_double(m_keyFile, group.c_str(), key.c_str(), value);
-
-  if (!comment.empty())
-    set_comment(group, key, comment);
-
-  emit_signal_changed(group, key, to_string(value));
-
-  return true;
-}
-
-bool Config::get_value_double(const Glib::ustring &group,
-                              const Glib::ustring &key, double &value) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  check_the_key_or_put_default_value(group, key);
-
-  GError *error = NULL;
-
-  gdouble tmp =
-      g_key_file_get_double(m_keyFile, group.c_str(), key.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] %s failed : %s", group.c_str(),
-                     key.c_str(), error->message);
-
-    g_error_free(error);
-    return false;
-  }
-
-  value = tmp;
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%f", group.c_str(), key.c_str(),
-                   value);
-
-  return true;
-}
-
-bool Config::set_value_string(const Glib::ustring &group,
-                              const Glib::ustring &key,
-                              const Glib::ustring &value,
-                              const Glib::ustring &comment) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%s", group.c_str(), key.c_str(),
-                   value.c_str());
-
-  g_key_file_set_string(m_keyFile, group.c_str(), key.c_str(), value.c_str());
-
-  if (!comment.empty())
-    set_comment(group, key, comment);
-
-  emit_signal_changed(group, key, value);
-  return true;
-}
-
-bool Config::get_value_string(const Glib::ustring &group,
-                              const Glib::ustring &key, Glib::ustring &str) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  check_the_key_or_put_default_value(group, key);
-
-  GError *error = NULL;
-  gchar *value =
-      g_key_file_get_string(m_keyFile, group.c_str(), key.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] %s failed : %s", group.c_str(),
-                     key.c_str(), error->message);
-    g_error_free(error);
-    return false;
-  }
-
-  str = value;
-
-  g_free(value);
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%s", group.c_str(), key.c_str(),
-                   str.c_str());
-
-  return true;
-}
-
-bool Config::set_value_color(const Glib::ustring &group,
-                             const Glib::ustring &key, const Color &color,
-                             const Glib::ustring &comment) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  return set_value_string(group, key, color.to_string(), comment);
-}
-
-bool Config::get_value_color(const Glib::ustring &group,
-                             const Glib::ustring &key, Color &color) {
-  g_return_val_if_fail(m_keyFile, false);
-
-  check_the_key_or_put_default_value(group, key);
-
-  Glib::ustring value;
-  if (get_value_string(group, key, value)) {
-    color = Color(value);
-    return true;
-  }
-
   return false;
 }
 
-bool Config::set_value_string_list(const Glib::ustring &group,
-                                   const Glib::ustring &key,
-                                   const std::list<Glib::ustring> &list) {
-  g_return_val_if_fail(m_keyFile, false);
+// return the keys of the group
+vector<ustring> get_keys(const ustring &group) {
+  return keyfile().get_keys(group);
+}
 
-  Glib::ustring text;
-  for (const auto &value : list) {
-    text += value + ";";
+// check if a group exists
+bool has_group(const ustring &group) {
+  return keyfile().has_group(group);
+}
+
+// remove the group and associated keys
+void remove_group(const ustring &group) {
+  keyfile().remove_group(group);
+}
+
+// set a comment to the key
+void set_comment(const ustring &g, const ustring &k, const ustring &v) {
+  keyfile().set_comment(g, k, v);
+}
+
+// set the string value to the key
+void set_string(const ustring &g, const ustring &k, const ustring &v) {
+  keyfile().set_string(g, k, v);
+  emit_signal_changed(g, k, v);
+}
+
+// return a string value of the key
+ustring get_string(const ustring &group, const ustring &key) {
+  try {
+    return keyfile().get_string(group, key);
+  } catch (const KeyFileError &ex) {
+    cerr << ex.what() << std::endl;
   }
-
-  se_debug_message(SE_DEBUG_APP, "[%s] %s=%s", group.c_str(), key.c_str(),
-                   text.c_str());
-
-  return set_value_string(group, key, text);
+  return ustring();
 }
 
-bool Config::get_value_string_list(const Glib::ustring &group,
-                                   const Glib::ustring &key,
-                                   std::list<Glib::ustring> &list) {
-  g_return_val_if_fail(m_keyFile, false);
+// set the string values to the key
+void set_string_list(const ustring &g, const ustring &k,
+                     const vector<ustring> &v) {
+  keyfile().set_string_list(g, k, v);
+  // FIXME: join strings and emit signal
+  // emit_signal_changed(g, k, v);
+}
 
-  check_the_key_or_put_default_value(group, key);
-
-  GError *error = NULL;
-
-  gsize size;
-
-  gchar **value = g_key_file_get_string_list(m_keyFile, group.c_str(),
-                                             key.c_str(), &size, &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] %s failed : %s", group.c_str(),
-                     key.c_str(), error->message);
-    g_error_free(error);
-    return false;
+// return a strings value of the key
+vector<ustring> get_string_list(const ustring &group, const ustring &key) {
+  try {
+    return keyfile().get_string_list(group, key);
+  } catch (const KeyFileError &ex) {
+    cerr << ex.what() << std::endl;
   }
+  return vector<ustring>();
+}
 
-  for (unsigned int i = 0; i < size; ++i) {
-    list.push_back(Glib::ustring(value[i]));
+// set the boolean value to the key
+void set_boolean(const ustring &g, const ustring &k, const bool &v) {
+  keyfile().set_boolean(g, k, v);
+  emit_signal_changed(g, k, to_string(v));
+}
+
+// return a boolean value of the key
+bool get_boolean(const ustring &group, const ustring &key) {
+  try {
+    return keyfile().get_boolean(group, key);
+  } catch (const KeyFileError &ex) {
+    cerr << ex.what() << std::endl;
   }
-
-  g_strfreev(value);
-
-  return true;
+  return false;
 }
 
-bool Config::remove_group(const Glib::ustring &group) {
-  g_return_val_if_fail(m_keyFile, false);
+// set the integer value to the key
+void set_int(const ustring &g, const ustring &k, const int &v) {
+  keyfile().set_integer(g, k, v);
+  emit_signal_changed(g, k, to_string(v));
+}
 
-  GError *error = NULL;
-
-  g_key_file_remove_group(m_keyFile, group.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "[%s] failed : %s", group.c_str(),
-                     error->message);
-    g_error_free(error);
-    return false;
+// return a integer value of the key
+int get_int(const ustring &group, const ustring &key) {
+  try {
+    return keyfile().get_integer(group, key);
+  } catch (const KeyFileError &ex) {
+    cerr << ex.what() << std::endl;
   }
-  se_debug_message(SE_DEBUG_APP, "remove group [%s]", group.c_str());
-  return true;
+  return 0;
 }
 
-bool Config::remove_key(const Glib::ustring &group, const Glib::ustring &key) {
-  g_return_val_if_fail(m_keyFile, false);
+// set the double value to the key
+void set_double(const ustring &g, const ustring &k, const double &v) {
+  keyfile().set_double(g, k, v);
+  emit_signal_changed(g, k, to_string(v));
+}
 
-  GError *error = NULL;
-
-  g_key_file_remove_key(m_keyFile, group.c_str(), key.c_str(), &error);
-
-  if (error) {
-    se_debug_message(SE_DEBUG_APP, "remove [%s] %s failed : %s", group.c_str(),
-                     key.c_str(), error->message);
-
-    g_error_free(error);
-    return false;
+// return a double value of the key
+double get_double(const ustring &group, const ustring &key) {
+  try {
+    return keyfile().get_double(group, key);
+  } catch (const KeyFileError &ex) {
+    cerr << ex.what() << std::endl;
   }
-
-  se_debug_message(SE_DEBUG_APP, "remove [%s] %s", group.c_str(), key.c_str());
-
-  return true;
+  return 0.0;
 }
 
-void Config::emit_signal_changed(const Glib::ustring &g, const Glib::ustring &k,
-                                 const Glib::ustring &v) {
-  m_signals[g](k, v);
+// FIXME: DELETE ME
+float get_float(const ustring &group, const ustring &key) {
+  return static_cast<float>(get_double(group, key));
 }
 
-// permet de surveiller un groupe
-// fonction(key, value)
-sigc::signal<void, Glib::ustring, Glib::ustring> &Config::signal_changed(
-    const Glib::ustring &group) {
-  return m_signals[group];
+ustring get_default(const ustring &group, const ustring &key) {
+  map<ustring, map<ustring, ustring>> defaults;
+  get_default_config(defaults);
+  // find the group
+  auto g = defaults.find(group);
+  if (g == defaults.end()) {
+    return ustring();
+  }
+  const auto &key_values = g->second;
+  // find the key
+  auto k = key_values.find(key);
+  if (k == key_values.end()) {
+    return ustring();
+  }
+  return k->second;
 }
 
-bool Config::get_value_bool(const Glib::ustring &group,
-                            const Glib::ustring &key) {
-  bool value;
-
-  bool state = get_value_bool(group, key, value);
-
-  g_return_val_if_fail(state, false);
-
-  return value;
-}
-
-int Config::get_value_int(const Glib::ustring &group,
-                          const Glib::ustring &key) {
-  int value;
-
-  bool state = get_value_int(group, key, value);
-
-  g_return_val_if_fail(state, 0);
-
-  return value;
-}
-
-float Config::get_value_float(const Glib::ustring &group,
-                              const Glib::ustring &key) {
-  float value;
-
-  bool state = get_value_float(group, key, value);
-
-  g_return_val_if_fail(state, 0);
-
-  return value;
-}
-
-double Config::get_value_double(const Glib::ustring &group,
-                                const Glib::ustring &key) {
-  double value;
-
-  bool state = get_value_double(group, key, value);
-
-  g_return_val_if_fail(state, 0.0);
-
-  return value;
-}
-
-Glib::ustring Config::get_value_string(const Glib::ustring &group,
-                                       const Glib::ustring &key) {
-  Glib::ustring value;
-
-  bool state = get_value_string(group, key, value);
-
-  g_return_val_if_fail(state, Glib::ustring());
-
-  return value;
-}
-
-Color Config::get_value_color(const Glib::ustring &group,
-                              const Glib::ustring &key) {
-  Color value;
-
-  bool state = get_value_color(group, key, value);
-
-  g_return_val_if_fail(state, Color());
-
-  return value;
-}
-
-std::list<Glib::ustring> Config::get_value_string_list(
-    const Glib::ustring &group, const Glib::ustring &key) {
-  std::list<Glib::ustring> value;
-
-  bool state = get_value_string_list(group, key, value);
-
-  g_return_val_if_fail(state, value);
-
-  return value;
-}
+}  // namespace cfg
