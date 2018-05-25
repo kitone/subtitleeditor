@@ -167,7 +167,7 @@ class MediaDecoder : virtual public sigc::trackable {
     check_missing_plugins();
 
     Glib::ustring error =
-        (msg) ? Glib::ustring(msg->parse_dbg()) : Glib::ustring();
+        (msg) ? Glib::ustring(msg->parse_debug()) : Glib::ustring();
 
     dialog_error(_("Media file could not be played.\n"), error);
     // Critical error, cancel the work.
@@ -179,7 +179,7 @@ class MediaDecoder : virtual public sigc::trackable {
     check_missing_plugins();
 
     Glib::ustring error =
-        (msg) ? Glib::ustring(msg->parse_dbg()) : Glib::ustring();
+        (msg) ? Glib::ustring(msg->parse_debug()) : Glib::ustring();
     dialog_error(_("Media file could not be played.\n"), error);
 
     return true;
