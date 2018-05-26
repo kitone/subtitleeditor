@@ -76,7 +76,7 @@ Gtk::TreeIter StyleModel::copy(Gtk::TreeIter iter) {
   (*it)[m_column.name] = (Glib::ustring)(*iter)[m_column.name];
 
   (*it)[m_column.font_name] = (Glib::ustring)(*iter)[m_column.font_name];
-  (*it)[m_column.font_size] = (double)(*iter)[m_column.font_size];
+  (*it)[m_column.font_size] = static_cast<double>((*iter)[m_column.font_size]);
 
   (*it)[m_column.primary_colour] =
       (Glib::ustring)(*iter)[m_column.primary_colour];
@@ -87,10 +87,10 @@ Gtk::TreeIter StyleModel::copy(Gtk::TreeIter iter) {
   (*it)[m_column.shadow_colour] =
       (Glib::ustring)(*iter)[m_column.shadow_colour];
 
-  (*it)[m_column.bold] = (bool)(*iter)[m_column.bold];
-  (*it)[m_column.italic] = (bool)(*iter)[m_column.italic];
-  (*it)[m_column.underline] = (bool)(*iter)[m_column.underline];
-  (*it)[m_column.strikeout] = (bool)(*iter)[m_column.strikeout];
+  (*it)[m_column.bold] = static_cast<bool>((*iter)[m_column.bold]);
+  (*it)[m_column.italic] = static_cast<bool>((*iter)[m_column.italic]);
+  (*it)[m_column.underline] = static_cast<bool>((*iter)[m_column.underline]);
+  (*it)[m_column.strikeout] = static_cast<bool>((*iter)[m_column.strikeout]);
 
   (*it)[m_column.scale_x] = (unsigned int)(*iter)[m_column.scale_x];
   (*it)[m_column.scale_y] = (unsigned int)(*iter)[m_column.scale_y];
@@ -107,8 +107,8 @@ Gtk::TreeIter StyleModel::copy(Gtk::TreeIter iter) {
   (*it)[m_column.margin_r] = (unsigned int)(*iter)[m_column.margin_r];
   (*it)[m_column.margin_v] = (unsigned int)(*iter)[m_column.margin_v];
 
-  (*it)[m_column.alpha_level] = (int)(*iter)[m_column.alpha_level];
-  (*it)[m_column.encoding] = (int)(*iter)[m_column.encoding];
+  (*it)[m_column.alpha_level] = static_cast<int>((*iter)[m_column.alpha_level]);
+  (*it)[m_column.encoding] = static_cast<int>((*iter)[m_column.encoding]);
 
   return it;
 }

@@ -89,7 +89,7 @@ class AdobeEncoreDVD : public SubtitleFormatIO {
   // Convert time from SE to Encore DVD
   // 0:00:00.000 -> 00[:;]00[:;]00[:;]00 (last 00 are frames, not time!)
   Glib::ustring to_encore_dvd_time(const SubtitleTime &t) {
-    int frame = (int)(t.mseconds() * m_framerate_value * 0.001);
+    int frame = static_cast<int>(t.mseconds() * m_framerate_value * 0.001);
 
     return build_message((m_framerate == FRAMERATE_25) ? "%02i:%02i:%02i:%02i"
                                                        : "%02i;%02i;%02i;%02i",

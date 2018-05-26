@@ -60,9 +60,9 @@ SubtitleTime::SubtitleTime(const Glib::ustring &str) : totalmsecs(0) {
     from_string(str.substr(pos, end), ms);
 
     // split into seconds and fraction
-    secs = (int)ms;
+    secs = static_cast<int>(ms);
 
-    msecs = (int)((ms - secs) * 1000 + 0.5);
+    msecs = static_cast<int>((ms - secs) * 1000 + 0.5);
 
     set(hours, mins, secs, msecs);
 
@@ -142,8 +142,8 @@ SubtitleTime SubtitleTime::operator/(const long &div) const {
 }
 
 SubtitleTime SubtitleTime::operator*(const double &mult) const {
-  double total = (double)(totalmsecs * mult);
-  return SubtitleTime((long int)total);
+  double total = static_cast<double>(totalmsecs * mult);
+  return SubtitleTime(static_cast<long int>(total));
 }
 
 bool SubtitleTime::operator>(const SubtitleTime &time) const {

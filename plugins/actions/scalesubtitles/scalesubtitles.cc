@@ -207,12 +207,10 @@ class DialogScaleSubtitles : public Gtk::Dialog {
     label->set_text(text);
   }
 
+  // dest1_value and dest2_value can be time or frame
   void scale_range(TIMING_MODE timing_mode, Subtitle &first, Subtitle &last,
-                   const long &sub1_value,
-                   const long &dest1_value,  // can be time or frame
-                   const long &sub2_value,
-                   const long &dest2_value)  // can be time or frame
-  {
+                   const long &sub1_value, const long &dest1_value,
+                   const long &sub2_value, const long &dest2_value) {
     double scale =
         calcul_scale(sub1_value, dest1_value, sub2_value, dest2_value);
 

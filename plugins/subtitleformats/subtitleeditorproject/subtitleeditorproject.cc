@@ -270,7 +270,7 @@ class SubtitleEditorProject : public SubtitleFormatIO {
 
     Glib::ustring framerate = xmlsubtitles->get_attribute_value("framerate");
     if (!framerate.empty()) {
-      float value = (float)utility::string_to_double(framerate);
+      float value = static_cast<float>(utility::string_to_double(framerate));
       if (value > 0)
         document()->set_framerate(get_framerate_from_value(value));
     }

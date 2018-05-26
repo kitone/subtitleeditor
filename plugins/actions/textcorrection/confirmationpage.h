@@ -213,7 +213,7 @@ class ComfirmationPage : public AssistantPage {
   void on_accept_toggled(const Glib::ustring& path) {
     Gtk::TreeIter it = m_liststore->get_iter(path);
     if (it) {
-      (*it)[m_column.accept] = !bool((*it)[m_column.accept]);
+      (*it)[m_column.accept] = !static_cast<bool>((*it)[m_column.accept]);
     }
   }
 

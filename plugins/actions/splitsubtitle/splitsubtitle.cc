@@ -102,8 +102,6 @@ class SplitSelectedSubtitlesPlugin : public Action {
   }
 
   void split(Subtitles &subtitles, Subtitle &sub) {
-    unsigned int i = 0;
-
     Glib::RefPtr<Glib::Regex> re = Glib::Regex::create("\\n");
 
     Glib::ustring text = sub.get_text();
@@ -131,14 +129,14 @@ class SplitSelectedSubtitlesPlugin : public Action {
     // we just need to add other lines (size-1)
     newsubs.push_back(sub);
 
-    for (i = 1; i < lines.size(); ++i) {
+    for (unsigned int i = 1; i < lines.size(); ++i) {
       Subtitle next = subtitles.insert_after(newsubs[i - 1]);
       sub.copy_to(next);  // Copy all values (style, note, ...)
       newsubs.push_back(next);
     }
 
     // Updated subtitles text with each line
-    for (i = 0; i < newsubs.size(); ++i) {
+    for (unsigned int i = 0; i < newsubs.size(); ++i) {
       newsubs[i].set_text(lines[i]);
 
       // We take the loop to calculate the total number of characters
@@ -153,9 +151,11 @@ class SplitSelectedSubtitlesPlugin : public Action {
     SubtitleTime start = ostart;
     SubtitleTime dur;
 
-    for (i = 0; i < newsubs.size(); ++i) {
+    for (unsigned int i = 0; i < newsubs.size(); ++i) {
       if (total_chars > 0) {
-        dur = oduration * ((double)lines[i].size() / (double)total_chars);
+        auto l_size = static_cast<double>(lines[i].size());
+        auto t_chars = static_cast<double>(total_chars);
+        dur = oduration * (l_size / t_chars);
       } else {
         dur = oduration / static_cast<long>(newsubs.size());
       }

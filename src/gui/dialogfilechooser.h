@@ -20,11 +20,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "dialogutility.h"
-#include "widget_config_utility.h"
-
 #include <gtkmm.h>
 #include <memory>
+
+#include "dialogutility.h"
+#include "widget_config_utility.h"
 
 // Internal class
 class ComboBoxSubtitleFormat;

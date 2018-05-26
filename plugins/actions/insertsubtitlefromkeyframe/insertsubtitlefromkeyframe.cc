@@ -98,7 +98,7 @@ class InsertSubtitleFromKeyframePlugin : public Action {
     se_dbg(SE_DBG_PLUGINS);
 
     bool has_doc = (get_current_document() != NULL);
-    bool has_kf = (bool)player()->get_keyframes();
+    bool has_kf = static_cast<bool>(player()->get_keyframes());
     bool has_media = player()->get_state() != Player::NONE;
 
     action_group->get_action("insert-subtitle-between-keyframes")

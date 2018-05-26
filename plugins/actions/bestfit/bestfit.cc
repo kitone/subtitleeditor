@@ -189,8 +189,9 @@ class BestFitPlugin : public Action {
       intime = startime + ((grosstime * prevchars) / totalchars);
 
       // make sure we're not under the minimum cps
-      maxdur.totalmsecs =
-          (long)floor(((double)1000 * (double)subchars) / mincps);
+      maxdur.totalmsecs = static_cast<long>(
+          floor((1000.0 * static_cast<double>(subchars)) / mincps));
+
       if (dur > maxdur)
         dur = maxdur;
 

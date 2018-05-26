@@ -35,7 +35,7 @@ void Player::set_player_state(Player::State state) {
   // create the timeout callback
   // the signal is directly blocked
   if (!m_timeout_connection) {
-    int msec = 100;
+    unsigned int msec = 100;
     m_timeout_connection = Glib::signal_timeout().connect(
         sigc::mem_fun(*this, &Player::on_timeout), msec);
     m_timeout_connection.block();
@@ -61,8 +61,9 @@ void Player::set_player_state(Player::State state) {
 void Player::got_tick() {
   long current_time = get_position();
   long stream_length = get_duration();
-  double current_position =
-      (stream_length == 0) ? 0 : (double)current_time / stream_length;
+  double current_position = 0.0;
+  if (stream_length != 0)
+    current_position = static_cast<double>(current_time) / stream_length;
 
   m_signal_tick(current_time, stream_length, current_position);
 }

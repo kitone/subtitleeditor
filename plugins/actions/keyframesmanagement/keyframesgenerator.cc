@@ -101,7 +101,7 @@ class KeyframesGenerator : public Gtk::Dialog, public MediaDecoder {
     gint64 pos = 0, len = 0;
     if (m_pipeline->query_position(fmt, pos) &&
         m_pipeline->query_duration(fmt, len)) {
-      double percent = (double)pos / (double)len;
+      double percent = static_cast<double>(pos) / static_cast<double>(len);
 
       percent = CLAMP(percent, 0.0, 1.0);
 

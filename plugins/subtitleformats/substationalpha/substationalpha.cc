@@ -409,8 +409,9 @@ class SubStationAlpha : public SubtitleFormatIO {
 
   // Convert time from SE to SSA
   Glib::ustring to_ssa_time(const SubtitleTime &time) {
+    auto hundredths = static_cast<int>((time.mseconds() + 0.5) / 10);
     return build_message("%01i:%02i:%02i.%02i", time.hours(), time.minutes(),
-                         time.seconds(), (int)((time.mseconds() + 0.5) / 10));
+                         time.seconds(), hundredths);
   }
 
   // Convert time from ssa to SE

@@ -712,9 +712,9 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key,
                                                const Glib::ustring &value) {
   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "%s %s", key.c_str(), value.c_str());
 
-  if (key == "repeat")
+  if (key == "repeat") {
     set_repeat(utility::string_to_bool(value));
-  else if (m_pipeline) {
+  } else if (m_pipeline) {
     if (key == "force-aspect-ratio" && m_xoverlay) {
 #if defined(GDK_WINDOWING_QUARTZ)
       // FIXME ?
@@ -848,7 +848,7 @@ float GstPlayer::get_framerate(int *numerator, int *denominator) {
   structure.get_field("framerate", gst_value);
 
   Gst::Fraction fps(gst_value);
-  float framerate = (float)fps.num / (float)fps.denom;
+  float framerate = static_cast<float>(fps.num) / static_cast<float>(fps.denom);
 
   if (numerator != NULL)
     *numerator = fps.num;

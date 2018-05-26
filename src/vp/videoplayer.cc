@@ -119,7 +119,10 @@ class PlayerControls : public Gtk::HBox {
       case Player::STREAM_READY: {
         long pos = m_player->get_position();
         long dur = m_player->get_duration();
-        double perc = (dur == 0) ? 0 : (double)pos / dur;
+        double perc = 0;
+        if (dur != 0) {
+          perc = static_cast<double>(pos) / dur;
+        }
         set_seek_position(perc);
       } break;
       default:

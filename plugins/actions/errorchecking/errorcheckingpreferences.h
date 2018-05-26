@@ -138,7 +138,7 @@ class DialogErrorCheckingPreferences : public Gtk::Dialog {
     if (it) {
       ErrorChecking* checker = (*it)[m_column.checker];
 
-      (*it)[m_column.enabled] = !bool((*it)[m_column.enabled]);
+      (*it)[m_column.enabled] = !static_cast<bool>((*it)[m_column.enabled]);
 
       // save on config
       checker->set_active((*it)[m_column.enabled]);

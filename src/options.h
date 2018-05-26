@@ -22,6 +22,7 @@
 
 #include <config.h>
 #include <glibmm.h>
+#include <vector>
 
 class OptionGroup : public Glib::OptionGroup {
  public:

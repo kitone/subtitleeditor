@@ -20,15 +20,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+#include <GL/gl.h>
+#include <gtkglmm.h>
+
 #include "document.h"
 #include "keyframes.h"
 #include "player.h"
 #include "subtitleeditorwindow.h"
 #include "utility.h"
 #include "waveformrenderer.h"
-
-#include <GL/gl.h>
-#include <gtkglmm.h>
 
 #define FONT_SIZE 256
 
@@ -351,8 +351,9 @@ bool WaveformRendererGL::on_expose_event(GdkEventExpose *ev) {
       double seconds = m_timer.elapsed();
       m_timer.reset();
 
-      Glib::ustring fps = build_message("%d frames in %f seconds = %.3f FPS", 1,
-                                        seconds, (float)(1 / seconds));
+      Glib::ustring fps =
+          build_message("%d frames in %f seconds = %.3f FPS", 1, seconds,
+                        static_cast<float>(1 / seconds));
 
       glColor4fv(m_color_text);
       draw_text(10, 10, fps);
@@ -432,7 +433,7 @@ void WaveformRendererGL::draw_channel_with_line_strip(
 
   std::vector<double> &peaks = m_waveform->m_channels[channel];
 
-  float skip = (float)(area.get_width()) / peaks.size();
+  float skip = static_cast<float>(area.get_width()) / peaks.size();
 
   float px = 0;
 
@@ -454,7 +455,7 @@ void WaveformRendererGL::draw_channel_with_quad_strip(
 
   std::vector<double> &peaks = m_waveform->m_channels[channel];
 
-  float skip = (float)(area.get_width()) / peaks.size();
+  float skip = static_cast<float>(area.get_width()) / peaks.size();
 
   float px = 0;
 

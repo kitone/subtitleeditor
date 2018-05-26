@@ -133,8 +133,6 @@ Application::~Application() {
 
 void Application::load_config() {
   // dynamic keyboar shorcuts
-  bool value;
-
   auto use_dyn_ks =
       cfg::get_boolean("interface", "use-dynamic-keyboard-shortcuts");
   Gtk::Settings::get_default()->property_gtk_can_change_accels() = use_dyn_ks;
@@ -254,7 +252,7 @@ Gtk::Widget *Application::get_widget(Document *doc) {
   for (int i = 0; i < m_notebook_documents->get_n_pages(); ++i) {
     Gtk::Widget *w = m_notebook_documents->get_nth_page(i);
 
-    Document *document = (Document *)w->get_data("document");
+    auto document = static_cast<Document *>(w->get_data("document"));
 
     if (document == doc)
       return w;
@@ -368,10 +366,11 @@ void Application::on_signal_switch_page(Gtk::Widget * /*page*/,
                                         guint page_num) {
   se_dbg(SE_DBG_APP);
 
-  Gtk::Widget *w = m_notebook_documents->get_nth_page(page_num);
+  auto page = static_cast<int>(page_num);
+  Gtk::Widget *w = m_notebook_documents->get_nth_page(page);
 
   if (w) {
-    Document *doc = (Document *)w->get_data("document");
+    auto doc = static_cast<Document *>(w->get_data("document"));
 
     if (doc) {
       DocumentSystem::getInstance().setCurrentDocument(doc);

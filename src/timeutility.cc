@@ -81,7 +81,7 @@ float get_framerate_value(FRAMERATE framerate) {
 FRAMERATE get_framerate_from_value(float fps) {
   FRAMERATE framerate;
 
-  int value = (int)((fps * 1000) + 0.5);
+  int value = static_cast<int>((fps * 1000) + 0.5);
 
   if (value == 23976)
     framerate = FRAMERATE_23_976;

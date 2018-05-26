@@ -528,7 +528,7 @@ void Subtitle::set_characters_per_second_text(double cps) {
 }
 
 double Subtitle::get_characters_per_second_text() const {
-  return (double)((*m_iter)[column.characters_per_second_text]);
+  return static_cast<double>((*m_iter)[column.characters_per_second_text]);
 }
 
 Glib::ustring Subtitle::get_characters_per_second_text_string() const {
@@ -542,8 +542,7 @@ int Subtitle::check_cps_text(double mincps, double maxcps) {
   int retval = 0;
 
   // round cps to 1/10 precision
-  double cps =
-      round((double)10 * get_characters_per_second_text()) / (double)10;
+  double cps = round(10.0 * get_characters_per_second_text()) / 10.0;
 
   // FIXME tomas-kitone, before fixing this strange comparing code,
   // try uncommenting the printf below, compiling subtitleeditor, setting max
@@ -555,9 +554,9 @@ int Subtitle::check_cps_text(double mincps, double maxcps) {
 
   // compare cps to min and max values while ignoring the fuzz left after the
   // floating-point division
-  if ((mincps - cps) > (double)0.0001)
+  if ((mincps - cps) > 0.0001)
     retval = -1;
-  else if ((cps - maxcps) > (double)0.0001)
+  else if ((cps - maxcps) > 0.0001)
     retval = 1;
 
   // printf("sub # : %i, cps: %e, maxcps: %e, cps-maxcps=%e, retval: %i\n",

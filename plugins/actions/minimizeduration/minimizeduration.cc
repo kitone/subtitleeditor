@@ -129,7 +129,6 @@ class MinimizeDurationPlugin : public Action {
     doc->start_command(_("Minimize Durations"));
 
     Glib::ustring subtext = "";
-    Subtitle *sub = (Subtitle *)NULL;
 
     // take each subtitle and set its duration to the permissible minimum
     unsigned long subchars = 0;

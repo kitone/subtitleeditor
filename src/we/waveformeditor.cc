@@ -305,7 +305,7 @@ void WaveformEditor::set_scale(float value) {
 
 // Return the value of the scale (widget).
 float WaveformEditor::get_scale() {
-  return (float)m_sliderScale->get_value();
+  return static_cast<float>(m_sliderScale->get_value());
 }
 
 // Set the value of the zoom (widget).
@@ -317,7 +317,7 @@ void WaveformEditor::set_zoom(int value) {
 
 // Return the value of the zoom (widget).
 int WaveformEditor::get_zoom() {
-  int value = (int)m_sliderZoom->get_value();
+  int value = static_cast<int>(m_sliderZoom->get_value());
   if (value < 1)
     return 1;
   return value;
@@ -338,7 +338,7 @@ bool WaveformEditor::on_configure_event_waveform(GdkEventConfigure * /*ev*/) {
 
 // Return the value of the scrolling (scrollbar)
 int WaveformEditor::get_scrolling() {
-  return (int)m_hscrollbarWaveformRenderer->get_value();
+  return static_cast<int>(m_hscrollbarWaveformRenderer->get_value());
 }
 
 // Initialize the scrollbar depending
@@ -352,15 +352,14 @@ void WaveformEditor::init_scrollbar() {
 
   guint width = renderer()->widget()->get_width();
 
-  int zoom = (int)m_sliderZoom->get_value();
+  int zoom = static_cast<int>(m_sliderZoom->get_value());
 
   double upper = m_hscrollbarWaveformRenderer->get_adjustment()->get_upper();
   double old_value = m_hscrollbarWaveformRenderer->get_value();
 
-  Glib::RefPtr<Gtk::Adjustment> adj =
-      m_hscrollbarWaveformRenderer->get_adjustment();
+  auto adj = m_hscrollbarWaveformRenderer->get_adjustment();
 
-  adj->set_page_size((double)width);
+  adj->set_page_size(static_cast<double>(width));
   adj->set_page_increment(width);
   adj->set_step_increment(width);
 
@@ -384,7 +383,7 @@ void WaveformEditor::on_scrollbar_value_changed() {
 // Call init_scrollbar and updates the config.
 // Redraw the waveform.
 void WaveformEditor::on_zoom_changed() {
-  int value = (int)m_sliderZoom->get_value();
+  int value = static_cast<int>(m_sliderZoom->get_value());
 
   // utility::clamp(value, 1, 1000);
 
@@ -424,7 +423,7 @@ bool WaveformEditor::open_waveform(const Glib::ustring &uri) {
 
   set_waveform(wf);
 
-  return (bool)wf;
+  return static_cast<bool>(wf);
 }
 
 void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf) {
@@ -451,7 +450,7 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf) {
   else
     std::cerr << "You need a WaveformRenderer!!" << std::endl;
 
-  set_child_sensitive((bool)wf && has_renderer());
+  set_child_sensitive(static_cast<bool>(wf) && has_renderer());
 
   m_signal_waveform_changed.emit();
 
@@ -463,7 +462,7 @@ void WaveformEditor::set_waveform(const Glib::RefPtr<Waveform> &wf) {
 
 // Return the state of waveform. Can be NULL.
 bool WaveformEditor::has_waveform() {
-  return (bool)get_waveform();
+  return static_cast<bool>(get_waveform());
 }
 
 // Return a pointer to the waveform. Can be NULL.
@@ -601,7 +600,7 @@ void WaveformEditor::center_with_selected_subtitle() {
   int end = renderer()->get_pos_by_time(subtitle.get_end().totalmsecs);
 
   if (start != 0 && end != 0) {
-    int middle = start + int((end - start) * 0.5);
+    int middle = start + static_cast<int>((end - start) * 0.5);
 
     scroll_to_position_and_center(middle);
   }
@@ -714,7 +713,7 @@ bool WaveformEditor::on_motion_notify_event_renderer(GdkEventMotion *ev) {
   if (!subtitle)
     return true;
 
-  SubtitleTime time = renderer()->get_mouse_time((int)ev->x);
+  SubtitleTime time = renderer()->get_mouse_time(static_cast<int>(ev->x));
 
   if ((ev->state & Gdk::BUTTON1_MASK)) {
     move_subtitle_start(time, (ev->state & Gdk::SHIFT_MASK),
@@ -750,8 +749,8 @@ bool WaveformEditor::on_scroll_event_renderer(GdkEventScroll *ev) {
   } else if (ev->state & Gdk::CONTROL_MASK) {  // Zoom
     int center_area =
         renderer()->get_start_area() +
-        (int)((renderer()->get_end_area() - renderer()->get_start_area()) *
-              0.5);
+        static_cast<int>(
+            (renderer()->get_end_area() - renderer()->get_start_area()) * 0.5);
 
     long time = renderer()->get_time_by_pos(center_area);
 

@@ -249,8 +249,10 @@ double get_characters_per_second(const Glib::ustring &text, const long msecs) {
   if (len == 0)
     return 0;
 
-  double cps =
-      static_cast<double>(((double)len * (double)1000) / (double)msecs);
+  auto l = static_cast<double>(len);
+  auto m = static_cast<double>(msecs);
+
+  double cps = (l * 1000.0) / m;
 
   return cps;
 }
@@ -275,10 +277,12 @@ unsigned int get_text_length_for_timing(const Glib::ustring &text) {
 
 // Calculate the minimum acceptable duration for a string of this length.
 unsigned long get_min_duration_msecs(unsigned long textlen, double maxcps) {
-  if (maxcps > 0)
-    return ((long)ceil((1000 * (double)textlen) / maxcps));
-  else
-    return 0;
+  if (maxcps > 0) {
+    auto tl = static_cast<double>(textlen);
+    auto min = ceil((1000 * tl) / maxcps);
+    return static_cast<unsigned long>(min);
+  }
+  return 0;
 }
 
 // Calculate the minimum acceptable duration for a string of this length.

@@ -75,7 +75,7 @@ class TasksPage : public AssistantPage {
   void on_enabled_toggled(const Glib::ustring& path) {
     Gtk::TreeIter it = m_liststore->get_iter(path);
     if (it) {
-      bool enabled = !bool((*it)[m_column.enabled]);
+      bool enabled = !static_cast<bool>((*it)[m_column.enabled]);
       PatternsPage* page = (*it)[m_column.page];
 
       (*it)[m_column.enabled] = enabled;

@@ -106,7 +106,7 @@ class SpruceSTL : public SubtitleFormatIO {
   }
 
   Glib::ustring to_sprucestl_time(const SubtitleTime &t) {
-    int frame = (int)(t.mseconds() * m_framerate_value * 0.001);
+    int frame = static_cast<int>(t.mseconds() * m_framerate_value * 0.001);
 
     return build_message("%02i:%02i:%02i:%02i", t.hours(), t.minutes(),
                          t.seconds(), frame);

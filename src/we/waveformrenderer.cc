@@ -135,21 +135,21 @@ int WaveformRenderer::get_end_area() {
 // return the time of the position in the area
 // time is in msec (SubtitleTime.totalmsecs)
 long WaveformRenderer::get_time_by_pos(int pos) {
-  float width = (float)widget()->get_width() * zoom();
-  float percent = ((float)pos / width);
-  return (long)(m_waveform->get_duration() * percent);
+  float width = static_cast<float>(widget()->get_width()) * zoom();
+  float percent = static_cast<float>(pos) / width;
+  return static_cast<long>(m_waveform->get_duration() * percent);
 }
 
 // return the position of the time in the area
 int WaveformRenderer::get_pos_by_time(long msec) {
-  float duration = (float)m_waveform->get_duration();
+  float duration = static_cast<float>(m_waveform->get_duration());
   if (duration <= 0)
     return 0;
-  float percent = (float)msec / duration;
-  float width = (float)widget()->get_width() * zoom();
+  float percent = static_cast<float>(msec) / duration;
+  float width = static_cast<float>(widget()->get_width()) * zoom();
   float pos = width * percent;
   pos = CLAMP(pos, 0, width);
-  return (int)pos;
+  return static_cast<int>(pos);
 }
 
 // return the position in the area with scrolling support

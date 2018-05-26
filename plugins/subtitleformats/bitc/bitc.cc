@@ -114,7 +114,7 @@ class BITC : public SubtitleFormatIO {
   // Convert time from SE to BITC
   // 0:00:00.000 -> 00:00:00:00 (last 00 are frames, not time!)
   Glib::ustring to_bitc_time(const SubtitleTime &t) {
-    int frame = (int)(t.mseconds() * m_framerate_value * 0.001);
+    int frame = static_cast<int>(t.mseconds() * m_framerate_value * 0.001);
 
     return build_message("%02i:%02i:%02i:%02i", t.hours(), t.minutes(),
                          t.seconds(), frame);

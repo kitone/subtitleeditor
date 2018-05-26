@@ -284,7 +284,7 @@ class PatternsPage : public AssistantPage {
     Gtk::TreeIter it = m_liststore->get_iter(path);
     if (it) {
       Glib::ustring name = (*it)[m_column.name];
-      bool value = !bool((*it)[m_column.enabled]);
+      bool value = !static_cast<bool>((*it)[m_column.enabled]);
 
       (*it)[m_column.enabled] = value;
       m_patternManager.set_active(name, value);

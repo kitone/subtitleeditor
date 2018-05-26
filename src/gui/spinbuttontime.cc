@@ -74,7 +74,7 @@ int SpinButtonTime::on_input(double *new_value) {
     Glib::ustring text = get_text();
 
     if (SubtitleTime::validate(text))
-      *new_value = (double)SubtitleTime(text).totalmsecs;
+      *new_value = static_cast<double>(SubtitleTime(text).totalmsecs);
     else
       *new_value = get_value();
 

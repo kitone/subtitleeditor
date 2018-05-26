@@ -112,7 +112,7 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     gint64 pos = 0, len = 0;
     if (m_pipeline->query_position(fmt, pos) &&
         m_pipeline->query_duration(fmt, len)) {
-      double percent = (double)pos / (double)len;
+      double percent = static_cast<double>(pos) / static_cast<double>(len);
 
       percent = CLAMP(percent, 0.0, 1.0);
 
@@ -133,7 +133,8 @@ class WaveformGenerator : public Gtk::Dialog, public MediaDecoder {
     Gst::Structure structure = msg->get_structure();
     const GValue *array_val =
         gst_structure_get_value(GST_STRUCTURE(structure.gobj()), "rms");
-    GValueArray *rms_arr = (GValueArray *)g_value_get_boxed(array_val);
+    GValueArray *rms_arr =
+        static_cast<GValueArray *>(g_value_get_boxed(array_val));
 
     gint num_channels = rms_arr->n_values;
 

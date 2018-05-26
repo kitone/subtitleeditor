@@ -24,14 +24,14 @@
 #include <string.h>
 #include <utility.h>
 
-const static int MAXBUF = 1024;
-const static char STARTATT[] = "start=";
-const static char SYNCTAG[] = "<Sync";
-const static char BRTAG[] = "<br>";
-const static char CRCHAR = '\r';
-const static char LFCHAR = '\n';
+static const int MAXBUF = 1024;
+static const char STARTATT[] = "start=";
+static const char SYNCTAG[] = "<Sync";
+static const char BRTAG[] = "<br>";
+static const char CRCHAR = '\r';
+static const char LFCHAR = '\n';
 // 12 hours * 60 minutes * 60 seconds * 1000
-const static unsigned long SAMISYNC_MAXVAL = 43200000UL;
+static const unsigned long SAMISYNC_MAXVAL = 43200000UL;
 
 enum sami_state_t {
   SAMI_STATE_INIT = 0,

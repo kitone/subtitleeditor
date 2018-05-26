@@ -593,7 +593,7 @@ class ClipboardPlugin : public Action {
     // FIXME tomas-kitone: this is a clumsy implementation.
     // I think we should add a show_subtitle( Subtitle &sub ) function to class
     // SubtitleView or at least get_iter() or get_path() to class Subtitle
-    SubtitleView *view = (SubtitleView *)doc->widget();
+    SubtitleView *view = reinterpret_cast<SubtitleView *>(doc->widget());
     if (view != NULL) {
       int sub_num = new_subtitles[0].get_num() - 1;
       Gtk::TreeModel::Path sub_path =

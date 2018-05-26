@@ -265,7 +265,7 @@ bool WaveformRendererCairo::on_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
 
     Glib::ustring fps =
         build_message("%d frames in %f seconds = %.3f FPS", 1 /*frame*/,
-                      seconds, (float)(1 /*frame*/ / seconds));
+                      seconds, static_cast<float>(1 /*frame*/ / seconds));
 
     set_color(cr, m_color_text);
     cr->move_to(10, get_height() - 10);
@@ -423,8 +423,9 @@ void WaveformRendererCairo::draw_channel(
   int skip = 4;
   int z = zoom();
 
-  double begin = peaks.size() * ((double)get_start_area() / (width * z));
-  double move = peaks.size() * ((double)skip / (width * z));
+  double begin =
+      peaks.size() * (static_cast<double>(get_start_area()) / (width * z));
+  double move = peaks.size() * (static_cast<double>(skip) / (width * z));
   int length = width;
   int peaks_size = peaks.size();
 
@@ -437,7 +438,7 @@ void WaveformRendererCairo::draw_channel(
 
   cr->line_to(0, bottom);
   for (int t = 0; t < length; t += skip, x += move) {
-    int px = (int)x;
+    int px = static_cast<int>(x);
     if (px > peaks_size)
       break;
     double peakOnScreen = peaks[px] * scale_value;

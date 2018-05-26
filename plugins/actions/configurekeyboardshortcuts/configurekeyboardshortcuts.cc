@@ -27,7 +27,7 @@
 
 static gboolean accel_find_func(GtkAccelKey * /*key*/, GClosure *closure,
                                 gpointer data) {
-  return (GClosure *)data == closure;
+  return static_cast<GClosure *>(data) == closure;
 }
 
 class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
@@ -338,8 +338,9 @@ class DialogConfigureKeyboardShortcuts : public Gtk::Dialog {
     if (Gtk::AccelMap::change_entry(action->get_accel_path(), 0,
                                     (Gdk::ModifierType)0, false)) {
       (*iter)[m_columns.shortcut] = Glib::ustring();
-    } else
+    } else {
       dialog_error(_("Removing shortcut failed."), "");
+    }
   }
 
   void execute(Glib::RefPtr<Gtk::UIManager> ui) {

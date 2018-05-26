@@ -106,8 +106,8 @@ class MPsub : public SubtitleFormatIO {
       start = sub.get_start();
       end = sub.get_end();
 
-      double s = (double)((start - previous_end).totalmsecs) * 0.001;
-      double d = (double)(sub.get_duration().totalmsecs) * 0.001;
+      double s = static_cast<double>((start - previous_end).totalmsecs) * 0.001;
+      double d = static_cast<double>(sub.get_duration().totalmsecs) * 0.001;
 
       // start duration
       // text

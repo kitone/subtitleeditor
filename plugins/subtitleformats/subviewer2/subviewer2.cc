@@ -88,8 +88,9 @@ class SubViewer2 : public SubtitleFormatIO {
   }
 
   Glib::ustring to_subviewer_time(const SubtitleTime &t) {
+    auto hundredths = static_cast<int>((t.mseconds() + 5) / 10);
     return build_message("%02i:%02i:%02i.%02i", t.hours(), t.minutes(),
-                         t.seconds(), (int)((t.mseconds() + 5) / 10));
+                         t.seconds(), hundredths);
   }
 };
 
