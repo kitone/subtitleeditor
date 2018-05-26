@@ -308,7 +308,7 @@ class ViewManagerPlugin : public Action {
   void check_config() {
     Glib::ustring group = "view-manager";
 
-    if (!cfg::get_keys(group).empty())
+    if (cfg::has_group(group) && !cfg::get_keys(group).empty())
       return;
 
     cfg::set_string(group, _("Simple"), "number;start;end;duration;text");
