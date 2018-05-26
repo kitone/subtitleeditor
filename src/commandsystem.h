@@ -28,7 +28,7 @@ class Document;
 
 class CommandGroup : public Command {
  public:
-  CommandGroup(const Glib::ustring &description);
+  explicit CommandGroup(const Glib::ustring &description);
   ~CommandGroup();
 
   void add(Command *cmd);
@@ -42,7 +42,7 @@ class CommandGroup : public Command {
 
 class CommandSystem {
  public:
-  CommandSystem(Document &doc);
+  explicit CommandSystem(Document &doc);
 
   virtual ~CommandSystem();
 

@@ -29,7 +29,7 @@ class SubtitleModel;
 
 class SubtitleView : public Gtk::TreeView {
  public:
-  SubtitleView(Document &doc);
+  explicit SubtitleView(Document &doc);
   ~SubtitleView();
 
   // return first iter select

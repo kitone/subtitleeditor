@@ -26,7 +26,7 @@
 
 class PreferencePage : public Gtk::Box {
  public:
-  PreferencePage(BaseObjectType *cobject) : Gtk::Box(cobject) {
+  explicit PreferencePage(BaseObjectType *cobject) : Gtk::Box(cobject) {
   }
 
   // Get widget from.ui::xml and init/connect with config.

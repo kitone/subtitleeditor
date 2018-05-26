@@ -27,7 +27,7 @@
 class Reader {
  public:
   // Constructor.
-  Reader(const Glib::ustring &data = Glib::ustring());
+  explicit Reader(const Glib::ustring &data = Glib::ustring());
 
   // Destructor
   virtual ~Reader();

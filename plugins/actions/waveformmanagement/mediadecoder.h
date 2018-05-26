@@ -31,7 +31,7 @@
 // Class to help with gstreamer(mm)
 class MediaDecoder : virtual public sigc::trackable {
  public:
-  MediaDecoder(guint timeout = 0) : m_watch_id(0), m_timeout(timeout) {
+  explicit MediaDecoder(guint timeout = 0) : m_watch_id(0), m_timeout(timeout) {
   }
 
   virtual ~MediaDecoder() {

@@ -28,7 +28,7 @@
 class ComboBoxEncoding : public Gtk::ComboBoxText {
  public:
   // Constructor
-  ComboBoxEncoding(bool auto_detected);
+  explicit ComboBoxEncoding(bool auto_detected);
 
   // Constructor
   ComboBoxEncoding(BaseObjectType *cobject,

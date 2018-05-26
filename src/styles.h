@@ -26,7 +26,7 @@ class Document;
 
 class Styles {
  public:
-  Styles(Document &doc);
+  explicit Styles(Document &doc);
   ~Styles();
 
   unsigned int size();

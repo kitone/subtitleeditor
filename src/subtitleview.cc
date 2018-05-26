@@ -143,7 +143,7 @@ class TimeCell : public Gtk::CellEditable, public Gtk::TextView {
 template <class T>
 class SubtitleViewCellRendererCustom : public CellRendererCustom<T> {
  public:
-  SubtitleViewCellRendererCustom(Document *doc)
+  explicit SubtitleViewCellRendererCustom(Document *doc)
       : CellRendererCustom<T>(), m_document(doc) {
     se_dbg(SE_DBG_VIEW);
   }
@@ -200,7 +200,7 @@ class SubtitleViewCellRendererCustom : public CellRendererCustom<T> {
 // Represents a cell time.
 class CellRendererTime : public SubtitleViewCellRendererCustom<TimeCell> {
  public:
-  CellRendererTime(Document *doc)
+  explicit CellRendererTime(Document *doc)
       : SubtitleViewCellRendererCustom<TimeCell>(doc) {
     property_editable() = true;
     property_yalign() = 0.0;
@@ -223,7 +223,7 @@ class CellRendererCPS : public Gtk::CellRendererText {
 class CellRendererTextMultiline
     : public SubtitleViewCellRendererCustom<TextViewCell> {
  public:
-  CellRendererTextMultiline(Document *doc)
+  explicit CellRendererTextMultiline(Document *doc)
       : SubtitleViewCellRendererCustom<TextViewCell>(doc) {
     property_editable() = true;
     property_yalign() = 0.0;

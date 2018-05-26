@@ -25,7 +25,7 @@
 
 class AdobeEncoreDVD : public SubtitleFormatIO {
  public:
-  AdobeEncoreDVD(FRAMERATE framerate) : m_framerate(framerate) {
+  explicit AdobeEncoreDVD(FRAMERATE framerate) : m_framerate(framerate) {
     m_framerate_value = get_framerate_value(m_framerate);
   }
 

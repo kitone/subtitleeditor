@@ -29,7 +29,7 @@ class AutomaticSpellChecker : public Glib::ObjectBase {
  protected:
   // The instance is attached to the textview,
   // it will be destroy himself with the textview.
-  AutomaticSpellChecker(Gtk::TextView *textview);
+  explicit AutomaticSpellChecker(Gtk::TextView *textview);
 
   virtual ~AutomaticSpellChecker();
 

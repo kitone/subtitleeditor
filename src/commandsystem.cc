@@ -25,7 +25,7 @@
 
 class SubtitleSelectionCommand : public Command {
  public:
-  SubtitleSelectionCommand(Document *doc)
+  explicit SubtitleSelectionCommand(Document *doc)
       : Command(doc, _("Subtitle Selection")) {
     std::vector<Gtk::TreeModel::Path> rows =
         get_document_subtitle_view()->get_selection()->get_selected_rows();

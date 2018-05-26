@@ -51,7 +51,7 @@ class FramerateChooserDialog : public Gtk::Dialog {
  public:
   enum Action { IMPORT, EXPORT };
 
-  FramerateChooserDialog(Action action = IMPORT);
+  explicit FramerateChooserDialog(Action action = IMPORT);
 
   // Launch the dialog and return the framerate value.
   FRAMERATE execute();

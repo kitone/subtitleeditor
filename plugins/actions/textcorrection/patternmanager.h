@@ -29,7 +29,7 @@ class PatternManager {
   // Read and create all patterns as type from the install directory
   // and the user profile directory.
   // type: 'common-error', 'hearing-impaired'
-  PatternManager(const Glib::ustring &type);
+  explicit PatternManager(const Glib::ustring &type);
 
   // Delete patterns.
   ~PatternManager();
