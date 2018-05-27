@@ -65,7 +65,7 @@ class ErrorCheckingGroup : public std::vector<ErrorChecking *> {
       if ((*it)->get_name() == name)
         return *it;
     }
-    return NULL;
+    return nullptr;
   }
 };
 
@@ -128,13 +128,13 @@ class DialogErrorChecking : public Gtk::Dialog {
 
   void on_quit() {
     delete m_static_instance;
-    m_static_instance = NULL;
+    m_static_instance = nullptr;
   }
 
   bool on_delete_event(GdkEventAny *ev) {
     se_dbg(SE_DBG_PLUGINS);
 
-    m_static_instance = NULL;
+    m_static_instance = nullptr;
 
     return Gtk::Window::on_delete_event(ev);
   }
@@ -521,7 +521,7 @@ class DialogErrorChecking : public Gtk::Dialog {
   bool fix_selected(Gtk::TreeIter &iter) {
     ErrorChecking *checker = (*iter)[m_column.checker];
 
-    if (checker == NULL)
+    if (checker == nullptr)
       return false;
 
     Document *doc = get_document();
@@ -667,7 +667,7 @@ class DialogErrorChecking : public Gtk::Dialog {
 };
 
 // static instance of the dialog
-DialogErrorChecking *DialogErrorChecking::m_static_instance = NULL;
+DialogErrorChecking *DialogErrorChecking::m_static_instance = nullptr;
 
 // Error Checking Plugin
 class ErrorCheckingPlugin : public Action {
@@ -712,7 +712,7 @@ class ErrorCheckingPlugin : public Action {
     ui->remove_action_group(action_group);
 
     DialogErrorChecking *dialog = DialogErrorChecking::get_instance();
-    if (dialog != NULL)
+    if (dialog != nullptr)
       dialog->on_quit();
   }
 

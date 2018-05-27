@@ -118,8 +118,8 @@ class Player {
 
   // Return the framerate of the video.
   // Update numerator and denominator if the values are not null.
-  virtual float get_framerate(int *numerator = NULL,
-                              int *denominator = NULL) = 0;
+  virtual float get_framerate(int *numerator = nullptr,
+                              int *denominator = nullptr) = 0;
 
   void set_keyframes(Glib::RefPtr<KeyFrames> keyframes);
 

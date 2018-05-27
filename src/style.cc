@@ -26,7 +26,7 @@
 // static
 StyleColumnRecorder Style::column;
 
-Style::Style() : m_document(NULL) {
+Style::Style() : m_document(nullptr) {
 }
 
 Style::Style(Document *doc, const Gtk::TreeIter &iter)

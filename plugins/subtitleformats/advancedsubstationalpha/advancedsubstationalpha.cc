@@ -66,7 +66,7 @@ class DialogAdvancedSubStationAlphaPreferences : public Gtk::Dialog {
  public:
   DialogAdvancedSubStationAlphaPreferences(
       BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &xml)
-      : Gtk::Dialog(cobject), m_comboLineBreakPolicy(NULL) {
+      : Gtk::Dialog(cobject), m_comboLineBreakPolicy(nullptr) {
     xml->get_widget_derived("combo-line-break-policy", m_comboLineBreakPolicy);
 
     m_comboLineBreakPolicy->signal_changed().connect(

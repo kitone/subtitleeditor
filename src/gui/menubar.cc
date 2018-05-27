@@ -21,7 +21,7 @@
 #include "menubar.h"
 #include "utility.h"
 
-MenuBar::MenuBar() : Gtk::VBox(false, 0), m_statusbar(NULL) {
+MenuBar::MenuBar() : Gtk::VBox(false, 0), m_statusbar(nullptr) {
   m_refUIManager = Gtk::UIManager::create();
 }
 

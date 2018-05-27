@@ -114,7 +114,7 @@ EncodingInfo *Encodings::get_from_charset(const Glib::ustring &charset) {
     if (charset == encodings_info[i].charset)
       return &encodings_info[i];
   }
-  return NULL;
+  return nullptr;
 }
 
 // Return a human readable string or empty string, ex:

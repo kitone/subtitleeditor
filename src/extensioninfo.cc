@@ -29,7 +29,7 @@ ExtensionInfo::ExtensionInfo() {
   active = false;
   hidden = false;
   fhs_directory = false;
-  extension = NULL;
+  extension = nullptr;
 }
 
 // Destructor.

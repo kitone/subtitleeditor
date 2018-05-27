@@ -37,7 +37,7 @@ Document::Document()
     : CommandSystem(*this),
       m_subtitles(*this),
       m_styles(*this),
-      m_subtitleView(NULL) {
+      m_subtitleView(nullptr) {
   m_timing_mode = TIME;
   m_edit_timing_mode = TIME;
   m_framerate = FRAMERATE_25;
@@ -76,7 +76,7 @@ Document::Document(Document &src, bool copy_subtitles)
     : CommandSystem(*this),
       m_subtitles(*this),
       m_styles(*this),
-      m_subtitleView(NULL) {
+      m_subtitleView(nullptr) {
   m_timing_mode = src.m_timing_mode;
   m_edit_timing_mode = src.m_edit_timing_mode;
   m_framerate = src.m_framerate;
@@ -247,7 +247,7 @@ ScriptInfo &Document::get_script_info() {
 
 // Return the (Gtk) subtitle view of the document.
 SubtitleView *Document::get_subtitle_view() {
-  if (m_subtitleView == NULL)
+  if (m_subtitleView == nullptr)
     create_subtitle_view();
 
   return m_subtitleView;
@@ -484,7 +484,7 @@ Document *Document::create_from_file(const Glib::ustring &uri,
     dialog.add_button(Gtk::Stock::OK, Gtk::RESPONSE_OK);
     dialog.run();
   }
-  return NULL;
+  return nullptr;
 }
 
 // Return a signal connector from his name.

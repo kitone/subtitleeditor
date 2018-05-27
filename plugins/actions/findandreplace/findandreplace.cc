@@ -451,7 +451,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
 
   // Create a single instance of the dialog.
   static void create() {
-    if (m_instance == NULL) {
+    if (m_instance == nullptr) {
       m_instance = gtkmm_utility::get_widget_derived<DialogFindAndReplace>(
           SE_DEV_VALUE(SE_PLUGIN_PATH_UI, SE_PLUGIN_PATH_DEV),
           "dialog-find-and-replace.ui", "dialog-find-and-replace");
@@ -603,7 +603,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
       m_connection_subtitle_deleted.disconnect();
 
       delete m_instance;
-      m_instance = NULL;
+      m_instance = nullptr;
     }
   }
 
@@ -734,7 +734,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
 };
 
 // Static instance of the dialog
-DialogFindAndReplace *DialogFindAndReplace::m_instance = NULL;
+DialogFindAndReplace *DialogFindAndReplace::m_instance = nullptr;
 
 // Plugin
 class FindAndReplacePlugin : public Action {

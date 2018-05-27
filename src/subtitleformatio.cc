@@ -23,7 +23,7 @@
 #include "subtitleformatio.h"
 
 SubtitleFormatIO::SubtitleFormatIO() {
-  m_document = NULL;
+  m_document = nullptr;
 }
 
 SubtitleFormatIO::~SubtitleFormatIO() {

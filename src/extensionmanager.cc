@@ -261,7 +261,7 @@ ExtensionInfo *ExtensionManager::get_extension_info(const Glib::ustring &name) {
         return ext_info;
     }
   }
-  return NULL;
+  return nullptr;
 }
 
 // Enable or disable extension.
@@ -271,7 +271,7 @@ bool ExtensionManager::set_extension_active(const Glib::ustring &name,
 
   ExtensionInfo *info = get_extension_info(name);
 
-  if (info == NULL)
+  if (info == nullptr)
     return false;
 
   bool res = (state) ? activate(info) : deactivate(info);
@@ -328,7 +328,7 @@ bool ExtensionManager::deactivate(ExtensionInfo *info) {
 
     if (info->extension)
       delete info->extension;
-    info->extension = NULL;
+    info->extension = nullptr;
 
     se_dbg_msg(SE_DBG_APP, "delete module...");
 
@@ -383,7 +383,7 @@ void ExtensionManager::open_module(ExtensionInfo *info) {
   }
 
   // Get the register function
-  void *func = NULL;
+  void *func = nullptr;
   if (module->get_symbol("extension_register", func) == false) {
     throw SubtitleError(Glib::ustring::compose(
         "Failed to get the extension_register function: %1",

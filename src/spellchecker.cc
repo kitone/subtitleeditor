@@ -18,7 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include <cfg.h>
+#include "cfg.h"
 #include <debug.h>
 #include <enchant.h>
 #include "spellchecker.h"
@@ -101,7 +101,7 @@ class SEEnchantDict {
     g_return_if_fail(!utf8word.empty());
 
     size_t n_suggs = 0;
-    char **suggs = NULL;
+    char **suggs = nullptr;
 
     out_suggestions.clear();
 

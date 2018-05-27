@@ -38,12 +38,12 @@ class DialogPreferences : public Gtk::Dialog {
       : Gtk::Dialog(cobject) {
     utility::set_transient_parent(*this);
 
-    InterfacePage *interface = NULL;
-    DocumentPage *document = NULL;
-    WaveformPage *waveform = NULL;
-    VideoPlayerPage *videoplayer = NULL;
-    TimingPage *timing = NULL;
-    ExtensionPage *extension = NULL;
+    InterfacePage *interface = nullptr;
+    DocumentPage *document = nullptr;
+    WaveformPage *waveform = nullptr;
+    VideoPlayerPage *videoplayer = nullptr;
+    TimingPage *timing = nullptr;
+    ExtensionPage *extension = nullptr;
 
     xml->get_widget_derived("box-interface", interface);
     xml->get_widget_derived("box-document", document);

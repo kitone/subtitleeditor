@@ -39,7 +39,7 @@ Glib::ustring build_message(const char *format, ...) {
   Glib::ustring res;
 
   va_list args;
-  char *formatted = NULL;
+  char *formatted = nullptr;
 
   va_start(args, format);
   formatted = g_strdup_vprintf(format, args);

@@ -21,14 +21,14 @@
 #include "documentsystem.h"
 #include "utility.h"
 
-DocumentSystem::DocumentSystem() : m_currentDocument(NULL) {
+DocumentSystem::DocumentSystem() : m_currentDocument(nullptr) {
   se_dbg(SE_DBG_APP);
 }
 
 DocumentSystem::~DocumentSystem() {
   se_dbg(SE_DBG_APP);
 
-  m_currentDocument = NULL;
+  m_currentDocument = nullptr;
 
   for (const auto& doc : m_listDocuments) {
     delete doc;
@@ -59,12 +59,12 @@ void DocumentSystem::remove(Document* doc) {
   m_listDocuments.remove(doc);
 
   if (m_currentDocument == doc) {
-    setCurrentDocument(NULL);
+    setCurrentDocument(nullptr);
   }
   m_signal_document_delete(doc);
 
   delete doc;
-  doc = NULL;
+  doc = nullptr;
 }
 
 sigc::signal<void, Document*>& DocumentSystem::signal_document_create() {
@@ -98,14 +98,14 @@ void DocumentSystem::setCurrentDocument(Document* doc) {
     m_currentDocument = doc;
     m_signal_current_document_changed(doc);
   } else {
-    m_currentDocument = NULL;
+    m_currentDocument = nullptr;
     m_signal_current_document_changed(NULL);
   }
 }
 
 Document* DocumentSystem::getCurrentDocument() {
-  if (m_currentDocument == NULL) {
-    return NULL;
+  if (m_currentDocument == nullptr) {
+    return nullptr;
   }
   return m_currentDocument;
 }
@@ -123,7 +123,7 @@ Document* DocumentSystem::getDocument(const Glib::ustring& filename) {
   }
   se_dbg_msg(SE_DBG_APP, "return NULL: FAILED");
 
-  return NULL;
+  return nullptr;
 }
 
 // find a unique name (like "Untitled-5") for a new document

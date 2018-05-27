@@ -134,7 +134,7 @@ class Sami : public SubtitleFormatIO {
     Glib::ustring text;
     Subtitle curSt;
     char tmptext[MAXBUF + 1] = "";
-    char *p = NULL, *q = NULL;
+    char *p = nullptr, *q = nullptr;
     if (!file.getline(line))
       return;
 

@@ -467,7 +467,7 @@ class ClipboardPlugin : public Action {
   // Clear clipboard document by first destroying it
   // and optionally recreating it as en empty copy of the supplied document.
   // If you don't want a new clipdoc created, supply doc = NULL.
-  bool clear_clipdoc(Document *doc = NULL) {
+  bool clear_clipdoc(Document *doc = nullptr) {
     se_dbg(SE_DBG_PLUGINS);
 
     if (clipdoc != NULL) {

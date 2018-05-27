@@ -132,7 +132,7 @@ void SubtitleFormatSystem::open_from_reader(Document *document, Reader *reader,
 
   // We only have an uri and a charset when it's read from a file (FileReader)
   FileReader *filereader = dynamic_cast<FileReader *>(reader);
-  if (filereader != NULL) {
+  if (filereader != nullptr) {
     document->setFilename(Glib::filename_from_uri(filereader->get_uri()));
     document->setCharset(filereader->get_charset());
   }

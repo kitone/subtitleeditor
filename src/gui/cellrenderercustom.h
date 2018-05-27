@@ -63,7 +63,7 @@ Gtk::CellEditable* CellRendererCustom<T>::start_editing_vfunc(
   se_dbg(SE_DBG_VIEW);
 
   if (!property_editable())
-    return NULL;
+    return nullptr;
 
   m_editable = manage(new T);
   m_editable->set_size_request(cell_area.get_width(), cell_area.get_height());
