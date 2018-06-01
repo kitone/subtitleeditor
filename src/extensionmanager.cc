@@ -106,8 +106,8 @@ void ExtensionManager::load_path(const Glib::ustring &path,
 
     std::vector<Glib::ustring> files(dir.begin(), dir.end());
 
-    for (unsigned int i = 0; i < files.size(); ++i) {
-      Glib::ustring filename = Glib::build_filename(path, files[i]);
+    for (const auto &f : files) {
+      Glib::ustring filename = Glib::build_filename(path, f);
 
       if (Glib::file_test(filename, Glib::FILE_TEST_IS_DIR))
         load_path(filename, fhs_directory);
