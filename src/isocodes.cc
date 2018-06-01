@@ -93,8 +93,7 @@ void init_isocodes() {
 Glib::ustring from_isocodes(const Glib::ustring &domain,
                             std::map<Glib::ustring, Glib::ustring> &isocodes,
                             const Glib::ustring &code) {
-  std::map<Glib::ustring, Glib::ustring>::const_iterator it =
-      isocodes.find(code);
+  auto it = isocodes.find(code);
   if (it == isocodes.end())
     return code;
   return dgettext(domain.c_str(), it->second.c_str());
