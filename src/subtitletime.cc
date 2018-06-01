@@ -27,7 +27,7 @@
 #include "subtitletime.h"
 #include "utility.h"
 
-SubtitleTime::SubtitleTime() : totalmsecs(0) {
+SubtitleTime::SubtitleTime() {
 }
 
 SubtitleTime::SubtitleTime(const long &total) : totalmsecs(total) {

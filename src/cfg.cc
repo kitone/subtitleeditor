@@ -38,7 +38,7 @@ class Configuration {
   typedef map<ustring, SignalChanged> SignalGroup;
 
  public:
-  Configuration() : m_keyfile_initialized(false) {
+  Configuration() {
   }
 
   ~Configuration() {
@@ -95,7 +95,7 @@ class Configuration {
   }
 
  protected:
-  bool m_keyfile_initialized;
+  bool m_keyfile_initialized{false};
   Glib::KeyFile m_keyfile;
   SignalGroup m_signals;
 };

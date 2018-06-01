@@ -49,7 +49,7 @@ class KeyFrames : public std::vector<long> {
   ~KeyFrames();
 
  protected:
-  mutable int ref_count_;
+  mutable int ref_count_{0};
   Glib::ustring m_uri;
   Glib::ustring m_video_uri;
 };

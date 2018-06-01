@@ -185,7 +185,7 @@ class SubtitleView : public Gtk::TreeView {
   Glib::RefPtr<StyleModel> m_styleModel;
 
   // pointe sur les columns par rapport a leur nom
-  Gtk::TreeViewColumn *m_currentColumn;
+  Gtk::TreeViewColumn *m_currentColumn{nullptr};
   std::map<Glib::ustring, Gtk::TreeViewColumn *> m_columns;
 
   Gtk::Menu m_menu_popup;

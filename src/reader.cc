@@ -26,7 +26,6 @@
 
 // Constructor.
 Reader::Reader(const Glib::ustring &data) : m_data(data) {
-  m_lines_init = false;
 }
 
 Reader::~Reader() {

@@ -34,16 +34,7 @@
 // Constructor
 // The default values of the document are sets from the user config.
 Document::Document()
-    : CommandSystem(*this),
-      m_subtitles(*this),
-      m_styles(*this),
-      m_subtitleView(nullptr) {
-  m_timing_mode = TIME;
-  m_edit_timing_mode = TIME;
-  m_framerate = FRAMERATE_25;
-
-  m_document_changed = false;
-
+    : CommandSystem(*this), m_subtitles(*this), m_styles(*this) {
   // sets default encoding value
   Glib::ustring default_encoding = cfg::get_string("encodings", "default");
 
@@ -73,15 +64,10 @@ Document::Document()
 
 // Constructor by copy
 Document::Document(Document &src, bool copy_subtitles)
-    : CommandSystem(*this),
-      m_subtitles(*this),
-      m_styles(*this),
-      m_subtitleView(nullptr) {
+    : CommandSystem(*this), m_subtitles(*this), m_styles(*this) {
   m_timing_mode = src.m_timing_mode;
   m_edit_timing_mode = src.m_edit_timing_mode;
   m_framerate = src.m_framerate;
-
-  m_document_changed = false;
 
   m_subtitleModel = Glib::RefPtr<SubtitleModel>(new SubtitleModel(this));
   m_styleModel = Glib::RefPtr<StyleModel>(new StyleModel);

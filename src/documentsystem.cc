@@ -21,7 +21,7 @@
 #include "documentsystem.h"
 #include "utility.h"
 
-DocumentSystem::DocumentSystem() : m_currentDocument(nullptr) {
+DocumentSystem::DocumentSystem() {
   se_dbg(SE_DBG_APP);
 }
 

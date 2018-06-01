@@ -57,10 +57,10 @@ class Waveform {
 
   Glib::ustring m_waveform_uri;
   Glib::ustring m_video_uri;
-  guint m_n_channels;
+  guint m_n_channels{0};
   std::vector<double> m_channels[3];
-  gint64 m_duration;
+  gint64 m_duration{0};
 
  protected:
-  mutable int ref_count_;
+  mutable int ref_count_{0};
 };

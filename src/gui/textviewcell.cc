@@ -27,10 +27,7 @@
 // Constructor
 // Initialize the widget with the AutomaticSpellChecker.
 TextViewCell::TextViewCell()
-    : Glib::ObjectBase(typeid(TextViewCell)),
-      Gtk::CellEditable(),
-      m_editing_canceled(false),
-      m_used_ctrl_enter_to_confirm_change(false) {
+    : Glib::ObjectBase(typeid(TextViewCell)), Gtk::CellEditable() {
   se_dbg(SE_DBG_VIEW);
 
   m_used_ctrl_enter_to_confirm_change =

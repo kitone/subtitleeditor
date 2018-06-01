@@ -37,7 +37,7 @@ Glib::RefPtr<Waveform> Waveform::create_from_file(const Glib::ustring &uri) {
   return wf;
 }
 
-Waveform::Waveform() : m_n_channels(0), m_duration(0), ref_count_(0) {
+Waveform::Waveform() {
   reference();
 }
 

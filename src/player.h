@@ -140,7 +140,7 @@ class Player {
   sigc::connection m_timeout_connection;
   sigc::signal<void, long, long, double> m_signal_tick;
 
-  Player::State m_player_state;
+  Player::State m_player_state{NONE};
 
   Glib::RefPtr<KeyFrames> m_keyframes;
 };

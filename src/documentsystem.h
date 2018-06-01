@@ -61,7 +61,7 @@ class DocumentSystem {
  protected:
   DocumentList m_listDocuments;
 
-  Document* m_currentDocument;
+  Document* m_currentDocument{nullptr};
 
   sigc::signal<void, Document*> m_signal_document_create;
   sigc::signal<void, Document*> m_signal_document_delete;

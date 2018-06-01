@@ -41,6 +41,6 @@ class MenuBar : public Gtk::VBox {
                      Gtk::Widget *widget);
 
  protected:
-  Statusbar *m_statusbar;
+  Statusbar *m_statusbar{nullptr};
   Glib::RefPtr<Gtk::UIManager> m_refUIManager;
 };

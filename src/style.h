@@ -54,6 +54,6 @@ class Style {
 
  protected:
   static StyleColumnRecorder column;
-  Document *m_document;
+  Document *m_document{nullptr};
   Gtk::TreeIter m_iter;
 };

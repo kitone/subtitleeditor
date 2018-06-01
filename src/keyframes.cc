@@ -25,7 +25,7 @@
 #include "keyframes.h"
 #include "utility.h"
 
-KeyFrames::KeyFrames() : ref_count_(0) {
+KeyFrames::KeyFrames() {
   reference();
 }
 

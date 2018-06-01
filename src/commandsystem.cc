@@ -96,8 +96,7 @@ void CommandGroup::restore() {
 
 // Constructor
 // get the maximum stack to config
-CommandSystem::CommandSystem(Document &doc)
-    : m_document(doc), m_max_undo_stack(10), m_is_recording(false) {
+CommandSystem::CommandSystem(Document &doc) : m_document(doc) {
   m_max_undo_stack = cfg::get_int("interface", "max-undo");
 
   cfg::signal_changed("interface")

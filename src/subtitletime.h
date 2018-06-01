@@ -87,7 +87,7 @@ class SubtitleTime {
                                 const float &framerate);
 
  public:
-  long totalmsecs;
+  long totalmsecs{0};
 };
 
 // return hours:mins:secs,msecs

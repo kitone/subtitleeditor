@@ -51,7 +51,7 @@ class Reader {
 
  protected:
   Glib::ustring m_data;
-  bool m_lines_init;
+  bool m_lines_init{false};
   std::vector<Glib::ustring>::const_iterator m_iter;
   std::vector<Glib::ustring> m_lines;
 };

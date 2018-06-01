@@ -51,7 +51,7 @@ class TextViewCell : public Gtk::CellEditable, public Gtk::TextView {
   void on_remove_widget();
 
  protected:
-  bool m_editing_canceled;
+  bool m_editing_canceled{false};
   // User preference to confirm and exit editing
-  bool m_used_ctrl_enter_to_confirm_change;
+  bool m_used_ctrl_enter_to_confirm_change{false};
 };

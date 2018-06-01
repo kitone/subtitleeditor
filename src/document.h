@@ -251,11 +251,11 @@ class Document : protected CommandSystem {
   // this is only use for the export
   Glib::ustring m_newline;
   // (Internal/Model) timing mode of the subtitle
-  TIMING_MODE m_timing_mode;
+  TIMING_MODE m_timing_mode{TIME};
   // (External/View) timing mode used for the editing of the subtitle
-  TIMING_MODE m_edit_timing_mode;
+  TIMING_MODE m_edit_timing_mode{TIME};
   // Framerate of the document
-  FRAMERATE m_framerate;
+  FRAMERATE m_framerate{FRAMERATE_25};
   // Subtitles interface to modify the subtitle model (do not used directly the
   // SubtitleModel)
   Subtitles m_subtitles;
@@ -267,11 +267,11 @@ class Document : protected CommandSystem {
   // StyleModel attached to the document
   Glib::RefPtr<StyleModel> m_styleModel;
   // SubtitleView attached to the document
-  SubtitleView *m_subtitleView;
+  SubtitleView *m_subtitleView{nullptr};
   // SubtitleModel attached to the document
   Glib::RefPtr<SubtitleModel> m_subtitleModel;
   //
-  bool m_document_changed;
+  bool m_document_changed{false};
   // list of signals ('document-changed', 'timing-mode-changed' ...)
   std::map<std::string, sigc::signal<void> > m_signal;
   // signal connector to display a message to the ui

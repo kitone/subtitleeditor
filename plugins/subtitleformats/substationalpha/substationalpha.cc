@@ -98,10 +98,10 @@ class DialogSubStationAlphaPreferences : public Gtk::Dialog {
 };
 
 class SubStationAlpha : public SubtitleFormatIO {
-  int m_line_break_policy;
+  int m_line_break_policy{3};
 
  public:
-  SubStationAlpha() : m_line_break_policy(3) {
+  SubStationAlpha() {
     read_config_line_break_policy();
   }
 

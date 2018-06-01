@@ -249,8 +249,6 @@ class CellRendererTextMultiline
 
 // SubtitleView Constructor
 SubtitleView::SubtitleView(Document &doc) {
-  m_currentColumn = NULL;
-
   m_refDocument = &doc;
 
   m_subtitleModel = m_refDocument->get_subtitle_model();
@@ -390,8 +388,8 @@ void SubtitleView::createColumns() {
 void SubtitleView::createColumnNum() {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
-  Gtk::CellRendererText *renderer = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
+  Gtk::CellRendererText *renderer = nullptr;
 
   column = create_treeview_column("number");
   renderer = manage(new Gtk::CellRendererText);
@@ -411,8 +409,8 @@ void SubtitleView::createColumnNum() {
 void SubtitleView::createColumnLayer() {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
-  Gtk::CellRendererText *renderer = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
+  Gtk::CellRendererText *renderer = nullptr;
 
   column = create_treeview_column("layer");
   renderer = manage(new Gtk::CellRendererText);
@@ -553,8 +551,8 @@ void SubtitleView::createColumnDuration() {
 void SubtitleView::createColumnStyle() {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
-  Gtk::CellRendererCombo *renderer = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
+  Gtk::CellRendererCombo *renderer = nullptr;
 
   column = create_treeview_column("style");
   renderer = manage(new Gtk::CellRendererCombo);
@@ -633,7 +631,7 @@ void SubtitleView::createColumnText() {
   }
   // cpl
   {
-    Gtk::CellRendererText *renderer = NULL;
+    Gtk::CellRendererText *renderer = nullptr;
     renderer = manage(new Gtk::CellRendererText);
 
     column->pack_start(*renderer, false);
@@ -673,7 +671,7 @@ void SubtitleView::createColumnTranslation() {
   }
   // cpl
   {
-    Gtk::CellRendererText *renderer = NULL;
+    Gtk::CellRendererText *renderer = nullptr;
     renderer = manage(new Gtk::CellRendererText);
 
     column->pack_end(*renderer, false);
@@ -710,8 +708,8 @@ void SubtitleView::createColumnNote() {
 void SubtitleView::createColumnEffect() {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
-  Gtk::CellRendererText *renderer = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
+  Gtk::CellRendererText *renderer = nullptr;
 
   column = create_treeview_column("effect");
   renderer = manage(new Gtk::CellRendererText);
@@ -733,8 +731,8 @@ void SubtitleView::createColumnEffect() {
 void SubtitleView::createColumnMarginR() {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
-  Gtk::CellRendererText *renderer = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
+  Gtk::CellRendererText *renderer = nullptr;
 
   column = create_treeview_column("margin-r");
   renderer = manage(new Gtk::CellRendererText);
@@ -754,8 +752,8 @@ void SubtitleView::createColumnMarginR() {
 void SubtitleView::createColumnMarginL() {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
-  Gtk::CellRendererText *renderer = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
+  Gtk::CellRendererText *renderer = nullptr;
 
   column = create_treeview_column("margin-l");
   renderer = manage(new Gtk::CellRendererText);
@@ -775,8 +773,8 @@ void SubtitleView::createColumnMarginL() {
 void SubtitleView::createColumnMarginV() {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
-  Gtk::CellRendererText *renderer = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
+  Gtk::CellRendererText *renderer = nullptr;
 
   column = create_treeview_column("margin-v");
   renderer = manage(new Gtk::CellRendererText);
@@ -1069,11 +1067,11 @@ void SubtitleView::select_and_set_cursor(const Gtk::TreeIter &iter,
                                          bool start_editing) {
   se_dbg(SE_DBG_VIEW);
 
-  Gtk::TreeViewColumn *column = NULL;
+  Gtk::TreeViewColumn *column = nullptr;
   Gtk::TreeModel::Path path;
   get_cursor(path, column);
 
-  if (column == NULL)
+  if (column == nullptr)
     column = m_columns["text"];
 
   get_selection()->select(iter);
@@ -1086,7 +1084,7 @@ void SubtitleView::select_and_set_cursor(const Gtk::TreeIter &iter,
 }
 
 bool SubtitleView::on_key_press_event(GdkEventKey *event) {
-  if (event->string != NULL) {
+  if (event->string != nullptr) {
     int num;
     std::istringstream ss(event->string);
     bool is_num = static_cast<bool>(ss >> num) != 0;
@@ -1109,7 +1107,7 @@ void SubtitleView::on_config_subtitle_view_changed(const Glib::ustring &key,
   } else if (key == "property-alignment-center") {
     bool state;
     if (from_string(value, state)) {
-      Gtk::CellRendererText *renderer = NULL;
+      Gtk::CellRendererText *renderer = nullptr;
 
       renderer = dynamic_cast<Gtk::CellRendererText *>(
           m_columns["text"]->get_first_cell());
@@ -1166,7 +1164,7 @@ Gtk::TreeViewColumn *SubtitleView::get_column_by_name(
 
   se_dbg_msg(SE_DBG_VIEW, "column: %s return NULL", name.c_str());
 
-  return NULL;
+  return nullptr;
 }
 
 // retourne le nom utiliser en interne de la column
@@ -1213,7 +1211,7 @@ void SubtitleView::update_columns_displayed_from_config() {
   }
 
   // reorder columns
-  Gtk::TreeViewColumn *current_column = NULL;
+  Gtk::TreeViewColumn *current_column = nullptr;
 
   // get columns order
   auto cols = cfg::get_string_list("subtitle-view", "columns-displayed");
@@ -1284,7 +1282,7 @@ void SubtitleView::on_cursor_changed() {
   active.insert(att_active);
 
   // get the focused column
-  Gtk::TreeViewColumn *focused_column = NULL;
+  Gtk::TreeViewColumn *focused_column = nullptr;
   Gtk::TreeModel::Path path;
   get_cursor(path, focused_column);
 
@@ -1293,12 +1291,11 @@ void SubtitleView::on_cursor_changed() {
     return;
 
   // unbold the old column
-  if (m_currentColumn != NULL) {
-    Gtk::Label *label =
-        dynamic_cast<Gtk::Label *>(m_currentColumn->get_widget());
+  if (m_currentColumn != nullptr) {
+    auto label = dynamic_cast<Gtk::Label *>(m_currentColumn->get_widget());
     label->set_attributes(normal);
 
-    m_currentColumn = NULL;
+    m_currentColumn = nullptr;
   }
   // bold the new current column
   if (focused_column) {

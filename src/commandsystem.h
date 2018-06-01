@@ -84,8 +84,8 @@ class CommandSystem {
 
  protected:
   Document &m_document;
-  int m_max_undo_stack;
-  bool m_is_recording;
+  int m_max_undo_stack{10};
+  bool m_is_recording{false};
   std::deque<Command *> m_undo_stack;
   std::deque<Command *> m_redo_stack;
 

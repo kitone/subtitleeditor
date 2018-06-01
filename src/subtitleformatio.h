@@ -46,5 +46,5 @@ class SubtitleFormatIO {
   virtual void save(Writer &);
 
  private:
-  Document *m_document;
+  Document *m_document{nullptr};
 };

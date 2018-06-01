@@ -24,12 +24,6 @@
 // Constructor.
 ExtensionInfo::ExtensionInfo() {
   se_dbg(SE_DBG_APP);
-
-  module = NULL;
-  active = false;
-  hidden = false;
-  fhs_directory = false;
-  extension = nullptr;
 }
 
 // Destructor.

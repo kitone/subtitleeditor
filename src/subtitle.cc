@@ -59,7 +59,7 @@ class SubtitleCommand : public Command {
 // static
 SubtitleColumnRecorder Subtitle::column;
 
-Subtitle::Subtitle() : m_document(nullptr), m_path("") {
+Subtitle::Subtitle() {
 }
 
 Subtitle::Subtitle(Document *doc, const Glib::ustring &path)

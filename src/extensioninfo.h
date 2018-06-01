@@ -77,9 +77,9 @@ class ExtensionInfo {
   Glib::ustring categorie;
   Glib::ustring type;
   Glib::ustring module_name;
-  Glib::Module* module;
-  bool active;
-  bool hidden;
-  bool fhs_directory;
-  Extension* extension;
+  Glib::Module* module{nullptr};
+  bool active{false};
+  bool hidden{false};
+  bool fhs_directory{false};
+  Extension* extension{nullptr};
 };
