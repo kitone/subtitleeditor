@@ -41,13 +41,9 @@ Glib::ustring time_to_string(gint64 time) {
 void dialog_missing_plugins(const std::list<Glib::ustring> &list) {
   Glib::ustring plugins;
 
-  std::list<Glib::ustring>::const_iterator it = list.begin();
-  std::list<Glib::ustring>::const_iterator end = list.end();
-
-  while (it != end) {
-    plugins += *it;
+  for (const auto &el : list) {
+    plugins += el;
     plugins += "\n";
-    ++it;
   }
 
   Glib::ustring msg =
