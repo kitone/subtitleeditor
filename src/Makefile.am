@@ -13,6 +13,10 @@ PACKAGE_DIRECTORY = \
 	-DDEFAULT_PLAYER_AUDIO_SINK=\""$(DEFAULT_PLAYER_AUDIO_SINK)"\"
 
 
+LIB_CORE_FILES = \
+	documents.cc \
+	documents.h
+
 ## libsubtitleeditor
 LIB_SUBTITLEEDITOR_FILES = \
 	color.cc \
@@ -131,6 +135,7 @@ libsubtitleeditor_la_LDFLAGS = -export-dynamic -no-undefined
 
 libsubtitleeditor_la_SOURCES = \
 	$(LIB_SUBTITLEEDITOR_FILES) \
+	$(LIB_CORE_FILES) \
 	$(LIB_GUI_FILES)
 
 libsubtitleeditor_la_LIBADD = \
