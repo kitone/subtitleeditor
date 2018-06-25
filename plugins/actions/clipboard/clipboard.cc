@@ -22,12 +22,12 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
+#include <documents.h>
 #include <extension/action.h>
 #include <i18n.h>
 #include <subtitleformatsystem.h>
 #include <utility.h>
 #include <memory>
-#include "documentsystem.h"
 #include "error.h"
 #include "gtkmm_utility.h"
 #include "player.h"
@@ -152,17 +152,15 @@ class ClipboardPlugin : public Action {
     update_paste_targets();
 
     // command shading
-    DocumentSystem &docsys = DocumentSystem::getInstance();
-
     connection_document_changed =
-        docsys.signal_current_document_changed().connect(
-            sigc::mem_fun(*this, &ClipboardPlugin::on_document_changed));
+        se::documents::signal_active_changed().connect(
+            sigc::mem_fun(*this, &ClipboardPlugin::on_active_document_changed));
 
     connection_player_message =
         get_subtitleeditor_window()->get_player()->signal_message().connect(
             sigc::mem_fun(*this, &ClipboardPlugin::on_player_message));
 
-    on_document_changed(docsys.getCurrentDocument());
+    on_active_document_changed(se::documents::active());
   }
 
   void deactivate() {
@@ -235,7 +233,7 @@ class ClipboardPlugin : public Action {
     update_copy_and_cut_visibility();
   }
 
-  void on_document_changed(Document *doc) {
+  void on_active_document_changed(Document *doc) {
     se_dbg(SE_DBG_PLUGINS);
 
     // We need to disconnect the old callback first
@@ -726,10 +724,8 @@ class ClipboardPlugin : public Action {
       doc = new Document();
       g_return_if_fail(doc);
 
-      DocumentSystem &docsys = DocumentSystem::getInstance();
-
-      doc->setFilename(docsys.create_untitled_name());
-      docsys.append(doc);
+      doc->setFilename(se::documents::generate_untitled_name());
+      se::documents::append(doc);
     }
 
     if (is_clipboard_mine()) {
@@ -757,9 +753,8 @@ class ClipboardPlugin : public Action {
     if (connection_pastedoc_deleted)
       connection_pastedoc_deleted.disconnect();
 
-    connection_pastedoc_deleted =
-        DocumentSystem::getInstance().signal_document_delete().connect(
-            sigc::mem_fun(*this, &ClipboardPlugin::on_pastedoc_deleted));
+    connection_pastedoc_deleted = se::documents::signal_deleted().connect(
+        sigc::mem_fun(*this, &ClipboardPlugin::on_pastedoc_deleted));
   }
 
   void on_pastedoc_deleted(Document *doc) {

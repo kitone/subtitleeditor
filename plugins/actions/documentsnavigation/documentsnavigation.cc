@@ -19,9 +19,10 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
-#include <documentsystem.h>
+#include <documents.h>
 #include <extension/action.h>
 #include <i18n.h>
+#include <algorithm>
 
 class DocumentsNavigationPlugin : public Action {
  public:
@@ -103,17 +104,15 @@ class DocumentsNavigationPlugin : public Action {
     ui_id = ui->add_ui_from_string(submenu);
 
     // Update the documents menu when a document is created, deleted or changed
-    DocumentSystem &ds = DocumentSystem::getInstance();
-
     m_create_document_connection =
-        ds.signal_document_create().connect(sigc::mem_fun(
+        se::documents::signal_created().connect(sigc::mem_fun(
             *this, &DocumentsNavigationPlugin::on_document_create_or_delete));
 
     m_delete_document_connection =
-        ds.signal_document_delete().connect(sigc::mem_fun(
+        se::documents::signal_deleted().connect(sigc::mem_fun(
             *this, &DocumentsNavigationPlugin::on_document_create_or_delete));
 
-    m_document_signals_connection = ds.signals_document().connect(
+    m_document_signals_connection = se::documents::signal_modified().connect(
         sigc::mem_fun(*this, &DocumentsNavigationPlugin::on_document_signals));
 
     rebuild_documents_menu();
@@ -166,7 +165,7 @@ class DocumentsNavigationPlugin : public Action {
 
     guint count = 0;
 
-    DocumentList documents = DocumentSystem::getInstance().getAllDocuments();
+    auto documents = se::documents::all();
 
     for (auto it = documents.begin(); it != documents.end(); ++it, ++count) {
       Glib::ustring action_name =
@@ -198,22 +197,22 @@ class DocumentsNavigationPlugin : public Action {
   void on_select_document(int value) {
     se_dbg_msg(SE_DBG_PLUGINS, "select %d", value);
 
-    DocumentSystem &ds = DocumentSystem::getInstance();
-    g_return_if_fail(!ds.getAllDocuments().empty());
+    auto documents = se::documents::all();
+    g_return_if_fail(!documents.empty());
 
     Document *doc = NULL;
 
     if (value == FIRST)
-      doc = ds.getAllDocuments().front();
+      doc = documents.front();
     else if (value == LAST)
-      doc = ds.getAllDocuments().back();
+      doc = documents.back();
     else if (value == PREVIOUS)
       doc = get_document(PREVIOUS);
     else
       doc = get_document(NEXT);
 
     g_return_if_fail(doc);
-    ds.setCurrentDocument(doc);
+    se::documents::active(doc);
   }
 
   // We want to rebuild the documents menu each time a document is created or
@@ -238,12 +237,12 @@ class DocumentsNavigationPlugin : public Action {
     Document *current = get_current_document();
     g_return_val_if_fail(current, NULL);
 
-    DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
+    auto docs = se::documents::all();
 
     if (value == PREVIOUS)
-      docs.reverse();
+      std::reverse(docs.begin(), docs.end());
 
-    for (DocumentList::iterator it = docs.begin(); it != docs.end(); ++it) {
+    for (auto it = docs.begin(); it != docs.end(); ++it) {
       if (*it == current) {
         ++it;
         if (it == docs.end())
@@ -258,15 +257,15 @@ class DocumentsNavigationPlugin : public Action {
   void on_documents_menu_activate(gint count) {
     se_dbg_msg(SE_DBG_PLUGINS, "activate document %d", count);
 
-    DocumentList docs = DocumentSystem::getInstance().getAllDocuments();
+    auto docs = se::documents::all();
     g_return_if_fail(!docs.empty());
 
-    DocumentList::iterator it = docs.begin();
+    auto it = docs.begin();
 
     std::advance(it, count);
     g_return_if_fail(it != docs.end());
 
-    DocumentSystem::getInstance().setCurrentDocument(*it);
+    se::documents::active(*it);
   }
 
  protected:

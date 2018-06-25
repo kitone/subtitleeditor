@@ -19,7 +19,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
-#include <documentsystem.h>
+#include <documents.h>
 #include <extension/action.h>
 #include <i18n.h>
 
@@ -66,12 +66,10 @@ class StylizeSelectedSubtitlesPlugin : public Action {
 
     ui_id = ui->add_ui_from_string(submenu);
 
-    DocumentSystem &ds = DocumentSystem::getInstance();
+    se::documents::signal_active_changed().connect(sigc::mem_fun(
+        *this, &StylizeSelectedSubtitlesPlugin::on_active_changed));
 
-    ds.signal_current_document_changed().connect(sigc::mem_fun(
-        *this, &StylizeSelectedSubtitlesPlugin::on_current_document_changed));
-
-    ds.signals_document().connect(sigc::mem_fun(
+    se::documents::signal_modified().connect(sigc::mem_fun(
         *this, &StylizeSelectedSubtitlesPlugin::on_document_signals));
 
     rebuild_styles_menu();
@@ -108,7 +106,7 @@ class StylizeSelectedSubtitlesPlugin : public Action {
       rebuild_styles_menu();
   }
 
-  void on_current_document_changed(Document *doc) {
+  void on_active_changed(Document *doc) {
     rebuild_styles_menu();
   }
 

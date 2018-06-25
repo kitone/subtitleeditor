@@ -18,6 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+#include <documents.h>
 #include <extension/action.h>
 #include <gui/dialogfilechooser.h>
 #include <player.h>
@@ -161,7 +162,7 @@ class DocumentManagementPlugin : public Action {
 
     ui->insert_action_group(action_group);
 
-    DocumentSystem::getInstance().signal_document_create().connect(
+    se::documents::signal_created().connect(
         sigc::mem_fun(*this, &DocumentManagementPlugin::on_document_create));
 
     Gtk::Window *window =
@@ -252,9 +253,9 @@ class DocumentManagementPlugin : public Action {
     Glib::ustring ext =
         SubtitleFormatSystem::instance().get_extension_of_format(
             doc->getFormat());
-    doc->setFilename(DocumentSystem::getInstance().create_untitled_name(ext));
+    doc->setFilename(se::documents::generate_untitled_name(ext));
 
-    DocumentSystem::getInstance().append(doc);
+    se::documents::append(doc);
   }
 
   void on_open() {
@@ -302,7 +303,7 @@ class DocumentManagementPlugin : public Action {
     Glib::ustring filename = Glib::filename_from_uri(uri);
 
     // check if is not already open
-    Document *already = DocumentSystem::getInstance().getDocument(filename);
+    Document *already = se::documents::find_by_name(filename);
 
     if (already) {
       already->flash_message(_("I am already open"));
@@ -314,7 +315,7 @@ class DocumentManagementPlugin : public Action {
     if (!doc)
       return false;
 
-    DocumentSystem::getInstance().append(doc);
+    se::documents::append(doc);
     return true;
   }
 
@@ -569,9 +570,9 @@ class DocumentManagementPlugin : public Action {
     g_return_val_if_fail(doc, false);
 
     if (cfg::get_boolean("interface", "ask-to-save-on-exit") == false) {
-      DocumentSystem::getInstance().remove(doc);
+      se::documents::remove(doc);
     } else if (!doc->get_document_changed()) {
-      DocumentSystem::getInstance().remove(doc);
+      se::documents::remove(doc);
     } else {
       DialogAskToSaveOnExit dialog;
 
@@ -581,9 +582,9 @@ class DocumentManagementPlugin : public Action {
         on_save();
 
         // if(doc->get_document_changed() == false)
-        DocumentSystem::getInstance().remove(doc);
+        se::documents::remove(doc);
       } else if (response == Gtk::RESPONSE_NO) {
-        DocumentSystem::getInstance().remove(doc);
+        se::documents::remove(doc);
       } else if (response == Gtk::RESPONSE_CANCEL) {
         // nothing
         return false;

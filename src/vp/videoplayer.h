@@ -49,7 +49,7 @@ class VideoPlayer : public Gtk::VBox {
 
   // The current document has changed.
   // Clear subtitle (sub and player text) and try to found the good subtitle.
-  void on_current_document_changed(Document* doc);
+  void on_active_document_changed(Document* doc);
 
   // Check or search the good subtitle (find_subtitle).
   void on_player_tick(long current_time, long stream_length,

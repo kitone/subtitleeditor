@@ -18,6 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+#include <documents.h>
 #include <extension/action.h>
 #include <filereader.h>
 #include <gui/dialogfilechooser.h>
@@ -93,8 +94,7 @@ class PlainTextPlugin : public Action {
       Glib::ustring charset = ui->get_encoding();
 
       try {
-        Glib::ustring untitled =
-            DocumentSystem::getInstance().create_untitled_name();
+        Glib::ustring untitled = se::documents::generate_untitled_name();
         Glib::ustring format = cfg::get_string("document", "format");
         Glib::ustring untitled_fullname =
             Glib::build_filename(ui->get_current_folder(), untitled);
@@ -106,7 +106,7 @@ class PlainTextPlugin : public Action {
         doc->setFilename(untitled_fullname);
         // override the plain text format with the preferred format setting
         doc->setFormat(format);
-        DocumentSystem::getInstance().append(doc);
+        se::documents::append(doc);
       } catch (const std::exception &ex) {
         dialog_error(
             build_message(_("Could not import from file \"%s\"."), uri.c_str()),

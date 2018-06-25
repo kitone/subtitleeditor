@@ -37,7 +37,7 @@ class SubtitleEditorWindow {
 
   virtual Document* get_current_document() = 0;
 
-  virtual std::list<Document*> get_documents() = 0;
+  virtual std::vector<Document*> get_documents() = 0;
 
   virtual Player* get_player() = 0;
 

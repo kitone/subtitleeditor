@@ -170,7 +170,7 @@ class WaveformEditor : public WaveformManager, public Gtk::Box {
 
   // Initialize the editor with the document.
   // This callback is also connected at
-  // "DocumentSystem::signal_current_document_changed"
+  // "se::documents::signal_active_changed"
   void init_document(Document* doc);
 
   // This callback is connected at the current document.

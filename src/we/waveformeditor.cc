@@ -18,7 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "documentsystem.h"
+#include "documents.h"
 #include "subtitleeditorwindow.h"
 #include "utility.h"
 #include "waveformeditor.h"
@@ -60,7 +60,7 @@ WaveformEditor::WaveformEditor(BaseObjectType *cobject,
   signal_realize().connect(
       sigc::mem_fun(*this, &WaveformEditor::on_create_renderer), true);
 
-  DocumentSystem::getInstance().signal_current_document_changed().connect(
+  se::documents::signal_active_changed().connect(
       sigc::mem_fun(*this, &WaveformEditor::init_document));
 
   // FIXME init
@@ -139,7 +139,7 @@ void WaveformEditor::on_create_renderer() {
 
 // Initialize the editor with the document.
 // This callback is also connected at
-// "DocumentSystem::signal_current_document_changed"
+// "se::documents::signal_active_changed"
 void WaveformEditor::init_document(Document *doc) {
   se_dbg(SE_DBG_WAVEFORM);
 

@@ -18,7 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include <documentsystem.h>
+#include <documents.h>
 #include <extension/action.h>
 #include <gtkmm_utility.h>
 #include <utility.h>
@@ -75,7 +75,7 @@ class DialogSplitDocument : public Gtk::Dialog {
     newdoc->setFilename(newdoc->getFilename() + "-par2");
     newdoc->subtitles().remove(1, number - 1);
 
-    DocumentSystem::getInstance().append(newdoc);
+    se::documents::append(newdoc);
 
     // Remove subtitles used by the new one
     doc->start_command(_("Split document"));

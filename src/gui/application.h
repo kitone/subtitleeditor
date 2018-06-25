@@ -72,19 +72,19 @@ class Application : public Gtk::Window, public SubtitleEditorWindow {
 
   // il y a la création d'un nouveau document
   // on l'ajoute dans le notebook
-  // signal emit par DocumentSystem::signal_document_create
+  // signal emit par se::documents::signal_created
   void on_document_create(Document* doc);
 
   // on efface le document du notebook
-  // signal emit par DocumentSystem::signal_document_delete
+  // signal emit par se::documents::signal_deleted
   void on_document_delete(Document* doc);
 
   // The current document has changed.
   // Needs to update the ui.
-  void on_current_document_changed(Document* doc);
+  void on_active_document_changed(Document* doc);
 
   // Changement dans le notebook de la page editer
-  // On recupere la page pusi on init DocumentSystem avec le document
+  // On recupere la page pusi on init se::documents avec le document
   void on_signal_switch_page(Gtk::Widget* page, guint page_num);
 
   void on_close_document(Document* doc);

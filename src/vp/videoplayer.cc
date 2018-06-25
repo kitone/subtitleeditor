@@ -18,7 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include "documentsystem.h"
+#include "documents.h"
 #include "gstplayer.h"
 #include "subtitleeditorwindow.h"
 #include "utility.h"
@@ -207,8 +207,8 @@ VideoPlayer::VideoPlayer(BaseObjectType* cobject,
       .connect(
           sigc::mem_fun(*this, &VideoPlayer::on_config_video_player_changed));
 
-  DocumentSystem::getInstance().signal_current_document_changed().connect(
-      sigc::mem_fun(*this, &VideoPlayer::on_current_document_changed));
+  se::documents::signal_active_changed().connect(
+      sigc::mem_fun(*this, &VideoPlayer::on_active_document_changed));
 
   m_player->signal_tick().connect(
       sigc::mem_fun(*this, &VideoPlayer::on_player_tick));
@@ -271,7 +271,7 @@ void VideoPlayer::on_config_video_player_changed(const Glib::ustring& key,
 
 // The current document has changed.
 // Clear subtitle (sub and player text) and try to found the good subtitle.
-void VideoPlayer::on_current_document_changed(Document* doc) {
+void VideoPlayer::on_active_document_changed(Document* doc) {
   m_connection_document_changed.disconnect();
   if (doc != NULL)
     m_connection_document_changed =

@@ -19,7 +19,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <color.h>
-#include <documentsystem.h>
+#include <documents.h>
 #include <extension/action.h>
 #include <gtkmm_utility.h>
 #include <utility.h>
@@ -139,7 +139,7 @@ DialogStyleEditor::DialogStyleEditor(BaseObjectType *cobject,
     m_treeview->get_selection()->signal_changed().connect(sigc::mem_fun(
         *this, &DialogStyleEditor::callback_style_selection_changed));
     // add styles
-    m_current_document = DocumentSystem::getInstance().getCurrentDocument();
+    m_current_document = se::documents::active();
 
     for (Style style = m_current_document->styles().first(); style; ++style) {
       Gtk::TreeIter iter = m_liststore->append();
@@ -361,7 +361,7 @@ void DialogStyleEditor::execute(Document *doc) {
     ColumnNameRecorder column_name;
 
     // add styles
-    m_current_document = DocumentSystem::getInstance().getCurrentDocument();
+    m_current_document = se::documents::active();
 
     for (Style style = m_current_document->styles().first(); style; ++style) {
       Gtk::TreeIter iter = m_liststore->append();

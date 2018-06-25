@@ -24,6 +24,7 @@
 #include <memory>
 #include "cfg.h"
 #include "document.h"
+#include "documents.h"
 #include "encodings.h"
 #include "error.h"
 #include "gui/comboboxencoding.h"
@@ -484,7 +485,7 @@ void Document::emit_signal(const std::string &name) {
 
   m_signal[name].emit();
 
-  DocumentSystem::getInstance().signals_document().emit(this, name);
+  se::documents::signal_modified().emit(this, name);
 }
 
 // Return the name of the current column focus.

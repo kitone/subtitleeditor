@@ -18,7 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include <documentsystem.h>
+#include <documents.h>
 #include <extension/action.h>
 #include <gtkmm_utility.h>
 #include <gui/comboboxencoding.h>
@@ -223,9 +223,9 @@ class TemplatePlugin : public Action {
     if (doc == NULL)
       return;
 
-    doc->setFilename(DocumentSystem::getInstance().create_untitled_name());
+    doc->setFilename(se::documents::generate_untitled_name());
     doc->setCharset(charset);
-    DocumentSystem::getInstance().append(doc);
+    se::documents::append(doc);
   }
 
   void on_save_as_template() {

@@ -22,7 +22,7 @@
 #include <gtkmm/accelmap.h>
 #include <algorithm>
 #include "application.h"
-#include "documentsystem.h"
+#include "documents.h"
 #include "encodings.h"
 #include "utility.h"
 
@@ -52,14 +52,14 @@ Application::Application(BaseObjectType *cobject,
 
   m_menubar.show_all();
 
-  DocumentSystem::getInstance().signal_document_create().connect(
+  se::documents::signal_created().connect(
       sigc::mem_fun(*this, &Application::on_document_create));
 
-  DocumentSystem::getInstance().signal_document_delete().connect(
+  se::documents::signal_deleted().connect(
       sigc::mem_fun(*this, &Application::on_document_delete));
 
-  DocumentSystem::getInstance().signal_current_document_changed().connect(
-      sigc::mem_fun(*this, &Application::on_current_document_changed));
+  se::documents::signal_active_changed().connect(
+      sigc::mem_fun(*this, &Application::on_active_document_changed));
 
   m_notebook_documents->signal_switch_page().connect(
       sigc::mem_fun(*this, &Application::on_signal_switch_page));
@@ -164,7 +164,7 @@ bool Application::on_delete_event(GdkEventAny *ev) {
 
 // il y a la création d'un nouveau document
 // on l'ajoute dans le notebook
-// signal emit par DocumentSystem::signal_document_create
+// signal emit par se::documents::::signal_document_create
 void Application::on_document_create(Document *doc) {
   g_return_if_fail(doc);
 
@@ -239,7 +239,7 @@ void Application::on_document_create(Document *doc) {
 
   update_document_property(doc);
 
-  DocumentSystem::getInstance().setCurrentDocument(doc);
+  se::documents::active(doc);
 
   connect_document(doc);
 
@@ -305,7 +305,7 @@ void Application::on_document_changed(Document *doc) {
 }
 
 // on efface le document du notebook
-// signal emit par DocumentSystem::signal_document_delete
+// signal emit par se::documents::::signal_document_delete
 void Application::on_document_delete(Document *doc) {
   if (doc == NULL)
     return;
@@ -318,7 +318,7 @@ void Application::on_document_delete(Document *doc) {
 
 // The current document has changed.
 // Needs to update the ui.
-void Application::on_current_document_changed(Document *doc) {
+void Application::on_active_document_changed(Document *doc) {
   // Update page
   // First check if it's not already the good page
   int cur_id = m_notebook_documents->get_current_page();
@@ -357,7 +357,7 @@ void Application::on_close_document(Document *doc) {
 
   disconnect_document(doc);
 
-  DocumentSystem::getInstance().remove(doc);
+  se::documents::remove(doc);
 }
 
 // Changement dans le notebook de la page editer
@@ -373,11 +373,11 @@ void Application::on_signal_switch_page(Gtk::Widget * /*page*/,
     auto doc = static_cast<Document *>(w->get_data("document"));
 
     if (doc) {
-      DocumentSystem::getInstance().setCurrentDocument(doc);
+      se::documents::active(doc);
       connect_document(doc);
     } else {
-      DocumentSystem::getInstance().setCurrentDocument(NULL);
-      disconnect_document(NULL);
+      se::documents::active(nullptr);
+      disconnect_document(nullptr);
     }
   }
 }
@@ -480,7 +480,7 @@ void Application::init(OptionGroup &options) {
 
       Document *doc = Document::create_from_file(uri, options.encoding);
       if (doc) {
-        DocumentSystem::getInstance().append(doc);
+        se::documents::append(doc);
       }
     }
   }
@@ -567,12 +567,12 @@ void Application::notebook_drag_data_received(
     Glib::ustring filename = Glib::filename_from_uri(uris[i]);
 
     // verifie qu'il n'est pas déjà ouvert
-    if (DocumentSystem::getInstance().getDocument(filename) != NULL)
+    if (se::documents::find_by_name(filename) != nullptr)
       continue;
 
     Document *doc = Document::create_from_file(uris[i]);
     if (doc)
-      DocumentSystem::getInstance().append(doc);
+      se::documents::append(doc);
   }
 }
 
@@ -604,11 +604,11 @@ Glib::RefPtr<Gtk::UIManager> Application::get_ui_manager() {
 }
 
 Document *Application::get_current_document() {
-  return DocumentSystem::getInstance().getCurrentDocument();
+  return se::documents::active();
 }
 
 DocumentList Application::get_documents() {
-  return DocumentSystem::getInstance().getAllDocuments();
+  return se::documents::all();
 }
 
 Player *Application::get_player() {

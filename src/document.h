@@ -23,6 +23,7 @@
 #include <sigc++/sigc++.h>
 #include <map>
 #include <string>
+#include <vector>
 #include "commandsystem.h"
 #include "scriptinfo.h"
 #include "stylemodel.h"
@@ -33,7 +34,7 @@
 
 typedef Glib::RefPtr<SubtitleModel> SubtitleModelPtr;
 typedef SubtitleView *SubtitleViewPtr;
-typedef std::list<Document *> DocumentList;
+typedef std::vector<Document *> DocumentList;
 
 // A Document is the base of all, it represent the model (SubtitleModel) and the
 // view (SubtitleView), the metadata like the subtitle format of the document,

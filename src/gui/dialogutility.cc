@@ -19,6 +19,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dialogutility.h"
+#include "documents.h"
 #include "utility.h"
 
 // Constructor
@@ -39,9 +40,9 @@ DocumentList DialogActionMultiDoc::get_documents_to_apply() {
   DocumentList docs;
 
   if (apply_to_all_documents())
-    docs = DocumentSystem::getInstance().getAllDocuments();
+    docs = se::documents::all();
   else
-    docs.push_back(DocumentSystem::getInstance().getCurrentDocument());
+    docs.push_back(se::documents::active());
 
   return docs;
 }

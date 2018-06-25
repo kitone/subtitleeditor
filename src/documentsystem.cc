@@ -56,7 +56,8 @@ void DocumentSystem::remove(Document* doc) {
 
   g_return_if_fail(doc);
 
-  m_listDocuments.remove(doc);
+  auto it = std::find(m_listDocuments.begin(), m_listDocuments.end(), doc);
+  m_listDocuments.erase(it);
 
   if (m_currentDocument == doc) {
     setCurrentDocument(nullptr);

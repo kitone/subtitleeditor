@@ -18,6 +18,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+#include <documents.h>
 #include <extension/action.h>
 #include <glib.h>
 #include <gtkmm_utility.h>
@@ -705,7 +706,7 @@ class DialogFindAndReplace : public DialogActionMultiDoc {
   // Sets the current document an update ui.
   void set_current_document(Document *doc) {
     m_document = doc;
-    DocumentSystem::getInstance().setCurrentDocument(doc);
+    se::documents::active(doc);
     // Update ui
     while (Gtk::Main::events_pending()) Gtk::Main::iteration();
   }
