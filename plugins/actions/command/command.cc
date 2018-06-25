@@ -19,7 +19,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <debug.h>
-#include <documentsystem.h>
 #include <extension/action.h>
 #include <i18n.h>
 

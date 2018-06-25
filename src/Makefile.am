@@ -33,8 +33,6 @@ LIB_SUBTITLEEDITOR_FILES = \
 	defaultcfg.cc \
 	document.cc \
 	document.h \
-	documentsystem.cc \
-	documentsystem.h \
 	encodings.cc \
 	encodings.h \
 	error.h \

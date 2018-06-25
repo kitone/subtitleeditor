@@ -19,7 +19,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "documents.h"
-#include "documentsystem.h"
 #include "i18n.h"
 #include "utility.h"
 

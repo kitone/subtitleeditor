@@ -132,8 +132,8 @@ src/defaultcfg.cc
 src/defaultcfg.h
 src/document.cc
 src/document.h
-src/documentsystem.cc
-src/documentsystem.h
+src/documents.cc
+src/documents.h
 src/encodings.cc
 src/encodings.h
 src/error.h
