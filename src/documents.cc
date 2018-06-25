@@ -20,6 +20,8 @@
 
 #include "documents.h"
 #include "documentsystem.h"
+#include "i18n.h"
+#include "utility.h"
 
 namespace se {
 namespace documents {
@@ -29,55 +31,90 @@ namespace internal {
 struct manager {
   ~manager() {
     active = nullptr;
+    for (auto doc : documents) {
+      delete doc;
+    }
+    documents.clear();
   }
+
+ public:
   Document *active{nullptr};
+  vector<Document *> documents;
+  // signals
+  signal_document signal_created;
+  signal_document signal_deleted;
+  signal_document signal_active_changed;
+  signal_document_modified signal_modified;
 };
+
+static manager instance;
 
 }  // namespace internal
 
+using internal::instance;
+using std::find;
+
 void append(Document *doc) {
-  DocumentSystem::getInstance().append(doc);
+  instance.documents.push_back(doc);
+  instance.signal_created(doc);
 }
 
 void remove(Document *doc) {
-  DocumentSystem::getInstance().remove(doc);
+  auto it = find(instance.documents.begin(), instance.documents.end(), doc);
+  instance.documents.erase(it);
+
+  if (instance.active == doc) {
+    active(nullptr);
+  }
+  instance.signal_deleted(doc);
+  delete doc;
 }
 
 vector<Document *> all() {
-  auto tmp = DocumentSystem::getInstance().getAllDocuments();
-  return std::vector<Document *>(tmp.begin(), tmp.end());
+  return instance.documents;
 }
 
 void active(Document *doc) {
-  DocumentSystem::getInstance().setCurrentDocument(doc);
+  instance.active = doc;
+  instance.signal_active_changed(doc);
 }
 
 Document *active() {
-  return DocumentSystem::getInstance().getCurrentDocument();
+  return instance.active;
 }
 
 signal_document &signal_created() {
-  return DocumentSystem::getInstance().signal_document_create();
+  return instance.signal_created;
 }
 
 signal_document &signal_deleted() {
-  return DocumentSystem::getInstance().signal_document_delete();
+  return instance.signal_deleted;
 }
 
 signal_document &signal_active_changed() {
-  return DocumentSystem::getInstance().signal_current_document_changed();
+  return instance.signal_active_changed;
 }
 
 signal_document_modified &signal_modified() {
-  return DocumentSystem::getInstance().signals_document();
+  return instance.signal_modified;
 }
 
 Document *find_by_name(const ustring &name) {
-  return DocumentSystem::getInstance().getDocument(name);
+  for (const auto &doc : instance.documents) {
+    if (doc->getName() == name) {
+      return doc;
+    }
+  }
+  return nullptr;
 }
 
-ustring generate_untitled_name(const ustring &ext) {
-  return DocumentSystem::getInstance().create_untitled_name(ext);
+ustring generate_untitled_name(const ustring &extension) {
+  ustring ext = extension.empty() ? "" : "." + extension;
+  int num = 1;
+  while (!find_by_name(build_message(_("Untitled %d"), num) + ext)) {
+    ++num;
+  }
+  return build_message(_("Untitled %d"), num) + ext;
 }
 
 }  // namespace documents
