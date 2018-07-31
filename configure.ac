@@ -74,7 +74,7 @@ AC_SUBST(GTKMM_LIBS)
 # =========================================================================
 # check enchant
 
-PKG_CHECK_MODULES(ENCHANT, enchant >= 1.4.0)
+PKG_CHECK_MODULES(ENCHANT, enchant-2 >= 2.2.0)
 
 AC_SUBST(ENCHANT_CFLAGS)
 AC_SUBST(ENCHANT_LIBS)
