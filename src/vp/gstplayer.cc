@@ -150,6 +150,7 @@ void GstPlayer::play_segment(const SubtitleTime &start,
 
   if (seek(start.totalmsecs, end.totalmsecs, flags))
     update_pipeline_state_and_timeout();
+    set_pipeline_state(Gst::STATE_PLAYING);
 }
 
 // Sets the pipeline state to paused.
