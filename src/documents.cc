@@ -110,7 +110,7 @@ Document *find_by_name(const ustring &name) {
 ustring generate_untitled_name(const ustring &extension) {
   ustring ext = extension.empty() ? "" : "." + extension;
   int num = 1;
-  while (!find_by_name(build_message(_("Untitled %d"), num) + ext)) {
+  while (find_by_name(build_message(_("Untitled %d"), num) + ext) != nullptr) {
     ++num;
   }
   return build_message(_("Untitled %d"), num) + ext;
