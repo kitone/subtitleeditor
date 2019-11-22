@@ -74,10 +74,19 @@ AC_SUBST(GTKMM_LIBS)
 # =========================================================================
 # check enchant
 
-PKG_CHECK_MODULES(ENCHANT, enchant-2 >= 2.2.0)
+PKG_CHECK_MODULES(ENCHANT2, enchant-2 >= 2.2.0, have_enchant_2=yes, have_enchant_2=no)
 
-AC_SUBST(ENCHANT_CFLAGS)
-AC_SUBST(ENCHANT_LIBS)
+if test "x$have_enchant_2" = "xyes"; then
+	true  # make shell parser happy when AC_SUBST is replaced by void
+	AC_SUBST(ENCHANT2_CFLAGS)
+	AC_SUBST(ENCHANT2_LIBS)
+fi
+
+if test "x$have_enchant_2" = "xno"; then
+	PKG_CHECK_MODULES(ENCHANT, enchant >= 1.4.0)
+	AC_SUBST(ENCHANT_CFLAGS)
+	AC_SUBST(ENCHANT_LIBS)
+fi
 
 # =========================================================================
 # check libxml++
