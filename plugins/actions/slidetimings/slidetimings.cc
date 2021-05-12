@@ -123,6 +123,9 @@ protected:
 			select_to_end( doc, selection );
 		}
 
+		Subtitle overflow = doc->subtitles().insert_after( selection[ selection.size()-1 ] );
+		selection.push_back( overflow );
+
 		creep_to_pos( selection.rbegin(), selection.rend() );
 
 		doc->emit_signal("subtitle-time-changed");
