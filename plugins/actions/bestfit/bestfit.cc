@@ -179,8 +179,9 @@ protected:
 		Config &cfg = get_config();
 
 		SubtitleTime gap		= cfg.get_value_int("timing", "min-gap-between-subtitles");
-		double mincps					= cfg.get_value_double("timing", "min-characters-per-second");
-		//SubtitleTime minlen	= cfg.get_value_int("timing", "min-display");
+		SubtitleTime minlen	= cfg.get_value_int("timing", "min-display");
+		long minmsecs = minlen.totalmsecs;
+		//double mincps					= cfg.get_value_double("timing", "min-characters-per-second");
 		//long maxcpl					= cfg.get_value_int("timing", "max-characters-per-line");
 		//long maxcps					= cfg.get_value_int("timing", "max-characters-per-second");
 
@@ -188,14 +189,19 @@ protected:
 		SubtitleTime startime		= subtitles.front().get_start();
 		SubtitleTime endtime		= subtitles.back().get_end();
 		SubtitleTime grosstime	= endtime - startime;
-		SubtitleTime allgaps		= gap * (subtitles.size()-1);
-		SubtitleTime nettime		= grosstime - allgaps;
+		long allgaps						= gap.totalmsecs * (subtitles.size()-1);
+		long nettime						= grosstime.totalmsecs - allgaps;
 
-		// Get the total of characters counts
+		std::vector<long> durations( subtitles.size() );
+		std::vector<long> charcounts( subtitles.size() );
+
+		// Get the total character count
 		long totalchars = 0;
 		for(guint i=0; i< subtitles.size(); ++i)
 		{
-			totalchars += utility::get_text_length_for_timing( subtitles[i].get_text() );
+			charcounts[i] = utility::get_text_length_for_timing( subtitles[i].get_text() );
+			durations[i] = 0;
+			totalchars += charcounts[i];
 		}
 
 		// Avoid divide by zero
@@ -203,40 +209,47 @@ protected:
 		if(totalchars == 0)
 			return;
 
-		// Distribute available time between selected subtitles in proportion to the length of their text
-		long subchars = 0;
-		long prevchars = 0;
-		SubtitleTime intime;
-		SubtitleTime prevend;
-		SubtitleTime dur;
-		SubtitleTime maxdur;
-
-		for(unsigned int i=0; i < subtitles.size(); ++i)
-		{
-			Subtitle &sub = subtitles[i];
-
-			subchars = utility::get_text_length_for_timing( sub.get_text() );
-
-			dur = (nettime * subchars) / totalchars;	// give this subtitle a fair share of the net time available
-			intime = startime + ( (grosstime * prevchars ) / totalchars );	// calculate proportionate start time
-
-			// make sure we're not under the minimum cps
-			maxdur.totalmsecs = (long)floor( ( (double)1000 * (double)subchars) / mincps );
-			if( dur > maxdur )
-				dur = maxdur;
-
-			// make sure minimum gap is preserved (rounding errors could've shortened it)
-			if( i > 0 && (intime - prevend) < gap)
-			{
-				intime = prevend + gap;
+		long charsleft = totalchars;
+		long timeleft = nettime;
+		bool done = false;	//we're done if no subtitle duration hit the minimum limit
+		bool hopeless = false;	//if all durations hit the minimum limit, it's hopeless
+		while( !done && !hopeless ) {
+			done = true;
+			hopeless = true;
+			for( guint i = 0; i < durations.size(); ++i ) {
+				if( charcounts[i] >= 0 ) {
+					long d = charcounts[i] * timeleft / charsleft;
+					if( d < minmsecs ) {
+						charsleft -= charcounts[i];
+						timeleft -= minmsecs;
+						durations[i] = minmsecs;
+						charcounts[i] = -1;
+						done = false;
+					} else {
+						durations[i] = d;
+						hopeless = false;
+					}
+				}
 			}
-
-			sub.set_start_and_end( intime, intime + dur);
-
-			prevend = intime + dur;
 		}
-		//reset the end time of the last subtitle to make sure rounding errors didn't move it
-		subtitles.back().set_end( endtime );
+
+		if( hopeless ) {
+			//forget subtitle minimum duration and just distribute the time evenly
+			for( guint i = 0; i < durations.size(); ++i ) {
+				durations[i] = utility::get_text_length_for_timing( subtitles[i].get_text() ) * nettime / totalchars;
+			}			
+		}
+
+		//time subtitles according to calculated durations
+		SubtitleTime intime = subtitles[0].get_start();
+		for( guint i = 0; i < durations.size(); ++i ) {
+			subtitles[i].set_start_and_end( intime, intime + durations[i] );
+			intime.totalmsecs += durations[i] + gap.totalmsecs;
+		}
+
+		//reset the end time of the last time to original
+		//in case rounding errors made it drift away
+		subtitles[ subtitles.size() - 1 ].set_end( endtime );
 	}
 
 protected:
