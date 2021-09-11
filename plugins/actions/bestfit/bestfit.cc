@@ -42,7 +42,7 @@ class BestFitPlugin : public Action {
 	 */
 	void activate()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		// actions
 		action_group = Gtk::ActionGroup::create("BestFitPlugin");
@@ -66,7 +66,7 @@ class BestFitPlugin : public Action {
 	 */
 	void deactivate()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -78,7 +78,7 @@ class BestFitPlugin : public Action {
 	 */
 	void update_ui()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		bool visible = (get_current_document() != NULL);
 
@@ -91,7 +91,7 @@ protected:
 	 */
 	void on_best_fit()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		Document *doc = get_current_document();
 		g_return_if_fail(doc);
@@ -168,17 +168,15 @@ protected:
 		if(subtitles.size() < 2)
 			return;
 
-		// Get relevant preferences
-		Config &cfg = get_config();
-
-		SubtitleTime gap		= cfg.get_value_int("timing", "min-gap-between-subtitles");
-		SubtitleTime minlen	= cfg.get_value_int("timing", "min-display");
+    // Get relevant preferences
+    SubtitleTime gap = cfg::get_int("timing", "min-gap-between-subtitles");
+    SubtitleTime minlen = cfg::get_int("timing", "min-display");
 		long minmsecs = minlen.totalmsecs;
-		//double mincps					= cfg.get_value_double("timing", "min-characters-per-second");
-		//long maxcpl					= cfg.get_value_int("timing", "max-characters-per-line");
-		//long maxcps					= cfg.get_value_int("timing", "max-characters-per-second");
 
-		// 
+    // double mincps = cfg::get_double("timing", "min-characters-per-second");
+    // long maxcpl = cfg::get_int("timing", "max-characters-per-line");
+    // long maxcps = cfg::get_int("timing", "max-characters-per-second");
+
 		SubtitleTime startime		= subtitles.front().get_start();
 		SubtitleTime endtime		= subtitles.back().get_end();
 		SubtitleTime grosstime	= endtime - startime;

@@ -97,6 +97,11 @@ class ClipboardPlugin : public Action {
                             _("Create a new document and paste the contents of "
                               "the clipboard into it.")),
         sigc::mem_fun(*this, &ClipboardPlugin::on_paste_as_new_document));
+    action_group->add(
+        Gtk::Action::create("clipboard-paste-over-text",
+                            _("Paste Over Text"),
+                            _("Overwrite subtitle text with clipboard content.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_paste_over_text));
 
     // ui
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -118,6 +123,7 @@ class ClipboardPlugin : public Action {
               <menuitem action='clipboard-copy-with-timing'/>
               <menuitem action='clipboard-paste-at-player-position'/>
               <menuitem action='clipboard-paste-as-new-document'/>
+              <menuitem action='clipboard-paste-over-text'/>
               <separator/>
             </placeholder>
           </menu>
@@ -207,6 +213,7 @@ class ClipboardPlugin : public Action {
 
     bool paste_visible = false;
     bool paste_now_visible = false;
+    bool paste_over_visible = false;
 
     if (chosen_clipboard_target != "") {
       paste_visible = true;
@@ -215,11 +222,17 @@ class ClipboardPlugin : public Action {
            Player::NONE);
     }
 
+		Document * doc = get_current_document();
+		paste_over_visible = (doc) ? !doc->subtitles().get_selection().empty() : false;
+
     action_group->get_action("clipboard-paste")->set_sensitive(paste_visible);
     action_group->get_action("clipboard-paste-at-player-position")
         ->set_sensitive(paste_now_visible);
     action_group->get_action("clipboard-paste-as-new-document")
         ->set_sensitive(paste_visible);
+    action_group->get_action("clipboard-paste-over-text")
+        ->set_sensitive( paste_over_visible );
+
   }
 
   void on_player_message(Player::Message) {
@@ -569,38 +582,56 @@ class ClipboardPlugin : public Action {
     if (is_something_to_paste() == false)
       return;
 
-    paste_after = where_to_paste(subtitles);
+    if( (flags & PASTE_OVER_TEXT) != 0 )
+    {
+      new_subtitles = subtitles.get_selection();
+      int howmany = std::min( (int)new_subtitles.size(), (int)clipdoc->subtitles().size() );
+      Subtitle clip_sub = clipdoc->subtitles().get_first();
+      Subtitle oversub = subtitles.get_first();
 
-    // We get the new subtitles in the new_subtitles array
-    create_and_insert_paste_subtitles(subtitles, paste_after, new_subtitles);
+      for( int i = 0; i < howmany; i++ )
+      {
+        //overwrite
+        new_subtitles[i].set_text( clip_sub.get_text() );
+        ++clip_sub;
+      }
 
-    calculate_and_apply_timeshift(subtitles, paste_after, new_subtitles, flags);
-
-    // We can now remove the old selected subtitles, only if the selection is >
-    // 1
-    std::vector<Subtitle> selection = subtitles.get_selection();
-    if (selection.size() > 1)
-      subtitles.remove(selection);
-
-    // We select the pasted subtitles, this way the user see where are the new
-    // subtitles
-    subtitles.unselect_all();
-    subtitles.select(new_subtitles);
-
-    // show the pasted subtitles
-    // FIXME tomas-kitone: this is a clumsy implementation.
-    // I think we should add a show_subtitle( Subtitle &sub ) function to class
-    // SubtitleView or at least get_iter() or get_path() to class Subtitle
-    SubtitleView *view = reinterpret_cast<SubtitleView *>(doc->widget());
-    if (view != NULL) {
-      int sub_num = new_subtitles[0].get_num() - 1;
-      Gtk::TreeModel::Path sub_path =
-          Gtk::TreeModel::Path(Glib::ustring::compose("%1", sub_num));
-      view->scroll_to_row(sub_path, 0.25);
+      //tell the user what happened
+      doc->flash_message(_("%i subtitle(s) overwritten with clipboard text."), howmany );
+    } else {
+      paste_after = where_to_paste(subtitles);
+  
+      // We get the new subtitles in the new_subtitles array
+      create_and_insert_paste_subtitles(subtitles, paste_after, new_subtitles);
+  
+      calculate_and_apply_timeshift(subtitles, paste_after, new_subtitles, flags);
+  
+      // We can now remove the old selected subtitles, only if the selection is >
+      // 1
+      std::vector<Subtitle> selection = subtitles.get_selection();
+      if (selection.size() > 1)
+        subtitles.remove(selection);
+  
+      // We select the pasted subtitles, this way the user see where are the new
+      // subtitles
+      subtitles.unselect_all();
+      subtitles.select(new_subtitles);
+  
+      // show the pasted subtitles
+      // FIXME tomas-kitone: this is a clumsy implementation.
+      // I think we should add a show_subtitle( Subtitle &sub ) function to class
+      // SubtitleView or at least get_iter() or get_path() to class Subtitle
+      SubtitleView *view = reinterpret_cast<SubtitleView *>(doc->widget());
+      if (view != NULL) {
+        int sub_num = new_subtitles[0].get_num() - 1;
+        Gtk::TreeModel::Path sub_path =
+            Gtk::TreeModel::Path(Glib::ustring::compose("%1", sub_num));
+        view->scroll_to_row(sub_path, 0.25);
+      }
+  
+      // tell the user what happened
+      doc->flash_message(_("%i subtitle(s) pasted."), new_subtitles.size());
     }
-
-    // tell the user what happened
-    doc->flash_message(_("%i subtitle(s) pasted."), new_subtitles.size());
   }
 
   bool is_something_to_paste() {
@@ -714,6 +745,13 @@ class ClipboardPlugin : public Action {
     paste_common(PASTE_AS_NEW_DOCUMENT);
   }
 
+  void on_paste_over_text()
+  {
+    se_dbg(SE_DBG_PLUGINS);
+
+    paste_common( PASTE_OVER_TEXT );
+  };
+
   void paste_common(unsigned long flags) {
     se_dbg(SE_DBG_PLUGINS);
 
@@ -794,7 +832,8 @@ class ClipboardPlugin : public Action {
     PASTE_TIMING_AFTER =
         0x01,  // snap the pasted subtitles after the preceding subtitle
     PASTE_TIMING_PLAYER = 0x02,  // paste at the current player position
-    PASTE_AS_NEW_DOCUMENT = 0x04
+    PASTE_AS_NEW_DOCUMENT = 0x04,
+    PASTE_OVER_TEXT = 0x08  // keep current timing but overwrite the text
   };
   unsigned long paste_flags;
 

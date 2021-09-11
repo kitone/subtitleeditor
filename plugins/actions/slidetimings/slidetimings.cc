@@ -49,7 +49,7 @@ public:
 	 */
 	void activate()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		// actions
 		action_group = Gtk::ActionGroup::create("SlideTimingsPlugin");
@@ -79,7 +79,7 @@ public:
 	 */
 	void deactivate()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -91,7 +91,7 @@ public:
 	 */
 	void update_ui()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		bool visible = (get_current_document() != NULL);
 
@@ -105,7 +105,7 @@ protected:
 	 */
 	void on_bump_down()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		Document *doc = get_current_document();
 		g_return_if_fail(doc);
@@ -136,7 +136,7 @@ protected:
 	 */
 	void on_bump_up()
 	{
-		se_debug(SE_DEBUG_PLUGINS);
+		se_dbg(SE_DBG_PLUGINS);
 
 		Document *doc = get_current_document();
 		g_return_if_fail(doc);
