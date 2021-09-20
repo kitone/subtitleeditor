@@ -88,7 +88,6 @@ class SelectionPlugin : public Action {
         Gtk::Action::create("select-to-end",
                             _("Select to End"),
                             _("Select all subtitles from current to end")),
-        Gtk::AccelKey("<Control>I"),
         sigc::mem_fun(*this, &SelectionPlugin::on_select_to_end));
 
     // ui
