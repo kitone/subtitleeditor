@@ -269,15 +269,20 @@ class TimingFromPlayer : public Action {
     if (player->get_state() == Player::PLAYING)
       pos = pos - get_prefered_offset();
 
-    SubtitleTime dur = sub.get_duration();
-
     // Start recording
     doc->start_command(get_command_name_from_option(op));
 
     if (op & SET_SUBTITLE_START) {
       // Define the start of the subtitle from the
       // video position, we keep the duration
-      sub.set_start_and_end(pos, pos + dur);
+      std::vector<Subtitle> selection = doc->subtitles().get_selection();
+      std::vector<Subtitle>::iterator it = selection.begin();
+      std::vector<Subtitle>::iterator eit = selection.end();
+      SubtitleTime diff = pos - it->get_start();
+      while( it != eit ) {
+        it->set_start_and_end(it->get_start()+diff, it->get_end()+diff);
+        ++it;
+      }
     } else if (op & SET_SUBTITLE_END) {
       sub.set_end(pos);
     }
