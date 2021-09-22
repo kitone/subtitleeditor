@@ -84,6 +84,12 @@ class SelectionPlugin : public Action {
         Gtk::AccelKey("<Control>I"),
         sigc::mem_fun(*this, &SelectionPlugin::on_invert_selection));
 
+    action_group->add(
+        Gtk::Action::create("select-to-end",
+                            _("Select to End"),
+                            _("Select all subtitles from current to end")),
+        sigc::mem_fun(*this, &SelectionPlugin::on_select_to_end));
+
     // ui
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -102,6 +108,7 @@ class SelectionPlugin : public Action {
               <menuitem action='select-all-subtitles'/>
               <menuitem action='unselect-all-subtitles'/>
               <menuitem action='invert-subtitles-selection'/>
+              <menuitem action='select-to-end'/>
             </placeholder>
           </menu>
         </menubar>
@@ -134,6 +141,7 @@ class SelectionPlugin : public Action {
     action_group->get_action("unselect-all-subtitles")->set_sensitive(visible);
     action_group->get_action("invert-subtitles-selection")
         ->set_sensitive(visible);
+    action_group->get_action("select-to-end") ->set_sensitive(visible);
   }
 
  protected:
@@ -179,8 +187,14 @@ class SelectionPlugin : public Action {
     execute(INVERT);
   }
 
+  void on_select_to_end() {
+    se_dbg(SE_DBG_PLUGINS);
+
+    execute(TOEND);
+  }
+
  protected:
-  enum TYPE { FIRST, LAST, PREVIOUS, NEXT, ALL, INVERT, UNSELECT };
+  enum TYPE { FIRST, LAST, PREVIOUS, NEXT, ALL, INVERT, UNSELECT, TOEND };
 
   bool execute(TYPE type) {
     se_dbg(SE_DBG_PLUGINS);
@@ -224,6 +238,17 @@ class SelectionPlugin : public Action {
           (type == FIRST) ? subtitles.get_first() : subtitles.get_last();
       if (sub)
         subtitles.select(sub);
+    } else if ( type == TOEND ) {
+      std::vector<Subtitle> selection = subtitles.get_selection();
+      if (!selection.empty()) {
+        Subtitle sub = selection[ selection.size() - 1 ];
+        sub = subtitles.get_next( sub );
+        while( sub ) {
+         selection.push_back( sub );
+         sub = subtitles.get_next( sub );
+        }
+        subtitles.select( selection );
+      }
     }
     return false;
   }
