@@ -31,6 +31,7 @@ FILES = \
 		reversetextandtranslation \
 		scalesubtitles \
 		selection \
+		slidetimings \
 		sortsubtitles \
 		spellchecking \
 		splitdocument \

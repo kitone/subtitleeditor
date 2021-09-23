@@ -1,7 +1,8 @@
 /*
  *
  *	slidetimings.cc
- *	- "justice for selected subtitles"
+ *	- "slide subtitle text up and down between subtitles
+ *     while keeping the timings in place"
  *	a subtitleeditor plugin by Eltomito <tomaspartl@centrum.cz>
  *
  *	subtitleeditor -- a tool to create or edit subtitle
@@ -55,12 +56,12 @@ public:
 		action_group = Gtk::ActionGroup::create("SlideTimingsPlugin");
 
 		action_group->add(
-				Gtk::Action::create("bump-up", _("_Bump Text Up"),
+				Gtk::Action::create("bump-up", _("Bump Text Up"),
 				_("Moves the text field to the previous subtitle for all subtitles from the current one to the end.")),
 					sigc::mem_fun(*this, &SlideTimingsPlugin::on_bump_up));
 
 		action_group->add(
-				Gtk::Action::create("bump-down", _("_Bump Text Down"),
+				Gtk::Action::create("bump-down", _("Bump Text Down"),
 				_("Moves the text field to the next subtitle for all subtitles from the current one to the end.")),
 					sigc::mem_fun(*this, &SlideTimingsPlugin::on_bump_down));
 

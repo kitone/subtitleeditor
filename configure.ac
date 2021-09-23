@@ -361,6 +361,7 @@ plugins/actions/removesubtitle/Makefile
 plugins/actions/reversetextandtranslation/Makefile
 plugins/actions/scalesubtitles/Makefile
 plugins/actions/selection/Makefile
+plugins/actions/slidetimings/Makefile
 plugins/actions/sortsubtitles/Makefile
 plugins/actions/spellchecking/Makefile
 plugins/actions/splitdocument/Makefile
