@@ -1084,14 +1084,18 @@ void SubtitleView::select_and_set_cursor(const Gtk::TreeIter &iter,
 }
 
 bool SubtitleView::on_key_press_event(GdkEventKey *event) {
-  if (event->string != nullptr) {
+
+  if ((event->string != nullptr)&& cfg::get_boolean("subtitle-view", "enable-goto-subtitle-number")) {
     int num;
     std::istringstream ss(event->string);
     bool is_num = static_cast<bool>(ss >> num) != 0;
     // Update only if it's different
     if (is_num != get_enable_search())
       set_enable_search(is_num);
+  } else {
+    set_enable_search(false);
   }
+
   return Gtk::TreeView::on_key_press_event(event);
 }
 

@@ -97,6 +97,7 @@ void get_default_config(
       "number;start;style;text;translation";
   config["subtitle-view"]["used-ctrl-enter-to-confirm-change"] = "false";
   config["subtitle-view"]["do-not-disable-actions-during-editing"] = "false";
+  config["subtitle-view"]["enable-goto-subtitle-number"] = "false";
 
   // [timing]
   config["timing"]["min-characters-per-second"] = "5";
