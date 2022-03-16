@@ -93,3 +93,10 @@ share/org.kitone.subtitleeditor.desktop
 *.libs
 .dirstamp
 .intltool-merge-cache
+
+#joe and some other editors generate backup files by default. Ignore them:
+*~
+
+#no idea why this wasn't in gitignore in the first place:
+share/subtitleeditor.desktop
+src/subtitleeditor
