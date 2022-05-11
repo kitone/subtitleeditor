@@ -102,6 +102,11 @@ class ClipboardPlugin : public Action {
                             _("Paste Over Text"),
                             _("Overwrite subtitle text with clipboard content.")),
         sigc::mem_fun(*this, &ClipboardPlugin::on_paste_over_text));
+    action_group->add(
+        Gtk::Action::create("clipboard-paste-unchanged",
+                            _("Paste Unchanged"),
+                            _("Paste without changing the time codes.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_paste_unchanged));
 
     // ui
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -124,6 +129,7 @@ class ClipboardPlugin : public Action {
               <menuitem action='clipboard-paste-at-player-position'/>
               <menuitem action='clipboard-paste-as-new-document'/>
               <menuitem action='clipboard-paste-over-text'/>
+              <menuitem action='clipboard-paste-unchanged'/>
               <separator/>
             </placeholder>
           </menu>
@@ -232,6 +238,8 @@ class ClipboardPlugin : public Action {
         ->set_sensitive(paste_visible);
     action_group->get_action("clipboard-paste-over-text")
         ->set_sensitive( paste_over_visible );
+    action_group->get_action("clipboard-paste-unchanged")
+        ->set_sensitive( paste_visible );
 
   }
 
@@ -598,13 +606,15 @@ class ClipboardPlugin : public Action {
 
       //tell the user what happened
       doc->flash_message(_("%i subtitle(s) overwritten with clipboard text."), howmany );
-    } else {
+    } else { //don't PASTE_OVER_TEXT
       paste_after = where_to_paste(subtitles);
   
       // We get the new subtitles in the new_subtitles array
       create_and_insert_paste_subtitles(subtitles, paste_after, new_subtitles);
-  
-      calculate_and_apply_timeshift(subtitles, paste_after, new_subtitles, flags);
+
+			if( (flags & PASTE_UNCHANGED) == 0 ) {
+        calculate_and_apply_timeshift(subtitles, paste_after, new_subtitles, flags);
+      }
   
       // We can now remove the old selected subtitles, only if the selection is >
       // 1
@@ -752,6 +762,13 @@ class ClipboardPlugin : public Action {
     paste_common( PASTE_OVER_TEXT );
   };
 
+  void on_paste_unchanged()
+  {
+    se_dbg(SE_DBG_PLUGINS);
+
+    paste_common( PASTE_UNCHANGED );
+  };
+
   void paste_common(unsigned long flags) {
     se_dbg(SE_DBG_PLUGINS);
 
@@ -833,7 +850,8 @@ class ClipboardPlugin : public Action {
         0x01,  // snap the pasted subtitles after the preceding subtitle
     PASTE_TIMING_PLAYER = 0x02,  // paste at the current player position
     PASTE_AS_NEW_DOCUMENT = 0x04,
-    PASTE_OVER_TEXT = 0x08  // keep current timing but overwrite the text
+    PASTE_OVER_TEXT = 0x08,  // keep current timing but overwrite the text
+    PASTE_UNCHANGED = 0x10  // don't change the time codes
   };
   unsigned long paste_flags;
 
