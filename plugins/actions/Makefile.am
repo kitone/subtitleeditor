@@ -32,6 +32,7 @@ FILES = \
 		scalesubtitles \
 		selection \
 		slidetimings \
+		slidewords \
 		sortsubtitles \
 		spellchecking \
 		splitdocument \

@@ -364,6 +364,7 @@ plugins/actions/selection/Makefile
 plugins/actions/sortsubtitles/Makefile
 plugins/actions/spellchecking/Makefile
 plugins/actions/slidetimings/Makefile
+plugins/actions/slidewords/Makefile
 plugins/actions/splitdocument/Makefile
 plugins/actions/splitsubtitle/Makefile
 plugins/actions/stacksubtitles/Makefile

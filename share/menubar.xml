@@ -45,6 +45,8 @@
 			<placeholder name="duplicate-selected-subtitles"/>
 			<separator/>
 			<placeholder name="text-formatting"/>
+			<separator/>
+			<placeholder name="slide-words"/>
 		</menu>
 
 		<menu action="menu-selection" name="menu-selection">
