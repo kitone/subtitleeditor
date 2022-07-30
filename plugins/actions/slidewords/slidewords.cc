@@ -208,7 +208,7 @@ protected:
 			text1.erase( end, 1 );
 			end = text1.rfind('\n');
 		}
-		size_t space = text1.rfind(' ');
+		size_t space = text1.find_last_of(" \n\t");
 		size_t start = space + 1;
 		if( space == Glib::ustring::npos ) {
 			start = 0;
@@ -224,7 +224,7 @@ protected:
 	}
 
 	void slide_word_prev_text( Glib::ustring &text1, Glib::ustring &text2 ) {
-		size_t space = text2.find(' ');
+		size_t space = text2.find_first_of(" \n\t");
 		while( space == 0 ) {
 			text2.erase( 0, 1 );
 			space = text2.find(' ');
