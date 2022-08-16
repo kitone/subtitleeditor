@@ -91,8 +91,8 @@ OptionGroup::OptionGroup()
   add_debug_option(io, debug_io);
   add_debug_option(search, debug_search);
   add_debug_option(regex, debug_regex);
-  add_debug_option(video - player, debug_video_player);
-  add_debug_option(spell - checking, debug_spell_checking);
+  add_debug_option(video-player, debug_video_player);
+  add_debug_option(spell-checking, debug_spell_checking);
   add_debug_option(waveform, debug_waveform);
   add_debug_option(utility, debug_utility);
   add_debug_option(command, debug_command);
