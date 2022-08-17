@@ -169,30 +169,43 @@ bool GstPlayer::is_playing() {
 
 // Return the duration of the stream or 0.
 long GstPlayer::get_duration() {
-  se_dbg(SE_DBG_VIDEO_PLAYER);
+//  se_dbg(SE_DBG_VIDEO_PLAYER);
 
-  if (!m_pipeline)
+  if (!m_pipeline) {
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "0 because no pipeline");
     return 0;
-  if (!GST_CLOCK_TIME_IS_VALID(m_pipeline_duration))
-    if (!update_pipeline_duration())
-      return 0;
+  }
 
-  return m_pipeline_duration / Gst::MILLI_SECOND;
+  if (!GST_CLOCK_TIME_IS_VALID(m_pipeline_duration))
+    if (!update_pipeline_duration()) {
+      se_dbg_msg(SE_DBG_VIDEO_PLAYER, "0 because pipeline duration not valid");
+      return 0;
+     }
+
+  long res = m_pipeline_duration / Gst::MILLI_SECOND;
+//  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "%li", res);
+  return res;
 }
 
 // Return the current position in the stream.
 long GstPlayer::get_position() {
-  se_dbg(SE_DBG_VIDEO_PLAYER);
+//  se_dbg(SE_DBG_VIDEO_PLAYER);
 
-  if (!m_pipeline)
+  if (!m_pipeline) {
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "0 because no pipeline");
     return 0;
+  }
 
   gint64 pos = 0;
   Gst::Format fmt = Gst::FORMAT_TIME;
 
-  if (!m_pipeline->query_position(fmt, pos))
+  if (!m_pipeline->query_position(fmt, pos)) {
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "0 because query_position() failed");
     return 0;
-  return pos / Gst::MILLI_SECOND;
+  }
+  long res = pos / Gst::MILLI_SECOND;
+  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "%li", res);
+  return res;
 }
 
 bool GstPlayer::seek(long start, long end, const Gst::SeekFlags &flags) {
