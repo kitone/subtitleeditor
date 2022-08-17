@@ -47,7 +47,7 @@ void get_default_config(
   config["video-player"]["video-sink"] = DEFAULT_PLAYER_VIDEO_SINK;
   config["video-player"]["timeout"] = "100";
   config["video-player"]["repeat"] = "false";
-  config["video-player"]["display"] = "false";
+  config["video-player"]["display"] = "true";
   config["video-player"]["automatically-open-video"] = "true";
 
   // [waveform]
@@ -58,7 +58,7 @@ void get_default_config(
   config["waveform"]["scrolling-with-player"] = "true";
   config["waveform"]["scrolling-with-selection"] = "true";
   config["waveform"]["respect-timing"] = "true";
-  config["waveform"]["display"] = "false";
+  config["waveform"]["display"] = "true";
   config["waveform"]["renderer"] = "cairo";
 
   // [waveform-renderer]
