@@ -73,6 +73,9 @@
 			<placeholder name="stack-subtitles"/>
 			<placeholder name="stack-subtitles-from-end"/>
 			<separator/>
+			<placeholder name="bump-down"/>
+			<placeholder name="bump-up"/>
+			<separator/>
 			<placeholder name="placeholder"/>
 		</menu>
 
