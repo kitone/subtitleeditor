@@ -20,7 +20,9 @@
 
 #include <config.h>
 #include <gtkmm/main.h>
+
 #include <iostream>
+
 #include "gtkmm_utility.h"
 #include "gui/application.h"
 #include "options.h"
@@ -28,7 +30,8 @@
 
 // #include <gdk/gdkx.h>
 #include <glib.h>
-#include <gstreamermm.h>
+#include <gst/gst.h>
+
 #include <ctime>
 
 #ifdef ENABLE_GL
@@ -81,12 +84,10 @@ int main(int argc, char *argv[]) {
 
   se_dbg_msg(SE_DBG_APP, "Init GStreamer");
 
-  Gst::init(argc, argv);
+  gst_init(&argc, &argv);
 
   // Run Application
-  Application *application = gtkmm_utility::get_widget_derived<Application>(
-      SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), "subtitleeditor.ui",
-      "window-main");
+  Application *application = gtkmm_utility::get_widget_derived<Application>(SE_DEV_VALUE(PACKAGE_UI_DIR, PACKAGE_UI_DIR_DEV), "subtitleeditor.ui", "window-main");
   if (!application)
     return EXIT_FAILURE;
 
