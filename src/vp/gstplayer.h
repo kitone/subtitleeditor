@@ -20,14 +20,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include <gstreamermm.h>
-#include <gstreamermm/playbin.h>
-#include <gstreamermm/textoverlay.h>
-#include <gstreamermm/videooverlay.h>
+#include <gst/gst.h>
 #include <gtkmm.h>
 #include <player.h>
 
-class GstPlayer : public Gtk::DrawingArea, public Player {
+class GstPlayer : public Gtk::Bin, public Player {
  public:
   // Constructor
   // Init values
@@ -71,7 +68,7 @@ class GstPlayer : public Gtk::DrawingArea, public Player {
   // Return the current position in the stream.
   long get_position();
 
-  bool seek(long start, long end, const Gst::SeekFlags &flags);
+  bool seek(long start, long end, const GstSeekFlags &flags);
 
   // Seeking, the state of the pipeline is not modified.
   void seek(long position);
@@ -96,32 +93,21 @@ class GstPlayer : public Gtk::DrawingArea, public Player {
   // Update numerator and denominator if the values are not null.
   virtual float get_framerate(int *numerator = NULL, int *denominator = NULL);
 
- protected:
+  // protected:
+
   // Realize the widget and get the xWindowId.
-  void on_realize();
+  // void on_realize();
 
-  // Show the video overlay.
-  void on_map();
-
-  // Hide the video overlay.
-  void on_unmap();
-
-  // Connect to toplevel configure events.
-  void on_hierarchy_changed(Widget* previous_toplevel);
-
-  // Update render rectangle of GstVideoOverlay.
-  bool on_configure_event(GdkEventConfigure* configure_event);
-
-  // Create a gstreamer pipeline (Gst::PlayBin2), initialize the
+  // Create a gstreamer pipeline (Gst PlayBin3), initialize the
   // audio and video sink with the configuration.
   // Connect the bug message to the player.
   bool create_pipeline();
 
   // Return a gstreamer audio sink from the configuration option.
-  Glib::RefPtr<Gst::Element> gen_audio_element();
+  // Glib::RefPtr<Gst::Element> gen_audio_element();
 
   // Return a gstreamer video sink from the configuration option.
-  Glib::RefPtr<Gst::Element> gen_video_element();
+  GstElement *gen_video_element();
 
   // Check if are missing plugin, if it's true display a message.
   // Return true if missing.
@@ -129,53 +115,52 @@ class GstPlayer : public Gtk::DrawingArea, public Player {
 
   // Check if it's a Missing Plugin Message.
   // Add the description of the missing plugin in the list.
-  bool is_missing_plugin_message(const Glib::RefPtr<Gst::MessageElement> &msg);
+  bool is_missing_plugin_message(GstMessage *msg);
 
   // Receive synchronous message emission to set up video.
-  void on_bus_message_sync(const Glib::RefPtr<Gst::Message> &msg);
+  void on_bus_message_sync(GstMessage *msg);
 
   // Dispatch the gstreamer message.
-  bool on_bus_message(const Glib::RefPtr<Gst::Bus> &bus,
-                      const Glib::RefPtr<Gst::Message> &msg);
+  bool on_bus_message(GstBus *bus, GstMessage *msg);
 
   // The state of the pipeline has changed.
   // Update the player state.
-  void on_bus_message_state_changed(
-      const Glib::RefPtr<Gst::MessageStateChanged> &msg);
+  void on_bus_message_state_changed(GstMessage *msg);
 
   // Check the missing plugin.
   // If is missing add in the list of missing plugins.
   // This list should be show later.
-  void on_bus_message_element(const Glib::RefPtr<Gst::MessageElement> &msg);
+  void on_bus_message_element(GstMessage *msg);
 
   // An error is detected.
   // Destroy the pipeline and show the error message in a dialog.
-  void on_bus_message_error(const Glib::RefPtr<Gst::MessageError> &msg);
+  void on_bus_message_error(GstMessage *msg);
 
   // An error is detected.
-  void on_bus_message_warning(const Glib::RefPtr<Gst::MessageWarning> &msg);
+  void on_bus_message_warning(GstMessage *msg);
 
   // End-of-stream (segment or stream) has been detected,
   // update the pipeline state to PAUSED.
   // Seek to the beginning if it's the end of the stream.
-  void on_bus_message_eos(const Glib::RefPtr<Gst::MessageEos> &msg);
+  void on_bus_message_eos(GstMessage *msg);
 
   // The pipeline completed playback of a segment.
   // If the looping is activated send new seek event.
   // Works only with play_subtitle.
-  void on_bus_message_segment_done(
-      const Glib::RefPtr<Gst::MessageSegmentDone> &msg);
+  void on_bus_message_segment_done(GstMessage *msg);
+
+  //
+  void on_bus_message_stream_collection(GstMessage *msg);
 
   // Set the state of the pipeline.
   // The state change can be asynchronously.
-  bool set_pipeline_state(Gst::State state);
+  bool set_pipeline_state(GstState state);
 
   // Sets the state of the pipeline to NULL.
   void set_pipeline_null();
 
   // The video-player configuration has changed, update the player.
-  void on_config_video_player_changed(const Glib::ustring &key,
-                                      const Glib::ustring &value);
+  void on_config_video_player_changed(const Glib::ustring &key, const Glib::ustring &value);
 
   // Return the xwindow ID. (Support X11, WIN32 and QUARTZ)
   // Do not call this function in a gstreamer thread, this cause crash/segfault.
@@ -206,16 +191,17 @@ class GstPlayer : public Gtk::DrawingArea, public Player {
 
   guint m_watch_id;
   // Gstreamer Elements
-  Glib::RefPtr<Gst::PlayBin> m_pipeline;
-  Glib::RefPtr<Gst::Element> m_xoverlay;
-  Glib::RefPtr<Gst::TextOverlay> m_textoverlay;
+  GstElement *m_pipeline;
+  GtkWidget *m_gtksink_widget;
+  // Glib::RefPtr<Gst::VideoOverlay> m_xoverlay;
+  GstElement *m_textoverlay;
 
   bool m_pipeline_async_done;
-  Gst::State m_pipeline_state;
+  GstState m_pipeline_state;
   gint64 m_pipeline_duration;
   double m_pipeline_rate;
   bool m_loop_seek;
   Subtitle m_subtitle_play;
-
+  Glib::ustring m_uri;
   std::list<Glib::ustring> m_missing_plugins;
 };
