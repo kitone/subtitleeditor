@@ -95,9 +95,6 @@ class GstPlayer : public Gtk::Bin, public Player {
 
   // protected:
 
-  // Realize the widget and get the xWindowId.
-  // void on_realize();
-
   // Create a gstreamer pipeline (Gst PlayBin3), initialize the
   // audio and video sink with the configuration.
   // Connect the bug message to the player.
@@ -116,9 +113,6 @@ class GstPlayer : public Gtk::Bin, public Player {
   // Check if it's a Missing Plugin Message.
   // Add the description of the missing plugin in the list.
   bool is_missing_plugin_message(GstMessage *msg);
-
-  // Receive synchronous message emission to set up video.
-  void on_bus_message_sync(GstMessage *msg);
 
   // Dispatch the gstreamer message.
   bool on_bus_message(GstBus *bus, GstMessage *msg);
@@ -162,11 +156,6 @@ class GstPlayer : public Gtk::Bin, public Player {
   // The video-player configuration has changed, update the player.
   void on_config_video_player_changed(const Glib::ustring &key, const Glib::ustring &value);
 
-  // Return the xwindow ID. (Support X11, WIN32 and QUARTZ)
-  // Do not call this function in a gstreamer thread, this cause crash/segfault.
-  // Caused by the merge of the Client-Side Windows in GTK+.
-  gulong get_xwindow_id();
-
   void update_pipeline_state_and_timeout();
 
   // Set up the duration value of the stream if need.
@@ -187,8 +176,6 @@ class GstPlayer : public Gtk::Bin, public Player {
   guint get_text_valignment_based_on_config();
 
  protected:
-  gulong m_xWindowId;
-
   guint m_watch_id;
   // Gstreamer Elements
   GstElement *m_pipeline;

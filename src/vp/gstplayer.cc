@@ -39,7 +39,6 @@ GstPlayer::GstPlayer() {
   m_pipeline = nullptr;
   m_gtksink_widget = nullptr;
   m_textoverlay = nullptr;
-  m_xWindowId = 0;
   m_watch_id = 0;
   m_pipeline_state = GST_STATE_NULL;
   m_pipeline_duration = GST_CLOCK_TIME_NONE;
@@ -265,29 +264,6 @@ void GstPlayer::set_repeat(bool state) {
   // FIXME flush pipeline ?
 }
 
-// Realize the widget and get the xWindowId.
-// void GstPlayer::on_realize() {
-//   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "try to realize...");
-//
-//   Gtk::DrawingArea::on_realize();
-//
-//   m_xWindowId = get_xwindow_id();
-//
-//   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "try to realize... ok");
-// }
-
-void GstPlayer::on_map() {
-  Gtk::DrawingArea::on_map();
-
-  set_render_rectangle();
-}
-
-void GstPlayer::on_unmap() {
-  Gtk::DrawingArea::on_unmap();
-
-  set_render_rectangle(false);
-}
-
 // Create a gstreamer pipeline (Gst::PlayBin2), initialize the
 // audio and video sink with the configuration.
 // Connect the bug message to the player.
@@ -449,31 +425,6 @@ bool GstPlayer::is_missing_plugin_message(GstMessage *msg) {
   g_free(description);
   return true;
 }
-
-// // Receive synchronous message emission to set up video.
-// void GstPlayer::on_bus_message_sync(const Glib::RefPtr<Gst::Message> &msg) {
-//   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "type='%s' name='%s'", GST_MESSAGE_TYPE_NAME(msg->gobj()), GST_OBJECT_NAME(GST_MESSAGE_SRC(msg->gobj())));
-
-//   // Ignore anything but 'prepare-window-handle' element messages
-//   if (!gst_is_video_overlay_prepare_window_handle_message(GST_MESSAGE(msg->gobj())))
-//     return;
-
-//   GstVideoOverlay *overlay = GST_VIDEO_OVERLAY(GST_MESSAGE_SRC(msg->gobj()));
-//   gst_video_overlay_set_window_handle(overlay, m_xWindowId);
-
-//   // FIXME: open bug on gstreamermm 1.0
-//   // Get the gstreamer element source
-//   // Glib::RefPtr<Gst::Element> el_src =
-//   // Glib::RefPtr<Gst::Element>::cast_static(msg->get_source());
-//   // Has an XOverlay
-//   // Glib::RefPtr< Gst::VideoOverlay > xoverlay =
-//   // Glib::RefPtr<Gst::VideoOverlay>::cast_dynamic(el_src);
-//   // xoverlay->set_window_handle(m_xWindowId);
-
-//   // We don't need to keep sync message
-//   Glib::RefPtr<Gst::Bus> bus = m_pipeline->get_bus();
-//   bus->disable_sync_message_emission();
-// }
 
 // Dispatch the gstreamer message.
 bool GstPlayer::on_bus_message(GstBus *bus, GstMessage *msg) {
@@ -661,32 +612,6 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key, const G
   } else if (key == "font-desc" && m_textoverlay) {
     g_object_set(G_OBJECT(m_textoverlay), "font_desc", value.c_str(), NULL);
   }
-}
-
-// Return the xwindow ID. (Support X11, Wayland, WIN32 and QUARTZ)
-// Do not call this function in a gstreamer thread, this cause crash/segfault.
-// Caused by the merge of the Client-Side Windows in GTK+.
-gulong GstPlayer::get_xwindow_id() {
-  se_dbg(SE_DBG_VIDEO_PLAYER);
-
-  gulong xWindowId = 0;
-  auto gdkWindow = get_window()->gobj();
-
-#ifdef GDK_WINDOWING_X11
-  const gulong xWindowId = GDK_WINDOW_XID(get_window()->gobj());
-#elif defined(GDK_WINDOWING_WIN32)
-  const gulong xWindowId = gdk_win32_drawable_get_handle(get_window()->gobj());
-#elif defined(GDK_WINDOWING_QUARTZ)
-  // const gulong xWindowId =
-  // gdk_quartz_window_get_nswindow(get_window()->gobj());
-  const gulong xWindowId = 0;  // gdk_quartz_window_get_nsview(get_window()->gobj());
-#else
-#error unimplemented GTK backend
-#endif
-
-  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "xWindowId=%d", xWindowId);
-
-  return xWindowId;
 }
 
 void GstPlayer::update_pipeline_state_and_timeout() {
