@@ -97,6 +97,9 @@ share/org.kitone.subtitleeditor.desktop
 #joe and some other editors generate backup files by default. Ignore them:
 *~
 
+#lock files
+*.lock
+
 #no idea why this wasn't in gitignore in the first place:
 share/subtitleeditor.desktop
 src/subtitleeditor

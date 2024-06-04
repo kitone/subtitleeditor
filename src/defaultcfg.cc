@@ -101,7 +101,8 @@ void get_default_config(
 
   // [timing]
   config["timing"]["min-characters-per-second"] = "5";
-  config["timing"]["max-characters-per-second"] = "25";
+  config["timing"]["max-characters-per-second"] = "20";
+  config["timing"]["ideal-characters-per-second"] = "16";
   config["timing"]["min-gap-between-subtitles"] = "100";
   config["timing"]["min-display"] = "1000";
   config["timing"]["max-characters-per-line"] = "40";
