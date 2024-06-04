@@ -70,6 +70,8 @@
 			<placeholder name="move-after-preceding-subtitle"/>
 			<placeholder name="move-before-next-subtitle"/>
 			<placeholder name="best-fit"/>
+			<placeholder name="idealize-duration"/>
+			<placeholder name="idealize-duration-from-end"/>
 			<placeholder name="minimize-duration"/>
 			<placeholder name="minimize-duration-from-end"/>
 			<placeholder name="stack-subtitles"/>

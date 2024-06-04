@@ -45,18 +45,33 @@ class MinimizeDurationPlugin : public Action {
 
     action_group->add(
         Gtk::Action::create(
-            "minimize-duration", _("_Minimize Duration From Start"),
+            "minimize-duration", _("Minimize Duration From Start"),
             _("Compact each selected subtitle to its minimum permissible "
               "duration, start time is unchanged.")),
         sigc::mem_fun(
             *this, &MinimizeDurationPlugin::on_minimize_duration_from_start));
     action_group->add(
         Gtk::Action::create("minimize-duration-from-end",
-                            _("M_inimize Duration From End"),
+                            _("Minimize Duration From End"),
                             _("Compact each selected subtitle to its minimum "
                               "permissible duration, end time is unchanged.")),
         sigc::mem_fun(*this,
                       &MinimizeDurationPlugin::on_minimize_duration_from_end));
+
+    action_group->add(
+        Gtk::Action::create(
+            "idealize-duration", _("_Idealize Duration From Start"),
+            _("Compact each selected subtitle to its ideal "
+              "duration, start time is unchanged.")),
+        sigc::mem_fun(
+            *this, &MinimizeDurationPlugin::on_idealize_duration_from_start));
+    action_group->add(
+        Gtk::Action::create("idealize-duration-from-end",
+                            _("_Idealize Duration From End"),
+                            _("Compact each selected subtitle to its ideal "
+                              "duration, end time is unchanged.")),
+        sigc::mem_fun(*this,
+                      &MinimizeDurationPlugin::on_idealize_duration_from_end));
 
     // ui
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -65,6 +80,10 @@ class MinimizeDurationPlugin : public Action {
 
     ui->insert_action_group(action_group);
 
+    ui->add_ui(ui_id, "/menubar/menu-timings/idealize-duration",
+               "idealize-duration", "idealize-duration");
+    ui->add_ui(ui_id, "/menubar/menu-timings/idealize-duration-from-end",
+               "idealize-duration-from-end", "idealize-duration-from-end");
     ui->add_ui(ui_id, "/menubar/menu-timings/minimize-duration",
                "minimize-duration", "minimize-duration");
     ui->add_ui(ui_id, "/menubar/menu-timings/minimize-duration-from-end",
@@ -88,22 +107,37 @@ class MinimizeDurationPlugin : public Action {
     action_group->get_action("minimize-duration")->set_sensitive(visible);
     action_group->get_action("minimize-duration-from-end")
         ->set_sensitive(visible);
+    action_group->get_action("idealize-duration")->set_sensitive(visible);
+    action_group->get_action("idealize-duration-from-end")
+        ->set_sensitive(visible);
   }
 
  protected:
+  void on_idealize_duration_from_start() {
+    se_dbg(SE_DBG_PLUGINS);
+
+    execute(cfg::get_double("timing", "ideal-characters-per-second"),true);
+  }
+
+  void on_idealize_duration_from_end() {
+    se_dbg(SE_DBG_PLUGINS);
+
+    execute(cfg::get_double("timing", "ideal-characters-per-second"),false);
+  }
+
   void on_minimize_duration_from_start() {
     se_dbg(SE_DBG_PLUGINS);
 
-    execute(true);
+    execute(cfg::get_double("timing", "max-characters-per-second"),true);
   }
 
   void on_minimize_duration_from_end() {
     se_dbg(SE_DBG_PLUGINS);
 
-    execute(false);
+    execute(cfg::get_double("timing", "max-characters-per-second"),false);
   }
 
-  bool execute(bool from_start) {
+  bool execute(double maxcps, bool from_start) {
     se_dbg(SE_DBG_PLUGINS);
 
     Document *doc = get_current_document();
@@ -124,7 +158,6 @@ class MinimizeDurationPlugin : public Action {
 
     // get relevant preferences
     SubtitleTime mindur = cfg::get_int("timing", "min-display");
-    double maxcps = cfg::get_double("timing", "max-characters-per-second");
 
     doc->start_command(_("Minimize Durations"));
 
