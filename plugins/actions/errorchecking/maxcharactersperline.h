@@ -74,7 +74,7 @@ class MaxCharactersPerLine : public ErrorChecking {
       if (spacePos != Glib::ustring::npos) {
         str.replace(spacePos, 1, "\n");
         curWidth = spacePos + width + 1;
-      }
+      } else break;
     }
     return str;
   }
