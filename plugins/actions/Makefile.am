@@ -17,6 +17,7 @@ FILES = \
 		extendlength \
 		externalvideoplayer \
 		findandreplace \
+		findbytime \
 		insertsubtitle \
 		insertsubtitlefromkeyframe \
 		italicize \

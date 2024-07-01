@@ -86,6 +86,8 @@
 		<menu action="menu-tools">
 			<placeholder name="find-and-replace"/>
 			<separator/>
+			<placeholder name="find-by-time"/>
+			<separator/>
 			<placeholder name="checking"/>
 			<separator/>
 			<placeholder name="split-document"/>

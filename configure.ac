@@ -347,6 +347,7 @@ plugins/actions/errorchecking/Makefile
 plugins/actions/extendlength/Makefile
 plugins/actions/externalvideoplayer/Makefile
 plugins/actions/findandreplace/Makefile
+plugins/actions/findbytime/Makefile
 plugins/actions/insertsubtitle/Makefile
 plugins/actions/insertsubtitlefromkeyframe/Makefile
 plugins/actions/italicize/Makefile
