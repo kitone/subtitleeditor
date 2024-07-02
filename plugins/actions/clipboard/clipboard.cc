@@ -117,6 +117,12 @@ class ClipboardPlugin : public Action {
                             _("Paste without changing the time codes.")),
         sigc::mem_fun(*this, &ClipboardPlugin::on_paste_unchanged));
 
+    action_group->add(
+        Gtk::Action::create("clipboard-select-overlap",
+                            _("Select Clipboard Overlap"),
+                            _("Select subtitles that overlap clipboard content.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_select_overlap));
+
     // ui
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
 
@@ -142,6 +148,7 @@ class ClipboardPlugin : public Action {
                 <menuitem action='clipboard-paste-over-time'/>
                 <menuitem action='clipboard-paste-unchanged'/>
               </menu>
+              <menuitem action='clipboard-select-overlap'/>
               <separator/>
             </placeholder>
           </menu>
@@ -254,7 +261,8 @@ class ClipboardPlugin : public Action {
         ->set_sensitive( paste_over_visible );
     action_group->get_action("clipboard-paste-unchanged")
         ->set_sensitive( paste_visible );
-
+    action_group->get_action("clipboard-select-overlap")
+        ->set_sensitive( paste_visible );
   }
 
   void on_player_message(Player::Message) {
@@ -490,11 +498,16 @@ class ClipboardPlugin : public Action {
       return;
     }
 
-    // actually paste the data from clipdoc to the current document
-    doc->start_command(_("Paste"));
-    paste(doc, paste_flags);
-    doc->emit_signal("subtitle-time-changed");
-    doc->finish_command();
+    if(( paste_flags & SELECT_OVERLAP) != 0 ) { //clipboard used for selection only
+      select_overlap( doc );
+      doc->emit_signal("subtitle-time-changed");
+    } else { //clipboard will be pasted
+      // actually paste the data from clipdoc to the current document
+      doc->start_command(_("Paste"));
+      paste(doc, paste_flags);
+      doc->emit_signal("subtitle-time-changed");
+      doc->finish_command();
+    }
   }
 
   // Clear clipboard document by first destroying it
@@ -595,7 +608,7 @@ class ClipboardPlugin : public Action {
   // and Paste As New Document commands.
   void paste(Document *doc, unsigned long flags = 0) {
     se_dbg(SE_DBG_PLUGINS);
-
+//XXX
     Subtitles subtitles = doc->subtitles();
     std::vector<Subtitle> new_subtitles;
     Subtitle paste_after;
@@ -754,6 +767,68 @@ class ClipboardPlugin : public Action {
     }
   }
 
+  // ================= SELECT OVERLAP COMMAND =====================
+
+  void on_select_overlap()
+ {
+    se_dbg(SE_DBG_PLUGINS);
+
+    Document *doc = get_current_document();
+    g_return_if_fail(doc);
+
+    if (is_clipboard_mine()) {
+      select_overlap( doc );
+    } else {
+      // remember what document to select subs in...
+      set_pastedoc(doc);
+      // ...and that we are just selecting, not pasting anything.
+      paste_flags = SELECT_OVERLAP;
+      request_clipboard_data();
+    }
+  }
+
+  void select_overlap( Document *doc )
+  {
+    g_return_if_fail(doc);
+
+    //are there any subtitled in the clipboard document?
+    if (is_something_to_paste() == false) {
+      return;
+    }
+
+    std::vector<Subtitle> selection;
+    Subtitles subtitles = doc->subtitles();
+
+    Subtitle clipsub = clipdoc->subtitles().get_first();
+    while( clipsub ) {
+      add_overlaps( selection, clipsub, subtitles );
+      clipsub = clipdoc->subtitles().get_next( clipsub );
+    }
+    subtitles.unselect_all();
+    subtitles.select( selection );
+  }
+
+  bool subs_overlap( const Subtitle &a, const Subtitle &b ) {
+    long astart = a.get_start().totalmsecs;
+    long aend = a.get_end().totalmsecs;
+    long bstart = b.get_start().totalmsecs;
+    long bend = b.get_end().totalmsecs;
+    if(( astart < bend )&&( bstart < aend )) {
+      return true;
+    }
+    return false;
+  };
+
+  void add_overlaps( std::vector<Subtitle> &dst, const Subtitle &selsub, Subtitles &subs ) {
+    Subtitle cursub = subs.get_first();
+    while( cursub ) {
+      if( subs_overlap( cursub, selsub ) ) {
+        dst.push_back( cursub );
+      }
+      cursub = subs.get_next( cursub );
+    }
+  }
+
   // ================= PASTE COMMANDS =====================
 
   void on_paste() {
@@ -878,7 +953,8 @@ class ClipboardPlugin : public Action {
     PASTE_AS_NEW_DOCUMENT = 0x04,
     PASTE_UNCHANGED = 0x08,  // don't change the time codes
     PASTE_OVER_TEXT = 0x10,  // keep current timing but overwrite the text
-    PASTE_OVER_TIME = 0x20  // keep current text but overwrite the timing
+    PASTE_OVER_TIME = 0x20,  // keep current text but overwrite the timing
+    SELECT_OVERLAP = 0x40  // select clipboard overlap, no pasting
   };
   unsigned long paste_flags;
 
