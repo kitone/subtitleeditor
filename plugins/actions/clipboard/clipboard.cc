@@ -793,6 +793,7 @@ class ClipboardPlugin : public Action {
 
     //are there any subtitled in the clipboard document?
     if (is_something_to_paste() == false) {
+      doc->flash_message(_("No subtitles on the clipboard."));
       return;
     }
 
@@ -806,6 +807,7 @@ class ClipboardPlugin : public Action {
     }
     subtitles.unselect_all();
     subtitles.select( selection );
+    doc->flash_message(_("Selected %i subtitles."), selection.size() );
   }
 
   bool subs_overlap( const Subtitle &a, const Subtitle &b ) {
