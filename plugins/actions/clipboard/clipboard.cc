@@ -85,6 +85,10 @@ class ClipboardPlugin : public Action {
                             _("Copy selected subtitles and make their timing "
                               "visible to text-based applications.")),
         sigc::mem_fun(*this, &ClipboardPlugin::on_copy_with_timing));
+
+    action_group->add(Gtk::Action::create("menu-edit/menu-paste-special",
+                                          _("Paste Special")));
+
     action_group->add(
         Gtk::Action::create("clipboard-paste-at-player-position",
                             _("Paste At Current Player Position"),
@@ -102,6 +106,11 @@ class ClipboardPlugin : public Action {
                             _("Paste Over Text"),
                             _("Overwrite subtitle text with clipboard content.")),
         sigc::mem_fun(*this, &ClipboardPlugin::on_paste_over_text));
+    action_group->add(
+        Gtk::Action::create("clipboard-paste-over-time",
+                            _("Paste Over Time"),
+                            _("Overwrite subtitle time with clipboard content.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_paste_over_time));
     action_group->add(
         Gtk::Action::create("clipboard-paste-unchanged",
                             _("Paste Unchanged"),
@@ -126,10 +135,13 @@ class ClipboardPlugin : public Action {
               <menuitem action='clipboard-paste'/>
               <separator/>
               <menuitem action='clipboard-copy-with-timing'/>
-              <menuitem action='clipboard-paste-at-player-position'/>
-              <menuitem action='clipboard-paste-as-new-document'/>
-              <menuitem action='clipboard-paste-over-text'/>
-              <menuitem action='clipboard-paste-unchanged'/>
+              <menu action='menu-edit/menu-paste-special'>
+                <menuitem action='clipboard-paste-at-player-position'/>
+                <menuitem action='clipboard-paste-as-new-document'/>
+                <menuitem action='clipboard-paste-over-text'/>
+                <menuitem action='clipboard-paste-over-time'/>
+                <menuitem action='clipboard-paste-unchanged'/>
+              </menu>
               <separator/>
             </placeholder>
           </menu>
@@ -237,6 +249,8 @@ class ClipboardPlugin : public Action {
     action_group->get_action("clipboard-paste-as-new-document")
         ->set_sensitive(paste_visible);
     action_group->get_action("clipboard-paste-over-text")
+        ->set_sensitive( paste_over_visible );
+    action_group->get_action("clipboard-paste-over-time")
         ->set_sensitive( paste_over_visible );
     action_group->get_action("clipboard-paste-unchanged")
         ->set_sensitive( paste_visible );
@@ -590,7 +604,7 @@ class ClipboardPlugin : public Action {
     if (is_something_to_paste() == false)
       return;
 
-    if( (flags & PASTE_OVER_TEXT) != 0 )
+    if( (flags & (PASTE_OVER_TEXT|PASTE_OVER_TIME) ) != 0 )
     {
       new_subtitles = subtitles.get_selection();
       int howmany = std::min( (int)new_subtitles.size(), (int)clipdoc->subtitles().size() );
@@ -600,12 +614,17 @@ class ClipboardPlugin : public Action {
       for( int i = 0; i < howmany; i++ )
       {
         //overwrite
-        new_subtitles[i].set_text( clip_sub.get_text() );
+        if( ( flags & PASTE_OVER_TEXT ) != 0 ) {
+          new_subtitles[i].set_text( clip_sub.get_text() );
+        }
+        if( ( flags & PASTE_OVER_TIME ) != 0 ) {
+          new_subtitles[i].set_start_and_end( clip_sub.get_start(), clip_sub.get_end() );
+        }
         ++clip_sub;
       }
 
       //tell the user what happened
-      doc->flash_message(_("%i subtitle(s) overwritten with clipboard text."), howmany );
+      doc->flash_message(_("%i subtitle(s) overwritten."), howmany );
     } else { //don't PASTE_OVER_TEXT
       paste_after = where_to_paste(subtitles);
   
@@ -762,6 +781,13 @@ class ClipboardPlugin : public Action {
     paste_common( PASTE_OVER_TEXT );
   };
 
+  void on_paste_over_time()
+  {
+    se_dbg(SE_DBG_PLUGINS);
+
+    paste_common( PASTE_OVER_TIME );
+  };
+
   void on_paste_unchanged()
   {
     se_dbg(SE_DBG_PLUGINS);
@@ -850,8 +876,9 @@ class ClipboardPlugin : public Action {
         0x01,  // snap the pasted subtitles after the preceding subtitle
     PASTE_TIMING_PLAYER = 0x02,  // paste at the current player position
     PASTE_AS_NEW_DOCUMENT = 0x04,
-    PASTE_OVER_TEXT = 0x08,  // keep current timing but overwrite the text
-    PASTE_UNCHANGED = 0x10  // don't change the time codes
+    PASTE_UNCHANGED = 0x08,  // don't change the time codes
+    PASTE_OVER_TEXT = 0x10,  // keep current timing but overwrite the text
+    PASTE_OVER_TIME = 0x20  // keep current text but overwrite the timing
   };
   unsigned long paste_flags;
 
