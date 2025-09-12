@@ -47,7 +47,7 @@ void get_default_config(
   config["video-player"]["video-sink"] = DEFAULT_PLAYER_VIDEO_SINK;
   config["video-player"]["timeout"] = "100";
   config["video-player"]["repeat"] = "false";
-  config["video-player"]["display"] = "false";
+  config["video-player"]["display"] = "true";
   config["video-player"]["automatically-open-video"] = "true";
 
   // [waveform]
@@ -58,7 +58,7 @@ void get_default_config(
   config["waveform"]["scrolling-with-player"] = "true";
   config["waveform"]["scrolling-with-selection"] = "true";
   config["waveform"]["respect-timing"] = "true";
-  config["waveform"]["display"] = "false";
+  config["waveform"]["display"] = "true";
   config["waveform"]["renderer"] = "cairo";
 
   // [waveform-renderer]
@@ -97,10 +97,12 @@ void get_default_config(
       "number;start;style;text;translation";
   config["subtitle-view"]["used-ctrl-enter-to-confirm-change"] = "false";
   config["subtitle-view"]["do-not-disable-actions-during-editing"] = "false";
+  config["subtitle-view"]["enable-goto-subtitle-number"] = "false";
 
   // [timing]
   config["timing"]["min-characters-per-second"] = "5";
-  config["timing"]["max-characters-per-second"] = "25";
+  config["timing"]["max-characters-per-second"] = "20";
+  config["timing"]["ideal-characters-per-second"] = "16";
   config["timing"]["min-gap-between-subtitles"] = "100";
   config["timing"]["min-display"] = "1000";
   config["timing"]["max-characters-per-line"] = "40";

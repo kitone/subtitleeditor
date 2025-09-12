@@ -85,6 +85,10 @@ class ClipboardPlugin : public Action {
                             _("Copy selected subtitles and make their timing "
                               "visible to text-based applications.")),
         sigc::mem_fun(*this, &ClipboardPlugin::on_copy_with_timing));
+
+    action_group->add(Gtk::Action::create("menu-edit/menu-paste-special",
+                                          _("Paste Special")));
+
     action_group->add(
         Gtk::Action::create("clipboard-paste-at-player-position",
                             _("Paste At Current Player Position"),
@@ -97,6 +101,27 @@ class ClipboardPlugin : public Action {
                             _("Create a new document and paste the contents of "
                               "the clipboard into it.")),
         sigc::mem_fun(*this, &ClipboardPlugin::on_paste_as_new_document));
+    action_group->add(
+        Gtk::Action::create("clipboard-paste-over-text",
+                            _("Paste Over Text"),
+                            _("Overwrite subtitle text with clipboard content.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_paste_over_text));
+    action_group->add(
+        Gtk::Action::create("clipboard-paste-over-time",
+                            _("Paste Over Time"),
+                            _("Overwrite subtitle time with clipboard content.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_paste_over_time));
+    action_group->add(
+        Gtk::Action::create("clipboard-paste-unchanged",
+                            _("Paste Unchanged"),
+                            _("Paste without changing the time codes.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_paste_unchanged));
+
+    action_group->add(
+        Gtk::Action::create("clipboard-select-overlap",
+                            _("Select Clipboard Overlap"),
+                            _("Select subtitles that overlap clipboard content.")),
+        sigc::mem_fun(*this, &ClipboardPlugin::on_select_overlap));
 
     // ui
     Glib::RefPtr<Gtk::UIManager> ui = get_ui_manager();
@@ -116,8 +141,14 @@ class ClipboardPlugin : public Action {
               <menuitem action='clipboard-paste'/>
               <separator/>
               <menuitem action='clipboard-copy-with-timing'/>
-              <menuitem action='clipboard-paste-at-player-position'/>
-              <menuitem action='clipboard-paste-as-new-document'/>
+              <menu action='menu-edit/menu-paste-special'>
+                <menuitem action='clipboard-paste-at-player-position'/>
+                <menuitem action='clipboard-paste-as-new-document'/>
+                <menuitem action='clipboard-paste-over-text'/>
+                <menuitem action='clipboard-paste-over-time'/>
+                <menuitem action='clipboard-paste-unchanged'/>
+              </menu>
+              <menuitem action='clipboard-select-overlap'/>
               <separator/>
             </placeholder>
           </menu>
@@ -207,6 +238,7 @@ class ClipboardPlugin : public Action {
 
     bool paste_visible = false;
     bool paste_now_visible = false;
+    bool paste_over_visible = false;
 
     if (chosen_clipboard_target != "") {
       paste_visible = true;
@@ -215,11 +247,22 @@ class ClipboardPlugin : public Action {
            Player::NONE);
     }
 
+		Document * doc = get_current_document();
+		paste_over_visible = (doc) ? !doc->subtitles().get_selection().empty() : false;
+
     action_group->get_action("clipboard-paste")->set_sensitive(paste_visible);
     action_group->get_action("clipboard-paste-at-player-position")
         ->set_sensitive(paste_now_visible);
     action_group->get_action("clipboard-paste-as-new-document")
         ->set_sensitive(paste_visible);
+    action_group->get_action("clipboard-paste-over-text")
+        ->set_sensitive( paste_over_visible );
+    action_group->get_action("clipboard-paste-over-time")
+        ->set_sensitive( paste_over_visible );
+    action_group->get_action("clipboard-paste-unchanged")
+        ->set_sensitive( paste_visible );
+    action_group->get_action("clipboard-select-overlap")
+        ->set_sensitive( paste_visible );
   }
 
   void on_player_message(Player::Message) {
@@ -455,11 +498,16 @@ class ClipboardPlugin : public Action {
       return;
     }
 
-    // actually paste the data from clipdoc to the current document
-    doc->start_command(_("Paste"));
-    paste(doc, paste_flags);
-    doc->emit_signal("subtitle-time-changed");
-    doc->finish_command();
+    if(( paste_flags & SELECT_OVERLAP) != 0 ) { //clipboard used for selection only
+      select_overlap( doc );
+      doc->emit_signal("subtitle-time-changed");
+    } else { //clipboard will be pasted
+      // actually paste the data from clipdoc to the current document
+      doc->start_command(_("Paste"));
+      paste(doc, paste_flags);
+      doc->emit_signal("subtitle-time-changed");
+      doc->finish_command();
+    }
   }
 
   // Clear clipboard document by first destroying it
@@ -560,7 +608,7 @@ class ClipboardPlugin : public Action {
   // and Paste As New Document commands.
   void paste(Document *doc, unsigned long flags = 0) {
     se_dbg(SE_DBG_PLUGINS);
-
+//XXX
     Subtitles subtitles = doc->subtitles();
     std::vector<Subtitle> new_subtitles;
     Subtitle paste_after;
@@ -569,38 +617,63 @@ class ClipboardPlugin : public Action {
     if (is_something_to_paste() == false)
       return;
 
-    paste_after = where_to_paste(subtitles);
+    if( (flags & (PASTE_OVER_TEXT|PASTE_OVER_TIME) ) != 0 )
+    {
+      new_subtitles = subtitles.get_selection();
+      int howmany = std::min( (int)new_subtitles.size(), (int)clipdoc->subtitles().size() );
+      Subtitle clip_sub = clipdoc->subtitles().get_first();
+      Subtitle oversub = subtitles.get_first();
 
-    // We get the new subtitles in the new_subtitles array
-    create_and_insert_paste_subtitles(subtitles, paste_after, new_subtitles);
+      for( int i = 0; i < howmany; i++ )
+      {
+        //overwrite
+        if( ( flags & PASTE_OVER_TEXT ) != 0 ) {
+          new_subtitles[i].set_text( clip_sub.get_text() );
+        }
+        if( ( flags & PASTE_OVER_TIME ) != 0 ) {
+          new_subtitles[i].set_start_and_end( clip_sub.get_start(), clip_sub.get_end() );
+        }
+        ++clip_sub;
+      }
 
-    calculate_and_apply_timeshift(subtitles, paste_after, new_subtitles, flags);
+      //tell the user what happened
+      doc->flash_message(_("%i subtitle(s) overwritten."), howmany );
+    } else { //don't PASTE_OVER_TEXT
+      paste_after = where_to_paste(subtitles);
+  
+      // We get the new subtitles in the new_subtitles array
+      create_and_insert_paste_subtitles(subtitles, paste_after, new_subtitles);
 
-    // We can now remove the old selected subtitles, only if the selection is >
-    // 1
-    std::vector<Subtitle> selection = subtitles.get_selection();
-    if (selection.size() > 1)
-      subtitles.remove(selection);
-
-    // We select the pasted subtitles, this way the user see where are the new
-    // subtitles
-    subtitles.unselect_all();
-    subtitles.select(new_subtitles);
-
-    // show the pasted subtitles
-    // FIXME tomas-kitone: this is a clumsy implementation.
-    // I think we should add a show_subtitle( Subtitle &sub ) function to class
-    // SubtitleView or at least get_iter() or get_path() to class Subtitle
-    SubtitleView *view = reinterpret_cast<SubtitleView *>(doc->widget());
-    if (view != NULL) {
-      int sub_num = new_subtitles[0].get_num() - 1;
-      Gtk::TreeModel::Path sub_path =
-          Gtk::TreeModel::Path(Glib::ustring::compose("%1", sub_num));
-      view->scroll_to_row(sub_path, 0.25);
+			if( (flags & PASTE_UNCHANGED) == 0 ) {
+        calculate_and_apply_timeshift(subtitles, paste_after, new_subtitles, flags);
+      }
+  
+      // We can now remove the old selected subtitles, only if the selection is >
+      // 1
+      std::vector<Subtitle> selection = subtitles.get_selection();
+      if (selection.size() > 1)
+        subtitles.remove(selection);
+  
+      // We select the pasted subtitles, this way the user see where are the new
+      // subtitles
+      subtitles.unselect_all();
+      subtitles.select(new_subtitles);
+  
+      // show the pasted subtitles
+      // FIXME tomas-kitone: this is a clumsy implementation.
+      // I think we should add a show_subtitle( Subtitle &sub ) function to class
+      // SubtitleView or at least get_iter() or get_path() to class Subtitle
+      SubtitleView *view = reinterpret_cast<SubtitleView *>(doc->widget());
+      if (view != NULL) {
+        int sub_num = new_subtitles[0].get_num() - 1;
+        Gtk::TreeModel::Path sub_path =
+            Gtk::TreeModel::Path(Glib::ustring::compose("%1", sub_num));
+        view->scroll_to_row(sub_path, 0.25);
+      }
+  
+      // tell the user what happened
+      doc->flash_message(_("%i subtitle(s) pasted."), new_subtitles.size());
     }
-
-    // tell the user what happened
-    doc->flash_message(_("%i subtitle(s) pasted."), new_subtitles.size());
   }
 
   bool is_something_to_paste() {
@@ -694,6 +767,70 @@ class ClipboardPlugin : public Action {
     }
   }
 
+  // ================= SELECT OVERLAP COMMAND =====================
+
+  void on_select_overlap()
+ {
+    se_dbg(SE_DBG_PLUGINS);
+
+    Document *doc = get_current_document();
+    g_return_if_fail(doc);
+
+    if (is_clipboard_mine()) {
+      select_overlap( doc );
+    } else {
+      // remember what document to select subs in...
+      set_pastedoc(doc);
+      // ...and that we are just selecting, not pasting anything.
+      paste_flags = SELECT_OVERLAP;
+      request_clipboard_data();
+    }
+  }
+
+  void select_overlap( Document *doc )
+  {
+    g_return_if_fail(doc);
+
+    //are there any subtitled in the clipboard document?
+    if (is_something_to_paste() == false) {
+      doc->flash_message(_("No subtitles on the clipboard."));
+      return;
+    }
+
+    std::vector<Subtitle> selection;
+    Subtitles subtitles = doc->subtitles();
+
+    Subtitle clipsub = clipdoc->subtitles().get_first();
+    while( clipsub ) {
+      add_overlaps( selection, clipsub, subtitles );
+      clipsub = clipdoc->subtitles().get_next( clipsub );
+    }
+    subtitles.unselect_all();
+    subtitles.select( selection );
+    doc->flash_message(_("Selected %i subtitles."), selection.size() );
+  }
+
+  bool subs_overlap( const Subtitle &a, const Subtitle &b ) {
+    long astart = a.get_start().totalmsecs;
+    long aend = a.get_end().totalmsecs;
+    long bstart = b.get_start().totalmsecs;
+    long bend = b.get_end().totalmsecs;
+    if(( astart < bend )&&( bstart < aend )) {
+      return true;
+    }
+    return false;
+  };
+
+  void add_overlaps( std::vector<Subtitle> &dst, const Subtitle &selsub, Subtitles &subs ) {
+    Subtitle cursub = subs.get_first();
+    while( cursub ) {
+      if( subs_overlap( cursub, selsub ) ) {
+        dst.push_back( cursub );
+      }
+      cursub = subs.get_next( cursub );
+    }
+  }
+
   // ================= PASTE COMMANDS =====================
 
   void on_paste() {
@@ -713,6 +850,27 @@ class ClipboardPlugin : public Action {
 
     paste_common(PASTE_AS_NEW_DOCUMENT);
   }
+
+  void on_paste_over_text()
+  {
+    se_dbg(SE_DBG_PLUGINS);
+
+    paste_common( PASTE_OVER_TEXT );
+  };
+
+  void on_paste_over_time()
+  {
+    se_dbg(SE_DBG_PLUGINS);
+
+    paste_common( PASTE_OVER_TIME );
+  };
+
+  void on_paste_unchanged()
+  {
+    se_dbg(SE_DBG_PLUGINS);
+
+    paste_common( PASTE_UNCHANGED );
+  };
 
   void paste_common(unsigned long flags) {
     se_dbg(SE_DBG_PLUGINS);
@@ -794,7 +952,11 @@ class ClipboardPlugin : public Action {
     PASTE_TIMING_AFTER =
         0x01,  // snap the pasted subtitles after the preceding subtitle
     PASTE_TIMING_PLAYER = 0x02,  // paste at the current player position
-    PASTE_AS_NEW_DOCUMENT = 0x04
+    PASTE_AS_NEW_DOCUMENT = 0x04,
+    PASTE_UNCHANGED = 0x08,  // don't change the time codes
+    PASTE_OVER_TEXT = 0x10,  // keep current timing but overwrite the text
+    PASTE_OVER_TIME = 0x20,  // keep current text but overwrite the timing
+    SELECT_OVERLAP = 0x40  // select clipboard overlap, no pasting
   };
   unsigned long paste_flags;
 

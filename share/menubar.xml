@@ -45,6 +45,8 @@
 			<placeholder name="duplicate-selected-subtitles"/>
 			<separator/>
 			<placeholder name="text-formatting"/>
+			<separator/>
+			<placeholder name="slide-words"/>
 		</menu>
 
 		<menu action="menu-selection" name="menu-selection">
@@ -68,16 +70,23 @@
 			<placeholder name="move-after-preceding-subtitle"/>
 			<placeholder name="move-before-next-subtitle"/>
 			<placeholder name="best-fit"/>
+			<placeholder name="idealize-duration"/>
+			<placeholder name="idealize-duration-from-end"/>
 			<placeholder name="minimize-duration"/>
 			<placeholder name="minimize-duration-from-end"/>
 			<placeholder name="stack-subtitles"/>
 			<placeholder name="stack-subtitles-from-end"/>
+			<separator/>
+			<placeholder name="bump-down"/>
+			<placeholder name="bump-up"/>
 			<separator/>
 			<placeholder name="placeholder"/>
 		</menu>
 
 		<menu action="menu-tools">
 			<placeholder name="find-and-replace"/>
+			<separator/>
+			<placeholder name="find-by-time"/>
 			<separator/>
 			<placeholder name="checking"/>
 			<separator/>

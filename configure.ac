@@ -352,6 +352,7 @@ plugins/actions/errorchecking/Makefile
 plugins/actions/extendlength/Makefile
 plugins/actions/externalvideoplayer/Makefile
 plugins/actions/findandreplace/Makefile
+plugins/actions/findbytime/Makefile
 plugins/actions/insertsubtitle/Makefile
 plugins/actions/insertsubtitlefromkeyframe/Makefile
 plugins/actions/italicize/Makefile
@@ -368,6 +369,8 @@ plugins/actions/scalesubtitles/Makefile
 plugins/actions/selection/Makefile
 plugins/actions/sortsubtitles/Makefile
 plugins/actions/spellchecking/Makefile
+plugins/actions/slidetimings/Makefile
+plugins/actions/slidewords/Makefile
 plugins/actions/splitdocument/Makefile
 plugins/actions/splitsubtitle/Makefile
 plugins/actions/stacksubtitles/Makefile

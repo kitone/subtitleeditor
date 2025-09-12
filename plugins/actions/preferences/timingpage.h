@@ -30,6 +30,8 @@ class TimingPage : public PreferencePage {
                 "min-characters-per-second");
     init_widget(xml, "spin-max-characters-per-second", "timing",
                 "max-characters-per-second");
+    init_widget(xml, "spin-ideal-characters-per-second", "timing",
+                "ideal-characters-per-second");
     init_widget(xml, "spin-min-gap-between-subtitles", "timing",
                 "min-gap-between-subtitles");
     init_widget(xml, "spin-min-display", "timing", "min-display");

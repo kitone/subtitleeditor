@@ -17,6 +17,7 @@ FILES = \
 		extendlength \
 		externalvideoplayer \
 		findandreplace \
+		findbytime \
 		insertsubtitle \
 		insertsubtitlefromkeyframe \
 		italicize \
@@ -31,6 +32,8 @@ FILES = \
 		reversetextandtranslation \
 		scalesubtitles \
 		selection \
+		slidetimings \
+		slidewords \
 		sortsubtitles \
 		spellchecking \
 		splitdocument \

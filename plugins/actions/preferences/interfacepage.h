@@ -41,6 +41,8 @@ class InterfacePage : public PreferencePage {
                 "enable-rubberband-selection");
     init_widget(xml, "check-used-ctrl-enter-to-confirm-change", "subtitle-view",
                 "used-ctrl-enter-to-confirm-change");
+    init_widget(xml, "check-enable-goto-subtitle-number", "subtitle-view",
+                "enable-goto-subtitle-number");
     init_widget(xml, "check-do-not-disable-actions-during-editing",
                 "subtitle-view", "do-not-disable-actions-during-editing");
 
