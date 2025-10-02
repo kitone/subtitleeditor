@@ -21,8 +21,11 @@
 #include <extension/action.h>
 #include <gtkmm_utility.h>
 #include <gui/spinbuttontime.h>
+#include <player.h>
+#include <subtitleeditorwindow.h>
 #include <utility.h>
 #include <widget_config_utility.h>
+
 #include <memory>
 
 class DialogMoveSubtitles : public Gtk::Dialog {
@@ -58,7 +61,13 @@ class DialogMoveSubtitles : public Gtk::Dialog {
     m_spinStartValue->set_value(value);
     m_spinStartValue->set_range(value, value);
 
-    m_spinNewStart->set_value(value);
+    // Set the new start of subtitles to current player position
+    long position = value;
+    Player *player = SubtitleEditorWindow::get_instance()->get_player();
+    if (player->get_state() != Player::NONE)
+      position = player->get_position();
+
+    m_spinNewStart->set_value(position);
     m_spinNewStart->grab_focus();
   }
 
