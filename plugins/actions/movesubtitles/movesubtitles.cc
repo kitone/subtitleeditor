@@ -185,8 +185,8 @@ class MoveSubtitlesPlugin : public Action {
     return true;
   }
 
-  // Used only the first selected subtitles and move all the next
-  // subtitles selected or not.
+  // Move the first selected subtitle and all subsequent subtitles
+  // regardless of selection.
   bool move_first_selected_subtitle_and_next(Document *doc, const long &diff) {
     se_dbg(SE_DBG_PLUGINS);
 
