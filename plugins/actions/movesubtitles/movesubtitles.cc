@@ -176,6 +176,9 @@ class MoveSubtitlesPlugin : public Action {
 
           doc->emit_signal("subtitle-time-changed");
           doc->finish_command();
+        } else {
+          doc->flash_message(_(
+              "Old Start Time and New Start are the same. Nothing was moved."));
         }
       }
     } else {
