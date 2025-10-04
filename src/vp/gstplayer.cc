@@ -22,6 +22,7 @@
 
 #include <debug.h>
 #include <gst/pbutils/missing-plugins.h>
+#include <gst/video/video.h>
 #include <gstreamer_utility.h>
 #include <i18n.h>
 #include <utility.h>
@@ -753,37 +754,80 @@ void GstPlayer::set_current_audio(gint track) {
 // Return the framerate of the video or zero (0).
 // Update numerator and denominator if the values are not null.
 float GstPlayer::get_framerate(int *numerator, int *denominator) {
-  // se_dbg(SE_DBG_VIDEO_PLAYER);
+  se_dbg(SE_DBG_VIDEO_PLAYER);
 
-  // if (!m_pipeline)
-  //   return 0;
-  // Glib::RefPtr<Gst::Pad> pad = m_pipeline->get_video_pad(0);
-  // g_return_val_if_fail(pad, 0);
+  if (!m_pipeline)
+    return 0.0f;
 
-  // Glib::RefPtr<Gst::Caps> caps = pad->get_current_caps();
-  // g_return_val_if_fail(caps, 0);
+  float fr = 0.0f;
+  int num = 0, den = 1;
 
-  // const Gst::Structure structure = caps->get_structure(0);
-  // if (structure.has_field("framerate") == false) {
-  //   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "structure has not field \"framerate\"");
-  //   return 0;
-  // }
+  // Prefer the 'video_sink' pad on our textoverlay inside the video bin.
+  // This sits just upstream of the actual sink and has negotiated video caps.
+  GstPad *pad = nullptr;
+  if (m_textoverlay) {
+    pad = gst_element_get_static_pad(m_textoverlay, "video_sink");
+  }
 
-  // Glib::ValueBase gst_value;
-  // structure.get_field("framerate", gst_value);
+  // Fallback to the 'sink' pad on the configured playbin3 'video-sink'.
+  GstElement *video_sink = nullptr;
+  if (!pad) {
+    g_object_get(G_OBJECT(m_pipeline), "video-sink", &video_sink, NULL);
+    if (video_sink) {
+      pad = gst_element_get_static_pad(video_sink, "sink");
+    }
+  }
 
-  // Gst::Fraction fps(gst_value);
-  // float framerate = static_cast<float>(fps.num) / static_cast<float>(fps.denom);
+  if (!pad) {
+    if (video_sink)
+      gst_object_unref(video_sink);
+    return 0.0f;
+  }
 
-  // if (numerator != NULL)
-  //   *numerator = fps.num;
-  // if (denominator != NULL)
-  //   *denominator = fps.denom;
+  // Use negotiated caps when available; otherwise query potential caps.
+  GstCaps *caps = gst_pad_get_current_caps(pad);
+  if (!caps) {
+    caps = gst_pad_query_caps(pad, NULL);
+  }
 
-  // se_dbg_msg(SE_DBG_VIDEO_PLAYER, "framerate: %f (num: %i, denom: %i)", framerate, fps.num, fps.denom);
+  if (caps) {
+    // Parse caps using GstVideoInfo to read fps numerator/denominator.
+    GstVideoInfo vinfo;
+    gst_video_info_init(&vinfo);
+    if (gst_video_info_from_caps(&vinfo, caps)) {
+      num = vinfo.fps_n;
+      den = vinfo.fps_d;
+    } else {
+      // Fallback: inspect a fixed fraction field named "framerate".
+      const GstStructure *s = gst_caps_get_structure(caps, 0);
+      const GValue *fps_val = s ? gst_structure_get_value(s, "framerate") : NULL;
+      if (fps_val && GST_VALUE_HOLDS_FRACTION(fps_val)) {
+        num = gst_value_get_fraction_numerator(fps_val);
+        den = gst_value_get_fraction_denominator(fps_val);
+      }
+    }
+    gst_caps_unref(caps);
+  }
 
-  // return framerate;
-  return 0;
+  if (den != 0) {
+    fr = static_cast<float>(num) / static_cast<float>(den);
+  }
+  if (numerator) {
+    *numerator = num;
+  }
+  if (denominator) {
+    *denominator = den;
+  }
+
+  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "framerate: %f (num: %d, denom: %d)", fr, num, den);
+
+  // Release temporary references.
+  gst_object_unref(pad);
+  if (video_sink) {
+    gst_object_unref(video_sink);
+  }
+
+  return fr;
 }
 
 guint GstPlayer::get_text_valignment_based_on_config() {
