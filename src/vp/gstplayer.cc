@@ -334,7 +334,7 @@ GstElement *GstPlayer::gen_video_element() {
   GError *error = nullptr;
   GstElement *videobin = gst_parse_bin_from_description("textoverlay name=textoverlay ! videoconvert ! gtksink name=gtksink", true, &error);
   if (error) {
-    g_printerr("Error trying generate video element: %s\n", error);
+    g_printerr("Error trying generate video element: %s\n", error->message);
     g_clear_error(&error);
     return nullptr;
   }
@@ -499,7 +499,7 @@ void GstPlayer::on_bus_message_error(GstMessage *msg) {
   g_printerr("Error received from element %s: %s\n", GST_OBJECT_NAME(msg->src), err->message);
   g_printerr("Debugging information: %s\n", err_dbg ? err_dbg : "none");
 
-  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "GST_MESSAGE_ERROR : %s [%s]", err, err_dbg);
+  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "GST_MESSAGE_ERROR : %s [%s]", err ? err->message : "(null)", err_dbg ? err_dbg : "(null)");
 
   dialog_error(build_message(_("Media file could not be played.\n%s"), get_uri().c_str()), err->message);
 
@@ -522,7 +522,7 @@ void GstPlayer::on_bus_message_warning(GstMessage *msg) {
   g_warning("Error received from element %s: %s\n", GST_OBJECT_NAME(msg->src), err->message);
   g_warning("Debugging information: %s\n", err_dbg ? err_dbg : "none");
 
-  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "GST_MESSAGE_WARNING : %s [%s]", err, err_dbg);
+  se_dbg_msg(SE_DBG_VIDEO_PLAYER, "GST_MESSAGE_WARNING : %s [%s]", err ? err->message : "(null)", err_dbg ? err_dbg : "(null)");
 
   g_clear_error(&err);
   g_free(err_dbg);
