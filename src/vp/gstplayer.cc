@@ -156,22 +156,24 @@ bool GstPlayer::is_playing() {
 
 // Return the duration of the stream or 0.
 long GstPlayer::get_duration() {
-  //  se_dbg(SE_DBG_VIDEO_PLAYER);
+  // se_dbg(SE_DBG_VIDEO_PLAYER);
 
   if (!m_pipeline) {
-    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "0 because no pipeline");
     return 0;
   }
-
+  if (!GST_CLOCK_TIME_IS_VALID(m_pipeline_duration)) {
+    if (!update_pipeline_duration()) {
+      return 0;
+    }
+  }
   return GST_TIME_AS_MSECONDS(m_pipeline_duration);
 }
 
 // Return the current position in the stream.
 long GstPlayer::get_position() {
-  //  se_dbg(SE_DBG_VIDEO_PLAYER);
+  // se_dbg(SE_DBG_VIDEO_PLAYER);
 
   if (!m_pipeline) {
-    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "0 because no pipeline");
     return 0;
   }
 
@@ -851,40 +853,4 @@ guint GstPlayer::get_text_valignment_based_on_config() {
     alignment = 4;
   }
   return alignment;
-}
-
-void GstPlayer::on_hierarchy_changed(Widget *previous_toplevel) {
-  if (!previous_toplevel) {
-    get_toplevel()->signal_configure_event().connect(sigc::mem_fun(*this, &GstPlayer::on_configure_event), false);
-  }
-}
-
-bool GstPlayer::on_configure_event(GdkEventConfigure *) {
-  set_render_rectangle();
-  return false;
-}
-
-void GstPlayer::set_render_rectangle(bool is_mapped) {
-#ifdef GDK_WINDOWING_WAYLAND
-  if (!m_xoverlay) {
-    return;
-  }
-
-  auto gdkWindow = get_window();
-
-  if (GDK_IS_WAYLAND_WINDOW(gdkWindow->gobj())) {
-    int x, y, width, height;
-
-    if (is_mapped) {
-      width = gdkWindow->get_width();
-      height = gdkWindow->get_height();
-    } else {
-      width = height = 1;
-    }
-
-    translate_coordinates(*get_toplevel(), 0, 0, x, y);
-    gst_video_overlay_set_render_rectangle(GST_VIDEO_OVERLAY(m_xoverlay->gobj()), x, y, width, height);
-    gst_video_overlay_expose(GST_VIDEO_OVERLAY(m_xoverlay->gobj()));
-  }
-#endif
 }

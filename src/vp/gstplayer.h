@@ -162,9 +162,6 @@ class GstPlayer : public Gtk::Bin, public Player {
   // Set up the duration value of the stream if need.
   bool update_pipeline_duration();
 
-  // Update render rectangle of GstVideoOverlay.
-  void set_render_rectangle(bool is_mapped = true);
-
   // Return the number of audio track.
   gint get_n_audio();
 
