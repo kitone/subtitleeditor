@@ -39,6 +39,7 @@ GstPlayer::GstPlayer() {
   m_pipeline = nullptr;
   m_gtksink_widget = nullptr;
   m_textoverlay = nullptr;
+  m_stream_collection = nullptr;
   m_watch_id = 0;
   m_pipeline_state = GST_STATE_NULL;
   m_pipeline_duration = GST_CLOCK_TIME_NONE;
@@ -377,6 +378,7 @@ void GstPlayer::set_pipeline_null() {
   gtk_widget_destroy(m_gtksink_widget);
   g_object_unref(m_pipeline);
   g_source_remove(m_watch_id);
+  g_object_unref(m_stream_collection);
 
   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "set up all values to NULL");
 
@@ -391,7 +393,7 @@ void GstPlayer::set_pipeline_null() {
   m_pipeline = nullptr;
   m_gtksink_widget = nullptr;
   m_textoverlay = nullptr;
-  // m_xoverlay.clear();
+  m_stream_collection = nullptr;
 
   set_player_state(NONE);
 
@@ -582,22 +584,30 @@ void GstPlayer::on_bus_message_segment_done(GstMessage *msg) {
   seek(m_subtitle_play.get_start().totalmsecs, m_subtitle_play.get_end().totalmsecs, flags);
 }
 
-//
+// Handles GST_MESSAGE_STREAM_COLLECTION.
+// - Replaces any existing m_stream_collection with the one parsed from msg.
 void GstPlayer::on_bus_message_stream_collection(GstMessage *msg) {
   se_dbg(SE_DBG_VIDEO_PLAYER);
 
-  // GstStreamCollection *collection = nullptr;
-  // gst_message_parse_stream_collection(msg, &collection);
-  // if (!collection) {
-  //   return;
-  // }
-  // guint numStreams = gst_stream_collection_get_size(collection);
-  // for (guint i = 0; i < numStreams; i++) {
-  //   GstStream *stream = gst_stream_collection_get_stream(collection, i);
-  //   g_print("Stream %d: Type=%s, ID=%s\n", i, gst_stream_type_get_name(gst_stream_get_stream_type(stream)), gst_stream_get_stream_id(stream));
-  // }
+  if (m_stream_collection) {
+    g_object_unref(m_stream_collection);
+    m_stream_collection = nullptr;
+  }
 
-  // g_object_unref(collection);
+  gst_message_parse_stream_collection(msg, &m_stream_collection);
+  if (!m_stream_collection) {
+    return;
+  }
+  guint numStreams = gst_stream_collection_get_size(m_stream_collection);
+  for (guint i = 0; i < numStreams; i++) {
+    GstStream *stream = gst_stream_collection_get_stream(m_stream_collection, i);
+
+    GstStreamType type = gst_stream_get_stream_type(stream);
+    // typename = gst_stream_type_get_name(type)
+    const gchar *stream_id = gst_stream_get_stream_id(stream);
+
+    g_print("Stream %d: Type=%s, ID=%s\n", i, gst_stream_type_get_name(gst_stream_get_stream_type(stream)), gst_stream_get_stream_id(stream));
+  }
 }
 
 // The video-player configuration has changed, update the player.
@@ -651,24 +661,93 @@ bool GstPlayer::update_pipeline_duration() {
 
 // Return the number of audio track.
 gint GstPlayer::get_n_audio() {
-  // FIXME
-  // se_dbg_msg(SE_DBG_VIDEO_PLAYER, "n_audio: %d", (m_pipeline) ? m_pipeline->property_n_audio() : 0);
-  // if (m_pipeline)
-  //   return m_pipeline->property_n_audio();
-  return 0;
+  se_dbg(SE_DBG_VIDEO_PLAYER);
+
+  if (m_pipeline == nullptr || m_stream_collection == nullptr) {
+    return 0;
+  }
+  guint n_audio = 0;
+  guint numStreams = gst_stream_collection_get_size(m_stream_collection);
+  for (guint i = 0; i < numStreams; i++) {
+    GstStream *stream = gst_stream_collection_get_stream(m_stream_collection, i);
+    GstStreamType type = gst_stream_get_stream_type(stream);
+    if (type == GST_STREAM_TYPE_AUDIO) {
+      ++n_audio;
+    }
+    gst_object_unref(stream);
+  }
+  return n_audio;
+}
+
+// Returns the Nth stream of a given type from the current GstStreamCollection.
+// - stream_type: The desired type (e.g., GST_STREAM_TYPE_AUDIO/VIDEO).
+// - track_num: Zero-based index among streams of that type (0 = first).
+// Caller must gst_object_unref() the returned stream when done.
+GstStream *GstPlayer::get_stream_from_type(GstStreamType stream_type, gint track_num) {
+  if (m_pipeline == nullptr || m_stream_collection == nullptr) {
+    return nullptr;
+  }
+
+  gint curr = -1;
+  guint numStreams = gst_stream_collection_get_size(m_stream_collection);
+  for (guint i = 0; i < numStreams; i++) {
+    GstStream *stream = gst_stream_collection_get_stream(m_stream_collection, i);
+    GstStreamType type = gst_stream_get_stream_type(stream);
+
+    const gchar *stream_name = gst_stream_type_get_name(type);
+    const gchar *stream_id = gst_stream_get_stream_id(stream);
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "Stream %d: curr=%d track_num=%d Type=%s, ID=%s\n", i, curr, track_num, stream_name, stream_id);
+
+    if (type == stream_type) {
+      ++curr;
+      if (curr == track_num) {
+        se_dbg_msg(SE_DBG_VIDEO_PLAYER, "found stream %d: curr=%d track_num=%d Type=%s, ID=%s\n", i, curr, track_num, stream_name, stream_id);
+        return stream;
+      }
+    }
+    gst_object_unref(stream);
+  }
+  return nullptr;
 }
 
 // Sets the current audio track. (-1 = auto)
 void GstPlayer::set_current_audio(gint track) {
   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "track=%d", track);
-  // FIXME
-  // if (!m_pipeline)
-  //   return;
 
-  // if (track < -1)
-  //   track = -1;
-  // m_pipeline->property_current_audio() = track;
-  // send_message(Player::STREAM_AUDIO_CHANGED);
+  if (m_pipeline == nullptr || m_stream_collection == nullptr) {
+    return;
+  }
+  if (track < 0) {
+    track = 0;  // auto, first track
+  }
+
+  GList *selected_streams = NULL;
+  // we need to give back the video to not only play audio
+  GstStream *video = get_stream_from_type(GST_STREAM_TYPE_VIDEO, 0);
+  if (video) {
+    const char *id = gst_stream_get_stream_id(video);
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "add to the stream the video %s", id);
+    selected_streams = g_list_append(selected_streams, (char *)id);
+    // Drop our local ref; collection retains ownership
+    gst_object_unref(video);
+  }
+  GstStream *audio = get_stream_from_type(GST_STREAM_TYPE_AUDIO, track);
+  if (audio) {
+    const char *id = gst_stream_get_stream_id(audio);
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "add to the stream the audio %s", id);
+    selected_streams = g_list_append(selected_streams, (gchar *)id);
+    // Drop our local ref; collection retains ownership
+    gst_object_unref(audio);
+  }
+
+  if (selected_streams == NULL) {
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "no stream found");
+    return;
+  }
+  gst_element_send_event(m_pipeline, gst_event_new_select_streams(selected_streams));
+  g_list_free(selected_streams);
+
+  send_message(Player::STREAM_AUDIO_CHANGED);
 }
 
 // Return the current audio track.

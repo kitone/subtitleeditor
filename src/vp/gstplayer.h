@@ -143,7 +143,8 @@ class GstPlayer : public Gtk::Bin, public Player {
   // Works only with play_subtitle.
   void on_bus_message_segment_done(GstMessage *msg);
 
-  //
+  // Handle GST_MESSAGE_STREAM_COLLECTION: store the collection and
+  // enumerate streams for debugging. Keeps a ref in m_stream_collection.
   void on_bus_message_stream_collection(GstMessage *msg);
 
   // Set the state of the pipeline.
@@ -175,13 +176,20 @@ class GstPlayer : public Gtk::Bin, public Player {
 
   guint get_text_valignment_based_on_config();
 
+ private:
+  // Returns the Nth stream of a given type from the current GstStreamCollection.
+  // - stream_type: The desired type (e.g., GST_STREAM_TYPE_AUDIO/VIDEO).
+  // - track_num: Zero-based index among streams of that type (0 = first).
+  // Caller must gst_object_unref() the returned stream when done.
+  GstStream *get_stream_from_type(GstStreamType stream_type, gint track_num);
+
  protected:
   guint m_watch_id;
   // Gstreamer Elements
   GstElement *m_pipeline;
   GtkWidget *m_gtksink_widget;
-  // Glib::RefPtr<Gst::VideoOverlay> m_xoverlay;
   GstElement *m_textoverlay;
+  GstStreamCollection *m_stream_collection;
 
   bool m_pipeline_async_done;
   GstState m_pipeline_state;
