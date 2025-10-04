@@ -375,10 +375,10 @@ void GstPlayer::set_pipeline_null() {
 
   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "remove watch id");
 
-  gtk_widget_destroy(m_gtksink_widget);
-  g_object_unref(m_pipeline);
+  // g_object_unref(m_pipeline);
   g_source_remove(m_watch_id);
   g_object_unref(m_stream_collection);
+  gtk_widget_destroy(m_gtksink_widget);
 
   se_dbg_msg(SE_DBG_VIDEO_PLAYER, "set up all values to NULL");
 
