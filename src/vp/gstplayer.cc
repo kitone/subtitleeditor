@@ -349,8 +349,8 @@ GstElement *GstPlayer::gen_video_element() {
   // configure text overlay
   m_textoverlay = gst_bin_get_by_name(GST_BIN(videobin), "textoverlay");
   g_object_set(GST_OBJECT(m_textoverlay), "valignment", cfg_text_valignment, NULL);
-  g_object_set(GST_OBJECT(m_textoverlay), "shaded_background", cfg_shaded_background, NULL);
-  g_object_set(GST_OBJECT(m_textoverlay), "font_desc", cfg_font_desc.c_str(), NULL);
+  g_object_set(GST_OBJECT(m_textoverlay), "shaded-background", cfg_shaded_background, NULL);
+  g_object_set(GST_OBJECT(m_textoverlay), "font-desc", cfg_font_desc.c_str(), NULL);
 
   return videobin;
 }
@@ -517,7 +517,7 @@ void GstPlayer::on_bus_message_warning(GstMessage *msg) {
 
   GError *err = nullptr;
   gchar *err_dbg = nullptr;
-  gst_message_parse_error(msg, &err, &err_dbg);
+  gst_message_parse_warning(msg, &err, &err_dbg);
 
   g_warning("Error received from element %s: %s\n", GST_OBJECT_NAME(msg->src), err->message);
   g_warning("Debugging information: %s\n", err_dbg ? err_dbg : "none");
