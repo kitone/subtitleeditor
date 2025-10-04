@@ -281,9 +281,17 @@ bool GstPlayer::create_pipeline() {
 
   GstElement *videosink = gen_video_element();
   g_object_set(GST_OBJECT(m_pipeline), "video-sink", videosink, NULL);
+  if (videosink) {
+    // release our temporary reference to the element
+    gst_object_unref(videosink);
+  }
 
   GstElement *audiosink = gen_audio_element();
   g_object_set(GST_OBJECT(m_pipeline), "audio-sink", audiosink, NULL);
+  if (audiosink) {
+    // release our temporary reference to the element
+    gst_object_unref(audiosink);
+  }
 
   show_all();
 
@@ -345,6 +353,11 @@ GstElement *GstPlayer::gen_video_element() {
   gtk_container_add(GTK_CONTAINER(gobj()), m_gtksink_widget);
   g_object_unref(m_gtksink_widget);
   gtk_widget_realize(m_gtksink_widget);
+  // release our temporary reference to the element
+  if (gtksink) {
+    // release our temporary reference to the element
+    gst_object_unref(gtksink);
+  }
 
   // configure text overlay
   m_textoverlay = gst_bin_get_by_name(GST_BIN(videobin), "textoverlay");
@@ -632,9 +645,9 @@ void GstPlayer::on_config_video_player_changed(const Glib::ustring &key, const G
   }
 
   if (key == "shaded-background" && m_textoverlay) {
-    g_object_set(G_OBJECT(m_textoverlay), "shaded_background", utility::string_to_bool(value), NULL);
+    g_object_set(G_OBJECT(m_textoverlay), "shaded-background", utility::string_to_bool(value), NULL);
   } else if (key == "font-desc" && m_textoverlay) {
-    g_object_set(G_OBJECT(m_textoverlay), "font_desc", value.c_str(), NULL);
+    g_object_set(G_OBJECT(m_textoverlay), "font-desc", value.c_str(), NULL);
   }
 }
 
