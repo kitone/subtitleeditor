@@ -358,7 +358,10 @@ GstElement *GstPlayer::gen_video_element() {
 // Set the state of the pipeline.
 // The state change can be asynchronously.
 bool GstPlayer::set_pipeline_state(GstState state) {
-  if (!m_pipeline && m_pipeline_state == state) {
+  if (!m_pipeline) {
+    return false;
+  }
+  if (m_pipeline_state == state) {
     return false;
   }
   GstStateChangeReturn ret = gst_element_set_state(m_pipeline, state);
