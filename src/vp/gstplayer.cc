@@ -317,7 +317,7 @@ GstElement *GstPlayer::gen_audio_element() {
     gchar *msg = g_strdup_printf(fmt, cfg_audiosink.c_str());
     se_dbg_msg(SE_DBG_VIDEO_PLAYER, "%s", msg);
     if (m_pipeline) {
-      GST_ELEMENT_WARNING(m_pipeline, RESOURCE, NOT_FOUND, (msg), (NULL));
+      GST_ELEMENT_WARNING(m_pipeline, RESOURCE, NOT_FOUND, ("%s", msg), (NULL));
     }
     g_free(msg);
 
