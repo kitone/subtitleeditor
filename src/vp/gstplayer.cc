@@ -750,15 +750,6 @@ void GstPlayer::set_current_audio(gint track) {
   send_message(Player::STREAM_AUDIO_CHANGED);
 }
 
-// Return the current audio track.
-gint GstPlayer::get_current_audio() {
-  // se_dbg_msg(SE_DBG_VIDEO_PLAYER, "current_audio: %d", (m_pipeline) ? m_pipeline->property_current_audio() : 0);
-  // FIXME
-  // if (m_pipeline)
-  //   return m_pipeline->property_current_audio();
-  return -1;
-}
-
 // Return the framerate of the video or zero (0).
 // Update numerator and denominator if the values are not null.
 float GstPlayer::get_framerate(int *numerator, int *denominator) {

@@ -21,6 +21,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <glibmm.h>
+
 #include "document.h"
 #include "keyframes.h"
 
@@ -79,8 +80,7 @@ class Player {
   // Try to play the segment defined (start to end).
   // This function don't support the mode looping.
   // The state is sets to playing.
-  virtual void play_segment(const SubtitleTime &start,
-                            const SubtitleTime &end) = 0;
+  virtual void play_segment(const SubtitleTime &start, const SubtitleTime &end) = 0;
 
   virtual void pause() = 0;
 
@@ -113,13 +113,9 @@ class Player {
   // Sets the current audio track. (-1 = auto)
   virtual void set_current_audio(gint track) = 0;
 
-  // Return the current audio track.
-  virtual gint get_current_audio() = 0;
-
   // Return the framerate of the video.
   // Update numerator and denominator if the values are not null.
-  virtual float get_framerate(int *numerator = nullptr,
-                              int *denominator = nullptr) = 0;
+  virtual float get_framerate(int *numerator = nullptr, int *denominator = nullptr) = 0;
 
   void set_keyframes(Glib::RefPtr<KeyFrames> keyframes);
 

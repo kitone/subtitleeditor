@@ -171,9 +171,6 @@ class GstPlayer : public Gtk::Bin, public Player {
   // Sets the current audio track. (-1 = auto)
   void set_current_audio(gint track);
 
-  // Return the current audio track.
-  gint get_current_audio();
-
   guint get_text_valignment_based_on_config();
 
  private:
