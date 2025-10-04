@@ -278,6 +278,9 @@ bool GstPlayer::create_pipeline() {
   GstElement *videosink = gen_video_element();
   g_object_set(GST_OBJECT(m_pipeline), "video-sink", videosink, NULL);
 
+  GstElement *audiosink = gen_audio_element();
+  g_object_set(GST_OBJECT(m_pipeline), "audio-sink", audiosink, NULL);
+
   show_all();
 
   // Add a bus watch, so we get notified when a message arrives
@@ -288,34 +291,36 @@ bool GstPlayer::create_pipeline() {
 }
 
 // Return a gstreamer audio sink from the configuration option.
-// Glib::RefPtr<Gst::Element> GstPlayer::gen_audio_element() {
-//   se_dbg(SE_DBG_VIDEO_PLAYER);
-//
-//   Glib::ustring cfg_audiosink = cfg::get_string("video-player", "audio-sink");
-//
-//   try {
-//     Glib::RefPtr<Gst::Element> sink = Gst::ElementFactory::create_element(cfg_audiosink, "audiosink");
-//     if (!sink) {
-//       throw std::runtime_error(build_message(_("Failed to create a GStreamer audio output (%s). "
-//                                                "Please check your GStreamer installation."),
-//                                              cfg_audiosink.c_str()));
-//     }
-//     return sink;
-//   } catch (std::runtime_error &ex) {
-// #pragma GCC diagnostic push
-// #pragma GCC diagnostic ignored "-Wformat-security"
-//     se_dbg_msg(SE_DBG_VIDEO_PLAYER, "failed to gen_audio_element '%s'", ex.what());
-//     GST_ELEMENT_WARNING(m_pipeline->gobj(), RESOURCE, NOT_FOUND, (ex.what()), (NULL));
-// #pragma GCC diagnostic pop
-//   }
-//   // Return an NULL ptr
-//   return Glib::RefPtr<Gst::Element>();
-// }
+GstElement *GstPlayer::gen_audio_element() {
+  se_dbg(SE_DBG_VIDEO_PLAYER);
+
+  // FIXME: we should remove cfg "audio-sink" ?
+  Glib::ustring cfg_audiosink = cfg::get_string("video-player", "audio-sink");
+
+  // Try configured sink first
+  GstElement *sink = gst_element_factory_make(cfg_audiosink.c_str(), "audiosink");
+  if (!sink) {
+    // Warn and attempt a sensible fallback
+    const char *fmt = _("Failed to create a GStreamer audio output (%s). Please check your GStreamer installation.");
+    gchar *msg = g_strdup_printf(fmt, cfg_audiosink.c_str());
+    se_dbg_msg(SE_DBG_VIDEO_PLAYER, "%s", msg);
+    if (m_pipeline) {
+      GST_ELEMENT_WARNING(m_pipeline, RESOURCE, NOT_FOUND, (msg), (NULL));
+    }
+    g_free(msg);
+
+    // Fallback to autoaudiosink
+    sink = gst_element_factory_make("autoaudiosink", "audiosink");
+  }
+
+  return sink;  // may be nullptr if fallback also failed
+}
 
 // Return a gstreamer video sink from the configuration option.
 GstElement *GstPlayer::gen_video_element() {
   se_dbg(SE_DBG_VIDEO_PLAYER);
 
+  // FIXME: we should remove cfg "video-sink" ?
   Glib::ustring cfg_videosink = cfg::get_string("video-player", "video-sink");
   Glib::ustring cfg_font_desc = cfg::get_string("video-player", "font-desc");
   bool cfg_shaded_background = cfg::get_boolean("video-player", "shaded-background");

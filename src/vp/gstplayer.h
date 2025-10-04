@@ -101,7 +101,7 @@ class GstPlayer : public Gtk::Bin, public Player {
   bool create_pipeline();
 
   // Return a gstreamer audio sink from the configuration option.
-  // Glib::RefPtr<Gst::Element> gen_audio_element();
+  GstElement *gen_audio_element();
 
   // Return a gstreamer video sink from the configuration option.
   GstElement *gen_video_element();
