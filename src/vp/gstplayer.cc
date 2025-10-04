@@ -610,6 +610,9 @@ void GstPlayer::on_bus_message_stream_collection(GstMessage *msg) {
     const gchar *stream_id = gst_stream_get_stream_id(stream);
 
     g_print("Stream %d: Type=%s, ID=%s\n", i, gst_stream_type_get_name(gst_stream_get_stream_type(stream)), gst_stream_get_stream_id(stream));
+
+    // Drop our reference to the retrieved GstStream.
+    gst_object_unref(stream);
   }
 }
 
